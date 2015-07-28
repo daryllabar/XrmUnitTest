@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using DLaB.Xrm.Entities;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm
@@ -141,22 +142,22 @@ namespace DLaB.Xrm
 
             switch (logicalName)
             {
-                case "activitypointer":
-                case "appointment":
-                case "bulkoperation":
-                case "campaignactivity":
-                case "campaignresponse":
-                case "email":
-                case "fax":
-                case "incidentresolution":
-                case "letter":
-                case "opportunityclose":
-                case "phonecall":
-                case "quoteclose":
-                case "recurringappointmentmaster":
-                case "serviceappointment":
-                case "task":
-                    name = "activityid";
+                case ActivityPointer.EntityLogicalName:
+                case Appointment.EntityLogicalName:
+                case BulkOperation.EntityLogicalName:
+                case CampaignActivity.EntityLogicalName:
+                case CampaignResponse.EntityLogicalName:
+                case Email.EntityLogicalName:
+                case Fax.EntityLogicalName:
+                case IncidentResolution.EntityLogicalName:
+                case Letter.EntityLogicalName:
+                case OpportunityClose.EntityLogicalName:
+                case PhoneCall.EntityLogicalName:
+                case QuoteClose.EntityLogicalName:
+                case RecurringAppointmentMaster.EntityLogicalName:
+                case ServiceAppointment.EntityLogicalName:
+                case Task.EntityLogicalName:
+                    name = ActivityPointer.Fields.ActivityId;
                     break;
             }
 
@@ -190,95 +191,6 @@ namespace DLaB.Xrm
                 // Handle Special Cases
                 switch (logicalName)
                 {
-                    case "dmx_centricity":
-                        info.AttributeName = "dmx_centricity";
-                        break;
-
-                    case "dmx_dmxconfiguration":
-                        info.AttributeName = "dmx_licensekey";
-                        info.MaximumLength = 256;
-                        break;
-
-                    case "dmx_externalsystemrecord":
-                    case "dmx_showroomvisit":
-                    case "dmx_timedjobtrigger":
-                        info.AttributeName = "subject";
-                        info.MaximumLength = 200;
-                        break;
-
-                    case "dmx_ilmleadregister":
-                        info.AttributeName = "dmx_leaduserid";
-                        info.MaximumLength = 1000;
-                        break;
-
-                    case "dmx_ilmxmltemplatematch":
-                        info.AttributeName = "dmx_xpath";
-                        info.MaximumLength = 1000;
-                        break;
-
-                    case "dmx_integrationkey":
-                        info.AttributeName = "dmx_key";
-                        info.MaximumLength = 128;
-                        break;
-
-                    case "dmx_roadtosalestagestep":
-                        info.AttributeName = "dmx_roadtosalestagestep";
-                        break;
-
-                    case "dmx_roadtosalestagestepaction":
-                        info.AttributeName = "dmx_roadtosalestagestepaction";
-                        break;
-
-                    case "dmx_vehicleactivity":
-                        info.AttributeName = "dmx_vehicleactivity";
-                        break;
-
-                    case "dmx_vehiclebodystyle":
-                        info.AttributeName = "dmx_bodystyle";
-                        break;
-
-                    case "dmx_vehiclecolor":
-                        info.AttributeName = "dmx_color";
-                        break;
-
-                    case "dmx_vehicledrivetrain":
-                        info.AttributeName = "dmx_drivetrain";
-                        break;
-
-                    case "dmx_vehicleenginetype":
-                        info.AttributeName = "dmx_enginetype";
-                        break;
-
-                    case "dmx_vehiclefueltype":
-                        info.AttributeName = "dmx_fueltype";
-                        break;
-
-                    case "dmx_vehiclemake":
-                        info.AttributeName = "dmx_make";
-                        break;
-
-                    case "dmx_vehiclemodel":
-                        info.AttributeName = "dmx_model";
-                        break;
-
-                    case "dmx_vehicletradedetail":
-                        info.AttributeName = "dmx_vehicletradedetail";
-                        break;
-
-                    case "dmx_vehicletransmissiontype":
-                        info.AttributeName = "dmx_transmissiontype";
-                        break;
-
-                    case "dmx_vehicleyear":
-                        info.AttributeName = "dmx_year";
-                        info.MaximumLength = 7;
-                        break;
-
-                    case "dmx_xmltemplate":
-                        info.AttributeName = "dmx_xpath";
-                        info.MaximumLength = 1024;
-                        break;
-
                     default:
                         info.AttributeName = logicalName.Substring(0, 4) + "name";
                         break;
@@ -288,222 +200,202 @@ namespace DLaB.Xrm
             {
                 switch (logicalName)
                 {
-                    case "businessunitnewsarticle":
-                        info.AttributeName = "articletitle";
+                    case BusinessUnitNewsArticle.EntityLogicalName:
+                        info.AttributeName = BusinessUnitNewsArticle.Fields.ArticleTitle;
                         info.MaximumLength = 300;
                         break;
 
-                    case "transactioncurrency":
-                        info.AttributeName = "currencyname";
-                        info.MaximumLength = 100;
+                    case TransactionCurrency.EntityLogicalName:
+                        info.AttributeName = TransactionCurrency.Fields.CurrencyName;
                         break;
 
-                    case "customerrelationship":
+                    case CustomerRelationship.EntityLogicalName:
                         info.AttributeName = "customerroleidname";
-                        info.MaximumLength = 100;
                         break;
 
-                    case "importdata":
-                        info.AttributeName = "data";
+                    case ImportJob.EntityLogicalName:
+                        info.AttributeName = ImportJob.Fields.Data;
                         info.MaximumLength = 1073741823;
                         break;
 
-                    case "transformationparametermapping":
-                        info.AttributeName = "data";
+                    case TransformationParameterMapping.EntityLogicalName:
+                        info.AttributeName = TransformationParameterMapping.Fields.Data;
                         info.MaximumLength = 500;
                         break;
 
-                    case "wizardaccessprivilege":
-                        info.AttributeName = "entityname";
-                        info.MaximumLength = 100;
-                        break;
-
-                    case "activitymimeattachment":
-                    case "attachment":
-                        info.AttributeName = "filename";
+                    case ActivityMimeAttachment.EntityLogicalName:
+                        info.AttributeName = ActivityMimeAttachment.Fields.FileName;
                         info.MaximumLength = 255;
                         break;
 
-                    case "contact":
-                    case "lead":
-                    case "systemuser":
-                        info.AttributeName = "fullname";
+                    case Contact.EntityLogicalName:
+                    case Lead.EntityLogicalName:
+                    case SystemUser.EntityLogicalName:
+                        info.AttributeName = Contact.Fields.FullName;
                         break;
 
-                    case "solution":
-                    case "publisher":
-                        info.AttributeName = "friendlyname";
+                    case Solution.EntityLogicalName:
+                    case Publisher.EntityLogicalName:
+                        info.AttributeName = Solution.Fields.FriendlyName;
                         break;
 
-                    case "account":
-                    case "asyncoperation":
-                    case "authorizationserver":
-                    case "bulkdeleteoperation":
-                    case "businessunit":
-                    case "calendar":
-                    case "calendarrule":
-                    case "campaign":
-                    case "competitor":
-                    case "competitoraddress":
-                    case "complexcontrol":
-                    case "connection":
-                    case "connectionrole":
-                    case "constraintbasedgroup":
-                    case "contracttemplate":
-                    case "convertrule":
-                    case "convertruleitem":
-                    case "customeraddress":
-                    case "discounttype":
-                    case "duplicaterule":
-                    case "emailserverprofile":
-                    case "entitlement":
-                    case "entitlementchannel":
-                    case "entitlementtemplate":
-                    case "entitlementtemplatechannel":
-                    case "equipment":
-                    case "fieldsecurityprofile":
-                    case "goalrollupquery":
-                    case "import":
-                    case "importfile":
-                    case "importmap":
-                    case "invoice":
-                    case "mailbox":
-                    case "mailmergetemplate":
-                    case "metric":
-                    case "multientitysearch":
-                    case "opportunity":
-                    case "organization":
-                    case "owner":
-                    case "partnerapplication":
-                    case "pluginassembly":
-                    case "plugintype":
-                    case "pricelevel":
-                    case "privilege":
-                    case "processsession":
-                    case "product":
-                    case "publisheraddress":
-                    case "queue":
-                    case "quote":
-                    case "relationshiprole":
-                    case "report":
-                    case "resource":
-                    case "resourcegroup":
-                    case "resourcespec":
-                    case "role":
-                    case "roletemplate":
-                    case "routingrule":
-                    case "routingruleitem":
-                    case "salesliterature":
-                    case "salesorder":
-                    case "savedquery":
-                    case "savedqueryvisualization":
-                    case "sdkmessage":
-                    case "sdkmessageprocessingstep":
-                    case "sdkmessageprocessingstepimage":
-                    case "service":
-                    case "serviceendpoint":
-                    case "sharepointdocumentlocation":
-                    case "sharepointsite":
-                    case "site":
-                    case "sla":
-                    case "systemform":
-                    case "team":
-                    case "territory":
-                    case "uom":
-                    case "uomschedule":
-                    case "userform":
-                    case "userquery":
-                    case "userqueryvisualization":
-                    case "webresource":
-                    case "webwizard":
-                        info.AttributeName = "name";
+                    case Account.EntityLogicalName:
+                    case AsyncOperation.EntityLogicalName:
+                    case BulkDeleteOperation.EntityLogicalName:
+                    case BusinessUnit.EntityLogicalName:
+                    case Calendar.EntityLogicalName:
+                    case CalendarRule.EntityLogicalName:
+                    case Campaign.EntityLogicalName:
+                    case Competitor.EntityLogicalName:
+                    case Connection.EntityLogicalName:
+                    case ConnectionRole.EntityLogicalName:
+                    case ConstraintBasedGroup.EntityLogicalName:
+                    case ContractTemplate.EntityLogicalName:
+                    case ConvertRule.EntityLogicalName:
+                    case ConvertRuleItem.EntityLogicalName:
+                    case CustomerAddress.EntityLogicalName:
+                    case DiscountType.EntityLogicalName:
+                    case DuplicateRule.EntityLogicalName:
+                    case EmailServerProfile.EntityLogicalName:
+                    case Entitlement.EntityLogicalName:
+                    case EntitlementChannel.EntityLogicalName:
+                    case EntitlementTemplate.EntityLogicalName:
+                    case EntitlementTemplateChannel.EntityLogicalName:
+                    case Equipment.EntityLogicalName:
+                    case FieldSecurityProfile.EntityLogicalName:
+                    case GoalRollupQuery.EntityLogicalName:
+                    case Import.EntityLogicalName:
+                    case ImportFile.EntityLogicalName:
+                    case ImportMap.EntityLogicalName:
+                    case Invoice.EntityLogicalName:
+                    case Mailbox.EntityLogicalName:
+                    case MailMergeTemplate.EntityLogicalName:
+                    case Metric.EntityLogicalName:
+                    case Opportunity.EntityLogicalName:
+                    case Organization.EntityLogicalName:
+                    case PluginAssembly.EntityLogicalName:
+                    case PluginType.EntityLogicalName:
+                    case PriceLevel.EntityLogicalName:
+                    case Privilege.EntityLogicalName:
+                    case ProcessSession.EntityLogicalName:
+                    case Product.EntityLogicalName:
+                    case PublisherAddress.EntityLogicalName:
+                    case Queue.EntityLogicalName:
+                    case Quote.EntityLogicalName:
+                    case RelationshipRole.EntityLogicalName:
+                    case Report.EntityLogicalName:
+                    case Resource.EntityLogicalName:
+                    case ResourceGroup.EntityLogicalName:
+                    case ResourceSpec.EntityLogicalName:
+                    case Role.EntityLogicalName:
+                    case RoutingRule.EntityLogicalName:
+                    case RoutingRuleItem.EntityLogicalName:
+                    case SalesLiterature.EntityLogicalName:
+                    case SalesOrder.EntityLogicalName:
+                    case SavedQuery.EntityLogicalName:
+                    case SavedQueryVisualization.EntityLogicalName:
+                    case SdkMessage.EntityLogicalName:
+                    case SdkMessageProcessingStep.EntityLogicalName:
+                    case SdkMessageProcessingStepImage.EntityLogicalName:
+                    case Service.EntityLogicalName:
+                    case ServiceEndpoint.EntityLogicalName:
+                    case SharePointDocumentLocation.EntityLogicalName:
+                    case SharePointSite.EntityLogicalName:
+                    case Site.EntityLogicalName:
+                    case SLA.EntityLogicalName:
+                    case SystemForm.EntityLogicalName:
+                    case Team.EntityLogicalName:
+                    case Territory.EntityLogicalName:
+                    case UoM.EntityLogicalName:
+                    case UoMSchedule.EntityLogicalName:
+                    case UserForm.EntityLogicalName:
+                    case UserQuery.EntityLogicalName:
+                    case UserQueryVisualization.EntityLogicalName:
+                    case WebResource.EntityLogicalName:
+                        info.AttributeName = Account.Fields.Name;
                         break;
 
-                    case "list":
-                        info.AttributeName = "listname";
+                    case List.EntityLogicalName:
+                        info.AttributeName = List.Fields.ListName;
                         info.MaximumLength = 128;
                         break;
 
-                    case "activityparty":
+                    case ActivityParty.EntityLogicalName:
                         info.AttributeName = "partyidname";
                         info.MaximumLength = 400;
                         break;
 
-                    case "invoicedetail":
-                    case "opportunityproduct":
-                    case "productpricelevel":
-                    case "quotedetail":
-                    case "salesorderdetail":
+                    case InvoiceDetail.EntityLogicalName:
+                    case OpportunityProduct.EntityLogicalName:
+                    case ProductPriceLevel.EntityLogicalName:
+                    case QuoteDetail.EntityLogicalName:
+                    case SalesOrderDetail.EntityLogicalName:
                         info.AttributeName = "productidname";
                         break;
 
-                    case "socialprofile":
-                        info.AttributeName = "profilename";
-                        info.MaximumLength = 100;
+                    case SocialProfile.EntityLogicalName:
+                        info.AttributeName = SocialProfile.Fields.ProfileName;
                         break;
 
-                    case "postfollow":
+                    case PostFollow.EntityLogicalName:
                         info.AttributeName = "regardingobjectidname";
                         info.MaximumLength = 4000;
                         break;
 
-                    case "columnmapping":
-                        info.AttributeName = "sourceattributename";
+                    case ColumnMapping.EntityLogicalName:
+                        info.AttributeName = ColumnMapping.Fields.SourceAttributeName;
                         info.MaximumLength = 160;
                         break;
 
-                    case "processstage":
-                        info.AttributeName = "stagename";
-                        info.MaximumLength = 100;
+                    case ProcessStage.EntityLogicalName:
+                        info.AttributeName = ProcessStage.Fields.StageName;
                         break;
 
-                    case "activitypointer":
-                    case "annotation":
-                    case "appointment":
-                    case "bulkoperation":
-                    case "campaignactivity":
-                    case "campaignresponse":
-                    case "email":
-                    case "fax":
-                    case "incidentresolution":
-                    case "letter":
-                    case "opportunityclose":
-                    case "orderclose":
-                    case "phonecall":
-                    case "quoteclose":
-                    case "recurringappointmentmaster":
-                    case "serviceappointment":
-                    case "socialactivity":
-                    case "task":
-                        info.AttributeName = "subject";
+                    case ActivityPointer.EntityLogicalName:
+                    case Annotation.EntityLogicalName:
+                    case Appointment.EntityLogicalName:
+                    case BulkOperation.EntityLogicalName:
+                    case CampaignActivity.EntityLogicalName:
+                    case CampaignResponse.EntityLogicalName:
+                    case Email.EntityLogicalName:
+                    case Fax.EntityLogicalName:
+                    case IncidentResolution.EntityLogicalName:
+                    case Letter.EntityLogicalName:
+                    case OpportunityClose.EntityLogicalName:
+                    case OrderClose.EntityLogicalName:
+                    case PhoneCall.EntityLogicalName:
+                    case QuoteClose.EntityLogicalName:
+                    case RecurringAppointmentMaster.EntityLogicalName:
+                    case ServiceAppointment.EntityLogicalName:
+                    case SocialActivity.EntityLogicalName:
+                    case Task.EntityLogicalName:
+                        info.AttributeName = ActivityPointer.Fields.Subject;
                         info.MaximumLength = 200;
                         break;
 
-                    case "teamtemplate":
-                        info.AttributeName = "teamtemplatename";
-                        info.MaximumLength = 100;
+                    case TeamTemplate.EntityLogicalName:
+                        info.AttributeName = TeamTemplate.Fields.TeamTemplateName;
                         break;
 
-                    case "post":
-                    case "postcomment":
-                    case "tracelog":
-                        info.AttributeName = "text";
+                    case Post.EntityLogicalName:
+                    case PostComment.EntityLogicalName:
+                    case TraceLog.EntityLogicalName:
+                        info.AttributeName = Post.Fields.Text;
                         info.MaximumLength = 1000;
                         break;
 
-                    case "contract":
-                    case "contractdetail":
-                    case "documentindex":
-                    case "goal":
-                    case "incident":
-                    case "kbarticle":
-                    case "kbarticlecomment":
-                    case "kbarticletemplate":
-                    case "queueitem":
-                    case "salesliteratureitem":
-                    case "subject":
-                    case "template":
-                        info.AttributeName = "title";
+                    case Contract.EntityLogicalName:
+                    case ContractDetail.EntityLogicalName:
+                    case Goal.EntityLogicalName:
+                    case Incident.EntityLogicalName:
+                    case KbArticle.EntityLogicalName:
+                    case KbArticleComment.EntityLogicalName:
+                    case KbArticleTemplate.EntityLogicalName:
+                    case QueueItem.EntityLogicalName:
+                    case SalesLiteratureItem.EntityLogicalName:
+                    case Subject.EntityLogicalName:
+                    case Template.EntityLogicalName:
+                        info.AttributeName = Contract.Fields.Title;
                         break;
 
                     default:

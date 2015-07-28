@@ -1,0 +1,837 @@
+﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
+using System.ServiceModel;
+using System.Text.RegularExpressions;
+using DLaB.Common;
+using DLaB.Xrm.Entities;
+using DLaB.Xrm.LocalCrm.FetchXml;
+using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Query;
+using NMemory;
+using NMemory.Tables;
+
+namespace DLaB.Xrm.LocalCrm
+{
+    public struct CrmErrorCodes
+    {
+        public const int EntityToDeleteDoesNotExist = -2147220969;
+    }
+
+    [DebuggerNonUserCode]
+    internal partial class LocalCrmDatabase : Database
+    {
+        private readonly static LocalCrmDatabase Default = new LocalCrmDatabase();
+        private readonly static ConcurrentDictionary<String, LocalCrmDatabase> Databases = new ConcurrentDictionary<String, LocalCrmDatabase>();
+        private readonly ConcurrentDictionary<String, ITable> _tables = new ConcurrentDictionary<String, ITable>();
+        private static readonly object DatabaseCreationLock = new Object();
+
+        private static ITable<T> SchemaGetOrCreate<T>(LocalCrmDatabaseInfo info) where T : Entity
+        {
+            var db = GetDatabaseForService(info);
+            var logicalName = EntityHelper.GetEntityLogicalName<T>();
+
+            ITable table;
+            if (db._tables.TryGetValue(logicalName, out table)) { return (ITable<T>)table; }
+            table = db.Tables.Create<T, Guid>(e => e.Id, null);
+            if (db._tables.TryAdd(logicalName, table)) { return (ITable<T>)table; }
+
+            if (!db._tables.TryGetValue(logicalName, out table))
+            {
+                throw new Exception("Could Not Create Table " + EntityHelper.GetEntityLogicalName<T>());
+            }
+            return (ITable<T>)table;
+        }
+
+        private static LocalCrmDatabase GetDatabaseForService(LocalCrmDatabaseInfo info)
+        {
+            LocalCrmDatabase db;
+            if (info.DatabaseName == null)
+            {
+                db = Default;
+            }
+            else
+            {
+                // ReSharper disable once InconsistentlySynchronizedField
+                if (Databases.TryGetValue(info.DatabaseName, out db))
+                {
+                    return db;
+                }
+                lock (DatabaseCreationLock)
+                {
+                    if (Databases.TryGetValue(info.DatabaseName, out db))
+                    {
+                        return db;
+                    }
+                    db = new LocalCrmDatabase();
+                    Databases.AddOrUpdate(info.DatabaseName, db, (s, d) => { throw new Exception("Lock Failed Creating Database!"); });
+                }
+            }
+            return db;
+        }
+
+        #region LinkEntity Join
+
+        private static IQueryable<T> CallJoin<T>(LocalCrmDatabaseInfo service, IQueryable<T> query, LinkEntity link) where T : Entity
+        {
+            try
+            {
+                var tFrom = typeof(T);
+                var tTo = EntityHelper.GetType(tFrom.Assembly, tFrom.Namespace, link.LinkToEntityName);
+                return (IQueryable<T>)typeof(LocalCrmDatabase).GetMethod("Join", BindingFlags.NonPublic | BindingFlags.Static).
+                                                                 MakeGenericMethod(tFrom, tTo).Invoke(null, new object[] { service, query, link });
+            }
+            catch (TargetInvocationException ex)
+            {
+                throw ex.InnerException;
+            }
+        }
+
+        // ReSharper disable once UnusedMember.Local
+        private static IQueryable<TFrom> Join<TFrom, TTo>(LocalCrmDatabaseInfo info, IQueryable<TFrom> query, LinkEntity link)
+            where TFrom : Entity
+            where TTo : Entity
+        {
+            IQueryable<LinkEntityTypes<TFrom, TTo>> result;
+            if (link.JoinOperator == JoinOperator.Inner)
+            {
+                result = from f in query
+                         join t in SchemaGetOrCreate<TTo>(info).AsQueryable() on ConvertCrmTypeToBasicComparable(f, link.LinkFromAttributeName) equals ConvertCrmTypeToBasicComparable(t, link.LinkToAttributeName)
+                         select new LinkEntityTypes<TFrom, TTo>(f, t, link.EntityAlias);
+
+                result = ApplyLinkFilter(result, link.LinkCriteria);
+            }
+            else
+            {
+                result = from f in query
+                         join t in SchemaGetOrCreate<TTo>(info).AsQueryable() on
+                            new
+                            {
+                                Id = ConvertCrmTypeToBasicComparable(f, link.LinkFromAttributeName),
+                                FilterConditions = true
+                            }
+                            equals
+                            new
+                            {
+                                Id = ConvertCrmTypeToBasicComparable(t, link.LinkToAttributeName),
+                                FilterConditions = EvaluateFilter(t, link.LinkCriteria)
+                            }
+                            into joinResult
+                         from t in joinResult.DefaultIfEmpty()
+                         select new LinkEntityTypes<TFrom, TTo>(f, t, link.EntityAlias);
+            }
+
+            // Apply any Conditions on the Link Entity
+
+
+            return link.LinkEntities.Aggregate(result.Select(e => AddAliasedColumns(e.Root, e.Current, e.Alias, link.Columns)),
+                                               (current, childLink) => current.Intersect(CallChildJoin(info, result, childLink)));
+        }
+
+        private static IQueryable<LinkEntityTypes<TFrom, TTo>> ApplyLinkFilter<TFrom, TTo>(IQueryable<LinkEntityTypes<TFrom, TTo>> query, FilterExpression filter)
+            where TFrom : Entity
+            where TTo : Entity
+        {
+            query = filter.Conditions.Any() ? query.Where(l => EvaluateFilter(l.Current, filter)) : query;
+            return filter.Filters.Aggregate(query, ApplyLinkFilter);
+        }
+
+        private static IQueryable<TRoot> CallChildJoin<TRoot, TFrom>(LocalCrmDatabaseInfo info, IQueryable<LinkEntityTypes<TRoot, TFrom>> query, LinkEntity link)
+            where TRoot : Entity
+            where TFrom : Entity
+        {
+            try
+            {
+                var tRoot = typeof(TRoot);
+                var tTo = EntityHelper.GetType(tRoot.Assembly, tRoot.Namespace, link.LinkToEntityName);
+                return ((IQueryable<TRoot>)typeof(LocalCrmDatabase).GetMethod("ChildJoin", BindingFlags.NonPublic | BindingFlags.Static)
+                                                                     .MakeGenericMethod(tRoot, typeof(TFrom), tTo)
+                                                                     .Invoke(null, new object[] { info, query, link }));
+            }
+            catch (TargetInvocationException ex)
+            {
+                throw ex.InnerException;
+            }
+        }
+
+
+        // ReSharper disable once UnusedMember.Local
+        private static IQueryable<TRoot> ChildJoin<TRoot, TFrom, TTo>(LocalCrmDatabaseInfo info, IQueryable<LinkEntityTypes<TRoot, TFrom>> query, LinkEntity link)
+            where TRoot : Entity
+            where TFrom : Entity
+            where TTo : Entity
+        {
+            IQueryable<LinkEntityTypes<TRoot, TTo>> result;
+            if (link.JoinOperator == JoinOperator.Inner)
+            {
+                result = from f in query
+                         join t in SchemaGetOrCreate<TTo>(info).AsQueryable() on ConvertCrmTypeToBasicComparable(f.Current, link.LinkFromAttributeName) equals
+                             ConvertCrmTypeToBasicComparable(t, link.LinkToAttributeName)
+                         select new LinkEntityTypes<TRoot, TTo>(f.Root, t, link.EntityAlias);
+            }
+            else
+            {
+                result = from f in query
+                         join t in SchemaGetOrCreate<TTo>(info).AsQueryable() on ConvertCrmTypeToBasicComparable(f.Current, link.LinkFromAttributeName) equals
+                             ConvertCrmTypeToBasicComparable(t, link.LinkToAttributeName) into joinResult
+                         from t in joinResult.DefaultIfEmpty()
+                         select new LinkEntityTypes<TRoot, TTo>(f.Root, t, link.EntityAlias);
+            }
+
+            // Apply any Conditions on the Link Entity
+            result = ApplyLinkFilter(result, link.LinkCriteria);
+
+            return link.LinkEntities.Aggregate(result.Select(e => AddAliasedColumns(e.Root, e.Current, e.Alias, link.Columns)),
+                                               (current, childLink) => current.Intersect(CallChildJoin(info, result, childLink)));
+        }
+
+        internal class LinkEntityTypes<TRoot, TCurrent>
+            where TRoot : Entity
+            where TCurrent : Entity
+        {
+            public TRoot Root { get; private set; }
+            public TCurrent Current { get; private set; }
+            public String Alias { get; set; }
+
+            public LinkEntityTypes(TRoot root, TCurrent current, string alias)
+            {
+                Root = root;
+                Current = current;
+                Alias = alias;
+            }
+        }
+
+        private static TFrom AddAliasedColumns<TFrom, TTo>(TFrom fromEntity, TTo toEntity, string alias, ColumnSet columns)
+            where TFrom : Entity
+            where TTo : Entity
+        {
+            if (toEntity == null) { return fromEntity; }
+
+            alias = alias ?? toEntity.LogicalName;
+            // Since the Projection is modifying the underlying objects, a HasAliasedAttribute Call is required.  
+            if (columns.AllColumns)
+            {
+                foreach (var attribute in toEntity.Attributes.Where(a => !fromEntity.HasAliasedAttribute(alias + "." + a.Key)))
+                {
+                    fromEntity.AddAliasedValue(alias, toEntity.LogicalName, attribute.Key, attribute.Value);
+                }
+            }
+            else
+            {
+                foreach (var c in columns.Columns.Where(v => toEntity.Attributes.Keys.Contains(v) && !fromEntity.HasAliasedAttribute(alias + "." + v)))
+                {
+                    fromEntity.AddAliasedValue(alias, toEntity.LogicalName, c, toEntity[c]);
+                }
+            }
+            return fromEntity;
+        }
+
+        #endregion // LinkEntity Join
+
+        private static int Compare(Entity e, string attributeName, object compareTo)
+        {
+            IComparable value = null;
+            if (e.Attributes.ContainsKey(attributeName))
+            {
+                value = ConvertCrmTypeToBasicComparable(e[attributeName]);
+            }
+            if (value == null)
+            {
+                if (compareTo == null)
+                {
+                    return 0;
+                }
+
+                return -1;
+            }
+
+            if (compareTo == null)
+            {
+                return 1;
+            }
+
+            var compareToType = compareTo.GetType();
+            // This potentially could be expanded to include most references types.
+            if (compareToType.IsEnum)
+            {
+                throw new FaultException(String.Format(@"The formatter threw an exception while trying to deserialize the message: There was an error while trying to deserialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:query. The InnerException message was 'Error in line 1 position 1978. Element 'http://schemas.microsoft.com/2003/10/Serialization/Arrays:anyType' contains data from a type that maps to the name " +
+                                         "'{0}:{1}'.The deserializer has no knowledge of any type that maps to this name. Consider changing the implementation of the ResolveName method on your DataContractResolver to return a non-null value for name '{1}' and namespace '{0}'.'. Please see InnerException for more details.", compareToType.Namespace, compareToType.Name));
+            }
+            if (compareToType == typeof(String) && value is String)
+            {
+                // Handle String Casing Issues
+               return String.Compare((String) value, (String) compareTo, StringComparison.OrdinalIgnoreCase);
+            }
+
+            return value.CompareTo(compareTo);
+        }
+
+        private static object ConvertCrmTypeToBasicComparable(Entity e, string attributeName)
+        {
+            if (e.Attributes.ContainsKey(attributeName))
+            {
+                return ConvertCrmTypeToBasicComparable(e[attributeName]);
+            }
+
+            return null;
+        }
+
+        private static String GetString(Entity e, string attributeName)
+        {
+            if (e.Attributes.ContainsKey(attributeName))
+            {
+                return e.GetAttributeValue<String>(attributeName);
+            }
+
+            return null;
+        }
+
+        private static IComparable ConvertCrmTypeToBasicComparable(object o)
+        {
+            var reference = o as EntityReference;
+            if (reference != null)
+            {
+                return reference.GetIdOrDefault();
+            }
+            
+            var osv = o as OptionSetValue;
+            if (osv != null)
+            {
+                return osv.GetValueOrDefault();
+            }
+
+            var aliasedValue = o as AliasedValue;
+            if (aliasedValue != null)
+            {
+                return ConvertCrmTypeToBasicComparable(aliasedValue.Value);
+            }
+
+            return (IComparable)o;
+        }
+
+        public static Guid Create<T>(LocalCrmDatabaseOrganizationService service, T entity) where T : Entity
+        {
+            // Clone entity so no changes will affect actual entity
+            entity = entity.Serialize().DeserializeEntity<T>();
+
+            AssertTypeContainsColumns<T>(entity.Attributes.Keys);
+            AssertEntityReferencesExists(service, entity);
+            ConvertEntityArrayToEntityCollection(entity);
+            var table = SchemaGetOrCreate<T>(service.Info);
+            service.PopulateAutoPopulatedAttributes(entity, true);
+
+            if (entity.Id == Guid.Empty)
+            {
+                entity.Id = Guid.NewGuid();
+            }
+
+            table.Insert(entity);
+
+            CreateActivityPointer(service, entity);
+
+            return entity.Id;
+        }
+
+        /// <summary>
+        /// Creates the activity pointer if the Entity is an Activty Type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="service">The service.</param>
+        /// <param name="entity">The entity.</param>
+        private static void CreateActivityPointer<T>(LocalCrmDatabaseOrganizationService service, T entity) where T : Entity
+        {
+            if (EntityHelper.GetEntityLogicalName<T>() == ActivityPointer.EntityLogicalName)
+            {
+                return; // Type is already an activity pointer, no need to recreated
+            }
+
+            var properties = typeof(T).GetProperties().ToDictionary(p => p.Name);
+            if (!IsActivityType<T>(properties))
+            {
+                return; // Type is not an activity type
+            }
+
+            // Copy over matching values and create
+            service.Create(GetActivtyPointerForActivityEntity(entity, properties));
+        }
+
+        private static bool IsActivityType<T>(Dictionary<string, PropertyInfo> properties = null) where T : Entity
+        {
+            properties = properties ?? typeof(T).GetProperties().ToDictionary(p => p.Name);
+            return properties.ContainsKey("ActivityId");
+        }
+
+        private static ActivityPointer GetActivtyPointerForActivityEntity<T>(T entity, Dictionary<string, PropertyInfo> properties = null) where T : Entity
+        {
+            properties = properties ?? typeof(T).GetProperties().ToDictionary(p => p.Name);
+            var pointerProperties = typeof(ActivityPointer).GetProperties();
+            var pointer = new ActivityPointer {Id = entity.Id};
+            PropertyInfo prop;
+            foreach (var att in pointerProperties.Where(p => properties.TryGetValue(p.Name, out prop)).
+                Select(p => p.GetCustomAttribute<AttributeLogicalNameAttribute>()).
+                Where(att => att != null && entity.Contains(att.LogicalName)))
+            {
+                pointer[att.LogicalName] = entity[att.LogicalName];
+            }
+            return pointer;
+        }
+
+        private static T Read<T>(LocalCrmDatabaseOrganizationService service, Guid id, ColumnSet cs, DelayedException exception) where T : Entity
+        {
+            var query = SchemaGetOrCreate<T>(service.Info).
+                Where<T>("Id == @0", id);
+            var entity = query.FirstOrDefault();
+            if (entity == null)
+            {
+                entity = Activator.CreateInstance<T>();
+                entity.Id = id;
+                exception.Exception = GetEntityDoesNotExistException(entity);
+                return null;
+            }
+
+            if (!cs.AllColumns)
+            {
+                foreach (var key in entity.Attributes.Keys.Where(k => !cs.Columns.Contains(k)).ToList())
+                {
+                    entity.Attributes.Remove(key);
+                }
+            }
+            return entity;
+        }
+
+        /// <summary>
+        /// This is a hackish method but no time to improve...
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="service"></param>
+        /// <param name="fe"></param>
+        /// <returns></returns>
+        public static EntityCollection ReadFetchXmlEntities<T>(LocalCrmDatabaseOrganizationService service, FetchType fe) where T : Entity
+        {
+            var entities = ReadEntities<T>(service, ConvertFetchToQueryExpression(service, fe));
+
+            return fe.aggregateSpecified ? PerformAggregation<T>(entities, fe) : entities;
+        }
+
+        public static EntityCollection ReadEntities<T>(LocalCrmDatabaseOrganizationService service, QueryExpression qe) where T : Entity
+        {
+            var query = SchemaGetOrCreate<T>(service.Info).AsQueryable<T>();
+            
+            HandleFilterExpressionsWithAliases(qe, qe.Criteria).ToList();
+
+            query = qe.LinkEntities.Aggregate(query, (q, e) => CallJoin(service.Info, q, e));
+
+            query = ApplyFilter(query, qe.Criteria);
+
+            var entities = query.ToList();
+
+            if (qe.Orders.Any())
+            {
+                // Sort
+                var ordered = entities.Order(qe.Orders[0]);
+                entities = qe.Orders.Skip(1).Aggregate(ordered, (current, t) => current.Order(t)).ToList();
+            }
+
+            if (!qe.ColumnSet.AllColumns)
+            {
+                foreach (var entity in entities)
+                {
+                    foreach (var key in entity.Attributes.Keys.Where(k => !qe.ColumnSet.Columns.Contains(k) && !(entity[k] is AliasedValue)).ToList())
+                    {
+                        entity.Attributes.Remove(key);
+                    }
+                }
+            }
+
+            var result = new EntityCollection();
+            result.Entities.AddRange(entities);
+            return result;
+        }
+
+        private static IEnumerable<FilterExpression> HandleFilterExpressionsWithAliases(QueryExpression qe, FilterExpression fe) {
+
+            var condFilter = new FilterExpression(fe.FilterOperator);
+            condFilter.Conditions.AddRange(HandleConditionsWithAliases(qe, fe));
+            if (condFilter.Conditions.Any())
+            {
+                yield return condFilter;
+            }
+
+            // Handle Adding filter for Conditions where the Entity Name is referencing a LinkEntity.
+            // This is used primarily for Outer Joins, where the attempt is to see if the join entity does not exist.
+            foreach (var child in fe.Filters.SelectMany(filter => HandleFilterExpressionsWithAliases(qe, filter))) {
+                yield return child;
+            }
+        }
+
+        private static IEnumerable<ConditionExpression> HandleConditionsWithAliases(QueryExpression qe, FilterExpression filter)
+        {
+            // Handle Adding filter for Conditions where the Entity Name is referencing a LinkEntity.
+            // This is used primarily for Outer Joins, where the attempt is to see if the join entity does not exist.
+            foreach (var condition in filter.Conditions.Where(c => !String.IsNullOrWhiteSpace(c.EntityName)))
+            {
+                var link = qe.GetLinkEntity(condition.EntityName);
+
+                // Condition is not aliasing a Linked Entity, or it is already attached to the linked entity.  In this case it will serve as a filter on the join
+                if (link == null || link.LinkCriteria.Conditions.Contains(condition))
+                {
+                    continue;
+                }
+                // Add attribute to columns set.  This will be used to check to see if the found joined entity has the condition after the join...
+                link.Columns.AddColumn(condition.AttributeName);
+                // Return a Condition Expression that has the correct name for looking up the attribute later...
+                yield return new ConditionExpression(link.EntityAlias ?? link.LinkToEntityName + "." + condition.AttributeName, condition.Operator, condition.Values);
+            }
+        }
+
+        private static IQueryable<T> ApplyFilter<T>(IQueryable<T> query, FilterExpression filter) where T : Entity
+        {
+            return query.Where(e => EvaluateFilter(e, filter));
+        }
+
+        /// <summary>
+        /// Returns true if the entity satisfies all of the constraints of the filter, otherwise, false.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity"></param>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        private static bool EvaluateFilter<T>(T entity, FilterExpression filter) where T : Entity
+        {
+            if (entity == null) { return true; } // This should only happen for Left Outer Joins
+
+            bool matchesFilter;
+            if (filter.FilterOperator == LogicalOperator.And)
+            {
+                matchesFilter = filter.Conditions.All(c => ConditionIsTrue(entity, c)) && filter.Filters.All(f => EvaluateFilter(entity, f));
+            }
+            else
+            {
+                matchesFilter = filter.Conditions.Any(c => ConditionIsTrue(entity, c)) || filter.Filters.Any(f => EvaluateFilter(entity, f));
+            }
+
+            return matchesFilter;
+        }
+
+        private static bool ConditionIsTrue<T>(T entity, ConditionExpression condition) where T : Entity
+        {
+            bool value;
+            var name = String.IsNullOrWhiteSpace(condition.EntityName) ? condition.AttributeName : condition.EntityName + "." + condition.AttributeName;
+            switch (condition.Operator)
+            {
+                case ConditionOperator.Equal:
+                    value = Compare(entity, name, condition.Values[0]) == 0;
+                    break;
+                case ConditionOperator.NotEqual:
+                    value = Compare(entity, name, condition.Values[0]) != 0;
+                    break;
+                case ConditionOperator.GreaterThan:
+                    value = Compare(entity, name, condition.Values[0]) > 0;
+                    break;
+                case ConditionOperator.LessThan:
+                    value = Compare(entity, name, condition.Values[0]) < 0;
+                    break;
+                case ConditionOperator.GreaterEqual:
+                    value = Compare(entity, name, condition.Values[0]) >= 0;
+                    break;
+                case ConditionOperator.LessEqual:
+                    value = Compare(entity, name, condition.Values[0]) <= 0;
+                    break;
+                case ConditionOperator.Like:
+                    var str = GetString(entity, name);
+                    if (str == null)
+                    {
+                        value = condition.Values[0] == null;
+                    }
+                    else
+                    {
+                        var likeCondition = (string) condition.Values[0];
+                        // http://stackoverflow.com/questions/5417070/c-sharp-version-of-sql-like
+                        value = new Regex(@"\A" + new Regex(@"\.|\$|\^|\{|\[|\(|\||\)|\*|\+|\?|\\").Replace(likeCondition, ch => @"\" + ch).Replace('_', '.').Replace("%", ".*") + @"\z", RegexOptions.Singleline).IsMatch(str);
+                    }
+                    break;
+                case ConditionOperator.NotLike:
+                    value = !ConditionIsTrue(entity, new ConditionExpression(condition.EntityName, condition.AttributeName, ConditionOperator.Like));
+                    break;
+                case ConditionOperator.In:
+                    value = condition.Values.Any(v => v.Equals(ConvertCrmTypeToBasicComparable(entity, name)));
+                    break;
+                case ConditionOperator.NotIn:
+                    value = !condition.Values.Any(v => v.Equals(ConvertCrmTypeToBasicComparable(entity, name)));
+                    break;
+                //case ConditionOperator.Between:
+                //    break;
+                //case ConditionOperator.NotBetween:
+                //    break;
+                case ConditionOperator.Null:
+                    value = Compare(entity, name, null) == 0;
+                    break;
+                case ConditionOperator.NotNull:
+                    value = Compare(entity, name, null) != 0;
+                    break;
+                //case ConditionOperator.Yesterday:
+                //    break;
+                //case ConditionOperator.Today:
+                //    break;
+                //case ConditionOperator.Tomorrow:
+                //    break;
+                //case ConditionOperator.Last7Days:
+                //    break;
+                //case ConditionOperator.Next7Days:
+                //    break;
+                //case ConditionOperator.LastWeek:
+                //    break;
+                //case ConditionOperator.ThisWeek:
+                //    break;
+                //case ConditionOperator.NextWeek:
+                //    break;
+                //case ConditionOperator.LastMonth:
+                //    break;
+                //case ConditionOperator.ThisMonth:
+                //    break;
+                //case ConditionOperator.NextMonth:
+                //    break;
+                //case ConditionOperator.On:
+                //    break;
+                //case ConditionOperator.OnOrBefore:
+                //    break;
+                //case ConditionOperator.OnOrAfter:
+                //    break;
+                //case ConditionOperator.LastYear:
+                //    break;
+                //case ConditionOperator.ThisYear:
+                //    break;
+                //case ConditionOperator.NextYear:
+                //    break;
+                //case ConditionOperator.LastXHours:
+                //    break;
+                //case ConditionOperator.NextXHours:
+                //    break;
+                //case ConditionOperator.LastXDays:
+                //    break;
+                //case ConditionOperator.NextXDays:
+                //    break;
+                //case ConditionOperator.LastXWeeks:
+                //    break;
+                //case ConditionOperator.NextXWeeks:
+                //    break;
+                //case ConditionOperator.LastXMonths:
+                //    break;
+                //case ConditionOperator.NextXMonths:
+                //    break;
+                //case ConditionOperator.LastXYears:
+                //    break;
+                //case ConditionOperator.NextXYears:
+                //    break;
+                //case ConditionOperator.EqualUserId:
+                //    break;
+                //case ConditionOperator.NotEqualUserId:
+                //    break;
+                //case ConditionOperator.EqualBusinessId:
+                //    break;
+                //case ConditionOperator.NotEqualBusinessId:
+                //    break;
+                //case ConditionOperator.ChildOf:
+                //    break;
+                //case ConditionOperator.Mask:
+                //    break;
+                //case ConditionOperator.NotMask:
+                //    break;
+                //case ConditionOperator.MasksSelect:
+                //    break;
+                //case ConditionOperator.Contains:
+                //    break;
+                //case ConditionOperator.DoesNotContain:
+                //    break;
+                //case ConditionOperator.EqualUserLanguage:
+                //    break;
+                //case ConditionOperator.NotOn:
+                //    break;
+                //case ConditionOperator.OlderThanXMonths:
+                //    break;
+                //case ConditionOperator.BeginsWith:
+                //    break;
+                //case ConditionOperator.DoesNotBeginWith:
+                //    break;
+                //case ConditionOperator.EndsWith:
+                //    break;
+                //case ConditionOperator.DoesNotEndWith:
+                //    break;
+                //case ConditionOperator.ThisFiscalYear:
+                //    break;
+                //case ConditionOperator.ThisFiscalPeriod:
+                //    break;
+                //case ConditionOperator.NextFiscalYear:
+                //    break;
+                //case ConditionOperator.NextFiscalPeriod:
+                //    break;
+                //case ConditionOperator.LastFiscalYear:
+                //    break;
+                //case ConditionOperator.LastFiscalPeriod:
+                //    break;
+                //case ConditionOperator.LastXFiscalYears:
+                //    break;
+                //case ConditionOperator.LastXFiscalPeriods:
+                //    break;
+                //case ConditionOperator.NextXFiscalYears:
+                //    break;
+                //case ConditionOperator.NextXFiscalPeriods:
+                //    break;
+                //case ConditionOperator.InFiscalYear:
+                //    break;
+                //case ConditionOperator.InFiscalPeriod:
+                //    break;
+                //case ConditionOperator.InFiscalPeriodAndYear:
+                //    break;
+                //case ConditionOperator.InOrBeforeFiscalPeriodAndYear:
+                //    break;
+                //case ConditionOperator.InOrAfterFiscalPeriodAndYear:
+                //    break;
+                //case ConditionOperator.EqualUserTeams:
+                //    break;
+                default:
+                    throw new NotImplementedException(condition.Operator.ToString());
+            }
+            return value;
+        }
+
+        private static void AssertEntityReferencesExists(LocalCrmDatabaseOrganizationService service, Entity entity)
+        {
+            foreach (var foreign in entity.Attributes.Select(attribute => attribute.Value).OfType<EntityReference>())
+            {
+                service.Retrieve(foreign.LogicalName, foreign.Id, new ColumnSet(true));
+            }
+        }
+
+        private static void AssertTypeContainsColumns<T>(IEnumerable<string> cols)
+        {
+            var properties = new HashSet<string>(typeof (T).GetProperties().Select(p => p.Name.ToLower()));
+            var invalid = cols.FirstOrDefault(c => !properties.Contains(c));
+            if (invalid != null)
+            {
+                //TODO: Need to lookup error message
+                throw new Exception("Type " + typeof(T).Name + " does not contain an attribute with name " + invalid);
+            }
+        }
+
+        /// <summary>
+        /// CRM will convert non typed arrays into an IEnumerable&lt;T&gt;.  Handle that conversion here
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity">The entity.</param>
+        private static void ConvertEntityArrayToEntityCollection<T>(T entity) where T : Entity
+        {
+            var properties = typeof(T).GetProperties().ToDictionary(p => p.Name.ToLower());
+            foreach (var key in entity.Attributes.Keys.ToList())
+            {
+                var value = entity[key] as Array;
+                if(value == null || value.Length == 0)
+                {
+                    continue;
+                }
+                var prop = properties[key];
+                // ReSharper disable once SuspiciousTypeConversion.Global
+                if (value is IEnumerable<Entity> && IsSameOrSubclass(typeof(Entity), prop.PropertyType.GetGenericArguments()[0]))
+                {
+                    var entities = new EntityCollection();
+                    foreach (var att in value)
+                    {
+                        var method = typeof(Entity).GetMethod("ToEntity");
+                        method.MakeGenericMethod(prop.PropertyType.GetGenericArguments()[0]).Invoke(att, null);
+                        entities.Entities.Add((Entity)method.MakeGenericMethod(prop.PropertyType.GetGenericArguments()[0]).Invoke(att, null));
+                    }
+                    entity[key] = entities;
+                }
+            }
+        }
+
+        public static bool IsSameOrSubclass(Type potentialBase, Type potentialDescendant)
+        {
+            return potentialDescendant.IsSubclassOf(potentialBase)
+                   || potentialDescendant == potentialBase;
+        }
+
+        public static void Assign<T>(LocalCrmDatabaseOrganizationService service, EntityReference target, EntityReference assignee) where T : Entity
+        {
+            var databaseValue = SchemaGetOrCreate<T>(service.Info).First<T>(e => e.Id == target.Id);
+            databaseValue["ownerid"] = assignee;
+            SchemaGetOrCreate<T>(service.Info).Update(databaseValue);
+        }
+
+        private static void Update<T>(LocalCrmDatabaseOrganizationService service, T entity, DelayedException exception) where T : Entity
+        {
+            AssertTypeContainsColumns<T>(entity.Attributes.Keys);
+            AssertEntityReferencesExists(service, entity);
+            ConvertEntityArrayToEntityCollection(entity);
+            
+            // Get the Entity From the database
+            var databaseValue = SchemaGetOrCreate<T>(service.Info).FirstOrDefault<T>(e => e.Id == entity.Id);
+            if (databaseValue == null)
+            {
+                exception.Exception = GetEntityDoesNotExistException(entity);
+                return;
+            }
+
+            // Update all of the attributes from the entity passed in, to the database entity
+            foreach (var attribute in entity.Attributes)
+            {
+                databaseValue[attribute.Key] = attribute.Value;
+            }
+            
+            // Set all Autopopulated values
+            service.PopulateAutoPopulatedAttributes(databaseValue, false);
+
+            SchemaGetOrCreate<T>(service.Info).Update(databaseValue);
+
+            UpdateActivityPointer(service, databaseValue);
+        }
+
+        private static void UpdateActivityPointer<T>(LocalCrmDatabaseOrganizationService service, T entity) where T : Entity
+        {
+            if (entity.LogicalName == ActivityPointer.EntityLogicalName || !IsActivityType<T>())
+            {
+                return; // Type is already an activity pointer, no need to reupdate
+            }
+
+            service.Update(GetActivtyPointerForActivityEntity(entity));
+        }
+
+        private static void Delete<T>(LocalCrmDatabaseOrganizationService service, Guid id, DelayedException exception) where T : Entity
+        {
+            var entity = Activator.CreateInstance<T>();
+            entity.Id = id;
+            if (!SchemaGetOrCreate<T>(service.Info).Any<T>(e => e.Id == id))
+            {
+                exception.Exception = GetEntityDoesNotExistException(entity);
+                return;
+            }
+
+            SchemaGetOrCreate<T>(service.Info).Delete(entity);
+            DeleteActivityPointer<T>(service, id);
+        }
+
+        private static void DeleteActivityPointer<T>(LocalCrmDatabaseOrganizationService service, Guid id) where T : Entity
+        {
+            if (EntityHelper.GetEntityLogicalName<T>() == ActivityPointer.EntityLogicalName || !IsActivityType<T>())
+            {
+                return; // Type is already an activity pointer, no need to redelete, or type is not an activity type
+            }
+
+            service.Delete(ActivityPointer.EntityLogicalName, id);
+        }
+
+
+        private static FaultException<OrganizationServiceFault> GetEntityDoesNotExistException<T>(T entity) where T : Entity
+        {
+            return new FaultException<OrganizationServiceFault>(new OrganizationServiceFault
+            {
+                ErrorCode = CrmErrorCodes.EntityToDeleteDoesNotExist,
+                Message = String.Format("{0} With Id = {1} Does Not Exist", entity.LogicalName, entity.Id),
+                Timestamp = DateTime.UtcNow,
+            }, String.Format("{0} With Id = {1} Does Not Exist", entity.LogicalName, entity.Id));
+        }
+    }
+}

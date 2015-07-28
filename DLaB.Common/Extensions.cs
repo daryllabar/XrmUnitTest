@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
@@ -644,6 +645,19 @@ namespace DLaB.Common
         }
 
         #endregion // IExtensibleDataObject
+
+        #region Object
+
+        [DebuggerHidden]
+        public static void ThrowIfNull(this Object data, string name)
+        {
+            if (data == null)
+            {
+                throw new ArgumentNullException(name);
+            }
+        }
+
+        #endregion // Object
 
         #region Queue<T>
 

@@ -50,7 +50,20 @@
   <ItemGroup>
     <Compile Include="ActivityPropertyInfo.cs" />
     <Compile Include="AddLinkExtensions.cs" />
+    <Compile Include="AreEqualExtensions.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
     <Compile Include="ByIdExtensions.cs" />
+    <Compile Include="Comparers\ColumnSetComparer.cs" />
+    <Compile Include="Comparers\ConditionExpressionComparer.cs" />
+    <Compile Include="Comparers\EnumerableComparer.cs" />
+    <Compile Include="Comparers\FilterExpressionComparer.cs" />
+    <Compile Include="Comparers\HashCode.cs" />
+    <Compile Include="Comparers\LinkEntityComparer.cs" />
+    <Compile Include="Comparers\OrderExpressionComparer.cs" />
+    <Compile Include="Comparers\PagingInfoComparer.cs" />
+    <Compile Include="Comparers\ProjectionEqualityComparer.cs" />
+    <Compile Include="Comparers\QueryExpressionComparer.cs" />
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\AccountLeads.cs" />
     <Compile Include="Entities\Actions\Actions.cs" />
@@ -707,9 +720,22 @@
     <Compile Include="EntityHelper.cs" />
     <Compile Include="Exceptions\EnumCaseUndefinedException.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="HasConditionExtensions.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HasConditionInWithValuesExtensions.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
     <Compile Include="IIOrganizationServiceWrapper.cs" />
     <Compile Include="LateBoundActivePropertyInfo.cs" />
     <Compile Include="LateBoundQuerySettings.cs" />
+    <Compile Include="Plugin\Extensions.cs" />
+    <Compile Include="Plugin\IRegisteredEventsPlugin.cs" />
+    <Compile Include="Plugin\LocalPluginContext.cs" />
+    <Compile Include="Plugin\ParameterName.cs" />
+    <Compile Include="Plugin\PluginBase.cs" />
+    <Compile Include="Plugin\RegisteredEvent.cs" />
+    <Compile Include="Plugin\RegisteredEventBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryExpressionConvertExtensions.cs" />
     <Compile Include="QueryExpressionFactory.cs" />

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5D4BCE65-C30A-4044-8C08-44615045CD1C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DLaB.Xrm.LocalCrm</RootNamespace>
+    <AssemblyName>DLaB.Xrm.LocalCrm</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Crm.Sdk.Proxy">
+      <HintPath>..\References\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Sdk">
+      <HintPath>..\References\Microsoft.Xrm.Sdk.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DynamicQueryable.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="FetchXml\CountColumnAggregateInfo.cs" />
+    <Compile Include="FetchXml\FetchAttributeInfo.cs" />
+    <Compile Include="FetchXml\FetchXmlEarlyBoundClasses.cs" />
+    <Compile Include="FetchXml\LocalCrmDatabaseFetchXml.cs" />
+    <Compile Include="LocalCrmDatabase.cs" />
+    <Compile Include="LocalCrmDatabaseInfo.cs" />
+    <Compile Include="LocalCrmDatabaseOrganizationService.cs" />
+    <Compile Include="LocalCrmDatabaseOrganizationServiceExecute.cs" />
+    <Compile Include="LocalCrmDatabaseStepThrough.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DLaB.Common\DLaB.Common.csproj">
+      <Project>{a7284a23-15f3-411d-bc26-2890a11053fe}</Project>
+      <Name>DLaB.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DLaB.Xrm.Client\DLaB.Xrm.Client.csproj">
+      <Project>{674c3dde-a543-4199-b089-278eeb4db85a}</Project>
+      <Name>DLaB.Xrm.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DLaB.Xrm\DLaB.Xrm.csproj">
+      <Project>{0a88b434-3617-4543-b9a3-b2b04ba4b8d4}</Project>
+      <Name>DLaB.Xrm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NMemory\NMemory.csproj">
+      <Project>{e95ef85f-fac7-476e-8333-2d835bd41bd9}</Project>
+      <Name>NMemory</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
