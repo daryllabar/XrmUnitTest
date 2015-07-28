@@ -80,15 +80,28 @@ namespace DLaB.Xrm
                 case CustomerAddress.EntityLogicalName:
                 case CustomerOpportunityRole.EntityLogicalName:
                 case CustomerRelationship.EntityLogicalName:
+                case ConvertRuleItem.EntityLogicalName:
                 case Dependency.EntityLogicalName:
                 case Discount.EntityLogicalName:
                 case DisplayString.EntityLogicalName:
                 case DuplicateRecord.EntityLogicalName:
                 case DuplicateRuleCondition.EntityLogicalName:
+                case DynamicPropertyAssociation.EntityLogicalName:
+                case DynamicPropertyInstance.EntityLogicalName:
+                case DynamicPropertyOptionSetItem.EntityLogicalName:
+                case EntitlementChannel.EntityLogicalName:
+                case EntitlementContacts.EntityLogicalName:
+                case EntitlementProducts.EntityLogicalName:
+                case EntitlementTemplate.EntityLogicalName:
+                case EntitlementTemplateChannel.EntityLogicalName:
+                case EntitlementTemplateProducts.EntityLogicalName:
                 case EntityMap.EntityLogicalName:
+                case ExchangeSyncIdMapping.EntityLogicalName:
                 case FieldPermission.EntityLogicalName:
                 case FieldSecurityProfile.EntityLogicalName:
                 case FixedMonthlyFiscalCalendar.EntityLogicalName:
+                case HierarchyRule.EntityLogicalName:
+                case HierarchySecurityConfiguration.EntityLogicalName:
                 case ImportJob.EntityLogicalName:
                 case InvalidDependency.EntityLogicalName:
                 case InvoiceDetail.EntityLogicalName:
@@ -100,13 +113,15 @@ namespace DLaB.Xrm
                 case LeadProduct.EntityLogicalName:
                 case License.EntityLogicalName:
                 case ListMember.EntityLogicalName:
-                case MonthlyFiscalCalendar.EntityLogicalName:
+                case MonthlyFiscalCalendar.EntityLogicalName:                                                              
                 case OpportunityCompetitors.EntityLogicalName:
                 case OpportunityProduct.EntityLogicalName:
                 case OrganizationUI.EntityLogicalName:
                 case PluginAssembly.EntityLogicalName:
                 case PluginType.EntityLogicalName:
                 case PluginTypeStatistic.EntityLogicalName:
+                case ProcessStage.EntityLogicalName:
+                case ProcessTrigger.EntityLogicalName:
                 case Post.EntityLogicalName:
                 case PostComment.EntityLogicalName:
                 case PostFollow.EntityLogicalName:
@@ -121,6 +136,7 @@ namespace DLaB.Xrm
                 case Publisher.EntityLogicalName:
                 case PublisherAddress.EntityLogicalName:
                 case QuarterlyFiscalCalendar.EntityLogicalName:
+                case QueueMembership.EntityLogicalName:
                 case QuoteDetail.EntityLogicalName:
                 case RecurrenceRule.EntityLogicalName:
                 case RelationshipRoleMap.EntityLogicalName:
@@ -136,6 +152,7 @@ namespace DLaB.Xrm
                 case RolePrivileges.EntityLogicalName:
                 case RoleTemplatePrivileges.EntityLogicalName:
                 case RollupField.EntityLogicalName:
+                case RoutingRuleItem.EntityLogicalName:
                 case SalesLiterature.EntityLogicalName:
                 case SalesLiteratureItem.EntityLogicalName:
                 case SalesOrderDetail.EntityLogicalName:
@@ -153,25 +170,35 @@ namespace DLaB.Xrm
                 case Service.EntityLogicalName:
                 case ServiceContractContacts.EntityLogicalName:
                 case ServiceEndpoint.EntityLogicalName:
+                case SharePointData.EntityLogicalName:
+                case SharePointDocument.EntityLogicalName:
                 case Site.EntityLogicalName:
                 case SiteMap.EntityLogicalName:
+                case SLAItem.EntityLogicalName:
+                case SLAKPIInstance.EntityLogicalName:
+                case SocialInsightsConfiguration.EntityLogicalName:
                 case Solution.EntityLogicalName:
                 case SolutionComponent.EntityLogicalName:
                 case Subject.EntityLogicalName:
+                case SubscriptionTrackingDeletedObject.EntityLogicalName:
                 case SubscriptionManuallyTrackedObject.EntityLogicalName:
                 case SystemForm.EntityLogicalName:
                 case SystemUserLicenses.EntityLogicalName:
                 case SystemUserProfiles.EntityLogicalName:
                 case SystemUserRoles.EntityLogicalName:
+                case SystemUserSyncMappingProfiles.EntityLogicalName:
                 case Team.EntityLogicalName:
                 case TeamMembership.EntityLogicalName:
                 case TeamProfiles.EntityLogicalName:
                 case TeamRoles.EntityLogicalName:
+                case TeamSyncAttributeMappingProfiles.EntityLogicalName:
+                case TeamTemplate.EntityLogicalName:
                 case Template.EntityLogicalName:
                 case Territory.EntityLogicalName:
                 case TimeZoneDefinition.EntityLogicalName:
                 case TimeZoneLocalizedName.EntityLogicalName:
                 case TimeZoneRule.EntityLogicalName:
+                case TraceLog.EntityLogicalName:
                 case TransformationParameterMapping.EntityLogicalName:
                 case UoM.EntityLogicalName:
                 case UserEntityInstanceData.EntityLogicalName:

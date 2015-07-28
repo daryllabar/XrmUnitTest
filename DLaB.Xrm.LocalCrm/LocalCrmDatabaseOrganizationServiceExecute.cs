@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -17,6 +18,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.LocalCrm
 {
+    [DebuggerNonUserCode]
     partial class LocalCrmDatabaseOrganizationService
     {
         #region Execute Internal

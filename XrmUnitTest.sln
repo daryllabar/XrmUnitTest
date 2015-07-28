@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMemory", "NMemory\NMemory.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm.LocalCrm", "DLaB.Xrm.LocalCrm\DLaB.Xrm.LocalCrm.csproj", "{5D4BCE65-C30A-4044-8C08-44615045CD1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm.LocalCrm.Tests", "DLaB.Xrm.LocalCrm.Tests\DLaB.Xrm.LocalCrm.Tests.csproj", "{12F51B82-CFA2-477A-A934-F0F146BE4D7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{5D4BCE65-C30A-4044-8C08-44615045CD1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D4BCE65-C30A-4044-8C08-44615045CD1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D4BCE65-C30A-4044-8C08-44615045CD1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12F51B82-CFA2-477A-A934-F0F146BE4D7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12F51B82-CFA2-477A-A934-F0F146BE4D7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12F51B82-CFA2-477A-A934-F0F146BE4D7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12F51B82-CFA2-477A-A934-F0F146BE4D7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

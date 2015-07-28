@@ -95,6 +95,10 @@
       <Project>{0a88b434-3617-4543-b9a3-b2b04ba4b8d4}</Project>
       <Name>DLaB.Xrm</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NMemory\NMemory.csproj">
+      <Project>{e95ef85f-fac7-476e-8333-2d835bd41bd9}</Project>
+      <Name>NMemory</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="UnitTestSettings.config" />
