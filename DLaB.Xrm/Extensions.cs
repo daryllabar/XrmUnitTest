@@ -14,6 +14,7 @@ using System.Linq.Expressions;
 using Microsoft.Crm.Sdk.Messages;
 using DLaB.Common.Exceptions;
 using System.Diagnostics;
+using System.Runtime.Serialization.Json;
 using DLaB.Common;
 using Microsoft.Xrm.Sdk.Messages;
 
@@ -22,6 +23,32 @@ namespace DLaB.Xrm
     [DebuggerStepThrough]
     public static partial class Extensions
     {
+        #region <T>
+
+        /// <summary>
+        /// Serializes the value to a json string.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value">The Value to serialize to JSON</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">text</exception>
+        public static string SerializeToJson<T>(this T value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            using (var memoryStream = new MemoryStream())
+            {
+                var serializer = new DataContractJsonSerializer(typeof(T));
+                serializer.WriteObject(memoryStream, value);
+                return Encoding.Default.GetString(memoryStream.ToArray());
+            }
+        }
+
+        #endregion <T>
+
         #region ColumnSet
 
         /// <summary>
@@ -1610,8 +1637,8 @@ namespace DLaB.Xrm
 
         private static string GenerateNonBreakingSpace(int spaces)
         {
-            const string SPACE = " "; // This is not a space, it is a Non-Breaking Space (alt+255).  In the log things get trimmed, and this will prevent that from happening;
-            return new string(SPACE[0], spaces);
+            const string space = " "; // This is not a space, it is a Non-Breaking Space (alt+255).  In the log things get trimmed, and this will prevent that from happening;
+            return new string(space[0], spaces);
         }
 
         #endregion // ParameterCollection
