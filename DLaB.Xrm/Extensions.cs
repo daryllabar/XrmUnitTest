@@ -180,6 +180,8 @@ namespace DLaB.Xrm
             entity.Attributes.Remove(EntityHelper.GetIdAttributeName(entity.LogicalName));
         }
 
+        #region ContainsAllNonNull
+
         /// <summary>
         /// Checks to see if the Entity Contains the attribute names, and the value is not null
         /// </summary>
@@ -204,6 +206,35 @@ namespace DLaB.Xrm
             return ContainsAllNonNull(entity, GetAttributeNamesArray(anonymousTypeInitializer));
         }
 
+        /// <summary>
+        /// Checks to see if the Entity Contains the attribute names, and the value is not null
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="nullAttributeNames"></param>
+        /// <param name="attributeNames"></param>
+        /// <returns></returns>
+        public static bool ContainsAllNonNull(this Entity entity, out List<string> nullAttributeNames, params string[] attributeNames)
+        {
+            nullAttributeNames = attributeNames.Where(name => !entity.Contains(name) || entity[name] == null).ToList();
+
+            return !nullAttributeNames.Any();
+        }
+
+        /// <summary>
+        /// Checks to see if the Entity Contains the attribute names, and the value is not null
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity"></param>
+        /// <param name="nullAttributeNames"></param>
+        /// <param name="anonymousTypeInitializer"></param>
+        /// <returns></returns>
+        public static bool ContainsAllNonNull<T>(this T entity, out List<string> nullAttributeNames, Expression<Func<T, object>> anonymousTypeInitializer)
+            where T : Entity
+        {
+            return ContainsAllNonNull(entity, out nullAttributeNames, GetAttributeNamesArray(anonymousTypeInitializer));
+        }
+
+        #endregion ContainsAllNonNull
 
         /// <summary>
         /// Checks to see if the Entity Contains any of the attribute names, and the value is not null
