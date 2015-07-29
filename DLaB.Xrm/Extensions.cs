@@ -1867,7 +1867,27 @@ namespace DLaB.Xrm
             return entity;
         }
 
-        #endregion // String
+        /// <summary>
+        /// Deserializes the json.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="text">The text.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">text</exception>
+        public static T DeserializeJson<T>(this string text)
+        {
+            if (text == null)
+            {
+                throw new ArgumentNullException("text");
+            }
 
+            using (var reader = new MemoryStream(Encoding.Default.GetBytes(text)))
+            {
+                var serializer = new DataContractJsonSerializer(typeof(T));
+                return (T)serializer.ReadObject(reader);
+            }
+        }
+
+        #endregion // String
     }
 }
