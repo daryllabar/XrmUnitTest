@@ -70,6 +70,43 @@ namespace DLaB.Xrm
 
         #region Entity
 
+        #region AssertContainsAllNonNull
+
+        /// <summary>
+        /// Checks to see if the Entity Contains the attribute names, and the value is not null.  Any missing/null attributes will result in an exception, listing the missing attributes.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="attributeNames"></param>
+        /// <returns></returns>
+        public static void AssertContainsAllNonNull(this Entity entity, params string[] attributeNames)
+        {
+            List<string> missingAttributes;
+            if (!entity.ContainsAllNonNull(out missingAttributes, attributeNames))
+            {
+                if (missingAttributes.Count == 1)
+                {
+                    throw new Exception("Missing Required Field: " + missingAttributes[0]);
+                }
+
+                throw new Exception("Missing Required Fields: " + String.Join(", ", missingAttributes));
+            }
+        }
+
+        /// <summary>
+        /// Checks to see if the Entity Contains the attribute names, and the value is not null.  Any missing/null attributes will result in an exception, listing the missing attributes.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity"></param>
+        /// <param name="anonymousTypeInitializer"></param>
+        /// <returns></returns>
+        public static void AssertContainsAllNonNull<T>(this T entity, Expression<Func<T, object>> anonymousTypeInitializer)
+            where T : Entity
+        {
+            AssertContainsAllNonNull(entity, GetAttributeNamesArray(anonymousTypeInitializer));
+        }
+
+        #endregion AssertContainsAllNonNull
+
         public static void AddAliasedEntity(this Entity entity, Entity entityToAdd)
         {
             foreach (var attribute in entityToAdd.Attributes.Where(a => !(a.Value is AliasedValue)))
