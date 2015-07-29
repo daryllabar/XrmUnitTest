@@ -10,6 +10,7 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Query;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq.Expressions;
 using Microsoft.Crm.Sdk.Messages;
 using DLaB.Common.Exceptions;
@@ -782,6 +783,10 @@ namespace DLaB.Xrm
 
         public static String ToStringDebug(this EntityReference entity)
         {
+            if (entity == null)
+            {
+                return "Null";
+            }
             return String.Format("EntityReference {{ LogicalName: {0}, Name: {1}, Id: {2}}}", entity.LogicalName, entity.GetNameOrDefault(), entity.Id);
         }
 
@@ -910,6 +915,62 @@ namespace DLaB.Xrm
         }
 
         #endregion // FilterExpression
+
+        #region IExecutionContext
+
+        private static List<String> ToStringDebug(this IExecutionContext context)
+        {
+            var lines = new List<String>
+            {
+                "BusinessUnitId: " + context.BusinessUnitId,
+                "CorrelationId: " + context.CorrelationId,
+                "Depth: " + context.Depth,
+                "InitiatingUserId: " + context.InitiatingUserId,
+                "IsInTransaction: " + context.IsInTransaction,
+                "IsolationMode: " + context.IsolationMode,
+                "MessageName: " + context.MessageName,
+                "Mode: " + context.Mode,
+                "OperationCreatedOn: " + context.OperationCreatedOn,
+                "OperationId: " + context.OperationId,
+                "Organization: " + context.OrganizationName + "(" + context.OrganizationId + ")",
+                "OwningExtension: " + (context.OwningExtension == null ? "Null" : context.OwningExtension.GetNameId()),
+                "PrimaryEntityId: " + context.PrimaryEntityId,
+                "PrimaryEntityName: " + context.PrimaryEntityName,
+                "SecondaryEntityName: " + context.SecondaryEntityName,
+                "UserId: " + context.UserId,
+            };
+            lines.AddRange(context.InputParameters.ToStringDebug("Input Parameters"));
+            lines.AddRange(context.OutputParameters.ToStringDebug("Output Parameters"));
+            lines.AddRange(context.PostEntityImages.ToStringDebug("PostEntityImages"));
+            lines.AddRange(context.PreEntityImages.ToStringDebug("PreEntityImages"));
+            lines.AddRange(context.SharedVariables.ToStringDebug("Shared Variables"));
+
+            if (ConfigurationManager.AppSettings.AllKeys.Any())
+            {
+                lines.Add("* App Config Values *");
+                lines.AddRange(ConfigurationManager.AppSettings.AllKeys.Select(key => "    [" + key + "]: " + ConfigurationManager.AppSettings[key]));
+            }
+
+            return lines;
+        }
+
+        #endregion IExecutionContext
+
+        #region IPluginExecutionContext
+
+        public static String ToStringDebug(this IPluginExecutionContext context)
+        {
+            var lines = ((IExecutionContext)context).ToStringDebug();
+            lines.AddRange(new[]
+            {
+                "Has Parent Context: " + (context.ParentContext != null),
+                "Stage: " + context.Stage
+            });
+
+            return String.Join(Environment.NewLine, lines);
+        }
+
+        #endregion IPluginExecutionContext
 
         #region IOrganizationService
 
