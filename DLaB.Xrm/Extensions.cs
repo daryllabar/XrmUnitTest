@@ -1731,8 +1731,10 @@ namespace DLaB.Xrm
                 {
                     var entity = param.Value as Entity;
                     var entityRef = param.Value as EntityReference;
+                    var entityRefCollection = param.Value as EntityReferenceCollection;
                     var enumerable = param.Value as IEnumerable;
                     var entities = param.Value as EntityCollection;
+                    var optionSet = param.Value as OptionSetValue;
                     if (entity != null)
                     {
                         values.Add(entity.ToStringAttributes(GenerateNonBreakingSpace(4) + "Param[" + param.Key + "][{0}]: {1}"));
@@ -1746,10 +1748,19 @@ namespace DLaB.Xrm
                         values.Add(GenerateNonBreakingSpace(4) + "Param[" + param.Key + "] Entity Collection " + entities.EntityName + ":");
                         values.AddRange(entities.Entities.Select(i => GenerateNonBreakingSpace(8) + i.ToStringAttributes()));
                     }
+                    else if (entityRefCollection != null)
+                    {
+                        values.Add(GenerateNonBreakingSpace(4) + "Param[" + param.Key + "] Entity Reference Collection:");
+                        values.AddRange(entityRefCollection.Select(i => GenerateNonBreakingSpace(8) + i.ToStringDebug()));
+                    }
                     else if (enumerable != null && !(param.Value is String))
                     {
-                        values.Add(GenerateNonBreakingSpace(4) + "Param[" + param.Key + "]: " + param.GetType().FullName + ":");
+                        values.Add(GenerateNonBreakingSpace(4) + "Param[" + param.Key + "]: " + param.Value.GetType().FullName + ":");
                         values.AddRange(from object item in enumerable select GenerateNonBreakingSpace(8) + item);
+                    }
+                    else if (optionSet != null)
+                    {
+                        values.Add(GenerateNonBreakingSpace(4) + "Param[" + param.Key + "]: " + optionSet.Value);
                     }
                     else
                     {
