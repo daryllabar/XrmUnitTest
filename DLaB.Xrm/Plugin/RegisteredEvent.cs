@@ -50,6 +50,19 @@ namespace DLaB.Xrm.Plugin
             Execute = execute;
             Message = message;
         }
+
+        public string ToString(string tab = null)
+        {
+            tab = tab ?? String.Empty;
+            return String.Join(Environment.NewLine + tab, new[]
+            {
+                tab + "Stage: " + Stage,
+                "Message: " + Message,
+                "Message Name: " + MessageName,
+                "Entity Logical Name: " + EntityLogicalName,
+                "Execute: " + (Execute == null ? "Null" : Execute.Method.Name)
+            });
+        }
     }
 
     public enum PipelineStage

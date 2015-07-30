@@ -378,7 +378,7 @@ namespace DLaB.Xrm.Test.Builders
             return this;
         }
 
-        public OrganizationServiceBuilder WithWebResourcePulledFromPath(string webResourceName, string path)
+        public OrganizationServiceBuilder WithWebResourcePulledFromPath(string webResourceName, string path = null)
         {
             RetrieveMultipleFuncs.Add((s, q) =>
             {
@@ -395,6 +395,22 @@ namespace DLaB.Xrm.Test.Builders
                 }
 
                 var name = condition.Values[0].ToString();
+                if (path == null)
+                {
+                    // No Path given, Combine WebResource Name with TestSettingsPath
+                    path = Path.Combine(TestSettings.GetWebResourcePath(), webResourceName);
+                    if (!File.Exists(path))
+                    {
+                        throw new Exception("Path " + path + " does not exist!");
+                    }
+                }
+
+                if (path != null && !File.Exists(path))
+                {
+                    // Path Doesn't exist, attempt to prepend the Web Resource Path
+                    path = Path.Combine(TestSettings.GetWebResourcePath(), path);
+                }
+
                 try
                 {
                     // Default Web Resource

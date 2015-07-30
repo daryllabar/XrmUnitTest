@@ -97,86 +97,6 @@ namespace DLaB.Xrm.Test
 
         #endregion // GetOrganizationServiceProxy
 
-        /// <summary>
-        /// Gets the project path of the given type. 
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public static string GetProjectPath(Type type)
-        {
-            var dll = new FileInfo(type.Assembly.Location);
-            string solutionFolder = null;
-            var sb = new System.Text.StringBuilder();
-            
-            if (dll.Directory == null || // ...\Solution\Project\bin\Build 
-                dll.Directory.Parent == null || // ...\Solution\Project\bin
-                dll.Directory.Parent.Parent == null || // ...\Solution\Project
-                dll.Directory.Parent.Parent.Parent == null) // ...\Solution
-            {
-                sb.AppendLine("Checking for VSOnline");
-                sb.AppendLine(dll.DirectoryName);
-                if (dll.DirectoryName == @"C:\a\bin")
-                {
-                    // Build is on VSOnline.  Redirect to other c:\a\src\Branch Name
-                    var s = new System.Diagnostics.StackTrace(true);
-                    sb.AppendLine(s.ToString());
-                    for (var i = 0; i < s.FrameCount; i++)
-                    {
-                        var fileName = s.GetFrame(i).GetFileName();
-                        sb.AppendLine(fileName ?? String.Empty);
-                        if (!String.IsNullOrEmpty(fileName))
-                        {
-                            // File name will be in the form of c:\a\src\Branch Name\project\filename.  Get everything up to and including the Branch Name
-                            var parts = fileName.Split(Path.DirectorySeparatorChar);
-                            solutionFolder = Path.Combine(parts[0] + Path.DirectorySeparatorChar + parts[1], parts[2], parts[3]);
-                            sb.AppendLine(solutionFolder);
-                            break;
-                        }
-                    }
-                }
-
-                if (String.IsNullOrWhiteSpace(solutionFolder))
-                {
-                    throw new Exception("Unable to find Project Path for " + type.FullName + ".  Assembly Located at " + type.Assembly.Location + sb);
-                }
-            }
-            else
-            {
-                solutionFolder = dll.Directory.Parent.Parent.Parent.FullName;
-            }
-
-            // Class Name, Project Name, Version, Culture, PublicKeyTyoken
-            // ReSharper disable once PossibleNullReferenceException
-            var projectName = type.AssemblyQualifiedName.Split(',')[1].Trim();
-            sb.AppendLine("Project Name" + projectName);
-            sb.AppendLine("SolutionFolder " + solutionFolder);
-            var projectPath = Path.Combine(solutionFolder, projectName);
-
-            sb.AppendLine("Project Folder " + projectPath);
-            if (!Directory.Exists(projectPath))
-            {
-                throw new Exception(String.Format("Unable to find Project Path for {0} at {1}. Log {2}", type.FullName, projectPath, sb));  
-            }
-            
-            return projectPath;
-        }
-
-        /// <summary>
-        /// Gets the Text Xml at the given path.
-        /// </summary>
-        /// <param name="xmlFileName"></param>
-        /// <param name="projectRelativeFilePath"></param>
-        /// <param name="type">A Type in the same project as the Test XML is located.  This is used to determine the Path</param>
-        /// <returns></returns>
-        public static string GetTestXml(string xmlFileName, string projectRelativeFilePath = "Entity Xml", Type type = null)
-        {
-            type = type ?? typeof(TestBase);
-            var projectPath = GetProjectPath(type);
-            var path = Path.Combine(projectPath, projectRelativeFilePath, (xmlFileName.EndsWith(".xml") ? xmlFileName : xmlFileName + ".xml"));
-            var xml = File.ReadAllText(path);
-            return xml;
-        }
-
         #region UnitTestSetting.user.config
 
         private static bool UserUnitTestSettingsLoaded { get; set; }
@@ -199,10 +119,11 @@ namespace DLaB.Xrm.Test
 
         private static void LoadUserUnitTestSettingsInternal()
         {
-            var projectPath = GetProjectPath(typeof(TestBase));
-            var userConfig = GetUserConfig(projectPath);
-
-            AddSettingsToAppConfig(userConfig);
+            var userConfig = GetUserConfig();
+            if (userConfig != null)
+            {
+                AddSettingsToAppConfig(userConfig);
+            }
 
             OrgName = Config.GetAppSettingOrDefault("OrgName", "DominionCmxDev");
             UseLocalCrmDatabase = Config.GetAppSettingOrDefault("UseLocalCrmDatabase", false);
@@ -242,14 +163,23 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        private static Configuration GetUserConfig(string projectPath)
+        private static Configuration GetUserConfig()
         {
-            var userConfigPath = Path.Combine(projectPath, "UnitTestSettings.user.config");
+            var userConfigPath = TestSettings.GetUserTestConfigPath();
+
+            if (!File.Exists(userConfigPath) && userConfigPath.EndsWith("user.config"))
+            {
+                // Attempt to lookup the non User Config settings.  This is used when the user config is copied over from a checked in version
+                var index = userConfigPath.LastIndexOf("user.config", StringComparison.Ordinal);
+                var configPath = userConfigPath.Remove(index, "user.".Length);
+
+                // Copy Non User config to User config
+                File.Copy(configPath, userConfigPath);
+            }
 
             if (!File.Exists(userConfigPath))
             {
-                // Copy Non User config to User config
-                File.Copy(Path.Combine(projectPath, "UnitTestSettings.config"), userConfigPath);
+                return null;
             }
 
             var configMap = new ExeConfigurationFileMap

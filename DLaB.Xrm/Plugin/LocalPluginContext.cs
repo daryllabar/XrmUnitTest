@@ -433,6 +433,27 @@ namespace DLaB.Xrm.Plugin
             return entity;
         }
 
+        public EntityReference GetPrimaryEntity
+        {
+            get
+            {
+                return new EntityReference(PluginExecutionContext.PrimaryEntityName, PluginExecutionContext.PrimaryEntityId);
+            }
+        }
+
         #endregion Retrieve Entity From Context
+
+        #region Diagnostics
+
+        public String GetContextInfo()
+        {
+            return
+                "**** Context Info ****" + Environment.NewLine +
+                "Plugin: " + PluginTypeName + Environment.NewLine +
+                "* Registered Event *" + Environment.NewLine + Event.ToString("   ") + Environment.NewLine +
+                PluginExecutionContext.ToStringDebug();
+        }
+
+        #endregion Diagnostics
     }
 }

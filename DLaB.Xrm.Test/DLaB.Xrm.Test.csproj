@@ -52,6 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\NotConfiguredException.cs" />
+    <Compile Include="PatherFinderProjectOfType.cs" />
+    <Compile Include="PathFinderAbsolute.cs" />
     <Compile Include="AssertCrm.cs" />
     <Compile Include="Assumptions\AssumedEntities.cs" />
     <Compile Include="Assumptions\EntityDataAssumptionBaseAttribute.cs" />
@@ -74,9 +77,11 @@
     <Compile Include="FakeTraceService.cs" />
     <Compile Include="FakeWorkflowContext.cs" />
     <Compile Include="Id.cs" />
+    <Compile Include="IPathFinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="TestMethodClassBase.cs" />
+    <Compile Include="TestSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DLaB.Common\DLaB.Common.csproj">

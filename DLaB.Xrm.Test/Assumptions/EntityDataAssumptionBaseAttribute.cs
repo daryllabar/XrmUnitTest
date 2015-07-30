@@ -6,16 +6,14 @@ using System.Linq;
 using System.Text;
 using DLaB.Common;
 using DLaB.Xrm.Client;
+using DLaB.Xrm.LocalCrm;
 using Microsoft.Xrm.Sdk;
-
 
 namespace DLaB.Xrm.Test.Assumptions
 {
     [AttributeUsage(AttributeTargets.Class)]
     public abstract class EntityDataAssumptionBaseAttribute : Attribute
     {
-        protected readonly string EntityXmlDirectoryRelativePath = Path.Combine("Assumptions", "Entity Xml");
-
         private IEnumerable<Type> _prerequisites;
         private IEnumerable<Type> Prerequisites
         {
@@ -175,24 +173,15 @@ namespace DLaB.Xrm.Test.Assumptions
                 var mock = service as FakeIOrganizationService;
                 // If the service is a Mock, get the Actual Service to determine if it is local or not...
                 if (
-                    (mock != null && mock.ActualService as LocalCrm.LocalCrmDatabaseOrganizationService == null) ||
-                    (mock == null && service as LocalCrm.LocalCrmDatabaseOrganizationService == null) ||
-                    FileIsNullOrEmpty(GetSerializedFilePath()))
+                    (mock != null && !(mock.ActualService is LocalCrmDatabaseOrganizationService)) ||
+                    (mock == null && !(service is LocalCrmDatabaseOrganizationService)) ||
+                    FileIsNullOrEmpty(GetSerializedFilePath(ShortName)))
                 {
                     throw new Exception(String.Format("Assumption {0} made an ass out of you and me.  The entity assumed to be there, was not found.", ShortName));
                 }
 
-                LocalCrm.LocalCrmDatabaseOrganizationService localService;
-                if (mock == null)
-                {
-                    localService = (LocalCrm.LocalCrmDatabaseOrganizationService) service;
-                }
-                else
-                {
-                    localService = (LocalCrm.LocalCrmDatabaseOrganizationService) mock.ActualService;
-                }
-
-                entity = TestBase.GetTestXml(ShortName, EntityXmlDirectoryRelativePath, GetType()).DeserializeEntity();
+                entity = GetTestEntityFromXml(ShortName);
+                var localService = mock == null ? (LocalCrmDatabaseOrganizationService) service : (LocalCrmDatabaseOrganizationService) mock.ActualService;
                 var isSelfReferencing = CreateForeignReferences(localService, entity);
                 if (isSelfReferencing)
                 {
@@ -205,7 +194,7 @@ namespace DLaB.Xrm.Test.Assumptions
             }
             else if (Debugger.IsAttached)
             {
-                TfsHelper.CheckoutAndUpdateFileIfDifferent(GetSerializedFilePath(), entity.Serialize(true));
+                TfsHelper.CheckoutAndUpdateFileIfDifferent(GetSerializedFilePath(ShortName), entity.Serialize(true));
             }
 
             return entity;
@@ -216,7 +205,7 @@ namespace DLaB.Xrm.Test.Assumptions
         /// </summary>
         /// <param name="service"></param>
         /// <param name="entity"></param>
-        private bool CreateForeignReferences(LocalCrm.LocalCrmDatabaseOrganizationService service, Entity entity)
+        private bool CreateForeignReferences(LocalCrmDatabaseOrganizationService service, Entity entity)
         {
             var isSelfReferencing = false;
             var toRemove = new List<string>();
@@ -254,9 +243,20 @@ namespace DLaB.Xrm.Test.Assumptions
             return isSelfReferencing;
         }
 
-        private string GetSerializedFilePath()
+        private static Entity GetTestEntityFromXml(string fileName)
         {
-            return Path.Combine(TestBase.GetProjectPath(GetType()), EntityXmlDirectoryRelativePath, ShortName + ".xml");
+            var path = GetSerializedFilePath(fileName);
+            return File.ReadAllText(path).DeserializeEntity();
+        }
+
+        private static string GetSerializedFilePath(string fileName)
+        {
+            if (!fileName.EndsWith(".xml"))
+            {
+                fileName = Path.Combine(fileName, ".xml");
+            }
+
+            return Path.Combine(TestSettings.GetAssumptionXmlPath(), fileName);
         }
 
         private static bool FileIsNullOrEmpty(string filePath)
@@ -268,7 +268,7 @@ namespace DLaB.Xrm.Test.Assumptions
         /// <summary>
         /// Lists the EntityDataAssumptions that are required by the decorated class.  These assumptions will be loaded automatically by the EntityDataAssumptionBase.
         /// </summary>
-        [AttributeUsage(AttributeTargets.Class, Inherited = true)]
+        [AttributeUsage(AttributeTargets.Class)]
         protected class PrerequisiteAssumptionsAttribute : Attribute
         {
             public IEnumerable<Type> Prerequisites { get; set; }

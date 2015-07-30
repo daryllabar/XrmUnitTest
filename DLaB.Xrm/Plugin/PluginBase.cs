@@ -86,8 +86,10 @@ namespace DLaB.Xrm.Plugin
 
                 ExecuteRegisteredEvent(context);
             }
-            catch(InvalidPluginExecutionException ex){
+            catch (InvalidPluginExecutionException ex)
+            {
                 context.LogException(ex);
+                context.Trace(context.GetContextInfo());
                 // This error is already being thrown from the plugin, just throw
                 throw;
             }
@@ -95,6 +97,7 @@ namespace DLaB.Xrm.Plugin
             {
                 // Unexpected Exception occurred, log exception then wrap and throw new exception
                 context.LogException(ex);
+                context.Trace(context.GetContextInfo());
                 throw new InvalidPluginExecutionException(ex.Message, ex);
             }
             finally

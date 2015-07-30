@@ -303,6 +303,25 @@ namespace DLaB.Xrm.Test
 
         #endregion // Assumptions
 
+        private static bool IsLoaded { get; set; }
+        private static readonly object IsLoadedLock = new Object();
+        private static void LoadConfigurationSettingsOnce(TestMethodClassBase value)
+        {
+            if (IsLoaded) return;
+            lock (IsLoadedLock)
+            {
+                if (IsLoaded) return;
+
+                value.LoadConfigurationSettings();
+                IsLoaded = true;
+            }
+        }
+
+        /// <summary>
+        /// Loads the configuration settings.
+        /// </summary>
+        protected abstract void LoadConfigurationSettings();
+
         /// <summary>
         /// Method to populate the data in the CRM Database to setup a clean test
         /// </summary>
@@ -350,6 +369,7 @@ namespace DLaB.Xrm.Test
 
         public void Test()
         {
+            LoadConfigurationSettingsOnce(this);
             InitializeEntityIds();
             if (EntityIds != null && EntityIds.Count > 0)
             {
