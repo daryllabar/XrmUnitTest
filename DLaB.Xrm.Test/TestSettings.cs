@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using DLaB.Xrm.Test.Exceptions;
+using System;
+
 
 namespace DLaB.Xrm.Test
 {
@@ -12,7 +9,21 @@ namespace DLaB.Xrm.Test
     {
         #region AssumptionXml
 
-        private static string AssumptionXmlPath { get; set; }
+        private static string _assumptionXmlPath;
+        public static string AssumptionXmlPath
+        {
+            get
+            {
+                if (_assumptionXmlPath == null)
+                {
+                    throw new NotConfiguredException("Assumption Xml has not been configured.  Call ConfigureAssumptionXml() first before getting the AssumptionXmlPath.");
+                }
+
+                return _assumptionXmlPath;
+            }
+            private set { _assumptionXmlPath = value; }
+        }
+
         public static bool IsAssumptionXmlPathConfigured { get; set; }
 
         /// <summary>
@@ -25,47 +36,74 @@ namespace DLaB.Xrm.Test
             IsAssumptionXmlPathConfigured = true;
         }
 
-        public static string GetAssumptionXmlPath()
-        {
-            if (AssumptionXmlPath == null)
-            {
-                throw new NotConfiguredException("Assumption Xml has not been configured.  Call ConfigureAssumptionXml() first before getting the AssumptionXmlPath.");
-            }
-
-            return AssumptionXmlPath;
-        }
-
         #endregion AssumptionXml
 
-        #region WebResource
+        #region CrmContextConfig
 
-        private static string WebResourcePath { get; set; }
-        public static bool IsWebResourcePathConfigured { get; set; }
+        private static Assembly _earlyBoundAssembly;
+        public static Assembly EarlyBoundAssembly
+        {
+            get
+            {
+                if (_earlyBoundAssembly == null)
+                {
+                    throw new NotConfiguredException("Early Bound Assembly has not been configured.  Call ConfigureEarlyBoundAssembly() first before getting the EarlyBoundAssembly.");
+                }
+                return _earlyBoundAssembly;
+            }
+            private set { _earlyBoundAssembly = value; }
+        }
+
+        private static String _earlyBoundNamespace;
+        public static String EarlyBoundNamespace
+        {
+            get
+            {
+                if (_earlyBoundNamespace == null)
+                {
+                    throw new NotConfiguredException("Early Bound Namespace has not been configured.  Call ConfigureEarlyBoundAssembly() first before getting the EarlyBoundNamespace.");
+                }
+                return _earlyBoundNamespace;
+            }
+            private set { _earlyBoundNamespace = value; }
+        }
+
+        public static bool IsEarlyBoundAssemblyConfigured { get; set; }
 
         /// <summary>
-        /// Configures the Web Resources Path.
+        /// Configures the Early Bound Assembly.
         /// </summary>
-        /// <param name="finder"></param>
-        public static void ConfigureWebResource(IPathFinder finder)
+        public static void ConfigureEarlyBoundAssembly<T>() where T : Microsoft.Xrm.Sdk.Client.OrganizationServiceContext
         {
-            WebResourcePath = finder.GetPath();
-            IsWebResourcePathConfigured = true;
-        }
-
-        public static string GetWebResourcePath()
-        {
-            if (WebResourcePath == null)
+            var contextType = typeof(T);
+            if (contextType.Name == "OrganizationServiceContext")
             {
-                throw new NotConfiguredException("Assumption Xml has not been configured.  Call ConfigureWebResource() first before getting the WebResourcePath.");
+                throw new Exception("Must pass in a derived type from Microsoft.Xrm.Sdk.Client.OrganizationServiceContext");
             }
-            return WebResourcePath;
+
+            EarlyBoundAssembly = contextType.Assembly;
+            EarlyBoundNamespace = contextType.Namespace;
+            IsEarlyBoundAssemblyConfigured = true;
         }
 
-        #endregion WebResource
+        #endregion CrmContextConfig
 
         #region UserTestConfig
 
-        private static string UserTestConfigPath { get; set; }
+        private static string _userTestConfigPath;
+        public static string UserTestConfigPath
+        {
+            get
+            {
+                if (_userTestConfigPath == null)
+                {
+                    throw new NotConfiguredException("User Test Config Path has not been configured.  Call ConfigureUserTestConfig() first before getting the UserTestConfigPath.");
+                }
+                return _userTestConfigPath;    
+            }
+            private set { _userTestConfigPath = value; }
+        }
+
         public static bool IsUserTestConfigPathConfigured { get; set; }
 
         /// <summary>
@@ -78,15 +116,39 @@ namespace DLaB.Xrm.Test
             IsUserTestConfigPathConfigured = true;
         }
 
-        public static string GetUserTestConfigPath()
+        #endregion UserTestConfig
+
+        #region WebResource
+
+        private static string _webResourcePath;
+        public static string WebResourcePath
         {
-            if (UserTestConfigPath == null)
+            get
             {
-                throw new NotConfiguredException("Assumption Xml has not been configured.  Call ConfigureUserTestConfig() first before getting the UserTestConfigPath.");
+                if (_webResourcePath == null)
+                {
+                    throw new NotConfiguredException("Web Resource Path has not been configured.  Call ConfigureWebResource() first before getting the WebResourcePath.");
+                }
+                return _webResourcePath;
             }
-            return UserTestConfigPath;
+            private set
+            {
+                _webResourcePath = value;
+            }
         }
 
-        #endregion UserTestConfig
+        public static bool IsWebResourcePathConfigured { get; set; }
+
+        /// <summary>
+        /// Configures the Web Resources Path.
+        /// </summary>
+        /// <param name="finder"></param>
+        public static void ConfigureWebResource(IPathFinder finder)
+        {
+            WebResourcePath = finder.GetPath();
+            IsWebResourcePathConfigured = true;
+        }
+
+        #endregion WebResource
     }
 }

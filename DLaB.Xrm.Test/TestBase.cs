@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Configuration;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using DLaB.Common;
 using DLaB.Xrm.Client;
 using DLaB.Xrm.Entities;
@@ -45,7 +47,7 @@ namespace DLaB.Xrm.Test
         {
             // Create a unique Database for each Unit Test by looking up the first method in the stack trace that has a TestMethodAttribute,
             // and using it's method handle, combined with the OrganizationName, as a unqiue Key
-            var method = GetUnitTestMethod() ?? System.Reflection.MethodBase.GetCurrentMethod();
+            var method = GetUnitTestMethod() ?? MethodBase.GetCurrentMethod();
             string databaseKey = String.Format("UnitTest {0}:{1}:{2}", method.Name, organizationName, method.MethodHandle);
 
             var info = LocalCrmDatabaseInfo.Create<CrmContext>(databaseKey, impersonationUserId);
@@ -71,9 +73,9 @@ namespace DLaB.Xrm.Test
             return new LocalCrmDatabaseOrganizationService(info);
         }
 
-        private static System.Reflection.MethodBase GetUnitTestMethod()
+        private static MethodBase GetUnitTestMethod()
         {
-            var frames = new System.Diagnostics.StackTrace().GetFrames();
+            var frames = new StackTrace().GetFrames();
             if (frames == null)
             {
                 throw new Exception("Unable to get the StackTrace");
@@ -165,7 +167,7 @@ namespace DLaB.Xrm.Test
 
         private static Configuration GetUserConfig()
         {
-            var userConfigPath = TestSettings.GetUserTestConfigPath();
+            var userConfigPath = TestSettings.UserTestConfigPath;
 
             if (!File.Exists(userConfigPath) && userConfigPath.EndsWith("user.config"))
             {
@@ -190,5 +192,15 @@ namespace DLaB.Xrm.Test
         }
 
         #endregion // UnitTestSetting.user.config
+
+        /// <summary>
+        /// Gets the Entity type based on the entity logical name.
+        /// </summary>
+        /// <param name="entityLogicalName">Name of the entity logical.</param>
+        /// <returns></returns>
+        public static Type GetType(string entityLogicalName)
+        {
+            return EntityHelper.GetType(TestSettings.EarlyBoundAssembly, TestSettings.EarlyBoundNamespace, entityLogicalName);
+        }
     }
 }

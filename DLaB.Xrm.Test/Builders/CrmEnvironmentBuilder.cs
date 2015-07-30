@@ -270,7 +270,7 @@ namespace DLaB.Xrm.Test.Builders
 
             private readonly object _genericConstructorLock = new object();
             /// <summary>
-            /// Creates a GenericEntityBuilder of the type of logical name being passed in.  Employees locking since BuilderForEntity is static
+            /// Creates a GenericEntityBuilder of the type of logical name being passed in.  Employs locking since BuilderForEntity is static
             /// </summary>
             /// <param name="logicalName">Name of the Entity to create a GenericEntityBuilder Constructor For.</param>
             /// <returns></returns>
@@ -283,7 +283,7 @@ namespace DLaB.Xrm.Test.Builders
                     {
                         return constructor;
                     }
-                    var builder = typeof (GenericEntityBuilder<>).MakeGenericType(EntityHelper.GetType<CrmContext>(logicalName));
+                    var builder = typeof (GenericEntityBuilder<>).MakeGenericType(TestBase.GetType(logicalName));
                     constructor = builder.GetConstructor(new[] {typeof (Id)});
                     BuilderForEntity.Add(logicalName, constructor);
                     return constructor;

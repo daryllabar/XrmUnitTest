@@ -69,6 +69,10 @@
       <Project>{674c3dde-a543-4199-b089-278eeb4db85a}</Project>
       <Name>DLaB.Xrm.Client</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj">
+      <Project>{66688025-2f6d-40ec-914e-87af88afc5de}</Project>
+      <Name>DLaB.Xrm.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DLaB.Xrm.LocalCrm\DLaB.Xrm.LocalCrm.csproj">
       <Project>{5d4bce65-c30a-4044-8c08-44615045cd1c}</Project>
       <Name>DLaB.Xrm.LocalCrm</Name>

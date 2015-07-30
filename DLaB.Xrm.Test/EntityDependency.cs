@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using DLaB.Xrm.Entities;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test
@@ -98,7 +97,7 @@ namespace DLaB.Xrm.Test
                 Dependencies = new HashSet<string>();
                 Dependents = new HashSet<string>();
 
-                var properties = EntityHelper.GetType<CrmContext>(logicalName).GetProperties();
+                var properties = TestBase.GetType(logicalName).GetProperties();
                 PopulateDependencies(properties);
             }
 

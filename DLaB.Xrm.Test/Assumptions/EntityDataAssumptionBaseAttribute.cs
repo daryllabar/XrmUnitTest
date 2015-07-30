@@ -256,7 +256,7 @@ namespace DLaB.Xrm.Test.Assumptions
                 fileName = Path.Combine(fileName, ".xml");
             }
 
-            return Path.Combine(TestSettings.GetAssumptionXmlPath(), fileName);
+            return Path.Combine(TestSettings.AssumptionXmlPath, fileName);
         }
 
         private static bool FileIsNullOrEmpty(string filePath)

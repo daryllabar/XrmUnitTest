@@ -67,6 +67,10 @@
       <Project>{a7284a23-15f3-411d-bc26-2890a11053fe}</Project>
       <Name>DLaB.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj">
+      <Project>{66688025-2f6d-40ec-914e-87af88afc5de}</Project>
+      <Name>DLaB.Xrm.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DLaB.Xrm\DLaB.Xrm.csproj">
       <Project>{0a88b434-3617-4543-b9a3-b2b04ba4b8d4}</Project>
       <Name>DLaB.Xrm</Name>
