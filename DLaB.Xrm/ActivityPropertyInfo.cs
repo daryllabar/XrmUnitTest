@@ -1,6 +1,5 @@
 ﻿using System;
 using DLaB.Common.Exceptions;
-using DLaB.Xrm.Entities;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 

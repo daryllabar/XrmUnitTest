@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm.LocalCrm", "DLaB.X
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm.LocalCrm.Tests", "DLaB.Xrm.LocalCrm.Tests\DLaB.Xrm.LocalCrm.Tests.csproj", "{12F51B82-CFA2-477A-A934-F0F146BE4D7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm.Entities", "DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj", "{66688025-2F6D-40EC-914E-87AF88AFC5DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{12F51B82-CFA2-477A-A934-F0F146BE4D7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12F51B82-CFA2-477A-A934-F0F146BE4D7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12F51B82-CFA2-477A-A934-F0F146BE4D7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66688025-2F6D-40EC-914E-87AF88AFC5DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66688025-2F6D-40EC-914E-87AF88AFC5DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66688025-2F6D-40EC-914E-87AF88AFC5DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66688025-2F6D-40EC-914E-87AF88AFC5DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
