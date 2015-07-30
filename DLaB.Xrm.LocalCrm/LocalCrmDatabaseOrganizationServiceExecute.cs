@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Xml.Serialization;
+using DLaB.Xrm.Client;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.LocalCrm.FetchXml;
 using Microsoft.Crm.Sdk.Messages;
@@ -155,7 +154,7 @@ namespace DLaB.Xrm.LocalCrm
 
             response.Results["AttributeMetadata"] = optionSet;
 
-            var enumExpression = GetEarlyBoundProxyAssembly().GetTypes().Where(t =>
+            var enumExpression = CrmServiceUtility.GetEarlyBoundProxyAssembly().GetTypes().Where(t =>
                 t.GetCustomAttributes(typeof(DataContractAttribute), false).Length > 0 &&
                 t.GetCustomAttributes(typeof(System.CodeDom.Compiler.GeneratedCodeAttribute), false).Length > 0 &&
                 t.Name.Contains(request.LogicalName)).ToList();
@@ -180,7 +179,7 @@ namespace DLaB.Xrm.LocalCrm
 
             response.Results["OptionSetMetadata"] = optionSet;
 
-            var types = GetEarlyBoundProxyAssembly().GetTypes();
+            var types = CrmServiceUtility.GetEarlyBoundProxyAssembly().GetTypes();
             var enumType = types.FirstOrDefault(t => IsEnumType(t, request.Name)) ??
                            types.FirstOrDefault(t => IsEnumType(t, request.Name + "Enum"));
 
@@ -217,30 +216,6 @@ namespace DLaB.Xrm.LocalCrm
 
 
         #endregion // Execute Internal
-
-        private static Assembly _crmEntitiesAssembly;
-        public static Assembly GetEarlyBoundProxyAssembly()
-        {
-            if (_crmEntitiesAssembly != null) return _crmEntitiesAssembly;
-            var assemblyName = ConfigurationManager.AppSettings["CrmEntities.ContextType"];
-            if (String.IsNullOrWhiteSpace(assemblyName))
-            {
-                // Default
-                assemblyName = typeof(CrmContext).AssemblyQualifiedName;
-            }
-            return GetEarlyBoundProxyAssembly(assemblyName);
-        }
-
-        private static Assembly GetEarlyBoundProxyAssembly(string assemblyName)
-        {
-            var type = Type.GetType(assemblyName);
-            if (type == null)
-            {
-                throw new Exception("Unable to load EarlyBoundProxy Assembly " + assemblyName);
-            }
-            _crmEntitiesAssembly = type.Assembly;
-            return _crmEntitiesAssembly;
-        }
 
         private static bool IsEnumType(Type t, string name)
         {

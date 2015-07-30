@@ -9,7 +9,7 @@ namespace DLaB.Xrm.Plugin
         public MessageType Message { get; set; }
         public String MessageName { get { return Message.ToString(); } }
         public String EntityLogicalName { get; set; }
-        public Action<LocalPluginContext> Execute { get; set; }
+        public Action<LocalPluginContextBase> Execute { get; set; }
 
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="stage"></param>
         /// <param name="message"></param>
         /// <param name="execute"></param>
-        public RegisteredEvent(PipelineStage stage, MessageType message, Action<LocalPluginContext> execute) : this(stage, message, execute, null) { }
+        public RegisteredEvent(PipelineStage stage, MessageType message, Action<LocalPluginContextBase> execute) : this(stage, message, execute, null) { }
 
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="message"></param>
         /// <param name="execute"></param>
         /// <param name="entityLogicalName"></param>
-        public RegisteredEvent(PipelineStage stage, MessageType message, Action<LocalPluginContext> execute, string entityLogicalName)
+        public RegisteredEvent(PipelineStage stage, MessageType message, Action<LocalPluginContextBase> execute, string entityLogicalName)
         {
             Stage = stage;
             EntityLogicalName = entityLogicalName;
@@ -51,17 +51,19 @@ namespace DLaB.Xrm.Plugin
             Message = message;
         }
 
-        public string ToString(string tab = null)
+        public virtual string ToString(string tab)
         {
             tab = tab ?? String.Empty;
-            return String.Join(Environment.NewLine + tab, new[]
-            {
-                tab + "Stage: " + Stage,
-                "Message: " + Message,
-                "Message Name: " + MessageName,
-                "Entity Logical Name: " + EntityLogicalName,
-                "Execute: " + (Execute == null ? "Null" : Execute.Method.Name)
-            });
+            return String.Join(Environment.NewLine + tab, 
+                tab + "Stage: " + Stage, 
+                "Message: " + Message, 
+                "Message Name: " + MessageName, 
+                "Entity Logical Name: " + EntityLogicalName, "Execute: " + (Execute == null ? "Null" : Execute.Method.Name));
+        }
+
+        public override string ToString()
+        {
+            return ToString(null);
         }
     }
 

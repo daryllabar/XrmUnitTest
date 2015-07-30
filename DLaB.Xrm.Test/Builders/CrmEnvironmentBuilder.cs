@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using DLaB.Xrm.Entities;
 using DLaB.Common;
 using Microsoft.Xrm.Sdk;
 

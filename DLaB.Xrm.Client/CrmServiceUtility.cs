@@ -10,7 +10,6 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 using System.Collections.Concurrent;
 using DLaB.Common;
-using DLaB.Xrm.Entities;
 
 namespace DLaB.Xrm.Client
 {
@@ -139,7 +138,7 @@ namespace DLaB.Xrm.Client
             {
                 return _crmEntitiesAssembly;
             }
-            return GetEarlyBoundProxyAssembly(Config.GetAppSettingOrDefault("CrmEntities.ContextType", () => typeof (CrmContext).AssemblyQualifiedName));
+            return GetEarlyBoundProxyAssembly(Config.GetAppSettingOrDefault("CrmEntities.ContextType", "DLaB.Xrm.Entities.CrmContext, DLaB.Xrm.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
         }
 
         private static Assembly GetEarlyBoundProxyAssembly(string assemblyName)
@@ -147,7 +146,7 @@ namespace DLaB.Xrm.Client
             var type = Type.GetType(assemblyName);
             if (type == null)
             {
-                throw new Exception("Unable to load EarlyBoundProxy Assembly " + assemblyName);
+                throw new Exception("Unable to load EarlyBoundProxy Assembly " + assemblyName + ".  Populate the EarlyBound Crm Context name in the CrmEntities.ContextType App Settings Config value.");
             }
             _crmEntitiesAssembly = type.Assembly;
             return _crmEntitiesAssembly;

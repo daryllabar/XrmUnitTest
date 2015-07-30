@@ -23,6 +23,8 @@ namespace DLaB.Xrm.Test
 
         #endregion // Singleton Logic
 
+        #region Properties
+
         private LinkedList<EntityDependencyInfo> Types { get; set; }
         private Dictionary<String, EntityDependencyInfo> Infos { get; set; }
 
@@ -41,6 +43,9 @@ namespace DLaB.Xrm.Test
         /// The entity deletion order.
         /// </value>
         public IEnumerable<String> EntityDeletionOrder { get { return EntityCreationOrder.Reverse(); } }
+
+        #endregion Properties
+
 
         private EntityDependency()
         {

@@ -85,9 +85,9 @@
     <Compile Include="LateBoundQuerySettings.cs" />
     <Compile Include="Plugin\Extensions.cs" />
     <Compile Include="Plugin\IRegisteredEventsPlugin.cs" />
-    <Compile Include="Plugin\LocalPluginContext.cs" />
+    <Compile Include="Plugin\LocalPluginContextBase.cs" />
     <Compile Include="Plugin\ParameterName.cs" />
-    <Compile Include="Plugin\PluginBase.cs" />
+    <Compile Include="Plugin\GenericPluginHandlerBase.cs" />
     <Compile Include="Plugin\RegisteredEvent.cs" />
     <Compile Include="Plugin\RegisteredEventBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

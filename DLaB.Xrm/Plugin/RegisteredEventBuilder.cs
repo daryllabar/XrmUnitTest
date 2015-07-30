@@ -6,10 +6,10 @@ namespace DLaB.Xrm.Plugin
 {
     public class RegisteredEventBuilder
     {
-        private List<String> EntityLogicalNames { get; set; }
-        private Action<LocalPluginContext> Execute { get; set; }
-        private List<MessageType> MessageTypes { get; set; }
-        private PipelineStage Stage { get; set; }
+        protected List<String> EntityLogicalNames { get; set; }
+        protected Action<LocalPluginContextBase> Execute { get; set; }
+        protected List<MessageType> MessageTypes { get; set; }
+        protected PipelineStage Stage { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RegisteredEventBuilder"/> class.  With the only required attributes, what pipelines stage to execute, and for what message type(s)
@@ -47,9 +47,21 @@ namespace DLaB.Xrm.Plugin
         /// </summary>
         /// <param name="execute">Action that is invoked when the Plugin Executes.</param>
         /// <returns></returns>
-        public RegisteredEventBuilder WithExecuteAction(Action<LocalPluginContext> execute)
+        public RegisteredEventBuilder WithExecuteAction(Action<LocalPluginContextBase> execute)
         {
             Execute = execute;
+            return this;
+        }
+
+
+        /// <summary>
+        /// Defines the custom Action to be performed rather than the standard ExecuteInternal.
+        /// </summary>
+        /// <param name="execute">Action that is invoked when the Plugin Executes.</param>
+        /// <returns></returns>
+        public RegisteredEventBuilder WithExecuteAction<T>(Action<T> execute) where T : LocalPluginContextBase
+        {
+            Execute = (b) => execute((T)b);
             return this;
         }
 		

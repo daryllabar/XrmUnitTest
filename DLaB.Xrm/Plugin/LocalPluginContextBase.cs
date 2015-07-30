@@ -4,8 +4,7 @@ using System.Linq;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Plugin
-{
-    public class LocalPluginContext
+{    public abstract class LocalPluginContextBase
     {
         #region Properties
 
@@ -45,7 +44,7 @@ namespace DLaB.Xrm.Plugin
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LocalPluginContext"/> class.
+        /// Initializes a new instance of the <see cref="LocalPluginContextBase"/> class.
         /// </summary>
         /// <param name="serviceProvider">The service provider.</param>
         /// <param name="plugin">The plugin.</param>
@@ -54,7 +53,7 @@ namespace DLaB.Xrm.Plugin
         /// or
         /// plugin
         /// </exception>
-        public LocalPluginContext(IServiceProvider serviceProvider, IRegisteredEventsPlugin plugin)
+        protected LocalPluginContextBase(IServiceProvider serviceProvider, IRegisteredEventsPlugin plugin)
         {
             if (serviceProvider == null)
             {
@@ -298,6 +297,7 @@ namespace DLaB.Xrm.Plugin
         public virtual void LogException(Exception ex)
         {
             TraceFormat("Exception: {0}", ex);
+            Trace(GetContextInfo());
         }
 
         #endregion Exception Logging

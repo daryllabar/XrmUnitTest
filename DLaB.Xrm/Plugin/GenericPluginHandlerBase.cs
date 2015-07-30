@@ -4,7 +4,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Plugin
 {
-    public abstract class PluginBase : IRegisteredEventsPlugin
+    public abstract class GenericPluginHandlerBase<T> : IRegisteredEventsPlugin where T : LocalPluginContextBase
     {
         #region Properties
 
@@ -19,18 +19,9 @@ namespace DLaB.Xrm.Plugin
 
         #region Constructors
 
-        protected PluginBase() : this(null,null)
+        protected GenericPluginHandlerBase()
         {
-
-        }
-
-        protected PluginBase(string unsecureConfig, string secureConfig)
-        {
-            UnsecureConfig = unsecureConfig;
-            SecureConfig = secureConfig;
             RegisteredEvents = new List<RegisteredEvent>();
-            // ReSharper disable once DoNotCallOverridableMethodsInConstructor
-            PopulateRegisteredEvents();
         }
 
         #endregion // Constructors
@@ -41,11 +32,14 @@ namespace DLaB.Xrm.Plugin
         /// The default method to be executed by the plugin.  The Registered Event could specify a different method.
         /// </summary>
         /// <param name="context">The plugin context.</param>
-        protected abstract void ExecuteInternal(LocalPluginContext context);
+        protected abstract void ExecuteInternal(T context);
+
         /// <summary>
-        /// Forces the Base class to specify RegistrationEvents.  This will be exectued before the derived class's constructor runs! 
+        /// Adds all registered events to the RegisteredEvents Property;
         /// </summary>
-        protected abstract void PopulateRegisteredEvents();
+        public abstract void RegisterEvents();
+
+        protected abstract T CreateLocalPluginContext(IServiceProvider serviceProvider);
 
         #endregion // Abstract Methods / Properties
 
@@ -62,12 +56,14 @@ namespace DLaB.Xrm.Plugin
         /// </remarks>
         public void Execute(IServiceProvider serviceProvider)
         {
+            PreExecute(serviceProvider);
+
             if (serviceProvider == null)
             {
                 throw new ArgumentNullException("serviceProvider");
             }
 
-            var context = new LocalPluginContext(serviceProvider, this);
+            var context = CreateLocalPluginContext(serviceProvider);
             
             try
             {
@@ -89,7 +85,6 @@ namespace DLaB.Xrm.Plugin
             catch (InvalidPluginExecutionException ex)
             {
                 context.LogException(ex);
-                context.Trace(context.GetContextInfo());
                 // This error is already being thrown from the plugin, just throw
                 throw;
             }
@@ -97,22 +92,37 @@ namespace DLaB.Xrm.Plugin
             {
                 // Unexpected Exception occurred, log exception then wrap and throw new exception
                 context.LogException(ex);
-                context.Trace(context.GetContextInfo());
                 throw new InvalidPluginExecutionException(ex.Message, ex);
             }
             finally
             {
                 context.TraceFormat("Exiting {0}.Execute()", context.PluginTypeName);
+                PostExecute(context);
             }
+        }
+
+        protected virtual void PreExecute(IServiceProvider serviceProvider) { }
+
+        protected virtual void PostExecute(T context) { }
+
+        /// <summary>
+        /// Sets the configuration values.
+        /// </summary>
+        /// <param name="unsecureConfig">The unsecure configuration.</param>
+        /// <param name="secureConfig">The secure configuration.</param>
+        public void SetConfigValues(string unsecureConfig = null, string secureConfig = null)
+        {
+            UnsecureConfig = unsecureConfig;
+            SecureConfig = secureConfig;
         }
 
         /// <summary>
         /// Traces the Execution of the registered event of the context.
         /// </summary>
         /// <param name="context">The context.</param>
-        private void ExecuteRegisteredEvent(LocalPluginContext context)
+        private void ExecuteRegisteredEvent(T context)
         {
-            var execute = context.Event.Execute ?? ExecuteInternal;
+            var execute = context.Event.Execute == null ? ExecuteInternal : new Action<T>(c => context.Event.Execute(c)) ;
 
             context.TraceFormat("{0}.{1} is Executing for Entity: {2}, Message: {3}",
                 context.PluginTypeName,
@@ -128,7 +138,7 @@ namespace DLaB.Xrm.Plugin
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        protected virtual bool PreventRecursiveCall(LocalPluginContext context)
+        protected virtual bool PreventRecursiveCall(LocalPluginContextBase context)
         {
             if (context.Event.Message == MessageType.Delete)
             {
