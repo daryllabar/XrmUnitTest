@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="stage"></param>
         /// <param name="message"></param>
         /// <param name="execute"></param>
-        public static void AddEvent(this List<RegisteredEvent> events, PipelineStage stage, MessageType message, Action<LocalPluginContextBase> execute)
+        public static void AddEvent(this List<RegisteredEvent> events, PipelineStage stage, MessageType message, Action<ILocalPluginContext> execute)
         {
             events.AddEvent(stage, null, message, execute);
         }
@@ -52,7 +52,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="entityLogicalName"></param>
         /// <param name="message"></param>
         /// <param name="execute"></param>
-        public static void AddEvent(this List<RegisteredEvent> events, PipelineStage stage, string entityLogicalName, MessageType message, Action<LocalPluginContextBase> execute){
+        public static void AddEvent(this List<RegisteredEvent> events, PipelineStage stage, string entityLogicalName, MessageType message, Action<ILocalPluginContext> execute){
             events.Add(new RegisteredEvent(stage, message, execute, entityLogicalName));
         }
 
@@ -90,7 +90,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="stage"></param>
         /// <param name="messages"></param>
         /// <param name="execute"></param>
-        public static void AddEvents(this List<RegisteredEvent> events, PipelineStage stage, Action<LocalPluginContextBase> execute, params MessageType[] messages)
+        public static void AddEvents(this List<RegisteredEvent> events, PipelineStage stage, Action<ILocalPluginContext> execute, params MessageType[] messages)
         {
             events.AddEvents(stage, null, execute, messages);
         }
@@ -104,7 +104,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="entityLogicalName"></param>
         /// <param name="execute"></param>
         /// <param name="messages"></param>
-        public static void AddEvents(this List<RegisteredEvent> events, PipelineStage stage, string entityLogicalName, Action<LocalPluginContextBase> execute, params MessageType[] messages)
+        public static void AddEvents(this List<RegisteredEvent> events, PipelineStage stage, string entityLogicalName, Action<ILocalPluginContext> execute, params MessageType[] messages)
         {
             foreach (var message in messages)
             {

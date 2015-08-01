@@ -12,7 +12,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.Test
 {
-    public abstract class TestMethodClassBase
+    public abstract class TestMethodClassBaseDLaB
     {
         public struct CrmErrorCodes
         {
@@ -33,7 +33,7 @@ namespace DLaB.Xrm.Test
 
         protected AssertCrm AssertCrm { get; set; }
 
-        protected TestMethodClassBase()
+        protected TestMethodClassBaseDLaB()
         {
             AssumedEntities = new Assumptions.AssumedEntities();
             EntityIds = new Dictionary<string, List<Guid>>();
@@ -305,7 +305,7 @@ namespace DLaB.Xrm.Test
 
         private static bool IsLoaded { get; set; }
         private static readonly object IsLoadedLock = new Object();
-        private static void LoadConfigurationSettingsOnce(TestMethodClassBase value)
+        private static void LoadConfigurationSettingsOnce(TestMethodClassBaseDLaB value)
         {
             if (IsLoaded) return;
             lock (IsLoadedLock)

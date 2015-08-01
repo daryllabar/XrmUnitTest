@@ -2,13 +2,9 @@
 using System.Configuration;
 using System.Diagnostics;
 using System.Reflection;
-using System.Security.Cryptography;
 using System.ServiceModel.Description;
 using Microsoft.Xrm.Client;
 using Microsoft.Xrm.Client.Services;
-using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Client;
-using System.Collections.Concurrent;
 using DLaB.Common;
 
 namespace DLaB.Xrm.Client
@@ -17,7 +13,7 @@ namespace DLaB.Xrm.Client
     {
         #region Fields / Properties
 
-        private static System.Reflection.Assembly _crmEntitiesAssembly;
+        private static Assembly _crmEntitiesAssembly;
 
         #endregion // Fields / Properties
 
@@ -132,13 +128,22 @@ namespace DLaB.Xrm.Client
             return cred;
         }
 
-        public static Assembly GetEarlyBoundProxyAssembly()
+        #region EarlyBoundProxy
+
+        public static Assembly GetEarlyBoundProxyAssembly(Assembly defaultAssembly = null)
         {
-            if (_crmEntitiesAssembly != null) 
+            if (_crmEntitiesAssembly != null)
             {
                 return _crmEntitiesAssembly;
             }
-            return GetEarlyBoundProxyAssembly(Config.GetAppSettingOrDefault("CrmEntities.ContextType", "DLaB.Xrm.Entities.CrmContext, DLaB.Xrm.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
+
+            if (defaultAssembly == null)
+            {
+                return GetEarlyBoundProxyAssembly(Config.GetAppSettingOrDefault("CrmEntities.ContextType", "DLaB.Xrm.Entities.CrmContext, DLaB.Xrm.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
+            }
+
+            _crmEntitiesAssembly = defaultAssembly;
+            return _crmEntitiesAssembly;
         }
 
         private static Assembly GetEarlyBoundProxyAssembly(string assemblyName)
@@ -161,6 +166,8 @@ namespace DLaB.Xrm.Client
 
             return GetEarlyBoundProxyAssembly(info.ProxyTypeAssembly);
         }
+
+        #endregion EarlyBoundProxy
 
         #region Url Formatting
 

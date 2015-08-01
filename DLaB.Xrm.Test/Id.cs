@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Activities;
+using System.Activities.Validation;
 using System.Diagnostics;
 using Microsoft.Xrm.Sdk;
 
@@ -8,9 +9,10 @@ namespace DLaB.Xrm.Test
     [DebuggerDisplay("{LogicalName} {EntityId})")]
     public class Id
     {
-        public Guid EntityId { get; private set; }
-        public String LogicalName { get; private set; }
-        public EntityReference EntityReference { get; private set; }
+        public Guid EntityId { get { return Entity.Id; } }
+        public String LogicalName { get { return Entity.LogicalName; } }
+        public EntityReference EntityReference { get { return Entity.ToEntityReference(); } }
+        public Entity Entity { get; set; }
 
         public Id(string logicalName, Guid entityId)
         {
@@ -19,9 +21,7 @@ namespace DLaB.Xrm.Test
                 throw new Exception("\"Entity\" is not a valid entityname.  Ids must be be of a valid Early Bound Type, ie Contact, Opportunity, etc... ! " + entityId);
             }
 
-            LogicalName = logicalName;
-            EntityId = entityId;
-            EntityReference = new EntityReference(logicalName, entityId);
+            Entity = new Entity(logicalName, entityId);
         }
 
         public Id(string logicalName, string entityId) : this(logicalName, new Guid(entityId)) { }
@@ -60,6 +60,22 @@ namespace DLaB.Xrm.Test
     public class Id<TEntity> : Id
         where TEntity : Entity
     {
+        public new TEntity Entity
+        {
+            get { 
+                var value = base.Entity as TEntity;
+                if (value == null)
+                {
+                    value = base.Entity.ToEntity<TEntity>();
+                    base.Entity = value;
+                }
+                return value;
+            }
+            set
+            {
+                base.Entity = value;
+            }
+        }
         public Id(Guid entityId) : base(EntityHelper.GetEntityLogicalName<TEntity>(), entityId) { }
 
         public Id(string entityId) : base(EntityHelper.GetEntityLogicalName<TEntity>(), entityId) { }

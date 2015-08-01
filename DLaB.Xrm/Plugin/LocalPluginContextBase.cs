@@ -4,7 +4,61 @@ using System.Linq;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Plugin
-{    public abstract class LocalPluginContextBase
+{
+    public interface ILocalPluginContext
+    {
+        #region Properties
+
+        /// <summary>
+        /// The current event the plugin is executing for.
+        /// </summary>
+        RegisteredEvent Event { get; }
+
+        /// <summary>
+        /// The IOrganizationService of the plugin, Impersonated as the user that triggered the services.  TODO: Create SystemOrganizationService?
+        /// </summary>
+        IOrganizationService OrganizationService { get; }
+
+        /// <summary>
+        /// The IPluginExecutionContext of the plugin.
+        /// </summary>
+        IPluginExecutionContext PluginExecutionContext { get; }
+
+        /// <summary>
+        /// The Type.FullName of the plugin.
+        /// </summary>
+        String PluginTypeName { get; }
+
+        /// <summary>
+        /// The ITracingService of the plugin.
+        /// </summary>
+        ITracingService TracingService { get; }
+
+        EntityReference GetPrimaryEntity { get; }
+
+        #endregion Properties
+
+        /// <summary>
+        /// Logs the exception.
+        /// </summary>
+        /// <param name="ex">The exception.</param>
+        void LogException(Exception ex);
+
+        /// <summary>
+        /// Traces the specified message.  Guaranteed to not throw an exception.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        void Trace(string message);
+
+        /// <summary>
+        /// Traces the format.   Guaranteed to not throw an exception.
+        /// </summary>
+        /// <param name="format">The format.</param>
+        /// <param name="args">The arguments.</param>
+        void TraceFormat(string format, params object[] args);
+    }
+
+    public abstract class LocalPluginContextBase : ILocalPluginContext
     {
         #region Properties
 
@@ -23,7 +77,7 @@ namespace DLaB.Xrm.Plugin
         /// <summary>
         /// The Type.FullName of the plugin.
         /// </summary>
-        public String PluginTypeName { get; private set; }
+        public String PluginTypeName { get; private set; } 
         /// <summary>
         /// The ITracingService of the plugin.
         /// </summary>

@@ -12,17 +12,25 @@ namespace DLaB.Xrm.Test.Builders
     /// </summary>
     public class CrmEnvironmentBuilder
     {
-        private EntityBuilderManager EntityBuilders { get; set; }
+        protected EntityBuilderManager EntityBuilders { get; set; }
 
         public CrmEnvironmentBuilder()
         {
-            EntityBuilders = new EntityBuilderManager();
+            try
+            {
+                EntityBuilders = new EntityBuilderManager();
+            }
+            catch (TypeInitializationException ex)
+            {
+                // Loading of the Early Bound Entities Could cause a major
+                throw ex.InnerException;
+            }
         }
 
         #region Fluent Methods
 
         /// <summary>
-        /// Allows for the specification of any fluent methods to the builder for the sepcific entity
+        /// Allows for the specification of any fluent methods to the builder for the specific entity
         /// </summary>
         /// <typeparam name="TBuilder">The type of the builder.</typeparam>
         /// <param name="id">The identifier.</param>
@@ -42,7 +50,7 @@ namespace DLaB.Xrm.Test.Builders
         }
 
         /// <summary>
-        /// Allows for the specification of any fluent methods to the builder for the sepcific entity
+        /// Allows for the specification of any fluent methods to the builder for the specific entity
         /// </summary>
         /// <typeparam name="TBuilder">The type of the builder.</typeparam>
         /// <param name="action">The action.</param>
@@ -56,7 +64,7 @@ namespace DLaB.Xrm.Test.Builders
         }
 
         /// <summary>
-        /// Creates the Entites using the default Builder for the given entity type
+        /// Creates the Entities using the default Builder for the given entity type
         /// </summary>
         /// <param name="ids">The ids.</param>
         /// <returns></returns>
@@ -84,8 +92,10 @@ namespace DLaB.Xrm.Test.Builders
         /// <summary>
         /// Manages what the default builder is for the Entity Type, and the specific builder by id
         /// </summary>
-        private class EntityBuilderManager
+        protected class EntityBuilderManager
         {
+            #region Properties
+
             /// <summary>
             /// The builder for each specific entity
             /// </summary>
@@ -118,25 +128,35 @@ namespace DLaB.Xrm.Test.Builders
             /// </value>
             private Dictionary<string, Action<object>> CustomBuilderFluentActions { get; set; }
 
+            private Dictionary<Guid, Id> Ids {get; set;}
+
+            #endregion Properties
+
             #region Constructors
 
             static EntityBuilderManager()
             {
+                var builderInterface = typeof (IEntityBuilder);
+                var genericInterface = typeof(IEntityBuilder<>);
                 // Load all types that have EntityBuilder<> as a base class
-                var b = typeof (EntityBuilder<>);
-                var entityBuilders = from t in b.Assembly.GetTypes()
-                    where t.BaseType != null && t.BaseType.IsGenericType &&
-                          t.BaseType.GetGenericTypeDefinition() == b
-                    select new {EntityType = t.BaseType.GenericTypeArguments[0], Builder = t};
+                var entityBuilders = from t in TestSettings.EntityBuilder.Assembly.GetTypes()
+                    where builderInterface.IsAssignableFrom(t)
+                    select new
+                    {
+                        EntityType = t.GetInterfaces().First(i => i.IsGenericType && i.GetGenericTypeDefinition() == genericInterface).GenericTypeArguments[0], 
+                        Builder = t
+                    };
 
                 BuilderForEntity = entityBuilders.ToDictionary(k => EntityHelper.GetEntityLogicalName(k.EntityType), v => v.Builder.GetConstructor(new[] {typeof (Id)}));
             }
+
 
             public EntityBuilderManager()
             {
                 BuildersByEntityType = new Dictionary<string, List<dynamic>>();
                 Builders = new Dictionary<Guid, dynamic>();
                 CustomBuilderFluentActions = new Dictionary<string, Action<object>>();
+                Ids = new Dictionary<Guid, Id>();
             }
 
             #endregion // Constructors
@@ -222,7 +242,12 @@ namespace DLaB.Xrm.Test.Builders
 
                     foreach (var entity in values.Select(value => (Entity)value.Create(service)))
                     {
+                        Id id;
                         results.Add(entity.Id, entity);
+                        if (Ids.TryGetValue(entity.Id, out id))
+                        {
+                            id.Entity = entity;
+                        }
                     }
                 }
 
@@ -249,6 +274,10 @@ namespace DLaB.Xrm.Test.Builders
             public object Get(Id id)
             {
                 object builder;
+                if (id != Guid.Empty && !Ids.ContainsKey(id))
+                {
+                    Ids.Add(id, id);
+                }
                 if (Builders.TryGetValue(id, out builder)) { return builder; }
 
                 // Add the Entity to the mapper to make sure it can be created in the correct order

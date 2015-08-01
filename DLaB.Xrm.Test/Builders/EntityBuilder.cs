@@ -1,11 +1,10 @@
 ﻿using System;
-using DLaB.Xrm;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test.Builders
 {
-    public abstract class EntityBuilder<TEntity> where TEntity : Entity
+    public abstract class EntityBuilder<TEntity> : IEntityBuilder<TEntity> where TEntity : Entity
     {
         protected Guid Id { get; set; }
 

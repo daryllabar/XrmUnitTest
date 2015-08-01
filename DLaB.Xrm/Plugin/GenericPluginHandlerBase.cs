@@ -4,7 +4,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Plugin
 {
-    public abstract class GenericPluginHandlerBase<T> : IRegisteredEventsPlugin where T : LocalPluginContextBase
+    public abstract class GenericPluginHandlerBase<T> : IRegisteredEventsPlugin where T : ILocalPluginContext
     {
         #region Properties
 
@@ -138,7 +138,7 @@ namespace DLaB.Xrm.Plugin
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        protected virtual bool PreventRecursiveCall(LocalPluginContextBase context)
+        protected virtual bool PreventRecursiveCall(ILocalPluginContext context)
         {
             if (context.Event.Message == MessageType.Delete)
             {

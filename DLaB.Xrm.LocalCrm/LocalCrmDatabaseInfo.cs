@@ -42,12 +42,19 @@ namespace DLaB.Xrm.LocalCrm
 
             databaseName = databaseName ?? String.Empty;
 
+            return Create(contextType.Assembly, contextType.Namespace, databaseName, userId, userOnBehalfOf, userBusinessUnit);
+        }
+
+        public static LocalCrmDatabaseInfo Create(Assembly earlyBoundAssembly, string earlyBoundNamespace, string databaseName = null, Guid? userId = null, Guid? userOnBehalfOf = null, Guid? userBusinessUnit = null)
+        {
+            databaseName = databaseName ?? String.Empty;
+
             return new LocalCrmDatabaseInfo
             {
                 BusinessUnit = new EntityReference("businessunit", userBusinessUnit.GetValueOrDefault()),
                 DatabaseName = databaseName,
-                EarlyBoundEntityAssembly = contextType.Assembly,
-                EarlyBoundNamespace = contextType.Namespace,
+                EarlyBoundEntityAssembly = earlyBoundAssembly,
+                EarlyBoundNamespace = earlyBoundNamespace,
                 User = new EntityReference("systemuser", userId.GetValueOrDefault()),
                 UserOnBehalfOf = new EntityReference("systemuser", userOnBehalfOf.GetValueOrDefault()),
                 OrganizationId = ConvertToGuid(databaseName),

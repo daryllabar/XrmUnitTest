@@ -230,7 +230,7 @@ namespace DLaB.Xrm
                     case "contact":
                     case "lead":
                     case "systemuser":
-                        info.AttributeName = "fullName";
+                        info.AttributeName = "fullname";
                         break;
 
                     case "solution":

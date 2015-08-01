@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\IEntityBuilder.cs" />
     <Compile Include="Exceptions\NotConfiguredException.cs" />
     <Compile Include="PatherFinderProjectOfType.cs" />
     <Compile Include="PathFinderAbsolute.cs" />
@@ -79,8 +80,10 @@
     <Compile Include="Id.cs" />
     <Compile Include="IPathFinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\NamespaceSetting.cs" />
+    <Compile Include="Settings\PathSetting.cs" />
     <Compile Include="TestBase.cs" />
-    <Compile Include="TestMethodClassBase.cs" />
+    <Compile Include="TestMethodClassBaseDLaB.cs" />
     <Compile Include="TestSettings.cs" />
   </ItemGroup>
   <ItemGroup>

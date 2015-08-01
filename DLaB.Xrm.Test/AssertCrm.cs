@@ -26,41 +26,41 @@ namespace DLaB.Xrm.Test
         #region Exists (Entity)
 
         [DebuggerHidden]
-        public void Exists<T>(T entity) where T : Entity
+        public void Exists(Entity entity)
         {
             Exists(Service, entity);
         }
 
         [DebuggerHidden]
-        public static void Exists<T>(IOrganizationService service, T entity) where T : Entity
+        public static void Exists(IOrganizationService service, Entity entity)
         {
             Exists(service, entity, null, null);
         }
 
         [DebuggerHidden]
-        public void Exists<T>(T entity, string message) where T : Entity
+        public void Exists(Entity entity, string message)
         {
             Exists(Service, entity, message);
         }
 
         [DebuggerHidden]
-        public static void Exists<T>(IOrganizationService service, T entity, string message) where T : Entity
+        public static void Exists(IOrganizationService service, Entity entity, string message) 
         {
             Exists(service, entity, message, null);
         }
 
         [DebuggerHidden]
-        public void Exists<T>(T entity, string message, params object[] parameters) where T : Entity
+        public void Exists(Entity entity, string message, params object[] parameters) 
         {
             Exists(Service, entity, message, parameters);
         }
 
         [DebuggerHidden]
-        public static void Exists<T>(IOrganizationService service, T entity, string message, params object[] parameters) where T: Entity
+        public static void Exists(IOrganizationService service, Entity entity, string message, params object[] parameters)
         {
             try
             {
-                service.GetEntity<T>(entity.Id, new ColumnSet(false));
+                service.Retrieve(entity.LogicalName, entity.Id, new ColumnSet(false));
             }
             catch
             {

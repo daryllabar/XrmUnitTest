@@ -8,7 +8,9 @@ using DLaB.Common;
 using DLaB.Xrm.Client;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.LocalCrm;
+using DLaB.Xrm.LocalCrm.FetchXml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test
 {
@@ -50,7 +52,7 @@ namespace DLaB.Xrm.Test
             var method = GetUnitTestMethod() ?? MethodBase.GetCurrentMethod();
             string databaseKey = String.Format("UnitTest {0}:{1}:{2}", method.Name, organizationName, method.MethodHandle);
 
-            var info = LocalCrmDatabaseInfo.Create<CrmContext>(databaseKey, impersonationUserId);
+            var info = LocalCrmDatabaseInfo.Create(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace, databaseKey, impersonationUserId);
 
             var service = new LocalCrmDatabaseOrganizationService(info);
 
@@ -59,16 +61,16 @@ namespace DLaB.Xrm.Test
             {
                 Name = "Currently Executing BusinessUnit"
             };
-            bu.Id = service.Create(bu);
+            bu.Id = service.Create(bu.ToSdkEntity());
 
             var id = service.Create(new SystemUser
             {
                 FirstName = Environment.UserDomainName.Split('/').First(),
                 LastName = Environment.UserName,
                 BusinessUnitId = bu.ToEntityReference(),
-            });
+            }.ToSdkEntity());
 
-            info = LocalCrmDatabaseInfo.Create<CrmContext>(databaseKey, id, impersonationUserId, bu.Id);
+            info = LocalCrmDatabaseInfo.Create(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace, databaseKey, id, impersonationUserId, bu.Id);
 
             return new LocalCrmDatabaseOrganizationService(info);
         }
@@ -167,7 +169,7 @@ namespace DLaB.Xrm.Test
 
         private static Configuration GetUserConfig()
         {
-            var userConfigPath = TestSettings.UserTestConfigPath;
+            var userConfigPath = TestSettings.UserTestConfigPath.Value;
 
             if (!File.Exists(userConfigPath) && userConfigPath.EndsWith("user.config"))
             {
@@ -200,7 +202,7 @@ namespace DLaB.Xrm.Test
         /// <returns></returns>
         public static Type GetType(string entityLogicalName)
         {
-            return EntityHelper.GetType(TestSettings.EarlyBoundAssembly, TestSettings.EarlyBoundNamespace, entityLogicalName);
+            return EntityHelper.GetType(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace, entityLogicalName);
         }
     }
 }

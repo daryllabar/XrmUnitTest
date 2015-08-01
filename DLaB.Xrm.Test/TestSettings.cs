@@ -1,154 +1,22 @@
-﻿using System.Reflection;
-using DLaB.Xrm.Test.Exceptions;
-using System;
-
+﻿using DLaB.Xrm.Test.Builders;
+using DLaB.Xrm.Test.Settings;
+using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Client;
 
 namespace DLaB.Xrm.Test
 {
     public class TestSettings
     {
-        #region AssumptionXml
+        private static readonly PathSetting AssumptionXml = new PathSetting("Assumption Xml Path has not been configured.  Call AssumptionXmlPath.Configure() first before getting the AssumptionXmlPath.");
+        private static readonly NamespaceSetting<OrganizationServiceContext> EarlyBoundAssembly = new NamespaceSetting<OrganizationServiceContext>("Early Bound Assembly has not been configured.  Call EarlyBoundAssembly.Configure<>() first before getting the Assembly.");
+        private static readonly NamespaceSetting<EntityBuilder<Entity>> Builder = new NamespaceSetting<EntityBuilder<Entity>>("Entity Builder Assembly has not been configured.  Call EntityBuilder.Configure<T>() first before getting the Assembly.");
+        private static readonly PathSetting UserTestConfig = new PathSetting("User Test Config Path has not been configured.  Call ConfigureUserTestConfig() first before getting the UserTestConfigPath.");
+        private static readonly PathSetting WebResource = new PathSetting("Web Resource Path has not been configured.  Call ConfigureWebResource() first before getting the WebResourcePath.");
 
-        private static string _assumptionXmlPath;
-        public static string AssumptionXmlPath
-        {
-            get
-            {
-                if (_assumptionXmlPath == null)
-                {
-                    throw new NotConfiguredException("Assumption Xml has not been configured.  Call ConfigureAssumptionXml() first before getting the AssumptionXmlPath.");
-                }
-
-                return _assumptionXmlPath;
-            }
-            private set { _assumptionXmlPath = value; }
-        }
-
-        public static bool IsAssumptionXmlPathConfigured { get; set; }
-
-        /// <summary>
-        /// Configures the Assumption Entity Xml Path.
-        /// </summary>
-        /// <param name="finder"></param>
-        public static void ConfigureAssumptionXml(IPathFinder finder)
-        {
-            AssumptionXmlPath = finder.GetPath();
-            IsAssumptionXmlPathConfigured = true;
-        }
-
-        #endregion AssumptionXml
-
-        #region CrmContextConfig
-
-        private static Assembly _earlyBoundAssembly;
-        public static Assembly EarlyBoundAssembly
-        {
-            get
-            {
-                if (_earlyBoundAssembly == null)
-                {
-                    throw new NotConfiguredException("Early Bound Assembly has not been configured.  Call ConfigureEarlyBoundAssembly() first before getting the EarlyBoundAssembly.");
-                }
-                return _earlyBoundAssembly;
-            }
-            private set { _earlyBoundAssembly = value; }
-        }
-
-        private static String _earlyBoundNamespace;
-        public static String EarlyBoundNamespace
-        {
-            get
-            {
-                if (_earlyBoundNamespace == null)
-                {
-                    throw new NotConfiguredException("Early Bound Namespace has not been configured.  Call ConfigureEarlyBoundAssembly() first before getting the EarlyBoundNamespace.");
-                }
-                return _earlyBoundNamespace;
-            }
-            private set { _earlyBoundNamespace = value; }
-        }
-
-        public static bool IsEarlyBoundAssemblyConfigured { get; set; }
-
-        /// <summary>
-        /// Configures the Early Bound Assembly.
-        /// </summary>
-        public static void ConfigureEarlyBoundAssembly<T>() where T : Microsoft.Xrm.Sdk.Client.OrganizationServiceContext
-        {
-            var contextType = typeof(T);
-            if (contextType.Name == "OrganizationServiceContext")
-            {
-                throw new Exception("Must pass in a derived type from Microsoft.Xrm.Sdk.Client.OrganizationServiceContext");
-            }
-
-            EarlyBoundAssembly = contextType.Assembly;
-            EarlyBoundNamespace = contextType.Namespace;
-            IsEarlyBoundAssemblyConfigured = true;
-        }
-
-        #endregion CrmContextConfig
-
-        #region UserTestConfig
-
-        private static string _userTestConfigPath;
-        public static string UserTestConfigPath
-        {
-            get
-            {
-                if (_userTestConfigPath == null)
-                {
-                    throw new NotConfiguredException("User Test Config Path has not been configured.  Call ConfigureUserTestConfig() first before getting the UserTestConfigPath.");
-                }
-                return _userTestConfigPath;    
-            }
-            private set { _userTestConfigPath = value; }
-        }
-
-        public static bool IsUserTestConfigPathConfigured { get; set; }
-
-        /// <summary>
-        /// Configures the Assumption Entity Xml Path.
-        /// </summary>
-        /// <param name="finder"></param>
-        public static void ConfigureUserTestConfig(IPathFinder finder)
-        {
-            UserTestConfigPath = finder.GetPath();
-            IsUserTestConfigPathConfigured = true;
-        }
-
-        #endregion UserTestConfig
-
-        #region WebResource
-
-        private static string _webResourcePath;
-        public static string WebResourcePath
-        {
-            get
-            {
-                if (_webResourcePath == null)
-                {
-                    throw new NotConfiguredException("Web Resource Path has not been configured.  Call ConfigureWebResource() first before getting the WebResourcePath.");
-                }
-                return _webResourcePath;
-            }
-            private set
-            {
-                _webResourcePath = value;
-            }
-        }
-
-        public static bool IsWebResourcePathConfigured { get; set; }
-
-        /// <summary>
-        /// Configures the Web Resources Path.
-        /// </summary>
-        /// <param name="finder"></param>
-        public static void ConfigureWebResource(IPathFinder finder)
-        {
-            WebResourcePath = finder.GetPath();
-            IsWebResourcePathConfigured = true;
-        }
-
-        #endregion WebResource
+        public static PathSetting AssumptionXmlPath { get { return AssumptionXml; } }
+        public static NamespaceSetting<OrganizationServiceContext> EarlyBound { get { return EarlyBoundAssembly; } }
+        public static NamespaceSetting<EntityBuilder<Entity>> EntityBuilder { get { return Builder; } }
+        public static PathSetting UserTestConfigPath { get { return UserTestConfig; } }
+        public static PathSetting WebResourcePath { get { return WebResource; } }
     }
 }
