@@ -1529,7 +1529,7 @@ namespace DLaB.Xrm
                     {
                         values.Add(entity.ToStringAttributes(GenerateNonBreakingSpace(4) + "Param[" + param.Key + "][{0}]: {1}"));
                     }
-                    if (entityRef != null)
+                    else if (entityRef != null)
                     {
                         values.Add(GenerateNonBreakingSpace(4) + "Param[" + param.Key + "]: " + entityRef.ToStringDebug());
                     }

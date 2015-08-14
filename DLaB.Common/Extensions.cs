@@ -437,6 +437,38 @@ namespace DLaB.Common
 
         #endregion // Dicitonary<,List<>>
 
+        #region Exception
+
+        /// <summary>
+        /// Checks the ToString results of the Exception and adds the stack trace if it isn't there
+        /// </summary>
+        /// <returns></returns>
+        public static string ToStringWithCallStack(this Exception ex)
+        {
+            // This is not 100% but the worse that happens is a duplicate stack trace.
+
+            var s = ex.ToString();
+            if (s.Length >= ex.Message.Length && s.Substring(ex.Message.Length).Contains("   at "))
+            {
+                return s;
+            }
+
+            if (ex.InnerException != null)
+            {
+                s = String.Format("{0} ---> {1}{2}   --- End of inner exception stack trace ---{2}", s, ex.InnerException.ToStringWithCallStack(), Environment.NewLine);
+            }
+            
+            var stackTrace = ex.StackTrace;
+            if (stackTrace != null)
+            {
+                s += Environment.NewLine + stackTrace;
+            }
+            
+            return s;
+        }
+
+        #endregion Exception
+
         #region Expression<Func<T,P>>
 
         // ReSharper disable once InconsistentNaming

@@ -68,11 +68,39 @@ namespace DLaB.Xrm.Test.Assumptions
         }
 
         /// <summary>
+        /// Gets the name of the type, without the "Attribute" postfix, and with any namespace values that come after Assumptions
+        /// </summary>
+        private String AssumptionsNamespaceRelativePath
+        {
+            get { return GetAssumptionsNamespaceRelativePath(GetType()); }
+        }
+
+        /// <summary>
         /// Gets the name of the type, without the "Attribute" postfix
         /// </summary>
         private static string GetShortName(Type type)
         {
             var name = type.Name;
+            if (name.EndsWith("Attribute", StringComparison.InvariantCultureIgnoreCase))
+            {
+                name = name.Substring(0, name.Length - "Attribute".Length);
+            }
+            return name;
+        }
+
+        /// <summary>
+        /// Gets the name of the type, without the "Attribute" postfix, and with any namespace values that come after Assumptions
+        /// </summary>
+        private static string GetAssumptionsNamespaceRelativePath(Type type)
+        {
+            var name = type.FullName;
+            var index = name.Substring(0, name.LastIndexOf('.')).LastIndexOf("Assumptions.", StringComparison.Ordinal) + "Assumptions.".Length;
+            if (index > 0)
+            {
+                name = name.Substring(index, name.Length - index);
+                // Replace . with / so it becomes a folder path
+                name = name.Replace('.', '/');
+            }
             if (name.EndsWith("Attribute", StringComparison.InvariantCultureIgnoreCase))
             {
                 name = name.Substring(0, name.Length - "Attribute".Length);
@@ -175,12 +203,12 @@ namespace DLaB.Xrm.Test.Assumptions
                 if (
                     (mock != null && !(mock.ActualService is LocalCrmDatabaseOrganizationService)) ||
                     (mock == null && !(service is LocalCrmDatabaseOrganizationService)) ||
-                    FileIsNullOrEmpty(GetSerializedFilePath(ShortName)))
+                    FileIsNullOrEmpty(GetSerializedFilePath(AssumptionsNamespaceRelativePath)))
                 {
-                    throw new Exception(String.Format("Assumption {0} made an ass out of you and me.  The entity assumed to be there, was not found.", ShortName));
+                    throw new Exception(String.Format("Assumption {0} made an ass out of you and me.  The entity assumed to be there, was not found.", AssumptionsNamespaceRelativePath));
                 }
 
-                entity = GetTestEntityFromXml(ShortName);
+                entity = GetTestEntityFromXml(AssumptionsNamespaceRelativePath);
                 var localService = mock == null ? (LocalCrmDatabaseOrganizationService) service : (LocalCrmDatabaseOrganizationService) mock.ActualService;
                 var isSelfReferencing = CreateForeignReferences(localService, entity);
                 if (isSelfReferencing)
@@ -194,7 +222,7 @@ namespace DLaB.Xrm.Test.Assumptions
             }
             else if (Debugger.IsAttached)
             {
-                TfsHelper.CheckoutAndUpdateFileIfDifferent(GetSerializedFilePath(ShortName), entity.Serialize(true));
+                TfsHelper.CheckoutAndUpdateFileIfDifferent(GetSerializedFilePath(AssumptionsNamespaceRelativePath), entity.Serialize(true));
             }
 
             return entity;
@@ -253,7 +281,7 @@ namespace DLaB.Xrm.Test.Assumptions
         {
             if (!fileName.EndsWith(".xml"))
             {
-                fileName = Path.Combine(fileName, ".xml");
+                fileName = fileName + ".xml";
             }
 
             return Path.Combine(TestSettings.AssumptionXmlPath.Value, fileName);

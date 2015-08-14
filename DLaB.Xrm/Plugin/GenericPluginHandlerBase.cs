@@ -71,12 +71,24 @@ namespace DLaB.Xrm.Plugin
 
                 if (context.Event == null)
                 {
-                    context.Trace("No Registered Event Found!");
+                    var executionContext = context.PluginExecutionContext;
+                    context.TraceFormat("No Registered Event Found for Event: {0}, Entity: {1}, and Stage: {2}!", executionContext.MessageName, executionContext.PrimaryEntityName, executionContext.Stage);
                     return; 
                 }
                 if (PreventRecursiveCall(context))
                 {
                     context.Trace("Duplicate Recursive Call Prevented!");
+                    return; 
+                }
+                var localContext = context as LocalPluginContextBase;
+                if (localContext == null)
+                {
+                    context.Trace("Context was not of type LocalPluginContextBase.  Unable to check for Prevention Calls!");
+                }
+
+                if (localContext != null && localContext.HasPluginHandlerExecutionBeenPrevented())
+                {
+                    context.Trace("Context has Specified Call to be Prevented!");
                     return; 
                 }
 
@@ -147,12 +159,12 @@ namespace DLaB.Xrm.Plugin
 
             var sharedVariables = context.PluginExecutionContext.SharedVariables;
             var key = String.Format("{0}|{1}|{2}", context.PluginTypeName, context.Event.MessageName, context.PluginExecutionContext.PrimaryEntityId);
-            if (sharedVariables.ContainsKey(key))
+            if (context.PluginExecutionContext.GetFirstSharedVariable<int>(key) > 0)
             {
                 return true;
             }
 
-            sharedVariables.Add(key, 0);
+            sharedVariables.Add(key, 1);
             return false;
         }
     }

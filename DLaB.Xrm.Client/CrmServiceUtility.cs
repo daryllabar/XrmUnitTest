@@ -62,7 +62,7 @@ namespace DLaB.Xrm.Client
             if(info.CrmServerUrl.Contains("crm.dynamics.com"))
             {
                 const string onlinePrefix = "https://";
-                url = onlinePrefix + info.CrmOrganization + "." + info.CrmServerUrl.Substring(onlinePrefix.Length - 1);
+                url = onlinePrefix + info.CrmOrganization + "." + info.CrmServerUrl.Substring(onlinePrefix.Length);
             }
 
             var client = new CrmConnection

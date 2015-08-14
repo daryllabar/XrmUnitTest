@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assumptions\MultipleEntityDataAssumptionBaseAttribute.cs" />
     <Compile Include="Builders\IEntityBuilder.cs" />
     <Compile Include="Exceptions\NotConfiguredException.cs" />
     <Compile Include="PatherFinderProjectOfType.cs" />

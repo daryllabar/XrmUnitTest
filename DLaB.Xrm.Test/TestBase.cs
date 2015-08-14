@@ -129,7 +129,7 @@ namespace DLaB.Xrm.Test
                 AddSettingsToAppConfig(userConfig);
             }
 
-            OrgName = Config.GetAppSettingOrDefault("OrgName", "DominionCmxDev");
+            OrgName = Config.GetAppSettingOrDefault("OrgName", "Specify \"OrgName\" in App.Config");
             UseLocalCrmDatabase = Config.GetAppSettingOrDefault("UseLocalCrmDatabase", false);
         }
 

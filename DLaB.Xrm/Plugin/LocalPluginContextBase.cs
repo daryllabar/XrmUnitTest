@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
+using System.ServiceModel.Channels;
+using DLaB.Common;
+using DLaB.Common.Exceptions;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Plugin
@@ -325,7 +328,7 @@ namespace DLaB.Xrm.Plugin
         /// <typeparam name="T">Type of the variable to be returned</typeparam>
         /// <param name="variableName"></param>
         /// <returns></returns>
-        public T GetSharedVariableValue<T>(string variableName)
+        public T GetSharedVariable<T>(string variableName)
         {
             return PluginExecutionContext.SharedVariables.GetParameterValue<T>(variableName);
         }
@@ -335,9 +338,39 @@ namespace DLaB.Xrm.Plugin
         /// </summary>
         /// <param name="variableName"></param>
         /// <returns></returns>
-        public object GetSharedVariableValue(string variableName)
+        public object GetSharedVariable(string variableName)
         {
             return PluginExecutionContext.SharedVariables.GetParameterValue(variableName);
+        }
+
+        /// <summary>
+        /// Gets the variable value from the PluginExecutionContext.SharedVariables or anywhere in the Plugin Context Hierarchy collection, cast to type 'T', or default(T) if the collection doesn't contain a variable with the given name.
+        /// </summary>
+        /// <typeparam name="T">Type of the variable to be returned</typeparam>
+        /// <param name="variableName"></param>
+        /// <returns></returns>
+        public T GetFirstSharedVariable<T>(string variableName)
+        {
+            var context = PluginExecutionContext;
+            while (context != null)
+            {
+                if (context.SharedVariables.ContainsKey(variableName))
+                {
+                    return context.SharedVariables.GetParameterValue<T>(variableName);
+                }
+                context = context.ParentContext;
+            }
+            return default(T);
+        }
+
+        /// <summary>
+        /// Gets the variable value from the PluginExecutionContext.SharedVariables or anywhere in the Plugin Context Hierarchy collection, or null if the collection doesn't contain a variable with the given name.
+        /// </summary>
+        /// <param name="variableName"></param>
+        /// <returns></returns>
+        public object GetFirstSharedVariable(string variableName)
+        {
+            return PluginExecutionContext.GetFirstSharedVariable(variableName);
         }
 
         #endregion // GetParameterValue
@@ -350,7 +383,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="ex">The exception.</param>
         public virtual void LogException(Exception ex)
         {
-            TraceFormat("Exception: {0}", ex);
+            TraceFormat("Exception: {0}", ex.ToStringWithCallStack());
             Trace(GetContextInfo());
         }
 
@@ -496,6 +529,151 @@ namespace DLaB.Xrm.Plugin
         }
 
         #endregion Retrieve Entity From Context
+
+        #region Prevent Plugin Execution
+
+        #region PreventPluginHandlerExecution
+
+        /// <summary>
+        /// Adds a shared Variable to the context that is checked by the GenericPluginHandlerBase to determine if it should be skipped  * NOTE * The Plugin has to finish executing for the Shared Variable to be passed to a new plugin
+        /// </summary>
+        /// <param name="handlerTypeFullName">The Full Type Name of the Plugin to Prevent</param>
+        /// <param name="messageType">Type of the message.</param>
+        public void PreventPluginHandlerExecution(String handlerTypeFullName, MessageType messageType)
+        {
+            PreventPluginHandlerExecution(handlerTypeFullName, messageType.Name);
+        }
+
+        /// <summary>
+        /// Adds a shared Variable to the context that is checked by the GenericPluginHandlerBase to determine if it should be skipped  * NOTE * The Plugin has to finish executing for the Shared Variable to be passed to a new plugin
+        /// </summary>
+        /// <param name="handlerTypeFullName">The Full Type Name of the Plugin to Prevent</param>
+        /// <param name="event">Type of the event.</param>
+        public void PreventPluginHandlerExecution(String handlerTypeFullName, RegisteredEvent @event)
+        {
+            if (@event == null) throw new ArgumentNullException("event");
+
+            PreventPluginHandlerExecution(handlerTypeFullName, @event.MessageName, @event.EntityLogicalName, @event.Stage);
+        }
+
+        /// <summary>
+        /// Adds a shared Variable to the context that is checked by the GenericPluginHandlerBase to determine if it should be skipped  * NOTE * The Plugin has to finish executing for the Shared Variable to be passed to a new plugin
+        /// </summary>
+        /// <param name="handlerTypeFullName">The Full Type Name of the Plugin to Prevent</param>
+        /// <param name="messageName"></param>
+        /// <param name="logicalName"></param>
+        /// <param name="stage"></param>
+        public void PreventPluginHandlerExecution(String handlerTypeFullName, string messageName = null, string logicalName = null, PipelineStage? stage = null)
+        {
+            var preventionName = GetPreventPluginHandlerSharedVariableName(handlerTypeFullName);
+            object value;
+            if (!PluginExecutionContext.SharedVariables.TryGetValue(preventionName, out value))
+            {
+                value = new Entity();
+                PluginExecutionContext.SharedVariables.Add(preventionName, value);
+            }
+
+            // Wish I could use a Hash<T> here, but CRM won't serialize it.  I'll Hack the Entity Object for now
+            var hash = ((Entity)value).Attributes;
+            var rule = GetPreventionRule(messageName, logicalName, stage);
+            if (!hash.Contains(rule))
+            {
+                hash.Add(rule, null);
+            }
+        }
+
+        #endregion PreventPluginHandlerExecution
+
+        #region PreventPluginHandlerExecution<T>
+
+        /// <summary>
+        /// Adds a shared Variable to the context that is checked by the GenericPluginHandlerBase to determine if it should be skipped  * NOTE * The Plugin has to finish executing for the Shared Variable to be passed to a new plugin
+        /// </summary>
+        /// <typeparam name="T">The type of the plugin.</typeparam>
+        /// <param name="messageType">Type of the message.</param>
+        public void PreventPluginHandlerExecution<T>(MessageType messageType)
+            where T : IRegisteredEventsPlugin
+        {
+            PreventPluginHandlerExecution<T>(messageType.Name);
+        }
+
+        /// <summary>
+        /// Adds a shared Variable to the context that is checked by the GenericPluginHandlerBase to determine if it should be skipped  * NOTE * The Plugin has to finish executing for the Shared Variable to be passed to a new plugin
+        /// </summary>
+        /// <typeparam name="T">The type of the plugin.</typeparam>
+        /// <param name="event">Type of the event.</param>
+        public void PreventPluginHandlerExecution<T>(RegisteredEvent @event)
+            where T : IRegisteredEventsPlugin
+        {
+            PreventPluginHandlerExecution(typeof (T).FullName, @event);
+        }
+
+        /// <summary>
+        /// Adds a shared Variable to the context that is checked by the GenericPluginHandlerBase to determine if it should be skipped  * NOTE * The Plugin has to finish executing for the Shared Variable to be passed to a new plugin
+        /// </summary>
+        /// <typeparam name="T">The type of the plugin.</typeparam>
+        public void PreventPluginHandlerExecution<T>(string messageName = null, string logicalName = null, PipelineStage? stage = null)
+            where T : IRegisteredEventsPlugin
+        {
+            PreventPluginHandlerExecution(typeof(T).FullName, messageName, logicalName, stage);
+        }
+
+        #endregion PreventPluginHandlerExecution<T>
+
+        private static string GetPreventionRule(string messageName = null, string logicalName = null, PipelineStage? stage = null)
+        {
+            var rule = messageName == null ? String.Empty : "MessageName:" + messageName + "|";
+            rule += logicalName == null ? String.Empty : "LogicalName:" + logicalName + "|";
+            rule += stage == null ? String.Empty : "Stage:" + stage + "|";
+            return rule;
+        }
+
+        private static string GetPreventPluginHandlerSharedVariableName(string pluginTypeName)
+        {
+            return pluginTypeName + "PreventExecution";
+        }
+
+        #region HasPluginHandlerExecutionBeenPrevented
+
+        public bool HasPluginHandlerExecutionBeenPrevented()
+        {
+            return HasPluginHandlerExecutionBeenPreventedInternal(Event, GetPreventPluginHandlerSharedVariableName(PluginTypeName));
+        }
+
+        /// <summary>
+        /// Determines whether a shared variable exists that specifies that the plugin or the plugin and specifc message type should be prevented from executing
+        /// </summary>
+        /// <typeparam name="T">The type of the plugin.</typeparam>
+        /// <returns></returns>
+        public bool HasPluginHandlerExecutionBeenPrevented<T>(RegisteredEvent @event)
+            where T : IRegisteredEventsPlugin
+        {
+            var preventionName = GetPreventPluginHandlerSharedVariableName(typeof(T).FullName);
+            return HasPluginHandlerExecutionBeenPreventedInternal(@event, preventionName);
+        }
+
+        private bool HasPluginHandlerExecutionBeenPreventedInternal(RegisteredEvent @event, string preventionName)
+        {
+            var value = GetFirstSharedVariable(preventionName);
+            if (value == null)
+            {
+                return false;
+            }
+
+            var hash = ((Entity) value).Attributes;
+            return hash.Contains(String.Empty) ||
+                   hash.Contains(GetPreventionRule(@event.MessageName)) ||
+                   hash.Contains(GetPreventionRule(@event.MessageName, @event.EntityLogicalName)) ||
+                   hash.Contains(GetPreventionRule(@event.MessageName, stage: @event.Stage)) ||
+                   hash.Contains(GetPreventionRule(@event.MessageName, @event.EntityLogicalName, @event.Stage)) ||
+                   hash.Contains(GetPreventionRule(logicalName: @event.EntityLogicalName)) ||
+                   hash.Contains(GetPreventionRule(logicalName: @event.EntityLogicalName, stage: @event.Stage)) ||
+                   hash.Contains(GetPreventionRule(stage: @event.Stage));
+        }
+
+        #endregion HasPluginHandlerExecutionBeenPrevented
+
+        #endregion Prevent Plugin Execution
 
         #region Diagnostics
 

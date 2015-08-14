@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Plugin
 {
@@ -115,5 +116,48 @@ namespace DLaB.Xrm.Plugin
         #endregion // AddEvent
 
         #endregion // List<RegisteredEvent>
+
+        #region IPluginExecutionContext
+
+        /// <summary>
+        /// Gets the variable value from the PluginExecutionContext.SharedVariables or anywhere in the Plugin Context Hierarchy collection, cast to type 'T', or default(T) if the collection doesn't contain a variable with the given name.
+        /// </summary>
+        /// <typeparam name="T">Type of the variable to be returned</typeparam>
+        /// <param name="context"></param>
+        /// <param name="variableName"></param>
+        /// <returns></returns>
+        public static T GetFirstSharedVariable<T>(this IPluginExecutionContext context, string variableName)
+        {
+            while (context != null)
+            {
+                if (context.SharedVariables.ContainsKey(variableName))
+                {
+                    return context.SharedVariables.GetParameterValue<T>(variableName);
+                }
+                context = context.ParentContext;
+            }
+            return default(T);
+        }
+
+        /// <summary>
+        /// Gets the variable value from the PluginExecutionContext.SharedVariables or anywhere in the Plugin Context Hierarchy collection, or null if the collection doesn't contain a variable with the given name.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="variableName"></param>
+        /// <returns></returns>
+        public static object GetFirstSharedVariable(this IPluginExecutionContext context, string variableName)
+        {
+            while (context != null)
+            {
+                if (context.SharedVariables.ContainsKey(variableName))
+                {
+                    return context.SharedVariables.GetParameterValue(variableName);
+                }
+                context = context.ParentContext;
+            }
+            return null;
+        }
+
+        #endregion IPluginExecutionContext
     }
 }

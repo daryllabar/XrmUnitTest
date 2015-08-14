@@ -297,6 +297,7 @@ namespace DLaB.Xrm.Test
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns></returns>
+        [DebuggerHidden]
         private OrganizationResponse CallOrganizationServiceRequestForExecuteRequest(OrganizationRequest request)
         {
             OrganizationResponse response = null;

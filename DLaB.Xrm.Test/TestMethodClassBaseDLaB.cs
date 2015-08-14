@@ -74,7 +74,9 @@ namespace DLaB.Xrm.Test
 
         private IEnumerable<Id> GetIds(Type type)
         {
-            foreach (var field in type.GetFields().Where(field => field.FieldType == typeof (Id))) {
+            var idType = typeof (Id);
+            foreach (var field in type.GetFields().Where(field => idType.IsAssignableFrom(field.FieldType)))
+            {
                 yield return GetValue(field);
             }
             foreach (var id in type.GetNestedTypes().SelectMany(GetIds)) {
