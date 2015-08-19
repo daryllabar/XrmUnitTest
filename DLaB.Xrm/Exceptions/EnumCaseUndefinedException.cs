@@ -16,7 +16,7 @@ namespace DLaB.Xrm.Exceptions
     ///        throw new EnumCaseUndefinedException&lt;BindingFlags&gt;(c, "Unable to perform reflection operation");
     ///     }
     /// </summary>
-    [Serializable()]
+    [Serializable]
     public class EnumCaseUndefinedException<TEnum> : Common.Exceptions.EnumCaseUndefinedException<TEnum> where TEnum : struct
     {
         #region Constructors
@@ -81,21 +81,21 @@ namespace DLaB.Xrm.Exceptions
         /// Initializes a new instance of the <see cref="EnumCaseUndefinedException{TEnum}"/> class.
         /// </summary>
         /// <param name="undefinedEnumValue">The undefined enum value.</param>
-        public EnumCaseUndefinedException(OptionSetValue undefinedEnumValue) : base(GetMessage(undefinedEnumValue)) { }
+        public EnumCaseUndefinedException(OptionSetValue undefinedEnumValue) : base(CreateMessage(undefinedEnumValue)) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EnumCaseUndefinedException{TEnum}"/> class.
         /// </summary>
         /// <param name="undefinedEnumValue">The undefined enum value.</param>
         /// <param name="message">The message.</param>
-        public EnumCaseUndefinedException(OptionSetValue undefinedEnumValue, string message) : base(GetMessage(undefinedEnumValue, message)) { }
+        public EnumCaseUndefinedException(OptionSetValue undefinedEnumValue, string message) : base(CreateMessage(undefinedEnumValue, message)) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EnumCaseUndefinedException{TEnum}"/> class.
         /// </summary>
         /// <param name="undefinedEnumValue">The undefined enum value.</param>
         /// <param name="inner">The inner exception.</param>
-        public EnumCaseUndefinedException(OptionSetValue undefinedEnumValue, Exception inner) : base(GetMessage(undefinedEnumValue), inner) { }
+        public EnumCaseUndefinedException(OptionSetValue undefinedEnumValue, Exception inner) : base(CreateMessage(undefinedEnumValue), inner) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EnumCaseUndefinedException{TEnum}"/> class.
@@ -103,11 +103,11 @@ namespace DLaB.Xrm.Exceptions
         /// <param name="undefinedEnumValue">The undefined enum value.</param>
         /// <param name="message">The message.</param>
         /// <param name="inner">The inner exception.</param>
-        public EnumCaseUndefinedException(OptionSetValue undefinedEnumValue, string message, Exception inner) : base(GetMessage(undefinedEnumValue, message), inner) { }
+        public EnumCaseUndefinedException(OptionSetValue undefinedEnumValue, string message, Exception inner) : base(CreateMessage(undefinedEnumValue, message), inner) { }
 
         #endregion // Constructors
 
-        private static string GetMessage(OptionSetValue undefinedEnumValue, string message = null)
+        private static string CreateMessage(OptionSetValue undefinedEnumValue, string message = null)
         {
             var enumType = typeof(TEnum);
             if (!IsEnum(enumType, ref message)) { return message; }

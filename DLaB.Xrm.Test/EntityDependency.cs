@@ -44,6 +44,8 @@ namespace DLaB.Xrm.Test
         /// </value>
         public IEnumerable<String> EntityDeletionOrder { get { return EntityCreationOrder.Reverse(); } }
 
+        public List<string> ConflictingEntityOrder { get; set; } 
+
         #endregion Properties
 
 
@@ -51,6 +53,7 @@ namespace DLaB.Xrm.Test
         {
             Types = new LinkedList<EntityDependencyInfo>();
             Infos = new Dictionary<string, EntityDependencyInfo>();
+            ConflictingEntityOrder = new List<string>();
         }
 
         /// <summary>
@@ -68,14 +71,39 @@ namespace DLaB.Xrm.Test
             var info = new EntityDependencyInfo(logicalName);
             Infos.Add(logicalName, info);
 
-            if (Types.Count == 0 || Types.First.Value.Dependencies.Contains(logicalName) || info.Dependents.Contains(Types.First.Value.LogicalName))
+            if (Types.Count == 0 || Types.First.Value.DependsOn(info))
             {
-                // No values in the list or the first value in the list contains id as a dependency, or id contains the first value as a dependent
+                // No values in the list or the first value depends on the new info value
                 info.Node = Types.AddFirst(info);
-                return;
+                
+                /* Check for any Types that this new type is dependent on.
+                 * Consider the Case of A -> B and B -> C
+                 * A is added first, it becomes first.  C is added next, and it has no dependency on A or visa versa, so it is added last, then B is added, and it is added first, but C isn't moved
+                 * Need to move C to the front, or list discrepency
+                 */
+
+                var existingDependent = Types.Skip(1).FirstOrDefault(existingInfo => info.DependsOn(existingInfo));
+                if (existingDependent == null) { return; }
+
+                foreach (var type in Types)
+                {
+                    if (type == existingDependent)
+                    {
+                        // Have walked the entire list and come to the one that needs to be moved without finding anything that it depends on, free to move.
+                        Types.Remove(existingDependent);
+                        existingDependent.Node = Types.AddFirst(existingDependent);
+                        return;
+                    }
+                    if (existingDependent.Dependencies.Contains(type.LogicalName))
+                    {
+                        ConflictingEntityOrder.Add(String.Format("Circular Reference Found!  {0} was added, which depends on {1}, but {2} depends on {0} and was found before {1}.  If {1} is needed first, add it after {0}", logicalName, existingDependent.LogicalName, type.LogicalName));
+                        return;
+                    }
+                }
+
             }
 
-            var dependent = Types.Skip(1).FirstOrDefault(existingInfo => existingInfo.Dependencies.Contains(logicalName) || info.Dependents.Contains(existingInfo.LogicalName));
+            var dependent = Types.Skip(1).FirstOrDefault(existingInfo => existingInfo.DependsOn(info));
             info.Node = dependent == null ? Types.AddLast(info) : Types.AddBefore(dependent.Node, info);
         }
 
@@ -104,6 +132,16 @@ namespace DLaB.Xrm.Test
 
                 var properties = TestBase.GetType(logicalName).GetProperties();
                 PopulateDependencies(properties);
+            }
+
+            /// <summary>
+            /// Returns true if the Entity Dependency Info depends on given Entity Dependency Info.
+            /// </summary>
+            /// <param name="info">The info to check to see if it is a dependency.</param>
+            /// <returns></returns>
+            public bool DependsOn(EntityDependencyInfo info)
+            {
+                return Dependencies.Contains(info.LogicalName) || info.Dependents.Contains(LogicalName);
             }
 
             private void PopulateDependencies(IEnumerable<PropertyInfo> properties)

@@ -45,6 +45,12 @@ namespace DLaB.Xrm.Test.Builders
             return this;
         }
 
+        public PluginExecutionContextBuilder WithParentContext(IPluginExecutionContext context)
+        {
+            Context.ParentContext = context;
+            return this;
+        }
+
         public PluginExecutionContextBuilder WithPrimaryEntityId(Guid guid)
         {
             Context.PrimaryEntityId = guid;

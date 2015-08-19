@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 
@@ -6,6 +8,7 @@ namespace DLaB.Xrm.Test.Builders
 {
     public abstract class EntityBuilder<TEntity> : IEntityBuilder<TEntity> where TEntity : Entity
     {
+        protected Dictionary<string, object> Attributes { get; private set; }
         protected Guid Id { get; set; }
 
         #region Abstract Methods
@@ -14,8 +17,36 @@ namespace DLaB.Xrm.Test.Builders
 
         #endregion // Abstract Methods
 
+        #region Constructors
+
+        protected EntityBuilder()
+        {
+            Attributes = new Dictionary<string, object>();
+        }
+
+		#endregion Constructors
+
+        #region IEntityBuilder Implementation
+
+        Entity IEntityBuilder.Build()
+        {
+            return Build();
+        }
+
+        Entity IEntityBuilder.Create(IOrganizationService service)
+        {
+            return Create(service);
+        }
+
+        public void WithAttributeValue(string attributeName, object value)
+        {
+            Attributes[attributeName] = value;
+        }
+
+        #endregion IEntityBuilder Implementation
+
         /// <summary>
-        /// Builds this instance, defaulting the Id if not populated.  Does not creat it in CRM.
+        /// Builds this instance, defaulting the Id if not populated.  Does not create it in CRM.
         /// </summary>
         /// <returns></returns>
         public TEntity Build()
@@ -31,6 +62,10 @@ namespace DLaB.Xrm.Test.Builders
         private TEntity Build(bool defaultId)
         {
             var entity = BuildInternal();
+            foreach (var att in Attributes.Where(att => !entity.Contains(att.Key)))
+            {
+                entity[att.Key] = att.Value;
+            }
             if (defaultId && entity.Id == Guid.Empty && Id == Guid.Empty)
             {
                 Id = Guid.NewGuid();

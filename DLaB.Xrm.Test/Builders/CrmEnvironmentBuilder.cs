@@ -63,6 +63,18 @@ namespace DLaB.Xrm.Test.Builders
             return this;
         }
 
+        public CrmEnvironmentBuilder WithChildEntities(Id parent, params Id[] ids)
+        {
+            EntityBuilders.Get(parent);
+            foreach (var id in ids)
+            {
+                var name = EntityHelper.GetParentEntityAttributeName(TestBase.GetType(id), TestBase.GetType(parent));
+                ((IEntityBuilder)EntityBuilders.Get(id)).WithAttributeValue(name, parent.EntityReference);
+            }
+
+            return this;
+        }
+
         /// <summary>
         /// Creates the Entities using the default Builder for the given entity type
         /// </summary>
@@ -148,6 +160,16 @@ namespace DLaB.Xrm.Test.Builders
                     };
 
                 BuilderForEntity = entityBuilders.ToDictionary(k => EntityHelper.GetEntityLogicalName(k.EntityType), v => v.Builder.GetConstructor(new[] {typeof (Id)}));
+
+                foreach (var builder in BuilderForEntity)
+                {
+                    if (builder.Key == "entity" || builder.Value != null)
+                    {
+                        continue;
+                    }
+
+                    throw new Exception("Entity Builder " + builder.Key + " does not contain a Constructor of type (Id)!");
+                }
             }
 
 

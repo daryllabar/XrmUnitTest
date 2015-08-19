@@ -120,6 +120,21 @@ namespace DLaB.Xrm.Plugin
         #region IPluginExecutionContext
 
         /// <summary>
+        /// Iterates through all parent contexts.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <returns></returns>
+        public static IEnumerable<IPluginExecutionContext> GetParentContexts(this IPluginExecutionContext context)
+        {
+            var parent = context.ParentContext;
+            while (parent != null)
+            {
+                yield return parent;
+                parent = parent.ParentContext;
+            }
+        }
+
+        /// <summary>
         /// Gets the variable value from the PluginExecutionContext.SharedVariables or anywhere in the Plugin Context Hierarchy collection, cast to type 'T', or default(T) if the collection doesn't contain a variable with the given name.
         /// </summary>
         /// <typeparam name="T">Type of the variable to be returned</typeparam>

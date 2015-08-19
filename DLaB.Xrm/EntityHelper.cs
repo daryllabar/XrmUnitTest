@@ -419,5 +419,42 @@ namespace DLaB.Xrm
         }
 
         #endregion // Determine Entity Attribute Name Name
+
+        #region Determine Parent Attribute Name
+
+        /// <summary>
+        /// Gets the attribute name of the first attribute with the given Parent Type.
+        /// </summary>
+        /// <param name="childType">Type of the child.</param>
+        /// <param name="parentType">Type of the parent.</param>
+        /// <returns></returns>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public static string GetParentEntityAttributeName(Type childType, Type parentType)
+        {
+            var attributeName = childType.GetProperties().Where(p => p.PropertyType == parentType).Select(GetNameAttribute).FirstOrDefault();
+            if (attributeName == null)
+            {
+                throw new Exception(String.Format("No Property found for type {0}, of type {1} with AttributeLogicalNameAttribute", childType.FullName, parentType.FullName));
+            }
+            return attributeName.LogicalName; 
+        }
+
+        private static AttributeLogicalNameAttribute GetNameAttribute(PropertyInfo property)
+        {
+            return property.GetCustomAttribute(typeof(AttributeLogicalNameAttribute), true) as AttributeLogicalNameAttribute;
+        }
+
+        /// <summary>
+        /// Gets the attribute name of the first attribute with the given parentLogicalName.
+        /// </summary>
+        /// <typeparam name="TChild">The type of the child.</typeparam>
+        /// <typeparam name="TParent">The type of the parent.</typeparam>
+        /// <returns></returns>
+        public static string GetParentEntityAttributeName<TChild,TParent>() where TChild : Entity where TParent : Entity
+        {
+            return GetParentEntityAttributeName(typeof (TChild), typeof (TParent));
+        }
+
+        #endregion Determine Parent Attribute Name
     }
 }

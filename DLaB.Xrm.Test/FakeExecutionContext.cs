@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test
 {
+    [DebuggerDisplay("{DebugInfo}")]
     public class FakeExecutionContext : IExecutionContext
     {
         public int Mode { get; set; }
@@ -30,6 +32,11 @@ namespace DLaB.Xrm.Test
         public bool IsInTransaction { get; set; }
         public Guid OperationId { get; set; }
         public DateTime OperationCreatedOn { get; set; }
+
+        private string DebugInfo
+        {
+            get { return String.Format("Message: {0}, Entity: {1}, Depth: {2}", MessageName, PrimaryEntityName, Depth ); }
+        }
 
         public FakeExecutionContext()
         {

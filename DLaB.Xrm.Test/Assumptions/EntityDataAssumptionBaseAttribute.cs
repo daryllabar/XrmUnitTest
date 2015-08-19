@@ -98,8 +98,8 @@ namespace DLaB.Xrm.Test.Assumptions
             if (index > 0)
             {
                 name = name.Substring(index, name.Length - index);
-                // Replace . with / so it becomes a folder path
-                name = name.Replace('.', '/');
+                // Replace . with \ so it becomes a folder path
+                name = name.Replace('.', '\\');
             }
             if (name.EndsWith("Attribute", StringComparison.InvariantCultureIgnoreCase))
             {

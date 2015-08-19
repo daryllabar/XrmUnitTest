@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.ServiceModel.Channels;
 using DLaB.Common;
-using DLaB.Common.Exceptions;
+using DLaB.Xrm.Exceptions;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Plugin
@@ -64,6 +64,22 @@ namespace DLaB.Xrm.Plugin
     public abstract class LocalPluginContextBase : ILocalPluginContext
     {
         #region Properties
+
+        /// <summary>
+        /// The current PluginExecutionContext and the parent context hierarchy of the plugin.
+        /// </summary>
+        public IEnumerable<IPluginExecutionContext> Contexts
+        {
+            get
+            {
+                yield return PluginExecutionContext;
+                foreach (var parent in PluginExecutionContext.GetParentContexts())
+                {
+                    yield return parent;
+                }
+                ;
+            }
+        }
 
         /// <summary>
         /// The current event the plugin is executing for.
@@ -127,6 +143,70 @@ namespace DLaB.Xrm.Plugin
         }
 
         #endregion // Constructors
+
+        #region AssertEntityImageAttributesRegistered
+
+        /// <summary>
+        /// Checks the Pre/Post Entity Images to determine if the image collections contains an image with the given given key, that contains the attributes
+        /// </summary>
+        /// <param name="imageName"></param>
+        /// <param name="attributeNames"></param>
+        public void AssertEntityImageAttributesRegistered(string imageName, params string[] attributeNames)
+        {
+            Entity image;
+            var imageCollection = InvalidPluginStepRegistration.ImageCollection.Pre;
+            if (PluginExecutionContext.PostEntityImages.TryGetValue(imageName, out image))
+            {
+                imageCollection = InvalidPluginStepRegistration.ImageCollection.Post;
+            }
+            else
+            {
+                PluginExecutionContext.PreEntityImages.TryGetValue(imageName, out image);
+            }
+            
+            if(image == null)
+            {
+                throw InvalidPluginStepRegistration.ImageMissing(imageName);
+            }
+
+            var missingAttributes = attributeNames.Where(attribute => !image.Contains(attribute)).ToList();
+
+            if (!missingAttributes.Any()) { return; }
+
+            throw InvalidPluginStepRegistration.ImageMissingRequiredAttributes(imageCollection, imageName, missingAttributes);
+        }
+
+        #endregion AssertEntityImageAttributesRegistered
+        
+        #region CalledFrom
+
+        /// <summary>
+        /// Returns true if the current plugin maps to the Registered Event, or the current plugin has been triggered by the given registered event
+        /// </summary>
+        /// <param name="event"></param>
+        /// <returns></returns>
+        public bool CalledFrom(RegisteredEvent @event)
+        {
+            return Contexts.Any(c => c.MessageName == @event.MessageName && c.PrimaryEntityName == @event.EntityLogicalName && c.Stage == (int) @event.Stage);
+        }
+
+        /// <summary>
+        /// Returns true if the current plugin maps to the parameters given, or the current plugin has been triggered by the given parameters
+        /// </summary>
+        /// <returns></returns>
+        public bool CalledFrom(string entityLogicalName = null, MessageType message = null, int? stage = null)
+        {
+            if (message == null && entityLogicalName == null && stage == null)
+            {
+                throw new Exception("At least one parameter for LocalPluginContextBase.CalledFrom must be populated");
+            }
+            return Contexts.Any(c =>
+                (message == null || c.MessageName == message.Name) && 
+                (entityLogicalName == null || c.PrimaryEntityName == entityLogicalName) && 
+                (stage == null || c.Stage == stage.Value));
+        }
+
+        #endregion CalledFrom
 
         #region PropertyInitializers
 
