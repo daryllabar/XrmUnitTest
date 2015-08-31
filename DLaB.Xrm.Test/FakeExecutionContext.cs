@@ -5,7 +5,7 @@ using Microsoft.Xrm.Sdk;
 namespace DLaB.Xrm.Test
 {
     [DebuggerDisplay("{DebugInfo}")]
-    public class FakeExecutionContext : IExecutionContext
+    public class FakeExecutionContext : IExecutionContext, ICloneable
     {
         public int Mode { get; set; }
         public int IsolationMode { get; set; }
@@ -47,5 +47,36 @@ namespace DLaB.Xrm.Test
             PostEntityImages = new EntityImageCollection();
             UserId = new Guid("eb96c0b5-93cc-4a82-bf9d-f8f5880f4772");
         }
+
+        #region Clone
+
+        public FakeExecutionContext Clone()
+        {
+            var clone = (FakeExecutionContext) MemberwiseClone();
+            CloneReferenceValues(clone);
+            return clone;
+        }
+
+        protected void CloneReferenceValues(FakeExecutionContext clone)
+        {
+            clone.InputParameters = new ParameterCollection();
+            clone.InputParameters.AddRange(InputParameters);
+            clone.OutputParameters = new ParameterCollection();
+            clone.OutputParameters.AddRange(OutputParameters);
+            clone.SharedVariables = new ParameterCollection();
+            clone.SharedVariables.AddRange(SharedVariables);
+
+            clone.PreEntityImages = new EntityImageCollection();
+            clone.PreEntityImages.AddRange(PreEntityImages);
+            clone.PostEntityImages = new EntityImageCollection();
+            clone.PostEntityImages.AddRange(PostEntityImages);
+        }
+
+        object ICloneable.Clone()
+        {
+            return Clone();
+        }
+
+        #endregion Clone
     }
 }

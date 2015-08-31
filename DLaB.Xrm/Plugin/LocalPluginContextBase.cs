@@ -126,7 +126,7 @@ namespace DLaB.Xrm.Plugin
         /// or
         /// plugin
         /// </exception>
-        protected LocalPluginContextBase(IServiceProvider serviceProvider, IRegisteredEventsPlugin plugin)
+        protected LocalPluginContextBase(IServiceProvider serviceProvider, IRegisteredEventsPluginHandler plugin)
         {
             if (serviceProvider == null)
             {
@@ -154,10 +154,10 @@ namespace DLaB.Xrm.Plugin
         public void AssertEntityImageAttributesRegistered(string imageName, params string[] attributeNames)
         {
             Entity image;
-            var imageCollection = InvalidPluginStepRegistration.ImageCollection.Pre;
+            var imageCollection = InvalidPluginStepRegistrationException.ImageCollection.Pre;
             if (PluginExecutionContext.PostEntityImages.TryGetValue(imageName, out image))
             {
-                imageCollection = InvalidPluginStepRegistration.ImageCollection.Post;
+                imageCollection = InvalidPluginStepRegistrationException.ImageCollection.Post;
             }
             else
             {
@@ -166,14 +166,14 @@ namespace DLaB.Xrm.Plugin
             
             if(image == null)
             {
-                throw InvalidPluginStepRegistration.ImageMissing(imageName);
+                throw InvalidPluginStepRegistrationException.ImageMissing(imageName);
             }
 
             var missingAttributes = attributeNames.Where(attribute => !image.Contains(attribute)).ToList();
 
             if (!missingAttributes.Any()) { return; }
 
-            throw InvalidPluginStepRegistration.ImageMissingRequiredAttributes(imageCollection, imageName, missingAttributes);
+            throw InvalidPluginStepRegistrationException.ImageMissingRequiredAttributes(imageCollection, imageName, missingAttributes);
         }
 
         #endregion AssertEntityImageAttributesRegistered
@@ -228,7 +228,7 @@ namespace DLaB.Xrm.Plugin
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="plugin">The plugin.</param>
-        private void InitializePluginProperties(IPluginExecutionContext context, IRegisteredEventsPlugin plugin)
+        private void InitializePluginProperties(IPluginExecutionContext context, IRegisteredEventsPluginHandler plugin)
         {
             // Iterate over all of the expected registered events to ensure that the plugin
             // has been invoked by an expected event
@@ -672,7 +672,7 @@ namespace DLaB.Xrm.Plugin
         /// <typeparam name="T">The type of the plugin.</typeparam>
         /// <param name="messageType">Type of the message.</param>
         public void PreventPluginHandlerExecution<T>(MessageType messageType)
-            where T : IRegisteredEventsPlugin
+            where T : IRegisteredEventsPluginHandler
         {
             PreventPluginHandlerExecution<T>(messageType.Name);
         }
@@ -683,7 +683,7 @@ namespace DLaB.Xrm.Plugin
         /// <typeparam name="T">The type of the plugin.</typeparam>
         /// <param name="event">Type of the event.</param>
         public void PreventPluginHandlerExecution<T>(RegisteredEvent @event)
-            where T : IRegisteredEventsPlugin
+            where T : IRegisteredEventsPluginHandler
         {
             PreventPluginHandlerExecution(typeof (T).FullName, @event);
         }
@@ -693,7 +693,7 @@ namespace DLaB.Xrm.Plugin
         /// </summary>
         /// <typeparam name="T">The type of the plugin.</typeparam>
         public void PreventPluginHandlerExecution<T>(string messageName = null, string logicalName = null, PipelineStage? stage = null)
-            where T : IRegisteredEventsPlugin
+            where T : IRegisteredEventsPluginHandler
         {
             PreventPluginHandlerExecution(typeof(T).FullName, messageName, logicalName, stage);
         }
@@ -726,7 +726,7 @@ namespace DLaB.Xrm.Plugin
         /// <typeparam name="T">The type of the plugin.</typeparam>
         /// <returns></returns>
         public bool HasPluginHandlerExecutionBeenPrevented<T>(RegisteredEvent @event)
-            where T : IRegisteredEventsPlugin
+            where T : IRegisteredEventsPluginHandler
         {
             var preventionName = GetPreventPluginHandlerSharedVariableName(typeof(T).FullName);
             return HasPluginHandlerExecutionBeenPreventedInternal(@event, preventionName);

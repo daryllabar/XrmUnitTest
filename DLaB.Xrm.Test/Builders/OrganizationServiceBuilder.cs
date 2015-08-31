@@ -16,10 +16,25 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.Test.Builders
 {
-    public class OrganizationServiceBuilder
+    public sealed class OrganizationServiceBuilder : OrganizationServiceBuilderBase<OrganizationServiceBuilder>
+    {
+        protected override OrganizationServiceBuilder This
+        {
+            get { return this; }
+        }
+
+        public OrganizationServiceBuilder() : this(TestBase.GetOrganizationService()) {}
+
+        public OrganizationServiceBuilder(IOrganizationService service) : base(service) {}
+
+    }
+
+    public abstract class OrganizationServiceBuilderBase<TDerived> where TDerived : OrganizationServiceBuilderBase<TDerived>
     {
         #region Properties
        
+        protected abstract TDerived This { get; }
+
         private IOrganizationService Service { get; set; }
 
         /// <summary>
@@ -55,9 +70,7 @@ namespace DLaB.Xrm.Test.Builders
 
         #region Constructors
 
-        public OrganizationServiceBuilder() : this(TestBase.GetOrganizationService()) {}
-
-        public OrganizationServiceBuilder(IOrganizationService service)
+        public OrganizationServiceBuilderBase(IOrganizationService service)
         {
             Service = service;
             NewEntityDefaultIds = new Dictionary<string, Queue<Guid>>();
@@ -84,32 +97,32 @@ namespace DLaB.Xrm.Test.Builders
 
         #region Simple Methods
 
-        public OrganizationServiceBuilder WithFakeAssociate(params Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection>[] action) { AssociateActions.AddRange(action); return this; }
-        public OrganizationServiceBuilder WithFakeCreate(params Func<IOrganizationService, Entity, Guid>[] func) { CreateFuncs.AddRange(func); return this; }
-        public OrganizationServiceBuilder WithFakeDelete(params Action<IOrganizationService, string, Guid>[] action) { DeleteActions.AddRange(action); return this; }
-        public OrganizationServiceBuilder WithFakeDisassociate(params Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection>[] action) { DisassociateActions.AddRange(action); return this; }
-        public OrganizationServiceBuilder WithFakeExecute(params Func<IOrganizationService, OrganizationRequest, OrganizationResponse>[] func) { ExecuteFuncs.AddRange(func); return this; }
-        public OrganizationServiceBuilder WithFakeRetrieveMultiple(params Func<IOrganizationService, QueryBase, EntityCollection>[] func) { RetrieveMultipleFuncs.AddRange(func); return this; }
-        public OrganizationServiceBuilder WithFakeRetrieve(params Func<IOrganizationService, string, Guid, ColumnSet, Entity>[] func) { RetrieveFuncs.AddRange(func); return this; }
-        public OrganizationServiceBuilder WithFakeUpdate(params Action<IOrganizationService, Entity>[] action) { UpdateActions.AddRange(action); return this; }
+        public TDerived WithFakeAssociate(params Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection>[] action) { AssociateActions.AddRange(action); return This; }
+        public TDerived WithFakeCreate(params Func<IOrganizationService, Entity, Guid>[] func) { CreateFuncs.AddRange(func); return This; }
+        public TDerived WithFakeDelete(params Action<IOrganizationService, string, Guid>[] action) { DeleteActions.AddRange(action); return This; }
+        public TDerived WithFakeDisassociate(params Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection>[] action) { DisassociateActions.AddRange(action); return This; }
+        public TDerived WithFakeExecute(params Func<IOrganizationService, OrganizationRequest, OrganizationResponse>[] func) { ExecuteFuncs.AddRange(func); return This; }
+        public TDerived WithFakeRetrieveMultiple(params Func<IOrganizationService, QueryBase, EntityCollection>[] func) { RetrieveMultipleFuncs.AddRange(func); return This; }
+        public TDerived WithFakeRetrieve(params Func<IOrganizationService, string, Guid, ColumnSet, Entity>[] func) { RetrieveFuncs.AddRange(func); return This; }
+        public TDerived WithFakeUpdate(params Action<IOrganizationService, Entity>[] action) { UpdateActions.AddRange(action); return This; }
 
         #endregion Simple Methods
 
-        public OrganizationServiceBuilder AssertIdNonEmptyOnCreate()
+        public TDerived AssertIdNonEmptyOnCreate()
         {
             CreateFuncs.Add((s, e) =>
             {
                 Assert.AreNotEqual(Guid.Empty, e.Id, "An attempt was made to create an entity of type " + e.LogicalName + " without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate.");
                 return s.Create(e);
             });
-            return this;
+            return This;
         }
 
         /// <summary>
         /// Asserts failure whenever an action is requested that would perform an update (Create / Delete / Update) of some sort
         /// </summary>
         /// <returns></returns>
-        public OrganizationServiceBuilder IsReadOnly()
+        public TDerived IsReadOnly()
         {
             AssociateActions.Add((s, n, i, r, c) => { Assert.Fail("An attempt was made to Associate Entities with a ReadOnly Service"); });
             WithNoCreates();
@@ -144,10 +157,10 @@ namespace DLaB.Xrm.Test.Builders
                 throw new Exception("Not Possible But Required For Compiling");
             });
             UpdateActions.Add((s, e) => { Assert.Fail("An attempt was made to Update a(n) {0} Entity with id {1}, using a ReadOnly Service", e.LogicalName, e.Id); });
-            return this;
+            return This;
         }
 
-        public OrganizationServiceBuilder WithBusinessUnitDeleteAsDeactivate()
+        public TDerived WithBusinessUnitDeleteAsDeactivate()
         {
             DeleteActions.Add((s, entityLogicalName, id) =>
             {
@@ -159,7 +172,7 @@ namespace DLaB.Xrm.Test.Builders
                 s.Delete(entityLogicalName, id);
             });
 
-            return this;
+            return This;
         }
 
         #region WithEntityFilter
@@ -170,14 +183,14 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         /// <param name="ids">The ids.</param>
         /// <returns></returns>
-        public OrganizationServiceBuilder WithEntityFilter(params Id[] ids)
+        public TDerived WithEntityFilter(params Id[] ids)
         {
             foreach (var id in ids)
             {
                 EntityFilter.AddOrAppend(id);
             }
 
-            return this;
+            return This;
         }
 
         /// <summary>
@@ -187,7 +200,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <typeparam name="T"></typeparam>
         /// <param name="ids">The entity ids.</param>
         /// <returns></returns>
-        public OrganizationServiceBuilder WithEntityFilter<T>(params Guid[] ids) where T : Entity
+        public TDerived WithEntityFilter<T>(params Guid[] ids) where T : Entity
         {
             return WithEntityFilter(EntityHelper.GetEntityLogicalName<T>(), ids);
         }
@@ -199,18 +212,18 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="logicalName">Entity Logical Name.</param>
         /// <param name="ids">The entity ids.</param>
         /// <returns></returns>
-        public OrganizationServiceBuilder WithEntityFilter(string logicalName, IEnumerable<Guid> ids)
+        public TDerived WithEntityFilter(string logicalName, IEnumerable<Guid> ids)
         {
             foreach (var id in ids)
             {
                 EntityFilter.AddOrAppend(logicalName, id);
             }
-            return this;
+            return This;
         }
 
         #endregion WithEntityFilter
 
-        public OrganizationServiceBuilder WithEntityNameDefaulted(Func<Entity, EntityHelper.PrimaryFieldInfo,string> getName)
+        public TDerived WithEntityNameDefaulted(Func<Entity, EntityHelper.PrimaryFieldInfo,string> getName)
         {
             CreateFuncs.Add((s, e) =>
             {
@@ -227,7 +240,7 @@ namespace DLaB.Xrm.Test.Builders
                 }
                 return s.Create(e);
                 });
-            return this;
+            return This;
         }
 
         #region WithIdsDefaultedForCreate
@@ -237,12 +250,12 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         /// <param name="ids">The ids.</param>
         /// <returns></returns>
-        public OrganizationServiceBuilder WithIdsDefaultedForCreate(params Id[] ids)
+        public TDerived WithIdsDefaultedForCreate(params Id[] ids)
         {
 
             WithIdsDefaultedForCreate((IEnumerable<Id>)ids);
 
-            return this;
+            return This;
         }
 
         /// <summary>
@@ -250,14 +263,14 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         /// <param name="ids">The ids.</param>
         /// <returns></returns>
-        public OrganizationServiceBuilder WithIdsDefaultedForCreate(IEnumerable<Id> ids)
+        public TDerived WithIdsDefaultedForCreate(IEnumerable<Id> ids)
         {
             foreach (var id in ids)
             {
                 NewEntityDefaultIds.AddOrEnqueue(id);
             }
 
-            return this;
+            return This;
         }
 
         #endregion WithIdsDefaultedForCreate
@@ -266,7 +279,7 @@ namespace DLaB.Xrm.Test.Builders
         /// Defaults the Parent Businessunit Id of all business units to the root BU if not already populated
         /// </summary>
         /// <returns></returns>
-        public OrganizationServiceBuilder WithDefaultParentBu()
+        public TDerived WithDefaultParentBu()
         {
             CreateFuncs.Add((s, e) =>
             {
@@ -277,7 +290,7 @@ namespace DLaB.Xrm.Test.Builders
 
                 return s.Create(e);
             });
-            return this;
+            return This;
         }
 
 
@@ -288,7 +301,7 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         /// <param name="entities">The entities.</param>
         /// <returns></returns>
-        public OrganizationServiceBuilder WithReturnedEntities(Dictionary<string, List<Entity>> entities)
+        public TDerived WithReturnedEntities(Dictionary<string, List<Entity>> entities)
         {
             RetrieveMultipleFuncs.Add((s, q) =>
             {
@@ -301,7 +314,7 @@ namespace DLaB.Xrm.Test.Builders
                 return new EntityCollection(entities[qe.EntityName]);
             });
 
-            return this;
+            return This;
         }
 
         public static EntityCollection WithReturnedEntities(IOrganizationService s, QueryBase qb, string logicalName, params Entity[] entities)
@@ -311,7 +324,7 @@ namespace DLaB.Xrm.Test.Builders
 
         #endregion WithReturnedEntities
 
-        public OrganizationServiceBuilder WithLocalOptionSetsRetrievedFromEnum(int? defaultLangaugeCode = null)
+        public TDerived WithLocalOptionSetsRetrievedFromEnum(int? defaultLangaugeCode = null)
         {
             defaultLangaugeCode = defaultLangaugeCode ?? Config.GetAppSettingOrDefault("DefaultLanguageCode", 1033);
             ExecuteFuncs.Add((s, r) =>
@@ -361,24 +374,24 @@ namespace DLaB.Xrm.Test.Builders
                 return response;
             })
                 ;
-            return this;
+            return This;
         }
 
         /// <summary>
         /// Causes the Organization Service to throw an exception if an attempt is made to create an entity
         /// </summary>
         /// <returns></returns>
-        public OrganizationServiceBuilder WithNoCreates()
+        public TDerived WithNoCreates()
         {
             CreateFuncs.Add((s, e) =>
             {
                 Assert.Fail("An attempt was made to Create a(n) {0} Entity with a ReadOnly Service{1}{1}Entity Attributes:{2}", e.LogicalName, Environment.NewLine, e.ToStringAttributes());
                 throw new Exception("Not Possible But Required For Compiling");
             });
-            return this;
+            return This;
         }
 
-        public OrganizationServiceBuilder WithWebResourcePulledFromPath(string webResourceName, string path = null)
+        public TDerived WithWebResourcePulledFromPath(string webResourceName, string path = null)
         {
             RetrieveMultipleFuncs.Add((s, q) =>
             {
@@ -427,7 +440,7 @@ namespace DLaB.Xrm.Test.Builders
                     throw new Exception("Unable to load Web Resource from " + path, ex);
                 }
             });
-            return this;
+            return This;
         }
 
         #endregion // Fleunt Methods

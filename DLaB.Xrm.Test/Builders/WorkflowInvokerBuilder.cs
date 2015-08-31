@@ -8,8 +8,21 @@ using Microsoft.Xrm.Sdk.Workflow;
 
 namespace DLaB.Xrm.Test.Builders
 {
-    public class WorkflowInvokerBuilder
+    public sealed class WorkflowInvokerBuilder : WorkflowInvokerBuilderBase<WorkflowInvokerBuilder>
     {
+        protected override WorkflowInvokerBuilder This
+        {
+            get { return this; }
+        }
+
+        public WorkflowInvokerBuilder(Activity workflow) : base (workflow)
+        {
+        }
+    }
+
+    public abstract class WorkflowInvokerBuilderBase<TDerived> where TDerived : WorkflowInvokerBuilderBase<TDerived>
+    {
+        protected abstract TDerived This { get; }
         private ITracingService TracingService { get; set; }
         private IWorkflowContext WorkflowContext { get; set; }
         private IOrganizationService Service { get; set; }
@@ -20,7 +33,7 @@ namespace DLaB.Xrm.Test.Builders
         /// Initializes a new instance of the <see cref="WorkflowInvokerBuilder"/> class.
         /// </summary>
         /// <param name="workflow">The workflow to invoke.</param>
-        public WorkflowInvokerBuilder(Activity workflow)
+        protected WorkflowInvokerBuilderBase(Activity workflow)
         {
             Service = TestBase.GetOrganizationService();
             TracingService = new FakeTraceService();
@@ -91,10 +104,10 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         /// <param name="service">The service.</param>
         /// <returns></returns>
-        public WorkflowInvokerBuilder WithService(IOrganizationService service)
+        public TDerived WithService(IOrganizationService service)
         {
             Service = service;
-            return this;
+            return This;
         }
 
         /// <summary>
@@ -102,10 +115,10 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         /// <param name="service">The service.</param>
         /// <returns></returns>
-        public WorkflowInvokerBuilder WithService(ITracingService service)
+        public TDerived WithService(ITracingService service)
         {
             TracingService = service;
-            return this;
+            return This;
         }
 
         /// <summary>
@@ -113,10 +126,10 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns></returns>
-        public WorkflowInvokerBuilder WithContext(IWorkflowContext context)
+        public TDerived WithContext(IWorkflowContext context)
         {
             WorkflowContext = context;
-            return this;
+            return This;
         }
 
         #endregion // Fleunt Methods

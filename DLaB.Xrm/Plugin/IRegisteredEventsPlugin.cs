@@ -5,6 +5,6 @@ namespace DLaB.Xrm.Plugin
 {
     public interface IRegisteredEventsPlugin : IPlugin
     {
-        List<RegisteredEvent> RegisteredEvents { get; }
+        IEnumerable<RegisteredEvent> RegisteredEvents { get; }
     }
 }

@@ -1,14 +1,24 @@
 ﻿using System;
+using System.Linq;
 using DLaB.Xrm.Plugin;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test.Builders
 {
-    public class PluginExecutionContextBuilder
+    public sealed class PluginExecutionContextBuilder : PluginExecutionContextBuilderBase<PluginExecutionContextBuilder>
     {
-        private FakePluginExecutionContext Context { get; set; }
+        protected override PluginExecutionContextBuilder This
+        {
+            get { return this; }
+        }
+    }
 
-        public PluginExecutionContextBuilder()
+    public abstract class PluginExecutionContextBuilderBase<TDerived> where TDerived : PluginExecutionContextBuilderBase<TDerived>
+    {
+        protected abstract TDerived This { get; }
+        protected FakePluginExecutionContext Context { get; set; }
+
+        protected PluginExecutionContextBuilderBase()
         {
             Context = new FakePluginExecutionContext();
         }
@@ -20,19 +30,31 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        public PluginExecutionContextBuilder WithInitiatingUser(Guid id)
+        public TDerived WithInitiatingUser(Guid id)
         {
             Context.InitiatingUserId = id;
-            return this;
+            return This;
         }
 
-        public PluginExecutionContextBuilder WithInputParameter(string name, object parameter)
+        /// <summary>
+        /// Adds the input parameter to the context's InputParameters collection.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="parameter">The parameter.</param>
+        /// <returns></returns>
+        public TDerived WithInputParameter(string name, object parameter)
         {
             Context.InputParameters[name] = parameter;
-            return this;
+            return This;
         }
 
-        public PluginExecutionContextBuilder WithInputParameters(params object[] nameValuePairs)
+        /// <summary>
+        /// Key Value Pairs of input parameters to add to the context
+        /// </summary>
+        /// <param name="nameValuePairs">The name value pairs.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentException">The list of arguments must be an even number!;nameValuePairs</exception>
+        public TDerived WithInputParameters(params object[] nameValuePairs)
         {
             if (nameValuePairs.Length % 2 != 0)
             {
@@ -42,19 +64,61 @@ namespace DLaB.Xrm.Test.Builders
             {
                 WithInputParameter((string)nameValuePairs[i], nameValuePairs[i + 1]);
             }
-            return this;
+            return This;
         }
 
-        public PluginExecutionContextBuilder WithParentContext(IPluginExecutionContext context)
+        /// <summary>
+        /// Adds the input parameter to the context's InputParameters collection.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="parameter">The parameter.</param>
+        /// <returns></returns>
+        public TDerived WithOutputParameter(string name, object parameter)
+        {
+            Context.OutputParameters[name] = parameter;
+            return This;
+        }
+
+        /// <summary>
+        /// Key Value Pairs of input parameters to add to the context
+        /// </summary>
+        /// <param name="nameValuePairs">The name value pairs.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentException">The list of arguments must be an even number!;nameValuePairs</exception>
+        public TDerived WithOutputParameters(params object[] nameValuePairs)
+        {
+            if (nameValuePairs.Length % 2 != 0)
+            {
+                throw new ArgumentException("The list of arguments must be an even number!", "nameValuePairs");
+            }
+            for (var i = 0; i < nameValuePairs.Length; i += 2)
+            {
+                WithOutputParameter((string)nameValuePairs[i], nameValuePairs[i + 1]);
+            }
+            return This;
+        }
+
+
+        /// <summary>
+        /// Sets the parent context for the context.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <returns></returns>
+        public TDerived WithParentContext(IPluginExecutionContext context)
         {
             Context.ParentContext = context;
-            return this;
+            return This;
         }
 
-        public PluginExecutionContextBuilder WithPrimaryEntityId(Guid guid)
+        /// <summary>
+        /// Sets the primary entity identifier for the context.
+        /// </summary>
+        /// <param name="guid">The unique identifier.</param>
+        /// <returns></returns>
+        public TDerived WithPrimaryEntityId(Guid guid)
         {
             Context.PrimaryEntityId = guid;
-            return this;
+            return This;
         }
 
         /// <summary>
@@ -62,12 +126,12 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         /// <param name="event">The event.</param>
         /// <returns></returns>
-        public PluginExecutionContextBuilder WithRegisteredEvent(RegisteredEvent @event)
+        public TDerived WithRegisteredEvent(RegisteredEvent @event)
         {
             Context.Stage = (int)@event.Stage;
             Context.MessageName = @event.MessageName;
             Context.PrimaryEntityName = @event.EntityLogicalName;
-            return this;
+            return This;
         }
 
         /// <summary>
@@ -77,12 +141,52 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="messageName"></param>
         /// <param name="entityLogicalName"></param>
         /// <returns></returns>
-        public PluginExecutionContextBuilder WithRegisteredEvent(int stage, string messageName, string entityLogicalName)
+        public TDerived WithRegisteredEvent(int stage, string messageName, string entityLogicalName)
         {
             Context.Stage = stage;
             Context.MessageName = messageName;
             Context.PrimaryEntityName = entityLogicalName;
-            return this;
+            return This;
+        }
+
+        /// <summary>
+        /// Sets the registered event for the context to the registered event of the plugin.  Throws an exception if more than one event is found.  Use WithFirstRegisteredEvent if the first event was intended
+        /// </summary>
+        /// <param name="plugin">The plugin.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">
+        /// Plugin does not contain any registered events!  Unable to set the registered event of the context.
+        /// or
+        /// Plugin contains more than one registered event!  Unable to determine what registered event to use for the context.
+        /// </exception>
+        public TDerived WithRegisteredEvent(IRegisteredEventsPlugin plugin)
+        {
+            if (!plugin.RegisteredEvents.Any())
+            {
+                throw new Exception("Plugin " + plugin.GetType().FullName + " does not contain any registered events!  Unable to set the registered event of the context.");
+            }
+            if (plugin.RegisteredEvents.Skip(1).Any())
+            {
+                throw new Exception("Plugin " + plugin.GetType().FullName + " contains more than one registered event!  Unable to determine what registered event to use for the context.");
+            }
+
+            return WithRegisteredEvent(plugin.RegisteredEvents.Single());
+        }
+
+        /// <summary>
+        /// Sets the registered event for the context to the first registered event of the plugin. Throws an exception if more than one event is found.
+        /// </summary>
+        /// <param name="plugin">The plugin.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Plugin  + plugin.GetType().FullName +  does not contain any registered events!  Unable to set the registered event of the context.</exception>
+        public TDerived WithFirstRegisteredEvent(IRegisteredEventsPlugin plugin)
+        {
+            if (!plugin.RegisteredEvents.Any())
+            {
+                throw new Exception("Plugin " + plugin.GetType().FullName + " does not contain any registered events!  Unable to set the registered event of the context.");
+            }
+
+            return WithRegisteredEvent(plugin.RegisteredEvents.Single());
         }
 
         /// <summary>
@@ -91,10 +195,10 @@ namespace DLaB.Xrm.Test.Builders
         /// <typeparam name="T"></typeparam>
         /// <param name="target">The target.</param>
         /// <returns></returns>
-        public PluginExecutionContextBuilder WithTarget<T>(T target)
+        public TDerived WithTarget<T>(T target)
         {
             Context.InputParameters[ParameterName.Target] = target;
-            return this;
+            return This;
         }
 
         /// <summary>
@@ -102,10 +206,10 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        public PluginExecutionContextBuilder WithUser(Guid id)
+        public TDerived WithUser(Guid id)
         {
             Context.UserId = id;
-            return this;
+            return This;
         }
 
         /// <summary>
@@ -115,10 +219,10 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="image">The image.</param>
         /// <param name="imageKey">The image key.</param>
         /// <returns></returns>
-        public PluginExecutionContextBuilder WithPreImage<T>(T image, string imageKey = LocalPluginContextBase.PluginImageNames.PreImage) where T : Entity
+        public TDerived WithPreImage<T>(T image, string imageKey = LocalPluginContextBase.PluginImageNames.PreImage) where T : Entity
         {
             Context.PreEntityImages[imageKey] = image;
-            return this;
+            return This;
         }
 
         /// <summary>
@@ -128,17 +232,17 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="image">The image.</param>
         /// <param name="imageKey">The image key.</param>
         /// <returns></returns>
-        public PluginExecutionContextBuilder WithPostImage<T>(T image, string imageKey = LocalPluginContextBase.PluginImageNames.PostImage) where T : Entity
+        public TDerived WithPostImage<T>(T image, string imageKey = LocalPluginContextBase.PluginImageNames.PostImage) where T : Entity
         {
             Context.PostEntityImages[imageKey] = image;
-            return this;
+            return This;
         }
 
         #endregion // Fluent Methods
 
         public IPluginExecutionContext Build()
         {
-            return Context;
+            return Context.Clone();
         }
     }
 }

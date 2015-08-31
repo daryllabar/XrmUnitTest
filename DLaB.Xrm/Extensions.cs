@@ -13,10 +13,10 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq.Expressions;
 using Microsoft.Crm.Sdk.Messages;
-using DLaB.Common.Exceptions;
 using System.Diagnostics;
 using System.Runtime.Serialization.Json;
 using DLaB.Common;
+using DLaB.Xrm.Exceptions;
 using Microsoft.Xrm.Sdk.Messages;
 
 namespace DLaB.Xrm
@@ -24,32 +24,6 @@ namespace DLaB.Xrm
     [DebuggerStepThrough]
     public static partial class Extensions
     {
-        #region <T>
-
-        /// <summary>
-        /// Serializes the value to a json string.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="value">The Value to serialize to JSON</param>
-        /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException">text</exception>
-        public static string SerializeToJson<T>(this T value)
-        {
-            if (value == null)
-            {
-                throw new ArgumentNullException("value");
-            }
-
-            using (var memoryStream = new MemoryStream())
-            {
-                var serializer = new DataContractJsonSerializer(typeof(T));
-                serializer.WriteObject(memoryStream, value);
-                return Encoding.Default.GetString(memoryStream.ToArray());
-            }
-        }
-
-        #endregion <T>
-
         #region ColumnSet
 
         /// <summary>
@@ -82,15 +56,14 @@ namespace DLaB.Xrm
         public static void AssertContainsAllNonNull(this Entity entity, params string[] attributeNames)
         {
             List<string> missingAttributes;
-            if (!entity.ContainsAllNonNull(out missingAttributes, attributeNames))
-            {
-                if (missingAttributes.Count == 1)
-                {
-                    throw new Exception("Missing Required Field: " + missingAttributes[0]);
-                }
+            if (entity.ContainsAllNonNull(out missingAttributes, attributeNames)) { return; }
 
-                throw new Exception("Missing Required Fields: " + String.Join(", ", missingAttributes));
+            if (missingAttributes.Count == 1)
+            {
+                throw new MissingAttributeException("Missing Required Field: " + missingAttributes[0]);
             }
+
+            throw new MissingAttributeException("Missing Required Fields: " + String.Join(", ", missingAttributes));
         }
 
         /// <summary>
@@ -628,7 +601,7 @@ namespace DLaB.Xrm
                 case ActiveAttributeType.None:
                     break;
                 default:
-                    throw new EnumCaseUndefinedException<ActiveAttributeType>(activeInfo.ActiveAttribute);
+                    throw new Common.Exceptions.EnumCaseUndefinedException<ActiveAttributeType>(activeInfo.ActiveAttribute);
             }
             return fe;
         }

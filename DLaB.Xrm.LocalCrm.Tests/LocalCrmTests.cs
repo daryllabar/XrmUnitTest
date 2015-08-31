@@ -341,5 +341,13 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.AreEqual("Adams", results[7].LastName, "Ascending Date Ordering failed.  \"Adams\" should have been returned last");
             Assert.AreEqual("Adams", results[6].LastName, "Ascending Date Ordering failed.  \"Adams\" should have been returned last");
         }
+
+        [TestMethod]
+        public void LocalCrmTests_EmptyStringIsNull()
+        {
+            var service = GetService();
+            var id = service.Create(new Lead {Address1_City = String.Empty});
+            Assert.IsFalse(service.GetEntity<Lead>(id).Attributes.ContainsKey(Lead.Fields.Address1_City));
+        }
     }
 }

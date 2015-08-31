@@ -3,18 +3,27 @@ using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test.Builders
 {
-    public class ServiceProviderBuilder
+    public sealed class ServiceProviderBuilder : ServiceProviderBuilderBase<ServiceProviderBuilder>
     {
+        protected override ServiceProviderBuilder This
+        {
+            get { return this; }
+        }
+    }
+
+    public abstract class ServiceProviderBuilderBase<TDerived> where TDerived : ServiceProviderBuilderBase<TDerived>
+    {
+        protected abstract TDerived This { get; }
         private FakeServiceProvider ServiceProvider { get; set; }
 
-        public ServiceProviderBuilder()
+        protected ServiceProviderBuilderBase()
             : this(TestBase.GetOrganizationService(),
             new FakePluginExecutionContext())
         {
 
         }
 
-        public ServiceProviderBuilder(IOrganizationService service, IPluginExecutionContext context)
+        protected ServiceProviderBuilderBase(IOrganizationService service, IPluginExecutionContext context)
         {
             ServiceProvider = new FakeServiceProvider();
             ServiceProvider.AddService<IOrganizationServiceFactory>(new FakeOrganizationServiceFactory(service));
@@ -29,10 +38,10 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns></returns>
-        public ServiceProviderBuilder WithContext(IPluginExecutionContext context)
+        public TDerived WithContext(IPluginExecutionContext context)
         {
             ServiceProvider.AddService(context);
-            return this;
+            return This;
         }
 
         /// <summary>
@@ -40,10 +49,10 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         /// <param name="service">The service.</param>
         /// <returns></returns>
-        public ServiceProviderBuilder WithService(IOrganizationService service)
+        public TDerived WithService(IOrganizationService service)
         {
             ServiceProvider.AddService<IOrganizationServiceFactory>(new FakeOrganizationServiceFactory(service));
-            return this;
+            return This;
         }
 
         /// <summary>
@@ -52,16 +61,16 @@ namespace DLaB.Xrm.Test.Builders
         /// <typeparam name="T"></typeparam>
         /// <param name="service">The service.</param>
         /// <returns></returns>
-        public ServiceProviderBuilder WithService<T>(T service)
+        public TDerived WithService<T>(T service)
         {
             ServiceProvider.AddService(service);
-            return this;
+            return This;
         }
 
         #endregion // Fleunt Methods
 
         public IServiceProvider Build() {
-            return ServiceProvider;
+            return ServiceProvider.Clone();
         }
     }
 }

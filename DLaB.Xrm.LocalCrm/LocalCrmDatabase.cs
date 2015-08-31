@@ -399,6 +399,11 @@ namespace DLaB.Xrm.LocalCrm
                     entity.Attributes.Remove(key);
                 }
             }
+
+            // Remove all string values that are empty
+            foreach (var att in entity.Attributes.Where(a => a.Value is String && String.IsNullOrEmpty((String)a.Value)).ToList()) {
+                entity.Attributes.Remove(att.Key);
+            }
             return entity;
         }
 

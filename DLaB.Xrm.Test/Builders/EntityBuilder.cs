@@ -92,7 +92,7 @@ namespace DLaB.Xrm.Test.Builders
 
         /// <summary>
         /// Allows child classes to be able to cleanup other entities after record is created.
-        /// Helpful when a plugin may already be creating the class, and the auto-created version needs to get cleaned up.
+        /// Helpful when a plugin may already be creating the entity, and the auto-created version needs to get cleaned up.
         /// </summary>
         /// <param name="service">The service.</param>
         /// <param name="entity">The entity.</param>

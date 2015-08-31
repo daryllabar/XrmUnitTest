@@ -76,7 +76,8 @@
     <Compile Include="Comparers\QueryExpressionComparer.cs" />
     <Compile Include="EntityHelper.cs" />
     <Compile Include="Exceptions\EnumCaseUndefinedException.cs" />
-    <Compile Include="Exceptions\InvalidPluginStepRegistration.cs" />
+    <Compile Include="Exceptions\InvalidPluginStepRegistrationException.cs" />
+    <Compile Include="Exceptions\MissingAttributeException.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="HasConditionExtensions.cs">
       <DependentUpon>Extensions.cs</DependentUpon>
@@ -89,6 +90,7 @@
     <Compile Include="LateBoundQuerySettings.cs" />
     <Compile Include="Plugin\Extensions.cs" />
     <Compile Include="Plugin\IRegisteredEventsPlugin.cs" />
+    <Compile Include="Plugin\IRegisteredEventsPluginHandler.cs" />
     <Compile Include="Plugin\LocalPluginContextBase.cs" />
     <Compile Include="Plugin\ParameterName.cs" />
     <Compile Include="Plugin\GenericPluginHandlerBase.cs" />

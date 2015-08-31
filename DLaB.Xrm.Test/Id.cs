@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Activities;
-using System.Activities.Validation;
 using System.Diagnostics;
 using Microsoft.Xrm.Sdk;
 
@@ -13,6 +12,18 @@ namespace DLaB.Xrm.Test
         public String LogicalName { get { return Entity.LogicalName; } }
         public EntityReference EntityReference { get { return Entity.ToEntityReference(); } }
         public Entity Entity { get; set; }
+        /// <summary>
+        /// Provides an index for Entity.Attribute values
+        /// </summary>
+        /// <value>
+        /// The <see cref="System.Object"/>.
+        /// </value>
+        /// <param name="attributeName">Name of the attribute.</param>
+        /// <returns></returns>
+        public object this[string attributeName] { 
+            get { return Entity.Attributes[attributeName]; } 
+            set { Entity.Attributes[attributeName] = value; }
+        }
 
         public Id(string logicalName, Guid entityId)
         {

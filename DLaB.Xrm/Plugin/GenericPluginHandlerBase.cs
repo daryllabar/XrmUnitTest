@@ -4,7 +4,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Plugin
 {
-    public abstract class GenericPluginHandlerBase<T> : IRegisteredEventsPlugin where T : ILocalPluginContext
+    public abstract class GenericPluginHandlerBase<T> : IRegisteredEventsPluginHandler where T : ILocalPluginContext
     {
         #region Properties
 

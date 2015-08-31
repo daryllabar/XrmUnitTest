@@ -7,7 +7,7 @@ using Microsoft.Xrm.Sdk;
 namespace DLaB.Xrm.Test
 {
     [DebuggerDisplay("{DebugInfo}")]
-    public class FakePluginExecutionContext : FakeExecutionContext, IPluginExecutionContext
+    public class FakePluginExecutionContext : FakeExecutionContext, IPluginExecutionContext, ICloneable
     {
         public int Stage { get; set; }
         public IPluginExecutionContext ParentContext { get; set; }
@@ -23,5 +23,26 @@ namespace DLaB.Xrm.Test
             Stage = (int) PipelineStage.PreOperation;
             MessageName = MessageType.Update;
         }
+
+        #region Clone
+
+        public new FakePluginExecutionContext Clone()
+        {
+            var clone = (FakePluginExecutionContext) MemberwiseClone();
+            CloneReferenceValues(clone);
+            var parent = ParentContext as ICloneable;
+            if (parent != null)
+            {
+                ParentContext = (IPluginExecutionContext) parent.Clone();
+            }
+            return clone;
+        }
+
+        object ICloneable.Clone()
+        {
+            return Clone();
+        }        
+
+        #endregion Clone
     }
 }
