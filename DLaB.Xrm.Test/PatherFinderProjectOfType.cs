@@ -20,14 +20,37 @@ namespace DLaB.Xrm.Test
 
         private string FindProjectOfType(Type type)
         {
-            var dll = new FileInfo(type.Assembly.Location);
-            string solutionFolder = null;
             var sb = new StringBuilder();
+            // XUnit moves the location of the assmbley to a temp location, use CodeBase instead
+            var solutionFolder = GetSolutionFolder(type.Assembly.Location, sb) ?? GetSolutionFolder(type.Assembly.CodeBase.Substring(8), sb);
 
-            if (dll.Directory == null || // ...\Solution\Project\bin\Build 
-                dll.Directory.Parent == null || // ...\Solution\Project\bin
-                dll.Directory.Parent.Parent == null || // ...\Solution\Project
-                dll.Directory.Parent.Parent.Parent == null) // ...\Solution
+            if (string.IsNullOrWhiteSpace(solutionFolder))
+            {
+                throw new Exception($"Unable to find Project Path for {type.FullName}.  Assembly Located at {type.Assembly.Location}{Environment.NewLine}{sb}");
+            }
+
+            // Class Name, Project Name, Version, Culture, PublicKeyTyoken
+            // ReSharper disable once PossibleNullReferenceException
+            var projectName = type.AssemblyQualifiedName.Split(',')[1].Trim();
+            sb.AppendLine("Project Name" + projectName);
+            sb.AppendLine("SolutionFolder " + solutionFolder);
+            var projectPath = Path.Combine(solutionFolder, projectName);
+
+            sb.AppendLine("Project Folder " + projectPath);
+            if (!Directory.Exists(projectPath))
+            {
+                throw new Exception($"Unable to find Project Path for {type.FullName} at {projectPath}. Log {sb}");
+            }
+
+            return projectPath;
+        }
+
+        private static string GetSolutionFolder(string dllFilePath, StringBuilder sb)
+        {
+            var dll = new FileInfo(dllFilePath);
+            string solutionFolder = null;
+
+            if (dll.Directory?.Parent?.Parent?.Parent == null) // ...\Solution
             {
                 sb.AppendLine("Checking for VSOnline");
                 sb.AppendLine(dll.DirectoryName);
@@ -50,32 +73,19 @@ namespace DLaB.Xrm.Test
                         }
                     }
                 }
-
-                if (String.IsNullOrWhiteSpace(solutionFolder))
-                {
-                    throw new Exception("Unable to find Project Path for " + type.FullName + ".  Assembly Located at " + type.Assembly.Location + sb);
-                }
             }
             else
             {
+                // Check for XUnit Temp Directory
+                if (dll.Directory.Parent.Parent.Parent.Name.ToLower() == "assembly" && dll.Directory.Parent.Parent.Name.ToLower() == "dl3")
+                {
+                    // Return null and let recall happen with CodeBase rather than location
+                    return null;
+                }
                 //  ..\Solution\Project\bin\Build 
                 solutionFolder = dll.Directory.Parent.Parent.Parent.FullName;
             }
-
-            // Class Name, Project Name, Version, Culture, PublicKeyTyoken
-            // ReSharper disable once PossibleNullReferenceException
-            var projectName = type.AssemblyQualifiedName.Split(',')[1].Trim();
-            sb.AppendLine("Project Name" + projectName);
-            sb.AppendLine("SolutionFolder " + solutionFolder);
-            var projectPath = Path.Combine(solutionFolder, projectName);
-
-            sb.AppendLine("Project Folder " + projectPath);
-            if (!Directory.Exists(projectPath))
-            {
-                throw new Exception(String.Format("Unable to find Project Path for {0} at {1}. Log {2}", type.FullName, projectPath, sb));
-            }
-
-            return projectPath;
+            return solutionFolder;
         }
 
         public string GetPath()

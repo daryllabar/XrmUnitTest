@@ -227,6 +227,27 @@ namespace DLaB.Xrm.LocalCrm
         }
 
         /// <summary>
+        /// Removes Any fields that CRM no longer returns the the client
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        internal void RemoveFieldsCrmDoesNotReturn<T>(T entity) where T : Entity
+        {
+            if (entity.LogicalName == "contact")
+            {
+                entity.Attributes.Remove("accountid");
+                entity.Attributes.Remove("parentcontactid");
+            }
+
+            // Remove all string values that are empty
+            foreach (var att in entity.Attributes.Where(a => a.Value is string && string.IsNullOrEmpty((string)a.Value)).ToList())
+            {
+                entity.Attributes.Remove(att.Key);
+            }
+        }
+
+        /// <summary>
         /// Populates the auto-populated columns of the entity and returns a list of attributes that were created / updated
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -244,6 +265,7 @@ namespace DLaB.Xrm.LocalCrm
             ConditionallyAddAutoPopulatedValue(entity, properties, "fullname", name, !String.IsNullOrWhiteSpace(name));
             
             AutoPopulateOpportunityFields(entity, properties);
+            AutoPopulateContactFields(entity, properties);
 
             if (isCreate)
             {
@@ -298,7 +320,7 @@ namespace DLaB.Xrm.LocalCrm
         }
 
         /// <summary>
-        /// Contact and Account Ids are popualted by the customer id property.  Handle hydrating values.
+        /// Contact and Account Ids are populated by the customer id property.  Handle hydrating values.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="entity">The entity.</param>
@@ -320,6 +342,33 @@ namespace DLaB.Xrm.LocalCrm
 
             var field = "parent" + entity.GetAttributeValue<EntityReference>("customerid").LogicalName + "id";
             var siblingField = field == "parentcontactid" ? "parentaccountid" : "parentcontactid"; // Sibling is opposite
+            ConditionallyAddAutoPopulatedValue(entity, properties, field, customer, !customer.Equals(entity.GetAttributeValue<EntityReference>(field)));
+            ConditionallyAddAutoPopulatedValue<EntityReference>(entity, properties, siblingField, null, entity.GetAttributeValue<EntityReference>(siblingField) != null);
+        }
+
+        /// <summary>
+        /// AccountId/ParentContactId is autopopulated from the ParentCustomerId (
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity">The entity.</param>
+        /// <param name="properties">The properties.</param>
+        private void AutoPopulateContactFields<T>(T entity, PropertyInfo[] properties) where T : Entity
+        {
+            if (entity.LogicalName != "contact")
+            {
+                return;
+            }
+
+            var customer = entity.GetAttributeValue<EntityReference>("parentcustomerid");
+            if (customer == null)
+            {
+                ConditionallyAddAutoPopulatedValue<EntityReference>(entity, properties, "parentcontactid", null, entity.GetAttributeValue<EntityReference>("parentcontactid") != null);
+                ConditionallyAddAutoPopulatedValue<EntityReference>(entity, properties, "accountid", null, entity.GetAttributeValue<EntityReference>("accountid") != null);
+                return;
+            }
+ 
+            var field = customer.LogicalName == "account" ? "accountid" : "parentcontactid";
+            var siblingField = field == "parentcontactid" ? "accountid" : "parentcontactid"; // Sibling is opposite
             ConditionallyAddAutoPopulatedValue(entity, properties, field, customer, !customer.Equals(entity.GetAttributeValue<EntityReference>(field)));
             ConditionallyAddAutoPopulatedValue<EntityReference>(entity, properties, siblingField, null, entity.GetAttributeValue<EntityReference>(siblingField) != null);
         }

@@ -400,10 +400,7 @@ namespace DLaB.Xrm.LocalCrm
                 }
             }
 
-            // Remove all string values that are empty
-            foreach (var att in entity.Attributes.Where(a => a.Value is String && String.IsNullOrEmpty((String)a.Value)).ToList()) {
-                entity.Attributes.Remove(att.Key);
-            }
+            service.RemoveFieldsCrmDoesNotReturn(entity);
             return entity;
         }
 
@@ -449,6 +446,11 @@ namespace DLaB.Xrm.LocalCrm
                         entity.Attributes.Remove(key);
                     }
                 }
+            }
+
+            foreach (var entity in entities)
+            {
+                service.RemoveFieldsCrmDoesNotReturn(entity);
             }
 
             var result = new EntityCollection();

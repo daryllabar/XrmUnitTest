@@ -101,6 +101,7 @@
     <Compile Include="QueryExpressionFactory.cs" />
     <Compile Include="QuerySettings.cs" />
     <Compile Include="RetrieveAllEntities.cs" />
+    <Compile Include="TypedQueryExpression.cs" />
     <Compile Include="WhereEqualExtensions.cs" />
     <Compile Include="WhereInExtensions.cs" />
   </ItemGroup>

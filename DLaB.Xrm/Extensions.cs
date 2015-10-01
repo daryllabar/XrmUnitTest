@@ -14,16 +14,32 @@ using System.Configuration;
 using System.Linq.Expressions;
 using Microsoft.Crm.Sdk.Messages;
 using System.Diagnostics;
-using System.Runtime.Serialization.Json;
 using DLaB.Common;
 using DLaB.Xrm.Exceptions;
 using Microsoft.Xrm.Sdk.Messages;
+using Microsoft.Xrm.Sdk.Metadata;
 
 namespace DLaB.Xrm
 {
     [DebuggerStepThrough]
     public static partial class Extensions
     {
+        #region AttributeMetadata
+        public static bool IsLocalOptionSetAttribute(this AttributeMetadata attribute)
+        {
+            if (attribute.AttributeType == AttributeTypeCode.Picklist)
+            {
+                var picklist = attribute as PicklistAttributeMetadata;
+                if (picklist != null)
+                {
+                    return picklist.OptionSet.IsGlobal.HasValue && !picklist.OptionSet.IsGlobal.Value;
+                }
+            }
+            return false;
+        }
+
+        #endregion // AttributeMetadata
+
         #region ColumnSet
 
         /// <summary>
@@ -185,7 +201,7 @@ namespace DLaB.Xrm
             }
             else
             {
-                url = String.Format(@"http://{0}/{1}main.aspx?{2}", uri.Host, uri.Segments[1], parameters);
+                url = string.Format(@"http://{0}/{1}main.aspx?{2}", uri.Host, uri.Segments[1], parameters);
             }
             return url;
         }
@@ -511,6 +527,15 @@ namespace DLaB.Xrm
         }
 
         #endregion // EntityImageCollection
+
+        #region EntityMetadata
+
+        public static string GetDisplayNameWithLogical(this EntityMetadata entity)
+        {
+            return entity.DisplayName.GetLocalOrDefaultText(entity.SchemaName) + " (" + entity.LogicalName + ")";
+        }
+
+        #endregion // EntityMetadata
 
         #region EntityReference
 
@@ -1013,6 +1038,21 @@ namespace DLaB.Xrm
         }
 
         /// <summary>
+        /// Gets all entities using the Query Expression
+        /// </summary>
+        /// <typeparam name="T">Type of Entity List to return</typeparam>
+        /// <param name="service">The service.</param>
+        /// <param name="qe">Query Expression to Execute.</param>
+        /// <param name="maxCount">The maximum number of entities to retrieve.  Use null for default.</param>
+        /// <param name="pageSize">Number of records to return in each fetch.  Use null for default.</param>
+        /// <returns></returns>
+        public static IEnumerable<T> GetAllEntities<T>(this IOrganizationService service, TypedQueryExpression<T> qe, int? maxCount = null, int? pageSize = null)
+            where T : Entity
+        {
+            return RetrieveAllEntities<T>.GetAllEntities(service, qe, maxCount, pageSize);
+        }
+
+        /// <summary>
         /// Returns the WhoAmIResponse to determine the current user's UserId, BusinessUnitId, and OrganizationId
         /// </summary>
         /// <param name="service"></param>
@@ -1077,6 +1117,18 @@ namespace DLaB.Xrm
         }
 
         /// <summary>
+        /// Returns first 5000 entities using the Query Expression
+        /// </summary>
+        /// <typeparam name="T">Type of Entity List to return</typeparam>
+        /// <param name="service">The service.</param>
+        /// <param name="qe">Query Expression to Execute.</param>
+        /// <returns></returns>
+        public static List<T> GetEntities<T>(this IOrganizationService service, TypedQueryExpression<T> qe) where T : Entity
+        {
+            return service.RetrieveMultiple(qe).ToEntityList<T>();
+        }
+
+        /// <summary>
         /// Gets the first entity that matches the query expression.  An exception is thrown if none are found.
         /// </summary>
         /// <typeparam name="T">The Entity Type.</typeparam>
@@ -1084,6 +1136,20 @@ namespace DLaB.Xrm
         /// <param name="qe">The query expression.</param>
         /// <returns></returns>
         public static T GetFirst<T>(this IOrganizationService service, QueryExpression qe) where T : Entity
+        {
+            var entity = service.GetFirstOrDefault<T>(qe);
+            AssertExists(entity, qe);
+            return entity;
+        }
+
+        /// <summary>
+        /// Gets the first entity that matches the query expression.  An exception is thrown if none are found.
+        /// </summary>
+        /// <typeparam name="T">The Entity Type.</typeparam>
+        /// <param name="service">The service.</param>
+        /// <param name="qe">The query expression.</param>
+        /// <returns></returns>
+        public static T GetFirst<T>(this IOrganizationService service, TypedQueryExpression<T> qe) where T : Entity
         {
             var entity = service.GetFirstOrDefault<T>(qe);
             AssertExists(entity, qe);
@@ -1136,6 +1202,18 @@ namespace DLaB.Xrm
         {
             qe.First();
             return service.GetEntities<T>(qe).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Gets the first entity that matches the query expression.  Null is returned if none are found.
+        /// </summary>
+        /// <typeparam name="T">The Entity Type.</typeparam>
+        /// <param name="service">The service.</param>
+        /// <param name="qe">The query expression.</param>
+        /// <returns></returns>
+        public static T GetFirstOrDefault<T>(this IOrganizationService service, TypedQueryExpression<T> qe) where T : Entity
+        {
+            return service.GetFirstOrDefault<T>(qe.Query);
         }
 
         /// <summary>
@@ -1572,10 +1650,11 @@ namespace DLaB.Xrm
             return qe;
         }
 
-        public static void First(this QueryExpression query)
+        public static QueryExpression First(this QueryExpression query)
         {
             query.PageInfo.Count = 1;
             query.PageInfo.PageNumber = 1;
+            return query;
         }
 
         public static QueryExpression StateIs(this QueryExpression qe, object entityStateEnum)
@@ -1628,27 +1707,6 @@ namespace DLaB.Xrm
             var serializer = new NetDataContractSerializer();
             var entity = ((Entity)(serializer.ReadObject(new MemoryStream(Encoding.UTF8.GetBytes(xml)))));
             return entity;
-        }
-
-        /// <summary>
-        /// Deserializes the json.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="text">The text.</param>
-        /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException">text</exception>
-        public static T DeserializeJson<T>(this string text)
-        {
-            if (text == null)
-            {
-                throw new ArgumentNullException("text");
-            }
-
-            using (var reader = new MemoryStream(Encoding.Default.GetBytes(text)))
-            {
-                var serializer = new DataContractJsonSerializer(typeof(T));
-                return (T)serializer.ReadObject(reader);
-            }
         }
 
         #endregion // String

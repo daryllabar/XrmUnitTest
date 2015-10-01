@@ -84,7 +84,7 @@ namespace DLaB.Xrm
         /// <param name="columnNameAndValuePairs">List of pairs that look like this:
         /// (string name of the column, value of the column) ie. "name","John Doe" goes to entity.name = "John Doe"</param>
         /// <returns></returns>
-        public static QueryExpression Create<T>(params object[] columnNameAndValuePairs) where T : Entity
+        public static TypedQueryExpression<T> Create<T>(params object[] columnNameAndValuePairs) where T : Entity
         {
             return Create(new QuerySettings<T>(), columnNameAndValuePairs);
         }
@@ -97,7 +97,7 @@ namespace DLaB.Xrm
         /// <param name="columnNameAndValuePairs">List of pairs that look like this:
         /// (string name of the column, value of the column) ie. "name","John Doe" goes to entity.name = "John Doe"</param>
         /// <returns></returns>
-        public static QueryExpression Create<T>(ColumnSet columnSet, params object[] columnNameAndValuePairs) where T : Entity
+        public static TypedQueryExpression<T> Create<T>(ColumnSet columnSet, params object[] columnNameAndValuePairs) where T : Entity
         {
             return Create(new QuerySettings<T> { Columns = columnSet }, columnNameAndValuePairs);
         }
@@ -111,7 +111,7 @@ namespace DLaB.Xrm
         /// <param name="columnNameAndValuePairs">List of pairs that look like this:
         /// (string name of the column, value of the column) ie. "name","John Doe" goes to entity.name = "John Doe"</param>
         /// <returns></returns>
-        public static QueryExpression Create<T>(Expression<Func<T, object>> anonymousTypeInitializer, 
+        public static TypedQueryExpression<T> Create<T>(Expression<Func<T, object>> anonymousTypeInitializer, 
                 params object[] columnNameAndValuePairs) 
             where T : Entity
         {
@@ -128,7 +128,7 @@ namespace DLaB.Xrm
         /// <param name="columnNameAndValuePairs">List of pairs that look like this:
         /// (string name of the column, value of the column) ie. "name","John Doe" goes to entity.name = "John Doe"</param>
         /// <returns></returns>
-        public static QueryExpression Create<T>(ColumnSet columnSet, bool first,
+        public static TypedQueryExpression<T> Create<T>(ColumnSet columnSet, bool first,
                 params object[] columnNameAndValuePairs) where T : Entity
         {
             return Create(new QuerySettings<T> { Columns = columnSet, First = first }, columnNameAndValuePairs);
@@ -144,7 +144,7 @@ namespace DLaB.Xrm
         /// <param name="columnNameAndValuePairs">List of pairs that look like this:
         /// (string name of the column, value of the column) ie. "name","John Doe" goes to entity.name = "John Doe"</param>
         /// <returns></returns>
-        public static QueryExpression Create<T>(Expression<Func<T, object>> anonymousTypeInitializer, bool first,
+        public static TypedQueryExpression<T> Create<T>(Expression<Func<T, object>> anonymousTypeInitializer, bool first,
                 params object[] columnNameAndValuePairs)
             where T : Entity
         {
@@ -152,7 +152,7 @@ namespace DLaB.Xrm
             return Create<T>(columnSet, first, columnNameAndValuePairs);
         }
 
-        public static QueryExpression Create<T>(QuerySettings<T> settings,
+        public static TypedQueryExpression<T>Create<T>(QuerySettings<T> settings,
             params object[] columnNameAndValuePairs) where T : Entity
         {
             var qe = Create(settings);
@@ -171,7 +171,7 @@ namespace DLaB.Xrm
         /// <param name="columnNameAndValuePairs">List of pairs that look like this:
         /// (string name of the column, value of the column) ie. "name","John Doe" goes to entity.name = "John Doe"</param>
         /// <returns></returns>
-        public static QueryExpression Create<T>(bool activeOnly, Expression<Func<T, object>> anonymousTypeInitializer,
+        public static TypedQueryExpression<T> Create<T>(bool activeOnly, Expression<Func<T, object>> anonymousTypeInitializer,
                 bool first, params object[] columnNameAndValuePairs)
             where T : Entity
         {
@@ -189,7 +189,7 @@ namespace DLaB.Xrm
         /// <param name="columnNameAndValuePairs">List of pairs that look like this:
         /// (string name of the column, value of the column) ie. "name","John Doe" goes to entity.name = "John Doe"</param>
         /// <returns></returns>
-        public static QueryExpression Create<T>(bool activeOnly, ColumnSet columnSet, bool first,
+        public static TypedQueryExpression<T> Create<T>(bool activeOnly, ColumnSet columnSet, bool first,
                 params object[] columnNameAndValuePairs) where T : Entity
         {
             var qe = Create(new QuerySettings<T>
@@ -202,14 +202,14 @@ namespace DLaB.Xrm
             return qe;
         }
 
-        public static QueryExpression Create<T>(QuerySettings<T> settings) where T : Entity
+        public static TypedQueryExpression<T> Create<T>(QuerySettings<T> settings) where T : Entity
         {
-            var qe = new QueryExpression
+            var qe = new TypedQueryExpression<T>(new QueryExpression
             {
                 EntityName = settings.LogicalName ?? EntityHelper.GetEntityLogicalName<T>(),
                 ColumnSet = settings.Columns,
                 Criteria = {FilterOperator = settings.CriteriaOperator},
-            };
+            });
 
             if (settings.First)
             {
@@ -221,14 +221,14 @@ namespace DLaB.Xrm
                 // Late Bound Entity
                 if (settings.ActiveOnly)
                 {
-                    qe.ActiveOnly(settings.LogicalName);
+                    qe.Query.ActiveOnly(settings.LogicalName);
                 }
             }
             else
             {
                 if (settings.ActiveOnly)
                 {
-                    qe.ActiveOnly<T>();
+                    qe.ActiveOnly();
                 }
             }
 
@@ -366,7 +366,7 @@ namespace DLaB.Xrm
         /// <typeparam name="T"></typeparam>
         /// <param name="columnName">The name of the column to perform the in against.</param>
         /// <param name="values">The list of values to search for being in the column name.</param>
-        public static QueryExpression CreateIn<T>(string columnName, IEnumerable values) where T : Entity
+        public static TypedQueryExpression<T> CreateIn<T>(string columnName, IEnumerable values) where T : Entity
         {
             return CreateIn(new QuerySettings<T>(), columnName, values);
         }
@@ -377,7 +377,7 @@ namespace DLaB.Xrm
         /// <typeparam name="T"></typeparam>
         /// <param name="columnName">The name of the column to perform the in against.</param>
         /// <param name="values">The list of values to search for being in the column name.</param>
-        public static QueryExpression CreateIn<T>(string columnName, params object[] values) where T : Entity
+        public static TypedQueryExpression<T> CreateIn<T>(string columnName, params object[] values) where T : Entity
         {
             return CreateIn(new QuerySettings<T>(), columnName, values);
         }
@@ -390,7 +390,7 @@ namespace DLaB.Xrm
         /// type are the column names to add.</param>
         /// <param name="columnName">The name of the column to perform the in against.</param>
         /// <param name="values">The list of values to search for being in the column name.</param>
-        public static QueryExpression CreateIn<T>(Expression<Func<T, object>> anonymousTypeInitializer,
+        public static TypedQueryExpression<T> CreateIn<T>(Expression<Func<T, object>> anonymousTypeInitializer,
                 string columnName, IEnumerable values)
             where T : Entity
         {
@@ -405,7 +405,7 @@ namespace DLaB.Xrm
         /// <param name="columnSet">Columns to retrieve.</param>
         /// <param name="columnName">The name of the column to perform the in against.</param>
         /// <param name="values">The list of values to search for being in the column name.</param>
-        public static QueryExpression CreateIn<T>(ColumnSet columnSet, string columnName, IEnumerable values) where T : Entity
+        public static TypedQueryExpression<T> CreateIn<T>(ColumnSet columnSet, string columnName, IEnumerable values) where T : Entity
         {
             return CreateIn(new QuerySettings<T> { Columns = columnSet }, columnName, values);
         }
@@ -418,7 +418,7 @@ namespace DLaB.Xrm
         /// type are the column names to add.</param>
         /// <param name="columnName">The name of the column to perform the in against.</param>
         /// <param name="values">The list of values to search for being in the column name.</param>
-        public static QueryExpression CreateIn<T>(Expression<Func<T, object>> anonymousTypeInitializer,
+        public static TypedQueryExpression<T> CreateIn<T>(Expression<Func<T, object>> anonymousTypeInitializer,
                 string columnName, params object[] values)
             where T : Entity
         {
@@ -433,7 +433,7 @@ namespace DLaB.Xrm
         /// <param name="columnSet">Columns to retrieve.</param>
         /// <param name="columnName">The name of the column to perform the in against.</param>
         /// <param name="values">The list of values to search for being in the column name.</param>
-        public static QueryExpression CreateIn<T>(ColumnSet columnSet, string columnName, params object[] values) where T : Entity
+        public static TypedQueryExpression<T> CreateIn<T>(ColumnSet columnSet, string columnName, params object[] values) where T : Entity
         {
             return CreateIn(new QuerySettings<T> { Columns = columnSet }, columnName, values);
         }
@@ -447,7 +447,7 @@ namespace DLaB.Xrm
         /// <param name="first">Used to specificy that only one entity should be returned.</param>
         /// <param name="columnName">The name of the column to perform the in against.</param>
         /// <param name="values">The list of values to search for being in the column name.</param>
-        public static QueryExpression CreateIn<T>(Expression<Func<T, object>> anonymousTypeInitializer, bool first,
+        public static TypedQueryExpression<T> CreateIn<T>(Expression<Func<T, object>> anonymousTypeInitializer, bool first,
                 string columnName, IEnumerable values)
             where T : Entity
         {
@@ -463,7 +463,7 @@ namespace DLaB.Xrm
         /// <param name="first">Used to specificy that only one entity should be returned.</param>
         /// <param name="columnName">The name of the column to perform the in against.</param>
         /// <param name="values">The list of values to search for being in the column name.</param>
-        public static QueryExpression CreateIn<T>(ColumnSet columnSet, bool first, string columnName, IEnumerable values) where T : Entity
+        public static TypedQueryExpression<T> CreateIn<T>(ColumnSet columnSet, bool first, string columnName, IEnumerable values) where T : Entity
         {
             return CreateIn(new QuerySettings<T> { Columns = columnSet, First = first }, columnName, values);
         }
@@ -477,7 +477,7 @@ namespace DLaB.Xrm
         /// <param name="first">Used to specificy that only one entity should be returned.</param>
         /// <param name="columnName">The name of the column to perform the in against.</param>
         /// <param name="values">The list of values to search for being in the column name.</param>
-        public static QueryExpression CreateIn<T>(Expression<Func<T, object>> anonymousTypeInitializer, bool first,
+        public static TypedQueryExpression<T> CreateIn<T>(Expression<Func<T, object>> anonymousTypeInitializer, bool first,
                 string columnName, params object[] values)
             where T : Entity
         {
@@ -493,7 +493,7 @@ namespace DLaB.Xrm
         /// <param name="first">Used to specificy that only one entity should be returned.</param>
         /// <param name="columnName">The name of the column to perform the in against.</param>
         /// <param name="values">The list of values to search for being in the column name.</param>
-        public static QueryExpression CreateIn<T>(ColumnSet columnSet, bool first, string columnName, 
+        public static TypedQueryExpression<T> CreateIn<T>(ColumnSet columnSet, bool first, string columnName, 
                 params object[] values) 
             where T : Entity
         {
@@ -507,7 +507,7 @@ namespace DLaB.Xrm
         /// <param name="settings">The query settings used to Create the QueryExpression.</param>
         /// <param name="columnName">The name of the column to perform the in against.</param>
         /// <param name="values">The list of values to search for being in the column name.</param>
-        public static QueryExpression CreateIn<T>(QuerySettings<T> settings, string columnName, params object[] values) where T : Entity
+        public static TypedQueryExpression<T> CreateIn<T>(QuerySettings<T> settings, string columnName, params object[] values) where T : Entity
         {
             var qe = Create(settings);
             qe.WhereIn(columnName, values);
@@ -524,7 +524,7 @@ namespace DLaB.Xrm
         /// <param name="activeOnly">Specifies if only Active Records should be returned.</param>
         /// <param name="columnName">The name of the column to perform the in against.</param>
         /// <param name="values">The list of values to search for being in the column name.</param>
-        public static QueryExpression CreateIn<T>(bool activeOnly, Expression<Func<T, object>> anonymousTypeInitializer,
+        public static TypedQueryExpression<T> CreateIn<T>(bool activeOnly, Expression<Func<T, object>> anonymousTypeInitializer,
                 bool first, string columnName, IEnumerable values)
             where T : Entity
         {
@@ -541,7 +541,7 @@ namespace DLaB.Xrm
         /// <param name="activeOnly">Specifies if only Active Records should be returned.</param>
         /// <param name="columnName">The name of the column to perform the in against.</param>
         /// <param name="values">The list of values to search for being in the column name.</param>
-        public static QueryExpression CreateIn<T>(bool activeOnly, ColumnSet columnSet, bool first, string columnName, IEnumerable values) where T : Entity
+        public static TypedQueryExpression<T> CreateIn<T>(bool activeOnly, ColumnSet columnSet, bool first, string columnName, IEnumerable values) where T : Entity
         {
             var qe = Create(new QuerySettings<T>
             {
@@ -563,7 +563,7 @@ namespace DLaB.Xrm
         /// <param name="activeOnly">Specifies if only Active Records should be returned.</param>
         /// <param name="columnName">The name of the column to perform the in against.</param>
         /// <param name="values">The list of values to search for being in the column name.</param>
-        public static QueryExpression CreateIn<T>(bool activeOnly, Expression<Func<T, object>> anonymousTypeInitializer,
+        public static TypedQueryExpression<T> CreateIn<T>(bool activeOnly, Expression<Func<T, object>> anonymousTypeInitializer,
                 bool first, string columnName, params object[] values)
             where T : Entity
         {
@@ -580,7 +580,7 @@ namespace DLaB.Xrm
         /// <param name="activeOnly">Specifies if only Active Records should be returned.</param>
         /// <param name="columnName">The name of the column to perform the in against.</param>
         /// <param name="values">The list of values to search for being in the column name.</param>
-        public static QueryExpression CreateIn<T>(bool activeOnly, ColumnSet columnSet, bool first, string columnName, params object[] values) where T : Entity
+        public static TypedQueryExpression<T> CreateIn<T>(bool activeOnly, ColumnSet columnSet, bool first, string columnName, params object[] values) where T : Entity
         {
             var qe = Create(new QuerySettings<T>
             { 
