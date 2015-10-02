@@ -349,5 +349,36 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var id = service.Create(new Lead {Address1_City = String.Empty});
             Assert.IsFalse(service.GetEntity<Lead>(id).Attributes.ContainsKey(Lead.Fields.Address1_City));
         }
+
+        [TestMethod]
+        public void LocalCrmTests_FormattedValuePopulated()
+        {
+            var service = GetService();
+            var id = service.Create(new Lead { BudgetStatusEnum = budgetstatus.CanBuy });
+
+            // Retrieve
+            var entity = service.GetEntity<Lead>(id);
+            Assert.AreEqual(budgetstatus.CanBuy.ToString(), entity.GetFormattedAttributeValueOrNull(Lead.Fields.BudgetStatus));
+
+            // RetrieveMultiple
+            entity = service.GetEntitiesById<Lead>(id).Single();
+            Assert.AreEqual(budgetstatus.CanBuy.ToString(), entity.GetFormattedAttributeValueOrNull(Lead.Fields.BudgetStatus));
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_AliasedFormattedValuePopulated()
+        {
+            var service = GetService();
+            var id = service.Create(new Lead { BudgetStatusEnum = budgetstatus.MayBuy });
+            service.Create(new Account {OriginatingLeadId = new EntityReference(Lead.EntityLogicalName, id)});
+
+            var qe = QueryExpressionFactory.Create<Account>();
+            qe.AddLink<Lead>(Account.Fields.OriginatingLeadId, Lead.Fields.LeadId, l => new {l.BudgetStatus});
+
+            // Retrieve
+            var entity = service.GetFirst(qe);
+            Assert.AreEqual(budgetstatus.MayBuy.ToString(), entity.GetFormattedAttributeValueOrNull(Lead.Fields.BudgetStatus));
+            Assert.AreEqual(budgetstatus.MayBuy.ToString(), entity.GetFormattedAttributeValueOrNull(Lead.Fields.BudgetStatus));
+        }
     }
 }

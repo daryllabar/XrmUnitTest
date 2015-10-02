@@ -64,7 +64,8 @@ namespace DLaB.Xrm.Test
 
         #endregion // IOrganizationService Mocks
 
-        public bool EnableExecutionTracing { get; set; }
+        public bool ExecutionTracingEnabled => Timer != null;
+        private TestActionTimer Timer { get; }
         /// <summary>
         /// Changes calls to Execute with a RetrieveMultipleRequest to be a RetrieveMultple Call
         /// </summary>
@@ -85,7 +86,20 @@ namespace DLaB.Xrm.Test
         public FakeIOrganizationService(IOrganizationService service)
             : base(service)
         {
-            EnableExecutionTracing = false;
+            var fake = service as FakeIOrganizationService;
+
+            if (fake != null)
+            {
+                Timer = fake.Timer;
+            }
+
+            RedirectExecuteRequestsToOrganizationServiceRequest = true;
+        }
+
+        public FakeIOrganizationService(IOrganizationService service, ITestLogger logger)
+    : base(service)
+        {
+            Timer = new TestActionTimer(logger);
             RedirectExecuteRequestsToOrganizationServiceRequest = true;
         }
 
@@ -122,9 +136,9 @@ namespace DLaB.Xrm.Test
             }
             else
             {
-                if (EnableExecutionTracing)
+                if (ExecutionTracingEnabled)
                 {
-                    DebugLog.Time(AssociateInternal, new Tuple<string, Guid, Relationship, EntityReferenceCollection>(entityName, entityId, relationship, relatedEntities),
+                    Timer.Time(AssociateInternal, new Tuple<string, Guid, Relationship, EntityReferenceCollection>(entityName, entityId, relationship, relatedEntities),
                         "Associate {0}:{1} using relationship {2} to releated Entities {3}: {4}",
                         entityName, entityId, relationship, String.Join(", ", relatedEntities.Select(e => e.GetNameId())));
                 }
@@ -164,7 +178,7 @@ namespace DLaB.Xrm.Test
             }
             else
             {
-                id = EnableExecutionTracing ? DebugLog.Time(CreateInternal, entity, "Create {0}: {1}", entity.GetNameId()) : Service.Create(entity);
+                id = ExecutionTracingEnabled ? Timer.Time(CreateInternal, entity, "Create {0}: {1}", entity.GetNameId()) : Service.Create(entity);
             }
             return id;
         }
@@ -196,9 +210,9 @@ namespace DLaB.Xrm.Test
             }
             else
             {
-                if (EnableExecutionTracing)
+                if (ExecutionTracingEnabled)
                 {
-                    DebugLog.Time(DeleteInternal, new Tuple<string, Guid>(entityName, id), "Delete {0}({1}): {2}", entityName, id);
+                    Timer.Time(DeleteInternal, new Tuple<string, Guid>(entityName, id), "Delete {0}({1}): {2}", entityName, id);
                 }
                 else
                 {
@@ -235,9 +249,9 @@ namespace DLaB.Xrm.Test
             }
             else
             {
-                if (EnableExecutionTracing)
+                if (ExecutionTracingEnabled)
                 {
-                    DebugLog.Time(DisassociateInternal, new Tuple<string, Guid, Relationship, EntityReferenceCollection>(entityName, entityId, relationship, relatedEntities),
+                    Timer.Time(DisassociateInternal, new Tuple<string, Guid, Relationship, EntityReferenceCollection>(entityName, entityId, relationship, relatedEntities),
                         "Disassociate {0}:{1} using relationship {2} to releated Entities {3}: {4}",
                         entityName, entityId, relationship, String.Join(", ", relatedEntities.Select(e => e.GetNameId())));
                 }
@@ -287,7 +301,7 @@ namespace DLaB.Xrm.Test
             }
             else
             {
-                response = EnableExecutionTracing ? DebugLog.Time(ExecuteInternal, request, "Execute {0}: {1}", request.RequestName) : Service.Execute(request);
+                response = ExecutionTracingEnabled ? Timer.Time(ExecuteInternal, request, "Execute {0}: {1}", request.RequestName) : Service.Execute(request);
             }
             return response;
         }
@@ -381,7 +395,7 @@ namespace DLaB.Xrm.Test
             }
             else
             {
-                entity = EnableExecutionTracing ? DebugLog.Time(RetrieveInternal, new Tuple<string, Guid, ColumnSet>(entityName, id, columnSet), "Retrieve {0}({1}): {2}", entityName, id) : Service.Retrieve(entityName, id, columnSet);
+                entity = ExecutionTracingEnabled ? Timer.Time(RetrieveInternal, new Tuple<string, Guid, ColumnSet>(entityName, id, columnSet), "Retrieve {0}({1}): {2}", entityName, id) : Service.Retrieve(entityName, id, columnSet);
             }
             return entity;
         }
@@ -414,11 +428,11 @@ namespace DLaB.Xrm.Test
             }
             else
             {
-                if (EnableExecutionTracing)
+                if (ExecutionTracingEnabled)
                 {
                     var qe = query as QueryExpression;
 
-                    entities = qe == null ? DebugLog.Time(RetrieveMultipleInternal, query, "RetrieveMultiple {0}: {1}", query) : DebugLog.Time(RetrieveMultipleInternal, query, "RetrieveMultiple: {2}{0}{1}", Environment.NewLine, qe.GetSqlStatement());
+                    entities = qe == null ? Timer.Time(RetrieveMultipleInternal, query, "RetrieveMultiple {0}: {1}", query) : Timer.Time(RetrieveMultipleInternal, query, "RetrieveMultiple: {2}{0}{1}", Environment.NewLine, qe.GetSqlStatement());
                 }
                 else
                 {
@@ -455,9 +469,9 @@ namespace DLaB.Xrm.Test
             }
             else
             {
-                if (EnableExecutionTracing)
+                if (ExecutionTracingEnabled)
                 {
-                    DebugLog.Time(UpdateInternal, entity, "Update Entity {0}: {1}", entity.GetNameId());
+                    Timer.Time(UpdateInternal, entity, "Update Entity {0}: {1}", entity.GetNameId());
                 }
                 else
                 {

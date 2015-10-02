@@ -3,8 +3,15 @@ using System.Diagnostics;
 
 namespace DLaB.Xrm.Test
 {
-    public class DebugLog
+    public class TestActionTimer
     {
+        public ITestLogger Logger { get; }
+
+        public TestActionTimer(ITestLogger logger)
+        {
+            Logger = logger;
+        }
+
         /// <summary>
         /// Times the given action, and writes the message with the elapsed milliseconds to the trace listeners in
         /// the System.Diagnostics.Debug.Listeners collection.
@@ -12,7 +19,7 @@ namespace DLaB.Xrm.Test
         /// <param name="actionToTime"></param>
         /// <param name="actionDescription"></param>
         [DebuggerHidden]
-        public static void Time(Action actionToTime, String actionDescription)
+        public void Time(Action actionToTime, String actionDescription)
         {
             var watch = new Stopwatch();
             watch.Start();
@@ -22,13 +29,13 @@ namespace DLaB.Xrm.Test
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Error attempting to " + actionDescription + Environment.NewLine + Environment.NewLine + ex);
+                Logger.WriteLine("Error attempting to " + actionDescription + Environment.NewLine + Environment.NewLine + ex);
                 throw;
             }
             finally
             {
                 watch.Stop();
-                Debug.WriteLine("Time to " + actionDescription + watch.ElapsedMilliseconds);
+                Logger.WriteLine("Time to " + actionDescription + watch.ElapsedMilliseconds);
             }
         }
 
@@ -40,7 +47,7 @@ namespace DLaB.Xrm.Test
         /// <param name="actionDescriptionFormat"></param>
         /// <param name="values">Used for a String.Format.  The ElapsedMilliseconds will be added to the end of the array</param>
         [DebuggerHidden]
-        public static void Time(Action actionToTime, String actionDescriptionFormat, params object[] values)
+        public void Time(Action actionToTime, String actionDescriptionFormat, params object[] values)
         {
             Array.Resize(ref values, values.Length + 1);
             var watch = new Stopwatch();
@@ -51,14 +58,14 @@ namespace DLaB.Xrm.Test
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Error attempting to " + actionDescriptionFormat + Environment.NewLine + Environment.NewLine + ex, values);
+                Logger.WriteLine("Error attempting to " + actionDescriptionFormat + Environment.NewLine + Environment.NewLine + ex, values);
                 throw;
             }
             finally
             {
                 watch.Stop();
                 values[values.Length - 1] = watch.ElapsedMilliseconds;
-                Debug.WriteLine("Time to " + actionDescriptionFormat, values);
+                Logger.WriteLine("Time to " + actionDescriptionFormat, values);
             }
         }
 
@@ -72,7 +79,7 @@ namespace DLaB.Xrm.Test
         /// <param name="actionDescriptionFormat"></param>
         /// <param name="values">Used for a String.Format.  The ElapsedMilliseconds will be added to the end of the array</param>
         [DebuggerHidden]
-        public static TResult Time<TInput, TResult>(Func<TInput, TResult> actionToTime, TInput entity, String actionDescriptionFormat, params object[] values)
+        public TResult Time<TInput, TResult>(Func<TInput, TResult> actionToTime, TInput entity, String actionDescriptionFormat, params object[] values)
         {
             Array.Resize(ref values, values.Length + 1);
             var watch = new Stopwatch();
@@ -83,14 +90,14 @@ namespace DLaB.Xrm.Test
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Error attempting to " + actionDescriptionFormat + Environment.NewLine + Environment.NewLine + ex, values);
+                Logger.WriteLine("Error attempting to " + actionDescriptionFormat + Environment.NewLine + Environment.NewLine + ex, values);
                 throw;
             }
             finally
             {
                 watch.Stop();
                 values[values.Length - 1] = watch.ElapsedMilliseconds;
-                Debug.WriteLine("Time to " + actionDescriptionFormat, values);
+                Logger.WriteLine("Time to " + actionDescriptionFormat, values);
             }
         }
     }

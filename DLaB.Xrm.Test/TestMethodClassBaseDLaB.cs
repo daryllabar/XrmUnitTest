@@ -12,6 +12,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.Test
 {
+    // ReSharper disable once InconsistentNaming
     public abstract class TestMethodClassBaseDLaB
     {
         public struct CrmErrorCodes
@@ -32,6 +33,8 @@ namespace DLaB.Xrm.Test
         public bool MultiThreadPostDeletion { get; set; }
 
         protected AssertCrm AssertCrm { get; set; }
+
+        private ITestLogger Logger { get; set; }
 
         protected TestMethodClassBaseDLaB()
         {
@@ -363,40 +366,39 @@ namespace DLaB.Xrm.Test
         private IClientSideOrganizationService Service { get; set; }
         private IClientSideOrganizationService GetInternalOrganizationServiceProxy()
         {
-            return Service ?? (Service = (IClientSideOrganizationService)new OrganizationServiceBuilder(new FakeIOrganizationService(TestBase.GetOrganizationService())
-            {
-                EnableExecutionTracing = EnableServiceExecutionTracing
-            }).WithBusinessUnitDeleteAsDeactivate().Build());
+            return Service ?? (Service = (IClientSideOrganizationService)new OrganizationServiceBuilder(new FakeIOrganizationService(TestBase.GetOrganizationService(), Logger)).WithBusinessUnitDeleteAsDeactivate().Build());
         }
 
-        public void Test()
+        public void Test(ITestLogger logger)
         {
+            Logger = logger;
+            var timer = new TestActionTimer(logger);
             LoadConfigurationSettingsOnce(this);
             InitializeEntityIds();
             if (EntityIds != null && EntityIds.Count > 0)
             {
-                DebugLog.Time(PopulateEntityReferences, "Initialization Entity Reference (ms): ");
+                timer.Time(PopulateEntityReferences, "Initialization Entity Reference (ms): ");
             }
             using (var internalService = GetInternalOrganizationServiceProxy())
             {
                 // ReSharper disable once AccessToDisposedClosure
-                DebugLog.Time(() => CleanupTestData(internalService, false), "Cleanup PreTestData (ms): ");
+                timer.Time(() => CleanupTestData(internalService, false), "Cleanup PreTestData (ms): ");
 
                 try
                 {
                     // ReSharper disable once AccessToDisposedClosure
-                    DebugLog.Time(() => ValidateAssumptions(internalService), "Validate Assumptions (ms): ");
+                    timer.Time(() => ValidateAssumptions(internalService), "Validate Assumptions (ms): ");
 
                     var service = GetIOrganizationService();
                     AssertCrm = new AssertCrm(service);
 
-                    DebugLog.Time(() => InitializeTestData(service), "Initialize TestData (ms): ");
-                    DebugLog.Time(() => Test(service), "Run Test (ms): ");
+                    timer.Time(() => InitializeTestData(service), "Initialize TestData (ms): ");
+                    timer.Time(() => Test(service), "Run Test (ms): ");
                 }
                 finally
                 {
                     // ReSharper disable once AccessToDisposedClosure
-                    DebugLog.Time(() => CleanupTestData(internalService, true), "Cleanup PostTestData (ms): ");
+                    timer.Time(() => CleanupTestData(internalService, true), "Cleanup PostTestData (ms): ");
                 }
             }
         }

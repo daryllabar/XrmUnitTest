@@ -401,6 +401,7 @@ namespace DLaB.Xrm.LocalCrm
             }
 
             service.RemoveFieldsCrmDoesNotReturn(entity);
+            PopulateFormattedValues<T>(entity);
             return entity;
         }
 
@@ -451,6 +452,7 @@ namespace DLaB.Xrm.LocalCrm
             foreach (var entity in entities)
             {
                 service.RemoveFieldsCrmDoesNotReturn(entity);
+                PopulateFormattedValues<T>(entity);
             }
 
             var result = new EntityCollection();
@@ -492,6 +494,39 @@ namespace DLaB.Xrm.LocalCrm
                 // Return a Condition Expression that has the correct name for looking up the attribute later...
                 yield return new ConditionExpression(link.EntityAlias ?? link.LinkToEntityName + "." + condition.AttributeName, condition.Operator, condition.Values);
             }
+        }
+
+        private static void PopulateFormattedValues<T>(Entity entity ) where T : Entity
+        {
+            // TODO: Handle Names?
+            if(!entity.Attributes.Values.Any(v => v is OptionSetValue || (v as AliasedValue)?.Value is OptionSetValue))
+            {
+                return;
+            }
+            var type = typeof (T);
+            var properties = type.GetProperties().ToDictionary(p => p.Name.ToLower());
+            foreach (var osvAttribute in entity.Attributes.Where(a => a.Value is OptionSetValue || (a.Value as AliasedValue)?.Value is OptionSetValue))
+            {
+                PropertyInfo property;
+                if (!properties.TryGetValue(osvAttribute.Key + "enum", out property))
+                {
+                    var aliased = osvAttribute.Value as AliasedValue;
+                    if (aliased == null)
+                    {
+                        continue;
+                    }
+                    // Handle Aliased Value
+                    var aliasedDictionary = EntityHelper.GetType(type.Assembly, type.Namespace, aliased.EntityLogicalName).GetProperties().ToDictionary(p => p.Name.ToLower());
+                    if (!aliasedDictionary.TryGetValue(aliased.AttributeLogicalName + "enum", out property))
+                    {
+                        continue;
+                    }
+                    entity.FormattedValues.Add(osvAttribute.Key, Enum.ToObject(property.PropertyType.GenericTypeArguments[0], ((OptionSetValue)aliased.Value).Value).ToString());
+                    continue;
+                }
+                entity.FormattedValues.Add(osvAttribute.Key, property.GetValue(entity).ToString());
+            }
+
         }
 
         private static IQueryable<T> ApplyFilter<T>(IQueryable<T> query, FilterExpression filter) where T : Entity

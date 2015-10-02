@@ -55,6 +55,7 @@
     <Compile Include="Assumptions\MultipleEntityDataAssumptionBaseAttribute.cs" />
     <Compile Include="Builders\IEntityBuilder.cs" />
     <Compile Include="Exceptions\NotConfiguredException.cs" />
+    <Compile Include="ITestLogger.cs" />
     <Compile Include="PatherFinderProjectOfType.cs" />
     <Compile Include="PathFinderAbsolute.cs" />
     <Compile Include="AssertCrm.cs" />
@@ -68,7 +69,7 @@
     <Compile Include="Builders\PluginExecutionContextBuilder.cs" />
     <Compile Include="Builders\ServiceProviderBuilder.cs" />
     <Compile Include="Builders\WorkflowInvokerBuilder.cs" />
-    <Compile Include="DebugLog.cs" />
+    <Compile Include="TestActionTimer.cs" />
     <Compile Include="EntityDependency.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FakeExecutionContext.cs" />
