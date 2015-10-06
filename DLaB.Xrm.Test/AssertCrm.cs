@@ -1,8 +1,8 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using System.Diagnostics;
+using static System.String;
 
 namespace DLaB.Xrm.Test
 {
@@ -467,29 +467,20 @@ namespace DLaB.Xrm.Test
         [DebuggerHidden]
         private static void HandleFail(string assertName, string message, params object[] parameters )
         {
-            message = message ?? String.Empty;
-            if (parameters == null)
-            {
-                throw new AssertFailedException(String.Format("{0} failed. {1}", assertName, message));
-            }
-            else
-            {
-                throw new AssertFailedException(String.Format("{0} failed. {1}", assertName, String.Format(message, parameters)));
-            }
+            message = message ?? Empty;
+           
+            message = $"{assertName} failed. " + (parameters == null ? message : Format(message, parameters));
+
+            throw TestSettings.TestFrameworkProvider.Value.GetFailedException(message);
         }
 
         [DebuggerHidden]
         private static void HandleInconclusive(string assertName, string message, params object[] parameters )
         {
-            message = message ?? String.Empty;
-            if (parameters == null)
-            {
-                throw new AssertInconclusiveException(String.Format("{0} is inconclusive. {1}", assertName, message));
-            }
-            else
-            {
-                throw new AssertInconclusiveException(String.Format("{0} is inconclusive. {1}", assertName, String.Format(message, parameters)));
-            }
+            message = message ?? Empty;
+            message = $"{assertName} is inconclusive. " + (parameters == null ? message : Format(message, parameters));
+
+            throw TestSettings.TestFrameworkProvider.Value.GetInconclusiveException(message);
         }
 
         #endregion // Handle

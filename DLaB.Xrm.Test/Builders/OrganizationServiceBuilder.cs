@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -8,7 +9,6 @@ using DLaB.Common;
 using DLaB.Xrm.Client;
 using DLaB.Xrm.Entities;
 using Microsoft.Crm.Sdk.Messages;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
@@ -110,12 +110,18 @@ namespace DLaB.Xrm.Test.Builders
 
         public TDerived AssertIdNonEmptyOnCreate()
         {
-            CreateFuncs.Add((s, e) =>
-            {
-                Assert.AreNotEqual(Guid.Empty, e.Id, "An attempt was made to create an entity of type " + e.LogicalName + " without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate.");
-                return s.Create(e);
-            });
+            CreateFuncs.Add(AssertIdNonEmptyOnCreate);
             return This;
+        }
+
+        [DebuggerHidden]
+        private static Guid AssertIdNonEmptyOnCreate(IOrganizationService service, Entity entity)
+        {
+            if (entity.Id == Guid.Empty)
+            {
+                throw TestSettings.TestFrameworkProvider.Value.GetFailedException($"An attempt was made to create an entity of type {entity.LogicalName} without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate.");
+            }
+            return service.Create(entity);
         }
 
         /// <summary>
@@ -124,10 +130,10 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         public TDerived IsReadOnly()
         {
-            AssociateActions.Add((s, n, i, r, c) => { Assert.Fail("An attempt was made to Associate Entities with a ReadOnly Service"); });
+            AssociateActions.Add((s, n, i, r, c) => { TestSettings.TestFrameworkProvider.AssertFail("An attempt was made to Associate Entities with a ReadOnly Service"); });
             WithNoCreates();
-            DeleteActions.Add((s, n, i) => { Assert.Fail("An attempt was made to Delete a(n) {0} Entity with id {1}, using a ReadOnly Service", n, i); });
-            DisassociateActions.Add((s, n, i, r, c) => { Assert.Fail("An attempt was made to Disassociate Entities with a ReadOnly Service"); });
+            DeleteActions.Add((s, n, i) => { TestSettings.TestFrameworkProvider.AssertFail($"An attempt was made to Delete a(n) {n} Entity with id {i}, using a ReadOnly Service"); });
+            DisassociateActions.Add((s, n, i, r, c) => { TestSettings.TestFrameworkProvider.AssertFail("An attempt was made to Disassociate Entities with a ReadOnly Service"); });
             ExecuteFuncs.Add((s, r) =>
             {
                 var nonReadOnlyStartsWithNames = new List<string>
@@ -153,10 +159,9 @@ namespace DLaB.Xrm.Test.Builders
                     return s.Execute(r);
                 }
 
-                Assert.Fail("An attempt was made to Execute Request {0} with a ReadOnly Service", r.RequestName);
-                throw new Exception("Not Possible But Required For Compiling");
+                throw TestSettings.TestFrameworkProvider.Value.GetFailedException($"An attempt was made to Execute Request {r.RequestName} with a ReadOnly Service");
             });
-            UpdateActions.Add((s, e) => { Assert.Fail("An attempt was made to Update a(n) {0} Entity with id {1}, using a ReadOnly Service", e.LogicalName, e.Id); });
+            UpdateActions.Add((s, e) => { throw TestSettings.TestFrameworkProvider.Value.GetFailedException($"An attempt was made to Update a(n) {e.LogicalName} Entity with id {e.Id}, using a ReadOnly Service"); });
             return This;
         }
 
@@ -385,8 +390,8 @@ namespace DLaB.Xrm.Test.Builders
         {
             CreateFuncs.Add((s, e) =>
             {
-                Assert.Fail("An attempt was made to Create a(n) {0} Entity with a ReadOnly Service{1}{1}Entity Attributes:{2}", e.LogicalName, Environment.NewLine, e.ToStringAttributes());
-                throw new Exception("Not Possible But Required For Compiling");
+                TestSettings.TestFrameworkProvider.AssertFail($"An attempt was made to Create a(n) {e.LogicalName} Entity with a ReadOnly Service{Environment.NewLine + Environment.NewLine}Entity Attributes:{e.ToStringAttributes()}");
+                throw new Exception("AssertFail Failed to through an Exception");
             });
             return This;
         }

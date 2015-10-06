@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Xrm.Sdk;
@@ -19,14 +21,27 @@ namespace DLaB.Xrm.Test
         /// <summary>
         /// Gets Singleton Mapper.  This exists as a singleton if multiple unit tests are run at one time, the Entity Dependency Map structure can be resused from previous tests
         /// </summary>
-        public static EntityDependency Mapper { get { return Singleton.Value; } }
+        public static EntityDependency Mapper => Singleton.Value;
 
         #endregion // Singleton Logic
 
         #region Properties
 
-        private LinkedList<EntityDependencyInfo> Types { get; set; }
-        private Dictionary<String, EntityDependencyInfo> Infos { get; set; }
+        #region Multithreaded Management
+
+        // Some Unit Tests could be looping over the Types Collection while it is being updated, causing an exception
+        // These properties help manage threading by keeping a readonly collection that doesn't get updated in the middle of enumerating it
+
+        private readonly object _readWriteLock = new object();
+        private int CurrentVersion { get; set; }
+        private int TypesCopyVersion { get; set; }
+        private ReadOnlyCollection<string> TypesImmutableCopy { get; set; } 
+
+        #endregion Multithreaded Management
+
+        private LinkedList<EntityDependencyInfo> Types { get; }
+        private Dictionary<string, EntityDependencyInfo> Infos { get; }
+        private ConcurrentBag<string> Conflicts { get; }
 
         /// <summary>
         /// Gets the LogicalNames of Entities, in the order in which they can safely be created without causing an error caused by a relationship constraint i.e. Create entity without linked entities existing
@@ -34,7 +49,7 @@ namespace DLaB.Xrm.Test
         /// <value>
         /// The entity deletion order.
         /// </value>
-        public IEnumerable<String> EntityCreationOrder { get { return Types.Select(e => e.LogicalName); } }
+        public IEnumerable<string> EntityCreationOrder => GetEntityCreationOrder();
 
         /// <summary>
         /// Gets the LogicalNames of Entities, in the order in which they can safely be deleted without causing an error caused by a relationship constraint i.e. Delete Contact before Opprotunity.
@@ -42,32 +57,46 @@ namespace DLaB.Xrm.Test
         /// <value>
         /// The entity deletion order.
         /// </value>
-        public IEnumerable<String> EntityDeletionOrder { get { return EntityCreationOrder.Reverse(); } }
+        public IEnumerable<string> EntityDeletionOrder => EntityCreationOrder.Reverse();
 
-        public List<string> ConflictingEntityOrder { get; set; } 
+        public IEnumerable<string> ConflictingEntityOrder => Conflicts;
 
         #endregion Properties
-
 
         private EntityDependency()
         {
             Types = new LinkedList<EntityDependencyInfo>();
             Infos = new Dictionary<string, EntityDependencyInfo>();
-            ConflictingEntityOrder = new List<string>();
+            Conflicts = new ConcurrentBag<string>();
+            CurrentVersion = 0;
+            TypesCopyVersion = 0;
+            TypesImmutableCopy = new ReadOnlyCollection<string>(new List<string>());
         }
-
         /// <summary>
         /// Adds the specified logical name to the collection of entities that are mapped.  Entities are cached so no work is performed when an entity type is added a second time
         /// </summary>
         /// <param name="logicalName">Name of the logical.</param>
         public void Add(string logicalName)
         {
-            if (Infos.ContainsKey(logicalName))
+            lock (_readWriteLock)
             {
-                // Already added Id type, nothing to do.
-                return;
-            }
+                if (Infos.ContainsKey(logicalName))
+                {
+                    // Already added Id type, nothing to do.
+                    return;
+                }
 
+                CurrentVersion++;
+                SingleThreadAdd(logicalName);
+            }
+        }
+
+        /// <summary>
+        /// Runs in the Context of a lock, and therefor can contain non thread safe calls.
+        /// </summary>
+        /// <param name="logicalName">Name of the logical.</param>
+        private void SingleThreadAdd(string logicalName)
+        {
             var info = new EntityDependencyInfo(logicalName);
             Infos.Add(logicalName, info);
 
@@ -75,7 +104,7 @@ namespace DLaB.Xrm.Test
             {
                 // No values in the list or the first value depends on the new info value
                 info.Node = Types.AddFirst(info);
-                
+
                 /* Check for any Types that this new type is dependent on.
                  * Consider the Case of A -> B and B -> C
                  * A is added first, it becomes first.  C is added next, and it has no dependency on A or visa versa, so it is added last, then B is added, and it is added first, but C isn't moved
@@ -83,7 +112,10 @@ namespace DLaB.Xrm.Test
                  */
 
                 var existingDependent = Types.Skip(1).FirstOrDefault(existingInfo => info.DependsOn(existingInfo));
-                if (existingDependent == null) { return; }
+                if (existingDependent == null)
+                {
+                    return;
+                }
 
                 foreach (var type in Types)
                 {
@@ -96,23 +128,34 @@ namespace DLaB.Xrm.Test
                     }
                     if (existingDependent.Dependencies.Contains(type.LogicalName))
                     {
-                        ConflictingEntityOrder.Add(String.Format("Circular Reference Found!  {0} was added, which depends on {1}, but {2} depends on {0} and was found before {1}.  If {1} is needed first, add it after {0}", logicalName, existingDependent.LogicalName, type.LogicalName));
+                        Conflicts.Add(string.Format("Circular Reference Found!  {0} was added, which depends on {1}, but {2} depends on {0} and was found before {1}.  If {1} is needed first, add it after {0}", logicalName, existingDependent.LogicalName, type.LogicalName));
                         return;
                     }
                 }
-
             }
 
             var dependent = Types.Skip(1).FirstOrDefault(existingInfo => existingInfo.DependsOn(info));
             info.Node = dependent == null ? Types.AddLast(info) : Types.AddBefore(dependent.Node, info);
         }
 
+        public IEnumerable<string> GetEntityCreationOrder()
+        {
+            lock (_readWriteLock)
+            {
+                if (TypesCopyVersion != CurrentVersion)
+                {
+                    TypesImmutableCopy = new ReadOnlyCollection<string>(Types.Select(e => e.LogicalName).ToList());
+                    TypesCopyVersion = CurrentVersion;
+                }
+            }
+            return TypesImmutableCopy;
+        } 
         private class EntityDependencyInfo
         {
-            public HashSet<String> Dependencies { get; private set; }
-            public HashSet<String> Dependents { get; private set; }
+            public HashSet<string> Dependencies { get; }
+            public HashSet<string> Dependents { get; }
             public LinkedListNode<EntityDependencyInfo> Node { get; set; }
-            public String LogicalName { get; private set; }
+            public String LogicalName { get; }
 
             private static readonly HashSet<String> PropertiesToIgnore = new HashSet<string>{
             "createdby",

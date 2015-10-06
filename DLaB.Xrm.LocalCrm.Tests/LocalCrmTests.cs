@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -46,7 +50,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var qe = QueryExpressionFactory.Create<Opportunity>();
             qe.AddLink<Contact>(Opportunity.Fields.ParentContactId, Contact.Fields.ContactId, JoinOperator.LeftOuter, c => new {c.FirstName});
 
-            var entities = service.GetEntities<Opportunity>(qe);
+            var entities = service.GetEntities(qe);
             Assert.AreEqual(2, entities.Count, "Two opportunities should have been returned!");
             Assert.AreEqual(contact.FirstName, entities.First(o => o.ParentContactId != null).GetAliasedEntity<Contact>().FirstName, "First Name wasn't returned!");
             Assert.IsNull(entities.First(o => o.ParentContactId == null).GetAliasedEntity<Contact>().FirstName, "Second Opportunity some how has a contact!");
@@ -71,14 +75,14 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var qe = QueryExpressionFactory.Create<Opportunity>();
             qe.AddLink<Contact>(Opportunity.Fields.ParentContactId, Contact.Fields.ContactId, JoinOperator.LeftOuter, c => new {c.FirstName}).EntityAlias = "MyAlias";
             qe.Criteria.AddCondition("MyAlias", Contact.Fields.FirstName, ConditionOperator.Equal, "Joe");
-            var entities = service.GetEntities<Opportunity>(qe);
+            var entities = service.GetEntities(qe);
 
             Assert.AreEqual(1, entities.Count, "Only Joe opportunities should have been returned!");
             Assert.AreEqual(contact1.FirstName, entities[0].GetAliasedEntity<Contact>().FirstName);
 
             qe.Criteria.AddCondition("MyAlias", Contact.Fields.FirstName, ConditionOperator.Equal, "Jim");
             qe.Criteria.FilterOperator = LogicalOperator.Or;
-            entities = service.GetEntities<Opportunity>(qe);
+            entities = service.GetEntities(qe);
 
             Assert.AreEqual(2, entities.Count, "Joe and Jim opportunities should have been returned!");
         }
@@ -115,7 +119,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var qe = QueryExpressionFactory.Create<Opportunity>();
             qe.AddLink<Contact>(Opportunity.Fields.ParentContactId, "contactid", c => new {c.FirstName});
 
-            var otherC = service.GetFirstOrDefault<Opportunity>(qe);
+            var otherC = service.GetFirstOrDefault(qe);
 
             Assert.IsNotNull(otherC, "Failed Simple Lookup with Linked Entity on Entity Reference");
             Assert.AreEqual(c1.FirstName, otherC.GetAliasedEntity<Contact>().FirstName, "Failed Simple Lookup retrieving Linked Entity columns");
@@ -151,12 +155,12 @@ namespace DLaB.Xrm.LocalCrm.Tests
             qe.Criteria.Filters[0].WhereIn("lastname", "Lincoln");
             qe.Criteria.Filters[1].WhereIn("firstname", "George W");
 
-            Assert.AreEqual(2, service.GetEntities<Contact>(qe).Count, "Failed Nested Filter Or'd");
+            Assert.AreEqual(2, service.GetEntities(qe).Count, "Failed Nested Filter Or'd");
 
             qe.Criteria.FilterOperator = LogicalOperator.And;
             qe.Criteria.Filters[0].Conditions.Clear();
             qe.Criteria.Filters[0].WhereIn("lastname", "Bush");
-            Assert.AreEqual(1, service.GetEntities<Contact>(qe).Count, "Failed Nested Filter And'd");
+            Assert.AreEqual(1, service.GetEntities(qe).Count, "Failed Nested Filter And'd");
         }
 
         [TestMethod]

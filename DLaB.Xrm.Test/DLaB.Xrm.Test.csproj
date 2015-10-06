@@ -33,7 +33,6 @@
     <Reference Include="Microsoft.Crm.Sdk.Proxy">
       <HintPath>..\References\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Xrm.Sdk">
       <HintPath>..\References\Microsoft.Xrm.Sdk.dll</HintPath>
     </Reference>
@@ -56,6 +55,7 @@
     <Compile Include="Builders\IEntityBuilder.cs" />
     <Compile Include="Exceptions\NotConfiguredException.cs" />
     <Compile Include="ITestLogger.cs" />
+    <Compile Include="ITestFrameworkProvider.cs" />
     <Compile Include="PatherFinderProjectOfType.cs" />
     <Compile Include="PathFinderAbsolute.cs" />
     <Compile Include="AssertCrm.cs" />
@@ -69,6 +69,7 @@
     <Compile Include="Builders\PluginExecutionContextBuilder.cs" />
     <Compile Include="Builders\ServiceProviderBuilder.cs" />
     <Compile Include="Builders\WorkflowInvokerBuilder.cs" />
+    <Compile Include="Settings\TestFrameworkProviderSettings.cs" />
     <Compile Include="TestActionTimer.cs" />
     <Compile Include="EntityDependency.cs" />
     <Compile Include="Extensions.cs" />

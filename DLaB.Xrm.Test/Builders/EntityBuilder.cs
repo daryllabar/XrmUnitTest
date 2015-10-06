@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test.Builders
@@ -107,7 +106,8 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="id">The identifier.</param>
         protected void AssertCorrectIdType(Id id)
         {
-            Assert.AreEqual(EntityHelper.GetEntityLogicalName<TEntity>(), id.LogicalName, "Wrong Builder Specified");
+            var builderEntityLogicalName = EntityHelper.GetEntityLogicalName<TEntity>();
+            TestSettings.TestFrameworkProvider.AssertAreEqual(builderEntityLogicalName, id.LogicalName, $"Wrong Builder Specified.  Builder is of type {builderEntityLogicalName} but id of type {id.LogicalName} ");
         }
     }
 }

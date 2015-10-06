@@ -35,7 +35,7 @@ namespace DLaB.Xrm.Test.Builders
             }
             catch (TypeInitializationException ex)
             {
-                // Loading of the Early Bound Entities Could cause a major
+                // Loading of the Early Bound Entities Could cause a major Exception
                 throw ex.InnerException;
             }
         }
@@ -137,6 +137,7 @@ namespace DLaB.Xrm.Test.Builders
             /// </value>
             private Dictionary<string, List<BuilderInfo>> BuildersByEntityType { get; set; }
 
+            private static readonly object BuilderConstructorForEntityLock = new object();
             /// <summary>
             /// Contains constructors for the default builders of each entity type.  Whenever a new Builder is needed, this contains the constructor that will be invoked.
             /// </summary>
@@ -354,7 +355,6 @@ namespace DLaB.Xrm.Test.Builders
                 return builder.Builder;
             }
 
-            private readonly object _genericConstructorLock = new object();
             /// <summary>
             /// Creates a GenericEntityBuilder of the type of logical name being passed in.  Employs locking since BuilderForEntity is static
             /// </summary>
@@ -362,13 +362,19 @@ namespace DLaB.Xrm.Test.Builders
             /// <returns></returns>
             private ConstructorInfo GetGenericConstructor(string logicalName)
             {
-                lock (_genericConstructorLock)
+                ConstructorInfo constructor;
+                if (BuilderConstructorForEntity.TryGetValue(logicalName, out constructor))
                 {
-                    ConstructorInfo constructor;
+                    return constructor;
+                }
+
+                lock (BuilderConstructorForEntityLock)
+                {
                     if (BuilderConstructorForEntity.TryGetValue(logicalName, out constructor))
                     {
                         return constructor;
                     }
+
                     var builder = typeof (GenericEntityBuilder<>).MakeGenericType(TestBase.GetType(logicalName));
                     constructor = builder.GetConstructor(new[] {typeof (Id)});
                     BuilderConstructorForEntity.Add(logicalName, constructor);

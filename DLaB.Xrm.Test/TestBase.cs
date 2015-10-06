@@ -8,9 +8,6 @@ using DLaB.Common;
 using DLaB.Xrm.Client;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.LocalCrm;
-using DLaB.Xrm.LocalCrm.FetchXml;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test
 {
@@ -85,7 +82,7 @@ namespace DLaB.Xrm.Test
 
             return frames.Reverse(). // Stacks are LIFO, Reverse to start at the bottom.
                           Select(frame => frame.GetMethod()).
-                          FirstOrDefault(method => method.GetCustomAttributes(false).OfType<TestMethodAttribute>().Any());
+                          FirstOrDefault(method => method.GetCustomAttributes(false).Any(o => o.GetType() == TestSettings.TestFrameworkProvider.Value.TestMethodAttributeType));
         }
 
         public static CrmServiceInfo GetCrmServiceEntity(bool enableProxyTypes = true)

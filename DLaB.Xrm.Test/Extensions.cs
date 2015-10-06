@@ -7,7 +7,6 @@ using DLaB.Common;
 using DLaB.Xrm.Client;
 using DLaB.Xrm.Entities;
 using Microsoft.Crm.Sdk.Messages;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 
@@ -368,21 +367,21 @@ namespace DLaB.Xrm.Test
             return compareEntity.Attributes.ToList().All(attribute => entity.Attributes.Contains(attribute.Key));
         }
 
+        // This I beleieve was used at one time to help ensure that a user that doesn't have rights to read fields in an entity, doesn't cache some CRM data.
+        //public static void AssertIsValidCacheFor<T>(this List<T> list, List<T> nonCacheVersionOfList) where T : Entity
+        //{
+        //    Assert.AreEqual(list.Count, list.Count, "The lists do not have the same record count");
+        //    Assert.IsTrue(list.Count > 0, "The lists do not contain any data.");
+        //    Assert.IsTrue(nonCacheVersionOfList.All(i => list.Select(c => c.Id).Contains(i.Id)), "The Cache does not contain one of the Entities");
+        //    list.ForEach(l => Assert.IsTrue(l.ContainsAllFieldsInEntity(nonCacheVersionOfList.First(n => n.Id == l.Id)), "The cache item is missing one or more field from the non-cached list entities"));
+        //}
 
-        public static void AssertIsValidCacheFor<T>(this List<T> list, List<T> nonCacheVersionOfList) where T : Entity
-        {
-            Assert.AreEqual(list.Count, list.Count, "The lists do not have the same record count");
-            Assert.IsTrue(list.Count > 0, "The lists do not contain any data.");
-            Assert.IsTrue(nonCacheVersionOfList.All(i => list.Select(c => c.Id).Contains(i.Id)), "The Cache does not contain one of the Entities");
-            list.ForEach(l => Assert.IsTrue(l.ContainsAllFieldsInEntity(nonCacheVersionOfList.First(n => n.Id == l.Id)), "The cache item is missing one or more field from the non-cached list entities"));
-        }
-
-        public static void AssertIsValidCacheFor<T>(this T cacheEntity, T nonCacheEntity) where T : Entity
-        {
-            Assert.IsTrue(cacheEntity != null && nonCacheEntity != null, "One or both of the entities is null");
-            Assert.IsTrue(cacheEntity.Id == nonCacheEntity.Id, "The entities' Ids are not equal");
-            Assert.IsTrue(cacheEntity.ContainsAllFieldsInEntity(nonCacheEntity), "The Cache entity does not contain one or more fields in the non-cache entity");
-        }
+        //public static void AssertIsValidCacheFor<T>(this T cacheEntity, T nonCacheEntity) where T : Entity
+        //{
+        //    Assert.IsTrue(cacheEntity != null && nonCacheEntity != null, "One or both of the entities is null");
+        //    Assert.IsTrue(cacheEntity.Id == nonCacheEntity.Id, "The entities' Ids are not equal");
+        //    Assert.IsTrue(cacheEntity.ContainsAllFieldsInEntity(nonCacheEntity), "The Cache entity does not contain one or more fields in the non-cache entity");
+        //}
 
         #endregion // Entity
 
