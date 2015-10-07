@@ -6,7 +6,10 @@ using Microsoft.Xrm.Sdk;
 
 namespace Example.MsTestBase
 {
-    class TestInitializer
+    /// <summary>
+    /// Class to Initalize all TestSettings used by the Framework
+    /// </summary>
+    public class TestInitializer
     {
         public static void InitializeTestSettings()
         {

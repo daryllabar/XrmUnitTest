@@ -57,6 +57,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="RemovePhoneNumberFormattingTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -84,6 +85,10 @@
     <ProjectReference Include="..\Example.MsTestBase\Example.MsTestBase.csproj">
       <Project>{f62103e9-d25d-4f99-aabe-ecf348424366}</Project>
       <Name>Example.MsTestBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Example.Plugin\Example.Plugin.csproj">
+      <Project>{e19c051f-32d2-4a47-8f08-a4f251c59b4c}</Project>
+      <Name>Example.Plugin</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

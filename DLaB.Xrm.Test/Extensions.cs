@@ -399,6 +399,18 @@ namespace DLaB.Xrm.Test
         }
 
         /// <summary>
+        /// Retrieves the Entity for the given Id, with all columns
+        /// </summary>
+        /// <typeparam name="T">An early bound Entity Type</typeparam>
+        /// <param name="service">open IOrganizationService</param>
+        /// <param name="id">Typed Id</param>
+        /// <returns></returns>
+        public static T GetEntity<T>(this IOrganizationService service, Id<T> id) where T : Entity
+        {
+            return service.GetEntity<T>(id.EntityId);
+        }
+
+        /// <summary>
         /// Determines whether the giving serivce is a Local Crm Service.
         /// </summary>
         /// <param name="service">The service.</param>
