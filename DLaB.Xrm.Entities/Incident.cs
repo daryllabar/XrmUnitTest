@@ -39,7 +39,6 @@ namespace DLaB.Xrm.Entities
 			public const string AccountId = "accountid";
 			public const string ActivitiesComplete = "activitiescomplete";
 			public const string ActualServiceUnits = "actualserviceunits";
-			public const string allgnt_OnBaseURL = "allgnt_onbaseurl";
 			public const string BilledServiceUnits = "billedserviceunits";
 			public const string BlockedProfile = "blockedprofile";
 			public const string CaseOriginCode = "caseorigincode";
@@ -233,26 +232,6 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ActualServiceUnits");
 				this.SetAttributeValue("actualserviceunits", value);
 				this.OnPropertyChanged("ActualServiceUnits");
-			}
-		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("allgnt_onbaseurl")]
-		public string allgnt_OnBaseURL
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<string>("allgnt_onbaseurl");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("allgnt_OnBaseURL");
-				this.SetAttributeValue("allgnt_onbaseurl", value);
-				this.OnPropertyChanged("allgnt_OnBaseURL");
 			}
 		}
 		

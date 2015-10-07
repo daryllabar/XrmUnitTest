@@ -69,8 +69,6 @@ namespace DLaB.Xrm.Entities
 			public const string StatusCode = "statuscode";
 			public const string StepName = "stepname";
 			public const string Account_ProcessSessions = "regardingobjectid";
-			public const string allgnt_restproxy_ProcessSession = "regardingobjectid";
-			public const string allgnt_systemsettings_ProcessSession = "regardingobjectid";
 			public const string Annotation_ProcessSessions = "regardingobjectid";
 			public const string Appointment_ProcessSessions = "regardingobjectid";
 			public const string BusinessUnit_ProcessSessions = "regardingobjectid";

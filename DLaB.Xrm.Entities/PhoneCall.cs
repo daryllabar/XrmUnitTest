@@ -42,8 +42,6 @@ namespace DLaB.Xrm.Entities
 			public const string ActualDurationMinutes = "actualdurationminutes";
 			public const string ActualEnd = "actualend";
 			public const string ActualStart = "actualstart";
-			public const string allgnt_AutoCreatefromCaseFlag = "allgnt_autocreatefromcaseflag";
-			public const string allgnt_referral = "allgnt_referral";
 			public const string Category = "category";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
@@ -262,46 +260,6 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ActualStart");
 				this.SetAttributeValue("actualstart", value);
 				this.OnPropertyChanged("ActualStart");
-			}
-		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("allgnt_autocreatefromcaseflag")]
-		public System.Nullable<bool> allgnt_AutoCreatefromCaseFlag
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<System.Nullable<bool>>("allgnt_autocreatefromcaseflag");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("allgnt_AutoCreatefromCaseFlag");
-				this.SetAttributeValue("allgnt_autocreatefromcaseflag", value);
-				this.OnPropertyChanged("allgnt_AutoCreatefromCaseFlag");
-			}
-		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("allgnt_referral")]
-		public string allgnt_referral
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<string>("allgnt_referral");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("allgnt_referral");
-				this.SetAttributeValue("allgnt_referral", value);
-				this.OnPropertyChanged("allgnt_referral");
 			}
 		}
 		

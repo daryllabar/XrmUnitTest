@@ -49,6 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DynamicQueryable.cs" />
+    <Compile Include="Entities\ActivityPointer.cs" />
+    <Compile Include="Entities\Email.cs" />
+    <Compile Include="Entities\Template.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FetchXml\CountColumnAggregateInfo.cs" />
     <Compile Include="FetchXml\FetchAttributeInfo.cs" />
@@ -69,10 +72,6 @@
     <ProjectReference Include="..\DLaB.Xrm.Client\DLaB.Xrm.Client.csproj">
       <Project>{674c3dde-a543-4199-b089-278eeb4db85a}</Project>
       <Name>DLaB.Xrm.Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj">
-      <Project>{66688025-2f6d-40ec-914e-87af88afc5de}</Project>
-      <Name>DLaB.Xrm.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\DLaB.Xrm\DLaB.Xrm.csproj">
       <Project>{0a88b434-3617-4543-b9a3-b2b04ba4b8d4}</Project>

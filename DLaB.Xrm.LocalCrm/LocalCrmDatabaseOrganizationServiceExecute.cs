@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Xml.Serialization;
 using DLaB.Xrm.Client;
-using DLaB.Xrm.Entities;
+using DLaB.Xrm.LocalCrm.Entities;
 using DLaB.Xrm.LocalCrm.FetchXml;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
@@ -197,14 +197,15 @@ namespace DLaB.Xrm.LocalCrm
             if (entity.LogicalName == Email.EntityLogicalName)
             {
                 // Copy Email
-                var email = entity.ToEntity<Email>();
+                var email = entity.Clone();
+                
                 if (request.RegardingId != Guid.Empty)
                 {
-                    email.RegardingObjectId = new EntityReference(request.RegardingType, request.RegardingId);
+                    email[Email.Fields.RegardingObjectId] = new EntityReference(request.RegardingType, request.RegardingId);
                 }
-                var template = Service.GetEntity<Template>(request.TemplateId);
-                email.Description = template.Body;
-                email.Subject = template.Subject;
+                var template = Service.Retrieve(Template.EntityLogicalName, request.TemplateId, new ColumnSet(true));
+                email[Email.Fields.Description] = template[Template.Fields.Body];
+                email[Email.Fields.Subject] = template[Template.Fields.Subject];
                 response.Results["Id"] = Create(email);
 
             }else{

@@ -86,8 +86,6 @@ namespace DLaB.Xrm.Entities
 			public const string Account_AsyncOperations = "regardingobjectid";
 			public const string ActivityMimeAttachment_AsyncOperations = "regardingobjectid";
 			public const string ActivityPointer_AsyncOperations = "regardingobjectid";
-			public const string allgnt_restproxy_AsyncOperations = "regardingobjectid";
-			public const string allgnt_systemsettings_AsyncOperations = "regardingobjectid";
 			public const string Annotation_AsyncOperations = "regardingobjectid";
 			public const string AnnualFiscalCalendar_AsyncOperations = "regardingobjectid";
 			public const string Appointment_AsyncOperations = "regardingobjectid";

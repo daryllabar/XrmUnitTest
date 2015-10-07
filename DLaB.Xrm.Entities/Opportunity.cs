@@ -40,10 +40,6 @@ namespace DLaB.Xrm.Entities
 			public const string ActualCloseDate = "actualclosedate";
 			public const string ActualValue = "actualvalue";
 			public const string ActualValue_Base = "actualvalue_base";
-			public const string allgnt_isReferral = "allgnt_isreferral";
-			public const string allgnt_Job = "allgnt_job";
-			public const string allgnt_LeadSource = "allgnt_leadsource";
-			public const string allgnt_Location = "allgnt_location";
 			public const string BudgetAmount = "budgetamount";
 			public const string BudgetAmount_Base = "budgetamount_base";
 			public const string BudgetStatus = "budgetstatus";
@@ -156,7 +152,6 @@ namespace DLaB.Xrm.Entities
 			public const string TraversedPath = "traversedpath";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string allgnt_lead_opportunity_LeadSource = "allgnt_leadsource";
 			public const string business_unit_opportunities = "owningbusinessunit";
 			public const string campaign_opportunities = "campaignid";
 			public const string lk_opportunity_createdonbehalfby = "createdonbehalfby";
@@ -276,87 +271,7 @@ namespace DLaB.Xrm.Entities
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("actualvalue_base");
 			}
 		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("allgnt_isreferral")]
-		public System.Nullable<bool> allgnt_isReferral
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<System.Nullable<bool>>("allgnt_isreferral");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("allgnt_isReferral");
-				this.SetAttributeValue("allgnt_isreferral", value);
-				this.OnPropertyChanged("allgnt_isReferral");
-			}
-		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("allgnt_job")]
-		public Microsoft.Xrm.Sdk.EntityReference allgnt_Job
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("allgnt_job");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("allgnt_Job");
-				this.SetAttributeValue("allgnt_job", value);
-				this.OnPropertyChanged("allgnt_Job");
-			}
-		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("allgnt_leadsource")]
-		public Microsoft.Xrm.Sdk.EntityReference allgnt_LeadSource
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("allgnt_leadsource");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("allgnt_LeadSource");
-				this.SetAttributeValue("allgnt_leadsource", value);
-				this.OnPropertyChanged("allgnt_LeadSource");
-			}
-		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("allgnt_location")]
-		public Microsoft.Xrm.Sdk.EntityReference allgnt_Location
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("allgnt_location");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("allgnt_Location");
-				this.SetAttributeValue("allgnt_location", value);
-				this.OnPropertyChanged("allgnt_Location");
-			}
-		}
-		
+	
 		/// <summary>
 		/// Type a value between 0 and 1,000,000,000,000 to indicate the lead's potential available budget.
 		/// </summary>
@@ -3124,27 +3039,6 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("opportunitycompetitors_association");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Competitor>("opportunitycompetitors_association", null, value);
 				this.OnPropertyChanged("opportunitycompetitors_association");
-			}
-		}
-		
-		/// <summary>
-		/// N:1 allgnt_lead_opportunity_LeadSource
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("allgnt_leadsource")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("allgnt_lead_opportunity_LeadSource")]
-		public DLaB.Xrm.Entities.Lead allgnt_lead_opportunity_LeadSource
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntity<DLaB.Xrm.Entities.Lead>("allgnt_lead_opportunity_LeadSource", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("allgnt_lead_opportunity_LeadSource");
-				this.SetRelatedEntity<DLaB.Xrm.Entities.Lead>("allgnt_lead_opportunity_LeadSource", null, value);
-				this.OnPropertyChanged("allgnt_lead_opportunity_LeadSource");
 			}
 		}
 		

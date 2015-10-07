@@ -44,8 +44,6 @@ namespace DLaB.Xrm.Entities
 			public const string UserEntityInstanceDataId = "userentityinstancedataid";
 			public const string Id = "userentityinstancedataid";
 			public const string VersionNumber = "versionnumber";
-			public const string allgnt_restproxy_UserEntityInstanceDatas = "objectid";
-			public const string allgnt_systemsettings_UserEntityInstanceDatas = "objectid";
 			public const string ConvertRule_userentityinstancedatas = "objectid";
 			public const string entitlement_UserEntityInstanceDatas = "objectid";
 			public const string entitlementchannel_UserEntityInstanceDatas = "objectid";

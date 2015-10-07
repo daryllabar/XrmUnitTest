@@ -93,8 +93,6 @@ namespace DLaB.Xrm.Entities
 			public const string Aging60_Base = "aging60_base";
 			public const string Aging90 = "aging90";
 			public const string Aging90_Base = "aging90_base";
-			public const string allgnt_NetPromoterScore = "allgnt_netpromoterscore";
-			public const string allgnt_referral = "allgnt_referral";
 			public const string BusinessTypeCode = "businesstypecode";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
@@ -1392,45 +1390,6 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("allgnt_netpromoterscore")]
-		public System.Nullable<int> allgnt_NetPromoterScore
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<System.Nullable<int>>("allgnt_netpromoterscore");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("allgnt_NetPromoterScore");
-				this.SetAttributeValue("allgnt_netpromoterscore", value);
-				this.OnPropertyChanged("allgnt_NetPromoterScore");
-			}
-		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("allgnt_referral")]
-		public System.Nullable<bool> allgnt_referral
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<System.Nullable<bool>>("allgnt_referral");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("allgnt_referral");
-				this.SetAttributeValue("allgnt_referral", value);
-				this.OnPropertyChanged("allgnt_referral");
-			}
-		}
 		
 		/// <summary>
 		/// Select the legal designation or other business type of the account for contracts or reporting purposes.

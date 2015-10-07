@@ -35,8 +35,6 @@ namespace DLaB.Xrm.Entities
 			public const string Account_BulkDeleteFailures = "regardingobjectid";
 			public const string ActivityMimeAttachment_BulkDeleteFailures = "regardingobjectid";
 			public const string ActivityPointer_BulkDeleteFailures = "regardingobjectid";
-			public const string allgnt_restproxy_BulkDeleteFailures = "regardingobjectid";
-			public const string allgnt_systemsettings_BulkDeleteFailures = "regardingobjectid";
 			public const string Annotation_BulkDeleteFailures = "regardingobjectid";
 			public const string AnnualFiscalCalendar_BulkDeleteFailures = "regardingobjectid";
 			public const string Appointment_BulkDeleteFailures = "regardingobjectid";

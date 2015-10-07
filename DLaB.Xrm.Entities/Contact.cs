@@ -113,7 +113,6 @@ namespace DLaB.Xrm.Entities
 			public const string Aging60_Base = "aging60_base";
 			public const string Aging90 = "aging90";
 			public const string Aging90_Base = "aging90_base";
-			public const string allgnt_referral = "allgnt_referral";
 			public const string Anniversary = "anniversary";
 			public const string AnnualIncome = "annualincome";
 			public const string AnnualIncome_Base = "annualincome_base";
@@ -1807,26 +1806,6 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("aging90_base");
-			}
-		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("allgnt_referral")]
-		public string allgnt_referral
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<string>("allgnt_referral");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("allgnt_referral");
-				this.SetAttributeValue("allgnt_referral", value);
-				this.OnPropertyChanged("allgnt_referral");
 			}
 		}
 		

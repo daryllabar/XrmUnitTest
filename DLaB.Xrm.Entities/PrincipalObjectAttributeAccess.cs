@@ -31,8 +31,6 @@ namespace DLaB.Xrm.Entities
 			public const string UpdateAccess = "updateaccess";
 			public const string VersionNumber = "versionnumber";
 			public const string account_principalobjectattributeaccess = "objectid";
-			public const string allgnt_restproxy_PrincipalObjectAttributeAccesses = "objectid";
-			public const string allgnt_systemsettings_PrincipalObjectAttributeAccesses = "objectid";
 			public const string appointment_principalobjectattributeaccess = "objectid";
 			public const string businessunit_principalobjectattributeaccess = "objectid";
 			public const string campaign_principalobjectattributeaccess = "objectid";

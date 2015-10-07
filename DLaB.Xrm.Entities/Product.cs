@@ -39,7 +39,6 @@ namespace DLaB.Xrm.Entities
 		
 		public struct Fields
 		{
-			public const string allgnt_incentivepoints = "allgnt_incentivepoints";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
@@ -144,26 +143,6 @@ namespace DLaB.Xrm.Entities
 			if ((this.PropertyChanging != null))
 			{
 				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
-			}
-		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("allgnt_incentivepoints")]
-		public string allgnt_incentivepoints
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<string>("allgnt_incentivepoints");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("allgnt_incentivepoints");
-				this.SetAttributeValue("allgnt_incentivepoints", value);
-				this.OnPropertyChanged("allgnt_incentivepoints");
 			}
 		}
 		
@@ -1636,26 +1615,6 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("userentityinstancedata_product");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.UserEntityInstanceData>("userentityinstancedata_product", null, value);
 				this.OnPropertyChanged("userentityinstancedata_product");
-			}
-		}
-		
-		/// <summary>
-		/// N:N allgnt_lead_product
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("allgnt_lead_product")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Lead> allgnt_lead_product
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.Lead>("allgnt_lead_product", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("allgnt_lead_product");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.Lead>("allgnt_lead_product", null, value);
-				this.OnPropertyChanged("allgnt_lead_product");
 			}
 		}
 		

@@ -7,7 +7,7 @@ using System.Reflection;
 using System.ServiceModel;
 using System.Text.RegularExpressions;
 using DLaB.Common;
-using DLaB.Xrm.Entities;
+using DLaB.Xrm.LocalCrm.Entities;
 using DLaB.Xrm.LocalCrm.FetchXml;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
@@ -364,17 +364,17 @@ namespace DLaB.Xrm.LocalCrm
             return properties.ContainsKey("ActivityId");
         }
 
-        private static ActivityPointer GetActivtyPointerForActivityEntity<T>(T entity, Dictionary<string, PropertyInfo> properties = null) where T : Entity
+        private static Entity GetActivtyPointerForActivityEntity<T>(T entity, Dictionary<string, PropertyInfo> properties = null) where T : Entity
         {
             properties = properties ?? typeof(T).GetProperties().ToDictionary(p => p.Name);
-            var pointerProperties = typeof(ActivityPointer).GetProperties();
-            var pointer = new ActivityPointer {Id = entity.Id};
+            var pointerFields = typeof(ActivityPointer.Fields).GetFields();
+            var pointer = new Entity(ActivityPointer.EntityLogicalName, entity.Id);
             PropertyInfo prop;
-            foreach (var att in pointerProperties.Where(p => properties.TryGetValue(p.Name, out prop)).
-                Select(p => p.GetCustomAttribute<AttributeLogicalNameAttribute>()).
-                Where(att => att != null && entity.Contains(att.LogicalName)))
+            foreach (var att in pointerFields.Where(p => properties.TryGetValue(p.Name, out prop)).
+                Select(field => field.GetRawConstantValue().ToString()).
+                Where(entity.Contains))
             {
-                pointer[att.LogicalName] = entity[att.LogicalName];
+                pointer[att] = entity[att];
             }
             return pointer;
         }
