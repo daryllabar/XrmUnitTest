@@ -5,14 +5,14 @@ using System.Linq;
 using System.Linq.Expressions;
 using DLaB.Common;
 using DLaB.Xrm.Client;
-using DLaB.Xrm.Entities;
+using DLaB.Xrm.Test.Entities;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.Test
 {
-    public static partial class Extensions
+    public static class Extensions
     {
         #region struct
 
@@ -389,9 +389,8 @@ namespace DLaB.Xrm.Test
 
         public static void DeleteBusinessUnit(this IOrganizationService service, Guid businessUnitId)
         {
-            if (service.GetFirstOrDefault<BusinessUnit>(
-                b => new { b.BusinessUnitId },
-                "businessunitid", businessUnitId) != null)
+            var qe = QueryExpressionFactory.Create(BusinessUnit.EntityLogicalName, new ColumnSet(), BusinessUnit.Fields.BusinessUnitId, businessUnitId);
+            if (service.GetFirstOrDefault(qe) != null)
             {
                 service.SetState(BusinessUnit.EntityLogicalName, businessUnitId, false);
                 service.Delete(BusinessUnit.EntityLogicalName, businessUnitId);

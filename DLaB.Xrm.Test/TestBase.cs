@@ -6,8 +6,9 @@ using System.Linq;
 using System.Reflection;
 using DLaB.Common;
 using DLaB.Xrm.Client;
-using DLaB.Xrm.Entities;
+using DLaB.Xrm.Test.Entities;
 using DLaB.Xrm.LocalCrm;
+using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test
 {
@@ -54,17 +55,17 @@ namespace DLaB.Xrm.Test
             var service = new LocalCrmDatabaseOrganizationService(info);
 
             // Create BU and SystemUser for currently executing user
-            var bu = new BusinessUnit
+            var bu = new Entity(BusinessUnit.EntityLogicalName)
             {
-                Name = "Currently Executing BusinessUnit"
+                [BusinessUnit.Fields.Name] = "Currently Executing BusinessUnit"
             };
-            bu.Id = service.Create(bu.ToSdkEntity());
+            bu.Id = service.Create(bu);
 
-            var id = service.Create(new SystemUser
+            var id = service.Create(new Entity(SystemUser.EntityLogicalName)
             {
-                FirstName = Environment.UserDomainName.Split('/').First(),
-                LastName = Environment.UserName,
-                BusinessUnitId = bu.ToEntityReference(),
+                [SystemUser.Fields.FirstName] = Environment.UserDomainName.Split('/').First(),
+                [SystemUser.Fields.LastName] = Environment.UserName,
+                [SystemUser.Fields.BusinessUnitId] = bu.ToEntityReference(),
             }.ToSdkEntity());
 
             info = LocalCrmDatabaseInfo.Create(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace, databaseKey, id, impersonationUserId, bu.Id);

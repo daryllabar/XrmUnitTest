@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using DLaB.Common;
 using DLaB.Xrm.Client;
-using DLaB.Xrm.Entities;
+using DLaB.Xrm.Test.Entities;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
@@ -290,7 +290,8 @@ namespace DLaB.Xrm.Test.Builders
             {
                 if (e.LogicalName == BusinessUnit.EntityLogicalName && e.GetAttributeValue<EntityReference>(BusinessUnit.Fields.ParentBusinessUnitId) == null)
                 {
-                    e[BusinessUnit.Fields.ParentBusinessUnitId] = s.GetFirst<BusinessUnit>(BusinessUnit.Fields.ParentBusinessUnitId, null).ToEntityReference();
+                    var qe = QueryExpressionFactory.Create(BusinessUnit.EntityLogicalName, new ColumnSet(BusinessUnit.Fields.BusinessUnitId), BusinessUnit.Fields.ParentBusinessUnitId, null);
+                    e[BusinessUnit.Fields.ParentBusinessUnitId] = s.GetFirst<Entity>(qe).ToEntityReference();
                 }
 
                 return s.Create(e);
@@ -433,10 +434,10 @@ namespace DLaB.Xrm.Test.Builders
                 {
                     // Default Web Resource
                     var result = new EntityCollection();
-                    result.Entities.Add(new WebResource
+                    result.Entities.Add(new Entity(WebResource.EntityLogicalName)
                     {
-                        Name = name,
-                        Content = File.ReadAllText(path).ToBase64(Encoding.UTF8, true),
+                        [WebResource.Fields.Name] = name,
+                        [WebResource.Fields.Content] = File.ReadAllText(path).ToBase64(Encoding.UTF8, true)
                     });
                     return result;
                 }
