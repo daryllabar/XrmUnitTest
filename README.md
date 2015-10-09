@@ -5,4 +5,4 @@
 
 Xrm Unit Testing Framework Provides a long list of features that makes developing Unit Tests in CRM quicker, faster, easier, and more reliable.   "In Memory" CRM server
 
-For more information checkout out the [Wiki](https://github.com/daryllabar/XrmUnitTest/wik)!
+For more information checkout out the [Wiki](https://github.com/daryllabar/XrmUnitTest/wiki)!
