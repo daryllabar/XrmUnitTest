@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -207,7 +203,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             }
             catch (System.ServiceModel.FaultException<OrganizationServiceFault> ex)
             {
-                Assert.IsTrue(ex.Message.Contains(String.Format("With Id = {0} Does Not Exist", contact.Id)), "Exception type is different than expected");
+                Assert.IsTrue(ex.Message.Contains($"With Id = {contact.Id} Does Not Exist"), "Exception type is different than expected");
             }
             catch (AssertFailedException)
             {
@@ -265,12 +261,11 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void LocalCrmTests_OrderBy()
         {
             var service = GetService();
-            service.Create(new Contact() {FirstName = "Chuck", LastName = "Adams"});
-            service.Create(new Contact() {FirstName = "Anna", LastName = "Adams"});
-            service.Create(new Contact() {FirstName = "Bill", LastName = "Adams"});
+            service.Create(new Contact {FirstName = "Chuck", LastName = "Adams"});
+            service.Create(new Contact {FirstName = "Anna", LastName = "Adams"});
+            service.Create(new Contact {FirstName = "Bill", LastName = "Adams"});
 
-            var qe = new QueryExpression(Contact.EntityLogicalName);
-            qe.ColumnSet = new ColumnSet(true);
+            var qe = new QueryExpression(Contact.EntityLogicalName) {ColumnSet = new ColumnSet(true)};
 
             // Ascending Order Test
             qe.AddOrder("firstname", OrderType.Ascending);
@@ -289,17 +284,18 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.AreEqual("Anna", results[2].FirstName, "Descending Ordering failed.  \"Anna\" should have been returned third");
 
             // Add Dups
-            service.Create(new Contact() {FirstName = "Chuck", LastName = "Bell"});
-            service.Create(new Contact() {FirstName = "Anna", LastName = "Bell"});
-            service.Create(new Contact() {FirstName = "Anna", LastName = "Carter"});
-            service.Create(new Contact() {FirstName = "Bill", LastName = "Bell"});
-            service.Create(new Contact() {FirstName = "Bill", LastName = "Carter"});
-            service.Create(new Contact() {FirstName = "Chuck", LastName = "Carter"});
+            service.Create(new Contact {FirstName = "Chuck", LastName = "Bell"});
+            service.Create(new Contact {FirstName = "Anna", LastName = "Bell"});
+            service.Create(new Contact {FirstName = "Anna", LastName = "Carter"});
+            service.Create(new Contact {FirstName = "Bill", LastName = "Bell"});
+            service.Create(new Contact {FirstName = "Bill", LastName = "Carter"});
+            service.Create(new Contact {FirstName = "Chuck", LastName = "Carter"});
 
             // Order By Descending First Then By Ascending Last Test
             qe.AddOrder("lastname", OrderType.Ascending);
             results = service.GetEntities<Contact>(qe);
 
+            Assert.AreEqual(9, results.Count, "9 Contacts have been created");
             Assert.AreEqual("Chuck Adams", results[0].FullName, "Descending then Ascending Ordering failed.  \"Chuck Adams\" should have been returned first");
             Assert.AreEqual("Chuck Bell", results[1].FullName, "Descending then Ascending Ordering failed.  \"Chuck Bell\" should have been returned second");
             Assert.AreEqual("Chuck Carter", results[2].FullName, "Descending then Ascending Ordering failed.  \"Chuck Carter\" should have been returned third");
