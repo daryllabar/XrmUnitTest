@@ -284,6 +284,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.AreEqual("Anna", results[2].FirstName, "Descending Ordering failed.  \"Anna\" should have been returned third");
 
             // Add Dups
+            System.Threading.Thread.Sleep(1000); // Sleep to ensure that the creation date is different
             service.Create(new Contact {FirstName = "Chuck", LastName = "Bell"});
             service.Create(new Contact {FirstName = "Anna", LastName = "Bell"});
             service.Create(new Contact {FirstName = "Anna", LastName = "Carter"});
@@ -337,9 +338,9 @@ namespace DLaB.Xrm.LocalCrm.Tests
             qe.AddOrder("createdon", OrderType.Descending);
             results = service.GetEntities<Contact>(qe);
 
-            Assert.AreEqual("Adams", results[8].LastName, "Ascending Date Ordering failed.  \"Adams\" should have been returned last");
-            Assert.AreEqual("Adams", results[7].LastName, "Ascending Date Ordering failed.  \"Adams\" should have been returned last");
-            Assert.AreEqual("Adams", results[6].LastName, "Ascending Date Ordering failed.  \"Adams\" should have been returned last");
+            Assert.AreEqual("Adams", results[8].LastName, "Ascending Date Ordering failed.  \"Adams\" should have been returned last.  " + string.Join(", ", results.Select(c => c.LastName + " " + c.CreatedOn.ToString())));
+            Assert.AreEqual("Adams", results[7].LastName, "Ascending Date Ordering failed.  \"Adams\" should have been returned last.  " + string.Join(", ", results.Select(c => c.LastName + " " + c.CreatedOn.ToString())));
+            Assert.AreEqual("Adams", results[6].LastName, "Ascending Date Ordering failed.  \"Adams\" should have been returned last.  " + string.Join(", ", results.Select(c => c.LastName + " " + c.CreatedOn.ToString())));
         }
 
         [TestMethod]
