@@ -13,11 +13,12 @@ namespace DLaB.Xrm.LocalCrm.Tests
     [TestClass]
     public class LocalCrmTests
     {
-        private static IOrganizationService GetService(bool createUnique = true)
+        private static IOrganizationService GetService(bool createUnique = true, Guid? businessUnitId = null)
         {
-            return createUnique
-                ? new LocalCrmDatabaseOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()))
-                : LocalCrmDatabaseOrganizationService.CreateOrganizationService<CrmContext>();
+            var info = createUnique
+                ? LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString(), userBusinessUnit: businessUnitId)
+                : LocalCrmDatabaseInfo.Create<CrmContext>(userBusinessUnit: businessUnitId);
+            return new LocalCrmDatabaseOrganizationService(info);
         }
 
         [TestMethod]
@@ -380,6 +381,41 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var entity = service.GetFirst(qe);
             Assert.AreEqual(budgetstatus.MayBuy.ToString(), entity.GetFormattedAttributeValueOrNull(Lead.Fields.BudgetStatus));
             Assert.AreEqual(budgetstatus.MayBuy.ToString(), entity.GetFormattedAttributeValueOrNull(Lead.Fields.BudgetStatus));
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_OwnerPopulated()
+        {
+            var id = Guid.NewGuid();
+            var info = LocalCrmDatabaseInfo.Create<CrmContext>(userId: id);
+            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService<CrmContext>(info);
+            var accountId = service.Create(new Account());
+
+            var account = service.GetEntity<Account>(accountId);
+
+            // Retrieve
+            Assert.IsNotNull(account.OwnerId);
+            Assert.AreEqual(id,account.OwnerId.Id);
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_DefaultEntitiesCreated()
+        {
+            var service = GetService();
+
+            var user = service.GetFirstOrDefault<SystemUser>();
+            var bu = service.GetFirstOrDefault<BusinessUnit>();
+
+            Assert.IsNotNull(user, "User was not created by default");
+            Assert.IsNull(bu, "Business Unit was created without being specified");
+
+            service = GetService(businessUnitId: Guid.NewGuid());
+
+            user = service.GetFirstOrDefault<SystemUser>();
+            bu = service.GetFirstOrDefault<BusinessUnit>();
+
+            Assert.IsNotNull(user, "User was not created by default");
+            Assert.IsNotNull(bu, "Business Unit was not created");
         }
     }
 }
