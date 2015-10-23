@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using DLaB.Common;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
@@ -55,7 +53,7 @@ namespace DLaB.Xrm.LocalCrm
                 DatabaseName = databaseName,
                 EarlyBoundEntityAssembly = earlyBoundAssembly,
                 EarlyBoundNamespace = earlyBoundNamespace,
-                User = new EntityReference("systemuser", userId.GetValueOrDefault()),
+                User = new EntityReference("systemuser", userId.GetValueOrDefault(Guid.NewGuid())),
                 UserOnBehalfOf = new EntityReference("systemuser", userOnBehalfOf.GetValueOrDefault()),
                 OrganizationId = ConvertToGuid(databaseName),
             };

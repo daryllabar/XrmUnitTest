@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
 using DLaB.Common;
 using DLaB.Xrm.Client;
 using DLaB.Xrm.Exceptions;
+using DLaB.Xrm.LocalCrm.Entities;
+using DLaB.Xrm.LocalCrm.FetchXml;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Query;
@@ -14,21 +17,45 @@ namespace DLaB.Xrm.LocalCrm
 {
     public partial class LocalCrmDatabaseOrganizationService : IClientSideOrganizationService
     {
-        public LocalCrmDatabaseInfo Info { get; private set; }
-
-        // ReSharper disable once UnusedMember.Local
-        private LocalCrmDatabaseOrganizationService()
-        {
-            
-        }
+        public LocalCrmDatabaseInfo Info { get; }
 
         public LocalCrmDatabaseOrganizationService(LocalCrmDatabaseInfo info)
         {
             if (info == null)
             {
-                throw new ArgumentNullException("info");
+                throw new ArgumentNullException(nameof(info));
             }
             Info = info;
+            CreateRequiredEntitiesIfNeeded();
+        }
+
+        /// <summary>
+        /// Creates the current user and Business Unit entities if needed.
+        /// </summary>
+        private void CreateRequiredEntitiesIfNeeded()
+        {
+            // Create System User and Business Unit
+            var user = new Entity(SystemUser.EntityLogicalName)
+            {
+                Id = Info.User.Id,
+                [SystemUser.Fields.FirstName] = "LocalCrm",
+                [SystemUser.Fields.LastName] = "DefaultUser"
+            };
+
+            if (Info.BusinessUnit.Id != Guid.Empty && this.GetEntityOrDefault(BusinessUnit.EntityLogicalName, Info.BusinessUnit.Id) == null)
+            {
+                Create(new Entity(BusinessUnit.EntityLogicalName)
+                {
+                    Id = Info.BusinessUnit.Id,
+                    [BusinessUnit.Fields.Name] = "LocalCrm Default Business Unit"
+                });
+                user[SystemUser.Fields.BusinessUnitId] = Info.BusinessUnit;
+            }
+            
+            if (this.GetEntityOrDefault(SystemUser.EntityLogicalName, Info.User.Id) == null)
+            {
+                Create(user);
+            }
         }
 
         public static LocalCrmDatabaseOrganizationService CreateOrganizationService<T>(LocalCrmDatabaseInfo info = null) 
@@ -43,7 +70,7 @@ namespace DLaB.Xrm.LocalCrm
         [DebuggerStepThrough]
         public void Associate(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
         {
-            if (!relatedEntities.Any()) { throw new ArgumentException("Must contain at least one related entity!", "relatedEntities");}
+            if (!relatedEntities.Any()) { throw new ArgumentException("Must contain at least one related entity!", nameof(relatedEntities));}
             if (relatedEntities.Any(e => e.LogicalName != relatedEntities.First().LogicalName)) { throw new NotImplementedException("Don't currently Support different Entity Types for related Entities!"); }
 
             if (relationship.PrimaryEntityRole.GetValueOrDefault(EntityRole.Referenced) == EntityRole.Referencing)
@@ -60,11 +87,11 @@ namespace DLaB.Xrm.LocalCrm
             }
 
 
-            foreach (var relatedEntity in relatedEntities)
-            {
-                var relation = new Entity(relationship.SchemaName);
-                relation[referencedIdName] = entityId;
-                relation[referencingIdName] = relatedEntity.Id;
+            foreach (var relation in relatedEntities.Select(relatedEntity => new Entity(relationship.SchemaName)
+                                                                             {
+                                                                                 [referencedIdName] = entityId,
+                                                                                 [referencingIdName] = relatedEntity.Id
+                                                                             })) {
                 Service.Create(relation);
             }
         }
@@ -89,7 +116,7 @@ namespace DLaB.Xrm.LocalCrm
 
         public void Disassociate(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
         {
-            if (!relatedEntities.Any()) { throw new ArgumentException("Must contain at least one related entity!", "relatedEntities"); }
+            if (!relatedEntities.Any()) { throw new ArgumentException("Must contain at least one related entity!", nameof(relatedEntities)); }
             if (relatedEntities.Any(e => e.LogicalName != relatedEntities.First().LogicalName)) { throw new NotImplementedException("Don't currently Support different Entity Types for related Entities!"); }
 
             if (relationship.PrimaryEntityRole.GetValueOrDefault(EntityRole.Referenced) == EntityRole.Referencing)
@@ -133,14 +160,14 @@ namespace DLaB.Xrm.LocalCrm
             var fetchQuery = query as FetchExpression;
             if (fetchQuery != null)
             {
-                XmlSerializer s = new XmlSerializer(typeof(FetchXml.FetchType));
-                FetchXml.FetchType fetch;
-                using (var r = new System.IO.StringReader(fetchQuery.Query))
+                XmlSerializer s = new XmlSerializer(typeof(FetchType));
+                FetchType fetch;
+                using (var r = new StringReader(fetchQuery.Query))
                 {
-                    fetch = (FetchXml.FetchType)s.Deserialize(r);
+                    fetch = (FetchType)s.Deserialize(r);
                     r.Close();
                 }
-                return (EntityCollection)InvokeStaticGenericMethod(((FetchXml.FetchEntityType)fetch.Items[0]).name, "ReadFetchXmlEntities", this, fetch);
+                return (EntityCollection)InvokeStaticGenericMethod(((FetchEntityType)fetch.Items[0]).name, "ReadFetchXmlEntities", this, fetch);
             }
             var qe = (QueryExpression)query;
 
@@ -203,9 +230,7 @@ namespace DLaB.Xrm.LocalCrm
                 //Constructor doesn't have the right constructor, eat the error and throw the inner exception below
             }
 
-            if (exception == null ||
-                exception.InnerException == null ||
-                ex.InnerException.Message != exception.Message)
+            if (exception?.InnerException == null || ex.InnerException.Message != exception.Message)
             {
                 // Wasn't able to correctly create the new Exception.  Fall back to just throwing the inner exception
                 throw ex.InnerException;
@@ -269,9 +294,9 @@ namespace DLaB.Xrm.LocalCrm
 
             if (isCreate)
             {
-                // Set Id
                 SetAttributeId(entity);
                 SetStatusToActiveForCreate(entity);
+                SetOwnerForCreate(entity, properties);
                 ConditionallyAddAutoPopulatedValue(entity, properties, "createdby", Info.User, Info.User.GetIdOrDefault() != Guid.Empty);
                 ConditionallyAddAutoPopulatedValue(entity, properties, "createdonbehalfby", Info.UserOnBehalfOf, Info.UserOnBehalfOf.GetIdOrDefault() != Guid.Empty);
                 ConditionallyAddAutoPopulatedValue(entity, properties, "createdon", entity.Contains("overriddencreatedon") ? entity["overriddencreatedon"] : DateTime.UtcNow);
@@ -426,6 +451,23 @@ namespace DLaB.Xrm.LocalCrm
                     throw new EnumCaseUndefinedException<ActiveAttributeType>(activeInfo.ActiveAttribute);
             }
         }
+
+        /// <summary>
+        /// Sets the owner to the Info.User if it is null.  Only to be called on Create.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <param name="properties">The properties.</param>
+        private void SetOwnerForCreate(Entity entity, PropertyInfo[] properties)
+        {
+            var owner = properties.FirstOrDefault(p => p.Name.Equals(Email.Fields.OwnerId, StringComparison.InvariantCultureIgnoreCase));
+            if (owner == null || entity.Attributes.ContainsKey(Email.Fields.OwnerId))
+            {
+                return;
+            }
+
+            entity[Email.Fields.OwnerId] = Info.User;
+        }
+
 
         #region IClientSideOrganizationService Members
 

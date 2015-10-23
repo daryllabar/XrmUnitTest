@@ -40,9 +40,7 @@ namespace DLaB.Xrm.LocalCrm
         
         private CreateResponse ExecuteInternal(CreateRequest request)
         {
-            var response = new CreateResponse();
-            response.Results["id"] = Create(request.Target);
-            return response;
+            return new CreateResponse {Results = {["id"] = Create(request.Target)}};
         }
 
         private DeleteResponse ExecuteInternal(DeleteRequest request)
@@ -54,8 +52,13 @@ namespace DLaB.Xrm.LocalCrm
         private ExecuteMultipleResponse ExecuteInternal(ExecuteMultipleRequest request)
         {
             var settings = request.Settings;
-            var response = new ExecuteMultipleResponse();
-            response.Results["Responses"] = new ExecuteMultipleResponseItemCollection();
+            var response = new ExecuteMultipleResponse
+            {
+                Results =
+                {
+                    ["Responses"] = new ExecuteMultipleResponseItemCollection()
+                }
+            };
 
             for(int i=0; i<request.Requests.Count; i++)
             {
@@ -92,8 +95,12 @@ namespace DLaB.Xrm.LocalCrm
                 catch (Exception ex)
                 {
                     response["IsFaulted"] = true;
-                    fault = new OrganizationServiceFault {Message = ex.Message, Timestamp = DateTime.UtcNow};
-                    fault.ErrorDetails["CallStack"] = ex.StackTrace;
+                    fault = new OrganizationServiceFault
+                    {
+                        Message = ex.Message,
+                        Timestamp = DateTime.UtcNow,
+                        ErrorDetails = {["CallStack"] = ex.StackTrace}
+                    };
                     if (!settings.ContinueOnError)
                     {
                         break;
@@ -131,16 +138,12 @@ namespace DLaB.Xrm.LocalCrm
                 r.Close();
             }
             var qe = LocalCrmDatabase.ConvertFetchToQueryExpression(this, fetch);
-            var response = new FetchXmlToQueryExpressionResponse();
-            response["FetchXml"] = qe;
-            return response;
+            return new FetchXmlToQueryExpressionResponse {["FetchXml"] = qe};
         }
 
         private QueryExpressionToFetchXmlResponse ExecuteInternal(QueryExpressionToFetchXmlRequest request)
         {
-            var response = new QueryExpressionToFetchXmlResponse();
-            response["FetchXml"] = LocalCrmDatabase.ConvertQueryExpressionToFetchXml(request.Query as QueryExpression);
-            return response;
+            return new QueryExpressionToFetchXmlResponse {["FetchXml"] = LocalCrmDatabase.ConvertQueryExpressionToFetchXml(request.Query as QueryExpression)};
         }
 
         private RetrieveAttributeResponse ExecuteInternal(RetrieveAttributeRequest request)
@@ -167,7 +170,7 @@ namespace DLaB.Xrm.LocalCrm
                        enumExpression.FirstOrDefault(t => t.Name == request.LogicalName);
 
             AddEnumTypeValues(optionSet.OptionSet, enumType,
-                String.Format("Unable to find local optionset enum for entity: {0}, attribute: {1}", request.EntityLogicalName, request.LogicalName));
+                $"Unable to find local optionset enum for entity: {request.EntityLogicalName}, attribute: {request.LogicalName}");
 
             return response;
         }
@@ -250,21 +253,22 @@ namespace DLaB.Xrm.LocalCrm
         private RetrieveEntityResponse ExecuteInternal(RetrieveEntityRequest request)
         {
             var name = new LocalizedLabel(request.LogicalName, Info.LanguageCode);
-            var response = new RetrieveEntityResponse();
-            response.Results["EntityMetadata"] = new EntityMetadata
+            return new RetrieveEntityResponse
             {
-                DisplayCollectionName = new Label(name, new [] { name }),
+                Results =
+                {
+                    ["EntityMetadata"] = new EntityMetadata
+                    {
+                        DisplayCollectionName = new Label(name, new[] {name}),
+                    }
+                }
             };
-
-            return response;
         }
 
 
         private RetrieveMultipleResponse ExecuteInternal(RetrieveMultipleRequest request)
         {
-            var response = new RetrieveMultipleResponse();
-            response.Results["EntityCollection"] = RetrieveMultiple(request.Query);
-            return response;
+            return new RetrieveMultipleResponse {Results = {["EntityCollection"] = RetrieveMultiple(request.Query)}};
         }
 
         private SetStateResponse ExecuteInternal(SetStateRequest request)
@@ -293,10 +297,15 @@ namespace DLaB.Xrm.LocalCrm
         // ReSharper disable once UnusedParameter.Local
         private WhoAmIResponse ExecuteInternal(WhoAmIRequest request)
         {
-            var response = new WhoAmIResponse();
-            response.Results["BusinessUnitId"] = Info.BusinessUnit.Id;
-            response.Results["UserId"] = Info.User.Id;
-            response.Results["OrganizationId"] = Info.OrganizationId;
+            var response = new WhoAmIResponse
+            {
+                Results =
+                {
+                    ["BusinessUnitId"] = Info.BusinessUnit.Id,
+                    ["UserId"] = Info.User.Id,
+                    ["OrganizationId"] = Info.OrganizationId
+                }
+            };
             return response;
         }
     }
