@@ -7,10 +7,7 @@ namespace DLaB.Xrm.Test.Builders
 {
     public sealed class PluginExecutionContextBuilder : PluginExecutionContextBuilderBase<PluginExecutionContextBuilder>
     {
-        protected override PluginExecutionContextBuilder This
-        {
-            get { return this; }
-        }
+        protected override PluginExecutionContextBuilder This => this;
     }
 
     public abstract class PluginExecutionContextBuilderBase<TDerived> where TDerived : PluginExecutionContextBuilderBase<TDerived>
@@ -58,7 +55,7 @@ namespace DLaB.Xrm.Test.Builders
         {
             if (nameValuePairs.Length % 2 != 0)
             {
-                throw new ArgumentException("The list of arguments must be an even number!", "nameValuePairs");
+                throw new ArgumentException("The list of arguments must be an even number!", nameof(nameValuePairs));
             }
             for (var i = 0; i < nameValuePairs.Length; i += 2)
             {
@@ -89,7 +86,7 @@ namespace DLaB.Xrm.Test.Builders
         {
             if (nameValuePairs.Length % 2 != 0)
             {
-                throw new ArgumentException("The list of arguments must be an even number!", "nameValuePairs");
+                throw new ArgumentException("The list of arguments must be an even number!", nameof(nameValuePairs));
             }
             for (var i = 0; i < nameValuePairs.Length; i += 2)
             {
@@ -171,6 +168,17 @@ namespace DLaB.Xrm.Test.Builders
             }
 
             return WithRegisteredEvent(plugin.RegisteredEvents.Single());
+        }
+
+        /// <summary>
+        /// Using the WhoAmIRequest, populates the UserId and InitiatingUserId of the context with the current executing user.
+        /// </summary>
+        /// <param name="service">The service.</param>
+        /// <returns></returns>
+        public TDerived WithCurrentUser(IOrganizationService service)
+        {
+            var info = service.GetCurrentlyExecutingUserInfo();
+            return WithUser(info.UserId).WithInitiatingUser(info.UserId);
         }
 
         /// <summary>
