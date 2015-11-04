@@ -42,7 +42,6 @@ namespace DLaB.Xrm.Test
             EntityIds = new Dictionary<string, List<Guid>>();
             EnableServiceExecutionTracing = true;
             MultiThreadPostDeletion = true;
-            NewEntityDefaultIds = new List<Id>();
         }
 
         #region Entity Ids
@@ -54,7 +53,7 @@ namespace DLaB.Xrm.Test
         {
             // Find all nested Ids
             var nestedIds = new Dictionary<string, List<Guid>>();
-            foreach (var id in GetType().GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic).SelectMany(GetIds)) {
+            foreach (var id in GetType().GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic).SelectMany(Extensions.GetIds)) {
                 nestedIds.AddOrAppend(id);
             }
 
@@ -75,44 +74,6 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        private IEnumerable<Id> GetIds(Type type)
-        {
-            var idType = typeof (Id);
-            foreach (var field in type.GetFields().Where(field => idType.IsAssignableFrom(field.FieldType)))
-            {
-                yield return GetValue(field);
-            }
-            foreach (var id in type.GetNestedTypes().SelectMany(GetIds)) {
-                yield return id;
-            }
-        }
-
-        /// <summary>
-        /// Gets the Id value of the field.  It is very easy to declare an Id&lt;Entity&gt;, but this isn't valid
-        /// This will make the error much more readable and understandable
-        /// </summary>
-        /// <param name="field">The field.</param>
-        /// <returns></returns>
-        [DebuggerHidden]
-        private static Id GetValue(FieldInfo field)
-        {
-            try
-            {
-                return (Id) field.GetValue(null);
-            }catch(TargetInvocationException ex)
-            {
-                if (ex.InnerException != null && ex.InnerException.InnerException != null)
-                {
-                    var idEx = ex.InnerException.InnerException;
-                    if (idEx.Message.Contains("\"Entity\" is not a valid entityname"))
-                    {
-                        throw idEx;
-                    }
-                }
-                throw;
-            }
-        }
-
         /// <summary>
         /// Populated with Entities that are loaded as a result of using EntityDataAssumption Attributes on the Test Method Class.
         /// </summary>
@@ -128,12 +89,6 @@ namespace DLaB.Xrm.Test
         /// Will get populated at the very beginning of Test
         /// </summary>
         protected Dictionary<Guid, Id> Entities { get; private set; }
-
-        /// <summary>
-        /// Populate with EntityLogical name keys, and queue of ids.  Will be used to default the ids of entities
-        /// that are being created by the unit test, without an already populated id
-        /// </summary>
-        protected List<Id> NewEntityDefaultIds { get; private set; }
 
         private void PopulateEntityReferences()
         {
@@ -359,7 +314,6 @@ namespace DLaB.Xrm.Test
             return new OrganizationServiceBuilder(GetInternalOrganizationServiceProxy()).
                 WithEntityNameDefaulted((e, i) => GetUnitTestName(i.MaximumLength)).
                 AssertIdNonEmptyOnCreate().
-                WithIdsDefaultedForCreate(NewEntityDefaultIds.ToArray()).
                 WithDefaultParentBu().Build();
         }
 

@@ -81,7 +81,8 @@
     <Folder Include="Assumptions\Entity Xml\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="UnitTestSettings.user.config" />
+    <None Include="UnitTestSettings.User.config" />
+    <None Include="UnitTestSettings.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

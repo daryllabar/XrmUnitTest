@@ -22,7 +22,7 @@
 // </copyright>
 // ----------------------------------------------------------------------------------
 
-
+#pragma warning disable 1591
 namespace NMemory.Execution.Optimization
 {
     using System.Collections.Generic;

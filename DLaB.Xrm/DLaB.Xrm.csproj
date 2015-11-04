@@ -101,6 +101,15 @@
     <Compile Include="QueryExpressionFactory.cs" />
     <Compile Include="QuerySettings.cs" />
     <Compile Include="RetrieveAllEntities.cs" />
+    <Compile Include="Sandbox\Serialization\KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN.cs" />
+    <Compile Include="Sandbox\Serialization\KeyValuePairOfstringanyType.cs" />
+    <Compile Include="Sandbox\Serialization\KeyValuePairOfstringstring.cs" />
+    <Compile Include="Sandbox\Serialization\SerializableAttributeCollection.cs" />
+    <Compile Include="Sandbox\Serialization\SerializableEntity.cs" />
+    <Compile Include="Sandbox\Serialization\SerializableEntityCollection.cs" />
+    <Compile Include="Sandbox\Serialization\SerializableFormattedValueCollection.cs" />
+    <Compile Include="Sandbox\Serialization\SerializableKeyAttributeCollection.cs" />
+    <Compile Include="Sandbox\Serialization\SerializableRelatedEntityCollection.cs" />
     <Compile Include="TypedQueryExpression.cs" />
     <Compile Include="WhereEqualExtensions.cs" />
     <Compile Include="WhereInExtensions.cs" />
@@ -114,6 +123,7 @@
   <ItemGroup>
     <None Include="DLaB.Xrm.snk" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

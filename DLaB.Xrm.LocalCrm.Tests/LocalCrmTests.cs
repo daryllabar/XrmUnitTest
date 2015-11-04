@@ -388,7 +388,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         {
             var id = Guid.NewGuid();
             var info = LocalCrmDatabaseInfo.Create<CrmContext>(userId: id);
-            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService<CrmContext>(info);
+            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(info);
             var accountId = service.Create(new Account());
 
             var account = service.GetEntity<Account>(accountId);

@@ -21,7 +21,7 @@
 //     THE SOFTWARE.
 // </copyright>
 // -----------------------------------------------------------------------------------
-
+#pragma warning disable 1591
 namespace NMemory.Tables
 {
     using System;
@@ -196,6 +196,7 @@ namespace NMemory.Tables
         /// <param name="convertPrimaryToForeign">
         ///     A function to convert a primary key to the corresponding foreign key.
         /// </param>
+        /// <param name="relationOptions"></param>
         /// <returns>
         ///     The relation.
         /// </returns>

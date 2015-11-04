@@ -27,7 +27,7 @@ namespace NMemory.Execution.Optimization
     using System.Collections.Generic;
 
     /// <summary>
-    /// Provides factory method for <see cref="GroupJoin{TOuter, TInner}"/> in order to
+    /// Provides factory method for GroupJoin in order to
     /// achieve type impeance.
     /// </summary>
     internal static class JoinGroup

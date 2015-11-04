@@ -21,7 +21,7 @@
 //     THE SOFTWARE.
 // </copyright>
 // ----------------------------------------------------------------------------------
-
+#pragma warning disable 1591
 namespace NMemory.Execution.Optimization.Rewriters
 {
     using System.Collections.Generic;

@@ -64,7 +64,7 @@ namespace NMemory.Tables
         /// <param name="entity">
         ///     An entity that contains the new property values.
         /// </param>
-        /// <param name="entity">
+        /// <param name="transaction">
         ///     The transaction within which the update operation is executed.
         /// </param>
         void Update(TPrimaryKey key, TEntity entity, Transaction transaction);
@@ -83,7 +83,7 @@ namespace NMemory.Tables
         /// <param name="key">
         ///     The primary key of the entity to be deleted.
         /// </param>
-        /// <param name="entity">
+        /// <param name="transaction">
         ///     The transaction within which the update operation is executed.
         /// </param>
         void Delete(TPrimaryKey key, Transaction transaction);

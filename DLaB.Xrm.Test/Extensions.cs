@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using DLaB.Common;
 using DLaB.Xrm.Client;
 using DLaB.Xrm.Test.Entities;
@@ -626,5 +627,49 @@ namespace DLaB.Xrm.Test
         }
 
         #endregion // Object
+
+        #region Type
+
+        internal static IEnumerable<Id> GetIds(this Type type)
+        {
+            var idType = typeof(Id);
+            foreach (var field in type.GetFields().Where(field => idType.IsAssignableFrom(field.FieldType)))
+            {
+                yield return GetValue(field);
+            }
+            foreach (var id in type.GetNestedTypes().SelectMany(GetIds))
+            {
+                yield return id;
+            }
+        }
+
+        /// <summary>
+        /// Gets the Id value of the field.  It is very easy to declare an Id&lt;Entity&gt;, but this isn't valid
+        /// This will make the error much more readable and understandable
+        /// </summary>
+        /// <param name="field">The field.</param>
+        /// <returns></returns>
+        [DebuggerHidden]
+        private static Id GetValue(FieldInfo field)
+        {
+            try
+            {
+                return (Id)field.GetValue(null);
+            }
+            catch (TargetInvocationException ex)
+            {
+                if (ex.InnerException != null && ex.InnerException.InnerException != null)
+                {
+                    var idEx = ex.InnerException.InnerException;
+                    if (idEx.Message.Contains("\"Entity\" is not a valid entityname"))
+                    {
+                        throw idEx;
+                    }
+                }
+                throw;
+            }
+        }
+
+        #endregion Type
     }
 }

@@ -21,7 +21,7 @@
 //     THE SOFTWARE.
 // </copyright>
 // ----------------------------------------------------------------------------------
-
+#pragma warning disable 1591
 namespace NMemory.Execution.Optimization.Rewriters
 {
     using System;
@@ -32,8 +32,8 @@ namespace NMemory.Execution.Optimization.Rewriters
     using NMemory.Common;
 
     /// <summary>
-    /// Represents an expression rewriter that replaces <see cref="System.Queryable"/> 
-    /// extension method calls with corresponding <see cref="System.Enumerable"/>  
+    /// Represents an expression rewriter that replaces <see cref="Queryable"/> 
+    /// extension method calls with corresponding <see cref="Enumerable"/>  
     /// extension method calls
     /// </summary>
     public class QueryableRewriter : ExpressionRewriterBase

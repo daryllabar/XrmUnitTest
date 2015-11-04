@@ -134,7 +134,8 @@ namespace DLaB.Xrm.Test
         private static void AddSettingsToAppConfig(Configuration userConfig)
         {
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            if (Path.GetFileName(config.FilePath) == "vstest.executionengine.x86.exe.Config")
+            var fileName = Path.GetFileName(config.FilePath);
+            if (fileName == "vstest.executionengine.x86.exe.Config" || fileName == "te.processhost.managed.exe.Config")
             {
                 throw new Exception("Unit Test Project Must Contain an App.Config file to be able to Load User Settings into!");
             }

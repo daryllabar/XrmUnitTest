@@ -21,7 +21,7 @@
 //     THE SOFTWARE.
 // </copyright>
 // ----------------------------------------------------------------------------------
-
+#pragma warning disable 1591
 using Microsoft.Xrm.Sdk;
 
 namespace NMemory.Execution

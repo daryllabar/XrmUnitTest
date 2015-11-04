@@ -194,3 +194,5 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+/Example.MsTestBase/UnitTestSettings.User.config
+/XrmUnitTest.Test/UnitTestSettings.User.config

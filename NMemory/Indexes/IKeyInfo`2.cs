@@ -21,7 +21,7 @@
 //     THE SOFTWARE.
 // </copyright>
 // ----------------------------------------------------------------------------------
-
+#pragma warning disable 1591
 namespace NMemory.Indexes
 {
     public interface IKeyInfo<TEntity, TKey> : IKeyInfo<TKey>, IKeyInfo

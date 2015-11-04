@@ -58,11 +58,25 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
-        public static LocalCrmDatabaseOrganizationService CreateOrganizationService<T>(LocalCrmDatabaseInfo info = null) 
-            where T : OrganizationServiceContext
+        /// <summary>
+        /// Creates the organization service.
+        /// </summary>
+        /// <param name="info">The information.</param>
+        /// <returns></returns>
+        public static LocalCrmDatabaseOrganizationService CreateOrganizationService(LocalCrmDatabaseInfo info)
         {
-            info = info ?? LocalCrmDatabaseInfo.Create<T>();
             return new LocalCrmDatabaseOrganizationService(info);
+        }
+
+        /// <summary>
+        /// Creates the organization service.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static LocalCrmDatabaseOrganizationService CreateOrganizationService<T>()
+                    where T : OrganizationServiceContext
+        {
+            return new LocalCrmDatabaseOrganizationService(LocalCrmDatabaseInfo.Create<T>());
         }
 
         #region IOrganizationService Members

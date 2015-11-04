@@ -13,10 +13,7 @@ namespace DLaB.Xrm.Test.Builders
     /// </summary>
     public sealed class CrmEnvironmentBuilder : CrmEnvironmentBuilderBase<CrmEnvironmentBuilder>
     {
-        protected override CrmEnvironmentBuilder This
-        {
-            get { return this; }
-        }
+        protected override CrmEnvironmentBuilder This => this;
     }
 
     /// <summary>
@@ -41,6 +38,30 @@ namespace DLaB.Xrm.Test.Builders
         }
 
         #region Fluent Methods
+
+        /// <summary>
+        /// Primarily Used in Conjuction with WithEntities&lt;TIdsStruct&gt; to allow for the exclusion of some Ids from being Created
+        /// </summary>
+        /// <param name="ids">The ids.</param>
+        /// <returns></returns>
+        public TDerived ExceptEntities(params Id[] ids)
+        {
+            foreach (var id in ids)
+            {
+                EntityBuilders.Remove(id);
+            }
+            return This;
+        }
+
+        /// <summary>
+        /// Primarily Used in Conjuction with WithEntities&lt;TIdsStruct&gt; to allow for the exclusion of some Ids from being Created
+        /// </summary>
+        /// <typeparam name="TIdsStruct">The type of the ids structure.</typeparam>
+        /// <returns></returns>
+        public TDerived ExceptEntities<TIdsStruct>() where TIdsStruct : struct
+        {
+            return ExceptEntities(typeof(TIdsStruct).GetIds().ToArray());
+        }
 
         /// <summary>
         /// Allows for the specification of any fluent methods to the builder for the specific entity
@@ -102,6 +123,15 @@ namespace DLaB.Xrm.Test.Builders
             return This;
         }
 
+        /// <summary>
+        /// Walks the Struct, Creating the Entities using the default Builder for each Id Defined in the Struct
+        /// </summary>
+        /// <returns></returns>
+        public TDerived WithEntities<TIdsStruct>() where TIdsStruct : struct
+        {
+            return WithEntities(typeof (TIdsStruct).GetIds().ToArray());
+        }
+
         #endregion // Fluent Methods
 
         /// <summary>
@@ -137,6 +167,7 @@ namespace DLaB.Xrm.Test.Builders
             /// </value>
             private Dictionary<string, List<BuilderInfo>> BuildersByEntityType { get; set; }
 
+            // ReSharper disable once StaticMemberInGenericType
             private static readonly object BuilderConstructorForEntityLock = new object();
             /// <summary>
             /// Contains constructors for the default builders of each entity type.  Whenever a new Builder is needed, this contains the constructor that will be invoked.
@@ -144,6 +175,7 @@ namespace DLaB.Xrm.Test.Builders
             /// <value>
             /// The builder for entity.
             /// </value>
+            // ReSharper disable once StaticMemberInGenericType
             private static Dictionary<string, ConstructorInfo> BuilderConstructorForEntity { get; set; }
             
             /// <summary>
@@ -353,6 +385,26 @@ namespace DLaB.Xrm.Test.Builders
                 Builders.Add(id, builder);
 
                 return builder.Builder;
+            }
+
+            /// <summary>
+            /// Removes the Builder specified by the Id
+            /// </summary>
+            /// <param name="id">The identifier.</param>
+            public void Remove(Id id)
+            {
+                if (Ids.ContainsKey(id))
+                {
+                    Ids.Remove(id);
+                }
+
+                List<BuilderInfo> builders;
+                BuilderInfo builder;
+                if (BuildersByEntityType.TryGetValue(id, out builders) && Builders.TryGetValue(id, out builder))
+                {
+                    Builders.Remove(id);
+                    builders.Remove(builder);
+                }
             }
 
             /// <summary>

@@ -336,37 +336,37 @@ namespace DLaB.Xrm.Test
         #region NotExists (Entity)
 
         [DebuggerHidden]
-        public void NotExists<T>(T entity) where T : Entity
+        public void NotExists(Entity entity)
         {
             NotExists(Service, entity);
         }
 
         [DebuggerHidden]
-        public static void NotExists<T>(IOrganizationService service, T entity) where T : Entity
+        public static void NotExists(IOrganizationService service, Entity entity)
         {
             NotExists(service, entity, null, null);
         }
 
         [DebuggerHidden]
-        public void NotExists<T>(T entity, string message) where T : Entity
+        public void NotExists(Entity entity, string message)
         {
             NotExists(Service, entity, message);
         }
 
         [DebuggerHidden]
-        public static void NotExists<T>(IOrganizationService service, T entity, string message) where T : Entity
+        public static void NotExist(IOrganizationService service, Entity entity, string message)
         {
             NotExists(service, entity, message, null);
         }
 
         [DebuggerHidden]
-        public void NotExists<T>(T entity, string message, params object[] parameters) where T : Entity
+        public void NotExists(Entity entity, string message, params object[] parameters)
         {
             NotExists(Service, entity, message, parameters);
         }
 
         [DebuggerHidden]
-        public static void NotExists<T>(IOrganizationService service, T entity, string message, params object[] parameters) where T : Entity
+        public static void NotExists(IOrganizationService service, Entity entity, string message, params object[] parameters)
         {
             if (service.GetEntityOrDefault(entity.LogicalName, entity.Id) != null)
             {

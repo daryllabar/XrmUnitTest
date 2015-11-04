@@ -18,9 +18,20 @@ namespace DLaB.Xrm.Plugin
         RegisteredEvent Event { get; }
 
         /// <summary>
-        /// The IOrganizationService of the plugin, Impersonated as the user that triggered the services.  TODO: Create SystemOrganizationService?
+        /// The IOrganizationService of the plugin, Impersonated as the user that plugin is registered to run as, useing the PluginExecutionContext.UserId.
         /// </summary>
         IOrganizationService OrganizationService { get; }
+
+        /// <summary>
+        /// The IOrganizationService of the plugin, Impersonated as the user that triggered the services using the PluginExecutionContext.InitiatingUserId.
+        /// </summary>
+        IOrganizationService InitiatingUserOrganizationService { get; }
+
+
+        /// <summary>
+        /// The IOrganizationService of the plugin, using the System User by not specifying a UserId.
+        /// </summary>
+        IOrganizationService SystemOrganizationService { get; }
 
         /// <summary>
         /// The IPluginExecutionContext of the plugin.
@@ -86,9 +97,24 @@ namespace DLaB.Xrm.Plugin
         /// </summary>
         public RegisteredEvent Event { get; private set; }
         /// <summary>
-        /// The IOrganizationService of the plugin, Impersonated as the user that triggered the services.  TODO: Create SystemOrganizationService?
+        /// The IOrganizationService of the plugin, Impersonated as the user that the plugin is registered to run as.
         /// </summary>
-        public IOrganizationService OrganizationService { get; private set; }
+        public IOrganizationService OrganizationService => _organizationService ?? (_organizationService = ServiceFactory.CreateOrganizationService(PluginExecutionContext.UserId));
+
+        /// <summary>
+        /// The IOrganizationService of the plugin, Impersonated as the user that the plugin is was initiated by
+        /// </summary>
+        public IOrganizationService InitiatingUserOrganizationService => _triggeredUserOrganizationService ?? (_triggeredUserOrganizationService = ServiceFactory.CreateOrganizationService(PluginExecutionContext.InitiatingUserId));
+
+        /// <summary>
+        /// The IOrganizationService of the plugin, using the System User
+        /// </summary>
+        public IOrganizationService SystemOrganizationService => _systemOrganizationService ?? (_systemOrganizationService = ServiceFactory.CreateOrganizationService(null));
+
+        private IOrganizationService _organizationService;
+        private IOrganizationService _triggeredUserOrganizationService;
+        private IOrganizationService _systemOrganizationService;
+        private IOrganizationServiceFactory ServiceFactory { get; set; }
         /// <summary>
         /// The IPluginExecutionContext of the plugin.
         /// </summary>
@@ -218,9 +244,7 @@ namespace DLaB.Xrm.Plugin
         {
             PluginExecutionContext = (IPluginExecutionContext) serviceProvider.GetService(typeof (IPluginExecutionContext));
             TracingService = (ITracingService) serviceProvider.GetService(typeof (ITracingService));
-
-            var factory = (IOrganizationServiceFactory) serviceProvider.GetService(typeof (IOrganizationServiceFactory));
-            OrganizationService = factory.CreateOrganizationService(PluginExecutionContext.UserId);
+            ServiceFactory = (IOrganizationServiceFactory) serviceProvider.GetService(typeof (IOrganizationServiceFactory));
         }
 
         /// <summary>
