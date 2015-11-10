@@ -596,7 +596,7 @@ namespace DLaB.Xrm.LocalCrm
                     {
                         var likeCondition = (string) condition.Values[0];
                         // http://stackoverflow.com/questions/5417070/c-sharp-version-of-sql-like
-                        value = new Regex(@"\A" + new Regex(@"\.|\$|\^|\{|\[|\(|\||\)|\*|\+|\?|\\").Replace(likeCondition, ch => @"\" + ch).Replace('_', '.').Replace("%", ".*") + @"\z", RegexOptions.Singleline).IsMatch(str);
+                        value = new Regex(@"\A" + new Regex(@"\.|\$|\^|\{|\[|\(|\||\)|\*|\+|\?|\\").Replace(likeCondition.ToUpper(), ch => @"\" + ch).Replace('_', '.').Replace("%", ".*") + @"\z", RegexOptions.Singleline).IsMatch(str.ToUpper());
                     }
                     break;
                 case ConditionOperator.NotLike:

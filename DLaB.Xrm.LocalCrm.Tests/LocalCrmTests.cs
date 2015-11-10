@@ -103,7 +103,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         {
             var c1 = new Contact {Id = Guid.NewGuid(), FirstName = "Joe", LastName = "Plumber"};
             var c2 = new Contact {Id = Guid.NewGuid(), FirstName = "Bill", LastName = "Carpenter"};
-            var opp = new Opportunity {Id = Guid.NewGuid(), CustomerId = c1.ToEntityReference() };
+            var opp = new Opportunity {Id = Guid.NewGuid(), CustomerId = c1.ToEntityReference()};
 
             var service = GetService();
             service.Create(c1);
@@ -240,7 +240,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 }
                 catch (Exception ex)
                 {
-                    if(ex.ToString().Contains("does not contain an attribute with name statuscode"))
+                    if (ex.ToString().Contains("does not contain an attribute with name statuscode"))
                     {
                         entitiesMissingStatusCodeAttribute.Add(entity.LogicalName);
                         continue;
@@ -356,7 +356,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void LocalCrmTests_FormattedValuePopulated()
         {
             var service = GetService();
-            var id = service.Create(new Lead { BudgetStatusEnum = budgetstatus.CanBuy });
+            var id = service.Create(new Lead {BudgetStatusEnum = budgetstatus.CanBuy});
 
             // Retrieve
             var entity = service.GetEntity<Lead>(id);
@@ -371,7 +371,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void LocalCrmTests_AliasedFormattedValuePopulated()
         {
             var service = GetService();
-            var id = service.Create(new Lead { BudgetStatusEnum = budgetstatus.MayBuy });
+            var id = service.Create(new Lead {BudgetStatusEnum = budgetstatus.MayBuy});
             service.Create(new Account {OriginatingLeadId = new EntityReference(Lead.EntityLogicalName, id)});
 
             var qe = QueryExpressionFactory.Create<Account>();
@@ -388,7 +388,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         {
             var service = GetService();
 
-            var contact = new Contact { AccountRoleCodeEnum = contact_accountrolecode.DecisionMaker };
+            var contact = new Contact {AccountRoleCodeEnum = contact_accountrolecode.DecisionMaker};
             contact.FormattedValues.Add(Contact.Fields.AccountRoleCode, "Verify Formatted Values Are Ignored");
             service.Create(contact);
 
@@ -409,7 +409,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
 
             // Retrieve
             Assert.IsNotNull(account.OwnerId);
-            Assert.AreEqual(id,account.OwnerId.Id);
+            Assert.AreEqual(id, account.OwnerId.Id);
         }
 
         [TestMethod]
@@ -430,6 +430,14 @@ namespace DLaB.Xrm.LocalCrm.Tests
 
             Assert.IsNotNull(user, "User was not created by default");
             Assert.IsNotNull(bu, "Business Unit was not created");
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_LikeIsCaseInsensitive()
+        {
+            var service = GetService();
+            service.Create(new Contact {FirstName = "Jimmy"});
+            Assert.IsNotNull(service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.FirstName, ConditionOperator.Like, "JIM%")));
         }
     }
 }
