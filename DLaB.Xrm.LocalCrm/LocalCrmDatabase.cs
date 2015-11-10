@@ -323,6 +323,11 @@ namespace DLaB.Xrm.LocalCrm
             var table = SchemaGetOrCreate<T>(service.Info);
             service.PopulateAutoPopulatedAttributes(entity, true);
 
+            // Clear non Attribute Related Values
+            entity.FormattedValues.Clear();
+            entity.KeyAttributes.Clear();
+            entity.RelatedEntities.Clear();
+
             if (entity.Id == Guid.Empty)
             {
                 entity.Id = Guid.NewGuid();
@@ -496,7 +501,7 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
-        private static void PopulateFormattedValues<T>(Entity entity ) where T : Entity
+        private static void PopulateFormattedValues<T>(Entity entity) where T : Entity
         {
             // TODO: Handle Names?
             if(!entity.Attributes.Values.Any(v => v is OptionSetValue || (v as AliasedValue)?.Value is OptionSetValue))
@@ -526,7 +531,6 @@ namespace DLaB.Xrm.LocalCrm
                 }
                 entity.FormattedValues.Add(osvAttribute.Key, property.GetValue(entity).ToString());
             }
-
         }
 
         private static IQueryable<T> ApplyFilter<T>(IQueryable<T> query, FilterExpression filter) where T : Entity

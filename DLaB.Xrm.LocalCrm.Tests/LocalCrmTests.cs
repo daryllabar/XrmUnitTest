@@ -384,6 +384,20 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
+        public void LocalCrmTests_FormattedValuesIgnored()
+        {
+            var service = GetService();
+
+            var contact = new Contact { AccountRoleCodeEnum = contact_accountrolecode.DecisionMaker };
+            contact.FormattedValues.Add(Contact.Fields.AccountRoleCode, "Verify Formatted Values Are Ignored");
+            service.Create(contact);
+
+            contact = service.GetFirstOrDefault<Contact>();
+            Assert.AreEqual(contact_accountrolecode.DecisionMaker, contact.AccountRoleCodeEnum);
+            Assert.AreEqual(contact_accountrolecode.DecisionMaker.ToString(), contact.FormattedValues[Contact.Fields.AccountRoleCode]);
+        }
+
+        [TestMethod]
         public void LocalCrmTests_OwnerPopulated()
         {
             var id = Guid.NewGuid();
