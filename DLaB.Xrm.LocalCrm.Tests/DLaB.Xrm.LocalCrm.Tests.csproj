@@ -65,6 +65,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DLaB.Common\DLaB.Common.csproj">
+      <Project>{a7284a23-15f3-411d-bc26-2890a11053fe}</Project>
+      <Name>DLaB.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DLaB.Xrm.Client\DLaB.Xrm.Client.csproj">
       <Project>{674c3dde-a543-4199-b089-278eeb4db85a}</Project>
       <Name>DLaB.Xrm.Client</Name>

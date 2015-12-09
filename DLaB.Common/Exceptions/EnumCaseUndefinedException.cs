@@ -90,6 +90,12 @@ namespace DLaB.Common.Exceptions
 
         #endregion // Constructors
 
+        /// <summary>
+        /// Gets the message.
+        /// </summary>
+        /// <param name="undefinedEnumValue">The undefined enum value.</param>
+        /// <param name="message">The message.</param>
+        /// <returns></returns>
         protected static string GetMessage(int undefinedEnumValue, string message = null)
         {
             var enumType = typeof(TEnum);
@@ -98,6 +104,12 @@ namespace DLaB.Common.Exceptions
             return FormatMessage(message, enumType, (TEnum)(object)undefinedEnumValue, undefinedEnumValue);
         }
 
+        /// <summary>
+        /// Gets the message.
+        /// </summary>
+        /// <param name="undefinedEnumValue">The undefined enum value.</param>
+        /// <param name="message">The message.</param>
+        /// <returns></returns>
         protected static string GetMessage(TEnum undefinedEnumValue, string message = null)
         {
             var enumType = typeof(TEnum);
@@ -106,12 +118,26 @@ namespace DLaB.Common.Exceptions
             return FormatMessage(message, enumType, undefinedEnumValue, (int)(object)undefinedEnumValue);
         }
 
+        /// <summary>
+        /// Formats the message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="enumType">Type of the enum.</param>
+        /// <param name="undefinedEnumValue">The undefined enum value.</param>
+        /// <param name="undefinedEnumIntValue">The undefined enum int value.</param>
+        /// <returns></returns>
         protected static string FormatMessage(string message, Type enumType, TEnum undefinedEnumValue, int undefinedEnumIntValue)
         {
             return String.Format("{0}No case statement for {1}.{2} ({3}) has been defined!", message,
                 enumType.FullName, undefinedEnumValue, undefinedEnumIntValue);
         }
 
+        /// <summary>
+        /// Determines whether the specified enum type is enum.
+        /// </summary>
+        /// <param name="enumType">Type of the enum.</param>
+        /// <param name="message">The message.</param>
+        /// <returns></returns>
         protected static bool IsEnum(Type enumType, ref string message)
         {
             if (String.IsNullOrWhiteSpace(message))

@@ -7,16 +7,23 @@ using System.Reflection;
 using DLaB.Common;
 using DLaB.Xrm.Client;
 using DLaB.Xrm.Test.Entities;
-using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.Test
 {
+    /// <summary>
+    /// Exteion Class for Xrm Tests
+    /// </summary>
     public static class Extensions
     {
         #region struct
 
+        /// <summary>
+        /// Returns the Guid Fields declared by the given Struct Type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public static IEnumerable<Guid> GetIdFields<T>() where T : struct
         {
             return from f in typeof(T).GetFields()
@@ -363,6 +370,13 @@ namespace DLaB.Xrm.Test
             }
         }
 
+        /// <summary>
+        /// Determines whether the current entity's field set contains at least the entire set of the given entity's field set
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity">The entity.</param>
+        /// <param name="compareEntity">The compare entity.</param>
+        /// <returns></returns>
         public static bool ContainsAllFieldsInEntity<T>(this T entity, T compareEntity) where T : Entity
         {
             return compareEntity.Attributes.ToList().All(attribute => entity.Attributes.Contains(attribute.Key));
@@ -388,6 +402,11 @@ namespace DLaB.Xrm.Test
 
         #region IOrganizationService
 
+        /// <summary>
+        /// Handles deleting the business unit by first disabling it.
+        /// </summary>
+        /// <param name="service">The service.</param>
+        /// <param name="businessUnitId">The business unit identifier.</param>
         public static void DeleteBusinessUnit(this IOrganizationService service, Guid businessUnitId)
         {
             var qe = QueryExpressionFactory.Create(BusinessUnit.EntityLogicalName, new ColumnSet(), BusinessUnit.Fields.BusinessUnitId, businessUnitId);
@@ -422,61 +441,6 @@ namespace DLaB.Xrm.Test
         }
 
         #region MockOrDefault
-
-        #region MockUpdateOrDefault
-
-        public static void MockUpdateOrDefault(this IOrganizationService service, Entity entity, Entity entityToMock, Action<Entity> action)
-        {
-            if (entity.LogicalName == entityToMock.LogicalName && entity.Id == entityToMock.Id)
-            {
-                action(entity);
-            }
-            else
-            {
-                service.Update(entity);
-            }
-        }
-
-        public static void MockUpdateOrDefault(this IOrganizationService service, Entity entity, EntityReference entityToMock, Action<Entity> action)
-        {
-            if (entity.LogicalName == entityToMock.LogicalName && entity.Id == entityToMock.Id)
-            {
-                action(entity);
-            }
-            else
-            {
-                service.Update(entity);
-            }
-        }
-
-        #endregion // MockUpdateOrDefault
-
-        #region OrganizationRequest
-
-        public static OrganizationResponse MockOrDefault(this IOrganizationService s, OrganizationRequest request,
-            Func<OrganizationRequest, bool> useMock, OrganizationResponse response)
-        {
-            return useMock(request) ? response : s.Execute(request);
-        }
-
-        public static OrganizationResponse MockOrDefaultSetState(this IOrganizationService s, OrganizationRequest request,
-            Func<SetStateRequest, bool> useMock, Action<IOrganizationService, SetStateRequest> action)
-        {
-            var setState = request as SetStateRequest;
-
-            if (setState != null && useMock(setState))
-            {
-                action(s, setState);
-
-                return new SetStateResponse();
-            }
-            else
-            {
-                return s.Execute(request);
-            }
-        }
-
-        #endregion // OrganizationRequest
 
         #region Retrieve
 
@@ -617,6 +581,12 @@ namespace DLaB.Xrm.Test
 
         #region Object
 
+        /// <summary>
+        /// Shortcut for throwing a ArgumentNullException
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <param name="name">The name.</param>
+        /// <exception cref="System.ArgumentNullException"></exception>
         [DebuggerHidden]
         public static void ThrowIfNull(this Object data, string name)
         {
@@ -658,7 +628,7 @@ namespace DLaB.Xrm.Test
             }
             catch (TargetInvocationException ex)
             {
-                if (ex.InnerException != null && ex.InnerException.InnerException != null)
+                if (ex.InnerException?.InnerException != null)
                 {
                     var idEx = ex.InnerException.InnerException;
                     if (idEx.Message.Contains("\"Entity\" is not a valid entityname"))

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using DLaB.Common;
+using DLaB.Xrm.Test.Exceptions;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test.Builders
@@ -13,6 +14,9 @@ namespace DLaB.Xrm.Test.Builders
     /// </summary>
     public sealed class CrmEnvironmentBuilder : CrmEnvironmentBuilderBase<CrmEnvironmentBuilder>
     {
+        /// <summary>
+        /// Returns the Instance
+        /// </summary>
         protected override CrmEnvironmentBuilder This => this;
     }
 
@@ -21,9 +25,24 @@ namespace DLaB.Xrm.Test.Builders
     /// </summary>
     public abstract class CrmEnvironmentBuilderBase<TDerived> where TDerived : CrmEnvironmentBuilderBase<TDerived>
     {
+        /// <summary>
+        /// Gets the Instance.
+        /// </summary>
+        /// <value>
+        /// The this.
+        /// </value>
         protected abstract TDerived This { get; }
+        /// <summary>
+        /// Gets or sets the entity builders.
+        /// </summary>
+        /// <value>
+        /// The entity builders.
+        /// </value>
         protected EntityBuilderManager EntityBuilders { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CrmEnvironmentBuilderBase{TDerived}" /> class.
+        /// </summary>
         protected CrmEnvironmentBuilderBase()
         {
             try
@@ -77,7 +96,7 @@ namespace DLaB.Xrm.Test.Builders
             var builder = result as TBuilder;
             if (builder == null)
             {
-                throw new Exception(String.Format("Unexpected type of builder!  Builder for {0}, was not of type {1}, but type {2}.", id, typeof (TBuilder).FullName, result.GetType().FullName));
+                throw new Exception($"Unexpected type of builder!  Builder for {id}, was not of type {typeof (TBuilder).FullName}, but type {result.GetType().FullName}.");
             }
             action(builder);
             return This;
@@ -97,6 +116,12 @@ namespace DLaB.Xrm.Test.Builders
             return This;
         }
 
+        /// <summary>
+        /// Adds the child entities to the parent.
+        /// </summary>
+        /// <param name="parent">The parent.</param>
+        /// <param name="ids">The ids.</param>
+        /// <returns></returns>
         public TDerived WithChildEntities(Id parent, params Id[] ids)
         {
             EntityBuilders.Get(parent);
@@ -157,7 +182,7 @@ namespace DLaB.Xrm.Test.Builders
             /// <value>
             /// The builders.
             /// </value>
-            private Dictionary<Guid, BuilderInfo> Builders { get; set; }
+            private Dictionary<Guid, BuilderInfo> Builders { get; }
 
             /// <summary>
             /// Manages the same list of Builders as the Builders Property, but by logical name
@@ -165,7 +190,7 @@ namespace DLaB.Xrm.Test.Builders
             /// <value>
             /// The type of the builders by entity.
             /// </value>
-            private Dictionary<string, List<BuilderInfo>> BuildersByEntityType { get; set; }
+            private Dictionary<string, List<BuilderInfo>> BuildersByEntityType { get; }
 
             // ReSharper disable once StaticMemberInGenericType
             private static readonly object BuilderConstructorForEntityLock = new object();
@@ -176,7 +201,7 @@ namespace DLaB.Xrm.Test.Builders
             /// The builder for entity.
             /// </value>
             // ReSharper disable once StaticMemberInGenericType
-            private static Dictionary<string, ConstructorInfo> BuilderConstructorForEntity { get; set; }
+            private static Dictionary<string, ConstructorInfo> BuilderConstructorForEntity { get; }
             
             /// <summary>
             /// Manages Custom Builder Fluent Actions.  Key is entity Logical Name.  Value is fluent actions to apply to Builder
@@ -184,9 +209,9 @@ namespace DLaB.Xrm.Test.Builders
             /// <value>
             /// The custom builder actions.
             /// </value>
-            private Dictionary<string, Action<object>> CustomBuilderFluentActions { get; set; }
+            private Dictionary<string, Action<object>> CustomBuilderFluentActions { get; }
 
-            private Dictionary<Guid, Id> Ids {get; set;}
+            private Dictionary<Guid, Id> Ids { get; }
 
             #endregion Properties
 
@@ -218,7 +243,9 @@ namespace DLaB.Xrm.Test.Builders
                 }
             }
 
-
+            /// <summary>
+            /// Initializes a new instance of the <see cref="CrmEnvironmentBuilderBase{TDerived}.EntityBuilderManager" /> class.
+            /// </summary>
             public EntityBuilderManager()
             {
                 BuildersByEntityType = new Dictionary<string, List<BuilderInfo>>();
@@ -272,7 +299,7 @@ namespace DLaB.Xrm.Test.Builders
                     var builder = result as TBuilder;
                     if (builder == null)
                     {
-                        throw new Exception(String.Format("Unexpected type of builder!  Builder for {0}, was not of type {1}, but type {2}.", logicalName, typeof(TBuilder).FullName, result.GetType().FullName));
+                        throw new Exception($"Unexpected type of builder!  Builder for {logicalName}, was not of type {typeof (TBuilder).FullName}, but type {result.GetType().FullName}.");
                     }
                     action(builder);
                 }
@@ -305,17 +332,32 @@ namespace DLaB.Xrm.Test.Builders
                     List<BuilderInfo> values;
                     if (!BuildersByEntityType.TryGetValue(name, out values))
                     {
-                        // Should this be an exception?
+                        // The Entity Creation Order is a Singleton.
+                        // If this continue occurs, most likely another instance of a Crm Environment Builder used a type that wasn't utilized by this instance
                         continue;
                     }
-
-                    foreach (var entity in values.Select(value => CreateEntity(service, value)))
+                    foreach (var value in values)
                     {
-                        Id id;
-                        results.Add(entity.Id, entity);
-                        if (Ids.TryGetValue(entity.Id, out id))
+                        try
                         {
-                            id.Entity = entity;
+                            var entity = CreateEntity(service, value);
+                            {
+                                Id id;
+                                results.Add(entity.Id, entity);
+                                if (Ids.TryGetValue(entity.Id, out id))
+                                {
+                                    id.Entity = entity;
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            var entityName = value.Id.Entity == null ? name : value.Id.Entity.ToStringAttributes();
+                            if (string.IsNullOrWhiteSpace(entityName))
+                            {
+                                entityName = name;
+                            }
+                            throw new CreationFailureException($"An error occured attempting to create {entityName}.  {ex.Message}", ex);
                         }
                     }
                 }
@@ -463,8 +505,8 @@ namespace DLaB.Xrm.Test.Builders
 
             private class BuilderInfo
             {
-                public Id Id { get; private set; }
-                public IEntityBuilder Builder { get; private set; }
+                public Id Id { get; }
+                public IEntityBuilder Builder { get; }
 
                 public BuilderInfo(Id id, IEntityBuilder builder)
                 {

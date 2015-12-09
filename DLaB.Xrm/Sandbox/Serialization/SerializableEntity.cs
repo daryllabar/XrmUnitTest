@@ -10,32 +10,89 @@ namespace DLaB.Xrm.Sandbox.Serialization
     [DataContract(Name = "Entity", Namespace = "http://schemas.microsoft.com/xrm/2011/Contracts")]
     public class SerializableEntity : IExtensibleDataObject
     {
+        /// <summary>
+        /// Gets or sets the name of the logical.
+        /// </summary>
+        /// <value>
+        /// The name of the logical.
+        /// </value>
         [DataMember]
         public string LogicalName { get; set; }
 
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
         [DataMember]
         public Guid Id { get; set; }
 
+        /// <summary>
+        /// Gets or sets the attributes.
+        /// </summary>
+        /// <value>
+        /// The attributes.
+        /// </value>
         [DataMember]
         public SerializableAttributeCollection Attributes { get; set; }
 
+        /// <summary>
+        /// Gets or sets the state of the entity.
+        /// </summary>
+        /// <value>
+        /// The state of the entity.
+        /// </value>
         [DataMember]
         public EntityState? EntityState { get; set; }
 
+        /// <summary>
+        /// Gets or sets the formatted values.
+        /// </summary>
+        /// <value>
+        /// The formatted values.
+        /// </value>
         [DataMember]
         public SerializableFormattedValueCollection FormattedValues { get; set; }
 
+        /// <summary>
+        /// Gets or sets the related entities.
+        /// </summary>
+        /// <value>
+        /// The related entities.
+        /// </value>
         [DataMember]
         public SerializableRelatedEntityCollection RelatedEntities { get; set; }
 
+        /// <summary>
+        /// Gets or sets the row version.
+        /// </summary>
+        /// <value>
+        /// The row version.
+        /// </value>
         [DataMember]
         public string RowVersion { get; set; }
 
+        /// <summary>
+        /// Gets or sets the key attributes.
+        /// </summary>
+        /// <value>
+        /// The key attributes.
+        /// </value>
         [DataMember]
         public SerializableKeyAttributeCollection KeyAttributes { get; set; }
 
+        /// <summary>
+        /// Gets or sets the extension data.
+        /// </summary>
+        /// <value>
+        /// The extension data.
+        /// </value>
         public ExtensionDataObject ExtensionData { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SerializableEntity"/> class.
+        /// </summary>
         public SerializableEntity()
         {
             Attributes = new SerializableAttributeCollection();
@@ -44,6 +101,10 @@ namespace DLaB.Xrm.Sandbox.Serialization
             KeyAttributes = new SerializableKeyAttributeCollection();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SerializableEntity"/> class.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
         public SerializableEntity(Entity entity)
         {
             Attributes = new SerializableAttributeCollection(entity.Attributes);

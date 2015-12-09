@@ -29,6 +29,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\DLaB.Xrm.Xml</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -75,6 +77,7 @@
     <Compile Include="Comparers\ProjectionEqualityComparer.cs" />
     <Compile Include="Comparers\QueryExpressionComparer.cs" />
     <Compile Include="EntityHelper.cs" />
+    <Compile Include="ErrorCodes.cs" />
     <Compile Include="Exceptions\EnumCaseUndefinedException.cs" />
     <Compile Include="Exceptions\InvalidPluginStepRegistrationException.cs" />
     <Compile Include="Exceptions\MissingAttributeException.cs" />
@@ -88,7 +91,11 @@
     <Compile Include="IIOrganizationServiceWrapper.cs" />
     <Compile Include="LateBoundActivePropertyInfo.cs" />
     <Compile Include="LateBoundQuerySettings.cs" />
+    <Compile Include="OptimisticConcurrencyExtensions.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Plugin\Extensions.cs" />
+    <Compile Include="Plugin\ILocalPluginContext.cs" />
     <Compile Include="Plugin\IRegisteredEventsPlugin.cs" />
     <Compile Include="Plugin\IRegisteredEventsPluginHandler.cs" />
     <Compile Include="Plugin\LocalPluginContextBase.cs" />

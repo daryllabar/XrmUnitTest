@@ -6,6 +6,9 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.LocalCrm
 {
+    /// <summary>
+    /// Extension Methods for Local CRM
+    /// </summary>
     public static class Extensions
     {
         #region IEnumerable<FetchAttributeInfo>

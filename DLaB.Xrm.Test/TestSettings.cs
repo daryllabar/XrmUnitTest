@@ -5,6 +5,9 @@ using Microsoft.Xrm.Sdk.Client;
 
 namespace DLaB.Xrm.Test
 {
+    /// <summary>
+    /// Defines the TestSettings for the Test framework
+    /// </summary>
     public class TestSettings
     {
         /// <summary>
@@ -37,7 +40,7 @@ namespace DLaB.Xrm.Test
         /// <value>
         /// The user test configuration path.
         /// </value>
-        public static PathSetting UserTestConfigPath { get; } = new PathSetting("User Test Config Path has not been configured.  Call DLaB.Xrm.Test.TestSettings.ConfigureUserTestConfig() first before getting the UserTestConfigPath.");
+        public static PathSetting UserTestConfigPath { get; } = new PathSetting("User Test Config Path has not been configured.  Call DLaB.Xrm.Test.TestSettings.UserTestConfig.Configure first before getting the UserTestConfigPath.");
 
         /// <summary>
         /// Gets the web resource path.  This allows unit tests that pull a settings file, to read the value from the WebResource, rather than having to Fake it out.
@@ -45,7 +48,7 @@ namespace DLaB.Xrm.Test
         /// <value>
         /// The web resource path.
         /// </value>
-        public static PathSetting WebResourcePath { get; } = new PathSetting("Web Resource Path has not been configured.  Call DLaB.Xrm.Test.TestSettings.ConfigureWebResource() first before getting the WebResourcePath.");
+        public static PathSetting WebResourcePath { get; } = new PathSetting("Web Resource Path has not been configured.  Call DLaB.Xrm.Test.TestSettings.WebResource.Configure() first before getting the WebResourcePath.");
 
         /// <summary>
         /// Gets the test framework provider which implments ITestFrameworkProvider

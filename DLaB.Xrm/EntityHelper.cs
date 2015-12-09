@@ -7,13 +7,27 @@ using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm
 {
+    /// <summary>
+    /// Utiltiy class to get an Entity Type form a name, and visa-versa, and for determining Entity Id Attribute Name
+    /// </summary>
     public class EntityHelper
     {
+        /// <summary>
+        /// Gets the entity logical name for the given type.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public static string GetEntityLogicalName<T>() where T : Entity
         {
             return GetEntityLogicalName(typeof(T));
         }
 
+        /// <summary>
+        /// Gets the entity logical name for the given type.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Type  + type.FullName +  does not contain an EntityLogicalName Field</exception>
         public static string GetEntityLogicalName(Type type)
         {
             if (type.IsGenericParameter && type.BaseType != null)
@@ -23,22 +37,26 @@ namespace DLaB.Xrm
             }
 
             var field = type.GetField("EntityLogicalName");
-            if (field == null)
+            if (field != null)
             {
-                if (type == typeof(Entity))
-                {
-                    return "entity";
-                }
-                else
-                {
-                    throw new Exception("Type " + type.FullName + " does not contain an EntityLogicalName Field");
-                }
+                return (string) field.GetValue(null);
             }
-            return (string)field.GetValue(null);
+            if (type == typeof(Entity))
+            {
+                return "entity";
+            }
+            throw new Exception("Type " + type.FullName + " does not contain an EntityLogicalName Field");
         }
 
         #region Determine Type
 
+        /// <summary>
+        /// Gets the type of the given entity, using the OrganizationServiceContext to determine the assembly to look for the Entity Type in.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entityLogicalName">Name of the entity logical.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Must pass in a derived type from Microsoft.Xrm.Sdk.Client.OrganizationServiceContext</exception>
         public static Type GetType<T>(string entityLogicalName) where T : Microsoft.Xrm.Sdk.Client.OrganizationServiceContext
         {
             var contextType = typeof(T);
@@ -50,11 +68,19 @@ namespace DLaB.Xrm
             return GetType(contextType.Assembly, contextType.Namespace, entityLogicalName);
         }
 
-        private static ConcurrentDictionary<string, Dictionary<String, Type>> _cache = new ConcurrentDictionary<string, Dictionary<String, Type>>();
+        private static readonly ConcurrentDictionary<string, Dictionary<string, Type>> Cache = new ConcurrentDictionary<string, Dictionary<String, Type>>();
+        /// <summary>
+        /// Gets the type for the given entity logical name.
+        /// </summary>
+        /// <param name="earlyBoundAssembly">The early bound assembly.</param>
+        /// <param name="namespace">The namespace.</param>
+        /// <param name="entityLogicalName">Name of the entity logical.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception"></exception>
         public static Type GetType(Assembly earlyBoundAssembly, string @namespace, string entityLogicalName)
         {
             var key = "LogicalNameToEntityMapping|" + earlyBoundAssembly.FullName + "|" + @namespace;
-            var mappings = _cache.GetOrAdd(key, k =>
+            var mappings = Cache.GetOrAdd(key, k =>
             {
                 var entityType = typeof(Entity);
                 return earlyBoundAssembly.GetTypes().
@@ -70,12 +96,19 @@ namespace DLaB.Xrm
             Type otherType;
             if (!mappings.TryGetValue(entityLogicalName, out otherType))
             {
-                throw new Exception(String.Format("Unable to find a Type in assembly \"{0}\", namespace \"{1}\", with a logical name of \"{2}\"", earlyBoundAssembly.FullName, @namespace, entityLogicalName));
+                throw new Exception($"Unable to find a Type in assembly \"{earlyBoundAssembly.FullName}\", namespace \"{@namespace}\", with a logical name of \"{entityLogicalName}\"");
             }
 
             return otherType;
         }
 
+        /// <summary>
+        /// Determines whether entity defined by the logical name is defined as an early bound type.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entityLogicalName">Name of the entity logical.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Must pass in a derived type from Microsoft.Xrm.Sdk.Client.OrganizationServiceContext</exception>
         public static bool IsTypeDefined<T>(string entityLogicalName) where T : Microsoft.Xrm.Sdk.Client.OrganizationServiceContext
         {
             var contextType = typeof(T);
@@ -87,10 +120,17 @@ namespace DLaB.Xrm
             return IsTypeDefined(contextType.Assembly, contextType.Namespace, entityLogicalName);
         }
 
+        /// <summary>
+        /// Determines whether entity defined by the logical name is defined as an early bound type.
+        /// </summary>
+        /// <param name="earlyBoundAssembly">The early bound assembly.</param>
+        /// <param name="namespace">The namespace.</param>
+        /// <param name="entityLogicalName">Name of the entity logical.</param>
+        /// <returns></returns>
         public static bool IsTypeDefined(Assembly earlyBoundAssembly, string @namespace, string entityLogicalName)
         {
             var key = "LogicalNameToEntityMapping|" + earlyBoundAssembly.FullName + "|" + @namespace;
-            var mappings = _cache.GetOrAdd(key, k =>
+            var mappings = Cache.GetOrAdd(key, k =>
             {
                 var entityType = typeof(Entity);
                 return earlyBoundAssembly.GetTypes().
@@ -406,16 +446,33 @@ namespace DLaB.Xrm
             return info;
         }
 
+        /// <summary>
+        /// Contains information about the given Primary Name Field for an Entity
+        /// </summary>
         public class PrimaryFieldInfo
         {
+            /// <summary>
+            /// Gets or sets the name of the attribute.
+            /// </summary>
+            /// <value>
+            /// The name of the attribute.
+            /// </value>
             public string AttributeName { get; set; }
+            /// <summary>
+            /// Gets or sets the maximum length.
+            /// </summary>
+            /// <value>
+            /// The maximum length.
+            /// </value>
             public int MaximumLength { get; set; }
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="PrimaryFieldInfo"/> class.
+            /// </summary>
             public PrimaryFieldInfo()
             {
                 MaximumLength = 100;
             }
-
         }
 
         #endregion // Determine Entity Attribute Name Name

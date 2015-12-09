@@ -1,14 +1,15 @@
 ﻿using System;
-using System.Configuration;
 using System.Diagnostics;
 using System.Reflection;
 using System.ServiceModel.Description;
 using Microsoft.Xrm.Client;
 using Microsoft.Xrm.Client.Services;
-using DLaB.Common;
 
 namespace DLaB.Xrm.Client
 {
+    /// <summary>
+    /// Creates connections to CRM
+    /// </summary>
     public class CrmServiceUtility
     {
         #region Fields / Properties
@@ -19,17 +20,37 @@ namespace DLaB.Xrm.Client
 
         #region GetOrganizationService
 
+        /// <summary>
+        /// Gets the organization service.
+        /// </summary>
+        /// <param name="info">The information.</param>
+        /// <returns></returns>
         public static IClientSideOrganizationService GetOrganizationService(CrmServiceInfo info)
         {
             return CreateService(info);
         }
 
+        /// <summary>
+        /// Gets the organization service.
+        /// </summary>
+        /// <param name="crmOrganization">The CRM organization.</param>
+        /// <param name="impersonationUserId">The impersonation user identifier.</param>
+        /// <returns></returns>
         public static IClientSideOrganizationService GetOrganizationService(string crmOrganization,
             Guid impersonationUserId = new Guid())
         {
             return GetOrganizationService(new CrmServiceInfo(crmOrganization, impersonationUserId));
         }
 
+        /// <summary>
+        /// Gets the organization service.
+        /// </summary>
+        /// <param name="crmOrganizationUrl">The CRM organization URL.</param>
+        /// <param name="crmDiscoveryUrl">The CRM discovery URL.</param>
+        /// <param name="crmOrganization">The CRM organization.</param>
+        /// <param name="impersonationUserId">The impersonation user identifier.</param>
+        /// <param name="enableProxyTypes">if set to <c>true</c> [enable proxy types].</param>
+        /// <returns></returns>
         public static IClientSideOrganizationService GetOrganizationService(string crmOrganizationUrl,
             string crmDiscoveryUrl, string crmOrganization, Guid impersonationUserId = new Guid(),
             bool enableProxyTypes = true)
@@ -101,15 +122,15 @@ namespace DLaB.Xrm.Client
             }
 
             // If the caller hasn't explicitly set the user name and password, user the Debug credentials
-            if (Debugger.IsAttached && String.IsNullOrWhiteSpace(userName) && String.IsNullOrWhiteSpace(password))
+            if (Debugger.IsAttached && string.IsNullOrWhiteSpace(userName) && string.IsNullOrWhiteSpace(password))
             {
-                userName = ConfigurationManager.AppSettings["DebugUserAccountName"];
-                password = ConfigurationManager.AppSettings["DebugUserAccountPassword"];
-                domain = ConfigurationManager.AppSettings["DebugUserAccountDomain"];
+                userName = AppConfig.DebugUserAccountName;
+                password = AppConfig.DebugUserAccountPassword;
+                domain = AppConfig.DebugUserAccountDomain;
             }
             
             // If UserName or Password is null, return standard Client Credentials
-            if (String.IsNullOrWhiteSpace(userName) || String.IsNullOrWhiteSpace(password))
+            if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password))
             {
                 return cred;
             }
@@ -130,6 +151,11 @@ namespace DLaB.Xrm.Client
 
         #region EarlyBoundProxy
 
+        /// <summary>
+        /// Gets the early bound proxy assembly.
+        /// </summary>
+        /// <param name="defaultAssembly">The default assembly.</param>
+        /// <returns></returns>
         public static Assembly GetEarlyBoundProxyAssembly(Assembly defaultAssembly = null)
         {
             if (_crmEntitiesAssembly != null)
@@ -139,7 +165,7 @@ namespace DLaB.Xrm.Client
 
             if (defaultAssembly == null)
             {
-                return GetEarlyBoundProxyAssembly(Config.GetAppSettingOrDefault("CrmEntities.ContextType", "DLaB.Xrm.Entities.CrmContext, DLaB.Xrm.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
+                return GetEarlyBoundProxyAssembly(AppConfig.CrmEntities.ContextType);
             }
 
             _crmEntitiesAssembly = defaultAssembly;
@@ -171,16 +197,24 @@ namespace DLaB.Xrm.Client
 
         #region Url Formatting
 
+        /// <summary>
+        /// Gets the discovery service URI.
+        /// </summary>
+        /// <param name="serverName">Name of the server.</param>
+        /// <returns></returns>
         public static Uri GetDiscoveryServiceUri(string serverName)
         {
-            return new Uri(string.Format(@"{0}/XRMServices/2011/Discovery.svc", serverName));
+            return new Uri($@"{serverName}/XRMServices/2011/Discovery.svc");
         }
 
+        /// <summary>
+        /// Gets the organization service URI.
+        /// </summary>
+        /// <param name="info">The information.</param>
+        /// <returns></returns>
         public static Uri GetOrganizationServiceUri(CrmServiceInfo info)
         {
-            return new Uri(String.Format(@"{0}/{1}/XRMServices/2011/Organization.svc",
-                info.CrmServerUrl,
-                info.CrmOrganization));
+            return new Uri($@"{info.CrmServerUrl}/{info.CrmOrganization}/XRMServices/2011/Organization.svc");
         }
 
         #endregion // Url Formatting

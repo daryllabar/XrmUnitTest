@@ -8,9 +8,26 @@ namespace DLaB.Common
     /// <typeparam name="T"></typeparam>
     public abstract class TypeSafeEnumBase<T>
     {
+        /// <summary>
+        /// The text name of the Enum.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
         public string Name { get; private set; }
-        public T Value { get; private set; }
+        /// <summary>
+        /// The value of the Enum.
+        /// </summary>
+        /// <value>
+        /// The value.
+        /// </value>
+        public T Value { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TypeSafeEnumBase{T}"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="value">The value.</param>
         protected TypeSafeEnumBase(string name, T value)
         {
             name.ThrowIfNull("name");
@@ -18,11 +35,24 @@ namespace DLaB.Common
             Value = value;
         }
 
+        /// <summary>
+        /// Performs an implicit conversion from <see cref="TypeSafeEnumBase{T}"/> to the given type T.
+        /// </summary>
+        /// <param name="t">The t.</param>
+        /// <returns>
+        /// The result of the conversion.
+        /// </returns>
         public static implicit operator T(TypeSafeEnumBase<T> t)
         {
             return t.Value;
         }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
             return Value == null ? String.Empty : Value.ToString();

@@ -5,20 +5,68 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm
 {
+    /// <summary>
+    /// Type of Active Attribute
+    /// </summary>
     public enum ActiveAttributeType
     {
+        /// <summary>
+        /// Entity does not support an Active Attribute
+        /// </summary>
         None,
+        /// <summary>
+        /// Entity uses an IsDisabled Attribute
+        /// </summary>
         IsDisabled,
+        /// <summary>
+        /// Entity uses a StateCode Attribute
+        /// </summary>
         StateCode,
     }
 
+    /// <summary>
+    /// Determines the Active Attribute for the Entity
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ActivePropertyInfo<T> where T : Entity
     {
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets the active attribute type.
+        /// </summary>
+        /// <value>
+        /// The active attribute type.
+        /// </value>
         public ActiveAttributeType ActiveAttribute { get; set; }
+        /// <summary>
+        /// Gets or sets the name of the active attribute.
+        /// </summary>
+        /// <value>
+        /// The name of the active attribute.
+        /// </value>
         public string AttributeName { get; set; }
+        /// <summary>
+        /// Gets or sets the state of the active.
+        /// </summary>
+        /// <value>
+        /// The state of the active.
+        /// </value>
         public int? ActiveState { get; set; }
+        /// <summary>
+        /// Gets or sets the not active state code integer value of the entity.
+        /// </summary>
+        /// <value>
+        /// The state of the not active.
+        /// </value>
         public int? NotActiveState { get; set; }
 
+        #endregion Properties
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ActivePropertyInfo{T}"/> class.
+        /// </summary>
+        /// <exception cref="TypeArgumentException">'Entity' is an invalid type for T.  Please use the LateBoundActivePropertyInfo.</exception>
         public ActivePropertyInfo()
         {
             if (typeof(T) == typeof(Entity))
@@ -28,11 +76,16 @@ namespace DLaB.Xrm
             SetAttributeNameAndType(EntityHelper.GetEntityLogicalName<T>());
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ActivePropertyInfo{T}"/> class.
+        /// </summary>
+        /// <param name="logicalName">Name of the logical.</param>
+        /// <exception cref="System.ArgumentNullException">logicalName</exception>
         protected ActivePropertyInfo(string logicalName)
         {
             if (logicalName == null)
             {
-                throw new ArgumentNullException("logicalName");
+                throw new ArgumentNullException(nameof(logicalName));
             }
             SetAttributeNameAndType(logicalName);
         }
@@ -228,6 +281,10 @@ namespace DLaB.Xrm
             }
         }
 
+        /// <summary>
+        /// Sets the state attributes and value.
+        /// </summary>
+        /// <param name="logicalName">Name of the logical.</param>
         protected void SetStateAttributesAndValue(string logicalName)
         {
             ActiveAttribute = ActiveAttributeType.StateCode;
@@ -283,12 +340,23 @@ namespace DLaB.Xrm
             }
         }
 
+        /// <summary>
+        /// Determines whether [is join entity] [the specified logical name].
+        /// </summary>
+        /// <param name="logicalName">Name of the logical.</param>
+        /// <returns></returns>
         private bool IsJoinEntity(string logicalName)
         {
             // Entities of the type new_Foo_Bar are usually Join Entities that don't have a state
             return logicalName.Split('_').Length >= 3;
         }
 
+        /// <summary>
+        /// Determines whether the specified service is active.
+        /// </summary>
+        /// <param name="service">The service.</param>
+        /// <param name="entityId">The entity identifier.</param>
+        /// <returns></returns>
         public static bool? IsActive(IOrganizationService service, Guid entityId)
         {
             var info = new ActivePropertyInfo<T>();
@@ -296,6 +364,14 @@ namespace DLaB.Xrm
             return IsActive(info, entity);
         }
 
+        /// <summary>
+        /// Determines whether the specified information is active.
+        /// </summary>
+        /// <param name="info">The information.</param>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">ActivePropertyInfo defines Attribute StateCode, but neither ActiveState or NotActiveState is popualted</exception>
+        /// <exception cref="EnumCaseUndefinedException{ActiveAttributeType}"></exception>
         protected static bool? IsActive(ActivePropertyInfo<T> info, T entity)
         {
             bool? active;

@@ -132,13 +132,6 @@ namespace DLaB.Xrm.Entities
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string Name = "name";
-			public const string new_AgencyCommissionAmount = "new_agencycommissionamount";
-			public const string new_agencycommissionamount_Base = "new_agencycommissionamount_base";
-			public const string new_AgentCommissionAmount = "new_agentcommissionamount";
-			public const string new_agentcommissionamount_Base = "new_agentcommissionamount_base";
-			public const string new_CorporateCommissionAmount = "new_corporatecommissionamount";
-			public const string new_corporatecommissionamount_Base = "new_corporatecommissionamount_base";
-			public const string new_TIN = "new_tin";
 			public const string NumberOfEmployees = "numberofemployees";
 			public const string OpenDeals = "opendeals";
 			public const string OpenDeals_Date = "opendeals_date";
@@ -2070,125 +2063,6 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Name");
 				this.SetAttributeValue("name", value);
 				this.OnPropertyChanged("Name");
-			}
-		}
-		
-		/// <summary>
-		/// The amount of commission paid to Partner Agency
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("new_agencycommissionamount")]
-		public Microsoft.Xrm.Sdk.Money new_AgencyCommissionAmount
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("new_agencycommissionamount");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("new_AgencyCommissionAmount");
-				this.SetAttributeValue("new_agencycommissionamount", value);
-				this.OnPropertyChanged("new_AgencyCommissionAmount");
-			}
-		}
-		
-		/// <summary>
-		/// Value of the Agency Commission Amount in base currency.
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("new_agencycommissionamount_base")]
-		public Microsoft.Xrm.Sdk.Money new_agencycommissionamount_Base
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("new_agencycommissionamount_base");
-			}
-		}
-		
-		/// <summary>
-		/// The amount of commission paid to Partner Agent
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("new_agentcommissionamount")]
-		public Microsoft.Xrm.Sdk.Money new_AgentCommissionAmount
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("new_agentcommissionamount");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("new_AgentCommissionAmount");
-				this.SetAttributeValue("new_agentcommissionamount", value);
-				this.OnPropertyChanged("new_AgentCommissionAmount");
-			}
-		}
-		
-		/// <summary>
-		/// Value of the AgentCommissionAmount in base currency.
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("new_agentcommissionamount_base")]
-		public Microsoft.Xrm.Sdk.Money new_agentcommissionamount_Base
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("new_agentcommissionamount_base");
-			}
-		}
-		
-		/// <summary>
-		/// The amount of commission paid to Partner Corporation
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("new_corporatecommissionamount")]
-		public Microsoft.Xrm.Sdk.Money new_CorporateCommissionAmount
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("new_corporatecommissionamount");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("new_CorporateCommissionAmount");
-				this.SetAttributeValue("new_corporatecommissionamount", value);
-				this.OnPropertyChanged("new_CorporateCommissionAmount");
-			}
-		}
-		
-		/// <summary>
-		/// Value of the Corporate Commission Amount in base currency.
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("new_corporatecommissionamount_base")]
-		public Microsoft.Xrm.Sdk.Money new_corporatecommissionamount_Base
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("new_corporatecommissionamount_base");
-			}
-		}
-		
-		/// <summary>
-		/// Federal Tax Identification Number
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("new_tin")]
-		public string new_TIN
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<string>("new_tin");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("new_TIN");
-				this.SetAttributeValue("new_tin", value);
-				this.OnPropertyChanged("new_TIN");
 			}
 		}
 		

@@ -4,11 +4,38 @@ using System.Linq;
 
 namespace DLaB.Xrm.Plugin
 {
+    /// <summary>
+    /// Fluent Builder for Registered Events
+    /// </summary>
     public class RegisteredEventBuilder
     {
+        /// <summary>
+        /// Gets or sets the entity logical names.
+        /// </summary>
+        /// <value>
+        /// The entity logical names.
+        /// </value>
         protected List<String> EntityLogicalNames { get; set; }
+        /// <summary>
+        /// Gets or sets the execute.
+        /// </summary>
+        /// <value>
+        /// The execute.
+        /// </value>
         protected Action<ILocalPluginContext> Execute { get; set; }
+        /// <summary>
+        /// Gets or sets the message types.
+        /// </summary>
+        /// <value>
+        /// The message types.
+        /// </value>
         protected List<MessageType> MessageTypes { get; set; }
+        /// <summary>
+        /// Gets or sets the stage.
+        /// </summary>
+        /// <value>
+        /// The stage.
+        /// </value>
         protected PipelineStage Stage { get; set; }
 
         /// <summary>
@@ -52,9 +79,13 @@ namespace DLaB.Xrm.Plugin
             Execute = context => execute((T)context);
             return this;
         }
-		
-	    #endregion Fluent Methods
 
+        #endregion Fluent Methods
+
+        /// <summary>
+        /// Builds this instance.
+        /// </summary>
+        /// <returns></returns>
         public List<RegisteredEvent> Build()
         {
             var events = new List<RegisteredEvent>();

@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 
 namespace DLaB.Xrm.Client
 {
+    /// <summary>
+    /// Extension Class for Client Side Crm integrations
+    /// </summary>
     public static class Extensions
     {
         /// <summary>

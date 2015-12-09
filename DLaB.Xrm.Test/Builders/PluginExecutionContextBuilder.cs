@@ -5,16 +5,44 @@ using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test.Builders
 {
+    /// <summary>
+    /// Derived Version of the PluginExecutionContextBuilderBase
+    /// </summary>
     public sealed class PluginExecutionContextBuilder : PluginExecutionContextBuilderBase<PluginExecutionContextBuilder>
     {
+        /// <summary>
+        /// Gets the Plugin Execution Context of the derived Class.
+        /// </summary>
+        /// <value>
+        /// The this.
+        /// </value>
         protected override PluginExecutionContextBuilder This => this;
     }
 
+    /// <summary>
+    /// Abstract Builder to allow for Derived Types to created
+    /// </summary>
+    /// <typeparam name="TDerived">The type of the derived.</typeparam>
     public abstract class PluginExecutionContextBuilderBase<TDerived> where TDerived : PluginExecutionContextBuilderBase<TDerived>
     {
+        /// <summary>
+        /// Gets the derived version of the class.
+        /// </summary>
+        /// <value>
+        /// The this.
+        /// </value>
         protected abstract TDerived This { get; }
+        /// <summary>
+        /// Gets or sets the context.
+        /// </summary>
+        /// <value>
+        /// The context.
+        /// </value>
         protected FakePluginExecutionContext Context { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PluginExecutionContextBuilderBase{TDerived}" /> class.
+        /// </summary>
         protected PluginExecutionContextBuilderBase()
         {
             Context = new FakePluginExecutionContext();
@@ -95,7 +123,6 @@ namespace DLaB.Xrm.Test.Builders
             return This;
         }
 
-
         /// <summary>
         /// Sets the parent context for the context.
         /// </summary>
@@ -168,6 +195,37 @@ namespace DLaB.Xrm.Test.Builders
             }
 
             return WithRegisteredEvent(plugin.RegisteredEvents.Single());
+        }
+
+        /// <summary>
+        /// Adds the variable to the context's SharedVariables collection.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="parameter">The parameter.</param>
+        /// <returns></returns>
+        public TDerived WithSharedVariable(string name, object parameter)
+        {
+            Context.SharedVariables[name] = parameter;
+            return This;
+        }
+
+        /// <summary>
+        /// Key Value Pairs of variables to add to the context's SharedVariables collection.
+        /// </summary>
+        /// <param name="nameValuePairs">The name value pairs.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentException">The list of arguments must be an even number!;nameValuePairs</exception>
+        public TDerived WithSharedVariables(params object[] nameValuePairs)
+        {
+            if (nameValuePairs.Length % 2 != 0)
+            {
+                throw new ArgumentException("The list of arguments must be an even number!", nameof(nameValuePairs));
+            }
+            for (var i = 0; i < nameValuePairs.Length; i += 2)
+            {
+                WithSharedVariable((string)nameValuePairs[i], nameValuePairs[i + 1]);
+            }
+            return This;
         }
 
         /// <summary>
@@ -248,6 +306,10 @@ namespace DLaB.Xrm.Test.Builders
 
         #endregion // Fluent Methods
 
+        /// <summary>
+        /// Builds this instance.
+        /// </summary>
+        /// <returns></returns>
         public IPluginExecutionContext Build()
         {
             return Context.Clone();

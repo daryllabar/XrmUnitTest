@@ -178,10 +178,6 @@ namespace DLaB.Xrm.Entities
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
-			public const string new_DateofBirth = "new_dateofbirth";
-			public const string new_IsHomeowner = "new_ishomeowner";
-			public const string new_SendCopyOfBackgroundCheck = "new_sendcopyofbackgroundcheck";
-			public const string new_SocialSecurityNumber = "new_socialsecuritynumber";
 			public const string NickName = "nickname";
 			public const string NumberOfChildren = "numberofchildren";
 			public const string OriginatingLeadId = "originatingleadid";
@@ -3004,86 +3000,6 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
-			}
-		}
-		
-		/// <summary>
-		/// Date of Birth used for RPM Agents only
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("new_dateofbirth")]
-		public System.Nullable<System.DateTime> new_DateofBirth
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<System.Nullable<System.DateTime>>("new_dateofbirth");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("new_DateofBirth");
-				this.SetAttributeValue("new_dateofbirth", value);
-				this.OnPropertyChanged("new_DateofBirth");
-			}
-		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("new_ishomeowner")]
-		public System.Nullable<bool> new_IsHomeowner
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<System.Nullable<bool>>("new_ishomeowner");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("new_IsHomeowner");
-				this.SetAttributeValue("new_ishomeowner", value);
-				this.OnPropertyChanged("new_IsHomeowner");
-			}
-		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("new_sendcopyofbackgroundcheck")]
-		public System.Nullable<bool> new_SendCopyOfBackgroundCheck
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<System.Nullable<bool>>("new_sendcopyofbackgroundcheck");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("new_SendCopyOfBackgroundCheck");
-				this.SetAttributeValue("new_sendcopyofbackgroundcheck", value);
-				this.OnPropertyChanged("new_SendCopyOfBackgroundCheck");
-			}
-		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("new_socialsecuritynumber")]
-		public string new_SocialSecurityNumber
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<string>("new_socialsecuritynumber");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("new_SocialSecurityNumber");
-				this.SetAttributeValue("new_socialsecuritynumber", value);
-				this.OnPropertyChanged("new_SocialSecurityNumber");
 			}
 		}
 		

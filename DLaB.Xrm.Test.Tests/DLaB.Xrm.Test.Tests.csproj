@@ -46,6 +46,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -63,7 +64,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Builders\CrmEnvironmentBuilderTests.cs" />
+    <Compile Include="Builders\ServiceProviderBuilderTests.cs" />
+    <Compile Include="EntityDependencyTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sandbox\Serialization\SerializableEntityTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DLaB.Common\DLaB.Common.csproj">
@@ -94,6 +98,9 @@
       <Project>{b872c19c-94a6-4659-a2d6-10bbf05fbe1a}</Project>
       <Name>XrmUnitTest.Test</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

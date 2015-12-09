@@ -28,6 +28,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\DLaB.Xrm.Test.Xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Crm.Sdk.Proxy">
@@ -53,9 +54,11 @@
   <ItemGroup>
     <Compile Include="Assumptions\MultipleEntityDataAssumptionBaseAttribute.cs" />
     <Compile Include="Builders\IEntityBuilder.cs" />
+    <Compile Include="AppConfig.cs" />
     <Compile Include="Entities\BusinessUnit.cs" />
     <Compile Include="Entities\SystemUser.cs" />
     <Compile Include="Entities\WebResource.cs" />
+    <Compile Include="Exceptions\CreationFailureException.cs" />
     <Compile Include="Exceptions\NotConfiguredException.cs" />
     <Compile Include="ITestLogger.cs" />
     <Compile Include="ITestFrameworkProvider.cs" />

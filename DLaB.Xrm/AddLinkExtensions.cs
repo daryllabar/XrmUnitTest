@@ -245,12 +245,27 @@ namespace DLaB.Xrm
         #region QueryExpression
 
         #region AddLink
-            public static LinkEntity AddLink(this QueryExpression qe, string linkToEntityName, string linkAttributesName)
+        /// <summary>
+        /// Adds a LinkEntity to the Query Expression, returning it.
+        /// </summary>
+        /// <param name="qe">The qe.</param>
+        /// <param name="linkToEntityName">Name of the link to entity.</param>
+        /// <param name="linkAttributesName">Name of the link attributes.</param>
+        /// <returns></returns>
+        public static LinkEntity AddLink(this QueryExpression qe, string linkToEntityName, string linkAttributesName)
             {
                 return qe.AddLink(linkToEntityName, linkAttributesName, linkAttributesName);
             }
 
-            public static LinkEntity AddLink(this QueryExpression qe, string linkToEntityName, string linkAttributesName, JoinOperator joinType)
+        /// <summary>
+        /// Adds a LinkEntity to the Query Expression, returning it.
+        /// </summary>
+        /// <param name="qe">The qe.</param>
+        /// <param name="linkToEntityName">Name of the link to entity.</param>
+        /// <param name="linkAttributesName">Name of the link attributes.</param>
+        /// <param name="joinType">Type of the join.</param>
+        /// <returns></returns>
+        public static LinkEntity AddLink(this QueryExpression qe, string linkToEntityName, string linkAttributesName, JoinOperator joinType)
             {
                 return qe.AddLink(linkToEntityName, linkAttributesName, linkAttributesName, joinType);
             }

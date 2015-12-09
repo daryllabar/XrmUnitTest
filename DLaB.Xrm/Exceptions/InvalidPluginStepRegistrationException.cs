@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DLaB.Common;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Exceptions
@@ -84,10 +85,17 @@ namespace DLaB.Xrm.Exceptions
             return new InvalidPluginStepRegistrationException("{0} Entity Image \"{1}\" is missing required parameter {2}!", image, keyValue.Key, attributeName);
         }
 
+        /// <summary>
+        /// Creates a new InvalidPluginStepRegistrationException due to the given missing required attribute.
+        /// </summary>
+        /// <param name="image">The image.</param>
+        /// <param name="imageKeyName">Name of the image key.</param>
+        /// <param name="attributes">The attributes.</param>
+        /// <returns></returns>
         public static InvalidPluginStepRegistrationException ImageMissingRequiredAttributes(ImageCollection image, string imageKeyName, IEnumerable<string> attributes)
         {
             var local = attributes.ToArray();
-            return new InvalidPluginStepRegistrationException("{0} Entity Image \"{1}\" is missing required parameter{2} {3}!", image, imageKeyName, local.Count() > 1 ? "s" : String.Empty, String.Join(", ", local));
+            return new InvalidPluginStepRegistrationException("{0} Entity Image \"{1}\" is missing required parameter{2} {3}!", image, imageKeyName, local.Length > 1 ? "s" : String.Empty, local.ToCsv());
         }
     }
 }

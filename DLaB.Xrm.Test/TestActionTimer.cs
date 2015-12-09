@@ -3,10 +3,23 @@ using System.Diagnostics;
 
 namespace DLaB.Xrm.Test
 {
+    /// <summary>
+    /// Timer class for timing actions during a test
+    /// </summary>
     public class TestActionTimer
     {
+        /// <summary>
+        /// Gets the logger.
+        /// </summary>
+        /// <value>
+        /// The logger.
+        /// </value>
         public ITestLogger Logger { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TestActionTimer"/> class.
+        /// </summary>
+        /// <param name="logger">The logger.</param>
         public TestActionTimer(ITestLogger logger)
         {
             Logger = logger;

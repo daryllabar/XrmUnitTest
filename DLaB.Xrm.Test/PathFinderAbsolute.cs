@@ -1,20 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DLaB.Xrm.Test
+﻿namespace DLaB.Xrm.Test
 {
+    /// <summary>
+    /// Defines the Abolute Path
+    /// </summary>
     public class PathFinderAbsolute : IPathFinder
     {
         private string Path { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PathFinderAbsolute"/> class.
+        /// </summary>
+        /// <param name="path">The path.</param>
         public PathFinderAbsolute(string path)
         {
             Path = path;
         }
 
+        /// <summary>
+        /// Gets the path.
+        /// </summary>
+        /// <returns></returns>
         public string GetPath()
         {
             return Path;

@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
-using DLaB.Common;
 using DLaB.Xrm.Client;
 using DLaB.Xrm.Exceptions;
 using DLaB.Xrm.LocalCrm.Entities;
@@ -15,10 +14,24 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.LocalCrm
 {
+    /// <summary>
+    /// A ClientSide OrganizationService that connects to an in memory OrganizationService
+    /// </summary>
     public partial class LocalCrmDatabaseOrganizationService : IClientSideOrganizationService
     {
+        /// <summary>
+        /// Gets the Crm Database Info.
+        /// </summary>
+        /// <value>
+        /// The information.
+        /// </value>
         public LocalCrmDatabaseInfo Info { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LocalCrmDatabaseOrganizationService"/> class.
+        /// </summary>
+        /// <param name="info">The info object.</param>
+        /// <exception cref="System.ArgumentNullException"></exception>
         public LocalCrmDatabaseOrganizationService(LocalCrmDatabaseInfo info)
         {
             if (info == null)
@@ -58,6 +71,8 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
+        #region Factory Methods
+
         /// <summary>
         /// Creates the organization service.
         /// </summary>
@@ -79,17 +94,26 @@ namespace DLaB.Xrm.LocalCrm
             return new LocalCrmDatabaseOrganizationService(LocalCrmDatabaseInfo.Create<T>());
         }
 
+        #endregion Factory Methods
+
         #region IOrganizationService Members
 
+        /// <summary>
+        /// Associates the specified entity name.
+        /// </summary>
+        /// <param name="entityName">Name of the entity.</param>
+        /// <param name="entityId">The entity identifier.</param>
+        /// <param name="relationship">The relationship.</param>
+        /// <param name="relatedEntities">The related entities.</param>
         [DebuggerStepThrough]
         public void Associate(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
         {
-            if (!relatedEntities.Any()) { throw new ArgumentException("Must contain at least one related entity!", nameof(relatedEntities));}
+            if (!relatedEntities.Any()) { throw new ArgumentException("Must contain at least one related entity!", nameof(relatedEntities)); }
             if (relatedEntities.Any(e => e.LogicalName != relatedEntities.First().LogicalName)) { throw new NotImplementedException("Don't currently Support different Entity Types for related Entities!"); }
 
             if (relationship.PrimaryEntityRole.GetValueOrDefault(EntityRole.Referenced) == EntityRole.Referencing)
             {
-                throw new NotImplementedException("Referencing Not Currently Implemented");    
+                throw new NotImplementedException("Referencing Not Currently Implemented");
             }
 
             var referencedIdName = EntityHelper.GetIdAttributeName(entityName);
@@ -102,14 +126,20 @@ namespace DLaB.Xrm.LocalCrm
 
 
             foreach (var relation in relatedEntities.Select(relatedEntity => new Entity(relationship.SchemaName)
-                                                                             {
-                                                                                 [referencedIdName] = entityId,
-                                                                                 [referencingIdName] = relatedEntity.Id
-                                                                             })) {
+            {
+                [referencedIdName] = entityId,
+                [referencingIdName] = relatedEntity.Id
+            }))
+            {
                 Service.Create(relation);
             }
         }
 
+        /// <summary>
+        /// Creates the specified entity.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
         [DebuggerStepThrough]
         public Guid Create(Entity entity)
         {
@@ -122,12 +152,25 @@ namespace DLaB.Xrm.LocalCrm
             return (Guid)InvokeStaticGenericMethod(entity.LogicalName, "Create", this, typedEntity);
         }
 
+        /// <summary>
+        /// Deletes the specified entity name.
+        /// </summary>
+        /// <param name="entityName">Name of the entity.</param>
+        /// <param name="id">The identifier.</param>
         [DebuggerStepThrough]
         public void Delete(string entityName, Guid id)
         {
             InvokeStaticGenericMethod(entityName, "Delete", this, id);
         }
 
+        /// <summary>
+        /// Disassociates the entities.
+        /// </summary>
+        /// <param name="entityName">Name of the entity.</param>
+        /// <param name="entityId">The entity identifier.</param>
+        /// <param name="relationship">The relationship.</param>
+        /// <param name="relatedEntities">The related entities.</param>
+        [DebuggerStepThrough]
         public void Disassociate(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
         {
             if (!relatedEntities.Any()) { throw new ArgumentException("Must contain at least one related entity!", nameof(relatedEntities)); }
@@ -156,25 +199,42 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
+        /// <summary>
+        /// Executes the specified request.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
         [DebuggerStepThrough]
         public OrganizationResponse Execute(OrganizationRequest request)
         {
             return ExecuteInternal((dynamic)request);
         }
 
+        /// <summary>
+        /// Retrieves the specified entity.
+        /// </summary>
+        /// <param name="entityName">Name of the entity.</param>
+        /// <param name="id">The identifier.</param>
+        /// <param name="columnSet">The column set.</param>
+        /// <returns></returns>
         [DebuggerStepThrough]
         public Entity Retrieve(string entityName, Guid id, ColumnSet columnSet)
         {
             return (Entity)InvokeStaticGenericMethod(entityName, "Read", this, id, columnSet);
         }
 
+        /// <summary>
+        /// Retrieves the entities defined by the query.
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <returns></returns>
         [DebuggerStepThrough]
         public EntityCollection RetrieveMultiple(QueryBase query)
         {
             var fetchQuery = query as FetchExpression;
             if (fetchQuery != null)
             {
-                XmlSerializer s = new XmlSerializer(typeof(FetchType));
+                var s = new XmlSerializer(typeof(FetchType));
                 FetchType fetch;
                 using (var r = new StringReader(fetchQuery.Query))
                 {
@@ -188,6 +248,10 @@ namespace DLaB.Xrm.LocalCrm
             return (EntityCollection)InvokeStaticGenericMethod(qe.EntityName, "ReadEntities", this, qe);
         }
 
+        /// <summary>
+        /// Updates the entity.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
         [DebuggerStepThrough]
         public void Update(Entity entity)
         {
@@ -202,6 +266,11 @@ namespace DLaB.Xrm.LocalCrm
 
         #endregion
 
+        /// <summary>
+        /// Gets the type of the Entity.
+        /// </summary>
+        /// <param name="logicalName">Name of the logical.</param>
+        /// <returns></returns>
         [DebuggerHidden]
         public Type GetType(string logicalName)
         {
@@ -322,7 +391,7 @@ namespace DLaB.Xrm.LocalCrm
 
         private static string GetFullName(string firstName, string middleName, string lastName)
         {
-            var fullNameFormat = Config.GetAppSettingOrDefault("CrmSystemSettings.FullNameFormat", "F I L").ToUpper();
+            var fullNameFormat = AppConfig.CrmSystemSettings.FullNameFormat;
             fullNameFormat = UpdateFormat(fullNameFormat, firstName, 'F');
             fullNameFormat = UpdateFormat(fullNameFormat, lastName, 'L');
             fullNameFormat = UpdateFormat(fullNameFormat, middleName, 'M');
@@ -482,9 +551,14 @@ namespace DLaB.Xrm.LocalCrm
             entity[Email.Fields.OwnerId] = Info.User;
         }
 
-
         #region IClientSideOrganizationService Members
 
+        /// <summary>
+        /// Gets or sets the service.
+        /// </summary>
+        /// <value>
+        /// The service.
+        /// </value>
         public IOrganizationService Service
         {
             get
@@ -497,10 +571,10 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
-        #endregion
-
-        #region IIOrganizationServiceWrapper Members
-
+        /// <summary>
+        /// Gets the service URI.
+        /// </summary>
+        /// <returns></returns>
         public Uri GetServiceUri()
         {
             return new Uri(@"http://www.LocalCrmDatabase.com/" + Info.DatabaseName);
@@ -510,6 +584,9 @@ namespace DLaB.Xrm.LocalCrm
 
         #region IDisposable Members
 
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
         public void Dispose()
         {
             // Nothing to Dispose

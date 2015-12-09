@@ -11,6 +11,9 @@ using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test.Assumptions
 {
+    /// <summary>
+    /// Base Class for Assumption Entities
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
     public abstract class EntityDataAssumptionBaseAttribute : Attribute
     {
@@ -22,7 +25,7 @@ namespace DLaB.Xrm.Test.Assumptions
                 return _prerequisites ??
                     (_prerequisites = (GetType().GetCustomAttributes(false).Select(a => a as PrerequisiteAssumptionsAttribute).FirstOrDefault()
                                       ??
-                                      new PrerequisiteAssumptionsAttribute(new Type[0])
+                                      new PrerequisiteAssumptionsAttribute()
                                       ).Prerequisites);
             }
         }
@@ -62,18 +65,12 @@ namespace DLaB.Xrm.Test.Assumptions
         /// <summary>
         /// Gets the name of the type, without the "Attribute" postfix
         /// </summary>
-        private String ShortName
-        {
-            get { return GetShortName(GetType()); }
-        }
+        private String ShortName => GetShortName(GetType());
 
         /// <summary>
         /// Gets the name of the type, without the "Attribute" postfix, and with any namespace values that come after Assumptions
         /// </summary>
-        private String AssumptionsNamespaceRelativePath
-        {
-            get { return GetAssumptionsNamespaceRelativePath(GetType()); }
-        }
+        private String AssumptionsNamespaceRelativePath => GetAssumptionsNamespaceRelativePath(GetType());
 
         /// <summary>
         /// Gets the name of the type, without the "Attribute" postfix
@@ -126,8 +123,14 @@ namespace DLaB.Xrm.Test.Assumptions
             AddAssumedEntitiesWithPreReqInfiniteLoopPrevention(service, assumedEntities, new HashSet<Type>());
         }
 
+        /// <summary>
+        /// Adds the assumed entities with pre req infinite loop prevention.
+        /// </summary>
+        /// <param name="service">The service.</param>
+        /// <param name="assumedEntities">The assumed entities.</param>
+        /// <param name="currentlyProcessingPreReqs">The currently processing pre reqs.</param>
         protected void AddAssumedEntitiesWithPreReqInfiniteLoopPrevention(IOrganizationService service, AssumedEntities assumedEntities,
-                                                                          HashSet<Type> currentlyProcessingPreReqs)
+                                                                                  HashSet<Type> currentlyProcessingPreReqs)
         {
             _assumedEntities = assumedEntities;
             _currentlyProcessingPreReqs = currentlyProcessingPreReqs;
@@ -151,7 +154,7 @@ namespace DLaB.Xrm.Test.Assumptions
         {
             if (_currentlyProcessingPreReqs.Count == 1)
             {
-                throw new Exception(String.Format("Prerequisite Assumption Loop!  {0} called itself!", type));
+                throw new Exception($"Prerequisite Assumption Loop!  {type} called itself!");
             }
             var sb = new StringBuilder();
             sb.Append(_currentlyProcessingPreReqs.First().Name + " called " + _currentlyProcessingPreReqs.Skip(1).First().Name);
@@ -163,6 +166,10 @@ namespace DLaB.Xrm.Test.Assumptions
             throw new Exception("Prerequisite Assumption Loop!  " + sb);
         }
 
+        /// <summary>
+        /// Internal Implementation of Adds Assumed Entities.
+        /// </summary>
+        /// <param name="service">The service.</param>
         protected virtual void AddAssumedEntitiesInternal(IOrganizationService service)
         {
             var entity = RetrieveEntity(service);
@@ -170,6 +177,12 @@ namespace DLaB.Xrm.Test.Assumptions
             _assumedEntities.Add(this, entity);
         }
 
+
+        /// <summary>
+        /// Adds the assumed entity.
+        /// </summary>
+        /// <param name="service">The service.</param>
+        /// <param name="assumption">The assumption.</param>
         protected void AddAssumedEntity(IOrganizationService service, EntityDataAssumptionBaseAttribute assumption)
         {
             assumption.AddAssumedEntitiesWithPreReqInfiniteLoopPrevention(service, _assumedEntities, _currentlyProcessingPreReqs);
@@ -209,7 +222,7 @@ namespace DLaB.Xrm.Test.Assumptions
                 }
 
                 entity = GetTestEntityFromXml(AssumptionsNamespaceRelativePath);
-                var localService = mock == null ? (LocalCrmDatabaseOrganizationService) service : (LocalCrmDatabaseOrganizationService) mock.ActualService;
+                var localService = mock == null ? (LocalCrmDatabaseOrganizationService)service : (LocalCrmDatabaseOrganizationService)mock.ActualService;
                 var isSelfReferencing = CreateForeignReferences(localService, entity);
                 if (isSelfReferencing)
                 {
@@ -299,26 +312,27 @@ namespace DLaB.Xrm.Test.Assumptions
         [AttributeUsage(AttributeTargets.Class)]
         protected class PrerequisiteAssumptionsAttribute : Attribute
         {
+            /// <summary>
+            /// Gets or sets the prerequisites.
+            /// </summary>
+            /// <value>
+            /// The prerequisites.
+            /// </value>
             public IEnumerable<Type> Prerequisites { get; set; }
 
             // ReSharper disable once UnusedMember.Local
-            private PrerequisiteAssumptionsAttribute() { }
+            private PrerequisiteAssumptionsAttribute()
+            {
+                Prerequisites = new Type[0];
+            }
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="PrerequisiteAssumptionsAttribute" /> class.
+            /// </summary>
+            /// <param name="prerequisites">The prerequisites.</param>
             public PrerequisiteAssumptionsAttribute(params Type[] prerequisites)
             {
                 Prerequisites = prerequisites;
-            }
-        }
-
-        public class AssumptionEntityPair
-        {
-            public Type Assumption { get; set; }
-            public Entity Entity { get; set; }
-
-            public AssumptionEntityPair(Type assumption, Entity entity)
-            {
-                Assumption = assumption;
-                Entity = entity;
             }
         }
     }

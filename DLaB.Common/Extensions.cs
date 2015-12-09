@@ -13,6 +13,9 @@ using DLaB.Common.Exceptions;
 
 namespace DLaB.Common
 {
+    /// <summary>
+    /// Extension Class
+    /// </summary>
     public static class Extensions
     {
         #region Byte[]
@@ -126,10 +129,10 @@ namespace DLaB.Common
         public static ConcurrentDictionary<TKey, List<TElement>> ToConcurrentDictionaryList<TSource, TKey, TElement>(
             this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector)
         {
-            ConcurrentDictionary<TKey, List<TElement>> dictionary = new ConcurrentDictionary<TKey, List<TElement>>();
-            List<TElement> elements;
-            foreach (TSource local in source)
+            var dictionary = new ConcurrentDictionary<TKey, List<TElement>>();
+            foreach (var local in source)
             {
+                List<TElement> elements;
                 if (!dictionary.TryGetValue(keySelector(local), out elements))
                 {
                     elements = new List<TElement>();
@@ -208,12 +211,7 @@ namespace DLaB.Common
         /// </summary>
         public static DateTime? AsUtc(this DateTime? date)
         {
-            if (date.HasValue)
-            {
-                return date.GetValueOrDefault().AsUtc();
-            }
-
-            return null;
+            return date?.AsUtc();
         }
 
         /// <summary>
@@ -258,7 +256,7 @@ namespace DLaB.Common
 
         private static Func<TElement, TElement> Instance<TElement>()
         {
-            return delegate(TElement x) { return x; };
+            return x => x;
         }
 
         /// <summary>
@@ -405,8 +403,7 @@ namespace DLaB.Common
             }
             else
             {
-                values = new List<TValue>();
-                values.Add(value);
+                values = new List<TValue> {value};
                 dict.Add(key, values);
             }
         }
@@ -469,15 +466,21 @@ namespace DLaB.Common
 
         #endregion Exception
 
-        #region Expression<Func<T,P>>
+        #region Expression<Func<TEntity,TProperty>>
 
-        // ReSharper disable once InconsistentNaming
-        public static string GetLowerCasePropertyName<T, P>(this Expression<Func<T, P>> exp)
+        /// <summary>
+        /// Gets the name of the lower case property.
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TProperty"></typeparam>
+        /// <param name="exp">The exp.</param>
+        /// <returns></returns>
+        public static string GetLowerCasePropertyName<TEntity, TProperty>(this Expression<Func<TEntity, TProperty>> exp)
         {
             return ((MemberExpression)exp.Body).Member.Name.ToLower();
         }
 
-        #endregion // Expression<Func<T,P>>
+        #endregion // Expression<Func<T,TProperty>>
 
         #region ICollection
 
@@ -496,8 +499,29 @@ namespace DLaB.Common
 
         #endregion // ICollection
 
+        #region IEnumerable<string>
+
+        /// <summary>
+        /// Joins the items in the list to create a csv using string.Join(", ", items)
+        /// </summary>
+        /// <param name="items">The items.</param>
+        /// <returns></returns>
+        public static string ToCsv(this IEnumerable<string> items)
+        {
+            return string.Join(", ", items);
+        }
+
+        #endregion IEnumerable<string>
+
         #region IEnumerable<T>
 
+        /// <summary>
+        /// Converts an IEnumerable into Batches
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection">The collection.</param>
+        /// <param name="batchSize">Size of the batch.</param>
+        /// <returns></returns>
         public static IEnumerable<List<T>> Batch<T>(this IEnumerable<T> collection, int batchSize)
         {
             var nextbatch = new List<T>(batchSize);
@@ -541,10 +565,9 @@ namespace DLaB.Common
         /// <returns></returns>
         public static bool IterateAndTrackExceptions<T>(this IEnumerable<T> items, StringBuilder sb, Action<T> action)
         {
-            int total = 0;
+            var total = 0;
             var errors = new Dictionary<string, Tuple<Exception, int>>();
-            Tuple<Exception, int> exceptionWithCount;
-            foreach (T item in items)
+            foreach (var item in items)
             {
                 try
                 {
@@ -553,6 +576,7 @@ namespace DLaB.Common
                 catch (Exception ex)
                 {
                     var key = ex.GetType().FullName;
+                    Tuple<Exception, int> exceptionWithCount;
                     if (errors.TryGetValue(key, out exceptionWithCount))
                     {
                         errors[key] = new Tuple<Exception, int>(exceptionWithCount.Item1, exceptionWithCount.Item2 + 1);
@@ -640,11 +664,25 @@ namespace DLaB.Common
 
         #region IEquatable<T>
 
+        /// <summary>
+        /// Checks wether the current value is in the list of values.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value">The value.</param>
+        /// <param name="values">The values.</param>
+        /// <returns></returns>
         public static bool In<T>(this T value, params T[] values) where T : IEquatable<T>
         {
             return values.Contains(value);
         }
 
+        /// <summary>
+        /// Checks wether the current value is in the list of values.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value">The value.</param>
+        /// <param name="values">The values.</param>
+        /// <returns></returns>
         public static bool In<T>(this T value, IEnumerable<T> values) where T : IEquatable<T>
         {
             return values.Contains(value);
@@ -680,8 +718,14 @@ namespace DLaB.Common
 
         #region Object
 
+        /// <summary>
+        /// Shortcut for throwing an ArgumentNullException
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <param name="name">The name.</param>
+        /// <exception cref="System.ArgumentNullException"></exception>
         [DebuggerHidden]
-        public static void ThrowIfNull(this Object data, string name)
+        public static void ThrowIfNull(this object data, string name)
         {
             if (data == null)
             {
@@ -711,11 +755,24 @@ namespace DLaB.Common
 
         #region String
 
+        /// <summary>
+        /// Determines whether current string contains the specified value.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="comparisonType">Type of the comparison.</param>
+        /// <returns></returns>
         public static bool Contains(this string source, string value, StringComparison comparisonType)
         {
             return source.IndexOf(value, comparisonType) >= 0;
         }
 
+        /// <summary>
+        /// Determines whether current string contains the specified value, ignoring case.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public static bool ContainsIgnoreCase(this string source, string value)
         {
             return source.IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0;
@@ -730,7 +787,7 @@ namespace DLaB.Common
         /// <exception cref="System.ArgumentNullException">text</exception>
         public static T DeserializeJson<T>(this string text){
             if(text == null){
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException(nameof(text));
             }
 
             using(var reader = new MemoryStream(Encoding.Default.GetBytes(text)))
@@ -776,6 +833,11 @@ namespace DLaB.Common
             return source.Substring(0, Math.Min(source.Length, maxLength));
         }
 
+        /// <summary>
+        /// Converts String to a Single Item List
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <returns></returns>
         public static List<string> ToSingleItemList(this string source)
         {
             return new List<string> { source };
@@ -867,6 +929,11 @@ namespace DLaB.Common
 
         #endregion // String.In
 
+        /// <summary>
+        /// Nullable int parse
+        /// </summary>
+        /// <param name="stringInt">The string int.</param>
+        /// <returns></returns>
         public static int? ParseInt(this string stringInt)
         {
             int i;
@@ -1020,7 +1087,7 @@ namespace DLaB.Common
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             using (var memoryStream = new MemoryStream())

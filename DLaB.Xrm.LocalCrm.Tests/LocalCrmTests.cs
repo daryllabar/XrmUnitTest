@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DLaB.Common;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -254,7 +255,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
 
             if (entitiesMissingStatusCodeAttribute.Any())
             {
-                Assert.Fail("The following Entities do not contain an attribute with name statuscode " + String.Join(", ", entitiesMissingStatusCodeAttribute) + ". Check DLaB.Xrm.ActiveAttributeType for proper configuration.");
+                Assert.Fail("The following Entities do not contain an attribute with name statuscode " + entitiesMissingStatusCodeAttribute.ToCsv() + ". Check DLaB.Xrm.ActiveAttributeType for proper configuration.");
             }
         }
 

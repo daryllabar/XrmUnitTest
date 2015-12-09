@@ -7,6 +7,7 @@ using System.Reflection;
 using System.ServiceModel;
 using System.Text.RegularExpressions;
 using DLaB.Common;
+using DLaB.Xrm.CrmSdk;
 using DLaB.Xrm.LocalCrm.Entities;
 using DLaB.Xrm.LocalCrm.FetchXml;
 using Microsoft.Xrm.Sdk;
@@ -16,11 +17,6 @@ using NMemory.Tables;
 
 namespace DLaB.Xrm.LocalCrm
 {
-    public struct CrmErrorCodes
-    {
-        public const int EntityToDeleteDoesNotExist = -2147220969;
-    }
-
     [DebuggerNonUserCode]
     internal partial class LocalCrmDatabase : Database
     {
@@ -192,8 +188,8 @@ namespace DLaB.Xrm.LocalCrm
             where TRoot : Entity
             where TCurrent : Entity
         {
-            public TRoot Root { get; private set; }
-            public TCurrent Current { get; private set; }
+            public TRoot Root { get; }
+            public TCurrent Current { get; }
             public String Alias { get; set; }
 
             public LinkEntityTypes(TRoot root, TCurrent current, string alias)
@@ -319,7 +315,7 @@ namespace DLaB.Xrm.LocalCrm
 
             AssertTypeContainsColumns<T>(entity.Attributes.Keys);
             AssertEntityReferencesExists(service, entity);
-            ConvertEntityArrayToEntityCollection(entity);
+            SimulateCrmAttributeManipulations(entity);
             var table = SchemaGetOrCreate<T>(service.Info);
             service.PopulateAutoPopulatedAttributes(entity, true);
 
@@ -387,7 +383,7 @@ namespace DLaB.Xrm.LocalCrm
         private static T Read<T>(LocalCrmDatabaseOrganizationService service, Guid id, ColumnSet cs, DelayedException exception) where T : Entity
         {
             var query = SchemaGetOrCreate<T>(service.Info).
-                Where<T>("Id == @0", id);
+                Where("Id == @0", id);
             var entity = query.FirstOrDefault();
             if (entity == null)
             {
@@ -426,7 +422,7 @@ namespace DLaB.Xrm.LocalCrm
 
         public static EntityCollection ReadEntities<T>(LocalCrmDatabaseOrganizationService service, QueryExpression qe) where T : Entity
         {
-            var query = SchemaGetOrCreate<T>(service.Info).AsQueryable<T>();
+            var query = SchemaGetOrCreate<T>(service.Info).AsQueryable();
             
             HandleFilterExpressionsWithAliases(qe, qe.Criteria).ToList();
 
@@ -764,34 +760,64 @@ namespace DLaB.Xrm.LocalCrm
         }
 
         /// <summary>
-        /// CRM will convert non typed arrays into an IEnumerable&lt;T&gt;.  Handle that conversion here
+        /// Simulates the CRM attribute manipulations.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="entity">The entity.</param>
-        private static void ConvertEntityArrayToEntityCollection<T>(T entity) where T : Entity
+        private static void SimulateCrmAttributeManipulations<T>(T entity) where T : Entity
         {
             var properties = typeof(T).GetProperties().ToDictionary(p => p.Name.ToLower());
             foreach (var key in entity.Attributes.Keys.ToList())
             {
-                var value = entity[key] as Array;
-                if(value == null || value.Length == 0)
-                {
-                    continue;
-                }
-                var prop = properties[key];
-                // ReSharper disable once SuspiciousTypeConversion.Global
-                if (value is IEnumerable<Entity> && IsSameOrSubclass(typeof(Entity), prop.PropertyType.GetGenericArguments()[0]))
-                {
-                    var entities = new EntityCollection();
-                    foreach (var att in value)
-                    {
-                        var method = typeof(Entity).GetMethod("ToEntity");
-                        method.MakeGenericMethod(prop.PropertyType.GetGenericArguments()[0]).Invoke(att, null);
-                        entities.Entities.Add((Entity)method.MakeGenericMethod(prop.PropertyType.GetGenericArguments()[0]).Invoke(att, null));
-                    }
-                    entity[key] = entities;
-                }
+                ConvertEntityArrayToEntityCollection(entity, key, properties);
+                TrimMillisecondsFromDateTimeFields(entity, key);
             }
+        }
+
+        /// <summary>
+        /// CRM will convert non typed arrays into an IEnumerable&lt;T&gt;.  Handle that conversion here
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity">The entity.</param>
+        /// <param name="key">The key.</param>
+        /// <param name="properties">The properties.</param>
+        private static void ConvertEntityArrayToEntityCollection<T>(T entity, string key, Dictionary<string, PropertyInfo> properties) where T : Entity
+        {
+            var value = entity[key] as Array;
+            if (value == null || value.Length == 0)
+            {
+                return;
+            }
+            var prop = properties[key];
+            // ReSharper disable once SuspiciousTypeConversion.Global
+            if (value is IEnumerable<Entity> && IsSameOrSubclass(typeof(Entity), prop.PropertyType.GetGenericArguments()[0]))
+            {
+                var entities = new EntityCollection();
+                foreach (var att in value)
+                {
+                    var method = typeof(Entity).GetMethod("ToEntity");
+                    method.MakeGenericMethod(prop.PropertyType.GetGenericArguments()[0]).Invoke(att, null);
+                    entities.Entities.Add((Entity)method.MakeGenericMethod(prop.PropertyType.GetGenericArguments()[0]).Invoke(att, null));
+                }
+                entity[key] = entities;
+            }
+        }
+
+        /// <summary>
+        /// CRM doesn't include milliseconds when saving DateTime values
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity">The entity.</param>
+        /// <param name="key">The key.</param>
+        private static void TrimMillisecondsFromDateTimeFields<T>(T entity, string key) where T : Entity
+        {
+            var value = entity[key] as DateTime?;
+            if (value == null || value.Value.Millisecond == 0)
+            {
+                return;
+            }
+            var time = value.Value;
+            entity[key] = (DateTime?)(time.AddMilliseconds(-time.Millisecond));
         }
 
         public static bool IsSameOrSubclass(Type potentialBase, Type potentialDescendant)
@@ -802,7 +828,7 @@ namespace DLaB.Xrm.LocalCrm
 
         public static void Assign<T>(LocalCrmDatabaseOrganizationService service, EntityReference target, EntityReference assignee) where T : Entity
         {
-            var databaseValue = SchemaGetOrCreate<T>(service.Info).First<T>(e => e.Id == target.Id);
+            var databaseValue = SchemaGetOrCreate<T>(service.Info).First(e => e.Id == target.Id);
             databaseValue["ownerid"] = assignee;
             SchemaGetOrCreate<T>(service.Info).Update(databaseValue);
         }
@@ -811,10 +837,10 @@ namespace DLaB.Xrm.LocalCrm
         {
             AssertTypeContainsColumns<T>(entity.Attributes.Keys);
             AssertEntityReferencesExists(service, entity);
-            ConvertEntityArrayToEntityCollection(entity);
+            SimulateCrmAttributeManipulations(entity);
             
             // Get the Entity From the database
-            var databaseValue = SchemaGetOrCreate<T>(service.Info).FirstOrDefault<T>(e => e.Id == entity.Id);
+            var databaseValue = SchemaGetOrCreate<T>(service.Info).FirstOrDefault(e => e.Id == entity.Id);
             if (databaseValue == null)
             {
                 exception.Exception = GetEntityDoesNotExistException(entity);
@@ -849,7 +875,7 @@ namespace DLaB.Xrm.LocalCrm
         {
             var entity = Activator.CreateInstance<T>();
             entity.Id = id;
-            if (!SchemaGetOrCreate<T>(service.Info).Any<T>(e => e.Id == id))
+            if (!SchemaGetOrCreate<T>(service.Info).Any(e => e.Id == id))
             {
                 exception.Exception = GetEntityDoesNotExistException(entity);
                 return;
@@ -872,12 +898,13 @@ namespace DLaB.Xrm.LocalCrm
 
         private static FaultException<OrganizationServiceFault> GetEntityDoesNotExistException<T>(T entity) where T : Entity
         {
+            var message = $"{ErrorCodes.GetErrorMessage(ErrorCodes.ObjectDoesNotExist)}  {entity.LogicalName} With Id = {entity.Id} Does Not Exist";
             return new FaultException<OrganizationServiceFault>(new OrganizationServiceFault
             {
-                ErrorCode = CrmErrorCodes.EntityToDeleteDoesNotExist,
-                Message = String.Format("{0} With Id = {1} Does Not Exist", entity.LogicalName, entity.Id),
+                ErrorCode = ErrorCodes.ObjectDoesNotExist,
+                Message = message,
                 Timestamp = DateTime.UtcNow,
-            }, String.Format("{0} With Id = {1} Does Not Exist", entity.LogicalName, entity.Id));
+            }, message);
         }
     }
 }

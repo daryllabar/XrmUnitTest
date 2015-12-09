@@ -10,6 +10,11 @@ namespace DLaB.Xrm.Test.Tests.Builders
     [TestClass]
     public class CrmEnvironmentBuilderTests
     {
+        [TestInitialize]
+        public void IntializeTestSettings()
+        {
+            TestInitializer.InitializeTestSettings();
+        }
 
         [TestMethod]
         public void CrmEnvironmentBuilder_WithEntities_GivenIdStruct_Should_CreateAll()
@@ -17,7 +22,6 @@ namespace DLaB.Xrm.Test.Tests.Builders
             //
             // Arrange
             //
-            TestInitializer.InitializeTestSettings();
             var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
 
             //
@@ -43,7 +47,6 @@ namespace DLaB.Xrm.Test.Tests.Builders
             //
             // Arrange
             //
-            TestInitializer.InitializeTestSettings();
             var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
 
             //

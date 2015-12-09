@@ -1,12 +1,20 @@
 ﻿using System.Collections.Generic;
 using DLaB.Common;
-using DLaB.Xrm;
 using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.Comparers
 {
+    /// <summary>
+    /// Class to allow for comparing QueryExpressions
+    /// </summary>
     public class QueryExpressionComparer : IEqualityComparer<QueryExpression>
     {
+        /// <summary>
+        /// Compares qe1 to qe2
+        /// </summary>
+        /// <param name="qe1">The qe1.</param>
+        /// <param name="qe2">The qe2.</param>
+        /// <returns></returns>
         public bool Equals(QueryExpression qe1, QueryExpression qe2)
         {
             if (qe1 == qe2) { return true; }
@@ -26,6 +34,13 @@ namespace DLaB.Xrm.Comparers
                 qe1.PageInfo.IsEqual(qe2.PageInfo);
         }
 
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <param name="qe">The qe.</param>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
         public int GetHashCode(QueryExpression qe)
         {
             qe.ThrowIfNull("qe");

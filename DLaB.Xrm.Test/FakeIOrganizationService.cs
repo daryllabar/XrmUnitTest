@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Diagnostics;
+using DLaB.Common;
 using DLaB.Xrm.Client;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
@@ -37,33 +38,135 @@ namespace DLaB.Xrm.Test
     {
         #region IOrganizationService Mocks
 
+        /// <summary>
+        /// Gets or sets the associate action.
+        /// </summary>
+        /// <value>
+        /// The associate action.
+        /// </value>
         public Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection> AssociateAction { get; set; }
+        /// <summary>
+        /// Gets or sets the associate actions.
+        /// </summary>
+        /// <value>
+        /// The associate actions.
+        /// </value>
         public Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection>[] AssociateActions { get; set; }
         private IOrganizationService AssociateCache { get; set; }
+        /// <summary>
+        /// Gets or sets the create function.
+        /// </summary>
+        /// <value>
+        /// The create function.
+        /// </value>
         public Func<IOrganizationService, Entity, Guid> CreateFunc { get; set; }
+        /// <summary>
+        /// Gets or sets the create funcs.
+        /// </summary>
+        /// <value>
+        /// The create funcs.
+        /// </value>
         public Func<IOrganizationService, Entity, Guid>[] CreateFuncs { get; set; }
         private IOrganizationService CreateCache { get; set; }
+        /// <summary>
+        /// Gets or sets the delete action.
+        /// </summary>
+        /// <value>
+        /// The delete action.
+        /// </value>
         public Action<IOrganizationService, string, Guid> DeleteAction { get; set; }
+        /// <summary>
+        /// Gets or sets the delete actions.
+        /// </summary>
+        /// <value>
+        /// The delete actions.
+        /// </value>
         public Action<IOrganizationService, string, Guid>[] DeleteActions { get; set; }
         private IOrganizationService DeleteCache { get; set; }
+        /// <summary>
+        /// Gets or sets the disassociate action.
+        /// </summary>
+        /// <value>
+        /// The disassociate action.
+        /// </value>
         public Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection> DisassociateAction { get; set; }
+        /// <summary>
+        /// Gets or sets the disassociate actions.
+        /// </summary>
+        /// <value>
+        /// The disassociate actions.
+        /// </value>
         public Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection>[] DisassociateActions { get; set; }
         private IOrganizationService DisassociateCache { get; set; }
+        /// <summary>
+        /// Gets or sets the execute function.
+        /// </summary>
+        /// <value>
+        /// The execute function.
+        /// </value>
         public Func<IOrganizationService, OrganizationRequest, OrganizationResponse> ExecuteFunc { get; set; }
+        /// <summary>
+        /// Gets or sets the execute funcs.
+        /// </summary>
+        /// <value>
+        /// The execute funcs.
+        /// </value>
         public Func<IOrganizationService, OrganizationRequest, OrganizationResponse>[] ExecuteFuncs { get; set; }
         private IOrganizationService ExecuteCache { get; set; }
+        /// <summary>
+        /// Gets or sets the retrieve multiple function.
+        /// </summary>
+        /// <value>
+        /// The retrieve multiple function.
+        /// </value>
         public Func<IOrganizationService, QueryBase, EntityCollection> RetrieveMultipleFunc { get; set; }
+        /// <summary>
+        /// Gets or sets the retrieve multiple funcs.
+        /// </summary>
+        /// <value>
+        /// The retrieve multiple funcs.
+        /// </value>
         public Func<IOrganizationService, QueryBase, EntityCollection>[] RetrieveMultipleFuncs { get; set; }
         private IOrganizationService RetrieveMultipleCache { get; set; }
+        /// <summary>
+        /// Gets or sets the retrieve function.
+        /// </summary>
+        /// <value>
+        /// The retrieve function.
+        /// </value>
         public Func<IOrganizationService, string, Guid, ColumnSet, Entity> RetrieveFunc { get; set; }
+        /// <summary>
+        /// Gets or sets the retrieve funcs.
+        /// </summary>
+        /// <value>
+        /// The retrieve funcs.
+        /// </value>
         public Func<IOrganizationService, string, Guid, ColumnSet, Entity>[] RetrieveFuncs { get; set; }
         private IOrganizationService RetrieveCache { get; set; }
+        /// <summary>
+        /// Gets or sets the update action.
+        /// </summary>
+        /// <value>
+        /// The update action.
+        /// </value>
         public Action<IOrganizationService, Entity> UpdateAction { get; set; }
+        /// <summary>
+        /// Gets or sets the update actions.
+        /// </summary>
+        /// <value>
+        /// The update actions.
+        /// </value>
         public Action<IOrganizationService, Entity>[] UpdateActions { get; set; }
         private IOrganizationService UpdateCache { get; set; }
 
         #endregion // IOrganizationService Mocks
 
+        /// <summary>
+        /// Gets or sets a value indicating whether [execution tracing enabled].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [execution tracing enabled]; otherwise, <c>false</c>.
+        /// </value>
         public bool ExecutionTracingEnabled => Timer != null;
         private TestActionTimer Timer { get; }
         /// <summary>
@@ -78,13 +181,14 @@ namespace DLaB.Xrm.Test
         /// Reflectively walks the Service Path to find the first IOrganizationService that is not a FakeIOrganizationService
         /// Returns the highest level FakeIOrganizationService if every Service is of type FakeIOrganizationService
         /// </summary>
-        public IOrganizationService ActualService
-        {
-            get { return GetActualService(); }
-        }
+        public IOrganizationService ActualService => GetActualService();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FakeIOrganizationService" /> class.
+        /// </summary>
+        /// <param name="service">The service.</param>
         public FakeIOrganizationService(IOrganizationService service)
-            : base(service)
+                    : base(service)
         {
             var fake = service as FakeIOrganizationService;
 
@@ -96,8 +200,13 @@ namespace DLaB.Xrm.Test
             RedirectExecuteRequestsToOrganizationServiceRequest = true;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FakeIOrganizationService" /> class.
+        /// </summary>
+        /// <param name="service">The service.</param>
+        /// <param name="logger">The logger.</param>
         public FakeIOrganizationService(IOrganizationService service, ITestLogger logger)
-    : base(service)
+            : base(service)
         {
             Timer = new TestActionTimer(logger);
             RedirectExecuteRequestsToOrganizationServiceRequest = true;
@@ -115,6 +224,13 @@ namespace DLaB.Xrm.Test
 
         #region IOrganizationService Members
 
+        /// <summary>
+        /// Creates a link between records.
+        /// </summary>
+        /// <param name="entityName">Name of the entity.</param>
+        /// <param name="entityId">The entity identifier.</param>
+        /// <param name="relationship">The relationship.</param>
+        /// <param name="relatedEntities">The related entities.</param>
         [DebuggerStepThrough]
         public override void Associate(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
         {
@@ -129,7 +245,7 @@ namespace DLaB.Xrm.Test
                     AssociateCache = Service;
                     foreach (var action in AssociateActions)
                     {
-                        AssociateCache = new FakeIOrganizationService(AssociateCache) {AssociateAction = action};
+                        AssociateCache = new FakeIOrganizationService(AssociateCache) { AssociateAction = action };
                     }
                 }
                 AssociateCache.Associate(entityName, entityId, relationship, relatedEntities);
@@ -140,7 +256,7 @@ namespace DLaB.Xrm.Test
                 {
                     Timer.Time(AssociateInternal, new Tuple<string, Guid, Relationship, EntityReferenceCollection>(entityName, entityId, relationship, relatedEntities),
                         "Associate {0}:{1} using relationship {2} to releated Entities {3}: {4}",
-                        entityName, entityId, relationship, String.Join(", ", relatedEntities.Select(e => e.GetNameId())));
+                        entityName, entityId, relationship, relatedEntities.Select(e => e.GetNameId()).ToCsv());
                 }
                 else
                 {
@@ -156,6 +272,11 @@ namespace DLaB.Xrm.Test
             return null;
         }
 
+        /// <summary>
+        /// Creates the specified entity.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
         [DebuggerStepThrough]
         public override Guid Create(Entity entity)
         {
@@ -171,7 +292,7 @@ namespace DLaB.Xrm.Test
                     CreateCache = Service;
                     foreach (var create in CreateFuncs)
                     {
-                        CreateCache = new FakeIOrganizationService(CreateCache) {CreateFunc = create};
+                        CreateCache = new FakeIOrganizationService(CreateCache) { CreateFunc = create };
                     }
                 }
                 id = CreateCache.Create(entity);
@@ -189,6 +310,11 @@ namespace DLaB.Xrm.Test
             return Service.Create(entity);
         }
 
+        /// <summary>
+        /// Deletes the specified entity.
+        /// </summary>
+        /// <param name="entityName">Name of the entity.</param>
+        /// <param name="id">The identifier.</param>
         [DebuggerStepThrough]
         public override void Delete(string entityName, Guid id)
         {
@@ -203,7 +329,7 @@ namespace DLaB.Xrm.Test
                     DeleteCache = Service;
                     foreach (var delete in DeleteActions)
                     {
-                        DeleteCache = new FakeIOrganizationService(DeleteCache) {DeleteAction = delete};
+                        DeleteCache = new FakeIOrganizationService(DeleteCache) { DeleteAction = delete };
                     }
                 }
                 DeleteCache.Delete(entityName, id);
@@ -228,6 +354,13 @@ namespace DLaB.Xrm.Test
             return null;
         }
 
+        /// <summary>
+        /// Removes a link between records.
+        /// </summary>
+        /// <param name="entityName">Name of the entity.</param>
+        /// <param name="entityId">The entity identifier.</param>
+        /// <param name="relationship">The relationship.</param>
+        /// <param name="relatedEntities">The related entities.</param>
         [DebuggerStepThrough]
         public override void Disassociate(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
         {
@@ -242,7 +375,7 @@ namespace DLaB.Xrm.Test
                     DisassociateCache = Service;
                     foreach (var disassociate in DisassociateActions)
                     {
-                        DisassociateCache = new FakeIOrganizationService(DisassociateCache) {DisassociateAction = disassociate};
+                        DisassociateCache = new FakeIOrganizationService(DisassociateCache) { DisassociateAction = disassociate };
                     }
                 }
                 DisassociateCache.Disassociate(entityName, entityId, relationship, relatedEntities);
@@ -253,7 +386,7 @@ namespace DLaB.Xrm.Test
                 {
                     Timer.Time(DisassociateInternal, new Tuple<string, Guid, Relationship, EntityReferenceCollection>(entityName, entityId, relationship, relatedEntities),
                         "Disassociate {0}:{1} using relationship {2} to releated Entities {3}: {4}",
-                        entityName, entityId, relationship, String.Join(", ", relatedEntities.Select(e => e.GetNameId())));
+                        entityName, entityId, relationship, relatedEntities.Select(e => e.GetNameId()).ToCsv());
                 }
                 else
                 {
@@ -269,6 +402,11 @@ namespace DLaB.Xrm.Test
             return null;
         }
 
+        /// <summary>
+        /// Executes the specified request.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
         [DebuggerStepThrough]
         public override OrganizationResponse Execute(OrganizationRequest request)
         {
@@ -277,7 +415,7 @@ namespace DLaB.Xrm.Test
             {
                 response = CallOrganizationServiceRequestForExecuteRequest(request);
 
-                if(response != null)
+                if (response != null)
                 {
                     return response;
                 }
@@ -294,7 +432,7 @@ namespace DLaB.Xrm.Test
                     ExecuteCache = Service;
                     foreach (var execute in ExecuteFuncs)
                     {
-                        ExecuteCache = new FakeIOrganizationService(ExecuteCache) {ExecuteFunc = execute};
+                        ExecuteCache = new FakeIOrganizationService(ExecuteCache) { ExecuteFunc = execute };
                     }
                 }
                 response = ExecuteCache.Execute(request);
@@ -325,8 +463,7 @@ namespace DLaB.Xrm.Test
             var create = request as CreateRequest;
             if (create != null)
             {
-                response = new CreateResponse();
-                response["id"] = Create(create.Target);
+                response = new CreateResponse {["id"] = Create(create.Target)};
             }
 
             var delete = request as DeleteRequest;
@@ -346,15 +483,13 @@ namespace DLaB.Xrm.Test
             var retrieve = request as RetrieveRequest;
             if (retrieve != null)
             {
-                response = new RetrieveResponse();
-                response["Entity"] = Retrieve(retrieve.Target.LogicalName, retrieve.Target.Id, retrieve.ColumnSet);
+                response = new RetrieveResponse {["Entity"] = Retrieve(retrieve.Target.LogicalName, retrieve.Target.Id, retrieve.ColumnSet)};
             }
 
             var retrieveMultiple = request as RetrieveMultipleRequest;
             if (retrieveMultiple != null)
             {
-                response = new RetrieveMultipleResponse();
-                response["EntityCollection"] = RetrieveMultiple(retrieveMultiple.Query);
+                response = new RetrieveMultipleResponse {["EntityCollection"] = RetrieveMultiple(retrieveMultiple.Query)};
             }
 
             var update = request as UpdateRequest;
@@ -373,6 +508,13 @@ namespace DLaB.Xrm.Test
             return Service.Execute(request);
         }
 
+        /// <summary>
+        /// Retrieves the specified entity name.
+        /// </summary>
+        /// <param name="entityName">Name of the entity.</param>
+        /// <param name="id">The identifier.</param>
+        /// <param name="columnSet">The column set.</param>
+        /// <returns></returns>
         [DebuggerStepThrough]
         public override Entity Retrieve(string entityName, Guid id, ColumnSet columnSet)
         {
@@ -388,7 +530,7 @@ namespace DLaB.Xrm.Test
                     RetrieveCache = Service;
                     foreach (var retrieve in RetrieveFuncs)
                     {
-                        RetrieveCache = new FakeIOrganizationService(RetrieveCache) {RetrieveFunc = retrieve};
+                        RetrieveCache = new FakeIOrganizationService(RetrieveCache) { RetrieveFunc = retrieve };
                     }
                 }
                 entity = RetrieveCache.Retrieve(entityName, id, columnSet);
@@ -406,6 +548,11 @@ namespace DLaB.Xrm.Test
             return Service.Retrieve(value.Item1, value.Item2, value.Item3);
         }
 
+        /// <summary>
+        /// Retrieves the entities defined by the Query.
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <returns></returns>
         [DebuggerStepThrough]
         public override EntityCollection RetrieveMultiple(QueryBase query)
         {
@@ -421,7 +568,7 @@ namespace DLaB.Xrm.Test
                     RetrieveMultipleCache = Service;
                     foreach (var retrievemultiple in RetrieveMultipleFuncs)
                     {
-                        RetrieveMultipleCache = new FakeIOrganizationService(RetrieveMultipleCache) {RetrieveMultipleFunc = retrievemultiple};
+                        RetrieveMultipleCache = new FakeIOrganizationService(RetrieveMultipleCache) { RetrieveMultipleFunc = retrievemultiple };
                     }
                 }
                 entities = RetrieveMultipleCache.RetrieveMultiple(query);
@@ -448,6 +595,10 @@ namespace DLaB.Xrm.Test
             return Service.RetrieveMultiple(query);
         }
 
+        /// <summary>
+        /// Updates the specified entity.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
         [DebuggerStepThrough]
         public override void Update(Entity entity)
         {
@@ -462,7 +613,7 @@ namespace DLaB.Xrm.Test
                     UpdateCache = Service;
                     foreach (var update in UpdateActions)
                     {
-                        UpdateCache = new FakeIOrganizationService(UpdateCache) {UpdateAction = update};
+                        UpdateCache = new FakeIOrganizationService(UpdateCache) { UpdateAction = update };
                     }
                 }
                 UpdateCache.Update(entity);

@@ -8,70 +8,9 @@ using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Plugin
 {
-    public interface ILocalPluginContext
-    {
-        #region Properties
-
-        /// <summary>
-        /// The current event the plugin is executing for.
-        /// </summary>
-        RegisteredEvent Event { get; }
-
-        /// <summary>
-        /// The IOrganizationService of the plugin, Impersonated as the user that plugin is registered to run as, useing the PluginExecutionContext.UserId.
-        /// </summary>
-        IOrganizationService OrganizationService { get; }
-
-        /// <summary>
-        /// The IOrganizationService of the plugin, Impersonated as the user that triggered the services using the PluginExecutionContext.InitiatingUserId.
-        /// </summary>
-        IOrganizationService InitiatingUserOrganizationService { get; }
-
-
-        /// <summary>
-        /// The IOrganizationService of the plugin, using the System User by not specifying a UserId.
-        /// </summary>
-        IOrganizationService SystemOrganizationService { get; }
-
-        /// <summary>
-        /// The IPluginExecutionContext of the plugin.
-        /// </summary>
-        IPluginExecutionContext PluginExecutionContext { get; }
-
-        /// <summary>
-        /// The Type.FullName of the plugin.
-        /// </summary>
-        String PluginTypeName { get; }
-
-        /// <summary>
-        /// The ITracingService of the plugin.
-        /// </summary>
-        ITracingService TracingService { get; }
-
-        EntityReference GetPrimaryEntity { get; }
-
-        #endregion Properties
-
-        /// <summary>
-        /// Logs the exception.
-        /// </summary>
-        /// <param name="ex">The exception.</param>
-        void LogException(Exception ex);
-
-        /// <summary>
-        /// Traces the specified message.  Guaranteed to not throw an exception.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        void Trace(string message);
-
-        /// <summary>
-        /// Traces the format.   Guaranteed to not throw an exception.
-        /// </summary>
-        /// <param name="format">The format.</param>
-        /// <param name="args">The arguments.</param>
-        void TraceFormat(string format, params object[] args);
-    }
-
+    /// <summary>
+    /// The Implementation of the ILocalPluginContext
+    /// </summary>
     public abstract class LocalPluginContextBase : ILocalPluginContext
     {
         #region Properties
@@ -88,7 +27,6 @@ namespace DLaB.Xrm.Plugin
                 {
                     yield return parent;
                 }
-                ;
             }
         }
 
@@ -122,7 +60,14 @@ namespace DLaB.Xrm.Plugin
         /// <summary>
         /// The Type.FullName of the plugin.
         /// </summary>
-        public String PluginTypeName { get; private set; } 
+        public String PluginTypeName { get; private set; }
+        /// <summary>
+        /// Gets or sets the service provider.
+        /// </summary>
+        /// <value>
+        /// The service provider.
+        /// </value>
+        public IServiceProvider ServiceProvider { get; private set; }
         /// <summary>
         /// The ITracingService of the plugin.
         /// </summary>
@@ -131,14 +76,23 @@ namespace DLaB.Xrm.Plugin
         #endregion // Properties
 
         #region ImageNames struct
-		
+
+        /// <summary>
+        /// Struct for the Standard Plugin Image Names
+        /// </summary>
         public struct PluginImageNames
         {
+            /// <summary>
+            /// The default pre image
+            /// </summary>
             public const string PreImage = "PreImage";
+            /// <summary>
+            /// The default post image
+            /// </summary>
             public const string PostImage = "PostImage";
         }
-		
-	    #endregion ImageNames struct
+
+        #endregion ImageNames struct
 
         #region Constructors
 
@@ -156,12 +110,12 @@ namespace DLaB.Xrm.Plugin
         {
             if (serviceProvider == null)
             {
-                throw new ArgumentNullException("serviceProvider");
+                throw new ArgumentNullException(nameof(serviceProvider));
             }
 
             if (plugin == null)
             {
-                throw new ArgumentNullException("plugin");
+                throw new ArgumentNullException(nameof(plugin));
             }
 
             InitializeServiceProviderProperties(serviceProvider);
@@ -189,8 +143,8 @@ namespace DLaB.Xrm.Plugin
             {
                 PluginExecutionContext.PreEntityImages.TryGetValue(imageName, out image);
             }
-            
-            if(image == null)
+
+            if (image == null)
             {
                 throw InvalidPluginStepRegistrationException.ImageMissing(imageName);
             }
@@ -203,7 +157,7 @@ namespace DLaB.Xrm.Plugin
         }
 
         #endregion AssertEntityImageAttributesRegistered
-        
+
         #region CalledFrom
 
         /// <summary>
@@ -213,7 +167,7 @@ namespace DLaB.Xrm.Plugin
         /// <returns></returns>
         public bool CalledFrom(RegisteredEvent @event)
         {
-            return Contexts.Any(c => c.MessageName == @event.MessageName && c.PrimaryEntityName == @event.EntityLogicalName && c.Stage == (int) @event.Stage);
+            return Contexts.Any(c => c.MessageName == @event.MessageName && c.PrimaryEntityName == @event.EntityLogicalName && c.Stage == (int)@event.Stage);
         }
 
         /// <summary>
@@ -227,8 +181,8 @@ namespace DLaB.Xrm.Plugin
                 throw new Exception("At least one parameter for LocalPluginContextBase.CalledFrom must be populated");
             }
             return Contexts.Any(c =>
-                (message == null || c.MessageName == message.Name) && 
-                (entityLogicalName == null || c.PrimaryEntityName == entityLogicalName) && 
+                (message == null || c.MessageName == message.Name) &&
+                (entityLogicalName == null || c.PrimaryEntityName == entityLogicalName) &&
                 (stage == null || c.Stage == stage.Value));
         }
 
@@ -242,9 +196,10 @@ namespace DLaB.Xrm.Plugin
         /// <param name="serviceProvider">The service provider.</param>
         private void InitializeServiceProviderProperties(IServiceProvider serviceProvider)
         {
-            PluginExecutionContext = (IPluginExecutionContext) serviceProvider.GetService(typeof (IPluginExecutionContext));
-            TracingService = (ITracingService) serviceProvider.GetService(typeof (ITracingService));
-            ServiceFactory = (IOrganizationServiceFactory) serviceProvider.GetService(typeof (IOrganizationServiceFactory));
+            PluginExecutionContext = (IPluginExecutionContext)serviceProvider.GetService(typeof(IPluginExecutionContext));
+            ServiceFactory = (IOrganizationServiceFactory)serviceProvider.GetService(typeof(IOrganizationServiceFactory));
+            ServiceProvider = serviceProvider;
+            TracingService = (ITracingService)serviceProvider.GetService(typeof(ITracingService));
         }
 
         /// <summary>
@@ -328,7 +283,7 @@ namespace DLaB.Xrm.Plugin
                 var message = String.Format(CultureInfo.InvariantCulture, format, args);
                 TracingService.Trace(PluginExecutionContext == null ?
                     message :
-                    String.Format("{0}, Corralation Id: {1}, Initiating User: {2}", message, PluginExecutionContext.CorrelationId, PluginExecutionContext.InitiatingUserId));
+                    $"{message}, Corralation Id: {PluginExecutionContext.CorrelationId}, Initiating User: {PluginExecutionContext.InitiatingUserId}");
             }
             catch (Exception ex)
             {
@@ -455,16 +410,7 @@ namespace DLaB.Xrm.Plugin
         /// <returns></returns>
         public T GetFirstSharedVariable<T>(string variableName)
         {
-            var context = PluginExecutionContext;
-            while (context != null)
-            {
-                if (context.SharedVariables.ContainsKey(variableName))
-                {
-                    return context.SharedVariables.GetParameterValue<T>(variableName);
-                }
-                context = context.ParentContext;
-            }
-            return default(T);
+            return PluginExecutionContext.GetFirstSharedVariable<T>(variableName);
         }
 
         /// <summary>
@@ -478,6 +424,21 @@ namespace DLaB.Xrm.Plugin
         }
 
         #endregion // GetParameterValue
+
+        #region SetSharedVariable
+
+        /// <summary>
+        /// Gets the variable value from the PluginExecutionContext.SharedVariables collection, or null if the collection doesn't contain a variable with the given name.
+        /// </summary>
+        /// <param name="variableName"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public void SetSharedVariable(string variableName, object value)
+        {
+            PluginExecutionContext.SharedVariables[variableName] = value;
+        }
+
+        #endregion SetSharedVariable
 
         #region Exception Logging
 
@@ -502,9 +463,25 @@ namespace DLaB.Xrm.Plugin
         /// </summary>
         /// <param name="imageName">Name of the image.</param>
         /// <returns></returns>
+        public T CoallesceTargetWithPreEntity<T>(string imageName = PluginImageNames.PreImage) where T : Entity
+        {
+            return DereferenceTarget<T>().CoallesceEntity(GetPreEntity<T>(imageName));
+        }
+
+        /// <summary>
+        /// Creates a new Entity of type T, adding the attributes from both the Target and the Post Image if they exist.  
+        /// Does not return null.
+        /// Does not return a reference to Target
+        /// </summary>
+        /// <param name="imageName">Name of the image.</param>
+        /// <returns></returns>
         public T CoallesceTargetWithPostEntity<T>(string imageName = PluginImageNames.PostImage) where T : Entity
         {
-            var entity = (T) Activator.CreateInstance(typeof (T));
+            return DereferenceTarget<T>().CoallesceEntity(GetPostEntity<T>(imageName));
+        }
+        private T DereferenceTarget<T>() where T : Entity
+        {
+            var entity = Activator.CreateInstance<T>();
             var target = GetTarget<T>();
             if (target != null)
             {
@@ -514,23 +491,6 @@ namespace DLaB.Xrm.Plugin
                     entity[attribute.Key] = attribute.Value;
                 }
             }
-
-            var postImage = GetPostEntity<T>(imageName);
-            if (postImage == null)
-            {
-                return entity;
-            }
-
-            if (entity.Id == Guid.Empty)
-            {
-                entity.Id = postImage.Id;
-            }
-
-            foreach (var attribute in postImage.Attributes.Where(a => !entity.Contains(a.Key)))
-            {
-                entity[attribute.Key] = attribute.Value;
-            }
-
             return entity;
         }
 
@@ -589,23 +549,16 @@ namespace DLaB.Xrm.Plugin
         /// <returns></returns>
         public T GetTarget<T>() where T : Entity
         {
-            T entity = null;
-            var parameters = PluginExecutionContext.InputParameters;
-            if (!parameters.ContainsKey(ParameterName.Target) || !(parameters[ParameterName.Target] is Entity))
-            {
-                return null;
-            }
-
             // Obtain the target business entity from the input parmameters.
             try
             {
-                entity = ((Entity)parameters[ParameterName.Target]).ToEntity<T>();
+                return PluginExecutionContext.GetTarget<T>();
             }
             catch (Exception ex)
             {
                 LogException(ex);
             }
-            return entity;
+            return null;
         }
 
         /// <summary>
@@ -614,23 +567,10 @@ namespace DLaB.Xrm.Plugin
         /// <returns></returns>
         public EntityReference GetTargetEntityReference()
         {
-            EntityReference entity = null;
-            var parameters = PluginExecutionContext.InputParameters;
-            if (parameters.ContainsKey(ParameterName.Target) &&
-                 parameters[ParameterName.Target] is EntityReference)
-            {
-                entity = (EntityReference)parameters[ParameterName.Target];
-            }
-            return entity;
+            return PluginExecutionContext.GetTargetEntityReference();
         }
 
-        public EntityReference GetPrimaryEntity
-        {
-            get
-            {
-                return new EntityReference(PluginExecutionContext.PrimaryEntityName, PluginExecutionContext.PrimaryEntityId);
-            }
-        }
+        public EntityReference PrimaryEntity => new EntityReference(PluginExecutionContext.PrimaryEntityName, PluginExecutionContext.PrimaryEntityId);
 
         #endregion Retrieve Entity From Context
 
@@ -655,7 +595,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="event">Type of the event.</param>
         public void PreventPluginHandlerExecution(String handlerTypeFullName, RegisteredEvent @event)
         {
-            if (@event == null) throw new ArgumentNullException("event");
+            if (@event == null) throw new ArgumentNullException(nameof(@event));
 
             PreventPluginHandlerExecution(handlerTypeFullName, @event.MessageName, @event.EntityLogicalName, @event.Stage);
         }
@@ -667,7 +607,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="messageName"></param>
         /// <param name="logicalName"></param>
         /// <param name="stage"></param>
-        public void PreventPluginHandlerExecution(String handlerTypeFullName, string messageName = null, string logicalName = null, PipelineStage? stage = null)
+        public void PreventPluginHandlerExecution(string handlerTypeFullName, string messageName = null, string logicalName = null, PipelineStage? stage = null)
         {
             var preventionName = GetPreventPluginHandlerSharedVariableName(handlerTypeFullName);
             object value;
@@ -709,7 +649,7 @@ namespace DLaB.Xrm.Plugin
         public void PreventPluginHandlerExecution<T>(RegisteredEvent @event)
             where T : IRegisteredEventsPluginHandler
         {
-            PreventPluginHandlerExecution(typeof (T).FullName, @event);
+            PreventPluginHandlerExecution(typeof(T).FullName, @event);
         }
 
         /// <summary>
@@ -739,13 +679,19 @@ namespace DLaB.Xrm.Plugin
 
         #region HasPluginHandlerExecutionBeenPrevented
 
+        /// <summary>
+        /// Determines whether a shared variable exists that specifies that the plugin or the plugin and specifc message type should be prevented from executing.
+        /// This is used in conjunction with PreventPluginHandlerExecution
+        /// </summary>
+        /// <returns></returns>
         public bool HasPluginHandlerExecutionBeenPrevented()
         {
             return HasPluginHandlerExecutionBeenPreventedInternal(Event, GetPreventPluginHandlerSharedVariableName(PluginTypeName));
         }
 
         /// <summary>
-        /// Determines whether a shared variable exists that specifies that the plugin or the plugin and specifc message type should be prevented from executing
+        /// Determines whether a shared variable exists that specifies that the plugin or the plugin and specifc message type should be prevented from executing.
+        /// This is used in conjunction with PreventPluginHandlerExecution
         /// </summary>
         /// <typeparam name="T">The type of the plugin.</typeparam>
         /// <returns></returns>
@@ -764,7 +710,7 @@ namespace DLaB.Xrm.Plugin
                 return false;
             }
 
-            var hash = ((Entity) value).Attributes;
+            var hash = ((Entity)value).Attributes;
             return hash.Contains(String.Empty) ||
                    hash.Contains(GetPreventionRule(@event.MessageName)) ||
                    hash.Contains(GetPreventionRule(@event.MessageName, @event.EntityLogicalName)) ||
@@ -781,6 +727,10 @@ namespace DLaB.Xrm.Plugin
 
         #region Diagnostics
 
+        /// <summary>
+        /// Gets the context information.
+        /// </summary>
+        /// <returns></returns>
         public String GetContextInfo()
         {
             return

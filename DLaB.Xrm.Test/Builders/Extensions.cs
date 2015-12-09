@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test.Builders
 {
+    /// <summary>
+    /// Extensions for Test Builders
+    /// </summary>
     public static class Extensions
     {
         #region Dictionary<Guid,>

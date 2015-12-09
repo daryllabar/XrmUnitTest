@@ -5,8 +5,17 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.Comparers
 {
+    /// <summary>
+    /// Comparer for Condition Expressions.
+    /// </summary>
     public class ConditionExpressionComparer : IEqualityComparer<ConditionExpression>
     {
+        /// <summary>
+        /// Compares the two conditions.
+        /// </summary>
+        /// <param name="condition1">The condition1.</param>
+        /// <param name="condition2">The condition2.</param>
+        /// <returns></returns>
         public bool Equals(ConditionExpression condition1, ConditionExpression condition2)
         {
             if (condition1 == condition2) { return true; }
@@ -17,6 +26,13 @@ namespace DLaB.Xrm.Comparers
                    new EnumerableComparer<Object>().Equals(condition1.Values, condition2.Values);
         }
 
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <param name="condition">The condition.</param>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
         public int GetHashCode(ConditionExpression condition)
         {
             condition.ThrowIfNull("condition");

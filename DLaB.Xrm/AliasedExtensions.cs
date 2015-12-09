@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm
@@ -14,6 +11,11 @@ namespace DLaB.Xrm
 
         #region AddAliased
 
+        /// <summary>
+        /// Adds the aliased entity to the current entity.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <param name="entityToAdd">The entity to add.</param>
         public static void AddAliasedEntity(this Entity entity, Entity entityToAdd)
         {
             foreach (var attribute in entityToAdd.Attributes.Where(a => !(a.Value is AliasedValue)))
@@ -81,11 +83,24 @@ namespace DLaB.Xrm
 
         #region GetAliasedEntity
 
-                public static T GetAliasedEntity<T>(this Entity entity) where T : Entity, new()
+        /// <summary>
+        /// Gets the aliased entity from the current entity.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
+        public static T GetAliasedEntity<T>(this Entity entity) where T : Entity, new()
         {
             return entity.GetAliasedEntity<T>(null);
         }
 
+        /// <summary>
+        /// Gets the aliased entity from the current entity with the given entity name.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity">The entity.</param>
+        /// <param name="aliasedEntityName">Name of the aliased entity.</param>
+        /// <returns></returns>
         public static T GetAliasedEntity<T>(this Entity entity, string aliasedEntityName) where T : Entity, new()
         {
             var entityLogicalName = EntityHelper.GetEntityLogicalName<T>();

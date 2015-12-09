@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using DLaB.Common;
 using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm
@@ -27,17 +28,17 @@ namespace DLaB.Xrm
                 case ConditionOperator.Null:
                 case ConditionOperator.NotNull:
                     op = ce.Operator == ConditionOperator.Null ? "IS NULL" : "IS NOT NULL";
-                    condition = String.Format("{0} {1} ", entityAttribute, op);
+                    condition = $"{entityAttribute} {op} ";
                     break;
                 case ConditionOperator.In:
                 case ConditionOperator.NotIn:
                     op = ce.Operator == ConditionOperator.In ? "IN" : "NOT IN";
-                    condition = String.Format("{0} {1} ({2}) ", entityAttribute, op, String.Join(", ", ce.Values.Select(GetDisplayValue)));
+                    condition = $"{entityAttribute} {op} ({ce.Values.Select(GetDisplayValue).ToCsv()}) ";
                     break;
                 case ConditionOperator.Between:
                     if (ce.Values.Count == 2)
                     {
-                        condition = String.Format("{0} {1} {2} AND {3}", ce.AttributeName, ce.Operator, GetDisplayValue(ce.Values[0]), GetDisplayValue(ce.Values[1]));
+                        condition = $"{ce.AttributeName} {ce.Operator} {GetDisplayValue(ce.Values[0])} AND {GetDisplayValue(ce.Values[1])}";
                     }
                     else
                     {
@@ -45,19 +46,19 @@ namespace DLaB.Xrm
                     }
                     break;
                 case ConditionOperator.Equal:
-                    condition = String.Format("{0} = {1} ", entityAttribute, GetDisplayValue(ce.Values[0]));
+                    condition = $"{entityAttribute} = {GetDisplayValue(ce.Values[0])} ";
                     break;
                 case ConditionOperator.GreaterThan:
-                    condition = String.Format("{0} > {1} ", entityAttribute, GetDisplayValue(ce.Values[0]));
+                    condition = $"{entityAttribute} > {GetDisplayValue(ce.Values[0])} ";
                     break;
                 case ConditionOperator.GreaterEqual:
-                    condition = String.Format("{0} >= {1} ", entityAttribute, GetDisplayValue(ce.Values[0]));
+                    condition = $"{entityAttribute} >= {GetDisplayValue(ce.Values[0])} ";
                     break;
                 case ConditionOperator.LessThan:
-                    condition = String.Format("{0} < {1} ", entityAttribute, GetDisplayValue(ce.Values[0]));
+                    condition = $"{entityAttribute} < {GetDisplayValue(ce.Values[0])} ";
                     break;
                 case ConditionOperator.LessEqual:
-                    condition = String.Format("{0} <= {1} ", entityAttribute, GetDisplayValue(ce.Values[0]));
+                    condition = $"{entityAttribute} <= {GetDisplayValue(ce.Values[0])} ";
                     break;
                 case ConditionOperator.Last7Days:
                 case ConditionOperator.LastFiscalPeriod:
@@ -191,7 +192,7 @@ namespace DLaB.Xrm
                     cols.AddRange(qe.ColumnSet.Columns.Select(c => tableName + c));
                 }
             }
-            sb.AppendLine(String.Join(", ", cols));
+            sb.AppendLine(cols.ToCsv());
 
 
             // From Statement
