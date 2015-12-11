@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm", "DLaB.Xrm\DLaB.Xrm.csproj", "{0A88B434-3617-4543-B9A3-B2B04BA4B8D4}"
 EndProject
@@ -36,6 +36,15 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{775B4069-F435-4B94-A185-EAFD10B33495}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TFS", "TFS", "{06D5DB12-F24F-44DF-85F4-497C2F273490}"
+	ProjectSection(SolutionItems) = preProject
+		References\TFS\Microsoft.TeamFoundation.Client.dll = References\TFS\Microsoft.TeamFoundation.Client.dll
+		References\TFS\Microsoft.TeamFoundation.Common.dll = References\TFS\Microsoft.TeamFoundation.Common.dll
+		References\TFS\Microsoft.TeamFoundation.VersionControl.Client.dll = References\TFS\Microsoft.TeamFoundation.VersionControl.Client.dll
+		References\TFS\Microsoft.TeamFoundation.VersionControl.Common.dll = References\TFS\Microsoft.TeamFoundation.VersionControl.Common.dll
+		References\TFS\Microsoft.TeamFoundation.VersionControl.Common.Integration.dll = References\TFS\Microsoft.TeamFoundation.VersionControl.Common.Integration.dll
 	EndProjectSection
 EndProject
 Global
@@ -91,5 +100,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{06D5DB12-F24F-44DF-85F4-497C2F273490} = {398E61BF-9E21-47BC-85E1-7B505B72D21A}
 	EndGlobalSection
 EndGlobal
