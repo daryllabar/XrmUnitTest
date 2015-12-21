@@ -31,15 +31,15 @@ namespace DLaB.Xrm.Test
 
         public class TraceParams
         {
-            public String Format{ get; set; }
-            public Object[] Args { get; set; }
-            public String Trace { get; set; }
+            public string Format { get; set; }
+            public object[] Args { get; set; }
+            public string Trace { get; set; }
 
             public TraceParams(string format, object[] args)
             {
                 Format = format;
                 Args = args;
-                Trace = String.Format(format, args);
+                Trace = string.Format(format, args);
             }
         }
     }

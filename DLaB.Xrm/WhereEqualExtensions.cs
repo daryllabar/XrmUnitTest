@@ -13,7 +13,8 @@ namespace DLaB.Xrm
         #region FilterExpression
 
         /// <summary>
-        /// Adds the column name and value pairs as conditions
+        /// Adds the column name and value pairs as conditions.  The columnNameAndValuePairs can contain a paired list of attribute names and their values,
+        /// -or- ConditionExpressions
         /// </summary>
         /// <param name="filterExpression"></param>
         /// <param name="entityName"></param>
