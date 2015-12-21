@@ -81,7 +81,10 @@
     <Folder Include="Assumptions\Entity Xml\" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <None Include="UnitTestSettings.User.config" />
+=======
+>>>>>>> origin/master
     <None Include="UnitTestSettings.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

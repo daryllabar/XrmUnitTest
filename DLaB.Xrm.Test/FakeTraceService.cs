@@ -75,6 +75,7 @@ namespace DLaB.Xrm.Test
         /// </summary>
         public class TraceParams
         {
+<<<<<<< HEAD
             /// <summary>
             /// Gets or sets the format.
             /// </summary>
@@ -95,6 +96,10 @@ namespace DLaB.Xrm.Test
             /// <value>
             /// The trace.
             /// </value>
+=======
+            public string Format { get; set; }
+            public object[] Args { get; set; }
+>>>>>>> origin/master
             public string Trace { get; set; }
 
             /// <summary>
@@ -106,8 +111,12 @@ namespace DLaB.Xrm.Test
             {
                 Format = format;
                 Args = args;
+<<<<<<< HEAD
                 // If there are no args, then this has probably already been formatted, don't reformat
                 Trace = args.Length == 0 ? format : String.Format(format, args);
+=======
+                Trace = string.Format(format, args);
+>>>>>>> origin/master
             }
         }
 
