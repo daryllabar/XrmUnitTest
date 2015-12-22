@@ -26,6 +26,7 @@ namespace DLaB.Xrm.LocalCrm
         /// The information.
         /// </value>
         public LocalCrmDatabaseInfo Info { get; }
+        public string CurrentRequestName { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalCrmDatabaseOrganizationService"/> class.
@@ -207,7 +208,10 @@ namespace DLaB.Xrm.LocalCrm
         [DebuggerStepThrough]
         public OrganizationResponse Execute(OrganizationRequest request)
         {
-            return ExecuteInternal((dynamic)request);
+            CurrentRequestName = request.RequestName;
+            var response = ExecuteInternal((dynamic)request);
+            CurrentRequestName = null;
+            return response;
         }
 
         /// <summary>

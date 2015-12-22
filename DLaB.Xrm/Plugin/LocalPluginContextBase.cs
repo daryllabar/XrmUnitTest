@@ -34,6 +34,14 @@ namespace DLaB.Xrm.Plugin
         /// The current event the plugin is executing for.
         /// </summary>
         public RegisteredEvent Event { get; private set; }
+
+        /// <summary>
+        /// Gets the isolation mode of the plugin assembly.
+        /// </summary>
+        /// <value>
+        /// The isolation mode of the plugin assembly.
+        /// </value>
+        public IsolationMode IsolationMode { get; private set; }
         /// <summary>
         /// The IOrganizationService of the plugin, Impersonated as the user that the plugin is registered to run as.
         /// </summary>
@@ -60,7 +68,7 @@ namespace DLaB.Xrm.Plugin
         /// <summary>
         /// The Type.FullName of the plugin.
         /// </summary>
-        public String PluginTypeName { get; private set; }
+        public string PluginTypeName { get; private set; }
         /// <summary>
         /// Gets or sets the service provider.
         /// </summary>
@@ -218,6 +226,7 @@ namespace DLaB.Xrm.Plugin
                 (string.IsNullOrWhiteSpace(a.EntityLogicalName) || a.EntityLogicalName == context.PrimaryEntityName)
                 );
 
+            IsolationMode = (IsolationMode)context.IsolationMode;
             PluginTypeName = plugin.GetType().FullName;
         }
 

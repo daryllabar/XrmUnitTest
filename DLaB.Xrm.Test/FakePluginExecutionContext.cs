@@ -37,6 +37,7 @@ namespace DLaB.Xrm.Test
             // Default to most Common, which I'm guessing is Pre Operation Update
             Stage = (int) PipelineStage.PreOperation;
             MessageName = MessageType.Update;
+            IsolationMode = (int)Plugin.IsolationMode.Sandbox;
         }
 
         #region Clone

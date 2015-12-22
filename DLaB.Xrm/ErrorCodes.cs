@@ -2723,6 +2723,8 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(MailApp_ReadWriteAccessRequired, "You only have administrative access to Microsoft Dynamics CRM. To use this app, you must have read-write access.");
             ErrorMessages.Add(MailApp_FeatureControlBitDisabled, "Access to the app hasn’t been enabled for this Dynamics CRM organization. Contact your system administrator to enable access to this app.");
             ErrorMessages.Add(MailApp_PermissionToUseCrmForOfficeAppsRequired, "You don’t have permission to access this app. Contact your system administrator to add the \"Use CRM for Office Apps\" privilege to your user role.");
+
+            ErrorMessages.Add(UseCloseIncidentRequest, "This message can not be used to set the state of incident to Closed.  In order to set state of incident to Closed, use the CloseIncidentRequest message instead.");
         }
 
         /// <summary>
@@ -5428,6 +5430,8 @@ namespace DLaB.Xrm.CrmSdk
         public const int MailApp_ReadWriteAccessRequired = unchecked((int)0x80061203); // -2147085821
         public const int MailApp_FeatureControlBitDisabled = unchecked((int)0x80061204); // -2147085820
         public const int MailApp_PermissionToUseCrmForOfficeAppsRequired = unchecked((int)0x80061205); // -2147085819
+
+        public const int UseCloseIncidentRequest = unchecked((int) 0x80131500); // -2146233088
 
     }
 }

@@ -352,12 +352,12 @@ namespace DLaB.Xrm.Test.Builders
                         }
                         catch (Exception ex)
                         {
-                            var entityName = value.Id.Entity == null ? name : value.Id.Entity.ToStringAttributes();
+                            var entityName = value.Id.Entity == null ? name : $"Entity {value.Id.LogicalName}{Environment.NewLine}{value.Id.Entity.ToStringAttributes()}";
                             if (string.IsNullOrWhiteSpace(entityName))
                             {
                                 entityName = name;
                             }
-                            throw new CreationFailureException($"An error occured attempting to create {entityName}.  {ex.Message}", ex);
+                            throw new CreationFailureException($"An error occured attempting to create {entityName}.{Environment.NewLine}{ex.Message}", ex);
                         }
                     }
                 }

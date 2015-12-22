@@ -71,11 +71,12 @@ namespace DLaB.Xrm.Plugin
         /// Executes the plug-in.
         /// </summary>
         /// <param name="serviceProvider">The service provider.</param>
+        /// <exception cref="ArgumentNullException"></exception>
         /// <remarks>
-        /// For improved performance, Microsoft Dynamics CRM caches plug-in instances. 
-        /// The plug-in's Execute method should be written to be stateless as the constructor 
-        /// is not called for every invocation of the plug-in. Also, multiple system threads 
-        /// could execute the plug-in at the same time. All per invocation state information 
+        /// For improved performance, Microsoft Dynamics CRM caches plug-in instances.
+        /// The plug-in's Execute method should be written to be stateless as the constructor
+        /// is not called for every invocation of the plug-in. Also, multiple system threads
+        /// could execute the plug-in at the same time. All per invocation state information
         /// is stored in the context. This means that you should not use class level fields/properties in plug-ins.
         /// </remarks>
         public void Execute(IServiceProvider serviceProvider)
@@ -122,13 +123,36 @@ namespace DLaB.Xrm.Plugin
             {
                 context.LogException(ex);
                 // This error is already being thrown from the plugin, just throw
-                throw;
+                if (context.PluginExecutionContext.IsolationMode == (int) IsolationMode.Sandbox)
+                {
+                    if (Sandbox.ExceptionHandler.CanThrow(ex))
+                    {
+                        throw;
+                    }
+                }
+                else
+                {
+                    throw;
+                }
             }
             catch (Exception ex)
             {
                 // Unexpected Exception occurred, log exception then wrap and throw new exception
                 context.LogException(ex);
-                throw new InvalidPluginExecutionException(ex.Message, ex);
+                ex = new InvalidPluginExecutionException(ex.Message, ex);
+                if (context.PluginExecutionContext.IsolationMode == (int)IsolationMode.Sandbox)
+                {
+                    if (Sandbox.ExceptionHandler.CanThrow(ex))
+                    {
+                        // ReSharper disable once PossibleIntendedRethrow - Wrap the exception in an InvalidPluginExecutionException
+                        throw ex;
+                    }
+                }
+                else
+                {
+                    // ReSharper disable once PossibleIntendedRethrow - Wrap the exception in an InvalidPluginExecutionException
+                    throw ex;
+                }
             }
             finally
             {

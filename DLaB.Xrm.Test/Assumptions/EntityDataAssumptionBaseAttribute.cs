@@ -70,7 +70,7 @@ namespace DLaB.Xrm.Test.Assumptions
         /// <summary>
         /// Gets the name of the type, without the "Attribute" postfix, and with any namespace values that come after Assumptions
         /// </summary>
-        private String AssumptionsNamespaceRelativePath => GetAssumptionsNamespaceRelativePath(GetType());
+        private string AssumptionsNamespaceRelativePath => GetAssumptionsNamespaceRelativePath(GetType());
 
         /// <summary>
         /// Gets the name of the type, without the "Attribute" postfix
@@ -91,7 +91,7 @@ namespace DLaB.Xrm.Test.Assumptions
         private static string GetAssumptionsNamespaceRelativePath(Type type)
         {
             var name = type.FullName;
-            var index = name.Substring(0, name.LastIndexOf('.')).LastIndexOf("Assumptions.", StringComparison.Ordinal) + "Assumptions.".Length;
+            var index = name.Substring(0, name.LastIndexOf('.') + 1).LastIndexOf("Assumptions.", StringComparison.Ordinal) + "Assumptions.".Length;
             if (index > 0)
             {
                 name = name.Substring(index, name.Length - index);

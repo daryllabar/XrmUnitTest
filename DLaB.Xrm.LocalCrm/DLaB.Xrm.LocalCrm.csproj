@@ -53,6 +53,7 @@
     <Compile Include="Entities\ActivityPointer.cs" />
     <Compile Include="Entities\BusinessUnit.cs" />
     <Compile Include="Entities\Email.cs" />
+    <Compile Include="Entities\Incident.cs" />
     <Compile Include="Entities\SystemUser.cs" />
     <Compile Include="Entities\Template.cs" />
     <Compile Include="Extensions.cs" />

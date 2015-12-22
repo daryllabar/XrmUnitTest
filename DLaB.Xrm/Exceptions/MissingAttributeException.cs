@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace DLaB.Xrm.Exceptions
 {
@@ -14,6 +11,9 @@ namespace DLaB.Xrm.Exceptions
     {
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MissingAttributeException"/> class.
+        /// </summary>
         public MissingAttributeException()
         {
 
@@ -34,7 +34,7 @@ namespace DLaB.Xrm.Exceptions
         /// <param name="messageFormat">The message format.</param>
         /// <param name="messageFormatArgs">The message format arguments.</param>
         public MissingAttributeException(string messageFormat, params object[] messageFormatArgs)
-            : base(String.Format(messageFormat, messageFormatArgs))
+            : base(string.Format(messageFormat, messageFormatArgs))
         {
 
         }
@@ -47,6 +47,16 @@ namespace DLaB.Xrm.Exceptions
         public MissingAttributeException(string message, Exception innerException) : base(message, innerException)
         {
 
+        }
+
+        /// <summary>
+        /// Without this constructor, deserialization will fail
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
+        protected MissingAttributeException(SerializationInfo info, StreamingContext context) 
+            : base(info, context)
+        {
         }
 
         #endregion Constructors

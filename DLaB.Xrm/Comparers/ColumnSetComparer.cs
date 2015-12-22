@@ -22,7 +22,7 @@ namespace DLaB.Xrm.Comparers
             if (cs1 == null || cs2 == null) { return false; }
 
             return cs1.AllColumns == cs2.AllColumns
-                && new EnumerableComparer<String>().Equals(cs1.Columns, cs2.Columns);
+                && new EnumerableComparer<string>().Equals(cs1.Columns, cs2.Columns);
         }
 
         /// <summary>

@@ -496,11 +496,12 @@ namespace DLaB.Xrm
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <param name="attributeFormat">The attribute format.</param>
+        /// <param name="tabSpacing">The tab spacing to use.  None by default.</param>
         /// <returns></returns>
-        public static string ToStringAttributes(this Entity entity, string attributeFormat = "[{0}]: {1}")
+        public static string ToStringAttributes(this Entity entity, int tabSpacing = 4, string attributeFormat = "[{0}]: {1}")
         {
             return string.Join(Environment.NewLine, entity.Attributes.Select(att =>
-                string.Format(attributeFormat, att.Key, GetAttributeValue(att.Value))));
+                GenerateNonBreakingSpace(tabSpacing) + string.Format(attributeFormat, att.Key, GetAttributeValue(att.Value))));
         }
 
         private static string GetAttributeValue(object value)
@@ -581,7 +582,7 @@ namespace DLaB.Xrm
                     else
                     {
                         values.Add("*   Image[" + image.Key + "] " + image.Value.ToEntityReference().GetNameId() + "   *");
-                        values.Add(image.Value.ToStringAttributes("        Entity[{0}]: {1}"));
+                        values.Add(image.Value.ToStringAttributes(8, "Entity[{0}]: {1}"));
                     }
                 }
             }
@@ -819,6 +820,8 @@ namespace DLaB.Xrm
 
         #region IOrganizationService
 
+        #region Assign
+
         /// <summary>
         /// Assigns the supplied entity to the supplied user
         /// </summary>
@@ -863,6 +866,10 @@ namespace DLaB.Xrm
             });
         }
 
+        #endregion Assign
+
+        #region Associate
+
         /// <summary>
         /// Associates one or more entities to an entity.
         /// </summary>
@@ -903,6 +910,10 @@ namespace DLaB.Xrm
                 new EntityReferenceCollection(entities.ToList()));
         }
 
+        #endregion Associate
+
+        #region Delete
+
         /// <summary>
         /// Deletes the specified entity
         /// </summary>
@@ -923,6 +934,10 @@ namespace DLaB.Xrm
         {
             service.Delete(entity.LogicalName, entity.Id);
         }
+
+        #endregion Delete
+
+        #region DeleteIfExists
 
         /// <summary>
         /// Attempts to delete the entity with the given id. If it doesn't exist, false is returned
@@ -1039,6 +1054,9 @@ namespace DLaB.Xrm
 
             return exists;
         }
+
+        #endregion DeleteIfExists
+
         /// <summary>
         /// Executes a batch of requests against the CRM Web Service using the ExecuteMultipleRequest command.
         /// </summary>
@@ -1079,6 +1097,8 @@ namespace DLaB.Xrm
             }
         }
 
+        #region GetAllEntities
+
         /// <summary>
         /// Gets all entities using the Query Expression
         /// </summary>
@@ -1109,6 +1129,8 @@ namespace DLaB.Xrm
             return RetrieveAllEntities<T>.GetAllEntities(service, qe, maxCount, pageSize);
         }
 
+        #endregion GetAllEntities
+
         /// <summary>
         /// Returns the WhoAmIResponse to determine the current user's UserId, BusinessUnitId, and OrganizationId
         /// </summary>
@@ -1118,6 +1140,8 @@ namespace DLaB.Xrm
         {
             return (WhoAmIResponse)service.Execute(new WhoAmIRequest());
         }
+
+        #region GetEntity
 
         /// <summary>
         /// Retrieves the Entity of the given type with the given Id, with all columns
@@ -1161,6 +1185,10 @@ namespace DLaB.Xrm
             return service.Retrieve(EntityHelper.GetEntityLogicalName<T>(), id, columnSet).ToEntity<T>();
         }
 
+        #endregion GetEntity
+
+        #region GetEntities
+
         /// <summary>
         /// Returns first 5000 entities using the Query Expression
         /// </summary>
@@ -1184,6 +1212,10 @@ namespace DLaB.Xrm
         {
             return service.RetrieveMultiple(qe).ToEntityList<T>();
         }
+
+        #endregion GetEntities
+
+        #region GetFirst
 
         /// <summary>
         /// Gets the first entity that matches the query expression.  An exception is thrown if none are found.
@@ -1222,6 +1254,10 @@ namespace DLaB.Xrm
                                                     qe.GetSqlStatement());
             }
         }
+
+        #endregion GetFirst
+
+        #region GetFirstOrDefault
 
         /// <summary>
         /// Gets the first entity that matches the query expression.  Null is returned if none are found.
@@ -1273,6 +1309,8 @@ namespace DLaB.Xrm
             return service.GetFirstOrDefault<T>(qe.Query);
         }
 
+        #endregion GetFirstOrDefault
+        
         /// <summary>
         /// Returns a unique string key for the given IOrganizationService
         /// If the service is remote, the uri will be used, including the org Name
@@ -1349,28 +1387,6 @@ namespace DLaB.Xrm
             }
 
             return proxy.ServiceConfiguration?.CurrentServiceEndpoint.Address.Uri;
-        }
-
-        /// <summary>
-        /// If the id of the entity is empty, then the entity will be created, if it is not, then the entity will be
-        /// updated
-        /// </summary>
-        /// <param name="service">The service.</param>
-        /// <param name="entity">The entity.</param>
-        /// <returns></returns>
-        public static Guid Save(this IOrganizationService service, Entity entity)
-        {
-            Guid id = entity.Id;
-            if (id == Guid.Empty)
-            {
-                id = service.Create(entity);
-                entity.Id = id;
-            }
-            else
-            {
-                service.Update(entity);
-            }
-            return id;
         }
 
         /// <summary>
@@ -1732,7 +1748,7 @@ namespace DLaB.Xrm
                     var optionSet = param.Value as OptionSetValue;
                     if (entity != null)
                     {
-                        values.Add(entity.ToStringAttributes(GenerateNonBreakingSpace(4) + "Param[" + param.Key + "][{0}]: {1}"));
+                        values.Add(entity.ToStringAttributes(4, "Param[" + param.Key + "][{0}]: {1}"));
                     }
                     else if (entityRef != null)
                     {

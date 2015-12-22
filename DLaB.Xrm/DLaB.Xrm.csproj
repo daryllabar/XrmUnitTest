@@ -98,9 +98,12 @@
     <Compile Include="Plugin\ILocalPluginContext.cs" />
     <Compile Include="Plugin\IRegisteredEventsPlugin.cs" />
     <Compile Include="Plugin\IRegisteredEventsPluginHandler.cs" />
+    <Compile Include="Plugin\IsolationMode.cs" />
     <Compile Include="Plugin\LocalPluginContextBase.cs" />
+    <Compile Include="Plugin\MessageType.cs" />
     <Compile Include="Plugin\ParameterName.cs" />
     <Compile Include="Plugin\GenericPluginHandlerBase.cs" />
+    <Compile Include="Plugin\PipelineStage.cs" />
     <Compile Include="Plugin\RegisteredEvent.cs" />
     <Compile Include="Plugin\RegisteredEventBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -108,6 +111,7 @@
     <Compile Include="QueryExpressionFactory.cs" />
     <Compile Include="QuerySettings.cs" />
     <Compile Include="RetrieveAllEntities.cs" />
+    <Compile Include="Sandbox\ExceptionHandler.cs" />
     <Compile Include="Sandbox\Serialization\KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN.cs" />
     <Compile Include="Sandbox\Serialization\KeyValuePairOfstringanyType.cs" />
     <Compile Include="Sandbox\Serialization\KeyValuePairOfstringstring.cs" />

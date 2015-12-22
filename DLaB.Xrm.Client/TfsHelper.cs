@@ -22,7 +22,7 @@ namespace DLaB.Xrm.Client
         public static void CheckoutAndUpdateFileIfDifferent(string filePath, string contents)
         {
             var dir = Path.GetDirectoryName(filePath);
-            if (String.IsNullOrWhiteSpace(dir))
+            if (string.IsNullOrWhiteSpace(dir))
             {
                 throw new ArgumentException("File Path cannot be contain a directory that is null or empty!", "filePath");
             }

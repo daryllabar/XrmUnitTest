@@ -93,6 +93,17 @@ namespace DLaB.Xrm.Test.Builders
         }
 
         /// <summary>
+        /// Sets the IsoloationMode of the Context.  This does not actually prevent Sandbox calls from being made.
+        /// </summary>
+        /// <param name="mode">The mode.</param>
+        /// <returns></returns>
+        public TDerived WithIsoloationMode(IsolationMode mode)
+        {
+            Context.IsolationMode = (int) mode;
+            return This;
+        }
+
+        /// <summary>
         /// Adds the input parameter to the context's InputParameters collection.
         /// </summary>
         /// <param name="name">The name.</param>

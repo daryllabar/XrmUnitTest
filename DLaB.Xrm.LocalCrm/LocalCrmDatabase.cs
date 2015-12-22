@@ -10,6 +10,7 @@ using DLaB.Common;
 using DLaB.Xrm.CrmSdk;
 using DLaB.Xrm.LocalCrm.Entities;
 using DLaB.Xrm.LocalCrm.FetchXml;
+using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using NMemory;
@@ -775,6 +776,31 @@ namespace DLaB.Xrm.LocalCrm
         }
 
         /// <summary>
+        /// Simulates CRM update action preventions.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="service">The service.</param>
+        /// <param name="entity">The entity.</param>
+        /// <param name="exception">The exception.</param>
+        /// <returns></returns>
+        private static bool SimulateCrmUpdateActionPrevention<T>(LocalCrmDatabaseOrganizationService service, T entity, DelayedException exception) where T : Entity
+        {
+            switch (entity.LogicalName)
+            {
+                case Incident.EntityLogicalName:
+                    if (service.CurrentRequestName != new CloseIncidentRequest().RequestName  && 
+                        entity.GetAttributeValue<OptionSetValue>(Incident.Fields.StateCode).GetValueOrDefault() == (int) IncidentState.Resolved)
+                    {
+                        // Not executing as a part of a CloseIncidentRequest.  Disallow updating the State Code to Resolved.
+                        exception.Exception = GetUseCloseIncidentRequestException();
+                        return true;
+                    }
+                    break;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// CRM will convert non typed arrays into an IEnumerable&lt;T&gt;.  Handle that conversion here
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -838,6 +864,10 @@ namespace DLaB.Xrm.LocalCrm
             AssertTypeContainsColumns<T>(entity.Attributes.Keys);
             AssertEntityReferencesExists(service, entity);
             SimulateCrmAttributeManipulations(entity);
+            if (SimulateCrmUpdateActionPrevention(service, entity, exception))
+            {
+                return;
+            }
             
             // Get the Entity From the database
             var databaseValue = SchemaGetOrCreate<T>(service.Info).FirstOrDefault(e => e.Id == entity.Id);
@@ -902,6 +932,17 @@ namespace DLaB.Xrm.LocalCrm
             return new FaultException<OrganizationServiceFault>(new OrganizationServiceFault
             {
                 ErrorCode = ErrorCodes.ObjectDoesNotExist,
+                Message = message,
+                Timestamp = DateTime.UtcNow,
+            }, message);
+        }
+
+        private static FaultException<OrganizationServiceFault> GetUseCloseIncidentRequestException()
+        {
+            var message = ErrorCodes.GetErrorMessage(ErrorCodes.UseCloseIncidentRequest);
+            return new FaultException<OrganizationServiceFault>(new OrganizationServiceFault
+            {
+                ErrorCode = ErrorCodes.UseCloseIncidentRequest,
                 Message = message,
                 Timestamp = DateTime.UtcNow,
             }, message);
