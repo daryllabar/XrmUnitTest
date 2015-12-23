@@ -5,6 +5,9 @@ using Microsoft.Xrm.Sdk.Messages;
 
 namespace DLaB.Xrm
 {
+    /// <summary>
+    /// Extenions for handling Optimistic Concurrency that was first used in CRM 2015.1
+    /// </summary>
     public static class OptimisticConcurrencyExtensions {
         /// <summary>
         /// Preforms an Optimistic Update.  If the entity's RowVersion doesn't match, the exception will be caught, and a reconciliation will be attempted before re-updating, indefinitely.

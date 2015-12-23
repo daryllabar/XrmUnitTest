@@ -26,6 +26,12 @@ namespace DLaB.Xrm.LocalCrm
         /// The information.
         /// </value>
         public LocalCrmDatabaseInfo Info { get; }
+        /// <summary>
+        /// Gets the name of the current request.
+        /// </summary>
+        /// <value>
+        /// The name of the current request.
+        /// </value>
         public string CurrentRequestName { get; private set; }
 
         /// <summary>

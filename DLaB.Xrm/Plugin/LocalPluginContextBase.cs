@@ -579,6 +579,12 @@ namespace DLaB.Xrm.Plugin
             return PluginExecutionContext.GetTargetEntityReference();
         }
 
+        /// <summary>
+        /// Pulls the PrimaryEntityName, and PrimaryEntityId from the context and returns it as an Entity Reference
+        /// </summary>
+        /// <value>
+        /// The primary entity.
+        /// </value>
         public EntityReference PrimaryEntity => new EntityReference(PluginExecutionContext.PrimaryEntityName, PluginExecutionContext.PrimaryEntityId);
 
         #endregion Retrieve Entity From Context

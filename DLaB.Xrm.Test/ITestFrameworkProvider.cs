@@ -1,14 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DLaB.Xrm.Test
 {
+    /// <summary>
+    /// Defines an Interface for a test framework provider.  This is needed to be able to interact with different Test Frameworks
+    /// </summary>
     public interface ITestFrameworkProvider
     {
+        /// <summary>
+        /// Gets the type of the attribute used to define a test method.
+        /// </summary>
+        /// <value>
+        /// the type of the attribute used to define a test method.
+        /// </value>
         Type TestMethodAttributeType { get; }
 
         /// <summary>

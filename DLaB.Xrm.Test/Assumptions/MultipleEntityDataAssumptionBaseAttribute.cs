@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test.Assumptions
 {
+    /// <summary>
+    /// Assumption Base Attribute that allows for combining multiple assumptions into one
+    /// </summary>
     public abstract class MultipleEntityDataAssumptionBaseAttribute : EntityDataAssumptionBaseAttribute
     {
+        /// <summary>
+        /// Gets the assumptions.
+        /// </summary>
+        /// <returns></returns>
         protected abstract IEnumerable<EntityDataAssumptionBaseAttribute> GetAssumptions();
 
         /// <summary>
