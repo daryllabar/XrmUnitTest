@@ -230,13 +230,19 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var entitiesMissingStatusCodeAttribute = new List<string>();
 
             foreach (var entity in from t in typeof (SystemUser).Assembly.GetTypes()
-                where entityType.IsAssignableFrom(t) && new LateBoundActivePropertyInfo(EntityHelper.GetEntityLogicalName(t)).ActiveAttribute != ActiveAttributeType.None
+                where entityType.IsAssignableFrom(t) && new LateBoundActivePropertyInfo(EntityHelper.GetEntityLogicalName(t)).ActiveAttribute != ActiveAttributeType.None 
                 select (Entity) Activator.CreateInstance(t))
             {
                 entity.Id = service.Create(entity);
                 AssertCrm.IsActive(service, entity, "Entity " + entity.GetType().Name + " wasn't created active!");
                 try
                 {
+                    if (entity.LogicalName == Incident.EntityLogicalName)
+                    {
+                        // Requires the Special Resolve Incident Request Message
+                        continue;
+                    }
+
                     service.SetState(entity.LogicalName, entity.Id, false);
                 }
                 catch (Exception ex)
