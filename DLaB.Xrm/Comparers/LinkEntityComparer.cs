@@ -4,8 +4,17 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.Comparers
 {
+    /// <summary>
+    /// Comparer for LinkEntities
+    /// </summary>
     public class LinkEntityComparer : IEqualityComparer<LinkEntity>
     {
+        /// <summary>
+        /// Compares the two link entities.
+        /// </summary>
+        /// <param name="link1">The link1.</param>
+        /// <param name="link2">The link2.</param>
+        /// <returns></returns>
         public bool Equals(LinkEntity link1, LinkEntity link2)
         {
             if (link1 == link2) { return true; }
@@ -25,6 +34,13 @@ namespace DLaB.Xrm.Comparers
                 new EnumerableComparer<LinkEntity>(new LinkEntityComparer()).Equals(link1.LinkEntities, link2.LinkEntities);
         }
 
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <param name="link">The link.</param>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
         public int GetHashCode(LinkEntity link)
         {
             link.ThrowIfNull("link");

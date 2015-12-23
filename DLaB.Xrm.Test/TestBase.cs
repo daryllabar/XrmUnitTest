@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using DLaB.Common;
 using DLaB.Xrm.Client;
 using DLaB.Xrm.Test.Entities;
 using DLaB.Xrm.LocalCrm;
@@ -12,9 +11,24 @@ using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test
 {
+    /// <summary>
+    /// Base Test class to create the Organization Service Proxy defined by the config, as well as other values
+    /// </summary>
     public class TestBase
     {
+        /// <summary>
+        /// Gets or sets the name of the org.
+        /// </summary>
+        /// <value>
+        /// The name of the org.
+        /// </value>
         public static string OrgName { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether [use local CRM database].
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if [use local CRM database]; otherwise, <c>false</c>.
+        /// </value>
         public static bool UseLocalCrmDatabase { get; set; }
 
         static TestBase()
@@ -24,6 +38,13 @@ namespace DLaB.Xrm.Test
 
         #region GetOrganizationServiceProxy
 
+        /// <summary>
+        /// Gets the organization service.
+        /// </summary>
+        /// <param name="organizationName">Name of the organization.</param>
+        /// <param name="impersonationUserId">The impersonation user identifier.</param>
+        /// <param name="enableProxyTypes">if set to <c>true</c> [enable proxy types].</param>
+        /// <returns></returns>
         public static IClientSideOrganizationService GetOrganizationService(string organizationName = null,
             Guid impersonationUserId = new Guid(), bool enableProxyTypes = true)
         {
@@ -33,12 +54,12 @@ namespace DLaB.Xrm.Test
 
             var info = GetCrmServiceEntity(organizationName, enableProxyTypes);
 
-            if (Config.GetAppSettingOrDefault("UseDebugCredentialsForTesting", true))
+            if (AppConfig.UseDebugCredentialsForTesting)
             {
                 // Only in Unit tests should this be allowed.
-                info.UserName = ConfigurationManager.AppSettings["DebugUserAccountName"];
-                info.UserPassword = ConfigurationManager.AppSettings["DebugUserAccountPassword"];
-                info.UserDomainName = ConfigurationManager.AppSettings["DebugUserAccountDomain"];
+                info.UserName = AppConfig.DebugUserAccountName;
+                info.UserPassword = AppConfig.DebugUserAccountPassword;
+                info.UserDomainName = AppConfig.DebugUserAccountDomain;
             }
             return CrmServiceUtility.GetOrganizationService(info);
         }
@@ -86,11 +107,22 @@ namespace DLaB.Xrm.Test
                           FirstOrDefault(method => method.GetCustomAttributes(false).Any(o => o.GetType() == TestSettings.TestFrameworkProvider.Value.TestMethodAttributeType));
         }
 
+        /// <summary>
+        /// Gets the CRM service entity.
+        /// </summary>
+        /// <param name="enableProxyTypes">if set to <c>true</c> [enable proxy types].</param>
+        /// <returns></returns>
         public static CrmServiceInfo GetCrmServiceEntity(bool enableProxyTypes = true)
         {
             return GetCrmServiceEntity(OrgName, enableProxyTypes);
         }
 
+        /// <summary>
+        /// Gets the CRM service entity.
+        /// </summary>
+        /// <param name="organizationName">Name of the organization.</param>
+        /// <param name="enableProxyTypes">if set to <c>true</c> [enable proxy types].</param>
+        /// <returns></returns>
         public static CrmServiceInfo GetCrmServiceEntity(string organizationName, bool enableProxyTypes = true)
         {
             LoadUserUnitTestSettings();
@@ -127,14 +159,15 @@ namespace DLaB.Xrm.Test
                 AddSettingsToAppConfig(userConfig);
             }
 
-            OrgName = Config.GetAppSettingOrDefault("OrgName", "Specify \"OrgName\" in App.Config");
-            UseLocalCrmDatabase = Config.GetAppSettingOrDefault("UseLocalCrmDatabase", false);
+            OrgName = AppConfig.OrgName;
+            UseLocalCrmDatabase = AppConfig.UseLocalCrmDatabase;
         }
 
         private static void AddSettingsToAppConfig(Configuration userConfig)
         {
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            if (Path.GetFileName(config.FilePath) == "vstest.executionengine.x86.exe.Config")
+            var fileName = Path.GetFileName(config.FilePath);
+            if (fileName == "vstest.executionengine.x86.exe.Config" || fileName == "te.processhost.managed.exe.Config")
             {
                 throw new Exception("Unit Test Project Must Contain an App.Config file to be able to Load User Settings into!");
             }

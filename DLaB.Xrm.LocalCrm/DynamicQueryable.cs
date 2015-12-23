@@ -7,6 +7,8 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Threading;
+// ReSharper disable All
+#pragma warning disable 1591
 
 namespace DLaB.Xrm.LocalCrm
 {

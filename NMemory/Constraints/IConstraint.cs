@@ -27,7 +27,6 @@ namespace NMemory.Constraints
     /// <summary>
     ///     Defines functionality for constraint against database entities.
     /// </summary>
-    /// <typeparam name="TEntity"> The type of the entity. </typeparam>
     public interface IConstraint
     {
     }

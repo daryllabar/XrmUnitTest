@@ -4,6 +4,10 @@ using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Plugin
 {
+    /// <summary>
+    /// Plugin Handler Base.  Allows for Registered Events, preventing infinite loops, and auto logging
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class GenericPluginHandlerBase<T> : IRegisteredEventsPluginHandler where T : ILocalPluginContext
     {
         #region Properties
@@ -11,14 +15,29 @@ namespace DLaB.Xrm.Plugin
         /// <summary>
         /// Gets the List of RegisteredEvents that the plug-in should fire for
         /// </summary>
-        public List<RegisteredEvent> RegisteredEvents { get; private set; }
-        protected String SecureConfig { get; set; }
-        protected String UnsecureConfig { get; set; }
+        public List<RegisteredEvent> RegisteredEvents { get; }
+        /// <summary>
+        /// Gets or sets the secure configuration.
+        /// </summary>
+        /// <value>
+        /// The secure configuration.
+        /// </value>
+        protected string SecureConfig { get; set; }
+        /// <summary>
+        /// Gets or sets the unsecure configuration.
+        /// </summary>
+        /// <value>
+        /// The unsecure configuration.
+        /// </value>
+        protected string UnsecureConfig { get; set; }
 
         #endregion // Properties
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenericPluginHandlerBase{T}"/> class.
+        /// </summary>
         protected GenericPluginHandlerBase()
         {
             RegisteredEvents = new List<RegisteredEvent>();
@@ -39,6 +58,11 @@ namespace DLaB.Xrm.Plugin
         /// </summary>
         public abstract void RegisterEvents();
 
+        /// <summary>
+        /// Creates the local plugin context.
+        /// </summary>
+        /// <param name="serviceProvider">The service provider.</param>
+        /// <returns></returns>
         protected abstract T CreateLocalPluginContext(IServiceProvider serviceProvider);
 
         #endregion // Abstract Methods / Properties
@@ -47,11 +71,12 @@ namespace DLaB.Xrm.Plugin
         /// Executes the plug-in.
         /// </summary>
         /// <param name="serviceProvider">The service provider.</param>
+        /// <exception cref="ArgumentNullException"></exception>
         /// <remarks>
-        /// For improved performance, Microsoft Dynamics CRM caches plug-in instances. 
-        /// The plug-in's Execute method should be written to be stateless as the constructor 
-        /// is not called for every invocation of the plug-in. Also, multiple system threads 
-        /// could execute the plug-in at the same time. All per invocation state information 
+        /// For improved performance, Microsoft Dynamics CRM caches plug-in instances.
+        /// The plug-in's Execute method should be written to be stateless as the constructor
+        /// is not called for every invocation of the plug-in. Also, multiple system threads
+        /// could execute the plug-in at the same time. All per invocation state information
         /// is stored in the context. This means that you should not use class level fields/properties in plug-ins.
         /// </remarks>
         public void Execute(IServiceProvider serviceProvider)
@@ -60,7 +85,7 @@ namespace DLaB.Xrm.Plugin
 
             if (serviceProvider == null)
             {
-                throw new ArgumentNullException("serviceProvider");
+                throw new ArgumentNullException(nameof(serviceProvider));
             }
 
             var context = CreateLocalPluginContext(serviceProvider);
@@ -98,13 +123,36 @@ namespace DLaB.Xrm.Plugin
             {
                 context.LogException(ex);
                 // This error is already being thrown from the plugin, just throw
-                throw;
+                if (context.PluginExecutionContext.IsolationMode == (int) IsolationMode.Sandbox)
+                {
+                    if (Sandbox.ExceptionHandler.CanThrow(ex))
+                    {
+                        throw;
+                    }
+                }
+                else
+                {
+                    throw;
+                }
             }
             catch (Exception ex)
             {
                 // Unexpected Exception occurred, log exception then wrap and throw new exception
                 context.LogException(ex);
-                throw new InvalidPluginExecutionException(ex.Message, ex);
+                ex = new InvalidPluginExecutionException(ex.Message, ex);
+                if (context.PluginExecutionContext.IsolationMode == (int)IsolationMode.Sandbox)
+                {
+                    if (Sandbox.ExceptionHandler.CanThrow(ex))
+                    {
+                        // ReSharper disable once PossibleIntendedRethrow - Wrap the exception in an InvalidPluginExecutionException
+                        throw ex;
+                    }
+                }
+                else
+                {
+                    // ReSharper disable once PossibleIntendedRethrow - Wrap the exception in an InvalidPluginExecutionException
+                    throw ex;
+                }
             }
             finally
             {
@@ -113,8 +161,16 @@ namespace DLaB.Xrm.Plugin
             }
         }
 
+        /// <summary>
+        /// Method that gets called before the Execute
+        /// </summary>
+        /// <param name="serviceProvider">The service provider.</param>
         protected virtual void PreExecute(IServiceProvider serviceProvider) { }
 
+        /// <summary>
+        /// Methods that gets called in the finally block of the Execute
+        /// </summary>
+        /// <param name="context">The context.</param>
         protected virtual void PostExecute(T context) { }
 
         /// <summary>
@@ -158,7 +214,7 @@ namespace DLaB.Xrm.Plugin
             }
 
             var sharedVariables = context.PluginExecutionContext.SharedVariables;
-            var key = String.Format("{0}|{1}|{2}", context.PluginTypeName, context.Event.MessageName, context.PluginExecutionContext.PrimaryEntityId);
+            var key = $"{context.PluginTypeName}|{context.Event.MessageName}|{context.Event.Stage}|{context.PluginExecutionContext.PrimaryEntityId}";
             if (context.PluginExecutionContext.GetFirstSharedVariable<int>(key) > 0)
             {
                 return true;

@@ -5,18 +5,47 @@ using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test
 {
+    /// <summary>
+    /// A Helper Class for Easily converting to and from EntityReferences, Logical Names, Ids, and Entities
+    /// </summary>
     [DebuggerDisplay("{LogicalName} {EntityId})")]
     public class Id
     {
-        public Guid EntityId { get { return Entity.Id; } }
-        public String LogicalName { get { return Entity.LogicalName; } }
-        public EntityReference EntityReference { get { return Entity.ToEntityReference(); } }
+        /// <summary>
+        /// Gets the Entity.Id.
+        /// </summary>
+        /// <value>
+        /// The entity identifier.
+        /// </value>
+        public Guid EntityId => Entity.Id;
+
+        /// <summary>
+        /// Gets the logicalname of the entity.
+        /// </summary>
+        /// <value>
+        /// The logicalname of the entity.
+        /// </value>
+        public string LogicalName => Entity.LogicalName;
+
+        /// <summary>
+        /// Gets the entity reference.
+        /// </summary>
+        /// <value>
+        /// The entity reference.
+        /// </value>
+        public EntityReference EntityReference => Entity.ToEntityReference();
+
+        /// <summary>
+        /// Gets or sets the entity.
+        /// </summary>
+        /// <value>
+        /// The entity.
+        /// </value>
         public Entity Entity { get; set; }
         /// <summary>
         /// Provides an index for Entity.Attribute values
         /// </summary>
         /// <value>
-        /// The <see cref="System.Object"/>.
         /// </value>
         /// <param name="attributeName">Name of the attribute.</param>
         /// <returns></returns>
@@ -25,6 +54,12 @@ namespace DLaB.Xrm.Test
             set { Entity.Attributes[attributeName] = value; }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Id"/> class.
+        /// </summary>
+        /// <param name="logicalName">Name of the logical.</param>
+        /// <param name="entityId">The entity identifier.</param>
+        /// <exception cref="System.Exception">\Entity\ is not a valid entityname.  Ids must be be of a valid Early Bound Type, ie Contact, Opportunity, etc... !  + entityId</exception>
         public Id(string logicalName, Guid entityId)
         {
             if(logicalName == "entity")
@@ -35,26 +70,59 @@ namespace DLaB.Xrm.Test
             Entity = new Entity(logicalName, entityId);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Id"/> class.
+        /// </summary>
+        /// <param name="logicalName">Name of the logical.</param>
+        /// <param name="entityId">The entity identifier.</param>
         public Id(string logicalName, string entityId) : this(logicalName, new Guid(entityId)) { }
 
         #region Implicit Operators
 
+        /// <summary>
+        /// Performs an implicit conversion from <see cref="Id"/> to <see cref="EntityReference"/>.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>
+        /// The result of the conversion.
+        /// </returns>
         public static implicit operator EntityReference(Id id)
         {
             return id.EntityReference;
         }
 
+        /// <summary>
+        /// Performs an implicit conversion from <see cref="Id"/> to <see cref="Guid"/>.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>
+        /// The result of the conversion.
+        /// </returns>
         public static implicit operator Guid(Id id)
         {
             return id.EntityId;
         }
 
+        /// <summary>
+        /// Performs an implicit conversion from <see cref="Id"/> to <see cref="InArgument{EntityReference}"/>.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>
+        /// The result of the conversion.
+        /// </returns>
         public static implicit operator InArgument<EntityReference>(Id id)
         {
             return new InArgument<EntityReference>(id);
         }
 
-        public static implicit operator String(Id id)
+        /// <summary>
+        /// Performs an implicit conversion from <see cref="Id"/> to <see cref="System.String"/>.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>
+        /// The result of the conversion.
+        /// </returns>
+        public static implicit operator string(Id id)
         {
             return id.LogicalName;
         }
@@ -62,15 +130,31 @@ namespace DLaB.Xrm.Test
 
         #endregion Implicit Operators
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
-            return String.Format("{0} {1}", LogicalName, EntityId);
+            return $"{LogicalName} {EntityId}";
         }
     }
 
+    /// <summary>
+    /// A Typed version of the Id class.  Allows for easily converting to and from EntityReferences, Logical Names, Ids, and Entities
+    /// </summary>
+    /// <typeparam name="TEntity">The type of the entity.</typeparam>
     public class Id<TEntity> : Id
         where TEntity : Entity
     {
+        /// <summary>
+        /// Gets or sets the entity.
+        /// </summary>
+        /// <value>
+        /// The entity.
+        /// </value>
         public new TEntity Entity
         {
             get { 
@@ -87,8 +171,16 @@ namespace DLaB.Xrm.Test
                 base.Entity = value;
             }
         }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Id{TEntity}"/> class.
+        /// </summary>
+        /// <param name="entityId">The entity identifier.</param>
         public Id(Guid entityId) : base(EntityHelper.GetEntityLogicalName<TEntity>(), entityId) { }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Id{TEntity}"/> class.
+        /// </summary>
+        /// <param name="entityId">The entity identifier.</param>
         public Id(string entityId) : base(EntityHelper.GetEntityLogicalName<TEntity>(), entityId) { }
     }
 }

@@ -4,6 +4,9 @@ using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Plugin
 {
+    /// <summary>
+    /// Extension Class for Plugins
+    /// </summary>
     public static class Extensions
     {
         #region List<RegisteredEvent>
@@ -171,6 +174,41 @@ namespace DLaB.Xrm.Plugin
                 context = context.ParentContext;
             }
             return null;
+        }
+
+        /// <summary>
+        /// Cast the Target to the given Entity Type T. 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="context">The context.</param>
+        /// <returns></returns>
+        public static T GetTarget<T>(this IPluginExecutionContext context) where T : Entity
+        {
+            var parameters = context.InputParameters;
+            if (!parameters.ContainsKey(ParameterName.Target) || !(parameters[ParameterName.Target] is Entity))
+            {
+                return null;
+            }
+
+            // Obtain the target business entity from the input parmameters.
+            
+            return ((Entity)parameters[ParameterName.Target]).ToEntity<T>();
+        }
+
+        /// <summary>
+        /// Finds and returns the Target as an Entity Reference (Delete Plugins)
+        /// </summary>
+        /// <returns></returns>
+        public static EntityReference GetTargetEntityReference(this IPluginExecutionContext context)
+        {
+            EntityReference entity = null;
+            var parameters = context.InputParameters;
+            if (parameters.ContainsKey(ParameterName.Target) &&
+                 parameters[ParameterName.Target] is EntityReference)
+            {
+                entity = (EntityReference)parameters[ParameterName.Target];
+            }
+            return entity;
         }
 
         #endregion IPluginExecutionContext

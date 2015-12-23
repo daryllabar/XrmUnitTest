@@ -6,6 +6,9 @@ using System.Linq.Expressions;
 
 namespace DLaB.Xrm
 {
+    /// <summary>
+    /// Class for helping to create QueryExpressions
+    /// </summary>
     public class QueryExpressionFactory
     {
         #region Create
@@ -152,6 +155,13 @@ namespace DLaB.Xrm
             return Create<T>(columnSet, first, columnNameAndValuePairs);
         }
 
+        /// <summary>
+        /// Creates the specified settings.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="settings">The settings.</param>
+        /// <param name="columnNameAndValuePairs">The column name and value pairs.</param>
+        /// <returns></returns>
         public static TypedQueryExpression<T>Create<T>(QuerySettings<T> settings,
             params object[] columnNameAndValuePairs) where T : Entity
         {
@@ -202,6 +212,12 @@ namespace DLaB.Xrm
             return qe;
         }
 
+        /// <summary>
+        /// Creates the specified settings.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="settings">The settings.</param>
+        /// <returns></returns>
         public static TypedQueryExpression<T> Create<T>(QuerySettings<T> settings) where T : Entity
         {
             var qe = new TypedQueryExpression<T>(new QueryExpression

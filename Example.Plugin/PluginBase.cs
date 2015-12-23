@@ -28,7 +28,7 @@ namespace Example.Plugin
             ThreadSafeGetOrCreateHandler().Execute(serviceProvider);
         }
 
-        private PluginHandlerBase ThreadSafeGetOrCreateHandler()
+        private IRegisteredEventsPluginHandler ThreadSafeGetOrCreateHandler()
         {
             if (_handler != null) { return _handler; }
 

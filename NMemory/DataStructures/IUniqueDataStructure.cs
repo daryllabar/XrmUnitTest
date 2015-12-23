@@ -21,7 +21,7 @@
 //     THE SOFTWARE.
 // </copyright>
 // ----------------------------------------------------------------------------------
-
+#pragma warning disable 1591
 namespace NMemory.DataStructures
 {
     public interface IUniqueDataStructure<TKey, TEntity> : IDataStructure<TKey, TEntity>

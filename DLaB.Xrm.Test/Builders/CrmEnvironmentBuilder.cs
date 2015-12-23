@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using DLaB.Common;
+using DLaB.Xrm.Test.Exceptions;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test.Builders
@@ -13,10 +14,10 @@ namespace DLaB.Xrm.Test.Builders
     /// </summary>
     public sealed class CrmEnvironmentBuilder : CrmEnvironmentBuilderBase<CrmEnvironmentBuilder>
     {
-        protected override CrmEnvironmentBuilder This
-        {
-            get { return this; }
-        }
+        /// <summary>
+        /// Returns the Instance
+        /// </summary>
+        protected override CrmEnvironmentBuilder This => this;
     }
 
     /// <summary>
@@ -24,9 +25,24 @@ namespace DLaB.Xrm.Test.Builders
     /// </summary>
     public abstract class CrmEnvironmentBuilderBase<TDerived> where TDerived : CrmEnvironmentBuilderBase<TDerived>
     {
+        /// <summary>
+        /// Gets the Instance.
+        /// </summary>
+        /// <value>
+        /// The this.
+        /// </value>
         protected abstract TDerived This { get; }
+        /// <summary>
+        /// Gets or sets the entity builders.
+        /// </summary>
+        /// <value>
+        /// The entity builders.
+        /// </value>
         protected EntityBuilderManager EntityBuilders { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CrmEnvironmentBuilderBase{TDerived}" /> class.
+        /// </summary>
         protected CrmEnvironmentBuilderBase()
         {
             try
@@ -43,6 +59,30 @@ namespace DLaB.Xrm.Test.Builders
         #region Fluent Methods
 
         /// <summary>
+        /// Primarily Used in Conjuction with WithEntities&lt;TIdsStruct&gt; to allow for the exclusion of some Ids from being Created
+        /// </summary>
+        /// <param name="ids">The ids.</param>
+        /// <returns></returns>
+        public TDerived ExceptEntities(params Id[] ids)
+        {
+            foreach (var id in ids)
+            {
+                EntityBuilders.Remove(id);
+            }
+            return This;
+        }
+
+        /// <summary>
+        /// Primarily Used in Conjuction with WithEntities&lt;TIdsStruct&gt; to allow for the exclusion of some Ids from being Created
+        /// </summary>
+        /// <typeparam name="TIdsStruct">The type of the ids structure.</typeparam>
+        /// <returns></returns>
+        public TDerived ExceptEntities<TIdsStruct>() where TIdsStruct : struct
+        {
+            return ExceptEntities(typeof(TIdsStruct).GetIds().ToArray());
+        }
+
+        /// <summary>
         /// Allows for the specification of any fluent methods to the builder for the specific entity
         /// </summary>
         /// <typeparam name="TBuilder">The type of the builder.</typeparam>
@@ -56,7 +96,7 @@ namespace DLaB.Xrm.Test.Builders
             var builder = result as TBuilder;
             if (builder == null)
             {
-                throw new Exception(String.Format("Unexpected type of builder!  Builder for {0}, was not of type {1}, but type {2}.", id, typeof (TBuilder).FullName, result.GetType().FullName));
+                throw new Exception($"Unexpected type of builder!  Builder for {id}, was not of type {typeof (TBuilder).FullName}, but type {result.GetType().FullName}.");
             }
             action(builder);
             return This;
@@ -76,6 +116,12 @@ namespace DLaB.Xrm.Test.Builders
             return This;
         }
 
+        /// <summary>
+        /// Adds the child entities to the parent.
+        /// </summary>
+        /// <param name="parent">The parent.</param>
+        /// <param name="ids">The ids.</param>
+        /// <returns></returns>
         public TDerived WithChildEntities(Id parent, params Id[] ids)
         {
             EntityBuilders.Get(parent);
@@ -100,6 +146,15 @@ namespace DLaB.Xrm.Test.Builders
                 EntityBuilders.Get(id);
             }
             return This;
+        }
+
+        /// <summary>
+        /// Walks the Struct, Creating the Entities using the default Builder for each Id Defined in the Struct
+        /// </summary>
+        /// <returns></returns>
+        public TDerived WithEntities<TIdsStruct>() where TIdsStruct : struct
+        {
+            return WithEntities(typeof (TIdsStruct).GetIds().ToArray());
         }
 
         #endregion // Fluent Methods
@@ -127,7 +182,7 @@ namespace DLaB.Xrm.Test.Builders
             /// <value>
             /// The builders.
             /// </value>
-            private Dictionary<Guid, BuilderInfo> Builders { get; set; }
+            private Dictionary<Guid, BuilderInfo> Builders { get; }
 
             /// <summary>
             /// Manages the same list of Builders as the Builders Property, but by logical name
@@ -135,8 +190,9 @@ namespace DLaB.Xrm.Test.Builders
             /// <value>
             /// The type of the builders by entity.
             /// </value>
-            private Dictionary<string, List<BuilderInfo>> BuildersByEntityType { get; set; }
+            private Dictionary<string, List<BuilderInfo>> BuildersByEntityType { get; }
 
+            // ReSharper disable once StaticMemberInGenericType
             private static readonly object BuilderConstructorForEntityLock = new object();
             /// <summary>
             /// Contains constructors for the default builders of each entity type.  Whenever a new Builder is needed, this contains the constructor that will be invoked.
@@ -144,7 +200,8 @@ namespace DLaB.Xrm.Test.Builders
             /// <value>
             /// The builder for entity.
             /// </value>
-            private static Dictionary<string, ConstructorInfo> BuilderConstructorForEntity { get; set; }
+            // ReSharper disable once StaticMemberInGenericType
+            private static Dictionary<string, ConstructorInfo> BuilderConstructorForEntity { get; }
             
             /// <summary>
             /// Manages Custom Builder Fluent Actions.  Key is entity Logical Name.  Value is fluent actions to apply to Builder
@@ -152,9 +209,9 @@ namespace DLaB.Xrm.Test.Builders
             /// <value>
             /// The custom builder actions.
             /// </value>
-            private Dictionary<string, Action<object>> CustomBuilderFluentActions { get; set; }
+            private Dictionary<string, Action<object>> CustomBuilderFluentActions { get; }
 
-            private Dictionary<Guid, Id> Ids {get; set;}
+            private Dictionary<Guid, Id> Ids { get; }
 
             #endregion Properties
 
@@ -186,7 +243,9 @@ namespace DLaB.Xrm.Test.Builders
                 }
             }
 
-
+            /// <summary>
+            /// Initializes a new instance of the <see cref="CrmEnvironmentBuilderBase{TDerived}.EntityBuilderManager" /> class.
+            /// </summary>
             public EntityBuilderManager()
             {
                 BuildersByEntityType = new Dictionary<string, List<BuilderInfo>>();
@@ -240,7 +299,7 @@ namespace DLaB.Xrm.Test.Builders
                     var builder = result as TBuilder;
                     if (builder == null)
                     {
-                        throw new Exception(String.Format("Unexpected type of builder!  Builder for {0}, was not of type {1}, but type {2}.", logicalName, typeof(TBuilder).FullName, result.GetType().FullName));
+                        throw new Exception($"Unexpected type of builder!  Builder for {logicalName}, was not of type {typeof (TBuilder).FullName}, but type {result.GetType().FullName}.");
                     }
                     action(builder);
                 }
@@ -273,17 +332,32 @@ namespace DLaB.Xrm.Test.Builders
                     List<BuilderInfo> values;
                     if (!BuildersByEntityType.TryGetValue(name, out values))
                     {
-                        // Should this be an exception?
+                        // The Entity Creation Order is a Singleton.
+                        // If this continue occurs, most likely another instance of a Crm Environment Builder used a type that wasn't utilized by this instance
                         continue;
                     }
-
-                    foreach (var entity in values.Select(value => CreateEntity(service, value)))
+                    foreach (var value in values)
                     {
-                        Id id;
-                        results.Add(entity.Id, entity);
-                        if (Ids.TryGetValue(entity.Id, out id))
+                        try
                         {
-                            id.Entity = entity;
+                            var entity = CreateEntity(service, value);
+                            {
+                                Id id;
+                                results.Add(entity.Id, entity);
+                                if (Ids.TryGetValue(entity.Id, out id))
+                                {
+                                    id.Entity = entity;
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            var entityName = value.Id.Entity == null ? name : $"Entity {value.Id.LogicalName}{Environment.NewLine}{value.Id.Entity.ToStringAttributes()}";
+                            if (string.IsNullOrWhiteSpace(entityName))
+                            {
+                                entityName = name;
+                            }
+                            throw new CreationFailureException($"An error occured attempting to create {entityName}.{Environment.NewLine}{ex.Message}", ex);
                         }
                     }
                 }
@@ -356,6 +430,26 @@ namespace DLaB.Xrm.Test.Builders
             }
 
             /// <summary>
+            /// Removes the Builder specified by the Id
+            /// </summary>
+            /// <param name="id">The identifier.</param>
+            public void Remove(Id id)
+            {
+                if (Ids.ContainsKey(id))
+                {
+                    Ids.Remove(id);
+                }
+
+                List<BuilderInfo> builders;
+                BuilderInfo builder;
+                if (BuildersByEntityType.TryGetValue(id, out builders) && Builders.TryGetValue(id, out builder))
+                {
+                    Builders.Remove(id);
+                    builders.Remove(builder);
+                }
+            }
+
+            /// <summary>
             /// Creates a GenericEntityBuilder of the type of logical name being passed in.  Employs locking since BuilderForEntity is static
             /// </summary>
             /// <param name="logicalName">Name of the Entity to create a GenericEntityBuilder Constructor For.</param>
@@ -411,8 +505,8 @@ namespace DLaB.Xrm.Test.Builders
 
             private class BuilderInfo
             {
-                public Id Id { get; private set; }
-                public IEntityBuilder Builder { get; private set; }
+                public Id Id { get; }
+                public IEntityBuilder Builder { get; }
 
                 public BuilderInfo(Id id, IEntityBuilder builder)
                 {

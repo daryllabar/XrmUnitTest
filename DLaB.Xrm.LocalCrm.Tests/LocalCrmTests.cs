@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DLaB.Common;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -103,7 +104,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         {
             var c1 = new Contact {Id = Guid.NewGuid(), FirstName = "Joe", LastName = "Plumber"};
             var c2 = new Contact {Id = Guid.NewGuid(), FirstName = "Bill", LastName = "Carpenter"};
-            var opp = new Opportunity {Id = Guid.NewGuid(), CustomerId = c1.ToEntityReference() };
+            var opp = new Opportunity {Id = Guid.NewGuid(), CustomerId = c1.ToEntityReference()};
 
             var service = GetService();
             service.Create(c1);
@@ -229,18 +230,24 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var entitiesMissingStatusCodeAttribute = new List<string>();
 
             foreach (var entity in from t in typeof (SystemUser).Assembly.GetTypes()
-                where entityType.IsAssignableFrom(t) && new LateBoundActivePropertyInfo(EntityHelper.GetEntityLogicalName(t)).ActiveAttribute != ActiveAttributeType.None
+                where entityType.IsAssignableFrom(t) && new LateBoundActivePropertyInfo(EntityHelper.GetEntityLogicalName(t)).ActiveAttribute != ActiveAttributeType.None 
                 select (Entity) Activator.CreateInstance(t))
             {
                 entity.Id = service.Create(entity);
                 AssertCrm.IsActive(service, entity, "Entity " + entity.GetType().Name + " wasn't created active!");
                 try
                 {
+                    if (entity.LogicalName == Incident.EntityLogicalName)
+                    {
+                        // Requires the Special Resolve Incident Request Message
+                        continue;
+                    }
+
                     service.SetState(entity.LogicalName, entity.Id, false);
                 }
                 catch (Exception ex)
                 {
-                    if(ex.ToString().Contains("does not contain an attribute with name statuscode"))
+                    if (ex.ToString().Contains("does not contain an attribute with name statuscode"))
                     {
                         entitiesMissingStatusCodeAttribute.Add(entity.LogicalName);
                         continue;
@@ -254,7 +261,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
 
             if (entitiesMissingStatusCodeAttribute.Any())
             {
-                Assert.Fail("The following Entities do not contain an attribute with name statuscode " + String.Join(", ", entitiesMissingStatusCodeAttribute) + ". Check DLaB.Xrm.ActiveAttributeType for proper configuration.");
+                Assert.Fail("The following Entities do not contain an attribute with name statuscode " + entitiesMissingStatusCodeAttribute.ToCsv() + ". Check DLaB.Xrm.ActiveAttributeType for proper configuration.");
             }
         }
 
@@ -356,7 +363,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void LocalCrmTests_FormattedValuePopulated()
         {
             var service = GetService();
-            var id = service.Create(new Lead { BudgetStatusEnum = budgetstatus.CanBuy });
+            var id = service.Create(new Lead {BudgetStatusEnum = budgetstatus.CanBuy});
 
             // Retrieve
             var entity = service.GetEntity<Lead>(id);
@@ -371,7 +378,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void LocalCrmTests_AliasedFormattedValuePopulated()
         {
             var service = GetService();
-            var id = service.Create(new Lead { BudgetStatusEnum = budgetstatus.MayBuy });
+            var id = service.Create(new Lead {BudgetStatusEnum = budgetstatus.MayBuy});
             service.Create(new Account {OriginatingLeadId = new EntityReference(Lead.EntityLogicalName, id)});
 
             var qe = QueryExpressionFactory.Create<Account>();
@@ -384,18 +391,32 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
+        public void LocalCrmTests_FormattedValuesIgnored()
+        {
+            var service = GetService();
+
+            var contact = new Contact {AccountRoleCodeEnum = contact_accountrolecode.DecisionMaker};
+            contact.FormattedValues.Add(Contact.Fields.AccountRoleCode, "Verify Formatted Values Are Ignored");
+            service.Create(contact);
+
+            contact = service.GetFirstOrDefault<Contact>();
+            Assert.AreEqual(contact_accountrolecode.DecisionMaker, contact.AccountRoleCodeEnum);
+            Assert.AreEqual(contact_accountrolecode.DecisionMaker.ToString(), contact.FormattedValues[Contact.Fields.AccountRoleCode]);
+        }
+
+        [TestMethod]
         public void LocalCrmTests_OwnerPopulated()
         {
             var id = Guid.NewGuid();
             var info = LocalCrmDatabaseInfo.Create<CrmContext>(userId: id);
-            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService<CrmContext>(info);
+            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(info);
             var accountId = service.Create(new Account());
 
             var account = service.GetEntity<Account>(accountId);
 
             // Retrieve
             Assert.IsNotNull(account.OwnerId);
-            Assert.AreEqual(id,account.OwnerId.Id);
+            Assert.AreEqual(id, account.OwnerId.Id);
         }
 
         [TestMethod]
@@ -416,6 +437,14 @@ namespace DLaB.Xrm.LocalCrm.Tests
 
             Assert.IsNotNull(user, "User was not created by default");
             Assert.IsNotNull(bu, "Business Unit was not created");
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_LikeIsCaseInsensitive()
+        {
+            var service = GetService();
+            service.Create(new Contact {FirstName = "Jimmy"});
+            Assert.IsNotNull(service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.FirstName, ConditionOperator.Like, "JIM%")));
         }
     }
 }

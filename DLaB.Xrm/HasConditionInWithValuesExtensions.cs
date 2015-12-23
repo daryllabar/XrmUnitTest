@@ -22,6 +22,13 @@ namespace DLaB.Xrm
 
         #region FilterExpression
 
+        /// <summary>
+        /// Determines whether current filter has the in condition defined by the columnNameAndValuePairs
+        /// </summary>
+        /// <param name="filter">The filter.</param>
+        /// <param name="columnNameAndValuePairs">The column name and value pairs.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentException">HasConditionInWithValues requires the first value in the columnNameAndValuePairs attribute to be the attribute name.;columnNameAndValuePairs</exception>
         public static bool HasConditionInWithValues(this FilterExpression filter, params object[] columnNameAndValuePairs)
         {
             var attributeName = columnNameAndValuePairs[0] as string;
@@ -38,6 +45,12 @@ namespace DLaB.Xrm
 
         #region LinkEntity
 
+        /// <summary>
+        /// Determines whether [has condition in with values] [the specified column name and value pairs].
+        /// </summary>
+        /// <param name="link">The link.</param>
+        /// <param name="columnNameAndValuePairs">The column name and value pairs.</param>
+        /// <returns></returns>
         public static bool HasConditionInWithValues(this LinkEntity link, params object[] columnNameAndValuePairs)
         {
             return link.LinkCriteria.HasConditionInWithValues(columnNameAndValuePairs) || link.LinkEntities.Any(l => l.HasConditionInWithValues(columnNameAndValuePairs));
@@ -47,6 +60,12 @@ namespace DLaB.Xrm
 
         #region QueryExpression
 
+        /// <summary>
+        /// Determines whether current query expression has the in condition defined by the columnNameAndValuePairs
+        /// </summary>
+        /// <param name="qe">The qe.</param>
+        /// <param name="columnNameAndValuePairs">The column name and value pairs.</param>
+        /// <returns></returns>
         public static bool HasConditionInWithValues(this QueryExpression qe, params object[] columnNameAndValuePairs)
         {
             return qe.Criteria.HasConditionInWithValues(columnNameAndValuePairs) ||

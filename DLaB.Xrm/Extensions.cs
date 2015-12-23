@@ -21,19 +21,28 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace DLaB.Xrm
 {
+    /// <summary>
+    /// Extension class for Xrm
+    /// </summary>
     [DebuggerStepThrough]
     public static partial class Extensions
     {
         #region AttributeMetadata
+        /// <summary>
+        /// Determines whether the attribute is a local option set.
+        /// </summary>
+        /// <param name="attribute">The attribute.</param>
+        /// <returns></returns>
         public static bool IsLocalOptionSetAttribute(this AttributeMetadata attribute)
         {
-            if (attribute.AttributeType == AttributeTypeCode.Picklist)
+            if (attribute.AttributeType != AttributeTypeCode.Picklist)
             {
-                var picklist = attribute as PicklistAttributeMetadata;
-                if (picklist != null)
-                {
-                    return picklist.OptionSet.IsGlobal.HasValue && !picklist.OptionSet.IsGlobal.Value;
-                }
+                return false;
+            }
+            var picklist = attribute as PicklistAttributeMetadata;
+            if (picklist != null)
+            {
+                return picklist.OptionSet.IsGlobal.HasValue && !picklist.OptionSet.IsGlobal.Value;
             }
             return false;
         }
@@ -79,7 +88,7 @@ namespace DLaB.Xrm
                 throw new MissingAttributeException("Missing Required Field: " + missingAttributes[0]);
             }
 
-            throw new MissingAttributeException("Missing Required Fields: " + String.Join(", ", missingAttributes));
+            throw new MissingAttributeException("Missing Required Fields: " + missingAttributes.ToCsv());
         }
 
         /// <summary>
@@ -105,6 +114,33 @@ namespace DLaB.Xrm
         {
             entity.Id = Guid.Empty;
             entity.Attributes.Remove(EntityHelper.GetIdAttributeName(entity.LogicalName));
+        }
+
+        /// <summary>
+        /// Adds the attributes from the given entity if they do not exist in the current
+        /// </summary>
+        /// <typeparam name="T">Entity Type</typeparam>
+        /// <param name="baseEntity"></param>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
+        public static T CoallesceEntity<T>(this T baseEntity, Entity entity) where T : Entity
+        {
+            if (entity == null)
+            {
+                return baseEntity;
+            }
+
+            if (baseEntity.Id == Guid.Empty && baseEntity.LogicalName == entity.LogicalName)
+            {
+                baseEntity.Id = entity.Id;
+            }
+
+            foreach (var attribute in entity.Attributes.Where(a => !baseEntity.Contains(a.Key)))
+            {
+                baseEntity[attribute.Key] = attribute.Value;
+            }
+
+            return baseEntity;
         }
 
         #region ContainsAllNonNull
@@ -191,9 +227,15 @@ namespace DLaB.Xrm
 
         #endregion ContainsAnyNonNull
 
-        public static String GetFormUrl(this Entity entity, Uri uri)
+        /// <summary>
+        /// Gets the url of the form.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <param name="uri">The URI.</param>
+        /// <returns></returns>
+        public static string GetFormUrl(this Entity entity, Uri uri)
         {
-            string parameters = String.Format("etn={0}&pagetype=entityrecord&id={1}", entity.LogicalName, entity.Id.ToString("D"));
+            string parameters = $"etn={entity.LogicalName}&pagetype=entityrecord&id={entity.Id.ToString("D")}";
             string url;
             if (uri == null)
             {
@@ -201,21 +243,33 @@ namespace DLaB.Xrm
             }
             else
             {
-                url = string.Format(@"http://{0}/{1}main.aspx?{2}", uri.Host, uri.Segments[1], parameters);
+                url = $@"http://{uri.Host}/{uri.Segments[1]}main.aspx?{parameters}";
             }
             return url;
         }
 
-        public static String GetFormUrl(this Entity entity, IOrganizationService service)
+        /// <summary>
+        /// Gets the form URL.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <param name="service">The service.</param>
+        /// <returns></returns>
+        public static string GetFormUrl(this Entity entity, IOrganizationService service)
         {
             return entity.GetFormUrl(service.GetServiceUri());
         }
 
+        /// <summary>
+        /// Gets the formatted attribute value or null.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <param name="attributeLogicalName">Name of the attribute logical.</param>
+        /// <returns></returns>
         public static string GetFormattedAttributeValueOrNull(this Entity entity, string attributeLogicalName)
         {
             if (string.IsNullOrWhiteSpace(attributeLogicalName))
             {
-                throw new ArgumentNullException("attributeLogicalName");
+                throw new ArgumentNullException(nameof(attributeLogicalName));
             }
             // Check for unaliased value first
             if (entity.FormattedValues.Contains(attributeLogicalName))
@@ -249,12 +303,17 @@ namespace DLaB.Xrm
             if (value == null)
             {
                 throw new Exception("Formatted attribute value with attribute " + attributeLogicalName +
-                " was not found!  Only these attributes were found: " + String.Join(", ", entity.Attributes.Keys));
+                " was not found!  Only these attributes were found: " + entity.Attributes.Keys.ToCsv());
             }
 
             return value;
         }
 
+        /// <summary>
+        /// Gets the name of the id attribute logical name.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
         public static string GetIdAttributeName(this Entity entity)
         {
             return EntityHelper.GetIdAttributeName(entity.LogicalName);
@@ -267,7 +326,7 @@ namespace DLaB.Xrm
         /// <returns></returns>
         public static Guid GetIdOrDefault(this Entity entity)
         {
-            return entity == null ? Guid.Empty : entity.Id;
+            return entity?.Id ?? Guid.Empty;
         }
 
         /// <summary>
@@ -275,11 +334,11 @@ namespace DLaB.Xrm
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns></returns>
-        public static String GetNameAttribute(this Entity entity)
+        public static string GetNameAttribute(this Entity entity)
         {
-            var value = String.Empty;
+            var value = string.Empty;
             var index = entity.LogicalName.IndexOf("_", StringComparison.Ordinal);
-            var prefix = index > 0 ? entity.LogicalName.Substring(0, index) : String.Empty;
+            var prefix = index > 0 ? entity.LogicalName.Substring(0, index) : string.Empty;
             if (entity.Contains(prefix + "_name"))
             {
                 value = prefix + "_name";
@@ -310,16 +369,16 @@ namespace DLaB.Xrm
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns></returns>
-        public static String GetNameId(this Entity entity)
+        public static string GetNameId(this Entity entity)
         {
-            var value = String.Empty;
+            var value = string.Empty;
             var nameAttribute = entity.GetNameAttribute();
-            if (nameAttribute != String.Empty && entity.Contains(nameAttribute))
+            if (nameAttribute != string.Empty && entity.Contains(nameAttribute))
             {
-                value = entity.Attributes[nameAttribute] as String ?? "NULL";
+                value = entity.Attributes[nameAttribute] as string ?? "NULL";
             }
 
-            return value + String.Format(" ({0})", entity.Id);
+            return value + $" ({entity.Id})";
         }
 
         /// <summary>
@@ -379,8 +438,10 @@ namespace DLaB.Xrm
         private static string[] GetAttributeNamesArray<T>(Expression<Func<T, object>> anonymousTypeInitializer) where T : Entity
         {
             var initializer = anonymousTypeInitializer.Body as NewExpression;
-            if (initializer == null || initializer.Members == null)
+            if (initializer?.Members == null)
+            {
                 throw new ArgumentException("lambda must return an object initializer");
+            }
 
             // Search for and replace any occurence of Id with the actual Entity's Id
             return initializer.Members.Select(GetLogicalAttributeName<T>).ToArray();
@@ -435,11 +496,12 @@ namespace DLaB.Xrm
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <param name="attributeFormat">The attribute format.</param>
+        /// <param name="tabSpacing">The tab spacing to use.  None by default.</param>
         /// <returns></returns>
-        public static String ToStringAttributes(this Entity entity, string attributeFormat = "[{0}]: {1}")
+        public static string ToStringAttributes(this Entity entity, int tabSpacing = 4, string attributeFormat = "[{0}]: {1}")
         {
-            return String.Join(Environment.NewLine, entity.Attributes.Select(att =>
-                String.Format(attributeFormat, att.Key, GetAttributeValue(att.Value))));
+            return string.Join(Environment.NewLine, entity.Attributes.Select(att =>
+                GenerateNonBreakingSpace(tabSpacing) + string.Format(attributeFormat, att.Key, GetAttributeValue(att.Value))));
         }
 
         private static string GetAttributeValue(object value)
@@ -471,7 +533,7 @@ namespace DLaB.Xrm
         /// <returns>new cloned entity</returns>
         public static T Clone<T>(this T source) where T : Entity
         {
-            return source == null ? null : source.Serialize().DeserializeEntity<T>();
+            return source?.Serialize().DeserializeEntity<T>();
         }
 
         #endregion // Entity
@@ -499,9 +561,15 @@ namespace DLaB.Xrm
 
         #region EntityImageCollection
 
-        public static List<String> ToStringDebug(this EntityImageCollection images, string name)
+        /// <summary>
+        /// Returns an in depth view of Entities and their values.
+        /// </summary>
+        /// <param name="images">The images.</param>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
+        public static List<string> ToStringDebug(this EntityImageCollection images, string name)
         {
-            var values = new List<String>();
+            var values = new List<string>();
             if (images != null && images.Count > 0)
             {
                 values.Add("** " + name + " **");
@@ -514,7 +582,7 @@ namespace DLaB.Xrm
                     else
                     {
                         values.Add("*   Image[" + image.Key + "] " + image.Value.ToEntityReference().GetNameId() + "   *");
-                        values.Add(image.Value.ToStringAttributes("        Entity[{0}]: {1}"));
+                        values.Add(image.Value.ToStringAttributes(8, "Entity[{0}]: {1}"));
                     }
                 }
             }
@@ -530,6 +598,11 @@ namespace DLaB.Xrm
 
         #region EntityMetadata
 
+        /// <summary>
+        /// Gets the text value of the di.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
         public static string GetDisplayNameWithLogical(this EntityMetadata entity)
         {
             return entity.DisplayName.GetLocalOrDefaultText(entity.SchemaName) + " (" + entity.LogicalName + ")";
@@ -544,9 +617,9 @@ namespace DLaB.Xrm
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public static String GetNameId(this EntityReference entity)
+        public static string GetNameId(this EntityReference entity)
         {
-            return String.Format("{0} ({1})", entity.Name, entity.Id);
+            return $"{entity.Name} ({entity.Id})";
         }
 
         /// <summary>
@@ -556,7 +629,7 @@ namespace DLaB.Xrm
         /// <returns></returns>
         public static Guid GetIdOrDefault(this EntityReference entity)
         {
-            return entity == null ? Guid.Empty : entity.Id;
+            return entity?.Id ?? Guid.Empty;
         }
 
         /// <summary>
@@ -566,16 +639,17 @@ namespace DLaB.Xrm
         /// <returns></returns>
         public static string GetNameOrDefault(this EntityReference entity)
         {
-            return entity == null ? null : entity.Name;
+            return entity?.Name;
         }
 
-        public static String ToStringDebug(this EntityReference entity)
+        /// <summary>
+        /// Returns the Logical Name, Name, and Id of the EntityReference
+        /// </summary>
+        /// <param name="entity">The EntityReference.</param>
+        /// <returns></returns>
+        public static string ToStringDebug(this EntityReference entity)
         {
-            if (entity == null)
-            {
-                return "Null";
-            }
-            return String.Format("EntityReference {{ LogicalName: {0}, Name: {1}, Id: {2}}}", entity.LogicalName, entity.GetNameOrDefault(), entity.Id);
+            return entity == null ? "Null" : $"EntityReference {{ LogicalName: {entity.LogicalName}, Name: {entity.GetNameOrDefault()}, Id: {entity.Id}}}";
         }
 
         #endregion // EntityReference
@@ -744,23 +818,9 @@ namespace DLaB.Xrm
 
         #endregion IExecutionContext
 
-        #region IPluginExecutionContext
-
-        public static String ToStringDebug(this IPluginExecutionContext context)
-        {
-            var lines = ((IExecutionContext)context).ToStringDebug();
-            lines.AddRange(new[]
-            {
-                "Has Parent Context: " + (context.ParentContext != null),
-                "Stage: " + context.Stage
-            });
-
-            return String.Join(Environment.NewLine, lines);
-        }
-
-        #endregion IPluginExecutionContext
-
         #region IOrganizationService
+
+        #region Assign
 
         /// <summary>
         /// Assigns the supplied entity to the supplied user
@@ -806,6 +866,10 @@ namespace DLaB.Xrm
             });
         }
 
+        #endregion Assign
+
+        #region Associate
+
         /// <summary>
         /// Associates one or more entities to an entity.
         /// </summary>
@@ -846,6 +910,10 @@ namespace DLaB.Xrm
                 new EntityReferenceCollection(entities.ToList()));
         }
 
+        #endregion Associate
+
+        #region Delete
+
         /// <summary>
         /// Deletes the specified entity
         /// </summary>
@@ -866,6 +934,10 @@ namespace DLaB.Xrm
         {
             service.Delete(entity.LogicalName, entity.Id);
         }
+
+        #endregion Delete
+
+        #region DeleteIfExists
 
         /// <summary>
         /// Attempts to delete the entity with the given id. If it doesn't exist, false is returned
@@ -982,6 +1054,9 @@ namespace DLaB.Xrm
 
             return exists;
         }
+
+        #endregion DeleteIfExists
+
         /// <summary>
         /// Executes a batch of requests against the CRM Web Service using the ExecuteMultipleRequest command.
         /// </summary>
@@ -997,13 +1072,13 @@ namespace DLaB.Xrm
         {
             // Validate required parameters.
             if (service == null)
-                throw new ArgumentNullException("service", "A valid Organization Service Proxy must be specified.");
+                throw new ArgumentNullException(nameof(service), "A valid Organization Service Proxy must be specified.");
             // Validate the request collection.
             if (requestCollection == null)
-                throw new ArgumentNullException("requestCollection", "The collection of requests to batch process cannot be null.");
+                throw new ArgumentNullException(nameof(requestCollection), "The collection of requests to batch process cannot be null.");
             // Ensure the user is not attempting to pass in more than 1000 requests for the batch job, as this is the maximum number CRM allows within a single batch.
             if (requestCollection.Count > 1000)
-                throw new ArgumentOutOfRangeException("requestCollection", "The Entity Collection cannot contain more than 1000 items, as that is the maximum number of messages that can be processed by the CRM web services in a single batch.");
+                throw new ArgumentOutOfRangeException(nameof(requestCollection), "The Entity Collection cannot contain more than 1000 items, as that is the maximum number of messages that can be processed by the CRM web services in a single batch.");
 
             try
             {
@@ -1021,6 +1096,8 @@ namespace DLaB.Xrm
                 throw new Exception("An error occurred while executing an ExecuteMultipleRequest. See inner exception for details.", ex);
             }
         }
+
+        #region GetAllEntities
 
         /// <summary>
         /// Gets all entities using the Query Expression
@@ -1052,6 +1129,8 @@ namespace DLaB.Xrm
             return RetrieveAllEntities<T>.GetAllEntities(service, qe, maxCount, pageSize);
         }
 
+        #endregion GetAllEntities
+
         /// <summary>
         /// Returns the WhoAmIResponse to determine the current user's UserId, BusinessUnitId, and OrganizationId
         /// </summary>
@@ -1061,6 +1140,8 @@ namespace DLaB.Xrm
         {
             return (WhoAmIResponse)service.Execute(new WhoAmIRequest());
         }
+
+        #region GetEntity
 
         /// <summary>
         /// Retrieves the Entity of the given type with the given Id, with all columns
@@ -1104,6 +1185,10 @@ namespace DLaB.Xrm
             return service.Retrieve(EntityHelper.GetEntityLogicalName<T>(), id, columnSet).ToEntity<T>();
         }
 
+        #endregion GetEntity
+
+        #region GetEntities
+
         /// <summary>
         /// Returns first 5000 entities using the Query Expression
         /// </summary>
@@ -1128,6 +1213,10 @@ namespace DLaB.Xrm
             return service.RetrieveMultiple(qe).ToEntityList<T>();
         }
 
+        #endregion GetEntities
+
+        #region GetFirst
+
         /// <summary>
         /// Gets the first entity that matches the query expression.  An exception is thrown if none are found.
         /// </summary>
@@ -1151,7 +1240,7 @@ namespace DLaB.Xrm
         /// <returns></returns>
         public static T GetFirst<T>(this IOrganizationService service, TypedQueryExpression<T> qe) where T : Entity
         {
-            var entity = service.GetFirstOrDefault<T>(qe);
+            var entity = service.GetFirstOrDefault(qe);
             AssertExists(entity, qe);
             return entity;
         }
@@ -1165,6 +1254,10 @@ namespace DLaB.Xrm
                                                     qe.GetSqlStatement());
             }
         }
+
+        #endregion GetFirst
+
+        #region GetFirstOrDefault
 
         /// <summary>
         /// Gets the first entity that matches the query expression.  Null is returned if none are found.
@@ -1188,7 +1281,7 @@ namespace DLaB.Xrm
         public static T GetFirstOrDefault<T>(this IOrganizationService service, FetchExpression fe) where T : Entity
         {
             var entity = service.RetrieveMultiple(fe).Entities.FirstOrDefault();
-            return entity == null ? null : entity.ToEntity<T>();
+            return entity?.ToEntity<T>();
         }
 
         /// <summary>
@@ -1216,6 +1309,8 @@ namespace DLaB.Xrm
             return service.GetFirstOrDefault<T>(qe.Query);
         }
 
+        #endregion GetFirstOrDefault
+        
         /// <summary>
         /// Returns a unique string key for the given IOrganizationService
         /// If the service is remote, the uri will be used, including the org Name
@@ -1236,7 +1331,7 @@ namespace DLaB.Xrm
             var field = service.GetType().GetField("_organizationId", BindingFlags.Instance | BindingFlags.NonPublic);
             if (field == null)
             {
-                return String.Empty;
+                return string.Empty;
             }
 
             var orgId = field.GetValue(service).ToString();
@@ -1260,7 +1355,7 @@ namespace DLaB.Xrm
         }
 
         /// <summary>
-        /// Assumes that this service is of type ServiceProxy&gt;IOrganizationService&lt; or IIOrganizationServiceWrapper
+        /// Assumes that this service is of type ServiceProxy&lt;IOrganizationService&gt; or IIOrganizationServiceWrapper
         /// </summary>
         /// <param name="service">The service.</param>
         /// <returns></returns>
@@ -1268,7 +1363,7 @@ namespace DLaB.Xrm
         {
             if (service == null)
             {
-                throw new ArgumentNullException("service");
+                throw new ArgumentNullException(nameof(service));
             }
 
             var proxy = service as ServiceProxy<IOrganizationService>;
@@ -1291,34 +1386,7 @@ namespace DLaB.Xrm
                 }
             }
 
-            if (proxy.ServiceConfiguration == null)
-            {
-                return null;
-            }
-
-            return proxy.ServiceConfiguration.CurrentServiceEndpoint.Address.Uri;
-        }
-
-        /// <summary>
-        /// If the id of the entity is empty, then the entity will be created, if it is not, then the entity will be
-        /// updated
-        /// </summary>
-        /// <param name="service">The service.</param>
-        /// <param name="entity">The entity.</param>
-        /// <returns></returns>
-        public static Guid Save(this IOrganizationService service, Entity entity)
-        {
-            Guid id = entity.Id;
-            if (id == Guid.Empty)
-            {
-                id = service.Create(entity);
-                entity.Id = id;
-            }
-            else
-            {
-                service.Update(entity);
-            }
-            return id;
+            return proxy.ServiceConfiguration?.CurrentServiceEndpoint.Address.Uri;
         }
 
         /// <summary>
@@ -1396,8 +1464,50 @@ namespace DLaB.Xrm
 
         #endregion // IOrganizationService
 
+        #region IPluginExecutionContext
+
+        /// <summary>
+        /// Returns an indepth view of the context
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <returns></returns>
+        public static string ToStringDebug(this IPluginExecutionContext context)
+        {
+            var lines = ((IExecutionContext)context).ToStringDebug();
+            lines.AddRange(new[]
+            {
+                "Has Parent Context: " + (context.ParentContext != null),
+                "Stage: " + context.Stage
+            });
+
+            return string.Join(Environment.NewLine, lines);
+        }
+
+        #endregion IPluginExecutionContext
+
+        #region IServiceProvider
+
+        /// <summary>
+        /// Gets the service.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="provider">The provider.</param>
+        /// <returns></returns>
+        public static T GetService<T>(this IServiceProvider provider)
+        {
+            return (T)provider.GetService(typeof(T));
+        }
+
+        #endregion IServiceProvider
+
         #region Label
 
+        /// <summary>
+        /// Gets the local or default text.
+        /// </summary>
+        /// <param name="label">The label.</param>
+        /// <param name="defaultIfNull">The default if null.</param>
+        /// <returns></returns>
         public static string GetLocalOrDefaultText(this Label label, string defaultIfNull = null)
         {
             var local = label.UserLocalizedLabel ?? label.LocalizedLabels.FirstOrDefault();
@@ -1414,6 +1524,12 @@ namespace DLaB.Xrm
 
         #region LinkEntity
 
+        /// <summary>
+        /// Adds a Condition expression to the LinkCriteria of the LinkEntity to force the statecode to be a specfic value.
+        /// </summary>
+        /// <param name="link">The link.</param>
+        /// <param name="entityStateEnum">The entity state enum.</param>
+        /// <returns></returns>
         public static LinkEntity StateIs(this LinkEntity link, object entityStateEnum)
         {
             link.LinkCriteria.StateIs(entityStateEnum);
@@ -1442,7 +1558,7 @@ namespace DLaB.Xrm
         /// <returns></returns>
         public static int GetValueOrDefault(this OptionSetValue osv, int defaultValue)
         {
-            return osv == null ? defaultValue : osv.Value;
+            return osv?.Value ?? defaultValue;
         }
 
         /// <summary>
@@ -1463,7 +1579,7 @@ namespace DLaB.Xrm
         /// Allows for Null safe Equals Comparison for more concise code.  i.e.
         /// if(contact.GenderCode.NullSafeEquals(new OptionSet(1)))
         /// vs.
-        /// if(contact.GenderCode != null && contact.gendercode.Value == new OptionSet(1))
+        /// if(contact.GenderCode != null amps;amps; contact.gendercode.Value == new OptionSet(1))
         /// </summary>
         /// <param name="osv"></param>
         /// <param name="value"></param>
@@ -1477,42 +1593,90 @@ namespace DLaB.Xrm
 
         #region OrganizationRequestCollection
 
+        /// <summary>
+        /// Adds a CreateRequest to the OrganizationRequestCollection.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="requests">The requests.</param>
+        /// <param name="entity">The entity.</param>
         public static void AddCreate<T>(this OrganizationRequestCollection requests, T entity) where T : Entity
         {
             requests.Add(new CreateRequest { Target = entity });
         }
 
+        /// <summary>
+        /// Adds a DeleteRequest to the OrganizationRequestCollection.
+        /// </summary>
+        /// <param name="requests">The requests.</param>
+        /// <param name="entity">The entity.</param>
         public static void AddDelete(this OrganizationRequestCollection requests, EntityReference entity)
         {
             requests.Add(new DeleteRequest { Target = entity });
         }
 
+        /// <summary>
+        /// Adds a DeleteRequest to the OrganizationRequestCollection.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="requests">The requests.</param>
+        /// <param name="entity">The entity.</param>
         public static void AddDelete<T>(this OrganizationRequestCollection requests, T entity) where T : Entity
         {
             requests.Add(new DeleteRequest { Target = entity.ToEntityReference() });
         }
 
+        /// <summary>
+        /// Adds a RetrieveRequest to the OrganizationRequestCollection.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="requests">The requests.</param>
+        /// <param name="id">The identifier.</param>
         public static void AddRetrieve<T>(this OrganizationRequestCollection requests, Guid id) where T : Entity
         {
             requests.AddRetrieve<T>(id, new ColumnSet(true));
         }
 
+        /// <summary>
+        /// Adds a RetrieveRequest to the OrganizationRequestCollection.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="requests">The requests.</param>
+        /// <param name="id">The identifier.</param>
+        /// <param name="cs">The cs.</param>
         public static void AddRetrieve<T>(this OrganizationRequestCollection requests, Guid id, ColumnSet cs) where T : Entity
         {
             requests.Add(new RetrieveRequest { Target = new EntityReference(EntityHelper.GetEntityLogicalName<T>(), id), ColumnSet = cs });
         }
 
+        /// <summary>
+        /// Adds a RetrieveRequest to the OrganizationRequestCollection.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="requests">The requests.</param>
+        /// <param name="id">The identifier.</param>
+        /// <param name="anonymousTypeInitializer">The anonymous type initializer.</param>
         public static void AddRetrieve<T>(this OrganizationRequestCollection requests, Guid id, Expression<Func<T, object>> anonymousTypeInitializer) where T : Entity
         {
             var cs = AddColumns(new ColumnSet(), anonymousTypeInitializer);
             requests.Add(new RetrieveRequest { Target = new EntityReference(EntityHelper.GetEntityLogicalName<T>(), id), ColumnSet = cs });
         }
 
+        /// <summary>
+        /// Adds a retrieve multiple request to the OrganizationRequestCollection.
+        /// </summary>
+        /// <param name="requests">The requests.</param>
+        /// <param name="qe">The qe.</param>
         public static void AddRetrieveMultiple(this OrganizationRequestCollection requests, QueryExpression qe)
         {
             requests.Add(new RetrieveMultipleRequest { Query = qe });
         }
 
+        /// <summary>
+        /// Adds an update request to the OrganizationRequestCollection.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="requests">The requests.</param>
+        /// <param name="entity">The entity.</param>
         public static void AddUpdate<T>(this OrganizationRequestCollection requests, T entity) where T : Entity
         {
             requests.Add(new UpdateRequest { Target = entity });
@@ -1557,14 +1721,20 @@ namespace DLaB.Xrm
         {
             if (string.IsNullOrWhiteSpace(parameterName))
             {
-                throw new ArgumentNullException("parameterName");
+                throw new ArgumentNullException(nameof(parameterName));
             }
             return parameters.Contains(parameterName) ? parameters[parameterName] : null;
         }
 
-        public static List<String> ToStringDebug(this ParameterCollection parameters, string name)
+        /// <summary>
+        /// Enumerates the parameters, returning indepth details about each.
+        /// </summary>
+        /// <param name="parameters">The parameters.</param>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
+        public static List<string> ToStringDebug(this ParameterCollection parameters, string name)
         {
-            var values = new List<String>();
+            var values = new List<string>();
             if (parameters != null && parameters.Count > 0)
             {
                 values.Add("* " + name + " *");
@@ -1578,7 +1748,7 @@ namespace DLaB.Xrm
                     var optionSet = param.Value as OptionSetValue;
                     if (entity != null)
                     {
-                        values.Add(entity.ToStringAttributes(GenerateNonBreakingSpace(4) + "Param[" + param.Key + "][{0}]: {1}"));
+                        values.Add(entity.ToStringAttributes(4, "Param[" + param.Key + "][{0}]: {1}"));
                     }
                     else if (entityRef != null)
                     {
@@ -1650,6 +1820,11 @@ namespace DLaB.Xrm
             return qe;
         }
 
+        /// <summary>
+        /// Sets the Count and Page number of the query to return just the first entity.
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <returns></returns>
         public static QueryExpression First(this QueryExpression query)
         {
             query.PageInfo.Count = 1;
@@ -1657,6 +1832,13 @@ namespace DLaB.Xrm
             return query;
         }
 
+
+        /// <summary>
+        /// Updates the QueryExpression to only return entities with the given state.
+        /// </summary>
+        /// <param name="qe">The qe.</param>
+        /// <param name="entityStateEnum">The entity state enum.</param>
+        /// <returns></returns>
         public static QueryExpression StateIs(this QueryExpression qe, object entityStateEnum)
         {
             qe.Criteria.StateIs(entityStateEnum);
@@ -1673,7 +1855,7 @@ namespace DLaB.Xrm
         {
             if (count > 5000)
             {
-                throw new ArgumentException("Count must be 5000 or less", "count");
+                throw new ArgumentException("Count must be 5000 or less", nameof(count));
             }
             qe.PageInfo.Count = count;
             qe.PageInfo.PageNumber = 1;
@@ -1694,7 +1876,7 @@ namespace DLaB.Xrm
         public static T DeserializeEntity<T>(this string xml) where T : Entity
         {
             var entity = xml.DeserializeEntity();
-            return entity == null ? null : entity.ToEntity<T>();
+            return entity?.ToEntity<T>();
         }
 
         /// <summary>

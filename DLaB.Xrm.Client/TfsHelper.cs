@@ -8,12 +8,21 @@ using Microsoft.TeamFoundation.VersionControl.Client;
 
 namespace DLaB.Xrm.Client
 {
+    /// <summary>
+    /// Class to handle Checkingout from TFS
+    /// </summary>
     public class TfsHelper
     {
+        /// <summary>
+        /// Checkouts the and update file if different.
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
+        /// <param name="contents">The contents.</param>
+        /// <exception cref="System.ArgumentException">File Path cannot be contain a directory that is null or empty!;filePath</exception>
         public static void CheckoutAndUpdateFileIfDifferent(string filePath, string contents)
         {
             var dir = Path.GetDirectoryName(filePath);
-            if (String.IsNullOrWhiteSpace(dir))
+            if (string.IsNullOrWhiteSpace(dir))
             {
                 throw new ArgumentException("File Path cannot be contain a directory that is null or empty!", "filePath");
             }
@@ -37,25 +46,27 @@ namespace DLaB.Xrm.Client
 
         private static void CheckoutFile(string filePath)
         {
+            if (!File.GetAttributes(filePath).HasFlag(FileAttributes.ReadOnly))
+            {
+                return;
+            }
+
+            try
+            {
+                var workspaceInfo = Workstation.Current.GetLocalWorkspaceInfo(filePath);
+                var server = new TfsTeamProjectCollection(workspaceInfo.ServerUri);
+                var workspace = workspaceInfo.GetWorkspace(server);
+
+                workspace.PendEdit(filePath);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Unable to check out file " + filePath + Environment.NewLine + ex);
+            }
+
             if (File.GetAttributes(filePath).HasFlag(FileAttributes.ReadOnly))
             {
-                try
-                {
-                    var workspaceInfo = Workstation.Current.GetLocalWorkspaceInfo(filePath);
-                    var server = new TfsTeamProjectCollection(workspaceInfo.ServerUri);
-                    var workspace = workspaceInfo.GetWorkspace(server);
-
-                    workspace.PendEdit(filePath);
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Unable to check out file " + filePath + Environment.NewLine + ex);
-                }
-
-                if (File.GetAttributes(filePath).HasFlag(FileAttributes.ReadOnly))
-                {
-                    throw new Exception("File \"" + filePath + "\" is read only, please checkout the file before running");
-                }
+                throw new Exception("File \"" + filePath + "\" is read only, please checkout the file before running");
             }
         }
 

@@ -13,13 +13,23 @@ namespace DLaB.Xrm.Comparers
     public class EnumerableComparer<T> : IEqualityComparer<IEnumerable<T>>
     {
 
-        private IEqualityComparer<T> Comparer { get; set; }
+        private IEqualityComparer<T> Comparer { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EnumerableComparer{T}"/> class.
+        /// </summary>
+        /// <param name="comparer">The comparer.</param>
         public EnumerableComparer(IEqualityComparer<T> comparer = null)
         {
             Comparer = comparer;
         }
 
+        /// <summary>
+        /// Checks for the give nlists to be equal
+        /// </summary>
+        /// <param name="first">The first.</param>
+        /// <param name="second">The second.</param>
+        /// <returns></returns>
         public bool Equals(IEnumerable<T> first, IEnumerable<T> second)
         {
             if (first == null)
@@ -33,14 +43,15 @@ namespace DLaB.Xrm.Comparers
 
             var firstCollection = first as ICollection<T>;
             var secondCollection = second as ICollection<T>;
-            if (firstCollection != null && secondCollection != null)
+            if (firstCollection == null || secondCollection == null)
             {
-                if (firstCollection.Count != secondCollection.Count)
-                    return false;
-
-                if (firstCollection.Count == 0)
-                    return true;
+                return !HaveMismatchedElement(first, second, Comparer);
             }
+            if (firstCollection.Count != secondCollection.Count)
+                return false;
+
+            if (firstCollection.Count == 0)
+                return true;
 
             return !HaveMismatchedElement(first, second, Comparer);
         }
@@ -84,6 +95,13 @@ namespace DLaB.Xrm.Comparers
             return dictionary;
         }
 
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <param name="enumerable">The enumerable.</param>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
         public int GetHashCode(IEnumerable<T> enumerable)
         {
             if (Comparer == null)

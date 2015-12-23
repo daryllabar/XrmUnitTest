@@ -2,8 +2,10 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using DLaB.Common;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test
@@ -35,13 +37,22 @@ namespace DLaB.Xrm.Test
         private readonly object _readWriteLock = new object();
         private int CurrentVersion { get; set; }
         private int TypesCopyVersion { get; set; }
-        private ReadOnlyCollection<string> TypesImmutableCopy { get; set; } 
+        private ReadOnlyCollection<string> TypesImmutableCopy { get; set; }
 
         #endregion Multithreaded Management
 
         private LinkedList<EntityDependencyInfo> Types { get; }
         private Dictionary<string, EntityDependencyInfo> Infos { get; }
         private ConcurrentBag<string> Conflicts { get; }
+        private ConcurrentQueue<string> DependencyOrderLog { get; }
+
+        /// <summary>
+        /// Gets the conflicting entity dependencies.
+        /// </summary>
+        /// <value>
+        /// The conflicting entity order.
+        /// </value>
+        public IEnumerable<string> CircularCreationConflicts => Conflicts;
 
         /// <summary>
         /// Gets the LogicalNames of Entities, in the order in which they can safely be created without causing an error caused by a relationship constraint i.e. Create entity without linked entities existing
@@ -59,7 +70,34 @@ namespace DLaB.Xrm.Test
         /// </value>
         public IEnumerable<string> EntityDeletionOrder => EntityCreationOrder.Reverse();
 
-        public IEnumerable<string> ConflictingEntityOrder => Conflicts;
+        /// <summary>
+        /// Gets the log of the structuring of the DepedencyOrder
+        /// </summary>
+        /// <value>
+        /// The log.
+        /// </value>
+        public IEnumerable<string> Log => DependencyOrderLog;
+
+        private Queue<string> _circularReferenceResolutionOrder = new Queue<string>(new [] { "account", "contact", "lead"});
+
+        /// <summary>
+        /// Defines how to resolve Circular Dependencies that may occur when creating Entities
+        /// </summary>
+        /// <value>
+        /// The circular reference resolution order.
+        /// </value>
+        public IEnumerable<string> CircularReferenceResolutionOrder
+        {
+            private get { return _circularReferenceResolutionOrder; }
+            set
+            {
+                lock (_readWriteLock)
+                {
+                    DependencyOrderLog.Enqueue($"CircularReferenceResolutionOrder updated from {_circularReferenceResolutionOrder.ToCsv()} to {value.ToCsv()}");
+                    _circularReferenceResolutionOrder = new Queue<string>(value);
+                }
+            }
+        }
 
         #endregion Properties
 
@@ -68,6 +106,7 @@ namespace DLaB.Xrm.Test
             Types = new LinkedList<EntityDependencyInfo>();
             Infos = new Dictionary<string, EntityDependencyInfo>();
             Conflicts = new ConcurrentBag<string>();
+            DependencyOrderLog = new ConcurrentQueue<string>();
             CurrentVersion = 0;
             TypesCopyVersion = 0;
             TypesImmutableCopy = new ReadOnlyCollection<string>(new List<string>());
@@ -97,12 +136,20 @@ namespace DLaB.Xrm.Test
         /// <param name="logicalName">Name of the logical.</param>
         private void SingleThreadAdd(string logicalName)
         {
-            var info = new EntityDependencyInfo(logicalName);
+            DependencyOrderLog.Enqueue("Processing entity type: " + logicalName);
+            var info = new EntityDependencyInfo(logicalName, this);
             Infos.Add(logicalName, info);
 
-            if (Types.Count == 0 || Types.First.Value.DependsOn(info))
+            if (Types.Count == 0)
             {
-                // No values in the list or the first value depends on the new info value
+                DependencyOrderLog.Enqueue("No values in the list.");
+                info.Node = Types.AddFirst(info);
+                return;
+            }
+
+            if (Types.First.Value.DependsOn(info))
+            {
+                DependencyOrderLog.Enqueue("The first value depends on the new info value.");
                 info.Node = Types.AddFirst(info);
 
                 /* Check for any Types that this new type is dependent on.
@@ -114,30 +161,50 @@ namespace DLaB.Xrm.Test
                 var existingDependent = Types.Skip(1).FirstOrDefault(existingInfo => info.DependsOn(existingInfo));
                 if (existingDependent == null)
                 {
+                    DependencyOrderLog.Enqueue("Finished Processing " + logicalName);
                     return;
                 }
+
+                DependencyOrderLog.Enqueue(logicalName + " was added first, but existing dependency " + existingDependent.LogicalName + " was found!  Reordering list.");
+
 
                 foreach (var type in Types)
                 {
                     if (type == existingDependent)
                     {
-                        // Have walked the entire list and come to the one that needs to be moved without finding anything that it depends on, free to move.
+                        DependencyOrderLog.Enqueue("Have walked the entire list and come to the dependency that needs to be moved without finding anything that it depends on.  Moving dependency to front.");
                         Types.Remove(existingDependent);
                         existingDependent.Node = Types.AddFirst(existingDependent);
+                        DependencyOrderLog.Enqueue("New Order: " + string.Join(",", Types.Select(t => t.LogicalName)));
                         return;
                     }
-                    if (existingDependent.Dependencies.Contains(type.LogicalName))
+                    if (type.DependsOn(existingDependent))
                     {
-                        Conflicts.Add(string.Format("Circular Reference Found!  {0} was added, which depends on {1}, but {2} depends on {0} and was found before {1}.  If {1} is needed first, add it after {0}", logicalName, existingDependent.LogicalName, type.LogicalName));
-                        return;
+                        var conflict = string.Format("Circular reference found!  {0} was added, which depends on {1}, but {2} depends on {0} and was found before {1}.  If {1} is needed first, add it after {0}", logicalName, existingDependent.LogicalName, type.LogicalName);
+                        Conflicts.Add(conflict);
+                        DependencyOrderLog.Enqueue(conflict);
                     }
                 }
             }
 
+            // Try to add the new type as far to the end of the list as possible
             var dependent = Types.Skip(1).FirstOrDefault(existingInfo => existingInfo.DependsOn(info));
-            info.Node = dependent == null ? Types.AddLast(info) : Types.AddBefore(dependent.Node, info);
+            if (dependent == null)
+            {
+                DependencyOrderLog.Enqueue("No dependent type found.  Adding to end of list.");
+                info.Node = Types.AddLast(info);
+            }
+            else
+            {
+                DependencyOrderLog.Enqueue("Found dependent " + dependent.LogicalName + ".   Adding before.");
+                info.Node = Types.AddBefore(dependent.Node, info);
+            }
         }
 
+        /// <summary>
+        /// Gets the entity creation order.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<string> GetEntityCreationOrder()
         {
             lock (_readWriteLock)
@@ -149,15 +216,17 @@ namespace DLaB.Xrm.Test
                 }
             }
             return TypesImmutableCopy;
-        } 
+        }
+
+        [DebuggerDisplay("{LogicalName}")]
         private class EntityDependencyInfo
         {
-            public HashSet<string> Dependencies { get; }
+            //public HashSet<string> Dependencies { get; }
             public HashSet<string> Dependents { get; }
             public LinkedListNode<EntityDependencyInfo> Node { get; set; }
-            public String LogicalName { get; }
+            public string LogicalName { get; }
 
-            private static readonly HashSet<String> PropertiesToIgnore = new HashSet<string>{
+            private static readonly HashSet<string> PropertiesToIgnore = new HashSet<string>{
             "createdby",
             "createdonbehalfby",
             "modifiedby",
@@ -167,14 +236,14 @@ namespace DLaB.Xrm.Test
             "owningteam",
             "owninguser"};
 
-            public EntityDependencyInfo(string logicalName)
+            public EntityDependencyInfo(string logicalName, EntityDependency dependency)
             {
                 LogicalName = logicalName;
-                Dependencies = new HashSet<string>();
+                //Dependencies = new HashSet<string>();
                 Dependents = new HashSet<string>();
 
                 var properties = TestBase.GetType(logicalName).GetProperties();
-                PopulateDependencies(properties);
+                PopulateDependencies(dependency, properties);
             }
 
             /// <summary>
@@ -184,23 +253,26 @@ namespace DLaB.Xrm.Test
             /// <returns></returns>
             public bool DependsOn(EntityDependencyInfo info)
             {
-                return Dependencies.Contains(info.LogicalName) || info.Dependents.Contains(LogicalName);
+                //return Dependencies.Contains(info.LogicalName) || info.Dependents.Contains(LogicalName);
+                return info.Dependents.Contains(LogicalName);
             }
 
-            private void PopulateDependencies(IEnumerable<PropertyInfo> properties)
+            private void PopulateDependencies(EntityDependency dependency, IEnumerable<PropertyInfo> properties)
             {
+                var preference = dependency.CircularReferenceResolutionOrder.ToList();
+                var circularDependencies = preference.Contains(LogicalName) ? new HashSet<string>(preference.TakeWhile(p => p != LogicalName)) : new HashSet<string>();
                 foreach (var property in properties.Where(p => !PropertiesToIgnore.Contains(p.Name.ToLower())))
                 {
-                    if (property.PropertyType == typeof(EntityReference))
-                    {
-                        var attribute = property.GetCustomAttribute(typeof(AttributeLogicalNameAttribute)) as AttributeLogicalNameAttribute;
-                        if (attribute == null)
-                        {
-                            continue;
-                        }
-                        Dependencies.Add(attribute.LogicalName);
-                        continue;
-                    }
+                    //if (property.PropertyType == typeof(EntityReference))
+                    //{
+                    //    var attribute = property.GetCustomAttribute(typeof(AttributeLogicalNameAttribute)) as AttributeLogicalNameAttribute;
+                    //    if (attribute == null)
+                    //    {
+                    //        continue;
+                    //    }
+                    //    Dependencies.Add(attribute.LogicalName);
+                    //    continue;
+                    //}
 
                     if (!property.PropertyType.IsGenericType || property.PropertyType.GetGenericTypeDefinition() != typeof(IEnumerable<>))
                     {
@@ -215,7 +287,18 @@ namespace DLaB.Xrm.Test
                         continue;
                     }
 
-                    Dependents.Add(EntityHelper.GetEntityLogicalName(genericType));
+                    var dependent = EntityHelper.GetEntityLogicalName(genericType);
+                    if (circularDependencies.Contains(dependent))
+                    {
+                        if (dependent != LogicalName)
+                        {
+                            dependency.DependencyOrderLog.Enqueue($"Circular Reference Resolution Order has defined that {LogicalName} should not be dependent on {dependent}.  The dependency has been removed.");
+                        }
+                    }
+                    else
+                    {
+                        Dependents.Add(dependent);
+                    }
                 }
             }
         }

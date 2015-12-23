@@ -2,6 +2,7 @@
 
 namespace DLaB.Xrm.Plugin
 {
+    #pragma warning disable 1591
     /// <summary>
     /// This was a CRM 4 static class, but has changed for some values: Commented out unverified values
     /// </summary>

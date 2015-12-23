@@ -5,32 +5,116 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm
 {
+    /// <summary>
+    /// A QueryExpression Typed to the Entity that is being received 
+    /// </summary>
+    /// <typeparam name="TEntity">The type of the entity.</typeparam>
     public class TypedQueryExpression<TEntity> where TEntity : Entity
     {
+        /// <summary>
+        /// Gets or sets the query.
+        /// </summary>
+        /// <value>
+        /// The query.
+        /// </value>
         public QueryExpression Query { get; set; }
 
         #region Pass Through QueryExpression Calls
 
+        /// <summary>
+        /// The QueryExpression's Distinct
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if distinct; otherwise, <c>false</c>.
+        /// </value>
         public bool Distinct => Query.Distinct;
+        /// <summary>
+        /// The QueryExpression's NoLock
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if [no lock]; otherwise, <c>false</c>.
+        /// </value>
         public bool NoLock => Query.NoLock;
+        /// <summary>
+        /// The QueryExpression's Page Info
+        /// </summary>
+        /// <value>
+        /// The page information.
+        /// </value>
         public PagingInfo PageInfo => Query.PageInfo;
+        /// <summary>
+        /// The QueryExpression's LinkEntities
+        /// </summary>
+        /// <value>
+        /// The link entities.
+        /// </value>
         public DataCollection<LinkEntity> LinkEntities => Query.LinkEntities;
+        /// <summary>
+        /// The QueryExpression's Criteria
+        /// </summary>
+        /// <value>
+        /// The criteria.
+        /// </value>
         public FilterExpression Criteria => Query.Criteria;
+        /// <summary>
+        /// The QueryExpression's Orders
+        /// </summary>
+        /// <value>
+        /// The orders.
+        /// </value>
         public DataCollection<OrderExpression> Orders => Query.Orders;
+        /// <summary>
+        /// The QueryExpression's EntityName
+        /// </summary>
+        /// <value>
+        /// The name of the entity.
+        /// </value>
         public string EntityName => Query.EntityName;
+        /// <summary>
+        /// The QueryExpression's ColumnSet
+        /// </summary>
+        /// <value>
+        /// The column set.
+        /// </value>
         public ColumnSet ColumnSet => Query.ColumnSet;
+        /// <summary>
+        /// The QueryExpression's TopCount
+        /// </summary>
+        /// <value>
+        /// The top count.
+        /// </value>
         public int? TopCount => Query.TopCount;
-        
+
+        /// <summary>
+        /// Adds the order.
+        /// </summary>
+        /// <param name="attributeName">Name of the attribute.</param>
+        /// <param name="orderType">Type of the order.</param>
         public void AddOrder(string attributeName, OrderType orderType)
         {
             Query.AddOrder(attributeName, orderType);
         }
 
+        /// <summary>
+        /// Adds the link.
+        /// </summary>
+        /// <param name="linkToEntityName">Name of the link to entity.</param>
+        /// <param name="linkFromAttributeName">Name of the link from attribute.</param>
+        /// <param name="linkToAttributeName">Name of the link to attribute.</param>
+        /// <returns></returns>
         public LinkEntity AddLink(string linkToEntityName, string linkFromAttributeName, string linkToAttributeName)
         {
             return Query.AddLink(linkToEntityName, linkFromAttributeName, linkToAttributeName);
         }
 
+        /// <summary>
+        /// Adds the link.
+        /// </summary>
+        /// <param name="linkToEntityName">Name of the link to entity.</param>
+        /// <param name="linkFromAttributeName">Name of the link from attribute.</param>
+        /// <param name="linkToAttributeName">Name of the link to attribute.</param>
+        /// <param name="joinOperator">The join operator.</param>
+        /// <returns></returns>
         public LinkEntity AddLink(string linkToEntityName, string linkFromAttributeName, string linkToAttributeName, JoinOperator joinOperator)
         {
             return Query.AddLink(linkToEntityName, linkFromAttributeName, linkToAttributeName, joinOperator);
@@ -39,6 +123,11 @@ namespace DLaB.Xrm
         #endregion Pass Through QueryExpression Calls
 
         #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TypedQueryExpression{TEntity}" /> class.
+        /// </summary>
+        /// <param name="qe">The qe.</param>
         public TypedQueryExpression(QueryExpression qe)
         {
             Query = qe;
@@ -48,6 +137,13 @@ namespace DLaB.Xrm
 
         #region Type Conversions
 
+        /// <summary>
+        /// Implements the operator implicit QueryExpression.
+        /// </summary>
+        /// <param name="container">The container.</param>
+        /// <returns>
+        /// The result of the operator.
+        /// </returns>
         public static implicit operator QueryExpression(TypedQueryExpression<TEntity> container)
         {
             return container?.Query;
@@ -56,15 +152,30 @@ namespace DLaB.Xrm
         #endregion Type Conversions
 
         #region AddLink
+
+        /// <summary>
+        /// Adds the link.
+        /// </summary>
+        /// <param name="linkToEntityName">Name of the link to entity.</param>
+        /// <param name="linkAttributesName">Name of the link attributes.</param>
+        /// <returns></returns>
         public LinkEntity AddLink(string linkToEntityName, string linkAttributesName)
         {
             return Query.AddLink(linkToEntityName, linkAttributesName, linkAttributesName);
         }
 
+        /// <summary>
+        /// Adds the link.
+        /// </summary>
+        /// <param name="linkToEntityName">Name of the link to entity.</param>
+        /// <param name="linkAttributesName">Name of the link attributes.</param>
+        /// <param name="joinType">Type of the join.</param>
+        /// <returns></returns>
         public LinkEntity AddLink(string linkToEntityName, string linkAttributesName, JoinOperator joinType)
         {
             return Query.AddLink(linkToEntityName, linkAttributesName, linkAttributesName, joinType);
         }
+
         #endregion // AddLink
 
         #region AddLink<T>
@@ -195,6 +306,10 @@ namespace DLaB.Xrm
             return this;
         }
 
+        /// <summary>
+        /// Sets the Count and Page number of the query to return just the first entity.
+        /// </summary>
+        /// <returns></returns>
         public TypedQueryExpression<TEntity> First()
         {
             Query.First();
@@ -210,6 +325,11 @@ namespace DLaB.Xrm
             return Query.GetSqlStatement();
         }
 
+        /// <summary>
+        /// Adds a Condition expression to the filter expression to force the statecode to be a specfic value.
+        /// </summary>
+        /// <param name="entityStateEnum">The entity state enum.</param>
+        /// <returns></returns>
         public TypedQueryExpression<TEntity> StateIs(object entityStateEnum)
         {
             Query.Criteria.StateIs(entityStateEnum);
@@ -251,6 +371,5 @@ namespace DLaB.Xrm
 
 
         #endregion // QueryExpression Extension Methods
-
     }
 }

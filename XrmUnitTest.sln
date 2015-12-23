@@ -5,14 +5,6 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm", "DLaB.Xrm\DLaB.Xrm.csproj", "{0A88B434-3617-4543-B9A3-B2B04BA4B8D4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{398E61BF-9E21-47BC-85E1-7B505B72D21A}"
-	ProjectSection(SolutionItems) = preProject
-		References\Microsoft.Crm.Sdk.Proxy.dll = References\Microsoft.Crm.Sdk.Proxy.dll
-		References\Microsoft.Xrm.Client.dll = References\Microsoft.Xrm.Client.dll
-		References\Microsoft.Xrm.Sdk.dll = References\Microsoft.Xrm.Sdk.dll
-		References\Microsoft.Xrm.Sdk.Workflow.dll = References\Microsoft.Xrm.Sdk.Workflow.dll
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm.Client", "DLaB.Xrm.Client\DLaB.Xrm.Client.csproj", "{674C3DDE-A543-4199-B089-278EEB4DB85A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Common", "DLaB.Common\DLaB.Common.csproj", "{A7284A23-15F3-411D-BC26-2890A11053FE}"
@@ -35,17 +27,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Plugin", "Example.P
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{775B4069-F435-4B94-A185-EAFD10B33495}"
 	ProjectSection(SolutionItems) = preProject
+		DLaB_Dynamics_64x64.png = DLaB_Dynamics_64x64.png
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TFS", "TFS", "{06D5DB12-F24F-44DF-85F4-497C2F273490}"
-	ProjectSection(SolutionItems) = preProject
-		References\TFS\Microsoft.TeamFoundation.Client.dll = References\TFS\Microsoft.TeamFoundation.Client.dll
-		References\TFS\Microsoft.TeamFoundation.Common.dll = References\TFS\Microsoft.TeamFoundation.Common.dll
-		References\TFS\Microsoft.TeamFoundation.VersionControl.Client.dll = References\TFS\Microsoft.TeamFoundation.VersionControl.Client.dll
-		References\TFS\Microsoft.TeamFoundation.VersionControl.Common.dll = References\TFS\Microsoft.TeamFoundation.VersionControl.Common.dll
-		References\TFS\Microsoft.TeamFoundation.VersionControl.Common.Integration.dll = References\TFS\Microsoft.TeamFoundation.VersionControl.Common.Integration.dll
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm.Test.Tests", "DLaB.Xrm.Test.Tests\DLaB.Xrm.Test.Tests.csproj", "{08CA6C22-CEFF-44EA-B421-92E2C752BD09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm.Tests", "DLaB.Xrm.Tests\DLaB.Xrm.Tests.csproj", "{1DF3BE66-5B01-44B1-A810-03E2116E7518}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmUnitTest.Test", "XrmUnitTest.Test\XrmUnitTest.Test.csproj", "{B872C19C-94A6-4659-A2D6-10BBF05FBE1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,11 +87,20 @@ Global
 		{E19C051F-32D2-4A47-8F08-A4F251C59B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E19C051F-32D2-4A47-8F08-A4F251C59B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E19C051F-32D2-4A47-8F08-A4F251C59B4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08CA6C22-CEFF-44EA-B421-92E2C752BD09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08CA6C22-CEFF-44EA-B421-92E2C752BD09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08CA6C22-CEFF-44EA-B421-92E2C752BD09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08CA6C22-CEFF-44EA-B421-92E2C752BD09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DF3BE66-5B01-44B1-A810-03E2116E7518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DF3BE66-5B01-44B1-A810-03E2116E7518}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DF3BE66-5B01-44B1-A810-03E2116E7518}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DF3BE66-5B01-44B1-A810-03E2116E7518}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B872C19C-94A6-4659-A2D6-10BBF05FBE1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B872C19C-94A6-4659-A2D6-10BBF05FBE1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B872C19C-94A6-4659-A2D6-10BBF05FBE1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B872C19C-94A6-4659-A2D6-10BBF05FBE1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{06D5DB12-F24F-44DF-85F4-497C2F273490} = {398E61BF-9E21-47BC-85E1-7B505B72D21A}
 	EndGlobalSection
 EndGlobal

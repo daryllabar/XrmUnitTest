@@ -4,11 +4,21 @@ using DLaB.Xrm.Test.Exceptions;
 
 namespace DLaB.Xrm.Test.Settings
 {
+    /// <summary>
+    /// Defines a Path to the assembly given the namespace
+    /// </summary>
     public class NamespaceSetting
     {
-        private string NotConfiguredMessage { get; set; }
+        private string NotConfiguredMessage { get; }
 
         private Assembly _assembly;
+        /// <summary>
+        /// Gets or sets the assembly.
+        /// </summary>
+        /// <value>
+        /// The assembly.
+        /// </value>
+        /// <exception cref="NotConfiguredException"></exception>
         public Assembly Assembly
         {
             get
@@ -22,8 +32,15 @@ namespace DLaB.Xrm.Test.Settings
             protected set { _assembly = value; }
         }
 
-        private String _namespace;
-        public String Namespace
+        private string _namespace;
+        /// <summary>
+        /// Gets or sets the namespace.
+        /// </summary>
+        /// <value>
+        /// The namespace.
+        /// </value>
+        /// <exception cref="NotConfiguredException"></exception>
+        public string Namespace
         {
             get
             {
@@ -36,8 +53,18 @@ namespace DLaB.Xrm.Test.Settings
             protected set { _namespace = value; }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is configured.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is configured; otherwise, <c>false</c>.
+        /// </value>
         public bool IsConfigured { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NamespaceSetting"/> class.
+        /// </summary>
+        /// <param name="notConfiguredMessage">The not configured message.</param>
         public NamespaceSetting(string notConfiguredMessage)
         {
             NotConfiguredMessage = notConfiguredMessage;
@@ -55,8 +82,16 @@ namespace DLaB.Xrm.Test.Settings
         }
     }
 
+    /// <summary>
+    /// Generic Namespace Setting
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class NamespaceSetting<T> : NamespaceSetting
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NamespaceSetting{T}"/> class.
+        /// </summary>
+        /// <param name="notConfiguredMessage">The not configured message.</param>
         public NamespaceSetting(string notConfiguredMessage) : base(notConfiguredMessage)
         {
         }

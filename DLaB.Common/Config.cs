@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace DLaB.Common
 {
+    /// <summary>
+    /// Config Helper Class
+    /// </summary>
     public class Config
     {
         /// <summary>

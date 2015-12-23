@@ -22,6 +22,7 @@
 // </copyright>
 // ----------------------------------------------------------------------------------
 
+#pragma warning disable 1591
 namespace NMemory.DataStructures
 {
     using System;

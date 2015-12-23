@@ -4,10 +4,18 @@ using System.Text;
 
 namespace DLaB.Xrm.Test
 {
+    /// <summary>
+    /// Defines the path of a project
+    /// </summary>
     public class PatherFinderProjectOfType : IPathFinder
     {
-        private String ProjectPath { get; set; }
+        private string ProjectPath { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PatherFinderProjectOfType"/> class.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="projectRelativePath">The project relative path.</param>
         public PatherFinderProjectOfType(Type type, string projectRelativePath = null)
         {
             var projectPath = FindProjectOfType(type);
@@ -18,7 +26,7 @@ namespace DLaB.Xrm.Test
             ProjectPath = projectPath;
         }
 
-        private string FindProjectOfType(Type type)
+        private static string FindProjectOfType(Type type)
         {
             var sb = new StringBuilder();
             // XUnit moves the location of the assmbley to a temp location, use CodeBase instead
@@ -88,6 +96,11 @@ namespace DLaB.Xrm.Test
             return solutionFolder;
         }
 
+
+        /// <summary>
+        /// Gets the path.
+        /// </summary>
+        /// <returns></returns>
         public string GetPath()
         {
             return ProjectPath;

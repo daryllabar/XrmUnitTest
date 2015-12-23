@@ -1,22 +1,52 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using DLaB.Common;
+using DLaB.Xrm.Client;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 
 namespace DLaB.Xrm.LocalCrm
 {
+    /// <summary>
+    /// Info Object for setting a Local Crm Database 
+    /// </summary>
     public class LocalCrmDatabaseInfo
     {
         /// <summary>
         /// Used to populate Owning Business Unit Attributes
         /// </summary>
         public EntityReference BusinessUnit { get; private set; }
-        public String DatabaseName { get; private set; }
-        public int LanguageCode = Config.GetAppSettingOrDefault("DefaultLanguageCode", 1033);
+        /// <summary>
+        /// Defines the instance of the database.  Allows for sharing of the database from different call sites, if given the same name.
+        /// </summary>
+        /// <value>
+        /// The name of the database.
+        /// </value>
+        public string DatabaseName { get; private set; }
+        /// <summary>
+        /// Used for defining OptionMetadata
+        /// </summary>
+        public int LanguageCode = AppConfig.DefaultLanguageCode;
+        /// <summary>
+        /// The early bound entity assembly.
+        /// </summary>
+        /// <value>
+        /// The early bound entity assembly.
+        /// </value>
         public Assembly EarlyBoundEntityAssembly { get; private set; }
+        /// <summary>
+        /// The early bound namespace.
+        /// </summary>
+        /// <value>
+        /// The early bound namespace.
+        /// </value>
         public string EarlyBoundNamespace { get; private set; }
+        /// <summary>
+        /// The organization identifier.
+        /// </summary>
+        /// <value>
+        /// The organization identifier.
+        /// </value>
         public Guid OrganizationId { get; private set; }
         /// <summary>
         /// Used to populate Created/Modifed By and Owner Attributes
@@ -30,6 +60,16 @@ namespace DLaB.Xrm.LocalCrm
 
         private LocalCrmDatabaseInfo() { }
 
+        /// <summary>
+        /// Creates the specified database info.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="databaseName">Name of the database.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="userOnBehalfOf">The user on behalf of.</param>
+        /// <param name="userBusinessUnit">The user business unit.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Must pass in a derived type from Microsoft.Xrm.Sdk.Client.OrganizationServiceContext</exception>
         public static LocalCrmDatabaseInfo Create<T>(string databaseName = null, Guid? userId = null, Guid? userOnBehalfOf = null, Guid? userBusinessUnit = null) where T : OrganizationServiceContext
         {
             var contextType = typeof(T);
@@ -43,6 +83,16 @@ namespace DLaB.Xrm.LocalCrm
             return Create(contextType.Assembly, contextType.Namespace, databaseName, userId, userOnBehalfOf, userBusinessUnit);
         }
 
+        /// <summary>
+        /// Creates the specified database info.
+        /// </summary>
+        /// <param name="earlyBoundAssembly">The early bound assembly.</param>
+        /// <param name="earlyBoundNamespace">The early bound namespace.</param>
+        /// <param name="databaseName">Name of the database.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="userOnBehalfOf">The user on behalf of.</param>
+        /// <param name="userBusinessUnit">The user business unit.</param>
+        /// <returns></returns>
         public static LocalCrmDatabaseInfo Create(Assembly earlyBoundAssembly, string earlyBoundNamespace, string databaseName = null, Guid? userId = null, Guid? userOnBehalfOf = null, Guid? userBusinessUnit = null)
         {
             databaseName = databaseName ?? String.Empty;
@@ -59,6 +109,11 @@ namespace DLaB.Xrm.LocalCrm
             };
         }
 
+        /// <summary>
+        /// Determines whether given entity name is defiend in the early bound assembly
+        /// </summary>
+        /// <param name="entityLogicalName">Name of the entity logical.</param>
+        /// <returns></returns>
         public bool IsTypeDefined(string entityLogicalName)
         {
             return EntityHelper.IsTypeDefined(EarlyBoundEntityAssembly, EarlyBoundNamespace, entityLogicalName);

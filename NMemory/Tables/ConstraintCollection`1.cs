@@ -39,7 +39,7 @@ namespace NMemory.Tables
         private readonly List<IConstraint<T>> constraints;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ContraintCollection{T}"/> class.
+        ///     Initializes a new instance of the <see cref="ConstraintCollection{T}"/> class.
         /// </summary>
         public ConstraintCollection()
         {

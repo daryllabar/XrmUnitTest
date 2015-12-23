@@ -23,7 +23,7 @@ namespace DLaB.Xrm
         public static FilterExpression WhereEqual(this FilterExpression filterExpression, string entityName,
             params object[] columnNameAndValuePairs)
         {
-            if (columnNameAndValuePairs == null) { throw new ArgumentNullException("columnNameAndValuePairs"); }
+            if (columnNameAndValuePairs == null) { throw new ArgumentNullException(nameof(columnNameAndValuePairs)); }
             int length = columnNameAndValuePairs.Length;
             if (length == 0)
             {
@@ -186,7 +186,7 @@ namespace DLaB.Xrm
         public static IEnumerable<T> GetAllEntities<T>(this IOrganizationService service,
                 params object[] columnNameAndValuePairs) where T : Entity
         {
-            return service.GetAllEntities<T>(QueryExpressionFactory.Create<T>(columnNameAndValuePairs));
+            return service.GetAllEntities(QueryExpressionFactory.Create<T>(columnNameAndValuePairs));
         }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace DLaB.Xrm
         public static IEnumerable<T> GetAllEntities<T>(this IOrganizationService service, ColumnSet columnSet,
                 params object[] columnNameAndValuePairs) where T : Entity
         {
-            return service.GetAllEntities<T>(QueryExpressionFactory.Create<T>(columnSet, columnNameAndValuePairs));
+            return service.GetAllEntities(QueryExpressionFactory.Create<T>(columnSet, columnNameAndValuePairs));
         }
 
         #endregion // GetAllEntities<T>
@@ -237,7 +237,7 @@ namespace DLaB.Xrm
         public static List<T> GetEntities<T>(this IOrganizationService service,
                 params object[] columnNameAndValuePairs) where T : Entity
         {
-            return service.GetEntities<T>(QueryExpressionFactory.Create<T>(columnNameAndValuePairs));
+            return service.GetEntities(QueryExpressionFactory.Create<T>(columnNameAndValuePairs));
         }
 
         /// <summary>
@@ -271,7 +271,7 @@ namespace DLaB.Xrm
         public static List<T> GetEntities<T>(this IOrganizationService service, ColumnSet columnSet,
                 params object[] columnNameAndValuePairs) where T : Entity
         {
-            return service.GetEntities<T>(QueryExpressionFactory.Create<T>(columnSet, columnNameAndValuePairs));
+            return service.GetEntities(QueryExpressionFactory.Create<T>(columnSet, columnNameAndValuePairs));
         }
 
         #endregion // GetEntities<T>
@@ -552,17 +552,37 @@ namespace DLaB.Xrm
 
         #region OrganizationRequestCollection
 
+        /// <summary>
+        /// Adds a retrieve multiple request to the current OrganizationRequestCollection.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="requests">The requests.</param>
+        /// <param name="columnNameAndValuePairs">The column name and value pairs.</param>
         public static void AddRetrieveMultiple<T>(this OrganizationRequestCollection requests, params object[] columnNameAndValuePairs) where T : Entity
         {
             requests.Add(new RetrieveMultipleRequest { Query = QueryExpressionFactory.Create<T>(columnNameAndValuePairs), });
         }
 
+        /// <summary>
+        /// Adds a retrieve multiple request to the current OrganizationRequestCollection.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="requests">The requests.</param>
+        /// <param name="columnSet">The column set.</param>
+        /// <param name="columnNameAndValuePairs">The column name and value pairs.</param>
         public static void AddRetrieveMultiple<T>(this OrganizationRequestCollection requests, ColumnSet columnSet,
                 params object[] columnNameAndValuePairs) where T : Entity
         {
             requests.Add(new RetrieveMultipleRequest { Query = QueryExpressionFactory.Create<T>(columnSet, columnNameAndValuePairs), });
         }
 
+        /// <summary>
+        /// Adds a retrieve multiple request to the current OrganizationRequestCollection.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="requests">The requests.</param>
+        /// <param name="anonymousTypeInitializer">The anonymous type initializer.</param>
+        /// <param name="columnNameAndValuePairs">The column name and value pairs.</param>
         public static void AddRetrieveMultiple<T>(this OrganizationRequestCollection requests, Expression<Func<T, object>> anonymousTypeInitializer,
                 params object[] columnNameAndValuePairs) where T : Entity
         {

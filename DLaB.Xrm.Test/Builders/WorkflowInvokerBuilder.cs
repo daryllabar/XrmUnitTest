@@ -8,35 +8,59 @@ using Microsoft.Xrm.Sdk.Workflow;
 
 namespace DLaB.Xrm.Test.Builders
 {
+    /// <summary>
+    /// Default Workflow Builder Implementation.  
+    /// </summary>
     public sealed class WorkflowInvokerBuilder : WorkflowInvokerBuilderBase<WorkflowInvokerBuilder>
     {
-        protected override WorkflowInvokerBuilder This
-        {
-            get { return this; }
-        }
-
-        public WorkflowInvokerBuilder(Activity workflow) : base (workflow)
-        {
-        }
-    }
-
-    public abstract class WorkflowInvokerBuilderBase<TDerived> where TDerived : WorkflowInvokerBuilderBase<TDerived>
-    {
-        protected abstract TDerived This { get; }
-        private ITracingService TracingService { get; set; }
-        private IWorkflowContext WorkflowContext { get; set; }
-        private IOrganizationService Service { get; set; }
-        private Dictionary<String, Object> InArguments { get; set; }
-        private Activity Workflow { get; set; }
+        /// <summary>
+        /// Gets the Workflow Invoker Builder of the derived Class.
+        /// </summary>
+        /// <value>
+        /// The this.
+        /// </value>
+        protected override WorkflowInvokerBuilder This => this;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WorkflowInvokerBuilder"/> class.
         /// </summary>
         /// <param name="workflow">The workflow to invoke.</param>
-        protected WorkflowInvokerBuilderBase(Activity workflow)
+        public WorkflowInvokerBuilder(Activity workflow) : base (workflow)
+        {
+        }
+    }
+
+    /// <summary>
+    /// Abstract Builder to allow for Derived Types to be created
+    /// </summary>
+    /// <typeparam name="TDerived">The type of the derived.</typeparam>
+    public abstract class WorkflowInvokerBuilderBase<TDerived> where TDerived : WorkflowInvokerBuilderBase<TDerived>
+    {
+        /// <summary>
+        /// Gets the derived version of the class.
+        /// </summary>
+        protected abstract TDerived This { get; }
+        private ITracingService TracingService { get; set; }
+        private IWorkflowContext WorkflowContext { get; set; }
+        private IOrganizationService Service { get; set; }
+        private Dictionary<string, object> InArguments { get; }
+        private Activity Workflow { get; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WorkflowInvokerBuilder"/> class.
+        /// </summary>
+        /// <param name="workflow">The workflow to invoke.</param>
+        protected WorkflowInvokerBuilderBase(Activity workflow) : this(workflow, null) {}
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WorkflowInvokerBuilder" /> class.
+        /// </summary>
+        /// <param name="workflow">The workflow to invoke.</param>
+        /// <param name="logger">The logger.</param>
+        protected WorkflowInvokerBuilderBase(Activity workflow, ITestLogger logger)
         {
             Service = TestBase.GetOrganizationService();
-            TracingService = new FakeTraceService();
+            TracingService = new FakeTraceService(logger);
             Workflow = workflow;
             WorkflowContext = new FakeWorkflowContext();
             InArguments = GetInArguments(workflow);
@@ -94,7 +118,7 @@ namespace DLaB.Xrm.Test.Builders
                 return null;
             }
             var getMethod = type.GetMethod("get_" + propertyName);
-            return getMethod == null ? null : getMethod.Invoke(obj, null);
+            return getMethod?.Invoke(obj, null);
         }
 
         #region Fleunt Methods

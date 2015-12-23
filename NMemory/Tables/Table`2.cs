@@ -21,7 +21,7 @@
 //     THE SOFTWARE.
 // </copyright>
 // -----------------------------------------------------------------------------------
-
+#pragma warning disable 1591
 namespace NMemory.Tables
 {
     using System;
@@ -108,7 +108,7 @@ namespace NMemory.Tables
         }
 
         /// <summary>
-        ///     Prevents a default instance of the <see cref="Table{TPrimaryKey}" /> class from
+        ///     Prevents a default instance of the <see cref="Table{TEntity,TPrimaryKey}" /> class from
         ///     being created.
         /// </summary>
         private Table() : base(null)
@@ -195,7 +195,7 @@ namespace NMemory.Tables
         {
             this.Update(entity, Transaction.TryGetAmbientEnlistedTransaction());
         }
-        
+
         /// <summary>
         ///     Updates the properties of the specified contained by the table.
         /// </summary>
@@ -203,7 +203,7 @@ namespace NMemory.Tables
         ///     An entity that contains the primary key of the entity to be updated and the new
         ///     property values.
         /// </param>
-        /// <param name="entity">
+        /// <param name="transaction">
         ///     The transaction within which the update operation executes.
         /// </param>
         public void Update(TEntity entity, Transaction transaction)
@@ -236,7 +236,7 @@ namespace NMemory.Tables
         /// <param name="entity">
         ///     An entity that contains the new property values.
         /// </param>
-        /// <param name="entity">
+        /// <param name="transaction">
         ///     The transaction within which the update operation is executed.
         /// </param>
         public void Update(TPrimaryKey key, TEntity entity, Transaction transaction)
@@ -332,10 +332,10 @@ namespace NMemory.Tables
         /// <summary>
         ///     Deletes an entity from the table.
         /// </summary>
-        /// <param name="key">
-        ///     The primary key of the entity to be deleted.
-        /// </param>
         /// <param name="entity">
+        ///     The entity to be deleted.
+        /// </param>
+        /// <param name="transaction">
         ///     The transaction within which the update operation is executed.
         /// </param>
         public void Delete(TEntity entity, Transaction transaction)
@@ -362,7 +362,7 @@ namespace NMemory.Tables
         /// <param name="key">
         ///     The primary key of the entity to be deleted.
         /// </param>
-        /// <param name="entity">
+        /// <param name="transaction">
         ///     The transaction within which the update operation is executed.
         /// </param>
         public void Delete(TPrimaryKey key, Transaction transaction)
@@ -523,7 +523,7 @@ namespace NMemory.Tables
         /// <param name="indexFactory">
         ///     The index factory.
         /// </param>
-        /// <param name="key">
+        /// <param name="keySelector">
         ///     The expression representing the definition of the index key.
         /// </param>
         /// <returns>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DLaB.Common;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Exceptions
@@ -11,14 +12,26 @@ namespace DLaB.Xrm.Exceptions
     [Serializable]
     public class InvalidPluginStepRegistrationException : Exception
     {
+        /// <summary>
+        /// Defines if the Image is a pre or post image
+        /// </summary>
         public enum ImageCollection
         {
+            /// <summary>
+            /// Pre Image
+            /// </summary>
             Pre,
+            /// <summary>
+            /// Post Image
+            /// </summary>
             Post
         }
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InvalidPluginStepRegistrationException"/> class.
+        /// </summary>
         public InvalidPluginStepRegistrationException()
         {
 
@@ -56,17 +69,38 @@ namespace DLaB.Xrm.Exceptions
 
         #endregion Constructors
 
+        /// <summary>
+        /// Creates an InvalidPluginStepRegistrationException
+        /// </summary>
+        /// <param name="imageKeyName">Name of the image key.</param>
+        /// <param name="image">The image.</param>
+        /// <returns></returns>
         public static InvalidPluginStepRegistrationException ImageMissing(string imageKeyName, ImageCollection? image = null)
         {
             return image.HasValue ? new InvalidPluginStepRegistrationException("Invalid Plugin Step Registration.  Missing Required {0} Image, \"{1}\"", image, imageKeyName) : 
                                     new InvalidPluginStepRegistrationException("Invalid Plugin Step Registration.  Missing Required Pre or Post Image, \"{0}\"", imageKeyName);
         }
 
+        /// <summary>
+        /// Creates an InvalidPluginStepRegistrationException
+        /// </summary>
+        /// <param name="image">The image.</param>
+        /// <param name="imageKeyName">Name of the image key.</param>
+        /// <param name="attributeName">Name of the attribute.</param>
+        /// <returns></returns>
         public static InvalidPluginStepRegistrationException ImageMissingRequiredAttribute(ImageCollection image, string imageKeyName, string attributeName)
         {
             return new InvalidPluginStepRegistrationException("{0} Entity Image \"{1}\" is missing required parameter {2}!", image, imageKeyName, attributeName);
         }
 
+        /// <summary>
+        /// Creates an InvalidPluginStepRegistrationException
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="entity">The entity.</param>
+        /// <param name="attributeName">Name of the attribute.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Neither the PostEntityImages or PreEntityImages collections contain the given entity  + entity.GetNameId()</exception>
         public static InvalidPluginStepRegistrationException ImageMissingRequiredAttribute(IPluginExecutionContext context, Entity entity, string attributeName)
         {
             var image = ImageCollection.Post;
@@ -84,10 +118,17 @@ namespace DLaB.Xrm.Exceptions
             return new InvalidPluginStepRegistrationException("{0} Entity Image \"{1}\" is missing required parameter {2}!", image, keyValue.Key, attributeName);
         }
 
+        /// <summary>
+        /// Creates a new InvalidPluginStepRegistrationException due to the given missing required attribute.
+        /// </summary>
+        /// <param name="image">The image.</param>
+        /// <param name="imageKeyName">Name of the image key.</param>
+        /// <param name="attributes">The attributes.</param>
+        /// <returns></returns>
         public static InvalidPluginStepRegistrationException ImageMissingRequiredAttributes(ImageCollection image, string imageKeyName, IEnumerable<string> attributes)
         {
             var local = attributes.ToArray();
-            return new InvalidPluginStepRegistrationException("{0} Entity Image \"{1}\" is missing required parameter{2} {3}!", image, imageKeyName, local.Count() > 1 ? "s" : String.Empty, String.Join(", ", local));
+            return new InvalidPluginStepRegistrationException("{0} Entity Image \"{1}\" is missing required parameter{2} {3}!", image, imageKeyName, local.Length > 1 ? "s" : String.Empty, local.ToCsv());
         }
     }
 }

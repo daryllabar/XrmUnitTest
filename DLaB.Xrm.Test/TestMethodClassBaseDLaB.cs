@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using DLaB.Common;
 using DLaB.Xrm.Client;
+using DLaB.Xrm.CrmSdk;
 using DLaB.Xrm.Test.Builders;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
@@ -13,15 +14,13 @@ using Microsoft.Xrm.Sdk.Query;
 namespace DLaB.Xrm.Test
 {
     // ReSharper disable once InconsistentNaming
+    /// <summary>
+    /// A Default Unit Test Class that handles Auto-wiring up creation of the IOrganziationService, and creation/deletion of data, and assumptions
+    /// </summary>
     public abstract class TestMethodClassBaseDLaB
     {
-        public struct CrmErrorCodes
-        {
-            public const int EntityToDeleteDoesNotExist = -2147220969;
-        }
-
         /// <summary>
-        /// Enables tracing in the FakeIOrganizationService 
+        /// Sets whether tracing of the FakeIOrganizationService is enabled
         /// </summary>
         public bool EnableServiceExecutionTracing { get; set; }
 
@@ -32,17 +31,31 @@ namespace DLaB.Xrm.Test
         /// </summary>
         public bool MultiThreadPostDeletion { get; set; }
 
+        /// <summary>
+        /// Gets or sets the assert CRM.
+        /// </summary>
+        /// <value>
+        /// The assert CRM.
+        /// </value>
         protected AssertCrm AssertCrm { get; set; }
 
-        private ITestLogger Logger { get; set; }
+        /// <summary>
+        /// Gets or sets the logger.
+        /// </summary>
+        /// <value>
+        /// The logger.
+        /// </value>
+        protected ITestLogger Logger { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TestMethodClassBaseDLaB"/> class.
+        /// </summary>
         protected TestMethodClassBaseDLaB()
         {
             AssumedEntities = new Assumptions.AssumedEntities();
             EntityIds = new Dictionary<string, List<Guid>>();
             EnableServiceExecutionTracing = true;
             MultiThreadPostDeletion = true;
-            NewEntityDefaultIds = new List<Id>();
         }
 
         #region Entity Ids
@@ -54,7 +67,7 @@ namespace DLaB.Xrm.Test
         {
             // Find all nested Ids
             var nestedIds = new Dictionary<string, List<Guid>>();
-            foreach (var id in GetType().GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic).SelectMany(GetIds)) {
+            foreach (var id in GetType().GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic).SelectMany(Extensions.GetIds)) {
                 nestedIds.AddOrAppend(id);
             }
 
@@ -75,44 +88,6 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        private IEnumerable<Id> GetIds(Type type)
-        {
-            var idType = typeof (Id);
-            foreach (var field in type.GetFields().Where(field => idType.IsAssignableFrom(field.FieldType)))
-            {
-                yield return GetValue(field);
-            }
-            foreach (var id in type.GetNestedTypes().SelectMany(GetIds)) {
-                yield return id;
-            }
-        }
-
-        /// <summary>
-        /// Gets the Id value of the field.  It is very easy to declare an Id&lt;Entity&gt;, but this isn't valid
-        /// This will make the error much more readable and understandable
-        /// </summary>
-        /// <param name="field">The field.</param>
-        /// <returns></returns>
-        [DebuggerHidden]
-        private static Id GetValue(FieldInfo field)
-        {
-            try
-            {
-                return (Id) field.GetValue(null);
-            }catch(TargetInvocationException ex)
-            {
-                if (ex.InnerException != null && ex.InnerException.InnerException != null)
-                {
-                    var idEx = ex.InnerException.InnerException;
-                    if (idEx.Message.Contains("\"Entity\" is not a valid entityname"))
-                    {
-                        throw idEx;
-                    }
-                }
-                throw;
-            }
-        }
-
         /// <summary>
         /// Populated with Entities that are loaded as a result of using EntityDataAssumption Attributes on the Test Method Class.
         /// </summary>
@@ -128,12 +103,6 @@ namespace DLaB.Xrm.Test
         /// Will get populated at the very beginning of Test
         /// </summary>
         protected Dictionary<Guid, Id> Entities { get; private set; }
-
-        /// <summary>
-        /// Populate with EntityLogical name keys, and queue of ids.  Will be used to default the ids of entities
-        /// that are being created by the unit test, without an already populated id
-        /// </summary>
-        protected List<Id> NewEntityDefaultIds { get; private set; }
 
         private void PopulateEntityReferences()
         {
@@ -152,9 +121,9 @@ namespace DLaB.Xrm.Test
 
                         if (Entities[id].LogicalName == entry.Key)
                         {
-                            throw new ArgumentException(String.Format("Id {0} is defined twice for entity type {1}", id, entry.Key));
+                            throw new ArgumentException($"Id {id} is defined twice for entity type {entry.Key}");
                         }
-                        throw new ArgumentException(String.Format("An attempt was made to define Id {0} as type {1}, but it has already been defined as a {2}", id, entry.Key, Entities[id].LogicalName));
+                        throw new ArgumentException($"An attempt was made to define Id {id} as type {entry.Key}, but it has already been defined as a {Entities[id].LogicalName}");
                     }
                 }
             }
@@ -164,6 +133,11 @@ namespace DLaB.Xrm.Test
 
         #region Data Cleanup
 
+        /// <summary>
+        /// Cleanups the test data.
+        /// </summary>
+        /// <param name="service">The service.</param>
+        /// <param name="shouldExist">if set to <c>true</c> [should exist].</param>
         protected virtual void CleanupTestData(IOrganizationService service, bool shouldExist)
         {
             if (shouldExist)
@@ -225,9 +199,9 @@ namespace DLaB.Xrm.Test
             if (requests.Any())
             {
                 var response = (ExecuteMultipleResponse)service.Execute(
-                    new ExecuteMultipleRequest()
+                    new ExecuteMultipleRequest
                     {
-                        Settings = new ExecuteMultipleSettings()
+                        Settings = new ExecuteMultipleSettings
                         {
                             ContinueOnError = true,
                             ReturnResponses = false
@@ -238,9 +212,9 @@ namespace DLaB.Xrm.Test
                 ThrowExceptionForFaults(response, requests);
 
                 totalWatch.Stop();
-                Debug.WriteLine("Total Time to delete {0} entities of types {1} (ms): {2}",
+                Logger.WriteLine("Total Time to delete {0} entities of types {1} (ms): {2}",
                     requests.Count,
-                    String.Join(", ", requests.Select(s => ((DeleteRequest)s).Target.LogicalName).Distinct()),
+                    requests.Select(s => ((DeleteRequest)s).Target.LogicalName).Distinct().ToCsv(),
                     totalWatch.ElapsedMilliseconds);
             }
 
@@ -265,9 +239,9 @@ namespace DLaB.Xrm.Test
             {
                 var localFault = fault.Fault;
                 var target = ((DeleteRequest)requests[fault.RequestIndex]).Target;
-                if (localFault.ErrorCode == CrmErrorCodes.EntityToDeleteDoesNotExist)
+                if (localFault.ErrorCode == ErrorCodes.ObjectDoesNotExist)
                 {
-                    Debug.WriteLine("Attempted to Delete Entity that doesn't exist {0} ({1}) - {2}", target.LogicalName, target.Id, localFault.Message);
+                    Logger.WriteLine("Attempted to Delete Entity that doesn't exist {0} ({1}) - {2}", target.LogicalName, target.Id, localFault.Message);
                     continue;
                 }
 
@@ -276,14 +250,14 @@ namespace DLaB.Xrm.Test
                     localFault = localFault.InnerFault;
                 }
 
-                var errorDetails = String.Empty;
+                var errorDetails = string.Empty;
                 if (localFault.ErrorDetails.ContainsKey("CallStack"))
                 {
                     errorDetails = Environment.NewLine + localFault.ErrorDetails["CallStack"];
                 }
                 exceptions.Add(new Exception(localFault.Message + errorDetails));
 
-                Debug.WriteLine("Error Deleting {0} ({1}) - {2}{3}", target.LogicalName, target.Id, localFault.Message, errorDetails);
+                Logger.WriteLine("Error Deleting {0} ({1}) - {2}{3}", target.LogicalName, target.Id, localFault.Message, errorDetails);
             }
 
             if (exceptions.Any())
@@ -296,6 +270,10 @@ namespace DLaB.Xrm.Test
 
         #region Assumptions
 
+        /// <summary>
+        /// Validates the assumptions.
+        /// </summary>
+        /// <param name="service">The service.</param>
         protected void ValidateAssumptions(IOrganizationService service)
         {
             foreach (var entityAssumption in GetType().GetCustomAttributes(true).
@@ -354,12 +332,15 @@ namespace DLaB.Xrm.Test
             return ("Unit Test - " + methodClassName.SpaceOutCamelCase()).PadRight(maxNameLength).Substring(0, maxNameLength).TrimEnd();
         }
 
+        /// <summary>
+        /// Gets either the Local Crm Organization Service, or the real connection to CRM, depending on the UnitTestSettings.user.config settings.
+        /// </summary>
+        /// <returns></returns>
         protected virtual IOrganizationService GetIOrganizationService()
         {
             return new OrganizationServiceBuilder(GetInternalOrganizationServiceProxy()).
                 WithEntityNameDefaulted((e, i) => GetUnitTestName(i.MaximumLength)).
                 AssertIdNonEmptyOnCreate().
-                WithIdsDefaultedForCreate(NewEntityDefaultIds.ToArray()).
                 WithDefaultParentBu().Build();
         }
 
@@ -369,6 +350,10 @@ namespace DLaB.Xrm.Test
             return Service ?? (Service = (IClientSideOrganizationService)new OrganizationServiceBuilder(new FakeIOrganizationService(TestBase.GetOrganizationService(), Logger)).WithBusinessUnitDeleteAsDeactivate().Build());
         }
 
+        /// <summary>
+        /// Executes the Unit Test
+        /// </summary>
+        /// <param name="logger">The logger.</param>
         public void Test(ITestLogger logger)
         {
             Logger = logger;

@@ -16,26 +16,48 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.Test.Builders
 {
+    /// <summary>
+    /// Concrete Implementation of the OrganizationServiceBuilderBase
+    /// </summary>
     public sealed class OrganizationServiceBuilder : OrganizationServiceBuilderBase<OrganizationServiceBuilder>
     {
-        protected override OrganizationServiceBuilder This
-        {
-            get { return this; }
-        }
+        /// <summary>
+        /// Gets the derived version of the class.
+        /// </summary>
+        /// <value>
+        /// The this.
+        /// </value>
+        protected override OrganizationServiceBuilder This => this;
 
-        public OrganizationServiceBuilder() : this(TestBase.GetOrganizationService()) {}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrganizationServiceBuilder" /> class.
+        /// </summary>
+        public OrganizationServiceBuilder() : this(TestBase.GetOrganizationService()) { }
 
-        public OrganizationServiceBuilder(IOrganizationService service) : base(service) {}
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrganizationServiceBuilder" /> class.
+        /// </summary>
+        /// <param name="service">The service.</param>
+        public OrganizationServiceBuilder(IOrganizationService service) : base(service) { }
     }
 
+    /// <summary>
+    /// Base class for Organization Service Builder
+    /// </summary>
+    /// <typeparam name="TDerived">The type of the derived.</typeparam>
     public abstract class OrganizationServiceBuilderBase<TDerived> where TDerived : OrganizationServiceBuilderBase<TDerived>
     {
         #region Properties
-       
+
+        /// <summary>
+        /// Gets the Organization Service Builder of the derived Class.
+        /// </summary>
+        /// <value>
+        /// The this.
+        /// </value>
         protected abstract TDerived This { get; }
 
-        private IOrganizationService Service { get; set; }
+        private IOrganizationService Service { get; }
 
         /// <summary>
         /// The Entity Ids used to populate Entities without any ids
@@ -43,7 +65,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <value>
         /// The new entity default ids.
         /// </value>
-        private Dictionary<string, Queue<Guid>> NewEntityDefaultIds { get; set; }
+        private Dictionary<string, Queue<Guid>> NewEntityDefaultIds { get;}
 
         /// <summary>
         /// The Entities constrained by id to be retrieved when querying CRM
@@ -51,18 +73,18 @@ namespace DLaB.Xrm.Test.Builders
         /// <value>
         /// The new entity default ids.
         /// </value>
-        private Dictionary<string, List<Guid>> EntityFilter { get; set; }
+        private Dictionary<string, List<Guid>> EntityFilter { get; }
 
         #region IOrganizationService Actions and Funcs
 
-        private List<Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection>> AssociateActions { get; set; }
-        private List<Func<IOrganizationService, Entity, Guid>> CreateFuncs { get; set; }
-        private List<Action<IOrganizationService, string, Guid>> DeleteActions { get; set; }
-        private List<Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection>> DisassociateActions { get; set; }
-        private List<Func<IOrganizationService, OrganizationRequest, OrganizationResponse>> ExecuteFuncs { get; set; }
-        private List<Func<IOrganizationService, QueryBase, EntityCollection>> RetrieveMultipleFuncs { get; set; }
-        private List<Func<IOrganizationService, string, Guid, ColumnSet, Entity>> RetrieveFuncs { get; set; }
-        private List<Action<IOrganizationService, Entity>> UpdateActions { get; set; }
+        private List<Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection>> AssociateActions { get; }
+        private List<Func<IOrganizationService, Entity, Guid>> CreateFuncs { get; }
+        private List<Action<IOrganizationService, string, Guid>> DeleteActions { get; }
+        private List<Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection>> DisassociateActions { get; }
+        private List<Func<IOrganizationService, OrganizationRequest, OrganizationResponse>> ExecuteFuncs { get; }
+        private List<Func<IOrganizationService, QueryBase, EntityCollection>> RetrieveMultipleFuncs { get; }
+        private List<Func<IOrganizationService, string, Guid, ColumnSet, Entity>> RetrieveFuncs { get; }
+        private List<Action<IOrganizationService, Entity>> UpdateActions { get; }
 
         #endregion // IOrganizationService Actions and Funcs
 
@@ -70,7 +92,11 @@ namespace DLaB.Xrm.Test.Builders
 
         #region Constructors
 
-        public OrganizationServiceBuilderBase(IOrganizationService service)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrganizationServiceBuilderBase{TDerived}" /> class.
+        /// </summary>
+        /// <param name="service">The service.</param>
+        protected OrganizationServiceBuilderBase(IOrganizationService service)
         {
             Service = service;
             NewEntityDefaultIds = new Dictionary<string, Queue<Guid>>();
@@ -97,17 +123,61 @@ namespace DLaB.Xrm.Test.Builders
 
         #region Simple Methods
 
+        /// <summary>
+        /// Adds the fake associate.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        /// <returns></returns>
         public TDerived WithFakeAssociate(params Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection>[] action) { AssociateActions.AddRange(action); return This; }
+        /// <summary>
+        /// Adds the fake create.
+        /// </summary>
+        /// <param name="func">The function.</param>
+        /// <returns></returns>
         public TDerived WithFakeCreate(params Func<IOrganizationService, Entity, Guid>[] func) { CreateFuncs.AddRange(func); return This; }
+        /// <summary>
+        /// Adds the fake delete.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        /// <returns></returns>
         public TDerived WithFakeDelete(params Action<IOrganizationService, string, Guid>[] action) { DeleteActions.AddRange(action); return This; }
+        /// <summary>
+        /// Adds the fake disassociate.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        /// <returns></returns>
         public TDerived WithFakeDisassociate(params Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection>[] action) { DisassociateActions.AddRange(action); return This; }
+        /// <summary>
+        /// Adds the fake execute.
+        /// </summary>
+        /// <param name="func">The function.</param>
+        /// <returns></returns>
         public TDerived WithFakeExecute(params Func<IOrganizationService, OrganizationRequest, OrganizationResponse>[] func) { ExecuteFuncs.AddRange(func); return This; }
+        /// <summary>
+        /// Adds the fake retrieve multiple.
+        /// </summary>
+        /// <param name="func">The function.</param>
+        /// <returns></returns>
         public TDerived WithFakeRetrieveMultiple(params Func<IOrganizationService, QueryBase, EntityCollection>[] func) { RetrieveMultipleFuncs.AddRange(func); return This; }
+        /// <summary>
+        /// Adds the fake retrieve.
+        /// </summary>
+        /// <param name="func">The function.</param>
+        /// <returns></returns>
         public TDerived WithFakeRetrieve(params Func<IOrganizationService, string, Guid, ColumnSet, Entity>[] func) { RetrieveFuncs.AddRange(func); return This; }
+        /// <summary>
+        /// Adds the fake update.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        /// <returns></returns>
         public TDerived WithFakeUpdate(params Action<IOrganizationService, Entity>[] action) { UpdateActions.AddRange(action); return This; }
 
         #endregion Simple Methods
 
+        /// <summary>
+        /// Asserts that any create of an entity has the id popualted.  Useful to ensure that all entities can be deleted after they have been created since the id is known.
+        /// </summary>
+        /// <returns></returns>
         public TDerived AssertIdNonEmptyOnCreate()
         {
             CreateFuncs.Add(AssertIdNonEmptyOnCreate);
@@ -136,25 +206,25 @@ namespace DLaB.Xrm.Test.Builders
             DisassociateActions.Add((s, n, i, r, c) => { TestSettings.TestFrameworkProvider.AssertFail("An attempt was made to Disassociate Entities with a ReadOnly Service"); });
             ExecuteFuncs.Add((s, r) =>
             {
-                var nonReadOnlyStartsWithNames = new List<string>
+                var readOnlyStartsWithNames = new List<string>
                 {
                     "CanBe",
-                    "CanManyToManyRequest",
+                    "CanManyToMany",
                     "Download",
                     "Execute",
                     "Export",
-                    "FetchXmlToQueryExpressionRequest",
-                    "FindParentResourceGroupRequest",
+                    "FetchXmlToQueryExpression",
+                    "FindParentResourceGroup",
                     "Get",
                     "Is",
-                    "LocalTimeFromUtcTimeRequest",
+                    "LocalTimeFromUtcTime",
                     "Query",
                     "Retrieve",
                     "Search",
-                    "UtcTimeFromLocalTimeRequest",
-                    "WhoAmIRequest"
+                    "UtcTimeFromLocalTime",
+                    "WhoAmI"
                 };
-                if (nonReadOnlyStartsWithNames.Any(n => r.RequestName.StartsWith(n)))
+                if (readOnlyStartsWithNames.Any(n => r.RequestName.StartsWith(n)))
                 {
                     return s.Execute(r);
                 }
@@ -165,6 +235,10 @@ namespace DLaB.Xrm.Test.Builders
             return This;
         }
 
+        /// <summary>
+        /// Changes the Delete of a business unit to be a deactivate.  Allows for normal Deletion of all entities by the Test builder framework
+        /// </summary>
+        /// <returns></returns>
         public TDerived WithBusinessUnitDeleteAsDeactivate()
         {
             DeleteActions.Add((s, entityLogicalName, id) =>
@@ -173,10 +247,29 @@ namespace DLaB.Xrm.Test.Builders
                 {
                     s.SetState(entityLogicalName, id, false);
                 }
-                
+
                 s.Delete(entityLogicalName, id);
             });
 
+            return This;
+        }
+
+        /// <summary>
+        /// Defaults the Parent Businessunit Id of all business units to the root BU if not already populated
+        /// </summary>
+        /// <returns></returns>
+        public TDerived WithDefaultParentBu()
+        {
+            CreateFuncs.Add((s, e) =>
+            {
+                if (e.LogicalName == BusinessUnit.EntityLogicalName && e.GetAttributeValue<EntityReference>(BusinessUnit.Fields.ParentBusinessUnitId) == null)
+                {
+                    var qe = QueryExpressionFactory.Create(BusinessUnit.EntityLogicalName, new ColumnSet(BusinessUnit.Fields.BusinessUnitId), BusinessUnit.Fields.ParentBusinessUnitId, null);
+                    e[BusinessUnit.Fields.ParentBusinessUnitId] = s.GetFirst<Entity>(qe).ToEntityReference();
+                }
+
+                return s.Create(e);
+            });
             return This;
         }
 
@@ -228,12 +321,89 @@ namespace DLaB.Xrm.Test.Builders
 
         #endregion WithEntityFilter
 
-        public TDerived WithEntityNameDefaulted(Func<Entity, EntityHelper.PrimaryFieldInfo,string> getName)
+        #region WithFakeSetStatusForEntity
+
+        /// <summary>
+        /// Performs custom function for SetState of entity
+        /// </summary>
+        /// <param name="entityToFakeSetStateFor">The entity to fake set state for.</param>
+        /// <param name="setStateAction">The set state function.</param>
+        /// <returns></returns>
+        public TDerived WithFakeSetStateForEntity(Entity entityToFakeSetStateFor, Action<SetStateRequest> setStateAction)
+        {
+            return WithFakeSetStateForEntity(entityToFakeSetStateFor.ToEntityReference(), setStateAction);
+        }
+
+        /// <summary>
+        /// Performs custom function for SetState of entity
+        /// </summary>
+        /// <param name="entityToFakeSetStateFor">The entity to fake set state for.</param>
+        /// <param name="setStateAction">The set state function.</param>
+        /// <returns></returns>
+        public TDerived WithFakeSetStateForEntity(EntityReference entityToFakeSetStateFor, Action<SetStateRequest> setStateAction)
+        {
+            WithFakeExecute((s, r) =>
+            {
+                var setState = r as SetStateRequest;
+                if (setState == null || !setState.EntityMoniker.Equals(entityToFakeSetStateFor))
+                {
+                    return s.Execute(r);
+                }
+                setStateAction(setState);
+                return new SetStateResponse();
+            });
+            return This;
+        }
+
+        #endregion WithFakeSetStatusForEntity
+
+        #region WithFakeUpdateForEntity
+
+        /// <summary>
+        /// Performs custom action for update, rather than default update
+        /// </summary>
+        /// <param name="entityToMock">The entity to mock.</param>
+        /// <param name="action">The action.</param>
+        public TDerived WithFakeUpdateForEntity(Entity entityToMock, Action<Entity> action)
+        {
+            return WithFakeUpdateForEntity(entityToMock.ToEntityReference(), action);
+        }
+
+        /// <summary>
+        /// Performs custom action for update, rather than default update
+        /// </summary>
+        /// <param name="entityToMock">The entity to mock.</param>
+        /// <param name="action">The action.</param>
+        public TDerived WithFakeUpdateForEntity(EntityReference entityToMock, Action<Entity> action)
+        {
+            WithFakeUpdate((s, e) =>
+            {
+                if (e.LogicalName == entityToMock.LogicalName && e.Id == entityToMock.Id)
+                {
+                    action(e);
+                }
+                else
+                {
+                    s.Update(e);
+                }
+            });
+
+            return This;
+        }
+
+        #endregion WithFakeUpdateForEntity
+
+        /// <summary>
+        /// Defaults the entity name of all created entitites.
+        /// </summary>
+        /// <param name="getName">Name of the get.</param>
+        /// <returns></returns>
+        public TDerived WithEntityNameDefaulted(Func<Entity, EntityHelper.PrimaryFieldInfo, string> getName)
         {
             CreateFuncs.Add((s, e) =>
             {
                 var logicalName = e.LogicalName;
-                if (!String.IsNullOrWhiteSpace(logicalName))
+                if (!string.IsNullOrWhiteSpace(logicalName))
                 {
                     var info = EntityHelper.GetPrimaryFieldInfo(logicalName);
 
@@ -244,7 +414,7 @@ namespace DLaB.Xrm.Test.Builders
                     }
                 }
                 return s.Create(e);
-                });
+            });
             return This;
         }
 
@@ -281,58 +451,13 @@ namespace DLaB.Xrm.Test.Builders
         #endregion WithIdsDefaultedForCreate
 
         /// <summary>
-        /// Defaults the Parent Businessunit Id of all business units to the root BU if not already populated
+        /// Fakes out calls to RetireveAttribute Requests, using enums to generate the OptionSetMetaData.  Userful for mocking out any calls to determine the text values of an optionset.
         /// </summary>
+        /// <param name="defaultLangaugeCode">The default langauge code.  Defaults to reading DefaultLanguageCode from the config, or 1033 if not found</param>
         /// <returns></returns>
-        public TDerived WithDefaultParentBu()
-        {
-            CreateFuncs.Add((s, e) =>
-            {
-                if (e.LogicalName == BusinessUnit.EntityLogicalName && e.GetAttributeValue<EntityReference>(BusinessUnit.Fields.ParentBusinessUnitId) == null)
-                {
-                    var qe = QueryExpressionFactory.Create(BusinessUnit.EntityLogicalName, new ColumnSet(BusinessUnit.Fields.BusinessUnitId), BusinessUnit.Fields.ParentBusinessUnitId, null);
-                    e[BusinessUnit.Fields.ParentBusinessUnitId] = s.GetFirst<Entity>(qe).ToEntityReference();
-                }
-
-                return s.Create(e);
-            });
-            return This;
-        }
-
-
-        #region WithReturnedEntities
-
-        /// <summary>
-        /// Defines the entities that will be returned when the particular entity type is queried for
-        /// </summary>
-        /// <param name="entities">The entities.</param>
-        /// <returns></returns>
-        public TDerived WithReturnedEntities(Dictionary<string, List<Entity>> entities)
-        {
-            RetrieveMultipleFuncs.Add((s, q) =>
-            {
-                var qe = q as QueryExpression;
-                if (qe == null || !entities.ContainsKey(qe.EntityName))
-                {
-                    return s.RetrieveMultiple(q);
-                }
-
-                return new EntityCollection(entities[qe.EntityName]);
-            });
-
-            return This;
-        }
-
-        public static EntityCollection WithReturnedEntities(IOrganizationService s, QueryBase qb, string logicalName, params Entity[] entities)
-        {
-            return s.MockOrDefault(qb, q => q.EntityName == logicalName, entities);
-        }
-
-        #endregion WithReturnedEntities
-
         public TDerived WithLocalOptionSetsRetrievedFromEnum(int? defaultLangaugeCode = null)
         {
-            defaultLangaugeCode = defaultLangaugeCode ?? Config.GetAppSettingOrDefault("DefaultLanguageCode", 1033);
+            defaultLangaugeCode = defaultLangaugeCode ?? AppConfig.DefaultLanguageCode;
             ExecuteFuncs.Add((s, r) =>
             {
                 var attRequest = r as RetrieveAttributeRequest;
@@ -353,15 +478,15 @@ namespace DLaB.Xrm.Test.Builders
                 var enumExpression = CrmServiceUtility.GetEarlyBoundProxyAssembly().GetTypes().Where(t =>
                     (t.Name == attRequest.EntityLogicalName + "_" + attRequest.LogicalName ||
                      t.Name == attRequest.LogicalName + "_" + attRequest.EntityLogicalName) &&
-                    t.GetCustomAttributes(typeof (DataContractAttribute), false).Length > 0 &&
-                    t.GetCustomAttributes(typeof (System.CodeDom.Compiler.GeneratedCodeAttribute), false).Length > 0);
+                    t.GetCustomAttributes(typeof(DataContractAttribute), false).Length > 0 &&
+                    t.GetCustomAttributes(typeof(System.CodeDom.Compiler.GeneratedCodeAttribute), false).Length > 0);
 
                 // Return EntityLogicalName_Logical Name first
                 var enumType = enumExpression.OrderBy(t => t.Name != attRequest.EntityLogicalName + "_" + attRequest.LogicalName).FirstOrDefault();
 
                 if (enumType == null)
                 {
-                    throw new Exception(String.Format("Unable to find local optionset enum for entity: {0}, attribute: {1}", attRequest.EntityLogicalName, attRequest.LogicalName));
+                    throw new Exception($"Unable to find local optionset enum for entity: {attRequest.EntityLogicalName}, attribute: {attRequest.LogicalName}");
                 }
 
                 foreach (var value in Enum.GetValues(enumType))
@@ -369,7 +494,7 @@ namespace DLaB.Xrm.Test.Builders
                     optionSet.OptionSet.Options.Add(
                         new OptionMetadata
                         {
-                            Value = (int) value,
+                            Value = (int)value,
                             Label = new Label
                             {
                                 UserLocalizedLabel = new LocalizedLabel(value.ToString(), defaultLangaugeCode.Value),
@@ -397,6 +522,65 @@ namespace DLaB.Xrm.Test.Builders
             return This;
         }
 
+        #region WithReturnedEntities
+
+        /// <summary>
+        /// Defines the entities that will be returned when the particular entity type is queried for
+        /// </summary>
+        /// <param name="entities">The entities.</param>
+        /// <returns></returns>
+        public TDerived WithReturnedEntities(Dictionary<string, List<Entity>> entities)
+        {
+            RetrieveMultipleFuncs.Add((s, q) =>
+            {
+                var qe = q as QueryExpression;
+                if (qe == null || !entities.ContainsKey(qe.EntityName))
+                {
+                    return s.RetrieveMultiple(q);
+                }
+
+                return new EntityCollection(entities[qe.EntityName]);
+            });
+
+            RetrieveFuncs.Add((s, name, id, cs) =>
+            {
+                List<Entity> list;
+                if (entities.TryGetValue(name, out list))
+                {
+                    var entity = list.FirstOrDefault(e => e.Id == id);
+                    if (entity != null)
+                    {
+                        return entity;
+                    }
+                }
+                return s.Retrieve(name, id, cs);
+
+            });
+
+            return This;
+        }
+
+        /// <summary>
+        /// Specifies that the returned entities are returned whenever the given entity type is queried for.
+        /// </summary>
+        /// <param name="s">The s.</param>
+        /// <param name="qb">The qb.</param>
+        /// <param name="logicalName">Name of the logical.</param>
+        /// <param name="entities">The entities.</param>
+        /// <returns></returns>
+        public static EntityCollection WithReturnedEntities(IOrganizationService s, QueryBase qb, string logicalName, params Entity[] entities)
+        {
+            return s.MockOrDefault(qb, q => q.EntityName == logicalName, entities);
+        }
+
+        #endregion WithReturnedEntities
+
+        /// <summary>
+        /// Fakes RetrieveMultiples that are requesting a WebResource, to read the file from the given path.  Useful when settings are stored in a config web resource, and so can be tested with local modifications.
+        /// </summary>
+        /// <param name="webResourceName">Name of the web resource.</param>
+        /// <param name="path">The path.</param>
+        /// <returns></returns>
         public TDerived WithWebResourcePulledFromPath(string webResourceName, string path = null)
         {
             RetrieveMultipleFuncs.Add((s, q) =>
@@ -451,6 +635,10 @@ namespace DLaB.Xrm.Test.Builders
 
         #endregion // Fleunt Methods
 
+        /// <summary>
+        /// Builds this IOrganizationService.
+        /// </summary>
+        /// <returns></returns>
         public IOrganizationService Build()
         {
             ApplyNewEntityDefaultIds();
@@ -487,7 +675,7 @@ namespace DLaB.Xrm.Test.Builders
                         var idLogicalName = EntityHelper.GetIdAttributeName(entityGroup.Key);
                         foreach (var filter in qe.GetEntityFilters(entityGroup.Key))
                         {
-                            filter.AddConditionEnforceAndFilterOperator(new ConditionExpression(idLogicalName, ConditionOperator.In, entityGroup.Value.Select(i => (object) i).ToArray()));
+                            filter.AddConditionEnforceAndFilterOperator(new ConditionExpression(idLogicalName, ConditionOperator.In, entityGroup.Value.Select(i => (object)i).ToArray()));
                         }
                     }
                     return s.RetrieveMultiple(q);
@@ -506,7 +694,7 @@ namespace DLaB.Xrm.Test.Builders
             {
                 DefaultIdForEntity(e);
                 return s.Create(e);
-            } );
+            });
             ExecuteFuncs.Add((s, r) =>
             {
                 var email = r as SendEmailFromTemplateRequest;
@@ -532,9 +720,8 @@ namespace DLaB.Xrm.Test.Builders
             if (ids.Count == 0)
             {
                 throw new Exception(
-                    String.Format("An attempt was made to create an entity of type {0}, but no id exists in the NewEntityDefaultIds Collection for it.{1}" +
-                                  "Either the entity's Id was not populated as a part of initialization, or a call is needs to be added to to OrganizationServiceBuilder.WithIdsDefaultedForCreate(id)", entity.LogicalName,
-                        Environment.NewLine));
+                    $"An attempt was made to create an entity of type {entity.LogicalName}, but no id exists in the NewEntityDefaultIds Collection for it.{Environment.NewLine}" +
+                    "Either the entity's Id was not populated as a part of initialization, or a call is needs to be added to to OrganizationServiceBuilder.WithIdsDefaultedForCreate(id)");
             }
             entity.Id = ids.Dequeue();
         }

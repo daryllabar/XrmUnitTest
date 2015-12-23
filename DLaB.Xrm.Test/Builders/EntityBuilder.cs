@@ -5,19 +5,42 @@ using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test.Builders
 {
+    /// <summary>
+    /// Abstract Entity builder for Creating Entities
+    /// </summary>
+    /// <typeparam name="TEntity">The type of the entity.</typeparam>
     public abstract class EntityBuilder<TEntity> : IEntityBuilder<TEntity> where TEntity : Entity
     {
-        protected Dictionary<string, object> Attributes { get; private set; }
+        /// <summary>
+        /// Gets the attributes.
+        /// </summary>
+        /// <value>
+        /// The attributes.
+        /// </value>
+        protected Dictionary<string, object> Attributes { get; }
+        /// <summary>
+        /// Gets or sets the Id of the Entity being created.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
         protected Guid Id { get; set; }
 
         #region Abstract Methods
 
+        /// <summary>
+        /// Internal Build Method that gets called by the Build to creat ethe entity
+        /// </summary>
+        /// <returns></returns>
         protected abstract TEntity BuildInternal();
 
         #endregion // Abstract Methods
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EntityBuilder{TEntity}"/> class.
+        /// </summary>
         protected EntityBuilder()
         {
             Attributes = new Dictionary<string, object>();
@@ -37,6 +60,11 @@ namespace DLaB.Xrm.Test.Builders
             return Create(service);
         }
 
+        /// <summary>
+        /// Defines that the entity should be build with the given attribute value
+        /// </summary>
+        /// <param name="attributeName">Name of the attribute.</param>
+        /// <param name="value">The value.</param>
         public void WithAttributeValue(string attributeName, object value)
         {
             Attributes[attributeName] = value;

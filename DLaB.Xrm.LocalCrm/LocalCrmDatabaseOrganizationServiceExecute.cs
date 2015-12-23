@@ -43,6 +43,19 @@ namespace DLaB.Xrm.LocalCrm
             return new CreateResponse {Results = {["id"] = Create(request.Target)}};
         }
 
+        private CloseIncidentResponse ExecuteInternal(CloseIncidentRequest request)
+        {
+            Create(request.IncidentResolution);
+            Update(new Entity
+            {
+                Id = request.IncidentResolution.GetAttributeValue<EntityReference>(Incident.Fields.IncidentId).GetIdOrDefault(),
+                LogicalName = Incident.EntityLogicalName,
+                [Incident.Fields.StatusCode] = request.Status,
+                [Incident.Fields.StateCode] = new OptionSetValue((int)IncidentState.Resolved)
+            });
+            return new CloseIncidentResponse();
+        }
+
         private DeleteResponse ExecuteInternal(DeleteRequest request)
         {
             Delete(request.Target.LogicalName, request.Target.Id);
@@ -174,6 +187,25 @@ namespace DLaB.Xrm.LocalCrm
 
             return response;
         }
+        private RetrieveEntityResponse ExecuteInternal(RetrieveEntityRequest request)
+        {
+            var name = new LocalizedLabel(request.LogicalName, Info.LanguageCode);
+            return new RetrieveEntityResponse
+            {
+                Results =
+                {
+                    ["EntityMetadata"] = new EntityMetadata
+                    {
+                        DisplayCollectionName = new Label(name, new[] {name}),
+                    }
+                }
+            };
+        }
+
+        private RetrieveMultipleResponse ExecuteInternal(RetrieveMultipleRequest request)
+        {
+            return new RetrieveMultipleResponse { Results = { ["EntityCollection"] = RetrieveMultiple(request.Query) } };
+        }
 
         private RetrieveOptionSetResponse ExecuteInternal(RetrieveOptionSetRequest request)
         {
@@ -218,6 +250,43 @@ namespace DLaB.Xrm.LocalCrm
             return response;
         }
 
+        private SetStateResponse ExecuteInternal(SetStateRequest request)
+        {
+            var entity = Service.Retrieve(request.EntityMoniker.LogicalName, request.EntityMoniker.Id, new ColumnSet());
+            var info = new LateBoundActivePropertyInfo(request.EntityMoniker.LogicalName);
+            switch (info.ActiveAttribute)
+            {
+                case ActiveAttributeType.IsDisabled:
+                    entity["isdisabled"] = request.State.GetValueOrDefault() == 1;
+
+                    break;
+                case ActiveAttributeType.None:
+                case ActiveAttributeType.StateCode:
+                    entity["statecode"] = request.State;
+                    entity["statuscode"] = request.Status;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            Service.Update(entity);
+            return new SetStateResponse();
+        }
+
+        // ReSharper disable once UnusedParameter.Local
+        private WhoAmIResponse ExecuteInternal(WhoAmIRequest request)
+        {
+            var response = new WhoAmIResponse
+            {
+                Results =
+                {
+                    ["BusinessUnitId"] = Info.BusinessUnit.Id,
+                    ["UserId"] = Info.User.Id,
+                    ["OrganizationId"] = Info.OrganizationId
+                }
+            };
+            return response;
+        }
 
         #endregion // Execute Internal
 
@@ -248,65 +317,6 @@ namespace DLaB.Xrm.LocalCrm
                         },
                     });
             }
-        }
-
-        private RetrieveEntityResponse ExecuteInternal(RetrieveEntityRequest request)
-        {
-            var name = new LocalizedLabel(request.LogicalName, Info.LanguageCode);
-            return new RetrieveEntityResponse
-            {
-                Results =
-                {
-                    ["EntityMetadata"] = new EntityMetadata
-                    {
-                        DisplayCollectionName = new Label(name, new[] {name}),
-                    }
-                }
-            };
-        }
-
-
-        private RetrieveMultipleResponse ExecuteInternal(RetrieveMultipleRequest request)
-        {
-            return new RetrieveMultipleResponse {Results = {["EntityCollection"] = RetrieveMultiple(request.Query)}};
-        }
-
-        private SetStateResponse ExecuteInternal(SetStateRequest request)
-        {
-            var entity = Service.Retrieve(request.EntityMoniker.LogicalName, request.EntityMoniker.Id, new ColumnSet());
-            var info = new LateBoundActivePropertyInfo(request.EntityMoniker.LogicalName);
-            switch (info.ActiveAttribute)
-            {
-                case ActiveAttributeType.IsDisabled:
-                    entity["isdisabled"] = request.State.GetValueOrDefault() == 1;
-                    
-                    break;
-                case ActiveAttributeType.None:
-                case ActiveAttributeType.StateCode:
-                    entity["statecode"] = request.State;
-                    entity["statuscode"] = request.Status;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
-            Service.Update(entity);
-            return new SetStateResponse();
-        }
-
-        // ReSharper disable once UnusedParameter.Local
-        private WhoAmIResponse ExecuteInternal(WhoAmIRequest request)
-        {
-            var response = new WhoAmIResponse
-            {
-                Results =
-                {
-                    ["BusinessUnitId"] = Info.BusinessUnit.Id,
-                    ["UserId"] = Info.User.Id,
-                    ["OrganizationId"] = Info.OrganizationId
-                }
-            };
-            return response;
         }
     }
 }

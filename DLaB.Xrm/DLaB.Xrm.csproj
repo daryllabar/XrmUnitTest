@@ -29,6 +29,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\DLaB.Xrm.Xml</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -37,17 +39,29 @@
     <AssemblyOriginatorKeyFile>DLaB.Xrm.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Crm.Sdk.Proxy">
-      <HintPath>..\References\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
+    <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.7.1.0\lib\net45\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Xrm.Sdk">
-      <HintPath>..\References\Microsoft.Xrm.Sdk.dll</HintPath>
+    <Reference Include="Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.6.1.7600.16394\lib\net35\Microsoft.IdentityModel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Sdk, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.7.1.0\lib\net45\Microsoft.Xrm.Sdk.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,6 +89,7 @@
     <Compile Include="Comparers\ProjectionEqualityComparer.cs" />
     <Compile Include="Comparers\QueryExpressionComparer.cs" />
     <Compile Include="EntityHelper.cs" />
+    <Compile Include="ErrorCodes.cs" />
     <Compile Include="Exceptions\EnumCaseUndefinedException.cs" />
     <Compile Include="Exceptions\InvalidPluginStepRegistrationException.cs" />
     <Compile Include="Exceptions\MissingAttributeException.cs" />
@@ -88,12 +103,19 @@
     <Compile Include="IIOrganizationServiceWrapper.cs" />
     <Compile Include="LateBoundActivePropertyInfo.cs" />
     <Compile Include="LateBoundQuerySettings.cs" />
+    <Compile Include="OptimisticConcurrencyExtensions.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Plugin\Extensions.cs" />
+    <Compile Include="Plugin\ILocalPluginContext.cs" />
     <Compile Include="Plugin\IRegisteredEventsPlugin.cs" />
     <Compile Include="Plugin\IRegisteredEventsPluginHandler.cs" />
+    <Compile Include="Plugin\IsolationMode.cs" />
     <Compile Include="Plugin\LocalPluginContextBase.cs" />
+    <Compile Include="Plugin\MessageType.cs" />
     <Compile Include="Plugin\ParameterName.cs" />
     <Compile Include="Plugin\GenericPluginHandlerBase.cs" />
+    <Compile Include="Plugin\PipelineStage.cs" />
     <Compile Include="Plugin\RegisteredEvent.cs" />
     <Compile Include="Plugin\RegisteredEventBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,6 +123,16 @@
     <Compile Include="QueryExpressionFactory.cs" />
     <Compile Include="QuerySettings.cs" />
     <Compile Include="RetrieveAllEntities.cs" />
+    <Compile Include="Sandbox\ExceptionHandler.cs" />
+    <Compile Include="Sandbox\Serialization\KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN.cs" />
+    <Compile Include="Sandbox\Serialization\KeyValuePairOfstringanyType.cs" />
+    <Compile Include="Sandbox\Serialization\KeyValuePairOfstringstring.cs" />
+    <Compile Include="Sandbox\Serialization\SerializableAttributeCollection.cs" />
+    <Compile Include="Sandbox\Serialization\SerializableEntity.cs" />
+    <Compile Include="Sandbox\Serialization\SerializableEntityCollection.cs" />
+    <Compile Include="Sandbox\Serialization\SerializableFormattedValueCollection.cs" />
+    <Compile Include="Sandbox\Serialization\SerializableKeyAttributeCollection.cs" />
+    <Compile Include="Sandbox\Serialization\SerializableRelatedEntityCollection.cs" />
     <Compile Include="TypedQueryExpression.cs" />
     <Compile Include="WhereEqualExtensions.cs" />
     <Compile Include="WhereInExtensions.cs" />
@@ -113,7 +145,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="DLaB.Xrm.snk" />
+    <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

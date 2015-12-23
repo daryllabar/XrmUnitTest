@@ -6,6 +6,10 @@ using DLaB.Common.Exceptions;
 
 namespace DLaB.Xrm
 {
+    /// <summary>
+    /// Typed QuerySettings class
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class QuerySettings<T> where T: Entity
     {
         /// <summary>
@@ -43,8 +47,18 @@ namespace DLaB.Xrm
         /// </summary>
         public LogicalOperator CriteriaOperator { get; set; }
 
-        public String LogicalName { get; set; }
+        /// <summary>
+        /// Gets or sets the name of the logical.
+        /// </summary>
+        /// <value>
+        /// The name of the logical.
+        /// </value>
+        public string LogicalName { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QuerySettings{T}"/> class.
+        /// </summary>
+        /// <exception cref="TypeArgumentException">'Entity' is an invalid type for T.  Please use the LateBoundQuerySettings.</exception>
         public QuerySettings()
         {
             var type = typeof(T);
@@ -64,14 +78,23 @@ namespace DLaB.Xrm
             LogicalName = logicalName;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QuerySettings{T}"/> class.
+        /// </summary>
+        /// <param name="logicalName">Name of the logical.</param>
+        /// <exception cref="System.ArgumentNullException"></exception>
         protected QuerySettings(string logicalName){
             if (logicalName == null)
             {
-                throw new ArgumentNullException("logicalName");
+                throw new ArgumentNullException(nameof(logicalName));
             }
             DefaultSettings(logicalName);
         }
 
+        /// <summary>
+        /// Creates the expression.
+        /// </summary>
+        /// <returns></returns>
         public QueryExpression CreateExpression(){
             return QueryExpressionFactory.Create(this);
         }

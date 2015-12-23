@@ -21,7 +21,7 @@
 //     THE SOFTWARE.
 // </copyright>
 // ----------------------------------------------------------------------------------
-
+#pragma warning disable 1591
 namespace NMemory.Tables
 {
     using System;
@@ -60,7 +60,7 @@ namespace NMemory.Tables
         }
 
         /// <summary>
-        ///     Prevents a default instance of the <see cref="DefaultTable{TPrimaryKey}" /> 
+        ///     Prevents a default instance of the <see cref="DefaultTable{TEntity,TPrimaryKey}" /> 
         ///     class from being created.
         /// </summary>
         private DefaultTable()
@@ -123,8 +123,8 @@ namespace NMemory.Tables
         /// <summary>
         ///     Core implementation of an entity delete.
         /// </summary>
-        /// <param name="key">
-        ///     The primary key of the entity to be deleted.
+        /// <param name="expression">
+        ///     The expression to compile
         /// </param>
         /// <param name="transaction">
         ///     The transaction within which the delete operation is executed.
