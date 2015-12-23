@@ -452,7 +452,7 @@ namespace DLaB.Common
 
             if (ex.InnerException != null)
             {
-                s = String.Format("{0} ---> {1}{2}   --- End of inner exception stack trace ---{2}", s, ex.InnerException.ToStringWithCallStack(), Environment.NewLine);
+                s = string.Format("{0} ---> {1}{2}   --- End of inner exception stack trace ---{2}", s, ex.InnerException.ToStringWithCallStack(), Environment.NewLine);
             }
             
             var stackTrace = ex.StackTrace;

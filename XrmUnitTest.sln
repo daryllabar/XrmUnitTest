@@ -35,6 +35,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Plugin", "Example.P
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{775B4069-F435-4B94-A185-EAFD10B33495}"
 	ProjectSection(SolutionItems) = preProject
+		DLaB_Dynamics_64x64.png = DLaB_Dynamics_64x64.png
 		README.md = README.md
 	EndProjectSection
 EndProject
