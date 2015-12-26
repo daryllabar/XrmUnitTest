@@ -37,6 +37,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm.Tests", "DLaB.Xrm.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmUnitTest.Test", "XrmUnitTest.Test\XrmUnitTest.Test.csproj", "{B872C19C-94A6-4659-A2D6-10BBF05FBE1A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{C80A3A8A-7A62-45E1-924D-FE87D915CEA9}"
+	ProjectSection(SolutionItems) = preProject
+		DLaB.Common\DLaB.Common.nuspec = DLaB.Common\DLaB.Common.nuspec
+		DLaB.Xrm\DLaB.Xrm.nuspec = DLaB.Xrm\DLaB.Xrm.nuspec
+		DLaB.Xrm.Test\XrmUnitTest.nuspec = DLaB.Xrm.Test\XrmUnitTest.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

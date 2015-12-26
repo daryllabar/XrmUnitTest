@@ -780,9 +780,9 @@ namespace DLaB.Xrm
 
         #region IExecutionContext
 
-        private static List<String> ToStringDebug(this IExecutionContext context)
+        private static List<string> ToStringDebug(this IExecutionContext context)
         {
-            var lines = new List<String>
+            var lines = new List<string>
             {
                 "BusinessUnitId: " + context.BusinessUnitId,
                 "CorrelationId: " + context.CorrelationId,
