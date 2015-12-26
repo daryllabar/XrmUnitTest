@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DLaB.Xrm")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Provides Non-Crm-Org-Specific Xrm Extensions")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Daryl LaBar")]
 [assembly: AssemblyProduct("DLaB.Xrm")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
