@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DLaB.Xrm</id>
-	  <version>1.0.1</version>
+	  <version>1.0.1.3-alpha</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>
@@ -10,8 +10,8 @@
     <iconUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/NuGet/DLaB_Dynamics_64x64.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Contains extensions for Xrm development.  </description>
-    <releaseNotes>Initial NuGet Release!</releaseNotes>
-    <copyright>Copyright 2015</copyright>
+    <releaseNotes>Fixed Namespacing of SerializableAttributeCollection</releaseNotes>
+    <copyright>Copyright 2016</copyright>
     <tags>Dynamics CRM 2015 Plugin XRM</tags>
 	<dependencies>
     <group targetFramework=".NETFramework4.5">

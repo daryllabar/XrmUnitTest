@@ -8,7 +8,7 @@ namespace DLaB.Xrm.Sandbox.Serialization
     /// Sandbox Serialization Safe KeyValuePairOfRelationship
     /// </summary>
     [DataContract(Namespace = "http://schemas.datacontract.org/2004/07/System.Collections.Generic")]
-    public class KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN
+    public struct KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN
     {
         /// <summary>
         /// Gets or sets the key.
@@ -24,11 +24,6 @@ namespace DLaB.Xrm.Sandbox.Serialization
         /// The value.
         /// </value>
         public SerializableEntityCollection value { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN"/> class.
-        /// </summary>
-        public KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN"/> class.

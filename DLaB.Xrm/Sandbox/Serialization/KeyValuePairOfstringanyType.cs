@@ -9,8 +9,8 @@ namespace DLaB.Xrm.Sandbox.Serialization
     /// <summary>
     /// Sandbox Serialization Safe KeyValuePairOfstringanyType
     /// </summary>
-    [DataContract(Namespace = "http://schemas.datacontract.org/2004/07/System.Collections.Generic")]
-    public class KeyValuePairOfstringanyType
+    [DataContract (Namespace = "http://schemas.datacontract.org/2004/07/System.Collections.Generic")]
+    public struct KeyValuePairOfstringanyType
     {
         /// <summary>
         /// Gets or sets the key.
@@ -28,11 +28,6 @@ namespace DLaB.Xrm.Sandbox.Serialization
         /// </value>
         [DataMember]
         public object value { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="KeyValuePairOfstringanyType"/> class.
-        /// </summary>
-        public KeyValuePairOfstringanyType() {}
 
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyValuePairOfstringanyType"/> class.

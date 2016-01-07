@@ -124,7 +124,6 @@
     <Compile Include="QuerySettings.cs" />
     <Compile Include="RetrieveAllEntities.cs" />
     <Compile Include="Sandbox\ExceptionHandler.cs" />
-    <Compile Include="Sandbox\Serialization\KeyValuePair.cs" />
     <Compile Include="Sandbox\Serialization\KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN.cs" />
     <Compile Include="Sandbox\Serialization\KeyValuePairOfstringanyType.cs" />
     <Compile Include="Sandbox\Serialization\KeyValuePairOfstringstring.cs" />

@@ -116,14 +116,9 @@ namespace DLaB.Xrm.Tests.Sandbox.Serialization
             //
             // Assert
             //
-            var genericNamespace = @"xmlns:d2p2=""http://schemas.datacontract.org/2004/07/System.Collections.Generic";
+            Assert.AreEqual(xrmXml.SubstringByString("<Attributes ", "</Attributes"), xml.SubstringByString("<Attributes ", "</Attributes").Replace(@" z:Size=""2""", string.Empty));
             var sandboxNamespace = @"=""http://schemas.datacontract.org/2004/07/DLaB.Xrm.Sandbox.Serialization""";
-            Assert.IsTrue(xrmXml.Contains(genericNamespace));
-            Assert.IsTrue(xml.Contains(genericNamespace));
             Assert.IsFalse(xml.Contains(sandboxNamespace));
-
         }
-
-
     }
 }
