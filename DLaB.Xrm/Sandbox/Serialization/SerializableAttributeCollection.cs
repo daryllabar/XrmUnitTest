@@ -7,7 +7,7 @@ namespace DLaB.Xrm.Sandbox.Serialization
     /// <summary>
     /// Sandbox safe Serializable Attribute Collection
     /// </summary>
-    [CollectionDataContract(Name = "AttributeCollection", Namespace = "http://schemas.microsoft.com/xrm/2011/Contracts")]
+    [CollectionDataContract(Name = "AttributeCollection", Namespace = "http://schemas.datacontract.org/2004/07/System.Collections.Generic")]
     public class SerializableAttributeCollection : List<KeyValuePairOfstringanyType>
     {
 

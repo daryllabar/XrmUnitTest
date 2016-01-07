@@ -125,7 +125,6 @@
     <Compile Include="Builders\ServiceProviderBuilderTests.cs" />
     <Compile Include="EntityDependencyTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sandbox\Serialization\SerializableEntityTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DLaB.Common\DLaB.Common.csproj">

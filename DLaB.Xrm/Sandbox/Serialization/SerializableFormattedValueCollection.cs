@@ -7,7 +7,7 @@ namespace DLaB.Xrm.Sandbox.Serialization
     /// <summary>
     /// Sandbox safe FormattedValueCollection
     /// </summary>
-    [CollectionDataContract(Name = "FormattedValueCollection", Namespace = "http://schemas.microsoft.com/xrm/2011/Contracts")]
+    [CollectionDataContract(Name = "FormattedValueCollection", Namespace = "http://schemas.datacontract.org/2004/07/System.Collections.Generic")]
     public class SerializableFormattedValueCollection: List<KeyValuePairOfstringstring>
     {
         /// <summary>

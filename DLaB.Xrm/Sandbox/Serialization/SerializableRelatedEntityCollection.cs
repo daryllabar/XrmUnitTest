@@ -7,7 +7,7 @@ namespace DLaB.Xrm.Sandbox.Serialization
     /// <summary>
     /// Sandbox safe Serialization for Related Entity Collection
     /// </summary>
-    [CollectionDataContract(Name = "RelatedEntityCollection", Namespace = "http://schemas.microsoft.com/xrm/2011/Contracts")]
+    [CollectionDataContract(Name = "RelatedEntityCollection", Namespace = "http://schemas.datacontract.org/2004/07/System.Collections.Generic")]
     public class SerializableRelatedEntityCollection: List<KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN>
     {
         /// <summary>

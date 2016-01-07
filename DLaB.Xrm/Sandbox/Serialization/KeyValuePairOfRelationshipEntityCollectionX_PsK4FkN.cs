@@ -1,4 +1,5 @@
-﻿using Microsoft.Xrm.Sdk;
+﻿using System.Runtime.Serialization;
+using Microsoft.Xrm.Sdk;
 // ReSharper disable InconsistentNaming
 
 namespace DLaB.Xrm.Sandbox.Serialization
@@ -6,6 +7,7 @@ namespace DLaB.Xrm.Sandbox.Serialization
     /// <summary>
     /// Sandbox Serialization Safe KeyValuePairOfRelationship
     /// </summary>
+    [DataContract(Namespace = "http://schemas.datacontract.org/2004/07/System.Collections.Generic")]
     public class KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN
     {
         /// <summary>

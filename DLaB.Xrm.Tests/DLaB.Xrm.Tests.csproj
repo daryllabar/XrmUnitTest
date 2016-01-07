@@ -114,13 +114,17 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
     <Compile Include="ExtensionsIOrganizationServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sandbox\ExceptionHandlerTests.cs" />
+    <Compile Include="Sandbox\Serialization\SerializableEntityTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DLaB.Common\DLaB.Common.csproj">
