@@ -31,7 +31,7 @@ namespace DLaB.Xrm.Plugin
         /// </value>
         protected string UnsecureConfig { get; set; }
 
-        #endregion // Properties
+        #endregion Properties
 
         #region Constructors
 
@@ -43,7 +43,7 @@ namespace DLaB.Xrm.Plugin
             RegisteredEvents = new List<RegisteredEvent>();
         }
 
-        #endregion // Constructors
+        #endregion Constructors
 
         #region Abstract Methods / Properties
 
@@ -65,7 +65,7 @@ namespace DLaB.Xrm.Plugin
         /// <returns></returns>
         protected abstract T CreateLocalPluginContext(IServiceProvider serviceProvider);
 
-        #endregion // Abstract Methods / Properties
+        #endregion Abstract Methods / Properties
 
         /// <summary>
         /// Executes the plug-in.

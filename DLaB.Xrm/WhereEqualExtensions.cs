@@ -169,9 +169,42 @@ namespace DLaB.Xrm
             return orFilter;
         }
 
-        #endregion // FilterExpression
+        #endregion FilterExpression
 
         #region IOrganizationService
+
+        #region GetAllEntities
+
+        /// <summary>
+        /// Gets all Entities where the columnNameAndValue Pairs match
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="logicalName">LogicalName of the Entity.</param>
+        /// <param name="columnNameAndValuePairs">List of pairs that look like this:
+        /// (string name of the column, value of the column) ie. "name", "John Doe" </param>
+        /// <returns></returns>
+        public static IEnumerable<Entity> GetAllEntities(this IOrganizationService service, string logicalName,
+                params object[] columnNameAndValuePairs)
+        {
+            return service.GetAllEntities<Entity>(QueryExpressionFactory.Create(logicalName, columnNameAndValuePairs));
+        }
+
+        /// <summary>
+        /// Gets all Entities where the columnNameAndValue Pairs match
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="logicalName">LogicalName of the Entity.</param>
+        /// <param name="columnSet">Columns to retrieve</param>
+        /// <param name="columnNameAndValuePairs">List of pairs that look like this:
+        /// (string name of the column, value of the column) ie. "name", "John Doe" </param>
+        /// <returns></returns>
+        public static IEnumerable<Entity> GetAllEntities(this IOrganizationService service, string logicalName, ColumnSet columnSet,
+                params object[] columnNameAndValuePairs)
+        {
+            return service.GetAllEntities<Entity>(QueryExpressionFactory.Create(logicalName, columnSet, columnNameAndValuePairs));
+        }
+
+        #endregion GetAllEntities
 
         #region GetAllEntities<T>
 
@@ -222,7 +255,41 @@ namespace DLaB.Xrm
             return service.GetAllEntities(QueryExpressionFactory.Create<T>(columnSet, columnNameAndValuePairs));
         }
 
-        #endregion // GetAllEntities<T>
+        #endregion GetAllEntities<T>
+
+        #region GetEntities
+
+        /// <summary>
+        /// Gets first 5000 Active Entities where the columnNameAndValue Pairs match
+        /// </summary>
+        /// <param name="service">The service.</param>
+        /// <param name="logicalName">LogicalName of the Entity.</param>
+        /// <param name="columnNameAndValuePairs">List of pairs that look like this:
+        /// (string name of the column, value of the column) ie. "name", "John Doe"</param>
+        /// <returns></returns>
+        public static List<Entity> GetEntities(this IOrganizationService service, string logicalName,
+                params object[] columnNameAndValuePairs)
+        {
+            return service.GetEntities<Entity>(QueryExpressionFactory.Create(logicalName, columnNameAndValuePairs));
+        }
+
+        /// <summary>
+        /// Gets first 5000 Active Entities (with the given subset of columns only) 
+        /// where the columnNameAndValue Pairs match
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="logicalName">LogicalName of the Entity.</param>
+        /// <param name="columnSet">Columns to retrieve</param>
+        /// <param name="columnNameAndValuePairs">List of pairs that look like this:
+        /// (string name of the column, value of the column) ie. "name", "John Doe" </param>
+        /// <returns></returns>
+        public static List<Entity> GetEntities(this IOrganizationService service, string logicalName, ColumnSet columnSet,
+                params object[] columnNameAndValuePairs)
+        {
+            return service.GetEntities<Entity>(QueryExpressionFactory.Create(logicalName, columnSet, columnNameAndValuePairs));
+        }
+
+        #endregion GetEntities
 
         #region GetEntities<T>
 
@@ -274,7 +341,45 @@ namespace DLaB.Xrm
             return service.GetEntities(QueryExpressionFactory.Create<T>(columnSet, columnNameAndValuePairs));
         }
 
-        #endregion // GetEntities<T>
+        #endregion GetEntities<T>
+
+        #region GetFirst
+
+        /// <summary>
+        /// Retreives the first Active entity where the columnNameAndValue Pairs match
+        /// </summary>
+        /// <param name="service">open IOrganizationService</param>
+        /// <param name="logicalName">LogicalName of the Entity.</param>
+        /// <param name="columnNameAndValuePairs">List of pairs that look like this:
+        /// (string name of the column, value of the column) ie. "name","John Doe" goes to entity.name = "John Doe"</param>
+        /// <returns></returns>
+        public static Entity GetFirst(this IOrganizationService service, string logicalName,
+                params object[] columnNameAndValuePairs)
+        {
+            var entity = service.GetFirstOrDefault(logicalName, columnNameAndValuePairs);
+            AssertExistsWhere(entity, columnNameAndValuePairs);
+            return entity;
+        }
+
+        /// <summary>
+        /// Retreives the first Active entity (with the given subset of columns only)
+        /// where the columnNameAndValue Pairs match
+        /// </summary>
+        /// <param name="service">The service.</param>
+        /// <param name="logicalName">LogicalName of the Entity.</param>
+        /// <param name="columnSet">Columns to retrieve</param>
+        /// <param name="columnNameAndValuePairs">List of pairs that look like this:
+        /// (string name of the column, value of the column) ie. "name","John Doe" goes to entity.name = "John Doe"</param>
+        /// <returns></returns>
+        public static Entity GetFirst(this IOrganizationService service, string logicalName, ColumnSet columnSet,
+                params object[] columnNameAndValuePairs)
+        {
+            var entity = service.GetFirstOrDefault(logicalName, columnSet, columnNameAndValuePairs);
+            AssertExistsWhere(entity, columnNameAndValuePairs);
+            return entity;
+        }
+
+        #endregion GetFirst
 
         #region GetFirst<T>
 
@@ -333,7 +438,7 @@ namespace DLaB.Xrm
             return entity;
         }
 
-        #endregion // GetFirst<T>
+        #endregion GetFirst<T>
 
         // ReSharper disable once UnusedParameter.Local
         private static void AssertExistsWhere<T>(T entity, object[] columnNameAndValuePairs) where T : Entity
@@ -344,6 +449,8 @@ namespace DLaB.Xrm
                     QueryExpressionFactory.Create<T>((ColumnSet)null, true, columnNameAndValuePairs).GetSqlStatement());
             }
         }
+
+        #region GetFirstOrDefault
 
         /// <summary>
         /// Retreives the first Active entity where the columnNameAndValue Pairs match
@@ -379,6 +486,8 @@ namespace DLaB.Xrm
             };
             return service.RetrieveMultiple(settings.CreateExpression(columnNameAndValuePairs)).Entities.FirstOrDefault();
         }
+
+        #endregion GetFirstOrDefault
 
         #region GetFirstOrDefault<T>
 
@@ -440,7 +549,7 @@ namespace DLaB.Xrm
             return service.GetEntities<T>(settings.CreateExpression(columnNameAndValuePairs)).FirstOrDefault();
         }
 
-        #endregion // GetFirstOrDefault<T>
+        #endregion GetFirstOrDefault<T>
 
         #region Equal Only Extensions
 
@@ -530,9 +639,9 @@ namespace DLaB.Xrm
             return result;
         }
 
-        #endregion // Equal Only Extensions
+        #endregion Equal Only Extensions
 
-        #endregion // IOrganizationService
+        #endregion IOrganizationService
 
         #region LinkEntity
 
@@ -548,7 +657,7 @@ namespace DLaB.Xrm
             return linkEntity;
         }
 
-        #endregion // LinkEntity
+        #endregion LinkEntity
 
         #region OrganizationRequestCollection
 
@@ -589,7 +698,7 @@ namespace DLaB.Xrm
             requests.Add(new RetrieveMultipleRequest { Query = QueryExpressionFactory.Create(anonymousTypeInitializer, columnNameAndValuePairs), });
         }
 
-        #endregion // OrganizationRequestCollection
+        #endregion OrganizationRequestCollection
 
         #region QueryExpression
 
@@ -607,6 +716,6 @@ namespace DLaB.Xrm
             return query;
         }
 
-        #endregion // QueryExpression
+        #endregion QueryExpression
     }
 }

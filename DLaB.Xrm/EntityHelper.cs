@@ -146,7 +146,7 @@ namespace DLaB.Xrm
             return mappings.ContainsKey(entityLogicalName);
         }
 
-        #endregion // Determine Type
+        #endregion Determine Type
 
         #region Determine Id Attribute Name
 
@@ -213,7 +213,7 @@ namespace DLaB.Xrm
             return GetIrregularIdAttributeName(GetEntityLogicalName<T>());
         }
 
-        #endregion // Determine Id Attribute Name
+        #endregion Determine Id Attribute Name
 
         #region Determine Entity Attribute Name Name
 
@@ -475,7 +475,7 @@ namespace DLaB.Xrm
             }
         }
 
-        #endregion // Determine Entity Attribute Name Name
+        #endregion Determine Entity Attribute Name Name
 
         #region Determine Parent Attribute Name
 

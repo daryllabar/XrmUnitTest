@@ -138,16 +138,15 @@
     <Compile Include="WhereInExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DLaB.Xrm.snk" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\DLaB.Common\DLaB.Common.csproj">
       <Project>{a7284a23-15f3-411d-bc26-2890a11053fe}</Project>
       <Name>DLaB.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="DLaB.Xrm.snk" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

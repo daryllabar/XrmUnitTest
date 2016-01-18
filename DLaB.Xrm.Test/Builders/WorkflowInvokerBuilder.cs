@@ -156,7 +156,7 @@ namespace DLaB.Xrm.Test.Builders
             return This;
         }
 
-        #endregion // Fleunt Methods
+        #endregion Fleunt Methods
 
         /// <summary>
         /// Builds this instance.

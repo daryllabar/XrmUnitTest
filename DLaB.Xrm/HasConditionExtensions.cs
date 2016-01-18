@@ -16,7 +16,7 @@ namespace DLaB.Xrm
                 c1.Values.SequenceEqual(c2.Values));
         }
 
-        #endregion // ConditionExpression
+        #endregion ConditionExpression
 
         #region FilterExpression
 
@@ -47,7 +47,7 @@ namespace DLaB.Xrm
                 filter.Filters.Any(f => f.HasCondition(condition));
         }
 
-        #endregion // FilterExpression
+        #endregion FilterExpression
 
         #region LinkEntity
 
@@ -109,7 +109,7 @@ namespace DLaB.Xrm
             return link.LinkToEntityName == logicalName || link.LinkEntities.Any(l => l.HasEntity(logicalName));
         }
 
-        #endregion // LinkEntity
+        #endregion LinkEntity
 
         #region QueryExpression
 
@@ -171,6 +171,6 @@ namespace DLaB.Xrm
             return qe.EntityName == logicalName || qe.LinkEntities.Any(l => l.HasEntity(logicalName));
         }
 
-        #endregion // QueryExpression   
+        #endregion QueryExpression   
     }
 }

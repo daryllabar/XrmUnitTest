@@ -34,7 +34,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         protected abstract TEntity BuildInternal();
 
-        #endregion // Abstract Methods
+        #endregion Abstract Methods
 
         #region Constructors
 

@@ -25,7 +25,7 @@ namespace DLaB.Xrm.Test
         /// </summary>
         public static EntityDependency Mapper => Singleton.Value;
 
-        #endregion // Singleton Logic
+        #endregion Singleton Logic
 
         #region Properties
 

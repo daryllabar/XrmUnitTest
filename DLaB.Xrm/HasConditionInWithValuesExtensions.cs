@@ -18,7 +18,7 @@ namespace DLaB.Xrm
                 !list.Except(c1.Values).Any()); // http://stackoverflow.com/questions/332973/linq-check-whether-an-array-is-a-subset-of-another
         }
 
-        #endregion // ConditionExpression
+        #endregion ConditionExpression
 
         #region FilterExpression
 
@@ -41,7 +41,7 @@ namespace DLaB.Xrm
                 filter.Filters.Any(f => f.HasConditionInWithValues(columnNameAndValuePairs));
         }
 
-        #endregion // FilterExpression
+        #endregion FilterExpression
 
         #region LinkEntity
 
@@ -56,7 +56,7 @@ namespace DLaB.Xrm
             return link.LinkCriteria.HasConditionInWithValues(columnNameAndValuePairs) || link.LinkEntities.Any(l => l.HasConditionInWithValues(columnNameAndValuePairs));
         }
 
-        #endregion // LinkEntity
+        #endregion LinkEntity
 
         #region QueryExpression
 
@@ -72,6 +72,6 @@ namespace DLaB.Xrm
                   qe.LinkEntities.Any(l => l.HasConditionInWithValues(columnNameAndValuePairs));
         }
 
-        #endregion // QueryExpression
+        #endregion QueryExpression
     }
 }

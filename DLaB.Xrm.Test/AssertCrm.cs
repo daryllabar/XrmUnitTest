@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Test
 
         private IOrganizationService Service { get; set; }
 
-        #endregion // Properties
+        #endregion Properties
 
         #region Constructors
 
@@ -28,7 +28,7 @@ namespace DLaB.Xrm.Test
             Service = service;    
         }
 
-        #endregion // Constructors
+        #endregion Constructors
 
         #region Exists (Entity)
 
@@ -108,7 +108,7 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        #endregion // Exists (Entity)
+        #endregion Exists (Entity)
 
         #region Exists (EntityReference)
 
@@ -198,7 +198,7 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        #endregion // Exists (EntityReference)
+        #endregion Exists (EntityReference)
 
         #region IsActive (Entity)
 
@@ -294,7 +294,7 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        #endregion // IsActive (Entity)
+        #endregion IsActive (Entity)
 
         #region IsActive (EntityReference)
 
@@ -381,7 +381,7 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        #endregion // IsActive (EntityReference)
+        #endregion IsActive (EntityReference)
 
         #region IsNotActive (Entity)
 
@@ -477,7 +477,7 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        #endregion // IsNotActive (Entity)
+        #endregion IsNotActive (Entity)
 
         #region IsNotActive (EntityReference)
 
@@ -564,7 +564,7 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        #endregion // IsNotActive (EntityReference)
+        #endregion IsNotActive (EntityReference)
 
         #region NotExists (Entity)
 
@@ -640,7 +640,7 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        #endregion // NotExists (Entity)
+        #endregion NotExists (Entity)
 
         #region NotExists (EntityReference)
 
@@ -716,7 +716,7 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        #endregion // NotExists (EntityReference)
+        #endregion NotExists (EntityReference)
 
         #region NotExists (Id)
 
@@ -792,7 +792,7 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        #endregion // NotExists (Id)
+        #endregion NotExists (Id)
 
         #region Handle
 
@@ -815,6 +815,6 @@ namespace DLaB.Xrm.Test
             throw TestSettings.TestFrameworkProvider.Value.GetInconclusiveException(message);
         }
 
-        #endregion // Handle
+        #endregion Handle
     }
 }

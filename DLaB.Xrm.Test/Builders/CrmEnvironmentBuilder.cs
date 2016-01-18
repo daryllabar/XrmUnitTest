@@ -157,7 +157,7 @@ namespace DLaB.Xrm.Test.Builders
             return WithEntities(typeof (TIdsStruct).GetIds().ToArray());
         }
 
-        #endregion // Fluent Methods
+        #endregion Fluent Methods
 
         /// <summary>
         /// Creates all of the Ids defined by the builder, using the given Service
@@ -254,7 +254,7 @@ namespace DLaB.Xrm.Test.Builders
                 Ids = new Dictionary<Guid, Id>();
             }
 
-            #endregion // Constructors
+            #endregion Constructors
 
             /// <summary>
             /// Adds the custom fluent action if one doesn't already exist, and combines if one does already exist.

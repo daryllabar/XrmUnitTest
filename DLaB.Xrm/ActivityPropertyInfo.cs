@@ -261,7 +261,7 @@ namespace DLaB.Xrm
                 case "webresource":
                 case "workflowdependency":
                 case "workflowlog":
-                #endregion // Default CRM Entites with no active flag
+                #endregion Default CRM Entites with no active flag
                     ActiveAttribute = ActiveAttributeType.None;
                     break;
 

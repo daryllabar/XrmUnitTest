@@ -62,7 +62,7 @@ namespace DLaB.Common
             return compressed;
         }
 
-        #endregion // Byte[]
+        #endregion Byte[]
 
         #region ConcurrentDictionary<,>
 
@@ -174,7 +174,7 @@ namespace DLaB.Common
             return value;
         }
 
-        #endregion // ConcurrentDictionary<,>
+        #endregion ConcurrentDictionary<,>
 
         #region ConcurrentQueue<T>
 
@@ -192,7 +192,7 @@ namespace DLaB.Common
             }
         }
 
-        #endregion // ConcurrentQueue
+        #endregion ConcurrentQueue
 
         #region DateTime
 
@@ -222,7 +222,7 @@ namespace DLaB.Common
             return start.GetValueOrDefault() <= date && date <= end.GetValueOrDefault();
         }
 
-        #endregion // Date Time
+        #endregion Date Time
 
         #region Dictionary<,>
 
@@ -329,7 +329,7 @@ namespace DLaB.Common
             return source.TryGetValue(key, out value) ? value : defaultValue;
         }
 
-        #endregion // Dictionary<,>
+        #endregion Dictionary<,>
 
         #region Dictionary<, HastSet<>>
         /// <summary>
@@ -432,7 +432,7 @@ namespace DLaB.Common
             }
         }
 
-        #endregion // Dicitonary<,List<>>
+        #endregion Dicitonary<,List<>>
 
         #region Exception
 
@@ -480,7 +480,7 @@ namespace DLaB.Common
             return ((MemberExpression)exp.Body).Member.Name.ToLower();
         }
 
-        #endregion // Expression<Func<T,TProperty>>
+        #endregion Expression<Func<T,TProperty>>
 
         #region ICollection
 
@@ -497,7 +497,7 @@ namespace DLaB.Common
             return !collection.Contains(value);
         }
 
-        #endregion // ICollection
+        #endregion ICollection
 
         #region IEnumerable<string>
 
@@ -660,7 +660,7 @@ namespace DLaB.Common
             return objArray;
         }
 
-        #endregion // IEnumerable<T>
+        #endregion IEnumerable<T>
 
         #region IEquatable<T>
 
@@ -688,7 +688,7 @@ namespace DLaB.Common
             return values.Contains(value);
         }
 
-        #endregion // IEquatable<T>
+        #endregion IEquatable<T>
 
         #region IExtensibleDataObject
 
@@ -714,7 +714,7 @@ namespace DLaB.Common
             }
         }
 
-        #endregion // IExtensibleDataObject
+        #endregion IExtensibleDataObject
 
         #region Object
 
@@ -733,7 +733,7 @@ namespace DLaB.Common
             }
         }
 
-        #endregion // Object
+        #endregion Object
 
         #region Queue<T>
 
@@ -751,7 +751,7 @@ namespace DLaB.Common
             }
         }
 
-        #endregion // Queue
+        #endregion Queue
 
         #region String
 
@@ -927,7 +927,7 @@ namespace DLaB.Common
             return values.Any(str => value.Equals(str, comparison));
         }
 
-        #endregion // String.In
+        #endregion String.In
 
         /// <summary>
         /// Nullable int parse
@@ -989,7 +989,7 @@ namespace DLaB.Common
             return end < 0 ? value.Substring(startIndex) : value.Substring(startIndex, end - startIndex);
         }
 
-        #endregion // SubstringByString
+        #endregion SubstringByString
 
         /// <summary>
         /// Inserts spaces before capital letters.  
@@ -1043,7 +1043,7 @@ namespace DLaB.Common
             return encoding.GetBytes(text).Zip();
         }
 
-        #endregion // String
+        #endregion String
 
         #region StringBuilder
 
@@ -1072,7 +1072,7 @@ namespace DLaB.Common
             sb.AppendLogLine(String.Format(message, newArgs));
         }
 
-        #endregion // StringBuilder
+        #endregion StringBuilder
 
         #region <T>
 

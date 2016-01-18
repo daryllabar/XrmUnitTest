@@ -176,7 +176,7 @@ namespace DLaB.Xrm
             return Query.AddLink(linkToEntityName, linkAttributesName, linkAttributesName, joinType);
         }
 
-        #endregion // AddLink
+        #endregion AddLink
 
         #region AddLink<T>
 
@@ -234,7 +234,7 @@ namespace DLaB.Xrm
         {
             return Query.AddLink(linkAttributesName, linkAttributesName, joinType, anonymousTypeInitializer);
         }
-        #endregion // Same Link Attribute Name
+        #endregion Same Link Attribute Name
 
         #region Different Link Attribute Names
         /// <summary>
@@ -290,9 +290,9 @@ namespace DLaB.Xrm
         {
             return Query.AddLink(linkFromAttributeName, linkToAttributeName, joinType, anonymousTypeInitializer);
         }
-        #endregion // Different Link Attribute Names
+        #endregion Different Link Attribute Names
 
-        #endregion // AddLink<T>
+        #endregion AddLink<T>
 
         #region QueryExpression Extensions Methods
 
@@ -370,6 +370,6 @@ namespace DLaB.Xrm
         }
 
 
-        #endregion // QueryExpression Extension Methods
+        #endregion QueryExpression Extension Methods
     }
 }

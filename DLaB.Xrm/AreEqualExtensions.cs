@@ -18,7 +18,7 @@ namespace DLaB.Xrm
             return new ColumnSetComparer().Equals(cs, columnSet);
         }
 
-        #endregion // ColumnSet
+        #endregion ColumnSet
 
         #region FilterExpression
 
@@ -33,7 +33,7 @@ namespace DLaB.Xrm
             return new FilterExpressionComparer().Equals(fe, filter);
         }
 
-        #endregion // FilterExpression
+        #endregion FilterExpression
 
         #region PagingInfo
 
@@ -48,7 +48,7 @@ namespace DLaB.Xrm
             return new PagingInfoComparer().Equals(infoThis, info);
         }
 
-        #endregion // PagingInfo
+        #endregion PagingInfo
 
         #region QueryExpression
 
@@ -63,6 +63,6 @@ namespace DLaB.Xrm
             return new QueryExpressionComparer().Equals(qeThis, qe);
         }
 
-        #endregion // QueryExpression
+        #endregion QueryExpression
     }
 }
