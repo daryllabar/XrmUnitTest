@@ -243,7 +243,15 @@ namespace DLaB.Xrm
             }
             else
             {
-                url = $@"http://{uri.Host}/{uri.Segments[1]}main.aspx?{parameters}";
+                var host = uri.Host;
+                var orgName = uri.Segments.Length > 1 ? uri.Segments[1] : string.Empty;
+                // Handle Online Url
+                if (host.EndsWith("dynamics.com") && host.Contains(".api."))
+                {
+                    host = host.Remove(host.LastIndexOf(".api.", StringComparison.Ordinal), 4);
+                    orgName = string.Empty;
+                }
+                url = $@"http://{host}/{orgName}main.aspx?{parameters}";
             }
             return url;
         }
