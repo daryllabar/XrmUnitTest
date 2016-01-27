@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>XrmUnitTest</id>
-    <version>1.0.1</version>
+    <version>1.1.1</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>
@@ -10,15 +10,14 @@
     <iconUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/DLaB_Dynamics_64x64.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Contains Xrm Unit Testing Library</description>
-    <releaseNotes>Initial NuGet Release!</releaseNotes>
-    <copyright>Copyright 2015</copyright>
-    <tags>Dynamics CRM 2015 Plugin XRM UnitTest</tags>
+    <releaseNotes>Update To CRM 2016 SDK Dlls</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>Dynamics CRM 2016 Plugin XRM UnitTest</tags>
 	<dependencies>
     <group targetFramework=".NETFramework4.5">
-      <dependency id="DLaB.Common" version="1.0.1" />
-      <dependency id="DLaB.Xrm" version="1.0.1" />
-      <dependency id="Microsoft.CrmSdk.Deployment" version="7.1.0" />
-      <dependency id="Microsoft.CrmSdk.Workflow" version="7.1.0" />
+      <dependency id="DLaB.Xrm" version="1.1.1" />
+      <dependency id="Microsoft.CrmSdk.Deployment" version="8.0.1" />
+      <dependency id="Microsoft.CrmSdk.Workflow" version="8.0.1" />
       <dependency id="Microsoft.CrmSdk.Extensions" version="7.1.0.1" />
       <dependency id="Microsoft.TeamFoundationServer.ExtendedClient" version="14.89.0" />
       <dependency id="Microsoft.VisualStudio.Services.Client" version="14.89.0" />

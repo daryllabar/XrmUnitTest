@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("bulkdeletefailure")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class BulkDeleteFailure : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -48,6 +48,7 @@ namespace DLaB.Xrm.Entities
 			public const string Campaign_BulkDeleteFailures = "regardingobjectid";
 			public const string CampaignActivity_BulkDeleteFailures = "regardingobjectid";
 			public const string CampaignResponse_BulkDeleteFailures = "regardingobjectid";
+			public const string channelaccessprofile_BulkDeleteFailures = "regardingobjectid";
 			public const string Competitor_BulkDeleteFailures = "regardingobjectid";
 			public const string ConstraintBasedGroup_BulkDeleteFailures = "regardingobjectid";
 			public const string Contact_BulkDeleteFailures = "regardingobjectid";
@@ -67,6 +68,8 @@ namespace DLaB.Xrm.Entities
 			public const string entitlementtemplate_BulkDeleteFailures = "regardingobjectid";
 			public const string EntityMap_BulkDeleteFailures = "regardingobjectid";
 			public const string Equipment_BulkDeleteFailures = "regardingobjectid";
+			public const string externalparty_BulkDeleteFailures = "regardingobjectid";
+			public const string externalpartyitem_BulkDeleteFailures = "regardingobjectid";
 			public const string Fax_BulkDeleteFailures = "regardingobjectid";
 			public const string FixedMonthlyFiscalCalendar_BulkDeleteFailures = "regardingobjectid";
 			public const string Import_BulkDeleteFailures = "regardingobjectid";
@@ -81,6 +84,8 @@ namespace DLaB.Xrm.Entities
 			public const string KbArticle_BulkDeleteFailures = "regardingobjectid";
 			public const string KbArticleComment_BulkDeleteFailures = "regardingobjectid";
 			public const string KbArticleTemplate_BulkDeleteFailures = "regardingobjectid";
+			public const string knowledgearticle_BulkDeleteFailures = "regardingobjectid";
+			public const string KnowledgeBaseRecord_BulkDeleteFailures = "regardingobjectid";
 			public const string Lead_BulkDeleteFailures = "regardingobjectid";
 			public const string Letter_BulkDeleteFailures = "regardingobjectid";
 			public const string List_BulkDeleteFailures = "regardingobjectid";
@@ -96,13 +101,13 @@ namespace DLaB.Xrm.Entities
 			public const string OrderClose_BulkDeleteFailures = "regardingobjectid";
 			public const string Organization_BulkDeleteFailures = "regardingobjectid";
 			public const string PhoneCall_BulkDeleteFailures = "regardingobjectid";
-			public const string plt_idgenerator_BulkDeleteFailures = "regardingobjectid";
 			public const string post_BulkDeleteFailures = "regardingobjectid";
 			public const string PriceLevel_BulkDeleteFailures = "regardingobjectid";
 			public const string Privilege_BulkDeleteFailures = "regardingobjectid";
 			public const string Product_BulkDeleteFailures = "regardingobjectid";
 			public const string ProductPriceLevel_BulkDeleteFailures = "regardingobjectid";
 			public const string ProductSubstitute_BulkDeleteFailures = "regardingobjectid";
+			public const string profilerule_BulkDeleteFailures = "regardingobjectid";
 			public const string QuarterlyFiscalCalendar_BulkDeleteFailures = "regardingobjectid";
 			public const string Queue_BulkDeleteFailures = "regardingobjectid";
 			public const string QueueItem_BulkDeleteFailures = "regardingobjectid";
@@ -136,9 +141,11 @@ namespace DLaB.Xrm.Entities
 			public const string Team_BulkDeleteFailures = "regardingobjectid";
 			public const string Template_BulkDeleteFailures = "regardingobjectid";
 			public const string Territory_BulkDeleteFailures = "regardingobjectid";
+			public const string theme_BulkDeleteFailures = "regardingobjectid";
 			public const string UoM_BulkDeleteFailures = "regardingobjectid";
 			public const string UoMSchedule_BulkDeleteFailures = "regardingobjectid";
 			public const string UserForm_BulkDeleteFailures = "regardingobjectid";
+			public const string usermapping_BulkDeleteFailures = "regardingobjectid";
 			public const string UserQuery_BulkDeleteFailures = "regardingobjectid";
 		}
 
@@ -385,7 +392,7 @@ namespace DLaB.Xrm.Entities
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.ActivityPointer>("ActivityPointer_BulkDeleteFailures", null);
 			}
 		}
-
+		
 		/// <summary>
 		/// N:1 Annotation_BulkDeleteFailures
 		/// </summary>
@@ -565,6 +572,20 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.CampaignResponse>("CampaignResponse_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 channelaccessprofile_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("channelaccessprofile_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.ChannelAccessProfile channelaccessprofile_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfile>("channelaccessprofile_BulkDeleteFailures", null);
 			}
 		}
 		
@@ -835,6 +856,34 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 externalparty_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("externalparty_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.ExternalParty externalparty_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExternalParty>("externalparty_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 externalpartyitem_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("externalpartyitem_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.ExternalPartyItem externalpartyitem_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExternalPartyItem>("externalpartyitem_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 Fax_BulkDeleteFailures
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1027,6 +1076,34 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.KbArticleTemplate>("KbArticleTemplate_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 knowledgearticle_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.KnowledgeArticle knowledgearticle_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("knowledgearticle_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 KnowledgeBaseRecord_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeBaseRecord_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.KnowledgeBaseRecord KnowledgeBaseRecord_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeBaseRecord>("KnowledgeBaseRecord_BulkDeleteFailures", null);
 			}
 		}
 		
@@ -1241,20 +1318,6 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// N:1 plt_idgenerator_BulkDeleteFailures
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("plt_idgenerator_BulkDeleteFailures")]
-		public DLaB.Xrm.Entities.plt_idgenerator plt_idgenerator_BulkDeleteFailures
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntity<DLaB.Xrm.Entities.plt_idgenerator>("plt_idgenerator_BulkDeleteFailures", null);
-			}
-		}
-		
-		/// <summary>
 		/// N:1 post_BulkDeleteFailures
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1335,6 +1398,20 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.ProductSubstitute>("ProductSubstitute_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 profilerule_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("profilerule_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.ChannelAccessProfileRule profilerule_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfileRule>("profilerule_BulkDeleteFailures", null);
 			}
 		}
 		
@@ -1801,6 +1878,20 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 theme_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("theme_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.Theme theme_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Theme>("theme_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 UoM_BulkDeleteFailures
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1843,6 +1934,20 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 usermapping_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("usermapping_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.UserMapping usermapping_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.UserMapping>("usermapping_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 UserQuery_BulkDeleteFailures
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1867,20 +1972,33 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["bulkdeletefailureid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["bulkdeletefailureid"] = base.Id;
+                        break;
+                    case "bulkdeletefailureid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}

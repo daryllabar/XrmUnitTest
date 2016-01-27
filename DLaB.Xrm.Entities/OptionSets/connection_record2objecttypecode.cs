@@ -11,9 +11,12 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public enum connection_record2objecttypecode
 	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Account = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Activity = 4200,
@@ -31,6 +34,9 @@ namespace DLaB.Xrm.Entities
 		Case = 112,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ChannelAccessProfileRule = 9400,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Competitor = 123,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -38,9 +44,6 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Contract = 1010,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Customer = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Email = 4202,
@@ -61,16 +64,16 @@ namespace DLaB.Xrm.Entities
 		Invoice = 1090,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Job = 10007,
+		KnowledgeArticle = 9953,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		KnowledgeBaseRecord = 9930,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Lead = 4,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Letter = 4207,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Location = 10009,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		MarketingList = 4300,
@@ -80,9 +83,6 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Order = 1088,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Partner = 10015,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		PhoneCall = 4210,
@@ -95,6 +95,9 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ProcessSession = 4710,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Product = 1024,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ProfileAlbum = 10000,

@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("systemform")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class SystemForm : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -35,6 +35,7 @@ namespace DLaB.Xrm.Entities
 			public const string IsAIRMerged = "isairmerged";
 			public const string IsCustomizable = "iscustomizable";
 			public const string IsDefault = "isdefault";
+			public const string IsDesktopEnabled = "isdesktopenabled";
 			public const string IsManaged = "ismanaged";
 			public const string IsTabletEnabled = "istabletenabled";
 			public const string Name = "name";
@@ -44,6 +45,7 @@ namespace DLaB.Xrm.Entities
 			public const string PublishedOn = "publishedon";
 			public const string SolutionId = "solutionid";
 			public const string Type = "type";
+			public const string UniqueName = "uniquename";
 			public const string Version = "version";
 			public const string VersionNumber = "versionnumber";
 			public const string Referencingform_ancestor_form = "ancestorformid";
@@ -356,6 +358,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Information that specifies whether the dashboard is enabled for desktop.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isdesktopenabled")]
+		public System.Nullable<bool> IsDesktopEnabled
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isdesktopenabled");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IsDesktopEnabled");
+				this.SetAttributeValue("isdesktopenabled", value);
+				this.OnPropertyChanged("IsDesktopEnabled");
+			}
+		}
+		
+		/// <summary>
 		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ismanaged")]
@@ -497,6 +519,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Type");
 				this.SetAttributeValue("type", value);
 				this.OnPropertyChanged("Type");
+			}
+		}
+		
+		/// <summary>
+		/// Unique Name
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("uniquename")]
+		public string UniqueName
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("uniquename");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("UniqueName");
+				this.SetAttributeValue("uniquename", value);
+				this.OnPropertyChanged("UniqueName");
 			}
 		}
 		
@@ -679,24 +721,38 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["formid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["formid"] = base.Id;
+                        break;
+                    case "formid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
 		public virtual componentstate? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -706,6 +762,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("formactivationstate")]
 		public virtual systemform_formactivationstate? FormActivationStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -720,6 +777,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("formpresentation")]
 		public virtual systemform_formpresentation? FormPresentationEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -734,6 +792,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("type")]
 		public virtual systemform_type? TypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]

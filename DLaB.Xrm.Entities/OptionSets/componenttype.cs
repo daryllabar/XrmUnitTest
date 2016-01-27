@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public enum componenttype
 	{
 		
@@ -43,6 +43,12 @@ namespace DLaB.Xrm.Entities
 		ConvertRuleItem = 155,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CustomControl = 66,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CustomControlDefaultConfig = 68,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		DisplayString = 22,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -59,6 +65,9 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Entity = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		EntityKey = 14,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		EntityMap = 46,
@@ -95,6 +104,12 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ManagedProperty = 13,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		MobileOfflineProfile = 161,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		MobileOfflineProfileItem = 162,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		OptionSet = 9,
@@ -170,6 +185,9 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ServiceEndpoint = 95,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SimilarityRule = 165,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SiteMap = 62,

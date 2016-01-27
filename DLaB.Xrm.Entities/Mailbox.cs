@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public enum MailboxState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("mailbox")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class Mailbox : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -52,6 +52,7 @@ namespace DLaB.Xrm.Entities
 			public const string EntityImageId = "entityimageid";
 			public const string EWSURL = "ewsurl";
 			public const string ExchangeSyncStateXml = "exchangesyncstatexml";
+			public const string FolderHierarchy = "folderhierarchy";
 			public const string ForcedUnlockCount = "forcedunlockcount";
 			public const string HostId = "hostid";
 			public const string IncomingEmailDeliveryMethod = "incomingemaildeliverymethod";
@@ -60,6 +61,7 @@ namespace DLaB.Xrm.Entities
 			public const string IsEmailAddressApprovedByO365Admin = "isemailaddressapprovedbyo365admin";
 			public const string IsForwardMailbox = "isforwardmailbox";
 			public const string IsPasswordSet = "ispasswordset";
+			public const string IsServiceAccount = "isserviceaccount";
 			public const string ItemsFailedForLastSync = "itemsfailedforlastsync";
 			public const string ItemsProcessedForLastSync = "itemsprocessedforlastsync";
 			public const string LastAutoDiscoveredOn = "lastautodiscoveredon";
@@ -81,6 +83,10 @@ namespace DLaB.Xrm.Entities
 			public const string Name = "name";
 			public const string NoACTCount = "noactcount";
 			public const string NoEmailCount = "noemailcount";
+			public const string OfficeAppsDeploymentCompleteOn = "officeappsdeploymentcompleteon";
+			public const string OfficeAppsDeploymentError = "officeappsdeploymenterror";
+			public const string OfficeAppsDeploymentScheduled = "officeappsdeploymentscheduled";
+			public const string OfficeAppsDeploymentStatus = "officeappsdeploymentstatus";
 			public const string OrganizationId = "organizationid";
 			public const string OrgMarkedAsPrimaryForExchangeSync = "orgmarkedasprimaryforexchangesync";
 			public const string OutgoingEmailDeliveryMethod = "outgoingemaildeliverymethod";
@@ -91,12 +97,14 @@ namespace DLaB.Xrm.Entities
 			public const string OwningUser = "owninguser";
 			public const string Password = "password";
 			public const string PostponeMailboxProcessingUntil = "postponemailboxprocessinguntil";
+			public const string PostponeOfficeAppsDeploymentUntil = "postponeofficeappsdeploymentuntil";
 			public const string PostponeSendingUntil = "postponesendinguntil";
 			public const string PostponeTestEmailConfigurationUntil = "postponetestemailconfigurationuntil";
 			public const string ProcessAndDeleteEmails = "processanddeleteemails";
 			public const string ProcessedTimes = "processedtimes";
 			public const string ProcessEmailReceivedAfter = "processemailreceivedafter";
 			public const string ProcessingLastAttemptedOn = "processinglastattemptedon";
+			public const string ProcessingStateCode = "processingstatecode";
 			public const string ReceivingPostponedUntil = "receivingpostponeduntil";
 			public const string ReceivingPostponedUntilForACT = "receivingpostponeduntilforact";
 			public const string RegardingObjectId = "regardingobjectid";
@@ -110,6 +118,7 @@ namespace DLaB.Xrm.Entities
 			public const string UndeliverableFolder = "undeliverablefolder";
 			public const string Username = "username";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
+			public const string VerboseLoggingEnabled = "verboseloggingenabled";
 			public const string VersionNumber = "versionnumber";
 			public const string business_unit_mailbox = "owningbusinessunit";
 			public const string emailserverprofile_mailbox = "emailserverprofile";
@@ -262,6 +271,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
 			}
 		}
 		
@@ -464,6 +480,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Holds the hierarchy of folders under inbox in XML format.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("folderhierarchy")]
+		public string FolderHierarchy
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("folderhierarchy");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("FolderHierarchy");
+				this.SetAttributeValue("folderhierarchy", value);
+				this.OnPropertyChanged("FolderHierarchy");
+			}
+		}
+		
+		/// <summary>
 		/// For internal use only
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("forcedunlockcount")]
@@ -578,6 +614,19 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<bool>>("ispasswordset");
+			}
+		}
+		
+		/// <summary>
+		/// Select whether the mailbox corresponds to one for the service account.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isserviceaccount")]
+		public System.Nullable<bool> IsServiceAccount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isserviceaccount");
 			}
 		}
 		
@@ -893,6 +942,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
 		}
 		
 		/// <summary>
@@ -938,6 +994,72 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<int>>("noemailcount");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the last office apps deployment was completed for a mailbox record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("officeappsdeploymentcompleteon")]
+		public System.Nullable<System.DateTime> OfficeAppsDeploymentCompleteOn
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("officeappsdeploymentcompleteon");
+			}
+		}
+		
+		/// <summary>
+		/// The Office Apps deployment error.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("officeappsdeploymenterror")]
+		public string OfficeAppsDeploymentError
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("officeappsdeploymenterror");
+			}
+		}
+		
+		/// <summary>
+		/// Indicates if the office apps deployment has been scheduled for a mailbox record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("officeappsdeploymentscheduled")]
+		public System.Nullable<bool> OfficeAppsDeploymentScheduled
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("officeappsdeploymentscheduled");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OfficeAppsDeploymentScheduled");
+				this.SetAttributeValue("officeappsdeploymentscheduled", value);
+				this.OnPropertyChanged("OfficeAppsDeploymentScheduled");
+			}
+		}
+		
+		/// <summary>
+		/// Indicates the office apps deployment type for a mailbox record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("officeappsdeploymentstatus")]
+		public Microsoft.Xrm.Sdk.OptionSetValue OfficeAppsDeploymentStatus
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("officeappsdeploymentstatus");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OfficeAppsDeploymentStatus");
+				this.SetAttributeValue("officeappsdeploymentstatus", value);
+				this.OnPropertyChanged("OfficeAppsDeploymentStatus");
 			}
 		}
 		
@@ -1100,6 +1222,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Shows the date and time when the next outlook mail app install will be run for a mailbox record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("postponeofficeappsdeploymentuntil")]
+		public System.Nullable<System.DateTime> PostponeOfficeAppsDeploymentUntil
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("postponeofficeappsdeploymentuntil");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("PostponeOfficeAppsDeploymentUntil");
+				this.SetAttributeValue("postponeofficeappsdeploymentuntil", value);
+				this.OnPropertyChanged("PostponeOfficeAppsDeploymentUntil");
+			}
+		}
+		
+		/// <summary>
 		/// Shows the date and time when the mailbox can start sending emails.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("postponesendinguntil")]
@@ -1206,6 +1348,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Information that indicates whether email will be processed for this mailbox
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("processingstatecode")]
+		public System.Nullable<int> ProcessingStateCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("processingstatecode");
+			}
+		}
+		
+		/// <summary>
 		/// For internal use only.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("receivingpostponeduntil")]
@@ -1262,6 +1417,20 @@ namespace DLaB.Xrm.Entities
 				{
 					return null;
 				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("StateCode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statecode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("StateCode");
 			}
 		}
 		
@@ -1432,6 +1601,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Indicates if verbose tracing needs to be enabled for this mailbox.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("verboseloggingenabled")]
+		public System.Nullable<int> VerboseLoggingEnabled
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("verboseloggingenabled");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("VerboseLoggingEnabled");
+				this.SetAttributeValue("verboseloggingenabled", value);
+				this.OnPropertyChanged("VerboseLoggingEnabled");
+			}
+		}
+		
+		/// <summary>
 		/// Version number of the mailbox.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
@@ -1521,6 +1710,46 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("mailbox_asyncoperations");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.AsyncOperation>("mailbox_asyncoperations", null, value);
 				this.OnPropertyChanged("mailbox_asyncoperations");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N mailbox_mailboxstatistics
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("mailbox_mailboxstatistics")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxStatistics> mailbox_mailboxstatistics
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxStatistics>("mailbox_mailboxstatistics", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("mailbox_mailboxstatistics");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxStatistics>("mailbox_mailboxstatistics", null, value);
+				this.OnPropertyChanged("mailbox_mailboxstatistics");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Mailbox_MailboxTrackingFolder
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Mailbox_MailboxTrackingFolder")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> Mailbox_MailboxTrackingFolder
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("Mailbox_MailboxTrackingFolder", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Mailbox_MailboxTrackingFolder");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("Mailbox_MailboxTrackingFolder", null, value);
+				this.OnPropertyChanged("Mailbox_MailboxTrackingFolder");
 			}
 		}
 		
@@ -1685,6 +1914,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_mailbox_createdonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_mailbox_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_mailbox_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_mailbox_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -1712,6 +1948,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_mailbox_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_mailbox_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_mailbox_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_mailbox_modifiedonbehalfby");
 			}
 		}
 		
@@ -1796,24 +2039,38 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["mailboxid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["mailboxid"] = base.Id;
+                        break;
+                    case "mailboxid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("actdeliverymethod")]
 		public virtual mailbox_actdeliverymethod? ACTDeliveryMethodEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1828,6 +2085,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("actstatus")]
 		public virtual mailbox_actstatus? ACTStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1837,6 +2095,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("emailrouteraccessapproval")]
 		public virtual mailbox_emailrouteraccessapproval? EmailRouterAccessApprovalEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1851,6 +2110,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("incomingemaildeliverymethod")]
 		public virtual mailbox_incomingemaildeliverymethod? IncomingEmailDeliveryMethodEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1865,6 +2125,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("incomingemailstatus")]
 		public virtual mailbox_incomingemailstatus? IncomingEmailStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1874,6 +2135,22 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("officeappsdeploymentstatus")]
+		public virtual mailbox_officeappsdeploymentstatus? OfficeAppsDeploymentStatusEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((mailbox_officeappsdeploymentstatus?)(EntityOptionSetEnum.GetEnum(this, "officeappsdeploymentstatus")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				OfficeAppsDeploymentStatus = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("outgoingemaildeliverymethod")]
 		public virtual mailbox_outgoingemaildeliverymethod? OutgoingEmailDeliveryMethodEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1888,12 +2165,28 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("outgoingemailstatus")]
 		public virtual mailbox_outgoingemailstatus? OutgoingEmailStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
 				return ((mailbox_outgoingemailstatus?)(EntityOptionSetEnum.GetEnum(this, "outgoingemailstatus")));
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public virtual mailbox_statuscode? StatusCodeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((mailbox_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				StatusCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 	}

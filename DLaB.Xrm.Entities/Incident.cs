@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public enum IncidentState
 	{
 		
@@ -30,7 +30,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("incident")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class Incident : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -49,11 +49,13 @@ namespace DLaB.Xrm.Entities
 			public const string ContractId = "contractid";
 			public const string ContractServiceLevelCode = "contractservicelevelcode";
 			public const string CreatedBy = "createdby";
+			public const string CreatedByExternalParty = "createdbyexternalparty";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string CustomerContacted = "customercontacted";
 			public const string CustomerId = "customerid";
 			public const string CustomerSatisfactionCode = "customersatisfactioncode";
+			public const string DecrementEntitlementTerm = "decremententitlementterm";
 			public const string Description = "description";
 			public const string EntitlementId = "entitlementid";
 			public const string EntityImage = "entityimage";
@@ -81,6 +83,7 @@ namespace DLaB.Xrm.Entities
 			public const string Merged = "merged";
 			public const string MessageTypeCode = "messagetypecode";
 			public const string ModifiedBy = "modifiedby";
+			public const string ModifiedByExternalParty = "modifiedbyexternalparty";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string NumberOfChildIncidents = "numberofchildincidents";
@@ -105,6 +108,7 @@ namespace DLaB.Xrm.Entities
 			public const string SentimentValue = "sentimentvalue";
 			public const string ServiceStage = "servicestage";
 			public const string SeverityCode = "severitycode";
+			public const string SLAId = "slaid";
 			public const string SLAInvokedId = "slainvokedid";
 			public const string SocialProfileId = "socialprofileid";
 			public const string StageId = "stageid";
@@ -130,10 +134,13 @@ namespace DLaB.Xrm.Entities
 			public const string Referencingincident_master_incident = "masterid";
 			public const string Referencingincident_parent_incident = "parentcaseid";
 			public const string kbarticle_incidents = "kbarticleid";
+			public const string lk_externalparty_incident_createdby = "createdbyexternalparty";
+			public const string lk_externalparty_incident_modifiedby = "modifiedbyexternalparty";
 			public const string lk_incidentbase_createdby = "createdby";
 			public const string lk_incidentbase_createdonbehalfby = "createdonbehalfby";
 			public const string lk_incidentbase_modifiedby = "modifiedby";
 			public const string lk_incidentbase_modifiedonbehalfby = "modifiedonbehalfby";
+			public const string manualsla_cases = "slaid";
 			public const string processstage_incident = "stageid";
 			public const string product_incidents = "productid";
 			public const string sla_cases = "slainvokedid";
@@ -422,6 +429,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Shows the external party who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdbyexternalparty")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedByExternalParty
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdbyexternalparty");
+			}
+		}
+		
+		/// <summary>
 		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
@@ -444,6 +464,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
 			}
 		}
 		
@@ -504,6 +531,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("CustomerSatisfactionCode");
 				this.SetAttributeValue("customersatisfactioncode", value);
 				this.OnPropertyChanged("CustomerSatisfactionCode");
+			}
+		}
+		
+		/// <summary>
+		/// Shows whether terms of the associated entitlement should be decremented or not.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("decremententitlementterm")]
+		public System.Nullable<bool> DecrementEntitlementTerm
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("decremententitlementterm");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("DecrementEntitlementTerm");
+				this.SetAttributeValue("decremententitlementterm", value);
+				this.OnPropertyChanged("DecrementEntitlementTerm");
 			}
 		}
 		
@@ -1002,6 +1049,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Shows the external party who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedbyexternalparty")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedByExternalParty
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedbyexternalparty");
+			}
+		}
+		
+		/// <summary>
 		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
@@ -1024,6 +1084,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
 			}
 		}
 		
@@ -1434,7 +1501,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Last SLA that was invoked for this case.
+		/// Choose the service level agreement (SLA) that you want to apply to the case record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slaid")]
+		public Microsoft.Xrm.Sdk.EntityReference SLAId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("slaid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SLAId");
+				this.SetAttributeValue("slaid", value);
+				this.OnPropertyChanged("SLAId");
+			}
+		}
+		
+		/// <summary>
+		/// Last SLA that was applied to this case. This field is for internal use only.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slainvokedid")]
 		public Microsoft.Xrm.Sdk.EntityReference SLAInvokedId
@@ -1504,6 +1591,20 @@ namespace DLaB.Xrm.Entities
 				{
 					return null;
 				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("StateCode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statecode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("StateCode");
 			}
 		}
 		
@@ -1628,7 +1729,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// A comma separated list of string values representing the unique identifiers of stages in a Business Process Flow Instance in the order that they occur.
+		/// For internal use only.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("traversedpath")]
 		public string TraversedPath
@@ -1981,6 +2082,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N Incident_MailboxTrackingFolder
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Incident_MailboxTrackingFolder")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> Incident_MailboxTrackingFolder
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("Incident_MailboxTrackingFolder", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Incident_MailboxTrackingFolder");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("Incident_MailboxTrackingFolder", null, value);
+				this.OnPropertyChanged("Incident_MailboxTrackingFolder");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N incident_master_incident
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("incident_master_incident", Microsoft.Xrm.Sdk.EntityRole.Referenced)]
@@ -2201,6 +2322,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N incident_topic
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("incident_topic")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Topic> incident_topic
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Topic>("incident_topic", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("incident_topic");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Topic>("incident_topic", null, value);
+				this.OnPropertyChanged("incident_topic");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N knowledgearticle_incidents
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_incidents")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeArticleIncident> knowledgearticle_incidents
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleIncident>("knowledgearticle_incidents", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticle_incidents");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleIncident>("knowledgearticle_incidents", null, value);
+				this.OnPropertyChanged("knowledgearticle_incidents");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N OriginatingCase_Lead
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("OriginatingCase_Lead")]
@@ -2257,6 +2418,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("userentityinstancedata_incident");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.UserEntityInstanceData>("userentityinstancedata_incident", null, value);
 				this.OnPropertyChanged("userentityinstancedata_incident");
+			}
+		}
+		
+		/// <summary>
+		/// N:N KnowledgeBaseRecord_Incident
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeBaseRecord_Incident")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeBaseRecord> KnowledgeBaseRecord_Incident
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeBaseRecord>("KnowledgeBaseRecord_Incident", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("KnowledgeBaseRecord_Incident");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeBaseRecord>("KnowledgeBaseRecord_Incident", null, value);
+				this.OnPropertyChanged("KnowledgeBaseRecord_Incident");
 			}
 		}
 		
@@ -2506,6 +2687,34 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 lk_externalparty_incident_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdbyexternalparty")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_incident_createdby")]
+		public DLaB.Xrm.Entities.ExternalParty lk_externalparty_incident_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_incident_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_externalparty_incident_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedbyexternalparty")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_incident_modifiedby")]
+		public DLaB.Xrm.Entities.ExternalParty lk_externalparty_incident_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_incident_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 lk_incidentbase_createdby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
@@ -2530,6 +2739,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_incidentbase_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_incidentbase_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_incidentbase_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_incidentbase_createdonbehalfby");
 			}
 		}
 		
@@ -2558,6 +2774,34 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_incidentbase_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_incidentbase_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_incidentbase_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_incidentbase_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 manualsla_cases
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slaid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_cases")]
+		public DLaB.Xrm.Entities.SLA manualsla_cases
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SLA>("manualsla_cases", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_cases");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SLA>("manualsla_cases", null, value);
+				this.OnPropertyChanged("manualsla_cases");
 			}
 		}
 		
@@ -2761,24 +3005,38 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["incidentid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["incidentid"] = base.Id;
+                        break;
+                    case "incidentid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caseorigincode")]
 		public virtual incident_caseorigincode? CaseOriginCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2793,6 +3051,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("casetypecode")]
 		public virtual incident_casetypecode? CaseTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2807,6 +3066,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("contractservicelevelcode")]
 		public virtual incident_contractservicelevelcode? ContractServiceLevelCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2821,6 +3081,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("customersatisfactioncode")]
 		public virtual incident_customersatisfactioncode? CustomerSatisfactionCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2835,6 +3096,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("firstresponseslastatus")]
 		public virtual incident_firstresponseslastatus? FirstResponseSLAStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2849,6 +3111,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("incidentstagecode")]
 		public virtual incident_incidentstagecode? IncidentStageCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2863,6 +3126,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("messagetypecode")]
 		public virtual socialactivity_postmessagetype? MessageTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2877,6 +3141,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("prioritycode")]
 		public virtual incident_prioritycode? PriorityCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2891,6 +3156,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("resolvebyslastatus")]
 		public virtual incident_resolvebyslastatus? ResolveBySLAStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2905,6 +3171,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("servicestage")]
 		public virtual servicestage? ServiceStageEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2919,6 +3186,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("severitycode")]
 		public virtual incident_severitycode? SeverityCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2930,6 +3198,21 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				SeverityCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public virtual incident_statuscode? StatusCodeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((incident_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				StatusCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 	}

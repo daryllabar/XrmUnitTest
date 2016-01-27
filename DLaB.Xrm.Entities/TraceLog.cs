@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("tracelog")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class TraceLog : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -26,6 +26,8 @@ namespace DLaB.Xrm.Entities
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
+			public const string ErrorDetails = "errordetails";
+			public const string ErrorTypeDisplay = "errortypedisplay";
 			public const string IsUnique = "isunique";
 			public const string Level = "level";
 			public const string MachineName = "machinename";
@@ -46,6 +48,7 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "tracelogid";
 			public const string TraceParameterHash = "traceparameterhash";
 			public const string TraceParameterXml = "traceparameterxml";
+			public const string TraceStatus = "tracestatus";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string lk_tracelog_createdby = "createdby";
 			public const string lk_tracelog_createdonbehalfby = "createdonbehalfby";
@@ -147,7 +150,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Date and time when the trace was created.
+		/// Time the error is created and logged.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -169,6 +172,53 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("errordetails")]
+		public string ErrorDetails
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("errordetails");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ErrorDetails");
+				this.SetAttributeValue("errordetails", value);
+				this.OnPropertyChanged("ErrorDetails");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("errortypedisplay")]
+		public string ErrorTypeDisplay
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("errortypedisplay");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ErrorTypeDisplay");
+				this.SetAttributeValue("errortypedisplay", value);
+				this.OnPropertyChanged("ErrorTypeDisplay");
 			}
 		}
 		
@@ -246,7 +296,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Date and time when the trace was modified.
+		/// Time the error is updated and logged for the same regarding object.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -268,6 +318,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
 			}
 		}
 		
@@ -305,7 +362,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the object the trace is regarding.
+		/// Regarding mailbox or email server profile.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
 		public Microsoft.Xrm.Sdk.EntityReference RegardingObjectId
@@ -411,7 +468,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Trace code for the trace.
+		/// Error code.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("tracecode")]
 		public System.Nullable<int> TraceCode
@@ -527,6 +584,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Status about the trace.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("tracestatus")]
+		public System.Nullable<bool> TraceStatus
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("tracestatus");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TraceStatus");
+				this.SetAttributeValue("tracestatus", value);
+				this.OnPropertyChanged("TraceStatus");
+			}
+		}
+		
+		/// <summary>
 		/// Time zone code that was in use when the trace was created.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
@@ -592,6 +669,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_tracelog_createdonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_tracelog_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_tracelog_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_tracelog_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -619,6 +703,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_tracelog_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_tracelog_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_tracelog_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_tracelog_modifiedonbehalfby");
 			}
 		}
 		
@@ -710,24 +801,38 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["tracelogid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["tracelogid"] = base.Id;
+                        break;
+                    case "tracelogid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("level")]
 		public virtual tracelog_level? LevelEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]

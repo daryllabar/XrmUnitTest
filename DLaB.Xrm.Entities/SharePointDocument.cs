@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("sharepointdocument")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class SharePointDocument : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -37,14 +37,17 @@ namespace DLaB.Xrm.Entities
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string DocumentId = "documentid";
+			public const string DocumentLocationType = "documentlocationtype";
 			public const string Edit = "edit";
 			public const string EditUrl = "editurl";
 			public const string ExchangeRate = "exchangerate";
 			public const string FileSize = "filesize";
 			public const string FileType = "filetype";
 			public const string FullName = "fullname";
+			public const string IconClassName = "iconclassname";
 			public const string IsCheckedOut = "ischeckedout";
 			public const string IsFolder = "isfolder";
+			public const string IsRecursiveFetch = "isrecursivefetch";
 			public const string LocationId = "locationid";
 			public const string Modified = "modified";
 			public const string ModifiedBy = "modifiedby";
@@ -58,6 +61,7 @@ namespace DLaB.Xrm.Entities
 			public const string ReadUrl = "readurl";
 			public const string RegardingObjectId = "regardingobjectid";
 			public const string RelativeLocation = "relativelocation";
+			public const string ServiceType = "servicetype";
 			public const string SharePointCreatedOn = "sharepointcreatedon";
 			public const string SharePointDocumentId = "sharepointdocumentid";
 			public const string Id = "sharepointdocumentid";
@@ -325,6 +329,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
+			}
 		}
 		
 		/// <summary>
@@ -337,6 +348,19 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<int>>("documentid");
+			}
+		}
+		
+		/// <summary>
+		/// Location type of the SharePoint document location.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("documentlocationtype")]
+		public Microsoft.Xrm.Sdk.OptionSetValue DocumentLocationType
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("documentlocationtype");
 			}
 		}
 		
@@ -419,6 +443,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Stores the Icon Class name of the SharePoint document.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("iconclassname")]
+		public string IconClassName
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("iconclassname");
+			}
+		}
+		
+		/// <summary>
 		/// Shows whether the file is checked out.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ischeckedout")]
@@ -441,6 +478,19 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<bool>>("isfolder");
+			}
+		}
+		
+		/// <summary>
+		/// Shows whether to fetch data recursively from the given folder location.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isrecursivefetch")]
+		public System.Nullable<bool> IsRecursiveFetch
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isrecursivefetch");
 			}
 		}
 		
@@ -506,6 +556,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
 			}
 		}
 		
@@ -624,6 +681,26 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<string>("relativelocation");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the service type of the SharePoint site.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("servicetype")]
+		public Microsoft.Xrm.Sdk.OptionSetValue ServiceType
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("servicetype");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ServiceType");
+				this.SetAttributeValue("servicetype", value);
+				this.OnPropertyChanged("ServiceType");
 			}
 		}
 		
@@ -879,6 +956,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_sharepointdocumentbase_createdonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_sharepointdocumentbase_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_sharepointdocumentbase_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_sharepointdocumentbase_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -906,6 +990,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_sharepointdocumentbase_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_sharepointdocumentbase_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_sharepointdocumentbase_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_sharepointdocumentbase_modifiedonbehalfby");
 			}
 		}
 		
@@ -1032,22 +1123,60 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["sharepointdocumentid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["sharepointdocumentid"] = base.Id;
+                        break;
+                    case "sharepointdocumentid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("documentlocationtype")]
+		public virtual sharepointdocumentlocation_locationtype? DocumentLocationTypeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((sharepointdocumentlocation_locationtype?)(EntityOptionSetEnum.GetEnum(this, "documentlocationtype")));
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("servicetype")]
+		public virtual sharepointsite_servicetype? ServiceTypeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((sharepointsite_servicetype?)(EntityOptionSetEnum.GetEnum(this, "servicetype")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				ServiceType = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
 		}
 	}
 }

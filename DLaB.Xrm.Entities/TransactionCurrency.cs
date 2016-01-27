@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public enum TransactionCurrencyState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("transactioncurrency")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class TransactionCurrency : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -135,6 +135,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
 			}
 		}
 		
@@ -354,6 +361,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
 		}
 		
 		/// <summary>
@@ -407,6 +421,20 @@ namespace DLaB.Xrm.Entities
 				{
 					return null;
 				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("StateCode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statecode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("StateCode");
 			}
 		}
 		
@@ -723,6 +751,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("TransactionCurrency_CampaignResponse");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.CampaignResponse>("TransactionCurrency_CampaignResponse", null, value);
 				this.OnPropertyChanged("TransactionCurrency_CampaignResponse");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N TransactionCurrency_ChannelAccessProfile
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TransactionCurrency_ChannelAccessProfile")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfile> TransactionCurrency_ChannelAccessProfile
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfile>("TransactionCurrency_ChannelAccessProfile", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TransactionCurrency_ChannelAccessProfile");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfile>("TransactionCurrency_ChannelAccessProfile", null, value);
+				this.OnPropertyChanged("TransactionCurrency_ChannelAccessProfile");
 			}
 		}
 		
@@ -1107,6 +1155,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N TransactionCurrency_ExternalParty
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TransactionCurrency_ExternalParty")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ExternalParty> TransactionCurrency_ExternalParty
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ExternalParty>("TransactionCurrency_ExternalParty", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TransactionCurrency_ExternalParty");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ExternalParty>("TransactionCurrency_ExternalParty", null, value);
+				this.OnPropertyChanged("TransactionCurrency_ExternalParty");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N TransactionCurrency_externalpartyitem
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TransactionCurrency_externalpartyitem")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ExternalPartyItem> TransactionCurrency_externalpartyitem
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ExternalPartyItem>("TransactionCurrency_externalpartyitem", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TransactionCurrency_externalpartyitem");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ExternalPartyItem>("TransactionCurrency_externalpartyitem", null, value);
+				this.OnPropertyChanged("TransactionCurrency_externalpartyitem");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N TransactionCurrency_Fax
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TransactionCurrency_Fax")]
@@ -1247,6 +1335,86 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N TransactionCurrency_knowledgearticle
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TransactionCurrency_knowledgearticle")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeArticle> TransactionCurrency_knowledgearticle
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticle>("TransactionCurrency_knowledgearticle", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TransactionCurrency_knowledgearticle");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticle>("TransactionCurrency_knowledgearticle", null, value);
+				this.OnPropertyChanged("TransactionCurrency_knowledgearticle");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N transactioncurrency_knowledgearticleincident
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("transactioncurrency_knowledgearticleincident")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeArticleIncident> transactioncurrency_knowledgearticleincident
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleIncident>("transactioncurrency_knowledgearticleincident", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("transactioncurrency_knowledgearticleincident");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleIncident>("transactioncurrency_knowledgearticleincident", null, value);
+				this.OnPropertyChanged("transactioncurrency_knowledgearticleincident");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N transactioncurrency_knowledgearticleviews
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("transactioncurrency_knowledgearticleviews")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeArticleViews> transactioncurrency_knowledgearticleviews
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleViews>("transactioncurrency_knowledgearticleviews", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("transactioncurrency_knowledgearticleviews");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleViews>("transactioncurrency_knowledgearticleviews", null, value);
+				this.OnPropertyChanged("transactioncurrency_knowledgearticleviews");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N TransactionCurrency_KnowledgeBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TransactionCurrency_KnowledgeBaseRecord")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeBaseRecord> TransactionCurrency_KnowledgeBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeBaseRecord>("TransactionCurrency_KnowledgeBaseRecord", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TransactionCurrency_KnowledgeBaseRecord");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeBaseRecord>("TransactionCurrency_KnowledgeBaseRecord", null, value);
+				this.OnPropertyChanged("TransactionCurrency_KnowledgeBaseRecord");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N transactioncurrency_lead
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("transactioncurrency_lead")]
@@ -1363,6 +1531,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("transactioncurrency_monthlyfiscalcalendar");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.MonthlyFiscalCalendar>("transactioncurrency_monthlyfiscalcalendar", null, value);
 				this.OnPropertyChanged("transactioncurrency_monthlyfiscalcalendar");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N TransactionCurrency_officegraphdocument
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TransactionCurrency_officegraphdocument")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OfficeGraphDocument> TransactionCurrency_officegraphdocument
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OfficeGraphDocument>("TransactionCurrency_officegraphdocument", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TransactionCurrency_officegraphdocument");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OfficeGraphDocument>("TransactionCurrency_officegraphdocument", null, value);
+				this.OnPropertyChanged("TransactionCurrency_officegraphdocument");
 			}
 		}
 		
@@ -1583,6 +1771,46 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("transactioncurrency_ProductSubstitute");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProductSubstitute>("transactioncurrency_ProductSubstitute", null, value);
 				this.OnPropertyChanged("transactioncurrency_ProductSubstitute");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N TransactionCurrency_profilerule
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TransactionCurrency_profilerule")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfileRule> TransactionCurrency_profilerule
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRule>("TransactionCurrency_profilerule", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TransactionCurrency_profilerule");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRule>("TransactionCurrency_profilerule", null, value);
+				this.OnPropertyChanged("TransactionCurrency_profilerule");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N TransactionCurrency_profileruleitem
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TransactionCurrency_profileruleitem")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfileRuleItem> TransactionCurrency_profileruleitem
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRuleItem>("TransactionCurrency_profileruleitem", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TransactionCurrency_profileruleitem");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRuleItem>("TransactionCurrency_profileruleitem", null, value);
+				this.OnPropertyChanged("TransactionCurrency_profileruleitem");
 			}
 		}
 		
@@ -1927,6 +2155,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N TransactionCurrency_SimilarityRule
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TransactionCurrency_SimilarityRule")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SimilarityRule> TransactionCurrency_SimilarityRule
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SimilarityRule>("TransactionCurrency_SimilarityRule", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TransactionCurrency_SimilarityRule");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SimilarityRule>("TransactionCurrency_SimilarityRule", null, value);
+				this.OnPropertyChanged("TransactionCurrency_SimilarityRule");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N TransactionCurrency_SLA
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TransactionCurrency_SLA")]
@@ -2107,6 +2355,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N TransactionCurrency_Theme
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TransactionCurrency_Theme")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Theme> TransactionCurrency_Theme
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Theme>("TransactionCurrency_Theme", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TransactionCurrency_Theme");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Theme>("TransactionCurrency_Theme", null, value);
+				this.OnPropertyChanged("TransactionCurrency_Theme");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N TransactionCurrency_UserMapping
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TransactionCurrency_UserMapping")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.UserMapping> TransactionCurrency_UserMapping
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.UserMapping>("TransactionCurrency_UserMapping", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TransactionCurrency_UserMapping");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.UserMapping>("TransactionCurrency_UserMapping", null, value);
+				this.OnPropertyChanged("TransactionCurrency_UserMapping");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N transactioncurrency_usersettings
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("transactioncurrency_usersettings")]
@@ -2158,6 +2446,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_transactioncurrency_createdonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_transactioncurrency_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_transactioncurrency_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_transactioncurrency_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -2171,6 +2466,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_transactioncurrency_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_transactioncurrency_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_transactioncurrency_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_transactioncurrency_modifiedonbehalfby");
 			}
 		}
 		
@@ -2227,22 +2529,50 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["transactioncurrencyid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["transactioncurrencyid"] = base.Id;
+                        break;
+                    case "transactioncurrencyid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public virtual transactioncurrency_statuscode? StatusCodeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((transactioncurrency_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				StatusCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
 		}
 	}
 }

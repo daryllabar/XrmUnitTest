@@ -2,24 +2,24 @@
 <package >
   <metadata>
     <id>DLaB.Xrm.Entities</id>
-	  <version>1.0.1</version>
+	  <version>1.1.1</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/daryllabar/XrmUnitTest</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/daryllabar/XrmUnitTest/master/DLaB_Dynamics_64x64.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Contains Xrm EarlyBound Entities 2015.1.</description>
-    <releaseNotes>Initial Release.</releaseNotes>
+    <description>Contains Xrm EarlyBound Entities 2016, referencing CRM 8.0 SDK.</description>
+    <releaseNotes>CRM 8.0.</releaseNotes>
     <copyright>Copyright 2016</copyright>
-    <tags>Dynamics CRM 2015 EarlyBoundEntities XRM</tags>
+    <tags>Dynamics CRM 2016 EarlyBoundEntities XRM</tags>
 	<dependencies>
     <group targetFramework=".NETFramework4.5">
-      <dependency id="Microsoft.CrmSdk.CoreAssemblies" version="7.1.0" />
+      <dependency id="Microsoft.CrmSdk.CoreAssemblies" version="8.0.1" />
     </group>
   </dependencies>
   </metadata>
   <files>
-	<file src="bin\Release\DLaB.Xrm.Entities*" target="lib\net452" />
+	  <file src="bin\Release\DLaB.Xrm.Entities*" target="lib\net452" />
   </files>
 </package>  

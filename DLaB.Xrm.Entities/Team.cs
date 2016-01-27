@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("team")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class Team : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -51,6 +51,7 @@ namespace DLaB.Xrm.Entities
 			public const string VersionNumber = "versionnumber";
 			public const string YomiName = "yominame";
 			public const string business_unit_teams = "businessunitid";
+			public const string knowledgearticle_Teams = "regardingobjectid";
 			public const string lk_team_createdonbehalfby = "createdonbehalfby";
 			public const string lk_team_modifiedonbehalfby = "modifiedonbehalfby";
 			public const string lk_teambase_administratorid = "administratorid";
@@ -177,6 +178,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
+			}
 		}
 		
 		/// <summary>
@@ -301,6 +309,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
 			}
 		}
 		
@@ -554,7 +569,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// A comma separated list of string values representing the unique identifiers of stages in a Business Process Flow Instance in the order that they occur.
+		/// For internal use only.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("traversedpath")]
 		public string TraversedPath
@@ -887,6 +902,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N team_channelaccessprofile
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_channelaccessprofile")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfile> team_channelaccessprofile
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfile>("team_channelaccessprofile", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_channelaccessprofile");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfile>("team_channelaccessprofile", null, value);
+				this.OnPropertyChanged("team_channelaccessprofile");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N team_connections1
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_connections1")]
@@ -1187,6 +1222,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N team_externalparty
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_externalparty")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ExternalParty> team_externalparty
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ExternalParty>("team_externalparty", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_externalparty");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ExternalParty>("team_externalparty", null, value);
+				this.OnPropertyChanged("team_externalparty");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N team_fax
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_fax")]
@@ -1407,6 +1462,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N team_knowledgearticle
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_knowledgearticle")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeArticle> team_knowledgearticle
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticle>("team_knowledgearticle", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_knowledgearticle");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticle>("team_knowledgearticle", null, value);
+				this.OnPropertyChanged("team_knowledgearticle");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N team_letter
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_letter")]
@@ -1463,6 +1538,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("team_mailbox");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Mailbox>("team_mailbox", null, value);
 				this.OnPropertyChanged("team_mailbox");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N team_mailboxtrackingfolder
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_mailboxtrackingfolder")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> team_mailboxtrackingfolder
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("team_mailboxtrackingfolder", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_mailboxtrackingfolder");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("team_mailboxtrackingfolder", null, value);
+				this.OnPropertyChanged("team_mailboxtrackingfolder");
 			}
 		}
 		
@@ -1683,6 +1778,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Team_ProcessSessions");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProcessSession>("Team_ProcessSessions", null, value);
 				this.OnPropertyChanged("Team_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N team_profilerule
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_profilerule")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfileRule> team_profilerule
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRule>("team_profilerule", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_profilerule");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRule>("team_profilerule", null, value);
+				this.OnPropertyChanged("team_profilerule");
 			}
 		}
 		
@@ -1967,6 +2082,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N team_SyncError
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_SyncError")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> team_SyncError
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("team_SyncError", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_SyncError");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("team_SyncError", null, value);
+				this.OnPropertyChanged("team_SyncError");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N team_task
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_task")]
@@ -2228,6 +2363,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 knowledgearticle_Teams
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_Teams")]
+		public DLaB.Xrm.Entities.KnowledgeArticle knowledgearticle_Teams
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("knowledgearticle_Teams", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticle_Teams");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("knowledgearticle_Teams", null, value);
+				this.OnPropertyChanged("knowledgearticle_Teams");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 lk_team_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
@@ -2238,6 +2394,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_team_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_team_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_team_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_team_createdonbehalfby");
 			}
 		}
 		
@@ -2252,6 +2415,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_team_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_team_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_team_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_team_modifiedonbehalfby");
 			}
 		}
 		
@@ -2434,24 +2604,38 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["teamid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["teamid"] = base.Id;
+                        break;
+                    case "teamid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("teamtype")]
 		public virtual team_type? TeamTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]

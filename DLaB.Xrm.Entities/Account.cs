@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public enum AccountState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("account")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class Account : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -95,6 +95,7 @@ namespace DLaB.Xrm.Entities
 			public const string Aging90_Base = "aging90_base";
 			public const string BusinessTypeCode = "businesstypecode";
 			public const string CreatedBy = "createdby";
+			public const string CreatedByExternalParty = "createdbyexternalparty";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string CreditLimit = "creditlimit";
@@ -129,6 +130,7 @@ namespace DLaB.Xrm.Entities
 			public const string MasterId = "masterid";
 			public const string Merged = "merged";
 			public const string ModifiedBy = "modifiedby";
+			public const string ModifiedByExternalParty = "modifiedbyexternalparty";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string Name = "name";
@@ -157,6 +159,8 @@ namespace DLaB.Xrm.Entities
 			public const string PreferredServiceId = "preferredserviceid";
 			public const string PreferredSystemUserId = "preferredsystemuserid";
 			public const string PrimaryContactId = "primarycontactid";
+			public const string PrimarySatoriId = "primarysatoriid";
+			public const string PrimaryTwitterId = "primarytwitterid";
 			public const string ProcessId = "processid";
 			public const string Revenue = "revenue";
 			public const string Revenue_Base = "revenue_base";
@@ -190,6 +194,8 @@ namespace DLaB.Xrm.Entities
 			public const string lk_accountbase_createdonbehalfby = "createdonbehalfby";
 			public const string lk_accountbase_modifiedby = "modifiedby";
 			public const string lk_accountbase_modifiedonbehalfby = "modifiedonbehalfby";
+			public const string lk_externalparty_account_createdby = "createdbyexternalparty";
+			public const string lk_externalparty_account_modifiedby = "modifiedbyexternalparty";
 			public const string price_level_accounts = "defaultpricelevelid";
 			public const string processstage_account = "stageid";
 			public const string service_accounts = "preferredserviceid";
@@ -1383,7 +1389,6 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
-		
 		/// <summary>
 		/// Select the legal designation or other business type of the account for contracts or reporting purposes.
 		/// </summary>
@@ -1418,6 +1423,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Shows the external party who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdbyexternalparty")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedByExternalParty
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdbyexternalparty");
+			}
+		}
+		
+		/// <summary>
 		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
@@ -1440,6 +1458,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
 			}
 		}
 		
@@ -2021,6 +2046,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Shows the external party who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedbyexternalparty")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedByExternalParty
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedbyexternalparty");
+			}
+		}
+		
+		/// <summary>
 		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
@@ -2043,6 +2081,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
 			}
 		}
 		
@@ -2497,6 +2542,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Primary Satori ID for Account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("primarysatoriid")]
+		public string PrimarySatoriId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("primarysatoriid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("PrimarySatoriId");
+				this.SetAttributeValue("primarysatoriid", value);
+				this.OnPropertyChanged("PrimarySatoriId");
+			}
+		}
+		
+		/// <summary>
+		/// Primary Twitter ID for Account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("primarytwitterid")]
+		public string PrimaryTwitterId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("primarytwitterid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("PrimaryTwitterId");
+				this.SetAttributeValue("primarytwitterid", value);
+				this.OnPropertyChanged("PrimaryTwitterId");
+			}
+		}
+		
+		/// <summary>
 		/// Shows the ID of the process.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("processid")]
@@ -2647,6 +2732,20 @@ namespace DLaB.Xrm.Entities
 				{
 					return null;
 				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("StateCode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statecode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("StateCode");
 			}
 		}
 		
@@ -2851,7 +2950,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// A comma separated list of string values representing the unique identifiers of stages in a Business Process Flow Instance in the order that they occur.
+		/// For internal use only.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("traversedpath")]
 		public string TraversedPath
@@ -3360,6 +3459,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Account_Letters");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Letter>("Account_Letters", null, value);
 				this.OnPropertyChanged("Account_Letters");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Account_MailboxTrackingFolder
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Account_MailboxTrackingFolder")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> Account_MailboxTrackingFolder
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("Account_MailboxTrackingFolder", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Account_MailboxTrackingFolder");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("Account_MailboxTrackingFolder", null, value);
+				this.OnPropertyChanged("Account_MailboxTrackingFolder");
 			}
 		}
 		
@@ -4141,6 +4260,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_accountbase_createdonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_accountbase_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_accountbase_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_accountbase_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -4168,6 +4294,41 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_accountbase_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_accountbase_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_accountbase_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_accountbase_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_externalparty_account_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdbyexternalparty")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_account_createdby")]
+		public DLaB.Xrm.Entities.ExternalParty lk_externalparty_account_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_account_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_externalparty_account_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedbyexternalparty")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_account_modifiedby")]
+		public DLaB.Xrm.Entities.ExternalParty lk_externalparty_account_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_account_modifiedby", null);
 			}
 		}
 		
@@ -4336,24 +4497,38 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["accountid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["accountid"] = base.Id;
+                        break;
+                    case "accountid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("accountcategorycode")]
 		public virtual account_accountcategorycode? AccountCategoryCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4368,6 +4543,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("accountclassificationcode")]
 		public virtual account_accountclassificationcode? AccountClassificationCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4382,6 +4558,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("accountratingcode")]
 		public virtual account_accountratingcode? AccountRatingCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4396,6 +4573,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address1_addresstypecode")]
 		public virtual account_address1_addresstypecode? Address1_AddressTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4410,6 +4588,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address1_freighttermscode")]
 		public virtual account_address1_freighttermscode? Address1_FreightTermsCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4424,6 +4603,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address1_shippingmethodcode")]
 		public virtual account_address1_shippingmethodcode? Address1_ShippingMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4438,6 +4618,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address2_addresstypecode")]
 		public virtual account_address2_addresstypecode? Address2_AddressTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4452,6 +4633,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address2_freighttermscode")]
 		public virtual account_address2_freighttermscode? Address2_FreightTermsCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4466,6 +4648,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address2_shippingmethodcode")]
 		public virtual account_address2_shippingmethodcode? Address2_ShippingMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4480,6 +4663,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("businesstypecode")]
 		public virtual account_businesstypecode? BusinessTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4494,6 +4678,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("customersizecode")]
 		public virtual account_customersizecode? CustomerSizeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4508,6 +4693,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("customertypecode")]
 		public virtual account_customertypecode? CustomerTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4522,6 +4708,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("industrycode")]
 		public virtual account_industrycode? IndustryCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4536,6 +4723,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ownershipcode")]
 		public virtual account_ownershipcode? OwnershipCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4550,6 +4738,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("paymenttermscode")]
 		public virtual account_paymenttermscode? PaymentTermsCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4564,6 +4753,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("preferredappointmentdaycode")]
 		public virtual account_preferredappointmentdaycode? PreferredAppointmentDayCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4578,6 +4768,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("preferredappointmenttimecode")]
 		public virtual account_preferredappointmenttimecode? PreferredAppointmentTimeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4592,6 +4783,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("preferredcontactmethodcode")]
 		public virtual account_preferredcontactmethodcode? PreferredContactMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4606,6 +4798,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("shippingmethodcode")]
 		public virtual account_shippingmethodcode? ShippingMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4620,6 +4813,22 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public virtual account_statuscode? StatusCodeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((account_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				StatusCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("territorycode")]
 		public virtual account_territorycode? TerritoryCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]

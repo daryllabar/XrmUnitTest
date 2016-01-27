@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public enum EmailServerProfileState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("emailserverprofile")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class EmailServerProfile : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -39,6 +39,7 @@ namespace DLaB.Xrm.Entities
 			public const string Description = "description";
 			public const string EmailServerProfileId = "emailserverprofileid";
 			public const string Id = "emailserverprofileid";
+			public const string EmailServerTypeName = "emailservertypename";
 			public const string EncodingCodePage = "encodingcodepage";
 			public const string EntityImage = "entityimage";
 			public const string EntityImage_Timestamp = "entityimage_timestamp";
@@ -56,6 +57,12 @@ namespace DLaB.Xrm.Entities
 			public const string IncomingUseSSL = "incomingusessl";
 			public const string IsIncomingPasswordSet = "isincomingpasswordset";
 			public const string IsOutgoingPasswordSet = "isoutgoingpasswordset";
+			public const string LastTestExecutionStatus = "lasttestexecutionstatus";
+			public const string LastTestRequest = "lasttestrequest";
+			public const string LastTestResponse = "lasttestresponse";
+			public const string LastTestStartTime = "lastteststarttime";
+			public const string LastTestTotalExecutionTime = "lasttesttotalexecutiontime";
+			public const string LastTestValidationStatus = "lasttestvalidationstatus";
 			public const string MaxConcurrentConnections = "maxconcurrentconnections";
 			public const string MinPollingIntervalInMinutes = "minpollingintervalinminutes";
 			public const string ModifiedBy = "modifiedby";
@@ -74,14 +81,18 @@ namespace DLaB.Xrm.Entities
 			public const string OutgoingUseImpersonation = "outgoinguseimpersonation";
 			public const string OutgoingUsername = "outgoingusername";
 			public const string OutgoingUseSSL = "outgoingusessl";
+			public const string OwnerEmailAddress = "owneremailaddress";
 			public const string OwnerId = "ownerid";
 			public const string OwningBusinessUnit = "owningbusinessunit";
 			public const string OwningTeam = "owningteam";
 			public const string OwningUser = "owninguser";
 			public const string ProcessEmailsReceivedAfter = "processemailsreceivedafter";
+			public const string SendEmailAlert = "sendemailalert";
 			public const string ServerType = "servertype";
 			public const string StateCode = "statecode";
 			public const string StatusCode = "statuscode";
+			public const string TimeoutMailboxConnection = "timeoutmailboxconnection";
+			public const string TimeoutMailboxConnectionAfterAmount = "timeoutmailboxconnectionafteramount";
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UseAutoDiscover = "useautodiscover";
 			public const string UseSameSettingsForOutgoingConnections = "usesamesettingsforoutgoingconnections";
@@ -168,6 +179,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
+			}
 		}
 		
 		/// <summary>
@@ -230,6 +248,19 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				this.EmailServerProfileId = value;
+			}
+		}
+		
+		/// <summary>
+		/// Email Server Type Name
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("emailservertypename")]
+		public string EmailServerTypeName
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("emailservertypename");
 			}
 		}
 		
@@ -406,7 +437,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Type the port number for incoming email.
+		/// Type the Exchange port number for incoming mail.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("incomingportnumber")]
 		public System.Nullable<int> IncomingPortNumber
@@ -532,6 +563,126 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Shows the last test Execution status of email server profile
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lasttestexecutionstatus")]
+		public Microsoft.Xrm.Sdk.OptionSetValue LastTestExecutionStatus
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("lasttestexecutionstatus");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("LastTestExecutionStatus");
+				this.SetAttributeValue("lasttestexecutionstatus", value);
+				this.OnPropertyChanged("LastTestExecutionStatus");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the EWS Request created during the Last Test
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lasttestrequest")]
+		public string LastTestRequest
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("lasttestrequest");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("LastTestRequest");
+				this.SetAttributeValue("lasttestrequest", value);
+				this.OnPropertyChanged("LastTestRequest");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the EWS Response obtained during the Last Test
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lasttestresponse")]
+		public string LastTestResponse
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("lasttestresponse");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("LastTestResponse");
+				this.SetAttributeValue("lasttestresponse", value);
+				this.OnPropertyChanged("LastTestResponse");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the Last Test Start date and time
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lastteststarttime")]
+		public System.Nullable<System.DateTime> LastTestStartTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("lastteststarttime");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("LastTestStartTime");
+				this.SetAttributeValue("lastteststarttime", value);
+				this.OnPropertyChanged("LastTestStartTime");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the Time taken while running the last test
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lasttesttotalexecutiontime")]
+		public System.Nullable<long> LastTestTotalExecutionTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<long>>("lasttesttotalexecutiontime");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("LastTestTotalExecutionTime");
+				this.SetAttributeValue("lasttesttotalexecutiontime", value);
+				this.OnPropertyChanged("LastTestTotalExecutionTime");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the last test Validation status of email server profile
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lasttestvalidationstatus")]
+		public Microsoft.Xrm.Sdk.OptionSetValue LastTestValidationStatus
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("lasttestvalidationstatus");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("LastTestValidationStatus");
+				this.SetAttributeValue("lasttestvalidationstatus", value);
+				this.OnPropertyChanged("LastTestValidationStatus");
+			}
+		}
+		
+		/// <summary>
 		/// Maximum number of concurrent connections allowed to the email server per authenticated user.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("maxconcurrentconnections")]
@@ -607,6 +758,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
 			}
 		}
 		
@@ -757,7 +915,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Type the port number for outgoing email.
+		/// Type the Exchange port number for outgoing mail.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("outgoingportnumber")]
 		public System.Nullable<int> OutgoingPortNumber
@@ -857,6 +1015,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Email Server Profile Owner's email address
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owneremailaddress")]
+		public string OwnerEmailAddress
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("owneremailaddress");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwnerEmailAddress");
+				this.SetAttributeValue("owneremailaddress", value);
+				this.OnPropertyChanged("OwnerEmailAddress");
+			}
+		}
+		
+		/// <summary>
 		/// Enter the user or team who is assigned to manage the record. This field is updated every time the record is assigned to a different user.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ownerid")]
@@ -936,6 +1114,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Select whether to send an email alert if more than 50% of the mailboxes in this email server profile failed to synchronize in an hour period.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sendemailalert")]
+		public System.Nullable<bool> SendEmailAlert
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("sendemailalert");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SendEmailAlert");
+				this.SetAttributeValue("sendemailalert", value);
+				this.OnPropertyChanged("SendEmailAlert");
+			}
+		}
+		
+		/// <summary>
 		/// Select the profile's email server type.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("servertype")]
@@ -974,6 +1172,20 @@ namespace DLaB.Xrm.Entities
 					return null;
 				}
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("StateCode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statecode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("StateCode");
+			}
 		}
 		
 		/// <summary>
@@ -993,6 +1205,46 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("StatusCode");
 				this.SetAttributeValue("statuscode", value);
 				this.OnPropertyChanged("StatusCode");
+			}
+		}
+		
+		/// <summary>
+		/// Select whether to timeout a single mailbox.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timeoutmailboxconnection")]
+		public System.Nullable<bool> TimeoutMailboxConnection
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("timeoutmailboxconnection");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TimeoutMailboxConnection");
+				this.SetAttributeValue("timeoutmailboxconnection", value);
+				this.OnPropertyChanged("TimeoutMailboxConnection");
+			}
+		}
+		
+		/// <summary>
+		/// Type the number of milliseconds to timeout a single mailbox. The upper limit is 100 seconds.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timeoutmailboxconnectionafteramount")]
+		public System.Nullable<int> TimeoutMailboxConnectionAfterAmount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timeoutmailboxconnectionafteramount");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TimeoutMailboxConnectionAfterAmount");
+				this.SetAttributeValue("timeoutmailboxconnectionafteramount", value);
+				this.OnPropertyChanged("TimeoutMailboxConnectionAfterAmount");
 			}
 		}
 		
@@ -1276,6 +1528,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_emailserverprofile_createdonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_emailserverprofile_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_emailserverprofile_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_emailserverprofile_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -1303,6 +1562,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_emailserverprofile_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_emailserverprofile_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_emailserverprofile_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_emailserverprofile_modifiedonbehalfby");
 			}
 		}
 		
@@ -1345,24 +1611,38 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["emailserverprofileid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["emailserverprofileid"] = base.Id;
+                        break;
+                    case "emailserverprofileid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("exchangeversion")]
 		public virtual emailserverprofile_exchangeversion? ExchangeVersionEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1377,6 +1657,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("incomingauthenticationprotocol")]
 		public virtual emailserverprofile_authenticationprotocol? IncomingAuthenticationProtocolEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1391,6 +1672,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("incomingcredentialretrieval")]
 		public virtual emailserverprofile_incomingcredentialretrieval? IncomingCredentialRetrievalEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1405,6 +1687,37 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lasttestexecutionstatus")]
+		public virtual emailserverprofile_lasttestexecutionstatus? LastTestExecutionStatusEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((emailserverprofile_lasttestexecutionstatus?)(EntityOptionSetEnum.GetEnum(this, "lasttestexecutionstatus")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				LastTestExecutionStatus = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lasttestvalidationstatus")]
+		public virtual emailserverprofile_lasttestvalidationstatus? LastTestValidationStatusEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((emailserverprofile_lasttestvalidationstatus?)(EntityOptionSetEnum.GetEnum(this, "lasttestvalidationstatus")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				LastTestValidationStatus = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("outgoingauthenticationprotocol")]
 		public virtual emailserverprofile_authenticationprotocol? OutgoingAuthenticationProtocolEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1419,6 +1732,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("outgoingcredentialretrieval")]
 		public virtual emailserverprofile_outgoingcredentialretrieval? OutgoingCredentialRetrievalEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1433,6 +1747,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("servertype")]
 		public virtual emailserverprofile_servertype? ServerTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1444,6 +1759,21 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				ServerType = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public virtual emailserverprofile_statuscode? StatusCodeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((emailserverprofile_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				StatusCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 	}

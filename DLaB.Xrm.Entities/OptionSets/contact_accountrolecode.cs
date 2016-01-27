@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public enum contact_accountrolecode
 	{
 		
@@ -23,14 +23,5 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Influencer = 3,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		RPMPartnerAgency = 100000001,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		RPMPartnerAgent = 100000000,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		RPMPartnerCorp = 100000002,
 	}
 }

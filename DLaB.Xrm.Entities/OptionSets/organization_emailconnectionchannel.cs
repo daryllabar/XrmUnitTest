@@ -11,12 +11,12 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public enum organization_emailconnectionchannel
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		MicrosoftDynamicsCRM2015EmailRouter = 1,
+		MicrosoftDynamicsCRM2016EmailRouter = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ServerSideSynchronization = 0,

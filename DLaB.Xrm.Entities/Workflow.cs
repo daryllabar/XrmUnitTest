@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public enum WorkflowState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("workflow")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class Workflow : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -35,6 +35,7 @@ namespace DLaB.Xrm.Entities
 		{
 			public const string ActiveWorkflowId = "activeworkflowid";
 			public const string AsyncAutoDelete = "asyncautodelete";
+			public const string BusinessProcessType = "businessprocesstype";
 			public const string Category = "category";
 			public const string ClientData = "clientdata";
 			public const string ComponentState = "componentstate";
@@ -44,6 +45,11 @@ namespace DLaB.Xrm.Entities
 			public const string CreateStage = "createstage";
 			public const string DeleteStage = "deletestage";
 			public const string Description = "description";
+			public const string EntityImage = "entityimage";
+			public const string EntityImage_Timestamp = "entityimage_timestamp";
+			public const string EntityImage_URL = "entityimage_url";
+			public const string EntityImageId = "entityimageid";
+			public const string FormId = "formid";
 			public const string InputParameters = "inputparameters";
 			public const string IntroducedVersion = "introducedversion";
 			public const string IsCrmUIWorkflow = "iscrmuiworkflow";
@@ -169,6 +175,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Business Process Type.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("businessprocesstype")]
+		public Microsoft.Xrm.Sdk.OptionSetValue BusinessProcessType
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("businessprocesstype");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("BusinessProcessType");
+				this.SetAttributeValue("businessprocesstype", value);
+				this.OnPropertyChanged("BusinessProcessType");
+			}
+		}
+		
+		/// <summary>
 		/// Category of the process.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("category")]
@@ -251,6 +277,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
+			}
 		}
 		
 		/// <summary>
@@ -310,6 +343,85 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Description");
 				this.SetAttributeValue("description", value);
 				this.OnPropertyChanged("Description");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the default image for the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("entityimage")]
+		public byte[] EntityImage
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<byte[]>("entityimage");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("EntityImage");
+				this.SetAttributeValue("entityimage", value);
+				this.OnPropertyChanged("EntityImage");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("entityimage_timestamp")]
+		public System.Nullable<long> EntityImage_Timestamp
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<long>>("entityimage_timestamp");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("entityimage_url")]
+		public string EntityImage_URL
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("entityimage_url");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("entityimageid")]
+		public System.Nullable<System.Guid> EntityImageId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("entityimageid");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the associated form.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("formid")]
+		public System.Nullable<System.Guid> FormId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("formid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("FormId");
+				this.SetAttributeValue("formid", value);
+				this.OnPropertyChanged("FormId");
 			}
 		}
 		
@@ -495,6 +607,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
 			}
 		}
 		
@@ -821,6 +940,20 @@ namespace DLaB.Xrm.Entities
 					return null;
 				}
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("StateCode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statecode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("StateCode");
+			}
 		}
 		
 		/// <summary>
@@ -1093,6 +1226,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N convertruleitembase_workflowid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("convertruleitembase_workflowid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ConvertRuleItem> convertruleitembase_workflowid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ConvertRuleItem>("convertruleitembase_workflowid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("convertruleitembase_workflowid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ConvertRuleItem>("convertruleitembase_workflowid", null, value);
+				this.OnPropertyChanged("convertruleitembase_workflowid");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N lk_asyncoperation_workflowactivationid
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_asyncoperation_workflowactivationid")]
@@ -1353,6 +1506,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N workflowid_profilerule
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("workflowid_profilerule")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfileRule> workflowid_profilerule
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRule>("workflowid_profilerule", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("workflowid_profilerule");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRule>("workflowid_profilerule", null, value);
+				this.OnPropertyChanged("workflowid_profilerule");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 business_unit_workflow
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
@@ -1434,6 +1607,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("workflow_createdonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("workflow_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("workflow_createdonbehalfby", null, value);
+				this.OnPropertyChanged("workflow_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -1462,6 +1642,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("workflow_modifiedonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("workflow_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("workflow_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("workflow_modifiedonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -1489,24 +1676,53 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["workflowid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["workflowid"] = base.Id;
+                        break;
+                    case "workflowid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("businessprocesstype")]
+		public virtual workflow_businessprocesstype? BusinessProcessTypeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((workflow_businessprocesstype?)(EntityOptionSetEnum.GetEnum(this, "businessprocesstype")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				BusinessProcessType = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("category")]
 		public virtual workflow_category? CategoryEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1521,6 +1737,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
 		public virtual componentstate? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1530,6 +1747,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createstage")]
 		public virtual workflow_stage? CreateStageEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1544,6 +1762,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("deletestage")]
 		public virtual workflow_stage? DeleteStageEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1558,6 +1777,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("mode")]
 		public virtual workflow_mode? ModeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1572,6 +1792,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("runas")]
 		public virtual workflow_runas? RunAsEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1586,6 +1807,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("scope")]
 		public virtual workflow_scope? ScopeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1600,6 +1822,22 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public virtual workflow_statuscode? StatusCodeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((workflow_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				StatusCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("type")]
 		public virtual workflow_type? TypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1614,6 +1852,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("updatestage")]
 		public virtual workflow_stage? UpdateStageEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]

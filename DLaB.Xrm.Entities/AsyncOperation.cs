@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public enum AsyncOperationState
 	{
 		
@@ -33,7 +33,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("asyncoperation")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class AsyncOperation : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -99,6 +99,7 @@ namespace DLaB.Xrm.Entities
 			public const string Campaign_AsyncOperations = "regardingobjectid";
 			public const string CampaignActivity_AsyncOperations = "regardingobjectid";
 			public const string CampaignResponse_AsyncOperations = "regardingobjectid";
+			public const string channelaccessprofile_AsyncOperations = "regardingobjectid";
 			public const string Competitor_AsyncOperations = "regardingobjectid";
 			public const string Connection_AsyncOperations = "regardingobjectid";
 			public const string Connection_Role_AsyncOperations = "regardingobjectid";
@@ -121,6 +122,8 @@ namespace DLaB.Xrm.Entities
 			public const string entitlementtemplate_AsyncOperations = "regardingobjectid";
 			public const string EntityMap_AsyncOperations = "regardingobjectid";
 			public const string Equipment_AsyncOperations = "regardingobjectid";
+			public const string externalparty_AsyncOperations = "regardingobjectid";
+			public const string externalpartyitem_AsyncOperations = "regardingobjectid";
 			public const string Fax_AsyncOperations = "regardingobjectid";
 			public const string FixedMonthlyFiscalCalendar_AsyncOperations = "regardingobjectid";
 			public const string Goal_AsyncOperations = "regardingobjectid";
@@ -137,6 +140,8 @@ namespace DLaB.Xrm.Entities
 			public const string KbArticle_AsyncOperations = "regardingobjectid";
 			public const string KbArticleComment_AsyncOperations = "regardingobjectid";
 			public const string KbArticleTemplate_AsyncOperations = "regardingobjectid";
+			public const string knowledgearticle_AsyncOperations = "regardingobjectid";
+			public const string KnowledgeBaseRecord_AsyncOperations = "regardingobjectid";
 			public const string Lead_AsyncOperations = "regardingobjectid";
 			public const string Letter_AsyncOperations = "regardingobjectid";
 			public const string List_AsyncOperations = "regardingobjectid";
@@ -160,7 +165,6 @@ namespace DLaB.Xrm.Entities
 			public const string OrderClose_AsyncOperations = "regardingobjectid";
 			public const string Organization_AsyncOperations = "regardingobjectid";
 			public const string PhoneCall_AsyncOperations = "regardingobjectid";
-			public const string plt_idgenerator_AsyncOperations = "regardingobjectid";
 			public const string position_AsyncOperations = "regardingobjectid";
 			public const string post_AsyncOperations = "regardingobjectid";
 			public const string PostFollow_AsyncOperations = "regardingobjectid";
@@ -170,6 +174,7 @@ namespace DLaB.Xrm.Entities
 			public const string ProductAssociation_AsyncOperations = "regardingobjectid";
 			public const string ProductPriceLevel_AsyncOperations = "regardingobjectid";
 			public const string ProductSubstitute_AsyncOperations = "regardingobjectid";
+			public const string profilerule_AsyncOperations = "regardingobjectid";
 			public const string QuarterlyFiscalCalendar_AsyncOperations = "regardingobjectid";
 			public const string Queue_AsyncOperations = "regardingobjectid";
 			public const string QueueItem_AsyncOperations = "regardingobjectid";
@@ -198,6 +203,7 @@ namespace DLaB.Xrm.Entities
 			public const string ServiceAppointment_AsyncOperations = "regardingobjectid";
 			public const string SharePointDocumentLocation_AsyncOperations = "regardingobjectid";
 			public const string SharePointSite_AsyncOperations = "regardingobjectid";
+			public const string similarityrule_AsyncOperations = "regardingobjectid";
 			public const string Site_AsyncOperations = "regardingobjectid";
 			public const string slabase_AsyncOperations = "regardingobjectid";
 			public const string SocialActivity_AsyncOperations = "regardingobjectid";
@@ -211,10 +217,12 @@ namespace DLaB.Xrm.Entities
 			public const string Team_AsyncOperations = "regardingobjectid";
 			public const string Template_AsyncOperations = "regardingobjectid";
 			public const string Territory_AsyncOperations = "regardingobjectid";
+			public const string theme_AsyncOperations = "regardingobjectid";
 			public const string TransactionCurrency_AsyncOperations = "regardingobjectid";
 			public const string UoM_AsyncOperations = "regardingobjectid";
 			public const string UoMSchedule_AsyncOperations = "regardingobjectid";
 			public const string UserForm_AsyncOperations = "regardingobjectid";
+			public const string usermapping_AsyncOperations = "regardingobjectid";
 			public const string UserQuery_AsyncOperations = "regardingobjectid";
 		}
 
@@ -386,6 +394,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
 			}
 		}
 		
@@ -597,6 +612,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
 			}
 		}
 		
@@ -1080,6 +1102,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N AsyncOperation_MailboxTrackingFolder
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("AsyncOperation_MailboxTrackingFolder")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> AsyncOperation_MailboxTrackingFolder
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("AsyncOperation_MailboxTrackingFolder", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("AsyncOperation_MailboxTrackingFolder");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("AsyncOperation_MailboxTrackingFolder", null, value);
+				this.OnPropertyChanged("AsyncOperation_MailboxTrackingFolder");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N AsyncOperation_SocialActivities
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("AsyncOperation_SocialActivities")]
@@ -1221,7 +1263,7 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanged("ActivityPointer_AsyncOperations");
 			}
 		}
-
+		
 		/// <summary>
 		/// N:1 Annotation_AsyncOperations
 		/// </summary>
@@ -1485,6 +1527,27 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("CampaignResponse_AsyncOperations");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.CampaignResponse>("CampaignResponse_AsyncOperations", null, value);
 				this.OnPropertyChanged("CampaignResponse_AsyncOperations");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 channelaccessprofile_AsyncOperations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("channelaccessprofile_AsyncOperations")]
+		public DLaB.Xrm.Entities.ChannelAccessProfile channelaccessprofile_AsyncOperations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfile>("channelaccessprofile_AsyncOperations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("channelaccessprofile_AsyncOperations");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfile>("channelaccessprofile_AsyncOperations", null, value);
+				this.OnPropertyChanged("channelaccessprofile_AsyncOperations");
 			}
 		}
 		
@@ -1951,6 +2014,48 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 externalparty_AsyncOperations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("externalparty_AsyncOperations")]
+		public DLaB.Xrm.Entities.ExternalParty externalparty_AsyncOperations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExternalParty>("externalparty_AsyncOperations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("externalparty_AsyncOperations");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.ExternalParty>("externalparty_AsyncOperations", null, value);
+				this.OnPropertyChanged("externalparty_AsyncOperations");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 externalpartyitem_AsyncOperations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("externalpartyitem_AsyncOperations")]
+		public DLaB.Xrm.Entities.ExternalPartyItem externalpartyitem_AsyncOperations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExternalPartyItem>("externalpartyitem_AsyncOperations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("externalpartyitem_AsyncOperations");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.ExternalPartyItem>("externalpartyitem_AsyncOperations", null, value);
+				this.OnPropertyChanged("externalpartyitem_AsyncOperations");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 Fax_AsyncOperations
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -2287,6 +2392,48 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 knowledgearticle_AsyncOperations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_AsyncOperations")]
+		public DLaB.Xrm.Entities.KnowledgeArticle knowledgearticle_AsyncOperations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("knowledgearticle_AsyncOperations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticle_AsyncOperations");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("knowledgearticle_AsyncOperations", null, value);
+				this.OnPropertyChanged("knowledgearticle_AsyncOperations");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 KnowledgeBaseRecord_AsyncOperations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeBaseRecord_AsyncOperations")]
+		public DLaB.Xrm.Entities.KnowledgeBaseRecord KnowledgeBaseRecord_AsyncOperations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeBaseRecord>("KnowledgeBaseRecord_AsyncOperations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("KnowledgeBaseRecord_AsyncOperations");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeBaseRecord>("KnowledgeBaseRecord_AsyncOperations", null, value);
+				this.OnPropertyChanged("KnowledgeBaseRecord_AsyncOperations");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 Lead_AsyncOperations
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -2375,6 +2522,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_asyncoperation_createdonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_asyncoperation_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_asyncoperation_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_asyncoperation_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -2402,6 +2556,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_asyncoperation_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_asyncoperation_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_asyncoperation_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_asyncoperation_modifiedonbehalfby");
 			}
 		}
 		
@@ -2742,27 +2903,6 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// N:1 plt_idgenerator_AsyncOperations
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("plt_idgenerator_AsyncOperations")]
-		public DLaB.Xrm.Entities.plt_idgenerator plt_idgenerator_AsyncOperations
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntity<DLaB.Xrm.Entities.plt_idgenerator>("plt_idgenerator_AsyncOperations", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("plt_idgenerator_AsyncOperations");
-				this.SetRelatedEntity<DLaB.Xrm.Entities.plt_idgenerator>("plt_idgenerator_AsyncOperations", null, value);
-				this.OnPropertyChanged("plt_idgenerator_AsyncOperations");
-			}
-		}
-		
-		/// <summary>
 		/// N:1 position_AsyncOperations
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -2948,6 +3088,27 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ProductSubstitute_AsyncOperations");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.ProductSubstitute>("ProductSubstitute_AsyncOperations", null, value);
 				this.OnPropertyChanged("ProductSubstitute_AsyncOperations");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 profilerule_AsyncOperations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("profilerule_AsyncOperations")]
+		public DLaB.Xrm.Entities.ChannelAccessProfileRule profilerule_AsyncOperations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfileRule>("profilerule_AsyncOperations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("profilerule_AsyncOperations");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfileRule>("profilerule_AsyncOperations", null, value);
+				this.OnPropertyChanged("profilerule_AsyncOperations");
 			}
 		}
 		
@@ -3540,6 +3701,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 similarityrule_AsyncOperations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("similarityrule_AsyncOperations")]
+		public DLaB.Xrm.Entities.SimilarityRule similarityrule_AsyncOperations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SimilarityRule>("similarityrule_AsyncOperations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("similarityrule_AsyncOperations");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SimilarityRule>("similarityrule_AsyncOperations", null, value);
+				this.OnPropertyChanged("similarityrule_AsyncOperations");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 Site_AsyncOperations
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -3799,6 +3981,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 theme_AsyncOperations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("theme_AsyncOperations")]
+		public DLaB.Xrm.Entities.Theme theme_AsyncOperations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Theme>("theme_AsyncOperations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("theme_AsyncOperations");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Theme>("theme_AsyncOperations", null, value);
+				this.OnPropertyChanged("theme_AsyncOperations");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 TransactionCurrency_AsyncOperations
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -3883,6 +4086,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 usermapping_AsyncOperations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("usermapping_AsyncOperations")]
+		public DLaB.Xrm.Entities.UserMapping usermapping_AsyncOperations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.UserMapping>("usermapping_AsyncOperations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("usermapping_AsyncOperations");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.UserMapping>("usermapping_AsyncOperations", null, value);
+				this.OnPropertyChanged("usermapping_AsyncOperations");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 UserQuery_AsyncOperations
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -3914,24 +4138,38 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["asyncoperationid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["asyncoperationid"] = base.Id;
+                        break;
+                    case "asyncoperationid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("operationtype")]
 		public virtual asyncoperation_operationtype? OperationTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -3943,6 +4181,21 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				OperationType = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public virtual asyncoperation_statuscode? StatusCodeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((asyncoperation_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				StatusCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 	}

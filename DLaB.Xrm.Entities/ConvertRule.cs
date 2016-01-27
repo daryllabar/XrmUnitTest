@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public enum ConvertRuleState
 	{
 		
@@ -23,17 +23,18 @@ namespace DLaB.Xrm.Entities
 	}
 	
 	/// <summary>
-	/// Defines the settings for automatic case creation.
+	/// Defines the settings for automatic record creation.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("convertrule")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class ConvertRule : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
 		public struct Fields
 		{
 			public const string AllowUnknownSender = "allowunknownsender";
+			public const string ChannelPropertyGroupId = "channelpropertygroupid";
 			public const string CheckActiveEntitlement = "checkactiveentitlement";
 			public const string CheckBlockedSocialProfile = "checkblockedsocialprofile";
 			public const string CheckDirectMessages = "checkdirectmessages";
@@ -58,10 +59,12 @@ namespace DLaB.Xrm.Entities
 			public const string OwningTeam = "owningteam";
 			public const string OwningUser = "owninguser";
 			public const string QueueId = "queueid";
+			public const string RecordVersion = "recordversion";
 			public const string ResolvedSince = "resolvedsince";
 			public const string ResponseTemplateId = "responsetemplateid";
 			public const string SendAutomaticResponse = "sendautomaticresponse";
 			public const string SolutionId = "solutionid";
+			public const string SourceChannelTypeCode = "sourcechanneltypecode";
 			public const string SourceTypeCode = "sourcetypecode";
 			public const string StateCode = "statecode";
 			public const string StatusCode = "statuscode";
@@ -69,6 +72,7 @@ namespace DLaB.Xrm.Entities
 			public const string VersionNumber = "versionnumber";
 			public const string WorkflowId = "workflowid";
 			public const string business_unit_convertrule = "owningbusinessunit";
+			public const string channelpropertygroup_convertrule = "channelpropertygroupid";
 			public const string convertrule_queue = "queueid";
 			public const string emailtemplate_convertrule = "responsetemplateid";
 			public const string lk_convertrule_createdby = "createdby";
@@ -118,7 +122,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose whether items from unknown senders should be converted to cases.
+		/// Choose whether items from unknown senders should be converted to records.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("allowunknownsender")]
 		public System.Nullable<bool> AllowUnknownSender
@@ -134,6 +138,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("AllowUnknownSender");
 				this.SetAttributeValue("allowunknownsender", value);
 				this.OnPropertyChanged("AllowUnknownSender");
+			}
+		}
+		
+		/// <summary>
+		/// channel property group associated with the convert rule.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("channelpropertygroupid")]
+		public Microsoft.Xrm.Sdk.EntityReference ChannelPropertyGroupId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("channelpropertygroupid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ChannelPropertyGroupId");
+				this.SetAttributeValue("channelpropertygroupid", value);
+				this.OnPropertyChanged("ChannelPropertyGroupId");
 			}
 		}
 		
@@ -158,7 +182,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Information whether case needs to be created for black listed social profiles.
+		/// Information whether record needs to be created for black listed social profiles.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("checkblockedsocialprofile")]
 		public System.Nullable<bool> CheckBlockedSocialProfile
@@ -178,7 +202,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Information whether case needs to be created for direct messages.
+		/// Information whether record needs to be created for direct messages.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("checkdirectmessages")]
 		public System.Nullable<bool> CheckDirectMessages
@@ -323,10 +347,17 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
+			}
 		}
 		
 		/// <summary>
-		/// Type additional information to describe the rule for creating cases automatically.
+		/// Type additional information to describe the rule for creating records automatically.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("description")]
 		public string Description
@@ -407,6 +438,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
 			}
 		}
 		
@@ -537,6 +575,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Record Version
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("recordversion")]
+		public string RecordVersion
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("recordversion");
+			}
+		}
+		
+		/// <summary>
 		/// If you want to create a new case for an item associated with a resolved case, type how long a case must remain resolved before a new case is created for the associated item.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("resolvedsince")]
@@ -577,7 +628,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose whether to send an automatic email response to the customer after a case is created.
+		/// Choose whether to send an automatic email response to the customer after a record is created.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sendautomaticresponse")]
 		public System.Nullable<bool> SendAutomaticResponse
@@ -610,7 +661,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Source of the case.
+		/// Identifies the CRM activity that's the source of the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sourcechanneltypecode")]
+		public string SourceChannelTypeCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("sourcechanneltypecode");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SourceChannelTypeCode");
+				this.SetAttributeValue("sourcechanneltypecode", value);
+				this.OnPropertyChanged("SourceChannelTypeCode");
+			}
+		}
+		
+		/// <summary>
+		/// Source of the record.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sourcetypecode")]
 		public Microsoft.Xrm.Sdk.OptionSetValue SourceTypeCode
@@ -647,6 +718,20 @@ namespace DLaB.Xrm.Entities
 				{
 					return null;
 				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("StateCode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statecode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("StateCode");
 			}
 		}
 		
@@ -838,6 +923,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 channelpropertygroup_convertrule
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("channelpropertygroupid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("channelpropertygroup_convertrule")]
+		public DLaB.Xrm.Entities.ChannelPropertyGroup channelpropertygroup_convertrule
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ChannelPropertyGroup>("channelpropertygroup_convertrule", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("channelpropertygroup_convertrule");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.ChannelPropertyGroup>("channelpropertygroup_convertrule", null, value);
+				this.OnPropertyChanged("channelpropertygroup_convertrule");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 convertrule_queue
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("queueid")]
@@ -905,6 +1011,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ConvertRule_createdonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_ConvertRule_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ConvertRule_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_ConvertRule_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -932,6 +1045,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ConvertRule_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_ConvertRule_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ConvertRule_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_ConvertRule_modifiedonbehalfby");
 			}
 		}
 		
@@ -1030,24 +1150,38 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["convertruleid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["convertruleid"] = base.Id;
+                        break;
+                    case "convertruleid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
 		public virtual componentstate? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1057,6 +1191,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sourcetypecode")]
 		public virtual converttorule_sourcetype? SourceTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1068,6 +1203,21 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				SourceTypeCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public virtual convertrule_statuscode? StatusCodeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((convertrule_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				StatusCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 	}

@@ -15,12 +15,13 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("savedqueryvisualization")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class SavedQueryVisualization : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
 		public struct Fields
 		{
+			public const string CanBeDeleted = "canbedeleted";
 			public const string ComponentState = "componentstate";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
@@ -43,6 +44,7 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "savedqueryvisualizationid";
 			public const string SavedQueryVisualizationIdUnique = "savedqueryvisualizationidunique";
 			public const string SolutionId = "solutionid";
+			public const string Type = "type";
 			public const string VersionNumber = "versionnumber";
 			public const string WebResourceId = "webresourceid";
 			public const string lk_savedqueryvisualizationbase_createdby = "createdby";
@@ -86,6 +88,26 @@ namespace DLaB.Xrm.Entities
 			if ((this.PropertyChanging != null))
 			{
 				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// Tells whether the saved query visualization can be deleted.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("canbedeleted")]
+		public Microsoft.Xrm.Sdk.BooleanManagedProperty CanBeDeleted
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.BooleanManagedProperty>("canbedeleted");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CanBeDeleted");
+				this.SetAttributeValue("canbedeleted", value);
+				this.OnPropertyChanged("CanBeDeleted");
 			}
 		}
 		
@@ -138,6 +160,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
 			}
 		}
 		
@@ -290,6 +319,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
 			}
 		}
 		
@@ -449,6 +485,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Specifies where the chart will be used, 0 for data centric as well as interaction centric and 1 for just interaction centric
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("type")]
+		public Microsoft.Xrm.Sdk.OptionSetValue Type
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("type");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Type");
+				this.SetAttributeValue("type", value);
+				this.OnPropertyChanged("Type");
+			}
+		}
+		
+		/// <summary>
 		/// Version number of the system chart.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
@@ -527,6 +583,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_savedqueryvisualizationbase_createdonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_savedqueryvisualizationbase_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_savedqueryvisualizationbase_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_savedqueryvisualizationbase_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -554,6 +617,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_savedqueryvisualizationbase_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_savedqueryvisualizationbase_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_savedqueryvisualizationbase_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_savedqueryvisualizationbase_modifiedonbehalfby");
 			}
 		}
 		
@@ -603,30 +673,59 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["savedqueryvisualizationid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["savedqueryvisualizationid"] = base.Id;
+                        break;
+                    case "savedqueryvisualizationid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
 		public virtual componentstate? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
 				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("type")]
+		public virtual chart_usage? TypeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((chart_usage?)(EntityOptionSetEnum.GetEnum(this, "type")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				Type = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 	}

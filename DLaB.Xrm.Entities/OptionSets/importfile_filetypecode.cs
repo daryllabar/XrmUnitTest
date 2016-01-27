@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public enum importfile_filetypecode
 	{
 		
@@ -20,6 +20,9 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		CSV = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		XLSX = 3,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		XMLSpreadsheet2003 = 1,

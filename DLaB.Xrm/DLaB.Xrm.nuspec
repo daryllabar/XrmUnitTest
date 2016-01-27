@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DLaB.Xrm</id>
-	  <version>1.0.1.7-alpha</version>
+	  <version>1.1.1</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>
@@ -10,12 +10,12 @@
     <iconUrl>https://raw.githubusercontent.com/daryllabar/XrmUnitTest/master/DLaB_Dynamics_64x64.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Contains extensions for Xrm development.  </description>
-    <releaseNotes>Trial of referencing Xrm.Sdk 8.0.1</releaseNotes>
+    <releaseNotes>Update to CRM 2016 SDK References</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>Dynamics CRM 2015 Plugin XRM</tags>
 	<dependencies>
     <group targetFramework=".NETFramework4.5">
-	    <dependency id="DLaB.Common" version="1.0.1.1-alpha" />
+	    <dependency id="DLaB.Common" version="1.0.1.1" />
       <dependency id="Microsoft.CrmSdk.CoreAssemblies" version="8.0.1" />
     </group>
   </dependencies>

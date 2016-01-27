@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // </auto-generated>
-// Created via this command line: "C:\CRM Tools\XrmToolBox\Plugins\CrmSvcUtil Ref\crmsvcutil.exe" /url:"https://defcrmsandbox2.api.crm.dynamics.com/XRMServices/2011/Organization.svc" /namespace:"CrmEarlyBound" /out:"C:\CRM Tools\XrmToolBox\Plugins\CrmSvcUtil Ref\Entities\CrmServiceContext.cs" /servicecontextname:"CrmServiceContext" /codecustomization:"DLaB.CrmSvcUtilExtensions.Entity.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.Entity.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.Entity.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /namingservice:"DLaB.CrmSvcUtilExtensions.Entity.OverridePropertyNames,DLaB.CrmSvcUtilExtensions" /username:"daryl.labar@defenderdirect.com" /password:"********" 
+// Created via this command line: "C:\Users\dlabar\Documents\GitHub\DLaB.Xrm.XrmToolBoxTools\XrmToolBox\Debug\Plugins\CrmSvcUtil Ref\crmsvcutil.exe" /url:"https://dlabautonumber.api.crm.dynamics.com/XRMServices/2011/Organization.svc" /namespace:"DLaB.Xrm.Entities" /out:"C:\Users\dlabar\Documents\GitHub\DLaB.Xrm.XrmToolBoxTools\XrmToolBox\Debug\Plugins\CrmSvcUtil Ref\Entities\CrmContext.cs" /servicecontextname:"CrmContext" /codecustomization:"DLaB.CrmSvcUtilExtensions.Entity.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.Entity.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.Entity.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /namingservice:"DLaB.CrmSvcUtilExtensions.Entity.OverridePropertyNames,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.Entity.MetadataProviderService,DLaB.CrmSvcUtilExtensions" /username:"admin@DLaBAutoNumber.onmicrosoft.com" /password:"********" 
 //------------------------------------------------------------------------------
 
 [assembly: Microsoft.Xrm.Sdk.Client.ProxyTypesAssemblyAttribute()]
@@ -16,7 +16,7 @@ namespace DLaB.Xrm.Entities
 	/// <summary>
 	/// Represents a source of entities bound to a CRM service. It tracks and manages changes made to the retrieved entities.
 	/// </summary>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class CrmContext : Microsoft.Xrm.Sdk.Client.OrganizationServiceContext
 	{
 		
@@ -162,6 +162,18 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.AzureServiceConnection"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.AzureServiceConnection> AzureServiceConnectionSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.AzureServiceConnection>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.BulkDeleteFailure"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.BulkDeleteFailure> BulkDeleteFailureSet
@@ -302,6 +314,78 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.CampaignResponse>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.ChannelAccessProfile"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.ChannelAccessProfile> ChannelAccessProfileSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.ChannelAccessProfile>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.ChannelAccessProfileEntityAccessLevel"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.ChannelAccessProfileEntityAccessLevel> ChannelAccessProfileEntityAccessLevelSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.ChannelAccessProfileEntityAccessLevel>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.ChannelAccessProfileRule"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.ChannelAccessProfileRule> ChannelAccessProfileRuleSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.ChannelAccessProfileRule>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.ChannelAccessProfileRuleItem"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.ChannelAccessProfileRuleItem> ChannelAccessProfileRuleItemSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.ChannelAccessProfileRuleItem>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.ChannelProperty"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.ChannelProperty> ChannelPropertySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.ChannelProperty>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.ChannelPropertyGroup"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.ChannelPropertyGroup> ChannelPropertyGroupSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.ChannelPropertyGroup>();
 			}
 		}
 		
@@ -534,6 +618,42 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.CustomControl"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.CustomControl> CustomControlSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.CustomControl>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.CustomControlDefaultConfig"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.CustomControlDefaultConfig> CustomControlDefaultConfigSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.CustomControlDefaultConfig>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.CustomControlResource"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.CustomControlResource> CustomControlResourceSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.CustomControlResource>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.CustomerAddress"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.CustomerAddress> CustomerAddressSet
@@ -614,6 +734,18 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.DisplayString>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.DocumentTemplate"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.DocumentTemplate> DocumentTemplateSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.DocumentTemplate>();
 			}
 		}
 		
@@ -846,6 +978,30 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.ExternalParty"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.ExternalParty> ExternalPartySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.ExternalParty>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.ExternalPartyItem"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.ExternalPartyItem> ExternalPartyItemSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.ExternalPartyItem>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.Fax"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.Fax> FaxSet
@@ -1026,6 +1182,18 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.IncidentKnowledgeBaseRecord"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.IncidentKnowledgeBaseRecord> IncidentKnowledgeBaseRecordSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.IncidentKnowledgeBaseRecord>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.IncidentResolution"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.IncidentResolution> IncidentResolutionSet
@@ -1118,6 +1286,78 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.KbArticleTemplate>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.KnowledgeArticle"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.KnowledgeArticle> KnowledgeArticleSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.KnowledgeArticle>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.KnowledgeArticleIncident"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.KnowledgeArticleIncident> KnowledgeArticleIncidentSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.KnowledgeArticleIncident>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.KnowledgeArticleViews"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.KnowledgeArticleViews> KnowledgeArticleViewsSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.KnowledgeArticleViews>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.KnowledgeBaseRecord"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.KnowledgeBaseRecord> KnowledgeBaseRecordSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.KnowledgeBaseRecord>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.KnowledgeSearchModel"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.KnowledgeSearchModel> KnowledgeSearchModelSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.KnowledgeSearchModel>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.LanguageLocale"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.LanguageLocale> LanguageLocaleSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.LanguageLocale>();
 			}
 		}
 		
@@ -1242,6 +1482,30 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.MailboxStatistics"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.MailboxStatistics> MailboxStatisticsSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.MailboxStatistics>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.MailboxTrackingFolder"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.MailboxTrackingFolder> MailboxTrackingFolderSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.MailboxTrackingFolder>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.MailMergeTemplate"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.MailMergeTemplate> MailMergeTemplateSet
@@ -1262,6 +1526,42 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.Metric>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.MobileOfflineProfile"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.MobileOfflineProfile> MobileOfflineProfileSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.MobileOfflineProfile>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.MobileOfflineProfileItem"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.MobileOfflineProfileItem> MobileOfflineProfileItemSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.MobileOfflineProfileItem>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.MobileOfflineProfileItemAssociation"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.MobileOfflineProfileItemAssociation> MobileOfflineProfileItemAssociationSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.MobileOfflineProfileItemAssociation>();
 			}
 		}
 		
@@ -1334,6 +1634,18 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_wallsavedqueryusersettings>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.OfficeGraphDocument"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.OfficeGraphDocument> OfficeGraphDocumentSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.OfficeGraphDocument>();
 			}
 		}
 		
@@ -1434,6 +1746,18 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.PersonalDocumentTemplate"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.PersonalDocumentTemplate> PersonalDocumentTemplateSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.PersonalDocumentTemplate>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.PhoneCall"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.PhoneCall> PhoneCallSet
@@ -1458,18 +1782,6 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.plt_idgenerator"/> entities.
-		/// </summary>
-		public System.Linq.IQueryable<DLaB.Xrm.Entities.plt_idgenerator> plt_idgeneratorSet
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.CreateQuery<DLaB.Xrm.Entities.plt_idgenerator>();
-			}
-		}
-		
-		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.PluginAssembly"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.PluginAssembly> PluginAssemblySet
@@ -1478,6 +1790,18 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.PluginAssembly>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.PluginTraceLog"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.PluginTraceLog> PluginTraceLogSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.PluginTraceLog>();
 			}
 		}
 		
@@ -1814,6 +2138,66 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.QuoteDetail>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.RecommendationCache"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.RecommendationCache> RecommendationCacheSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.RecommendationCache>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.RecommendationModel"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.RecommendationModel> RecommendationModelSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.RecommendationModel>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.RecommendationModelMapping"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.RecommendationModelMapping> RecommendationModelMappingSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.RecommendationModelMapping>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.RecommendationModelVersion"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.RecommendationModelVersion> RecommendationModelVersionSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.RecommendationModelVersion>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.RecommendationModelVersionHistory"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.RecommendationModelVersionHistory> RecommendationModelVersionHistorySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.RecommendationModelVersionHistory>();
 			}
 		}
 		
@@ -2346,6 +2730,18 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.SimilarityRule"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.SimilarityRule> SimilarityRuleSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.SimilarityRule>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.Site"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.Site> SiteSet
@@ -2498,6 +2894,18 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.SubscriptionTrackingDeletedObject>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.SyncError"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.SyncError> SyncErrorSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.SyncError>();
 			}
 		}
 		
@@ -2682,6 +3090,30 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.TextAnalyticsEntityMapping"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.TextAnalyticsEntityMapping> TextAnalyticsEntityMappingSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.TextAnalyticsEntityMapping>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.Theme"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.Theme> ThemeSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.Theme>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.TimeZoneDefinition"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.TimeZoneDefinition> TimeZoneDefinitionSet
@@ -2714,6 +3146,66 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.TimeZoneRule>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.Topic"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.Topic> TopicSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.Topic>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.TopicHistory"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.TopicHistory> TopicHistorySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.TopicHistory>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.TopicModel"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.TopicModel> TopicModelSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.TopicModel>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.TopicModelConfiguration"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.TopicModelConfiguration> TopicModelConfigurationSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.TopicModelConfiguration>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.TopicModelExecutionHistory"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.TopicModelExecutionHistory> TopicModelExecutionHistorySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.TopicModelExecutionHistory>();
 			}
 		}
 		
@@ -2822,6 +3314,18 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.UserForm>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.UserMapping"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.UserMapping> UserMappingSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.UserMapping>();
 			}
 		}
 		
