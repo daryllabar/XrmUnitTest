@@ -104,6 +104,7 @@ namespace DLaB.Xrm
                     break;
 
                 #region Default CRM Entites with no active flag
+
                 case "accountleads":
                 case "activitymimeattachment":
                 case "activityparty":
@@ -118,6 +119,8 @@ namespace DLaB.Xrm
                 case "calendarrule":
                 case "campaignactivityitem":
                 case "campaignitem":
+                case "channelaccessprofileentityaccesslevel":
+                case "channelaccessprofileruleitem":
                 case "competitor":
                 case "competitorproduct":
                 case "competitorsalesliterature":
@@ -129,13 +132,17 @@ namespace DLaB.Xrm
                 case "contactorders":
                 case "contactquotes":
                 case "contracttemplate":
+                case "convertruleitem":
+                case "customcontrol":
+                case "customcontroldefaultconfig":
+                case "customcontrolresource":
                 case "customeraddress":
                 case "customeropportunityrole":
                 case "customerrelationship":
-                case "convertruleitem":
                 case "dependency":
                 case "discount":
                 case "displaystring":
+                case "documenttemplate":
                 case "duplicaterecord":
                 case "duplicaterulecondition":
                 case "dynamicpropertyassociation":
@@ -155,25 +162,33 @@ namespace DLaB.Xrm
                 case "hierarchyrule":
                 case "hierarchysecurityconfiguration":
                 case "importjob":
+                case "incidentknowledgebaserecord":
                 case "invaliddependency":
                 case "invoicedetail":
                 case "isvconfig":
                 case "kbarticlecomment":
                 case "kbarticletemplate":
+                case "knowledgebaserecord":
                 case "leadaddress":
                 case "leadcompetitors":
                 case "leadproduct":
                 case "license":
                 case "listmember":
+                case "mailboxstatistics":
+                case "mailboxtrackingfolder":
+                case "mobileofflineprofile":
+                case "mobileofflineprofileitem":
+                case "mobileofflineprofileitemassociation":
                 case "monthlyfiscalcalendar":
+                case "officegraphdocument":
                 case "opportunitycompetitors":
                 case "opportunityproduct":
                 case "organizationui":
+                case "personaldocumenttemplate":
                 case "pluginassembly":
+                case "plugintracelog":
                 case "plugintype":
                 case "plugintypestatistic":
-                case "processstage":
-                case "processtrigger":
                 case "post":
                 case "postcomment":
                 case "postfollow":
@@ -181,6 +196,8 @@ namespace DLaB.Xrm
                 case "principalentitymap":
                 case "principalobjectattributeaccess":
                 case "privilege":
+                case "processstage":
+                case "processtrigger":
                 case "productassociation":
                 case "productpricelevel":
                 case "productsalesliterature":
@@ -190,6 +207,10 @@ namespace DLaB.Xrm
                 case "quarterlyfiscalcalendar":
                 case "queuemembership":
                 case "quotedetail":
+                case "recommendationcache":
+                case "recommendationmodelmapping":
+                case "recommendationmodelversion":
+                case "recommendationmodelversionhistory":
                 case "recurrencerule":
                 case "relationshiprolemap":
                 case "report":
@@ -232,8 +253,9 @@ namespace DLaB.Xrm
                 case "solution":
                 case "solutioncomponent":
                 case "subject":
-                case "subscriptiontrackingdeletedobject":
                 case "subscriptionmanuallytrackedobject":
+                case "subscriptiontrackingdeletedobject":
+                case "syncerror":
                 case "systemform":
                 case "systemuserlicenses":
                 case "systemuserprofiles":
@@ -247,21 +269,29 @@ namespace DLaB.Xrm
                 case "teamtemplate":
                 case "template":
                 case "territory":
+                case "textanalyticsentitymapping":
                 case "timezonedefinition":
                 case "timezonelocalizedname":
                 case "timezonerule":
+                case "topic":
+                case "topichistory":
+                case "topicmodelconfiguration":
+                case "topicmodelexecutionhistory":
                 case "tracelog":
                 case "transformationparametermapping":
                 case "uom":
                 case "userentityinstancedata":
                 case "userentityuisettings":
                 case "userform":
+                case "usermapping":
                 case "userqueryvisualization":
                 case "usersettings":
                 case "webresource":
                 case "workflowdependency":
                 case "workflowlog":
-                #endregion Default CRM Entites with no active flag
+
+                    #endregion Default CRM Entites with no active flag
+
                     ActiveAttribute = ActiveAttributeType.None;
                     break;
 

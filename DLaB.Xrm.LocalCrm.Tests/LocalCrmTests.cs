@@ -228,11 +228,16 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var service = GetService();
             var entityType = typeof (Entity);
             var entitiesMissingStatusCodeAttribute = new List<string>();
+            var entitiesMissingStateCodeAttribute = new List<string>();
 
             foreach (var entity in from t in typeof (SystemUser).Assembly.GetTypes()
                 where entityType.IsAssignableFrom(t) && new LateBoundActivePropertyInfo(EntityHelper.GetEntityLogicalName(t)).ActiveAttribute != ActiveAttributeType.None 
                 select (Entity) Activator.CreateInstance(t))
             {
+                if (entity.LogicalName == RecommendationCache.EntityLogicalName)
+                {
+                    entity.Id = service.Create(entity);
+                }
                 entity.Id = service.Create(entity);
                 AssertCrm.IsActive(service, entity, "Entity " + entity.GetType().Name + " wasn't created active!");
                 try
@@ -252,6 +257,12 @@ namespace DLaB.Xrm.LocalCrm.Tests
                         entitiesMissingStatusCodeAttribute.Add(entity.LogicalName);
                         continue;
                     }
+                    if (ex.ToString().Contains("does not contain an attribute with name statecode"))
+                    {
+                        entitiesMissingStateCodeAttribute.Add(entity.LogicalName);
+                        continue;
+                    }
+
                     throw;
                 }
                 AssertCrm.IsNotActive(service, entity, "Entity " + entity.GetType().Name + " wasn't deactivated!");
@@ -262,6 +273,11 @@ namespace DLaB.Xrm.LocalCrm.Tests
             if (entitiesMissingStatusCodeAttribute.Any())
             {
                 Assert.Fail("The following Entities do not contain an attribute with name statuscode " + entitiesMissingStatusCodeAttribute.ToCsv() + ". Check DLaB.Xrm.ActiveAttributeType for proper configuration.");
+            }
+
+            if (entitiesMissingStateCodeAttribute.Any())
+            {
+                Assert.Fail("The following Entities do not contain an attribute with name statecode " + entitiesMissingStateCodeAttribute.ToCsv() + ". Check DLaB.Xrm.ActiveAttributeType for proper configuration.");
             }
         }
 
