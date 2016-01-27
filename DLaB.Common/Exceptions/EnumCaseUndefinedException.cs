@@ -88,7 +88,7 @@ namespace DLaB.Common.Exceptions
         /// <param name="inner">The inner exception.</param>
         public EnumCaseUndefinedException(int undefinedEnumValue, string message, Exception inner) : base(GetMessage(undefinedEnumValue, message), inner) { }
 
-        #endregion // Constructors
+        #endregion Constructors
 
         /// <summary>
         /// Gets the message.

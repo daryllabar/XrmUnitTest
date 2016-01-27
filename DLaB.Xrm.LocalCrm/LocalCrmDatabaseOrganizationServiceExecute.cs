@@ -288,7 +288,7 @@ namespace DLaB.Xrm.LocalCrm
             return response;
         }
 
-        #endregion // Execute Internal
+        #endregion Execute Internal
 
         private static bool IsEnumType(Type t, string name)
         {

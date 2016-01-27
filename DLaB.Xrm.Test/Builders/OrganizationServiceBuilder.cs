@@ -86,9 +86,9 @@ namespace DLaB.Xrm.Test.Builders
         private List<Func<IOrganizationService, string, Guid, ColumnSet, Entity>> RetrieveFuncs { get; }
         private List<Action<IOrganizationService, Entity>> UpdateActions { get; }
 
-        #endregion // IOrganizationService Actions and Funcs
+        #endregion IOrganizationService Actions and Funcs
 
-        #endregion // Properties
+        #endregion Properties
 
         #region Constructors
 
@@ -114,10 +114,10 @@ namespace DLaB.Xrm.Test.Builders
             UpdateActions = new List<Action<IOrganizationService, Entity>>();
 
 
-            #endregion // IOrganizationService Actions and Funcs
+            #endregion IOrganizationService Actions and Funcs
         }
 
-        #endregion // Constructors
+        #endregion Constructors
 
         #region Fleunt Methods
 
@@ -633,7 +633,7 @@ namespace DLaB.Xrm.Test.Builders
             return This;
         }
 
-        #endregion // Fleunt Methods
+        #endregion Fleunt Methods
 
         /// <summary>
         /// Builds this IOrganizationService.

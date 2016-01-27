@@ -60,7 +60,7 @@ namespace DLaB.Xrm.Plugin
             events.Add(new RegisteredEvent(stage, message, execute, entityLogicalName));
         }
 
-        #endregion // AddEvent
+        #endregion AddEvent
 
         #region AddEvents
 
@@ -116,9 +116,9 @@ namespace DLaB.Xrm.Plugin
             }
         }
 
-        #endregion // AddEvent
+        #endregion AddEvent
 
-        #endregion // List<RegisteredEvent>
+        #endregion List<RegisteredEvent>
 
         #region IPluginExecutionContext
 

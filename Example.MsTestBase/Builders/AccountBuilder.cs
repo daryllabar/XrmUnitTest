@@ -33,7 +33,7 @@ namespace Example.MsTestBase.Builders
             return this;
         }
 
-        #endregion // Fluent Methods
+        #endregion Fluent Methods
 
         protected override Account BuildInternal()
         {

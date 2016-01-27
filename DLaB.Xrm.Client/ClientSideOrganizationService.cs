@@ -19,7 +19,7 @@ namespace DLaB.Xrm.Client
         /// </value>
         public IOrganizationService Service { get; set; }
 
-        #endregion // Properties
+        #endregion Properties
 
         #region Constructors
 
@@ -77,7 +77,7 @@ namespace DLaB.Xrm.Client
                                                                domain, userName, password, enableProxyTypes))
         { }
 
-        #endregion // Constructors
+        #endregion Constructors
 
         #region IOrganizationService Members
 
@@ -258,6 +258,6 @@ namespace DLaB.Xrm.Client
             return Service == null ? new Uri("localhost") : Service.GetServiceUri();
         }
 
-        #endregion // IIOrganizationServiceWrapper
+        #endregion IIOrganizationServiceWrapper
     }
 }

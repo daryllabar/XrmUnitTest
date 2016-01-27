@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public enum UoMScheduleState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("uomschedule")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class UoMSchedule : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -35,11 +35,13 @@ namespace DLaB.Xrm.Entities
 		{
 			public const string BaseUoMName = "baseuomname";
 			public const string CreatedBy = "createdby";
+			public const string CreatedByExternalParty = "createdbyexternalparty";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string Description = "description";
 			public const string ImportSequenceNumber = "importsequencenumber";
 			public const string ModifiedBy = "modifiedby";
+			public const string ModifiedByExternalParty = "modifiedbyexternalparty";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string Name = "name";
@@ -50,6 +52,8 @@ namespace DLaB.Xrm.Entities
 			public const string UoMScheduleId = "uomscheduleid";
 			public const string Id = "uomscheduleid";
 			public const string VersionNumber = "versionnumber";
+			public const string lk_externalparty_uomschedule_createdby = "createdbyexternalparty";
+			public const string lk_externalparty_uomschedule_modifiedby = "modifiedbyexternalparty";
 			public const string lk_uomschedule_createdonbehalfby = "createdonbehalfby";
 			public const string lk_uomschedule_modifiedonbehalfby = "modifiedonbehalfby";
 			public const string lk_uomschedulebase_createdby = "createdby";
@@ -127,6 +131,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Shows the external party who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdbyexternalparty")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedByExternalParty
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdbyexternalparty");
+			}
+		}
+		
+		/// <summary>
 		/// Date and time when the unit group was created.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
@@ -149,6 +166,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
 			}
 		}
 		
@@ -206,6 +230,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Shows the external party who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedbyexternalparty")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedByExternalParty
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedbyexternalparty");
+			}
+		}
+		
+		/// <summary>
 		/// Date and time when the unit group was last modified.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
@@ -228,6 +265,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
 			}
 		}
 		
@@ -302,6 +346,20 @@ namespace DLaB.Xrm.Entities
 				{
 					return null;
 				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("StateCode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statecode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("StateCode");
 			}
 		}
 		
@@ -522,6 +580,34 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 lk_externalparty_uomschedule_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdbyexternalparty")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_uomschedule_createdby")]
+		public DLaB.Xrm.Entities.ExternalParty lk_externalparty_uomschedule_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_uomschedule_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_externalparty_uomschedule_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedbyexternalparty")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_uomschedule_modifiedby")]
+		public DLaB.Xrm.Entities.ExternalParty lk_externalparty_uomschedule_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_uomschedule_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 lk_uomschedule_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
@@ -532,6 +618,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_uomschedule_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_uomschedule_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_uomschedule_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_uomschedule_createdonbehalfby");
 			}
 		}
 		
@@ -546,6 +639,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_uomschedule_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_uomschedule_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_uomschedule_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_uomschedule_modifiedonbehalfby");
 			}
 		}
 		
@@ -602,22 +702,50 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["uomscheduleid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["uomscheduleid"] = base.Id;
+                        break;
+                    case "uomscheduleid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public virtual uomschedule_statuscode? StatusCodeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((uomschedule_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				StatusCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
 		}
 	}
 }

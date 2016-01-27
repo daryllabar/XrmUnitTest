@@ -155,7 +155,7 @@ namespace DLaB.Xrm.Test.Builders
             return This;
         }
 
-        #endregion // Fleunt Methods
+        #endregion Fleunt Methods
 
         /// <summary>
         /// Builds a Cloned version of the Service Provider.

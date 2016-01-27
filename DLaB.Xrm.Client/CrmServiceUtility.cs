@@ -16,7 +16,7 @@ namespace DLaB.Xrm.Client
 
         private static Assembly _crmEntitiesAssembly;
 
-        #endregion // Fields / Properties
+        #endregion Fields / Properties
 
         #region GetOrganizationService
 
@@ -75,7 +75,7 @@ namespace DLaB.Xrm.Client
             });
         }
 
-        #endregion // GetOrganizationService
+        #endregion GetOrganizationService
 
         private static IClientSideOrganizationService CreateService(CrmServiceInfo info)
         {
@@ -217,7 +217,7 @@ namespace DLaB.Xrm.Client
             return new Uri($@"{info.CrmServerUrl}/{info.CrmOrganization}/XRMServices/2011/Organization.svc");
         }
 
-        #endregion // Url Formatting
+        #endregion Url Formatting
 
     }
 }

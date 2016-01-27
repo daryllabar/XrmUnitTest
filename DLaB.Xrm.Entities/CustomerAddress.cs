@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("customeraddress")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class CustomerAddress : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -28,6 +28,7 @@ namespace DLaB.Xrm.Entities
 			public const string Country = "country";
 			public const string County = "county";
 			public const string CreatedBy = "createdby";
+			public const string CreatedByExternalParty = "createdbyexternalparty";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string CustomerAddressId = "customeraddressid";
@@ -42,6 +43,7 @@ namespace DLaB.Xrm.Entities
 			public const string Line3 = "line3";
 			public const string Longitude = "longitude";
 			public const string ModifiedBy = "modifiedby";
+			public const string ModifiedByExternalParty = "modifiedbyexternalparty";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string Name = "name";
@@ -71,6 +73,8 @@ namespace DLaB.Xrm.Entities
 			public const string lk_customeraddress_modifiedonbehalfby = "modifiedonbehalfby";
 			public const string lk_customeraddressbase_createdby = "createdby";
 			public const string lk_customeraddressbase_modifiedby = "modifiedby";
+			public const string lk_externalparty_customeraddress_createdby = "createdbyexternalparty";
+			public const string lk_externalparty_customeraddress_modifiedby = "modifiedbyexternalparty";
 			public const string TransactionCurrency_CustomerAddress = "transactioncurrencyid";
 		}
 
@@ -237,6 +241,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Shows the external party who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdbyexternalparty")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedByExternalParty
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdbyexternalparty");
+			}
+		}
+		
+		/// <summary>
 		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
@@ -259,6 +276,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
 			}
 		}
 		
@@ -492,6 +516,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Shows the external party who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedbyexternalparty")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedByExternalParty
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedbyexternalparty");
+			}
+		}
+		
+		/// <summary>
 		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
@@ -514,6 +551,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
 			}
 		}
 		
@@ -1123,6 +1167,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_customeraddress_createdonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_customeraddress_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_customeraddress_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_customeraddress_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -1136,6 +1187,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_customeraddress_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_customeraddress_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_customeraddress_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_customeraddress_modifiedonbehalfby");
 			}
 		}
 		
@@ -1164,6 +1222,34 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_customeraddressbase_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_externalparty_customeraddress_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdbyexternalparty")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_customeraddress_createdby")]
+		public DLaB.Xrm.Entities.ExternalParty lk_externalparty_customeraddress_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_customeraddress_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_externalparty_customeraddress_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedbyexternalparty")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_customeraddress_modifiedby")]
+		public DLaB.Xrm.Entities.ExternalParty lk_externalparty_customeraddress_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_customeraddress_modifiedby", null);
 			}
 		}
 		
@@ -1199,24 +1285,38 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["customeraddressid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["customeraddressid"] = base.Id;
+                        break;
+                    case "customeraddressid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("addresstypecode")]
 		public virtual customeraddress_addresstypecode? AddressTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1231,6 +1331,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("freighttermscode")]
 		public virtual customeraddress_freighttermscode? FreightTermsCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1245,6 +1346,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("shippingmethodcode")]
 		public virtual customeraddress_shippingmethodcode? ShippingMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]

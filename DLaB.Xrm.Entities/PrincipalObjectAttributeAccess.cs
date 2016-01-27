@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("principalobjectattributeaccess")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class PrincipalObjectAttributeAccess : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -36,6 +36,7 @@ namespace DLaB.Xrm.Entities
 			public const string campaign_principalobjectattributeaccess = "objectid";
 			public const string campaignactivity_principalobjectattributeaccess = "objectid";
 			public const string campaignresponse_principalobjectattributeaccess = "objectid";
+			public const string channelaccessprofile_PrincipalObjectAttributeAccess = "objectid";
 			public const string competitor_principalobjectattributeaccess = "objectid";
 			public const string connection_principalobjectattributeaccess = "objectid";
 			public const string contact_principalobjectattributeaccess = "objectid";
@@ -52,6 +53,10 @@ namespace DLaB.Xrm.Entities
 			public const string invoice_principalobjectattributeaccess = "objectid";
 			public const string invoicedetail_principalobjectattributeaccess = "objectid";
 			public const string kbarticle_principalobjectattributeaccess = "objectid";
+			public const string knowledgearticle_PrincipalObjectAttributeAccess = "objectid";
+			public const string knowledgearticleincident_principalobjectattributeaccess = "objectid";
+			public const string knowledgearticleview_principalobjectattributeaccess = "objectid";
+			public const string KnowledgeBaseRecord_PrincipalObjectAttributeAccess = "objectid";
 			public const string lead_principalobjectattributeaccess = "objectid";
 			public const string letter_principalobjectattributeaccess = "objectid";
 			public const string list_principalobjectattributeaccess = "objectid";
@@ -65,7 +70,6 @@ namespace DLaB.Xrm.Entities
 			public const string opportunity_principalobjectattributeaccess = "objectid";
 			public const string opportunityproduct_principalobjectattributeaccess = "objectid";
 			public const string phonecall_principalobjectattributeaccess = "objectid";
-			public const string plt_idgenerator_PrincipalObjectAttributeAccesses = "objectid";
 			public const string position_principalobjectattributeaccess = "objectid";
 			public const string pricelevel_principalobjectattributeaccess = "objectid";
 			public const string product_principalobjectattributeaccess = "objectid";
@@ -445,6 +449,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 channelaccessprofile_PrincipalObjectAttributeAccess
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("channelaccessprofile_PrincipalObjectAttributeAccess")]
+		public DLaB.Xrm.Entities.ChannelAccessProfile channelaccessprofile_PrincipalObjectAttributeAccess
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfile>("channelaccessprofile_PrincipalObjectAttributeAccess", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("channelaccessprofile_PrincipalObjectAttributeAccess");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfile>("channelaccessprofile_PrincipalObjectAttributeAccess", null, value);
+				this.OnPropertyChanged("channelaccessprofile_PrincipalObjectAttributeAccess");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 competitor_principalobjectattributeaccess
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
@@ -781,6 +806,90 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 knowledgearticle_PrincipalObjectAttributeAccess
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_PrincipalObjectAttributeAccess")]
+		public DLaB.Xrm.Entities.KnowledgeArticle knowledgearticle_PrincipalObjectAttributeAccess
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("knowledgearticle_PrincipalObjectAttributeAccess", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticle_PrincipalObjectAttributeAccess");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("knowledgearticle_PrincipalObjectAttributeAccess", null, value);
+				this.OnPropertyChanged("knowledgearticle_PrincipalObjectAttributeAccess");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 knowledgearticleincident_principalobjectattributeaccess
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticleincident_principalobjectattributeaccess")]
+		public DLaB.Xrm.Entities.KnowledgeArticleIncident knowledgearticleincident_principalobjectattributeaccess
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticleIncident>("knowledgearticleincident_principalobjectattributeaccess", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticleincident_principalobjectattributeaccess");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticleIncident>("knowledgearticleincident_principalobjectattributeaccess", null, value);
+				this.OnPropertyChanged("knowledgearticleincident_principalobjectattributeaccess");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 knowledgearticleview_principalobjectattributeaccess
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticleview_principalobjectattributeaccess")]
+		public DLaB.Xrm.Entities.KnowledgeArticleViews knowledgearticleview_principalobjectattributeaccess
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticleViews>("knowledgearticleview_principalobjectattributeaccess", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticleview_principalobjectattributeaccess");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticleViews>("knowledgearticleview_principalobjectattributeaccess", null, value);
+				this.OnPropertyChanged("knowledgearticleview_principalobjectattributeaccess");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 KnowledgeBaseRecord_PrincipalObjectAttributeAccess
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeBaseRecord_PrincipalObjectAttributeAccess")]
+		public DLaB.Xrm.Entities.KnowledgeBaseRecord KnowledgeBaseRecord_PrincipalObjectAttributeAccess
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeBaseRecord>("KnowledgeBaseRecord_PrincipalObjectAttributeAccess", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("KnowledgeBaseRecord_PrincipalObjectAttributeAccess");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeBaseRecord>("KnowledgeBaseRecord_PrincipalObjectAttributeAccess", null, value);
+				this.OnPropertyChanged("KnowledgeBaseRecord_PrincipalObjectAttributeAccess");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 lead_principalobjectattributeaccess
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
@@ -1043,27 +1152,6 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("phonecall_principalobjectattributeaccess");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.PhoneCall>("phonecall_principalobjectattributeaccess", null, value);
 				this.OnPropertyChanged("phonecall_principalobjectattributeaccess");
-			}
-		}
-		
-		/// <summary>
-		/// N:1 plt_idgenerator_PrincipalObjectAttributeAccesses
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("plt_idgenerator_PrincipalObjectAttributeAccesses")]
-		public DLaB.Xrm.Entities.plt_idgenerator plt_idgenerator_PrincipalObjectAttributeAccesses
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntity<DLaB.Xrm.Entities.plt_idgenerator>("plt_idgenerator_PrincipalObjectAttributeAccesses", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("plt_idgenerator_PrincipalObjectAttributeAccesses");
-				this.SetRelatedEntity<DLaB.Xrm.Entities.plt_idgenerator>("plt_idgenerator_PrincipalObjectAttributeAccesses", null, value);
-				this.OnPropertyChanged("plt_idgenerator_PrincipalObjectAttributeAccesses");
 			}
 		}
 		
@@ -1603,20 +1691,33 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["principalobjectattributeaccessid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["principalobjectattributeaccessid"] = base.Id;
+                        break;
+                    case "principalobjectattributeaccessid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}

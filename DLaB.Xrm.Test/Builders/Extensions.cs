@@ -25,6 +25,6 @@ namespace DLaB.Xrm.Test.Builders
             }
         }
 
-        #endregion // Dictionary<Guid,>
+        #endregion Dictionary<Guid,>
     }
 }

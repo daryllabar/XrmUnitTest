@@ -105,7 +105,7 @@ namespace DLaB.Xrm.Exceptions
         /// <param name="inner">The inner exception.</param>
         public EnumCaseUndefinedException(OptionSetValue undefinedEnumValue, string message, Exception inner) : base(CreateMessage(undefinedEnumValue, message), inner) { }
 
-        #endregion // Constructors
+        #endregion Constructors
 
         private static string CreateMessage(OptionSetValue undefinedEnumValue, string message = null)
         {

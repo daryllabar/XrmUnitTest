@@ -226,7 +226,7 @@ namespace DLaB.Xrm.LocalCrm
             return fromEntity;
         }
 
-        #endregion // LinkEntity Join
+        #endregion LinkEntity Join
 
         private static int Compare(Entity e, string attributeName, object compareTo)
         {

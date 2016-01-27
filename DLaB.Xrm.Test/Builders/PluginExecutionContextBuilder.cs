@@ -315,7 +315,7 @@ namespace DLaB.Xrm.Test.Builders
             return This;
         }
 
-        #endregion // Fluent Methods
+        #endregion Fluent Methods
 
         /// <summary>
         /// Builds this instance.

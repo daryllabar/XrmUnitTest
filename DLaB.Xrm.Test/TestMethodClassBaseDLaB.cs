@@ -129,7 +129,7 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        #endregion // Entity Ids
+        #endregion Entity Ids
 
         #region Data Cleanup
 
@@ -266,7 +266,7 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        #endregion // Data Cleanup
+        #endregion Data Cleanup
 
         #region Assumptions
 
@@ -284,7 +284,7 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        #endregion // Assumptions
+        #endregion Assumptions
 
         private static bool IsLoaded { get; set; }
         private static readonly object IsLoadedLock = new Object();

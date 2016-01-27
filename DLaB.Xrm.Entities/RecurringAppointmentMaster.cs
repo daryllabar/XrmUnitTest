@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public enum RecurringAppointmentMasterState
 	{
 		
@@ -33,7 +33,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("recurringappointmentmaster")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class RecurringAppointmentMaster : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -125,6 +125,8 @@ namespace DLaB.Xrm.Entities
 			public const string entitlementtemplate_RecurringAppointmentMasters = "regardingobjectid";
 			public const string Incident_RecurringAppointmentMasters = "regardingobjectid";
 			public const string Invoice_RecurringAppointmentMasters = "regardingobjectid";
+			public const string KnowledgeArticle_RecurringAppointmentMasters = "regardingobjectid";
+			public const string KnowledgeBaseRecord_RecurringAppointmentMasters = "regardingobjectid";
 			public const string Lead_RecurringAppointmentMasters = "regardingobjectid";
 			public const string lk_recurringappointmentmaster_createdby = "createdby";
 			public const string lk_recurringappointmentmaster_createdonbehalfby = "createdonbehalfby";
@@ -290,6 +292,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
 			}
 		}
 		
@@ -841,6 +850,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
 		}
 		
 		/// <summary>
@@ -1188,7 +1204,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the object with which the recurring appointment series is associated.
+		/// Choose the record that the recurring appointment series relates to.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
 		public Microsoft.Xrm.Sdk.EntityReference RegardingObjectId
@@ -1518,7 +1534,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// A comma separated list of string values representing the unique identifiers of stages in a Business Process Flow Instance in the order that they occur.
+		/// For internal use only.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("traversedpath")]
 		public string TraversedPath
@@ -2116,6 +2132,48 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 KnowledgeArticle_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeArticle_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.KnowledgeArticle KnowledgeArticle_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("KnowledgeArticle_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("KnowledgeArticle_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("KnowledgeArticle_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("KnowledgeArticle_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 KnowledgeBaseRecord_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeBaseRecord_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.KnowledgeBaseRecord KnowledgeBaseRecord_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeBaseRecord>("KnowledgeBaseRecord_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("KnowledgeBaseRecord_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeBaseRecord>("KnowledgeBaseRecord_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("KnowledgeBaseRecord_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 Lead_RecurringAppointmentMasters
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -2162,6 +2220,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_recurringappointmentmaster_createdonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_recurringappointmentmaster_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_recurringappointmentmaster_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_recurringappointmentmaster_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -2189,6 +2254,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_recurringappointmentmaster_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_recurringappointmentmaster_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_recurringappointmentmaster_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_recurringappointmentmaster_modifiedonbehalfby");
 			}
 		}
 		
@@ -2399,24 +2471,38 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["activityid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["activityid"] = base.Id;
+                        break;
+                    case "activityid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("expansionstatecode")]
 		public virtual recurringappointmentmaster_expansionstatecode? ExpansionStateCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2426,6 +2512,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("instance")]
 		public virtual recurringappointmentmaster_instance? InstanceEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2440,6 +2527,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("instancetypecode")]
 		public virtual recurringappointmentmaster_instancetypecode? InstanceTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2449,6 +2537,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("monthofyear")]
 		public virtual recurrencerule_monthofyear? MonthOfYearEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2463,6 +2552,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("patternendtype")]
 		public virtual recurringappointmentmaster_patternendtype? PatternEndTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2477,6 +2567,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("prioritycode")]
 		public virtual recurringappointmentmaster_prioritycode? PriorityCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2491,6 +2582,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("recurrencepatterntype")]
 		public virtual recurringappointmentmaster_recurrencepatterntype? RecurrencePatternTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2502,6 +2594,21 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				RecurrencePatternType = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public virtual recurringappointmentmaster_statuscode? StatusCodeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((recurringappointmentmaster_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				StatusCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 	}

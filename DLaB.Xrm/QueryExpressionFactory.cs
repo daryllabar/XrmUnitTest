@@ -76,7 +76,7 @@ namespace DLaB.Xrm
             return qe;
         }
 
-        #endregion // Create
+        #endregion Create
 
         #region Create<T>
 
@@ -251,7 +251,7 @@ namespace DLaB.Xrm
             return qe;
         }
 
-        #endregion // Create<T>
+        #endregion Create<T>
 
         #region CreateIn
 
@@ -372,7 +372,7 @@ namespace DLaB.Xrm
             return qe;
         }
 
-        #endregion // CreateIn
+        #endregion CreateIn
 
         #region CreateIn<T>
 
@@ -607,6 +607,6 @@ namespace DLaB.Xrm
             return qe;
         }
 
-        #endregion // CreateIn<T>
+        #endregion CreateIn<T>
     }
 }

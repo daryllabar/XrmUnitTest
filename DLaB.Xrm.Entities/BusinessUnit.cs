@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("businessunit")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class BusinessUnit : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -1102,6 +1102,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
+			}
 		}
 		
 		/// <summary>
@@ -1339,6 +1346,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
 			}
 		}
 		
@@ -1789,6 +1803,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N business_unit_channelaccessprofile
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("business_unit_channelaccessprofile")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfile> business_unit_channelaccessprofile
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfile>("business_unit_channelaccessprofile", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_channelaccessprofile");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfile>("business_unit_channelaccessprofile", null, value);
+				this.OnPropertyChanged("business_unit_channelaccessprofile");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N business_unit_connections
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("business_unit_connections")]
@@ -2009,6 +2043,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N business_unit_externalparty
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("business_unit_externalparty")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ExternalParty> business_unit_externalparty
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ExternalParty>("business_unit_externalparty", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_externalparty");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ExternalParty>("business_unit_externalparty", null, value);
+				this.OnPropertyChanged("business_unit_externalparty");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N business_unit_fax_activities
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("business_unit_fax_activities")]
@@ -2125,6 +2179,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("business_unit_invoices");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Invoice>("business_unit_invoices", null, value);
 				this.OnPropertyChanged("business_unit_invoices");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N business_unit_knowledgearticle
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("business_unit_knowledgearticle")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeArticle> business_unit_knowledgearticle
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticle>("business_unit_knowledgearticle", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_knowledgearticle");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticle>("business_unit_knowledgearticle", null, value);
+				this.OnPropertyChanged("business_unit_knowledgearticle");
 			}
 		}
 		
@@ -2369,6 +2443,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N business_unit_personaldocumenttemplates
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("business_unit_personaldocumenttemplates")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PersonalDocumentTemplate> business_unit_personaldocumenttemplates
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PersonalDocumentTemplate>("business_unit_personaldocumenttemplates", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_personaldocumenttemplates");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PersonalDocumentTemplate>("business_unit_personaldocumenttemplates", null, value);
+				this.OnPropertyChanged("business_unit_personaldocumenttemplates");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N business_unit_phone_call_activities
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("business_unit_phone_call_activities")]
@@ -2405,6 +2499,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("business_unit_postfollows");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.PostFollow>("business_unit_postfollows", null, value);
 				this.OnPropertyChanged("business_unit_postfollows");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N business_unit_profilerule
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("business_unit_profilerule")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfileRule> business_unit_profilerule
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRule>("business_unit_profilerule", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_profilerule");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRule>("business_unit_profilerule", null, value);
+				this.OnPropertyChanged("business_unit_profilerule");
 			}
 		}
 		
@@ -3209,6 +3323,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N businessunit_mailboxtrackingfolder
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("businessunit_mailboxtrackingfolder")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> businessunit_mailboxtrackingfolder
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("businessunit_mailboxtrackingfolder", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("businessunit_mailboxtrackingfolder");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("businessunit_mailboxtrackingfolder", null, value);
+				this.OnPropertyChanged("businessunit_mailboxtrackingfolder");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N businessunit_principalobjectattributeaccess
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("businessunit_principalobjectattributeaccess")]
@@ -3245,6 +3379,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("BusinessUnit_ProcessSessions");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProcessSession>("BusinessUnit_ProcessSessions", null, value);
 				this.OnPropertyChanged("BusinessUnit_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N BusinessUnit_SyncError
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("BusinessUnit_SyncError")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> BusinessUnit_SyncError
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("BusinessUnit_SyncError", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("BusinessUnit_SyncError");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("BusinessUnit_SyncError", null, value);
+				this.OnPropertyChanged("BusinessUnit_SyncError");
 			}
 		}
 		
@@ -3362,6 +3516,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_businessunit_createdonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_businessunit_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_businessunit_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_businessunit_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -3375,6 +3536,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_businessunit_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_businessunit_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_businessunit_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_businessunit_modifiedonbehalfby");
 			}
 		}
 		
@@ -3452,24 +3620,38 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["businessunitid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["businessunitid"] = base.Id;
+                        break;
+                    case "businessunitid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address1_addresstypecode")]
 		public virtual businessunit_address1_addresstypecode? Address1_AddressTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -3484,6 +3666,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address1_shippingmethodcode")]
 		public virtual businessunit_address1_shippingmethodcode? Address1_ShippingMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -3498,6 +3681,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address2_addresstypecode")]
 		public virtual businessunit_address2_addresstypecode? Address2_AddressTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -3512,6 +3696,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address2_shippingmethodcode")]
 		public virtual businessunit_address2_shippingmethodcode? Address2_ShippingMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]

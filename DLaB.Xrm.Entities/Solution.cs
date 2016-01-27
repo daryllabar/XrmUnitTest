@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("solution")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class Solution : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -34,6 +34,7 @@ namespace DLaB.Xrm.Entities
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string OrganizationId = "organizationid";
+			public const string ParentSolutionId = "parentsolutionid";
 			public const string PinpointAssetId = "pinpointassetid";
 			public const string PinpointPublisherId = "pinpointpublisherid";
 			public const string PinpointSolutionDefaultLocale = "pinpointsolutiondefaultlocale";
@@ -41,6 +42,7 @@ namespace DLaB.Xrm.Entities
 			public const string PublisherId = "publisherid";
 			public const string SolutionId = "solutionid";
 			public const string Id = "solutionid";
+			public const string SolutionPackageVersion = "solutionpackageversion";
 			public const string UniqueName = "uniquename";
 			public const string Version = "version";
 			public const string VersionNumber = "versionnumber";
@@ -51,6 +53,7 @@ namespace DLaB.Xrm.Entities
 			public const string organization_solution = "organizationid";
 			public const string publisher_solution = "publisherid";
 			public const string solution_configuration_webresource = "configurationpageid";
+			public const string Referencingsolution_parent_solution = "parentsolutionid";
 		}
 
 		
@@ -145,6 +148,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
 			}
 		}
 		
@@ -264,6 +274,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
 		}
 		
 		/// <summary>
@@ -276,6 +293,19 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("organizationid");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the parent solution. Should only be non-null if this solution is a patch.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("parentsolutionid")]
+		public Microsoft.Xrm.Sdk.EntityReference ParentSolutionId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("parentsolutionid");
 			}
 		}
 		
@@ -395,6 +425,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Solution package source organization version
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("solutionpackageversion")]
+		public string SolutionPackageVersion
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("solutionpackageversion");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SolutionPackageVersion");
+				this.SetAttributeValue("solutionpackageversion", value);
+				this.OnPropertyChanged("SolutionPackageVersion");
+			}
+		}
+		
+		/// <summary>
 		/// The unique name of this solution
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("uniquename")]
@@ -444,6 +494,26 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N solution_parent_solution
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("solution_parent_solution", Microsoft.Xrm.Sdk.EntityRole.Referenced)]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Solution> Referencedsolution_parent_solution
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Solution>("solution_parent_solution", Microsoft.Xrm.Sdk.EntityRole.Referenced);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Referencedsolution_parent_solution");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Solution>("solution_parent_solution", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
+				this.OnPropertyChanged("Referencedsolution_parent_solution");
 			}
 		}
 		
@@ -527,6 +597,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_solutionbase_createdonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_solutionbase_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_solutionbase_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_solutionbase_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -540,6 +617,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_solutionbase_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_solutionbase_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_solutionbase_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_solutionbase_modifiedonbehalfby");
 			}
 		}
 		
@@ -600,6 +684,20 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 solution_parent_solution
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("parentsolutionid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("solution_parent_solution", Microsoft.Xrm.Sdk.EntityRole.Referencing)]
+		public DLaB.Xrm.Entities.Solution Referencingsolution_parent_solution
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Solution>("solution_parent_solution", Microsoft.Xrm.Sdk.EntityRole.Referencing);
+			}
+		}
+		
+		/// <summary>
 		/// Constructor for populating via LINQ queries given a LINQ anonymous type
 		/// <param name="anonymousType">LINQ anonymous type.</param>
 		/// </summary>
@@ -610,20 +708,33 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["solutionid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["solutionid"] = base.Id;
+                        break;
+                    case "solutionid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}

@@ -159,7 +159,7 @@ namespace DLaB.Xrm.Test
         public Action<IOrganizationService, Entity>[] UpdateActions { get; set; }
         private IOrganizationService UpdateCache { get; set; }
 
-        #endregion // IOrganizationService Mocks
+        #endregion IOrganizationService Mocks
 
         /// <summary>
         /// Gets or sets a value indicating whether [execution tracing enabled].

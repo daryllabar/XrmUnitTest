@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("systemuser")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class SystemUser : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -74,6 +74,7 @@ namespace DLaB.Xrm.Entities
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string DefaultFiltersPopulated = "defaultfilterspopulated";
 			public const string DefaultMailbox = "defaultmailbox";
+			public const string DefaultOdbFolderName = "defaultodbfoldername";
 			public const string DisabledReason = "disabledreason";
 			public const string DisplayInServiceViews = "displayinserviceviews";
 			public const string DomainName = "domainname";
@@ -101,6 +102,7 @@ namespace DLaB.Xrm.Entities
 			public const string LastName = "lastname";
 			public const string MiddleName = "middlename";
 			public const string MobileAlertEMail = "mobilealertemail";
+			public const string MobileOfflineProfileId = "mobileofflineprofileid";
 			public const string MobilePhone = "mobilephone";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
@@ -122,6 +124,7 @@ namespace DLaB.Xrm.Entities
 			public const string QueueId = "queueid";
 			public const string Salutation = "salutation";
 			public const string SetupUser = "setupuser";
+			public const string SharePointEmailAddress = "sharepointemailaddress";
 			public const string SiteId = "siteid";
 			public const string Skills = "skills";
 			public const string StageId = "stageid";
@@ -148,6 +151,7 @@ namespace DLaB.Xrm.Entities
 			public const string Referencinglk_systemuser_modifiedonbehalfby = "modifiedonbehalfby";
 			public const string Referencinglk_systemuserbase_createdby = "createdby";
 			public const string Referencinglk_systemuserbase_modifiedby = "modifiedby";
+			public const string MobileOfflineProfile_SystemUser = "mobileofflineprofileid";
 			public const string organization_system_users = "organizationid";
 			public const string position_users = "positionid";
 			public const string processstage_systemusers = "stageid";
@@ -1178,6 +1182,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
+			}
 		}
 		
 		/// <summary>
@@ -1203,6 +1214,19 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("defaultmailbox");
+			}
+		}
+		
+		/// <summary>
+		/// Type a default folder name for the user's OneDrive For Business location.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("defaultodbfoldername")]
+		public string DefaultOdbFolderName
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("defaultodbfoldername");
 			}
 		}
 		
@@ -1691,6 +1715,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Items contained with a particular SystemUser.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("mobileofflineprofileid")]
+		public Microsoft.Xrm.Sdk.EntityReference MobileOfflineProfileId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("mobileofflineprofileid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("MobileOfflineProfileId");
+				this.SetAttributeValue("mobileofflineprofileid", value);
+				this.OnPropertyChanged("MobileOfflineProfileId");
+			}
+		}
+		
+		/// <summary>
 		/// Mobile phone number for the user.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("mobilephone")]
@@ -1746,6 +1790,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
 			}
 		}
 		
@@ -2083,6 +2134,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// SharePoint Work Email Address
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sharepointemailaddress")]
+		public string SharePointEmailAddress
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("sharepointemailaddress");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SharePointEmailAddress");
+				this.SetAttributeValue("sharepointemailaddress", value);
+				this.OnPropertyChanged("SharePointEmailAddress");
+			}
+		}
+		
+		/// <summary>
 		/// Site at which the user is located.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("siteid")]
@@ -2266,7 +2337,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// A comma separated list of string values representing the unique identifiers of stages in a Business Process Flow Instance in the order that they occur.
+		/// For internal use only.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("traversedpath")]
 		public string TraversedPath
@@ -2295,6 +2366,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<int>>("userlicensetype");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("UserLicenseType");
+				this.SetAttributeValue("userlicensetype", value);
+				this.OnPropertyChanged("UserLicenseType");
 			}
 		}
 		
@@ -2641,6 +2719,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("createdby_pluginassembly");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.PluginAssembly>("createdby_pluginassembly", null, value);
 				this.OnPropertyChanged("createdby_pluginassembly");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N createdby_plugintracelog
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("createdby_plugintracelog")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PluginTraceLog> createdby_plugintracelog
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PluginTraceLog>("createdby_plugintracelog", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("createdby_plugintracelog");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PluginTraceLog>("createdby_plugintracelog", null, value);
+				this.OnPropertyChanged("createdby_plugintracelog");
 			}
 		}
 		
@@ -3065,6 +3163,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N knowledgearticle_primaryauthorid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_primaryauthorid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeArticle> knowledgearticle_primaryauthorid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticle>("knowledgearticle_primaryauthorid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticle_primaryauthorid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticle>("knowledgearticle_primaryauthorid", null, value);
+				this.OnPropertyChanged("knowledgearticle_primaryauthorid");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N lead_owning_user
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lead_owning_user")]
@@ -3243,7 +3361,7 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanged("lk_activitypointer_modifiedonbehalfby");
 			}
 		}
-
+		
 		/// <summary>
 		/// 1:N lk_annotationbase_createdby
 		/// </summary>
@@ -3621,6 +3739,86 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("lk_audit_userid");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Audit>("lk_audit_userid", null, value);
 				this.OnPropertyChanged("lk_audit_userid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_azureserviceconnection_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_azureserviceconnection_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.AzureServiceConnection> lk_azureserviceconnection_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.AzureServiceConnection>("lk_azureserviceconnection_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_azureserviceconnection_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.AzureServiceConnection>("lk_azureserviceconnection_createdby", null, value);
+				this.OnPropertyChanged("lk_azureserviceconnection_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_azureserviceconnection_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_azureserviceconnection_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.AzureServiceConnection> lk_azureserviceconnection_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.AzureServiceConnection>("lk_azureserviceconnection_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_azureserviceconnection_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.AzureServiceConnection>("lk_azureserviceconnection_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_azureserviceconnection_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_azureserviceconnection_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_azureserviceconnection_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.AzureServiceConnection> lk_azureserviceconnection_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.AzureServiceConnection>("lk_azureserviceconnection_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_azureserviceconnection_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.AzureServiceConnection>("lk_azureserviceconnection_modifiedby", null, value);
+				this.OnPropertyChanged("lk_azureserviceconnection_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_azureserviceconnection_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_azureserviceconnection_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.AzureServiceConnection> lk_azureserviceconnection_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.AzureServiceConnection>("lk_azureserviceconnection_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_azureserviceconnection_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.AzureServiceConnection>("lk_azureserviceconnection_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_azureserviceconnection_modifiedonbehalfby");
 			}
 		}
 		
@@ -4261,6 +4459,246 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("lk_campaignresponse_modifiedonbehalfby");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.CampaignResponse>("lk_campaignresponse_modifiedonbehalfby", null, value);
 				this.OnPropertyChanged("lk_campaignresponse_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_channelaccessprofile_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_channelaccessprofile_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfile> lk_channelaccessprofile_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfile>("lk_channelaccessprofile_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_channelaccessprofile_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfile>("lk_channelaccessprofile_createdby", null, value);
+				this.OnPropertyChanged("lk_channelaccessprofile_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_channelaccessprofile_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_channelaccessprofile_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfile> lk_channelaccessprofile_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfile>("lk_channelaccessprofile_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_channelaccessprofile_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfile>("lk_channelaccessprofile_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_channelaccessprofile_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_channelaccessprofile_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_channelaccessprofile_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfile> lk_channelaccessprofile_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfile>("lk_channelaccessprofile_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_channelaccessprofile_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfile>("lk_channelaccessprofile_modifiedby", null, value);
+				this.OnPropertyChanged("lk_channelaccessprofile_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_channelaccessprofile_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_channelaccessprofile_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfile> lk_channelaccessprofile_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfile>("lk_channelaccessprofile_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_channelaccessprofile_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfile>("lk_channelaccessprofile_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_channelaccessprofile_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_ChannelProperty_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_ChannelProperty_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelProperty> lk_ChannelProperty_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelProperty>("lk_ChannelProperty_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_ChannelProperty_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelProperty>("lk_ChannelProperty_createdby", null, value);
+				this.OnPropertyChanged("lk_ChannelProperty_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_ChannelProperty_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_ChannelProperty_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelProperty> lk_ChannelProperty_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelProperty>("lk_ChannelProperty_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_ChannelProperty_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelProperty>("lk_ChannelProperty_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_ChannelProperty_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_ChannelProperty_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_ChannelProperty_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelProperty> lk_ChannelProperty_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelProperty>("lk_ChannelProperty_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_ChannelProperty_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelProperty>("lk_ChannelProperty_modifiedby", null, value);
+				this.OnPropertyChanged("lk_ChannelProperty_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_ChannelProperty_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_ChannelProperty_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelProperty> lk_ChannelProperty_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelProperty>("lk_ChannelProperty_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_ChannelProperty_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelProperty>("lk_ChannelProperty_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_ChannelProperty_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_ChannelPropertyGroup_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_ChannelPropertyGroup_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelPropertyGroup> lk_ChannelPropertyGroup_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelPropertyGroup>("lk_ChannelPropertyGroup_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_ChannelPropertyGroup_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelPropertyGroup>("lk_ChannelPropertyGroup_createdby", null, value);
+				this.OnPropertyChanged("lk_ChannelPropertyGroup_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_ChannelPropertyGroup_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_ChannelPropertyGroup_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelPropertyGroup> lk_ChannelPropertyGroup_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelPropertyGroup>("lk_ChannelPropertyGroup_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_ChannelPropertyGroup_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelPropertyGroup>("lk_ChannelPropertyGroup_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_ChannelPropertyGroup_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_ChannelPropertyGroup_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_ChannelPropertyGroup_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelPropertyGroup> lk_ChannelPropertyGroup_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelPropertyGroup>("lk_ChannelPropertyGroup_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_ChannelPropertyGroup_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelPropertyGroup>("lk_ChannelPropertyGroup_modifiedby", null, value);
+				this.OnPropertyChanged("lk_ChannelPropertyGroup_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_ChannelPropertyGroup_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_ChannelPropertyGroup_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelPropertyGroup> lk_ChannelPropertyGroup_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelPropertyGroup>("lk_ChannelPropertyGroup_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_ChannelPropertyGroup_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelPropertyGroup>("lk_ChannelPropertyGroup_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_ChannelPropertyGroup_modifiedonbehalfby");
 			}
 		}
 		
@@ -5065,6 +5503,246 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N lk_customcontrol_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_customcontrol_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CustomControl> lk_customcontrol_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CustomControl>("lk_customcontrol_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_customcontrol_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CustomControl>("lk_customcontrol_createdby", null, value);
+				this.OnPropertyChanged("lk_customcontrol_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_customcontrol_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_customcontrol_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CustomControl> lk_customcontrol_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CustomControl>("lk_customcontrol_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_customcontrol_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CustomControl>("lk_customcontrol_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_customcontrol_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_customcontrol_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_customcontrol_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CustomControl> lk_customcontrol_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CustomControl>("lk_customcontrol_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_customcontrol_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CustomControl>("lk_customcontrol_modifiedby", null, value);
+				this.OnPropertyChanged("lk_customcontrol_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_customcontrol_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_customcontrol_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CustomControl> lk_customcontrol_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CustomControl>("lk_customcontrol_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_customcontrol_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CustomControl>("lk_customcontrol_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_customcontrol_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_customcontroldefaultconfig_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_customcontroldefaultconfig_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CustomControlDefaultConfig> lk_customcontroldefaultconfig_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CustomControlDefaultConfig>("lk_customcontroldefaultconfig_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_customcontroldefaultconfig_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CustomControlDefaultConfig>("lk_customcontroldefaultconfig_createdby", null, value);
+				this.OnPropertyChanged("lk_customcontroldefaultconfig_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_customcontroldefaultconfig_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_customcontroldefaultconfig_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CustomControlDefaultConfig> lk_customcontroldefaultconfig_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CustomControlDefaultConfig>("lk_customcontroldefaultconfig_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_customcontroldefaultconfig_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CustomControlDefaultConfig>("lk_customcontroldefaultconfig_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_customcontroldefaultconfig_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_customcontroldefaultconfig_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_customcontroldefaultconfig_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CustomControlDefaultConfig> lk_customcontroldefaultconfig_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CustomControlDefaultConfig>("lk_customcontroldefaultconfig_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_customcontroldefaultconfig_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CustomControlDefaultConfig>("lk_customcontroldefaultconfig_modifiedby", null, value);
+				this.OnPropertyChanged("lk_customcontroldefaultconfig_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_customcontroldefaultconfig_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_customcontroldefaultconfig_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CustomControlDefaultConfig> lk_customcontroldefaultconfig_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CustomControlDefaultConfig>("lk_customcontroldefaultconfig_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_customcontroldefaultconfig_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CustomControlDefaultConfig>("lk_customcontroldefaultconfig_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_customcontroldefaultconfig_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_customcontrolresource_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_customcontrolresource_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CustomControlResource> lk_customcontrolresource_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CustomControlResource>("lk_customcontrolresource_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_customcontrolresource_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CustomControlResource>("lk_customcontrolresource_createdby", null, value);
+				this.OnPropertyChanged("lk_customcontrolresource_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_customcontrolresource_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_customcontrolresource_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CustomControlResource> lk_customcontrolresource_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CustomControlResource>("lk_customcontrolresource_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_customcontrolresource_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CustomControlResource>("lk_customcontrolresource_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_customcontrolresource_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_customcontrolresource_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_customcontrolresource_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CustomControlResource> lk_customcontrolresource_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CustomControlResource>("lk_customcontrolresource_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_customcontrolresource_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CustomControlResource>("lk_customcontrolresource_modifiedby", null, value);
+				this.OnPropertyChanged("lk_customcontrolresource_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_customcontrolresource_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_customcontrolresource_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CustomControlResource> lk_customcontrolresource_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CustomControlResource>("lk_customcontrolresource_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_customcontrolresource_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CustomControlResource>("lk_customcontrolresource_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_customcontrolresource_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N lk_customeraddress_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_customeraddress_createdonbehalfby")]
@@ -5461,6 +6139,86 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("lk_DisplayStringbase_modifiedonbehalfby");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.DisplayString>("lk_DisplayStringbase_modifiedonbehalfby", null, value);
 				this.OnPropertyChanged("lk_DisplayStringbase_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_documenttemplatebase_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_documenttemplatebase_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.DocumentTemplate> lk_documenttemplatebase_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.DocumentTemplate>("lk_documenttemplatebase_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_documenttemplatebase_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.DocumentTemplate>("lk_documenttemplatebase_createdby", null, value);
+				this.OnPropertyChanged("lk_documenttemplatebase_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_documenttemplatebase_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_documenttemplatebase_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.DocumentTemplate> lk_documenttemplatebase_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.DocumentTemplate>("lk_documenttemplatebase_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_documenttemplatebase_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.DocumentTemplate>("lk_documenttemplatebase_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_documenttemplatebase_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_documenttemplatebase_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_documenttemplatebase_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.DocumentTemplate> lk_documenttemplatebase_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.DocumentTemplate>("lk_documenttemplatebase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_documenttemplatebase_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.DocumentTemplate>("lk_documenttemplatebase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_documenttemplatebase_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_documenttemplatebase_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_documenttemplatebase_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.DocumentTemplate> lk_documenttemplatebase_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.DocumentTemplate>("lk_documenttemplatebase_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_documenttemplatebase_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.DocumentTemplate>("lk_documenttemplatebase_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_documenttemplatebase_modifiedonbehalfby");
 			}
 		}
 		
@@ -6521,6 +7279,166 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("lk_equipment_modifiedonbehalfby");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Equipment>("lk_equipment_modifiedonbehalfby", null, value);
 				this.OnPropertyChanged("lk_equipment_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_externalparty_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ExternalParty> lk_externalparty_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_externalparty_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_createdby", null, value);
+				this.OnPropertyChanged("lk_externalparty_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_externalparty_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ExternalParty> lk_externalparty_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_externalparty_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_externalparty_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_externalparty_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ExternalParty> lk_externalparty_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_externalparty_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_modifiedby", null, value);
+				this.OnPropertyChanged("lk_externalparty_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_externalparty_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ExternalParty> lk_externalparty_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_externalparty_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_externalparty_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_externalpartyitem_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalpartyitem_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ExternalPartyItem> lk_externalpartyitem_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ExternalPartyItem>("lk_externalpartyitem_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_externalpartyitem_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ExternalPartyItem>("lk_externalpartyitem_createdby", null, value);
+				this.OnPropertyChanged("lk_externalpartyitem_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_externalpartyitem_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalpartyitem_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ExternalPartyItem> lk_externalpartyitem_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ExternalPartyItem>("lk_externalpartyitem_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_externalpartyitem_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ExternalPartyItem>("lk_externalpartyitem_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_externalpartyitem_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_externalpartyitem_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalpartyitem_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ExternalPartyItem> lk_externalpartyitem_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ExternalPartyItem>("lk_externalpartyitem_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_externalpartyitem_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ExternalPartyItem>("lk_externalpartyitem_modifiedby", null, value);
+				this.OnPropertyChanged("lk_externalpartyitem_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_externalpartyitem_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalpartyitem_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ExternalPartyItem> lk_externalpartyitem_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ExternalPartyItem>("lk_externalpartyitem_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_externalpartyitem_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ExternalPartyItem>("lk_externalpartyitem_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_externalpartyitem_modifiedonbehalfby");
 			}
 		}
 		
@@ -8065,6 +8983,406 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N lk_knowledgearticle_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_knowledgearticle_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeArticle> lk_knowledgearticle_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticle>("lk_knowledgearticle_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_knowledgearticle_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticle>("lk_knowledgearticle_createdby", null, value);
+				this.OnPropertyChanged("lk_knowledgearticle_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_knowledgearticle_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_knowledgearticle_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeArticle> lk_knowledgearticle_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticle>("lk_knowledgearticle_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_knowledgearticle_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticle>("lk_knowledgearticle_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_knowledgearticle_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_knowledgearticle_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_knowledgearticle_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeArticle> lk_knowledgearticle_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticle>("lk_knowledgearticle_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_knowledgearticle_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticle>("lk_knowledgearticle_modifiedby", null, value);
+				this.OnPropertyChanged("lk_knowledgearticle_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_knowledgearticle_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_knowledgearticle_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeArticle> lk_knowledgearticle_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticle>("lk_knowledgearticle_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_knowledgearticle_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticle>("lk_knowledgearticle_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_knowledgearticle_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_knowledgearticleincident_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_knowledgearticleincident_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeArticleIncident> lk_knowledgearticleincident_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleIncident>("lk_knowledgearticleincident_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_knowledgearticleincident_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleIncident>("lk_knowledgearticleincident_createdby", null, value);
+				this.OnPropertyChanged("lk_knowledgearticleincident_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_knowledgearticleincident_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_knowledgearticleincident_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeArticleIncident> lk_knowledgearticleincident_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleIncident>("lk_knowledgearticleincident_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_knowledgearticleincident_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleIncident>("lk_knowledgearticleincident_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_knowledgearticleincident_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_knowledgearticleincident_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_knowledgearticleincident_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeArticleIncident> lk_knowledgearticleincident_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleIncident>("lk_knowledgearticleincident_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_knowledgearticleincident_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleIncident>("lk_knowledgearticleincident_modifiedby", null, value);
+				this.OnPropertyChanged("lk_knowledgearticleincident_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_knowledgearticleincident_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_knowledgearticleincident_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeArticleIncident> lk_knowledgearticleincident_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleIncident>("lk_knowledgearticleincident_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_knowledgearticleincident_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleIncident>("lk_knowledgearticleincident_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_knowledgearticleincident_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_knowledgearticleviews_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_knowledgearticleviews_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeArticleViews> lk_knowledgearticleviews_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleViews>("lk_knowledgearticleviews_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_knowledgearticleviews_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleViews>("lk_knowledgearticleviews_createdby", null, value);
+				this.OnPropertyChanged("lk_knowledgearticleviews_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_knowledgearticleviews_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_knowledgearticleviews_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeArticleViews> lk_knowledgearticleviews_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleViews>("lk_knowledgearticleviews_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_knowledgearticleviews_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleViews>("lk_knowledgearticleviews_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_knowledgearticleviews_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_knowledgearticleviews_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_knowledgearticleviews_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeArticleViews> lk_knowledgearticleviews_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleViews>("lk_knowledgearticleviews_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_knowledgearticleviews_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleViews>("lk_knowledgearticleviews_modifiedby", null, value);
+				this.OnPropertyChanged("lk_knowledgearticleviews_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_knowledgearticleviews_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_knowledgearticleviews_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeArticleViews> lk_knowledgearticleviews_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleViews>("lk_knowledgearticleviews_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_knowledgearticleviews_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleViews>("lk_knowledgearticleviews_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_knowledgearticleviews_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_KnowledgeBaseRecord_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_KnowledgeBaseRecord_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeBaseRecord> lk_KnowledgeBaseRecord_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeBaseRecord>("lk_KnowledgeBaseRecord_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_KnowledgeBaseRecord_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeBaseRecord>("lk_KnowledgeBaseRecord_createdby", null, value);
+				this.OnPropertyChanged("lk_KnowledgeBaseRecord_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_KnowledgeBaseRecord_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_KnowledgeBaseRecord_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeBaseRecord> lk_KnowledgeBaseRecord_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeBaseRecord>("lk_KnowledgeBaseRecord_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_KnowledgeBaseRecord_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeBaseRecord>("lk_KnowledgeBaseRecord_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_KnowledgeBaseRecord_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_KnowledgeBaseRecord_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_KnowledgeBaseRecord_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeBaseRecord> lk_KnowledgeBaseRecord_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeBaseRecord>("lk_KnowledgeBaseRecord_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_KnowledgeBaseRecord_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeBaseRecord>("lk_KnowledgeBaseRecord_modifiedby", null, value);
+				this.OnPropertyChanged("lk_KnowledgeBaseRecord_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_KnowledgeBaseRecord_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_KnowledgeBaseRecord_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeBaseRecord> lk_KnowledgeBaseRecord_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeBaseRecord>("lk_KnowledgeBaseRecord_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_KnowledgeBaseRecord_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeBaseRecord>("lk_KnowledgeBaseRecord_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_KnowledgeBaseRecord_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_knowledgesearchmodel_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_knowledgesearchmodel_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeSearchModel> lk_knowledgesearchmodel_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeSearchModel>("lk_knowledgesearchmodel_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_knowledgesearchmodel_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeSearchModel>("lk_knowledgesearchmodel_createdby", null, value);
+				this.OnPropertyChanged("lk_knowledgesearchmodel_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_knowledgesearchmodel_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_knowledgesearchmodel_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeSearchModel> lk_knowledgesearchmodel_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeSearchModel>("lk_knowledgesearchmodel_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_knowledgesearchmodel_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeSearchModel>("lk_knowledgesearchmodel_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_knowledgesearchmodel_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_knowledgesearchmodel_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_knowledgesearchmodel_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeSearchModel> lk_knowledgesearchmodel_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeSearchModel>("lk_knowledgesearchmodel_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_knowledgesearchmodel_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeSearchModel>("lk_knowledgesearchmodel_modifiedby", null, value);
+				this.OnPropertyChanged("lk_knowledgesearchmodel_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_knowledgesearchmodel_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_knowledgesearchmodel_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeSearchModel> lk_knowledgesearchmodel_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeSearchModel>("lk_knowledgesearchmodel_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_knowledgesearchmodel_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeSearchModel>("lk_knowledgesearchmodel_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_knowledgesearchmodel_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N lk_lead_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_lead_createdonbehalfby")]
@@ -8625,6 +9943,86 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N lk_mailboxtrackingfolder_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_mailboxtrackingfolder_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> lk_mailboxtrackingfolder_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("lk_mailboxtrackingfolder_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_mailboxtrackingfolder_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("lk_mailboxtrackingfolder_createdby", null, value);
+				this.OnPropertyChanged("lk_mailboxtrackingfolder_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_mailboxtrackingfolder_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_mailboxtrackingfolder_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> lk_mailboxtrackingfolder_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("lk_mailboxtrackingfolder_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_mailboxtrackingfolder_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("lk_mailboxtrackingfolder_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_mailboxtrackingfolder_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_mailboxtrackingfolder_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_mailboxtrackingfolder_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> lk_mailboxtrackingfolder_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("lk_mailboxtrackingfolder_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_mailboxtrackingfolder_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("lk_mailboxtrackingfolder_modifiedby", null, value);
+				this.OnPropertyChanged("lk_mailboxtrackingfolder_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_mailboxtrackingfolder_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_mailboxtrackingfolder_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> lk_mailboxtrackingfolder_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("lk_mailboxtrackingfolder_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_mailboxtrackingfolder_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("lk_mailboxtrackingfolder_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_mailboxtrackingfolder_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N lk_mailmergetemplate_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_mailmergetemplate_createdonbehalfby")]
@@ -8781,6 +10179,246 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("lk_metric_modifiedonbehalfby");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Metric>("lk_metric_modifiedonbehalfby", null, value);
 				this.OnPropertyChanged("lk_metric_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_MobileOfflineProfile_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_MobileOfflineProfile_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MobileOfflineProfile> lk_MobileOfflineProfile_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfile>("lk_MobileOfflineProfile_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_MobileOfflineProfile_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfile>("lk_MobileOfflineProfile_createdby", null, value);
+				this.OnPropertyChanged("lk_MobileOfflineProfile_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_MobileOfflineProfile_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_MobileOfflineProfile_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MobileOfflineProfile> lk_MobileOfflineProfile_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfile>("lk_MobileOfflineProfile_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_MobileOfflineProfile_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfile>("lk_MobileOfflineProfile_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_MobileOfflineProfile_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_MobileOfflineProfile_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_MobileOfflineProfile_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MobileOfflineProfile> lk_MobileOfflineProfile_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfile>("lk_MobileOfflineProfile_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_MobileOfflineProfile_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfile>("lk_MobileOfflineProfile_modifiedby", null, value);
+				this.OnPropertyChanged("lk_MobileOfflineProfile_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_MobileOfflineProfile_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_MobileOfflineProfile_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MobileOfflineProfile> lk_MobileOfflineProfile_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfile>("lk_MobileOfflineProfile_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_MobileOfflineProfile_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfile>("lk_MobileOfflineProfile_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_MobileOfflineProfile_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_MobileOfflineProfileItem_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_MobileOfflineProfileItem_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MobileOfflineProfileItem> lk_MobileOfflineProfileItem_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfileItem>("lk_MobileOfflineProfileItem_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_MobileOfflineProfileItem_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfileItem>("lk_MobileOfflineProfileItem_createdby", null, value);
+				this.OnPropertyChanged("lk_MobileOfflineProfileItem_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_mobileofflineprofileitem_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_mobileofflineprofileitem_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MobileOfflineProfileItem> lk_mobileofflineprofileitem_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfileItem>("lk_mobileofflineprofileitem_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_mobileofflineprofileitem_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfileItem>("lk_mobileofflineprofileitem_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_mobileofflineprofileitem_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_mobileofflineprofileitem_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_mobileofflineprofileitem_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MobileOfflineProfileItem> lk_mobileofflineprofileitem_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfileItem>("lk_mobileofflineprofileitem_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_mobileofflineprofileitem_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfileItem>("lk_mobileofflineprofileitem_modifiedby", null, value);
+				this.OnPropertyChanged("lk_mobileofflineprofileitem_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_mobileofflineprofileitem_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_mobileofflineprofileitem_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MobileOfflineProfileItem> lk_mobileofflineprofileitem_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfileItem>("lk_mobileofflineprofileitem_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_mobileofflineprofileitem_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfileItem>("lk_mobileofflineprofileitem_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_mobileofflineprofileitem_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_MobileOfflineProfileItemAssociation_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_MobileOfflineProfileItemAssociation_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MobileOfflineProfileItemAssociation> lk_MobileOfflineProfileItemAssociation_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfileItemAssociation>("lk_MobileOfflineProfileItemAssociation_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_MobileOfflineProfileItemAssociation_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfileItemAssociation>("lk_MobileOfflineProfileItemAssociation_createdby", null, value);
+				this.OnPropertyChanged("lk_MobileOfflineProfileItemAssociation_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_mobileofflineprofileitemassociation_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_mobileofflineprofileitemassociation_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MobileOfflineProfileItemAssociation> lk_mobileofflineprofileitemassociation_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfileItemAssociation>("lk_mobileofflineprofileitemassociation_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_mobileofflineprofileitemassociation_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfileItemAssociation>("lk_mobileofflineprofileitemassociation_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_mobileofflineprofileitemassociation_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_mobileofflineprofileitemassociation_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_mobileofflineprofileitemassociation_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MobileOfflineProfileItemAssociation> lk_mobileofflineprofileitemassociation_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfileItemAssociation>("lk_mobileofflineprofileitemassociation_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_mobileofflineprofileitemassociation_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfileItemAssociation>("lk_mobileofflineprofileitemassociation_modifiedby", null, value);
+				this.OnPropertyChanged("lk_mobileofflineprofileitemassociation_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_mobileofflineprofileitemassociation_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_mobileofflineprofileitemassociation_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MobileOfflineProfileItemAssociation> lk_mobileofflineprofileitemassociation_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfileItemAssociation>("lk_mobileofflineprofileitemassociation_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_mobileofflineprofileitemassociation_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfileItemAssociation>("lk_mobileofflineprofileitemassociation_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_mobileofflineprofileitemassociation_modifiedonbehalfby");
 			}
 		}
 		
@@ -9285,6 +10923,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N lk_officegraphdocument_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_officegraphdocument_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OfficeGraphDocument> lk_officegraphdocument_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OfficeGraphDocument>("lk_officegraphdocument_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_officegraphdocument_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OfficeGraphDocument>("lk_officegraphdocument_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_officegraphdocument_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_officegraphdocument_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_officegraphdocument_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OfficeGraphDocument> lk_officegraphdocument_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OfficeGraphDocument>("lk_officegraphdocument_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_officegraphdocument_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OfficeGraphDocument>("lk_officegraphdocument_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_officegraphdocument_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N lk_opportunity_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_opportunity_createdonbehalfby")]
@@ -9765,6 +11443,86 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N lk_personaldocumenttemplatebase_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_personaldocumenttemplatebase_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PersonalDocumentTemplate> lk_personaldocumenttemplatebase_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PersonalDocumentTemplate>("lk_personaldocumenttemplatebase_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_personaldocumenttemplatebase_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PersonalDocumentTemplate>("lk_personaldocumenttemplatebase_createdby", null, value);
+				this.OnPropertyChanged("lk_personaldocumenttemplatebase_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_personaldocumenttemplatebase_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_personaldocumenttemplatebase_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PersonalDocumentTemplate> lk_personaldocumenttemplatebase_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PersonalDocumentTemplate>("lk_personaldocumenttemplatebase_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_personaldocumenttemplatebase_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PersonalDocumentTemplate>("lk_personaldocumenttemplatebase_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_personaldocumenttemplatebase_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_personaldocumenttemplatebase_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_personaldocumenttemplatebase_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PersonalDocumentTemplate> lk_personaldocumenttemplatebase_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PersonalDocumentTemplate>("lk_personaldocumenttemplatebase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_personaldocumenttemplatebase_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PersonalDocumentTemplate>("lk_personaldocumenttemplatebase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_personaldocumenttemplatebase_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_personaldocumenttemplatebase_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_personaldocumenttemplatebase_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PersonalDocumentTemplate> lk_personaldocumenttemplatebase_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PersonalDocumentTemplate>("lk_personaldocumenttemplatebase_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_personaldocumenttemplatebase_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PersonalDocumentTemplate>("lk_personaldocumenttemplatebase_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_personaldocumenttemplatebase_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N lk_phonecall_createdby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_phonecall_createdby")]
@@ -9925,86 +11683,6 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// 1:N lk_plt_idgenerator_createdby
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_plt_idgenerator_createdby")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.plt_idgenerator> lk_plt_idgenerator_createdby
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.plt_idgenerator>("lk_plt_idgenerator_createdby", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("lk_plt_idgenerator_createdby");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.plt_idgenerator>("lk_plt_idgenerator_createdby", null, value);
-				this.OnPropertyChanged("lk_plt_idgenerator_createdby");
-			}
-		}
-		
-		/// <summary>
-		/// 1:N lk_plt_idgenerator_createdonbehalfby
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_plt_idgenerator_createdonbehalfby")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.plt_idgenerator> lk_plt_idgenerator_createdonbehalfby
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.plt_idgenerator>("lk_plt_idgenerator_createdonbehalfby", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("lk_plt_idgenerator_createdonbehalfby");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.plt_idgenerator>("lk_plt_idgenerator_createdonbehalfby", null, value);
-				this.OnPropertyChanged("lk_plt_idgenerator_createdonbehalfby");
-			}
-		}
-		
-		/// <summary>
-		/// 1:N lk_plt_idgenerator_modifiedby
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_plt_idgenerator_modifiedby")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.plt_idgenerator> lk_plt_idgenerator_modifiedby
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.plt_idgenerator>("lk_plt_idgenerator_modifiedby", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("lk_plt_idgenerator_modifiedby");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.plt_idgenerator>("lk_plt_idgenerator_modifiedby", null, value);
-				this.OnPropertyChanged("lk_plt_idgenerator_modifiedby");
-			}
-		}
-		
-		/// <summary>
-		/// 1:N lk_plt_idgenerator_modifiedonbehalfby
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_plt_idgenerator_modifiedonbehalfby")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.plt_idgenerator> lk_plt_idgenerator_modifiedonbehalfby
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.plt_idgenerator>("lk_plt_idgenerator_modifiedonbehalfby", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("lk_plt_idgenerator_modifiedonbehalfby");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.plt_idgenerator>("lk_plt_idgenerator_modifiedonbehalfby", null, value);
-				this.OnPropertyChanged("lk_plt_idgenerator_modifiedonbehalfby");
-			}
-		}
-		
-		/// <summary>
 		/// 1:N lk_pluginassembly_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_pluginassembly_createdonbehalfby")]
@@ -10041,6 +11719,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("lk_pluginassembly_modifiedonbehalfby");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.PluginAssembly>("lk_pluginassembly_modifiedonbehalfby", null, value);
 				this.OnPropertyChanged("lk_pluginassembly_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_plugintracelogbase_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_plugintracelogbase_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PluginTraceLog> lk_plugintracelogbase_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PluginTraceLog>("lk_plugintracelogbase_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_plugintracelogbase_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PluginTraceLog>("lk_plugintracelogbase_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_plugintracelogbase_createdonbehalfby");
 			}
 		}
 		
@@ -11045,6 +12743,166 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N lk_profilerule_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_profilerule_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfileRule> lk_profilerule_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRule>("lk_profilerule_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_profilerule_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRule>("lk_profilerule_createdby", null, value);
+				this.OnPropertyChanged("lk_profilerule_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_profilerule_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_profilerule_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfileRule> lk_profilerule_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRule>("lk_profilerule_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_profilerule_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRule>("lk_profilerule_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_profilerule_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_profilerule_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_profilerule_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfileRule> lk_profilerule_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRule>("lk_profilerule_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_profilerule_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRule>("lk_profilerule_modifiedby", null, value);
+				this.OnPropertyChanged("lk_profilerule_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_profilerule_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_profilerule_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfileRule> lk_profilerule_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRule>("lk_profilerule_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_profilerule_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRule>("lk_profilerule_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_profilerule_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_profileruleitem_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_profileruleitem_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfileRuleItem> lk_profileruleitem_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRuleItem>("lk_profileruleitem_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_profileruleitem_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRuleItem>("lk_profileruleitem_createdby", null, value);
+				this.OnPropertyChanged("lk_profileruleitem_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_profileruleitem_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_profileruleitem_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfileRuleItem> lk_profileruleitem_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRuleItem>("lk_profileruleitem_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_profileruleitem_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRuleItem>("lk_profileruleitem_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_profileruleitem_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_profileruleitem_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_profileruleitem_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfileRuleItem> lk_profileruleitem_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRuleItem>("lk_profileruleitem_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_profileruleitem_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRuleItem>("lk_profileruleitem_modifiedby", null, value);
+				this.OnPropertyChanged("lk_profileruleitem_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_profileruleitem_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_profileruleitem_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfileRuleItem> lk_profileruleitem_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRuleItem>("lk_profileruleitem_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_profileruleitem_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRuleItem>("lk_profileruleitem_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_profileruleitem_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N lk_publisher_createdby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_publisher_createdby")]
@@ -11721,6 +13579,166 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("lk_quotedetailbase_modifiedby");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.QuoteDetail>("lk_quotedetailbase_modifiedby", null, value);
 				this.OnPropertyChanged("lk_quotedetailbase_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_recommendationmodel_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_recommendationmodel_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.RecommendationModel> lk_recommendationmodel_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.RecommendationModel>("lk_recommendationmodel_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_recommendationmodel_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.RecommendationModel>("lk_recommendationmodel_createdby", null, value);
+				this.OnPropertyChanged("lk_recommendationmodel_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_recommendationmodel_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_recommendationmodel_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.RecommendationModel> lk_recommendationmodel_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.RecommendationModel>("lk_recommendationmodel_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_recommendationmodel_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.RecommendationModel>("lk_recommendationmodel_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_recommendationmodel_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_recommendationmodel_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_recommendationmodel_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.RecommendationModel> lk_recommendationmodel_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.RecommendationModel>("lk_recommendationmodel_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_recommendationmodel_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.RecommendationModel>("lk_recommendationmodel_modifiedby", null, value);
+				this.OnPropertyChanged("lk_recommendationmodel_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_recommendationmodel_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_recommendationmodel_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.RecommendationModel> lk_recommendationmodel_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.RecommendationModel>("lk_recommendationmodel_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_recommendationmodel_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.RecommendationModel>("lk_recommendationmodel_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_recommendationmodel_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_recommendationmodelversion_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_recommendationmodelversion_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.RecommendationModelVersion> lk_recommendationmodelversion_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.RecommendationModelVersion>("lk_recommendationmodelversion_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_recommendationmodelversion_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.RecommendationModelVersion>("lk_recommendationmodelversion_createdby", null, value);
+				this.OnPropertyChanged("lk_recommendationmodelversion_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_recommendationmodelversion_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_recommendationmodelversion_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.RecommendationModelVersion> lk_recommendationmodelversion_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.RecommendationModelVersion>("lk_recommendationmodelversion_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_recommendationmodelversion_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.RecommendationModelVersion>("lk_recommendationmodelversion_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_recommendationmodelversion_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_recommendationmodelversion_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_recommendationmodelversion_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.RecommendationModelVersion> lk_recommendationmodelversion_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.RecommendationModelVersion>("lk_recommendationmodelversion_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_recommendationmodelversion_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.RecommendationModelVersion>("lk_recommendationmodelversion_modifiedby", null, value);
+				this.OnPropertyChanged("lk_recommendationmodelversion_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_recommendationmodelversion_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_recommendationmodelversion_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.RecommendationModelVersion> lk_recommendationmodelversion_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.RecommendationModelVersion>("lk_recommendationmodelversion_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_recommendationmodelversion_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.RecommendationModelVersion>("lk_recommendationmodelversion_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_recommendationmodelversion_modifiedonbehalfby");
 			}
 		}
 		
@@ -14285,6 +16303,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N lk_similarityrule_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_similarityrule_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SimilarityRule> lk_similarityrule_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SimilarityRule>("lk_similarityrule_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_similarityrule_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SimilarityRule>("lk_similarityrule_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_similarityrule_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_similarityrule_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_similarityrule_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SimilarityRule> lk_similarityrule_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SimilarityRule>("lk_similarityrule_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_similarityrule_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SimilarityRule>("lk_similarityrule_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_similarityrule_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N lk_site_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_site_createdonbehalfby")]
@@ -15005,6 +17063,86 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N lk_syncerrorbase_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_syncerrorbase_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> lk_syncerrorbase_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("lk_syncerrorbase_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_syncerrorbase_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("lk_syncerrorbase_createdby", null, value);
+				this.OnPropertyChanged("lk_syncerrorbase_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_syncerrorbase_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_syncerrorbase_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> lk_syncerrorbase_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("lk_syncerrorbase_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_syncerrorbase_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("lk_syncerrorbase_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_syncerrorbase_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_syncerrorbase_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_syncerrorbase_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> lk_syncerrorbase_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("lk_syncerrorbase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_syncerrorbase_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("lk_syncerrorbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_syncerrorbase_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_syncerrorbase_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_syncerrorbase_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> lk_syncerrorbase_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("lk_syncerrorbase_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_syncerrorbase_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("lk_syncerrorbase_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_syncerrorbase_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N lk_systemuser_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_systemuser_createdonbehalfby", Microsoft.Xrm.Sdk.EntityRole.Referenced)]
@@ -15505,6 +17643,86 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N lk_theme_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_theme_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Theme> lk_theme_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Theme>("lk_theme_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_theme_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Theme>("lk_theme_createdby", null, value);
+				this.OnPropertyChanged("lk_theme_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_theme_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_theme_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Theme> lk_theme_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Theme>("lk_theme_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_theme_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Theme>("lk_theme_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_theme_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_theme_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_theme_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Theme> lk_theme_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Theme>("lk_theme_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_theme_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Theme>("lk_theme_modifiedby", null, value);
+				this.OnPropertyChanged("lk_theme_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_theme_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_theme_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Theme> lk_theme_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Theme>("lk_theme_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_theme_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Theme>("lk_theme_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_theme_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N lk_timezonedefinition_createdby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_timezonedefinition_createdby")]
@@ -15741,6 +17959,166 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("lk_timezonerule_modifiedonbehalfby");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.TimeZoneRule>("lk_timezonerule_modifiedonbehalfby", null, value);
 				this.OnPropertyChanged("lk_timezonerule_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_topicmodel_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_topicmodel_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.TopicModel> lk_topicmodel_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.TopicModel>("lk_topicmodel_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_topicmodel_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.TopicModel>("lk_topicmodel_createdby", null, value);
+				this.OnPropertyChanged("lk_topicmodel_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_topicmodel_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_topicmodel_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.TopicModel> lk_topicmodel_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.TopicModel>("lk_topicmodel_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_topicmodel_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.TopicModel>("lk_topicmodel_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_topicmodel_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_topicmodel_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_topicmodel_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.TopicModel> lk_topicmodel_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.TopicModel>("lk_topicmodel_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_topicmodel_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.TopicModel>("lk_topicmodel_modifiedby", null, value);
+				this.OnPropertyChanged("lk_topicmodel_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_topicmodel_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_topicmodel_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.TopicModel> lk_topicmodel_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.TopicModel>("lk_topicmodel_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_topicmodel_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.TopicModel>("lk_topicmodel_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_topicmodel_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_topicmodelexecutionhistory_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_topicmodelexecutionhistory_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.TopicModelExecutionHistory> lk_topicmodelexecutionhistory_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.TopicModelExecutionHistory>("lk_topicmodelexecutionhistory_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_topicmodelexecutionhistory_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.TopicModelExecutionHistory>("lk_topicmodelexecutionhistory_createdby", null, value);
+				this.OnPropertyChanged("lk_topicmodelexecutionhistory_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_topicmodelexecutionhistory_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_topicmodelexecutionhistory_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.TopicModelExecutionHistory> lk_topicmodelexecutionhistory_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.TopicModelExecutionHistory>("lk_topicmodelexecutionhistory_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_topicmodelexecutionhistory_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.TopicModelExecutionHistory>("lk_topicmodelexecutionhistory_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_topicmodelexecutionhistory_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_topicmodelexecutionhistory_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_topicmodelexecutionhistory_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.TopicModelExecutionHistory> lk_topicmodelexecutionhistory_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.TopicModelExecutionHistory>("lk_topicmodelexecutionhistory_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_topicmodelexecutionhistory_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.TopicModelExecutionHistory>("lk_topicmodelexecutionhistory_modifiedby", null, value);
+				this.OnPropertyChanged("lk_topicmodelexecutionhistory_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_topicmodelexecutionhistory_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_topicmodelexecutionhistory_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.TopicModelExecutionHistory> lk_topicmodelexecutionhistory_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.TopicModelExecutionHistory>("lk_topicmodelexecutionhistory_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_topicmodelexecutionhistory_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.TopicModelExecutionHistory>("lk_topicmodelexecutionhistory_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_topicmodelexecutionhistory_modifiedonbehalfby");
 			}
 		}
 		
@@ -16301,6 +18679,86 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("lk_userformbase_modifiedonbehalfby");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.UserForm>("lk_userformbase_modifiedonbehalfby", null, value);
 				this.OnPropertyChanged("lk_userformbase_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_usermapping_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_usermapping_createdby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.UserMapping> lk_usermapping_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.UserMapping>("lk_usermapping_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_usermapping_createdby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.UserMapping>("lk_usermapping_createdby", null, value);
+				this.OnPropertyChanged("lk_usermapping_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_usermapping_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_usermapping_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.UserMapping> lk_usermapping_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.UserMapping>("lk_usermapping_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_usermapping_createdonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.UserMapping>("lk_usermapping_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_usermapping_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_usermapping_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_usermapping_modifiedby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.UserMapping> lk_usermapping_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.UserMapping>("lk_usermapping_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_usermapping_modifiedby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.UserMapping>("lk_usermapping_modifiedby", null, value);
+				this.OnPropertyChanged("lk_usermapping_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_usermapping_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_usermapping_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.UserMapping> lk_usermapping_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.UserMapping>("lk_usermapping_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_usermapping_modifiedonbehalfby");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.UserMapping>("lk_usermapping_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_usermapping_modifiedonbehalfby");
 			}
 		}
 		
@@ -17785,6 +20243,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N SystemUser_ExternalPartyItems
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("SystemUser_ExternalPartyItems")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ExternalPartyItem> SystemUser_ExternalPartyItems
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ExternalPartyItem>("SystemUser_ExternalPartyItems", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SystemUser_ExternalPartyItems");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ExternalPartyItem>("SystemUser_ExternalPartyItems", null, value);
+				this.OnPropertyChanged("SystemUser_ExternalPartyItems");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N SystemUser_ImportFiles
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("SystemUser_ImportFiles")]
@@ -17965,6 +20443,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N SystemUser_SyncError
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("SystemUser_SyncError")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> SystemUser_SyncError
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("SystemUser_SyncError", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SystemUser_SyncError");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("SystemUser_SyncError", null, value);
+				this.OnPropertyChanged("SystemUser_SyncError");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N user_accounts
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_accounts")]
@@ -18081,6 +20579,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("user_campaignresponse");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.CampaignResponse>("user_campaignresponse", null, value);
 				this.OnPropertyChanged("user_campaignresponse");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N user_channelaccessprofile
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_channelaccessprofile")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfile> user_channelaccessprofile
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfile>("user_channelaccessprofile", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_channelaccessprofile");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfile>("user_channelaccessprofile", null, value);
+				this.OnPropertyChanged("user_channelaccessprofile");
 			}
 		}
 		
@@ -18205,6 +20723,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N user_externalparty
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_externalparty")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ExternalParty> user_externalparty
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ExternalParty>("user_externalparty", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_externalparty");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ExternalParty>("user_externalparty", null, value);
+				this.OnPropertyChanged("user_externalparty");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N user_fax
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_fax")]
@@ -18281,6 +20819,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("user_incidentresolution");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.IncidentResolution>("user_incidentresolution", null, value);
 				this.OnPropertyChanged("user_incidentresolution");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N user_knowledgearticle
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_knowledgearticle")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeArticle> user_knowledgearticle
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticle>("user_knowledgearticle", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_knowledgearticle");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticle>("user_knowledgearticle", null, value);
+				this.OnPropertyChanged("user_knowledgearticle");
 			}
 		}
 		
@@ -18481,6 +21039,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("user_phonecall");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.PhoneCall>("user_phonecall", null, value);
 				this.OnPropertyChanged("user_phonecall");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N user_profilerule
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_profilerule")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfileRule> user_profilerule
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRule>("user_profilerule", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_profilerule");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfileRule>("user_profilerule", null, value);
+				this.OnPropertyChanged("user_profilerule");
 			}
 		}
 		
@@ -19138,6 +21716,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_systemuser_createdonbehalfby", Microsoft.Xrm.Sdk.EntityRole.Referencing);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Referencinglk_systemuser_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_systemuser_createdonbehalfby", Microsoft.Xrm.Sdk.EntityRole.Referencing, value);
+				this.OnPropertyChanged("Referencinglk_systemuser_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -19151,6 +21736,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_systemuser_modifiedonbehalfby", Microsoft.Xrm.Sdk.EntityRole.Referencing);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Referencinglk_systemuser_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_systemuser_modifiedonbehalfby", Microsoft.Xrm.Sdk.EntityRole.Referencing, value);
+				this.OnPropertyChanged("Referencinglk_systemuser_modifiedonbehalfby");
 			}
 		}
 		
@@ -19179,6 +21771,27 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_systemuserbase_modifiedby", Microsoft.Xrm.Sdk.EntityRole.Referencing);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 MobileOfflineProfile_SystemUser
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("mobileofflineprofileid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("MobileOfflineProfile_SystemUser")]
+		public DLaB.Xrm.Entities.MobileOfflineProfile MobileOfflineProfile_SystemUser
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.MobileOfflineProfile>("MobileOfflineProfile_SystemUser", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("MobileOfflineProfile_SystemUser");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.MobileOfflineProfile>("MobileOfflineProfile_SystemUser", null, value);
+				this.OnPropertyChanged("MobileOfflineProfile_SystemUser");
 			}
 		}
 		
@@ -19368,24 +21981,38 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["systemuserid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["systemuserid"] = base.Id;
+                        break;
+                    case "systemuserid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("accessmode")]
 		public virtual systemuser_accessmode? AccessModeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -19400,6 +22027,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address1_addresstypecode")]
 		public virtual systemuser_address1_addresstypecode? Address1_AddressTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -19414,6 +22042,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address1_shippingmethodcode")]
 		public virtual systemuser_address1_shippingmethodcode? Address1_ShippingMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -19428,6 +22057,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address2_addresstypecode")]
 		public virtual systemuser_address2_addresstypecode? Address2_AddressTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -19442,6 +22072,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address2_shippingmethodcode")]
 		public virtual systemuser_address2_shippingmethodcode? Address2_ShippingMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -19456,6 +22087,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caltype")]
 		public virtual systemuser_caltype? CALTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -19470,6 +22102,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("emailrouteraccessapproval")]
 		public virtual systemuser_emailrouteraccessapproval? EmailRouterAccessApprovalEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -19484,6 +22117,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("incomingemaildeliverymethod")]
 		public virtual systemuser_incomingemaildeliverymethod? IncomingEmailDeliveryMethodEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -19498,6 +22132,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("invitestatuscode")]
 		public virtual systemuser_invitestatuscode? InviteStatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -19512,6 +22147,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("outgoingemaildeliverymethod")]
 		public virtual systemuser_outgoingemaildeliverymethod? OutgoingEmailDeliveryMethodEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -19526,6 +22162,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("preferredaddresscode")]
 		public virtual systemuser_preferredaddresscode? PreferredAddressCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -19540,6 +22177,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("preferredemailcode")]
 		public virtual systemuser_preferredemailcode? PreferredEmailCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -19554,6 +22192,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("preferredphonecode")]
 		public virtual systemuser_preferredphonecode? PreferredPhoneCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]

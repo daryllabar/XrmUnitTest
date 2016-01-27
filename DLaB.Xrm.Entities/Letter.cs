@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public enum LetterState
 	{
 		
@@ -30,7 +30,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("letter")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class Letter : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -96,6 +96,8 @@ namespace DLaB.Xrm.Entities
 			public const string entitlementtemplate_Letters = "regardingobjectid";
 			public const string Incident_Letters = "regardingobjectid";
 			public const string Invoice_Letters = "regardingobjectid";
+			public const string KnowledgeArticle_Letters = "regardingobjectid";
+			public const string KnowledgeBaseRecord_Letters = "regardingobjectid";
 			public const string Lead_Letters = "regardingobjectid";
 			public const string lk_letter_createdby = "createdby";
 			public const string lk_letter_createdonbehalfby = "createdonbehalfby";
@@ -413,6 +415,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
+			}
 		}
 		
 		/// <summary>
@@ -614,6 +623,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
 		}
 		
 		/// <summary>
@@ -736,7 +752,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the object with which the letter activity is associated.
+		/// Choose the record that the letter relates to.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
 		public Microsoft.Xrm.Sdk.EntityReference RegardingObjectId
@@ -866,6 +882,20 @@ namespace DLaB.Xrm.Entities
 				{
 					return null;
 				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("StateCode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statecode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("StateCode");
 			}
 		}
 		
@@ -1026,7 +1056,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// A comma separated list of string values representing the unique identifiers of stages in a Business Process Flow Instance in the order that they occur.
+		/// For internal use only.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("traversedpath")]
 		public string TraversedPath
@@ -1584,6 +1614,48 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 KnowledgeArticle_Letters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeArticle_Letters")]
+		public DLaB.Xrm.Entities.KnowledgeArticle KnowledgeArticle_Letters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("KnowledgeArticle_Letters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("KnowledgeArticle_Letters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("KnowledgeArticle_Letters", null, value);
+				this.OnPropertyChanged("KnowledgeArticle_Letters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 KnowledgeBaseRecord_Letters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeBaseRecord_Letters")]
+		public DLaB.Xrm.Entities.KnowledgeBaseRecord KnowledgeBaseRecord_Letters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeBaseRecord>("KnowledgeBaseRecord_Letters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("KnowledgeBaseRecord_Letters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeBaseRecord>("KnowledgeBaseRecord_Letters", null, value);
+				this.OnPropertyChanged("KnowledgeBaseRecord_Letters");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 Lead_Letters
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1630,6 +1702,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_letter_createdonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_letter_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_letter_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_letter_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -1657,6 +1736,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_letter_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_letter_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_letter_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_letter_modifiedonbehalfby");
 			}
 		}
 		
@@ -1846,24 +1932,38 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["activityid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["activityid"] = base.Id;
+                        break;
+                    case "activityid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("prioritycode")]
 		public virtual letter_prioritycode? PriorityCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1875,6 +1975,21 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				PriorityCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public virtual letter_statuscode? StatusCodeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((letter_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				StatusCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 	}

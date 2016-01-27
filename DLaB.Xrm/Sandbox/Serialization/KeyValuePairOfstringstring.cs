@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 // ReSharper disable InconsistentNaming
 namespace DLaB.Xrm.Sandbox.Serialization
@@ -6,7 +7,8 @@ namespace DLaB.Xrm.Sandbox.Serialization
     /// <summary>
     /// Sandbox Serialization Safe KeyValuePairOfstringstring
     /// </summary>
-    public class KeyValuePairOfstringstring
+    [DataContract(Namespace = "http://schemas.datacontract.org/2004/07/System.Collections.Generic")]
+    public struct KeyValuePairOfstringstring
     {
         /// <summary>
         /// Gets or sets the key.
@@ -22,11 +24,6 @@ namespace DLaB.Xrm.Sandbox.Serialization
         /// The value.
         /// </value>
         public object value { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="KeyValuePairOfstringstring"/> class.
-        /// </summary>
-        public KeyValuePairOfstringstring() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyValuePairOfstringstring"/> class.

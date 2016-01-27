@@ -122,7 +122,7 @@ namespace DLaB.Xrm
             return value.ToString();
         }
 
-        #endregion // ConditionExpression
+        #endregion ConditionExpression
 
         #region FilterExpression
 
@@ -150,7 +150,7 @@ namespace DLaB.Xrm
             return "( " + statement + ") ";
         }
 
-        #endregion // FilterExpression
+        #endregion FilterExpression
 
         #region QueryExpression
 
@@ -230,7 +230,7 @@ namespace DLaB.Xrm
             return sb.ToString();
         }
 
-        #endregion // QueryExpression
+        #endregion QueryExpression
 
         #region Helper Functions
 
@@ -268,6 +268,6 @@ namespace DLaB.Xrm
             }
         }
 
-        #endregion // Helper Functions
+        #endregion Helper Functions
     }
 }

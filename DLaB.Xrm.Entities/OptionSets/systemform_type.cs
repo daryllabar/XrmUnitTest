@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public enum systemform_type
 	{
 		
@@ -22,7 +22,16 @@ namespace DLaB.Xrm.Entities
 		AppointmentBookBackup = 102,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Card = 11,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Dashboard = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Dialog = 8,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		InteractionCentricDashboard = 10,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Main = 2,
@@ -31,10 +40,13 @@ namespace DLaB.Xrm.Entities
 		MainBackup = 101,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		MainInteractionCentric = 12,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		MiniCampaignBO = 3,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Mobile = 5,
+		MobileExpress = 5,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Other = 100,
@@ -47,5 +59,8 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		QuickViewForm = 6,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		TaskFlowForm = 9,
 	}
 }

@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("usersettings")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class UserSettings : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -53,8 +53,10 @@ namespace DLaB.Xrm.Entities
 			public const string HomepageSubarea = "homepagesubarea";
 			public const string IgnoreUnsolicitedEmail = "ignoreunsolicitedemail";
 			public const string IncomingEmailFilteringMethod = "incomingemailfilteringmethod";
+			public const string IsAppsForCrmAlertDismissed = "isappsforcrmalertdismissed";
 			public const string IsDefaultCountryCodeCheckEnabled = "isdefaultcountrycodecheckenabled";
 			public const string IsDuplicateDetectionEnabledWhenGoingOnline = "isduplicatedetectionenabledwhengoingonline";
+			public const string IsGuidedHelpEnabled = "isguidedhelpenabled";
 			public const string IsSendAsAllowed = "issendasallowed";
 			public const string LastAlertsViewedTime = "lastalertsviewedtime";
 			public const string LocaleId = "localeid";
@@ -327,6 +329,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
 			}
 		}
 		
@@ -760,6 +769,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Show or dismiss alert for Apps for Crm.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isappsforcrmalertdismissed")]
+		public System.Nullable<bool> IsAppsForCrmAlertDismissed
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isappsforcrmalertdismissed");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IsAppsForCrmAlertDismissed");
+				this.SetAttributeValue("isappsforcrmalertdismissed", value);
+				this.OnPropertyChanged("IsAppsForCrmAlertDismissed");
+			}
+		}
+		
+		/// <summary>
 		/// Enable or disable country code selection .
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isdefaultcountrycodecheckenabled")]
@@ -796,6 +825,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("IsDuplicateDetectionEnabledWhenGoingOnline");
 				this.SetAttributeValue("isduplicatedetectionenabledwhengoingonline", value);
 				this.OnPropertyChanged("IsDuplicateDetectionEnabledWhenGoingOnline");
+			}
+		}
+		
+		/// <summary>
+		/// Enable or disable guided help.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isguidedhelpenabled")]
+		public System.Nullable<bool> IsGuidedHelpEnabled
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isguidedhelpenabled");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IsGuidedHelpEnabled");
+				this.SetAttributeValue("isguidedhelpenabled", value);
+				this.OnPropertyChanged("IsGuidedHelpEnabled");
 			}
 		}
 		
@@ -915,6 +964,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
 			}
 		}
 		
@@ -1948,6 +2004,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_usersettings_createdonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_usersettings_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_usersettings_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_usersettings_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -1961,6 +2024,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_usersettings_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_usersettings_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_usersettings_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_usersettings_modifiedonbehalfby");
 			}
 		}
 		
@@ -2045,24 +2115,38 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["systemuserid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["systemuserid"] = base.Id;
+                        break;
+                    case "systemuserid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("datavalidationmodeforexporttoexcel")]
 		public virtual usersettings_datavalidationmodeforexporttoexcel? DataValidationModeForExportToExcelEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2077,6 +2161,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("entityformmode")]
 		public virtual usersettings_entityformmode? EntityFormModeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2091,6 +2176,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("incomingemailfilteringmethod")]
 		public virtual usersettings_incomingemailfilteringmethod? IncomingEmailFilteringMethodEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2105,6 +2191,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("reportscripterrors")]
 		public virtual usersettings_reportscripterrors? ReportScriptErrorsEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -2119,6 +2206,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("visualizationpanelayout")]
 		public virtual usersettings_visualizationpanelayout? VisualizationPaneLayoutEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]

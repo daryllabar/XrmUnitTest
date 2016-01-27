@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("organization")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class Organization : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -36,6 +36,10 @@ namespace DLaB.Xrm.Entities
 			public const string AllowUsersSeeAppdownloadMessage = "allowusersseeappdownloadmessage";
 			public const string AllowWebExcelExport = "allowwebexcelexport";
 			public const string AMDesignator = "amdesignator";
+			public const string AutoApplyDefaultonCaseCreate = "autoapplydefaultoncasecreate";
+			public const string AutoApplyDefaultonCaseUpdate = "autoapplydefaultoncaseupdate";
+			public const string AutoApplySLA = "autoapplysla";
+			public const string AzureSchedulerJobCollectionName = "azureschedulerjobcollectionname";
 			public const string BaseCurrencyId = "basecurrencyid";
 			public const string BaseCurrencyPrecision = "basecurrencyprecision";
 			public const string BaseCurrencySymbol = "basecurrencysymbol";
@@ -48,6 +52,7 @@ namespace DLaB.Xrm.Entities
 			public const string CascadeStatusUpdate = "cascadestatusupdate";
 			public const string CasePrefix = "caseprefix";
 			public const string ContractPrefix = "contractprefix";
+			public const string CortanaProactiveExperienceEnabled = "cortanaproactiveexperienceenabled";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
@@ -62,6 +67,7 @@ namespace DLaB.Xrm.Entities
 			public const string CurrentContractNumber = "currentcontractnumber";
 			public const string CurrentImportSequenceNumber = "currentimportsequencenumber";
 			public const string CurrentInvoiceNumber = "currentinvoicenumber";
+			public const string CurrentKaNumber = "currentkanumber";
 			public const string CurrentKbNumber = "currentkbnumber";
 			public const string CurrentOrderNumber = "currentordernumber";
 			public const string CurrentParsedTableNumber = "currentparsedtablenumber";
@@ -69,11 +75,15 @@ namespace DLaB.Xrm.Entities
 			public const string DateFormatCode = "dateformatcode";
 			public const string DateFormatString = "dateformatstring";
 			public const string DateSeparator = "dateseparator";
+			public const string DaysSinceRecordLastModifiedMaxValue = "dayssincerecordlastmodifiedmaxvalue";
 			public const string DecimalSymbol = "decimalsymbol";
 			public const string DefaultCountryCode = "defaultcountrycode";
 			public const string DefaultEmailServerProfileId = "defaultemailserverprofileid";
 			public const string DefaultEmailSettings = "defaultemailsettings";
+			public const string DefaultMobileOfflineProfileId = "defaultmobileofflineprofileid";
 			public const string DefaultRecurrenceEndRangeType = "defaultrecurrenceendrangetype";
+			public const string DefaultThemeData = "defaultthemedata";
+			public const string DelegatedAdminUserId = "delegatedadminuserid";
 			public const string DisabledReason = "disabledreason";
 			public const string DisableSocialCare = "disablesocialcare";
 			public const string DiscountCalculationMethod = "discountcalculationmethod";
@@ -84,11 +94,15 @@ namespace DLaB.Xrm.Entities
 			public const string EnableBingMapsIntegration = "enablebingmapsintegration";
 			public const string EnablePricingOnCreate = "enablepricingoncreate";
 			public const string EnableSmartMatching = "enablesmartmatching";
+			public const string EnforceReadOnlyPlugins = "enforcereadonlyplugins";
 			public const string EntityImage = "entityimage";
 			public const string EntityImage_Timestamp = "entityimage_timestamp";
 			public const string EntityImage_URL = "entityimage_url";
 			public const string EntityImageId = "entityimageid";
+			public const string ExpireChangeTrackingInDays = "expirechangetrackingindays";
 			public const string ExpireSubscriptionsInDays = "expiresubscriptionsindays";
+			public const string ExternalPartyCorrelationKeys = "externalpartycorrelationkeys";
+			public const string ExternalPartyEntitySettings = "externalpartyentitysettings";
 			public const string FeatureSet = "featureset";
 			public const string FiscalCalendarStart = "fiscalcalendarstart";
 			public const string FiscalPeriodFormat = "fiscalperiodformat";
@@ -117,6 +131,7 @@ namespace DLaB.Xrm.Entities
 			public const string HashFilterKeywords = "hashfilterkeywords";
 			public const string HashMaxCount = "hashmaxcount";
 			public const string HashMinAddressCount = "hashminaddresscount";
+			public const string HighContrastThemeData = "highcontrastthemedata";
 			public const string IgnoreInternalEmail = "ignoreinternalemail";
 			public const string IncomingEmailExchangeEmailRetrievalBatchSize = "incomingemailexchangeemailretrievalbatchsize";
 			public const string InitialVersion = "initialversion";
@@ -136,21 +151,31 @@ namespace DLaB.Xrm.Entities
 			public const string IsDuplicateDetectionEnabledForOfflineSync = "isduplicatedetectionenabledforofflinesync";
 			public const string IsDuplicateDetectionEnabledForOnlineCreateUpdate = "isduplicatedetectionenabledforonlinecreateupdate";
 			public const string IsEmailServerProfileContentFilteringEnabled = "isemailserverprofilecontentfilteringenabled";
+			public const string IsExternalSearchIndexEnabled = "isexternalsearchindexenabled";
 			public const string IsFiscalPeriodMonthBased = "isfiscalperiodmonthbased";
+			public const string IsFolderBasedTrackingEnabled = "isfolderbasedtrackingenabled";
 			public const string IsFullTextSearchEnabled = "isfulltextsearchenabled";
 			public const string IsHierarchicalSecurityModelEnabled = "ishierarchicalsecuritymodelenabled";
 			public const string IsMailboxForcedUnlockingEnabled = "ismailboxforcedunlockingenabled";
 			public const string IsMailboxInactiveBackoffEnabled = "ismailboxinactivebackoffenabled";
+			public const string IsMobileOfflineEnabled = "ismobileofflineenabled";
+			public const string IsOfficeGraphEnabled = "isofficegraphenabled";
+			public const string IsOneDriveEnabled = "isonedriveenabled";
 			public const string IsPresenceEnabled = "ispresenceenabled";
 			public const string IsSOPIntegrationEnabled = "issopintegrationenabled";
 			public const string IsUserAccessAuditEnabled = "isuseraccessauditenabled";
 			public const string ISVIntegrationCode = "isvintegrationcode";
+			public const string KaPrefix = "kaprefix";
 			public const string KbPrefix = "kbprefix";
+			public const string KMSettings = "kmsettings";
 			public const string LanguageCode = "languagecode";
 			public const string LocaleId = "localeid";
 			public const string LongDateFormatCode = "longdateformatcode";
+			public const string MailboxIntermittentIssueMinRange = "mailboxintermittentissueminrange";
+			public const string MailboxPermanentIssueMinRange = "mailboxpermanentissueminrange";
 			public const string MaxAppointmentDurationDays = "maxappointmentdurationdays";
 			public const string MaxDepthForHierarchicalSecurityModel = "maxdepthforhierarchicalsecuritymodel";
+			public const string MaxFolderBasedTrackingMappings = "maxfolderbasedtrackingmappings";
 			public const string MaximumActiveBusinessProcessFlowsAllowedPerEntity = "maximumactivebusinessprocessflowsallowedperentity";
 			public const string MaximumDynamicPropertiesAllowed = "maximumdynamicpropertiesallowed";
 			public const string MaximumTrackingNumber = "maximumtrackingnumber";
@@ -159,10 +184,14 @@ namespace DLaB.Xrm.Entities
 			public const string MaxRecordsForLookupFilters = "maxrecordsforlookupfilters";
 			public const string MaxSupportedInternetExplorerVersion = "maxsupportedinternetexplorerversion";
 			public const string MaxUploadFileSize = "maxuploadfilesize";
+			public const string MaxVerboseLoggingMailbox = "maxverboseloggingmailbox";
+			public const string MaxVerboseLoggingSyncCycles = "maxverboseloggingsynccycles";
 			public const string MinAddressBookSyncInterval = "minaddressbooksyncinterval";
 			public const string MinOfflineSyncInterval = "minofflinesyncinterval";
 			public const string MinOutlookSyncInterval = "minoutlooksyncinterval";
-			public const string MobileClientMashupEnabled = "mobileclientmashupenabled";
+			public const string MobileOfflineMinLicenseProd = "mobileofflineminlicenseprod";
+			public const string MobileOfflineMinLicenseTrial = "mobileofflineminlicensetrial";
+			public const string MobileOfflineSyncInterval = "mobileofflinesyncinterval";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
@@ -174,6 +203,8 @@ namespace DLaB.Xrm.Entities
 			public const string NumberFormat = "numberformat";
 			public const string NumberGroupFormat = "numbergroupformat";
 			public const string NumberSeparator = "numberseparator";
+			public const string OfficeAppsAutoDeploymentEnabled = "officeappsautodeploymentenabled";
+			public const string OfficeGraphDelveUrl = "officegraphdelveurl";
 			public const string OOBPriceCalculationEnabled = "oobpricecalculationenabled";
 			public const string OrderPrefix = "orderprefix";
 			public const string OrganizationId = "organizationid";
@@ -184,8 +215,10 @@ namespace DLaB.Xrm.Entities
 			public const string PastExpansionWindow = "pastexpansionwindow";
 			public const string Picture = "picture";
 			public const string PinpointLanguageCode = "pinpointlanguagecode";
+			public const string PluginTraceLogSetting = "plugintracelogsetting";
 			public const string PMDesignator = "pmdesignator";
 			public const string PricingDecimalPrecision = "pricingdecimalprecision";
+			public const string PrivacyStatementUrl = "privacystatementurl";
 			public const string PrivilegeUserGroupId = "privilegeusergroupid";
 			public const string PrivReportingGroupId = "privreportinggroupid";
 			public const string PrivReportingGroupName = "privreportinggroupname";
@@ -205,7 +238,9 @@ namespace DLaB.Xrm.Entities
 			public const string RestrictStatusUpdate = "restrictstatusupdate";
 			public const string SampleDataImportId = "sampledataimportid";
 			public const string SchemaNamePrefix = "schemanameprefix";
+			public const string SharePointDeploymentType = "sharepointdeploymenttype";
 			public const string ShareToPreviousOwnerOnAssign = "sharetopreviousowneronassign";
+			public const string ShowKBArticleDeprecationNotification = "showkbarticledeprecationnotification";
 			public const string ShowWeekNumber = "showweeknumber";
 			public const string SignupOutlookDownloadFWLink = "signupoutlookdownloadfwlink";
 			public const string SiteMapXml = "sitemapxml";
@@ -222,6 +257,7 @@ namespace DLaB.Xrm.Entities
 			public const string SystemUserId = "systemuserid";
 			public const string TagMaxAggressiveCycles = "tagmaxaggressivecycles";
 			public const string TagPollingPeriod = "tagpollingperiod";
+			public const string TaskBasedFlowEnabled = "taskbasedflowenabled";
 			public const string TimeFormatCode = "timeformatcode";
 			public const string TimeFormatString = "timeformatstring";
 			public const string TimeSeparator = "timeseparator";
@@ -233,6 +269,7 @@ namespace DLaB.Xrm.Entities
 			public const string TrackingTokenIdDigits = "trackingtokeniddigits";
 			public const string UniqueSpecifierLength = "uniquespecifierlength";
 			public const string UseInbuiltRuleForDefaultPricelistSelection = "useinbuiltrulefordefaultpricelistselection";
+			public const string UseLegacyRendering = "uselegacyrendering";
 			public const string UsePositionHierarchy = "usepositionhierarchy";
 			public const string UserAccessAuditingInterval = "useraccessauditinginterval";
 			public const string UseReadForm = "usereadform";
@@ -241,6 +278,7 @@ namespace DLaB.Xrm.Entities
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string V3CalloutConfigHash = "v3calloutconfighash";
 			public const string VersionNumber = "versionnumber";
+			public const string WebResourceHash = "webresourcehash";
 			public const string WeekStartDayCode = "weekstartdaycode";
 			public const string YammerGroupId = "yammergroupid";
 			public const string YammerNetworkPermalink = "yammernetworkpermalink";
@@ -249,6 +287,7 @@ namespace DLaB.Xrm.Entities
 			public const string YearStartWeekCode = "yearstartweekcode";
 			public const string basecurrency_organization = "basecurrencyid";
 			public const string calendar_organization = "businessclosurecalendarid";
+			public const string DefaultMobileOfflineProfile_Organization = "defaultmobileofflineprofileid";
 			public const string EmailServerProfile_Organization = "defaultemailserverprofileid";
 			public const string lk_organization_createdonbehalfby = "createdonbehalfby";
 			public const string lk_organization_modifiedonbehalfby = "modifiedonbehalfby";
@@ -594,6 +633,86 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Select whether to auto apply the default customer entitlement on case creation.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("autoapplydefaultoncasecreate")]
+		public System.Nullable<bool> AutoApplyDefaultonCaseCreate
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("autoapplydefaultoncasecreate");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("AutoApplyDefaultonCaseCreate");
+				this.SetAttributeValue("autoapplydefaultoncasecreate", value);
+				this.OnPropertyChanged("AutoApplyDefaultonCaseCreate");
+			}
+		}
+		
+		/// <summary>
+		/// Select whether to auto apply the default customer entitlement on case update.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("autoapplydefaultoncaseupdate")]
+		public System.Nullable<bool> AutoApplyDefaultonCaseUpdate
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("autoapplydefaultoncaseupdate");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("AutoApplyDefaultonCaseUpdate");
+				this.SetAttributeValue("autoapplydefaultoncaseupdate", value);
+				this.OnPropertyChanged("AutoApplyDefaultonCaseUpdate");
+			}
+		}
+		
+		/// <summary>
+		/// Indicates whether to Auto-apply SLA on case record update after SLA was manually applied.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("autoapplysla")]
+		public System.Nullable<bool> AutoApplySLA
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("autoapplysla");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("AutoApplySLA");
+				this.SetAttributeValue("autoapplysla", value);
+				this.OnPropertyChanged("AutoApplySLA");
+			}
+		}
+		
+		/// <summary>
+		/// Azure Scheduler Job Collection Name.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("azureschedulerjobcollectionname")]
+		public string AzureSchedulerJobCollectionName
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("azureschedulerjobcollectionname");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("AzureSchedulerJobCollectionName");
+				this.SetAttributeValue("azureschedulerjobcollectionname", value);
+				this.OnPropertyChanged("AzureSchedulerJobCollectionName");
+			}
+		}
+		
+		/// <summary>
 		/// Unique identifier of the base currency of the organization.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("basecurrencyid")]
@@ -820,6 +939,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Indicates whether the feature CortanaProactiveExperience Flow processes should be enabled for the organization.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cortanaproactiveexperienceenabled")]
+		public System.Nullable<bool> CortanaProactiveExperienceEnabled
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("cortanaproactiveexperienceenabled");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CortanaProactiveExperienceEnabled");
+				this.SetAttributeValue("cortanaproactiveexperienceenabled", value);
+				this.OnPropertyChanged("CortanaProactiveExperienceEnabled");
+			}
+		}
+		
+		/// <summary>
 		/// Unique identifier of the user who created the organization.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
@@ -855,6 +994,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
 			}
 		}
 		
@@ -1072,6 +1218,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// First knowledge article number to use.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("currentkanumber")]
+		public System.Nullable<int> CurrentKaNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("currentkanumber");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CurrentKaNumber");
+				this.SetAttributeValue("currentkanumber", value);
+				this.OnPropertyChanged("CurrentKaNumber");
+			}
+		}
+		
+		/// <summary>
 		/// First article number to use.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("currentkbnumber")]
@@ -1205,6 +1371,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// The maximum value for the Mobile Offline setting Days since record last modified
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dayssincerecordlastmodifiedmaxvalue")]
+		public System.Nullable<int> DaysSinceRecordLastModifiedMaxValue
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("dayssincerecordlastmodifiedmaxvalue");
+			}
+		}
+		
+		/// <summary>
 		/// Symbol used for decimal in Microsoft Dynamics CRM.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("decimalsymbol")]
@@ -1285,6 +1464,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Unique identifier of the default mobile offline profile.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("defaultmobileofflineprofileid")]
+		public Microsoft.Xrm.Sdk.EntityReference DefaultMobileOfflineProfileId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("defaultmobileofflineprofileid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("DefaultMobileOfflineProfileId");
+				this.SetAttributeValue("defaultmobileofflineprofileid", value);
+				this.OnPropertyChanged("DefaultMobileOfflineProfileId");
+			}
+		}
+		
+		/// <summary>
 		/// Type of default recurrence end range date.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("defaultrecurrenceendrangetype")]
@@ -1301,6 +1500,46 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("DefaultRecurrenceEndRangeType");
 				this.SetAttributeValue("defaultrecurrenceendrangetype", value);
 				this.OnPropertyChanged("DefaultRecurrenceEndRangeType");
+			}
+		}
+		
+		/// <summary>
+		/// Default theme data for the organization.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("defaultthemedata")]
+		public string DefaultThemeData
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("defaultthemedata");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("DefaultThemeData");
+				this.SetAttributeValue("defaultthemedata", value);
+				this.OnPropertyChanged("DefaultThemeData");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the delegated admin user for the organization.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("delegatedadminuserid")]
+		public System.Nullable<System.Guid> DelegatedAdminUserId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("delegatedadminuserid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("DelegatedAdminUserId");
+				this.SetAttributeValue("delegatedadminuserid", value);
+				this.OnPropertyChanged("DelegatedAdminUserId");
 			}
 		}
 		
@@ -1498,6 +1737,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Organization setting to enforce read only plugins.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("enforcereadonlyplugins")]
+		public System.Nullable<bool> EnforceReadOnlyPlugins
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("enforcereadonlyplugins");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("EnforceReadOnlyPlugins");
+				this.SetAttributeValue("enforcereadonlyplugins", value);
+				this.OnPropertyChanged("EnforceReadOnlyPlugins");
+			}
+		}
+		
+		/// <summary>
 		/// The default image for the entity.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("entityimage")]
@@ -1557,6 +1816,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Maximum number of days to keep change tracking deleted records
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("expirechangetrackingindays")]
+		public System.Nullable<int> ExpireChangeTrackingInDays
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("expirechangetrackingindays");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ExpireChangeTrackingInDays");
+				this.SetAttributeValue("expirechangetrackingindays", value);
+				this.OnPropertyChanged("ExpireChangeTrackingInDays");
+			}
+		}
+		
+		/// <summary>
 		/// Maximum number of days before deleting inactive subscriptions.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("expiresubscriptionsindays")]
@@ -1573,6 +1852,46 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ExpireSubscriptionsInDays");
 				this.SetAttributeValue("expiresubscriptionsindays", value);
 				this.OnPropertyChanged("ExpireSubscriptionsInDays");
+			}
+		}
+		
+		/// <summary>
+		/// XML string containing the ExternalPartyEnabled entities correlation keys for association of existing External Party instance entities to newly created IsExternalPartyEnabled entities.For internal use only
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("externalpartycorrelationkeys")]
+		public string ExternalPartyCorrelationKeys
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("externalpartycorrelationkeys");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ExternalPartyCorrelationKeys");
+				this.SetAttributeValue("externalpartycorrelationkeys", value);
+				this.OnPropertyChanged("ExternalPartyCorrelationKeys");
+			}
+		}
+		
+		/// <summary>
+		/// XML string containing the ExternalPartyEnabled entities settings.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("externalpartyentitysettings")]
+		public string ExternalPartyEntitySettings
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("externalpartyentitysettings");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ExternalPartyEntitySettings");
+				this.SetAttributeValue("externalpartyentitysettings", value);
+				this.OnPropertyChanged("ExternalPartyEntitySettings");
 			}
 		}
 		
@@ -2131,6 +2450,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// High contrast theme data for the organization.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("highcontrastthemedata")]
+		public string HighContrastThemeData
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("highcontrastthemedata");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("HighContrastThemeData");
+				this.SetAttributeValue("highcontrastthemedata", value);
+				this.OnPropertyChanged("HighContrastThemeData");
+			}
+		}
+		
+		/// <summary>
 		/// Indicates whether incoming email sent by internal Microsoft Dynamics CRM users or queues should be tracked.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ignoreinternalemail")]
@@ -2504,6 +2843,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Indicates whether data are being synced to an external search index.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isexternalsearchindexenabled")]
+		public System.Nullable<bool> IsExternalSearchIndexEnabled
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isexternalsearchindexenabled");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IsExternalSearchIndexEnabled");
+				this.SetAttributeValue("isexternalsearchindexenabled", value);
+				this.OnPropertyChanged("IsExternalSearchIndexEnabled");
+			}
+		}
+		
+		/// <summary>
 		/// Indicates whether the fiscal period is displayed as the month number.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isfiscalperiodmonthbased")]
@@ -2520,6 +2879,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("IsFiscalPeriodMonthBased");
 				this.SetAttributeValue("isfiscalperiodmonthbased", value);
 				this.OnPropertyChanged("IsFiscalPeriodMonthBased");
+			}
+		}
+		
+		/// <summary>
+		/// Enable or disable folder based tracking for Server Side Sync.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isfolderbasedtrackingenabled")]
+		public System.Nullable<bool> IsFolderBasedTrackingEnabled
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isfolderbasedtrackingenabled");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IsFolderBasedTrackingEnabled");
+				this.SetAttributeValue("isfolderbasedtrackingenabled", value);
+				this.OnPropertyChanged("IsFolderBasedTrackingEnabled");
 			}
 		}
 		
@@ -2600,6 +2979,66 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("IsMailboxInactiveBackoffEnabled");
 				this.SetAttributeValue("ismailboxinactivebackoffenabled", value);
 				this.OnPropertyChanged("IsMailboxInactiveBackoffEnabled");
+			}
+		}
+		
+		/// <summary>
+		/// Indicates whether the feature MobileOffline should be enabled for the organization.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ismobileofflineenabled")]
+		public System.Nullable<bool> IsMobileOfflineEnabled
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("ismobileofflineenabled");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IsMobileOfflineEnabled");
+				this.SetAttributeValue("ismobileofflineenabled", value);
+				this.OnPropertyChanged("IsMobileOfflineEnabled");
+			}
+		}
+		
+		/// <summary>
+		/// Indicates whether the feature OfficeGraph should be enabled for the organization.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isofficegraphenabled")]
+		public System.Nullable<bool> IsOfficeGraphEnabled
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isofficegraphenabled");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IsOfficeGraphEnabled");
+				this.SetAttributeValue("isofficegraphenabled", value);
+				this.OnPropertyChanged("IsOfficeGraphEnabled");
+			}
+		}
+		
+		/// <summary>
+		/// Indicates whether the feature One Drive should be enabled for the organization.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isonedriveenabled")]
+		public System.Nullable<bool> IsOneDriveEnabled
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isonedriveenabled");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IsOneDriveEnabled");
+				this.SetAttributeValue("isonedriveenabled", value);
+				this.OnPropertyChanged("IsOneDriveEnabled");
 			}
 		}
 		
@@ -2685,6 +3124,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Prefix to use for all knowledge articles in Microsoft Dynamics CRM.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("kaprefix")]
+		public string KaPrefix
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("kaprefix");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("KaPrefix");
+				this.SetAttributeValue("kaprefix", value);
+				this.OnPropertyChanged("KaPrefix");
+			}
+		}
+		
+		/// <summary>
 		/// Prefix to use for all articles in Microsoft Dynamics CRM.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("kbprefix")]
@@ -2701,6 +3160,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("KbPrefix");
 				this.SetAttributeValue("kbprefix", value);
 				this.OnPropertyChanged("KbPrefix");
+			}
+		}
+		
+		/// <summary>
+		/// XML string containing the Knowledge Management settings that are applied in Knowledge Management Wizard.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("kmsettings")]
+		public string KMSettings
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("kmsettings");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("KMSettings");
+				this.SetAttributeValue("kmsettings", value);
+				this.OnPropertyChanged("KMSettings");
 			}
 		}
 		
@@ -2765,6 +3244,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Lower Threshold For Mailbox Intermittent Issue.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("mailboxintermittentissueminrange")]
+		public System.Nullable<int> MailboxIntermittentIssueMinRange
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("mailboxintermittentissueminrange");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("MailboxIntermittentIssueMinRange");
+				this.SetAttributeValue("mailboxintermittentissueminrange", value);
+				this.OnPropertyChanged("MailboxIntermittentIssueMinRange");
+			}
+		}
+		
+		/// <summary>
+		/// Lower Threshold For Mailbox Permanent Issue.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("mailboxpermanentissueminrange")]
+		public System.Nullable<int> MailboxPermanentIssueMinRange
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("mailboxpermanentissueminrange");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("MailboxPermanentIssueMinRange");
+				this.SetAttributeValue("mailboxpermanentissueminrange", value);
+				this.OnPropertyChanged("MailboxPermanentIssueMinRange");
+			}
+		}
+		
+		/// <summary>
 		/// Maximum number of days an appointment can last.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("maxappointmentdurationdays")]
@@ -2801,6 +3320,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("MaxDepthForHierarchicalSecurityModel");
 				this.SetAttributeValue("maxdepthforhierarchicalsecuritymodel", value);
 				this.OnPropertyChanged("MaxDepthForHierarchicalSecurityModel");
+			}
+		}
+		
+		/// <summary>
+		/// Maximum number of Folder Based Tracking mappings user can add
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("maxfolderbasedtrackingmappings")]
+		public System.Nullable<int> MaxFolderBasedTrackingMappings
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("maxfolderbasedtrackingmappings");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("MaxFolderBasedTrackingMappings");
+				this.SetAttributeValue("maxfolderbasedtrackingmappings", value);
+				this.OnPropertyChanged("MaxFolderBasedTrackingMappings");
 			}
 		}
 		
@@ -2958,6 +3497,32 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Maximum number of mailboxes that can be toggled for verbose logging
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("maxverboseloggingmailbox")]
+		public System.Nullable<int> MaxVerboseLoggingMailbox
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("maxverboseloggingmailbox");
+			}
+		}
+		
+		/// <summary>
+		/// Maximum number of sync cycles for which verbose logging will be enabled by default
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("maxverboseloggingsynccycles")]
+		public System.Nullable<int> MaxVerboseLoggingSyncCycles
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("maxverboseloggingsynccycles");
+			}
+		}
+		
+		/// <summary>
 		/// Normal polling frequency used for address book synchronization in Microsoft Office Outlook.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("minaddressbooksyncinterval")]
@@ -3018,22 +3583,48 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Indicates whether the mobile client mashup is enabled.
+		/// Minimum number of user license required for mobile offline service by production/preview organization
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("mobileclientmashupenabled")]
-		public System.Nullable<bool> MobileClientMashupEnabled
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("mobileofflineminlicenseprod")]
+		public System.Nullable<int> MobileOfflineMinLicenseProd
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetAttributeValue<System.Nullable<bool>>("mobileclientmashupenabled");
+				return this.GetAttributeValue<System.Nullable<int>>("mobileofflineminlicenseprod");
+			}
+		}
+		
+		/// <summary>
+		/// Minimum number of user license required for mobile offline service by trial organization
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("mobileofflineminlicensetrial")]
+		public System.Nullable<int> MobileOfflineMinLicenseTrial
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("mobileofflineminlicensetrial");
+			}
+		}
+		
+		/// <summary>
+		/// Sync interval for mobile offline.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("mobileofflinesyncinterval")]
+		public System.Nullable<int> MobileOfflineSyncInterval
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("mobileofflinesyncinterval");
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("MobileClientMashupEnabled");
-				this.SetAttributeValue("mobileclientmashupenabled", value);
-				this.OnPropertyChanged("MobileClientMashupEnabled");
+				this.OnPropertyChanging("MobileOfflineSyncInterval");
+				this.SetAttributeValue("mobileofflinesyncinterval", value);
+				this.OnPropertyChanged("MobileOfflineSyncInterval");
 			}
 		}
 		
@@ -3073,6 +3664,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
 			}
 		}
 		
@@ -3233,6 +3831,46 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("NumberSeparator");
 				this.SetAttributeValue("numberseparator", value);
 				this.OnPropertyChanged("NumberSeparator");
+			}
+		}
+		
+		/// <summary>
+		/// Indicates whether the Office Apps auto deployment is enabled for the organization.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("officeappsautodeploymentenabled")]
+		public System.Nullable<bool> OfficeAppsAutoDeploymentEnabled
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("officeappsautodeploymentenabled");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OfficeAppsAutoDeploymentEnabled");
+				this.SetAttributeValue("officeappsautodeploymentenabled", value);
+				this.OnPropertyChanged("OfficeAppsAutoDeploymentEnabled");
+			}
+		}
+		
+		/// <summary>
+		/// The url to open the Delve for the organization.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("officegraphdelveurl")]
+		public string OfficeGraphDelveUrl
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("officegraphdelveurl");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OfficeGraphDelveUrl");
+				this.SetAttributeValue("officegraphdelveurl", value);
+				this.OnPropertyChanged("OfficeGraphDelveUrl");
 			}
 		}
 		
@@ -3411,6 +4049,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Plug-in Trace Log Setting for the Organization.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("plugintracelogsetting")]
+		public Microsoft.Xrm.Sdk.OptionSetValue PluginTraceLogSetting
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("plugintracelogsetting");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("PluginTraceLogSetting");
+				this.SetAttributeValue("plugintracelogsetting", value);
+				this.OnPropertyChanged("PluginTraceLogSetting");
+			}
+		}
+		
+		/// <summary>
 		/// PM designator to use throughout Microsoft Dynamics CRM.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("pmdesignator")]
@@ -3447,6 +4105,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("PricingDecimalPrecision");
 				this.SetAttributeValue("pricingdecimalprecision", value);
 				this.OnPropertyChanged("PricingDecimalPrecision");
+			}
+		}
+		
+		/// <summary>
+		/// Privacy Statement URL
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("privacystatementurl")]
+		public string PrivacyStatementUrl
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("privacystatementurl");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("PrivacyStatementUrl");
+				this.SetAttributeValue("privacystatementurl", value);
+				this.OnPropertyChanged("PrivacyStatementUrl");
 			}
 		}
 		
@@ -3832,6 +4510,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Indicates which SharePoint deployment type is configured for Server to Server. (Online or On-Premises)
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sharepointdeploymenttype")]
+		public Microsoft.Xrm.Sdk.OptionSetValue SharePointDeploymentType
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("sharepointdeploymenttype");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SharePointDeploymentType");
+				this.SetAttributeValue("sharepointdeploymenttype", value);
+				this.OnPropertyChanged("SharePointDeploymentType");
+			}
+		}
+		
+		/// <summary>
 		/// Information that specifies whether to share to previous owner on assign.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sharetopreviousowneronassign")]
@@ -3848,6 +4546,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ShareToPreviousOwnerOnAssign");
 				this.SetAttributeValue("sharetopreviousowneronassign", value);
 				this.OnPropertyChanged("ShareToPreviousOwnerOnAssign");
+			}
+		}
+		
+		/// <summary>
+		/// Indicates whether KB Article deprecation notification message should be displayed or not for the user.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("showkbarticledeprecationnotification")]
+		public System.Nullable<bool> ShowKBArticleDeprecationNotification
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("showkbarticledeprecationnotification");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ShowKBArticleDeprecationNotification");
+				this.SetAttributeValue("showkbarticledeprecationnotification", value);
+				this.OnPropertyChanged("ShowKBArticleDeprecationNotification");
 			}
 		}
 		
@@ -4173,6 +4891,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Indicates whether the feature Task Flow processes should be enabled for the organization.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("taskbasedflowenabled")]
+		public System.Nullable<bool> TaskBasedFlowEnabled
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("taskbasedflowenabled");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TaskBasedFlowEnabled");
+				this.SetAttributeValue("taskbasedflowenabled", value);
+				this.OnPropertyChanged("TaskBasedFlowEnabled");
+			}
+		}
+		
+		/// <summary>
 		/// Information that specifies how the time is displayed throughout Microsoft CRM.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timeformatcode")]
@@ -4393,6 +5131,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Select whether to use legacy form rendering.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("uselegacyrendering")]
+		public System.Nullable<bool> UseLegacyRendering
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("uselegacyrendering");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("UseLegacyRendering");
+				this.SetAttributeValue("uselegacyrendering", value);
+				this.OnPropertyChanged("UseLegacyRendering");
+			}
+		}
+		
+		/// <summary>
 		/// Use position hierarchy
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("usepositionhierarchy")]
@@ -4539,6 +5297,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Hash value of web resources.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("webresourcehash")]
+		public string WebResourceHash
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("webresourcehash");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("WebResourceHash");
+				this.SetAttributeValue("webresourcehash", value);
+				this.OnPropertyChanged("WebResourceHash");
+			}
+		}
+		
+		/// <summary>
 		/// Designated first day of the week throughout Microsoft Dynamics CRM.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("weekstartdaycode")]
@@ -4655,6 +5433,106 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("YearStartWeekCode");
 				this.SetAttributeValue("yearstartweekcode", value);
 				this.OnPropertyChanged("YearStartWeekCode");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N channelproperty_organization
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("channelproperty_organization")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelProperty> channelproperty_organization
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelProperty>("channelproperty_organization", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("channelproperty_organization");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelProperty>("channelproperty_organization", null, value);
+				this.OnPropertyChanged("channelproperty_organization");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N channelpropertygroup_organization
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("channelpropertygroup_organization")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelPropertyGroup> channelpropertygroup_organization
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelPropertyGroup>("channelpropertygroup_organization", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("channelpropertygroup_organization");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelPropertyGroup>("channelpropertygroup_organization", null, value);
+				this.OnPropertyChanged("channelpropertygroup_organization");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N customcontrol_organization
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("customcontrol_organization")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CustomControl> customcontrol_organization
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CustomControl>("customcontrol_organization", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("customcontrol_organization");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CustomControl>("customcontrol_organization", null, value);
+				this.OnPropertyChanged("customcontrol_organization");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N customcontroldefaultconfig_organization
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("customcontroldefaultconfig_organization")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CustomControlDefaultConfig> customcontroldefaultconfig_organization
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CustomControlDefaultConfig>("customcontroldefaultconfig_organization", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("customcontroldefaultconfig_organization");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CustomControlDefaultConfig>("customcontroldefaultconfig_organization", null, value);
+				this.OnPropertyChanged("customcontroldefaultconfig_organization");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N customcontrolresource_organization
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("customcontrolresource_organization")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CustomControlResource> customcontrolresource_organization
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CustomControlResource>("customcontrolresource_organization", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("customcontrolresource_organization");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CustomControlResource>("customcontrolresource_organization", null, value);
+				this.OnPropertyChanged("customcontrolresource_organization");
 			}
 		}
 		
@@ -4779,6 +5657,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N languagelocale_organization
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("languagelocale_organization")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.LanguageLocale> languagelocale_organization
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.LanguageLocale>("languagelocale_organization", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("languagelocale_organization");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.LanguageLocale>("languagelocale_organization", null, value);
+				this.OnPropertyChanged("languagelocale_organization");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_documenttemplatebase_organization
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_documenttemplatebase_organization")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.DocumentTemplate> lk_documenttemplatebase_organization
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.DocumentTemplate>("lk_documenttemplatebase_organization", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_documenttemplatebase_organization");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.DocumentTemplate>("lk_documenttemplatebase_organization", null, value);
+				this.OnPropertyChanged("lk_documenttemplatebase_organization");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N lk_fieldsecurityprofile_organizationid
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_fieldsecurityprofile_organizationid")]
@@ -4837,7 +5755,67 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanged("lk_principalobjectattributeaccess_organizationid");
 			}
 		}
-
+		
+		/// <summary>
+		/// 1:N MobileOfflineProfile_organization
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("MobileOfflineProfile_organization")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MobileOfflineProfile> MobileOfflineProfile_organization
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfile>("MobileOfflineProfile_organization", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("MobileOfflineProfile_organization");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfile>("MobileOfflineProfile_organization", null, value);
+				this.OnPropertyChanged("MobileOfflineProfile_organization");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N MobileOfflineProfileItem_organization
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("MobileOfflineProfileItem_organization")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MobileOfflineProfileItem> MobileOfflineProfileItem_organization
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfileItem>("MobileOfflineProfileItem_organization", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("MobileOfflineProfileItem_organization");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfileItem>("MobileOfflineProfileItem_organization", null, value);
+				this.OnPropertyChanged("MobileOfflineProfileItem_organization");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N MobileOfflineProfileItemAssociation_organization
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("MobileOfflineProfileItemAssociation_organization")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MobileOfflineProfileItemAssociation> MobileOfflineProfileItemAssociation_organization
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfileItemAssociation>("MobileOfflineProfileItemAssociation_organization", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("MobileOfflineProfileItemAssociation_organization");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MobileOfflineProfileItemAssociation>("MobileOfflineProfileItemAssociation_organization", null, value);
+				this.OnPropertyChanged("MobileOfflineProfileItemAssociation_organization");
+			}
+		}
+		
 		/// <summary>
 		/// 1:N Organization_AsyncOperations
 		/// </summary>
@@ -4875,6 +5853,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("organization_attributemap");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.AttributeMap>("organization_attributemap", null, value);
 				this.OnPropertyChanged("organization_attributemap");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N organization_azureserviceconnection
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("organization_azureserviceconnection")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.AzureServiceConnection> organization_azureserviceconnection
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.AzureServiceConnection>("organization_azureserviceconnection", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("organization_azureserviceconnection");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.AzureServiceConnection>("organization_azureserviceconnection", null, value);
+				this.OnPropertyChanged("organization_azureserviceconnection");
 			}
 		}
 		
@@ -5239,6 +6237,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N organization_KnowledgeBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("organization_KnowledgeBaseRecord")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeBaseRecord> organization_KnowledgeBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeBaseRecord>("organization_KnowledgeBaseRecord", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("organization_KnowledgeBaseRecord");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeBaseRecord>("organization_KnowledgeBaseRecord", null, value);
+				this.OnPropertyChanged("organization_KnowledgeBaseRecord");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N organization_knowledgesearchmodel
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("organization_knowledgesearchmodel")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.KnowledgeSearchModel> organization_knowledgesearchmodel
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.KnowledgeSearchModel>("organization_knowledgesearchmodel", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("organization_knowledgesearchmodel");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeSearchModel>("organization_knowledgesearchmodel", null, value);
+				this.OnPropertyChanged("organization_knowledgesearchmodel");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N organization_licenses
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("organization_licenses")]
@@ -5275,6 +6313,46 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("organization_mailbox");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Mailbox>("organization_mailbox", null, value);
 				this.OnPropertyChanged("organization_mailbox");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N organization_mailboxstatistics
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("organization_mailboxstatistics")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxStatistics> organization_mailboxstatistics
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxStatistics>("organization_mailboxstatistics", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("organization_mailboxstatistics");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxStatistics>("organization_mailboxstatistics", null, value);
+				this.OnPropertyChanged("organization_mailboxstatistics");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Organization_MailboxTrackingFolder
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Organization_MailboxTrackingFolder")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> Organization_MailboxTrackingFolder
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("Organization_MailboxTrackingFolder", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Organization_MailboxTrackingFolder");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("Organization_MailboxTrackingFolder", null, value);
+				this.OnPropertyChanged("Organization_MailboxTrackingFolder");
 			}
 		}
 		
@@ -5359,22 +6437,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// 1:N organization_plt_idgenerator
+		/// 1:N organization_officegraphdocument
 		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("organization_plt_idgenerator")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.plt_idgenerator> organization_plt_idgenerator
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("organization_officegraphdocument")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OfficeGraphDocument> organization_officegraphdocument
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.plt_idgenerator>("organization_plt_idgenerator", null);
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OfficeGraphDocument>("organization_officegraphdocument", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("organization_plt_idgenerator");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.plt_idgenerator>("organization_plt_idgenerator", null, value);
-				this.OnPropertyChanged("organization_plt_idgenerator");
+				this.OnPropertyChanging("organization_officegraphdocument");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OfficeGraphDocument>("organization_officegraphdocument", null, value);
+				this.OnPropertyChanged("organization_officegraphdocument");
 			}
 		}
 		
@@ -5655,6 +6733,86 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("organization_queues");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Queue>("organization_queues", null, value);
 				this.OnPropertyChanged("organization_queues");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N organization_recommendationmodel
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("organization_recommendationmodel")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.RecommendationModel> organization_recommendationmodel
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.RecommendationModel>("organization_recommendationmodel", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("organization_recommendationmodel");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.RecommendationModel>("organization_recommendationmodel", null, value);
+				this.OnPropertyChanged("organization_recommendationmodel");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N organization_recommendationmodelmapping
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("organization_recommendationmodelmapping")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.RecommendationModelMapping> organization_recommendationmodelmapping
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.RecommendationModelMapping>("organization_recommendationmodelmapping", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("organization_recommendationmodelmapping");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.RecommendationModelMapping>("organization_recommendationmodelmapping", null, value);
+				this.OnPropertyChanged("organization_recommendationmodelmapping");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N organization_recommendationmodelversion
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("organization_recommendationmodelversion")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.RecommendationModelVersion> organization_recommendationmodelversion
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.RecommendationModelVersion>("organization_recommendationmodelversion", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("organization_recommendationmodelversion");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.RecommendationModelVersion>("organization_recommendationmodelversion", null, value);
+				this.OnPropertyChanged("organization_recommendationmodelversion");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N organization_recommendationmodelversionhistory
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("organization_recommendationmodelversionhistory")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.RecommendationModelVersionHistory> organization_recommendationmodelversionhistory
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.RecommendationModelVersionHistory>("organization_recommendationmodelversionhistory", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("organization_recommendationmodelversionhistory");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.RecommendationModelVersionHistory>("organization_recommendationmodelversionhistory", null, value);
+				this.OnPropertyChanged("organization_recommendationmodelversionhistory");
 			}
 		}
 		
@@ -6159,6 +7317,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N organization_similarityrule
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("organization_similarityrule")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SimilarityRule> organization_similarityrule
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SimilarityRule>("organization_similarityrule", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("organization_similarityrule");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SimilarityRule>("organization_similarityrule", null, value);
+				this.OnPropertyChanged("organization_similarityrule");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N organization_sitemap
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("organization_sitemap")]
@@ -6339,6 +7517,106 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N organization_textanalyticsentitymapping
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("organization_textanalyticsentitymapping")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.TextAnalyticsEntityMapping> organization_textanalyticsentitymapping
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.TextAnalyticsEntityMapping>("organization_textanalyticsentitymapping", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("organization_textanalyticsentitymapping");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.TextAnalyticsEntityMapping>("organization_textanalyticsentitymapping", null, value);
+				this.OnPropertyChanged("organization_textanalyticsentitymapping");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N organization_theme
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("organization_theme")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Theme> organization_theme
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Theme>("organization_theme", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("organization_theme");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Theme>("organization_theme", null, value);
+				this.OnPropertyChanged("organization_theme");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N organization_topicmodel
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("organization_topicmodel")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.TopicModel> organization_topicmodel
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.TopicModel>("organization_topicmodel", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("organization_topicmodel");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.TopicModel>("organization_topicmodel", null, value);
+				this.OnPropertyChanged("organization_topicmodel");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N organization_topicmodelconfiguration
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("organization_topicmodelconfiguration")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.TopicModelConfiguration> organization_topicmodelconfiguration
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.TopicModelConfiguration>("organization_topicmodelconfiguration", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("organization_topicmodelconfiguration");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.TopicModelConfiguration>("organization_topicmodelconfiguration", null, value);
+				this.OnPropertyChanged("organization_topicmodelconfiguration");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N organization_topicmodelexecutionhistory
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("organization_topicmodelexecutionhistory")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.TopicModelExecutionHistory> organization_topicmodelexecutionhistory
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.TopicModelExecutionHistory>("organization_topicmodelexecutionhistory", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("organization_topicmodelexecutionhistory");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.TopicModelExecutionHistory>("organization_topicmodelexecutionhistory", null, value);
+				this.OnPropertyChanged("organization_topicmodelexecutionhistory");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N organization_tracelog
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("organization_tracelog")]
@@ -6395,6 +7673,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("organization_uof_schedules");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.UoMSchedule>("organization_uof_schedules", null, value);
 				this.OnPropertyChanged("organization_uof_schedules");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N organization_UserMapping
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("organization_UserMapping")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.UserMapping> organization_UserMapping
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.UserMapping>("organization_UserMapping", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("organization_UserMapping");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.UserMapping>("organization_UserMapping", null, value);
+				this.OnPropertyChanged("organization_UserMapping");
 			}
 		}
 		
@@ -6481,6 +7779,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 DefaultMobileOfflineProfile_Organization
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("defaultmobileofflineprofileid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("DefaultMobileOfflineProfile_Organization")]
+		public DLaB.Xrm.Entities.MobileOfflineProfile DefaultMobileOfflineProfile_Organization
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.MobileOfflineProfile>("DefaultMobileOfflineProfile_Organization", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("DefaultMobileOfflineProfile_Organization");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.MobileOfflineProfile>("DefaultMobileOfflineProfile_Organization", null, value);
+				this.OnPropertyChanged("DefaultMobileOfflineProfile_Organization");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 EmailServerProfile_Organization
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("defaultemailserverprofileid")]
@@ -6513,6 +7832,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_organization_createdonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_organization_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_organization_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_organization_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -6526,6 +7852,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_organization_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_organization_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_organization_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_organization_modifiedonbehalfby");
 			}
 		}
 		
@@ -6589,24 +7922,38 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["organizationid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["organizationid"] = base.Id;
+                        break;
+                    case "organizationid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("currencydisplayoption")]
 		public virtual organization_currencydisplayoption? CurrencyDisplayOptionEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -6621,6 +7968,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("defaultrecurrenceendrangetype")]
 		public virtual organization_defaultrecurrenceendrangetype? DefaultRecurrenceEndRangeTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -6635,6 +7983,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("discountcalculationmethod")]
 		public virtual organization_discountcalculationmethod? DiscountCalculationMethodEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -6649,6 +7998,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("emailconnectionchannel")]
 		public virtual organization_emailconnectionchannel? EmailConnectionChannelEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -6663,6 +8013,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("fiscalperiodformatperiod")]
 		public virtual organization_fiscalperiodformat? FiscalPeriodFormatPeriodEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -6677,6 +8028,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("fiscalyearformatprefix")]
 		public virtual organization_fiscalyearformatprefix? FiscalYearFormatPrefixEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -6691,6 +8043,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("fiscalyearformatsuffix")]
 		public virtual organization_fiscalyearformatsuffix? FiscalYearFormatSuffixEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -6705,6 +8058,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("fiscalyearformatyear")]
 		public virtual organization_fiscalyearformatyear? FiscalYearFormatYearEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -6719,6 +8073,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("fullnameconventioncode")]
 		public virtual organization_fullnameconventioncode? FullNameConventionCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -6733,6 +8088,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("negativeformatcode")]
 		public virtual organization_negativeformatcode? NegativeFormatCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -6747,6 +8103,22 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("plugintracelogsetting")]
+		public virtual organization_plugintracelogsetting? PluginTraceLogSettingEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((organization_plugintracelogsetting?)(EntityOptionSetEnum.GetEnum(this, "plugintracelogsetting")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				PluginTraceLogSetting = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("reportscripterrors")]
 		public virtual organization_reportscripterrors? ReportScriptErrorsEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -6761,6 +8133,22 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sharepointdeploymenttype")]
+		public virtual organization_sharepointdeploymenttype? SharePointDeploymentTypeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((organization_sharepointdeploymenttype?)(EntityOptionSetEnum.GetEnum(this, "sharepointdeploymenttype")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				SharePointDeploymentType = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("yammerpostmethod")]
 		public virtual organization_yammerpostmethod? YammerPostMethodEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]

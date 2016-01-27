@@ -98,7 +98,7 @@ namespace DLaB.Xrm
             }
         }
 
-        #endregion // FilterExpression
+        #endregion FilterExpression
 
         #region IOrganizationService
 
@@ -202,7 +202,7 @@ namespace DLaB.Xrm
             return RetrieveAllEntities<T>.GetAllEntities(service, QueryExpressionFactory.CreateIn<T>(columnSet, columnName, values));
         }
 
-        #endregion // GetAllEntitiesIn
+        #endregion GetAllEntitiesIn
 
         #region GetEntitiesIn
 
@@ -276,7 +276,7 @@ namespace DLaB.Xrm
             return service.RetrieveMultiple(settings.CreateInExpression(columnName, values)).Entities.ToList();
         }
 
-        #endregion // GetEntitiesIn
+        #endregion GetEntitiesIn
 
         #region GetEntitiesIn<T>
 
@@ -378,7 +378,7 @@ namespace DLaB.Xrm
             return service.GetEntities<T>(QueryExpressionFactory.CreateIn<T>(columnSet, columnName, values));
         }
 
-        #endregion // GetEntitiesIn<T>
+        #endregion GetEntitiesIn<T>
 
         #region GetFirstOrDefaultIn
 
@@ -486,9 +486,9 @@ namespace DLaB.Xrm
             return service.GetEntities<T>(settings.CreateInExpression(columnName, values)).FirstOrDefault();
         }
 
-        #endregion // GetFirstOrDefaultIn
+        #endregion GetFirstOrDefaultIn
 
-        #endregion // IOrganizationService
+        #endregion IOrganizationService
 
         #region LinkEntity
 
@@ -517,7 +517,7 @@ namespace DLaB.Xrm
             return linkEntity;
         }
 
-        #endregion // LinkEntity
+        #endregion LinkEntity
 
         #region QueryExpression
 
@@ -545,6 +545,6 @@ namespace DLaB.Xrm
             return query;
         }
 
-        #endregion // QueryExpression
+        #endregion QueryExpression
     }
 }

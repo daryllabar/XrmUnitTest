@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("userentityinstancedata")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class UserEntityInstanceData : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -44,21 +44,26 @@ namespace DLaB.Xrm.Entities
 			public const string UserEntityInstanceDataId = "userentityinstancedataid";
 			public const string Id = "userentityinstancedataid";
 			public const string VersionNumber = "versionnumber";
+			public const string channelaccessprofile_UserEntityInstanceDatas = "objectid";
 			public const string ConvertRule_userentityinstancedatas = "objectid";
 			public const string entitlement_UserEntityInstanceDatas = "objectid";
 			public const string entitlementchannel_UserEntityInstanceDatas = "objectid";
 			public const string entitlementtemplate_UserEntityInstanceDatas = "objectid";
+			public const string externalparty_UserEntityInstanceDatas = "objectid";
+			public const string knowledgearticle_UserEntityInstanceDatas = "objectid";
+			public const string KnowledgeBaseRecord_UserEntityInstanceDatas = "objectid";
 			public const string mailbox_userentityinstancedatas = "objectid";
 			public const string msdyn_postalbum_UserEntityInstanceDatas = "objectid";
 			public const string msdyn_postconfig_UserEntityInstanceDatas = "objectid";
 			public const string msdyn_postruleconfig_UserEntityInstanceDatas = "objectid";
 			public const string msdyn_wallsavedquery_UserEntityInstanceDatas = "objectid";
 			public const string msdyn_wallsavedqueryusersettings_UserEntityInstanceDatas = "objectid";
-			public const string plt_idgenerator_UserEntityInstanceDatas = "objectid";
+			public const string profilerule_UserEntityInstanceDatas = "objectid";
 			public const string routingrule_userentityinstancedatas = "objectid";
 			public const string routingruleitem_userentityinstancedatas = "objectid";
 			public const string slabase_userentityinstancedatas = "objectid";
 			public const string team_userentityinstancedata = "owningteam";
+			public const string theme_UserEntityInstanceDatas = "objectid";
 			public const string userentityinstancedata_account = "objectid";
 			public const string userentityinstancedata_activitymimeattachment = "objectid";
 			public const string userentityinstancedata_activityparty = "objectid";
@@ -227,6 +232,7 @@ namespace DLaB.Xrm.Entities
 			public const string userentityinstancedata_workflow = "objectid";
 			public const string userentityinstancedata_workflowdependency = "objectid";
 			public const string userentityinstancedata_workflowlog = "objectid";
+			public const string usermapping_UserEntityInstanceDatas = "objectid";
 		}
 
 		
@@ -701,6 +707,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 channelaccessprofile_UserEntityInstanceDatas
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("channelaccessprofile_UserEntityInstanceDatas")]
+		public DLaB.Xrm.Entities.ChannelAccessProfile channelaccessprofile_UserEntityInstanceDatas
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfile>("channelaccessprofile_UserEntityInstanceDatas", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("channelaccessprofile_UserEntityInstanceDatas");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfile>("channelaccessprofile_UserEntityInstanceDatas", null, value);
+				this.OnPropertyChanged("channelaccessprofile_UserEntityInstanceDatas");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 ConvertRule_userentityinstancedatas
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
@@ -781,6 +808,69 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("entitlementtemplate_UserEntityInstanceDatas");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.EntitlementTemplate>("entitlementtemplate_UserEntityInstanceDatas", null, value);
 				this.OnPropertyChanged("entitlementtemplate_UserEntityInstanceDatas");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 externalparty_UserEntityInstanceDatas
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("externalparty_UserEntityInstanceDatas")]
+		public DLaB.Xrm.Entities.ExternalParty externalparty_UserEntityInstanceDatas
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExternalParty>("externalparty_UserEntityInstanceDatas", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("externalparty_UserEntityInstanceDatas");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.ExternalParty>("externalparty_UserEntityInstanceDatas", null, value);
+				this.OnPropertyChanged("externalparty_UserEntityInstanceDatas");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 knowledgearticle_UserEntityInstanceDatas
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_UserEntityInstanceDatas")]
+		public DLaB.Xrm.Entities.KnowledgeArticle knowledgearticle_UserEntityInstanceDatas
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("knowledgearticle_UserEntityInstanceDatas", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticle_UserEntityInstanceDatas");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("knowledgearticle_UserEntityInstanceDatas", null, value);
+				this.OnPropertyChanged("knowledgearticle_UserEntityInstanceDatas");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 KnowledgeBaseRecord_UserEntityInstanceDatas
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeBaseRecord_UserEntityInstanceDatas")]
+		public DLaB.Xrm.Entities.KnowledgeBaseRecord KnowledgeBaseRecord_UserEntityInstanceDatas
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeBaseRecord>("KnowledgeBaseRecord_UserEntityInstanceDatas", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("KnowledgeBaseRecord_UserEntityInstanceDatas");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeBaseRecord>("KnowledgeBaseRecord_UserEntityInstanceDatas", null, value);
+				this.OnPropertyChanged("KnowledgeBaseRecord_UserEntityInstanceDatas");
 			}
 		}
 		
@@ -911,23 +1001,23 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// N:1 plt_idgenerator_UserEntityInstanceDatas
+		/// N:1 profilerule_UserEntityInstanceDatas
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("plt_idgenerator_UserEntityInstanceDatas")]
-		public DLaB.Xrm.Entities.plt_idgenerator plt_idgenerator_UserEntityInstanceDatas
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("profilerule_UserEntityInstanceDatas")]
+		public DLaB.Xrm.Entities.ChannelAccessProfileRule profilerule_UserEntityInstanceDatas
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntity<DLaB.Xrm.Entities.plt_idgenerator>("plt_idgenerator_UserEntityInstanceDatas", null);
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfileRule>("profilerule_UserEntityInstanceDatas", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("plt_idgenerator_UserEntityInstanceDatas");
-				this.SetRelatedEntity<DLaB.Xrm.Entities.plt_idgenerator>("plt_idgenerator_UserEntityInstanceDatas", null, value);
-				this.OnPropertyChanged("plt_idgenerator_UserEntityInstanceDatas");
+				this.OnPropertyChanging("profilerule_UserEntityInstanceDatas");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfileRule>("profilerule_UserEntityInstanceDatas", null, value);
+				this.OnPropertyChanged("profilerule_UserEntityInstanceDatas");
 			}
 		}
 		
@@ -1005,6 +1095,27 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_userentityinstancedata", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 theme_UserEntityInstanceDatas
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("theme_UserEntityInstanceDatas")]
+		public DLaB.Xrm.Entities.Theme theme_UserEntityInstanceDatas
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Theme>("theme_UserEntityInstanceDatas", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("theme_UserEntityInstanceDatas");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Theme>("theme_UserEntityInstanceDatas", null, value);
+				this.OnPropertyChanged("theme_UserEntityInstanceDatas");
 			}
 		}
 		
@@ -4523,6 +4634,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 usermapping_UserEntityInstanceDatas
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("usermapping_UserEntityInstanceDatas")]
+		public DLaB.Xrm.Entities.UserMapping usermapping_UserEntityInstanceDatas
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.UserMapping>("usermapping_UserEntityInstanceDatas", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("usermapping_UserEntityInstanceDatas");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.UserMapping>("usermapping_UserEntityInstanceDatas", null, value);
+				this.OnPropertyChanged("usermapping_UserEntityInstanceDatas");
+			}
+		}
+		
+		/// <summary>
 		/// Constructor for populating via LINQ queries given a LINQ anonymous type
 		/// <param name="anonymousType">LINQ anonymous type.</param>
 		/// </summary>
@@ -4533,20 +4665,33 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["userentityinstancedataid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["userentityinstancedataid"] = base.Id;
+                        break;
+                    case "userentityinstancedataid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}

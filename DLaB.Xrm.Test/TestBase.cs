@@ -129,7 +129,7 @@ namespace DLaB.Xrm.Test
             return new CrmServiceInfo(organizationName) { EnableProxyTypes = enableProxyTypes };
         }
 
-        #endregion // GetOrganizationServiceProxy
+        #endregion GetOrganizationServiceProxy
 
         #region UnitTestSetting.user.config
 
@@ -224,7 +224,7 @@ namespace DLaB.Xrm.Test
             return ConfigurationManager.OpenMappedExeConfiguration(configMap, ConfigurationUserLevel.None);
         }
 
-        #endregion // UnitTestSetting.user.config
+        #endregion UnitTestSetting.user.config
 
         /// <summary>
         /// Gets the Entity type based on the entity logical name.

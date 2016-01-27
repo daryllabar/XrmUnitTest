@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public enum LeadState
 	{
 		
@@ -30,7 +30,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("lead")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class Lead : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -1277,6 +1277,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
+			}
 		}
 		
 		/// <summary>
@@ -2043,6 +2050,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
 		}
 		
 		/// <summary>
@@ -2616,6 +2630,20 @@ namespace DLaB.Xrm.Entities
 					return null;
 				}
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("StateCode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statecode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("StateCode");
+			}
 		}
 		
 		/// <summary>
@@ -2759,7 +2787,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// A comma separated list of string values representing the unique identifiers of stages in a Business Process Flow Instance in the order that they occur.
+		/// For internal use only.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("traversedpath")]
 		public string TraversedPath
@@ -3281,6 +3309,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Lead_Letters");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Letter>("Lead_Letters", null, value);
 				this.OnPropertyChanged("Lead_Letters");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Lead_MailboxTrackingFolder
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Lead_MailboxTrackingFolder")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> Lead_MailboxTrackingFolder
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("Lead_MailboxTrackingFolder", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Lead_MailboxTrackingFolder");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("Lead_MailboxTrackingFolder", null, value);
+				this.OnPropertyChanged("Lead_MailboxTrackingFolder");
 			}
 		}
 		
@@ -3879,6 +3927,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_lead_createdonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_lead_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_lead_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_lead_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -3892,6 +3947,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_lead_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_lead_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_lead_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_lead_modifiedonbehalfby");
 			}
 		}
 		
@@ -3997,24 +4059,38 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["leadid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["leadid"] = base.Id;
+                        break;
+                    case "leadid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address1_addresstypecode")]
 		public virtual lead_address1_addresstypecode? Address1_AddressTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4029,6 +4105,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address1_shippingmethodcode")]
 		public virtual lead_address1_shippingmethodcode? Address1_ShippingMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4043,6 +4120,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address2_addresstypecode")]
 		public virtual lead_address2_addresstypecode? Address2_AddressTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4057,6 +4135,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address2_shippingmethodcode")]
 		public virtual lead_address2_shippingmethodcode? Address2_ShippingMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4071,6 +4150,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("budgetstatus")]
 		public virtual budgetstatus? BudgetStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4085,6 +4165,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("industrycode")]
 		public virtual lead_industrycode? IndustryCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4099,6 +4180,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("initialcommunication")]
 		public virtual initialcommunication? InitialCommunicationEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4113,6 +4195,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("leadqualitycode")]
 		public virtual lead_leadqualitycode? LeadQualityCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4127,6 +4210,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("leadsourcecode")]
 		public virtual lead_leadsourcecode? LeadSourceCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4141,6 +4225,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("need")]
 		public virtual need? NeedEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4155,6 +4240,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("preferredcontactmethodcode")]
 		public virtual lead_preferredcontactmethodcode? PreferredContactMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4169,6 +4255,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("prioritycode")]
 		public virtual lead_prioritycode? PriorityCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4183,6 +4270,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("purchaseprocess")]
 		public virtual purchaseprocess? PurchaseProcessEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4197,6 +4285,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("purchasetimeframe")]
 		public virtual purchasetimeframe? PurchaseTimeFrameEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4211,6 +4300,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("salesstage")]
 		public virtual lead_salesstage? SalesStageEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4225,6 +4315,7 @@ namespace DLaB.Xrm.Entities
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("salesstagecode")]
 		public virtual lead_salesstagecode? SalesStageCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -4236,6 +4327,21 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				SalesStageCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public virtual lead_statuscode? StatusCodeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((lead_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				StatusCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 	}

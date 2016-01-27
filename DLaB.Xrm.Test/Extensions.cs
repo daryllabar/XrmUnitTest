@@ -31,7 +31,7 @@ namespace DLaB.Xrm.Test
                    select (Guid)f.GetValue(null);
         }
 
-        #endregion // struct
+        #endregion struct
 
         #region Action<IOrganizationService>
 
@@ -74,7 +74,7 @@ namespace DLaB.Xrm.Test
             return expressions;
         }
 
-        #endregion // Action<IOrganizationService>
+        #endregion Action<IOrganizationService>
 
         #region Dictionary<,Queue<>>
 
@@ -147,7 +147,7 @@ namespace DLaB.Xrm.Test
             dict.AddOrEnqueue(key, listValues.ToArray());
         }
 
-        #endregion // Dicitonary<,List<>>
+        #endregion Dicitonary<,List<>>
 
         #region Dictionary<String, List<Guid>>
 
@@ -204,7 +204,7 @@ namespace DLaB.Xrm.Test
             dict.AddOrAppend(EntityHelper.GetEntityLogicalName<TEntity>(), GetIdFields<TStruct>().ToArray());
         }
 
-        #endregion // Dictionary<String, Guid>
+        #endregion Dictionary<String, Guid>
 
         #region Dictionary<String, Queue<Guid>>
 
@@ -244,7 +244,7 @@ namespace DLaB.Xrm.Test
             dict.AddOrEnqueue(EntityHelper.GetEntityLogicalName<TEntity>(), dictionaryList);
         }
 
-        #endregion // Dictionary<String, Queue<Guid>>
+        #endregion Dictionary<String, Queue<Guid>>
 
         #region Entity
 
@@ -398,7 +398,7 @@ namespace DLaB.Xrm.Test
         //    Assert.IsTrue(cacheEntity.ContainsAllFieldsInEntity(nonCacheEntity), "The Cache entity does not contain one or more fields in the non-cache entity");
         //}
 
-        #endregion // Entity
+        #endregion Entity
 
         #region IOrganizationService
 
@@ -466,7 +466,7 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        #endregion // Retrieve
+        #endregion Retrieve
 
         #region RetrieveMultiple
 
@@ -573,11 +573,11 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        #endregion // RetrieveMultiple
+        #endregion RetrieveMultiple
 
-        #endregion // MockOrDefault
+        #endregion MockOrDefault
 
-        #endregion // IOrganizationService
+        #endregion IOrganizationService
 
         #region Object
 
@@ -596,7 +596,7 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        #endregion // Object
+        #endregion Object
 
         #region Type
 

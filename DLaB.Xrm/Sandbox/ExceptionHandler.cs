@@ -19,16 +19,15 @@ namespace DLaB.Xrm.Sandbox
         /// <exception cref="Exception"></exception>
         public static bool CanThrow(Exception ex)
         {
-            var exceptionRootTypeIsValid = IsValidToBeThrown(ex);
-            var canThrow = exceptionRootTypeIsValid;
-            var innerException = ex.InnerException;
+            var currentException = ex;
+            var canThrow = true;
 
             // While the Exception Types are still valid to be thrown, loop through all inner exceptions, checking for validity
-            while (canThrow && innerException != null)
+            while (canThrow && currentException != null)
             {
-                if (IsValidToBeThrown(ex))
+                if (IsValidToBeThrown(currentException))
                 {
-                    innerException = innerException.InnerException;
+                    currentException = currentException.InnerException;
                 }
                 else
                 {
@@ -41,13 +40,10 @@ namespace DLaB.Xrm.Sandbox
                 return true;
             }
 
-            var exceptionMessage = ex.Message +
-                                       (ex.InnerException == null
-                                           ? string.Empty
-                                           : " Inner Exception: " + ex.InnerException.ToStringWithCallStack());
+            var exceptionMessage = ex.ToStringWithCallStack();
 
             // ReSharper disable once InvertIf - I like it better this way
-            if (exceptionRootTypeIsValid)
+            if (IsValidToBeThrown(ex))
             {
                 // Attempt to throw the exact Exception Type, with the 
                 var ctor = ex.GetType().GetConstructor(new[] { typeof(string) });

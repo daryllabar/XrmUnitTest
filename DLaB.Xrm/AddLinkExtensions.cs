@@ -72,7 +72,7 @@ namespace DLaB.Xrm
                 link.LinkEntities.Add(child);
                 return child;
             }
-        #endregion // AddChildLink
+        #endregion AddChildLink
 
         #region AddLink
             /// <summary>
@@ -99,7 +99,7 @@ namespace DLaB.Xrm
             {
                 return link.AddLink(linkToEntityName, linkAttributesName, linkAttributesName, joinType);
             }
-        #endregion // AddLink
+        #endregion AddLink
 
         #region AddLink<T>
 
@@ -162,7 +162,7 @@ namespace DLaB.Xrm
             {
                 return link.AddLink(linkAttributesName, linkAttributesName, joinType, anonymousTypeInitializer);
             }
-        #endregion // Same Link Attribute Name
+        #endregion Same Link Attribute Name
 
         #region Different Link Attribute Names
             /// <summary>
@@ -236,11 +236,11 @@ namespace DLaB.Xrm
                 childLink.Columns.AddColumns(anonymousTypeInitializer);
                 return childLink;
             }
-        #endregion // Different Link Attribute Names
+        #endregion Different Link Attribute Names
 
-        #endregion // AddLink<T>
+        #endregion AddLink<T>
 
-        #endregion // LinkEntity
+        #endregion LinkEntity
 
         #region QueryExpression
 
@@ -269,7 +269,7 @@ namespace DLaB.Xrm
             {
                 return qe.AddLink(linkToEntityName, linkAttributesName, linkAttributesName, joinType);
             }
-        #endregion // AddLink
+        #endregion AddLink
 
         #region AddLink<T>
 
@@ -331,7 +331,7 @@ namespace DLaB.Xrm
             {
                 return qe.AddLink(linkAttributesName, linkAttributesName, joinType, anonymousTypeInitializer);
             }
-        #endregion // Same Link Attribute Name
+        #endregion Same Link Attribute Name
 
         #region Different Link Attribute Names
             /// <summary>
@@ -413,10 +413,10 @@ namespace DLaB.Xrm
                 link.Columns.AddColumns(anonymousTypeInitializer);
                 return link;
             }
-        #endregion // Different Link Attribute Names
+        #endregion Different Link Attribute Names
 
-        #endregion // AddLink<T>
+        #endregion AddLink<T>
 
-        #endregion // QueryExpression
+        #endregion QueryExpression
     }
 }

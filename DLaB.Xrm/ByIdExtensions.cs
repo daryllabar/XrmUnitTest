@@ -63,7 +63,7 @@ namespace DLaB.Xrm
             return service.GetFirstOrDefault(anonymousTypeInitializer, EntityHelper.GetIdAttributeName<T>(), id);
         }
 
-        #endregion // GetEntityOrDefault
+        #endregion GetEntityOrDefault
 
         #region GetEntitiesById
 
@@ -121,7 +121,7 @@ namespace DLaB.Xrm
             return service.GetEntitiesIn(logicalName, columnSet, EntityHelper.GetIdAttributeName(logicalName), ids);
         }
 
-        #endregion // GetEntitiesById
+        #endregion GetEntitiesById
 
         #region GetEntitiesById<T>
 
@@ -206,8 +206,8 @@ namespace DLaB.Xrm
             return service.GetEntitiesIn<T>(columnSet, EntityHelper.GetIdAttributeName<T>(), ids);
         }
 
-        #endregion // GetEntitiesById<T>
+        #endregion GetEntitiesById<T>
 
-        #endregion // IOrganizationServic
+        #endregion IOrganizationServic
     }
 }

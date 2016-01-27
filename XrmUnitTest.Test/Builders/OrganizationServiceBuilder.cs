@@ -17,6 +17,6 @@ namespace XrmUnitTest.Test.Builders
 
         public OrganizationServiceBuilder(IOrganizationService service) : base(service) {}
 
-        #endregion // Constructors
+        #endregion Constructors
     }
 }

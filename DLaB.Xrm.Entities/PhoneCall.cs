@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public enum PhoneCallState
 	{
 		
@@ -30,12 +30,13 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("phonecall")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class PhoneCall : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
 		public struct Fields
 		{
+			public const string ActivityAdditionalParams = "activityadditionalparams";
 			public const string ActivityId = "activityid";
 			public const string Id = "activityid";
 			public const string ActivityTypeCode = "activitytypecode";
@@ -95,6 +96,8 @@ namespace DLaB.Xrm.Entities
 			public const string entitlementtemplate_PhoneCalls = "regardingobjectid";
 			public const string Incident_Phonecalls = "regardingobjectid";
 			public const string Invoice_Phonecalls = "regardingobjectid";
+			public const string KnowledgeArticle_Phonecalls = "regardingobjectid";
+			public const string KnowledgeBaseRecord_PhoneCalls = "regardingobjectid";
 			public const string Lead_Phonecalls = "regardingobjectid";
 			public const string lk_phonecall_createdby = "createdby";
 			public const string lk_phonecall_createdonbehalfby = "createdonbehalfby";
@@ -144,6 +147,26 @@ namespace DLaB.Xrm.Entities
 			if ((this.PropertyChanging != null))
 			{
 				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("activityadditionalparams")]
+		public string ActivityAdditionalParams
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("activityadditionalparams");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ActivityAdditionalParams");
+				this.SetAttributeValue("activityadditionalparams", value);
+				this.OnPropertyChanged("ActivityAdditionalParams");
 			}
 		}
 		
@@ -319,6 +342,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
 			}
 		}
 		
@@ -541,6 +571,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
 		}
 		
 		/// <summary>
@@ -683,7 +720,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the object with which the phone call activity is associated.
+		/// Choose the record that the phone call relates to.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
 		public Microsoft.Xrm.Sdk.EntityReference RegardingObjectId
@@ -813,6 +850,20 @@ namespace DLaB.Xrm.Entities
 				{
 					return null;
 				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("StateCode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statecode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("StateCode");
 			}
 		}
 		
@@ -973,7 +1024,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// A comma separated list of string values representing the unique identifiers of stages in a Business Process Flow Instance in the order that they occur.
+		/// For internal use only.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("traversedpath")]
 		public string TraversedPath
@@ -1551,6 +1602,48 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 KnowledgeArticle_Phonecalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeArticle_Phonecalls")]
+		public DLaB.Xrm.Entities.KnowledgeArticle KnowledgeArticle_Phonecalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("KnowledgeArticle_Phonecalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("KnowledgeArticle_Phonecalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("KnowledgeArticle_Phonecalls", null, value);
+				this.OnPropertyChanged("KnowledgeArticle_Phonecalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 KnowledgeBaseRecord_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeBaseRecord_PhoneCalls")]
+		public DLaB.Xrm.Entities.KnowledgeBaseRecord KnowledgeBaseRecord_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeBaseRecord>("KnowledgeBaseRecord_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("KnowledgeBaseRecord_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeBaseRecord>("KnowledgeBaseRecord_PhoneCalls", null, value);
+				this.OnPropertyChanged("KnowledgeBaseRecord_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 Lead_Phonecalls
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1597,6 +1690,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_phonecall_createdonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_phonecall_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_phonecall_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_phonecall_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -1624,6 +1724,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_phonecall_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_phonecall_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_phonecall_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_phonecall_modifiedonbehalfby");
 			}
 		}
 		
@@ -1813,24 +1920,38 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["activityid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["activityid"] = base.Id;
+                        break;
+                    case "activityid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("prioritycode")]
 		public virtual phonecall_prioritycode? PriorityCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -1842,6 +1963,21 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				PriorityCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public virtual phonecall_statuscode? StatusCodeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((phonecall_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				StatusCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 	}

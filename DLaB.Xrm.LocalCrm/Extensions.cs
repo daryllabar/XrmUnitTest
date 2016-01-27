@@ -52,7 +52,7 @@ namespace DLaB.Xrm.LocalCrm
         }
         // ReSharper restore UnusedParameter.Local
 
-        #endregion // IEnumerable<FetchAttributeInfo>
+        #endregion IEnumerable<FetchAttributeInfo>
 
         #region IOrderedEnumerable<T> where T : Entity
 
@@ -70,7 +70,7 @@ namespace DLaB.Xrm.LocalCrm
                 entities.ThenByDescending(e => ConvertStringObjectToLower(e[order.AttributeName]));
         }
 
-        #endregion // IOrderedEnumerable<T> where T : Entity 
+        #endregion IOrderedEnumerable<T> where T : Entity 
 
         #region LinkEntity
 
@@ -85,7 +85,7 @@ namespace DLaB.Xrm.LocalCrm
             return link.EntityAlias == alias ? link : link.LinkEntities.FirstOrDefault(l => l.GetLinkEntity(alias) != null);
         }
 
-        #endregion // LinkEntity
+        #endregion LinkEntity
 
         #region List<T> where T : Entity
 
@@ -103,7 +103,7 @@ namespace DLaB.Xrm.LocalCrm
                 entities.OrderByDescending(e => ConvertStringObjectToLower(e[order.AttributeName]));
         }
 
-        #endregion // List<T> where T : Entity
+        #endregion List<T> where T : Entity
 
         #region QueryExpression
 
@@ -118,7 +118,7 @@ namespace DLaB.Xrm.LocalCrm
             return qe.LinkEntities.FirstOrDefault(l => l.GetLinkEntity(alias) != null);
         }
 
-        #endregion // QueryExpression
+        #endregion QueryExpression
 
         #region Helper
 
@@ -134,6 +134,6 @@ namespace DLaB.Xrm.LocalCrm
             return value;
         }
 
-        #endregion // Helper
+        #endregion Helper
     }
 }

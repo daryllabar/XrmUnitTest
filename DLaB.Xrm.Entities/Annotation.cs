@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("annotation")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class Annotation : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -24,6 +24,7 @@ namespace DLaB.Xrm.Entities
 			public const string AnnotationId = "annotationid";
 			public const string Id = "annotationid";
 			public const string CreatedBy = "createdby";
+			public const string CreatedByExternalParty = "createdbyexternalparty";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string DocumentBody = "documentbody";
@@ -34,6 +35,7 @@ namespace DLaB.Xrm.Entities
 			public const string LangId = "langid";
 			public const string MimeType = "mimetype";
 			public const string ModifiedBy = "modifiedby";
+			public const string ModifiedByExternalParty = "modifiedbyexternalparty";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string NoteText = "notetext";
@@ -55,6 +57,7 @@ namespace DLaB.Xrm.Entities
 			public const string Campaign_Annotation = "objectid";
 			public const string CampaignActivity_Annotation = "objectid";
 			public const string CampaignResponse_Annotation = "objectid";
+			public const string channelaccessprofile_Annotations = "objectid";
 			public const string Competitor_Annotation = "objectid";
 			public const string Contact_Annotation = "objectid";
 			public const string Contract_Annotation = "objectid";
@@ -73,6 +76,8 @@ namespace DLaB.Xrm.Entities
 			public const string IncidentResolution_Annotation = "objectid";
 			public const string Invoice_Annotation = "objectid";
 			public const string KbArticle_Annotation = "objectid";
+			public const string knowledgearticle_Annotations = "objectid";
+			public const string KnowledgeBaseRecord_Annotations = "objectid";
 			public const string Lead_Annotation = "objectid";
 			public const string Letter_Annotation = "objectid";
 			public const string List_Annotation = "objectid";
@@ -80,14 +85,17 @@ namespace DLaB.Xrm.Entities
 			public const string lk_annotationbase_createdonbehalfby = "createdonbehalfby";
 			public const string lk_annotationbase_modifiedby = "modifiedby";
 			public const string lk_annotationbase_modifiedonbehalfby = "modifiedonbehalfby";
+			public const string lk_externalparty_annotation_createdby = "createdbyexternalparty";
+			public const string lk_externalparty_annotation_modifiedby = "modifiedbyexternalparty";
 			public const string Mailbox_Annotation = "objectid";
 			public const string msdyn_postalbum_Annotations = "objectid";
 			public const string Opportunity_Annotation = "objectid";
 			public const string OpportunityClose_Annotation = "objectid";
 			public const string OrderClose_Annotation = "objectid";
 			public const string PhoneCall_Annotation = "objectid";
-			public const string plt_idgenerator_Annotations = "objectid";
 			public const string Product_Annotation = "objectid";
+			public const string profilerule_Annotations = "objectid";
+			public const string profileruleitem_Annotations = "objectid";
 			public const string Quote_Annotation = "objectid";
 			public const string QuoteClose_Annotation = "objectid";
 			public const string RecurringAppointmentMaster_Annotation = "objectid";
@@ -198,6 +206,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Shows the external party who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdbyexternalparty")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedByExternalParty
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdbyexternalparty");
+			}
+		}
+		
+		/// <summary>
 		/// Date and time when the note was created.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
@@ -220,6 +241,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
 			}
 		}
 		
@@ -370,6 +398,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Shows the external party who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedbyexternalparty")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedByExternalParty
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedbyexternalparty");
+			}
+		}
+		
+		/// <summary>
 		/// Date and time when the note was last modified.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
@@ -392,6 +433,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
 			}
 		}
 		
@@ -822,6 +870,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 channelaccessprofile_Annotations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("channelaccessprofile_Annotations")]
+		public DLaB.Xrm.Entities.ChannelAccessProfile channelaccessprofile_Annotations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfile>("channelaccessprofile_Annotations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("channelaccessprofile_Annotations");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfile>("channelaccessprofile_Annotations", null, value);
+				this.OnPropertyChanged("channelaccessprofile_Annotations");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 Competitor_Annotation
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
@@ -1200,6 +1269,48 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 knowledgearticle_Annotations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_Annotations")]
+		public DLaB.Xrm.Entities.KnowledgeArticle knowledgearticle_Annotations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("knowledgearticle_Annotations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticle_Annotations");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("knowledgearticle_Annotations", null, value);
+				this.OnPropertyChanged("knowledgearticle_Annotations");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 KnowledgeBaseRecord_Annotations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeBaseRecord_Annotations")]
+		public DLaB.Xrm.Entities.KnowledgeBaseRecord KnowledgeBaseRecord_Annotations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeBaseRecord>("KnowledgeBaseRecord_Annotations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("KnowledgeBaseRecord_Annotations");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeBaseRecord>("KnowledgeBaseRecord_Annotations", null, value);
+				this.OnPropertyChanged("KnowledgeBaseRecord_Annotations");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 Lead_Annotation
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
@@ -1288,6 +1399,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_annotationbase_createdonbehalfby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_annotationbase_createdonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_annotationbase_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_annotationbase_createdonbehalfby");
+			}
 		}
 		
 		/// <summary>
@@ -1315,6 +1433,41 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_annotationbase_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_annotationbase_modifiedonbehalfby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_annotationbase_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_annotationbase_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_externalparty_annotation_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdbyexternalparty")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_annotation_createdby")]
+		public DLaB.Xrm.Entities.ExternalParty lk_externalparty_annotation_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_annotation_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_externalparty_annotation_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedbyexternalparty")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_annotation_modifiedby")]
+		public DLaB.Xrm.Entities.ExternalParty lk_externalparty_annotation_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_annotation_modifiedby", null);
 			}
 		}
 		
@@ -1445,27 +1598,6 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// N:1 plt_idgenerator_Annotations
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("plt_idgenerator_Annotations")]
-		public DLaB.Xrm.Entities.plt_idgenerator plt_idgenerator_Annotations
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntity<DLaB.Xrm.Entities.plt_idgenerator>("plt_idgenerator_Annotations", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("plt_idgenerator_Annotations");
-				this.SetRelatedEntity<DLaB.Xrm.Entities.plt_idgenerator>("plt_idgenerator_Annotations", null, value);
-				this.OnPropertyChanged("plt_idgenerator_Annotations");
-			}
-		}
-		
-		/// <summary>
 		/// N:1 Product_Annotation
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
@@ -1483,6 +1615,48 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Product_Annotation");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.Product>("Product_Annotation", null, value);
 				this.OnPropertyChanged("Product_Annotation");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 profilerule_Annotations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("profilerule_Annotations")]
+		public DLaB.Xrm.Entities.ChannelAccessProfileRule profilerule_Annotations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfileRule>("profilerule_Annotations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("profilerule_Annotations");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfileRule>("profilerule_Annotations", null, value);
+				this.OnPropertyChanged("profilerule_Annotations");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 profileruleitem_Annotations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("profileruleitem_Annotations")]
+		public DLaB.Xrm.Entities.ChannelAccessProfileRuleItem profileruleitem_Annotations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfileRuleItem>("profileruleitem_Annotations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("profileruleitem_Annotations");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfileRuleItem>("profileruleitem_Annotations", null, value);
+				this.OnPropertyChanged("profileruleitem_Annotations");
 			}
 		}
 		
@@ -1805,20 +1979,33 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["annotationid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["annotationid"] = base.Id;
+                        break;
+                    case "annotationid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}

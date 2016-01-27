@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("privilege")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class Privilege : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -24,8 +24,10 @@ namespace DLaB.Xrm.Entities
 			public const string AccessRight = "accessright";
 			public const string CanBeBasic = "canbebasic";
 			public const string CanBeDeep = "canbedeep";
+			public const string CanBeEntityReference = "canbeentityreference";
 			public const string CanBeGlobal = "canbeglobal";
 			public const string CanBeLocal = "canbelocal";
+			public const string CanBeParentEntityReference = "canbeparententityreference";
 			public const string Name = "name";
 			public const string PrivilegeId = "privilegeid";
 			public const string Id = "privilegeid";
@@ -129,6 +131,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Information that specifies whether the privilege applies to the local reference of an external party.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("canbeentityreference")]
+		public System.Nullable<bool> CanBeEntityReference
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("canbeentityreference");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CanBeEntityReference");
+				this.SetAttributeValue("canbeentityreference", value);
+				this.OnPropertyChanged("CanBeEntityReference");
+			}
+		}
+		
+		/// <summary>
 		/// Information that specifies whether the privilege applies to the entire organization.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("canbeglobal")]
@@ -165,6 +187,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("CanBeLocal");
 				this.SetAttributeValue("canbelocal", value);
 				this.OnPropertyChanged("CanBeLocal");
+			}
+		}
+		
+		/// <summary>
+		/// Information that specifies whether the privilege applies to parent reference of the external party.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("canbeparententityreference")]
+		public System.Nullable<bool> CanBeParentEntityReference
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("canbeparententityreference");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CanBeParentEntityReference");
+				this.SetAttributeValue("canbeparententityreference", value);
+				this.OnPropertyChanged("CanBeParentEntityReference");
 			}
 		}
 		
@@ -305,6 +347,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:N ChannelAccessProfile_Privilege
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ChannelAccessProfile_Privilege")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ChannelAccessProfile> ChannelAccessProfile_Privilege
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfile>("ChannelAccessProfile_Privilege", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ChannelAccessProfile_Privilege");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ChannelAccessProfile>("ChannelAccessProfile_Privilege", null, value);
+				this.OnPropertyChanged("ChannelAccessProfile_Privilege");
+			}
+		}
+		
+		/// <summary>
 		/// N:N roleprivileges_association
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("roleprivileges_association")]
@@ -335,20 +397,33 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["privilegeid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["privilegeid"] = base.Id;
+                        break;
+                    case "privilegeid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}

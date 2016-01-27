@@ -81,7 +81,7 @@ namespace DLaB.Xrm.Plugin
         /// </summary>
         public ITracingService TracingService { get; private set; }
 
-        #endregion // Properties
+        #endregion Properties
 
         #region ImageNames struct
 
@@ -130,7 +130,7 @@ namespace DLaB.Xrm.Plugin
             InitializePluginProperties(PluginExecutionContext, plugin);
         }
 
-        #endregion // Constructors
+        #endregion Constructors
 
         #region AssertEntityImageAttributesRegistered
 
@@ -230,7 +230,7 @@ namespace DLaB.Xrm.Plugin
             PluginTypeName = plugin.GetType().FullName;
         }
 
-        #endregion // PropertyInitializers
+        #endregion PropertyInitializers
 
         #region Trace
 
@@ -310,7 +310,7 @@ namespace DLaB.Xrm.Plugin
             }
         }
 
-        #endregion // Trace
+        #endregion Trace
 
         #region ContainsAllNonNull
 
@@ -344,7 +344,7 @@ namespace DLaB.Xrm.Plugin
             return PluginExecutionContext.SharedVariables.ContainsAllNonNull(parameterNames);
         }
 
-        #endregion // ContainsAllNonNull
+        #endregion ContainsAllNonNull
 
         #region GetParameterValue
 
@@ -432,7 +432,7 @@ namespace DLaB.Xrm.Plugin
             return PluginExecutionContext.GetFirstSharedVariable(variableName);
         }
 
-        #endregion // GetParameterValue
+        #endregion GetParameterValue
 
         #region SetSharedVariable
 

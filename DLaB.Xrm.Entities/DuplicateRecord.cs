@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("duplicaterecord")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.0.0001.0117")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
 	public partial class DuplicateRecord : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -40,6 +40,8 @@ namespace DLaB.Xrm.Entities
 			public const string Campaign_DuplicateMatchingRecord = "duplicaterecordid";
 			public const string CampaignResponse_DuplicateBaseRecord = "baserecordid";
 			public const string CampaignResponse_DuplicateMatchingRecord = "duplicaterecordid";
+			public const string channelaccessprofile_DuplicateBaseRecord = "baserecordid";
+			public const string channelaccessprofile_DuplicateMatchingRecord = "duplicaterecordid";
 			public const string Competitor_DuplicateBaseRecord = "baserecordid";
 			public const string Competitor_DuplicateMatchingRecord = "duplicaterecordid";
 			public const string Contact_DuplicateBaseRecord = "baserecordid";
@@ -69,6 +71,10 @@ namespace DLaB.Xrm.Entities
 			public const string Incident_DuplicateMatchingRecord = "duplicaterecordid";
 			public const string KbArticle_DuplicateBaseRecord = "baserecordid";
 			public const string KbArticle_DuplicateMatchingRecord = "duplicaterecordid";
+			public const string knowledgearticle_DuplicateBaseRecord = "baserecordid";
+			public const string knowledgearticle_DuplicateMatchingRecord = "duplicaterecordid";
+			public const string KnowledgeBaseRecord_DuplicateBaseRecord = "baserecordid";
+			public const string KnowledgeBaseRecord_DuplicateMatchingRecord = "duplicaterecordid";
 			public const string Lead_DuplicateBaseRecord = "baserecordid";
 			public const string Lead_DuplicateMatchingRecord = "duplicaterecordid";
 			public const string Letter_DuplicateBaseRecord = "baserecordid";
@@ -439,6 +445,34 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.CampaignResponse>("CampaignResponse_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 channelaccessprofile_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("channelaccessprofile_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.ChannelAccessProfile channelaccessprofile_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfile>("channelaccessprofile_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 channelaccessprofile_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("channelaccessprofile_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.ChannelAccessProfile channelaccessprofile_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfile>("channelaccessprofile_DuplicateMatchingRecord", null);
 			}
 		}
 		
@@ -845,6 +879,62 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.KbArticle>("KbArticle_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 knowledgearticle_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.KnowledgeArticle knowledgearticle_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("knowledgearticle_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 knowledgearticle_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.KnowledgeArticle knowledgearticle_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("knowledgearticle_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 KnowledgeBaseRecord_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeBaseRecord_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.KnowledgeBaseRecord KnowledgeBaseRecord_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeBaseRecord>("KnowledgeBaseRecord_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 KnowledgeBaseRecord_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeBaseRecord_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.KnowledgeBaseRecord KnowledgeBaseRecord_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeBaseRecord>("KnowledgeBaseRecord_DuplicateMatchingRecord", null);
 			}
 		}
 		
@@ -1447,20 +1537,33 @@ namespace DLaB.Xrm.Entities
             foreach (var p in anonymousType.GetType().GetProperties())
             {
                 var value = p.GetValue(anonymousType, null);
-                if (p.PropertyType == typeof(System.Guid))
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
                 {
-                    // Type is Guid, must be Id
-                    base.Id = (System.Guid)value;
-                    Attributes["duplicateid"] = base.Id;
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
                 }
-                else if (p.Name == "FormattedValues")
+            
+                switch (name)
                 {
-                    // Add Support for FormattedValues
-                    FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
-                }
-                else
-                {
-                    Attributes[p.Name.ToLower()] = value;
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["duplicateid"] = base.Id;
+                        break;
+                    case "duplicateid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
                 }
             }
 		}

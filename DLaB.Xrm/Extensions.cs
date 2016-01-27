@@ -47,7 +47,7 @@ namespace DLaB.Xrm
             return false;
         }
 
-        #endregion // AttributeMetadata
+        #endregion AttributeMetadata
 
         #region ColumnSet
 
@@ -66,7 +66,7 @@ namespace DLaB.Xrm
             return columnSet;
         }
 
-        #endregion // ColumnSet
+        #endregion ColumnSet
 
         #region Entity
 
@@ -243,7 +243,15 @@ namespace DLaB.Xrm
             }
             else
             {
-                url = $@"http://{uri.Host}/{uri.Segments[1]}main.aspx?{parameters}";
+                var host = uri.Host;
+                var orgName = uri.Segments.Length > 1 ? uri.Segments[1] : string.Empty;
+                // Handle Online Url
+                if (host.EndsWith("dynamics.com") && host.Contains(".api."))
+                {
+                    host = host.Remove(host.LastIndexOf(".api.", StringComparison.Ordinal), 4);
+                    orgName = string.Empty;
+                }
+                url = $@"http://{host}/{orgName}main.aspx?{parameters}";
             }
             return url;
         }
@@ -536,7 +544,7 @@ namespace DLaB.Xrm
             return source?.Serialize().DeserializeEntity<T>();
         }
 
-        #endregion // Entity
+        #endregion Entity
 
         #region EntityCollection
 
@@ -557,7 +565,7 @@ namespace DLaB.Xrm
             return col.Entities.Select(e => e.ToEntity<T>()).ToList();
         }
 
-        #endregion // EntityCollection
+        #endregion EntityCollection
 
         #region EntityImageCollection
 
@@ -594,7 +602,7 @@ namespace DLaB.Xrm
             return values;
         }
 
-        #endregion // EntityImageCollection
+        #endregion EntityImageCollection
 
         #region EntityMetadata
 
@@ -608,7 +616,7 @@ namespace DLaB.Xrm
             return entity.DisplayName.GetLocalOrDefaultText(entity.SchemaName) + " (" + entity.LogicalName + ")";
         }
 
-        #endregion // EntityMetadata
+        #endregion EntityMetadata
 
         #region EntityReference
 
@@ -652,7 +660,7 @@ namespace DLaB.Xrm
             return entity == null ? "Null" : $"EntityReference {{ LogicalName: {entity.LogicalName}, Name: {entity.GetNameOrDefault()}, Id: {entity.Id}}}";
         }
 
-        #endregion // EntityReference
+        #endregion EntityReference
 
         #region FilterExpression
 
@@ -776,7 +784,7 @@ namespace DLaB.Xrm
             return fe;
         }
 
-        #endregion // FilterExpression
+        #endregion FilterExpression
 
         #region IExecutionContext
 
@@ -1462,7 +1470,7 @@ namespace DLaB.Xrm
             return exists;
         }
 
-        #endregion // IOrganizationService
+        #endregion IOrganizationService
 
         #region IPluginExecutionContext
 
@@ -1520,7 +1528,7 @@ namespace DLaB.Xrm
             return local.Label ?? defaultIfNull;
         }
 
-        #endregion // Label
+        #endregion Label
 
         #region LinkEntity
 
@@ -1536,7 +1544,7 @@ namespace DLaB.Xrm
             return link;
         }
 
-        #endregion // LinkEntity
+        #endregion LinkEntity
 
         #region OptionSetValue
 
@@ -1589,7 +1597,7 @@ namespace DLaB.Xrm
             return osv != null && osv.Equals(value);
         }
 
-        #endregion // OptionSetValue
+        #endregion OptionSetValue
 
         #region OrganizationRequestCollection
 
@@ -1682,7 +1690,7 @@ namespace DLaB.Xrm
             requests.Add(new UpdateRequest { Target = entity });
         }
 
-        #endregion // OrganizationRequestCollection
+        #endregion OrganizationRequestCollection
 
         #region ParameterCollection
 
@@ -1792,7 +1800,7 @@ namespace DLaB.Xrm
             return new string(space[0], spaces);
         }
 
-        #endregion // ParameterCollection
+        #endregion ParameterCollection
 
         #region QueryExpression
 
@@ -1863,7 +1871,7 @@ namespace DLaB.Xrm
             return qe;
         }
 
-        #endregion // QueryExpression
+        #endregion QueryExpression
 
         #region String
 
@@ -1891,6 +1899,6 @@ namespace DLaB.Xrm
             return entity;
         }
 
-        #endregion // String
+        #endregion String
     }
 }
