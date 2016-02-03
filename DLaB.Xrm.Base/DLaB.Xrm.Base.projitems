@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>a3b3ce75-dfae-4035-97a3-afd49ad47bc5</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>DLaB.Xrm.Base</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ActivityPropertyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AddLinkExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AliasedExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AreEqualExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ByIdExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Comparers\ColumnSetComparer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Comparers\ConditionExpressionComparer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Comparers\EnumerableComparer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Comparers\FilterExpressionComparer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Comparers\HashCode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Comparers\LinkEntityComparer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Comparers\OrderExpressionComparer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Comparers\PagingInfoComparer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Comparers\ProjectionEqualityComparer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Comparers\QueryExpressionComparer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ErrorCodes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\EnumCaseUndefinedException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\InvalidPluginStepRegistrationException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\MissingAttributeException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HasConditionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HasConditionInWithValuesExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IIOrganizationServiceWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LateBoundActivePropertyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LateBoundQuerySettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptimisticConcurrencyExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Plugin\Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Plugin\GenericPluginHandlerBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Plugin\ILocalPluginContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Plugin\IRegisteredEventsPlugin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Plugin\IRegisteredEventsPluginHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Plugin\IsolationMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Plugin\LocalPluginContextBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Plugin\MessageType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Plugin\ParameterName.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Plugin\PipelineStage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Plugin\RegisteredEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Plugin\RegisteredEventBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)QueryExpressionConvertExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)QueryExpressionFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)QuerySettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RetrieveAllEntities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sandbox\ExceptionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\KeyValuePairOfstringanyType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\KeyValuePairOfstringstring.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\SerializableAttributeCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\SerializableEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\SerializableEntityCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\SerializableFormattedValueCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\SerializableKeyAttributeCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\SerializableRelatedEntityCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TypedQueryExpression.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WhereEqualExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WhereInExtensions.cs" />
+  </ItemGroup>
+</Project>

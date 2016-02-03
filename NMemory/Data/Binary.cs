@@ -119,8 +119,8 @@ namespace NMemory.Data
             {
                 return false;
             }
-
-            return AreEqual(this.binary, other.binary);
+            throw new Exception("Unused");
+            //return AreEqual(this.binary, other.binary);
         }
 
         public bool Equals(byte[] other)
@@ -135,7 +135,8 @@ namespace NMemory.Data
                 return false;
             }
 
-            return AreEqual(this.binary, other);
+            throw new Exception("Unused");
+            //return AreEqual(this.binary, other);
         }
 
         public override bool Equals(object obj)
@@ -155,7 +156,8 @@ namespace NMemory.Data
 
         public override int GetHashCode()
         {
-            return GetHashCode(this.binary);
+            throw new Exception("Unused");
+            //return GetHashCode(this.binary);
         }
 
         public int CompareTo(Binary other)
@@ -177,140 +179,141 @@ namespace NMemory.Data
                 return lengthCompare;
             }
 
-            return Compare(this.binary, other);
+            throw new Exception("Unused");
+            //return Compare(this.binary, other);
         }
 
-        private static unsafe int Compare(byte[] b1, byte[] b2)
-        {
-            int res = 0;
+        //private static unsafe int Compare(byte[] b1, byte[] b2)
+        //{
+        //    int res = 0;
 
-            fixed (byte* p1 = b1, p2 = b2)
-            {
-                byte* x1 = p1, x2 = p2;
-                int l = b1.Length;
+        //    fixed (byte* p1 = b1, p2 = b2)
+        //    {
+        //        byte* x1 = p1, x2 = p2;
+        //        int l = b1.Length;
 
-                for (int i = 0; i < l / 8; i++, x1 += 8, x2 += 8)
-                {
-                    res = (*((ulong*)x1)).CompareTo(*((ulong*)x2));
+        //        for (int i = 0; i < l / 8; i++, x1 += 8, x2 += 8)
+        //        {
+        //            res = (*((ulong*)x1)).CompareTo(*((ulong*)x2));
 
-                    if (res != 0)
-                    {
-                        return res;
-                    }
-                }
+        //            if (res != 0)
+        //            {
+        //                return res;
+        //            }
+        //        }
 
-                if ((l & 4) != 0)
-                {
-                    res = (*((uint*)x1)).CompareTo(*((uint*)x2));
+        //        if ((l & 4) != 0)
+        //        {
+        //            res = (*((uint*)x1)).CompareTo(*((uint*)x2));
 
-                    if (res != 0)
-                    {
-                        return res;
-                    }
+        //            if (res != 0)
+        //            {
+        //                return res;
+        //            }
 
-                    x1 += 4;
-                    x2 += 4;
-                }
+        //            x1 += 4;
+        //            x2 += 4;
+        //        }
 
-                if ((l & 2) != 0)
-                {
-                    res = (*((ushort*)x1)).CompareTo(*((ushort*)x2));
+        //        if ((l & 2) != 0)
+        //        {
+        //            res = (*((ushort*)x1)).CompareTo(*((ushort*)x2));
 
-                    if (res != 0)
-                    {
-                        return res;
-                    }
+        //            if (res != 0)
+        //            {
+        //                return res;
+        //            }
 
-                    x1 += 2;
-                    x2 += 2;
-                }
+        //            x1 += 2;
+        //            x2 += 2;
+        //        }
 
-                if ((l & 1) != 0)
-                {
-                    res = (*((byte*)x1)).CompareTo(*((byte*)x2));
-                }
+        //        if ((l & 1) != 0)
+        //        {
+        //            res = (*((byte*)x1)).CompareTo(*((byte*)x2));
+        //        }
 
-                return res;
-            }
-        }
+        //        return res;
+        //    }
+        //}
 
-        private static unsafe bool AreEqual(byte[] b1, byte[] b2)
-        {
-            fixed (byte* p1 = b1, p2 = b2)
-            {
-                byte* x1 = p1, x2 = p2;
-                int l = b1.Length;
+        //private static unsafe bool AreEqual(byte[] b1, byte[] b2)
+        //{
+        //    fixed (byte* p1 = b1, p2 = b2)
+        //    {
+        //        byte* x1 = p1, x2 = p2;
+        //        int l = b1.Length;
 
-                for (int i = 0; i < l / 8; i++, x1 += 8, x2 += 8)
-                {
-                    if (*((ulong*)x1) != *((ulong*)x2))
-                    {
-                        return false;
-                    }
-                }
+        //        for (int i = 0; i < l / 8; i++, x1 += 8, x2 += 8)
+        //        {
+        //            if (*((ulong*)x1) != *((ulong*)x2))
+        //            {
+        //                return false;
+        //            }
+        //        }
 
-                if ((l & 4) != 0)
-                {
-                    if (*((uint*)x1) != *((uint*)x2))
-                    {
-                        return false;
-                    }
+        //        if ((l & 4) != 0)
+        //        {
+        //            if (*((uint*)x1) != *((uint*)x2))
+        //            {
+        //                return false;
+        //            }
 
-                    x1 += 4;
-                    x2 += 4;
-                }
+        //            x1 += 4;
+        //            x2 += 4;
+        //        }
 
-                if ((l & 2) != 0)
-                {
-                    if (*((ushort*)x1) != *((ushort*)x2))
-                    {
-                        return false;
-                    }
+        //        if ((l & 2) != 0)
+        //        {
+        //            if (*((ushort*)x1) != *((ushort*)x2))
+        //            {
+        //                return false;
+        //            }
 
-                    x1 += 2;
-                    x2 += 2;
-                }
+        //            x1 += 2;
+        //            x2 += 2;
+        //        }
 
-                if ((l & 1) != 0)
-                {
-                    if (*((byte*)x1) != *((byte*)x2))
-                    {
-                        return false;
-                    }
-                }
+        //        if ((l & 1) != 0)
+        //        {
+        //            if (*((byte*)x1) != *((byte*)x2))
+        //            {
+        //                return false;
+        //            }
+        //        }
 
-                return true;
-            }
-        }
+        //        return true;
+        //    }
+        //}
 
-        private static unsafe int GetHashCode(byte[] b)
-        {
-            int result = 0;
+        //private static unsafe int GetHashCode(byte[] b)
+        //{
+        //    int result = 0;
 
-            fixed (byte* p = b)
-            {
-                int l = b.Length;
-                byte* x = p;
+        //    fixed (byte* p = b)
+        //    {
+        //        int l = b.Length;
+        //        byte* x = p;
 
-                for (int i = 0; i < l / 4; i++, x += 4)
-                {
-                    result ^= (*((int*)x));
-                }
+        //        for (int i = 0; i < l / 4; i++, x += 4)
+        //        {
+        //            result ^= (*((int*)x));
+        //        }
 
-                if ((l & 2) != 0)
-                {
-                    result ^= (*((short*)x));
+        //        if ((l & 2) != 0)
+        //        {
+        //            result ^= (*((short*)x));
 
-                    x += 2;
-                }
+        //            x += 2;
+        //        }
 
-                if ((l & 1) != 0)
-                {
-                    result ^= (*((byte*)x));
-                }
-            }
+        //        if ((l & 1) != 0)
+        //        {
+        //            result ^= (*((byte*)x));
+        //        }
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
     }
 }

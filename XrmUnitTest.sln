@@ -40,12 +40,46 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{C80A3A8A-7A62-45E1-924D-FE87D915CEA9}"
 	ProjectSection(SolutionItems) = preProject
 		DLaB.Common\DLaB.Common.nuspec = DLaB.Common\DLaB.Common.nuspec
+		DLaB.Xrm.2015\DLaB.Xrm.2015.nuspec = DLaB.Xrm.2015\DLaB.Xrm.2015.nuspec
 		DLaB.Xrm.Entities\DLaB.Xrm.Entities.nuspec = DLaB.Xrm.Entities\DLaB.Xrm.Entities.nuspec
 		DLaB.Xrm\DLaB.Xrm.nuspec = DLaB.Xrm\DLaB.Xrm.nuspec
+		DLaB.Xrm.Test.2015\XrmUnitTest.2015.nuspec = DLaB.Xrm.Test.2015\XrmUnitTest.2015.nuspec
 		DLaB.Xrm.Test\XrmUnitTest.nuspec = DLaB.Xrm.Test\XrmUnitTest.nuspec
 	EndProjectSection
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DLaB.Xrm.Base", "DLaB.Xrm.Base\DLaB.Xrm.Base.shproj", "{A3B3CE75-DFAE-4035-97A3-AFD49AD47BC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm.2015", "DLaB.Xrm.2015\DLaB.Xrm.2015.csproj", "{44B2AD76-2052-4813-86CD-2782E9863216}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm.LocalCrm.2015", "DLaB.Xrm.LocalCrm.2015\DLaB.Xrm.LocalCrm.2015.csproj", "{70697A74-32E0-4C77-BACB-A82512621A3E}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DLaB.Xrm.Client.Base", "DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.shproj", "{E8AD0E5D-2969-463A-96A7-8D8A3240FD7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2015", "2015", "{56965403-1D14-4364-8B4A-ADE3CE4CAE44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm.Client.2015", "DLaB.Xrm.Client.2015\DLaB.Xrm.Client.2015.csproj", "{BE26D8E5-7A39-463C-B456-0D80725B54B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm.Test.2015", "DLaB.Xrm.Test.2015\DLaB.Xrm.Test.2015.csproj", "{FE764186-BFF2-43BE-A18A-D06857A0E617}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DLaB.Xrm.LocalCrm.Base", "DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.shproj", "{D2CCBFCF-54C0-405C-A829-100A3DEB4229}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DLaB.Xrm.Test.Base", "DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.shproj", "{F150EA46-4955-4E32-9917-10F89B291602}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "NMemory.Base", "NMemory.Base\NMemory.Base.shproj", "{59B000B7-D796-4065-AABA-8D6C91542BB9}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{fe764186-bff2-43be-a18a-d06857a0e617}*SharedItemsImports = 4
+		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{d2ccbfcf-54c0-405c-a829-100a3deb4229}*SharedItemsImports = 13
+		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{f150ea46-4955-4e32-9917-10f89b291602}*SharedItemsImports = 13
+		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{be26d8e5-7a39-463c-b456-0d80725b54b6}*SharedItemsImports = 4
+		DLaB.Xrm.Base\DLaB.Xrm.Base.projitems*{a3b3ce75-dfae-4035-97a3-afd49ad47bc5}*SharedItemsImports = 13
+		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{70697a74-32e0-4c77-bacb-a82512621a3e}*SharedItemsImports = 4
+		NMemory.Base\NMemory.Base.projitems*{70697a74-32e0-4c77-bacb-a82512621a3e}*SharedItemsImports = 4
+		NMemory.Base\NMemory.Base.projitems*{59b000b7-d796-4065-aaba-8d6c91542bb9}*SharedItemsImports = 13
+		DLaB.Xrm.Base\DLaB.Xrm.Base.projitems*{44b2ad76-2052-4813-86cd-2782e9863216}*SharedItemsImports = 4
+		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{e8ad0e5d-2969-463a-96a7-8d8a3240fd7f}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -107,8 +141,30 @@ Global
 		{B872C19C-94A6-4659-A2D6-10BBF05FBE1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B872C19C-94A6-4659-A2D6-10BBF05FBE1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B872C19C-94A6-4659-A2D6-10BBF05FBE1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44B2AD76-2052-4813-86CD-2782E9863216}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44B2AD76-2052-4813-86CD-2782E9863216}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44B2AD76-2052-4813-86CD-2782E9863216}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44B2AD76-2052-4813-86CD-2782E9863216}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70697A74-32E0-4C77-BACB-A82512621A3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70697A74-32E0-4C77-BACB-A82512621A3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70697A74-32E0-4C77-BACB-A82512621A3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70697A74-32E0-4C77-BACB-A82512621A3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE26D8E5-7A39-463C-B456-0D80725B54B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE26D8E5-7A39-463C-B456-0D80725B54B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE26D8E5-7A39-463C-B456-0D80725B54B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE26D8E5-7A39-463C-B456-0D80725B54B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE764186-BFF2-43BE-A18A-D06857A0E617}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE764186-BFF2-43BE-A18A-D06857A0E617}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE764186-BFF2-43BE-A18A-D06857A0E617}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE764186-BFF2-43BE-A18A-D06857A0E617}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{44B2AD76-2052-4813-86CD-2782E9863216} = {56965403-1D14-4364-8B4A-ADE3CE4CAE44}
+		{70697A74-32E0-4C77-BACB-A82512621A3E} = {56965403-1D14-4364-8B4A-ADE3CE4CAE44}
+		{BE26D8E5-7A39-463C-B456-0D80725B54B6} = {56965403-1D14-4364-8B4A-ADE3CE4CAE44}
+		{FE764186-BFF2-43BE-A18A-D06857A0E617} = {56965403-1D14-4364-8B4A-ADE3CE4CAE44}
 	EndGlobalSection
 EndGlobal

@@ -291,6 +291,10 @@
     <Compile Include="TfsHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\DLaB.Common\DLaB.Common.csproj">
       <Project>{a7284a23-15f3-411d-bc26-2890a11053fe}</Project>
       <Name>DLaB.Common</Name>
@@ -299,10 +303,6 @@
       <Project>{0a88b434-3617-4543-b9a3-b2b04ba4b8d4}</Project>
       <Name>DLaB.Xrm</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.TeamFoundationServer.ExtendedClient.14.89.0\build\Microsoft.TeamFoundationServer.ExtendedClient.targets" Condition="Exists('..\packages\Microsoft.TeamFoundationServer.ExtendedClient.14.89.0\build\Microsoft.TeamFoundationServer.ExtendedClient.targets')" />
