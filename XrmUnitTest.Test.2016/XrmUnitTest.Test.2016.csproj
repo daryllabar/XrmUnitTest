@@ -316,6 +316,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\XrmUnitTest.Test.Base\UnitTestSettings.config">
+      <Link>UnitTestSettings.config</Link>
+    </None>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="UnitTestSettings.user.config" />
