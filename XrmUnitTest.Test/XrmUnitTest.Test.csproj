@@ -130,25 +130,9 @@
       <Project>{a7284a23-15f3-411d-bc26-2890a11053fe}</Project>
       <Name>DLaB.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DLaB.Xrm.Client\DLaB.Xrm.Client.csproj">
-      <Project>{674c3dde-a543-4199-b089-278eeb4db85a}</Project>
-      <Name>DLaB.Xrm.Client</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj">
       <Project>{66688025-2f6d-40ec-914e-87af88afc5de}</Project>
       <Name>DLaB.Xrm.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DLaB.Xrm.LocalCrm\DLaB.Xrm.LocalCrm.csproj">
-      <Project>{5d4bce65-c30a-4044-8c08-44615045cd1c}</Project>
-      <Name>DLaB.Xrm.LocalCrm</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DLaB.Xrm.Test\DLaB.Xrm.Test.csproj">
-      <Project>{6d625331-e99f-4346-b567-afc46061f3cd}</Project>
-      <Name>DLaB.Xrm.Test</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DLaB.Xrm\DLaB.Xrm.csproj">
-      <Project>{0a88b434-3617-4543-b9a3-b2b04ba4b8d4}</Project>
-      <Name>DLaB.Xrm</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

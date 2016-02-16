@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>0773e17c-ddbc-4dd9-812b-85c1299a6aca</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>XrmUnitTest.Test.Base</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)app.config" />
+    <None Include="$(MSBuildThisFileDirectory)UnitTestSettings.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\CrmEnvironmentBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\EntityBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\OrganizationServiceBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\PluginExecutionContextBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\ServiceProviderBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\WorkflowInvokerBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DebugLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MsTestProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestInitializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestMethodClassBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Assumptions\Entity Xml\" />
+  </ItemGroup>
+</Project>

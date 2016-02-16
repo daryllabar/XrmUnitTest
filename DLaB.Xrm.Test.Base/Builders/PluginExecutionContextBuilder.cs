@@ -51,6 +51,34 @@ namespace DLaB.Xrm.Test.Builders
         #region Fluent Methods
 
         /// <summary>
+        /// Using the WhoAmIRequest, populates the UserId and InitiatingUserId of the context with the current executing user.
+        /// </summary>
+        /// <param name="service">The service.</param>
+        /// <returns></returns>
+        public TDerived WithCurrentUser(IOrganizationService service)
+        {
+            var info = service.GetCurrentlyExecutingUserInfo();
+            return WithUser(info.UserId).WithInitiatingUser(info.UserId);
+        }
+
+        /// <summary>
+        /// Sets the registered event for the context to the first registered event of the plugin. Throws an exception if more than one event is found.
+        /// </summary>
+        /// <param name="plugin">The plugin.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Plugin  + plugin.GetType().FullName +  does not contain any registered events!  Unable to set the registered event of the context.</exception>
+        public TDerived WithFirstRegisteredEvent(IRegisteredEventsPlugin plugin)
+        {
+            var first = plugin.RegisteredEvents.FirstOrDefault();
+            if (first == null)
+            {
+                throw new Exception("Plugin " + plugin.GetType().FullName + " does not contain any registered events!  Unable to set the registered event of the context.");
+            }
+
+            return WithRegisteredEvent(first);
+        }
+
+        /// <summary>
         /// Sets the initiating user for the context.  The initiaiting User Id is the id of user that actually triggered the plugin, rather than the user the plugin is executing as
         /// </summary>
         /// <param name="id">The identifier.</param>
@@ -237,33 +265,6 @@ namespace DLaB.Xrm.Test.Builders
                 WithSharedVariable((string)nameValuePairs[i], nameValuePairs[i + 1]);
             }
             return This;
-        }
-
-        /// <summary>
-        /// Using the WhoAmIRequest, populates the UserId and InitiatingUserId of the context with the current executing user.
-        /// </summary>
-        /// <param name="service">The service.</param>
-        /// <returns></returns>
-        public TDerived WithCurrentUser(IOrganizationService service)
-        {
-            var info = service.GetCurrentlyExecutingUserInfo();
-            return WithUser(info.UserId).WithInitiatingUser(info.UserId);
-        }
-
-        /// <summary>
-        /// Sets the registered event for the context to the first registered event of the plugin. Throws an exception if more than one event is found.
-        /// </summary>
-        /// <param name="plugin">The plugin.</param>
-        /// <returns></returns>
-        /// <exception cref="System.Exception">Plugin  + plugin.GetType().FullName +  does not contain any registered events!  Unable to set the registered event of the context.</exception>
-        public TDerived WithFirstRegisteredEvent(IRegisteredEventsPlugin plugin)
-        {
-            if (!plugin.RegisteredEvents.Any())
-            {
-                throw new Exception("Plugin " + plugin.GetType().FullName + " does not contain any registered events!  Unable to set the registered event of the context.");
-            }
-
-            return WithRegisteredEvent(plugin.RegisteredEvents.Single());
         }
 
         /// <summary>

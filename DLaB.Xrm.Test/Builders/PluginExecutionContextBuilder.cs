@@ -258,12 +258,13 @@ namespace DLaB.Xrm.Test.Builders
         /// <exception cref="System.Exception">Plugin  + plugin.GetType().FullName +  does not contain any registered events!  Unable to set the registered event of the context.</exception>
         public TDerived WithFirstRegisteredEvent(IRegisteredEventsPlugin plugin)
         {
-            if (!plugin.RegisteredEvents.Any())
+            var first = plugin.RegisteredEvents.FirstOrDefault();
+            if (first == null)
             {
                 throw new Exception("Plugin " + plugin.GetType().FullName + " does not contain any registered events!  Unable to set the registered event of the context.");
             }
 
-            return WithRegisteredEvent(plugin.RegisteredEvents.Single());
+            return WithRegisteredEvent(first);
         }
 
         /// <summary>

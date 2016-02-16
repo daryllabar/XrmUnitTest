@@ -7,7 +7,7 @@
     <owners>Daryl LaBar</owners>
     <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/daryllabar/XrmUnitTest</projectUrl>
-    <iconUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/DLaB_Dynamics_64x64.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/daryllabar/XrmUnitTest/master/DLaB_Dynamics_64x64.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Contains some basic extensions and a config helper</description>
     <releaseNotes>Changed Dll Versioning to match NuGet</releaseNotes>

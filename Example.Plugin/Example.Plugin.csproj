@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DLaB.Common, Version=1.0.1.2, Culture=neutral, PublicKeyToken=046d6d5d1685e1b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\DLaB.Common.1.0.1.2\lib\net452\DLaB.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DLaB.Xrm.2016, Version=1.1.3.6, Culture=neutral, PublicKeyToken=4da76fa437c5906e, processorArchitecture=MSIL">
+      <HintPath>..\packages\DLaB.Xrm.2016.1.1.3-alpha06\lib\net452\DLaB.Xrm.2016.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.8.0.1\lib\net45\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
       <Private>True</Private>
@@ -68,17 +76,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DLaB.Common\DLaB.Common.csproj">
-      <Project>{a7284a23-15f3-411d-bc26-2890a11053fe}</Project>
-      <Name>DLaB.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj">
       <Project>{66688025-2f6d-40ec-914e-87af88afc5de}</Project>
       <Name>DLaB.Xrm.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DLaB.Xrm\DLaB.Xrm.csproj">
-      <Project>{0a88b434-3617-4543-b9a3-b2b04ba4b8d4}</Project>
-      <Name>DLaB.Xrm</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

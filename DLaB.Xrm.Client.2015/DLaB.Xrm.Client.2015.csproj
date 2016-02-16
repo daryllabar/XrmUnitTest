@@ -7,7 +7,7 @@
     <ProjectGuid>{BE26D8E5-7A39-463C-B456-0D80725B54B6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DLaB.Xrm.Client._2015</RootNamespace>
+    <RootNamespace>DLaB.Xrm.Client</RootNamespace>
     <AssemblyName>DLaB.Xrm.Client.2015</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
