@@ -25,10 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{C80A3A8A
 		DLaB.Xrm.2015\DLaB.Xrm.2015.nuspec = DLaB.Xrm.2015\DLaB.Xrm.2015.nuspec
 		DLaB.Xrm.2016\DLaB.Xrm.2016.nuspec = DLaB.Xrm.2016\DLaB.Xrm.2016.nuspec
 		DLaB.Xrm.Entities\DLaB.Xrm.Entities.nuspec = DLaB.Xrm.Entities\DLaB.Xrm.Entities.nuspec
-		DLaB.Xrm\DLaB.Xrm.nuspec = DLaB.Xrm\DLaB.Xrm.nuspec
 		DLaB.Xrm.Test.2015\XrmUnitTest.2015.nuspec = DLaB.Xrm.Test.2015\XrmUnitTest.2015.nuspec
 		DLaB.Xrm.Test.2016\XrmUnitTest.2016.nuspec = DLaB.Xrm.Test.2016\XrmUnitTest.2016.nuspec
-		DLaB.Xrm.Test\XrmUnitTest.nuspec = DLaB.Xrm.Test\XrmUnitTest.nuspec
 	EndProjectSection
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DLaB.Xrm.Base", "DLaB.Xrm.Base\DLaB.Xrm.Base.shproj", "{A3B3CE75-DFAE-4035-97A3-AFD49AD47BC5}"
@@ -78,6 +76,26 @@ EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DLaB.Xrm.Tests.Base", "DLaB.Xrm.Tests.Base\DLaB.Xrm.Tests.Base.shproj", "{56EA5D74-E2A7-499F-99D9-40404FD781B6}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DLaB.Xrm.Test.Tests.Base", "DLaB.Xrm.Test.Tests.Base\DLaB.Xrm.Test.Tests.Base.shproj", "{EF351E75-A598-4D76-9C03-8B3EB2AA253C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{01004EF9-FF2B-4CBB-93B6-19366600D905}"
+	ProjectSection(SolutionItems) = preProject
+		DLaB.Xrm.2016\Properties\AssemblyInfo.cs = DLaB.Xrm.2016\Properties\AssemblyInfo.cs
+		DLaB.Xrm.Client.2016\Properties\AssemblyInfo.cs = DLaB.Xrm.Client.2016\Properties\AssemblyInfo.cs
+		DLaB.Xrm.LocalCrm.2016\Properties\AssemblyInfo.cs = DLaB.Xrm.LocalCrm.2016\Properties\AssemblyInfo.cs
+		DLaB.Xrm.Test.2016\Properties\AssemblyInfo.cs = DLaB.Xrm.Test.2016\Properties\AssemblyInfo.cs
+		DLaB.Xrm.2016\DLaB.Xrm.2016.nuspec = DLaB.Xrm.2016\DLaB.Xrm.2016.nuspec
+		DLaB.Xrm.Test.2016\XrmUnitTest.2016.nuspec = DLaB.Xrm.Test.2016\XrmUnitTest.2016.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{216D6F92-64EF-4C6C-9618-3531929DB82A}"
+	ProjectSection(SolutionItems) = preProject
+		DLaB.Xrm.2015\Properties\AssemblyInfo.cs = DLaB.Xrm.2015\Properties\AssemblyInfo.cs
+		DLaB.Xrm.Client.2015\Properties\AssemblyInfo.cs = DLaB.Xrm.Client.2015\Properties\AssemblyInfo.cs
+		DLaB.Xrm.LocalCrm.2015\Properties\AssemblyInfo.cs = DLaB.Xrm.LocalCrm.2015\Properties\AssemblyInfo.cs
+		DLaB.Xrm.Test.2015\Properties\AssemblyInfo.cs = DLaB.Xrm.Test.2015\Properties\AssemblyInfo.cs
+		DLaB.Xrm.2015\DLaB.Xrm.2015.nuspec = DLaB.Xrm.2015\DLaB.Xrm.2015.nuspec
+		DLaB.Xrm.Test.2015\XrmUnitTest.2015.nuspec = DLaB.Xrm.Test.2015\XrmUnitTest.2015.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -204,5 +222,7 @@ Global
 		{B6AA0881-3D1C-44E8-B2E2-E1F7258726EC} = {AF470AF1-A3ED-41B9-A35F-1D65AFBED5F5}
 		{56EA5D74-E2A7-499F-99D9-40404FD781B6} = {3F9ABAB5-C336-4DB5-97EE-D0D629B174AE}
 		{EF351E75-A598-4D76-9C03-8B3EB2AA253C} = {3F9ABAB5-C336-4DB5-97EE-D0D629B174AE}
+		{01004EF9-FF2B-4CBB-93B6-19366600D905} = {AF470AF1-A3ED-41B9-A35F-1D65AFBED5F5}
+		{216D6F92-64EF-4C6C-9618-3531929DB82A} = {56965403-1D14-4364-8B4A-ADE3CE4CAE44}
 	EndGlobalSection
 EndGlobal

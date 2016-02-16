@@ -41,11 +41,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="DLaB.Xrm.2016, Version=1.1.3.6, Culture=neutral, PublicKeyToken=4da76fa437c5906e, processorArchitecture=MSIL">
-      <HintPath>..\packages\XrmUnitTest.2016.1.1.3-alpha08\lib\net452\DLaB.Xrm.2016.dll</HintPath>
+      <HintPath>..\packages\XrmUnitTest.2016.1.1.3-alpha09\lib\net452\DLaB.Xrm.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DLaB.Xrm.Client.2016, Version=1.1.3.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XrmUnitTest.2016.1.1.3-alpha08\lib\net452\DLaB.Xrm.Client.2016.dll</HintPath>
+      <HintPath>..\packages\XrmUnitTest.2016.1.1.3-alpha09\lib\net452\DLaB.Xrm.Client.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DLaB.Xrm.Entities, Version=1.0.5870.30963, Culture=neutral, processorArchitecture=MSIL">
@@ -53,11 +53,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="DLaB.Xrm.LocalCrm.2016, Version=1.1.3.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XrmUnitTest.2016.1.1.3-alpha08\lib\net452\DLaB.Xrm.LocalCrm.2016.dll</HintPath>
+      <HintPath>..\packages\XrmUnitTest.2016.1.1.3-alpha09\lib\net452\DLaB.Xrm.LocalCrm.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DLaB.Xrm.Test.2016, Version=1.1.3.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XrmUnitTest.2016.1.1.3-alpha08\lib\net452\DLaB.Xrm.Test.2016.dll</HintPath>
+    <Reference Include="DLaB.Xrm.Test.2016, Version=1.1.3.9, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XrmUnitTest.2016.1.1.3-alpha09\lib\net452\DLaB.Xrm.Test.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -261,8 +261,8 @@
       <HintPath>..\packages\Microsoft.CrmSdk.Workflow.8.0.1\lib\net45\Microsoft.Xrm.Sdk.Workflow.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
@@ -283,8 +283,8 @@
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.4.0.0\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Caching" />
@@ -295,8 +295,8 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Http, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.2\lib\net45\System.Web.Http.dll</HintPath>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Services" />
@@ -316,11 +316,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\XrmUnitTest.Test.Base\UnitTestSettings.config">
-      <Link>UnitTestSettings.config</Link>
-    </None>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="UnitTestSettings.config" />
     <None Include="UnitTestSettings.user.config" />
   </ItemGroup>
   <Import Project="..\XrmUnitTest.Test.Base\XrmUnitTest.Test.Base.projitems" Label="Shared" />

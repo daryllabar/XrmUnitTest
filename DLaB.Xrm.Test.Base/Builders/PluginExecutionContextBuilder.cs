@@ -185,6 +185,17 @@ namespace DLaB.Xrm.Test.Builders
         }
 
         /// <summary>
+        /// Sets the primary entity name for the context.
+        /// </summary>
+        /// <param name="logicalName">Primary Entity Logical Name.</param>
+        /// <returns></returns>
+        public TDerived WithPrimaryEntityName(string logicalName)
+        {
+            Context.PrimaryEntityName = logicalName;
+            return This;
+        }
+
+        /// <summary>
         /// Sets the registered event for the context.
         /// </summary>
         /// <param name="event">The event.</param>
@@ -276,6 +287,19 @@ namespace DLaB.Xrm.Test.Builders
         public TDerived WithTarget<T>(T target)
         {
             Context.InputParameters[ParameterName.Target] = target;
+            var entity = target as Entity;
+            var entityRef = entity?.ToEntityReference() ?? target as EntityReference;
+            if (entityRef != null)
+            {
+                if (Context.PrimaryEntityId == Guid.Empty)
+                {
+                    WithPrimaryEntityId(entityRef.Id);
+                }
+                if (string.IsNullOrWhiteSpace(Context.PrimaryEntityName))
+                {
+                    WithPrimaryEntityName(entityRef.LogicalName);
+                }
+            }
             return This;
         }
 
