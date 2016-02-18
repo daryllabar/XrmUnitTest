@@ -537,6 +537,12 @@ namespace DLaB.Xrm
                 return entity.GetNameId();
             }
 
+            var money = value as Money;
+            if (money != null)
+            {
+                return money.Value.ToString(CultureInfo.InvariantCulture);
+            }
+
             return value.ToString();
         }
 
