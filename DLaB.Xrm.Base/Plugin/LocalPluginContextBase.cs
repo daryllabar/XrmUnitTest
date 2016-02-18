@@ -495,6 +495,7 @@ namespace DLaB.Xrm.Plugin
             if (target != null)
             {
                 entity.Id = target.Id;
+                entity.LogicalName = target.LogicalName;
                 foreach (var attribute in target.Attributes)
                 {
                     entity[attribute.Key] = attribute.Value;

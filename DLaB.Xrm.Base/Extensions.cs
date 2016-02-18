@@ -130,9 +130,15 @@ namespace DLaB.Xrm
                 return baseEntity;
             }
 
+            if (baseEntity.LogicalName == null)
+            {
+                baseEntity.LogicalName = entity.LogicalName;
+            }
+
             if (baseEntity.Id == Guid.Empty && baseEntity.LogicalName == entity.LogicalName)
             {
                 baseEntity.Id = entity.Id;
+                baseEntity.LogicalName = entity.LogicalName;
             }
 
             foreach (var attribute in entity.Attributes.Where(a => !baseEntity.Contains(a.Key)))
