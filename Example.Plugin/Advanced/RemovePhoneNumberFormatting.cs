@@ -4,12 +4,12 @@ using DLaB.Xrm.Entities;
 using DLaB.Xrm.Plugin;
 using Microsoft.Xrm.Sdk;
 
-namespace Example.Plugin
+namespace Example.Plugin.Advanced
 {
     /// <summary>
     /// Class to remove all formatting of phone numbers.  
     /// </summary>
-    public class RemovePhoneNumberFormatting : PluginBase
+    public class RemovePhoneNumberFormatting : GenericPluginBase<LocalPluginContext>
     {
         #region Constructors
 
@@ -20,7 +20,7 @@ namespace Example.Plugin
 
         #endregion Constructors
 
-        protected override PluginHandlerBase GetPluginHandler()
+        protected override GenericPluginHandlerBase<LocalPluginContext> GetPluginHandler()
         {
             return new RemovePhoneNumberFormattingLogic();
         }

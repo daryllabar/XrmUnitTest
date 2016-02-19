@@ -80,6 +80,17 @@ namespace DLaB.Xrm.Plugin
             return this;
         }
 
+        /// <summary>
+        /// Defines the custom Action to be performed rather than the standard ExecuteInternal.
+        /// </summary>
+        /// <param name="execute">Action that is invoked when the Plugin Executes.</param>
+        /// <returns></returns>
+        public RegisteredEventBuilder WithExecuteAction(Action<ILocalPluginContext> execute)
+        {
+            Execute = execute;
+            return this;
+        }
+
         #endregion Fluent Methods
 
         /// <summary>

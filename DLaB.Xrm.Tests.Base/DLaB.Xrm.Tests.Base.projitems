@@ -6,7 +6,7 @@
     <SharedGUID>56ea5d74-e2a7-499f-99d9-40404fd781b6</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>DLaB.Xrm.Tests.Base</Import_RootNamespace>
+    <Import_RootNamespace>DLaB.Xrm.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionsIOrganizationServiceTests.cs" />

@@ -6,7 +6,7 @@
     <SharedGUID>d2ccbfcf-54c0-405c-a829-100a3deb4229</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>DLaB.Xrm.LocalCrm.Base</Import_RootNamespace>
+    <Import_RootNamespace>DLaB.Xrm.LocalCrm</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)DynamicQueryable.cs" />

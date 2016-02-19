@@ -6,7 +6,7 @@
     <SharedGUID>59b000b7-d796-4065-aaba-8d6c91542bb9</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>NMemory.Base</Import_RootNamespace>
+    <Import_RootNamespace>NMemory</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Common\CollectionExtensions.cs" />

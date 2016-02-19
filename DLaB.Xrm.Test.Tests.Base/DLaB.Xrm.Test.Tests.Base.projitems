@@ -6,7 +6,7 @@
     <SharedGUID>ef351e75-a598-4d76-9c03-8b3eb2aa253c</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>DLaB.Xrm.Test.Tests.Base</Import_RootNamespace>
+    <Import_RootNamespace>DLaB.Xrm.Test.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Builders\CrmEnvironmentBuilderTests.cs" />

@@ -6,7 +6,7 @@
     <SharedGUID>a3b3ce75-dfae-4035-97a3-afd49ad47bc5</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>DLaB.Xrm.Base</Import_RootNamespace>
+    <Import_RootNamespace>DLaB.Xrm</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)ActivityPropertyInfo.cs" />
@@ -37,6 +37,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)LateBoundQuerySettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OptimisticConcurrencyExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Plugin\GenericPluginBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\GenericPluginHandlerBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\ILocalPluginContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\IRegisteredEventsPlugin.cs" />

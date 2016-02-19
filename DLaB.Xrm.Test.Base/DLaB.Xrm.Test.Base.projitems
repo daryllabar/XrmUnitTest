@@ -6,7 +6,7 @@
     <SharedGUID>f150ea46-4955-4e32-9917-10f89b291602</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>DLaB.Xrm.Test.Base</Import_RootNamespace>
+    <Import_RootNamespace>DLaB.Xrm.Test</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AppConfig.cs" />

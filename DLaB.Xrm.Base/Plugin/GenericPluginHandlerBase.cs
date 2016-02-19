@@ -63,7 +63,11 @@ namespace DLaB.Xrm.Plugin
         /// </summary>
         /// <param name="serviceProvider">The service provider.</param>
         /// <returns></returns>
-        protected abstract T CreateLocalPluginContext(IServiceProvider serviceProvider);
+        protected virtual T CreateLocalPluginContext(IServiceProvider serviceProvider)
+        {
+            return (T) (ILocalPluginContext) new LocalPluginContextBase(serviceProvider, this); 
+            
+        }
 
         #endregion Abstract Methods / Properties
 
@@ -96,8 +100,7 @@ namespace DLaB.Xrm.Plugin
 
                 if (context.Event == null)
                 {
-                    var executionContext = context.PluginExecutionContext;
-                    context.TraceFormat("No Registered Event Found for Event: {0}, Entity: {1}, and Stage: {2}!", executionContext.MessageName, executionContext.PrimaryEntityName, executionContext.Stage);
+                    context.TraceFormat("No Registered Event Found for Event: {0}, Entity: {1}, and Stage: {2}!", context.MessageName, context.PrimaryEntityName, context.Stage);
                     return; 
                 }
                 if (PreventRecursiveCall(context))
@@ -105,13 +108,8 @@ namespace DLaB.Xrm.Plugin
                     context.Trace("Duplicate Recursive Call Prevented!");
                     return; 
                 }
-                var localContext = context as LocalPluginContextBase;
-                if (localContext == null)
-                {
-                    context.Trace("Context was not of type LocalPluginContextBase.  Unable to check for Prevention Calls!");
-                }
 
-                if (localContext != null && localContext.HasPluginHandlerExecutionBeenPrevented())
+                if (context.HasPluginHandlerExecutionBeenPrevented())
                 {
                     context.Trace("Context has Specified Call to be Prevented!");
                     return; 
@@ -123,7 +121,7 @@ namespace DLaB.Xrm.Plugin
             {
                 context.LogException(ex);
                 // This error is already being thrown from the plugin, just throw
-                if (context.PluginExecutionContext.IsolationMode == (int) IsolationMode.Sandbox)
+                if (context.IsolationMode == IsolationMode.Sandbox)
                 {
                     if (Sandbox.ExceptionHandler.CanThrow(ex))
                     {
@@ -140,7 +138,7 @@ namespace DLaB.Xrm.Plugin
                 // Unexpected Exception occurred, log exception then wrap and throw new exception
                 context.LogException(ex);
                 ex = new InvalidPluginExecutionException(ex.Message, ex);
-                if (context.PluginExecutionContext.IsolationMode == (int)IsolationMode.Sandbox)
+                if (context.IsolationMode == IsolationMode.Sandbox)
                 {
                     if (Sandbox.ExceptionHandler.CanThrow(ex))
                     {
@@ -195,8 +193,8 @@ namespace DLaB.Xrm.Plugin
             context.TraceFormat("{0}.{1} is Executing for Entity: {2}, Message: {3}",
                 context.PluginTypeName,
                 execute.Method.Name,
-                context.PluginExecutionContext.PrimaryEntityName,
-                context.PluginExecutionContext.MessageName);
+                context.PrimaryEntityName,
+                context.MessageName);
 
             execute(context);
         }
@@ -213,9 +211,9 @@ namespace DLaB.Xrm.Plugin
                 return false;
             }
 
-            var sharedVariables = context.PluginExecutionContext.SharedVariables;
-            var key = $"{context.PluginTypeName}|{context.Event.MessageName}|{context.Event.Stage}|{context.PluginExecutionContext.PrimaryEntityId}";
-            if (context.PluginExecutionContext.GetFirstSharedVariable<int>(key) > 0)
+            var sharedVariables = context.SharedVariables;
+            var key = $"{context.PluginTypeName}|{context.Event.MessageName}|{context.Event.Stage}|{context.PrimaryEntityId}";
+            if (context.GetFirstSharedVariable<int>(key) > 0)
             {
                 return true;
             }

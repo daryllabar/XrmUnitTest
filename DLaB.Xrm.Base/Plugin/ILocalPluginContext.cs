@@ -4,9 +4,9 @@ using Microsoft.Xrm.Sdk;
 namespace DLaB.Xrm.Plugin
 {
     /// <summary>
-    /// Plugin Context Interface for 
+    /// Plugin Context Interface for Handling 
     /// </summary>
-    public interface ILocalPluginContext
+    public interface ILocalPluginContext : IPluginExecutionContext
     {
         #region Properties
 
@@ -16,35 +16,35 @@ namespace DLaB.Xrm.Plugin
         RegisteredEvent Event { get; }
 
         /// <summary>
+        /// The IOrganizationService of the plugin, Impersonated as the user that triggered the services using the PluginExecutionContext.InitiatingUserId.
+        /// </summary>
+        IOrganizationService InitiatingUserOrganizationService { get; }
+
+        /// <summary>
+        /// Gets or sets the service provider.
+        /// </summary>
+        /// <value>
+        /// The service provider.
+        /// </value>
+        IServiceProvider ServiceProvider { get; }
+
+        /// <summary>
+        /// Gets the isolation mode of the plugin assembly.
+        /// </summary>
+        /// <value>
+        /// The isolation mode of the plugin assembly.
+        /// </value>
+        new IsolationMode IsolationMode { get; }
+
+        /// <summary>
         /// The IOrganizationService of the plugin, Impersonated as the user that plugin is registered to run as, useing the PluginExecutionContext.UserId.
         /// </summary>
         IOrganizationService OrganizationService { get; }
 
         /// <summary>
-        /// The IOrganizationService of the plugin, Impersonated as the user that triggered the services using the PluginExecutionContext.InitiatingUserId.
-        /// </summary>
-        IOrganizationService InitiatingUserOrganizationService { get; }
-
-
-        /// <summary>
-        /// The IOrganizationService of the plugin, using the System User by not specifying a UserId.
-        /// </summary>
-        IOrganizationService SystemOrganizationService { get; }
-
-        /// <summary>
-        /// The IPluginExecutionContext of the plugin.
-        /// </summary>
-        IPluginExecutionContext PluginExecutionContext { get; }
-
-        /// <summary>
         /// The Type.FullName of the plugin.
         /// </summary>
-        String PluginTypeName { get; }
-
-        /// <summary>
-        /// The ITracingService of the plugin.
-        /// </summary>
-        ITracingService TracingService { get; }
+        string PluginTypeName { get; }
 
         /// <summary>
         /// Pulls the PrimaryEntityName, and PrimaryEntityId from the context and returns it as an Entity Reference
@@ -53,6 +53,16 @@ namespace DLaB.Xrm.Plugin
         /// The primary entity.
         /// </value>
         EntityReference PrimaryEntity { get; }
+
+        /// <summary>
+        /// The IOrganizationService of the plugin, using the System User by not specifying a UserId.
+        /// </summary>
+        IOrganizationService SystemOrganizationService { get; }
+
+        /// <summary>
+        /// The ITracingService of the plugin.
+        /// </summary>
+        ITracingService TracingService { get; }
 
         #endregion Properties
 

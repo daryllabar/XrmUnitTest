@@ -1,23 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DLaB.Xrm.Plugin;
 
-namespace Example.Plugin
+namespace DLaB.Xrm.Plugin
 {
-    public abstract class PluginBase : IRegisteredEventsPlugin
+    public abstract class GenericPluginBase<T> : IRegisteredEventsPlugin where T : ILocalPluginContext
     {
         private readonly object _handlerLock = new object();
-        private PluginHandlerBase _handler;
+        private GenericPluginHandlerBase<T> _handler;
         private volatile bool _isIntialized;
 
-        private String SecureConfig { get; set; }
-        private String UnsecureConfig { get; set; }
-        public IEnumerable<RegisteredEvent> RegisteredEvents { get { return ThreadSafeGetOrCreateHandler().RegisteredEvents; } }
+        protected string SecureConfig { get; }
+        protected string UnsecureConfig { get; }
+        public IEnumerable<RegisteredEvent> RegisteredEvents => ThreadSafeGetOrCreateHandler().RegisteredEvents;
 
-        protected PluginBase(string unsecureConfig, string secureConfig)
+        protected GenericPluginBase(string unsecureConfig, string secureConfig)
         {
             UnsecureConfig = unsecureConfig;
             SecureConfig = secureConfig;
@@ -47,6 +44,6 @@ namespace Example.Plugin
             return _handler;
         }
 
-        protected abstract PluginHandlerBase GetPluginHandler();
+        protected abstract GenericPluginHandlerBase<T> GetPluginHandler();
     }
 }
