@@ -321,7 +321,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="image">The image.</param>
         /// <param name="imageKey">The image key.</param>
         /// <returns></returns>
-        public TDerived WithPreImage<T>(T image, string imageKey = LocalPluginContextBase.PluginImageNames.PreImage) where T : Entity
+        public TDerived WithPreImage<T>(T image, string imageKey = DLaBExtendedPluginContextBase.PluginImageNames.PreImage) where T : Entity
         {
             Context.PreEntityImages[imageKey] = image;
             return This;
@@ -334,7 +334,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="image">The image.</param>
         /// <param name="imageKey">The image key.</param>
         /// <returns></returns>
-        public TDerived WithPostImage<T>(T image, string imageKey = LocalPluginContextBase.PluginImageNames.PostImage) where T : Entity
+        public TDerived WithPostImage<T>(T image, string imageKey = DLaBExtendedPluginContextBase.PluginImageNames.PostImage) where T : Entity
         {
             Context.PostEntityImages[imageKey] = image;
             return This;

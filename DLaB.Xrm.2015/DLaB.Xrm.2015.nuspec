@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DLaB.Xrm.2015</id>
-	  <version>1.1.3-alpha09</version>
+	  <version>1.1.3-alpha11</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>
@@ -10,7 +10,7 @@
     <iconUrl>https://raw.githubusercontent.com/daryllabar/XrmUnitTest/master/DLaB_Dynamics_64x64.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Contains extensions for Xrm development.  </description>
-    <releaseNotes>Greatly Simplified Creation of Plugins.  Moved As much as possible from LocalPluginContextBase to Extension Methods Against IPluginContext </releaseNotes>
+    <releaseNotes>Renamed LocalPluginContext to ExtendedPluginContext.</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>Dynamics CRM 2015 Plugin XRM</tags>
 	<dependencies>

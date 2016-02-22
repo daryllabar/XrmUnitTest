@@ -8,11 +8,11 @@ using DLaB.Xrm.Plugin;
 namespace Example.Plugin.Advanced
 {
     // Create a Custom Plugin Handler Base to specify the type of PluginContext To Execute Against
-    public abstract class PluginHandlerBase : GenericPluginHandlerBase<LocalPluginContext>
+    public abstract class PluginHandlerBase : GenericPluginHandlerBase<ExtendedPluginContext>
     {
-        protected override LocalPluginContext CreateLocalPluginContext(IServiceProvider serviceProvider)
+        protected override ExtendedPluginContext CreatePluginContext(IServiceProvider serviceProvider)
         {
-            return new LocalPluginContext(serviceProvider, this);
+            return new ExtendedPluginContext(serviceProvider, this);
         }
     }
 }

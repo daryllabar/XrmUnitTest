@@ -41,7 +41,7 @@ namespace DLaB.Xrm.Plugin
         /// <value>
         /// The execute.
         /// </value>
-        public Action<ILocalPluginContext> Execute { get; set; }
+        public Action<IExtendedPluginContext> Execute { get; set; }
 
         /// <summary>
         /// Defaults the execute method to be InternalExecute and run against all entities.
@@ -64,7 +64,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="stage"></param>
         /// <param name="message"></param>
         /// <param name="execute"></param>
-        public RegisteredEvent(PipelineStage stage, MessageType message, Action<ILocalPluginContext> execute) : this(stage, message, execute, null) { }
+        public RegisteredEvent(PipelineStage stage, MessageType message, Action<IExtendedPluginContext> execute) : this(stage, message, execute, null) { }
 
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="message"></param>
         /// <param name="execute"></param>
         /// <param name="entityLogicalName"></param>
-        public RegisteredEvent(PipelineStage stage, MessageType message, Action<ILocalPluginContext> execute, string entityLogicalName)
+        public RegisteredEvent(PipelineStage stage, MessageType message, Action<IExtendedPluginContext> execute, string entityLogicalName)
         {
             Stage = stage;
             EntityLogicalName = entityLogicalName;

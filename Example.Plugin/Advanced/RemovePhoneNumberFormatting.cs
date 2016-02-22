@@ -9,7 +9,7 @@ namespace Example.Plugin.Advanced
     /// <summary>
     /// Class to remove all formatting of phone numbers.  
     /// </summary>
-    public class RemovePhoneNumberFormatting : GenericPluginBase<LocalPluginContext>
+    public class RemovePhoneNumberFormatting : PluginBase
     {
         #region Constructors
 
@@ -20,7 +20,7 @@ namespace Example.Plugin.Advanced
 
         #endregion Constructors
 
-        protected override GenericPluginHandlerBase<LocalPluginContext> GetPluginHandler()
+        protected override IRegisteredEventsPluginHandler GetPluginHandler()
         {
             return new RemovePhoneNumberFormattingLogic();
         }
@@ -30,7 +30,6 @@ namespace Example.Plugin.Advanced
     {
         public override void RegisterEvents()
         {
-
             RegisteredEvents.AddRange(
                 new RegisteredEventBuilder(PipelineStage.PreOperation, MessageType.Create, MessageType.Update).
                     ForEntities(Account.EntityLogicalName, Contact.EntityLogicalName, Lead.EntityLogicalName).
@@ -42,12 +41,12 @@ namespace Example.Plugin.Advanced
                     WithExecuteAction(ExecuteCrmAddresses).Build());
         }
 
-        protected override void ExecuteInternal(LocalPluginContext context)
+        protected override void ExecuteInternal(ExtendedPluginContext context)
         {
             throw new InvalidOperationException("Should Never Get Called!");
         }
 
-        private void ExecuteCrmPhoneNumber(LocalPluginContext context)
+        private void ExecuteCrmPhoneNumber(ExtendedPluginContext context)
         {
             // Account is used here, but since all Entities have the same exact field names, this works just fine
             var target = context.GetTarget<Entity>();
@@ -69,7 +68,7 @@ namespace Example.Plugin.Advanced
             entity[attribute] = new String(number.Where(char.IsNumber).ToArray());
         }
 
-        private void ExecuteCrmAddresses(LocalPluginContext context)
+        private void ExecuteCrmAddresses(ExtendedPluginContext context)
         {
             // Account is used here, but since all Entities have the same exact field names, this works just fine
             var target = context.GetTarget<Entity>();

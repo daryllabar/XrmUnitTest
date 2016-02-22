@@ -9,7 +9,7 @@ namespace Example.Plugin.Simple
     /// <summary>
     /// Class to remove all formatting of phone numbers.  
     /// </summary>
-    public class RemovePhoneNumberFormatting : GenericPluginBase<ILocalPluginContext>
+    public class RemovePhoneNumberFormatting : DLaBPluginBase
     {
         #region Constructors
 
@@ -20,17 +20,16 @@ namespace Example.Plugin.Simple
 
         #endregion Constructors
 
-        protected override GenericPluginHandlerBase<ILocalPluginContext> GetPluginHandler()
+        protected override IRegisteredEventsPluginHandler GetPluginHandler()
         {
             return new RemovePhoneNumberFormattingLogic();
         }
     }
 
-    internal class RemovePhoneNumberFormattingLogic : GenericPluginHandlerBase<ILocalPluginContext>
+    internal class RemovePhoneNumberFormattingLogic : DLaBPluginHandlerBase
     {
         public override void RegisterEvents()
         {
-
             RegisteredEvents.AddRange(
                 new RegisteredEventBuilder(PipelineStage.PreOperation, MessageType.Create, MessageType.Update).
                     ForEntities(Account.EntityLogicalName, Contact.EntityLogicalName, Lead.EntityLogicalName).
@@ -42,12 +41,12 @@ namespace Example.Plugin.Simple
                     WithExecuteAction(ExecuteCrmAddresses).Build());
         }
 
-        protected override void ExecuteInternal(ILocalPluginContext context)
+        protected override void ExecuteInternal(IExtendedPluginContext context)
         {
             throw new InvalidOperationException("Should Never Get Called!");
         }
 
-        private void ExecuteCrmPhoneNumber(ILocalPluginContext context)
+        private void ExecuteCrmPhoneNumber(IExtendedPluginContext context)
         {
             // Account is used here, but since all Entities have the same exact field names, this works just fine
             var target = context.GetTarget<Entity>();
@@ -66,10 +65,10 @@ namespace Example.Plugin.Simple
                 return;
             }
 
-            entity[attribute] = new String(number.Where(char.IsNumber).ToArray());
+            entity[attribute] = new string(number.Where(char.IsNumber).ToArray());
         }
 
-        private void ExecuteCrmAddresses(ILocalPluginContext context)
+        private void ExecuteCrmAddresses(IExtendedPluginContext context)
         {
             // Account is used here, but since all Entities have the same exact field names, this works just fine
             var target = context.GetTarget<Entity>();

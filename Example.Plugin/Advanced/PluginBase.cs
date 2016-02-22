@@ -7,7 +7,7 @@ using DLaB.Xrm.Plugin;
 
 namespace Example.Plugin.Advanced
 {
-    public abstract class PluginBase : GenericPluginBase<LocalPluginContext>
+    public abstract class PluginBase : DLaBPluginBase
     {
         protected PluginBase(string unsecureConfig, string secureConfig) : base(unsecureConfig,secureConfig)
         {

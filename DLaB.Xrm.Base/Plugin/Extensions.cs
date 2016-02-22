@@ -34,7 +34,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="stage"></param>
         /// <param name="message"></param>
         /// <param name="execute"></param>
-        public static void AddEvent(this List<RegisteredEvent> events, PipelineStage stage, MessageType message, Action<ILocalPluginContext> execute)
+        public static void AddEvent(this List<RegisteredEvent> events, PipelineStage stage, MessageType message, Action<IExtendedPluginContext> execute)
         {
             events.AddEvent(stage, null, message, execute);
         }
@@ -59,7 +59,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="entityLogicalName"></param>
         /// <param name="message"></param>
         /// <param name="execute"></param>
-        public static void AddEvent(this List<RegisteredEvent> events, PipelineStage stage, string entityLogicalName, MessageType message, Action<ILocalPluginContext> execute){
+        public static void AddEvent(this List<RegisteredEvent> events, PipelineStage stage, string entityLogicalName, MessageType message, Action<IExtendedPluginContext> execute){
             events.Add(new RegisteredEvent(stage, message, execute, entityLogicalName));
         }
 
@@ -97,7 +97,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="stage"></param>
         /// <param name="messages"></param>
         /// <param name="execute"></param>
-        public static void AddEvents(this List<RegisteredEvent> events, PipelineStage stage, Action<ILocalPluginContext> execute, params MessageType[] messages)
+        public static void AddEvents(this List<RegisteredEvent> events, PipelineStage stage, Action<IExtendedPluginContext> execute, params MessageType[] messages)
         {
             events.AddEvents(stage, null, execute, messages);
         }
@@ -111,7 +111,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="entityLogicalName"></param>
         /// <param name="execute"></param>
         /// <param name="messages"></param>
-        public static void AddEvents(this List<RegisteredEvent> events, PipelineStage stage, string entityLogicalName, Action<ILocalPluginContext> execute, params MessageType[] messages)
+        public static void AddEvents(this List<RegisteredEvent> events, PipelineStage stage, string entityLogicalName, Action<IExtendedPluginContext> execute, params MessageType[] messages)
         {
             foreach (var message in messages)
             {
@@ -123,7 +123,7 @@ namespace DLaB.Xrm.Plugin
 
         #endregion List<RegisteredEvent>
 
-        #region ILocalPluginContext
+        #region IExtendedPluginContext
 
         #region GetContextInfo
 
@@ -131,7 +131,7 @@ namespace DLaB.Xrm.Plugin
         /// Gets the context information.
         /// </summary>
         /// <returns></returns>
-        public static string GetContextInfo(this ILocalPluginContext context)
+        public static string GetContextInfo(this IExtendedPluginContext context)
         {
             return
                 "**** Context Info ****" + Environment.NewLine +
@@ -147,12 +147,12 @@ namespace DLaB.Xrm.Plugin
         /// This is used in conjunction with PreventPluginHandlerExecution
         /// </summary>
         /// <returns></returns>
-        public static bool HasPluginHandlerExecutionBeenPrevented(this ILocalPluginContext context)
+        public static bool HasPluginHandlerExecutionBeenPrevented(this IExtendedPluginContext context)
         {
             return context.HasPluginHandlerExecutionBeenPreventedInternal(context.Event, GetPreventPluginHandlerSharedVariableName(context.PluginTypeName));
         }
 
-        #endregion ILocalPluginContext
+        #endregion IExtendedPluginContext
 
         #region IPluginExecutionContext
 
@@ -212,7 +212,7 @@ namespace DLaB.Xrm.Plugin
         {
             if (message == null && entityLogicalName == null && stage == null)
             {
-                throw new Exception("At least one parameter for LocalPluginContextBase.CalledFrom must be populated");
+                throw new Exception("At least one parameter for IPluginExecutionContext.CalledFrom must be populated");
             }
             return context.GetContexts().Any(c =>
                 (message == null || c.MessageName == message.Name) &&
@@ -232,7 +232,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="context">The context</param>
         /// <param name="imageName">Name of the image.</param>
         /// <returns></returns>
-        public static T CoallesceTargetWithPreEntity<T>(this IPluginExecutionContext context, string imageName = LocalPluginContextBase.PluginImageNames.PreImage) where T : Entity
+        public static T CoallesceTargetWithPreEntity<T>(this IPluginExecutionContext context, string imageName = DLaBExtendedPluginContextBase.PluginImageNames.PreImage) where T : Entity
         {
             return DereferenceTarget<T>(context).CoallesceEntity(context.GetPreEntity<T>(imageName));
         }
@@ -246,7 +246,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="context">The context.</param>
         /// <param name="imageName">Name of the image.</param>
         /// <returns></returns>
-        public static T CoallesceTargetWithPostEntity<T>(this IPluginExecutionContext context, string imageName = LocalPluginContextBase.PluginImageNames.PostImage) where T : Entity
+        public static T CoallesceTargetWithPostEntity<T>(this IPluginExecutionContext context, string imageName = DLaBExtendedPluginContextBase.PluginImageNames.PostImage) where T : Entity
         {
             return DereferenceTarget<T>(context).CoallesceEntity(context.GetPostEntity<T>(imageName));
         }
@@ -462,7 +462,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="context"></param>
         /// <param name="imageName"></param>
         /// <returns></returns>
-        public static T GetPreEntity<T>(this IPluginExecutionContext context, string imageName = LocalPluginContextBase.PluginImageNames.PreImage) where T : Entity
+        public static T GetPreEntity<T>(this IPluginExecutionContext context, string imageName = DLaBExtendedPluginContextBase.PluginImageNames.PreImage) where T : Entity
         {
             return GetEntity<T>(context.PreEntityImages, imageName);
         }
@@ -474,7 +474,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="context"></param>
         /// <param name="imageName"></param>
         /// <returns></returns>
-        public static T GetPostEntity<T>(this IPluginExecutionContext context, string imageName = LocalPluginContextBase.PluginImageNames.PostImage) where T : Entity
+        public static T GetPostEntity<T>(this IPluginExecutionContext context, string imageName = DLaBExtendedPluginContextBase.PluginImageNames.PostImage) where T : Entity
         {
             return GetEntity<T>(context.PostEntityImages, imageName);
         }
@@ -523,7 +523,7 @@ namespace DLaB.Xrm.Plugin
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static T GetTarget<T>(this ILocalPluginContext context) where T : Entity
+        public static T GetTarget<T>(this IExtendedPluginContext context) where T : Entity
         {
             // Obtain the target business entity from the input parmameters.
             try

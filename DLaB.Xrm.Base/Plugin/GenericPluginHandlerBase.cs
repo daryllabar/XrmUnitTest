@@ -7,8 +7,8 @@ namespace DLaB.Xrm.Plugin
     /// <summary>
     /// Plugin Handler Base.  Allows for Registered Events, preventing infinite loops, and auto logging
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public abstract class GenericPluginHandlerBase<T> : IRegisteredEventsPluginHandler where T : ILocalPluginContext
+    // ReSharper disable once InconsistentNaming
+    public abstract class GenericPluginHandlerBase<T> : IRegisteredEventsPluginHandler where T: IExtendedPluginContext
     {
         #region Properties
 
@@ -36,7 +36,7 @@ namespace DLaB.Xrm.Plugin
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GenericPluginHandlerBase{T}"/> class.
+        /// Initializes a new instance of the <see cref="GenericPluginHandlerBase"/> class.
         /// </summary>
         protected GenericPluginHandlerBase()
         {
@@ -63,11 +63,7 @@ namespace DLaB.Xrm.Plugin
         /// </summary>
         /// <param name="serviceProvider">The service provider.</param>
         /// <returns></returns>
-        protected virtual T CreateLocalPluginContext(IServiceProvider serviceProvider)
-        {
-            return (T) (ILocalPluginContext) new LocalPluginContextBase(serviceProvider, this); 
-            
-        }
+        protected abstract T CreatePluginContext(IServiceProvider serviceProvider);
 
         #endregion Abstract Methods / Properties
 
@@ -92,8 +88,8 @@ namespace DLaB.Xrm.Plugin
                 throw new ArgumentNullException(nameof(serviceProvider));
             }
 
-            var context = CreateLocalPluginContext(serviceProvider);
-            
+            var context = CreatePluginContext(serviceProvider);
+
             try
             {
                 context.TraceFormat("Entered {0}.Execute()", context.PluginTypeName);
@@ -101,18 +97,18 @@ namespace DLaB.Xrm.Plugin
                 if (context.Event == null)
                 {
                     context.TraceFormat("No Registered Event Found for Event: {0}, Entity: {1}, and Stage: {2}!", context.MessageName, context.PrimaryEntityName, context.Stage);
-                    return; 
+                    return;
                 }
                 if (PreventRecursiveCall(context))
                 {
                     context.Trace("Duplicate Recursive Call Prevented!");
-                    return; 
+                    return;
                 }
 
                 if (context.HasPluginHandlerExecutionBeenPrevented())
                 {
                     context.Trace("Context has Specified Call to be Prevented!");
-                    return; 
+                    return;
                 }
 
                 ExecuteRegisteredEvent(context);
@@ -169,7 +165,7 @@ namespace DLaB.Xrm.Plugin
         /// Methods that gets called in the finally block of the Execute
         /// </summary>
         /// <param name="context">The context.</param>
-        protected virtual void PostExecute(T context) { }
+        protected virtual void PostExecute(IExtendedPluginContext context) { }
 
         /// <summary>
         /// Sets the configuration values.
@@ -188,7 +184,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="context">The context.</param>
         private void ExecuteRegisteredEvent(T context)
         {
-            var execute = context.Event.Execute == null ? ExecuteInternal : new Action<T>(c => context.Event.Execute(c)) ;
+            var execute = context.Event.Execute == null ? ExecuteInternal : new Action<T>(c => context.Event.Execute(c));
 
             context.TraceFormat("{0}.{1} is Executing for Entity: {2}, Message: {3}",
                 context.PluginTypeName,
@@ -204,7 +200,7 @@ namespace DLaB.Xrm.Plugin
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        protected virtual bool PreventRecursiveCall(ILocalPluginContext context)
+        protected virtual bool PreventRecursiveCall(IExtendedPluginContext context)
         {
             if (context.Event.Message == MessageType.Delete)
             {

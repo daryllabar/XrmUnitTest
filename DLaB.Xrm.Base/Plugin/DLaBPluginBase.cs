@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using DLaB.Xrm.Plugin;
 
 namespace DLaB.Xrm.Plugin
 {
-    public abstract class GenericPluginBase<T> : IRegisteredEventsPlugin where T : ILocalPluginContext
+    // ReSharper disable once InconsistentNaming
+    public abstract class DLaBPluginBase : IRegisteredEventsPlugin 
     {
         private readonly object _handlerLock = new object();
-        private GenericPluginHandlerBase<T> _handler;
+        private IRegisteredEventsPluginHandler _handler;
         private volatile bool _isIntialized;
 
         protected string SecureConfig { get; }
         protected string UnsecureConfig { get; }
         public IEnumerable<RegisteredEvent> RegisteredEvents => ThreadSafeGetOrCreateHandler().RegisteredEvents;
 
-        protected GenericPluginBase(string unsecureConfig, string secureConfig)
+        protected DLaBPluginBase(string unsecureConfig, string secureConfig)
         {
             UnsecureConfig = unsecureConfig;
             SecureConfig = secureConfig;
@@ -44,6 +44,6 @@ namespace DLaB.Xrm.Plugin
             return _handler;
         }
 
-        protected abstract GenericPluginHandlerBase<T> GetPluginHandler();
+        protected abstract IRegisteredEventsPluginHandler GetPluginHandler();
     }
 }

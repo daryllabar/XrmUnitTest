@@ -5,9 +5,10 @@ using Microsoft.Xrm.Sdk;
 namespace DLaB.Xrm.Plugin
 {
     /// <summary>
-    /// The Implementation of the ILocalPluginContext
+    /// The Implementation of the IExtendedPluginContext
     /// </summary>
-    public class LocalPluginContextBase : ILocalPluginContext
+    // ReSharper disable once InconsistentNaming
+    public class DLaBExtendedPluginContextBase : IExtendedPluginContext
     {
         #region Properties
 
@@ -44,7 +45,7 @@ namespace DLaB.Xrm.Plugin
 
         #endregion // IPluginContext Properties
 
-        #region ILocalPluginContext Properties
+        #region IExtendedPluginContext Properties
 
         /// <summary>
         /// Gets the isolation mode of the plugin assembly.
@@ -109,7 +110,7 @@ namespace DLaB.Xrm.Plugin
         /// </summary>
         public ITracingService TracingService { get; private set; }
 
-        #endregion ILocalPluginContext Properties
+        #endregion IExtendedPluginContext Properties
 
         #endregion Properties
 
@@ -135,7 +136,7 @@ namespace DLaB.Xrm.Plugin
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LocalPluginContextBase"/> class.
+        /// Initializes a new instance of the <see cref="DLaBExtendedPluginContextBase"/> class.
         /// </summary>
         /// <param name="serviceProvider">The service provider.</param>
         /// <param name="plugin">The plugin.</param>
@@ -144,7 +145,7 @@ namespace DLaB.Xrm.Plugin
         /// or
         /// plugin
         /// </exception>
-        public LocalPluginContextBase(IServiceProvider serviceProvider, IRegisteredEventsPluginHandler plugin)
+        public DLaBExtendedPluginContextBase(IServiceProvider serviceProvider, IRegisteredEventsPluginHandler plugin)
         {
             if (serviceProvider == null)
             {

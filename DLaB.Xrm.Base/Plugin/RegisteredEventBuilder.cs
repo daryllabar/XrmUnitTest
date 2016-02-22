@@ -22,7 +22,7 @@ namespace DLaB.Xrm.Plugin
         /// <value>
         /// The execute.
         /// </value>
-        protected Action<ILocalPluginContext> Execute { get; set; }
+        protected Action<IExtendedPluginContext> Execute { get; set; }
         /// <summary>
         /// Gets or sets the message types.
         /// </summary>
@@ -74,7 +74,7 @@ namespace DLaB.Xrm.Plugin
         /// </summary>
         /// <param name="execute">Action that is invoked when the Plugin Executes.</param>
         /// <returns></returns>
-        public RegisteredEventBuilder WithExecuteAction<T>(Action<T> execute) where T : ILocalPluginContext
+        public RegisteredEventBuilder WithExecuteAction<T>(Action<T> execute) where T : IExtendedPluginContext
         {
             Execute = context => execute((T)context);
             return this;
@@ -85,7 +85,7 @@ namespace DLaB.Xrm.Plugin
         /// </summary>
         /// <param name="execute">Action that is invoked when the Plugin Executes.</param>
         /// <returns></returns>
-        public RegisteredEventBuilder WithExecuteAction(Action<ILocalPluginContext> execute)
+        public RegisteredEventBuilder WithExecuteAction(Action<IExtendedPluginContext> execute)
         {
             Execute = execute;
             return this;

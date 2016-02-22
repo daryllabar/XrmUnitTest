@@ -17,6 +17,12 @@ namespace DLaB.Xrm.Plugin
         List<RegisteredEvent> RegisteredEvents { get; }
 
         /// <summary>
+        /// Adds all registered events to the RegisteredEvents Property;
+        /// </summary>
+        void RegisterEvents();
+
+
+        /// <summary>
         /// Sets the configuration values.
         /// </summary>
         /// <param name="unsecureConfig">The unsecure configuration.</param>

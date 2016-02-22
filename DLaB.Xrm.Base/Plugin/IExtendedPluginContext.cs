@@ -6,7 +6,7 @@ namespace DLaB.Xrm.Plugin
     /// <summary>
     /// Plugin Context Interface for Handling 
     /// </summary>
-    public interface ILocalPluginContext : IPluginExecutionContext
+    public interface IExtendedPluginContext : IPluginExecutionContext
     {
         #region Properties
 

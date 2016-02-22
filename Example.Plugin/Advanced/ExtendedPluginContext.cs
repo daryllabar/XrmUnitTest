@@ -8,9 +8,9 @@ using DLaB.Xrm.Plugin;
 namespace Example.Plugin.Advanced
 {
     // Create a Custom Plugin Context in case there are certain things that should be overridden
-    public class LocalPluginContext : LocalPluginContextBase
+    public class ExtendedPluginContext : DLaBExtendedPluginContextBase
     {
-        public LocalPluginContext(IServiceProvider serviceProvider, IRegisteredEventsPluginHandler plugin) : base(serviceProvider, plugin)
+        public ExtendedPluginContext(IServiceProvider serviceProvider, IRegisteredEventsPluginHandler plugin) : base(serviceProvider, plugin)
         {
         }
     }
