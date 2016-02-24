@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
+using Microsoft.Xrm.Sdk;
 
 // ReSharper disable InconsistentNaming
 
@@ -37,6 +38,11 @@ namespace DLaB.Xrm.Sandbox.Serialization
         public KeyValuePairOfstringanyType(string key, object value)
         {
             this.key = key;
+            var reference = value as EntityReference;
+            if (reference != null)
+            {
+                value = new SerializableEntityReference(reference); 
+            }
             this.value = value;
         }
 

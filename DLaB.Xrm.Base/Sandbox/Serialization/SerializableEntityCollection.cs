@@ -5,7 +5,7 @@ using Microsoft.Xrm.Sdk;
 namespace DLaB.Xrm.Sandbox.Serialization
 {
     /// <summary>
-    /// Sandbox save Serializable Entity Collection
+    /// Sandbox Serializable Entity Collection
     /// </summary>
     [DataContract(Name = "EntityCollection", Namespace = "http://schemas.microsoft.com/xrm/2011/Contracts")]
     public class SerializableEntityCollection

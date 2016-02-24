@@ -61,6 +61,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\SerializableAttributeCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\SerializableEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\SerializableEntityCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\SerializableEntityReference.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\SerializableFormattedValueCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\SerializableKeyAttributeCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\SerializableRelatedEntityCollection.cs" />
