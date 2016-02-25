@@ -30,13 +30,22 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\DLaB.Xrm.Test.2015.XML</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'LocalNuget|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\LocalNuget\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AntiXSSLibrary, Version=4.2.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CrmSdk.Extensions.7.1.0.1\lib\net45\AntiXSSLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DLaB.Common, Version=1.0.1.3, Culture=neutral, PublicKeyToken=046d6d5d1685e1b4, processorArchitecture=MSIL">
-      <HintPath>..\packages\DLaB.Common.1.0.1.3\lib\net452\DLaB.Common.dll</HintPath>
+      <HintPath>..\packages\DLaB.Common.1.0.1.4\lib\net452\DLaB.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DLaB.Xrm.2015, Version=1.1.3.11, Culture=neutral, PublicKeyToken=4da76fa437c5906e, processorArchitecture=MSIL">

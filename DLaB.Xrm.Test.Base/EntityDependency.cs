@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using DLaB.Common;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Client;
 
 namespace DLaB.Xrm.Test
 {
@@ -37,22 +38,13 @@ namespace DLaB.Xrm.Test
         private readonly object _readWriteLock = new object();
         private int CurrentVersion { get; set; }
         private int TypesCopyVersion { get; set; }
-        private ReadOnlyCollection<string> TypesImmutableCopy { get; set; }
+        private ReadOnlyCollection<EntityDependencyInfo> TypesImmutableCopy { get; set; }
 
         #endregion Multithreaded Management
 
-        private LinkedList<EntityDependencyInfo> Types { get; }
-        private Dictionary<string, EntityDependencyInfo> Infos { get; }
-        private ConcurrentBag<string> Conflicts { get; }
+        private LinkedList<EntityDependencyNodeInfo> Types { get; set; }
+        private Dictionary<string, EntityDependencyNodeInfo> Infos { get; }
         private ConcurrentQueue<string> DependencyOrderLog { get; }
-
-        /// <summary>
-        /// Gets the conflicting entity dependencies.
-        /// </summary>
-        /// <value>
-        /// The conflicting entity order.
-        /// </value>
-        public IEnumerable<string> CircularCreationConflicts => Conflicts;
 
         /// <summary>
         /// Gets the LogicalNames of Entities, in the order in which they can safely be created without causing an error caused by a relationship constraint i.e. Create entity without linked entities existing
@@ -60,7 +52,7 @@ namespace DLaB.Xrm.Test
         /// <value>
         /// The entity deletion order.
         /// </value>
-        public IEnumerable<string> EntityCreationOrder => GetEntityCreationOrder();
+        public IEnumerable<EntityDependencyInfo> EntityCreationOrder => GetEntityCreationOrder();
 
         /// <summary>
         /// Gets the LogicalNames of Entities, in the order in which they can safely be deleted without causing an error caused by a relationship constraint i.e. Delete Contact before Opprotunity.
@@ -68,7 +60,7 @@ namespace DLaB.Xrm.Test
         /// <value>
         /// The entity deletion order.
         /// </value>
-        public IEnumerable<string> EntityDeletionOrder => EntityCreationOrder.Reverse();
+        public IEnumerable<string> EntityDeletionOrder => EntityCreationOrder.Reverse().Select(v => v.LogicalName);
 
         /// <summary>
         /// Gets the log of the structuring of the DepedencyOrder
@@ -78,39 +70,18 @@ namespace DLaB.Xrm.Test
         /// </value>
         public IEnumerable<string> Log => DependencyOrderLog;
 
-        private Queue<string> _circularReferenceResolutionOrder = new Queue<string>(new [] { "account", "contact", "lead"});
-
-        /// <summary>
-        /// Defines how to resolve Circular Dependencies that may occur when creating Entities
-        /// </summary>
-        /// <value>
-        /// The circular reference resolution order.
-        /// </value>
-        public IEnumerable<string> CircularReferenceResolutionOrder
-        {
-            private get { return _circularReferenceResolutionOrder; }
-            set
-            {
-                lock (_readWriteLock)
-                {
-                    DependencyOrderLog.Enqueue($"CircularReferenceResolutionOrder updated from {_circularReferenceResolutionOrder.ToCsv()} to {value.ToCsv()}");
-                    _circularReferenceResolutionOrder = new Queue<string>(value);
-                }
-            }
-        }
-
         #endregion Properties
 
         private EntityDependency()
         {
-            Types = new LinkedList<EntityDependencyInfo>();
-            Infos = new Dictionary<string, EntityDependencyInfo>();
-            Conflicts = new ConcurrentBag<string>();
+            Types = new LinkedList<EntityDependencyNodeInfo>();
+            Infos = new Dictionary<string, EntityDependencyNodeInfo>();
             DependencyOrderLog = new ConcurrentQueue<string>();
             CurrentVersion = 0;
             TypesCopyVersion = 0;
-            TypesImmutableCopy = new ReadOnlyCollection<string>(new List<string>());
+            TypesImmutableCopy = new ReadOnlyCollection<EntityDependencyInfo>(new List<EntityDependencyInfo>());
         }
+
         /// <summary>
         /// Adds the specified logical name to the collection of entities that are mapped.  Entities are cached so no work is performed when an entity type is added a second time
         /// </summary>
@@ -137,81 +108,167 @@ namespace DLaB.Xrm.Test
         private void SingleThreadAdd(string logicalName)
         {
             DependencyOrderLog.Enqueue("Processing entity type: " + logicalName);
-            var info = new EntityDependencyInfo(logicalName, this);
+
+            var info = new EntityDependencyNodeInfo(logicalName);
             Infos.Add(logicalName, info);
 
             if (Types.Count == 0)
             {
-                DependencyOrderLog.Enqueue("No values in the list.");
+                DependencyOrderLog.Enqueue("No values in the list.  Adding it as first.");
                 info.Node = Types.AddFirst(info);
                 return;
             }
 
-            if (Types.First.Value.DependsOn(info))
+            var lastDependOn = Types.LastOrDefault(t => info.DependsOn(t));
+            if (lastDependOn == null)
             {
-                DependencyOrderLog.Enqueue("The first value depends on the new info value.");
-                info.Node = Types.AddFirst(info);
-
-                /* Check for any Types that this new type is dependent on.
-                 * Consider the Case of A -> B and B -> C
-                 * A is added first, it becomes first.  C is added next, and it has no dependency on A or visa versa, so it is added last, then B is added, and it is added first, but C isn't moved
-                 * Need to move C to the front, or list discrepency
-                 */
-
-                var existingDependent = Types.Skip(1).FirstOrDefault(existingInfo => info.DependsOn(existingInfo));
-                if (existingDependent == null)
-                {
-                    DependencyOrderLog.Enqueue("Finished Processing " + logicalName);
-                    return;
-                }
-
-                DependencyOrderLog.Enqueue(logicalName + " was added first, but existing dependency " + existingDependent.LogicalName + " was found!  Reordering list.");
-
-
-                foreach (var type in Types)
-                {
-                    if (type == existingDependent)
-                    {
-                        DependencyOrderLog.Enqueue("Have walked the entire list and come to the dependency that needs to be moved without finding anything that it depends on.  Moving dependency to front.");
-                        Types.Remove(existingDependent);
-                        existingDependent.Node = Types.AddFirst(existingDependent);
-                        DependencyOrderLog.Enqueue("New Order: " + string.Join(",", Types.Select(t => t.LogicalName)));
-                        return;
-                    }
-                    if (type.DependsOn(existingDependent))
-                    {
-                        var conflict = string.Format("Circular reference found!  {0} was added, which depends on {1}, but {2} depends on {0} and was found before {1}.  If {1} is needed first, add it after {0}", logicalName, existingDependent.LogicalName, type.LogicalName);
-                        Conflicts.Add(conflict);
-                        DependencyOrderLog.Enqueue(conflict);
-                    }
-                }
-            }
-
-            // Try to add the new type as far to the end of the list as possible
-            var dependent = Types.Skip(1).FirstOrDefault(existingInfo => existingInfo.DependsOn(info));
-            if (dependent == null)
-            {
-                DependencyOrderLog.Enqueue("No dependent type found.  Adding to end of list.");
+                DependencyOrderLog.Enqueue($"{logicalName} does not depend any any already processed types.  Adding to end.");
                 info.Node = Types.AddLast(info);
+                return;
             }
-            else
+
+
+            if (!lastDependOn.DependsOn(info) && !Types.TakeWhile(t => !t.Equals(lastDependOn)).Any(t => t.DependsOn(info)))
             {
-                DependencyOrderLog.Enqueue("Found dependent " + dependent.LogicalName + ".   Adding before.");
-                info.Node = Types.AddBefore(dependent.Node, info);
+                DependencyOrderLog.Enqueue($"No type that has already been processed that occurs before the last type that {logicalName} depends on ({lastDependOn.LogicalName}), depends on the new type.  Adding to end.");
+                Types.AddAfter(lastDependOn.Node, info);
+                return;
             }
+
+            DependencyOrderLog.Enqueue("Reordering Types");
+            var newOrder = new LinkedList<EntityDependencyNodeInfo>();
+            foreach (var type in Types)
+            {
+                // Clear IsCurrentlyCyclic
+                foreach (var dependency in type.Dependencies.Values.SelectMany(a => a))
+                {
+                    dependency.IsCurrentlyCyclic = false;
+                }
+
+            }
+            foreach (var type in Infos.Values)
+            {
+                PopulateNewOrder(newOrder, type);
+            }
+
+            Types = newOrder;
+            DependencyOrderLog.Enqueue($"New Order: {string.Join(", ", Types.Select(t => t.LogicalName))}");
+
+            // The new type depends on types that come after types that depend on it with the current sorting.  Attempt to perform a topological sort.
+            // Check to see 
+            //if ().First.Value.DependsOn(info))
+            //{
+            //    DependencyOrderLog.Enqueue("The first value depends on the new info value.");
+            //    info.Node = Types.AddFirst(info);
+
+            //    /* Check for any Types that this new type is dependent on.
+            //     * Consider the Case of A -> B and B -> C
+            //     * A is added first, it becomes first.  C is added next, and it has no dependency on A or visa versa, so it is added last, then B is added, and it is added first, but C isn't moved
+            //     * Need to move C to the front, or list discrepency
+            //     */
+
+            //    var existingDependent = Types.Skip(1).FirstOrDefault(existingInfo => info.DependsOn(existingInfo));
+            //    if (existingDependent == null)
+            //    {
+            //        DependencyOrderLog.Enqueue("Finished Processing " + logicalName);
+            //        return;
+            //    }
+
+            //    DependencyOrderLog.Enqueue(logicalName + " was added first, but existing dependency " + existingDependent.LogicalName + " was found!  Reordering list.");
+
+
+            //    foreach (var type in Types)
+            //    {
+            //        if (type == existingDependent)
+            //        {
+            //            DependencyOrderLog.Enqueue("Have walked the entire list and come to the dependency that needs to be moved without finding anything that it depends on.  Moving dependency to front.");
+            //            Types.Remove(existingDependent);
+            //            existingDependent.Node = Types.AddFirst(existingDependent);
+            //            DependencyOrderLog.Enqueue("New Order: " + string.Join(",", Types.Select(t => t.LogicalName)));
+            //            return;
+            //        }
+            //        if (type.DependsOn(existingDependent))
+            //        {
+            //            var conflict = string.Format("Circular reference found!  {0} was added, which depends on {1}, but {2} depends on {0} and was found before {1}.  If {1} is needed first, add it after {0}", logicalName, existingDependent.LogicalName, type.LogicalName);
+
+            //            DependencyOrderLog.Enqueue(conflict);
+            //        }
+            //    }
+            //}
+
+            //// Try to add the new type as far to the end of the list as possible
+            ////var dependent = Types.Skip(1).FirstOrDefault(existingInfo => existingInfo.DependsOn(info));
+            //if (dependent == null)
+            //{
+            //    DependencyOrderLog.Enqueue("No dependent type found.  Adding to end of list.");
+            //    info.Node = Types.AddLast(info);
+            //}
+            //else
+            //{
+            //    DependencyOrderLog.Enqueue("Found dependent " + dependent.LogicalName + ".   Adding before.");
+            //    info.Node = Types.AddBefore(dependent.Node, info);
+            //}
+        }
+
+        /// <summary>
+        /// Recursively Populates the new order.
+        /// </summary>
+        /// <param name="newOrder">The new order.</param>
+        /// <param name="type">The type.</param>
+        /// <exception cref="System.ArgumentException">Cyclic dependency found.</exception>
+        private void PopulateNewOrder(LinkedList<EntityDependencyNodeInfo> newOrder, EntityDependencyNodeInfo type)
+        {
+            if (newOrder.Contains(type))
+            {
+                // Already visited
+                if (type.IsCurrentlyBeingProcessed)
+                {
+                    throw new ArgumentException("Cyclic dependency found.");
+                }
+                return;
+            }
+
+            type.IsCurrentlyBeingProcessed = true;
+
+            foreach (var dependency in type.Dependencies.
+                Where(d => Infos.ContainsKey(d.Key)).
+                Select(d => new {Type = Infos[d.Key], DependentAttributes = d.Value}))
+            {
+                if (dependency.Type.IsCurrentlyBeingProcessed)
+                {
+                    // Already Visited
+                    foreach (var att in dependency.DependentAttributes)
+                    {
+                        att.IsCurrentlyCyclic = true;
+                    }
+                }
+                else
+                {
+                    PopulateNewOrder(newOrder, dependency.Type);
+                }
+            }
+
+            type.IsCurrentlyBeingProcessed = false;
+            newOrder.AddLast(type);
+
         }
 
         /// <summary>
         /// Gets the entity creation order.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<string> GetEntityCreationOrder()
+        private IEnumerable<EntityDependencyInfo> GetEntityCreationOrder()
         {
             lock (_readWriteLock)
             {
                 if (TypesCopyVersion != CurrentVersion)
                 {
-                    TypesImmutableCopy = new ReadOnlyCollection<string>(Types.Select(e => e.LogicalName).ToList());
+                    TypesImmutableCopy = new ReadOnlyCollection<EntityDependencyInfo>(
+                            Types.Select(e => 
+                                new EntityDependencyInfo(e.LogicalName, e.Dependencies.Values.
+                                                                        SelectMany(v => v).
+                                                                        Where(v => v.IsCurrentlyCyclic).
+                                                                        Select(v => v.AttributeName))).ToList());
                     TypesCopyVersion = CurrentVersion;
                 }
             }
@@ -219,87 +276,88 @@ namespace DLaB.Xrm.Test
         }
 
         [DebuggerDisplay("{LogicalName}")]
-        private class EntityDependencyInfo
+        private class EntityDependencyNodeInfo
         {
-            //public HashSet<string> Dependencies { get; }
-            public HashSet<string> Dependents { get; }
-            public LinkedListNode<EntityDependencyInfo> Node { get; set; }
+            /// <summary>
+            /// Dictionary with the list of attributes whose value must exist before the entity does, keyed by logical name of the type of attribute
+            /// </summary>
+            /// <value>
+            /// The dependents.
+            /// </value>
+            public Dictionary<string, List<CyclicAttribute>> Dependencies { get; }
+
+            public LinkedListNode<EntityDependencyNodeInfo> Node { get; set; }
             public string LogicalName { get; }
 
-            private static readonly HashSet<string> PropertiesToIgnore = new HashSet<string>{
-            "createdby",
-            "createdonbehalfby",
-            "modifiedby",
-            "modifiedonbehalfby",
-            "ownerid",
-            "owningbusinessunit",
-            "owningteam",
-            "owninguser"};
+            /// <summary>
+            /// Gets or sets a value indicating whether this instance is currently being processed.
+            /// </summary>
+            /// <value>
+            /// <c>true</c> if this instance is currently being processed; otherwise, <c>false</c>.
+            /// </value>
+            public bool IsCurrentlyBeingProcessed { get; set; }
 
-            public EntityDependencyInfo(string logicalName, EntityDependency dependency)
+            private static readonly HashSet<string> PropertiesToIgnore = new HashSet<string>
+            {
+                "createdby",
+                "createdonbehalfby",
+                "modifiedby",
+                "modifiedonbehalfby",
+                "ownerid",
+                "owningbusinessunit",
+                "owningteam",
+                "owninguser"
+            };
+
+            public EntityDependencyNodeInfo(string logicalName)
             {
                 LogicalName = logicalName;
-                //Dependencies = new HashSet<string>();
-                Dependents = new HashSet<string>();
+                Dependencies = new Dictionary<string, List<CyclicAttribute>>();
+                IsCurrentlyBeingProcessed = false;
 
-                var properties = TestBase.GetType(logicalName).GetProperties();
-                PopulateDependencies(dependency, properties);
+                PopulateDependencies(logicalName);
             }
 
             /// <summary>
             /// Returns true if the Entity Dependency Info depends on given Entity Dependency Info.
             /// </summary>
-            /// <param name="info">The info to check to see if it is a dependency.</param>
+            /// <param name="nodeInfo">The info to check to see if it is a dependency.</param>
             /// <returns></returns>
-            public bool DependsOn(EntityDependencyInfo info)
+            public bool DependsOn(EntityDependencyNodeInfo nodeInfo)
             {
                 //return Dependencies.Contains(info.LogicalName) || info.Dependents.Contains(LogicalName);
-                return info.Dependents.Contains(LogicalName);
+                return Dependencies.ContainsKey(nodeInfo.LogicalName);
             }
 
-            private void PopulateDependencies(EntityDependency dependency, IEnumerable<PropertyInfo> properties)
+            private void PopulateDependencies(string logicalName)
             {
-                var preference = dependency.CircularReferenceResolutionOrder.ToList();
-                var circularDependencies = preference.Contains(LogicalName) ? new HashSet<string>(preference.TakeWhile(p => p != LogicalName)) : new HashSet<string>();
-                foreach (var property in properties.Where(p => !PropertiesToIgnore.Contains(p.Name.ToLower())))
+                var properties = TestBase.GetType(logicalName).GetProperties();
+                foreach (var property in properties.Where(p =>
+                    // Skip Properties to Ignore
+                    !PropertiesToIgnore.Contains(p.Name.ToLower()) &&
+                    // Only process Properties that contain an attribute logical name, and a Relationship Schema Name
+                    p.ContainsCustomAttributeTypes(typeof (AttributeLogicalNameAttribute), typeof (RelationshipSchemaNameAttribute))))
                 {
-                    //if (property.PropertyType == typeof(EntityReference))
-                    //{
-                    //    var attribute = property.GetCustomAttribute(typeof(AttributeLogicalNameAttribute)) as AttributeLogicalNameAttribute;
-                    //    if (attribute == null)
-                    //    {
-                    //        continue;
-                    //    }
-                    //    Dependencies.Add(attribute.LogicalName);
-                    //    continue;
-                    //}
-
-                    if (!property.PropertyType.IsGenericType || property.PropertyType.GetGenericTypeDefinition() != typeof(IEnumerable<>))
-                    {
-                        continue;
-                    }
-
-                    var genericTypes = property.PropertyType.GetGenericArguments();
-                    if (genericTypes.Length != 1) { continue; }
-                    var genericType = genericTypes[0];
-                    if (!typeof(Entity).IsAssignableFrom(genericType))
-                    {
-                        continue;
-                    }
-
-                    var dependent = EntityHelper.GetEntityLogicalName(genericType);
-                    if (circularDependencies.Contains(dependent))
-                    {
-                        if (dependent != LogicalName)
-                        {
-                            dependency.DependencyOrderLog.Enqueue($"Circular Reference Resolution Order has defined that {LogicalName} should not be dependent on {dependent}.  The dependency has been removed.");
-                        }
-                    }
-                    else
-                    {
-                        Dependents.Add(dependent);
-                    }
+                    var attribute = property.GetCustomAttribute<AttributeLogicalNameAttribute>();
+                    var propertyType = property.PropertyType.GetCustomAttribute<EntityLogicalNameAttribute>(true);
+                    Dependencies.AddOrAppend(propertyType.LogicalName, new CyclicAttribute(attribute.LogicalName));
                 }
+            }
+        }
+
+        /// <summary>
+        /// Allows
+        /// </summary>
+        [DebuggerDisplay("{AttributeName}, {IsCurrentlyCyclic}")]
+        private class CyclicAttribute
+        {
+            public string AttributeName { get; }
+            public bool IsCurrentlyCyclic { get; set; }
+
+            public CyclicAttribute(string name)
+            {
+                AttributeName = name;
+                IsCurrentlyCyclic = false;
             }
         }
     }

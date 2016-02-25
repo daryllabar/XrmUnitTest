@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DLaB.Common</id>
-    <version>1.0.1.3</version>
+    <version>1.0.1.4</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>
@@ -10,7 +10,7 @@
     <iconUrl>https://raw.githubusercontent.com/daryllabar/XrmUnitTest/master/DLaB_Dynamics_64x64.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Contains some basic extensions and a config helper</description>
-    <releaseNotes>Changed Dll Versioning to match NuGet</releaseNotes>
+    <releaseNotes>Added ContainsCustomAttributeTypes Extension Method</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>C# Common Utility Extensions</tags>
   </metadata>
