@@ -327,10 +327,10 @@ namespace DLaB.Xrm.Test.Builders
             public Dictionary<Guid, Entity> Create(IOrganizationService service)
             {
                 var results = new Dictionary<Guid, Entity>();
-                foreach (var name in EntityDependency.Mapper.EntityCreationOrder)
+                foreach (var info in EntityDependency.Mapper.EntityCreationOrder)
                 {
                     List<BuilderInfo> values;
-                    if (!BuildersByEntityType.TryGetValue(name, out values))
+                    if (!BuildersByEntityType.TryGetValue(info.LogicalName, out values))
                     {
                         // The Entity Creation Order is a Singleton.
                         // If this continue occurs, most likely another instance of a Crm Environment Builder used a type that wasn't utilized by this instance
@@ -352,10 +352,10 @@ namespace DLaB.Xrm.Test.Builders
                         }
                         catch (Exception ex)
                         {
-                            var entityName = value.Id.Entity == null ? name : $"Entity {value.Id.LogicalName}{Environment.NewLine}{value.Id.Entity.ToStringAttributes()}";
+                            var entityName = value.Id.Entity == null ? info.LogicalName : $"Entity {value.Id.LogicalName}{Environment.NewLine}{value.Id.Entity.ToStringAttributes()}";
                             if (string.IsNullOrWhiteSpace(entityName))
                             {
-                                entityName = name;
+                                entityName = info.LogicalName;
                             }
                             throw new CreationFailureException($"An error occured attempting to create {entityName}.{Environment.NewLine}{ex.Message}", ex);
                         }

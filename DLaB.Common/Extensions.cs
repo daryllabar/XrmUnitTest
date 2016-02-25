@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using DLaB.Common.Exceptions;
@@ -715,6 +716,38 @@ namespace DLaB.Common
         }
 
         #endregion IExtensibleDataObject
+
+        #region MemberInfo
+
+        /// <summary>
+        /// Determines whether the Member Info contains all the specified custom attribute types.
+        /// </summary>
+        /// <param name="property">The property.</param>
+        /// <param name="attributes">The attributes.</param>
+        /// <returns></returns>
+        public static bool ContainsCustomAttributeTypes(this MemberInfo property, params Type[] attributes)
+        {
+            if (attributes.Length == 0) { return true; }
+            if (property.CustomAttributes.Count() < attributes.Length) { return false;}
+
+            var notFoundAttributes = new HashSet<Type>(attributes);
+            foreach (var attributeType in property.CustomAttributes.Select(a => a.AttributeType))
+            {
+                if (notFoundAttributes.Contains(attributeType))
+                {
+                    notFoundAttributes.Remove(attributeType);
+                }
+
+                if (notFoundAttributes.Count == 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        #endregion MemberInfo
 
         #region Object
 

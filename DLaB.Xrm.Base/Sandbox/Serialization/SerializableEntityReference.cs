@@ -70,8 +70,15 @@ namespace DLaB.Xrm.Sandbox.Serialization
         /// </returns>
         public ExtensionDataObject ExtensionData { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SerializableEntityReference"/> class.
+        /// </summary>
         public SerializableEntityReference() { KeyAttributes = new SerializableKeyAttributeCollection(); }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SerializableEntityReference"/> class.
+        /// </summary>
+        /// <param name="entityReference">The entity reference.</param>
         public SerializableEntityReference(EntityReference entityReference)
         {
             Id = entityReference.Id;

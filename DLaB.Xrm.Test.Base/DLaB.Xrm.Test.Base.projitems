@@ -27,6 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SystemUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\WebResource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityDependency.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityDependencyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\CreationFailureException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\NotConfiguredException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />

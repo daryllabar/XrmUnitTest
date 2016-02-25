@@ -5,7 +5,13 @@
     /// </summary>
     public class CrmEnvironmentBuilder : DLaB.Xrm.Test.Builders.CrmEnvironmentBuilderBase<CrmEnvironmentBuilder>
     {
-        protected override CrmEnvironmentBuilder This { get { return this; } }
+        /// <summary>
+        /// Gets the current instance.
+        /// </summary>
+        /// <value>
+        /// The this.
+        /// </value>
+        protected override CrmEnvironmentBuilder This => this;
 
         #region Fluent Methods
 

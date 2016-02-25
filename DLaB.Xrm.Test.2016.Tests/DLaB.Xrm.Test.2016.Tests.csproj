@@ -33,16 +33,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DLaB.Common, Version=1.0.1.2, Culture=neutral, PublicKeyToken=046d6d5d1685e1b4, processorArchitecture=MSIL">
-      <HintPath>..\packages\DLaB.Common.1.0.1.2\lib\net452\DLaB.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DLaB.Xrm.2016, Version=1.1.3.11, Culture=neutral, PublicKeyToken=4da76fa437c5906e, processorArchitecture=MSIL">
-      <HintPath>..\packages\DLaB.Xrm.2016.1.1.3-alpha11\lib\net452\DLaB.Xrm.2016.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="DLaB.Xrm.Entities, Version=1.0.5870.30963, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DLaB.Xrm.Entities.1.1.1\lib\net452\DLaB.Xrm.Entities.dll</HintPath>
       <Private>True</Private>
@@ -91,6 +85,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DLaB.Common\DLaB.Common.csproj">
+      <Project>{a7284a23-15f3-411d-bc26-2890a11053fe}</Project>
+      <Name>DLaB.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DLaB.Xrm.2016\DLaB.Xrm.2016.csproj">
+      <Project>{47b47bdc-eb17-45bb-9c85-9b82bffa7ab1}</Project>
+      <Name>DLaB.Xrm.2016</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DLaB.Xrm.Client.2016\DLaB.Xrm.Client.2016.csproj">
       <Project>{457ea8b5-9847-4ede-8191-54e9c822699d}</Project>
       <Name>DLaB.Xrm.Client.2016</Name>

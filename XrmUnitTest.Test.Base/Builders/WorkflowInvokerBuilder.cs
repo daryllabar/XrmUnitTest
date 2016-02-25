@@ -2,12 +2,15 @@
 
 namespace XrmUnitTest.Test.Builders
 {
+    /// <summary>
+    /// Workflow Builder
+    /// </summary>
     public class WorkflowInvokerBuilder : DLaB.Xrm.Test.Builders.WorkflowInvokerBuilderBase<WorkflowInvokerBuilder>
     {
-        protected override WorkflowInvokerBuilder This
-        {
-            get { return this; }
-        }
+        /// <summary>
+        /// Gets the current instance of the builder.
+        /// </summary>
+        protected override WorkflowInvokerBuilder This => this;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WorkflowInvokerBuilder"/> class.

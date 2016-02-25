@@ -30,8 +30,7 @@ namespace DLaB.Xrm.Test.Exceptions
                 sb.Append("Additional details in the EntityDependency.Mapper Log: ");
                 sb.Append(newLineTab + string.Join(newLineTab, EntityDependency.Mapper.Log));
                 sb.AppendLine();
-                sb.Append("Final Order: ");
-                sb.Append(newLineTab + EntityDependency.Mapper.EntityCreationOrder.ToCsv());
+                sb.Append($"Final Order: {newLineTab}{EntityDependency.Mapper.EntityCreationOrder.Select(v => v.LogicalName).ToCsv()}");
 
 
                 return sb.ToString();

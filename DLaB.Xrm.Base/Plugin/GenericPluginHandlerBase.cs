@@ -36,7 +36,7 @@ namespace DLaB.Xrm.Plugin
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GenericPluginHandlerBase"/> class.
+        /// Initializes a new instance of the GenericPluginHandlerBase class.
         /// </summary>
         protected GenericPluginHandlerBase()
         {
