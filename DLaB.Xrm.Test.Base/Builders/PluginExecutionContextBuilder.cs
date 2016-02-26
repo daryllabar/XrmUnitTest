@@ -284,11 +284,48 @@ namespace DLaB.Xrm.Test.Builders
         /// <typeparam name="T"></typeparam>
         /// <param name="target">The target.</param>
         /// <returns></returns>
-        public TDerived WithTarget<T>(T target)
+        public TDerived WithTarget<T>(T target) where T: Entity
         {
             Context.InputParameters[ParameterName.Target] = target;
-            var entity = target as Entity;
-            var entityRef = entity?.ToEntityReference() ?? target as EntityReference;
+            return WithTargetInternal(target.ToEntityReference());
+        }
+
+        /// <summary>
+        /// Sets the target.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <returns></returns>
+        public TDerived WithTarget(EntityReference target)
+        {
+            Context.InputParameters[ParameterName.Target] = target;
+            return WithTargetInternal(target);
+        }
+
+        /// <summary>
+        /// Sets the target.
+        /// </summary>
+        /// <param name="id">The target.</param>
+        /// <returns></returns>
+        public TDerived WithTarget(Id id)
+        {
+            Context.InputParameters[ParameterName.Target] = id.Entity;
+            return WithTargetInternal(id.EntityReference);
+        }
+
+        /// <summary>
+        /// Sets the target.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id">The target.</param>
+        /// <returns></returns>
+        public TDerived WithTarget<T>(Id<T> id) where T: Entity
+        {
+            Context.InputParameters[ParameterName.Target] = id.Entity;
+            return WithTargetInternal(id.EntityReference);
+        }
+
+        public TDerived WithTargetInternal(EntityReference entityRef)
+        {
             if (entityRef != null)
             {
                 if (Context.PrimaryEntityId == Guid.Empty)

@@ -97,7 +97,7 @@ namespace DLaB.Xrm.Test.Builders
         private TEntity Build(bool defaultId)
         {
             var entity = BuildInternal().Clone();
-            foreach (var att in Attributes.Where(att => !entity.Contains(att.Key)))
+            foreach (var att in Attributes)
             {
                 entity[att.Key] = att.Value;
             }

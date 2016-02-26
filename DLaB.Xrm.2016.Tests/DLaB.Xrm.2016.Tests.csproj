@@ -52,10 +52,6 @@
       <HintPath>..\packages\Microsoft.CrmSdk.Extensions.7.1.0.1\lib\net45\AntiXSSLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DLaB.Xrm.Entities, Version=1.0.5870.30963, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DLaB.Xrm.Entities.1.1.1\lib\net452\DLaB.Xrm.Entities.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.8.0.1\lib\net45\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
       <Private>True</Private>
@@ -331,6 +327,10 @@
     <ProjectReference Include="..\DLaB.Xrm.2016\DLaB.Xrm.2016.csproj">
       <Project>{47b47bdc-eb17-45bb-9c85-9b82bffa7ab1}</Project>
       <Name>DLaB.Xrm.2016</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj">
+      <Project>{66688025-2f6d-40ec-914e-87af88afc5de}</Project>
+      <Name>DLaB.Xrm.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\DLaB.Xrm.LocalCrm.2016\DLaB.Xrm.LocalCrm.2016.csproj">
       <Project>{76d1648f-4508-46c1-bda1-b62c32eeb750}</Project>

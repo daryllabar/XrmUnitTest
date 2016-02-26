@@ -24,19 +24,12 @@ namespace DLaB.Xrm.Test.Tests
         // ReSharper disable once InconsistentNaming
         private class Add_MultipleDependencies_Should_CreateValidCreationOrder : TestMethodClassBase
         {
-
-
-            protected override void InitializeTestData(IOrganizationService service)
-            {
-                // No Data Required
-            }
-
             protected override void Test(IOrganizationService service)
             {
                 var constructorInfo = typeof(EntityDependency).GetConstructor(BindingFlags.Instance | BindingFlags.NonPublic, null, new Type[0], null);
-                var a = Account.EntityLogicalName;
-                var b = Lead.EntityLogicalName;
-                var c = Contact.EntityLogicalName;
+                const string a = Account.EntityLogicalName;
+                const string b = Lead.EntityLogicalName;
+                const string c = Contact.EntityLogicalName;
 
                 // Test in this manner:
                 /*
@@ -110,8 +103,63 @@ namespace DLaB.Xrm.Test.Tests
             }
 
             private static string ConvertToString(IEnumerable<string> value) { return string.Join(", ", value.Distinct().OrderBy(v =>v)); }
+
+            protected override void InitializeTestData(IOrganizationService service) { /* No Data to Initialize*/ }
         }
 
         #endregion Add_MultipleDependencies_Should_CreateValidCreationOrder
+
+        #region Add_WithNoDependenciesButWithDependents_Should_AddBeforeFirstDependent
+
+        [TestMethod]
+        public void EntityDependency_Add_WithNoDependenciesButWithDependents_Should_AddBeforeFirstDependent()
+        {
+            new Add_WithNoDependenciesButWithDependents_Should_AddBeforeFirstDependent().Test();
+        }
+
+        // ReSharper disable once InconsistentNaming
+        private class Add_WithNoDependenciesButWithDependents_Should_AddBeforeFirstDependent : TestMethodClassBase
+        { 
+            protected override void Test(IOrganizationService service)
+            {
+                //
+                // Arrange
+                //
+                EntityDependency.Mapper.Add(Lead.EntityLogicalName);
+                var lead = EntityDependency.Mapper.EntityCreationOrder.First();
+                EntityDependency.Mapper.Add(Role.EntityLogicalName);
+
+                //
+                // Pre Assert
+                //
+                Assert.IsFalse(lead.CyclicAttributes.Contains(Lead.Fields.CampaignId), "Lead's CyclicAttributes should not contain campaign since it hasn't been added.");
+
+                //
+                // Act
+                //
+                EntityDependency.Mapper.Add(Campaign.EntityLogicalName);
+
+                //
+                // Assert
+                //
+                Assert.IsFalse(lead.CyclicAttributes.Contains(Lead.Fields.CampaignId), "Local copy of Lead's CyclicAttributes shouldn't have been updated.");
+                
+                // Campaign should either be added before, or should update the CyclicAttributes
+
+                var info = EntityDependency.Mapper.EntityCreationOrder.First(e => e.LogicalName == Lead.EntityLogicalName || e.LogicalName == Campaign.EntityLogicalName);
+                if (info.LogicalName == Lead.EntityLogicalName)
+                {
+                    Assert.IsTrue(lead.CyclicAttributes.Contains(Lead.Fields.CampaignId), "Lead's CyclicAttributes should have been updated");
+                }
+                else
+                {
+                    Assert.AreEqual(Campaign.EntityLogicalName, info.LogicalName);        
+                }
+            }
+
+            protected override void InitializeTestData(IOrganizationService service) { /* No Data to Initialize*/ }
+        }
+
+        #endregion Add_WithNoDependenciesButWithDependents_Should_AddBeforeFirstDependent
     }
 }

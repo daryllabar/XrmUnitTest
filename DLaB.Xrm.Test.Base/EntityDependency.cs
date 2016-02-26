@@ -98,6 +98,7 @@ namespace DLaB.Xrm.Test
 
                 CurrentVersion++;
                 SingleThreadAdd(logicalName);
+                DependencyOrderLog.Enqueue($"Order: {string.Join(", ", Types.Select(t => t.LogicalName))}");
             }
         }
 
@@ -120,18 +121,26 @@ namespace DLaB.Xrm.Test
             }
 
             var lastDependOn = Types.LastOrDefault(t => info.DependsOn(t));
+            var firstDependOnCurrent = Types.LastOrDefault(t => t.DependsOn(info));
             if (lastDependOn == null)
             {
-                DependencyOrderLog.Enqueue($"{logicalName} does not depend any any already processed types.  Adding to end.");
-                info.Node = Types.AddLast(info);
+                if (firstDependOnCurrent == null)
+                {
+                    DependencyOrderLog.Enqueue($"{logicalName} does not depend any any already processed types, and no already processed types depend on it.  Adding to end.");
+                    info.Node = Types.AddLast(info);
+                }
+                else
+                {    
+                    DependencyOrderLog.Enqueue($"{logicalName} does not depend any any already processed types, but {firstDependOnCurrent.LogicalName} depends on it.  Adding before.");
+                    info.Node = Types.AddBefore(firstDependOnCurrent.Node, info);
+                }
                 return;
             }
-
 
             if (!lastDependOn.DependsOn(info) && !Types.TakeWhile(t => !t.Equals(lastDependOn)).Any(t => t.DependsOn(info)))
             {
                 DependencyOrderLog.Enqueue($"No type that has already been processed that occurs before the last type that {logicalName} depends on ({lastDependOn.LogicalName}), depends on the new type.  Adding to end.");
-                Types.AddAfter(lastDependOn.Node, info);
+                info.Node = Types.AddAfter(lastDependOn.Node, info);
                 return;
             }
 
@@ -144,7 +153,7 @@ namespace DLaB.Xrm.Test
                 {
                     dependency.IsCurrentlyCyclic = false;
                 }
-
+                type.Node = null;
             }
             foreach (var type in Infos.Values)
             {
@@ -152,7 +161,6 @@ namespace DLaB.Xrm.Test
             }
 
             Types = newOrder;
-            DependencyOrderLog.Enqueue($"New Order: {string.Join(", ", Types.Select(t => t.LogicalName))}");
         }
 
         /// <summary>
@@ -194,7 +202,7 @@ namespace DLaB.Xrm.Test
             }
 
             type.IsCurrentlyBeingProcessed = false;
-            newOrder.AddLast(type);
+            type.Node = newOrder.AddLast(type);
 
         }
 

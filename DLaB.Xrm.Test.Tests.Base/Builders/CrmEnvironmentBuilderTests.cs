@@ -158,7 +158,6 @@ namespace DLaB.Xrm.Test.Tests.Builders
             //
             // Assert
             //
-
             var account = service.GetEntity(CyclicIds.Account);
             var contact = service.GetEntity(CyclicIds.Contact);
             var lead = service.GetEntity(CyclicIds.Lead);
@@ -179,18 +178,18 @@ namespace DLaB.Xrm.Test.Tests.Builders
             // Arrange
             //
             var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            var id = new Id<Lead>(Guid.NewGuid());
 
             //
             // Act
             //
             new CrmEnvironmentBuilder().
-                WithBuilder<MyLeadBuilder>(b => b.WithAddress1()).
-                WithChildEntities(CyclicIds.Lead).Create(service);
+                WithBuilder<MyLeadBuilder>(b => b.WithAddress1()).WithEntities(id).Create(service);
 
             //
             // Assert
             //
-            var lead = service.GetEntity(CyclicIds.Lead);
+            var lead = service.GetEntity(id);
             Assert.IsNotNull(lead.Address1_City);
             Assert.IsNotNull(lead.Address1_Line1);
             Assert.IsNotNull(lead.Address1_PostalCode);
