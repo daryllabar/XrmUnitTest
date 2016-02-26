@@ -33,17 +33,27 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         /// <returns></returns>
         Entity Build();
+
         /// <summary>
-        /// Creates the specified service.
+        /// Combines the Building, Creating, and Post Creation of the Entity.
         /// </summary>
         /// <param name="service">The service.</param>
         /// <returns></returns>
         Entity Create(IOrganizationService service);
+
+        /// <summary>
+        /// Allows child classes to be able to cleanup other entities after record is created.
+        /// Helpful when a plugin may already be creating the entity, and the auto-created version needs to get cleaned up.
+        /// </summary>
+        /// <param name="service">The service.</param>
+        /// <param name="entity">The entity.</param>
+        void PostCreate(IOrganizationService service, Entity entity);
+
         /// <summary>
         /// Allows for setting the given attribute of the entity when built
         /// </summary>
         /// <param name="attributeName">Name of the attribute.</param>
         /// <param name="value">The value.</param>
-        void WithAttributeValue(string attributeName, object value);
+        IEntityBuilder WithAttributeValue(string attributeName, object value);
     }
 }

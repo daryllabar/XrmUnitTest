@@ -5,6 +5,7 @@ using System.Reflection;
 using DLaB.Common;
 using DLaB.Xrm.Test.Exceptions;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.Test.Builders
 {
@@ -263,7 +264,7 @@ namespace DLaB.Xrm.Test.Builders
             /// <param name="action">The action.</param>
             private void AddCustomAction(string logicalName, Action<object> action)
             {
-                Action<Object> customAction;
+                Action<object> customAction;
                 if (CustomBuilderFluentActions.TryGetValue(logicalName, out customAction))
                 {
                     // Builder already has custom Action.  Create new custom Action that first calls old, then calls new
@@ -312,7 +313,7 @@ namespace DLaB.Xrm.Test.Builders
             /// <param name="builder">The builder.</param>
             private void ApplyCustomActions(string logicalName, object builder)
             {
-                Action<Object> customAction;
+                Action<object> customAction;
                 if (CustomBuilderFluentActions.TryGetValue(logicalName, out customAction))
                 {
                     customAction(builder);
@@ -327,6 +328,7 @@ namespace DLaB.Xrm.Test.Builders
             public Dictionary<Guid, Entity> Create(IOrganizationService service)
             {
                 var results = new Dictionary<Guid, Entity>();
+                var postCreateUpdates = new List<Entity>();
                 foreach (var info in EntityDependency.Mapper.EntityCreationOrder)
                 {
                     List<BuilderInfo> values;
@@ -340,15 +342,15 @@ namespace DLaB.Xrm.Test.Builders
                     {
                         try
                         {
-                            var entity = CreateEntity(service, value);
+                            var entity = CreateEntity(service, value, info.CyclicAttributes, postCreateUpdates);
+
+                            Id id;
+                            results.Add(entity.Id, entity);
+                            if (Ids.TryGetValue(entity.Id, out id))
                             {
-                                Id id;
-                                results.Add(entity.Id, entity);
-                                if (Ids.TryGetValue(entity.Id, out id))
-                                {
-                                    id.Entity = entity;
-                                }
+                                id.Entity = entity;
                             }
+
                         }
                         catch (Exception ex)
                         {
@@ -362,16 +364,32 @@ namespace DLaB.Xrm.Test.Builders
                     }
                 }
 
+                foreach (var entity in postCreateUpdates)
+                {
+                    try
+                    {
+                        service.Update(entity);
+                    }
+                    catch (Exception ex)
+                    {
+                        var entityName =  $"Entity {entity.LogicalName}{Environment.NewLine}{entity.ToStringAttributes()}";
+                        throw new CreationFailureException($"An error occured attempting to update an EntityDependency post create for Entity {entityName}.{Environment.NewLine}{ex.Message}", ex);
+                    }
+                }
+
                 return results;
             }
+
 
             /// <summary>
             /// Updates the Builder with any attributes set in the Id's Entity.
             /// </summary>
             /// <param name="service">The service.</param>
             /// <param name="info">The builder.</param>
+            /// <param name="cyclicAttributes">The cyclic attributes.</param>
+            /// <param name="postCreateUpdates">The post create updates.</param>
             /// <returns></returns>
-            private static Entity CreateEntity(IOrganizationService service, BuilderInfo info)
+            private static Entity CreateEntity(IOrganizationService service, BuilderInfo info, IEnumerable<string> cyclicAttributes, List<Entity> postCreateUpdates)
             {
                 var entity = info.Id.Entity;
                 var builder = info.Builder;
@@ -383,7 +401,30 @@ namespace DLaB.Xrm.Test.Builders
                     }
                 }
 
-                return builder.Create(service);
+                var attributes = cyclicAttributes as string[] ?? cyclicAttributes.ToArray();
+                var postCreateEntity = new Entity(info.Id);
+                if (attributes.Length > 0)
+                {
+                    var tmp = builder.Build();
+                    foreach (var att in attributes)
+                    {
+                        var parentEntity = tmp.GetAttributeValue<EntityReference>(att);
+                        if (parentEntity == null || service.GetEntityOrDefault(parentEntity.LogicalName, parentEntity.Id, new ColumnSet(false)) != null) { continue; }
+                        
+                        // parent hasn't been created yet, Add attribute to be updated, and remove attribute for creation
+                        postCreateEntity[att] = parentEntity;
+                        builder.WithAttributeValue(att, null);
+                    }
+                }
+
+                var createdEntity = builder.Create(service);
+                if (postCreateEntity.Attributes.Any())
+                {
+                    postCreateEntity.Id = createdEntity.Id;
+                    postCreateUpdates.Add(postCreateEntity);
+                }
+
+                return createdEntity;
             }
 
             /// <summary>

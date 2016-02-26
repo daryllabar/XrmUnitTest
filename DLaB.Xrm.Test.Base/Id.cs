@@ -127,6 +127,19 @@ namespace DLaB.Xrm.Test
             return id.LogicalName;
         }
 
+        /// <summary>
+        /// Performs an implicit conversion from <see cref="Id" /> to <see cref="System.String" />.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns>
+        /// The result of the conversion.
+        /// </returns>
+        public static implicit operator Id(Entity entity)
+        {
+            var id = new Id(entity.LogicalName, entity.Id) {Entity = entity};
+            return id;
+        }
+
 
         #endregion Implicit Operators
 

@@ -153,61 +153,6 @@ namespace DLaB.Xrm.Test
 
             Types = newOrder;
             DependencyOrderLog.Enqueue($"New Order: {string.Join(", ", Types.Select(t => t.LogicalName))}");
-
-            // The new type depends on types that come after types that depend on it with the current sorting.  Attempt to perform a topological sort.
-            // Check to see 
-            //if ().First.Value.DependsOn(info))
-            //{
-            //    DependencyOrderLog.Enqueue("The first value depends on the new info value.");
-            //    info.Node = Types.AddFirst(info);
-
-            //    /* Check for any Types that this new type is dependent on.
-            //     * Consider the Case of A -> B and B -> C
-            //     * A is added first, it becomes first.  C is added next, and it has no dependency on A or visa versa, so it is added last, then B is added, and it is added first, but C isn't moved
-            //     * Need to move C to the front, or list discrepency
-            //     */
-
-            //    var existingDependent = Types.Skip(1).FirstOrDefault(existingInfo => info.DependsOn(existingInfo));
-            //    if (existingDependent == null)
-            //    {
-            //        DependencyOrderLog.Enqueue("Finished Processing " + logicalName);
-            //        return;
-            //    }
-
-            //    DependencyOrderLog.Enqueue(logicalName + " was added first, but existing dependency " + existingDependent.LogicalName + " was found!  Reordering list.");
-
-
-            //    foreach (var type in Types)
-            //    {
-            //        if (type == existingDependent)
-            //        {
-            //            DependencyOrderLog.Enqueue("Have walked the entire list and come to the dependency that needs to be moved without finding anything that it depends on.  Moving dependency to front.");
-            //            Types.Remove(existingDependent);
-            //            existingDependent.Node = Types.AddFirst(existingDependent);
-            //            DependencyOrderLog.Enqueue("New Order: " + string.Join(",", Types.Select(t => t.LogicalName)));
-            //            return;
-            //        }
-            //        if (type.DependsOn(existingDependent))
-            //        {
-            //            var conflict = string.Format("Circular reference found!  {0} was added, which depends on {1}, but {2} depends on {0} and was found before {1}.  If {1} is needed first, add it after {0}", logicalName, existingDependent.LogicalName, type.LogicalName);
-
-            //            DependencyOrderLog.Enqueue(conflict);
-            //        }
-            //    }
-            //}
-
-            //// Try to add the new type as far to the end of the list as possible
-            ////var dependent = Types.Skip(1).FirstOrDefault(existingInfo => existingInfo.DependsOn(info));
-            //if (dependent == null)
-            //{
-            //    DependencyOrderLog.Enqueue("No dependent type found.  Adding to end of list.");
-            //    info.Node = Types.AddLast(info);
-            //}
-            //else
-            //{
-            //    DependencyOrderLog.Enqueue("Found dependent " + dependent.LogicalName + ".   Adding before.");
-            //    info.Node = Types.AddBefore(dependent.Node, info);
-            //}
         }
 
         /// <summary>
@@ -340,7 +285,7 @@ namespace DLaB.Xrm.Test
                 {
                     var attribute = property.GetCustomAttribute<AttributeLogicalNameAttribute>();
                     var propertyType = property.PropertyType.GetCustomAttribute<EntityLogicalNameAttribute>(true);
-                    Dependencies.AddOrAppend(propertyType.LogicalName, new CyclicAttribute(attribute.LogicalName));
+                    Dependencies.AddOrAppend(propertyType.LogicalName, new CyclicAttribute(attribute.LogicalName, LogicalName == propertyType.LogicalName) {});
                 }
             }
         }
@@ -354,10 +299,10 @@ namespace DLaB.Xrm.Test
             public string AttributeName { get; }
             public bool IsCurrentlyCyclic { get; set; }
 
-            public CyclicAttribute(string name)
+            public CyclicAttribute(string name, bool isCurrentlyCyclic)
             {
                 AttributeName = name;
-                IsCurrentlyCyclic = false;
+                IsCurrentlyCyclic = isCurrentlyCyclic;
             }
         }
     }

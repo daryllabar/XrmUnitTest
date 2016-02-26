@@ -60,14 +60,21 @@ namespace DLaB.Xrm.Test.Builders
             return Create(service);
         }
 
+
+        void IEntityBuilder.PostCreate(IOrganizationService service, Entity entity)
+        {
+            PostCreate(service, (TEntity)entity);
+        }
+
         /// <summary>
-        /// Defines that the entity should be build with the given attribute value
+        /// Defines that the entity should be built with the given attribute value
         /// </summary>
         /// <param name="attributeName">Name of the attribute.</param>
         /// <param name="value">The value.</param>
-        public void WithAttributeValue(string attributeName, object value)
+        public IEntityBuilder WithAttributeValue(string attributeName, object value)
         {
             Attributes[attributeName] = value;
+            return this;
         }
 
         #endregion IEntityBuilder Implementation
@@ -123,7 +130,7 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         /// <param name="service">The service.</param>
         /// <param name="entity">The entity.</param>
-        protected virtual void PostCreate(IOrganizationService service, TEntity entity)
+        public virtual void PostCreate(IOrganizationService service, TEntity entity)
         {
             // Do Nothing
         }
