@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xrm.Client;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test.Builders
@@ -95,7 +96,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         private TEntity Build(bool defaultId)
         {
-            var entity = BuildInternal();
+            var entity = BuildInternal().Clone();
             foreach (var att in Attributes.Where(att => !entity.Contains(att.Key)))
             {
                 entity[att.Key] = att.Value;

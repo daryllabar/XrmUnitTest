@@ -95,6 +95,31 @@ namespace DLaB.Xrm.Test.Tests.Builders
         }
 
         [TestMethod]
+        public void CrmEnvironmentBuilder_Create_WithBuilderSelfReferencingEntity_Should_CreateThenUpdate()
+        {
+            //
+            // Arrange
+            //
+            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            var id = new Id<Lead>(Guid.NewGuid());
+
+            //
+            // Act
+            //
+            new CrmEnvironmentBuilder().
+                WithBuilder<MyLeadBuilder>(id, b => b.WithAttributeValue(Lead.Fields.MasterId, id.EntityReference)).
+                Create(service);
+
+            //
+            // Assert
+            //
+
+            AssertCrm.Exists(service, id);
+            var lead = service.GetEntity(id);
+            Assert.AreEqual(lead.MasterId, id.EntityReference);
+        }
+
+        [TestMethod]
         public void CrmEnvironmentBuilder_Create_WithCyclicReferencingEntities_Should_CreateThenUpdate()
         {
             //
@@ -145,7 +170,67 @@ namespace DLaB.Xrm.Test.Tests.Builders
             Assert.AreEqual(lead.CustomerId.Id, CyclicIds.Account.EntityId);
             Assert.AreEqual(lead.ParentAccountId.Id, CyclicIds.Account.EntityId);
             Assert.AreEqual(lead.ParentContactId.Id, CyclicIds.Contact.EntityId);
+        }
 
+        [TestMethod]
+        public void CrmEnvironmentBuilder_Create_WithBuilder_Should_UseBuilder()
+        {
+            //
+            // Arrange
+            //
+            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+
+            //
+            // Act
+            //
+            new CrmEnvironmentBuilder().
+                WithBuilder<MyLeadBuilder>(b => b.WithAddress1()).
+                WithChildEntities(CyclicIds.Lead).Create(service);
+
+            //
+            // Assert
+            //
+            var lead = service.GetEntity(CyclicIds.Lead);
+            Assert.IsNotNull(lead.Address1_City);
+            Assert.IsNotNull(lead.Address1_Line1);
+            Assert.IsNotNull(lead.Address1_PostalCode);
+            Assert.IsNotNull(lead.Address1_StateOrProvince);
+            Assert.IsNull(lead.Address2_City);
+        }
+
+        public class MyLeadBuilder : EntityBuilder<Lead>
+        {
+            public Lead Lead { get; set; }
+
+            public MyLeadBuilder()
+            {
+                Lead = new Lead();
+            }
+
+            public MyLeadBuilder(Id id)
+                : this()
+            {
+                Id = id;
+            }
+
+            #region Fluent Methods
+
+
+            public MyLeadBuilder WithAddress1()
+            {
+                Lead.Address1_City = "Any Town";
+                Lead.Address1_Line1 = "123 Any Street";
+                Lead.Address1_PostalCode = "12345";
+                Lead.Address1_StateOrProvince = "IN";
+                return this;
+            }
+
+            #endregion // Fluent Methods
+
+            protected override Lead BuildInternal()
+            {
+                return Lead;
+            }
         }
 
         public struct CyclicIds

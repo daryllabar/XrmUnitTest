@@ -93,6 +93,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <exception cref="System.Exception"></exception>
         public TDerived WithBuilder<TBuilder>(Id id, Action<TBuilder> action) where TBuilder : class
         {
+            EntityBuilders.SetBuilderType<TBuilder>(id);
             var result = EntityBuilders.Get(id);
             var builder = result as TBuilder;
             if (builder == null)
@@ -292,6 +293,7 @@ namespace DLaB.Xrm.Test.Builders
                 List<BuilderInfo> builders;
                 if (!BuildersByEntityType.TryGetValue(logicalName, out builders))
                 {
+
                     return;
                 }
 
@@ -461,13 +463,45 @@ namespace DLaB.Xrm.Test.Builders
                 builder = new BuilderInfo(id, (IEntityBuilder) constructor.Invoke(new object[] { id }));
 
                 // Apply any Custom Actions
-                ApplyCustomActions(id, builder);
+                ApplyCustomActions(id, builder.Builder);
 
                 // Add the Builder to both Dictionaries (keyed by Id and Logical Name)
                 BuildersByEntityType.AddOrAppend(id, builder);
                 Builders.Add(id, builder);
 
                 return builder.Builder;
+            }
+
+            /// <summary>
+            /// Adds the builder as the default builder for the given entity type
+            /// </summary>
+            /// <typeparam name="TBuilder">The type of the builder.</typeparam>
+            /// <param name="logicalName">Name of the logical.</param>
+            /// <exception cref="System.Exception">
+            /// </exception>
+            public void SetBuilderType<TBuilder>(string logicalName)
+            {
+                var constructor = typeof(TBuilder).GetConstructor(new[] { typeof(Id) });
+                if (constructor == null)
+                {
+                    throw new Exception($"{typeof(TBuilder).FullName} does not contain a constructor with a single parameter of type {typeof(Id).FullName}");
+                }
+
+                ConstructorInfo existingConstructor;
+                if (BuilderConstructorForEntity.TryGetValue(logicalName, out existingConstructor))
+                {
+                    // Should only have one type.  Check to make sure type is the same
+                    if (existingConstructor.DeclaringType != constructor.DeclaringType)
+                    {
+                        // ReSharper disable PossibleNullReferenceException
+                        throw new Exception($"Only one type of Builder can be used per entity.  Attempt was made to define builder {constructor.DeclaringType.FullName}, when builder {existingConstructor.DeclaringType.FullName} already is defined!");
+                        // ReSharper restore PossibleNullReferenceException
+                    }
+                }
+                else
+                {
+                    BuilderConstructorForEntity.Add(logicalName, constructor);
+                }
             }
 
             /// <summary>
@@ -536,6 +570,8 @@ namespace DLaB.Xrm.Test.Builders
                 // ReSharper disable once PossibleNullReferenceException
                 var entityType = typeof(TBuilder).BaseType.GetGenericArguments()[0];
                 var logicalName = EntityHelper.GetEntityLogicalName(entityType);
+
+                SetBuilderType<TBuilder>(logicalName);
 
                 // Handle all existing Builders
                 ApplyCustomAction(logicalName, action);

@@ -21,6 +21,8 @@
   </dependencies>
   </metadata>
   <files>
-	<file src="bin\Release\DLaB.Xrm.*" target="lib\net452" />
+    <file src="bin\Release\DLaB.Xrm.*.dll" target="lib\net452" />
+    <file src="bin\Release\DLaB.Xrm.*.pdb" target="lib\net452" />
+    <file src="bin\Release\DLaB.Xrm.*.xml" target="lib\net452" />
   </files>
 </package>  
