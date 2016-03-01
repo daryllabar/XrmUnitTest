@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>f150ea46-4955-4e32-9917-10f89b291602</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>DLaB.Xrm.Test</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AppConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AssertCrm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assumptions\AssumedEntities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assumptions\EntityDataAssumptionBaseAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assumptions\MultipleEntityDataAssumptionBaseAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\CrmEnvironmentBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\EntityBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\GenericBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\IEntityBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\OrganizationServiceBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\PluginExecutionContextBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\ServiceProviderBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\WorkflowInvokerBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\BusinessUnit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\SystemUser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\WebResource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityDependency.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityDependencyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\CreationFailureException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\NotConfiguredException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FakeExecutionContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FakeIOrganizationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FakeOrganizationServiceFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FakePluginExecutionContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FakeServiceProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FakeTraceService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FakeWorkflowContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Id.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IPathFinder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ITestFrameworkProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ITestLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PatherFinderProjectOfType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PathFinderAbsolute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\NamespaceSetting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\PathSetting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\TestFrameworkProviderSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestActionTimer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestMethodClassBaseDLaB.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestSettings.cs" />
+  </ItemGroup>
+</Project>
