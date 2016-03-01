@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>d2ccbfcf-54c0-405c-a829-100a3deb4229</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>DLaB.Xrm.LocalCrm</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DynamicQueryable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\ActivityPointer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\BusinessUnit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Email.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Incident.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\SystemUser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Template.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FetchXml\CountColumnAggregateInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FetchXml\FetchAttributeInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FetchXml\FetchXmlEarlyBoundClasses.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FetchXml\LocalCrmDatabaseFetchXml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabaseInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabaseOrganizationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabaseOrganizationServiceExecute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabaseStepThrough.cs" />
+  </ItemGroup>
+</Project>
