@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Tests.Sandbox.Serialization
             var contact = new Contact
             {
                 FirstName = "Test",
-               // AccountRoleCodeEnum = contact_accountrolecode.Employee,
+                // AccountRoleCodeEnum = contact_accountrolecode.Employee,
                 DoNotPhone = true
             };
 
@@ -119,6 +119,31 @@ namespace DLaB.Xrm.Tests.Sandbox.Serialization
             Assert.AreEqual(xrmXml.SubstringByString("<Attributes ", "</Attributes"), xml.SubstringByString("<Attributes ", "</Attributes").Replace(@" z:Size=""2""", string.Empty));
             var sandboxNamespace = @"=""http://schemas.datacontract.org/2004/07/DLaB.Xrm.Sandbox.Serialization""";
             Assert.IsFalse(xml.Contains(sandboxNamespace));
+        }
+
+        [TestMethod]
+        public void SerializableEntity_Deserialize()
+        {
+            //
+            // Arrange
+            //
+            var contact = new Contact
+            {
+                FirstName = "Test",
+                // AccountRoleCodeEnum = contact_accountrolecode.Employee,
+                DoNotPhone = true
+            };
+
+            var xml = new SerializableEntity(contact).Serialize();
+
+            //
+            // Act
+            //
+            var newContact = xml.DeserializeSerializedEntity<Contact>();
+
+            Assert.AreEqual(contact.FirstName, newContact.FirstName);
+            Assert.AreEqual(contact.DoNotPhone, newContact.DoNotPhone);
+
         }
     }
 }

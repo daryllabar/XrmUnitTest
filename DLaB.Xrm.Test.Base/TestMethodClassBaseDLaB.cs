@@ -11,6 +11,7 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
 
+// ReSharper disable once CheckNamespace
 namespace DLaB.Xrm.Test
 {
     // ReSharper disable once InconsistentNaming
@@ -306,12 +307,6 @@ namespace DLaB.Xrm.Test
         protected abstract void LoadConfigurationSettings();
 
         /// <summary>
-        /// Method to populate the data in the CRM Database to setup a clean test
-        /// </summary>
-        /// <param name="service"></param>
-        protected abstract void InitializeTestData(IOrganizationService service);
-
-        /// <summary>
         /// The actual test to run, where the required data has already been initialized
         /// </summary>
         /// <param name="service"></param>
@@ -330,6 +325,15 @@ namespace DLaB.Xrm.Test
                 methodClassName = methodClassName.Substring(0, methodClassName.Length - "method".Length);
             }
             return ("Unit Test - " + methodClassName.SpaceOutCamelCase()).PadRight(maxNameLength).Substring(0, maxNameLength).TrimEnd();
+        }
+
+        /// <summary>
+        /// Method to populate the data in the CRM Database to setup a clean test
+        /// </summary>
+        /// <param name="service"></param>
+        protected virtual void InitializeTestData(IOrganizationService service)
+        {
+
         }
 
         /// <summary>

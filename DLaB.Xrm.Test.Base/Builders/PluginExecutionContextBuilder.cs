@@ -324,7 +324,12 @@ namespace DLaB.Xrm.Test.Builders
             return WithTargetInternal(id.EntityReference);
         }
 
-        public TDerived WithTargetInternal(EntityReference entityRef)
+        /// <summary>
+        /// Sets the target internal.
+        /// </summary>
+        /// <param name="entityRef">The entity reference.</param>
+        /// <returns></returns>
+        private TDerived WithTargetInternal(EntityReference entityRef)
         {
             if (entityRef != null)
             {

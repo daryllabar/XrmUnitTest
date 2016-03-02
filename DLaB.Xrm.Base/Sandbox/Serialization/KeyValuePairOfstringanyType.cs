@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Xml.Serialization;
 using Microsoft.Xrm.Sdk;
 
 // ReSharper disable InconsistentNaming
@@ -53,6 +52,24 @@ namespace DLaB.Xrm.Sandbox.Serialization
         public KeyValuePairOfstringanyType(KeyValuePair<string, object> kvp) : this(kvp.Key, kvp.Value)
         {
             
+        }
+
+        /// <summary>
+        /// Performs an explicit conversion from <see cref="KeyValuePairOfstringanyType"/> to KeyValuePair.
+        /// </summary>
+        /// <param name="pair">The pair.</param>
+        /// <returns>
+        /// The result of the conversion.
+        /// </returns>
+        public static explicit operator KeyValuePair<string, object>(KeyValuePairOfstringanyType pair)
+        {
+            var reference = pair.value as SerializableEntityReference;
+            if (reference != null)
+            {
+                pair.value = (EntityReference)reference;
+            }
+
+            return new KeyValuePair<string, object>(pair.key, pair.value);
         }
     }
 }

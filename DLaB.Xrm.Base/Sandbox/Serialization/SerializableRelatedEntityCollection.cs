@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using Microsoft.Xrm.Sdk;
 
@@ -28,6 +29,24 @@ namespace DLaB.Xrm.Sandbox.Serialization
             {
                 Add(new KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN(related.Key, related.Value));
             }
+        }
+
+        /// <summary>
+        /// Performs an explicit conversion from <see cref="SerializableRelatedEntityCollection"/> to <see cref="RelatedEntityCollection"/>.
+        /// </summary>
+        /// <param name="collection">The collection.</param>
+        /// <returns>
+        /// The result of the conversion.
+        /// </returns>
+        public static explicit operator RelatedEntityCollection(SerializableRelatedEntityCollection collection)
+        {
+            if (collection == null)
+            {
+                return null;
+            }
+            var xrmCollection = new RelatedEntityCollection();
+            xrmCollection.AddRange(collection.Select(v => (KeyValuePair<Relationship, EntityCollection>)v));
+            return xrmCollection;
         }
     }
 }

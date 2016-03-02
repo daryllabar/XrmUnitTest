@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Text;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Sandbox.Serialization
@@ -117,5 +121,35 @@ namespace DLaB.Xrm.Sandbox.Serialization
             RelatedEntities = new SerializableRelatedEntityCollection(entity.RelatedEntities);
             RowVersion = entity.RowVersion;
         }
+
+        /// <summary>
+        /// Performs an explicit conversion from <see cref="SerializableEntity"/> to <see cref="Entity"/>.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns>
+        /// The result of the conversion.
+        /// </returns>
+        public static explicit operator Entity(SerializableEntity entity)
+        {
+            if (entity == null)
+            {
+                return null;
+            }
+            var xrmEntity = new Entity
+            {
+                LogicalName = entity.LogicalName,
+                Id = entity.Id,
+                Attributes = (AttributeCollection) entity.Attributes,
+                KeyAttributes = (KeyAttributeCollection) entity.KeyAttributes,
+                RowVersion = entity.RowVersion,
+                EntityState = entity.EntityState,
+                ExtensionData = entity.ExtensionData,
+            };
+
+            xrmEntity.FormattedValues.AddRange(entity.FormattedValues.Select(v => (KeyValuePair<string,string>) v));
+            xrmEntity.RelatedEntities.AddRange(entity.RelatedEntities.Select(v => (KeyValuePair<Relationship, EntityCollection>)v));
+
+            return xrmEntity;
+        }
     }
-}
+} 

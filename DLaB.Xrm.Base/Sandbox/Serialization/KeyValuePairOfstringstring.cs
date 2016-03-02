@@ -23,7 +23,7 @@ namespace DLaB.Xrm.Sandbox.Serialization
         /// <value>
         /// The value.
         /// </value>
-        public object value { get; set; }
+        public string value { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyValuePairOfstringstring"/> class.
@@ -43,6 +43,18 @@ namespace DLaB.Xrm.Sandbox.Serialization
         public KeyValuePairOfstringstring(KeyValuePair<string, string> kvp) : this(kvp.Key, kvp.Value)
         {
 
+        }
+
+        /// <summary>
+        /// Performs an explicit conversion from <see cref="KeyValuePairOfstringstring"/> to KeyValuePair{System.String, System.String}.
+        /// </summary>
+        /// <param name="pair">The pair.</param>
+        /// <returns>
+        /// The result of the conversion.
+        /// </returns>
+        public static explicit operator KeyValuePair<string, string>(KeyValuePairOfstringstring pair)
+        {
+            return new KeyValuePair<string, string>(pair.key, pair.value);
         }
     }
 }

@@ -13,7 +13,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq.Expressions;
 using Microsoft.Crm.Sdk.Messages;
-using System.Diagnostics;
 using DLaB.Common;
 using DLaB.Xrm.Exceptions;
 using Microsoft.Xrm.Sdk.Messages;
@@ -24,7 +23,6 @@ namespace DLaB.Xrm
     /// <summary>
     /// Extension class for Xrm
     /// </summary>
-    [DebuggerStepThrough]
     public static partial class Extensions
     {
         #region AttributeMetadata
@@ -484,7 +482,7 @@ namespace DLaB.Xrm
         }
 
         /// <summary>
-        /// Converts an Earlybound Entity to a Typed Version
+        /// Converts an Earlybound Entity to a base calss Entity
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns></returns>
@@ -1888,7 +1886,7 @@ namespace DLaB.Xrm
         #region String
 
         /// <summary>
-        /// Deserializes the entity from a string xml value to a specific entity type.
+        /// Deserializes the string xml value to a specific entity type.
         /// </summary>
         /// <typeparam name="T">The type of entity to deserialize the xml to.</typeparam>
         /// <param name="xml">The xml to deserialize.</param>
@@ -1896,19 +1894,33 @@ namespace DLaB.Xrm
         public static T DeserializeEntity<T>(this string xml) where T : Entity
         {
             var entity = xml.DeserializeEntity();
+            if(entity.GetType() == typeof(T))
+            {
+                return (T)entity;
+            }
             return entity?.ToEntity<T>();
         }
 
         /// <summary>
-        /// Deserializes the entity from a string xml value to an IExtensibleDataObject
+        /// Deserializes the string xml value to an Entity
         /// </summary>
         /// <param name="xml">The xml to deserialize.</param>
         /// <returns></returns>
         public static Entity DeserializeEntity(this string xml)
         {
+            return xml.DeserializeDataObject<Entity>();
+        }
+
+        /// <summary>
+        /// Deserializes the string xml value to an IExtensibleDataObject
+        /// </summary>
+        /// <param name="xml"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static T DeserializeDataObject<T>(this string xml) where T : IExtensibleDataObject
+        {
             var serializer = new NetDataContractSerializer();
-            var entity = ((Entity)(serializer.ReadObject(new MemoryStream(Encoding.UTF8.GetBytes(xml)))));
-            return entity;
+            return (T)(serializer.ReadObject(new MemoryStream(Encoding.UTF8.GetBytes(xml))));
         }
 
         #endregion String
