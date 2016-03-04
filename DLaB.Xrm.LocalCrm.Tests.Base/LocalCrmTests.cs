@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using DLaB.Common;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.Test;
@@ -238,6 +239,13 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 {
                     entity.Id = service.Create(entity);
                 }
+                if (entity.LogicalName == Incident.EntityLogicalName)
+                {
+                    // Satisfy ErrorCodes.unManagedidsincidentparentaccountandparentcontactnotpresent
+                    var customer = new Account();
+                    customer.Id = service.Create(customer);
+                    entity[Incident.Fields.CustomerId] = customer.ToEntityReference();
+                }
                 entity.Id = service.Create(entity);
                 AssertCrm.IsActive(service, entity, "Entity " + entity.GetType().Name + " wasn't created active!");
                 try
@@ -418,6 +426,25 @@ namespace DLaB.Xrm.LocalCrm.Tests
             contact = service.GetFirstOrDefault<Contact>();
             Assert.AreEqual(contact_accountrolecode.DecisionMaker, contact.AccountRoleCodeEnum);
             Assert.AreEqual(contact_accountrolecode.DecisionMaker.ToString(), contact.FormattedValues[Contact.Fields.AccountRoleCode]);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FaultException<OrganizationServiceFault>))]
+        public void LocalCrmTests_CaseRequiresCustomer()
+        {
+            var service = GetService();
+
+            var incident = new Incident();
+            try
+            {
+                service.Create(incident);
+            }
+            catch (FaultException<OrganizationServiceFault> ex)
+            {
+                Assert.AreEqual("You should specify a parent contact or account.", ex.Message);
+                throw;
+            }
+
         }
 
         [TestMethod]

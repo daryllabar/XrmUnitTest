@@ -13,6 +13,17 @@ namespace DLaB.Xrm.LocalCrm
     // </summary>
     partial class LocalCrmDatabase
     {
+        [DebuggerStepThrough]
+        public static Guid Create<T>(LocalCrmDatabaseOrganizationService service, T entity) where T : Entity
+        {
+            var delay = new DelayedException();
+            var id = Create(service, entity, delay);
+            if (delay.Exception != null)
+            {
+                throw delay.Exception;
+            }
+            return id;
+        }
 
         [DebuggerStepThrough]
         public static void Update<T>(LocalCrmDatabaseOrganizationService service, T entity) where T : Entity

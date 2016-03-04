@@ -22,9 +22,9 @@ namespace DLaB.Xrm.LocalCrm
     internal partial class LocalCrmDatabase : Database
     {
         private readonly static LocalCrmDatabase Default = new LocalCrmDatabase();
-        private readonly static ConcurrentDictionary<String, LocalCrmDatabase> Databases = new ConcurrentDictionary<String, LocalCrmDatabase>();
-        private readonly ConcurrentDictionary<String, ITable> _tables = new ConcurrentDictionary<String, ITable>();
-        private static readonly object DatabaseCreationLock = new Object();
+        private readonly static ConcurrentDictionary<string, LocalCrmDatabase> Databases = new ConcurrentDictionary<string, LocalCrmDatabase>();
+        private readonly ConcurrentDictionary<string, ITable> _tables = new ConcurrentDictionary<string, ITable>();
+        private static readonly object DatabaseCreationLock = new object();
 
         private static ITable<T> SchemaGetOrCreate<T>(LocalCrmDatabaseInfo info) where T : Entity
         {
@@ -191,7 +191,7 @@ namespace DLaB.Xrm.LocalCrm
         {
             public TRoot Root { get; }
             public TCurrent Current { get; }
-            public String Alias { get; set; }
+            public string Alias { get; set; }
 
             public LinkEntityTypes(TRoot root, TCurrent current, string alias)
             {
@@ -254,13 +254,13 @@ namespace DLaB.Xrm.LocalCrm
             // This potentially could be expanded to include most references types.
             if (compareToType.IsEnum)
             {
-                throw new FaultException(String.Format(@"The formatter threw an exception while trying to deserialize the message: There was an error while trying to deserialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:query. The InnerException message was 'Error in line 1 position 1978. Element 'http://schemas.microsoft.com/2003/10/Serialization/Arrays:anyType' contains data from a type that maps to the name " +
+                throw new FaultException(string.Format(@"The formatter threw an exception while trying to deserialize the message: There was an error while trying to deserialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:query. The InnerException message was 'Error in line 1 position 1978. Element 'http://schemas.microsoft.com/2003/10/Serialization/Arrays:anyType' contains data from a type that maps to the name " +
                                          "'{0}:{1}'.The deserializer has no knowledge of any type that maps to this name. Consider changing the implementation of the ResolveName method on your DataContractResolver to return a non-null value for name '{1}' and namespace '{0}'.'. Please see InnerException for more details.", compareToType.Namespace, compareToType.Name));
             }
-            if (compareToType == typeof(String) && value is String)
+            if (compareToType == typeof(string) && value is string)
             {
                 // Handle String Casing Issues
-               return String.Compare((String) value, (String) compareTo, StringComparison.OrdinalIgnoreCase);
+               return string.Compare((string) value, (string) compareTo, StringComparison.OrdinalIgnoreCase);
             }
 
             return value.CompareTo(compareTo);
@@ -276,11 +276,11 @@ namespace DLaB.Xrm.LocalCrm
             return null;
         }
 
-        private static String GetString(Entity e, string attributeName)
+        private static string GetString(Entity e, string attributeName)
         {
             if (e.Attributes.ContainsKey(attributeName))
             {
-                return e.GetAttributeValue<String>(attributeName);
+                return e.GetAttributeValue<string>(attributeName);
             }
 
             return null;
@@ -309,7 +309,7 @@ namespace DLaB.Xrm.LocalCrm
             return (IComparable)o;
         }
 
-        public static Guid Create<T>(LocalCrmDatabaseOrganizationService service, T entity) where T : Entity
+        private static Guid Create<T>(LocalCrmDatabaseOrganizationService service, T entity, DelayedException exception) where T : Entity
         {
             // Clone entity so no changes will affect actual entity
             entity = entity.Serialize().DeserializeEntity<T>();
@@ -317,6 +317,10 @@ namespace DLaB.Xrm.LocalCrm
             AssertTypeContainsColumns<T>(entity.Attributes.Keys);
             AssertEntityReferencesExists(service, entity);
             SimulateCrmAttributeManipulations(entity);
+            if (SimulateCrmCreateActionPrevention(service, entity, exception))
+            {
+                return Guid.Empty;
+            }
             var table = SchemaGetOrCreate<T>(service.Info);
             service.PopulateAutoPopulatedAttributes(entity, true);
 
@@ -482,7 +486,7 @@ namespace DLaB.Xrm.LocalCrm
         {
             // Handle Adding filter for Conditions where the Entity Name is referencing a LinkEntity.
             // This is used primarily for Outer Joins, where the attempt is to see if the join entity does not exist.
-            foreach (var condition in filter.Conditions.Where(c => !String.IsNullOrWhiteSpace(c.EntityName)))
+            foreach (var condition in filter.Conditions.Where(c => !string.IsNullOrWhiteSpace(c.EntityName)))
             {
                 var link = qe.GetLinkEntity(condition.EntityName);
 
@@ -562,7 +566,7 @@ namespace DLaB.Xrm.LocalCrm
         private static bool ConditionIsTrue<T>(T entity, ConditionExpression condition) where T : Entity
         {
             bool value;
-            var name = String.IsNullOrWhiteSpace(condition.EntityName) ? condition.AttributeName : condition.EntityName + "." + condition.AttributeName;
+            var name = string.IsNullOrWhiteSpace(condition.EntityName) ? condition.AttributeName : condition.EntityName + "." + condition.AttributeName;
             switch (condition.Operator)
             {
                 case ConditionOperator.Equal:
@@ -748,6 +752,24 @@ namespace DLaB.Xrm.LocalCrm
                 service.Retrieve(foreign.LogicalName, foreign.Id, new ColumnSet(true));
             }
         }
+        private static bool SimulateCrmCreateActionPrevention<T>(LocalCrmDatabaseOrganizationService service, T entity, DelayedException exception) where T : Entity
+        {
+            switch (entity.LogicalName)
+            {
+                case Incident.EntityLogicalName:
+                    AssertIncidentHasCustomer(service, entity, exception);
+                    break;
+            }
+            return exception.Exception != null;
+        }
+
+        private static void AssertIncidentHasCustomer(LocalCrmDatabaseOrganizationService service, Entity entity, DelayedException exception)
+        {
+            if (entity.GetAttributeValue<EntityReference>(Incident.Fields.CustomerId) == null)
+            {
+                exception.Exception = GetFaultException(ErrorCodes.unManagedidsincidentparentaccountandparentcontactnotpresent);
+            }
+        }
 
         private static void AssertTypeContainsColumns<T>(IEnumerable<string> cols)
         {
@@ -792,7 +814,7 @@ namespace DLaB.Xrm.LocalCrm
                         entity.GetAttributeValue<OptionSetValue>(Incident.Fields.StateCode).GetValueOrDefault() == (int) IncidentState.Resolved)
                     {
                         // Not executing as a part of a CloseIncidentRequest.  Disallow updating the State Code to Resolved.
-                        exception.Exception = GetUseCloseIncidentRequestException();
+                        exception.Exception = GetFaultException(ErrorCodes.UseCloseIncidentRequest);
                         return true;
                     }
                     break;
@@ -926,7 +948,7 @@ namespace DLaB.Xrm.LocalCrm
         }
 
 
-        private static FaultException<OrganizationServiceFault> GetEntityDoesNotExistException<T>(T entity) where T : Entity
+        private static FaultException<OrganizationServiceFault> GetEntityDoesNotExistException(Entity entity)
         {
             var message = $"{ErrorCodes.GetErrorMessage(ErrorCodes.ObjectDoesNotExist)}  {entity.LogicalName} With Id = {entity.Id} Does Not Exist";
             return new FaultException<OrganizationServiceFault>(new OrganizationServiceFault
@@ -937,14 +959,18 @@ namespace DLaB.Xrm.LocalCrm
             }, message);
         }
 
-        private static FaultException<OrganizationServiceFault> GetUseCloseIncidentRequestException()
+        private static FaultException<OrganizationServiceFault> GetFaultException(int hResult, params object[] args)
         {
-            var message = ErrorCodes.GetErrorMessage(ErrorCodes.UseCloseIncidentRequest);
+            var message = ErrorCodes.GetErrorMessage(hResult);
+            if (args.Length > 0)
+            {
+                message = string.Format(message, args);
+            }
             return new FaultException<OrganizationServiceFault>(new OrganizationServiceFault
             {
-                ErrorCode = ErrorCodes.UseCloseIncidentRequest,
+                ErrorCode = hResult,
                 Message = message,
-                Timestamp = DateTime.UtcNow,
+                Timestamp = DateTime.UtcNow
             }, message);
         }
     }
