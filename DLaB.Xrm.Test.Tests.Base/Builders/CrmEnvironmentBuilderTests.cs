@@ -218,7 +218,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
             // Act
             //
             new CrmEnvironmentBuilder().
-                WithBuilder<MyLeadBuilder>(b => b.WithAddress1()).WithEntities(id).Create(service);
+                WithBuilder<MyLeadBuilder>(id, b => b.WithAddress1()).Create(service);
 
             //
             // Assert

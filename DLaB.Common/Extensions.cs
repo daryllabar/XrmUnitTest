@@ -867,6 +867,42 @@ namespace DLaB.Common
         }
 
         /// <summary>
+        /// Parses or Convert the string into the give "T" type.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="strValue">The string value.</param>
+        /// <returns></returns>
+        /// <exception cref="System.FormatException"></exception>
+        public static T ParseOrConvertString<T>(this string strValue)
+        {
+            T value;
+            var type = typeof(T);
+            if (type.IsEnum)
+            {
+                // Handle Enums by parsing as ints, and then casting to the enum type
+                return (T)(object)strValue.ParseOrConvertString<int>();
+            }
+
+            var parse = type.GetMethod("Parse", new[] { typeof(string) });
+            try
+            {
+                if (parse == null)
+                {
+                    value = (T)Convert.ChangeType(strValue, type);
+                }
+                else
+                {
+                    value = (T)parse.Invoke(null, new object[] { strValue });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FormatException($"Unable to convert \"{strValue}\" into type {typeof(T).FullName}.", ex);
+            }
+            return value;
+        }
+
+        /// <summary>
         /// Converts String to a Single Item List
         /// </summary>
         /// <param name="source">The source.</param>

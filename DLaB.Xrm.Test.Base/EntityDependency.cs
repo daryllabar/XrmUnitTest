@@ -149,13 +149,13 @@ namespace DLaB.Xrm.Test
             foreach (var type in Types)
             {
                 // Clear IsCurrentlyCyclic
-                foreach (var dependency in type.Dependencies.Values.SelectMany(a => a))
+                foreach (var dependency in type.Dependencies.Values)
                 {
                     dependency.IsCurrentlyCyclic = false;
                 }
                 type.Node = null;
             }
-            foreach (var type in Infos.Values)
+            foreach (var type in Infos.Values.OrderByDescending(v => v.Dependencies.Values.Any(d => d.IsRequired)).ThenBy(v => v.LogicalName))
             {
                 PopulateNewOrder(newOrder, type);
             }
@@ -185,15 +185,14 @@ namespace DLaB.Xrm.Test
 
             foreach (var dependency in type.Dependencies.
                 Where(d => Infos.ContainsKey(d.Key)).
-                Select(d => new {Type = Infos[d.Key], DependentAttributes = d.Value}))
+                Select(d => new {Type = Infos[d.Key], DependentAttributes = d.Value}).
+                OrderByDescending(d => d.Type.Dependencies.Values.Any(v => v.IsRequired)).
+                ThenBy(d => d.Type.LogicalName))
             {
                 if (dependency.Type.IsCurrentlyBeingProcessed)
                 {
                     // Already Visited
-                    foreach (var att in dependency.DependentAttributes)
-                    {
-                        att.IsCurrentlyCyclic = true;
-                    }
+                    dependency.DependentAttributes.IsCurrentlyCyclic = true;
                 }
                 else
                 {
@@ -214,16 +213,13 @@ namespace DLaB.Xrm.Test
         {
             lock (_readWriteLock)
             {
-                if (TypesCopyVersion != CurrentVersion)
-                {
-                    TypesImmutableCopy = new ReadOnlyCollection<EntityDependencyInfo>(
-                            Types.Select(e => 
-                                new EntityDependencyInfo(e.LogicalName, e.Dependencies.Values.
-                                                                        SelectMany(v => v).
-                                                                        Where(v => v.IsCurrentlyCyclic).
-                                                                        Select(v => v.AttributeName))).ToList());
-                    TypesCopyVersion = CurrentVersion;
-                }
+                if (TypesCopyVersion == CurrentVersion) { return TypesImmutableCopy; }
+                TypesImmutableCopy = new ReadOnlyCollection<EntityDependencyInfo>(
+                    Types.Select(e => 
+                        new EntityDependencyInfo(e.LogicalName, e.Dependencies.Values.
+                                                                  Where(v => v.IsCurrentlyCyclic).
+                                                                  SelectMany(v => v.Attributes))).ToList());
+                TypesCopyVersion = CurrentVersion;
             }
             return TypesImmutableCopy;
         }
@@ -237,7 +233,7 @@ namespace DLaB.Xrm.Test
             /// <value>
             /// The dependents.
             /// </value>
-            public Dictionary<string, List<CyclicAttribute>> Dependencies { get; }
+            public Dictionary<string, EntityDependencyRelationship> Dependencies { get; }
 
             public LinkedListNode<EntityDependencyNodeInfo> Node { get; set; }
             public string LogicalName { get; }
@@ -265,7 +261,7 @@ namespace DLaB.Xrm.Test
             public EntityDependencyNodeInfo(string logicalName)
             {
                 LogicalName = logicalName;
-                Dependencies = new Dictionary<string, List<CyclicAttribute>>();
+                Dependencies = new Dictionary<string, EntityDependencyRelationship>();
                 IsCurrentlyBeingProcessed = false;
 
                 PopulateDependencies(logicalName);
@@ -285,6 +281,8 @@ namespace DLaB.Xrm.Test
             private void PopulateDependencies(string logicalName)
             {
                 var properties = TestBase.GetType(logicalName).GetProperties();
+
+                // Loop through all properties for the given entity, that define relationships
                 foreach (var property in properties.Where(p =>
                     // Skip Properties to Ignore
                     !PropertiesToIgnore.Contains(p.Name.ToLower()) &&
@@ -293,24 +291,53 @@ namespace DLaB.Xrm.Test
                 {
                     var attribute = property.GetCustomAttribute<AttributeLogicalNameAttribute>();
                     var propertyType = property.PropertyType.GetCustomAttribute<EntityLogicalNameAttribute>(true);
-                    Dependencies.AddOrAppend(propertyType.LogicalName, new CyclicAttribute(attribute.LogicalName, LogicalName == propertyType.LogicalName) {});
+                    EntityDependencyRelationship relationship;
+                    if (!Dependencies.TryGetValue(propertyType.LogicalName, out relationship))
+                    {
+                        relationship = new EntityDependencyRelationship(logicalName, propertyType.LogicalName, attribute.LogicalName, LogicalName == propertyType.LogicalName);
+                        Dependencies.Add(propertyType.LogicalName, relationship);
+                    }
+                    else
+                    {
+                        relationship.Attributes.Add(attribute.LogicalName);
+                    }
                 }
             }
         }
 
-        /// <summary>
-        /// Allows
-        /// </summary>
         [DebuggerDisplay("{AttributeName}, {IsCurrentlyCyclic}")]
-        private class CyclicAttribute
+        private class EntityDependencyRelationship
         {
-            public string AttributeName { get; }
+            private static readonly Dictionary<string, HashSet<string>> RequiredDependenciesByEntity =
+                Config.GetDictionaryHash<string, string>("DLaB.Xrm.Test.RequiredDependenciesByEntity", "incident:account,contact",
+                                                new ConfigKeyValuesSplitInfo { ConvertValuesToLower = true });
+            public List<string> Attributes { get; set; }
+
+            public string DependencyEntity { get; set; }
+
+            /// <summary>
+            /// Gets or sets a value indicating whether this instance is currently cyclic.  Cyclic Attributes will not be included in the create, but then updated post create
+            /// </summary>
+            /// <value>
+            /// <c>true</c> if this instance is currently cyclic; otherwise, <c>false</c>.
+            /// </value>
             public bool IsCurrentlyCyclic { get; set; }
 
-            public CyclicAttribute(string name, bool isCurrentlyCyclic)
+            /// <summary>
+            /// Required Dependencies have to exist before the child does.
+            /// </summary>
+            /// <value>
+            /// <c>true</c> if this instance is required; otherwise, <c>false</c>.
+            /// </value>
+            public bool IsRequired { get; set; }
+
+            public EntityDependencyRelationship(string entity, string dependencyEntity, string attribute, bool isCurrentlyCyclic)
             {
-                AttributeName = name;
+                HashSet<string> hash;
+                Attributes = new List<string> {attribute};
+                DependencyEntity = dependencyEntity;
                 IsCurrentlyCyclic = isCurrentlyCyclic;
+                IsRequired = RequiredDependenciesByEntity.TryGetValue(entity, out hash) && hash.Contains(dependencyEntity);
             }
         }
     }

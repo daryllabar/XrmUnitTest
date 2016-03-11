@@ -63,6 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="ConfigKeyValueSplitInfo.cs" />
+    <Compile Include="ConfigKeyValuesSplitInfo.cs" />
     <Compile Include="Exceptions\DictionaryDuplicateKeyException.cs" />
     <Compile Include="Exceptions\EnumCaseUndefinedException.cs" />
     <Compile Include="Exceptions\TypeArgumentException.cs" />
