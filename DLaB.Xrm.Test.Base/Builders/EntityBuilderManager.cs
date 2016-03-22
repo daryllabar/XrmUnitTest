@@ -127,16 +127,15 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="logicalName">Name of the logical.</param>
         /// <param name="action">The action.</param>
         /// <exception cref="System.Exception"></exception>
-        private void ApplyCustomAction<TBuilder>(string logicalName, Action<TBuilder> action) where TBuilder : class
+        private void ApplyCustomAction<TBuilder>(string logicalName, Action<TBuilder> action) where TBuilder : class, IEntityBuilder
         {
             List<BuilderInfo> builders;
             if (!BuildersByEntityType.TryGetValue(logicalName, out builders))
             {
-
                 return;
             }
 
-            foreach (var result in builders)
+            foreach (var result in builders.Select(b => b.Builder))
             {
                 var builder = result as TBuilder;
                 if (builder == null)
@@ -322,7 +321,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="logicalName">Name of the logical.</param>
         /// <exception cref="System.Exception">
         /// </exception>
-        private void SetBuilderType<TBuilder>(string logicalName) where TBuilder : class
+        private void SetBuilderType<TBuilder>(string logicalName) where TBuilder : IEntityBuilder
         {
             var constructor = GetIdConstructor<TBuilder>();
 
@@ -398,12 +397,12 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         /// <exception cref="System.Exception"></exception>
         public void WithBuilderForEntityType<TBuilder>(Action<TBuilder> action)
-            where TBuilder : class
+            where TBuilder : class, IEntityBuilder
         {
-            AssertTypeInheritsFromEntityBuilder<TBuilder>();
+            var builderType = GetEntityBuilderType<TBuilder>();
+            AssertTypeInheritsFromEntityBuilder<TBuilder>(builderType);
 
-            // ReSharper disable once PossibleNullReferenceException
-            var entityType = typeof (TBuilder).BaseType.GetGenericArguments()[0];
+            var entityType = builderType.GetGenericArguments()[0];
             var logicalName = EntityHelper.GetEntityLogicalName(entityType);
 
             SetBuilderType<TBuilder>(logicalName);
@@ -415,13 +414,27 @@ namespace DLaB.Xrm.Test.Builders
             AddCustomAction(logicalName, b => action((TBuilder) b)); // Convert Action<TBuilder> to Action<Object>
         }
 
-        private static void AssertTypeInheritsFromEntityBuilder<TBuilder>() where TBuilder : class
+        private static void AssertTypeInheritsFromEntityBuilder<TBuilder>(Type type = null) where TBuilder : class, IEntityBuilder
+        {
+            type = type ?? GetEntityBuilderType<TBuilder>();
+            if (type == null)
+            {
+                throw new Exception("Builder does not inherit from EntityBuilder<>, which is not currently supported");
+            }
+        }
+
+        private static Type GetEntityBuilderType<TBuilder>() where TBuilder: class, IEntityBuilder
         {
             var baseType = typeof (TBuilder).BaseType;
-            if (baseType == null || baseType.GetGenericTypeDefinition() != typeof (EntityBuilder<>))
+            while (baseType != null)
             {
-                throw new Exception("Builder is not directly inheriting from EntityBuilder<>, which is not currently supported");
+                if (baseType.IsGenericType && baseType.GetGenericTypeDefinition() == typeof (EntityBuilder<>))
+                {
+                    break;
+                }
+                baseType = baseType.BaseType;
             }
+            return baseType;
         }
 
         /// <summary>
@@ -431,7 +444,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="id">The identifier.</param>
         /// <param name="action">The action.</param>
         /// <exception cref="System.Exception"></exception>
-        public void WithBuilderForEntity<TBuilder>(Id id, Action<TBuilder> action) where TBuilder : class
+        public void WithBuilderForEntity<TBuilder>(Id id, Action<TBuilder> action) where TBuilder : class, IEntityBuilder
         {
             AssertTypeInheritsFromEntityBuilder<TBuilder>();
             var constructor = GetIdConstructor<TBuilder>();
@@ -439,7 +452,7 @@ namespace DLaB.Xrm.Test.Builders
             action((TBuilder)builder.Builder);
         }
 
-        private static ConstructorInfo GetIdConstructor<TBuilder>() where TBuilder : class
+        private static ConstructorInfo GetIdConstructor<TBuilder>() where TBuilder : IEntityBuilder
         {
             var constructor = typeof (TBuilder).GetConstructor(new[] {typeof (Id)});
             if (constructor == null)

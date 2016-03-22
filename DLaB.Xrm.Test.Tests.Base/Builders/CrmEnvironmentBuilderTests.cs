@@ -231,6 +231,29 @@ namespace DLaB.Xrm.Test.Tests.Builders
             Assert.IsNull(lead.Address2_City);
         }
 
+        [TestMethod]
+        public void CrmEnvironmentBuilder_Create_WithMyOtherBuilder_Should_UseBuilder()
+        {
+            //
+            // Arrange
+            //
+            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            var id = new Id<Lead>(Guid.NewGuid());
+            var email = "test@test.com";
+
+            //
+            // Act
+            //
+            new CrmEnvironmentBuilder().
+                WithBuilder<MyOtherBuilder>(id, b => b.WithEmail(email)).Create(service);
+
+            //
+            // Assert
+            //
+            var lead = service.GetEntity(id);
+            Assert.AreEqual(email, lead.EMailAddress1);
+        }
+
         public class MyLeadBuilder : EntityBuilder<Lead>
         {
             public Lead Lead { get; set; }
@@ -263,6 +286,34 @@ namespace DLaB.Xrm.Test.Tests.Builders
             protected override Lead BuildInternal()
             {
                 return Lead;
+            }
+        }
+
+        public abstract class MyGenericBuilder<TEntity> : EntityBuilder<TEntity> where TEntity : Entity
+        {
+            
+        }
+
+        public class MyOtherBuilder : MyGenericBuilder<Lead>
+        {
+            public Lead Lead { get; set; }
+
+            public MyOtherBuilder()
+            {
+                Lead = new Lead();
+            }
+
+            public MyOtherBuilder(Id id) : this()
+            {
+                Id = id;
+            }
+
+            protected override Lead BuildInternal() { return Lead; }
+
+            public MyOtherBuilder WithEmail(string email)
+            {
+                Lead.EMailAddress1 = email;
+                return this;
             }
         }
 

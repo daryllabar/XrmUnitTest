@@ -90,7 +90,8 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="action">The action.</param>
         /// <returns></returns>
         /// <exception cref="System.Exception"></exception>
-        public TDerived WithBuilder<TBuilder>(Id id, Action<TBuilder> action) where TBuilder : class {
+        public TDerived WithBuilder<TBuilder>(Id id, Action<TBuilder> action) where TBuilder : class, IEntityBuilder
+        {
             EntityBuilders.WithBuilderForEntity(id, action);
             return This;
         }
@@ -103,7 +104,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         /// <exception cref="System.Exception"></exception>
         public TDerived WithBuilder<TBuilder>(Action<TBuilder> action) 
-            where TBuilder : class
+            where TBuilder : class, IEntityBuilder
         {
             EntityBuilders.WithBuilderForEntityType(action);
             return This;
