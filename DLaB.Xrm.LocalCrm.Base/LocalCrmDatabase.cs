@@ -425,6 +425,41 @@ namespace DLaB.Xrm.LocalCrm
             return fe.aggregateSpecified ? PerformAggregation<T>(entities, fe) : entities;
         }
 
+        private static EntityCollection ReadEntitiesByAttribute<T>(LocalCrmDatabaseOrganizationService service, QueryByAttribute query, DelayedException delay) where T : Entity
+        {
+            if (AssertValidQueryByAttribute<T>(query, delay)) { return null; }
+            
+            var qe = new QueryExpression(query.EntityName)
+            {
+                ColumnSet = query.ColumnSet,
+                PageInfo = query.PageInfo,
+                TopCount = query.TopCount,
+            };
+
+            qe.Orders.AddRange(query.Orders);
+
+            for (var i = 0; i < query.Attributes.Count; i++)
+            {
+                qe.WhereEqual(query.Attributes[i], query.Values[i]);
+            }
+            return ReadEntities<T>(service, qe);
+        }
+
+        private static bool AssertValidQueryByAttribute<T>(QueryByAttribute query, DelayedException delay) where T : Entity
+        {
+            if (!query.Attributes.Any())
+            {
+                delay.Exception = GetFaultException(ErrorCodes.QueryBuilderByAttributeNonEmpty);
+                return true;
+            }
+            if (query.Attributes.Count != query.Values.Count)
+            {
+                delay.Exception = GetFaultException(ErrorCodes.QueryBuilderByAttributeMismatch);
+                return true;
+            }
+            return false;
+        }
+
         public static EntityCollection ReadEntities<T>(LocalCrmDatabaseOrganizationService service, QueryExpression qe) where T : Entity
         {
             var query = SchemaGetOrCreate<T>(service.Info).AsQueryable();

@@ -49,6 +49,18 @@ namespace DLaB.Xrm.LocalCrm
         }
 
         [DebuggerStepThrough]
+        public static EntityCollection ReadEntitiesByAttribute<T>(LocalCrmDatabaseOrganizationService service, QueryByAttribute query) where T : Entity
+        {
+            var delay = new DelayedException();
+            var result = ReadEntitiesByAttribute<T>(service, query, delay);
+            if (delay.Exception != null)
+            {
+                throw delay.Exception;
+            }
+            return result;
+        }
+
+        [DebuggerStepThrough]
         public static void Delete<T>(LocalCrmDatabaseOrganizationService service, Guid id) where T : Entity
         {
             var delay = new DelayedException();

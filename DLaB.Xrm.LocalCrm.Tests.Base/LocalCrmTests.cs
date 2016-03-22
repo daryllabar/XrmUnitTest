@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
 using DLaB.Common;
+using DLaB.Xrm.CrmSdk;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -33,6 +35,34 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.AreEqual(2, service.GetEntities<Contact>().Count, "Two and only two contacts should exist!");
             Assert.AreEqual(id1, service.GetEntity<Contact>(id1).Id, "Failed looking up Contact 1 by Id");
             Assert.AreEqual(id2, service.GetEntity<Contact>(id2).Id, "Failed looking up Contact 2 by Id");
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_QueryByAttribute()
+        {
+            var service = GetService();
+            var johnId = service.Create(new Contact {FirstName = "John"});
+            var janeId = service.Create(new Contact {FirstName = "Jane"});
+
+            // Happy Path
+            var query = new QueryByAttribute(Contact.EntityLogicalName) {ColumnSet = new ColumnSet()};
+            query.ColumnSet.AddColumn(Contact.Fields.ContactId);
+            query.Attributes.Add(Contact.Fields.FirstName);
+            query.Values.Add("John");
+            var contacts = service.RetrieveMultiple(query).ToEntityList<Contact>();
+            Assert.AreEqual(1, contacts.Count);
+            Assert.AreEqual(johnId, contacts[0].Id);
+
+            // Unhappy Path, uneven values / attributes
+            query.Values.Clear();
+            AssertOrganizationServiceFaultException("QueryByAttribute had an uneven number of attributes/values, and should have thrown an exception", 
+                                                    ErrorCodes.GetErrorMessage(ErrorCodes.QueryBuilderByAttributeMismatch), 
+                                                    () => service.RetrieveMultiple(query));
+
+            query.Attributes.Clear();
+            AssertOrganizationServiceFaultException("QueryByAttribute had no attributes or values, and should have thrown an exception",
+                                                    ErrorCodes.GetErrorMessage(ErrorCodes.QueryBuilderByAttributeNonEmpty),
+                                                    () => service.RetrieveMultiple(query));
         }
 
         [TestMethod]
@@ -199,23 +229,9 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var contact = new Contact {Id = Guid.NewGuid()};
             var opp = new Opportunity {ParentContactId = contact.ToEntityReference()};
 
-            try
-            {
-                service.Create(opp);
-                Assert.Fail("Opportunity Creation should have failed since the Contact Doesn't exist");
-            }
-            catch (System.ServiceModel.FaultException<OrganizationServiceFault> ex)
-            {
-                Assert.IsTrue(ex.Message.Contains($"With Id = {contact.Id} Does Not Exist"), "Exception type is different than expected");
-            }
-            catch (AssertFailedException)
-            {
-                throw;
-            }
-            catch (Exception)
-            {
-                Assert.Fail("Exception type is different than expected");
-            }
+            AssertOrganizationServiceFaultException("Opportunity Creation should have failed since the Contact Doesn't exist",
+                                                    $"With Id = {contact.Id} Does Not Exist",
+                                                    () => service.Create(opp));
 
             service.Create(contact);
             AssertCrm.Exists(service, contact);
@@ -444,7 +460,6 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 Assert.AreEqual("You should specify a parent contact or account.", ex.Message);
                 throw;
             }
-
         }
 
         [TestMethod]
@@ -488,6 +503,32 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var service = GetService();
             service.Create(new Contact {FirstName = "Jimmy"});
             Assert.IsNotNull(service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.FirstName, ConditionOperator.Like, "JIM%")));
+        }
+
+        [DebuggerHidden]
+        public static void AssertOrganizationServiceFaultException(string reasonForException, string exceptionMesageContains, Action action)
+        {
+            try
+            {
+                action();
+                Assert.Fail(reasonForException);
+            }
+            catch (FaultException<OrganizationServiceFault> ex)
+            {
+                if (exceptionMesageContains == null)
+                {
+                    return;
+                }
+                Assert.IsTrue(ex.Message.Contains(exceptionMesageContains), "Exception type is different than expected");
+            }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                Assert.Fail("Exception type is different than expected");
+            }
         }
     }
 }

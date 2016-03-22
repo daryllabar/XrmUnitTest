@@ -482,7 +482,7 @@ namespace DLaB.Xrm
         }
 
         /// <summary>
-        /// Converts an Earlybound Entity to a base calss Entity
+        /// Converts an Earlybound Entity to a base class Entity
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns></returns>
