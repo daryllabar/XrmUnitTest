@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using DLaB.Common;
 using DLaB.Xrm.Exceptions;
@@ -156,40 +157,61 @@ namespace DLaB.Xrm.Plugin
 
         #region IPluginExecutionContext
 
-        #region AssertEntityImageAttributesRegistered
+        #region AssertEntityImageAttributesExist
 
         /// <summary>
-        /// Checks the Pre/Post Entity Images to determine if the image collections contains an image with the given key, that contains the attributes
+        /// Checks the Pre/Post Entity Images to determine if the image collections contains an image with the given key, that contains the attributes.
+        /// Throws an exception if the image name is contained in both the Pre and Post Image.
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="imageName">Name of the image.</param>
         /// <param name="attributeNames">The attribute names.</param>
-        public static void AssertEntityImageAttributesRegistered(this IPluginExecutionContext context, string imageName, params string[] attributeNames)
+        public static void AssertEntityImageAttributesExist(this IPluginExecutionContext context, string imageName, params string[] attributeNames)
         {
-            Entity image;
-            var imageCollection = InvalidPluginStepRegistrationException.ImageCollection.Pre;
-            if (context.PostEntityImages.TryGetValue(imageName, out image))
+            AssertEntityImageRegistered(context, imageName);
+            Entity preImage;
+            Entity postImage;
+            var imageCollection = context.PreEntityImages.TryGetValue(imageName, out preImage) ? 
+                InvalidPluginStepRegistrationException.ImageCollection.Pre : 
+                InvalidPluginStepRegistrationException.ImageCollection.Post;
+            context.PostEntityImages.TryGetValue(imageName, out postImage);
+
+            var image = preImage ?? postImage;
+            var missingAttributes = attributeNames.Where(attribute => !image.Contains(attribute)).ToList();
+
+            if (missingAttributes.Any())
             {
-                imageCollection = InvalidPluginStepRegistrationException.ImageCollection.Post;
+                throw InvalidPluginStepRegistrationException.ImageMissingRequiredAttributes(imageCollection, imageName, missingAttributes);
             }
-            else
+        }
+
+        #endregion AssertEntityImageAttributesExist
+
+        #region AssertEntityImageRegistered
+
+        /// <summary>
+        /// Checks the Pre/Post Entity Images to determine if the the collection contains an image with the given key.
+        /// Throws an exception if the image name is contained in both the Pre and Post Image.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="imageName">Name of the image.</param>
+        public static void AssertEntityImageRegistered(this IPluginExecutionContext context, string imageName)
+        {
+            var pre = context.PreEntityImages.ContainsKey(imageName);
+            var post =  context.PostEntityImages.ContainsKey(imageName);
+
+            if (pre && post)
             {
-                context.PreEntityImages.TryGetValue(imageName, out image);
+                throw new Exception($"Both Preimage and Post Image Contain the Image \"{imageName}\".  Unable to determine what entity collection to search for the given attributes.");
             }
 
-            if (image == null)
+            if (!pre && !post)
             {
                 throw InvalidPluginStepRegistrationException.ImageMissing(imageName);
             }
-
-            var missingAttributes = attributeNames.Where(attribute => !image.Contains(attribute)).ToList();
-
-            if (!missingAttributes.Any()) { return; }
-
-            throw InvalidPluginStepRegistrationException.ImageMissingRequiredAttributes(imageCollection, imageName, missingAttributes);
         }
 
-        #endregion AssertEntityImageAttributesRegistered
+        #endregion AssertEntityImageRegistered
 
         #region CalledFrom
 

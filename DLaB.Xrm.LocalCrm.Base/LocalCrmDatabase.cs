@@ -327,6 +327,7 @@ namespace DLaB.Xrm.LocalCrm
             // Clear non Attribute Related Values
             entity.FormattedValues.Clear();
             entity.KeyAttributes.Clear();
+            var relatedEntities = entity.RelatedEntities.ToList();
             entity.RelatedEntities.Clear();
 
             if (entity.Id == Guid.Empty)
