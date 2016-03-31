@@ -342,6 +342,7 @@ namespace DLaB.Xrm
 
                 case "duplicaterule": // don't ask me why, but this one is flipped
                     ActiveState = 1;
+                    NotActiveState = 0;
                     break;
 
                 // Entities with states that can't be grouped into seperate all inclusive active and inactive states
@@ -365,6 +366,7 @@ namespace DLaB.Xrm
                     else
                     {
                         ActiveState = 0;
+                        NotActiveState = 1;
                     }
                     break;
             }

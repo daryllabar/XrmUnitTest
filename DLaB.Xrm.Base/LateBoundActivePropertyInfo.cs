@@ -13,7 +13,7 @@ namespace DLaB.Xrm
         /// Initializes a new instance of the <see cref="LateBoundActivePropertyInfo"/> class.
         /// </summary>
         /// <param name="logicalName">Name of the logical.</param>
-        public LateBoundActivePropertyInfo(String logicalName) : base(logicalName) { }
+        public LateBoundActivePropertyInfo(string logicalName) : base(logicalName) { }
 
         /// <summary>
         /// Determines whether the specified entity is active.
