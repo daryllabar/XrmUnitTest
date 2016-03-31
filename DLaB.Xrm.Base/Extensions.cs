@@ -659,6 +659,20 @@ namespace DLaB.Xrm
         {
             return entity?.Name;
         }
+        /// <summary>
+        /// Allows for Null safe Equals Comparison for more concise code.  i.e.<para />
+        /// if(contact.NullSafeEquals(entity))<para />
+        /// vs.<para />
+        /// if(contact == value || contact != null amps;amps; contact.Equals(entity))
+        /// </summary>
+        /// <param name="entityReference"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool NullSafeEquals(this EntityReference entityReference, EntityReference value)
+        {
+            // ReSharper disable once PossibleUnintendedReferenceComparison If EntityReference and Value are both null, or actually both the same reference, then return true
+            return entityReference == value || entityReference != null && entityReference.Equals(value);
+        }
 
         /// <summary>
         /// Returns the Logical Name, Name, and Id of the EntityReference
@@ -1556,6 +1570,60 @@ namespace DLaB.Xrm
 
         #endregion LinkEntity
 
+        #region Money
+
+        /// <summary>
+        /// Returns the value of the Money, or 0 if it is null
+        /// </summary>
+        /// <param name="money"></param>
+        /// <returns></returns>
+        public static decimal GetValueOrDefault(this Money money)
+        {
+            return GetValueOrDefault(money, 0m);
+        }
+
+        /// <summary>
+        /// Returns the value of the Money, or the default value if it is null
+        /// </summary>
+        /// <param name="money">The Money.</param>
+        /// <param name="defaultValue">The value to default the Money's Value to if it is null.</param>
+        /// <returns></returns>
+        public static decimal GetValueOrDefault(this Money money, decimal defaultValue)
+        {
+            return money?.Value ?? defaultValue;
+        }
+
+        /// <summary>
+        /// Allows for Null safe Equals Comparison for more concise code.  i.e.<para />
+        /// if(contact.Salary.NullSafeEquals(1m))<para />
+        /// vs.<para />
+        /// if(contact.Salary != null &amp;&amp; contact.gendercode.Value == 1m)
+        /// </summary>
+        /// <param name="money"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool NullSafeEquals(this Money money, decimal value)
+        {
+            return money != null && money.Value == value;
+        }
+
+        /// <summary>
+        /// Allows for Null safe Equals Comparison for more concise code.  i.e.<para />
+        /// if(contact.Salary.NullSafeEquals(salary))<para />
+        /// vs.<para />
+        /// if(contact.Salary == salary || contact.Salary != null amps;amps; contact.Salary.Value == salary.Value)
+        /// </summary>
+        /// <param name="money"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool NullSafeEquals(this Money money, Money value)
+        {
+            // ReSharper disable once PossibleUnintendedReferenceComparison If Money and Value are both null, or actually both the same reference, then return true
+            return money == value || money != null && money.Equals(value);
+        }
+
+        #endregion Money
+
         #region OptionSetValue
 
         /// <summary>
@@ -1569,7 +1637,7 @@ namespace DLaB.Xrm
         }
 
         /// <summary>
-        /// Returns the value of the OptionSetValue, or int.MinValue if it is null
+        /// Returns the value of the OptionSetValue, or the defaultValue if it is null
         /// </summary>
         /// <param name="osv">The OptionSetValue.</param>
         /// <param name="defaultValue">The value to default the OptionSetValue's Value to if it is null.</param>
@@ -1583,7 +1651,7 @@ namespace DLaB.Xrm
         /// Allows for Null safe Equals Comparison for more concise code.  i.e.
         /// if(contact.GenderCode.NullSafeEquals(1))
         /// vs.
-        /// if(contact.GenderCode != null &amp;&amp; contact.gendercode.Value == 1)
+        /// if(contact.GenderCode != null &amp;&amp; contact.GenderCode.Value == 1)
         /// </summary>
         /// <param name="osv"></param>
         /// <param name="value"></param>
@@ -1595,16 +1663,17 @@ namespace DLaB.Xrm
 
         /// <summary>
         /// Allows for Null safe Equals Comparison for more concise code.  i.e.
-        /// if(contact.GenderCode.NullSafeEquals(new OptionSet(1)))
+        /// if(contact.GenderCode.NullSafeEquals(genderCode))
         /// vs.
-        /// if(contact.GenderCode != null amps;amps; contact.gendercode.Value == new OptionSet(1))
+        /// if(contact.GenderCode == genderCode || contact.GenderCode != null amps;amps; contact.GenderCode.Value == genderCode.Value))
         /// </summary>
         /// <param name="osv"></param>
         /// <param name="value"></param>
         /// <returns></returns>
         public static bool NullSafeEquals(this OptionSetValue osv, OptionSetValue value)
         {
-            return osv != null && osv.Equals(value);
+            // ReSharper disable once PossibleUnintendedReferenceComparison If Osv and Value are both null, or actually both the same reference, then return true
+            return osv == value || osv != null && osv.Equals(value);
         }
 
         #endregion OptionSetValue
@@ -1894,7 +1963,7 @@ namespace DLaB.Xrm
         public static T DeserializeEntity<T>(this string xml) where T : Entity
         {
             var entity = xml.DeserializeEntity();
-            if(entity.GetType() == typeof(T))
+            if(entity?.GetType() == typeof(T))
             {
                 return (T)entity;
             }
