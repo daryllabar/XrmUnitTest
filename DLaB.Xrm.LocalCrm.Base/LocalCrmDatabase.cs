@@ -793,17 +793,28 @@ namespace DLaB.Xrm.LocalCrm
             switch (entity.LogicalName)
             {
                 case Incident.EntityLogicalName:
-                    AssertIncidentHasCustomer(service, entity, exception);
+                    AssertIncidentHasCustomer(entity, exception);
+                    break;
+                case OpportunityProduct.EntityLogicalName:
+                    AssertOpportunityProductHasUoM(entity, exception);
                     break;
             }
             return exception.Exception != null;
         }
 
-        private static void AssertIncidentHasCustomer(LocalCrmDatabaseOrganizationService service, Entity entity, DelayedException exception)
+        private static void AssertIncidentHasCustomer(Entity entity, DelayedException exception)
         {
             if (entity.GetAttributeValue<EntityReference>(Incident.Fields.CustomerId) == null)
             {
                 exception.Exception = GetFaultException(ErrorCodes.unManagedidsincidentparentaccountandparentcontactnotpresent);
+            }
+        }
+
+        private static void AssertOpportunityProductHasUoM(Entity entity, DelayedException exception)
+        {
+            if (entity.GetAttributeValue<EntityReference>(OpportunityProduct.Fields.UoMId) == null)
+            {
+                exception.Exception = GetFaultException(ErrorCodes.MissingUomId);
             }
         }
 
