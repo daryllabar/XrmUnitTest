@@ -57,6 +57,10 @@
       <HintPath>..\packages\XrmUnitTest.2016.1.1.4-alpha09\lib\net452\DLaB.Xrm.Client.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DLaB.Xrm.Entities, Version=1.0.5870.30963, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DLaB.Xrm.Entities.1.1.1\lib\net452\DLaB.Xrm.Entities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DLaB.Xrm.LocalCrm.2016, Version=1.1.4.7, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\XrmUnitTest.2016.1.1.4-alpha09\lib\net452\DLaB.Xrm.LocalCrm.2016.dll</HintPath>
       <Private>True</Private>
@@ -330,12 +334,6 @@
     <Compile Include="Builders\WorkflowInvokerBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestInitializer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj">
-      <Project>{66688025-2f6d-40ec-914e-87af88afc5de}</Project>
-      <Name>DLaB.Xrm.Entities</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assumptions\Entity Xml\" />
