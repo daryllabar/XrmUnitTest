@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Linq;
+using DLaB.Xrm;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DLaB.Xrm.Entities;
+using DLaB.Xrm.Entities; // Contains Early Bound Entities
 using DLaB.Xrm.Plugin;
 using DLaB.Xrm.Test;
-// Contains Early Bound Entities
 using Example.MsTestBase; // Test Base Project.  Contains code that is shared amoung all Unit Test Projects
 using Example.MsTestBase.Builders; // Fluent Builder Namespace.  Builders can be used to create anything that's required, from creating an entity, to a OrganizationService, to a Plugin
 using Example.Plugin;
 using Example.Plugin.Simple;
+using FakeItEasy;
+using FakeXrmEasy;
 using Microsoft.Xrm.Sdk;
 
 // Generic Plugin that contains the plugin to test
@@ -73,5 +75,50 @@ namespace Example.MsTest
         }
 
         #endregion UpdateContactAddress_Should_UpdateAccountAddress
+
+        [TestMethod]
+        public void SyncContactToAccount_UpdateContactAddress_Should_UpdateAccountAddress_FakeXrm()
+        {
+            //
+            // Arrange
+            //
+            var context = new FakeXrmEasy.XrmFakedContext
+            {
+                ProxyTypesAssembly = typeof(Account).Assembly
+            };
+            var service = context.GetFakedOrganizationService();
+
+            var id = service.Create(new Contact());
+            var accountId = service.Create(
+                new Account
+                {
+                    PrimaryContactId = new EntityReference(Contact.EntityLogicalName, id)
+                });
+            var contact = new Contact
+            {
+                Id = id,
+                Address1_Line1 = "742 Evergreen Terrace"
+            };
+
+            //
+            // Act
+            //
+            var fakedPlugin = context.ExecutePluginWith<SyncContactToAccount>(
+                new XrmFakedPluginExecutionContext
+                {
+                    MessageName = MessageType.Create.Value,
+                    InputParameters = new ParameterCollection
+                    {
+                        {"Target", contact}
+                    },
+                    Stage = (int)PipelineStage.PostOperation
+                });
+
+            //
+            // Assert
+            //   
+            var account = service.GetEntity<Account>(accountId);
+            Assert.AreEqual(contact.Address1_Line1, account.Address1_Line1);
+        }
     }
 }
