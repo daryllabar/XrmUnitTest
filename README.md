@@ -24,7 +24,7 @@ There are two methods for utilizing the code base, depending on how you'd like t
 Again, more information is available on the [Wiki](https://github.com/daryllabar/XrmUnitTest/wiki)!
 
 
-## How Can You Help?
+## How Can I Help?
 
 XrmUnitTest is designed to be a community focused, open sourced project.  There are two main ways to help:
 Please submit an issue for bugs/feature requests.  If you'd like to contir
