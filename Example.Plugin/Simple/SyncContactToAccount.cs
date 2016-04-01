@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.Plugin;
 using Microsoft.Xrm.Sdk;
@@ -6,7 +7,7 @@ using Microsoft.Xrm.Sdk;
 namespace Example.Plugin.Simple
 {
     /// <summary>
-    /// Class to Sync a Contact's Address Information to the Account, if empty
+    /// Class to Sync a Contact's Address Information to the Account, if it is the primary account
     /// </summary>
     public class SyncContactToAccount : DLaBPluginBase
     {
@@ -35,25 +36,25 @@ namespace Example.Plugin.Simple
 
         protected override void ExecuteInternal(IExtendedPluginContext context)
         {
-            // Get the Target, plus the AccountId from the Post Entity since it may not have changed and is most likely not in the Target
-            var contact = context.CoallesceTargetWithPostEntity<Contact>();
-            if (contact.AccountId == null || string.IsNullOrWhiteSpace(contact.Address1_Line1))
+            // Get the Target
+            var contact = context.GetTarget<Contact>();
+            if (string.IsNullOrWhiteSpace(contact.Address1_Line1))
             {
-                // No Account or no address, no Update Needed
+                // Address not updated, no need to update Account
                 return;
             }
 
             using (var crm = new CrmContext(context.OrganizationService))
             {
-                var account = crm.AccountSet.First(a => a.AccountId == contact.AccountId.Id);
-                if (string.IsNullOrWhiteSpace(account.Address1_Line1))
+                var accounts = crm.AccountSet.Where(a => a.PrimaryContactId.Id == contact.Id);
+                foreach (var account in accounts)
                 {
-                    UpdateAccountAddress(context.OrganizationService, contact);
+                    UpdateAccountAddress(context.OrganizationService, account.Id, contact);
                 }
             }
         }
 
-        private void UpdateAccountAddress(IOrganizationService service, Contact contact)
+        private void UpdateAccountAddress(IOrganizationService service, Guid id, Contact contact)
         {
             var account = new Account
             {
@@ -67,7 +68,7 @@ namespace Example.Plugin.Simple
                 Address1_StateOrProvince = contact.Address1_StateOrProvince,
                 Address1_Name = contact.Address1_Name,
                 Address1_PostalCode = contact.Address1_PostalCode,
-                Id = contact.AccountId.Id
+                Id = id
             };
 
             service.Update(account);
