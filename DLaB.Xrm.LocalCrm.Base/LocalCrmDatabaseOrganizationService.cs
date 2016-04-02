@@ -241,21 +241,34 @@ namespace DLaB.Xrm.LocalCrm
         [DebuggerStepThrough]
         public EntityCollection RetrieveMultiple(QueryBase query)
         {
-            var fetchQuery = query as FetchExpression;
-            if (fetchQuery != null)
-            {
-                var s = new XmlSerializer(typeof(FetchType));
-                FetchType fetch;
-                using (var r = new StringReader(fetchQuery.Query))
-                {
-                    fetch = (FetchType)s.Deserialize(r);
-                    r.Close();
-                }
-                return (EntityCollection)InvokeStaticGenericMethod(((FetchEntityType)fetch.Items[0]).name, "ReadFetchXmlEntities", this, fetch);
-            }
-            var qe = (QueryExpression)query;
+            return RetrieveMultipleInternal((dynamic)query);
+        }
 
+        private EntityCollection RetrieveMultipleInternal(QueryBase query)
+        {
+            throw new NotImplementedException("Retrieve Multiple for Query Base Type " + query.GetType().FullName + " not Impemented");
+        }
+
+        private EntityCollection RetrieveMultipleInternal(FetchExpression fetchExpression)
+        {
+            var s = new XmlSerializer(typeof(FetchType));
+            FetchType fetch;
+            using (var r = new StringReader(fetchExpression.Query))
+            {
+                fetch = (FetchType)s.Deserialize(r);
+                r.Close();
+            }
+            return (EntityCollection)InvokeStaticGenericMethod(((FetchEntityType)fetch.Items[0]).name, "ReadFetchXmlEntities", this, fetch);
+        }
+
+        private EntityCollection RetrieveMultipleInternal(QueryExpression qe)
+        {
             return (EntityCollection)InvokeStaticGenericMethod(qe.EntityName, "ReadEntities", this, qe);
+        }
+
+        private EntityCollection RetrieveMultipleInternal(QueryByAttribute query)
+        {
+            return (EntityCollection)InvokeStaticGenericMethod(query.EntityName, "ReadEntitiesByAttribute", this, query);
         }
 
         /// <summary>

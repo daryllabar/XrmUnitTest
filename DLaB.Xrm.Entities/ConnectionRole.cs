@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum ConnectionRoleState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("connectionrole")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ConnectionRole : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -56,11 +56,11 @@ namespace DLaB.Xrm.Entities
 			public const string StateCode = "statecode";
 			public const string StatusCode = "statuscode";
 			public const string VersionNumber = "versionnumber";
-			public const string createdby_connection_role = "createdby";
-			public const string lk_connectionrolebase_createdonbehalfby = "createdonbehalfby";
-			public const string lk_connectionrolebase_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string modifiedby_connection_role = "modifiedby";
-			public const string organization_connection_roles = "organizationid";
+			public const string createdby_connection_role = "createdby_connection_role";
+			public const string lk_connectionrolebase_createdonbehalfby = "lk_connectionrolebase_createdonbehalfby";
+			public const string lk_connectionrolebase_modifiedonbehalfby = "lk_connectionrolebase_modifiedonbehalfby";
+			public const string modifiedby_connection_role = "modifiedby_connection_role";
+			public const string organization_connection_roles = "organization_connection_roles";
 		}
 
 		
@@ -199,6 +199,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -211,6 +218,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -338,6 +352,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -350,6 +371,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -672,6 +700,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("createdby_connection_role", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("createdby_connection_role");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("createdby_connection_role", null, value);
+				this.OnPropertyChanged("createdby_connection_role");
+			}
 		}
 		
 		/// <summary>
@@ -727,6 +762,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("modifiedby_connection_role", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("modifiedby_connection_role");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("modifiedby_connection_role", null, value);
+				this.OnPropertyChanged("modifiedby_connection_role");
 			}
 		}
 		
@@ -787,12 +829,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("category")]
-		public virtual connectionrole_category? CategoryEnum
+		public virtual ConnectionRole_Category? CategoryEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((connectionrole_category?)(EntityOptionSetEnum.GetEnum(this, "category")));
+				return ((ConnectionRole_Category?)(EntityOptionSetEnum.GetEnum(this, "category")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -802,22 +844,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual connectionrole_statuscode? StatusCodeEnum
+		public virtual ConnectionRole_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((connectionrole_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((ConnectionRole_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

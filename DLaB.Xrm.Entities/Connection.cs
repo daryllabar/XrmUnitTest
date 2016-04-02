@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum ConnectionState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("connection")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class Connection : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -68,95 +68,95 @@ namespace DLaB.Xrm.Entities
 			public const string StatusCode = "statuscode";
 			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string VersionNumber = "versionnumber";
-			public const string account_connections1 = "record1id";
-			public const string account_connections2 = "record2id";
-			public const string activitypointer_connections1 = "record1id";
-			public const string activitypointer_connections2 = "record2id";
-			public const string appointment_connections1 = "record1id";
-			public const string appointment_connections2 = "record2id";
-			public const string business_unit_connections = "owningbusinessunit";
-			public const string campaign_connections1 = "record1id";
-			public const string campaign_connections2 = "record2id";
-			public const string campaignactivity_connections1 = "record1id";
-			public const string campaignactivity_connections2 = "record2id";
-			public const string competitor_connections1 = "record1id";
-			public const string competitor_connections2 = "record2id";
-			public const string Referencingconnection_related_connection = "relatedconnectionid";
-			public const string connection_role_connections1 = "record1roleid";
-			public const string connection_role_connections2 = "record2roleid";
-			public const string constraintbasedgroup_connections1 = "record1id";
-			public const string constraintbasedgroup_connections2 = "record2id";
-			public const string contact_connections1 = "record1id";
-			public const string contact_connections2 = "record2id";
-			public const string contract_connections1 = "record1id";
-			public const string contract_connections2 = "record2id";
-			public const string createdby_connection = "createdby";
-			public const string email_connections1 = "record1id";
-			public const string email_connections2 = "record2id";
-			public const string entitlement_connections1 = "record1id";
-			public const string entitlement_connections2 = "record2id";
-			public const string equipment_connections1 = "record1id";
-			public const string equipment_connections2 = "record2id";
-			public const string fax_connections1 = "record1id";
-			public const string fax_connections2 = "record2id";
-			public const string goal_connections1 = "record1id";
-			public const string goal_connections2 = "record2id";
-			public const string incident_connections1 = "record1id";
-			public const string incident_connections2 = "record2id";
-			public const string invoice_connections1 = "record1id";
-			public const string invoice_connections2 = "record2id";
-			public const string knowledgearticle_connections1 = "record1id";
-			public const string knowledgearticle_connections2 = "record2id";
-			public const string KnowledgeBaseRecord_connections1 = "record1id";
-			public const string KnowledgeBaseRecord_connections2 = "record2id";
-			public const string lead_connections1 = "record1id";
-			public const string lead_connections2 = "record2id";
-			public const string letter_connections1 = "record1id";
-			public const string letter_connections2 = "record2id";
-			public const string list_connections1 = "record1id";
-			public const string list_connections2 = "record2id";
-			public const string lk_connectionbase_createdonbehalfby = "createdonbehalfby";
-			public const string lk_connectionbase_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string modifiedby_connection = "modifiedby";
-			public const string msdyn_postalbum_connections1 = "record1id";
-			public const string msdyn_postalbum_connections2 = "record2id";
-			public const string opportunity_connections1 = "record1id";
-			public const string opportunity_connections2 = "record2id";
-			public const string phonecall_connections1 = "record1id";
-			public const string phonecall_connections2 = "record2id";
-			public const string position_connection1 = "record1id";
-			public const string position_connection2 = "record2id";
-			public const string pricelevel_connections1 = "record1id";
-			public const string pricelevel_connections2 = "record2id";
-			public const string processsession_connections1 = "record1id";
-			public const string processsession_connections2 = "record2id";
-			public const string product_connections1 = "record1id";
-			public const string product_connections2 = "record2id";
-			public const string profilerule_connections1 = "record1id";
-			public const string profilerule_connections2 = "record2id";
-			public const string quote_connections1 = "record1id";
-			public const string quote_connections2 = "record2id";
-			public const string recurringappointmentmaster_connections1 = "record1id";
-			public const string recurringappointmentmaster_connections2 = "record2id";
-			public const string resourcegroup_connections1 = "record1id";
-			public const string resourcegroup_connections2 = "record2id";
-			public const string salesorder_connections1 = "record1id";
-			public const string salesorder_connections2 = "record2id";
-			public const string serviceappointment_connections1 = "record1id";
-			public const string serviceappointment_connections2 = "record2id";
-			public const string socialactivity_connections1 = "record1id";
-			public const string socialactivity_connections2 = "record2id";
-			public const string socialprofile_connections1 = "record1id";
-			public const string socialprofile_connections2 = "record2id";
-			public const string systemuser_connections1 = "record1id";
-			public const string systemuser_connections2 = "record2id";
-			public const string task_connections1 = "record1id";
-			public const string task_connections2 = "record2id";
-			public const string team_connections1 = "record1id";
-			public const string team_connections2 = "record2id";
-			public const string territory_connections1 = "record1id";
-			public const string territory_connections2 = "record2id";
-			public const string TransactionCurrency_Connection = "transactioncurrencyid";
+			public const string account_connections1 = "account_connections1";
+			public const string account_connections2 = "account_connections2";
+			public const string activitypointer_connections1 = "activitypointer_connections1";
+			public const string activitypointer_connections2 = "activitypointer_connections2";
+			public const string appointment_connections1 = "appointment_connections1";
+			public const string appointment_connections2 = "appointment_connections2";
+			public const string business_unit_connections = "business_unit_connections";
+			public const string campaign_connections1 = "campaign_connections1";
+			public const string campaign_connections2 = "campaign_connections2";
+			public const string campaignactivity_connections1 = "campaignactivity_connections1";
+			public const string campaignactivity_connections2 = "campaignactivity_connections2";
+			public const string competitor_connections1 = "competitor_connections1";
+			public const string competitor_connections2 = "competitor_connections2";
+			public const string Referencingconnection_related_connection = "connection_related_connection";
+			public const string connection_role_connections1 = "connection_role_connections1";
+			public const string connection_role_connections2 = "connection_role_connections2";
+			public const string constraintbasedgroup_connections1 = "constraintbasedgroup_connections1";
+			public const string constraintbasedgroup_connections2 = "constraintbasedgroup_connections2";
+			public const string contact_connections1 = "contact_connections1";
+			public const string contact_connections2 = "contact_connections2";
+			public const string contract_connections1 = "contract_connections1";
+			public const string contract_connections2 = "contract_connections2";
+			public const string createdby_connection = "createdby_connection";
+			public const string email_connections1 = "email_connections1";
+			public const string email_connections2 = "email_connections2";
+			public const string entitlement_connections1 = "entitlement_connections1";
+			public const string entitlement_connections2 = "entitlement_connections2";
+			public const string equipment_connections1 = "equipment_connections1";
+			public const string equipment_connections2 = "equipment_connections2";
+			public const string fax_connections1 = "fax_connections1";
+			public const string fax_connections2 = "fax_connections2";
+			public const string goal_connections1 = "goal_connections1";
+			public const string goal_connections2 = "goal_connections2";
+			public const string incident_connections1 = "incident_connections1";
+			public const string incident_connections2 = "incident_connections2";
+			public const string invoice_connections1 = "invoice_connections1";
+			public const string invoice_connections2 = "invoice_connections2";
+			public const string knowledgearticle_connections1 = "knowledgearticle_connections1";
+			public const string knowledgearticle_connections2 = "knowledgearticle_connections2";
+			public const string KnowledgeBaseRecord_connections1 = "KnowledgeBaseRecord_connections1";
+			public const string KnowledgeBaseRecord_connections2 = "KnowledgeBaseRecord_connections2";
+			public const string lead_connections1 = "lead_connections1";
+			public const string lead_connections2 = "lead_connections2";
+			public const string letter_connections1 = "letter_connections1";
+			public const string letter_connections2 = "letter_connections2";
+			public const string list_connections1 = "list_connections1";
+			public const string list_connections2 = "list_connections2";
+			public const string lk_connectionbase_createdonbehalfby = "lk_connectionbase_createdonbehalfby";
+			public const string lk_connectionbase_modifiedonbehalfby = "lk_connectionbase_modifiedonbehalfby";
+			public const string modifiedby_connection = "modifiedby_connection";
+			public const string msdyn_postalbum_connections1 = "msdyn_postalbum_connections1";
+			public const string msdyn_postalbum_connections2 = "msdyn_postalbum_connections2";
+			public const string opportunity_connections1 = "opportunity_connections1";
+			public const string opportunity_connections2 = "opportunity_connections2";
+			public const string phonecall_connections1 = "phonecall_connections1";
+			public const string phonecall_connections2 = "phonecall_connections2";
+			public const string position_connection1 = "position_connection1";
+			public const string position_connection2 = "position_connection2";
+			public const string pricelevel_connections1 = "pricelevel_connections1";
+			public const string pricelevel_connections2 = "pricelevel_connections2";
+			public const string processsession_connections1 = "processsession_connections1";
+			public const string processsession_connections2 = "processsession_connections2";
+			public const string product_connections1 = "product_connections1";
+			public const string product_connections2 = "product_connections2";
+			public const string profilerule_connections1 = "profilerule_connections1";
+			public const string profilerule_connections2 = "profilerule_connections2";
+			public const string quote_connections1 = "quote_connections1";
+			public const string quote_connections2 = "quote_connections2";
+			public const string recurringappointmentmaster_connections1 = "recurringappointmentmaster_connections1";
+			public const string recurringappointmentmaster_connections2 = "recurringappointmentmaster_connections2";
+			public const string resourcegroup_connections1 = "resourcegroup_connections1";
+			public const string resourcegroup_connections2 = "resourcegroup_connections2";
+			public const string salesorder_connections1 = "salesorder_connections1";
+			public const string salesorder_connections2 = "salesorder_connections2";
+			public const string serviceappointment_connections1 = "serviceappointment_connections1";
+			public const string serviceappointment_connections2 = "serviceappointment_connections2";
+			public const string socialactivity_connections1 = "socialactivity_connections1";
+			public const string socialactivity_connections2 = "socialactivity_connections2";
+			public const string socialprofile_connections1 = "socialprofile_connections1";
+			public const string socialprofile_connections2 = "socialprofile_connections2";
+			public const string systemuser_connections1 = "systemuser_connections1";
+			public const string systemuser_connections2 = "systemuser_connections2";
+			public const string task_connections1 = "task_connections1";
+			public const string task_connections2 = "task_connections2";
+			public const string team_connections1 = "team_connections1";
+			public const string team_connections2 = "team_connections2";
+			public const string territory_connections1 = "territory_connections1";
+			public const string territory_connections2 = "territory_connections2";
+			public const string TransactionCurrency_Connection = "TransactionCurrency_Connection";
 		}
 
 		
@@ -249,6 +249,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -261,6 +268,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -460,6 +474,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -472,6 +493,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -559,6 +587,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -572,6 +607,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -584,6 +626,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1032,6 +1081,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_connections", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_connections");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_connections", null, value);
+				this.OnPropertyChanged("business_unit_connections");
+			}
 		}
 		
 		/// <summary>
@@ -1353,6 +1409,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("createdby_connection", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("createdby_connection");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("createdby_connection", null, value);
+				this.OnPropertyChanged("createdby_connection");
 			}
 		}
 		
@@ -1913,6 +1976,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("modifiedby_connection", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("modifiedby_connection");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("modifiedby_connection", null, value);
+				this.OnPropertyChanged("modifiedby_connection");
 			}
 		}
 		
@@ -2778,32 +2848,32 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1objecttypecode")]
-		public virtual connection_record1objecttypecode? Record1ObjectTypeCodeEnum
+		public virtual Connection_Record1ObjectTypeCode? Record1ObjectTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((connection_record1objecttypecode?)(EntityOptionSetEnum.GetEnum(this, "record1objecttypecode")));
+				return ((Connection_Record1ObjectTypeCode?)(EntityOptionSetEnum.GetEnum(this, "record1objecttypecode")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2objecttypecode")]
-		public virtual connection_record2objecttypecode? Record2ObjectTypeCodeEnum
+		public virtual Connection_Record2ObjectTypeCode? Record2ObjectTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((connection_record2objecttypecode?)(EntityOptionSetEnum.GetEnum(this, "record2objecttypecode")));
+				return ((Connection_Record2ObjectTypeCode?)(EntityOptionSetEnum.GetEnum(this, "record2objecttypecode")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual connection_statuscode? StatusCodeEnum
+		public virtual Connection_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((connection_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((Connection_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

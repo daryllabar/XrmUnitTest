@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("opportunityproduct")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class OpportunityProduct : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -71,16 +71,16 @@ namespace DLaB.Xrm.Entities
 			public const string VersionNumber = "versionnumber";
 			public const string VolumeDiscountAmount = "volumediscountamount";
 			public const string VolumeDiscountAmount_Base = "volumediscountamount_base";
-			public const string lk_opportunityproduct_createdonbehalfby = "createdonbehalfby";
-			public const string lk_opportunityproduct_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_opportunityproductbase_createdby = "createdby";
-			public const string lk_opportunityproductbase_modifiedby = "modifiedby";
-			public const string opportunity_products = "productid";
-			public const string Referencingopportunityproduct_parent_opportunityproduct = "parentbundleid";
-			public const string product_opportunities = "opportunityid";
-			public const string productAssociation_opportunity_product = "productassociationid";
-			public const string transactioncurrency_opportunityproduct = "transactioncurrencyid";
-			public const string unit_of_measurement_opportunity_products = "uomid";
+			public const string lk_opportunityproduct_createdonbehalfby = "lk_opportunityproduct_createdonbehalfby";
+			public const string lk_opportunityproduct_modifiedonbehalfby = "lk_opportunityproduct_modifiedonbehalfby";
+			public const string lk_opportunityproductbase_createdby = "lk_opportunityproductbase_createdby";
+			public const string lk_opportunityproductbase_modifiedby = "lk_opportunityproductbase_modifiedby";
+			public const string opportunity_products = "opportunity_products";
+			public const string Referencingopportunityproduct_parent_opportunityproduct = "opportunityproduct_parent_opportunityproduct";
+			public const string product_opportunities = "product_opportunities";
+			public const string productAssociation_opportunity_product = "productAssociation_opportunity_product";
+			public const string transactioncurrency_opportunityproduct = "transactioncurrency_opportunityproduct";
+			public const string unit_of_measurement_opportunity_products = "unit_of_measurement_opportunity_products";
 		}
 
 		
@@ -163,6 +163,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -175,6 +182,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -447,6 +461,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -459,6 +480,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -602,6 +630,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -614,6 +649,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1169,6 +1211,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_opportunityproductbase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_opportunityproductbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_opportunityproductbase_createdby", null, value);
+				this.OnPropertyChanged("lk_opportunityproductbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -1182,6 +1231,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_opportunityproductbase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_opportunityproductbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_opportunityproductbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_opportunityproductbase_modifiedby");
 			}
 		}
 		
@@ -1347,22 +1403,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("opportunitystatecode")]
-		public virtual opportunity_statuscode? OpportunityStateCodeEnum
+		public virtual OpportunityProduct_OpportunityStateCode? OpportunityStateCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((opportunity_statuscode?)(EntityOptionSetEnum.GetEnum(this, "opportunitystatecode")));
+				return ((OpportunityProduct_OpportunityStateCode?)(EntityOptionSetEnum.GetEnum(this, "opportunitystatecode")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("pricingerrorcode")]
-		public virtual qooi_pricingerrorcode? PricingErrorCodeEnum
+		public virtual Qooi_PricingErrorCode? PricingErrorCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((qooi_pricingerrorcode?)(EntityOptionSetEnum.GetEnum(this, "pricingerrorcode")));
+				return ((Qooi_PricingErrorCode?)(EntityOptionSetEnum.GetEnum(this, "pricingerrorcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1372,12 +1428,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("producttypecode")]
-		public virtual qooiproduct_producttype? ProductTypeCodeEnum
+		public virtual QooiProduct_ProductType? ProductTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((qooiproduct_producttype?)(EntityOptionSetEnum.GetEnum(this, "producttypecode")));
+				return ((QooiProduct_ProductType?)(EntityOptionSetEnum.GetEnum(this, "producttypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1387,12 +1443,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("propertyconfigurationstatus")]
-		public virtual qooiproduct_propertiesconfigurationstatus? PropertyConfigurationStatusEnum
+		public virtual QooiProduct_PropertiesConfigurationStatus? PropertyConfigurationStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((qooiproduct_propertiesconfigurationstatus?)(EntityOptionSetEnum.GetEnum(this, "propertyconfigurationstatus")));
+				return ((QooiProduct_PropertiesConfigurationStatus?)(EntityOptionSetEnum.GetEnum(this, "propertyconfigurationstatus")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

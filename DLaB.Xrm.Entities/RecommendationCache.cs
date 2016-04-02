@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("recommendationcache")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class RecommendationCache : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -31,10 +31,10 @@ namespace DLaB.Xrm.Entities
 			public const string RecommendationSource = "recommendationsource";
 			public const string RecommendationType = "recommendationtype";
 			public const string RecommendedItemId = "recommendeditemid";
-			public const string Product_RecommendationCache_ItemId = "itemid";
-			public const string Product_RecommendationCache_RecommendedItemId = "recommendeditemid";
-			public const string ProductPriceLevel_RecommendationCache_AdditionalDataRecordId = "additionaldatarecordid";
-			public const string RecommendationModel_RecommendationCache = "recommendationmodelid";
+			public const string Product_RecommendationCache_ItemId = "Product_RecommendationCache_ItemId";
+			public const string Product_RecommendationCache_RecommendedItemId = "Product_RecommendationCache_RecommendedItemId";
+			public const string ProductPriceLevel_RecommendationCache_AdditionalDataRecordId = "ProductPriceLevel_RecommendationCache_AdditionalDataRecordId";
+			public const string RecommendationModel_RecommendationCache = "RecommendationModel_RecommendationCache";
 		}
 
 		
@@ -403,12 +403,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("recommendationsource")]
-		public virtual recommendationcache_source? RecommendationSourceEnum
+		public virtual RecommendationCache_RecommendationSource? RecommendationSourceEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recommendationcache_source?)(EntityOptionSetEnum.GetEnum(this, "recommendationsource")));
+				return ((RecommendationCache_RecommendationSource?)(EntityOptionSetEnum.GetEnum(this, "recommendationsource")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -418,12 +418,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("recommendationtype")]
-		public virtual recommendationcache_recommendationtype? RecommendationTypeEnum
+		public virtual RecommendationCache_RecommendationType? RecommendationTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recommendationcache_recommendationtype?)(EntityOptionSetEnum.GetEnum(this, "recommendationtype")));
+				return ((RecommendationCache_RecommendationType?)(EntityOptionSetEnum.GetEnum(this, "recommendationtype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

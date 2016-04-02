@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("recurrencerule")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class RecurrenceRule : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -55,12 +55,12 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "ruleid";
 			public const string StartTime = "starttime";
 			public const string VersionNumber = "versionnumber";
-			public const string activity_pointer_recurrencerule = "objectid";
-			public const string business_unit_recurrencerule = "owningbusinessunit";
-			public const string lk_recurrencerule_createdby = "createdby";
-			public const string lk_recurrencerule_modifiedby = "modifiedby";
-			public const string lk_recurrencerulebase_createdonbehalfby = "createdonbehalfby";
-			public const string lk_recurrencerulebase_modifiedonbehalfby = "modifiedonbehalfby";
+			public const string activity_pointer_recurrencerule = "activity_pointer_recurrencerule";
+			public const string business_unit_recurrencerule = "business_unit_recurrencerule";
+			public const string lk_recurrencerule_createdby = "lk_recurrencerule_createdby";
+			public const string lk_recurrencerule_modifiedby = "lk_recurrencerule_modifiedby";
+			public const string lk_recurrencerulebase_createdonbehalfby = "lk_recurrencerulebase_createdonbehalfby";
+			public const string lk_recurrencerulebase_modifiedonbehalfby = "lk_recurrencerulebase_modifiedonbehalfby";
 		}
 
 		
@@ -110,6 +110,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -122,6 +129,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -416,6 +430,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -428,6 +449,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -542,6 +570,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -555,6 +590,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -567,6 +609,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -779,6 +828,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_recurrencerule", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_recurrencerule");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_recurrencerule", null, value);
+				this.OnPropertyChanged("business_unit_recurrencerule");
+			}
 		}
 		
 		/// <summary>
@@ -793,6 +849,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_recurrencerule_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_recurrencerule_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_recurrencerule_createdby", null, value);
+				this.OnPropertyChanged("lk_recurrencerule_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -806,6 +869,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_recurrencerule_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_recurrencerule_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_recurrencerule_modifiedby", null, value);
+				this.OnPropertyChanged("lk_recurrencerule_modifiedby");
 			}
 		}
 		
@@ -894,12 +964,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("instance")]
-		public virtual recurrencerule_instance? InstanceEnum
+		public virtual RecurrenceRule_Instance? InstanceEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recurrencerule_instance?)(EntityOptionSetEnum.GetEnum(this, "instance")));
+				return ((RecurrenceRule_Instance?)(EntityOptionSetEnum.GetEnum(this, "instance")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -909,12 +979,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("monthofyear")]
-		public virtual recurrencerule_monthofyear? MonthOfYearEnum
+		public virtual RecurrenceRule_MonthOfYear? MonthOfYearEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recurrencerule_monthofyear?)(EntityOptionSetEnum.GetEnum(this, "monthofyear")));
+				return ((RecurrenceRule_MonthOfYear?)(EntityOptionSetEnum.GetEnum(this, "monthofyear")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -924,12 +994,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("patternendtype")]
-		public virtual recurrencerule_patternendtype? PatternEndTypeEnum
+		public virtual RecurrenceRule_PatternEndType? PatternEndTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recurrencerule_patternendtype?)(EntityOptionSetEnum.GetEnum(this, "patternendtype")));
+				return ((RecurrenceRule_PatternEndType?)(EntityOptionSetEnum.GetEnum(this, "patternendtype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -939,12 +1009,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("recurrencepatterntype")]
-		public virtual recurrencerule_recurrencepatterntype? RecurrencePatternTypeEnum
+		public virtual RecurrenceRule_RecurrencePatternType? RecurrencePatternTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recurrencerule_recurrencepatterntype?)(EntityOptionSetEnum.GetEnum(this, "recurrencepatterntype")));
+				return ((RecurrenceRule_RecurrencePatternType?)(EntityOptionSetEnum.GetEnum(this, "recurrencepatterntype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

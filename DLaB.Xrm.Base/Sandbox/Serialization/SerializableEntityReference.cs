@@ -87,5 +87,31 @@ namespace DLaB.Xrm.Sandbox.Serialization
             KeyAttributes = new SerializableKeyAttributeCollection(entityReference.KeyAttributes);
             RowVersion = entityReference.RowVersion;
         }
+
+        /// <summary>
+        /// Performs an explicit conversion from <see cref="SerializableEntityReference"/> to <see cref="EntityReference"/>.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns>
+        /// The result of the conversion.
+        /// </returns>
+        public static explicit operator EntityReference(SerializableEntityReference entity)
+        {
+            if (entity == null)
+            {
+                return null;
+            }
+            var xrmEntity = new EntityReference
+            {
+                ExtensionData = entity.ExtensionData,
+                KeyAttributes = (KeyAttributeCollection)entity.KeyAttributes,
+                Id = entity.Id,
+                LogicalName = entity.LogicalName,
+                Name = entity.Name,
+                RowVersion = entity.RowVersion
+            };
+
+            return xrmEntity;
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum QuoteCloseState
 	{
 		
@@ -30,7 +30,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("quoteclose")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class QuoteClose : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -75,18 +75,18 @@ namespace DLaB.Xrm.Entities
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string activity_pointer_quote_close = "activityid";
-			public const string business_unit_quote_close_activities = "owningbusinessunit";
-			public const string lk_externalparty_quoteclose_createdby = "createdbyexternalparty";
-			public const string lk_externalparty_quoteclose_modifiedby = "modifiedbyexternalparty";
-			public const string lk_quoteclose_createdby = "createdby";
-			public const string lk_quoteclose_createdonbehalfby = "createdonbehalfby";
-			public const string lk_quoteclose_modifiedby = "modifiedby";
-			public const string lk_quoteclose_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string Quote_QuoteClose = "quoteid";
-			public const string service_quoteclose = "serviceid";
-			public const string team_quoteclose = "owningteam";
-			public const string user_quoteclose = "owninguser";
+			public const string activity_pointer_quote_close = "activity_pointer_quote_close";
+			public const string business_unit_quote_close_activities = "business_unit_quote_close_activities";
+			public const string lk_externalparty_quoteclose_createdby = "lk_externalparty_quoteclose_createdby";
+			public const string lk_externalparty_quoteclose_modifiedby = "lk_externalparty_quoteclose_modifiedby";
+			public const string lk_quoteclose_createdby = "lk_quoteclose_createdby";
+			public const string lk_quoteclose_createdonbehalfby = "lk_quoteclose_createdonbehalfby";
+			public const string lk_quoteclose_modifiedby = "lk_quoteclose_modifiedby";
+			public const string lk_quoteclose_modifiedonbehalfby = "lk_quoteclose_modifiedonbehalfby";
+			public const string Quote_QuoteClose = "Quote_QuoteClose";
+			public const string service_quoteclose = "service_quoteclose";
+			public const string team_quoteclose = "team_quoteclose";
+			public const string user_quoteclose = "user_quoteclose";
 		}
 
 		
@@ -272,6 +272,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -297,6 +304,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -424,6 +438,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -449,6 +470,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -523,6 +551,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -536,6 +571,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -548,6 +590,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -965,6 +1014,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_quote_close_activities", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_quote_close_activities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_quote_close_activities", null, value);
+				this.OnPropertyChanged("business_unit_quote_close_activities");
+			}
 		}
 		
 		/// <summary>
@@ -1007,6 +1063,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_quoteclose_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_quoteclose_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_quoteclose_createdby", null, value);
+				this.OnPropertyChanged("lk_quoteclose_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -1041,6 +1104,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_quoteclose_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_quoteclose_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_quoteclose_modifiedby", null, value);
+				this.OnPropertyChanged("lk_quoteclose_modifiedby");
 			}
 		}
 		
@@ -1119,6 +1189,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_quoteclose", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_quoteclose");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_quoteclose", null, value);
+				this.OnPropertyChanged("team_quoteclose");
+			}
 		}
 		
 		/// <summary>
@@ -1132,6 +1209,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_quoteclose", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_quoteclose");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_quoteclose", null, value);
+				this.OnPropertyChanged("user_quoteclose");
 			}
 		}
 		
@@ -1178,12 +1262,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual quoteclose_statuscode? StatusCodeEnum
+		public virtual QuoteClose_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((quoteclose_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((QuoteClose_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

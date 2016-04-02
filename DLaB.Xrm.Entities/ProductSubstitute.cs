@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum ProductSubstituteState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("productsubstitute")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ProductSubstitute : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -55,14 +55,14 @@ namespace DLaB.Xrm.Entities
 			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string lk_ProductSubstitute_createdby = "createdby";
-			public const string lk_ProductSubstitute_createdonbehalfby = "createdonbehalfby";
-			public const string lk_ProductSubstitute_modifiedby = "modifiedby";
-			public const string lk_ProductSubstitute_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string organization_ProductSubstitute = "organizationid";
-			public const string product_ProductSubstitute_productid = "productid";
-			public const string product_ProductSubstitute_substitutedproductid = "substitutedproductid";
-			public const string transactioncurrency_ProductSubstitute = "transactioncurrencyid";
+			public const string lk_ProductSubstitute_createdby = "lk_ProductSubstitute_createdby";
+			public const string lk_ProductSubstitute_createdonbehalfby = "lk_ProductSubstitute_createdonbehalfby";
+			public const string lk_ProductSubstitute_modifiedby = "lk_ProductSubstitute_modifiedby";
+			public const string lk_ProductSubstitute_modifiedonbehalfby = "lk_ProductSubstitute_modifiedonbehalfby";
+			public const string organization_ProductSubstitute = "organization_ProductSubstitute";
+			public const string product_ProductSubstitute_productid = "product_ProductSubstitute_productid";
+			public const string product_ProductSubstitute_substitutedproductid = "product_ProductSubstitute_substitutedproductid";
+			public const string transactioncurrency_ProductSubstitute = "transactioncurrency_ProductSubstitute";
 		}
 
 		
@@ -112,6 +112,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -124,6 +131,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -211,6 +225,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -223,6 +244,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -588,6 +616,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ProductSubstitute_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_ProductSubstitute_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ProductSubstitute_createdby", null, value);
+				this.OnPropertyChanged("lk_ProductSubstitute_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -622,6 +657,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ProductSubstitute_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_ProductSubstitute_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ProductSubstitute_modifiedby", null, value);
+				this.OnPropertyChanged("lk_ProductSubstitute_modifiedby");
 			}
 		}
 		
@@ -766,12 +808,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("direction")]
-		public virtual productsellingrelationshipdirection? DirectionEnum
+		public virtual ProductSubstitute_Direction? DirectionEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((productsellingrelationshipdirection?)(EntityOptionSetEnum.GetEnum(this, "direction")));
+				return ((ProductSubstitute_Direction?)(EntityOptionSetEnum.GetEnum(this, "direction")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -781,12 +823,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("salesrelationshiptype")]
-		public virtual productsellingrelationshiptype? SalesRelationshipTypeEnum
+		public virtual ProductSubstitute_SalesRelationshipType? SalesRelationshipTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((productsellingrelationshiptype?)(EntityOptionSetEnum.GetEnum(this, "salesrelationshiptype")));
+				return ((ProductSubstitute_SalesRelationshipType?)(EntityOptionSetEnum.GetEnum(this, "salesrelationshiptype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -796,12 +838,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual productsubstitute_statuscode? statuscodeEnum
+		public virtual ProductSubstitute_StatusCode? statuscodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((productsubstitute_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((ProductSubstitute_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

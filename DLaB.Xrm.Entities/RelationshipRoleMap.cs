@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("relationshiprolemap")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class RelationshipRoleMap : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -34,11 +34,11 @@ namespace DLaB.Xrm.Entities
 			public const string RelationshipRoleMapId = "relationshiprolemapid";
 			public const string Id = "relationshiprolemapid";
 			public const string VersionNumber = "versionnumber";
-			public const string createdby_relationship_role_map = "createdby";
-			public const string lk_relationshiprolemap_createdonbehalfby = "createdonbehalfby";
-			public const string lk_relationshiprolemap_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string modifiedby_relationship_role_map = "modifiedby";
-			public const string relationship_role_relationship_role_map = "relationshiproleid";
+			public const string createdby_relationship_role_map = "createdby_relationship_role_map";
+			public const string lk_relationshiprolemap_createdonbehalfby = "lk_relationshiprolemap_createdonbehalfby";
+			public const string lk_relationshiprolemap_modifiedonbehalfby = "lk_relationshiprolemap_modifiedonbehalfby";
+			public const string modifiedby_relationship_role_map = "modifiedby_relationship_role_map";
+			public const string relationship_role_relationship_role_map = "relationship_role_relationship_role_map";
 		}
 
 		
@@ -108,6 +108,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -120,6 +127,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -154,6 +168,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -166,6 +187,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -370,6 +398,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("createdby_relationship_role_map", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("createdby_relationship_role_map");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("createdby_relationship_role_map", null, value);
+				this.OnPropertyChanged("createdby_relationship_role_map");
+			}
 		}
 		
 		/// <summary>
@@ -425,6 +460,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("modifiedby_relationship_role_map", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("modifiedby_relationship_role_map");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("modifiedby_relationship_role_map", null, value);
+				this.OnPropertyChanged("modifiedby_relationship_role_map");
 			}
 		}
 		

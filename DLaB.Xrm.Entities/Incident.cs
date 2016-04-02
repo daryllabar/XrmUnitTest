@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum IncidentState
 	{
 		
@@ -30,7 +30,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("incident")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class Incident : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -122,35 +122,35 @@ namespace DLaB.Xrm.Entities
 			public const string TraversedPath = "traversedpath";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string business_unit_incidents = "owningbusinessunit";
-			public const string contact_as_primary_contact = "primarycontactid";
-			public const string contact_as_responsible_contact = "responsiblecontactid";
-			public const string contract_cases = "contractid";
-			public const string contract_detail_cases = "contractdetailid";
-			public const string entitlement_cases = "entitlementid";
-			public const string incident_customer_accounts = "customerid";
-			public const string incident_customer_contacts = "customerid";
-			public const string Referencingincident_existingcase = "existingcase";
-			public const string Referencingincident_master_incident = "masterid";
-			public const string Referencingincident_parent_incident = "parentcaseid";
-			public const string kbarticle_incidents = "kbarticleid";
-			public const string lk_externalparty_incident_createdby = "createdbyexternalparty";
-			public const string lk_externalparty_incident_modifiedby = "modifiedbyexternalparty";
-			public const string lk_incidentbase_createdby = "createdby";
-			public const string lk_incidentbase_createdonbehalfby = "createdonbehalfby";
-			public const string lk_incidentbase_modifiedby = "modifiedby";
-			public const string lk_incidentbase_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string manualsla_cases = "slaid";
-			public const string processstage_incident = "stageid";
-			public const string product_incidents = "productid";
-			public const string sla_cases = "slainvokedid";
-			public const string slakpiinstance_incident_firstresponsebykpi = "firstresponsebykpiid";
-			public const string slakpiinstance_incident_resolvebykpi = "resolvebykpiid";
-			public const string socialprofile_cases = "socialprofileid";
-			public const string subject_incidents = "subjectid";
-			public const string system_user_incidents = "owninguser";
-			public const string team_incidents = "owningteam";
-			public const string TransactionCurrency_Incident = "transactioncurrencyid";
+			public const string business_unit_incidents = "business_unit_incidents";
+			public const string contact_as_primary_contact = "contact_as_primary_contact";
+			public const string contact_as_responsible_contact = "contact_as_responsible_contact";
+			public const string contract_cases = "contract_cases";
+			public const string contract_detail_cases = "contract_detail_cases";
+			public const string entitlement_cases = "entitlement_cases";
+			public const string incident_customer_accounts = "incident_customer_accounts";
+			public const string incident_customer_contacts = "incident_customer_contacts";
+			public const string Referencingincident_existingcase = "incident_existingcase";
+			public const string Referencingincident_master_incident = "incident_master_incident";
+			public const string Referencingincident_parent_incident = "incident_parent_incident";
+			public const string kbarticle_incidents = "kbarticle_incidents";
+			public const string lk_externalparty_incident_createdby = "lk_externalparty_incident_createdby";
+			public const string lk_externalparty_incident_modifiedby = "lk_externalparty_incident_modifiedby";
+			public const string lk_incidentbase_createdby = "lk_incidentbase_createdby";
+			public const string lk_incidentbase_createdonbehalfby = "lk_incidentbase_createdonbehalfby";
+			public const string lk_incidentbase_modifiedby = "lk_incidentbase_modifiedby";
+			public const string lk_incidentbase_modifiedonbehalfby = "lk_incidentbase_modifiedonbehalfby";
+			public const string manualsla_cases = "manualsla_cases";
+			public const string processstage_incident = "processstage_incident";
+			public const string product_incidents = "product_incidents";
+			public const string sla_cases = "sla_cases";
+			public const string slakpiinstance_incident_firstresponsebykpi = "slakpiinstance_incident_firstresponsebykpi";
+			public const string slakpiinstance_incident_resolvebykpi = "slakpiinstance_incident_resolvebykpi";
+			public const string socialprofile_cases = "socialprofile_cases";
+			public const string subject_incidents = "subject_incidents";
+			public const string system_user_incidents = "system_user_incidents";
+			public const string team_incidents = "team_incidents";
+			public const string TransactionCurrency_Incident = "TransactionCurrency_Incident";
 		}
 
 		
@@ -426,6 +426,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -451,6 +458,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -1046,6 +1060,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -1071,6 +1092,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -1171,6 +1199,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -1184,6 +1219,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -1196,6 +1238,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -2453,6 +2502,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_incidents", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_incidents");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_incidents", null, value);
+				this.OnPropertyChanged("business_unit_incidents");
+			}
 		}
 		
 		/// <summary>
@@ -2726,6 +2782,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_incidentbase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_incidentbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_incidentbase_createdby", null, value);
+				this.OnPropertyChanged("lk_incidentbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -2760,6 +2823,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_incidentbase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_incidentbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_incidentbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_incidentbase_modifiedby");
 			}
 		}
 		
@@ -2957,6 +3027,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("system_user_incidents", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("system_user_incidents");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("system_user_incidents", null, value);
+				this.OnPropertyChanged("system_user_incidents");
+			}
 		}
 		
 		/// <summary>
@@ -2970,6 +3047,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_incidents", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_incidents");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_incidents", null, value);
+				this.OnPropertyChanged("team_incidents");
 			}
 		}
 		
@@ -3037,12 +3121,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caseorigincode")]
-		public virtual incident_caseorigincode? CaseOriginCodeEnum
+		public virtual Incident_CaseOriginCode? CaseOriginCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((incident_caseorigincode?)(EntityOptionSetEnum.GetEnum(this, "caseorigincode")));
+				return ((Incident_CaseOriginCode?)(EntityOptionSetEnum.GetEnum(this, "caseorigincode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -3052,12 +3136,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("casetypecode")]
-		public virtual incident_casetypecode? CaseTypeCodeEnum
+		public virtual Incident_CaseTypeCode? CaseTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((incident_casetypecode?)(EntityOptionSetEnum.GetEnum(this, "casetypecode")));
+				return ((Incident_CaseTypeCode?)(EntityOptionSetEnum.GetEnum(this, "casetypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -3067,12 +3151,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("contractservicelevelcode")]
-		public virtual incident_contractservicelevelcode? ContractServiceLevelCodeEnum
+		public virtual Incident_ContractServiceLevelCode? ContractServiceLevelCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((incident_contractservicelevelcode?)(EntityOptionSetEnum.GetEnum(this, "contractservicelevelcode")));
+				return ((Incident_ContractServiceLevelCode?)(EntityOptionSetEnum.GetEnum(this, "contractservicelevelcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -3082,12 +3166,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("customersatisfactioncode")]
-		public virtual incident_customersatisfactioncode? CustomerSatisfactionCodeEnum
+		public virtual Incident_CustomerSatisfactionCode? CustomerSatisfactionCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((incident_customersatisfactioncode?)(EntityOptionSetEnum.GetEnum(this, "customersatisfactioncode")));
+				return ((Incident_CustomerSatisfactionCode?)(EntityOptionSetEnum.GetEnum(this, "customersatisfactioncode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -3097,12 +3181,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("firstresponseslastatus")]
-		public virtual incident_firstresponseslastatus? FirstResponseSLAStatusEnum
+		public virtual Incident_FirstResponseSLAStatus? FirstResponseSLAStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((incident_firstresponseslastatus?)(EntityOptionSetEnum.GetEnum(this, "firstresponseslastatus")));
+				return ((Incident_FirstResponseSLAStatus?)(EntityOptionSetEnum.GetEnum(this, "firstresponseslastatus")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -3112,12 +3196,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("incidentstagecode")]
-		public virtual incident_incidentstagecode? IncidentStageCodeEnum
+		public virtual Incident_IncidentStageCode? IncidentStageCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((incident_incidentstagecode?)(EntityOptionSetEnum.GetEnum(this, "incidentstagecode")));
+				return ((Incident_IncidentStageCode?)(EntityOptionSetEnum.GetEnum(this, "incidentstagecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -3127,12 +3211,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("messagetypecode")]
-		public virtual socialactivity_postmessagetype? MessageTypeCodeEnum
+		public virtual SocialActivity_PostMessageType? MessageTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((socialactivity_postmessagetype?)(EntityOptionSetEnum.GetEnum(this, "messagetypecode")));
+				return ((SocialActivity_PostMessageType?)(EntityOptionSetEnum.GetEnum(this, "messagetypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -3142,12 +3226,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("prioritycode")]
-		public virtual incident_prioritycode? PriorityCodeEnum
+		public virtual Incident_PriorityCode? PriorityCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((incident_prioritycode?)(EntityOptionSetEnum.GetEnum(this, "prioritycode")));
+				return ((Incident_PriorityCode?)(EntityOptionSetEnum.GetEnum(this, "prioritycode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -3157,12 +3241,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("resolvebyslastatus")]
-		public virtual incident_resolvebyslastatus? ResolveBySLAStatusEnum
+		public virtual Incident_ResolveBySLAStatus? ResolveBySLAStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((incident_resolvebyslastatus?)(EntityOptionSetEnum.GetEnum(this, "resolvebyslastatus")));
+				return ((Incident_ResolveBySLAStatus?)(EntityOptionSetEnum.GetEnum(this, "resolvebyslastatus")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -3172,12 +3256,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("servicestage")]
-		public virtual servicestage? ServiceStageEnum
+		public virtual ServiceStage? ServiceStageEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((servicestage?)(EntityOptionSetEnum.GetEnum(this, "servicestage")));
+				return ((ServiceStage?)(EntityOptionSetEnum.GetEnum(this, "servicestage")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -3187,12 +3271,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("severitycode")]
-		public virtual incident_severitycode? SeverityCodeEnum
+		public virtual Incident_SeverityCode? SeverityCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((incident_severitycode?)(EntityOptionSetEnum.GetEnum(this, "severitycode")));
+				return ((Incident_SeverityCode?)(EntityOptionSetEnum.GetEnum(this, "severitycode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -3202,12 +3286,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual incident_statuscode? StatusCodeEnum
+		public virtual Incident_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((incident_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((Incident_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

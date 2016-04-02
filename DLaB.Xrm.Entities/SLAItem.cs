@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("slaitem")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class SLAItem : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -50,13 +50,13 @@ namespace DLaB.Xrm.Entities
 			public const string VersionNumber = "versionnumber";
 			public const string WarnAfter = "warnafter";
 			public const string WorkflowId = "workflowid";
-			public const string lk_slaitembase_createdby = "createdby";
-			public const string lk_slaitembase_createdonbehalfby = "createdonbehalfby";
-			public const string lk_slaitembase_modifiedby = "modifiedby";
-			public const string lk_slaitembase_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string sla_slaitem_slaId = "slaid";
-			public const string slaitembase_workflowid = "workflowid";
-			public const string TransactionCurrency_SLAItem = "transactioncurrencyid";
+			public const string lk_slaitembase_createdby = "lk_slaitembase_createdby";
+			public const string lk_slaitembase_createdonbehalfby = "lk_slaitembase_createdonbehalfby";
+			public const string lk_slaitembase_modifiedby = "lk_slaitembase_modifiedby";
+			public const string lk_slaitembase_modifiedonbehalfby = "lk_slaitembase_modifiedonbehalfby";
+			public const string sla_slaitem_slaId = "sla_slaitem_slaId";
+			public const string slaitembase_workflowid = "slaitembase_workflowid";
+			public const string TransactionCurrency_SLAItem = "TransactionCurrency_SLAItem";
 		}
 
 		
@@ -139,6 +139,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -151,6 +158,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -251,6 +265,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -263,6 +284,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -349,6 +377,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
 			}
 		}
 		
@@ -599,6 +634,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_slaitembase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_slaitembase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_slaitembase_createdby", null, value);
+				this.OnPropertyChanged("lk_slaitembase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -633,6 +675,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_slaitembase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_slaitembase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_slaitembase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_slaitembase_modifiedby");
 			}
 		}
 		
@@ -756,12 +805,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 	}

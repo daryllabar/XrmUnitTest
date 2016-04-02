@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("postcomment")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class PostComment : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -31,10 +31,10 @@ namespace DLaB.Xrm.Entities
 			public const string Text = "text";
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
-			public const string lk_postcomment_createdby = "createdby";
-			public const string lk_postcomment_createdonbehalfby = "createdonbehalfby";
-			public const string organization_PostComment = "organizationid";
-			public const string Post_Comments = "postid";
+			public const string lk_postcomment_createdby = "lk_postcomment_createdby";
+			public const string lk_postcomment_createdonbehalfby = "lk_postcomment_createdonbehalfby";
+			public const string organization_PostComment = "organization_PostComment";
+			public const string Post_Comments = "Post_Comments";
 		}
 
 		
@@ -84,6 +84,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -96,6 +103,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -266,6 +280,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_postcomment_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_postcomment_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_postcomment_createdby", null, value);
+				this.OnPropertyChanged("lk_postcomment_createdby");
 			}
 		}
 		

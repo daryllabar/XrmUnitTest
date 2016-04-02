@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum EmailServerProfileState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("emailserverprofile")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class EmailServerProfile : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -97,13 +97,13 @@ namespace DLaB.Xrm.Entities
 			public const string UseAutoDiscover = "useautodiscover";
 			public const string UseSameSettingsForOutgoingConnections = "usesamesettingsforoutgoingconnections";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
-			public const string business_unit_emailserverprofile = "owningbusinessunit";
-			public const string lk_emailserverprofile_createdby = "createdby";
-			public const string lk_emailserverprofile_createdonbehalfby = "createdonbehalfby";
-			public const string lk_emailserverprofile_modifiedby = "modifiedby";
-			public const string lk_emailserverprofile_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string organization_emailserverprofile = "organizationid";
-			public const string team_emailserverprofile = "owningteam";
+			public const string business_unit_emailserverprofile = "business_unit_emailserverprofile";
+			public const string lk_emailserverprofile_createdby = "lk_emailserverprofile_createdby";
+			public const string lk_emailserverprofile_createdonbehalfby = "lk_emailserverprofile_createdonbehalfby";
+			public const string lk_emailserverprofile_modifiedby = "lk_emailserverprofile_modifiedby";
+			public const string lk_emailserverprofile_modifiedonbehalfby = "lk_emailserverprofile_modifiedonbehalfby";
+			public const string organization_emailserverprofile = "organization_emailserverprofile";
+			public const string team_emailserverprofile = "team_emailserverprofile";
 		}
 
 		
@@ -153,6 +153,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -165,6 +172,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -733,6 +747,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -745,6 +766,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -1065,6 +1093,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -1078,6 +1113,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -1090,6 +1132,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1500,6 +1549,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_emailserverprofile", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_emailserverprofile");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_emailserverprofile", null, value);
+				this.OnPropertyChanged("business_unit_emailserverprofile");
+			}
 		}
 		
 		/// <summary>
@@ -1513,6 +1569,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_emailserverprofile_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_emailserverprofile_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_emailserverprofile_createdby", null, value);
+				this.OnPropertyChanged("lk_emailserverprofile_createdby");
 			}
 		}
 		
@@ -1548,6 +1611,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_emailserverprofile_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_emailserverprofile_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_emailserverprofile_modifiedby", null, value);
+				this.OnPropertyChanged("lk_emailserverprofile_modifiedby");
 			}
 		}
 		
@@ -1598,6 +1668,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_emailserverprofile", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_emailserverprofile");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_emailserverprofile", null, value);
+				this.OnPropertyChanged("team_emailserverprofile");
+			}
 		}
 		
 		/// <summary>
@@ -1643,12 +1720,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("exchangeversion")]
-		public virtual emailserverprofile_exchangeversion? ExchangeVersionEnum
+		public virtual EmailServerProfile_ExchangeVersion? ExchangeVersionEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((emailserverprofile_exchangeversion?)(EntityOptionSetEnum.GetEnum(this, "exchangeversion")));
+				return ((EmailServerProfile_ExchangeVersion?)(EntityOptionSetEnum.GetEnum(this, "exchangeversion")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1658,12 +1735,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("incomingauthenticationprotocol")]
-		public virtual emailserverprofile_authenticationprotocol? IncomingAuthenticationProtocolEnum
+		public virtual EmailServerProfile_AuthenticationProtocol? IncomingAuthenticationProtocolEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((emailserverprofile_authenticationprotocol?)(EntityOptionSetEnum.GetEnum(this, "incomingauthenticationprotocol")));
+				return ((EmailServerProfile_AuthenticationProtocol?)(EntityOptionSetEnum.GetEnum(this, "incomingauthenticationprotocol")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1673,12 +1750,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("incomingcredentialretrieval")]
-		public virtual emailserverprofile_incomingcredentialretrieval? IncomingCredentialRetrievalEnum
+		public virtual EmailServerProfile_IncomingCredentialRetrieval? IncomingCredentialRetrievalEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((emailserverprofile_incomingcredentialretrieval?)(EntityOptionSetEnum.GetEnum(this, "incomingcredentialretrieval")));
+				return ((EmailServerProfile_IncomingCredentialRetrieval?)(EntityOptionSetEnum.GetEnum(this, "incomingcredentialretrieval")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1688,12 +1765,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lasttestexecutionstatus")]
-		public virtual emailserverprofile_lasttestexecutionstatus? LastTestExecutionStatusEnum
+		public virtual EmailServerProfile_LastTestExecutionStatus? LastTestExecutionStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((emailserverprofile_lasttestexecutionstatus?)(EntityOptionSetEnum.GetEnum(this, "lasttestexecutionstatus")));
+				return ((EmailServerProfile_LastTestExecutionStatus?)(EntityOptionSetEnum.GetEnum(this, "lasttestexecutionstatus")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1703,12 +1780,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lasttestvalidationstatus")]
-		public virtual emailserverprofile_lasttestvalidationstatus? LastTestValidationStatusEnum
+		public virtual EmailServerProfile_LastTestValidationStatus? LastTestValidationStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((emailserverprofile_lasttestvalidationstatus?)(EntityOptionSetEnum.GetEnum(this, "lasttestvalidationstatus")));
+				return ((EmailServerProfile_LastTestValidationStatus?)(EntityOptionSetEnum.GetEnum(this, "lasttestvalidationstatus")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1718,12 +1795,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("outgoingauthenticationprotocol")]
-		public virtual emailserverprofile_authenticationprotocol? OutgoingAuthenticationProtocolEnum
+		public virtual EmailServerProfile_AuthenticationProtocol? OutgoingAuthenticationProtocolEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((emailserverprofile_authenticationprotocol?)(EntityOptionSetEnum.GetEnum(this, "outgoingauthenticationprotocol")));
+				return ((EmailServerProfile_AuthenticationProtocol?)(EntityOptionSetEnum.GetEnum(this, "outgoingauthenticationprotocol")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1733,12 +1810,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("outgoingcredentialretrieval")]
-		public virtual emailserverprofile_outgoingcredentialretrieval? OutgoingCredentialRetrievalEnum
+		public virtual EmailServerProfile_OutgoingCredentialRetrieval? OutgoingCredentialRetrievalEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((emailserverprofile_outgoingcredentialretrieval?)(EntityOptionSetEnum.GetEnum(this, "outgoingcredentialretrieval")));
+				return ((EmailServerProfile_OutgoingCredentialRetrieval?)(EntityOptionSetEnum.GetEnum(this, "outgoingcredentialretrieval")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1748,12 +1825,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("servertype")]
-		public virtual emailserverprofile_servertype? ServerTypeEnum
+		public virtual EmailServerProfile_ServerType? ServerTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((emailserverprofile_servertype?)(EntityOptionSetEnum.GetEnum(this, "servertype")));
+				return ((EmailServerProfile_ServerType?)(EntityOptionSetEnum.GetEnum(this, "servertype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1763,12 +1840,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual emailserverprofile_statuscode? StatusCodeEnum
+		public virtual EmailServerProfile_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((emailserverprofile_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((EmailServerProfile_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

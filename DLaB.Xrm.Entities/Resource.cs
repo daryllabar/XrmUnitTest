@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("resource")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class Resource : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -36,12 +36,12 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "resourceid";
 			public const string SiteId = "siteid";
 			public const string VersionNumber = "versionnumber";
-			public const string business_unit_resources = "businessunitid";
-			public const string equipment_resources = "resourceid";
-			public const string organization_resources = "organizationid";
-			public const string resourcespec_resources = "resourceid";
-			public const string site_resources = "siteid";
-			public const string systemuser_resources = "resourceid";
+			public const string business_unit_resources = "business_unit_resources";
+			public const string equipment_resources = "equipment_resources";
+			public const string organization_resources = "organization_resources";
+			public const string resourcespec_resources = "resourcespec_resources";
+			public const string site_resources = "site_resources";
+			public const string systemuser_resources = "systemuser_resources";
 		}
 
 		

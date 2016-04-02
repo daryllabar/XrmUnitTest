@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("plugintracelog")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class PluginTraceLog : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -47,8 +47,8 @@ namespace DLaB.Xrm.Entities
 			public const string RequestId = "requestid";
 			public const string SecureConfiguration = "secureconfiguration";
 			public const string TypeName = "typename";
-			public const string createdby_plugintracelog = "createdby";
-			public const string lk_plugintracelogbase_createdonbehalfby = "createdonbehalfby";
+			public const string createdby_plugintracelog = "createdby_plugintracelog";
+			public const string lk_plugintracelogbase_createdonbehalfby = "lk_plugintracelogbase_createdonbehalfby";
 		}
 
 		
@@ -124,6 +124,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -136,6 +143,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -446,6 +460,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("createdby_plugintracelog", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("createdby_plugintracelog");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("createdby_plugintracelog", null, value);
+				this.OnPropertyChanged("createdby_plugintracelog");
+			}
 		}
 		
 		/// <summary>
@@ -512,22 +533,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("mode")]
-		public virtual plugintracelog_mode? ModeEnum
+		public virtual PluginTraceLog_Mode? ModeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((plugintracelog_mode?)(EntityOptionSetEnum.GetEnum(this, "mode")));
+				return ((PluginTraceLog_Mode?)(EntityOptionSetEnum.GetEnum(this, "mode")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("operationtype")]
-		public virtual plugintracelog_operationtype? OperationTypeEnum
+		public virtual PluginTraceLog_OperationType? OperationTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((plugintracelog_operationtype?)(EntityOptionSetEnum.GetEnum(this, "operationtype")));
+				return ((PluginTraceLog_OperationType?)(EntityOptionSetEnum.GetEnum(this, "operationtype")));
 			}
 		}
 	}

@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum SLAState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("sla")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class SLA : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -66,16 +66,16 @@ namespace DLaB.Xrm.Entities
 			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string VersionNumber = "versionnumber";
 			public const string WorkflowId = "workflowid";
-			public const string business_unit_slabase = "owningbusinessunit";
-			public const string lk_slabase_createdby = "createdby";
-			public const string lk_slabase_createdonbehalfby = "createdonbehalfby";
-			public const string lk_slabase_modifiedby = "modifiedby";
-			public const string lk_slabase_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string slabase_businesshoursid = "businesshoursid";
-			public const string slabase_workflowid = "workflowid";
-			public const string team_slaBase = "owningteam";
-			public const string TransactionCurrency_SLA = "transactioncurrencyid";
-			public const string user_slabase = "owninguser";
+			public const string business_unit_slabase = "business_unit_slabase";
+			public const string lk_slabase_createdby = "lk_slabase_createdby";
+			public const string lk_slabase_createdonbehalfby = "lk_slabase_createdonbehalfby";
+			public const string lk_slabase_modifiedby = "lk_slabase_modifiedby";
+			public const string lk_slabase_modifiedonbehalfby = "lk_slabase_modifiedonbehalfby";
+			public const string slabase_businesshoursid = "slabase_businesshoursid";
+			public const string slabase_workflowid = "slabase_workflowid";
+			public const string team_slaBase = "team_slaBase";
+			public const string TransactionCurrency_SLA = "TransactionCurrency_SLA";
+			public const string user_slabase = "user_slabase";
 		}
 
 		
@@ -238,6 +238,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -250,6 +257,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -350,6 +364,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -362,6 +383,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -934,6 +962,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_slabase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_slabase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_slabase_createdby", null, value);
+				this.OnPropertyChanged("lk_slabase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -968,6 +1003,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_slabase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_slabase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_slabase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_slabase_modifiedby");
 			}
 		}
 		
@@ -1133,12 +1175,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("applicablefrompicklist")]
-		public virtual slabase_applicablefrom? ApplicableFromPickListEnum
+		public virtual SLA_ApplicableFromPickList? ApplicableFromPickListEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((slabase_applicablefrom?)(EntityOptionSetEnum.GetEnum(this, "applicablefrompicklist")));
+				return ((SLA_ApplicableFromPickList?)(EntityOptionSetEnum.GetEnum(this, "applicablefrompicklist")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1148,32 +1190,32 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objecttypecode")]
-		public virtual sla_objecttypecode? ObjectTypeCodeEnum
+		public virtual SLA_ObjectTypeCode? ObjectTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((sla_objecttypecode?)(EntityOptionSetEnum.GetEnum(this, "objecttypecode")));
+				return ((SLA_ObjectTypeCode?)(EntityOptionSetEnum.GetEnum(this, "objecttypecode")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slatype")]
-		public virtual sla_slatype? SLATypeEnum
+		public virtual SLA_SLAType? SLATypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((sla_slatype?)(EntityOptionSetEnum.GetEnum(this, "slatype")));
+				return ((SLA_SLAType?)(EntityOptionSetEnum.GetEnum(this, "slatype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1183,12 +1225,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual sla_statuscode? StatusCodeEnum
+		public virtual SLA_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((sla_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((SLA_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("businessunit")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class BusinessUnit : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -96,14 +96,14 @@ namespace DLaB.Xrm.Entities
 			public const string VersionNumber = "versionnumber";
 			public const string WebSiteUrl = "websiteurl";
 			public const string WorkflowSuspended = "workflowsuspended";
-			public const string Referencingbusiness_unit_parent_business_unit = "parentbusinessunitid";
-			public const string BusinessUnit_Calendar = "calendarid";
-			public const string lk_businessunit_createdonbehalfby = "createdonbehalfby";
-			public const string lk_businessunit_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_businessunitbase_createdby = "createdby";
-			public const string lk_businessunitbase_modifiedby = "modifiedby";
-			public const string organization_business_units = "organizationid";
-			public const string TransactionCurrency_BusinessUnit = "transactioncurrencyid";
+			public const string Referencingbusiness_unit_parent_business_unit = "business_unit_parent_business_unit";
+			public const string BusinessUnit_Calendar = "BusinessUnit_Calendar";
+			public const string lk_businessunit_createdonbehalfby = "lk_businessunit_createdonbehalfby";
+			public const string lk_businessunit_modifiedonbehalfby = "lk_businessunit_modifiedonbehalfby";
+			public const string lk_businessunitbase_createdby = "lk_businessunitbase_createdby";
+			public const string lk_businessunitbase_modifiedby = "lk_businessunitbase_modifiedby";
+			public const string organization_business_units = "organization_business_units";
+			public const string TransactionCurrency_BusinessUnit = "TransactionCurrency_BusinessUnit";
 		}
 
 		
@@ -1076,6 +1076,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -1088,6 +1095,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -1321,6 +1335,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -1333,6 +1354,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -3558,6 +3586,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_businessunitbase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_businessunitbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_businessunitbase_createdby", null, value);
+				this.OnPropertyChanged("lk_businessunitbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -3571,6 +3606,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_businessunitbase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_businessunitbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_businessunitbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_businessunitbase_modifiedby");
 			}
 		}
 		
@@ -3652,12 +3694,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address1_addresstypecode")]
-		public virtual businessunit_address1_addresstypecode? Address1_AddressTypeCodeEnum
+		public virtual BusinessUnit_Address1_AddressTypeCode? Address1_AddressTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((businessunit_address1_addresstypecode?)(EntityOptionSetEnum.GetEnum(this, "address1_addresstypecode")));
+				return ((BusinessUnit_Address1_AddressTypeCode?)(EntityOptionSetEnum.GetEnum(this, "address1_addresstypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -3667,12 +3709,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address1_shippingmethodcode")]
-		public virtual businessunit_address1_shippingmethodcode? Address1_ShippingMethodCodeEnum
+		public virtual BusinessUnit_Address1_ShippingMethodCode? Address1_ShippingMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((businessunit_address1_shippingmethodcode?)(EntityOptionSetEnum.GetEnum(this, "address1_shippingmethodcode")));
+				return ((BusinessUnit_Address1_ShippingMethodCode?)(EntityOptionSetEnum.GetEnum(this, "address1_shippingmethodcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -3682,12 +3724,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address2_addresstypecode")]
-		public virtual businessunit_address2_addresstypecode? Address2_AddressTypeCodeEnum
+		public virtual BusinessUnit_Address2_AddressTypeCode? Address2_AddressTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((businessunit_address2_addresstypecode?)(EntityOptionSetEnum.GetEnum(this, "address2_addresstypecode")));
+				return ((BusinessUnit_Address2_AddressTypeCode?)(EntityOptionSetEnum.GetEnum(this, "address2_addresstypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -3697,12 +3739,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address2_shippingmethodcode")]
-		public virtual businessunit_address2_shippingmethodcode? Address2_ShippingMethodCodeEnum
+		public virtual BusinessUnit_Address2_ShippingMethodCode? Address2_ShippingMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((businessunit_address2_shippingmethodcode?)(EntityOptionSetEnum.GetEnum(this, "address2_shippingmethodcode")));
+				return ((BusinessUnit_Address2_ShippingMethodCode?)(EntityOptionSetEnum.GetEnum(this, "address2_shippingmethodcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum ExternalPartyState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("externalparty")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ExternalParty : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -68,14 +68,14 @@ namespace DLaB.Xrm.Entities
 			public const string YomiFullName = "yomifullname";
 			public const string YomiLastName = "yomilastname";
 			public const string YomiMiddleName = "yomimiddlename";
-			public const string business_unit_externalparty = "owningbusinessunit";
-			public const string lk_externalparty_createdby = "createdby";
-			public const string lk_externalparty_createdonbehalfby = "createdonbehalfby";
-			public const string lk_externalparty_modifiedby = "modifiedby";
-			public const string lk_externalparty_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string team_externalparty = "owningteam";
-			public const string TransactionCurrency_ExternalParty = "transactioncurrencyid";
-			public const string user_externalparty = "owninguser";
+			public const string business_unit_externalparty = "business_unit_externalparty";
+			public const string lk_externalparty_createdby = "lk_externalparty_createdby";
+			public const string lk_externalparty_createdonbehalfby = "lk_externalparty_createdonbehalfby";
+			public const string lk_externalparty_modifiedby = "lk_externalparty_modifiedby";
+			public const string lk_externalparty_modifiedonbehalfby = "lk_externalparty_modifiedonbehalfby";
+			public const string team_externalparty = "team_externalparty";
+			public const string TransactionCurrency_ExternalParty = "TransactionCurrency_ExternalParty";
+			public const string user_externalparty = "user_externalparty";
 		}
 
 		
@@ -145,6 +145,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -157,6 +164,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -420,6 +434,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -432,6 +453,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -506,6 +534,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -519,6 +554,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -531,6 +573,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -896,46 +945,6 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// 1:N lk_externalparty_annotation_createdby
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_annotation_createdby")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Annotation> lk_externalparty_annotation_createdby
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.Annotation>("lk_externalparty_annotation_createdby", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("lk_externalparty_annotation_createdby");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.Annotation>("lk_externalparty_annotation_createdby", null, value);
-				this.OnPropertyChanged("lk_externalparty_annotation_createdby");
-			}
-		}
-		
-		/// <summary>
-		/// 1:N lk_externalparty_annotation_modifiedby
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_annotation_modifiedby")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Annotation> lk_externalparty_annotation_modifiedby
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.Annotation>("lk_externalparty_annotation_modifiedby", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("lk_externalparty_annotation_modifiedby");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.Annotation>("lk_externalparty_annotation_modifiedby", null, value);
-				this.OnPropertyChanged("lk_externalparty_annotation_modifiedby");
-			}
-		}
-		
-		/// <summary>
 		/// 1:N lk_externalparty_contact_createdby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_contact_createdby")]
@@ -972,46 +981,6 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("lk_externalparty_contact_modifiedby");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Contact>("lk_externalparty_contact_modifiedby", null, value);
 				this.OnPropertyChanged("lk_externalparty_contact_modifiedby");
-			}
-		}
-		
-		/// <summary>
-		/// 1:N lk_externalparty_customeraddress_createdby
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_customeraddress_createdby")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CustomerAddress> lk_externalparty_customeraddress_createdby
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.CustomerAddress>("lk_externalparty_customeraddress_createdby", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("lk_externalparty_customeraddress_createdby");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.CustomerAddress>("lk_externalparty_customeraddress_createdby", null, value);
-				this.OnPropertyChanged("lk_externalparty_customeraddress_createdby");
-			}
-		}
-		
-		/// <summary>
-		/// 1:N lk_externalparty_customeraddress_modifiedby
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_customeraddress_modifiedby")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CustomerAddress> lk_externalparty_customeraddress_modifiedby
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.CustomerAddress>("lk_externalparty_customeraddress_modifiedby", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("lk_externalparty_customeraddress_modifiedby");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.CustomerAddress>("lk_externalparty_customeraddress_modifiedby", null, value);
-				this.OnPropertyChanged("lk_externalparty_customeraddress_modifiedby");
 			}
 		}
 		
@@ -1256,46 +1225,6 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// 1:N lk_externalparty_slakpiinstance_createdby
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_slakpiinstance_createdby")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SLAKPIInstance> lk_externalparty_slakpiinstance_createdby
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.SLAKPIInstance>("lk_externalparty_slakpiinstance_createdby", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("lk_externalparty_slakpiinstance_createdby");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.SLAKPIInstance>("lk_externalparty_slakpiinstance_createdby", null, value);
-				this.OnPropertyChanged("lk_externalparty_slakpiinstance_createdby");
-			}
-		}
-		
-		/// <summary>
-		/// 1:N lk_externalparty_slakpiinstance_modifiedby
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_slakpiinstance_modifiedby")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SLAKPIInstance> lk_externalparty_slakpiinstance_modifiedby
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.SLAKPIInstance>("lk_externalparty_slakpiinstance_modifiedby", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("lk_externalparty_slakpiinstance_modifiedby");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.SLAKPIInstance>("lk_externalparty_slakpiinstance_modifiedby", null, value);
-				this.OnPropertyChanged("lk_externalparty_slakpiinstance_modifiedby");
-			}
-		}
-		
-		/// <summary>
 		/// 1:N lk_externalparty_subject_createdby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_subject_createdby")]
@@ -1427,6 +1356,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_externalparty", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_externalparty");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_externalparty", null, value);
+				this.OnPropertyChanged("business_unit_externalparty");
+			}
 		}
 		
 		/// <summary>
@@ -1440,6 +1376,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_externalparty_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_externalparty_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_externalparty_createdby", null, value);
+				this.OnPropertyChanged("lk_externalparty_createdby");
 			}
 		}
 		
@@ -1476,6 +1419,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_externalparty_modifiedby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_externalparty_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_externalparty_modifiedby", null, value);
+				this.OnPropertyChanged("lk_externalparty_modifiedby");
+			}
 		}
 		
 		/// <summary>
@@ -1511,6 +1461,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_externalparty", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_externalparty");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_externalparty", null, value);
+				this.OnPropertyChanged("team_externalparty");
+			}
 		}
 		
 		/// <summary>
@@ -1545,6 +1502,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_externalparty", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_externalparty");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_externalparty", null, value);
+				this.OnPropertyChanged("user_externalparty");
 			}
 		}
 		
@@ -1591,12 +1555,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual externalparty_statuscode? StatusCodeEnum
+		public virtual ExternalParty_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((externalparty_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((ExternalParty_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

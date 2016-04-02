@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("productpricelevel")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ProductPriceLevel : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -53,17 +53,17 @@ namespace DLaB.Xrm.Entities
 			public const string UoMId = "uomid";
 			public const string UoMScheduleId = "uomscheduleid";
 			public const string VersionNumber = "versionnumber";
-			public const string discount_type_product_price_levels = "discounttypeid";
-			public const string lk_productpricelevel_createdonbehalfby = "createdonbehalfby";
-			public const string lk_productpricelevel_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_productpricelevelbase_createdby = "createdby";
-			public const string lk_productpricelevelbase_modifiedby = "modifiedby";
-			public const string price_level_product_price_levels = "pricelevelid";
-			public const string processstage_productpricelevels = "stageid";
-			public const string product_price_levels = "productid";
-			public const string transactioncurrency_productpricelevel = "transactioncurrencyid";
-			public const string unit_of_measure_schedule_product_price_level = "uomscheduleid";
-			public const string unit_of_measurement_product_price_levels = "uomid";
+			public const string discount_type_product_price_levels = "discount_type_product_price_levels";
+			public const string lk_productpricelevel_createdonbehalfby = "lk_productpricelevel_createdonbehalfby";
+			public const string lk_productpricelevel_modifiedonbehalfby = "lk_productpricelevel_modifiedonbehalfby";
+			public const string lk_productpricelevelbase_createdby = "lk_productpricelevelbase_createdby";
+			public const string lk_productpricelevelbase_modifiedby = "lk_productpricelevelbase_modifiedby";
+			public const string price_level_product_price_levels = "price_level_product_price_levels";
+			public const string processstage_productpricelevels = "processstage_productpricelevels";
+			public const string product_price_levels = "product_price_levels";
+			public const string transactioncurrency_productpricelevel = "transactioncurrency_productpricelevel";
+			public const string unit_of_measure_schedule_product_price_level = "unit_of_measure_schedule_product_price_level";
+			public const string unit_of_measurement_product_price_levels = "unit_of_measurement_product_price_levels";
 		}
 
 		
@@ -146,6 +146,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -158,6 +165,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -245,6 +259,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -257,6 +278,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -850,6 +878,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_productpricelevelbase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_productpricelevelbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_productpricelevelbase_createdby", null, value);
+				this.OnPropertyChanged("lk_productpricelevelbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -863,6 +898,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_productpricelevelbase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_productpricelevelbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_productpricelevelbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_productpricelevelbase_modifiedby");
 			}
 		}
 		
@@ -1035,12 +1077,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("pricingmethodcode")]
-		public virtual productpricelevel_pricingmethodcode? PricingMethodCodeEnum
+		public virtual ProductPriceLevel_PricingMethodCode? PricingMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((productpricelevel_pricingmethodcode?)(EntityOptionSetEnum.GetEnum(this, "pricingmethodcode")));
+				return ((ProductPriceLevel_PricingMethodCode?)(EntityOptionSetEnum.GetEnum(this, "pricingmethodcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1050,12 +1092,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("quantitysellingcode")]
-		public virtual productpricelevel_quantitysellingcode? QuantitySellingCodeEnum
+		public virtual ProductPriceLevel_QuantitySellingCode? QuantitySellingCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((productpricelevel_quantitysellingcode?)(EntityOptionSetEnum.GetEnum(this, "quantitysellingcode")));
+				return ((ProductPriceLevel_QuantitySellingCode?)(EntityOptionSetEnum.GetEnum(this, "quantitysellingcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1065,12 +1107,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("roundingoptioncode")]
-		public virtual productpricelevel_roundingoptioncode? RoundingOptionCodeEnum
+		public virtual ProductPriceLevel_RoundingOptionCode? RoundingOptionCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((productpricelevel_roundingoptioncode?)(EntityOptionSetEnum.GetEnum(this, "roundingoptioncode")));
+				return ((ProductPriceLevel_RoundingOptionCode?)(EntityOptionSetEnum.GetEnum(this, "roundingoptioncode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1080,12 +1122,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("roundingpolicycode")]
-		public virtual productpricelevel_roundingpolicycode? RoundingPolicyCodeEnum
+		public virtual ProductPriceLevel_RoundingPolicyCode? RoundingPolicyCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((productpricelevel_roundingpolicycode?)(EntityOptionSetEnum.GetEnum(this, "roundingpolicycode")));
+				return ((ProductPriceLevel_RoundingPolicyCode?)(EntityOptionSetEnum.GetEnum(this, "roundingpolicycode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

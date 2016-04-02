@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("knowledgebaserecord")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class KnowledgeBaseRecord : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -38,12 +38,12 @@ namespace DLaB.Xrm.Entities
 			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string UniqueId = "uniqueid";
 			public const string VersionNumber = "versionnumber";
-			public const string lk_KnowledgeBaseRecord_createdby = "createdby";
-			public const string lk_KnowledgeBaseRecord_createdonbehalfby = "createdonbehalfby";
-			public const string lk_KnowledgeBaseRecord_modifiedby = "modifiedby";
-			public const string lk_KnowledgeBaseRecord_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string organization_KnowledgeBaseRecord = "organizationid";
-			public const string TransactionCurrency_KnowledgeBaseRecord = "transactioncurrencyid";
+			public const string lk_KnowledgeBaseRecord_createdby = "lk_KnowledgeBaseRecord_createdby";
+			public const string lk_KnowledgeBaseRecord_createdonbehalfby = "lk_KnowledgeBaseRecord_createdonbehalfby";
+			public const string lk_KnowledgeBaseRecord_modifiedby = "lk_KnowledgeBaseRecord_modifiedby";
+			public const string lk_KnowledgeBaseRecord_modifiedonbehalfby = "lk_KnowledgeBaseRecord_modifiedonbehalfby";
+			public const string organization_KnowledgeBaseRecord = "organization_KnowledgeBaseRecord";
+			public const string TransactionCurrency_KnowledgeBaseRecord = "TransactionCurrency_KnowledgeBaseRecord";
 		}
 
 		
@@ -93,6 +93,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -105,6 +112,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -195,6 +209,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -207,6 +228,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -808,6 +836,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_KnowledgeBaseRecord_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_KnowledgeBaseRecord_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_KnowledgeBaseRecord_createdby", null, value);
+				this.OnPropertyChanged("lk_KnowledgeBaseRecord_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -842,6 +877,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_KnowledgeBaseRecord_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_KnowledgeBaseRecord_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_KnowledgeBaseRecord_modifiedby", null, value);
+				this.OnPropertyChanged("lk_KnowledgeBaseRecord_modifiedby");
 			}
 		}
 		

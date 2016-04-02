@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum LetterState
 	{
 		
@@ -30,7 +30,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("letter")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class Letter : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -84,34 +84,34 @@ namespace DLaB.Xrm.Entities
 			public const string TraversedPath = "traversedpath";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string Account_Letters = "regardingobjectid";
-			public const string activity_pointer_letter = "activityid";
-			public const string BulkOperation_Letter = "regardingobjectid";
-			public const string business_unit_letter_activities = "owningbusinessunit";
-			public const string Campaign_Letters = "regardingobjectid";
-			public const string CampaignActivity_Letters = "regardingobjectid";
-			public const string Contact_Letters = "regardingobjectid";
-			public const string Contract_Letters = "regardingobjectid";
-			public const string entitlement_Letters = "regardingobjectid";
-			public const string entitlementtemplate_Letters = "regardingobjectid";
-			public const string Incident_Letters = "regardingobjectid";
-			public const string Invoice_Letters = "regardingobjectid";
-			public const string KnowledgeArticle_Letters = "regardingobjectid";
-			public const string KnowledgeBaseRecord_Letters = "regardingobjectid";
-			public const string Lead_Letters = "regardingobjectid";
-			public const string lk_letter_createdby = "createdby";
-			public const string lk_letter_createdonbehalfby = "createdonbehalfby";
-			public const string lk_letter_modifiedby = "modifiedby";
-			public const string lk_letter_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string msdyn_postalbum_Letters = "regardingobjectid";
-			public const string Opportunity_Letters = "regardingobjectid";
-			public const string processstage_letters = "stageid";
-			public const string Quote_Letters = "regardingobjectid";
-			public const string SalesOrder_Letters = "regardingobjectid";
-			public const string service_letters = "serviceid";
-			public const string team_letter = "owningteam";
-			public const string TransactionCurrency_Letter = "transactioncurrencyid";
-			public const string user_letter = "owninguser";
+			public const string Account_Letters = "Account_Letters";
+			public const string activity_pointer_letter = "activity_pointer_letter";
+			public const string BulkOperation_Letter = "BulkOperation_Letter";
+			public const string business_unit_letter_activities = "business_unit_letter_activities";
+			public const string Campaign_Letters = "Campaign_Letters";
+			public const string CampaignActivity_Letters = "CampaignActivity_Letters";
+			public const string Contact_Letters = "Contact_Letters";
+			public const string Contract_Letters = "Contract_Letters";
+			public const string entitlement_Letters = "entitlement_Letters";
+			public const string entitlementtemplate_Letters = "entitlementtemplate_Letters";
+			public const string Incident_Letters = "Incident_Letters";
+			public const string Invoice_Letters = "Invoice_Letters";
+			public const string KnowledgeArticle_Letters = "KnowledgeArticle_Letters";
+			public const string KnowledgeBaseRecord_Letters = "KnowledgeBaseRecord_Letters";
+			public const string Lead_Letters = "Lead_Letters";
+			public const string lk_letter_createdby = "lk_letter_createdby";
+			public const string lk_letter_createdonbehalfby = "lk_letter_createdonbehalfby";
+			public const string lk_letter_modifiedby = "lk_letter_modifiedby";
+			public const string lk_letter_modifiedonbehalfby = "lk_letter_modifiedonbehalfby";
+			public const string msdyn_postalbum_Letters = "msdyn_postalbum_Letters";
+			public const string Opportunity_Letters = "Opportunity_Letters";
+			public const string processstage_letters = "processstage_letters";
+			public const string Quote_Letters = "Quote_Letters";
+			public const string SalesOrder_Letters = "SalesOrder_Letters";
+			public const string service_letters = "service_letters";
+			public const string team_letter = "team_letter";
+			public const string TransactionCurrency_Letter = "TransactionCurrency_Letter";
+			public const string user_letter = "user_letter";
 		}
 
 		
@@ -389,6 +389,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -401,6 +408,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -597,6 +611,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -609,6 +630,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -683,6 +711,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -696,6 +731,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -708,6 +750,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1443,6 +1492,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_letter_activities", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_letter_activities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_letter_activities", null, value);
+				this.OnPropertyChanged("business_unit_letter_activities");
+			}
 		}
 		
 		/// <summary>
@@ -1688,6 +1744,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_letter_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_letter_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_letter_createdby", null, value);
+				this.OnPropertyChanged("lk_letter_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -1722,6 +1785,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_letter_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_letter_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_letter_modifiedby", null, value);
+				this.OnPropertyChanged("lk_letter_modifiedby");
 			}
 		}
 		
@@ -1884,6 +1954,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_letter", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_letter");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_letter", null, value);
+				this.OnPropertyChanged("team_letter");
+			}
 		}
 		
 		/// <summary>
@@ -1918,6 +1995,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_letter", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_letter");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_letter", null, value);
+				this.OnPropertyChanged("user_letter");
 			}
 		}
 		
@@ -1964,12 +2048,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("prioritycode")]
-		public virtual letter_prioritycode? PriorityCodeEnum
+		public virtual Letter_PriorityCode? PriorityCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((letter_prioritycode?)(EntityOptionSetEnum.GetEnum(this, "prioritycode")));
+				return ((Letter_PriorityCode?)(EntityOptionSetEnum.GetEnum(this, "prioritycode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1979,12 +2063,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual letter_statuscode? StatusCodeEnum
+		public virtual Letter_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((letter_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((Letter_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

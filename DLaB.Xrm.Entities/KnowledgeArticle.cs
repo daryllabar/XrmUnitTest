@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum KnowledgeArticleState
 	{
 		
@@ -42,7 +42,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("knowledgearticle")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class KnowledgeArticle : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -102,21 +102,21 @@ namespace DLaB.Xrm.Entities
 			public const string UpdateContent = "updatecontent";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string business_unit_knowledgearticle = "owningbusinessunit";
-			public const string knowledgearticle_languagelocaleid = "languagelocaleid";
-			public const string Referencingknowledgearticle_parentarticle_contentid = "parentarticlecontentid";
-			public const string Referencingknowledgearticle_previousarticle_contentid = "previousarticlecontentid";
-			public const string knowledgearticle_primaryauthorid = "primaryauthorid";
-			public const string Referencingknowledgearticle_rootarticle_id = "rootarticleid";
-			public const string lk_knowledgearticle_createdby = "createdby";
-			public const string lk_knowledgearticle_createdonbehalfby = "createdonbehalfby";
-			public const string lk_knowledgearticle_modifiedby = "modifiedby";
-			public const string lk_knowledgearticle_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string processstage_knowledgearticle = "stageid";
-			public const string subject_knowledgearticles = "subjectid";
-			public const string team_knowledgearticle = "owningteam";
-			public const string TransactionCurrency_knowledgearticle = "transactioncurrencyid";
-			public const string user_knowledgearticle = "owninguser";
+			public const string business_unit_knowledgearticle = "business_unit_knowledgearticle";
+			public const string knowledgearticle_languagelocaleid = "knowledgearticle_languagelocaleid";
+			public const string Referencingknowledgearticle_parentarticle_contentid = "knowledgearticle_parentarticle_contentid";
+			public const string Referencingknowledgearticle_previousarticle_contentid = "knowledgearticle_previousarticle_contentid";
+			public const string knowledgearticle_primaryauthorid = "knowledgearticle_primaryauthorid";
+			public const string Referencingknowledgearticle_rootarticle_id = "knowledgearticle_rootarticle_id";
+			public const string lk_knowledgearticle_createdby = "lk_knowledgearticle_createdby";
+			public const string lk_knowledgearticle_createdonbehalfby = "lk_knowledgearticle_createdonbehalfby";
+			public const string lk_knowledgearticle_modifiedby = "lk_knowledgearticle_modifiedby";
+			public const string lk_knowledgearticle_modifiedonbehalfby = "lk_knowledgearticle_modifiedonbehalfby";
+			public const string processstage_knowledgearticle = "processstage_knowledgearticle";
+			public const string subject_knowledgearticles = "subject_knowledgearticles";
+			public const string team_knowledgearticle = "team_knowledgearticle";
+			public const string TransactionCurrency_knowledgearticle = "TransactionCurrency_knowledgearticle";
+			public const string user_knowledgearticle = "user_knowledgearticle";
 		}
 
 		
@@ -206,6 +206,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -218,6 +225,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -607,6 +621,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -619,6 +640,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -693,6 +721,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -706,6 +741,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -718,6 +760,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1781,6 +1830,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_knowledgearticle", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_knowledgearticle");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_knowledgearticle", null, value);
+				this.OnPropertyChanged("business_unit_knowledgearticle");
+			}
 		}
 		
 		/// <summary>
@@ -1900,6 +1956,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_knowledgearticle_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_knowledgearticle_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_knowledgearticle_createdby", null, value);
+				this.OnPropertyChanged("lk_knowledgearticle_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -1934,6 +1997,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_knowledgearticle_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_knowledgearticle_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_knowledgearticle_modifiedby", null, value);
+				this.OnPropertyChanged("lk_knowledgearticle_modifiedby");
 			}
 		}
 		
@@ -2012,6 +2082,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_knowledgearticle", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_knowledgearticle");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_knowledgearticle", null, value);
+				this.OnPropertyChanged("team_knowledgearticle");
+			}
 		}
 		
 		/// <summary>
@@ -2046,6 +2123,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_knowledgearticle", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_knowledgearticle");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_knowledgearticle", null, value);
+				this.OnPropertyChanged("user_knowledgearticle");
 			}
 		}
 		
@@ -2092,12 +2176,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("expiredreviewoptions")]
-		public virtual knowledgearticle_expiredreviewoptions? ExpiredReviewOptionsEnum
+		public virtual KnowledgeArticle_ExpiredReviewOptions? ExpiredReviewOptionsEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((knowledgearticle_expiredreviewoptions?)(EntityOptionSetEnum.GetEnum(this, "expiredreviewoptions")));
+				return ((KnowledgeArticle_ExpiredReviewOptions?)(EntityOptionSetEnum.GetEnum(this, "expiredreviewoptions")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2107,12 +2191,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("review")]
-		public virtual knowledgearticle_review? ReviewEnum
+		public virtual KnowledgeArticle_Review? ReviewEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((knowledgearticle_review?)(EntityOptionSetEnum.GetEnum(this, "review")));
+				return ((KnowledgeArticle_Review?)(EntityOptionSetEnum.GetEnum(this, "review")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2122,12 +2206,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual knowledgearticle_statuscode? StatusCodeEnum
+		public virtual KnowledgeArticle_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((knowledgearticle_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((KnowledgeArticle_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

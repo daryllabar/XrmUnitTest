@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using Microsoft.Xrm.Sdk;
 
@@ -26,6 +27,24 @@ namespace DLaB.Xrm.Sandbox.Serialization
             {
                 Add(new KeyValuePairOfstringanyType(att));
             }
+        }
+
+        /// <summary>
+        /// Performs an explicit conversion from <see cref="SerializableAttributeCollection"/> to <see cref="AttributeCollection"/>.
+        /// </summary>
+        /// <param name="collection">The collection.</param>
+        /// <returns>
+        /// The result of the conversion.
+        /// </returns>
+        public static explicit operator AttributeCollection(SerializableAttributeCollection collection)
+        {
+            if (collection == null)
+            {
+                return null;
+            }
+            var xrmCollection = new AttributeCollection();
+            xrmCollection.AddRange(collection.Select(v => (KeyValuePair<string, object>) v));
+            return  xrmCollection;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("activityparty")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ActivityParty : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -35,45 +35,47 @@ namespace DLaB.Xrm.Entities
 			public const string InstanceTypeCode = "instancetypecode";
 			public const string IsPartyDeleted = "ispartydeleted";
 			public const string OwnerId = "ownerid";
+			public const string OwningBusinessUnit = "owningbusinessunit";
+			public const string OwningUser = "owninguser";
 			public const string ParticipationTypeMask = "participationtypemask";
 			public const string PartyId = "partyid";
 			public const string ResourceSpecId = "resourcespecid";
 			public const string ScheduledEnd = "scheduledend";
 			public const string ScheduledStart = "scheduledstart";
 			public const string VersionNumber = "versionnumber";
-			public const string account_activity_parties = "partyid";
-			public const string ActivityPartyResourceSpec = "resourcespecid";
-			public const string activitypointer_activity_parties = "activityid";
-			public const string appointment_activity_parties = "activityid";
-			public const string bulkoperation_activity_parties = "partyid";
-			public const string campaign_activity_parties = "partyid";
-			public const string campaignactivity_activity_parties = "activityid";
-			public const string campaignactivity_activityparties = "partyid";
-			public const string campaignresponse_activity_parties = "activityid";
-			public const string contact_activity_parties = "partyid";
-			public const string contract_activity_parties = "partyid";
-			public const string email_activity_parties = "activityid";
-			public const string equipment_activity_parties = "partyid";
-			public const string fax_activity_parties = "activityid";
-			public const string incident_activity_parties = "partyid";
-			public const string incidentresolution_activity_parties = "activityid";
-			public const string invoice_activity_parties = "partyid";
-			public const string knowledgearticle_activity_parties = "partyid";
-			public const string lead_activity_parties = "partyid";
-			public const string letter_activity_parties = "activityid";
-			public const string opportunity_activity_parties = "partyid";
-			public const string opportunityclose_activity_parties = "activityid";
-			public const string orderclose_activity_parties = "activityid";
-			public const string phonecall_activity_parties = "activityid";
-			public const string queue_activity_parties = "partyid";
-			public const string quote_activity_parties = "partyid";
-			public const string quoteclose_activity_parties = "activityid";
-			public const string recurringappointmentmaster_activity_parties = "activityid";
-			public const string salesorder_activity_parties = "partyid";
-			public const string serviceappointment_activity_parties = "activityid";
-			public const string socialactivity_activity_parties = "activityid";
-			public const string system_user_activity_parties = "partyid";
-			public const string task_activity_parties = "activityid";
+			public const string account_activity_parties = "account_activity_parties";
+			public const string ActivityPartyResourceSpec = "ActivityPartyResourceSpec";
+			public const string activitypointer_activity_parties = "activitypointer_activity_parties";
+			public const string appointment_activity_parties = "appointment_activity_parties";
+			public const string bulkoperation_activity_parties = "bulkoperation_activity_parties";
+			public const string campaign_activity_parties = "campaign_activity_parties";
+			public const string campaignactivity_activity_parties = "campaignactivity_activity_parties";
+			public const string campaignactivity_activityparties = "campaignactivity_activityparties";
+			public const string campaignresponse_activity_parties = "campaignresponse_activity_parties";
+			public const string contact_activity_parties = "contact_activity_parties";
+			public const string contract_activity_parties = "contract_activity_parties";
+			public const string email_activity_parties = "email_activity_parties";
+			public const string equipment_activity_parties = "equipment_activity_parties";
+			public const string fax_activity_parties = "fax_activity_parties";
+			public const string incident_activity_parties = "incident_activity_parties";
+			public const string incidentresolution_activity_parties = "incidentresolution_activity_parties";
+			public const string invoice_activity_parties = "invoice_activity_parties";
+			public const string knowledgearticle_activity_parties = "knowledgearticle_activity_parties";
+			public const string lead_activity_parties = "lead_activity_parties";
+			public const string letter_activity_parties = "letter_activity_parties";
+			public const string opportunity_activity_parties = "opportunity_activity_parties";
+			public const string opportunityclose_activity_parties = "opportunityclose_activity_parties";
+			public const string orderclose_activity_parties = "orderclose_activity_parties";
+			public const string phonecall_activity_parties = "phonecall_activity_parties";
+			public const string queue_activity_parties = "queue_activity_parties";
+			public const string quote_activity_parties = "quote_activity_parties";
+			public const string quoteclose_activity_parties = "quoteclose_activity_parties";
+			public const string recurringappointmentmaster_activity_parties = "recurringappointmentmaster_activity_parties";
+			public const string salesorder_activity_parties = "salesorder_activity_parties";
+			public const string serviceappointment_activity_parties = "serviceappointment_activity_parties";
+			public const string socialactivity_activity_parties = "socialactivity_activity_parties";
+			public const string system_user_activity_parties = "system_user_activity_parties";
+			public const string task_activity_parties = "task_activity_parties";
 		}
 
 		
@@ -336,6 +338,46 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("ownerid");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
+		public System.Nullable<System.Guid> OwningBusinessUnit
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("owningbusinessunit");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		public System.Nullable<System.Guid> OwningUser
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1194,22 +1236,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("instancetypecode")]
-		public virtual activityparty_instancetypecode? InstanceTypeCodeEnum
+		public virtual ActivityParty_InstanceTypeCode? InstanceTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((activityparty_instancetypecode?)(EntityOptionSetEnum.GetEnum(this, "instancetypecode")));
+				return ((ActivityParty_InstanceTypeCode?)(EntityOptionSetEnum.GetEnum(this, "instancetypecode")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("participationtypemask")]
-		public virtual activityparty_participationtypemask? ParticipationTypeMaskEnum
+		public virtual ActivityParty_ParticipationTypeMask? ParticipationTypeMaskEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((activityparty_participationtypemask?)(EntityOptionSetEnum.GetEnum(this, "participationtypemask")));
+				return ((ActivityParty_ParticipationTypeMask?)(EntityOptionSetEnum.GetEnum(this, "participationtypemask")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum CampaignResponseState
 	{
 		
@@ -30,7 +30,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("campaignresponse")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class CampaignResponse : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -95,25 +95,25 @@ namespace DLaB.Xrm.Entities
 			public const string YomiCompanyName = "yomicompanyname";
 			public const string YomiFirstName = "yomifirstname";
 			public const string YomiLastName = "yomilastname";
-			public const string activity_campaignresponse = "originatingactivityid";
-			public const string activity_pointer_campaignresponse = "activityid";
-			public const string appointment_campaignresponse = "originatingactivityid";
-			public const string BulkOperation_CampaignResponse = "regardingobjectid";
-			public const string business_unit_campaignresponse_activities = "owningbusinessunit";
-			public const string Campaign_CampaignResponses = "regardingobjectid";
-			public const string email_campaignresponse = "originatingactivityid";
-			public const string fax_campaignresponse = "originatingactivityid";
-			public const string letter_campaignresponse = "originatingactivityid";
-			public const string lk_campaignresponse_createdby = "createdby";
-			public const string lk_campaignresponse_createdonbehalfby = "createdonbehalfby";
-			public const string lk_campaignresponse_modifiedby = "modifiedby";
-			public const string lk_campaignresponse_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string phonecall_campaignresponse = "originatingactivityid";
-			public const string processstage_campaignresponses = "stageid";
-			public const string recurringappointmentmaster_campaignresponse = "originatingactivityid";
-			public const string team_campaignresponse = "owningteam";
-			public const string TransactionCurrency_CampaignResponse = "transactioncurrencyid";
-			public const string user_campaignresponse = "owninguser";
+			public const string activity_campaignresponse = "activity_campaignresponse";
+			public const string activity_pointer_campaignresponse = "activity_pointer_campaignresponse";
+			public const string appointment_campaignresponse = "appointment_campaignresponse";
+			public const string BulkOperation_CampaignResponse = "BulkOperation_CampaignResponse";
+			public const string business_unit_campaignresponse_activities = "business_unit_campaignresponse_activities";
+			public const string Campaign_CampaignResponses = "Campaign_CampaignResponses";
+			public const string email_campaignresponse = "email_campaignresponse";
+			public const string fax_campaignresponse = "fax_campaignresponse";
+			public const string letter_campaignresponse = "letter_campaignresponse";
+			public const string lk_campaignresponse_createdby = "lk_campaignresponse_createdby";
+			public const string lk_campaignresponse_createdonbehalfby = "lk_campaignresponse_createdonbehalfby";
+			public const string lk_campaignresponse_modifiedby = "lk_campaignresponse_modifiedby";
+			public const string lk_campaignresponse_modifiedonbehalfby = "lk_campaignresponse_modifiedonbehalfby";
+			public const string phonecall_campaignresponse = "phonecall_campaignresponse";
+			public const string processstage_campaignresponses = "processstage_campaignresponses";
+			public const string recurringappointmentmaster_campaignresponse = "recurringappointmentmaster_campaignresponse";
+			public const string team_campaignresponse = "team_campaignresponse";
+			public const string TransactionCurrency_CampaignResponse = "TransactionCurrency_CampaignResponse";
+			public const string user_campaignresponse = "user_campaignresponse";
 		}
 
 		
@@ -359,6 +359,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -371,6 +378,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -663,6 +677,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -675,6 +696,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -769,6 +797,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -782,6 +817,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -794,6 +836,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1630,6 +1679,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_campaignresponse_activities", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_campaignresponse_activities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_campaignresponse_activities", null, value);
+				this.OnPropertyChanged("business_unit_campaignresponse_activities");
+			}
 		}
 		
 		/// <summary>
@@ -1728,6 +1784,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_campaignresponse_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_campaignresponse_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_campaignresponse_createdby", null, value);
+				this.OnPropertyChanged("lk_campaignresponse_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -1762,6 +1825,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_campaignresponse_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_campaignresponse_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_campaignresponse_modifiedby", null, value);
+				this.OnPropertyChanged("lk_campaignresponse_modifiedby");
 			}
 		}
 		
@@ -1861,6 +1931,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_campaignresponse", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_campaignresponse");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_campaignresponse", null, value);
+				this.OnPropertyChanged("team_campaignresponse");
+			}
 		}
 		
 		/// <summary>
@@ -1895,6 +1972,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_campaignresponse", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_campaignresponse");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_campaignresponse", null, value);
+				this.OnPropertyChanged("user_campaignresponse");
 			}
 		}
 		
@@ -1941,12 +2025,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("channeltypecode")]
-		public virtual campaignresponse_channeltypecode? ChannelTypeCodeEnum
+		public virtual CampaignResponse_ChannelTypeCode? ChannelTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((campaignresponse_channeltypecode?)(EntityOptionSetEnum.GetEnum(this, "channeltypecode")));
+				return ((CampaignResponse_ChannelTypeCode?)(EntityOptionSetEnum.GetEnum(this, "channeltypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1956,12 +2040,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("prioritycode")]
-		public virtual campaignresponse_prioritycode? PriorityCodeEnum
+		public virtual CampaignResponse_PriorityCode? PriorityCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((campaignresponse_prioritycode?)(EntityOptionSetEnum.GetEnum(this, "prioritycode")));
+				return ((CampaignResponse_PriorityCode?)(EntityOptionSetEnum.GetEnum(this, "prioritycode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1971,12 +2055,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("responsecode")]
-		public virtual campaignresponse_responsecode? ResponseCodeEnum
+		public virtual CampaignResponse_ResponseCode? ResponseCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((campaignresponse_responsecode?)(EntityOptionSetEnum.GetEnum(this, "responsecode")));
+				return ((CampaignResponse_ResponseCode?)(EntityOptionSetEnum.GetEnum(this, "responsecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1986,12 +2070,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual campaignresponse_statuscode? StatusCodeEnum
+		public virtual CampaignResponse_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((campaignresponse_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((CampaignResponse_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum DynamicPropertyState
 	{
 		
@@ -30,7 +30,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("dynamicproperty")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class DynamicProperty : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -74,15 +74,15 @@ namespace DLaB.Xrm.Entities
 			public const string statecode = "statecode";
 			public const string statuscode = "statuscode";
 			public const string VersionNumber = "versionnumber";
-			public const string DefaultValueOptionSet_DynamicProperty = "defaultvalueoptionset";
-			public const string Referencingdynamicproperty_base_dynamicproperty = "basedynamicpropertyid";
-			public const string dynamicproperty_organization = "organizationid";
-			public const string lk_DynamicProperty_createdby = "createdby";
-			public const string lk_DynamicProperty_createdonbehalfby = "createdonbehalfby";
-			public const string lk_DynamicProperty_modifiedby = "modifiedby";
-			public const string lk_DynamicProperty_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string Product_DynamicProperty = "regardingobjectid";
-			public const string ProductAssociation_DynamicProperty = "regardingobjectid";
+			public const string DefaultValueOptionSet_DynamicProperty = "DefaultValueOptionSet_DynamicProperty";
+			public const string Referencingdynamicproperty_base_dynamicproperty = "dynamicproperty_base_dynamicproperty";
+			public const string dynamicproperty_organization = "dynamicproperty_organization";
+			public const string lk_DynamicProperty_createdby = "lk_DynamicProperty_createdby";
+			public const string lk_DynamicProperty_createdonbehalfby = "lk_DynamicProperty_createdonbehalfby";
+			public const string lk_DynamicProperty_modifiedby = "lk_DynamicProperty_modifiedby";
+			public const string lk_DynamicProperty_modifiedonbehalfby = "lk_DynamicProperty_modifiedonbehalfby";
+			public const string Product_DynamicProperty = "Product_DynamicProperty";
+			public const string ProductAssociation_DynamicProperty = "ProductAssociation_DynamicProperty";
 		}
 
 		
@@ -152,6 +152,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -164,6 +171,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -621,6 +635,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -633,6 +654,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -1005,6 +1033,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_DynamicProperty_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_DynamicProperty_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_DynamicProperty_createdby", null, value);
+				this.OnPropertyChanged("lk_DynamicProperty_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -1039,6 +1074,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_DynamicProperty_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_DynamicProperty_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_DynamicProperty_modifiedby", null, value);
+				this.OnPropertyChanged("lk_DynamicProperty_modifiedby");
 			}
 		}
 		
@@ -1148,12 +1190,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("datatype")]
-		public virtual dynamicproperty_datatypecode? DataTypeEnum
+		public virtual DynamicProperty_DataType? DataTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((dynamicproperty_datatypecode?)(EntityOptionSetEnum.GetEnum(this, "datatype")));
+				return ((DynamicProperty_DataType?)(EntityOptionSetEnum.GetEnum(this, "datatype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1163,12 +1205,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual dynamicproperty_statuscode? statuscodeEnum
+		public virtual DynamicProperty_StatusCode? statuscodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((dynamicproperty_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((DynamicProperty_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

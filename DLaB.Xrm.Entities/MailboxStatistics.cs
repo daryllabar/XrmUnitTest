@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("mailboxstatistics")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class MailboxStatistics : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -38,8 +38,8 @@ namespace DLaB.Xrm.Entities
 			public const string ProcessResult = "processresult";
 			public const string ProcessTimeIntervalInMinutes = "processtimeintervalinminutes";
 			public const string ScheduledTimeIntervalInMinutes = "scheduledtimeintervalinminutes";
-			public const string mailbox_mailboxstatistics = "mailboxid";
-			public const string organization_mailboxstatistics = "organizationid";
+			public const string mailbox_mailboxstatistics = "mailbox_mailboxstatistics";
+			public const string organization_mailboxstatistics = "organization_mailboxstatistics";
 		}
 
 		
@@ -372,12 +372,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("operationtypeid")]
-		public virtual mailboxstatistics_operationtype? OperationTypeIdEnum
+		public virtual MailboxStatistics_OperationTypeId? OperationTypeIdEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((mailboxstatistics_operationtype?)(EntityOptionSetEnum.GetEnum(this, "operationtypeid")));
+				return ((MailboxStatistics_OperationTypeId?)(EntityOptionSetEnum.GetEnum(this, "operationtypeid")));
 			}
 		}
 	}

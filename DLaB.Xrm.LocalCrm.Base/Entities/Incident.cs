@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// ReSharper disable InconsistentNaming
 
 namespace DLaB.Xrm.LocalCrm.Entities
 {
     internal enum IncidentState
     {
 
-        [System.Runtime.Serialization.EnumMemberAttribute()]
+        [System.Runtime.Serialization.EnumMember]
         Active = 0,
 
-        [System.Runtime.Serialization.EnumMemberAttribute()]
+        [System.Runtime.Serialization.EnumMember]
         Resolved = 1,
 
-        [System.Runtime.Serialization.EnumMemberAttribute()]
+        [System.Runtime.Serialization.EnumMember]
         Canceled = 2,
     }
 

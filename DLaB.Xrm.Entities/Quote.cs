@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum QuoteState
 	{
 		
@@ -33,7 +33,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("quote")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class Quote : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -127,20 +127,20 @@ namespace DLaB.Xrm.Entities
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
 			public const string WillCall = "willcall";
-			public const string business_unit_quotes = "owningbusinessunit";
-			public const string campaign_quotes = "campaignid";
-			public const string lk_quote_createdonbehalfby = "createdonbehalfby";
-			public const string lk_quote_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_quotebase_createdby = "createdby";
-			public const string lk_quotebase_modifiedby = "modifiedby";
-			public const string opportunity_quotes = "opportunityid";
-			public const string price_level_quotes = "pricelevelid";
-			public const string processstage_quotes = "stageid";
-			public const string quote_customer_accounts = "customerid";
-			public const string quote_customer_contacts = "customerid";
-			public const string system_user_quotes = "owninguser";
-			public const string team_quotes = "owningteam";
-			public const string transactioncurrency_quote = "transactioncurrencyid";
+			public const string business_unit_quotes = "business_unit_quotes";
+			public const string campaign_quotes = "campaign_quotes";
+			public const string lk_quote_createdonbehalfby = "lk_quote_createdonbehalfby";
+			public const string lk_quote_modifiedonbehalfby = "lk_quote_modifiedonbehalfby";
+			public const string lk_quotebase_createdby = "lk_quotebase_createdby";
+			public const string lk_quotebase_modifiedby = "lk_quotebase_modifiedby";
+			public const string opportunity_quotes = "opportunity_quotes";
+			public const string price_level_quotes = "price_level_quotes";
+			public const string processstage_quotes = "processstage_quotes";
+			public const string quote_customer_accounts = "quote_customer_accounts";
+			public const string quote_customer_contacts = "quote_customer_contacts";
+			public const string system_user_quotes = "system_user_quotes";
+			public const string team_quotes = "team_quotes";
+			public const string transactioncurrency_quote = "transactioncurrency_quote";
 		}
 
 		
@@ -509,6 +509,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -521,6 +528,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -794,6 +808,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -806,6 +827,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -920,6 +948,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -933,6 +968,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -945,6 +987,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -2375,6 +2424,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_quotes", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_quotes");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_quotes", null, value);
+				this.OnPropertyChanged("business_unit_quotes");
+			}
 		}
 		
 		/// <summary>
@@ -2452,6 +2508,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_quotebase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_quotebase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_quotebase_createdby", null, value);
+				this.OnPropertyChanged("lk_quotebase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -2465,6 +2528,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_quotebase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_quotebase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_quotebase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_quotebase_modifiedby");
 			}
 		}
 		
@@ -2585,6 +2655,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("system_user_quotes", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("system_user_quotes");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("system_user_quotes", null, value);
+				this.OnPropertyChanged("system_user_quotes");
+			}
 		}
 		
 		/// <summary>
@@ -2598,6 +2675,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_quotes", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_quotes");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_quotes", null, value);
+				this.OnPropertyChanged("team_quotes");
 			}
 		}
 		
@@ -2665,12 +2749,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("freighttermscode")]
-		public virtual quote_freighttermscode? FreightTermsCodeEnum
+		public virtual Quote_FreightTermsCode? FreightTermsCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((quote_freighttermscode?)(EntityOptionSetEnum.GetEnum(this, "freighttermscode")));
+				return ((Quote_FreightTermsCode?)(EntityOptionSetEnum.GetEnum(this, "freighttermscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2680,12 +2764,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("paymenttermscode")]
-		public virtual quote_paymenttermscode? PaymentTermsCodeEnum
+		public virtual Quote_PaymentTermsCode? PaymentTermsCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((quote_paymenttermscode?)(EntityOptionSetEnum.GetEnum(this, "paymenttermscode")));
+				return ((Quote_PaymentTermsCode?)(EntityOptionSetEnum.GetEnum(this, "paymenttermscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2695,12 +2779,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("pricingerrorcode")]
-		public virtual qooi_pricingerrorcode? PricingErrorCodeEnum
+		public virtual Qooi_PricingErrorCode? PricingErrorCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((qooi_pricingerrorcode?)(EntityOptionSetEnum.GetEnum(this, "pricingerrorcode")));
+				return ((Qooi_PricingErrorCode?)(EntityOptionSetEnum.GetEnum(this, "pricingerrorcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2710,12 +2794,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("shippingmethodcode")]
-		public virtual quote_shippingmethodcode? ShippingMethodCodeEnum
+		public virtual Quote_ShippingMethodCode? ShippingMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((quote_shippingmethodcode?)(EntityOptionSetEnum.GetEnum(this, "shippingmethodcode")));
+				return ((Quote_ShippingMethodCode?)(EntityOptionSetEnum.GetEnum(this, "shippingmethodcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2725,12 +2809,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("shipto_freighttermscode")]
-		public virtual quote_shipto_freighttermscode? ShipTo_FreightTermsCodeEnum
+		public virtual Quote_ShipTo_FreightTermsCode? ShipTo_FreightTermsCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((quote_shipto_freighttermscode?)(EntityOptionSetEnum.GetEnum(this, "shipto_freighttermscode")));
+				return ((Quote_ShipTo_FreightTermsCode?)(EntityOptionSetEnum.GetEnum(this, "shipto_freighttermscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

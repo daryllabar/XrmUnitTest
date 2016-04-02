@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("calendar")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class Calendar : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -39,13 +39,13 @@ namespace DLaB.Xrm.Entities
 			public const string Type = "type";
 			public const string VersionNumber = "versionnumber";
 			public const string CalendarRules = "calendarrules";
-			public const string business_unit_calendars = "businessunitid";
-			public const string Referencingcalendar_customercalendar_holidaycalendar = "holidayschedulecalendarid";
-			public const string lk_calendar_createdby = "createdby";
-			public const string lk_calendar_createdonbehalfby = "createdonbehalfby";
-			public const string lk_calendar_modifiedby = "modifiedby";
-			public const string lk_calendar_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string organization_calendars = "organizationid";
+			public const string business_unit_calendars = "business_unit_calendars";
+			public const string Referencingcalendar_customercalendar_holidaycalendar = "calendar_customercalendar_holidaycalendar";
+			public const string lk_calendar_createdby = "lk_calendar_createdby";
+			public const string lk_calendar_createdonbehalfby = "lk_calendar_createdonbehalfby";
+			public const string lk_calendar_modifiedby = "lk_calendar_modifiedby";
+			public const string lk_calendar_modifiedonbehalfby = "lk_calendar_modifiedonbehalfby";
+			public const string organization_calendars = "organization_calendars";
 		}
 
 		
@@ -158,6 +158,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -170,6 +177,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -264,6 +278,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -276,6 +297,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -695,6 +723,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_calendar_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_calendar_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_calendar_createdby", null, value);
+				this.OnPropertyChanged("lk_calendar_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -729,6 +764,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_calendar_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_calendar_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_calendar_modifiedby", null, value);
+				this.OnPropertyChanged("lk_calendar_modifiedby");
 			}
 		}
 		
@@ -810,12 +852,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("type")]
-		public virtual calendar_type? TypeEnum
+		public virtual Calendar_Type? TypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((calendar_type?)(EntityOptionSetEnum.GetEnum(this, "type")));
+				return ((Calendar_Type?)(EntityOptionSetEnum.GetEnum(this, "type")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

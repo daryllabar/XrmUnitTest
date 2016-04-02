@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Assumptions\MultipleEntityDataAssumptionBaseAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\CrmEnvironmentBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\EntityBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\EntityBuilderManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\GenericBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\IEntityBuilder.cs" />

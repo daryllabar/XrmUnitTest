@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("competitor")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class Competitor : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -105,13 +105,13 @@ namespace DLaB.Xrm.Entities
 			public const string WebSiteUrl = "websiteurl";
 			public const string WinPercentage = "winpercentage";
 			public const string YomiName = "yominame";
-			public const string lk_competitor_createdonbehalfby = "createdonbehalfby";
-			public const string lk_competitor_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_competitorbase_createdby = "createdby";
-			public const string lk_competitorbase_modifiedby = "modifiedby";
-			public const string organization_competitors = "organizationid";
-			public const string processstage_competitors = "stageid";
-			public const string transactioncurrency_competitor = "transactioncurrencyid";
+			public const string lk_competitor_createdonbehalfby = "lk_competitor_createdonbehalfby";
+			public const string lk_competitor_modifiedonbehalfby = "lk_competitor_modifiedonbehalfby";
+			public const string lk_competitorbase_createdby = "lk_competitorbase_createdby";
+			public const string lk_competitorbase_modifiedby = "lk_competitorbase_modifiedby";
+			public const string organization_competitors = "organization_competitors";
+			public const string processstage_competitors = "processstage_competitors";
+			public const string transactioncurrency_competitor = "transactioncurrency_competitor";
 		}
 
 		
@@ -1070,6 +1070,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -1082,6 +1089,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -1228,6 +1242,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -1240,6 +1261,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -2116,6 +2144,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_competitorbase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_competitorbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_competitorbase_createdby", null, value);
+				this.OnPropertyChanged("lk_competitorbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -2129,6 +2164,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_competitorbase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_competitorbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_competitorbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_competitorbase_modifiedby");
 			}
 		}
 		
@@ -2231,12 +2273,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address1_addresstypecode")]
-		public virtual competitor_address1_addresstypecode? Address1_AddressTypeCodeEnum
+		public virtual Competitor_Address1_AddressTypeCode? Address1_AddressTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((competitor_address1_addresstypecode?)(EntityOptionSetEnum.GetEnum(this, "address1_addresstypecode")));
+				return ((Competitor_Address1_AddressTypeCode?)(EntityOptionSetEnum.GetEnum(this, "address1_addresstypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2246,12 +2288,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address1_shippingmethodcode")]
-		public virtual competitor_address1_shippingmethodcode? Address1_ShippingMethodCodeEnum
+		public virtual Competitor_Address1_ShippingMethodCode? Address1_ShippingMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((competitor_address1_shippingmethodcode?)(EntityOptionSetEnum.GetEnum(this, "address1_shippingmethodcode")));
+				return ((Competitor_Address1_ShippingMethodCode?)(EntityOptionSetEnum.GetEnum(this, "address1_shippingmethodcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2261,12 +2303,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address2_addresstypecode")]
-		public virtual competitor_address2_addresstypecode? Address2_AddressTypeCodeEnum
+		public virtual Competitor_Address2_AddressTypeCode? Address2_AddressTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((competitor_address2_addresstypecode?)(EntityOptionSetEnum.GetEnum(this, "address2_addresstypecode")));
+				return ((Competitor_Address2_AddressTypeCode?)(EntityOptionSetEnum.GetEnum(this, "address2_addresstypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2276,12 +2318,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address2_shippingmethodcode")]
-		public virtual competitor_address2_shippingmethodcode? Address2_ShippingMethodCodeEnum
+		public virtual Competitor_Address2_ShippingMethodCode? Address2_ShippingMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((competitor_address2_shippingmethodcode?)(EntityOptionSetEnum.GetEnum(this, "address2_shippingmethodcode")));
+				return ((Competitor_Address2_ShippingMethodCode?)(EntityOptionSetEnum.GetEnum(this, "address2_shippingmethodcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

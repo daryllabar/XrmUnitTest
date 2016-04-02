@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum ContractDetailState
 	{
 		
@@ -33,7 +33,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("contractdetail")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ContractDetail : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -89,18 +89,18 @@ namespace DLaB.Xrm.Entities
 			public const string UoMScheduleId = "uomscheduleid";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string contract_detail_unit_of_measure_schedule = "uomscheduleid";
-			public const string contract_line_items = "contractid";
-			public const string contractlineitem_customer_accounts = "customerid";
-			public const string contractlineitem_customer_contacts = "customerid";
-			public const string customer_address_contract_line_items = "serviceaddress";
-			public const string lk_contractdetail_createdonbehalfby = "createdonbehalfby";
-			public const string lk_contractdetail_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_contractdetailbase_createdby = "createdby";
-			public const string lk_contractdetailbase_modifiedby = "modifiedby";
-			public const string product_contract_line_items = "productid";
-			public const string transactioncurrency_contractdetail = "transactioncurrencyid";
-			public const string unit_of_measurement_contract_line_items = "uomid";
+			public const string contract_detail_unit_of_measure_schedule = "contract_detail_unit_of_measure_schedule";
+			public const string contract_line_items = "contract_line_items";
+			public const string contractlineitem_customer_accounts = "contractlineitem_customer_accounts";
+			public const string contractlineitem_customer_contacts = "contractlineitem_customer_contacts";
+			public const string customer_address_contract_line_items = "customer_address_contract_line_items";
+			public const string lk_contractdetail_createdonbehalfby = "lk_contractdetail_createdonbehalfby";
+			public const string lk_contractdetail_modifiedonbehalfby = "lk_contractdetail_modifiedonbehalfby";
+			public const string lk_contractdetailbase_createdby = "lk_contractdetailbase_createdby";
+			public const string lk_contractdetailbase_modifiedby = "lk_contractdetailbase_modifiedby";
+			public const string product_contract_line_items = "product_contract_line_items";
+			public const string transactioncurrency_contractdetail = "transactioncurrency_contractdetail";
+			public const string unit_of_measurement_contract_line_items = "unit_of_measurement_contract_line_items";
 		}
 
 		
@@ -311,6 +311,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -323,6 +330,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -543,6 +557,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -555,6 +576,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -648,6 +676,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -660,6 +695,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1302,6 +1344,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_contractdetailbase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_contractdetailbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_contractdetailbase_createdby", null, value);
+				this.OnPropertyChanged("lk_contractdetailbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -1315,6 +1364,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_contractdetailbase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_contractdetailbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_contractdetailbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_contractdetailbase_modifiedby");
 			}
 		}
 		
@@ -1417,22 +1473,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("contractstatecode")]
-		public virtual contractdetail_contractstatecode? ContractStateCodeEnum
+		public virtual ContractDetail_ContractStateCode? ContractStateCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((contractdetail_contractstatecode?)(EntityOptionSetEnum.GetEnum(this, "contractstatecode")));
+				return ((ContractDetail_ContractStateCode?)(EntityOptionSetEnum.GetEnum(this, "contractstatecode")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("servicecontractunitscode")]
-		public virtual contractdetail_servicecontractunitscode? ServiceContractUnitsCodeEnum
+		public virtual ContractDetail_ServiceContractUnitsCode? ServiceContractUnitsCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((contractdetail_servicecontractunitscode?)(EntityOptionSetEnum.GetEnum(this, "servicecontractunitscode")));
+				return ((ContractDetail_ServiceContractUnitsCode?)(EntityOptionSetEnum.GetEnum(this, "servicecontractunitscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1442,12 +1498,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual contractdetail_statuscode? StatusCodeEnum
+		public virtual ContractDetail_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((contractdetail_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((ContractDetail_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

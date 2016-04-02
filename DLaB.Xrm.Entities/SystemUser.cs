@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("systemuser")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class SystemUser : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -145,22 +145,22 @@ namespace DLaB.Xrm.Entities
 			public const string YomiFullName = "yomifullname";
 			public const string YomiLastName = "yomilastname";
 			public const string YomiMiddleName = "yomimiddlename";
-			public const string business_unit_system_users = "businessunitid";
-			public const string calendar_system_users = "calendarid";
-			public const string Referencinglk_systemuser_createdonbehalfby = "createdonbehalfby";
-			public const string Referencinglk_systemuser_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string Referencinglk_systemuserbase_createdby = "createdby";
-			public const string Referencinglk_systemuserbase_modifiedby = "modifiedby";
-			public const string MobileOfflineProfile_SystemUser = "mobileofflineprofileid";
-			public const string organization_system_users = "organizationid";
-			public const string position_users = "positionid";
-			public const string processstage_systemusers = "stageid";
-			public const string queue_system_user = "queueid";
-			public const string site_system_users = "siteid";
-			public const string systemuser_defaultmailbox_mailbox = "defaultmailbox";
-			public const string territory_system_users = "territoryid";
-			public const string TransactionCurrency_SystemUser = "transactioncurrencyid";
-			public const string Referencinguser_parent_user = "parentsystemuserid";
+			public const string business_unit_system_users = "business_unit_system_users";
+			public const string calendar_system_users = "calendar_system_users";
+			public const string Referencinglk_systemuser_createdonbehalfby = "lk_systemuser_createdonbehalfby";
+			public const string Referencinglk_systemuser_modifiedonbehalfby = "lk_systemuser_modifiedonbehalfby";
+			public const string Referencinglk_systemuserbase_createdby = "lk_systemuserbase_createdby";
+			public const string Referencinglk_systemuserbase_modifiedby = "lk_systemuserbase_modifiedby";
+			public const string MobileOfflineProfile_SystemUser = "MobileOfflineProfile_SystemUser";
+			public const string organization_system_users = "organization_system_users";
+			public const string position_users = "position_users";
+			public const string processstage_systemusers = "processstage_systemusers";
+			public const string queue_system_user = "queue_system_user";
+			public const string site_system_users = "site_system_users";
+			public const string systemuser_defaultmailbox_mailbox = "systemuser_defaultmailbox_mailbox";
+			public const string territory_system_users = "territory_system_users";
+			public const string TransactionCurrency_SystemUser = "TransactionCurrency_SystemUser";
+			public const string Referencinguser_parent_user = "user_parent_user";
 		}
 
 		
@@ -1156,6 +1156,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -1168,6 +1175,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -1765,6 +1779,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -1777,6 +1798,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -21758,6 +21786,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_systemuserbase_createdby", Microsoft.Xrm.Sdk.EntityRole.Referencing);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Referencinglk_systemuserbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_systemuserbase_createdby", Microsoft.Xrm.Sdk.EntityRole.Referencing, value);
+				this.OnPropertyChanged("Referencinglk_systemuserbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -21771,6 +21806,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_systemuserbase_modifiedby", Microsoft.Xrm.Sdk.EntityRole.Referencing);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Referencinglk_systemuserbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_systemuserbase_modifiedby", Microsoft.Xrm.Sdk.EntityRole.Referencing, value);
+				this.OnPropertyChanged("Referencinglk_systemuserbase_modifiedby");
 			}
 		}
 		
@@ -22013,12 +22055,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("accessmode")]
-		public virtual systemuser_accessmode? AccessModeEnum
+		public virtual SystemUser_AccessMode? AccessModeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((systemuser_accessmode?)(EntityOptionSetEnum.GetEnum(this, "accessmode")));
+				return ((SystemUser_AccessMode?)(EntityOptionSetEnum.GetEnum(this, "accessmode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -22028,12 +22070,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address1_addresstypecode")]
-		public virtual systemuser_address1_addresstypecode? Address1_AddressTypeCodeEnum
+		public virtual SystemUser_Address1_AddressTypeCode? Address1_AddressTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((systemuser_address1_addresstypecode?)(EntityOptionSetEnum.GetEnum(this, "address1_addresstypecode")));
+				return ((SystemUser_Address1_AddressTypeCode?)(EntityOptionSetEnum.GetEnum(this, "address1_addresstypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -22043,12 +22085,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address1_shippingmethodcode")]
-		public virtual systemuser_address1_shippingmethodcode? Address1_ShippingMethodCodeEnum
+		public virtual SystemUser_Address1_ShippingMethodCode? Address1_ShippingMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((systemuser_address1_shippingmethodcode?)(EntityOptionSetEnum.GetEnum(this, "address1_shippingmethodcode")));
+				return ((SystemUser_Address1_ShippingMethodCode?)(EntityOptionSetEnum.GetEnum(this, "address1_shippingmethodcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -22058,12 +22100,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address2_addresstypecode")]
-		public virtual systemuser_address2_addresstypecode? Address2_AddressTypeCodeEnum
+		public virtual SystemUser_Address2_AddressTypeCode? Address2_AddressTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((systemuser_address2_addresstypecode?)(EntityOptionSetEnum.GetEnum(this, "address2_addresstypecode")));
+				return ((SystemUser_Address2_AddressTypeCode?)(EntityOptionSetEnum.GetEnum(this, "address2_addresstypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -22073,12 +22115,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("address2_shippingmethodcode")]
-		public virtual systemuser_address2_shippingmethodcode? Address2_ShippingMethodCodeEnum
+		public virtual SystemUser_Address2_ShippingMethodCode? Address2_ShippingMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((systemuser_address2_shippingmethodcode?)(EntityOptionSetEnum.GetEnum(this, "address2_shippingmethodcode")));
+				return ((SystemUser_Address2_ShippingMethodCode?)(EntityOptionSetEnum.GetEnum(this, "address2_shippingmethodcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -22088,12 +22130,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caltype")]
-		public virtual systemuser_caltype? CALTypeEnum
+		public virtual SystemUser_CALType? CALTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((systemuser_caltype?)(EntityOptionSetEnum.GetEnum(this, "caltype")));
+				return ((SystemUser_CALType?)(EntityOptionSetEnum.GetEnum(this, "caltype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -22103,12 +22145,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("emailrouteraccessapproval")]
-		public virtual systemuser_emailrouteraccessapproval? EmailRouterAccessApprovalEnum
+		public virtual SystemUser_EmailRouterAccessApproval? EmailRouterAccessApprovalEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((systemuser_emailrouteraccessapproval?)(EntityOptionSetEnum.GetEnum(this, "emailrouteraccessapproval")));
+				return ((SystemUser_EmailRouterAccessApproval?)(EntityOptionSetEnum.GetEnum(this, "emailrouteraccessapproval")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -22118,12 +22160,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("incomingemaildeliverymethod")]
-		public virtual systemuser_incomingemaildeliverymethod? IncomingEmailDeliveryMethodEnum
+		public virtual SystemUser_IncomingEmailDeliveryMethod? IncomingEmailDeliveryMethodEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((systemuser_incomingemaildeliverymethod?)(EntityOptionSetEnum.GetEnum(this, "incomingemaildeliverymethod")));
+				return ((SystemUser_IncomingEmailDeliveryMethod?)(EntityOptionSetEnum.GetEnum(this, "incomingemaildeliverymethod")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -22133,12 +22175,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("invitestatuscode")]
-		public virtual systemuser_invitestatuscode? InviteStatusCodeEnum
+		public virtual SystemUser_InviteStatusCode? InviteStatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((systemuser_invitestatuscode?)(EntityOptionSetEnum.GetEnum(this, "invitestatuscode")));
+				return ((SystemUser_InviteStatusCode?)(EntityOptionSetEnum.GetEnum(this, "invitestatuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -22148,12 +22190,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("outgoingemaildeliverymethod")]
-		public virtual systemuser_outgoingemaildeliverymethod? OutgoingEmailDeliveryMethodEnum
+		public virtual SystemUser_OutgoingEmailDeliveryMethod? OutgoingEmailDeliveryMethodEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((systemuser_outgoingemaildeliverymethod?)(EntityOptionSetEnum.GetEnum(this, "outgoingemaildeliverymethod")));
+				return ((SystemUser_OutgoingEmailDeliveryMethod?)(EntityOptionSetEnum.GetEnum(this, "outgoingemaildeliverymethod")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -22163,12 +22205,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("preferredaddresscode")]
-		public virtual systemuser_preferredaddresscode? PreferredAddressCodeEnum
+		public virtual SystemUser_PreferredAddressCode? PreferredAddressCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((systemuser_preferredaddresscode?)(EntityOptionSetEnum.GetEnum(this, "preferredaddresscode")));
+				return ((SystemUser_PreferredAddressCode?)(EntityOptionSetEnum.GetEnum(this, "preferredaddresscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -22178,12 +22220,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("preferredemailcode")]
-		public virtual systemuser_preferredemailcode? PreferredEmailCodeEnum
+		public virtual SystemUser_PreferredEmailCode? PreferredEmailCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((systemuser_preferredemailcode?)(EntityOptionSetEnum.GetEnum(this, "preferredemailcode")));
+				return ((SystemUser_PreferredEmailCode?)(EntityOptionSetEnum.GetEnum(this, "preferredemailcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -22193,12 +22235,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("preferredphonecode")]
-		public virtual systemuser_preferredphonecode? PreferredPhoneCodeEnum
+		public virtual SystemUser_PreferredPhoneCode? PreferredPhoneCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((systemuser_preferredphonecode?)(EntityOptionSetEnum.GetEnum(this, "preferredphonecode")));
+				return ((SystemUser_PreferredPhoneCode?)(EntityOptionSetEnum.GetEnum(this, "preferredphonecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

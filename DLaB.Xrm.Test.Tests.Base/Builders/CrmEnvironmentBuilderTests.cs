@@ -17,6 +17,40 @@ namespace DLaB.Xrm.Test.Tests.Builders
             TestInitializer.InitializeTestSettings();
         }
 
+        /// <summary>
+        /// Incident's can't be created without a customer, so attempt to force the incident to be created first
+        /// </summary>
+        [TestMethod]
+        public void CrmEnvironmentBuilder_WithChildEntities_IncidentAndAccount_Should_CreateAccountFirst()
+        {
+            //
+            // Arrange
+            //
+            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            var account = new Id<Account>(Guid.NewGuid());
+            var incident = new Id<Incident>(Guid.NewGuid());
+            var lead = new Id<Lead>(Guid.NewGuid());
+
+            // The Account and Incident will be added as Account first, and Incident second. 
+            // The Lead will force an reorder and the Account incident would normally get placed after the Incident
+            var builder = new CrmEnvironmentBuilder().
+                WithChildEntities(account, incident).
+                WithEntities(lead);
+
+            //
+            // Act
+            //
+            builder.Create(service);
+
+
+            //
+            // Assert
+            //
+
+            AssertCrm.Exists(service, account);
+            AssertCrm.Exists(service, incident);
+        }
+
         [TestMethod]
         public void CrmEnvironmentBuilder_WithEntities_GivenIdStruct_Should_CreateAll()
         {
@@ -184,7 +218,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
             // Act
             //
             new CrmEnvironmentBuilder().
-                WithBuilder<MyLeadBuilder>(b => b.WithAddress1()).WithEntities(id).Create(service);
+                WithBuilder<MyLeadBuilder>(id, b => b.WithAddress1()).Create(service);
 
             //
             // Assert
@@ -195,6 +229,29 @@ namespace DLaB.Xrm.Test.Tests.Builders
             Assert.IsNotNull(lead.Address1_PostalCode);
             Assert.IsNotNull(lead.Address1_StateOrProvince);
             Assert.IsNull(lead.Address2_City);
+        }
+
+        [TestMethod]
+        public void CrmEnvironmentBuilder_Create_WithMyOtherBuilder_Should_UseBuilder()
+        {
+            //
+            // Arrange
+            //
+            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            var id = new Id<Lead>(Guid.NewGuid());
+            var email = "test@test.com";
+
+            //
+            // Act
+            //
+            new CrmEnvironmentBuilder().
+                WithBuilder<MyOtherBuilder>(id, b => b.WithEmail(email)).Create(service);
+
+            //
+            // Assert
+            //
+            var lead = service.GetEntity(id);
+            Assert.AreEqual(email, lead.EMailAddress1);
         }
 
         public class MyLeadBuilder : EntityBuilder<Lead>
@@ -229,6 +286,34 @@ namespace DLaB.Xrm.Test.Tests.Builders
             protected override Lead BuildInternal()
             {
                 return Lead;
+            }
+        }
+
+        public abstract class MyGenericBuilder<TEntity> : EntityBuilder<TEntity> where TEntity : Entity
+        {
+            
+        }
+
+        public class MyOtherBuilder : MyGenericBuilder<Lead>
+        {
+            public Lead Lead { get; set; }
+
+            public MyOtherBuilder()
+            {
+                Lead = new Lead();
+            }
+
+            public MyOtherBuilder(Id id) : this()
+            {
+                Id = id;
+            }
+
+            protected override Lead BuildInternal() { return Lead; }
+
+            public MyOtherBuilder WithEmail(string email)
+            {
+                Lead.EMailAddress1 = email;
+                return this;
             }
         }
 

@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum QueueItemState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("queueitem")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class QueueItem : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -66,30 +66,30 @@ namespace DLaB.Xrm.Entities
 			public const string VersionNumber = "versionnumber";
 			public const string WorkerId = "workerid";
 			public const string WorkerIdModifiedOn = "workeridmodifiedon";
-			public const string ActivityPointer_QueueItem = "objectid";
-			public const string Appointment_QueueItem = "objectid";
-			public const string BulkOperation_QueueItem = "objectid";
-			public const string CampaignActivity_QueueItem = "objectid";
-			public const string CampaignResponse_QueueItem = "objectid";
-			public const string Email_QueueItem = "objectid";
-			public const string Fax_QueueItem = "objectid";
-			public const string Incident_QueueItem = "objectid";
-			public const string knowledgearticle_QueueItems = "objectid";
-			public const string Letter_QueueItem = "objectid";
-			public const string lk_queueitem_createdonbehalfby = "createdonbehalfby";
-			public const string lk_queueitem_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_queueitembase_createdby = "createdby";
-			public const string lk_queueitembase_modifiedby = "modifiedby";
-			public const string lk_queueitembase_workerid = "workerid";
-			public const string organization_queueitems = "organizationid";
-			public const string PhoneCall_QueueItem = "objectid";
-			public const string queue_entries = "queueid";
-			public const string RecurringAppointmentMaster_QueueItem = "objectid";
-			public const string ServiceAppointment_QueueItem = "objectid";
-			public const string SocialActivity_QueueItem = "objectid";
-			public const string Task_QueueItem = "objectid";
-			public const string team_queueitembase_workerid = "workerid";
-			public const string TransactionCurrency_QueueItem = "transactioncurrencyid";
+			public const string ActivityPointer_QueueItem = "ActivityPointer_QueueItem";
+			public const string Appointment_QueueItem = "Appointment_QueueItem";
+			public const string BulkOperation_QueueItem = "BulkOperation_QueueItem";
+			public const string CampaignActivity_QueueItem = "CampaignActivity_QueueItem";
+			public const string CampaignResponse_QueueItem = "CampaignResponse_QueueItem";
+			public const string Email_QueueItem = "Email_QueueItem";
+			public const string Fax_QueueItem = "Fax_QueueItem";
+			public const string Incident_QueueItem = "Incident_QueueItem";
+			public const string knowledgearticle_QueueItems = "knowledgearticle_QueueItems";
+			public const string Letter_QueueItem = "Letter_QueueItem";
+			public const string lk_queueitem_createdonbehalfby = "lk_queueitem_createdonbehalfby";
+			public const string lk_queueitem_modifiedonbehalfby = "lk_queueitem_modifiedonbehalfby";
+			public const string lk_queueitembase_createdby = "lk_queueitembase_createdby";
+			public const string lk_queueitembase_modifiedby = "lk_queueitembase_modifiedby";
+			public const string lk_queueitembase_workerid = "lk_queueitembase_workerid";
+			public const string organization_queueitems = "organization_queueitems";
+			public const string PhoneCall_QueueItem = "PhoneCall_QueueItem";
+			public const string queue_entries = "queue_entries";
+			public const string RecurringAppointmentMaster_QueueItem = "RecurringAppointmentMaster_QueueItem";
+			public const string ServiceAppointment_QueueItem = "ServiceAppointment_QueueItem";
+			public const string SocialActivity_QueueItem = "SocialActivity_QueueItem";
+			public const string Task_QueueItem = "Task_QueueItem";
+			public const string team_queueitembase_workerid = "team_queueitembase_workerid";
+			public const string TransactionCurrency_QueueItem = "TransactionCurrency_QueueItem";
 		}
 
 		
@@ -139,6 +139,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -151,6 +158,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -231,6 +245,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -243,6 +264,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -356,6 +384,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -368,6 +403,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1077,6 +1119,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_queueitembase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_queueitembase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_queueitembase_createdby", null, value);
+				this.OnPropertyChanged("lk_queueitembase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -1090,6 +1139,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_queueitembase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_queueitembase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_queueitembase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_queueitembase_modifiedby");
 			}
 		}
 		
@@ -1339,22 +1395,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objecttypecode")]
-		public virtual queueitem_objecttypecode? ObjectTypeCodeEnum
+		public virtual QueueItem_ObjectTypeCode? ObjectTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((queueitem_objecttypecode?)(EntityOptionSetEnum.GetEnum(this, "objecttypecode")));
+				return ((QueueItem_ObjectTypeCode?)(EntityOptionSetEnum.GetEnum(this, "objecttypecode")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual queueitem_statuscode? StatusCodeEnum
+		public virtual QueueItem_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((queueitem_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((QueueItem_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

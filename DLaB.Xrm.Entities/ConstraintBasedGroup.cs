@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("constraintbasedgroup")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ConstraintBasedGroup : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -36,13 +36,13 @@ namespace DLaB.Xrm.Entities
 			public const string Name = "name";
 			public const string OrganizationId = "organizationid";
 			public const string VersionNumber = "versionnumber";
-			public const string business_unit_constraint_based_groups = "businessunitid";
-			public const string constraintbasedgroup_systemuser = "businessunitid";
-			public const string lk_constraintbasedgroup_createdby = "createdby";
-			public const string lk_constraintbasedgroup_createdonbehalfby = "createdonbehalfby";
-			public const string lk_constraintbasedgroup_modifiedby = "modifiedby";
-			public const string lk_constraintbasedgroup_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string organization_constraint_based_groups = "organizationid";
+			public const string business_unit_constraint_based_groups = "business_unit_constraint_based_groups";
+			public const string constraintbasedgroup_systemuser = "constraintbasedgroup_systemuser";
+			public const string lk_constraintbasedgroup_createdby = "lk_constraintbasedgroup_createdby";
+			public const string lk_constraintbasedgroup_createdonbehalfby = "lk_constraintbasedgroup_createdonbehalfby";
+			public const string lk_constraintbasedgroup_modifiedby = "lk_constraintbasedgroup_modifiedby";
+			public const string lk_constraintbasedgroup_modifiedonbehalfby = "lk_constraintbasedgroup_modifiedonbehalfby";
+			public const string organization_constraint_based_groups = "organization_constraint_based_groups";
 		}
 
 		
@@ -175,6 +175,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -187,6 +194,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -261,6 +275,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -273,6 +294,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -556,6 +584,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_constraintbasedgroup_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_constraintbasedgroup_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_constraintbasedgroup_createdby", null, value);
+				this.OnPropertyChanged("lk_constraintbasedgroup_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -590,6 +625,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_constraintbasedgroup_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_constraintbasedgroup_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_constraintbasedgroup_modifiedby", null, value);
+				this.OnPropertyChanged("lk_constraintbasedgroup_modifiedby");
 			}
 		}
 		
@@ -671,12 +713,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("grouptypecode")]
-		public virtual constraintbasedgroup_grouptypecode? GroupTypeCodeEnum
+		public virtual ConstraintBasedGroup_GroupTypeCode? GroupTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((constraintbasedgroup_grouptypecode?)(EntityOptionSetEnum.GetEnum(this, "grouptypecode")));
+				return ((ConstraintBasedGroup_GroupTypeCode?)(EntityOptionSetEnum.GetEnum(this, "grouptypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

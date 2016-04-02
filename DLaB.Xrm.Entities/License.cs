@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("license")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class License : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -29,7 +29,7 @@ namespace DLaB.Xrm.Entities
 			public const string OrganizationId = "organizationid";
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
-			public const string organization_licenses = "organizationid";
+			public const string organization_licenses = "organization_licenses";
 		}
 
 		

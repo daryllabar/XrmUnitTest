@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum ProductAssociationState
 	{
 		
@@ -33,7 +33,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("productassociation")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ProductAssociation : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -62,15 +62,15 @@ namespace DLaB.Xrm.Entities
 			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string UoMId = "uomid";
 			public const string VersionNumber = "versionnumber";
-			public const string lk_ProductAssociate_createdby = "createdby";
-			public const string lk_ProductAssociation_createdonbehalfby = "createdonbehalfby";
-			public const string lk_ProductAssociation_modifiedby = "modifiedby";
-			public const string lk_ProductAssociation_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string organization_ProductAssociation = "organizationid";
-			public const string Product_ProductAssociation_AssocProd = "associatedproduct";
-			public const string Product_ProductAssociation_Prod = "productid";
-			public const string transactioncurrency_ProductAssociation = "transactioncurrencyid";
-			public const string unit_of_measurement_productassociation = "uomid";
+			public const string lk_ProductAssociate_createdby = "lk_ProductAssociate_createdby";
+			public const string lk_ProductAssociation_createdonbehalfby = "lk_ProductAssociation_createdonbehalfby";
+			public const string lk_ProductAssociation_modifiedby = "lk_ProductAssociation_modifiedby";
+			public const string lk_ProductAssociation_modifiedonbehalfby = "lk_ProductAssociation_modifiedonbehalfby";
+			public const string organization_ProductAssociation = "organization_ProductAssociation";
+			public const string Product_ProductAssociation_AssocProd = "Product_ProductAssociation_AssocProd";
+			public const string Product_ProductAssociation_Prod = "Product_ProductAssociation_Prod";
+			public const string transactioncurrency_ProductAssociation = "transactioncurrency_ProductAssociation";
+			public const string unit_of_measurement_productassociation = "unit_of_measurement_productassociation";
 		}
 
 		
@@ -140,6 +140,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -152,6 +159,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -239,6 +253,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -251,6 +272,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -750,6 +778,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ProductAssociate_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_ProductAssociate_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ProductAssociate_createdby", null, value);
+				this.OnPropertyChanged("lk_ProductAssociate_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -784,6 +819,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ProductAssociation_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_ProductAssociation_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ProductAssociation_modifiedby", null, value);
+				this.OnPropertyChanged("lk_ProductAssociation_modifiedby");
 			}
 		}
 		
@@ -949,12 +991,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("productisrequired")]
-		public virtual productassociate_productisrequired? ProductIsRequiredEnum
+		public virtual ProductAssociation_ProductIsRequired? ProductIsRequiredEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((productassociate_productisrequired?)(EntityOptionSetEnum.GetEnum(this, "productisrequired")));
+				return ((ProductAssociation_ProductIsRequired?)(EntityOptionSetEnum.GetEnum(this, "productisrequired")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -964,12 +1006,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("propertycustomizationstatus")]
-		public virtual productassociation_propertiescustomizationstatus? PropertyCustomizationStatusEnum
+		public virtual ProductAssociation_PropertyCustomizationStatus? PropertyCustomizationStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((productassociation_propertiescustomizationstatus?)(EntityOptionSetEnum.GetEnum(this, "propertycustomizationstatus")));
+				return ((ProductAssociation_PropertyCustomizationStatus?)(EntityOptionSetEnum.GetEnum(this, "propertycustomizationstatus")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -979,12 +1021,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual productassociate_statuscode? statuscodeEnum
+		public virtual ProductAssociation_StatusCode? statuscodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((productassociate_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((ProductAssociation_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

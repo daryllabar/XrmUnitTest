@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("activitymimeattachment")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ActivityMimeAttachment : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -43,10 +43,10 @@ namespace DLaB.Xrm.Entities
 			public const string SolutionId = "solutionid";
 			public const string Subject = "subject";
 			public const string VersionNumber = "versionnumber";
-			public const string activity_pointer_activity_mime_attachment = "objectid";
-			public const string appointment_activity_mime_attachment = "objectid";
-			public const string email_activity_mime_attachment = "objectid";
-			public const string template_activity_mime_attachments = "objectid";
+			public const string activity_pointer_activity_mime_attachment = "activity_pointer_activity_mime_attachment";
+			public const string appointment_activity_mime_attachment = "appointment_activity_mime_attachment";
+			public const string email_activity_mime_attachment = "email_activity_mime_attachment";
+			public const string template_activity_mime_attachments = "template_activity_mime_attachments";
 		}
 
 		
@@ -405,6 +405,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -417,6 +424,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -653,12 +667,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 	}

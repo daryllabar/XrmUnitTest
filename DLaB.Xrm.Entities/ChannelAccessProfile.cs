@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum ChannelAccessProfileState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("channelaccessprofile")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ChannelAccessProfile : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -72,14 +72,14 @@ namespace DLaB.Xrm.Entities
 			public const string ViewArticleRating = "viewarticlerating";
 			public const string ViewKnowledgeArticles = "viewknowledgearticles";
 			public const string WebAccess = "webaccess";
-			public const string business_unit_channelaccessprofile = "owningbusinessunit";
-			public const string lk_channelaccessprofile_createdby = "createdby";
-			public const string lk_channelaccessprofile_createdonbehalfby = "createdonbehalfby";
-			public const string lk_channelaccessprofile_modifiedby = "modifiedby";
-			public const string lk_channelaccessprofile_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string team_channelaccessprofile = "owningteam";
-			public const string TransactionCurrency_ChannelAccessProfile = "transactioncurrencyid";
-			public const string user_channelaccessprofile = "owninguser";
+			public const string business_unit_channelaccessprofile = "business_unit_channelaccessprofile";
+			public const string lk_channelaccessprofile_createdby = "lk_channelaccessprofile_createdby";
+			public const string lk_channelaccessprofile_createdonbehalfby = "lk_channelaccessprofile_createdonbehalfby";
+			public const string lk_channelaccessprofile_modifiedby = "lk_channelaccessprofile_modifiedby";
+			public const string lk_channelaccessprofile_modifiedonbehalfby = "lk_channelaccessprofile_modifiedonbehalfby";
+			public const string team_channelaccessprofile = "team_channelaccessprofile";
+			public const string TransactionCurrency_ChannelAccessProfile = "TransactionCurrency_ChannelAccessProfile";
+			public const string user_channelaccessprofile = "user_channelaccessprofile";
 		}
 
 		
@@ -198,6 +198,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -210,6 +217,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -383,6 +397,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -395,6 +416,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -502,6 +530,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -515,6 +550,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -527,6 +569,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1043,6 +1092,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_channelaccessprofile", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_channelaccessprofile");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_channelaccessprofile", null, value);
+				this.OnPropertyChanged("business_unit_channelaccessprofile");
+			}
 		}
 		
 		/// <summary>
@@ -1056,6 +1112,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_channelaccessprofile_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_channelaccessprofile_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_channelaccessprofile_createdby", null, value);
+				this.OnPropertyChanged("lk_channelaccessprofile_createdby");
 			}
 		}
 		
@@ -1092,6 +1155,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_channelaccessprofile_modifiedby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_channelaccessprofile_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_channelaccessprofile_modifiedby", null, value);
+				this.OnPropertyChanged("lk_channelaccessprofile_modifiedby");
+			}
 		}
 		
 		/// <summary>
@@ -1127,6 +1197,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_channelaccessprofile", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_channelaccessprofile");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_channelaccessprofile", null, value);
+				this.OnPropertyChanged("team_channelaccessprofile");
+			}
 		}
 		
 		/// <summary>
@@ -1161,6 +1238,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_channelaccessprofile", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_channelaccessprofile");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_channelaccessprofile", null, value);
+				this.OnPropertyChanged("user_channelaccessprofile");
 			}
 		}
 		
@@ -1207,22 +1291,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual channelaccessprofile_statuscode? StatusCodeEnum
+		public virtual ChannelAccessProfile_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((channelaccessprofile_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((ChannelAccessProfile_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

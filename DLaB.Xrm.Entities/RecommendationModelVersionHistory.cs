@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("recommendationmodelversionhistory")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class RecommendationModelVersionHistory : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -33,8 +33,8 @@ namespace DLaB.Xrm.Entities
 			public const string StartTime = "starttime";
 			public const string WorkflowStep = "workflowstep";
 			public const string WorkflowStepStatus = "workflowstepstatus";
-			public const string organization_recommendationmodelversionhistory = "organizationid";
-			public const string recommendationmodelversion_recommendationmodelversionhistory = "recommendationmodelversionid";
+			public const string organization_recommendationmodelversionhistory = "organization_recommendationmodelversionhistory";
+			public const string recommendationmodelversion_recommendationmodelversionhistory = "recommendationmodelversion_recommendationmodelversionhistory";
 		}
 
 		
@@ -380,12 +380,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("workflowstep")]
-		public virtual recommendationmodelversionhistory_workflowstep? WorkflowStepEnum
+		public virtual RecommendationModelVersionHistory_WorkflowStep? WorkflowStepEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recommendationmodelversionhistory_workflowstep?)(EntityOptionSetEnum.GetEnum(this, "workflowstep")));
+				return ((RecommendationModelVersionHistory_WorkflowStep?)(EntityOptionSetEnum.GetEnum(this, "workflowstep")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -395,12 +395,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("workflowstepstatus")]
-		public virtual recommendationmodelversionhistory_workflowstepstatus? WorkflowStepStatusEnum
+		public virtual RecommendationModelVersionHistory_WorkflowStepStatus? WorkflowStepStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recommendationmodelversionhistory_workflowstepstatus?)(EntityOptionSetEnum.GetEnum(this, "workflowstepstatus")));
+				return ((RecommendationModelVersionHistory_WorkflowStepStatus?)(EntityOptionSetEnum.GetEnum(this, "workflowstepstatus")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

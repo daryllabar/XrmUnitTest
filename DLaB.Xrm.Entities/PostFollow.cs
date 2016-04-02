@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("postfollow")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class PostFollow : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -34,25 +34,25 @@ namespace DLaB.Xrm.Entities
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string YammerPostState = "yammerpoststate";
-			public const string account_PostFollows = "regardingobjectid";
-			public const string appointment_PostFollows = "regardingobjectid";
-			public const string business_unit_postfollows = "owningbusinessunit";
-			public const string competitor_PostFollows = "regardingobjectid";
-			public const string contact_PostFollows = "regardingobjectid";
-			public const string incident_PostFollows = "regardingobjectid";
-			public const string knowledgearticle_PostFollows = "regardingobjectid";
-			public const string lead_PostFollows = "regardingobjectid";
-			public const string lk_PostFollow_createdby = "createdby";
-			public const string lk_postfollow_createdonbehalfby = "createdonbehalfby";
-			public const string opportunity_PostFollows = "regardingobjectid";
-			public const string OwningTeam_postfollows = "owningteam";
-			public const string phonecall_PostFollows = "regardingobjectid";
-			public const string processsession_PostFollows = "regardingobjectid";
-			public const string queue_PostFollows = "regardingobjectid";
-			public const string recurringappointmentmaster_PostFollows = "regardingobjectid";
-			public const string systemuser_PostFollows = "regardingobjectid";
-			public const string task_PostFollows = "regardingobjectid";
-			public const string user_owner_postfollows = "owninguser";
+			public const string account_PostFollows = "account_PostFollows";
+			public const string appointment_PostFollows = "appointment_PostFollows";
+			public const string business_unit_postfollows = "business_unit_postfollows";
+			public const string competitor_PostFollows = "competitor_PostFollows";
+			public const string contact_PostFollows = "contact_PostFollows";
+			public const string incident_PostFollows = "incident_PostFollows";
+			public const string knowledgearticle_PostFollows = "knowledgearticle_PostFollows";
+			public const string lead_PostFollows = "lead_PostFollows";
+			public const string lk_PostFollow_createdby = "lk_PostFollow_createdby";
+			public const string lk_postfollow_createdonbehalfby = "lk_postfollow_createdonbehalfby";
+			public const string opportunity_PostFollows = "opportunity_PostFollows";
+			public const string OwningTeam_postfollows = "OwningTeam_postfollows";
+			public const string phonecall_PostFollows = "phonecall_PostFollows";
+			public const string processsession_PostFollows = "processsession_PostFollows";
+			public const string queue_PostFollows = "queue_PostFollows";
+			public const string recurringappointmentmaster_PostFollows = "recurringappointmentmaster_PostFollows";
+			public const string systemuser_PostFollows = "systemuser_PostFollows";
+			public const string task_PostFollows = "task_PostFollows";
+			public const string user_owner_postfollows = "user_owner_postfollows";
 		}
 
 		
@@ -102,6 +102,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -114,6 +121,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -168,6 +182,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -181,6 +202,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -193,6 +221,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -386,6 +421,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_postfollows", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_postfollows");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_postfollows", null, value);
+				this.OnPropertyChanged("business_unit_postfollows");
+			}
 		}
 		
 		/// <summary>
@@ -505,6 +547,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_PostFollow_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_PostFollow_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_PostFollow_createdby", null, value);
+				this.OnPropertyChanged("lk_PostFollow_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -560,6 +609,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("OwningTeam_postfollows", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam_postfollows");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("OwningTeam_postfollows", null, value);
+				this.OnPropertyChanged("OwningTeam_postfollows");
 			}
 		}
 		
@@ -700,6 +756,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_owner_postfollows", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_owner_postfollows");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_owner_postfollows", null, value);
+				this.OnPropertyChanged("user_owner_postfollows");
 			}
 		}
 		

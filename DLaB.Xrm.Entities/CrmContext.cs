@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // </auto-generated>
-// Created via this command line: "C:\Users\dlabar\Documents\GitHub\DLaB.Xrm.XrmToolBoxTools\XrmToolBox\Debug\Plugins\CrmSvcUtil Ref\crmsvcutil.exe" /url:"https://dlabautonumber.api.crm.dynamics.com/XRMServices/2011/Organization.svc" /namespace:"DLaB.Xrm.Entities" /out:"C:\Users\dlabar\Documents\GitHub\DLaB.Xrm.XrmToolBoxTools\XrmToolBox\Debug\Plugins\CrmSvcUtil Ref\Entities\CrmContext.cs" /servicecontextname:"CrmContext" /codecustomization:"DLaB.CrmSvcUtilExtensions.Entity.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.Entity.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.Entity.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /namingservice:"DLaB.CrmSvcUtilExtensions.Entity.OverridePropertyNames,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.Entity.MetadataProviderService,DLaB.CrmSvcUtilExtensions" /username:"admin@DLaBAutoNumber.onmicrosoft.com" /password:"********" 
+// Created via this command line: "C:\CRM Tools\XrmToolBox\Plugins\CrmSvcUtil Ref\crmsvcutil.exe" /url:"https://xrmvituralunittest.api.crm.dynamics.com/XRMServices/2011/Organization.svc" /namespace:"DLaB.Xrm.Entities" /out:"C:\Temp\Entities\CrmContext.cs" /servicecontextname:"CrmContext" /codecustomization:"DLaB.CrmSvcUtilExtensions.Entity.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.Entity.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.Entity.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.Entity.MetadataProviderService,DLaB.CrmSvcUtilExtensions" /namingservice:"DLaB.CrmSvcUtilExtensions.NamingService,DLaB.CrmSvcUtilExtensions" /username:"kenm@XrmVituralUnitTest.onmicrosoft.com" /password:"**********" 
 //------------------------------------------------------------------------------
 
 [assembly: Microsoft.Xrm.Sdk.Client.ProxyTypesAssemblyAttribute()]
@@ -16,7 +16,7 @@ namespace DLaB.Xrm.Entities
 	/// <summary>
 	/// Represents a source of entities bound to a CRM service. It tracks and manages changes made to the retrieved entities.
 	/// </summary>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class CrmContext : Microsoft.Xrm.Sdk.Client.OrganizationServiceContext
 	{
 		

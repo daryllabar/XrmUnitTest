@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum msdyn_wallsavedqueryState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("msdyn_wallsavedquery")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class msdyn_wallsavedquery : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -58,12 +58,12 @@ namespace DLaB.Xrm.Entities
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string lk_msdyn_wallsavedquery_createdby = "createdby";
-			public const string lk_msdyn_wallsavedquery_createdonbehalfby = "createdonbehalfby";
-			public const string lk_msdyn_wallsavedquery_modifiedby = "modifiedby";
-			public const string lk_msdyn_wallsavedquery_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string msdyn_postconfig_wallsavedquery = "msdyn_postconfigurationid";
-			public const string organization_msdyn_wallsavedquery = "organizationid";
+			public const string lk_msdyn_wallsavedquery_createdby = "lk_msdyn_wallsavedquery_createdby";
+			public const string lk_msdyn_wallsavedquery_createdonbehalfby = "lk_msdyn_wallsavedquery_createdonbehalfby";
+			public const string lk_msdyn_wallsavedquery_modifiedby = "lk_msdyn_wallsavedquery_modifiedby";
+			public const string lk_msdyn_wallsavedquery_modifiedonbehalfby = "lk_msdyn_wallsavedquery_modifiedonbehalfby";
+			public const string msdyn_postconfig_wallsavedquery = "msdyn_postconfig_wallsavedquery";
+			public const string organization_msdyn_wallsavedquery = "organization_msdyn_wallsavedquery";
 		}
 
 		
@@ -113,6 +113,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -125,6 +132,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -179,6 +193,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -191,6 +212,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -730,6 +758,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_msdyn_wallsavedquery_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_msdyn_wallsavedquery_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_msdyn_wallsavedquery_createdby", null, value);
+				this.OnPropertyChanged("lk_msdyn_wallsavedquery_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -764,6 +799,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_msdyn_wallsavedquery_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_msdyn_wallsavedquery_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_msdyn_wallsavedquery_modifiedby", null, value);
+				this.OnPropertyChanged("lk_msdyn_wallsavedquery_modifiedby");
 			}
 		}
 		
@@ -866,12 +908,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual msdyn_wallsavedquery_statuscode? statuscodeEnum
+		public virtual msdyn_wallsavedquery_StatusCode? statuscodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((msdyn_wallsavedquery_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((msdyn_wallsavedquery_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

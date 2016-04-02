@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum SimilarityRuleState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("similarityrule")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class SimilarityRule : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -67,10 +67,10 @@ namespace DLaB.Xrm.Entities
 			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string lk_similarityrule_createdonbehalfby = "createdonbehalfby";
-			public const string lk_similarityrule_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string organization_similarityrule = "organizationid";
-			public const string TransactionCurrency_SimilarityRule = "transactioncurrencyid";
+			public const string lk_similarityrule_createdonbehalfby = "lk_similarityrule_createdonbehalfby";
+			public const string lk_similarityrule_modifiedonbehalfby = "lk_similarityrule_modifiedonbehalfby";
+			public const string organization_similarityrule = "organization_similarityrule";
+			public const string TransactionCurrency_SimilarityRule = "TransactionCurrency_SimilarityRule";
 		}
 
 		
@@ -185,6 +185,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -397,6 +404,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -883,42 +897,42 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baseentitytypecode")]
-		public virtual similarityrule_baseentitytypecode? BaseEntityTypeCodeEnum
+		public virtual SimilarityRule_BaseEntityTypeCode? BaseEntityTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((similarityrule_baseentitytypecode?)(EntityOptionSetEnum.GetEnum(this, "baseentitytypecode")));
+				return ((SimilarityRule_BaseEntityTypeCode?)(EntityOptionSetEnum.GetEnum(this, "baseentitytypecode")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("matchingentitytypecode")]
-		public virtual similarityrule_matchingentitytypecode? MatchingEntityTypeCodeEnum
+		public virtual SimilarityRule_MatchingEntityTypeCode? MatchingEntityTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((similarityrule_matchingentitytypecode?)(EntityOptionSetEnum.GetEnum(this, "matchingentitytypecode")));
+				return ((SimilarityRule_MatchingEntityTypeCode?)(EntityOptionSetEnum.GetEnum(this, "matchingentitytypecode")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual similarityrule_statuscode? statuscodeEnum
+		public virtual SimilarityRule_StatusCode? statuscodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((similarityrule_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((SimilarityRule_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

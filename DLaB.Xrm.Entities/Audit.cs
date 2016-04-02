@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("audit")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class Audit : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -31,9 +31,10 @@ namespace DLaB.Xrm.Entities
 			public const string Operation = "operation";
 			public const string RegardingObjectId = "regardingobjectid";
 			public const string TransactionId = "transactionid";
+			public const string UserAdditionalInfo = "useradditionalinfo";
 			public const string UserId = "userid";
-			public const string lk_audit_callinguserid = "callinguserid";
-			public const string lk_audit_userid = "userid";
+			public const string lk_audit_callinguserid = "lk_audit_callinguserid";
+			public const string lk_audit_userid = "lk_audit_userid";
 		}
 
 		
@@ -150,6 +151,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
+			}
 		}
 		
 		/// <summary>
@@ -208,6 +216,26 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("transactionid");
+			}
+		}
+		
+		/// <summary>
+		/// Additional information associated to the user who caused the change.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("useradditionalinfo")]
+		public string UserAdditionalInfo
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("useradditionalinfo");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("UserAdditionalInfo");
+				this.SetAttributeValue("useradditionalinfo", value);
+				this.OnPropertyChanged("UserAdditionalInfo");
 			}
 		}
 		
@@ -315,22 +343,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("action")]
-		public virtual audit_action? ActionEnum
+		public virtual Audit_Action? ActionEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((audit_action?)(EntityOptionSetEnum.GetEnum(this, "action")));
+				return ((Audit_Action?)(EntityOptionSetEnum.GetEnum(this, "action")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("operation")]
-		public virtual audit_operation? OperationEnum
+		public virtual Audit_Operation? OperationEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((audit_operation?)(EntityOptionSetEnum.GetEnum(this, "operation")));
+				return ((Audit_Operation?)(EntityOptionSetEnum.GetEnum(this, "operation")));
 			}
 		}
 	}

@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("userentityuisettings")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class UserEntityUISettings : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -37,9 +37,9 @@ namespace DLaB.Xrm.Entities
 			public const string UserEntityUISettingsId = "userentityuisettingsid";
 			public const string Id = "userentityuisettingsid";
 			public const string VersionNumber = "versionnumber";
-			public const string team_userentityuisettings = "owningteam";
-			public const string userentityuisettings_businessunit = "owningbusinessunit";
-			public const string userentityuisettings_owning_user = "owninguser";
+			public const string team_userentityuisettings = "team_userentityuisettings";
+			public const string userentityuisettings_businessunit = "userentityuisettings_businessunit";
+			public const string userentityuisettings_owning_user = "userentityuisettings_owning_user";
 		}
 
 		
@@ -209,6 +209,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -222,6 +229,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -234,6 +248,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -405,6 +426,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_userentityuisettings", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_userentityuisettings");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_userentityuisettings", null, value);
+				this.OnPropertyChanged("team_userentityuisettings");
+			}
 		}
 		
 		/// <summary>
@@ -419,6 +447,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("userentityuisettings_businessunit", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("userentityuisettings_businessunit");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("userentityuisettings_businessunit", null, value);
+				this.OnPropertyChanged("userentityuisettings_businessunit");
+			}
 		}
 		
 		/// <summary>
@@ -432,6 +467,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("userentityuisettings_owning_user", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("userentityuisettings_owning_user");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("userentityuisettings_owning_user", null, value);
+				this.OnPropertyChanged("userentityuisettings_owning_user");
 			}
 		}
 		

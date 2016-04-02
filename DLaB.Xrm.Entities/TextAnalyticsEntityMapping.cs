@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("textanalyticsentitymapping")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class TextAnalyticsEntityMapping : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -40,10 +40,10 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "textanalyticsentitymappingid";
 			public const string TextAnalyticsEntityMappingIdUnique = "textanalyticsentitymappingidunique";
 			public const string TopicModelConfigurationId = "topicmodelconfigurationid";
-			public const string knowledgesearchmodel_textanalyticsentitymapping = "knowledgesearchmodelid";
-			public const string organization_textanalyticsentitymapping = "organizationid";
-			public const string similarityrule_textanalyticsentitymapping = "similarityruleid";
-			public const string topicmodelconfiguration_textanalyticsentitymapping = "topicmodelconfigurationid";
+			public const string knowledgesearchmodel_textanalyticsentitymapping = "knowledgesearchmodel_textanalyticsentitymapping";
+			public const string organization_textanalyticsentitymapping = "organization_textanalyticsentitymapping";
+			public const string similarityrule_textanalyticsentitymapping = "similarityrule_textanalyticsentitymapping";
+			public const string topicmodelconfiguration_textanalyticsentitymapping = "topicmodelconfiguration_textanalyticsentitymapping";
 		}
 
 		
@@ -543,22 +543,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("entitypicklist")]
-		public virtual textanalyticsentitymapping_entity? EntityPickListEnum
+		public virtual TextAnalyticsEntityMapping_EntityPickList? EntityPickListEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((textanalyticsentitymapping_entity?)(EntityOptionSetEnum.GetEnum(this, "entitypicklist")));
+				return ((TextAnalyticsEntityMapping_EntityPickList?)(EntityOptionSetEnum.GetEnum(this, "entitypicklist")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -568,12 +568,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("fieldpicklist")]
-		public virtual textanalyticsentitymapping_fields? FieldPickListEnum
+		public virtual TextAnalyticsEntityMapping_FieldPickList? FieldPickListEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((textanalyticsentitymapping_fields?)(EntityOptionSetEnum.GetEnum(this, "fieldpicklist")));
+				return ((TextAnalyticsEntityMapping_FieldPickList?)(EntityOptionSetEnum.GetEnum(this, "fieldpicklist")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

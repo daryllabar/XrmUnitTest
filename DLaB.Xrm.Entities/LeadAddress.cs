@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("leadaddress")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class LeadAddress : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -43,6 +43,7 @@ namespace DLaB.Xrm.Entities
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string Name = "name";
+			public const string OwningBusinessUnit = "owningbusinessunit";
 			public const string ParentId = "parentid";
 			public const string PostalCode = "postalcode";
 			public const string PostOfficeBox = "postofficebox";
@@ -55,12 +56,12 @@ namespace DLaB.Xrm.Entities
 			public const string UPSZone = "upszone";
 			public const string UTCOffset = "utcoffset";
 			public const string VersionNumber = "versionnumber";
-			public const string lead_addresses = "parentid";
-			public const string lk_leadaddress_createdonbehalfby = "createdonbehalfby";
-			public const string lk_leadaddress_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_leadaddressbase_createdby = "createdby";
-			public const string lk_leadaddressbase_modifiedby = "modifiedby";
-			public const string TransactionCurrency_LeadAddress = "transactioncurrencyid";
+			public const string lead_addresses = "lead_addresses";
+			public const string lk_leadaddress_createdonbehalfby = "lk_leadaddress_createdonbehalfby";
+			public const string lk_leadaddress_modifiedonbehalfby = "lk_leadaddress_modifiedonbehalfby";
+			public const string lk_leadaddressbase_createdby = "lk_leadaddressbase_createdby";
+			public const string lk_leadaddressbase_modifiedby = "lk_leadaddressbase_modifiedby";
+			public const string TransactionCurrency_LeadAddress = "TransactionCurrency_LeadAddress";
 		}
 
 		
@@ -223,6 +224,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -235,6 +243,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -445,6 +460,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -457,6 +479,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -497,6 +526,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Name");
 				this.SetAttributeValue("name", value);
 				this.OnPropertyChanged("Name");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
+		public System.Nullable<System.Guid> OwningBusinessUnit
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("owningbusinessunit");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
 			}
 		}
 		
@@ -828,6 +877,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_leadaddressbase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_leadaddressbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_leadaddressbase_createdby", null, value);
+				this.OnPropertyChanged("lk_leadaddressbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -841,6 +897,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_leadaddressbase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_leadaddressbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_leadaddressbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_leadaddressbase_modifiedby");
 			}
 		}
 		

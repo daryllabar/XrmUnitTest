@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum ConvertRuleState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("convertrule")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ConvertRule : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -71,18 +71,18 @@ namespace DLaB.Xrm.Entities
 			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string VersionNumber = "versionnumber";
 			public const string WorkflowId = "workflowid";
-			public const string business_unit_convertrule = "owningbusinessunit";
-			public const string channelpropertygroup_convertrule = "channelpropertygroupid";
-			public const string convertrule_queue = "queueid";
-			public const string emailtemplate_convertrule = "responsetemplateid";
-			public const string lk_convertrule_createdby = "createdby";
-			public const string lk_ConvertRule_createdonbehalfby = "createdonbehalfby";
-			public const string lk_ConvertRule_modifiedby = "modifiedby";
-			public const string lk_ConvertRule_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string team_convertrule = "owningteam";
-			public const string TransactionCurrency_ConvertRule = "transactioncurrencyid";
-			public const string user_convertrule = "owninguser";
-			public const string workflowid_convertrule = "workflowid";
+			public const string business_unit_convertrule = "business_unit_convertrule";
+			public const string channelpropertygroup_convertrule = "channelpropertygroup_convertrule";
+			public const string convertrule_queue = "convertrule_queue";
+			public const string emailtemplate_convertrule = "emailtemplate_convertrule";
+			public const string lk_convertrule_createdby = "lk_convertrule_createdby";
+			public const string lk_ConvertRule_createdonbehalfby = "lk_ConvertRule_createdonbehalfby";
+			public const string lk_ConvertRule_modifiedby = "lk_ConvertRule_modifiedby";
+			public const string lk_ConvertRule_modifiedonbehalfby = "lk_ConvertRule_modifiedonbehalfby";
+			public const string team_convertrule = "team_convertrule";
+			public const string TransactionCurrency_ConvertRule = "TransactionCurrency_ConvertRule";
+			public const string user_convertrule = "user_convertrule";
+			public const string workflowid_convertrule = "workflowid_convertrule";
 		}
 
 		
@@ -321,6 +321,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -333,6 +340,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -413,6 +427,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -425,6 +446,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -511,6 +539,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
 			}
 		}
 		
@@ -920,6 +955,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_convertrule", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_convertrule");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_convertrule", null, value);
+				this.OnPropertyChanged("business_unit_convertrule");
+			}
 		}
 		
 		/// <summary>
@@ -997,6 +1039,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_convertrule_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_convertrule_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_convertrule_createdby", null, value);
+				this.OnPropertyChanged("lk_convertrule_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -1031,6 +1080,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ConvertRule_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_ConvertRule_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ConvertRule_modifiedby", null, value);
+				this.OnPropertyChanged("lk_ConvertRule_modifiedby");
 			}
 		}
 		
@@ -1182,22 +1238,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sourcetypecode")]
-		public virtual converttorule_sourcetype? SourceTypeCodeEnum
+		public virtual ConvertRule_SourceTypeCode? SourceTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((converttorule_sourcetype?)(EntityOptionSetEnum.GetEnum(this, "sourcetypecode")));
+				return ((ConvertRule_SourceTypeCode?)(EntityOptionSetEnum.GetEnum(this, "sourcetypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1207,12 +1263,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual convertrule_statuscode? StatusCodeEnum
+		public virtual ConvertRule_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((convertrule_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((ConvertRule_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

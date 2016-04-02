@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("customcontrolresource")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class CustomControlResource : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -36,12 +36,12 @@ namespace DLaB.Xrm.Entities
 			public const string VersionNumber = "versionnumber";
 			public const string VersionRequirement = "versionrequirement";
 			public const string WebResourceId = "webresourceid";
-			public const string customcontrol_resource_id = "customcontrolid";
-			public const string customcontrolresource_organization = "organizationid";
-			public const string lk_customcontrolresource_createdby = "createdby";
-			public const string lk_customcontrolresource_createdonbehalfby = "createdonbehalfby";
-			public const string lk_customcontrolresource_modifiedby = "modifiedby";
-			public const string lk_customcontrolresource_modifiedonbehalfby = "modifiedonbehalfby";
+			public const string customcontrol_resource_id = "customcontrol_resource_id";
+			public const string customcontrolresource_organization = "customcontrolresource_organization";
+			public const string lk_customcontrolresource_createdby = "lk_customcontrolresource_createdby";
+			public const string lk_customcontrolresource_createdonbehalfby = "lk_customcontrolresource_createdonbehalfby";
+			public const string lk_customcontrolresource_modifiedby = "lk_customcontrolresource_modifiedby";
+			public const string lk_customcontrolresource_modifiedonbehalfby = "lk_customcontrolresource_modifiedonbehalfby";
 		}
 
 		
@@ -91,6 +91,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -103,6 +110,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -200,6 +214,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -212,6 +233,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -388,6 +416,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_customcontrolresource_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_customcontrolresource_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_customcontrolresource_createdby", null, value);
+				this.OnPropertyChanged("lk_customcontrolresource_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -422,6 +457,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_customcontrolresource_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_customcontrolresource_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_customcontrolresource_modifiedby", null, value);
+				this.OnPropertyChanged("lk_customcontrolresource_modifiedby");
 			}
 		}
 		

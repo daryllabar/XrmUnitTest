@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("duplicaterecord")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class DuplicateRecord : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -31,92 +31,92 @@ namespace DLaB.Xrm.Entities
 			public const string OwnerId = "ownerid";
 			public const string OwningBusinessUnit = "owningbusinessunit";
 			public const string OwningUser = "owninguser";
-			public const string Account_DuplicateBaseRecord = "baserecordid";
-			public const string Account_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string Appointment_DuplicateBaseRecord = "baserecordid";
-			public const string Appointment_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string AsyncOperation_DuplicateBaseRecord = "asyncoperationid";
-			public const string Campaign_DuplicateBaseRecord = "baserecordid";
-			public const string Campaign_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string CampaignResponse_DuplicateBaseRecord = "baserecordid";
-			public const string CampaignResponse_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string channelaccessprofile_DuplicateBaseRecord = "baserecordid";
-			public const string channelaccessprofile_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string Competitor_DuplicateBaseRecord = "baserecordid";
-			public const string Competitor_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string Contact_DuplicateBaseRecord = "baserecordid";
-			public const string Contact_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string Contract_DuplicateBaseRecord = "baserecordid";
-			public const string Contract_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string DuplicateRule_DuplicateBaseRecord = "duplicateruleid";
-			public const string Email_DuplicateBaseRecord = "baserecordid";
-			public const string Email_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string emailserverprofile_duplicatebaserecord = "baserecordid";
-			public const string emailserverprofile_duplicatematchingrecord = "duplicaterecordid";
-			public const string entitlement_DuplicateBaseRecord = "baserecordid";
-			public const string entitlement_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string entitlementchannel_DuplicateBaseRecord = "baserecordid";
-			public const string entitlementchannel_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string entitlementtemplate_DuplicateBaseRecord = "baserecordid";
-			public const string entitlementtemplate_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string Equipment_DuplicateBaseRecord = "baserecordid";
-			public const string Equipment_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string Fax_DuplicateBaseRecord = "baserecordid";
-			public const string Fax_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string Goal_DuplicateBaseRecord = "baserecordid";
-			public const string Goal_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string GoalRollupQuery_DuplicateBaseRecord = "baserecordid";
-			public const string GoalRollupQuery_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string Incident_DuplicateBaseRecord = "baserecordid";
-			public const string Incident_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string KbArticle_DuplicateBaseRecord = "baserecordid";
-			public const string KbArticle_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string knowledgearticle_DuplicateBaseRecord = "baserecordid";
-			public const string knowledgearticle_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string KnowledgeBaseRecord_DuplicateBaseRecord = "baserecordid";
-			public const string KnowledgeBaseRecord_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string Lead_DuplicateBaseRecord = "baserecordid";
-			public const string Lead_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string Letter_DuplicateBaseRecord = "baserecordid";
-			public const string Letter_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string List_DuplicateBaseRecord = "baserecordid";
-			public const string List_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string msdyn_postalbum_DuplicateBaseRecord = "baserecordid";
-			public const string msdyn_postalbum_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string Opportunity_DuplicateBaseRecord = "baserecordid";
-			public const string Opportunity_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string PhoneCall_DuplicateBaseRecord = "baserecordid";
-			public const string PhoneCall_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string Publisher_DuplicateBaseRecord = "baserecordid";
-			public const string Publisher_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string Queue_DuplicateBaseRecord = "baserecordid";
-			public const string Queue_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string Quote_DuplicateBaseRecord = "baserecordid";
-			public const string Quote_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string RecurringAppointmentMaster_DuplicateBaseRecord = "baserecordid";
-			public const string RecurringAppointmentMaster_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string ResourceGroup_DuplicateBaseRecord = "baserecordid";
-			public const string ResourceGroup_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string Service_DuplicateBaseRecord = "baserecordid";
-			public const string Service_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string SharePointDocumentLocation_DuplicateBaseRecord = "baserecordid";
-			public const string SharePointDocumentLocation_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string SharePointSite_DuplicateBaseRecord = "baserecordid";
-			public const string SharePointSite_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string SocialActivity_DuplicateBaseRecord = "baserecordid";
-			public const string SocialActivity_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string SocialProfile_DuplicateBaseRecord = "baserecordid";
-			public const string SocialProfile_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string SystemUser_DuplicateBaseRecord = "baserecordid";
-			public const string SystemUser_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string Task_DuplicateBaseRecord = "baserecordid";
-			public const string Task_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string Team_DuplicateBaseRecord = "baserecordid";
-			public const string Team_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string Territory_DuplicateBaseRecord = "baserecordid";
-			public const string Territory_DuplicateMatchingRecord = "duplicaterecordid";
-			public const string TransactionCurrency_DuplicateBaseRecord = "baserecordid";
-			public const string TransactionCurrency_DuplicateMatchingRecord = "duplicaterecordid";
+			public const string Account_DuplicateBaseRecord = "Account_DuplicateBaseRecord";
+			public const string Account_DuplicateMatchingRecord = "Account_DuplicateMatchingRecord";
+			public const string Appointment_DuplicateBaseRecord = "Appointment_DuplicateBaseRecord";
+			public const string Appointment_DuplicateMatchingRecord = "Appointment_DuplicateMatchingRecord";
+			public const string AsyncOperation_DuplicateBaseRecord = "AsyncOperation_DuplicateBaseRecord";
+			public const string Campaign_DuplicateBaseRecord = "Campaign_DuplicateBaseRecord";
+			public const string Campaign_DuplicateMatchingRecord = "Campaign_DuplicateMatchingRecord";
+			public const string CampaignResponse_DuplicateBaseRecord = "CampaignResponse_DuplicateBaseRecord";
+			public const string CampaignResponse_DuplicateMatchingRecord = "CampaignResponse_DuplicateMatchingRecord";
+			public const string channelaccessprofile_DuplicateBaseRecord = "channelaccessprofile_DuplicateBaseRecord";
+			public const string channelaccessprofile_DuplicateMatchingRecord = "channelaccessprofile_DuplicateMatchingRecord";
+			public const string Competitor_DuplicateBaseRecord = "Competitor_DuplicateBaseRecord";
+			public const string Competitor_DuplicateMatchingRecord = "Competitor_DuplicateMatchingRecord";
+			public const string Contact_DuplicateBaseRecord = "Contact_DuplicateBaseRecord";
+			public const string Contact_DuplicateMatchingRecord = "Contact_DuplicateMatchingRecord";
+			public const string Contract_DuplicateBaseRecord = "Contract_DuplicateBaseRecord";
+			public const string Contract_DuplicateMatchingRecord = "Contract_DuplicateMatchingRecord";
+			public const string DuplicateRule_DuplicateBaseRecord = "DuplicateRule_DuplicateBaseRecord";
+			public const string Email_DuplicateBaseRecord = "Email_DuplicateBaseRecord";
+			public const string Email_DuplicateMatchingRecord = "Email_DuplicateMatchingRecord";
+			public const string emailserverprofile_duplicatebaserecord = "emailserverprofile_duplicatebaserecord";
+			public const string emailserverprofile_duplicatematchingrecord = "emailserverprofile_duplicatematchingrecord";
+			public const string entitlement_DuplicateBaseRecord = "entitlement_DuplicateBaseRecord";
+			public const string entitlement_DuplicateMatchingRecord = "entitlement_DuplicateMatchingRecord";
+			public const string entitlementchannel_DuplicateBaseRecord = "entitlementchannel_DuplicateBaseRecord";
+			public const string entitlementchannel_DuplicateMatchingRecord = "entitlementchannel_DuplicateMatchingRecord";
+			public const string entitlementtemplate_DuplicateBaseRecord = "entitlementtemplate_DuplicateBaseRecord";
+			public const string entitlementtemplate_DuplicateMatchingRecord = "entitlementtemplate_DuplicateMatchingRecord";
+			public const string Equipment_DuplicateBaseRecord = "Equipment_DuplicateBaseRecord";
+			public const string Equipment_DuplicateMatchingRecord = "Equipment_DuplicateMatchingRecord";
+			public const string Fax_DuplicateBaseRecord = "Fax_DuplicateBaseRecord";
+			public const string Fax_DuplicateMatchingRecord = "Fax_DuplicateMatchingRecord";
+			public const string Goal_DuplicateBaseRecord = "Goal_DuplicateBaseRecord";
+			public const string Goal_DuplicateMatchingRecord = "Goal_DuplicateMatchingRecord";
+			public const string GoalRollupQuery_DuplicateBaseRecord = "GoalRollupQuery_DuplicateBaseRecord";
+			public const string GoalRollupQuery_DuplicateMatchingRecord = "GoalRollupQuery_DuplicateMatchingRecord";
+			public const string Incident_DuplicateBaseRecord = "Incident_DuplicateBaseRecord";
+			public const string Incident_DuplicateMatchingRecord = "Incident_DuplicateMatchingRecord";
+			public const string KbArticle_DuplicateBaseRecord = "KbArticle_DuplicateBaseRecord";
+			public const string KbArticle_DuplicateMatchingRecord = "KbArticle_DuplicateMatchingRecord";
+			public const string knowledgearticle_DuplicateBaseRecord = "knowledgearticle_DuplicateBaseRecord";
+			public const string knowledgearticle_DuplicateMatchingRecord = "knowledgearticle_DuplicateMatchingRecord";
+			public const string KnowledgeBaseRecord_DuplicateBaseRecord = "KnowledgeBaseRecord_DuplicateBaseRecord";
+			public const string KnowledgeBaseRecord_DuplicateMatchingRecord = "KnowledgeBaseRecord_DuplicateMatchingRecord";
+			public const string Lead_DuplicateBaseRecord = "Lead_DuplicateBaseRecord";
+			public const string Lead_DuplicateMatchingRecord = "Lead_DuplicateMatchingRecord";
+			public const string Letter_DuplicateBaseRecord = "Letter_DuplicateBaseRecord";
+			public const string Letter_DuplicateMatchingRecord = "Letter_DuplicateMatchingRecord";
+			public const string List_DuplicateBaseRecord = "List_DuplicateBaseRecord";
+			public const string List_DuplicateMatchingRecord = "List_DuplicateMatchingRecord";
+			public const string msdyn_postalbum_DuplicateBaseRecord = "msdyn_postalbum_DuplicateBaseRecord";
+			public const string msdyn_postalbum_DuplicateMatchingRecord = "msdyn_postalbum_DuplicateMatchingRecord";
+			public const string Opportunity_DuplicateBaseRecord = "Opportunity_DuplicateBaseRecord";
+			public const string Opportunity_DuplicateMatchingRecord = "Opportunity_DuplicateMatchingRecord";
+			public const string PhoneCall_DuplicateBaseRecord = "PhoneCall_DuplicateBaseRecord";
+			public const string PhoneCall_DuplicateMatchingRecord = "PhoneCall_DuplicateMatchingRecord";
+			public const string Publisher_DuplicateBaseRecord = "Publisher_DuplicateBaseRecord";
+			public const string Publisher_DuplicateMatchingRecord = "Publisher_DuplicateMatchingRecord";
+			public const string Queue_DuplicateBaseRecord = "Queue_DuplicateBaseRecord";
+			public const string Queue_DuplicateMatchingRecord = "Queue_DuplicateMatchingRecord";
+			public const string Quote_DuplicateBaseRecord = "Quote_DuplicateBaseRecord";
+			public const string Quote_DuplicateMatchingRecord = "Quote_DuplicateMatchingRecord";
+			public const string RecurringAppointmentMaster_DuplicateBaseRecord = "RecurringAppointmentMaster_DuplicateBaseRecord";
+			public const string RecurringAppointmentMaster_DuplicateMatchingRecord = "RecurringAppointmentMaster_DuplicateMatchingRecord";
+			public const string ResourceGroup_DuplicateBaseRecord = "ResourceGroup_DuplicateBaseRecord";
+			public const string ResourceGroup_DuplicateMatchingRecord = "ResourceGroup_DuplicateMatchingRecord";
+			public const string Service_DuplicateBaseRecord = "Service_DuplicateBaseRecord";
+			public const string Service_DuplicateMatchingRecord = "Service_DuplicateMatchingRecord";
+			public const string SharePointDocumentLocation_DuplicateBaseRecord = "SharePointDocumentLocation_DuplicateBaseRecord";
+			public const string SharePointDocumentLocation_DuplicateMatchingRecord = "SharePointDocumentLocation_DuplicateMatchingRecord";
+			public const string SharePointSite_DuplicateBaseRecord = "SharePointSite_DuplicateBaseRecord";
+			public const string SharePointSite_DuplicateMatchingRecord = "SharePointSite_DuplicateMatchingRecord";
+			public const string SocialActivity_DuplicateBaseRecord = "SocialActivity_DuplicateBaseRecord";
+			public const string SocialActivity_DuplicateMatchingRecord = "SocialActivity_DuplicateMatchingRecord";
+			public const string SocialProfile_DuplicateBaseRecord = "SocialProfile_DuplicateBaseRecord";
+			public const string SocialProfile_DuplicateMatchingRecord = "SocialProfile_DuplicateMatchingRecord";
+			public const string SystemUser_DuplicateBaseRecord = "SystemUser_DuplicateBaseRecord";
+			public const string SystemUser_DuplicateMatchingRecord = "SystemUser_DuplicateMatchingRecord";
+			public const string Task_DuplicateBaseRecord = "Task_DuplicateBaseRecord";
+			public const string Task_DuplicateMatchingRecord = "Task_DuplicateMatchingRecord";
+			public const string Team_DuplicateBaseRecord = "Team_DuplicateBaseRecord";
+			public const string Team_DuplicateMatchingRecord = "Team_DuplicateMatchingRecord";
+			public const string Territory_DuplicateBaseRecord = "Territory_DuplicateBaseRecord";
+			public const string Territory_DuplicateMatchingRecord = "Territory_DuplicateMatchingRecord";
+			public const string TransactionCurrency_DuplicateBaseRecord = "TransactionCurrency_DuplicateBaseRecord";
+			public const string TransactionCurrency_DuplicateMatchingRecord = "TransactionCurrency_DuplicateMatchingRecord";
 		}
 
 		
@@ -191,6 +191,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -287,6 +294,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -299,6 +313,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		

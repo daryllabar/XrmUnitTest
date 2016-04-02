@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum ImportEntityMappingState
 	{
 		
@@ -24,7 +24,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("importentitymapping")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ImportEntityMapping : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -45,11 +45,11 @@ namespace DLaB.Xrm.Entities
 			public const string StateCode = "statecode";
 			public const string StatusCode = "statuscode";
 			public const string TargetEntityName = "targetentityname";
-			public const string ImportEntityMapping_ImportMap = "importmapid";
-			public const string lk_importentitymapping_createdby = "createdby";
-			public const string lk_importentitymapping_createdonbehalfby = "createdonbehalfby";
-			public const string lk_importentitymapping_modifiedby = "modifiedby";
-			public const string lk_importentitymapping_modifiedonbehalfby = "modifiedonbehalfby";
+			public const string ImportEntityMapping_ImportMap = "ImportEntityMapping_ImportMap";
+			public const string lk_importentitymapping_createdby = "lk_importentitymapping_createdby";
+			public const string lk_importentitymapping_createdonbehalfby = "lk_importentitymapping_createdonbehalfby";
+			public const string lk_importentitymapping_modifiedby = "lk_importentitymapping_modifiedby";
+			public const string lk_importentitymapping_modifiedonbehalfby = "lk_importentitymapping_modifiedonbehalfby";
 		}
 
 		
@@ -99,6 +99,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -111,6 +118,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -228,6 +242,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -240,6 +261,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -417,6 +445,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_importentitymapping_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_importentitymapping_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_importentitymapping_createdby", null, value);
+				this.OnPropertyChanged("lk_importentitymapping_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -451,6 +486,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_importentitymapping_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_importentitymapping_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_importentitymapping_modifiedby", null, value);
+				this.OnPropertyChanged("lk_importentitymapping_modifiedby");
 			}
 		}
 		
@@ -518,12 +560,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dedupe")]
-		public virtual importentitymapping_dedupe? DeDupeEnum
+		public virtual ImportEntityMapping_DeDupe? DeDupeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((importentitymapping_dedupe?)(EntityOptionSetEnum.GetEnum(this, "dedupe")));
+				return ((ImportEntityMapping_DeDupe?)(EntityOptionSetEnum.GetEnum(this, "dedupe")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -533,12 +575,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("processcode")]
-		public virtual importentitymapping_processcode? ProcessCodeEnum
+		public virtual ImportEntityMapping_ProcessCode? ProcessCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((importentitymapping_processcode?)(EntityOptionSetEnum.GetEnum(this, "processcode")));
+				return ((ImportEntityMapping_ProcessCode?)(EntityOptionSetEnum.GetEnum(this, "processcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -548,12 +590,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual importentitymapping_statuscode? StatusCodeEnum
+		public virtual ImportEntityMapping_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((importentitymapping_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((ImportEntityMapping_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

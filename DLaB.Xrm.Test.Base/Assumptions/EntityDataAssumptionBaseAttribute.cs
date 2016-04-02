@@ -23,7 +23,7 @@ namespace DLaB.Xrm.Test.Assumptions
             get
             {
                 return _prerequisites ??
-                    (_prerequisites = (GetType().GetCustomAttributes(false).Select(a => a as PrerequisiteAssumptionsAttribute).FirstOrDefault()
+                    (_prerequisites = (GetType().GetCustomAttributes(true).Select(a => a as PrerequisiteAssumptionsAttribute).FirstOrDefault()
                                       ??
                                       new PrerequisiteAssumptionsAttribute()
                                       ).Prerequisites);
@@ -65,7 +65,7 @@ namespace DLaB.Xrm.Test.Assumptions
         /// <summary>
         /// Gets the name of the type, without the "Attribute" postfix
         /// </summary>
-        private String ShortName => GetShortName(GetType());
+        private string ShortName => GetShortName(GetType());
 
         /// <summary>
         /// Gets the name of the type, without the "Attribute" postfix, and with any namespace values that come after Assumptions
@@ -218,7 +218,7 @@ namespace DLaB.Xrm.Test.Assumptions
                     (mock == null && !(service is LocalCrmDatabaseOrganizationService)) ||
                     FileIsNullOrEmpty(GetSerializedFilePath(AssumptionsNamespaceRelativePath)))
                 {
-                    throw new Exception(String.Format("Assumption {0} made an ass out of you and me.  The entity assumed to be there, was not found.", AssumptionsNamespaceRelativePath));
+                    throw new Exception(string.Format("Assumption {0} made an ass out of you and me.  The entity assumed to be there, was not found.", AssumptionsNamespaceRelativePath));
                 }
 
                 entity = GetTestEntityFromXml(AssumptionsNamespaceRelativePath);

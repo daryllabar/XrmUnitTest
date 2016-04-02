@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum CampaignActivityState
 	{
 		
@@ -30,7 +30,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("campaignactivity")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class CampaignActivity : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -88,17 +88,17 @@ namespace DLaB.Xrm.Entities
 			public const string TypeCode = "typecode";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string activity_pointer_campaignactivity = "activityid";
-			public const string business_unit_campaignactivity_activities = "owningbusinessunit";
-			public const string Campaign_CampaignActivities = "regardingobjectid";
-			public const string lk_campaignactivity_createdby = "createdby";
-			public const string lk_campaignactivity_createdonbehalfby = "createdonbehalfby";
-			public const string lk_campaignactivity_modifiedby = "modifiedby";
-			public const string lk_campaignactivity_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string processstage_campaignactivities = "stageid";
-			public const string team_campaignactivity = "owningteam";
-			public const string transactioncurrency_campaignactivity = "transactioncurrencyid";
-			public const string user_campaignactivity = "owninguser";
+			public const string activity_pointer_campaignactivity = "activity_pointer_campaignactivity";
+			public const string business_unit_campaignactivity_activities = "business_unit_campaignactivity_activities";
+			public const string Campaign_CampaignActivities = "Campaign_CampaignActivities";
+			public const string lk_campaignactivity_createdby = "lk_campaignactivity_createdby";
+			public const string lk_campaignactivity_createdonbehalfby = "lk_campaignactivity_createdonbehalfby";
+			public const string lk_campaignactivity_modifiedby = "lk_campaignactivity_modifiedby";
+			public const string lk_campaignactivity_modifiedonbehalfby = "lk_campaignactivity_modifiedonbehalfby";
+			public const string processstage_campaignactivities = "processstage_campaignactivities";
+			public const string team_campaignactivity = "team_campaignactivity";
+			public const string transactioncurrency_campaignactivity = "transactioncurrency_campaignactivity";
+			public const string user_campaignactivity = "user_campaignactivity";
 		}
 
 		
@@ -370,6 +370,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -382,6 +389,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -618,6 +632,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -630,6 +651,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -704,6 +732,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -717,6 +752,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -729,6 +771,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1615,6 +1664,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_campaignactivity_activities", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_campaignactivity_activities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_campaignactivity_activities", null, value);
+				this.OnPropertyChanged("business_unit_campaignactivity_activities");
+			}
 		}
 		
 		/// <summary>
@@ -1650,6 +1706,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_campaignactivity_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_campaignactivity_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_campaignactivity_createdby", null, value);
+				this.OnPropertyChanged("lk_campaignactivity_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -1684,6 +1747,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_campaignactivity_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_campaignactivity_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_campaignactivity_modifiedby", null, value);
+				this.OnPropertyChanged("lk_campaignactivity_modifiedby");
 			}
 		}
 		
@@ -1741,6 +1811,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_campaignactivity", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_campaignactivity");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_campaignactivity", null, value);
+				this.OnPropertyChanged("team_campaignactivity");
+			}
 		}
 		
 		/// <summary>
@@ -1768,6 +1845,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_campaignactivity", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_campaignactivity");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_campaignactivity", null, value);
+				this.OnPropertyChanged("user_campaignactivity");
 			}
 		}
 		
@@ -1814,12 +1898,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("channeltypecode")]
-		public virtual campaignactivity_channeltypecode? ChannelTypeCodeEnum
+		public virtual CampaignActivity_ChannelTypeCode? ChannelTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((campaignactivity_channeltypecode?)(EntityOptionSetEnum.GetEnum(this, "channeltypecode")));
+				return ((CampaignActivity_ChannelTypeCode?)(EntityOptionSetEnum.GetEnum(this, "channeltypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1829,12 +1913,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("prioritycode")]
-		public virtual campaignactivity_prioritycode? PriorityCodeEnum
+		public virtual CampaignActivity_PriorityCode? PriorityCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((campaignactivity_prioritycode?)(EntityOptionSetEnum.GetEnum(this, "prioritycode")));
+				return ((CampaignActivity_PriorityCode?)(EntityOptionSetEnum.GetEnum(this, "prioritycode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1844,12 +1928,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual campaignactivity_statuscode? StatusCodeEnum
+		public virtual CampaignActivity_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((campaignactivity_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((CampaignActivity_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1859,12 +1943,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("typecode")]
-		public virtual campaignactivity_typecode? TypeCodeEnum
+		public virtual CampaignActivity_TypeCode? TypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((campaignactivity_typecode?)(EntityOptionSetEnum.GetEnum(this, "typecode")));
+				return ((CampaignActivity_TypeCode?)(EntityOptionSetEnum.GetEnum(this, "typecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

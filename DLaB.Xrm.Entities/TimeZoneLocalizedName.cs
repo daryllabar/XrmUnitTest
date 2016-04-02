@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("timezonelocalizedname")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class TimeZoneLocalizedName : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -36,11 +36,11 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "timezonelocalizednameid";
 			public const string UserInterfaceName = "userinterfacename";
 			public const string VersionNumber = "versionnumber";
-			public const string lk_timezonelocalizedname_createdby = "createdby";
-			public const string lk_timezonelocalizedname_createdonbehalfby = "createdonbehalfby";
-			public const string lk_timezonelocalizedname_modifiedby = "modifiedby";
-			public const string lk_timezonelocalizedname_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_timezonelocalizedname_timezonedefinitionid = "timezonedefinitionid";
+			public const string lk_timezonelocalizedname_createdby = "lk_timezonelocalizedname_createdby";
+			public const string lk_timezonelocalizedname_createdonbehalfby = "lk_timezonelocalizedname_createdonbehalfby";
+			public const string lk_timezonelocalizedname_modifiedby = "lk_timezonelocalizedname_modifiedby";
+			public const string lk_timezonelocalizedname_modifiedonbehalfby = "lk_timezonelocalizedname_modifiedonbehalfby";
+			public const string lk_timezonelocalizedname_timezonedefinitionid = "lk_timezonelocalizedname_timezonedefinitionid";
 		}
 
 		
@@ -90,6 +90,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -102,6 +109,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -176,6 +190,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -188,6 +209,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -372,6 +400,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_timezonelocalizedname_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_timezonelocalizedname_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_timezonelocalizedname_createdby", null, value);
+				this.OnPropertyChanged("lk_timezonelocalizedname_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -406,6 +441,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_timezonelocalizedname_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_timezonelocalizedname_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_timezonelocalizedname_modifiedby", null, value);
+				this.OnPropertyChanged("lk_timezonelocalizedname_modifiedby");
 			}
 		}
 		

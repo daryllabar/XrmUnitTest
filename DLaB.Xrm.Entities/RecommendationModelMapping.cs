@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("recommendationmodelmapping")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class RecommendationModelMapping : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -51,10 +51,10 @@ namespace DLaB.Xrm.Entities
 			public const string SynchronizedCount = "synchronizedcount";
 			public const string TimeRangeFilter = "timerangefilter";
 			public const string TransactionField = "transactionfield";
-			public const string organization_recommendationmodelmapping = "organizationid";
-			public const string recommendationmodel_recommendationmodelmapping = "recommendationmodelid";
-			public const string Referencingrecommendationmodelmapping_recommendationmodelmapping_supportedmapid = "supportedmapid";
-			public const string recommendationmodelversion_recommendationmodelmapping = "recommendationmodelversionid";
+			public const string organization_recommendationmodelmapping = "organization_recommendationmodelmapping";
+			public const string recommendationmodel_recommendationmodelmapping = "recommendationmodel_recommendationmodelmapping";
+			public const string Referencingrecommendationmodelmapping_recommendationmodelmapping_supportedmapid = "recommendationmodelmapping_recommendationmodelmapping_supportedmapid";
+			public const string recommendationmodelversion_recommendationmodelmapping = "recommendationmodelversion_recommendationmodelmapping";
 		}
 
 		
@@ -794,12 +794,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("accountfieldpicklist")]
-		public virtual recommendationmodelmapping_accountfield? AccountFieldPickListEnum
+		public virtual RecommendationModelMapping_AccountFieldPickList? AccountFieldPickListEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recommendationmodelmapping_accountfield?)(EntityOptionSetEnum.GetEnum(this, "accountfieldpicklist")));
+				return ((RecommendationModelMapping_AccountFieldPickList?)(EntityOptionSetEnum.GetEnum(this, "accountfieldpicklist")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -809,22 +809,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("entitypicklist")]
-		public virtual recommendationmodelmapping_entity? EntityPickListEnum
+		public virtual RecommendationModelMapping_EntityPickList? EntityPickListEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recommendationmodelmapping_entity?)(EntityOptionSetEnum.GetEnum(this, "entitypicklist")));
+				return ((RecommendationModelMapping_EntityPickList?)(EntityOptionSetEnum.GetEnum(this, "entitypicklist")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -834,12 +834,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("mappingtype")]
-		public virtual recommendationmodelmapping_type? MappingTypeEnum
+		public virtual RecommendationModelMapping_MappingType? MappingTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recommendationmodelmapping_type?)(EntityOptionSetEnum.GetEnum(this, "mappingtype")));
+				return ((RecommendationModelMapping_MappingType?)(EntityOptionSetEnum.GetEnum(this, "mappingtype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -849,12 +849,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("productfieldpicklist")]
-		public virtual recommendationmodelmapping_productfield? ProductFieldPickListEnum
+		public virtual RecommendationModelMapping_ProductFieldPickList? ProductFieldPickListEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recommendationmodelmapping_productfield?)(EntityOptionSetEnum.GetEnum(this, "productfieldpicklist")));
+				return ((RecommendationModelMapping_ProductFieldPickList?)(EntityOptionSetEnum.GetEnum(this, "productfieldpicklist")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -864,12 +864,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("productlineitemrelationshippicklist")]
-		public virtual recommendationmodelmapping_productlineitemrelationship? ProductLineItemRelationshipPickListEnum
+		public virtual RecommendationModelMapping_ProductLineItemRelationshipPickList? ProductLineItemRelationshipPickListEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recommendationmodelmapping_productlineitemrelationship?)(EntityOptionSetEnum.GetEnum(this, "productlineitemrelationshippicklist")));
+				return ((RecommendationModelMapping_ProductLineItemRelationshipPickList?)(EntityOptionSetEnum.GetEnum(this, "productlineitemrelationshippicklist")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

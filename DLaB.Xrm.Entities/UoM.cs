@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("uom")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class UoM : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -40,14 +40,14 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "uomid";
 			public const string UoMScheduleId = "uomscheduleid";
 			public const string VersionNumber = "versionnumber";
-			public const string lk_externalparty_uom_createdby = "createdbyexternalparty";
-			public const string lk_externalparty_uom_modifiedby = "modifiedbyexternalparty";
-			public const string lk_uom_createdonbehalfby = "createdonbehalfby";
-			public const string lk_uom_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_uombase_createdby = "createdby";
-			public const string lk_uombase_modifiedby = "modifiedby";
-			public const string unit_of_measure_schedule_conversions = "uomscheduleid";
-			public const string Referencingunit_of_measurement_base_unit = "baseuom";
+			public const string lk_externalparty_uom_createdby = "lk_externalparty_uom_createdby";
+			public const string lk_externalparty_uom_modifiedby = "lk_externalparty_uom_modifiedby";
+			public const string lk_uom_createdonbehalfby = "lk_uom_createdonbehalfby";
+			public const string lk_uom_modifiedonbehalfby = "lk_uom_modifiedonbehalfby";
+			public const string lk_uombase_createdby = "lk_uombase_createdby";
+			public const string lk_uombase_modifiedby = "lk_uombase_modifiedby";
+			public const string unit_of_measure_schedule_conversions = "unit_of_measure_schedule_conversions";
+			public const string Referencingunit_of_measurement_base_unit = "unit_of_measurement_base_unit";
 		}
 
 		
@@ -117,6 +117,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -142,6 +149,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -209,6 +223,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -234,6 +255,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -728,6 +756,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_uombase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_uombase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_uombase_createdby", null, value);
+				this.OnPropertyChanged("lk_uombase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -741,6 +776,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_uombase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_uombase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_uombase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_uombase_modifiedby");
 			}
 		}
 		

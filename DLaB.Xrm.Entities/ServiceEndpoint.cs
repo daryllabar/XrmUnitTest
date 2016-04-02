@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("serviceendpoint")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ServiceEndpoint : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -44,11 +44,11 @@ namespace DLaB.Xrm.Entities
 			public const string SolutionId = "solutionid";
 			public const string SolutionNamespace = "solutionnamespace";
 			public const string UserClaim = "userclaim";
-			public const string createdby_serviceendpoint = "createdby";
-			public const string lk_serviceendpointbase_createdonbehalfby = "createdonbehalfby";
-			public const string lk_serviceendpointbase_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string modifiedby_serviceendpoint = "modifiedby";
-			public const string organization_serviceendpoint = "organizationid";
+			public const string createdby_serviceendpoint = "createdby_serviceendpoint";
+			public const string lk_serviceendpointbase_createdonbehalfby = "lk_serviceendpointbase_createdonbehalfby";
+			public const string lk_serviceendpointbase_modifiedonbehalfby = "lk_serviceendpointbase_modifiedonbehalfby";
+			public const string modifiedby_serviceendpoint = "modifiedby_serviceendpoint";
+			public const string organization_serviceendpoint = "organization_serviceendpoint";
 		}
 
 		
@@ -151,6 +151,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -163,6 +170,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -270,6 +284,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -282,6 +303,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -532,6 +560,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("createdby_serviceendpoint", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("createdby_serviceendpoint");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("createdby_serviceendpoint", null, value);
+				this.OnPropertyChanged("createdby_serviceendpoint");
+			}
 		}
 		
 		/// <summary>
@@ -587,6 +622,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("modifiedby_serviceendpoint", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("modifiedby_serviceendpoint");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("modifiedby_serviceendpoint", null, value);
+				this.OnPropertyChanged("modifiedby_serviceendpoint");
 			}
 		}
 		
@@ -647,22 +689,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("connectionmode")]
-		public virtual serviceendpoint_connectionmode? ConnectionModeEnum
+		public virtual ServiceEndpoint_ConnectionMode? ConnectionModeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((serviceendpoint_connectionmode?)(EntityOptionSetEnum.GetEnum(this, "connectionmode")));
+				return ((ServiceEndpoint_ConnectionMode?)(EntityOptionSetEnum.GetEnum(this, "connectionmode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -672,12 +714,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("contract")]
-		public virtual serviceendpoint_contract? ContractEnum
+		public virtual ServiceEndpoint_Contract? ContractEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((serviceendpoint_contract?)(EntityOptionSetEnum.GetEnum(this, "contract")));
+				return ((ServiceEndpoint_Contract?)(EntityOptionSetEnum.GetEnum(this, "contract")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -687,12 +729,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("userclaim")]
-		public virtual serviceendpoint_userclaim? UserClaimEnum
+		public virtual ServiceEndpoint_UserClaim? UserClaimEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((serviceendpoint_userclaim?)(EntityOptionSetEnum.GetEnum(this, "userclaim")));
+				return ((ServiceEndpoint_UserClaim?)(EntityOptionSetEnum.GetEnum(this, "userclaim")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

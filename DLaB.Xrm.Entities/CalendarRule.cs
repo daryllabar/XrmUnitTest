@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("calendarrule")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class CalendarRule : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -55,13 +55,13 @@ namespace DLaB.Xrm.Entities
 			public const string TimeCode = "timecode";
 			public const string TimeZoneCode = "timezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string calendar_calendar_rules = "calendarid";
-			public const string inner_calendar_calendar_rules = "innercalendarid";
-			public const string lk_calendarrule_createdby = "createdby";
-			public const string lk_calendarrule_createdonbehalfby = "createdonbehalfby";
-			public const string lk_calendarrule_modifiedby = "modifiedby";
-			public const string lk_calendarrule_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string service_calendar_rules = "serviceid";
+			public const string calendar_calendar_rules = "calendar_calendar_rules";
+			public const string inner_calendar_calendar_rules = "inner_calendar_calendar_rules";
+			public const string lk_calendarrule_createdby = "lk_calendarrule_createdby";
+			public const string lk_calendarrule_createdonbehalfby = "lk_calendarrule_createdonbehalfby";
+			public const string lk_calendarrule_modifiedby = "lk_calendarrule_modifiedby";
+			public const string lk_calendarrule_modifiedonbehalfby = "lk_calendarrule_modifiedonbehalfby";
+			public const string service_calendar_rules = "service_calendar_rules";
 		}
 
 		
@@ -187,6 +187,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -199,6 +206,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -493,6 +507,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -505,6 +526,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -808,6 +836,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_calendarrule_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_calendarrule_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_calendarrule_createdby", null, value);
+				this.OnPropertyChanged("lk_calendarrule_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -842,6 +877,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_calendarrule_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_calendarrule_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_calendarrule_modifiedby", null, value);
+				this.OnPropertyChanged("lk_calendarrule_modifiedby");
 			}
 		}
 		

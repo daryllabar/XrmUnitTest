@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using Microsoft.Xrm.Sdk;
 
@@ -25,6 +26,24 @@ namespace DLaB.Xrm.Sandbox.Serialization
             {
                 Add(new KeyValuePairOfstringstring(value));
             }
+        }
+
+        /// <summary>
+        /// Performs an explicit conversion from <see cref="SerializableFormattedValueCollection"/> to <see cref="FormattedValueCollection"/>.
+        /// </summary>
+        /// <param name="collection">The collection.</param>
+        /// <returns>
+        /// The result of the conversion.
+        /// </returns>
+        public static explicit operator FormattedValueCollection(SerializableFormattedValueCollection collection)
+        {
+            if (collection == null)
+            {
+                return null;
+            }
+            var xrmCollection = new FormattedValueCollection();
+            xrmCollection.AddRange(collection.Select(v =>(KeyValuePair<string, string>)v));
+            return xrmCollection;
         }
     }
 }

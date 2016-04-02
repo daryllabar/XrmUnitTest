@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using Microsoft.Xrm.Sdk;
 
@@ -8,7 +9,7 @@ namespace DLaB.Xrm.Sandbox.Serialization
     /// Sandbox Serializable Entity Collection
     /// </summary>
     [DataContract(Name = "EntityCollection", Namespace = "http://schemas.microsoft.com/xrm/2011/Contracts")]
-    public class SerializableEntityCollection
+    public class SerializableEntityCollection : IExtensibleDataObject
     {
         /// <summary>
         /// Gets or sets the entities.
@@ -74,6 +75,14 @@ namespace DLaB.Xrm.Sandbox.Serialization
         public bool TotalRecordCountLimitExceeded { get; set; }
 
         /// <summary>
+        /// Gets or sets the extension data.
+        /// </summary>
+        /// <value>
+        /// The extension data.
+        /// </value>
+        public ExtensionDataObject ExtensionData { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="SerializableEntityCollection"/> class.
         /// </summary>
         public SerializableEntityCollection()
@@ -92,12 +101,40 @@ namespace DLaB.Xrm.Sandbox.Serialization
                 Entities.Add(new SerializableEntity(entity));
             }
             EntityName = entities.EntityName;
+            ExtensionData = entities.ExtensionData;
             MinActiveRowVersion = entities.MinActiveRowVersion;
             MoreRecords = entities.MoreRecords;
             PagingCookie = entities.PagingCookie;
             TotalRecordCount = entities.TotalRecordCount;
             TotalRecordCountLimitExceeded = entities.TotalRecordCountLimitExceeded;
+        }
 
+        /// <summary>
+        /// Performs an explicit conversion from <see cref="SerializableEntityCollection"/> to <see cref="EntityCollection"/>.
+        /// </summary>
+        /// <param name="collection">The collection.</param>
+        /// <returns>
+        /// The result of the conversion.
+        /// </returns>
+        public static explicit operator EntityCollection(SerializableEntityCollection collection)
+        {
+            if (collection == null)
+            {
+                return null;
+            }
+            var xrmCollection = new EntityCollection
+            {
+                ExtensionData = collection.ExtensionData,
+                EntityName = collection.EntityName,
+                MinActiveRowVersion = collection.MinActiveRowVersion,
+                MoreRecords = collection.MoreRecords,
+                PagingCookie = collection.PagingCookie,
+                TotalRecordCount = collection.TotalRecordCount,
+                TotalRecordCountLimitExceeded = collection.TotalRecordCountLimitExceeded
+            };
+            xrmCollection.Entities.AddRange(collection.Entities.Select(v => (Entity)v));
+
+            return xrmCollection;
         }
     }
 }

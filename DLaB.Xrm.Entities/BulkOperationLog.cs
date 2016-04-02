@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("bulkoperationlog")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class BulkOperationLog : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -31,16 +31,16 @@ namespace DLaB.Xrm.Entities
 			public const string OwningBusinessUnit = "owningbusinessunit";
 			public const string OwningUser = "owninguser";
 			public const string RegardingObjectId = "regardingobjectid";
-			public const string activity_pointer_BulkOperation_logs = "bulkoperationid";
-			public const string BulkOperation_logs = "bulkoperationid";
-			public const string CreatedAccount_BulkOperationLogs2 = "createdobjectid";
-			public const string CreatedActivity_BulkOperationLogs = "createdobjectid";
-			public const string CreatedContact_BulkOperationLogs = "createdobjectid";
-			public const string CreatedLead_BulkOperationLogs = "createdobjectid";
-			public const string CreatedOpportunity_BulkOperationLogs = "createdobjectid";
-			public const string SourceAccount_BulkOperationLogs = "regardingobjectid";
-			public const string SourceContact_BulkOperationLogs = "regardingobjectid";
-			public const string SourceLead_BulkOperationLogs = "regardingobjectid";
+			public const string activity_pointer_BulkOperation_logs = "activity_pointer_BulkOperation_logs";
+			public const string BulkOperation_logs = "BulkOperation_logs";
+			public const string CreatedAccount_BulkOperationLogs2 = "CreatedAccount_BulkOperationLogs2";
+			public const string CreatedActivity_BulkOperationLogs = "CreatedActivity_BulkOperationLogs";
+			public const string CreatedContact_BulkOperationLogs = "CreatedContact_BulkOperationLogs";
+			public const string CreatedLead_BulkOperationLogs = "CreatedLead_BulkOperationLogs";
+			public const string CreatedOpportunity_BulkOperationLogs = "CreatedOpportunity_BulkOperationLogs";
+			public const string SourceAccount_BulkOperationLogs = "SourceAccount_BulkOperationLogs";
+			public const string SourceContact_BulkOperationLogs = "SourceContact_BulkOperationLogs";
+			public const string SourceLead_BulkOperationLogs = "SourceLead_BulkOperationLogs";
 		}
 
 		
@@ -219,6 +219,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -231,6 +238,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		

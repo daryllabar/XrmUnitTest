@@ -55,6 +55,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)QuerySettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RetrieveAllEntities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sandbox\ExceptionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\KeyValuePairOfstringanyType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\KeyValuePairOfstringstring.cs" />

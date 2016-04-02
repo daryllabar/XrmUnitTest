@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum ImportFileState
 	{
 		
@@ -24,7 +24,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("importfile")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ImportFile : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -75,17 +75,17 @@ namespace DLaB.Xrm.Entities
 			public const string TotalCount = "totalcount";
 			public const string UseSystemMap = "usesystemmap";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
-			public const string BusinessUnit_ImportFiles = "owningbusinessunit";
-			public const string Import_ImportFile = "importid";
-			public const string ImportFile_SystemUser = "recordsownerid";
-			public const string ImportFile_Team = "recordsownerid";
-			public const string ImportMap_ImportFile = "importmapid";
-			public const string lk_importfilebase_createdby = "createdby";
-			public const string lk_importfilebase_createdonbehalfby = "createdonbehalfby";
-			public const string lk_importfilebase_modifiedby = "modifiedby";
-			public const string lk_importfilebase_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string SystemUser_ImportFiles = "owninguser";
-			public const string team_ImportFiles = "owningteam";
+			public const string BusinessUnit_ImportFiles = "BusinessUnit_ImportFiles";
+			public const string Import_ImportFile = "Import_ImportFile";
+			public const string ImportFile_SystemUser = "ImportFile_SystemUser";
+			public const string ImportFile_Team = "ImportFile_Team";
+			public const string ImportMap_ImportFile = "ImportMap_ImportFile";
+			public const string lk_importfilebase_createdby = "lk_importfilebase_createdby";
+			public const string lk_importfilebase_createdonbehalfby = "lk_importfilebase_createdonbehalfby";
+			public const string lk_importfilebase_modifiedby = "lk_importfilebase_modifiedby";
+			public const string lk_importfilebase_modifiedonbehalfby = "lk_importfilebase_modifiedonbehalfby";
+			public const string SystemUser_ImportFiles = "SystemUser_ImportFiles";
+			public const string team_ImportFiles = "team_ImportFiles";
 		}
 
 		
@@ -181,6 +181,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -193,6 +200,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -436,6 +450,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -448,6 +469,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -522,6 +550,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -535,6 +570,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -547,6 +589,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1001,6 +1050,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("BusinessUnit_ImportFiles", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("BusinessUnit_ImportFiles");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("BusinessUnit_ImportFiles", null, value);
+				this.OnPropertyChanged("BusinessUnit_ImportFiles");
+			}
 		}
 		
 		/// <summary>
@@ -1099,6 +1155,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_importfilebase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_importfilebase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_importfilebase_createdby", null, value);
+				this.OnPropertyChanged("lk_importfilebase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -1133,6 +1196,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_importfilebase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_importfilebase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_importfilebase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_importfilebase_modifiedby");
 			}
 		}
 		
@@ -1169,6 +1239,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("SystemUser_ImportFiles", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SystemUser_ImportFiles");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("SystemUser_ImportFiles", null, value);
+				this.OnPropertyChanged("SystemUser_ImportFiles");
+			}
 		}
 		
 		/// <summary>
@@ -1182,6 +1259,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_ImportFiles", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_ImportFiles");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_ImportFiles", null, value);
+				this.OnPropertyChanged("team_ImportFiles");
 			}
 		}
 		
@@ -1228,12 +1312,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("datadelimitercode")]
-		public virtual importfile_datadelimitercode? DataDelimiterCodeEnum
+		public virtual ImportFile_DataDelimiterCode? DataDelimiterCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((importfile_datadelimitercode?)(EntityOptionSetEnum.GetEnum(this, "datadelimitercode")));
+				return ((ImportFile_DataDelimiterCode?)(EntityOptionSetEnum.GetEnum(this, "datadelimitercode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1243,12 +1327,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("fielddelimitercode")]
-		public virtual importfile_fielddelimitercode? FieldDelimiterCodeEnum
+		public virtual ImportFile_FieldDelimiterCode? FieldDelimiterCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((importfile_fielddelimitercode?)(EntityOptionSetEnum.GetEnum(this, "fielddelimitercode")));
+				return ((ImportFile_FieldDelimiterCode?)(EntityOptionSetEnum.GetEnum(this, "fielddelimitercode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1258,12 +1342,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("filetypecode")]
-		public virtual importfile_filetypecode? FileTypeCodeEnum
+		public virtual ImportFile_FileTypeCode? FileTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((importfile_filetypecode?)(EntityOptionSetEnum.GetEnum(this, "filetypecode")));
+				return ((ImportFile_FileTypeCode?)(EntityOptionSetEnum.GetEnum(this, "filetypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1273,12 +1357,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("processcode")]
-		public virtual importfile_processcode? ProcessCodeEnum
+		public virtual ImportFile_ProcessCode? ProcessCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((importfile_processcode?)(EntityOptionSetEnum.GetEnum(this, "processcode")));
+				return ((ImportFile_ProcessCode?)(EntityOptionSetEnum.GetEnum(this, "processcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1288,22 +1372,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("processingstatus")]
-		public virtual importfile_processingstatus? ProcessingStatusEnum
+		public virtual ImportFile_ProcessingStatus? ProcessingStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((importfile_processingstatus?)(EntityOptionSetEnum.GetEnum(this, "processingstatus")));
+				return ((ImportFile_ProcessingStatus?)(EntityOptionSetEnum.GetEnum(this, "processingstatus")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual importfile_statuscode? StatusCodeEnum
+		public virtual ImportFile_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((importfile_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((ImportFile_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

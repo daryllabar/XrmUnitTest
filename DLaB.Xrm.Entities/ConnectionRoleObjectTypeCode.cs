@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("connectionroleobjecttypecode")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ConnectionRoleObjectTypeCode : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "connectionroleobjecttypecodeid";
 			public const string OrganizationId = "organizationid";
 			public const string VersionNumber = "versionnumber";
-			public const string connection_role_connection_role_object_type_codes = "connectionroleid";
+			public const string connection_role_connection_role_object_type_codes = "connection_role_connection_role_object_type_codes";
 		}
 
 		

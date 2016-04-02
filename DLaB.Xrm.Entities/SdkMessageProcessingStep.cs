@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum SdkMessageProcessingStepState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("sdkmessageprocessingstep")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class SdkMessageProcessingStep : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -71,18 +71,18 @@ namespace DLaB.Xrm.Entities
 			public const string StatusCode = "statuscode";
 			public const string SupportedDeployment = "supporteddeployment";
 			public const string VersionNumber = "versionnumber";
-			public const string createdby_sdkmessageprocessingstep = "createdby";
-			public const string impersonatinguserid_sdkmessageprocessingstep = "impersonatinguserid";
-			public const string lk_sdkmessageprocessingstep_createdonbehalfby = "createdonbehalfby";
-			public const string lk_sdkmessageprocessingstep_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string modifiedby_sdkmessageprocessingstep = "modifiedby";
-			public const string organization_sdkmessageprocessingstep = "organizationid";
-			public const string plugintype_sdkmessageprocessingstep = "eventhandler";
-			public const string plugintypeid_sdkmessageprocessingstep = "plugintypeid";
-			public const string sdkmessagefilterid_sdkmessageprocessingstep = "sdkmessagefilterid";
-			public const string sdkmessageid_sdkmessageprocessingstep = "sdkmessageid";
-			public const string sdkmessageprocessingstepsecureconfigid_sdkmessageprocessingstep = "sdkmessageprocessingstepsecureconfigid";
-			public const string serviceendpoint_sdkmessageprocessingstep = "eventhandler";
+			public const string createdby_sdkmessageprocessingstep = "createdby_sdkmessageprocessingstep";
+			public const string impersonatinguserid_sdkmessageprocessingstep = "impersonatinguserid_sdkmessageprocessingstep";
+			public const string lk_sdkmessageprocessingstep_createdonbehalfby = "lk_sdkmessageprocessingstep_createdonbehalfby";
+			public const string lk_sdkmessageprocessingstep_modifiedonbehalfby = "lk_sdkmessageprocessingstep_modifiedonbehalfby";
+			public const string modifiedby_sdkmessageprocessingstep = "modifiedby_sdkmessageprocessingstep";
+			public const string organization_sdkmessageprocessingstep = "organization_sdkmessageprocessingstep";
+			public const string plugintype_sdkmessageprocessingstep = "plugintype_sdkmessageprocessingstep";
+			public const string plugintypeid_sdkmessageprocessingstep = "plugintypeid_sdkmessageprocessingstep";
+			public const string sdkmessagefilterid_sdkmessageprocessingstep = "sdkmessagefilterid_sdkmessageprocessingstep";
+			public const string sdkmessageid_sdkmessageprocessingstep = "sdkmessageid_sdkmessageprocessingstep";
+			public const string sdkmessageprocessingstepsecureconfigid_sdkmessageprocessingstep = "sdkmessageprocessingstepsecureconfigid_sdkmessageprocessingstep";
+			public const string serviceendpoint_sdkmessageprocessingstep = "serviceendpoint_sdkmessageprocessingstep";
 		}
 
 		
@@ -205,6 +205,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -217,6 +224,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -458,6 +472,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -470,6 +491,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -889,6 +917,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("createdby_sdkmessageprocessingstep", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("createdby_sdkmessageprocessingstep");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("createdby_sdkmessageprocessingstep", null, value);
+				this.OnPropertyChanged("createdby_sdkmessageprocessingstep");
+			}
 		}
 		
 		/// <summary>
@@ -965,6 +1000,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("modifiedby_sdkmessageprocessingstep", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("modifiedby_sdkmessageprocessingstep");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("modifiedby_sdkmessageprocessingstep", null, value);
+				this.OnPropertyChanged("modifiedby_sdkmessageprocessingstep");
 			}
 		}
 		
@@ -1151,22 +1193,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("mode")]
-		public virtual sdkmessageprocessingstep_mode? ModeEnum
+		public virtual SdkMessageProcessingStep_Mode? ModeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((sdkmessageprocessingstep_mode?)(EntityOptionSetEnum.GetEnum(this, "mode")));
+				return ((SdkMessageProcessingStep_Mode?)(EntityOptionSetEnum.GetEnum(this, "mode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1176,12 +1218,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("stage")]
-		public virtual sdkmessageprocessingstep_stage? StageEnum
+		public virtual SdkMessageProcessingStep_Stage? StageEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((sdkmessageprocessingstep_stage?)(EntityOptionSetEnum.GetEnum(this, "stage")));
+				return ((SdkMessageProcessingStep_Stage?)(EntityOptionSetEnum.GetEnum(this, "stage")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1191,12 +1233,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual sdkmessageprocessingstep_statuscode? StatusCodeEnum
+		public virtual SdkMessageProcessingStep_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((sdkmessageprocessingstep_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((SdkMessageProcessingStep_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1206,12 +1248,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("supporteddeployment")]
-		public virtual sdkmessageprocessingstep_supporteddeployment? SupportedDeploymentEnum
+		public virtual SdkMessageProcessingStep_SupportedDeployment? SupportedDeploymentEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((sdkmessageprocessingstep_supporteddeployment?)(EntityOptionSetEnum.GetEnum(this, "supporteddeployment")));
+				return ((SdkMessageProcessingStep_SupportedDeployment?)(EntityOptionSetEnum.GetEnum(this, "supporteddeployment")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

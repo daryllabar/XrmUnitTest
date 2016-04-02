@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum KbArticleState
 	{
 		
@@ -30,7 +30,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("kbarticle")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class KbArticle : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -66,14 +66,14 @@ namespace DLaB.Xrm.Entities
 			public const string Title = "title";
 			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string VersionNumber = "versionnumber";
-			public const string kb_article_template_kb_articles = "kbarticletemplateid";
-			public const string lk_kbarticle_createdonbehalfby = "createdonbehalfby";
-			public const string lk_kbarticle_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_kbarticlebase_createdby = "createdby";
-			public const string lk_kbarticlebase_modifiedby = "modifiedby";
-			public const string organization_kb_articles = "organizationid";
-			public const string subject_kb_articles = "subjectid";
-			public const string TransactionCurrency_KbArticle = "transactioncurrencyid";
+			public const string kb_article_template_kb_articles = "kb_article_template_kb_articles";
+			public const string lk_kbarticle_createdonbehalfby = "lk_kbarticle_createdonbehalfby";
+			public const string lk_kbarticle_modifiedonbehalfby = "lk_kbarticle_modifiedonbehalfby";
+			public const string lk_kbarticlebase_createdby = "lk_kbarticlebase_createdby";
+			public const string lk_kbarticlebase_modifiedby = "lk_kbarticlebase_modifiedby";
+			public const string organization_kb_articles = "organization_kb_articles";
+			public const string subject_kb_articles = "subject_kb_articles";
+			public const string TransactionCurrency_KbArticle = "TransactionCurrency_KbArticle";
 		}
 
 		
@@ -176,6 +176,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -188,6 +195,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -437,6 +451,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -449,6 +470,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -961,6 +989,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_kbarticlebase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_kbarticlebase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_kbarticlebase_createdby", null, value);
+				this.OnPropertyChanged("lk_kbarticlebase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -974,6 +1009,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_kbarticlebase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_kbarticlebase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_kbarticlebase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_kbarticlebase_modifiedby");
 			}
 		}
 		
@@ -1076,12 +1118,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual kbarticle_statuscode? StatusCodeEnum
+		public virtual KbArticle_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((kbarticle_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((KbArticle_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

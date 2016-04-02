@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum ChannelPropertyGroupState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("channelpropertygroup")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ChannelPropertyGroup : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -55,11 +55,11 @@ namespace DLaB.Xrm.Entities
 			public const string statecode = "statecode";
 			public const string statuscode = "statuscode";
 			public const string VersionNumber = "versionnumber";
-			public const string channelpropertygroup_organization = "organizationid";
-			public const string lk_ChannelPropertyGroup_createdby = "createdby";
-			public const string lk_ChannelPropertyGroup_createdonbehalfby = "createdonbehalfby";
-			public const string lk_ChannelPropertyGroup_modifiedby = "modifiedby";
-			public const string lk_ChannelPropertyGroup_modifiedonbehalfby = "modifiedonbehalfby";
+			public const string channelpropertygroup_organization = "channelpropertygroup_organization";
+			public const string lk_ChannelPropertyGroup_createdby = "lk_ChannelPropertyGroup_createdby";
+			public const string lk_ChannelPropertyGroup_createdonbehalfby = "lk_ChannelPropertyGroup_createdonbehalfby";
+			public const string lk_ChannelPropertyGroup_modifiedby = "lk_ChannelPropertyGroup_modifiedby";
+			public const string lk_ChannelPropertyGroup_modifiedonbehalfby = "lk_ChannelPropertyGroup_modifiedonbehalfby";
 		}
 
 		
@@ -178,6 +178,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -190,6 +197,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -277,6 +291,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -289,6 +310,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -545,6 +573,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ChannelPropertyGroup_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_ChannelPropertyGroup_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ChannelPropertyGroup_createdby", null, value);
+				this.OnPropertyChanged("lk_ChannelPropertyGroup_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -579,6 +614,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ChannelPropertyGroup_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_ChannelPropertyGroup_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ChannelPropertyGroup_modifiedby", null, value);
+				this.OnPropertyChanged("lk_ChannelPropertyGroup_modifiedby");
 			}
 		}
 		
@@ -646,22 +688,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingtypecode")]
-		public virtual convertrule_channelactivity? RegardingTypeCodeEnum
+		public virtual ConvertRule_ChannelActivity? RegardingTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((convertrule_channelactivity?)(EntityOptionSetEnum.GetEnum(this, "regardingtypecode")));
+				return ((ConvertRule_ChannelActivity?)(EntityOptionSetEnum.GetEnum(this, "regardingtypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -671,12 +713,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual channelpropertygroup_statuscode? statuscodeEnum
+		public virtual ChannelPropertyGroup_StatusCode? statuscodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((channelpropertygroup_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((ChannelPropertyGroup_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

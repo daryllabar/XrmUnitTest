@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("annotation")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class Annotation : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -24,7 +24,6 @@ namespace DLaB.Xrm.Entities
 			public const string AnnotationId = "annotationid";
 			public const string Id = "annotationid";
 			public const string CreatedBy = "createdby";
-			public const string CreatedByExternalParty = "createdbyexternalparty";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string DocumentBody = "documentbody";
@@ -35,7 +34,6 @@ namespace DLaB.Xrm.Entities
 			public const string LangId = "langid";
 			public const string MimeType = "mimetype";
 			public const string ModifiedBy = "modifiedby";
-			public const string ModifiedByExternalParty = "modifiedbyexternalparty";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string NoteText = "notetext";
@@ -49,68 +47,66 @@ namespace DLaB.Xrm.Entities
 			public const string StepId = "stepid";
 			public const string Subject = "subject";
 			public const string VersionNumber = "versionnumber";
-			public const string Account_Annotation = "objectid";
-			public const string annotation_owning_user = "owninguser";
-			public const string Appointment_Annotation = "objectid";
-			public const string business_unit_annotations = "owningbusinessunit";
-			public const string Calendar_Annotation = "objectid";
-			public const string Campaign_Annotation = "objectid";
-			public const string CampaignActivity_Annotation = "objectid";
-			public const string CampaignResponse_Annotation = "objectid";
-			public const string channelaccessprofile_Annotations = "objectid";
-			public const string Competitor_Annotation = "objectid";
-			public const string Contact_Annotation = "objectid";
-			public const string Contract_Annotation = "objectid";
-			public const string ContractDetail_Annotation = "objectid";
-			public const string ConvertRule_Annotation = "objectid";
-			public const string DuplicateRule_Annotation = "objectid";
-			public const string Email_Annotation = "objectid";
-			public const string EmailServerProfile_Annotation = "objectid";
-			public const string entitlement_Annotations = "objectid";
-			public const string entitlementchannel_Annotations = "objectid";
-			public const string entitlementtemplate_Annotations = "objectid";
-			public const string Equipment_Annotation = "objectid";
-			public const string Fax_Annotation = "objectid";
-			public const string Goal_Annotation = "objectid";
-			public const string Incident_Annotation = "objectid";
-			public const string IncidentResolution_Annotation = "objectid";
-			public const string Invoice_Annotation = "objectid";
-			public const string KbArticle_Annotation = "objectid";
-			public const string knowledgearticle_Annotations = "objectid";
-			public const string KnowledgeBaseRecord_Annotations = "objectid";
-			public const string Lead_Annotation = "objectid";
-			public const string Letter_Annotation = "objectid";
-			public const string List_Annotation = "objectid";
-			public const string lk_annotationbase_createdby = "createdby";
-			public const string lk_annotationbase_createdonbehalfby = "createdonbehalfby";
-			public const string lk_annotationbase_modifiedby = "modifiedby";
-			public const string lk_annotationbase_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_externalparty_annotation_createdby = "createdbyexternalparty";
-			public const string lk_externalparty_annotation_modifiedby = "modifiedbyexternalparty";
-			public const string Mailbox_Annotation = "objectid";
-			public const string msdyn_postalbum_Annotations = "objectid";
-			public const string Opportunity_Annotation = "objectid";
-			public const string OpportunityClose_Annotation = "objectid";
-			public const string OrderClose_Annotation = "objectid";
-			public const string PhoneCall_Annotation = "objectid";
-			public const string Product_Annotation = "objectid";
-			public const string profilerule_Annotations = "objectid";
-			public const string profileruleitem_Annotations = "objectid";
-			public const string Quote_Annotation = "objectid";
-			public const string QuoteClose_Annotation = "objectid";
-			public const string RecurringAppointmentMaster_Annotation = "objectid";
-			public const string ResourceSpec_Annotation = "objectid";
-			public const string routingrule_Annotation = "objectid";
-			public const string routingruleitem_Annotation = "objectid";
-			public const string SalesOrder_Annotation = "objectid";
-			public const string Service_Annotation = "objectid";
-			public const string ServiceAppointment_Annotation = "objectid";
-			public const string SharePointDocument_Annotation = "objectid";
-			public const string sla_Annotation = "objectid";
-			public const string SocialActivity_Annotation = "objectid";
-			public const string Task_Annotation = "objectid";
-			public const string team_annotations = "owningteam";
-			public const string Workflow_Annotation = "objectid";
+			public const string Account_Annotation = "Account_Annotation";
+			public const string annotation_owning_user = "annotation_owning_user";
+			public const string Appointment_Annotation = "Appointment_Annotation";
+			public const string business_unit_annotations = "business_unit_annotations";
+			public const string Calendar_Annotation = "Calendar_Annotation";
+			public const string Campaign_Annotation = "Campaign_Annotation";
+			public const string CampaignActivity_Annotation = "CampaignActivity_Annotation";
+			public const string CampaignResponse_Annotation = "CampaignResponse_Annotation";
+			public const string channelaccessprofile_Annotations = "channelaccessprofile_Annotations";
+			public const string Competitor_Annotation = "Competitor_Annotation";
+			public const string Contact_Annotation = "Contact_Annotation";
+			public const string Contract_Annotation = "Contract_Annotation";
+			public const string ContractDetail_Annotation = "ContractDetail_Annotation";
+			public const string ConvertRule_Annotation = "ConvertRule_Annotation";
+			public const string DuplicateRule_Annotation = "DuplicateRule_Annotation";
+			public const string Email_Annotation = "Email_Annotation";
+			public const string EmailServerProfile_Annotation = "EmailServerProfile_Annotation";
+			public const string entitlement_Annotations = "entitlement_Annotations";
+			public const string entitlementchannel_Annotations = "entitlementchannel_Annotations";
+			public const string entitlementtemplate_Annotations = "entitlementtemplate_Annotations";
+			public const string Equipment_Annotation = "Equipment_Annotation";
+			public const string Fax_Annotation = "Fax_Annotation";
+			public const string Goal_Annotation = "Goal_Annotation";
+			public const string Incident_Annotation = "Incident_Annotation";
+			public const string IncidentResolution_Annotation = "IncidentResolution_Annotation";
+			public const string Invoice_Annotation = "Invoice_Annotation";
+			public const string KbArticle_Annotation = "KbArticle_Annotation";
+			public const string knowledgearticle_Annotations = "knowledgearticle_Annotations";
+			public const string KnowledgeBaseRecord_Annotations = "KnowledgeBaseRecord_Annotations";
+			public const string Lead_Annotation = "Lead_Annotation";
+			public const string Letter_Annotation = "Letter_Annotation";
+			public const string List_Annotation = "List_Annotation";
+			public const string lk_annotationbase_createdby = "lk_annotationbase_createdby";
+			public const string lk_annotationbase_createdonbehalfby = "lk_annotationbase_createdonbehalfby";
+			public const string lk_annotationbase_modifiedby = "lk_annotationbase_modifiedby";
+			public const string lk_annotationbase_modifiedonbehalfby = "lk_annotationbase_modifiedonbehalfby";
+			public const string Mailbox_Annotation = "Mailbox_Annotation";
+			public const string msdyn_postalbum_Annotations = "msdyn_postalbum_Annotations";
+			public const string Opportunity_Annotation = "Opportunity_Annotation";
+			public const string OpportunityClose_Annotation = "OpportunityClose_Annotation";
+			public const string OrderClose_Annotation = "OrderClose_Annotation";
+			public const string PhoneCall_Annotation = "PhoneCall_Annotation";
+			public const string Product_Annotation = "Product_Annotation";
+			public const string profilerule_Annotations = "profilerule_Annotations";
+			public const string profileruleitem_Annotations = "profileruleitem_Annotations";
+			public const string Quote_Annotation = "Quote_Annotation";
+			public const string QuoteClose_Annotation = "QuoteClose_Annotation";
+			public const string RecurringAppointmentMaster_Annotation = "RecurringAppointmentMaster_Annotation";
+			public const string ResourceSpec_Annotation = "ResourceSpec_Annotation";
+			public const string routingrule_Annotation = "routingrule_Annotation";
+			public const string routingruleitem_Annotation = "routingruleitem_Annotation";
+			public const string SalesOrder_Annotation = "SalesOrder_Annotation";
+			public const string Service_Annotation = "Service_Annotation";
+			public const string ServiceAppointment_Annotation = "ServiceAppointment_Annotation";
+			public const string SharePointDocument_Annotation = "SharePointDocument_Annotation";
+			public const string sla_Annotation = "sla_Annotation";
+			public const string SocialActivity_Annotation = "SocialActivity_Annotation";
+			public const string Task_Annotation = "Task_Annotation";
+			public const string team_annotations = "team_annotations";
+			public const string Workflow_Annotation = "Workflow_Annotation";
 		}
 
 		
@@ -203,18 +199,12 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
-		}
-		
-		/// <summary>
-		/// Shows the external party who created the record.
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdbyexternalparty")]
-		public Microsoft.Xrm.Sdk.EntityReference CreatedByExternalParty
-		{
 			[System.Diagnostics.DebuggerNonUserCode()]
-			get
+			set
 			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdbyexternalparty");
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
 			}
 		}
 		
@@ -228,6 +218,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -395,18 +392,12 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
-		}
-		
-		/// <summary>
-		/// Shows the external party who modified the record.
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedbyexternalparty")]
-		public Microsoft.Xrm.Sdk.EntityReference ModifiedByExternalParty
-		{
 			[System.Diagnostics.DebuggerNonUserCode()]
-			get
+			set
 			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedbyexternalparty");
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
 			}
 		}
 		
@@ -420,6 +411,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -554,6 +552,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -567,6 +572,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -579,6 +591,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -748,6 +767,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("annotation_owning_user", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("annotation_owning_user");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("annotation_owning_user", null, value);
+				this.OnPropertyChanged("annotation_owning_user");
+			}
 		}
 		
 		/// <summary>
@@ -782,6 +808,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_annotations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_annotations");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_annotations", null, value);
+				this.OnPropertyChanged("business_unit_annotations");
 			}
 		}
 		
@@ -1385,6 +1418,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_annotationbase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_annotationbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_annotationbase_createdby", null, value);
+				this.OnPropertyChanged("lk_annotationbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -1420,6 +1460,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_annotationbase_modifiedby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_annotationbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_annotationbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_annotationbase_modifiedby");
+			}
 		}
 		
 		/// <summary>
@@ -1440,34 +1487,6 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("lk_annotationbase_modifiedonbehalfby");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_annotationbase_modifiedonbehalfby", null, value);
 				this.OnPropertyChanged("lk_annotationbase_modifiedonbehalfby");
-			}
-		}
-		
-		/// <summary>
-		/// N:1 lk_externalparty_annotation_createdby
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdbyexternalparty")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_annotation_createdby")]
-		public DLaB.Xrm.Entities.ExternalParty lk_externalparty_annotation_createdby
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_annotation_createdby", null);
-			}
-		}
-		
-		/// <summary>
-		/// N:1 lk_externalparty_annotation_modifiedby
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedbyexternalparty")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_annotation_modifiedby")]
-		public DLaB.Xrm.Entities.ExternalParty lk_externalparty_annotation_modifiedby
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_annotation_modifiedby", null);
 			}
 		}
 		
@@ -1944,6 +1963,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_annotations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_annotations");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_annotations", null, value);
+				this.OnPropertyChanged("team_annotations");
 			}
 		}
 		

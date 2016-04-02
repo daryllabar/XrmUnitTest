@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("postlike")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class PostLike : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -30,10 +30,10 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "postlikeid";
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
-			public const string lk_postlike_createdby = "createdby";
-			public const string lk_postlike_createdonbehalfby = "createdonbehalfby";
-			public const string organization_postlike = "organizationid";
-			public const string Post_Likes = "postid";
+			public const string lk_postlike_createdby = "lk_postlike_createdby";
+			public const string lk_postlike_createdonbehalfby = "lk_postlike_createdonbehalfby";
+			public const string organization_postlike = "organization_postlike";
+			public const string Post_Likes = "Post_Likes";
 		}
 
 		
@@ -83,6 +83,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -95,6 +102,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -245,6 +259,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_postlike_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_postlike_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_postlike_createdby", null, value);
+				this.OnPropertyChanged("lk_postlike_createdby");
 			}
 		}
 		

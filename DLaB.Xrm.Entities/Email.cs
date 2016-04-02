@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum EmailState
 	{
 		
@@ -30,7 +30,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("email")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class Email : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -107,44 +107,44 @@ namespace DLaB.Xrm.Entities
 			public const string TraversedPath = "traversedpath";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string Account_Email_EmailSender = "emailsender";
-			public const string Account_Email_SendersAccount = "sendersaccount";
-			public const string Account_Emails = "regardingobjectid";
-			public const string activity_pointer_email = "activityid";
-			public const string AsyncOperation_Emails = "regardingobjectid";
-			public const string BulkOperation_Email = "regardingobjectid";
-			public const string business_unit_email_activities = "owningbusinessunit";
-			public const string Campaign_Emails = "regardingobjectid";
-			public const string CampaignActivity_Emails = "regardingobjectid";
-			public const string Contact_Email_EmailSender = "emailsender";
-			public const string Contact_Emails = "regardingobjectid";
-			public const string Contract_Emails = "regardingobjectid";
-			public const string Referencingemail_email_parentactivityid = "parentactivityid";
-			public const string email_sendermailboxid_mailbox = "sendermailboxid";
-			public const string entitlement_Emails = "regardingobjectid";
-			public const string entitlementtemplate_Emails = "regardingobjectid";
-			public const string Equipment_Email_EmailSender = "emailsender";
-			public const string Incident_Emails = "regardingobjectid";
-			public const string Invoice_Emails = "regardingobjectid";
-			public const string KnowledgeArticle_Emails = "regardingobjectid";
-			public const string KnowledgeBaseRecord_Emails = "regardingobjectid";
-			public const string Lead_Email_EmailSender = "emailsender";
-			public const string Lead_Emails = "regardingobjectid";
-			public const string lk_email_createdby = "createdby";
-			public const string lk_email_createdonbehalfby = "createdonbehalfby";
-			public const string lk_email_modifiedby = "modifiedby";
-			public const string lk_email_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string msdyn_postalbum_Emails = "regardingobjectid";
-			public const string Opportunity_Emails = "regardingobjectid";
-			public const string processstage_emails = "stageid";
-			public const string Queue_Email_EmailSender = "emailsender";
-			public const string Quote_Emails = "regardingobjectid";
-			public const string SalesOrder_Emails = "regardingobjectid";
-			public const string service_emails = "serviceid";
-			public const string SystemUser_Email_EmailSender = "emailsender";
-			public const string team_email = "owningteam";
-			public const string TransactionCurrency_Email = "transactioncurrencyid";
-			public const string user_email = "owninguser";
+			public const string Account_Email_EmailSender = "Account_Email_EmailSender";
+			public const string Account_Email_SendersAccount = "Account_Email_SendersAccount";
+			public const string Account_Emails = "Account_Emails";
+			public const string activity_pointer_email = "activity_pointer_email";
+			public const string AsyncOperation_Emails = "AsyncOperation_Emails";
+			public const string BulkOperation_Email = "BulkOperation_Email";
+			public const string business_unit_email_activities = "business_unit_email_activities";
+			public const string Campaign_Emails = "Campaign_Emails";
+			public const string CampaignActivity_Emails = "CampaignActivity_Emails";
+			public const string Contact_Email_EmailSender = "Contact_Email_EmailSender";
+			public const string Contact_Emails = "Contact_Emails";
+			public const string Contract_Emails = "Contract_Emails";
+			public const string Referencingemail_email_parentactivityid = "email_email_parentactivityid";
+			public const string email_sendermailboxid_mailbox = "email_sendermailboxid_mailbox";
+			public const string entitlement_Emails = "entitlement_Emails";
+			public const string entitlementtemplate_Emails = "entitlementtemplate_Emails";
+			public const string Equipment_Email_EmailSender = "Equipment_Email_EmailSender";
+			public const string Incident_Emails = "Incident_Emails";
+			public const string Invoice_Emails = "Invoice_Emails";
+			public const string KnowledgeArticle_Emails = "KnowledgeArticle_Emails";
+			public const string KnowledgeBaseRecord_Emails = "KnowledgeBaseRecord_Emails";
+			public const string Lead_Email_EmailSender = "Lead_Email_EmailSender";
+			public const string Lead_Emails = "Lead_Emails";
+			public const string lk_email_createdby = "lk_email_createdby";
+			public const string lk_email_createdonbehalfby = "lk_email_createdonbehalfby";
+			public const string lk_email_modifiedby = "lk_email_modifiedby";
+			public const string lk_email_modifiedonbehalfby = "lk_email_modifiedonbehalfby";
+			public const string msdyn_postalbum_Emails = "msdyn_postalbum_Emails";
+			public const string Opportunity_Emails = "Opportunity_Emails";
+			public const string processstage_emails = "processstage_emails";
+			public const string Queue_Email_EmailSender = "Queue_Email_EmailSender";
+			public const string Quote_Emails = "Quote_Emails";
+			public const string SalesOrder_Emails = "SalesOrder_Emails";
+			public const string service_emails = "service_emails";
+			public const string SystemUser_Email_EmailSender = "SystemUser_Email_EmailSender";
+			public const string team_email = "team_email";
+			public const string TransactionCurrency_Email = "TransactionCurrency_Email";
+			public const string user_email = "user_email";
 		}
 
 		
@@ -474,6 +474,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -486,6 +493,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -842,6 +856,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -854,6 +875,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -948,6 +976,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -961,6 +996,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -973,6 +1015,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1949,6 +1998,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_email_activities", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_email_activities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_email_activities", null, value);
+				this.OnPropertyChanged("business_unit_email_activities");
+			}
 		}
 		
 		/// <summary>
@@ -2271,6 +2327,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_email_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_email_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_email_createdby", null, value);
+				this.OnPropertyChanged("lk_email_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -2305,6 +2368,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_email_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_email_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_email_modifiedby", null, value);
+				this.OnPropertyChanged("lk_email_modifiedby");
 			}
 		}
 		
@@ -2495,6 +2565,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_email", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_email");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_email", null, value);
+				this.OnPropertyChanged("team_email");
+			}
 		}
 		
 		/// <summary>
@@ -2529,6 +2606,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_email", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_email");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_email", null, value);
+				this.OnPropertyChanged("user_email");
 			}
 		}
 		
@@ -2575,22 +2659,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("correlationmethod")]
-		public virtual email_correlationmethod? CorrelationMethodEnum
+		public virtual Email_CorrelationMethod? CorrelationMethodEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((email_correlationmethod?)(EntityOptionSetEnum.GetEnum(this, "correlationmethod")));
+				return ((Email_CorrelationMethod?)(EntityOptionSetEnum.GetEnum(this, "correlationmethod")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("deliveryprioritycode")]
-		public virtual activitypointer_deliveryprioritycode? DeliveryPriorityCodeEnum
+		public virtual activitypointer_DeliveryPriorityCode? DeliveryPriorityCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((activitypointer_deliveryprioritycode?)(EntityOptionSetEnum.GetEnum(this, "deliveryprioritycode")));
+				return ((activitypointer_DeliveryPriorityCode?)(EntityOptionSetEnum.GetEnum(this, "deliveryprioritycode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2600,12 +2684,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("notifications")]
-		public virtual email_notifications? NotificationsEnum
+		public virtual Email_Notifications? NotificationsEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((email_notifications?)(EntityOptionSetEnum.GetEnum(this, "notifications")));
+				return ((Email_Notifications?)(EntityOptionSetEnum.GetEnum(this, "notifications")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2615,12 +2699,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("prioritycode")]
-		public virtual email_prioritycode? PriorityCodeEnum
+		public virtual Email_PriorityCode? PriorityCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((email_prioritycode?)(EntityOptionSetEnum.GetEnum(this, "prioritycode")));
+				return ((Email_PriorityCode?)(EntityOptionSetEnum.GetEnum(this, "prioritycode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2630,12 +2714,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual email_statuscode? StatusCodeEnum
+		public virtual Email_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((email_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((Email_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

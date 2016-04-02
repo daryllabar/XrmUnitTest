@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum MailboxState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("mailbox")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class Mailbox : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -120,17 +120,17 @@ namespace DLaB.Xrm.Entities
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VerboseLoggingEnabled = "verboseloggingenabled";
 			public const string VersionNumber = "versionnumber";
-			public const string business_unit_mailbox = "owningbusinessunit";
-			public const string emailserverprofile_mailbox = "emailserverprofile";
-			public const string lk_mailbox_createdby = "createdby";
-			public const string lk_mailbox_createdonbehalfby = "createdonbehalfby";
-			public const string lk_mailbox_modifiedby = "modifiedby";
-			public const string lk_mailbox_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string mailbox_regarding_queue = "regardingobjectid";
-			public const string mailbox_regarding_systemuser = "regardingobjectid";
-			public const string organization_mailbox = "organizationid";
-			public const string team_mailbox = "owningteam";
-			public const string user_mailbox = "owninguser";
+			public const string business_unit_mailbox = "business_unit_mailbox";
+			public const string emailserverprofile_mailbox = "emailserverprofile_mailbox";
+			public const string lk_mailbox_createdby = "lk_mailbox_createdby";
+			public const string lk_mailbox_createdonbehalfby = "lk_mailbox_createdonbehalfby";
+			public const string lk_mailbox_modifiedby = "lk_mailbox_modifiedby";
+			public const string lk_mailbox_modifiedonbehalfby = "lk_mailbox_modifiedonbehalfby";
+			public const string mailbox_regarding_queue = "mailbox_regarding_queue";
+			public const string mailbox_regarding_systemuser = "mailbox_regarding_systemuser";
+			public const string organization_mailbox = "organization_mailbox";
+			public const string team_mailbox = "team_mailbox";
+			public const string user_mailbox = "user_mailbox";
 		}
 
 		
@@ -246,6 +246,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -258,6 +265,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -916,6 +930,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -928,6 +949,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -1160,6 +1188,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -1173,6 +1208,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -1185,6 +1227,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1865,6 +1914,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_mailbox", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_mailbox");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_mailbox", null, value);
+				this.OnPropertyChanged("business_unit_mailbox");
+			}
 		}
 		
 		/// <summary>
@@ -1900,6 +1956,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_mailbox_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_mailbox_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_mailbox_createdby", null, value);
+				this.OnPropertyChanged("lk_mailbox_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -1934,6 +1997,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_mailbox_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_mailbox_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_mailbox_modifiedby", null, value);
+				this.OnPropertyChanged("lk_mailbox_modifiedby");
 			}
 		}
 		
@@ -2012,6 +2082,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_mailbox", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_mailbox");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_mailbox", null, value);
+				this.OnPropertyChanged("team_mailbox");
+			}
 		}
 		
 		/// <summary>
@@ -2025,6 +2102,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_mailbox", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_mailbox");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_mailbox", null, value);
+				this.OnPropertyChanged("user_mailbox");
 			}
 		}
 		
@@ -2071,12 +2155,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("actdeliverymethod")]
-		public virtual mailbox_actdeliverymethod? ACTDeliveryMethodEnum
+		public virtual Mailbox_ACTDeliveryMethod? ACTDeliveryMethodEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((mailbox_actdeliverymethod?)(EntityOptionSetEnum.GetEnum(this, "actdeliverymethod")));
+				return ((Mailbox_ACTDeliveryMethod?)(EntityOptionSetEnum.GetEnum(this, "actdeliverymethod")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2086,22 +2170,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("actstatus")]
-		public virtual mailbox_actstatus? ACTStatusEnum
+		public virtual Mailbox_ACTStatus? ACTStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((mailbox_actstatus?)(EntityOptionSetEnum.GetEnum(this, "actstatus")));
+				return ((Mailbox_ACTStatus?)(EntityOptionSetEnum.GetEnum(this, "actstatus")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("emailrouteraccessapproval")]
-		public virtual mailbox_emailrouteraccessapproval? EmailRouterAccessApprovalEnum
+		public virtual Mailbox_EmailRouterAccessApproval? EmailRouterAccessApprovalEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((mailbox_emailrouteraccessapproval?)(EntityOptionSetEnum.GetEnum(this, "emailrouteraccessapproval")));
+				return ((Mailbox_EmailRouterAccessApproval?)(EntityOptionSetEnum.GetEnum(this, "emailrouteraccessapproval")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2111,12 +2195,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("incomingemaildeliverymethod")]
-		public virtual mailbox_incomingemaildeliverymethod? IncomingEmailDeliveryMethodEnum
+		public virtual Mailbox_IncomingEmailDeliveryMethod? IncomingEmailDeliveryMethodEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((mailbox_incomingemaildeliverymethod?)(EntityOptionSetEnum.GetEnum(this, "incomingemaildeliverymethod")));
+				return ((Mailbox_IncomingEmailDeliveryMethod?)(EntityOptionSetEnum.GetEnum(this, "incomingemaildeliverymethod")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2126,22 +2210,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("incomingemailstatus")]
-		public virtual mailbox_incomingemailstatus? IncomingEmailStatusEnum
+		public virtual Mailbox_IncomingEmailStatus? IncomingEmailStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((mailbox_incomingemailstatus?)(EntityOptionSetEnum.GetEnum(this, "incomingemailstatus")));
+				return ((Mailbox_IncomingEmailStatus?)(EntityOptionSetEnum.GetEnum(this, "incomingemailstatus")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("officeappsdeploymentstatus")]
-		public virtual mailbox_officeappsdeploymentstatus? OfficeAppsDeploymentStatusEnum
+		public virtual Mailbox_OfficeAppsDeploymentStatus? OfficeAppsDeploymentStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((mailbox_officeappsdeploymentstatus?)(EntityOptionSetEnum.GetEnum(this, "officeappsdeploymentstatus")));
+				return ((Mailbox_OfficeAppsDeploymentStatus?)(EntityOptionSetEnum.GetEnum(this, "officeappsdeploymentstatus")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2151,12 +2235,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("outgoingemaildeliverymethod")]
-		public virtual mailbox_outgoingemaildeliverymethod? OutgoingEmailDeliveryMethodEnum
+		public virtual Mailbox_OutgoingEmailDeliveryMethod? OutgoingEmailDeliveryMethodEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((mailbox_outgoingemaildeliverymethod?)(EntityOptionSetEnum.GetEnum(this, "outgoingemaildeliverymethod")));
+				return ((Mailbox_OutgoingEmailDeliveryMethod?)(EntityOptionSetEnum.GetEnum(this, "outgoingemaildeliverymethod")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2166,22 +2250,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("outgoingemailstatus")]
-		public virtual mailbox_outgoingemailstatus? OutgoingEmailStatusEnum
+		public virtual Mailbox_OutgoingEmailStatus? OutgoingEmailStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((mailbox_outgoingemailstatus?)(EntityOptionSetEnum.GetEnum(this, "outgoingemailstatus")));
+				return ((Mailbox_OutgoingEmailStatus?)(EntityOptionSetEnum.GetEnum(this, "outgoingemailstatus")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual mailbox_statuscode? StatusCodeEnum
+		public virtual Mailbox_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((mailbox_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((Mailbox_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

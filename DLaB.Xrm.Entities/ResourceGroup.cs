@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("resourcegroup")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ResourceGroup : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -29,10 +29,10 @@ namespace DLaB.Xrm.Entities
 			public const string ResourceGroupId = "resourcegroupid";
 			public const string Id = "resourcegroupid";
 			public const string VersionNumber = "versionnumber";
-			public const string business_unit_resource_groups = "businessunitid";
-			public const string constraintbasedgroup_resource_groups = "resourcegroupid";
-			public const string organization_resource_groups = "organizationid";
-			public const string team_resource_groups = "resourcegroupid";
+			public const string business_unit_resource_groups = "business_unit_resource_groups";
+			public const string constraintbasedgroup_resource_groups = "constraintbasedgroup_resource_groups";
+			public const string organization_resource_groups = "organization_resource_groups";
+			public const string team_resource_groups = "team_resource_groups";
 		}
 
 		
@@ -473,12 +473,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("grouptypecode")]
-		public virtual constraintbasedgroup_grouptypecode? GroupTypeCodeEnum
+		public virtual ResourceGroup_GroupTypeCode? GroupTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((constraintbasedgroup_grouptypecode?)(EntityOptionSetEnum.GetEnum(this, "grouptypecode")));
+				return ((ResourceGroup_GroupTypeCode?)(EntityOptionSetEnum.GetEnum(this, "grouptypecode")));
 			}
 		}
 	}

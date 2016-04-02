@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("fixedmonthlyfiscalcalendar")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class FixedMonthlyFiscalCalendar : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -63,12 +63,12 @@ namespace DLaB.Xrm.Entities
 			public const string UserFiscalCalendarId = "userfiscalcalendarid";
 			public const string Id = "userfiscalcalendarid";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
-			public const string lk_fixedmonthlyfiscalcalendar_createdby = "createdby";
-			public const string lk_fixedmonthlyfiscalcalendar_createdonbehalfby = "createdonbehalfby";
-			public const string lk_fixedmonthlyfiscalcalendar_modifiedby = "modifiedby";
-			public const string lk_fixedmonthlyfiscalcalendar_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_fixedmonthlyfiscalcalendar_salespersonid = "salespersonid";
-			public const string transactioncurrency_fixedmonthlyfiscalcalendar = "transactioncurrencyid";
+			public const string lk_fixedmonthlyfiscalcalendar_createdby = "lk_fixedmonthlyfiscalcalendar_createdby";
+			public const string lk_fixedmonthlyfiscalcalendar_createdonbehalfby = "lk_fixedmonthlyfiscalcalendar_createdonbehalfby";
+			public const string lk_fixedmonthlyfiscalcalendar_modifiedby = "lk_fixedmonthlyfiscalcalendar_modifiedby";
+			public const string lk_fixedmonthlyfiscalcalendar_modifiedonbehalfby = "lk_fixedmonthlyfiscalcalendar_modifiedonbehalfby";
+			public const string lk_fixedmonthlyfiscalcalendar_salespersonid = "lk_fixedmonthlyfiscalcalendar_salespersonid";
+			public const string transactioncurrency_fixedmonthlyfiscalcalendar = "transactioncurrency_fixedmonthlyfiscalcalendar";
 		}
 
 		
@@ -131,6 +131,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -143,6 +150,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -223,6 +237,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -235,6 +256,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -862,6 +890,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_fixedmonthlyfiscalcalendar_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_fixedmonthlyfiscalcalendar_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_fixedmonthlyfiscalcalendar_createdby", null, value);
+				this.OnPropertyChanged("lk_fixedmonthlyfiscalcalendar_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -896,6 +931,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_fixedmonthlyfiscalcalendar_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_fixedmonthlyfiscalcalendar_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_fixedmonthlyfiscalcalendar_modifiedby", null, value);
+				this.OnPropertyChanged("lk_fixedmonthlyfiscalcalendar_modifiedby");
 			}
 		}
 		

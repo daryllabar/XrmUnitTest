@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("usersettings")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class UserSettings : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -114,13 +114,13 @@ namespace DLaB.Xrm.Entities
 			public const string VisualizationPaneLayout = "visualizationpanelayout";
 			public const string WorkdayStartTime = "workdaystarttime";
 			public const string WorkdayStopTime = "workdaystoptime";
-			public const string business_unit_user_settings = "businessunitid";
-			public const string lk_usersettings_createdonbehalfby = "createdonbehalfby";
-			public const string lk_usersettings_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_usersettingsbase_createdby = "createdby";
-			public const string lk_usersettingsbase_modifiedby = "modifiedby";
-			public const string transactioncurrency_usersettings = "transactioncurrencyid";
-			public const string user_settings = "systemuserid";
+			public const string business_unit_user_settings = "business_unit_user_settings";
+			public const string lk_usersettings_createdonbehalfby = "lk_usersettings_createdonbehalfby";
+			public const string lk_usersettings_modifiedonbehalfby = "lk_usersettings_modifiedonbehalfby";
+			public const string lk_usersettingsbase_createdby = "lk_usersettingsbase_createdby";
+			public const string lk_usersettingsbase_modifiedby = "lk_usersettingsbase_modifiedby";
+			public const string transactioncurrency_usersettings = "transactioncurrency_usersettings";
+			public const string user_settings = "user_settings";
 		}
 
 		
@@ -304,6 +304,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -316,6 +323,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -939,6 +953,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -951,6 +972,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -2046,6 +2074,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_usersettingsbase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_usersettingsbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_usersettingsbase_createdby", null, value);
+				this.OnPropertyChanged("lk_usersettingsbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -2059,6 +2094,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_usersettingsbase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_usersettingsbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_usersettingsbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_usersettingsbase_modifiedby");
 			}
 		}
 		
@@ -2147,12 +2189,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("datavalidationmodeforexporttoexcel")]
-		public virtual usersettings_datavalidationmodeforexporttoexcel? DataValidationModeForExportToExcelEnum
+		public virtual UserSettings_DataValidationModeForExportToExcel? DataValidationModeForExportToExcelEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((usersettings_datavalidationmodeforexporttoexcel?)(EntityOptionSetEnum.GetEnum(this, "datavalidationmodeforexporttoexcel")));
+				return ((UserSettings_DataValidationModeForExportToExcel?)(EntityOptionSetEnum.GetEnum(this, "datavalidationmodeforexporttoexcel")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2162,12 +2204,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("entityformmode")]
-		public virtual usersettings_entityformmode? EntityFormModeEnum
+		public virtual UserSettings_EntityFormMode? EntityFormModeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((usersettings_entityformmode?)(EntityOptionSetEnum.GetEnum(this, "entityformmode")));
+				return ((UserSettings_EntityFormMode?)(EntityOptionSetEnum.GetEnum(this, "entityformmode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2177,12 +2219,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("incomingemailfilteringmethod")]
-		public virtual usersettings_incomingemailfilteringmethod? IncomingEmailFilteringMethodEnum
+		public virtual UserSettings_IncomingEmailFilteringMethod? IncomingEmailFilteringMethodEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((usersettings_incomingemailfilteringmethod?)(EntityOptionSetEnum.GetEnum(this, "incomingemailfilteringmethod")));
+				return ((UserSettings_IncomingEmailFilteringMethod?)(EntityOptionSetEnum.GetEnum(this, "incomingemailfilteringmethod")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2192,12 +2234,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("reportscripterrors")]
-		public virtual usersettings_reportscripterrors? ReportScriptErrorsEnum
+		public virtual UserSettings_ReportScriptErrors? ReportScriptErrorsEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((usersettings_reportscripterrors?)(EntityOptionSetEnum.GetEnum(this, "reportscripterrors")));
+				return ((UserSettings_ReportScriptErrors?)(EntityOptionSetEnum.GetEnum(this, "reportscripterrors")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2207,12 +2249,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("visualizationpanelayout")]
-		public virtual usersettings_visualizationpanelayout? VisualizationPaneLayoutEnum
+		public virtual UserSettings_VisualizationPaneLayout? VisualizationPaneLayoutEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((usersettings_visualizationpanelayout?)(EntityOptionSetEnum.GetEnum(this, "visualizationpanelayout")));
+				return ((UserSettings_VisualizationPaneLayout?)(EntityOptionSetEnum.GetEnum(this, "visualizationpanelayout")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

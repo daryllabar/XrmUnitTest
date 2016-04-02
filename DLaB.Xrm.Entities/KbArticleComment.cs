@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("kbarticlecomment")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class KbArticleComment : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -34,11 +34,11 @@ namespace DLaB.Xrm.Entities
 			public const string OrganizationId = "organizationid";
 			public const string Title = "title";
 			public const string VersionNumber = "versionnumber";
-			public const string kbarticle_comments = "kbarticleid";
-			public const string lk_kbarticlecomment_createdonbehalfby = "createdonbehalfby";
-			public const string lk_kbarticlecomment_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_kbarticlecommentbase_createdby = "createdby";
-			public const string lk_kbarticlecommentbase_modifiedby = "modifiedby";
+			public const string kbarticle_comments = "kbarticle_comments";
+			public const string lk_kbarticlecomment_createdonbehalfby = "lk_kbarticlecomment_createdonbehalfby";
+			public const string lk_kbarticlecomment_modifiedonbehalfby = "lk_kbarticlecomment_modifiedonbehalfby";
+			public const string lk_kbarticlecommentbase_createdby = "lk_kbarticlecommentbase_createdby";
+			public const string lk_kbarticlecommentbase_modifiedby = "lk_kbarticlecommentbase_modifiedby";
 		}
 
 		
@@ -108,6 +108,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -120,6 +127,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -217,6 +231,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -229,6 +250,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -453,6 +481,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_kbarticlecommentbase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_kbarticlecommentbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_kbarticlecommentbase_createdby", null, value);
+				this.OnPropertyChanged("lk_kbarticlecommentbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -466,6 +501,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_kbarticlecommentbase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_kbarticlecommentbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_kbarticlecommentbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_kbarticlecommentbase_modifiedby");
 			}
 		}
 		

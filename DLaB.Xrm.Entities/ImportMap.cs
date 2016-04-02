@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum ImportMapState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("importmap")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ImportMap : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -60,13 +60,13 @@ namespace DLaB.Xrm.Entities
 			public const string StatusCode = "statuscode";
 			public const string TargetEntity = "targetentity";
 			public const string TargetUserIdentifierForSourceCRMUserLink = "targetuseridentifierforsourcecrmuserlink";
-			public const string BusinessUnit_ImportMaps = "owningbusinessunit";
-			public const string lk_importmap_createdonbehalfby = "createdonbehalfby";
-			public const string lk_importmap_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_importmapbase_createdby = "createdby";
-			public const string lk_importmapbase_modifiedby = "modifiedby";
-			public const string SystemUser_ImportMaps = "owninguser";
-			public const string team_ImportMaps = "owningteam";
+			public const string BusinessUnit_ImportMaps = "BusinessUnit_ImportMaps";
+			public const string lk_importmap_createdonbehalfby = "lk_importmap_createdonbehalfby";
+			public const string lk_importmap_modifiedonbehalfby = "lk_importmap_modifiedonbehalfby";
+			public const string lk_importmapbase_createdby = "lk_importmapbase_createdby";
+			public const string lk_importmapbase_modifiedby = "lk_importmapbase_modifiedby";
+			public const string SystemUser_ImportMaps = "SystemUser_ImportMaps";
+			public const string team_ImportMaps = "team_ImportMaps";
 		}
 
 		
@@ -116,6 +116,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -128,6 +135,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -318,6 +332,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -330,6 +351,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -404,6 +432,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -417,6 +452,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -429,6 +471,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -772,6 +821,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("BusinessUnit_ImportMaps", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("BusinessUnit_ImportMaps");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("BusinessUnit_ImportMaps", null, value);
+				this.OnPropertyChanged("BusinessUnit_ImportMaps");
+			}
 		}
 		
 		/// <summary>
@@ -828,6 +884,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_importmapbase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_importmapbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_importmapbase_createdby", null, value);
+				this.OnPropertyChanged("lk_importmapbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -841,6 +904,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_importmapbase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_importmapbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_importmapbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_importmapbase_modifiedby");
 			}
 		}
 		
@@ -856,6 +926,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("SystemUser_ImportMaps", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SystemUser_ImportMaps");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("SystemUser_ImportMaps", null, value);
+				this.OnPropertyChanged("SystemUser_ImportMaps");
+			}
 		}
 		
 		/// <summary>
@@ -869,6 +946,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_ImportMaps", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_ImportMaps");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_ImportMaps", null, value);
+				this.OnPropertyChanged("team_ImportMaps");
 			}
 		}
 		
@@ -915,12 +999,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("entitiesperfile")]
-		public virtual importmap_entitiesperfile? EntitiesPerFileEnum
+		public virtual ImportMap_EntitiesPerFile? EntitiesPerFileEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((importmap_entitiesperfile?)(EntityOptionSetEnum.GetEnum(this, "entitiesperfile")));
+				return ((ImportMap_EntitiesPerFile?)(EntityOptionSetEnum.GetEnum(this, "entitiesperfile")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -930,12 +1014,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("importmaptype")]
-		public virtual importmap_importmaptype? ImportMapTypeEnum
+		public virtual ImportMap_ImportMapType? ImportMapTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((importmap_importmaptype?)(EntityOptionSetEnum.GetEnum(this, "importmaptype")));
+				return ((ImportMap_ImportMapType?)(EntityOptionSetEnum.GetEnum(this, "importmaptype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -945,12 +1029,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sourcetype")]
-		public virtual importmap_sourcetype? SourceTypeEnum
+		public virtual ImportMap_SourceType? SourceTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((importmap_sourcetype?)(EntityOptionSetEnum.GetEnum(this, "sourcetype")));
+				return ((ImportMap_SourceType?)(EntityOptionSetEnum.GetEnum(this, "sourcetype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -960,12 +1044,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual importmap_statuscode? StatusCodeEnum
+		public virtual ImportMap_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((importmap_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((ImportMap_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -975,12 +1059,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("targetentity")]
-		public virtual importmap_targetentity? TargetEntityEnum
+		public virtual ImportMap_TargetEntity? TargetEntityEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((importmap_targetentity?)(EntityOptionSetEnum.GetEnum(this, "targetentity")));
+				return ((ImportMap_TargetEntity?)(EntityOptionSetEnum.GetEnum(this, "targetentity")));
 			}
 		}
 	}

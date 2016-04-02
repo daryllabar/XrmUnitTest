@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("bulkdeletefailure")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class BulkDeleteFailure : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -32,121 +32,121 @@ namespace DLaB.Xrm.Entities
 			public const string OwningBusinessUnit = "owningbusinessunit";
 			public const string OwningUser = "owninguser";
 			public const string RegardingObjectId = "regardingobjectid";
-			public const string Account_BulkDeleteFailures = "regardingobjectid";
-			public const string ActivityMimeAttachment_BulkDeleteFailures = "regardingobjectid";
-			public const string ActivityPointer_BulkDeleteFailures = "regardingobjectid";
-			public const string Annotation_BulkDeleteFailures = "regardingobjectid";
-			public const string AnnualFiscalCalendar_BulkDeleteFailures = "regardingobjectid";
-			public const string Appointment_BulkDeleteFailures = "regardingobjectid";
-			public const string AttributeMap_BulkDeleteFailures = "regardingobjectid";
-			public const string BulkDeleteOperation_BulkDeleteFailure = "bulkdeleteoperationid";
-			public const string BulkOperation_BulkDeleteFailures = "regardingobjectid";
-			public const string BulkOperationLog_BulkDeleteFailures = "regardingobjectid";
-			public const string BusinessUnit_BulkDeleteFailures = "regardingobjectid";
-			public const string BusinessUnitNewsArticle_BulkDeleteFailures = "regardingobjectid";
-			public const string Calendar_BulkDeleteFailures = "regardingobjectid";
-			public const string Campaign_BulkDeleteFailures = "regardingobjectid";
-			public const string CampaignActivity_BulkDeleteFailures = "regardingobjectid";
-			public const string CampaignResponse_BulkDeleteFailures = "regardingobjectid";
-			public const string channelaccessprofile_BulkDeleteFailures = "regardingobjectid";
-			public const string Competitor_BulkDeleteFailures = "regardingobjectid";
-			public const string ConstraintBasedGroup_BulkDeleteFailures = "regardingobjectid";
-			public const string Contact_BulkDeleteFailures = "regardingobjectid";
-			public const string Contract_BulkDeleteFailures = "regardingobjectid";
-			public const string ContractDetail_BulkDeleteFailures = "regardingobjectid";
-			public const string ContractTemplate_BulkDeleteFailures = "regardingobjectid";
-			public const string CustomerAddress_BulkDeleteFailures = "regardingobjectid";
-			public const string CustomerOpportunityRole_BulkDeleteFailures = "regardingobjectid";
-			public const string CustomerRelationship_BulkDeleteFailures = "regardingobjectid";
-			public const string Discount_BulkDeleteFailures = "regardingobjectid";
-			public const string DiscountType_BulkDeleteFailures = "regardingobjectid";
-			public const string DisplayString_BulkDeleteFailures = "regardingobjectid";
-			public const string Email_BulkDeleteFailures = "regardingobjectid";
-			public const string emailserverprofile_bulkdeletefailures = "regardingobjectid";
-			public const string entitlement_BulkDeleteFailures = "regardingobjectid";
-			public const string entitlementchannel_BulkDeleteFailures = "regardingobjectid";
-			public const string entitlementtemplate_BulkDeleteFailures = "regardingobjectid";
-			public const string EntityMap_BulkDeleteFailures = "regardingobjectid";
-			public const string Equipment_BulkDeleteFailures = "regardingobjectid";
-			public const string externalparty_BulkDeleteFailures = "regardingobjectid";
-			public const string externalpartyitem_BulkDeleteFailures = "regardingobjectid";
-			public const string Fax_BulkDeleteFailures = "regardingobjectid";
-			public const string FixedMonthlyFiscalCalendar_BulkDeleteFailures = "regardingobjectid";
-			public const string Import_BulkDeleteFailures = "regardingobjectid";
-			public const string ImportFile_BulkDeleteFailures = "regardingobjectid";
-			public const string ImportLog_BulkDeleteFailures = "regardingobjectid";
-			public const string ImportMap_BulkDeleteFailures = "regardingobjectid";
-			public const string Incident_BulkDeleteFailures = "regardingobjectid";
-			public const string IncidentResolution_BulkDeleteFailures = "regardingobjectid";
-			public const string Invoice_BulkDeleteFailures = "regardingobjectid";
-			public const string InvoiceDetail_BulkDeleteFailures = "regardingobjectid";
-			public const string IsvConfig_BulkDeleteFailures = "regardingobjectid";
-			public const string KbArticle_BulkDeleteFailures = "regardingobjectid";
-			public const string KbArticleComment_BulkDeleteFailures = "regardingobjectid";
-			public const string KbArticleTemplate_BulkDeleteFailures = "regardingobjectid";
-			public const string knowledgearticle_BulkDeleteFailures = "regardingobjectid";
-			public const string KnowledgeBaseRecord_BulkDeleteFailures = "regardingobjectid";
-			public const string Lead_BulkDeleteFailures = "regardingobjectid";
-			public const string Letter_BulkDeleteFailures = "regardingobjectid";
-			public const string List_BulkDeleteFailures = "regardingobjectid";
-			public const string MonthlyFiscalCalendar_BulkDeleteFailures = "regardingobjectid";
-			public const string msdyn_postalbum_BulkDeleteFailures = "regardingobjectid";
-			public const string msdyn_postconfig_BulkDeleteFailures = "regardingobjectid";
-			public const string msdyn_postruleconfig_BulkDeleteFailures = "regardingobjectid";
-			public const string msdyn_wallsavedquery_BulkDeleteFailures = "regardingobjectid";
-			public const string msdyn_wallsavedqueryusersettings_BulkDeleteFailures = "regardingobjectid";
-			public const string Opportunity_BulkDeleteFailures = "regardingobjectid";
-			public const string OpportunityClose_BulkDeleteFailures = "regardingobjectid";
-			public const string OpportunityProduct_BulkDeleteFailures = "regardingobjectid";
-			public const string OrderClose_BulkDeleteFailures = "regardingobjectid";
-			public const string Organization_BulkDeleteFailures = "regardingobjectid";
-			public const string PhoneCall_BulkDeleteFailures = "regardingobjectid";
-			public const string post_BulkDeleteFailures = "regardingobjectid";
-			public const string PriceLevel_BulkDeleteFailures = "regardingobjectid";
-			public const string Privilege_BulkDeleteFailures = "regardingobjectid";
-			public const string Product_BulkDeleteFailures = "regardingobjectid";
-			public const string ProductPriceLevel_BulkDeleteFailures = "regardingobjectid";
-			public const string ProductSubstitute_BulkDeleteFailures = "regardingobjectid";
-			public const string profilerule_BulkDeleteFailures = "regardingobjectid";
-			public const string QuarterlyFiscalCalendar_BulkDeleteFailures = "regardingobjectid";
-			public const string Queue_BulkDeleteFailures = "regardingobjectid";
-			public const string QueueItem_BulkDeleteFailures = "regardingobjectid";
-			public const string Quote_BulkDeleteFailures = "regardingobjectid";
-			public const string QuoteClose_BulkDeleteFailures = "regardingobjectid";
-			public const string QuoteDetail_BulkDeleteFailures = "regardingobjectid";
-			public const string RecurringAppointmentMaster_BulkDeleteFailures = "regardingobjectid";
-			public const string RelationshipRole_BulkDeleteFailures = "regardingobjectid";
-			public const string RelationshipRoleMap_BulkDeleteFailures = "regardingobjectid";
-			public const string Resource_BulkDeleteFailures = "regardingobjectid";
-			public const string ResourceGroup_BulkDeleteFailures = "regardingobjectid";
-			public const string ResourceSpec_BulkDeleteFailures = "regardingobjectid";
-			public const string Role_BulkDeleteFailures = "regardingobjectid";
-			public const string routingrule_BulkDeleteFailures = "regardingobjectid";
-			public const string routingruleitem_BulkDeleteFailures = "regardingobjectid";
-			public const string SalesLiterature_BulkDeleteFailures = "regardingobjectid";
-			public const string SalesLiteratureItem_BulkDeleteFailures = "regardingobjectid";
-			public const string SalesOrder_BulkDeleteFailures = "regardingobjectid";
-			public const string SalesOrderDetail_BulkDeleteFailures = "regardingobjectid";
-			public const string SavedQuery_BulkDeleteFailures = "regardingobjectid";
-			public const string SemiAnnualFiscalCalendar_BulkDeleteFailures = "regardingobjectid";
-			public const string Service_BulkDeleteFailures = "regardingobjectid";
-			public const string ServiceAppointment_BulkDeleteFailures = "regardingobjectid";
-			public const string Site_BulkDeleteFailures = "regardingobjectid";
-			public const string slabase_BulkDeleteFailures = "regardingobjectid";
-			public const string SocialActivity_BulkDeleteFailures = "regardingobjectid";
-			public const string Subject_BulkDeleteFailures = "regardingobjectid";
-			public const string SystemForm_BulkDeleteFailures = "regardingobjectid";
-			public const string SystemUser_BulkDeleteFailures = "regardingobjectid";
-			public const string Task_BulkDeleteFailures = "regardingobjectid";
-			public const string Team_BulkDeleteFailures = "regardingobjectid";
-			public const string Template_BulkDeleteFailures = "regardingobjectid";
-			public const string Territory_BulkDeleteFailures = "regardingobjectid";
-			public const string theme_BulkDeleteFailures = "regardingobjectid";
-			public const string UoM_BulkDeleteFailures = "regardingobjectid";
-			public const string UoMSchedule_BulkDeleteFailures = "regardingobjectid";
-			public const string UserForm_BulkDeleteFailures = "regardingobjectid";
-			public const string usermapping_BulkDeleteFailures = "regardingobjectid";
-			public const string UserQuery_BulkDeleteFailures = "regardingobjectid";
+			public const string Account_BulkDeleteFailures = "Account_BulkDeleteFailures";
+			public const string ActivityMimeAttachment_BulkDeleteFailures = "ActivityMimeAttachment_BulkDeleteFailures";
+			public const string ActivityPointer_BulkDeleteFailures = "ActivityPointer_BulkDeleteFailures";
+			public const string Annotation_BulkDeleteFailures = "Annotation_BulkDeleteFailures";
+			public const string AnnualFiscalCalendar_BulkDeleteFailures = "AnnualFiscalCalendar_BulkDeleteFailures";
+			public const string Appointment_BulkDeleteFailures = "Appointment_BulkDeleteFailures";
+			public const string AttributeMap_BulkDeleteFailures = "AttributeMap_BulkDeleteFailures";
+			public const string BulkDeleteOperation_BulkDeleteFailure = "BulkDeleteOperation_BulkDeleteFailure";
+			public const string BulkOperation_BulkDeleteFailures = "BulkOperation_BulkDeleteFailures";
+			public const string BulkOperationLog_BulkDeleteFailures = "BulkOperationLog_BulkDeleteFailures";
+			public const string BusinessUnit_BulkDeleteFailures = "BusinessUnit_BulkDeleteFailures";
+			public const string BusinessUnitNewsArticle_BulkDeleteFailures = "BusinessUnitNewsArticle_BulkDeleteFailures";
+			public const string Calendar_BulkDeleteFailures = "Calendar_BulkDeleteFailures";
+			public const string Campaign_BulkDeleteFailures = "Campaign_BulkDeleteFailures";
+			public const string CampaignActivity_BulkDeleteFailures = "CampaignActivity_BulkDeleteFailures";
+			public const string CampaignResponse_BulkDeleteFailures = "CampaignResponse_BulkDeleteFailures";
+			public const string channelaccessprofile_BulkDeleteFailures = "channelaccessprofile_BulkDeleteFailures";
+			public const string Competitor_BulkDeleteFailures = "Competitor_BulkDeleteFailures";
+			public const string ConstraintBasedGroup_BulkDeleteFailures = "ConstraintBasedGroup_BulkDeleteFailures";
+			public const string Contact_BulkDeleteFailures = "Contact_BulkDeleteFailures";
+			public const string Contract_BulkDeleteFailures = "Contract_BulkDeleteFailures";
+			public const string ContractDetail_BulkDeleteFailures = "ContractDetail_BulkDeleteFailures";
+			public const string ContractTemplate_BulkDeleteFailures = "ContractTemplate_BulkDeleteFailures";
+			public const string CustomerAddress_BulkDeleteFailures = "CustomerAddress_BulkDeleteFailures";
+			public const string CustomerOpportunityRole_BulkDeleteFailures = "CustomerOpportunityRole_BulkDeleteFailures";
+			public const string CustomerRelationship_BulkDeleteFailures = "CustomerRelationship_BulkDeleteFailures";
+			public const string Discount_BulkDeleteFailures = "Discount_BulkDeleteFailures";
+			public const string DiscountType_BulkDeleteFailures = "DiscountType_BulkDeleteFailures";
+			public const string DisplayString_BulkDeleteFailures = "DisplayString_BulkDeleteFailures";
+			public const string Email_BulkDeleteFailures = "Email_BulkDeleteFailures";
+			public const string emailserverprofile_bulkdeletefailures = "emailserverprofile_bulkdeletefailures";
+			public const string entitlement_BulkDeleteFailures = "entitlement_BulkDeleteFailures";
+			public const string entitlementchannel_BulkDeleteFailures = "entitlementchannel_BulkDeleteFailures";
+			public const string entitlementtemplate_BulkDeleteFailures = "entitlementtemplate_BulkDeleteFailures";
+			public const string EntityMap_BulkDeleteFailures = "EntityMap_BulkDeleteFailures";
+			public const string Equipment_BulkDeleteFailures = "Equipment_BulkDeleteFailures";
+			public const string externalparty_BulkDeleteFailures = "externalparty_BulkDeleteFailures";
+			public const string externalpartyitem_BulkDeleteFailures = "externalpartyitem_BulkDeleteFailures";
+			public const string Fax_BulkDeleteFailures = "Fax_BulkDeleteFailures";
+			public const string FixedMonthlyFiscalCalendar_BulkDeleteFailures = "FixedMonthlyFiscalCalendar_BulkDeleteFailures";
+			public const string Import_BulkDeleteFailures = "Import_BulkDeleteFailures";
+			public const string ImportFile_BulkDeleteFailures = "ImportFile_BulkDeleteFailures";
+			public const string ImportLog_BulkDeleteFailures = "ImportLog_BulkDeleteFailures";
+			public const string ImportMap_BulkDeleteFailures = "ImportMap_BulkDeleteFailures";
+			public const string Incident_BulkDeleteFailures = "Incident_BulkDeleteFailures";
+			public const string IncidentResolution_BulkDeleteFailures = "IncidentResolution_BulkDeleteFailures";
+			public const string Invoice_BulkDeleteFailures = "Invoice_BulkDeleteFailures";
+			public const string InvoiceDetail_BulkDeleteFailures = "InvoiceDetail_BulkDeleteFailures";
+			public const string IsvConfig_BulkDeleteFailures = "IsvConfig_BulkDeleteFailures";
+			public const string KbArticle_BulkDeleteFailures = "KbArticle_BulkDeleteFailures";
+			public const string KbArticleComment_BulkDeleteFailures = "KbArticleComment_BulkDeleteFailures";
+			public const string KbArticleTemplate_BulkDeleteFailures = "KbArticleTemplate_BulkDeleteFailures";
+			public const string knowledgearticle_BulkDeleteFailures = "knowledgearticle_BulkDeleteFailures";
+			public const string KnowledgeBaseRecord_BulkDeleteFailures = "KnowledgeBaseRecord_BulkDeleteFailures";
+			public const string Lead_BulkDeleteFailures = "Lead_BulkDeleteFailures";
+			public const string Letter_BulkDeleteFailures = "Letter_BulkDeleteFailures";
+			public const string List_BulkDeleteFailures = "List_BulkDeleteFailures";
+			public const string MonthlyFiscalCalendar_BulkDeleteFailures = "MonthlyFiscalCalendar_BulkDeleteFailures";
+			public const string msdyn_postalbum_BulkDeleteFailures = "msdyn_postalbum_BulkDeleteFailures";
+			public const string msdyn_postconfig_BulkDeleteFailures = "msdyn_postconfig_BulkDeleteFailures";
+			public const string msdyn_postruleconfig_BulkDeleteFailures = "msdyn_postruleconfig_BulkDeleteFailures";
+			public const string msdyn_wallsavedquery_BulkDeleteFailures = "msdyn_wallsavedquery_BulkDeleteFailures";
+			public const string msdyn_wallsavedqueryusersettings_BulkDeleteFailures = "msdyn_wallsavedqueryusersettings_BulkDeleteFailures";
+			public const string Opportunity_BulkDeleteFailures = "Opportunity_BulkDeleteFailures";
+			public const string OpportunityClose_BulkDeleteFailures = "OpportunityClose_BulkDeleteFailures";
+			public const string OpportunityProduct_BulkDeleteFailures = "OpportunityProduct_BulkDeleteFailures";
+			public const string OrderClose_BulkDeleteFailures = "OrderClose_BulkDeleteFailures";
+			public const string Organization_BulkDeleteFailures = "Organization_BulkDeleteFailures";
+			public const string PhoneCall_BulkDeleteFailures = "PhoneCall_BulkDeleteFailures";
+			public const string post_BulkDeleteFailures = "post_BulkDeleteFailures";
+			public const string PriceLevel_BulkDeleteFailures = "PriceLevel_BulkDeleteFailures";
+			public const string Privilege_BulkDeleteFailures = "Privilege_BulkDeleteFailures";
+			public const string Product_BulkDeleteFailures = "Product_BulkDeleteFailures";
+			public const string ProductPriceLevel_BulkDeleteFailures = "ProductPriceLevel_BulkDeleteFailures";
+			public const string ProductSubstitute_BulkDeleteFailures = "ProductSubstitute_BulkDeleteFailures";
+			public const string profilerule_BulkDeleteFailures = "profilerule_BulkDeleteFailures";
+			public const string QuarterlyFiscalCalendar_BulkDeleteFailures = "QuarterlyFiscalCalendar_BulkDeleteFailures";
+			public const string Queue_BulkDeleteFailures = "Queue_BulkDeleteFailures";
+			public const string QueueItem_BulkDeleteFailures = "QueueItem_BulkDeleteFailures";
+			public const string Quote_BulkDeleteFailures = "Quote_BulkDeleteFailures";
+			public const string QuoteClose_BulkDeleteFailures = "QuoteClose_BulkDeleteFailures";
+			public const string QuoteDetail_BulkDeleteFailures = "QuoteDetail_BulkDeleteFailures";
+			public const string RecurringAppointmentMaster_BulkDeleteFailures = "RecurringAppointmentMaster_BulkDeleteFailures";
+			public const string RelationshipRole_BulkDeleteFailures = "RelationshipRole_BulkDeleteFailures";
+			public const string RelationshipRoleMap_BulkDeleteFailures = "RelationshipRoleMap_BulkDeleteFailures";
+			public const string Resource_BulkDeleteFailures = "Resource_BulkDeleteFailures";
+			public const string ResourceGroup_BulkDeleteFailures = "ResourceGroup_BulkDeleteFailures";
+			public const string ResourceSpec_BulkDeleteFailures = "ResourceSpec_BulkDeleteFailures";
+			public const string Role_BulkDeleteFailures = "Role_BulkDeleteFailures";
+			public const string routingrule_BulkDeleteFailures = "routingrule_BulkDeleteFailures";
+			public const string routingruleitem_BulkDeleteFailures = "routingruleitem_BulkDeleteFailures";
+			public const string SalesLiterature_BulkDeleteFailures = "SalesLiterature_BulkDeleteFailures";
+			public const string SalesLiteratureItem_BulkDeleteFailures = "SalesLiteratureItem_BulkDeleteFailures";
+			public const string SalesOrder_BulkDeleteFailures = "SalesOrder_BulkDeleteFailures";
+			public const string SalesOrderDetail_BulkDeleteFailures = "SalesOrderDetail_BulkDeleteFailures";
+			public const string SavedQuery_BulkDeleteFailures = "SavedQuery_BulkDeleteFailures";
+			public const string SemiAnnualFiscalCalendar_BulkDeleteFailures = "SemiAnnualFiscalCalendar_BulkDeleteFailures";
+			public const string Service_BulkDeleteFailures = "Service_BulkDeleteFailures";
+			public const string ServiceAppointment_BulkDeleteFailures = "ServiceAppointment_BulkDeleteFailures";
+			public const string Site_BulkDeleteFailures = "Site_BulkDeleteFailures";
+			public const string slabase_BulkDeleteFailures = "slabase_BulkDeleteFailures";
+			public const string SocialActivity_BulkDeleteFailures = "SocialActivity_BulkDeleteFailures";
+			public const string Subject_BulkDeleteFailures = "Subject_BulkDeleteFailures";
+			public const string SystemForm_BulkDeleteFailures = "SystemForm_BulkDeleteFailures";
+			public const string SystemUser_BulkDeleteFailures = "SystemUser_BulkDeleteFailures";
+			public const string Task_BulkDeleteFailures = "Task_BulkDeleteFailures";
+			public const string Team_BulkDeleteFailures = "Team_BulkDeleteFailures";
+			public const string Template_BulkDeleteFailures = "Template_BulkDeleteFailures";
+			public const string Territory_BulkDeleteFailures = "Territory_BulkDeleteFailures";
+			public const string theme_BulkDeleteFailures = "theme_BulkDeleteFailures";
+			public const string UoM_BulkDeleteFailures = "UoM_BulkDeleteFailures";
+			public const string UoMSchedule_BulkDeleteFailures = "UoMSchedule_BulkDeleteFailures";
+			public const string UserForm_BulkDeleteFailures = "UserForm_BulkDeleteFailures";
+			public const string usermapping_BulkDeleteFailures = "usermapping_BulkDeleteFailures";
+			public const string UserQuery_BulkDeleteFailures = "UserQuery_BulkDeleteFailures";
 		}
 
 		
@@ -302,6 +302,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -315,6 +322,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		

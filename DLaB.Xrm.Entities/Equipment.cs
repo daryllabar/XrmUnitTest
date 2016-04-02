@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("equipment")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class Equipment : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -47,16 +47,16 @@ namespace DLaB.Xrm.Entities
 			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string business_unit_equipment = "businessunitid";
-			public const string calendar_equipment = "calendarid";
-			public const string equipment_systemuser = "businessunitid";
-			public const string lk_equipment_createdby = "createdby";
-			public const string lk_equipment_createdonbehalfby = "createdonbehalfby";
-			public const string lk_equipment_modifiedby = "modifiedby";
-			public const string lk_equipment_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string organization_equipment = "organizationid";
-			public const string site_equipment = "siteid";
-			public const string TransactionCurrency_Equipment = "transactioncurrencyid";
+			public const string business_unit_equipment = "business_unit_equipment";
+			public const string calendar_equipment = "calendar_equipment";
+			public const string equipment_systemuser = "equipment_systemuser";
+			public const string lk_equipment_createdby = "lk_equipment_createdby";
+			public const string lk_equipment_createdonbehalfby = "lk_equipment_createdonbehalfby";
+			public const string lk_equipment_modifiedby = "lk_equipment_modifiedby";
+			public const string lk_equipment_modifiedonbehalfby = "lk_equipment_modifiedonbehalfby";
+			public const string organization_equipment = "organization_equipment";
+			public const string site_equipment = "site_equipment";
+			public const string TransactionCurrency_Equipment = "TransactionCurrency_Equipment";
 		}
 
 		
@@ -146,6 +146,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -158,6 +165,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -348,6 +362,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -360,6 +381,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -944,6 +972,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_equipment_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_equipment_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_equipment_createdby", null, value);
+				this.OnPropertyChanged("lk_equipment_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -978,6 +1013,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_equipment_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_equipment_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_equipment_modifiedby", null, value);
+				this.OnPropertyChanged("lk_equipment_modifiedby");
 			}
 		}
 		

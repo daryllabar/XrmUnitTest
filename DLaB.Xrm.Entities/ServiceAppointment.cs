@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum ServiceAppointmentState
 	{
 		
@@ -33,7 +33,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("serviceappointment")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ServiceAppointment : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -85,32 +85,32 @@ namespace DLaB.Xrm.Entities
 			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string Account_ServiceAppointments = "regardingobjectid";
-			public const string activity_pointer_service_appointment = "activityid";
-			public const string business_unit_service_appointments = "owningbusinessunit";
-			public const string Campaign_ServiceAppointments = "regardingobjectid";
-			public const string Contact_ServiceAppointments = "regardingobjectid";
-			public const string Contract_ServiceAppointments = "regardingobjectid";
-			public const string entitlement_ServiceAppointments = "regardingobjectid";
-			public const string entitlementtemplate_ServiceAppointments = "regardingobjectid";
-			public const string Incident_ServiceAppointments = "regardingobjectid";
-			public const string Invoice_ServiceAppointments = "regardingobjectid";
-			public const string KnowledgeArticle_ServiceAppointments = "regardingobjectid";
-			public const string KnowledgeBaseRecord_ServiceAppointments = "regardingobjectid";
-			public const string Lead_ServiceAppointments = "regardingobjectid";
-			public const string lk_serviceappointment_createdby = "createdby";
-			public const string lk_serviceappointment_createdonbehalfby = "createdonbehalfby";
-			public const string lk_serviceappointment_modifiedby = "modifiedby";
-			public const string lk_serviceappointment_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string msdyn_postalbum_ServiceAppointments = "regardingobjectid";
-			public const string Opportunity_ServiceAppointments = "regardingobjectid";
-			public const string Quote_ServiceAppointments = "regardingobjectid";
-			public const string SalesOrder_ServiceAppointments = "regardingobjectid";
-			public const string service_service_appointments = "serviceid";
-			public const string site_service_appointments = "siteid";
-			public const string system_user_service_appointments = "owninguser";
-			public const string team_service_appointments = "owningteam";
-			public const string TransactionCurrency_ServiceAppointment = "transactioncurrencyid";
+			public const string Account_ServiceAppointments = "Account_ServiceAppointments";
+			public const string activity_pointer_service_appointment = "activity_pointer_service_appointment";
+			public const string business_unit_service_appointments = "business_unit_service_appointments";
+			public const string Campaign_ServiceAppointments = "Campaign_ServiceAppointments";
+			public const string Contact_ServiceAppointments = "Contact_ServiceAppointments";
+			public const string Contract_ServiceAppointments = "Contract_ServiceAppointments";
+			public const string entitlement_ServiceAppointments = "entitlement_ServiceAppointments";
+			public const string entitlementtemplate_ServiceAppointments = "entitlementtemplate_ServiceAppointments";
+			public const string Incident_ServiceAppointments = "Incident_ServiceAppointments";
+			public const string Invoice_ServiceAppointments = "Invoice_ServiceAppointments";
+			public const string KnowledgeArticle_ServiceAppointments = "KnowledgeArticle_ServiceAppointments";
+			public const string KnowledgeBaseRecord_ServiceAppointments = "KnowledgeBaseRecord_ServiceAppointments";
+			public const string Lead_ServiceAppointments = "Lead_ServiceAppointments";
+			public const string lk_serviceappointment_createdby = "lk_serviceappointment_createdby";
+			public const string lk_serviceappointment_createdonbehalfby = "lk_serviceappointment_createdonbehalfby";
+			public const string lk_serviceappointment_modifiedby = "lk_serviceappointment_modifiedby";
+			public const string lk_serviceappointment_modifiedonbehalfby = "lk_serviceappointment_modifiedonbehalfby";
+			public const string msdyn_postalbum_ServiceAppointments = "msdyn_postalbum_ServiceAppointments";
+			public const string Opportunity_ServiceAppointments = "Opportunity_ServiceAppointments";
+			public const string Quote_ServiceAppointments = "Quote_ServiceAppointments";
+			public const string SalesOrder_ServiceAppointments = "SalesOrder_ServiceAppointments";
+			public const string service_service_appointments = "service_service_appointments";
+			public const string site_service_appointments = "site_service_appointments";
+			public const string system_user_service_appointments = "system_user_service_appointments";
+			public const string team_service_appointments = "team_service_appointments";
+			public const string TransactionCurrency_ServiceAppointment = "TransactionCurrency_ServiceAppointment";
 		}
 
 		
@@ -316,6 +316,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -328,6 +335,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -564,6 +578,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -576,6 +597,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -650,6 +678,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -663,6 +698,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -675,6 +717,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1296,6 +1345,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_service_appointments", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_service_appointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_service_appointments", null, value);
+				this.OnPropertyChanged("business_unit_service_appointments");
+			}
 		}
 		
 		/// <summary>
@@ -1520,6 +1576,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_serviceappointment_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_serviceappointment_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_serviceappointment_createdby", null, value);
+				this.OnPropertyChanged("lk_serviceappointment_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -1554,6 +1617,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_serviceappointment_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_serviceappointment_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_serviceappointment_modifiedby", null, value);
+				this.OnPropertyChanged("lk_serviceappointment_modifiedby");
 			}
 		}
 		
@@ -1716,6 +1786,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("system_user_service_appointments", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("system_user_service_appointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("system_user_service_appointments", null, value);
+				this.OnPropertyChanged("system_user_service_appointments");
+			}
 		}
 		
 		/// <summary>
@@ -1729,6 +1806,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_service_appointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_service_appointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_service_appointments", null, value);
+				this.OnPropertyChanged("team_service_appointments");
 			}
 		}
 		
@@ -1796,12 +1880,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("prioritycode")]
-		public virtual serviceappointment_prioritycode? PriorityCodeEnum
+		public virtual ServiceAppointment_PriorityCode? PriorityCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((serviceappointment_prioritycode?)(EntityOptionSetEnum.GetEnum(this, "prioritycode")));
+				return ((ServiceAppointment_PriorityCode?)(EntityOptionSetEnum.GetEnum(this, "prioritycode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1811,12 +1895,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual serviceappointment_statuscode? StatusCodeEnum
+		public virtual ServiceAppointment_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((serviceappointment_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((ServiceAppointment_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

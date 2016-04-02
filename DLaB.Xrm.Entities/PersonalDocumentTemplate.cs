@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("personaldocumenttemplate")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class PersonalDocumentTemplate : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -42,11 +42,11 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "personaldocumenttemplateid";
 			public const string Status = "status";
 			public const string VersionNumber = "versionnumber";
-			public const string business_unit_personaldocumenttemplates = "owningbusinessunit";
-			public const string lk_personaldocumenttemplatebase_createdby = "createdby";
-			public const string lk_personaldocumenttemplatebase_createdonbehalfby = "createdonbehalfby";
-			public const string lk_personaldocumenttemplatebase_modifiedby = "modifiedby";
-			public const string lk_personaldocumenttemplatebase_modifiedonbehalfby = "modifiedonbehalfby";
+			public const string business_unit_personaldocumenttemplates = "business_unit_personaldocumenttemplates";
+			public const string lk_personaldocumenttemplatebase_createdby = "lk_personaldocumenttemplatebase_createdby";
+			public const string lk_personaldocumenttemplatebase_createdonbehalfby = "lk_personaldocumenttemplatebase_createdonbehalfby";
+			public const string lk_personaldocumenttemplatebase_modifiedby = "lk_personaldocumenttemplatebase_modifiedby";
+			public const string lk_personaldocumenttemplatebase_modifiedonbehalfby = "lk_personaldocumenttemplatebase_modifiedonbehalfby";
 		}
 
 		
@@ -156,6 +156,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -168,6 +175,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -262,6 +276,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -274,6 +295,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -348,6 +376,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -361,6 +396,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -373,6 +415,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -464,6 +513,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_personaldocumenttemplates", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_personaldocumenttemplates");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_personaldocumenttemplates", null, value);
+				this.OnPropertyChanged("business_unit_personaldocumenttemplates");
+			}
 		}
 		
 		/// <summary>
@@ -477,6 +533,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_personaldocumenttemplatebase_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_personaldocumenttemplatebase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_personaldocumenttemplatebase_createdby", null, value);
+				this.OnPropertyChanged("lk_personaldocumenttemplatebase_createdby");
 			}
 		}
 		
@@ -512,6 +575,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_personaldocumenttemplatebase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_personaldocumenttemplatebase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_personaldocumenttemplatebase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_personaldocumenttemplatebase_modifiedby");
 			}
 		}
 		
@@ -579,12 +649,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("documenttype")]
-		public virtual officedocument_documenttype? DocumentTypeEnum
+		public virtual PersonalDocumentTemplate_DocumentType? DocumentTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((officedocument_documenttype?)(EntityOptionSetEnum.GetEnum(this, "documenttype")));
+				return ((PersonalDocumentTemplate_DocumentType?)(EntityOptionSetEnum.GetEnum(this, "documenttype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("publisheraddress")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class PublisherAddress : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -57,11 +57,11 @@ namespace DLaB.Xrm.Entities
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string UTCOffset = "utcoffset";
 			public const string VersionNumber = "versionnumber";
-			public const string lk_publisheraddressbase_createdby = "createdby";
-			public const string lk_publisheraddressbase_createdonbehalfby = "createdonbehalfby";
-			public const string lk_publisheraddressbase_modifiedby = "modifiedby";
-			public const string lk_publisheraddressbase_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string Publisher_PublisherAddress = "parentid";
+			public const string lk_publisheraddressbase_createdby = "lk_publisheraddressbase_createdby";
+			public const string lk_publisheraddressbase_createdonbehalfby = "lk_publisheraddressbase_createdonbehalfby";
+			public const string lk_publisheraddressbase_modifiedby = "lk_publisheraddressbase_modifiedby";
+			public const string lk_publisheraddressbase_modifiedonbehalfby = "lk_publisheraddressbase_modifiedonbehalfby";
+			public const string Publisher_PublisherAddress = "Publisher_PublisherAddress";
 		}
 
 		
@@ -211,6 +211,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -223,6 +230,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -417,6 +431,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -429,6 +450,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -820,6 +848,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_publisheraddressbase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_publisheraddressbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_publisheraddressbase_createdby", null, value);
+				this.OnPropertyChanged("lk_publisheraddressbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -854,6 +889,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_publisheraddressbase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_publisheraddressbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_publisheraddressbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_publisheraddressbase_modifiedby");
 			}
 		}
 		
@@ -942,12 +984,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("addresstypecode")]
-		public virtual publisheraddress_addresstypecode? AddressTypeCodeEnum
+		public virtual PublisherAddress_AddressTypeCode? AddressTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((publisheraddress_addresstypecode?)(EntityOptionSetEnum.GetEnum(this, "addresstypecode")));
+				return ((PublisherAddress_AddressTypeCode?)(EntityOptionSetEnum.GetEnum(this, "addresstypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -957,12 +999,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("freighttermscode")]
-		public virtual publisheraddress_freighttermscode? FreightTermsCodeEnum
+		public virtual PublisherAddress_FreightTermsCode? FreightTermsCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((publisheraddress_freighttermscode?)(EntityOptionSetEnum.GetEnum(this, "freighttermscode")));
+				return ((PublisherAddress_FreightTermsCode?)(EntityOptionSetEnum.GetEnum(this, "freighttermscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -972,12 +1014,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("shippingmethodcode")]
-		public virtual publisheraddress_shippingmethodcode? ShippingMethodCodeEnum
+		public virtual PublisherAddress_ShippingMethodCode? ShippingMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((publisheraddress_shippingmethodcode?)(EntityOptionSetEnum.GetEnum(this, "shippingmethodcode")));
+				return ((PublisherAddress_ShippingMethodCode?)(EntityOptionSetEnum.GetEnum(this, "shippingmethodcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

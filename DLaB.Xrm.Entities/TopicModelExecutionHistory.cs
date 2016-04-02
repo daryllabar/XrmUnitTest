@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("topicmodelexecutionhistory")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class TopicModelExecutionHistory : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -43,13 +43,13 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "topicmodelexecutionhistoryid";
 			public const string TopicModelId = "topicmodelid";
 			public const string TotalTime = "totaltime";
-			public const string lk_topicmodelexecutionhistory_createdby = "createdby";
-			public const string lk_topicmodelexecutionhistory_createdonbehalfby = "createdonbehalfby";
-			public const string lk_topicmodelexecutionhistory_modifiedby = "modifiedby";
-			public const string lk_topicmodelexecutionhistory_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string organization_topicmodelexecutionhistory = "organizationid";
-			public const string topicmodel_topicmodelexecutionhistory = "topicmodelid";
-			public const string topicmodelconfiguration_topicmodelexecutionhistory = "topicmodelconfigurationid";
+			public const string lk_topicmodelexecutionhistory_createdby = "lk_topicmodelexecutionhistory_createdby";
+			public const string lk_topicmodelexecutionhistory_createdonbehalfby = "lk_topicmodelexecutionhistory_createdonbehalfby";
+			public const string lk_topicmodelexecutionhistory_modifiedby = "lk_topicmodelexecutionhistory_modifiedby";
+			public const string lk_topicmodelexecutionhistory_modifiedonbehalfby = "lk_topicmodelexecutionhistory_modifiedonbehalfby";
+			public const string organization_topicmodelexecutionhistory = "organization_topicmodelexecutionhistory";
+			public const string topicmodel_topicmodelexecutionhistory = "topicmodel_topicmodelexecutionhistory";
+			public const string topicmodelconfiguration_topicmodelexecutionhistory = "topicmodelconfiguration_topicmodelexecutionhistory";
 		}
 
 		
@@ -119,6 +119,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -131,6 +138,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -225,6 +239,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -237,6 +258,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -528,6 +556,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_topicmodelexecutionhistory_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_topicmodelexecutionhistory_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_topicmodelexecutionhistory_createdby", null, value);
+				this.OnPropertyChanged("lk_topicmodelexecutionhistory_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -562,6 +597,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_topicmodelexecutionhistory_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_topicmodelexecutionhistory_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_topicmodelexecutionhistory_modifiedby", null, value);
+				this.OnPropertyChanged("lk_topicmodelexecutionhistory_modifiedby");
 			}
 		}
 		
@@ -685,12 +727,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("status")]
-		public virtual topicmodelexecutionhistory_status? StatusEnum
+		public virtual TopicModelExecutionHistory_Status? StatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((topicmodelexecutionhistory_status?)(EntityOptionSetEnum.GetEnum(this, "status")));
+				return ((TopicModelExecutionHistory_Status?)(EntityOptionSetEnum.GetEnum(this, "status")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -700,12 +742,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statusreason")]
-		public virtual topicmodelexecutionhistory_statusreason? StatusReasonEnum
+		public virtual TopicModelExecutionHistory_StatusReason? StatusReasonEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((topicmodelexecutionhistory_statusreason?)(EntityOptionSetEnum.GetEnum(this, "statusreason")));
+				return ((TopicModelExecutionHistory_StatusReason?)(EntityOptionSetEnum.GetEnum(this, "statusreason")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

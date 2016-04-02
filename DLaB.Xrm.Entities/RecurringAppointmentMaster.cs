@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum RecurringAppointmentMasterState
 	{
 		
@@ -33,7 +33,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("recurringappointmentmaster")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class RecurringAppointmentMaster : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -113,35 +113,35 @@ namespace DLaB.Xrm.Entities
 			public const string TraversedPath = "traversedpath";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string Account_RecurringAppointmentMasters = "regardingobjectid";
-			public const string activity_pointer_recurringappointmentmaster = "activityid";
-			public const string BulkOperation_RecurringAppointmentMaster = "regardingobjectid";
-			public const string business_unit_recurringappointmentmaster_activities = "owningbusinessunit";
-			public const string Campaign_RecurringAppointmentMasters = "regardingobjectid";
-			public const string CampaignActivity_RecurringAppointmentMasters = "regardingobjectid";
-			public const string Contact_RecurringAppointmentMasters = "regardingobjectid";
-			public const string Contract_RecurringAppointmentMasters = "regardingobjectid";
-			public const string entitlement_RecurringAppointmentMasters = "regardingobjectid";
-			public const string entitlementtemplate_RecurringAppointmentMasters = "regardingobjectid";
-			public const string Incident_RecurringAppointmentMasters = "regardingobjectid";
-			public const string Invoice_RecurringAppointmentMasters = "regardingobjectid";
-			public const string KnowledgeArticle_RecurringAppointmentMasters = "regardingobjectid";
-			public const string KnowledgeBaseRecord_RecurringAppointmentMasters = "regardingobjectid";
-			public const string Lead_RecurringAppointmentMasters = "regardingobjectid";
-			public const string lk_recurringappointmentmaster_createdby = "createdby";
-			public const string lk_recurringappointmentmaster_createdonbehalfby = "createdonbehalfby";
-			public const string lk_recurringappointmentmaster_modifiedby = "modifiedby";
-			public const string lk_recurringappointmentmaster_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string msdyn_postalbum_RecurringAppointmentMasters = "regardingobjectid";
-			public const string Opportunity_RecurringAppointmentMasters = "regardingobjectid";
-			public const string processstage_recurringappointmentmasters = "stageid";
-			public const string Quote_RecurringAppointmentMasters = "regardingobjectid";
-			public const string recurrencerule_recurringappointmentmaster = "activityid";
-			public const string SalesOrder_RecurringAppointmentMasters = "regardingobjectid";
-			public const string service_recurringappointmentmasters = "serviceid";
-			public const string team_recurringappointmentmaster = "owningteam";
-			public const string TransactionCurrency_RecurringAppointmentMaster = "transactioncurrencyid";
-			public const string user_recurringappointmentmaster = "owninguser";
+			public const string Account_RecurringAppointmentMasters = "Account_RecurringAppointmentMasters";
+			public const string activity_pointer_recurringappointmentmaster = "activity_pointer_recurringappointmentmaster";
+			public const string BulkOperation_RecurringAppointmentMaster = "BulkOperation_RecurringAppointmentMaster";
+			public const string business_unit_recurringappointmentmaster_activities = "business_unit_recurringappointmentmaster_activities";
+			public const string Campaign_RecurringAppointmentMasters = "Campaign_RecurringAppointmentMasters";
+			public const string CampaignActivity_RecurringAppointmentMasters = "CampaignActivity_RecurringAppointmentMasters";
+			public const string Contact_RecurringAppointmentMasters = "Contact_RecurringAppointmentMasters";
+			public const string Contract_RecurringAppointmentMasters = "Contract_RecurringAppointmentMasters";
+			public const string entitlement_RecurringAppointmentMasters = "entitlement_RecurringAppointmentMasters";
+			public const string entitlementtemplate_RecurringAppointmentMasters = "entitlementtemplate_RecurringAppointmentMasters";
+			public const string Incident_RecurringAppointmentMasters = "Incident_RecurringAppointmentMasters";
+			public const string Invoice_RecurringAppointmentMasters = "Invoice_RecurringAppointmentMasters";
+			public const string KnowledgeArticle_RecurringAppointmentMasters = "KnowledgeArticle_RecurringAppointmentMasters";
+			public const string KnowledgeBaseRecord_RecurringAppointmentMasters = "KnowledgeBaseRecord_RecurringAppointmentMasters";
+			public const string Lead_RecurringAppointmentMasters = "Lead_RecurringAppointmentMasters";
+			public const string lk_recurringappointmentmaster_createdby = "lk_recurringappointmentmaster_createdby";
+			public const string lk_recurringappointmentmaster_createdonbehalfby = "lk_recurringappointmentmaster_createdonbehalfby";
+			public const string lk_recurringappointmentmaster_modifiedby = "lk_recurringappointmentmaster_modifiedby";
+			public const string lk_recurringappointmentmaster_modifiedonbehalfby = "lk_recurringappointmentmaster_modifiedonbehalfby";
+			public const string msdyn_postalbum_RecurringAppointmentMasters = "msdyn_postalbum_RecurringAppointmentMasters";
+			public const string Opportunity_RecurringAppointmentMasters = "Opportunity_RecurringAppointmentMasters";
+			public const string processstage_recurringappointmentmasters = "processstage_recurringappointmentmasters";
+			public const string Quote_RecurringAppointmentMasters = "Quote_RecurringAppointmentMasters";
+			public const string recurrencerule_recurringappointmentmaster = "recurrencerule_recurringappointmentmaster";
+			public const string SalesOrder_RecurringAppointmentMasters = "SalesOrder_RecurringAppointmentMasters";
+			public const string service_recurringappointmentmasters = "service_recurringappointmentmasters";
+			public const string team_recurringappointmentmaster = "team_recurringappointmentmaster";
+			public const string TransactionCurrency_RecurringAppointmentMaster = "TransactionCurrency_RecurringAppointmentMaster";
+			public const string user_recurringappointmentmaster = "user_recurringappointmentmaster";
 		}
 
 		
@@ -267,6 +267,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -279,6 +286,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -824,6 +838,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -836,6 +857,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -1055,6 +1083,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -1068,6 +1103,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -1080,6 +1122,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1961,6 +2010,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_recurringappointmentmaster_activities", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_recurringappointmentmaster_activities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_recurringappointmentmaster_activities", null, value);
+				this.OnPropertyChanged("business_unit_recurringappointmentmaster_activities");
+			}
 		}
 		
 		/// <summary>
@@ -2206,6 +2262,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_recurringappointmentmaster_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_recurringappointmentmaster_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_recurringappointmentmaster_createdby", null, value);
+				this.OnPropertyChanged("lk_recurringappointmentmaster_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -2240,6 +2303,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_recurringappointmentmaster_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_recurringappointmentmaster_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_recurringappointmentmaster_modifiedby", null, value);
+				this.OnPropertyChanged("lk_recurringappointmentmaster_modifiedby");
 			}
 		}
 		
@@ -2423,6 +2493,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_recurringappointmentmaster", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_recurringappointmentmaster");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_recurringappointmentmaster", null, value);
+				this.OnPropertyChanged("team_recurringappointmentmaster");
+			}
 		}
 		
 		/// <summary>
@@ -2457,6 +2534,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_recurringappointmentmaster", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_recurringappointmentmaster");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_recurringappointmentmaster", null, value);
+				this.OnPropertyChanged("user_recurringappointmentmaster");
 			}
 		}
 		
@@ -2503,22 +2587,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("expansionstatecode")]
-		public virtual recurringappointmentmaster_expansionstatecode? ExpansionStateCodeEnum
+		public virtual RecurringAppointmentMaster_ExpansionStateCode? ExpansionStateCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recurringappointmentmaster_expansionstatecode?)(EntityOptionSetEnum.GetEnum(this, "expansionstatecode")));
+				return ((RecurringAppointmentMaster_ExpansionStateCode?)(EntityOptionSetEnum.GetEnum(this, "expansionstatecode")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("instance")]
-		public virtual recurringappointmentmaster_instance? InstanceEnum
+		public virtual RecurringAppointmentMaster_Instance? InstanceEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recurringappointmentmaster_instance?)(EntityOptionSetEnum.GetEnum(this, "instance")));
+				return ((RecurringAppointmentMaster_Instance?)(EntityOptionSetEnum.GetEnum(this, "instance")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2528,22 +2612,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("instancetypecode")]
-		public virtual recurringappointmentmaster_instancetypecode? InstanceTypeCodeEnum
+		public virtual RecurringAppointmentMaster_InstanceTypeCode? InstanceTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recurringappointmentmaster_instancetypecode?)(EntityOptionSetEnum.GetEnum(this, "instancetypecode")));
+				return ((RecurringAppointmentMaster_InstanceTypeCode?)(EntityOptionSetEnum.GetEnum(this, "instancetypecode")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("monthofyear")]
-		public virtual recurrencerule_monthofyear? MonthOfYearEnum
+		public virtual RecurrenceRule_MonthOfYear? MonthOfYearEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recurrencerule_monthofyear?)(EntityOptionSetEnum.GetEnum(this, "monthofyear")));
+				return ((RecurrenceRule_MonthOfYear?)(EntityOptionSetEnum.GetEnum(this, "monthofyear")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2553,12 +2637,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("patternendtype")]
-		public virtual recurringappointmentmaster_patternendtype? PatternEndTypeEnum
+		public virtual RecurringAppointmentMaster_PatternEndType? PatternEndTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recurringappointmentmaster_patternendtype?)(EntityOptionSetEnum.GetEnum(this, "patternendtype")));
+				return ((RecurringAppointmentMaster_PatternEndType?)(EntityOptionSetEnum.GetEnum(this, "patternendtype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2568,12 +2652,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("prioritycode")]
-		public virtual recurringappointmentmaster_prioritycode? PriorityCodeEnum
+		public virtual RecurringAppointmentMaster_PriorityCode? PriorityCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recurringappointmentmaster_prioritycode?)(EntityOptionSetEnum.GetEnum(this, "prioritycode")));
+				return ((RecurringAppointmentMaster_PriorityCode?)(EntityOptionSetEnum.GetEnum(this, "prioritycode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2583,12 +2667,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("recurrencepatterntype")]
-		public virtual recurringappointmentmaster_recurrencepatterntype? RecurrencePatternTypeEnum
+		public virtual RecurringAppointmentMaster_RecurrencePatternType? RecurrencePatternTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recurringappointmentmaster_recurrencepatterntype?)(EntityOptionSetEnum.GetEnum(this, "recurrencepatterntype")));
+				return ((RecurringAppointmentMaster_RecurrencePatternType?)(EntityOptionSetEnum.GetEnum(this, "recurrencepatterntype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2598,12 +2682,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual recurringappointmentmaster_statuscode? StatusCodeEnum
+		public virtual RecurringAppointmentMaster_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recurringappointmentmaster_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((RecurringAppointmentMaster_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

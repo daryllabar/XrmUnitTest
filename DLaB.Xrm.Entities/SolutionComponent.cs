@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("solutioncomponent")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class SolutionComponent : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -36,10 +36,10 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "solutioncomponentid";
 			public const string SolutionId = "solutionid";
 			public const string VersionNumber = "versionnumber";
-			public const string lk_solutioncomponentbase_createdonbehalfby = "createdonbehalfby";
-			public const string lk_solutioncomponentbase_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string solution_solutioncomponent = "solutionid";
-			public const string Referencingsolutioncomponent_parent_solutioncomponent = "rootsolutioncomponentid";
+			public const string lk_solutioncomponentbase_createdonbehalfby = "lk_solutioncomponentbase_createdonbehalfby";
+			public const string lk_solutioncomponentbase_modifiedonbehalfby = "lk_solutioncomponentbase_modifiedonbehalfby";
+			public const string solution_solutioncomponent = "solution_solutioncomponent";
+			public const string Referencingsolutioncomponent_parent_solutioncomponent = "solutioncomponent_parent_solutioncomponent";
 		}
 
 		
@@ -102,6 +102,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -114,6 +121,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -161,6 +175,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -173,6 +194,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -442,22 +470,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componenttype")]
-		public virtual componenttype? ComponentTypeEnum
+		public virtual ComponentType? ComponentTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componenttype?)(EntityOptionSetEnum.GetEnum(this, "componenttype")));
+				return ((ComponentType?)(EntityOptionSetEnum.GetEnum(this, "componenttype")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("rootcomponentbehavior")]
-		public virtual solutioncomponent_rootcomponentbehavior? RootComponentBehaviorEnum
+		public virtual SolutionComponent_RootComponentBehavior? RootComponentBehaviorEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((solutioncomponent_rootcomponentbehavior?)(EntityOptionSetEnum.GetEnum(this, "rootcomponentbehavior")));
+				return ((SolutionComponent_RootComponentBehavior?)(EntityOptionSetEnum.GetEnum(this, "rootcomponentbehavior")));
 			}
 		}
 	}

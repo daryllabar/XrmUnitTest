@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("systemform")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class SystemForm : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -48,8 +48,8 @@ namespace DLaB.Xrm.Entities
 			public const string UniqueName = "uniquename";
 			public const string Version = "version";
 			public const string VersionNumber = "versionnumber";
-			public const string Referencingform_ancestor_form = "ancestorformid";
-			public const string organization_systemforms = "organizationid";
+			public const string Referencingform_ancestor_form = "form_ancestor_form";
+			public const string organization_systemforms = "organization_systemforms";
 		}
 
 		
@@ -753,22 +753,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("formactivationstate")]
-		public virtual systemform_formactivationstate? FormActivationStateEnum
+		public virtual SystemForm_FormActivationState? FormActivationStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((systemform_formactivationstate?)(EntityOptionSetEnum.GetEnum(this, "formactivationstate")));
+				return ((SystemForm_FormActivationState?)(EntityOptionSetEnum.GetEnum(this, "formactivationstate")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -778,12 +778,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("formpresentation")]
-		public virtual systemform_formpresentation? FormPresentationEnum
+		public virtual SystemForm_FormPresentation? FormPresentationEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((systemform_formpresentation?)(EntityOptionSetEnum.GetEnum(this, "formpresentation")));
+				return ((SystemForm_FormPresentation?)(EntityOptionSetEnum.GetEnum(this, "formpresentation")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -793,12 +793,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("type")]
-		public virtual systemform_type? TypeEnum
+		public virtual SystemForm_Type? TypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((systemform_type?)(EntityOptionSetEnum.GetEnum(this, "type")));
+				return ((SystemForm_Type?)(EntityOptionSetEnum.GetEnum(this, "type")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("organization")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class Organization : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -285,15 +285,15 @@ namespace DLaB.Xrm.Entities
 			public const string YammerOAuthAccessTokenExpired = "yammeroauthaccesstokenexpired";
 			public const string YammerPostMethod = "yammerpostmethod";
 			public const string YearStartWeekCode = "yearstartweekcode";
-			public const string basecurrency_organization = "basecurrencyid";
-			public const string calendar_organization = "businessclosurecalendarid";
-			public const string DefaultMobileOfflineProfile_Organization = "defaultmobileofflineprofileid";
-			public const string EmailServerProfile_Organization = "defaultemailserverprofileid";
-			public const string lk_organization_createdonbehalfby = "createdonbehalfby";
-			public const string lk_organization_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_organizationbase_createdby = "createdby";
-			public const string lk_organizationbase_modifiedby = "modifiedby";
-			public const string Template_Organization = "acknowledgementtemplateid";
+			public const string basecurrency_organization = "basecurrency_organization";
+			public const string calendar_organization = "calendar_organization";
+			public const string DefaultMobileOfflineProfile_Organization = "DefaultMobileOfflineProfile_Organization";
+			public const string EmailServerProfile_Organization = "EmailServerProfile_Organization";
+			public const string lk_organization_createdonbehalfby = "lk_organization_createdonbehalfby";
+			public const string lk_organization_modifiedonbehalfby = "lk_organization_modifiedonbehalfby";
+			public const string lk_organizationbase_createdby = "lk_organizationbase_createdby";
+			public const string lk_organizationbase_modifiedby = "lk_organizationbase_modifiedby";
+			public const string Template_Organization = "Template_Organization";
 		}
 
 		
@@ -969,6 +969,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -981,6 +988,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -3639,6 +3653,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -3651,6 +3672,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -7874,6 +7902,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_organizationbase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_organizationbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_organizationbase_createdby", null, value);
+				this.OnPropertyChanged("lk_organizationbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -7887,6 +7922,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_organizationbase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_organizationbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_organizationbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_organizationbase_modifiedby");
 			}
 		}
 		
@@ -7954,12 +7996,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("currencydisplayoption")]
-		public virtual organization_currencydisplayoption? CurrencyDisplayOptionEnum
+		public virtual Organization_CurrencyDisplayOption? CurrencyDisplayOptionEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((organization_currencydisplayoption?)(EntityOptionSetEnum.GetEnum(this, "currencydisplayoption")));
+				return ((Organization_CurrencyDisplayOption?)(EntityOptionSetEnum.GetEnum(this, "currencydisplayoption")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -7969,12 +8011,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("defaultrecurrenceendrangetype")]
-		public virtual organization_defaultrecurrenceendrangetype? DefaultRecurrenceEndRangeTypeEnum
+		public virtual Organization_DefaultRecurrenceEndRangeType? DefaultRecurrenceEndRangeTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((organization_defaultrecurrenceendrangetype?)(EntityOptionSetEnum.GetEnum(this, "defaultrecurrenceendrangetype")));
+				return ((Organization_DefaultRecurrenceEndRangeType?)(EntityOptionSetEnum.GetEnum(this, "defaultrecurrenceendrangetype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -7984,12 +8026,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("discountcalculationmethod")]
-		public virtual organization_discountcalculationmethod? DiscountCalculationMethodEnum
+		public virtual Organization_DiscountCalculationMethod? DiscountCalculationMethodEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((organization_discountcalculationmethod?)(EntityOptionSetEnum.GetEnum(this, "discountcalculationmethod")));
+				return ((Organization_DiscountCalculationMethod?)(EntityOptionSetEnum.GetEnum(this, "discountcalculationmethod")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -7999,12 +8041,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("emailconnectionchannel")]
-		public virtual organization_emailconnectionchannel? EmailConnectionChannelEnum
+		public virtual Organization_EmailConnectionChannel? EmailConnectionChannelEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((organization_emailconnectionchannel?)(EntityOptionSetEnum.GetEnum(this, "emailconnectionchannel")));
+				return ((Organization_EmailConnectionChannel?)(EntityOptionSetEnum.GetEnum(this, "emailconnectionchannel")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -8014,12 +8056,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("fiscalperiodformatperiod")]
-		public virtual organization_fiscalperiodformat? FiscalPeriodFormatPeriodEnum
+		public virtual Organization_FiscalPeriodFormatPeriod? FiscalPeriodFormatPeriodEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((organization_fiscalperiodformat?)(EntityOptionSetEnum.GetEnum(this, "fiscalperiodformatperiod")));
+				return ((Organization_FiscalPeriodFormatPeriod?)(EntityOptionSetEnum.GetEnum(this, "fiscalperiodformatperiod")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -8029,12 +8071,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("fiscalyearformatprefix")]
-		public virtual organization_fiscalyearformatprefix? FiscalYearFormatPrefixEnum
+		public virtual Organization_FiscalYearFormatPrefix? FiscalYearFormatPrefixEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((organization_fiscalyearformatprefix?)(EntityOptionSetEnum.GetEnum(this, "fiscalyearformatprefix")));
+				return ((Organization_FiscalYearFormatPrefix?)(EntityOptionSetEnum.GetEnum(this, "fiscalyearformatprefix")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -8044,12 +8086,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("fiscalyearformatsuffix")]
-		public virtual organization_fiscalyearformatsuffix? FiscalYearFormatSuffixEnum
+		public virtual Organization_FiscalYearFormatSuffix? FiscalYearFormatSuffixEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((organization_fiscalyearformatsuffix?)(EntityOptionSetEnum.GetEnum(this, "fiscalyearformatsuffix")));
+				return ((Organization_FiscalYearFormatSuffix?)(EntityOptionSetEnum.GetEnum(this, "fiscalyearformatsuffix")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -8059,12 +8101,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("fiscalyearformatyear")]
-		public virtual organization_fiscalyearformatyear? FiscalYearFormatYearEnum
+		public virtual Organization_FiscalYearFormatYear? FiscalYearFormatYearEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((organization_fiscalyearformatyear?)(EntityOptionSetEnum.GetEnum(this, "fiscalyearformatyear")));
+				return ((Organization_FiscalYearFormatYear?)(EntityOptionSetEnum.GetEnum(this, "fiscalyearformatyear")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -8074,12 +8116,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("fullnameconventioncode")]
-		public virtual organization_fullnameconventioncode? FullNameConventionCodeEnum
+		public virtual Organization_FullNameConventionCode? FullNameConventionCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((organization_fullnameconventioncode?)(EntityOptionSetEnum.GetEnum(this, "fullnameconventioncode")));
+				return ((Organization_FullNameConventionCode?)(EntityOptionSetEnum.GetEnum(this, "fullnameconventioncode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -8089,12 +8131,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("negativeformatcode")]
-		public virtual organization_negativeformatcode? NegativeFormatCodeEnum
+		public virtual Organization_NegativeFormatCode? NegativeFormatCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((organization_negativeformatcode?)(EntityOptionSetEnum.GetEnum(this, "negativeformatcode")));
+				return ((Organization_NegativeFormatCode?)(EntityOptionSetEnum.GetEnum(this, "negativeformatcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -8104,12 +8146,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("plugintracelogsetting")]
-		public virtual organization_plugintracelogsetting? PluginTraceLogSettingEnum
+		public virtual Organization_PluginTraceLogSetting? PluginTraceLogSettingEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((organization_plugintracelogsetting?)(EntityOptionSetEnum.GetEnum(this, "plugintracelogsetting")));
+				return ((Organization_PluginTraceLogSetting?)(EntityOptionSetEnum.GetEnum(this, "plugintracelogsetting")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -8119,12 +8161,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("reportscripterrors")]
-		public virtual organization_reportscripterrors? ReportScriptErrorsEnum
+		public virtual Organization_ReportScriptErrors? ReportScriptErrorsEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((organization_reportscripterrors?)(EntityOptionSetEnum.GetEnum(this, "reportscripterrors")));
+				return ((Organization_ReportScriptErrors?)(EntityOptionSetEnum.GetEnum(this, "reportscripterrors")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -8134,12 +8176,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sharepointdeploymenttype")]
-		public virtual organization_sharepointdeploymenttype? SharePointDeploymentTypeEnum
+		public virtual Organization_SharePointDeploymentType? SharePointDeploymentTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((organization_sharepointdeploymenttype?)(EntityOptionSetEnum.GetEnum(this, "sharepointdeploymenttype")));
+				return ((Organization_SharePointDeploymentType?)(EntityOptionSetEnum.GetEnum(this, "sharepointdeploymenttype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -8149,12 +8191,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("yammerpostmethod")]
-		public virtual organization_yammerpostmethod? YammerPostMethodEnum
+		public virtual Organization_YammerPostMethod? YammerPostMethodEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((organization_yammerpostmethod?)(EntityOptionSetEnum.GetEnum(this, "yammerpostmethod")));
+				return ((Organization_YammerPostMethod?)(EntityOptionSetEnum.GetEnum(this, "yammerpostmethod")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

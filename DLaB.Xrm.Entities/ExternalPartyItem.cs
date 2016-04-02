@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum ExternalPartyItemState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("externalpartyitem")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ExternalPartyItem : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -58,15 +58,15 @@ namespace DLaB.Xrm.Entities
 			public const string StatusCode = "statuscode";
 			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string VersionNumber = "versionnumber";
-			public const string Contact_ExternalPartyItems = "regardingobjectid";
-			public const string externalparty_entries = "externalpartyid";
-			public const string lk_externalpartyitem_channelaccessprofileid = "channelaccessprofileid";
-			public const string lk_externalpartyitem_createdby = "createdby";
-			public const string lk_externalpartyitem_createdonbehalfby = "createdonbehalfby";
-			public const string lk_externalpartyitem_modifiedby = "modifiedby";
-			public const string lk_externalpartyitem_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string SystemUser_ExternalPartyItems = "regardingobjectid";
-			public const string TransactionCurrency_externalpartyitem = "transactioncurrencyid";
+			public const string Contact_ExternalPartyItems = "Contact_ExternalPartyItems";
+			public const string externalparty_entries = "externalparty_entries";
+			public const string lk_externalpartyitem_channelaccessprofileid = "lk_externalpartyitem_channelaccessprofileid";
+			public const string lk_externalpartyitem_createdby = "lk_externalpartyitem_createdby";
+			public const string lk_externalpartyitem_createdonbehalfby = "lk_externalpartyitem_createdonbehalfby";
+			public const string lk_externalpartyitem_modifiedby = "lk_externalpartyitem_modifiedby";
+			public const string lk_externalpartyitem_modifiedonbehalfby = "lk_externalpartyitem_modifiedonbehalfby";
+			public const string SystemUser_ExternalPartyItems = "SystemUser_ExternalPartyItems";
+			public const string TransactionCurrency_externalpartyitem = "TransactionCurrency_externalpartyitem";
 		}
 
 		
@@ -136,6 +136,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -148,6 +155,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -338,6 +352,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -350,6 +371,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -463,6 +491,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -709,6 +744,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_externalpartyitem_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_externalpartyitem_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_externalpartyitem_createdby", null, value);
+				this.OnPropertyChanged("lk_externalpartyitem_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -743,6 +785,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_externalpartyitem_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_externalpartyitem_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_externalpartyitem_modifiedby", null, value);
+				this.OnPropertyChanged("lk_externalpartyitem_modifiedby");
 			}
 		}
 		

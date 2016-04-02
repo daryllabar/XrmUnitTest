@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("invaliddependency")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class InvalidDependency : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -271,32 +271,32 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("existingcomponenttype")]
-		public virtual componenttype? ExistingComponentTypeEnum
+		public virtual ComponentType? ExistingComponentTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componenttype?)(EntityOptionSetEnum.GetEnum(this, "existingcomponenttype")));
+				return ((ComponentType?)(EntityOptionSetEnum.GetEnum(this, "existingcomponenttype")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("existingdependencytype")]
-		public virtual dependencytype? ExistingDependencyTypeEnum
+		public virtual DependencyType? ExistingDependencyTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((dependencytype?)(EntityOptionSetEnum.GetEnum(this, "existingdependencytype")));
+				return ((DependencyType?)(EntityOptionSetEnum.GetEnum(this, "existingdependencytype")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("missingcomponenttype")]
-		public virtual componenttype? MissingComponentTypeEnum
+		public virtual ComponentType? MissingComponentTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componenttype?)(EntityOptionSetEnum.GetEnum(this, "missingcomponenttype")));
+				return ((ComponentType?)(EntityOptionSetEnum.GetEnum(this, "missingcomponenttype")));
 			}
 		}
 	}

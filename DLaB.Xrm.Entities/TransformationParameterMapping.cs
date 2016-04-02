@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("transformationparametermapping")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class TransformationParameterMapping : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -35,11 +35,11 @@ namespace DLaB.Xrm.Entities
 			public const string TransformationMappingId = "transformationmappingid";
 			public const string TransformationParameterMappingId = "transformationparametermappingid";
 			public const string Id = "transformationparametermappingid";
-			public const string lk_transformationparametermapping_createdby = "createdby";
-			public const string lk_transformationparametermapping_createdonbehalfby = "createdonbehalfby";
-			public const string lk_transformationparametermapping_modifiedby = "modifiedby";
-			public const string lk_transformationparametermapping_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string TransformationParameterMapping_TransformationMapping = "transformationmappingid";
+			public const string lk_transformationparametermapping_createdby = "lk_transformationparametermapping_createdby";
+			public const string lk_transformationparametermapping_createdonbehalfby = "lk_transformationparametermapping_createdonbehalfby";
+			public const string lk_transformationparametermapping_modifiedby = "lk_transformationparametermapping_modifiedby";
+			public const string lk_transformationparametermapping_modifiedonbehalfby = "lk_transformationparametermapping_modifiedonbehalfby";
+			public const string TransformationParameterMapping_TransformationMapping = "TransformationParameterMapping_TransformationMapping";
 		}
 
 		
@@ -89,6 +89,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -101,6 +108,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -175,6 +189,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -187,6 +208,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -385,6 +413,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_transformationparametermapping_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_transformationparametermapping_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_transformationparametermapping_createdby", null, value);
+				this.OnPropertyChanged("lk_transformationparametermapping_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -419,6 +454,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_transformationparametermapping_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_transformationparametermapping_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_transformationparametermapping_modifiedby", null, value);
+				this.OnPropertyChanged("lk_transformationparametermapping_modifiedby");
 			}
 		}
 		
@@ -507,12 +549,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("datatypecode")]
-		public virtual transformationparametermapping_datatypecode? DataTypeCodeEnum
+		public virtual TransformationParameterMapping_DataTypeCode? DataTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((transformationparametermapping_datatypecode?)(EntityOptionSetEnum.GetEnum(this, "datatypecode")));
+				return ((TransformationParameterMapping_DataTypeCode?)(EntityOptionSetEnum.GetEnum(this, "datatypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -522,12 +564,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("parametertypecode")]
-		public virtual transformationparametermapping_parametertypecode? ParameterTypeCodeEnum
+		public virtual TransformationParameterMapping_ParameterTypeCode? ParameterTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((transformationparametermapping_parametertypecode?)(EntityOptionSetEnum.GetEnum(this, "parametertypecode")));
+				return ((TransformationParameterMapping_ParameterTypeCode?)(EntityOptionSetEnum.GetEnum(this, "parametertypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

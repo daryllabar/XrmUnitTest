@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum RecommendationModelState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("recommendationmodel")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class RecommendationModel : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -66,13 +66,13 @@ namespace DLaB.Xrm.Entities
 			public const string StateCode = "statecode";
 			public const string StatusCode = "statuscode";
 			public const string ValidUntil = "validuntil";
-			public const string azureserviceconnection_recommendationmodel = "azureserviceconnectionid";
-			public const string lk_recommendationmodel_createdby = "createdby";
-			public const string lk_recommendationmodel_createdonbehalfby = "createdonbehalfby";
-			public const string lk_recommendationmodel_modifiedby = "modifiedby";
-			public const string lk_recommendationmodel_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string organization_recommendationmodel = "organizationid";
-			public const string recommendationmodelversion_recommendationmodel = "recommendationmodelversionid";
+			public const string azureserviceconnection_recommendationmodel = "azureserviceconnection_recommendationmodel";
+			public const string lk_recommendationmodel_createdby = "lk_recommendationmodel_createdby";
+			public const string lk_recommendationmodel_createdonbehalfby = "lk_recommendationmodel_createdonbehalfby";
+			public const string lk_recommendationmodel_modifiedby = "lk_recommendationmodel_modifiedby";
+			public const string lk_recommendationmodel_modifiedonbehalfby = "lk_recommendationmodel_modifiedonbehalfby";
+			public const string organization_recommendationmodel = "organization_recommendationmodel";
+			public const string recommendationmodelversion_recommendationmodel = "recommendationmodelversion_recommendationmodel";
 		}
 
 		
@@ -255,6 +255,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -267,6 +274,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -394,6 +408,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -406,6 +427,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -812,6 +840,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_recommendationmodel_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_recommendationmodel_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_recommendationmodel_createdby", null, value);
+				this.OnPropertyChanged("lk_recommendationmodel_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -846,6 +881,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_recommendationmodel_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_recommendationmodel_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_recommendationmodel_modifiedby", null, value);
+				this.OnPropertyChanged("lk_recommendationmodel_modifiedby");
 			}
 		}
 		
@@ -948,12 +990,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("basketdatalastsynchronizationstatus")]
-		public virtual recommendationmodel_basketdatalastsynchronizationstatus? BasketDataLastSynchronizationStatusEnum
+		public virtual RecommendationModel_BasketDataLastSynchronizationStatus? BasketDataLastSynchronizationStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recommendationmodel_basketdatalastsynchronizationstatus?)(EntityOptionSetEnum.GetEnum(this, "basketdatalastsynchronizationstatus")));
+				return ((RecommendationModel_BasketDataLastSynchronizationStatus?)(EntityOptionSetEnum.GetEnum(this, "basketdatalastsynchronizationstatus")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -963,12 +1005,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cataloglastsynchronizationstatus")]
-		public virtual recommendationmodel_cataloglastsynchronizationstatus? CatalogLastSynchronizationStatusEnum
+		public virtual RecommendationModel_CatalogLastSynchronizationStatus? CatalogLastSynchronizationStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recommendationmodel_cataloglastsynchronizationstatus?)(EntityOptionSetEnum.GetEnum(this, "cataloglastsynchronizationstatus")));
+				return ((RecommendationModel_CatalogLastSynchronizationStatus?)(EntityOptionSetEnum.GetEnum(this, "cataloglastsynchronizationstatus")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -978,22 +1020,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual recommendationmodel_statuscode? StatusCodeEnum
+		public virtual RecommendationModel_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((recommendationmodel_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((RecommendationModel_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

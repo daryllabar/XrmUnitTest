@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum AsyncOperationState
 	{
 		
@@ -33,7 +33,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("asyncoperation")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class AsyncOperation : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -83,147 +83,147 @@ namespace DLaB.Xrm.Entities
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string WorkflowActivationId = "workflowactivationid";
 			public const string WorkflowStageName = "workflowstagename";
-			public const string Account_AsyncOperations = "regardingobjectid";
-			public const string ActivityMimeAttachment_AsyncOperations = "regardingobjectid";
-			public const string ActivityPointer_AsyncOperations = "regardingobjectid";
-			public const string Annotation_AsyncOperations = "regardingobjectid";
-			public const string AnnualFiscalCalendar_AsyncOperations = "regardingobjectid";
-			public const string Appointment_AsyncOperations = "regardingobjectid";
-			public const string AttributeMap_AsyncOperations = "regardingobjectid";
-			public const string BulkOperation_AsyncOperations = "regardingobjectid";
-			public const string BulkOperationLog_AsyncOperations = "regardingobjectid";
-			public const string business_unit_asyncoperation = "owningbusinessunit";
-			public const string BusinessUnit_AsyncOperations = "regardingobjectid";
-			public const string BusinessUnitNewsArticle_AsyncOperations = "regardingobjectid";
-			public const string Calendar_AsyncOperations = "regardingobjectid";
-			public const string Campaign_AsyncOperations = "regardingobjectid";
-			public const string CampaignActivity_AsyncOperations = "regardingobjectid";
-			public const string CampaignResponse_AsyncOperations = "regardingobjectid";
-			public const string channelaccessprofile_AsyncOperations = "regardingobjectid";
-			public const string Competitor_AsyncOperations = "regardingobjectid";
-			public const string Connection_AsyncOperations = "regardingobjectid";
-			public const string Connection_Role_AsyncOperations = "regardingobjectid";
-			public const string ConstraintBasedGroup_AsyncOperations = "regardingobjectid";
-			public const string Contact_AsyncOperations = "regardingobjectid";
-			public const string Contract_AsyncOperations = "regardingobjectid";
-			public const string ContractDetail_AsyncOperations = "regardingobjectid";
-			public const string ContractTemplate_AsyncOperations = "regardingobjectid";
-			public const string Convertrule_AsyncOperations = "regardingobjectid";
-			public const string CustomerAddress_AsyncOperations = "regardingobjectid";
-			public const string CustomerOpportunityRole_AsyncOperations = "regardingobjectid";
-			public const string CustomerRelationship_AsyncOperations = "regardingobjectid";
-			public const string Discount_AsyncOperations = "regardingobjectid";
-			public const string DiscountType_AsyncOperations = "regardingobjectid";
-			public const string DisplayString_AsyncOperations = "regardingobjectid";
-			public const string Email_AsyncOperations = "regardingobjectid";
-			public const string emailserverprofile_asyncoperations = "regardingobjectid";
-			public const string entitlement_AsyncOperations = "regardingobjectid";
-			public const string entitlementchannel_AsyncOperations = "regardingobjectid";
-			public const string entitlementtemplate_AsyncOperations = "regardingobjectid";
-			public const string EntityMap_AsyncOperations = "regardingobjectid";
-			public const string Equipment_AsyncOperations = "regardingobjectid";
-			public const string externalparty_AsyncOperations = "regardingobjectid";
-			public const string externalpartyitem_AsyncOperations = "regardingobjectid";
-			public const string Fax_AsyncOperations = "regardingobjectid";
-			public const string FixedMonthlyFiscalCalendar_AsyncOperations = "regardingobjectid";
-			public const string Goal_AsyncOperations = "regardingobjectid";
-			public const string goalrollupquery_AsyncOperations = "regardingobjectid";
-			public const string Import_AsyncOperations = "regardingobjectid";
-			public const string ImportFile_AsyncOperations = "regardingobjectid";
-			public const string ImportLog_AsyncOperations = "regardingobjectid";
-			public const string ImportMap_AsyncOperations = "regardingobjectid";
-			public const string Incident_AsyncOperations = "regardingobjectid";
-			public const string IncidentResolution_AsyncOperations = "regardingobjectid";
-			public const string Invoice_AsyncOperations = "regardingobjectid";
-			public const string InvoiceDetail_AsyncOperations = "regardingobjectid";
-			public const string IsvConfig_AsyncOperations = "regardingobjectid";
-			public const string KbArticle_AsyncOperations = "regardingobjectid";
-			public const string KbArticleComment_AsyncOperations = "regardingobjectid";
-			public const string KbArticleTemplate_AsyncOperations = "regardingobjectid";
-			public const string knowledgearticle_AsyncOperations = "regardingobjectid";
-			public const string KnowledgeBaseRecord_AsyncOperations = "regardingobjectid";
-			public const string Lead_AsyncOperations = "regardingobjectid";
-			public const string Letter_AsyncOperations = "regardingobjectid";
-			public const string List_AsyncOperations = "regardingobjectid";
-			public const string lk_asyncoperation_createdby = "createdby";
-			public const string lk_asyncoperation_createdonbehalfby = "createdonbehalfby";
-			public const string lk_asyncoperation_modifiedby = "modifiedby";
-			public const string lk_asyncoperation_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_asyncoperation_workflowactivationid = "workflowactivationid";
-			public const string mailbox_asyncoperations = "regardingobjectid";
-			public const string MailMergeTemplate_AsyncOperations = "regardingobjectid";
-			public const string metric_AsyncOperations = "regardingobjectid";
-			public const string MonthlyFiscalCalendar_AsyncOperations = "regardingobjectid";
-			public const string msdyn_postalbum_AsyncOperations = "regardingobjectid";
-			public const string msdyn_postconfig_AsyncOperations = "regardingobjectid";
-			public const string msdyn_postruleconfig_AsyncOperations = "regardingobjectid";
-			public const string msdyn_wallsavedquery_AsyncOperations = "regardingobjectid";
-			public const string msdyn_wallsavedqueryusersettings_AsyncOperations = "regardingobjectid";
-			public const string Opportunity_AsyncOperations = "regardingobjectid";
-			public const string OpportunityClose_AsyncOperations = "regardingobjectid";
-			public const string OpportunityProduct_AsyncOperations = "regardingobjectid";
-			public const string OrderClose_AsyncOperations = "regardingobjectid";
-			public const string Organization_AsyncOperations = "regardingobjectid";
-			public const string PhoneCall_AsyncOperations = "regardingobjectid";
-			public const string position_AsyncOperations = "regardingobjectid";
-			public const string post_AsyncOperations = "regardingobjectid";
-			public const string PostFollow_AsyncOperations = "regardingobjectid";
-			public const string PriceLevel_AsyncOperations = "regardingobjectid";
-			public const string Privilege_AsyncOperations = "regardingobjectid";
-			public const string Product_AsyncOperations = "regardingobjectid";
-			public const string ProductAssociation_AsyncOperations = "regardingobjectid";
-			public const string ProductPriceLevel_AsyncOperations = "regardingobjectid";
-			public const string ProductSubstitute_AsyncOperations = "regardingobjectid";
-			public const string profilerule_AsyncOperations = "regardingobjectid";
-			public const string QuarterlyFiscalCalendar_AsyncOperations = "regardingobjectid";
-			public const string Queue_AsyncOperations = "regardingobjectid";
-			public const string QueueItem_AsyncOperations = "regardingobjectid";
-			public const string Quote_AsyncOperations = "regardingobjectid";
-			public const string QuoteClose_AsyncOperations = "regardingobjectid";
-			public const string QuoteDetail_AsyncOperations = "regardingobjectid";
-			public const string RecurringAppointmentMaster_AsyncOperations = "regardingobjectid";
-			public const string RelationshipRole_AsyncOperations = "regardingobjectid";
-			public const string RelationshipRoleMap_AsyncOperations = "regardingobjectid";
-			public const string Report_AsyncOperations = "regardingobjectid";
-			public const string Resource_AsyncOperations = "regardingobjectid";
-			public const string ResourceGroup_AsyncOperations = "regardingobjectid";
-			public const string ResourceSpec_AsyncOperations = "regardingobjectid";
-			public const string Role_AsyncOperations = "regardingobjectid";
-			public const string rollupfield_AsyncOperations = "regardingobjectid";
-			public const string routingrule_AsyncOperations = "regardingobjectid";
-			public const string routingruleitem_AsyncOperations = "regardingobjectid";
-			public const string SalesLiterature_AsyncOperations = "regardingobjectid";
-			public const string SalesLiteratureItem_AsyncOperations = "regardingobjectid";
-			public const string SalesOrder_AsyncOperations = "regardingobjectid";
-			public const string SalesOrderDetail_AsyncOperations = "regardingobjectid";
-			public const string SavedQuery_AsyncOperations = "regardingobjectid";
-			public const string SdkMessageProcessingStep_AsyncOperations = "owningextensionid";
-			public const string SemiAnnualFiscalCalendar_AsyncOperations = "regardingobjectid";
-			public const string Service_AsyncOperations = "regardingobjectid";
-			public const string ServiceAppointment_AsyncOperations = "regardingobjectid";
-			public const string SharePointDocumentLocation_AsyncOperations = "regardingobjectid";
-			public const string SharePointSite_AsyncOperations = "regardingobjectid";
-			public const string similarityrule_AsyncOperations = "regardingobjectid";
-			public const string Site_AsyncOperations = "regardingobjectid";
-			public const string slabase_AsyncOperations = "regardingobjectid";
-			public const string SocialActivity_AsyncOperations = "regardingobjectid";
-			public const string SocialProfile_AsyncOperations = "regardingobjectid";
-			public const string Subject_AsyncOperations = "regardingobjectid";
-			public const string system_user_asyncoperation = "owninguser";
-			public const string SystemForm_AsyncOperations = "regardingobjectid";
-			public const string SystemUser_AsyncOperations = "regardingobjectid";
-			public const string Task_AsyncOperations = "regardingobjectid";
-			public const string team_asyncoperation = "owningteam";
-			public const string Team_AsyncOperations = "regardingobjectid";
-			public const string Template_AsyncOperations = "regardingobjectid";
-			public const string Territory_AsyncOperations = "regardingobjectid";
-			public const string theme_AsyncOperations = "regardingobjectid";
-			public const string TransactionCurrency_AsyncOperations = "regardingobjectid";
-			public const string UoM_AsyncOperations = "regardingobjectid";
-			public const string UoMSchedule_AsyncOperations = "regardingobjectid";
-			public const string UserForm_AsyncOperations = "regardingobjectid";
-			public const string usermapping_AsyncOperations = "regardingobjectid";
-			public const string UserQuery_AsyncOperations = "regardingobjectid";
+			public const string Account_AsyncOperations = "Account_AsyncOperations";
+			public const string ActivityMimeAttachment_AsyncOperations = "ActivityMimeAttachment_AsyncOperations";
+			public const string ActivityPointer_AsyncOperations = "ActivityPointer_AsyncOperations";
+			public const string Annotation_AsyncOperations = "Annotation_AsyncOperations";
+			public const string AnnualFiscalCalendar_AsyncOperations = "AnnualFiscalCalendar_AsyncOperations";
+			public const string Appointment_AsyncOperations = "Appointment_AsyncOperations";
+			public const string AttributeMap_AsyncOperations = "AttributeMap_AsyncOperations";
+			public const string BulkOperation_AsyncOperations = "BulkOperation_AsyncOperations";
+			public const string BulkOperationLog_AsyncOperations = "BulkOperationLog_AsyncOperations";
+			public const string business_unit_asyncoperation = "business_unit_asyncoperation";
+			public const string BusinessUnit_AsyncOperations = "BusinessUnit_AsyncOperations";
+			public const string BusinessUnitNewsArticle_AsyncOperations = "BusinessUnitNewsArticle_AsyncOperations";
+			public const string Calendar_AsyncOperations = "Calendar_AsyncOperations";
+			public const string Campaign_AsyncOperations = "Campaign_AsyncOperations";
+			public const string CampaignActivity_AsyncOperations = "CampaignActivity_AsyncOperations";
+			public const string CampaignResponse_AsyncOperations = "CampaignResponse_AsyncOperations";
+			public const string channelaccessprofile_AsyncOperations = "channelaccessprofile_AsyncOperations";
+			public const string Competitor_AsyncOperations = "Competitor_AsyncOperations";
+			public const string Connection_AsyncOperations = "Connection_AsyncOperations";
+			public const string Connection_Role_AsyncOperations = "Connection_Role_AsyncOperations";
+			public const string ConstraintBasedGroup_AsyncOperations = "ConstraintBasedGroup_AsyncOperations";
+			public const string Contact_AsyncOperations = "Contact_AsyncOperations";
+			public const string Contract_AsyncOperations = "Contract_AsyncOperations";
+			public const string ContractDetail_AsyncOperations = "ContractDetail_AsyncOperations";
+			public const string ContractTemplate_AsyncOperations = "ContractTemplate_AsyncOperations";
+			public const string Convertrule_AsyncOperations = "Convertrule_AsyncOperations";
+			public const string CustomerAddress_AsyncOperations = "CustomerAddress_AsyncOperations";
+			public const string CustomerOpportunityRole_AsyncOperations = "CustomerOpportunityRole_AsyncOperations";
+			public const string CustomerRelationship_AsyncOperations = "CustomerRelationship_AsyncOperations";
+			public const string Discount_AsyncOperations = "Discount_AsyncOperations";
+			public const string DiscountType_AsyncOperations = "DiscountType_AsyncOperations";
+			public const string DisplayString_AsyncOperations = "DisplayString_AsyncOperations";
+			public const string Email_AsyncOperations = "Email_AsyncOperations";
+			public const string emailserverprofile_asyncoperations = "emailserverprofile_asyncoperations";
+			public const string entitlement_AsyncOperations = "entitlement_AsyncOperations";
+			public const string entitlementchannel_AsyncOperations = "entitlementchannel_AsyncOperations";
+			public const string entitlementtemplate_AsyncOperations = "entitlementtemplate_AsyncOperations";
+			public const string EntityMap_AsyncOperations = "EntityMap_AsyncOperations";
+			public const string Equipment_AsyncOperations = "Equipment_AsyncOperations";
+			public const string externalparty_AsyncOperations = "externalparty_AsyncOperations";
+			public const string externalpartyitem_AsyncOperations = "externalpartyitem_AsyncOperations";
+			public const string Fax_AsyncOperations = "Fax_AsyncOperations";
+			public const string FixedMonthlyFiscalCalendar_AsyncOperations = "FixedMonthlyFiscalCalendar_AsyncOperations";
+			public const string Goal_AsyncOperations = "Goal_AsyncOperations";
+			public const string goalrollupquery_AsyncOperations = "goalrollupquery_AsyncOperations";
+			public const string Import_AsyncOperations = "Import_AsyncOperations";
+			public const string ImportFile_AsyncOperations = "ImportFile_AsyncOperations";
+			public const string ImportLog_AsyncOperations = "ImportLog_AsyncOperations";
+			public const string ImportMap_AsyncOperations = "ImportMap_AsyncOperations";
+			public const string Incident_AsyncOperations = "Incident_AsyncOperations";
+			public const string IncidentResolution_AsyncOperations = "IncidentResolution_AsyncOperations";
+			public const string Invoice_AsyncOperations = "Invoice_AsyncOperations";
+			public const string InvoiceDetail_AsyncOperations = "InvoiceDetail_AsyncOperations";
+			public const string IsvConfig_AsyncOperations = "IsvConfig_AsyncOperations";
+			public const string KbArticle_AsyncOperations = "KbArticle_AsyncOperations";
+			public const string KbArticleComment_AsyncOperations = "KbArticleComment_AsyncOperations";
+			public const string KbArticleTemplate_AsyncOperations = "KbArticleTemplate_AsyncOperations";
+			public const string knowledgearticle_AsyncOperations = "knowledgearticle_AsyncOperations";
+			public const string KnowledgeBaseRecord_AsyncOperations = "KnowledgeBaseRecord_AsyncOperations";
+			public const string Lead_AsyncOperations = "Lead_AsyncOperations";
+			public const string Letter_AsyncOperations = "Letter_AsyncOperations";
+			public const string List_AsyncOperations = "List_AsyncOperations";
+			public const string lk_asyncoperation_createdby = "lk_asyncoperation_createdby";
+			public const string lk_asyncoperation_createdonbehalfby = "lk_asyncoperation_createdonbehalfby";
+			public const string lk_asyncoperation_modifiedby = "lk_asyncoperation_modifiedby";
+			public const string lk_asyncoperation_modifiedonbehalfby = "lk_asyncoperation_modifiedonbehalfby";
+			public const string lk_asyncoperation_workflowactivationid = "lk_asyncoperation_workflowactivationid";
+			public const string mailbox_asyncoperations = "mailbox_asyncoperations";
+			public const string MailMergeTemplate_AsyncOperations = "MailMergeTemplate_AsyncOperations";
+			public const string metric_AsyncOperations = "metric_AsyncOperations";
+			public const string MonthlyFiscalCalendar_AsyncOperations = "MonthlyFiscalCalendar_AsyncOperations";
+			public const string msdyn_postalbum_AsyncOperations = "msdyn_postalbum_AsyncOperations";
+			public const string msdyn_postconfig_AsyncOperations = "msdyn_postconfig_AsyncOperations";
+			public const string msdyn_postruleconfig_AsyncOperations = "msdyn_postruleconfig_AsyncOperations";
+			public const string msdyn_wallsavedquery_AsyncOperations = "msdyn_wallsavedquery_AsyncOperations";
+			public const string msdyn_wallsavedqueryusersettings_AsyncOperations = "msdyn_wallsavedqueryusersettings_AsyncOperations";
+			public const string Opportunity_AsyncOperations = "Opportunity_AsyncOperations";
+			public const string OpportunityClose_AsyncOperations = "OpportunityClose_AsyncOperations";
+			public const string OpportunityProduct_AsyncOperations = "OpportunityProduct_AsyncOperations";
+			public const string OrderClose_AsyncOperations = "OrderClose_AsyncOperations";
+			public const string Organization_AsyncOperations = "Organization_AsyncOperations";
+			public const string PhoneCall_AsyncOperations = "PhoneCall_AsyncOperations";
+			public const string position_AsyncOperations = "position_AsyncOperations";
+			public const string post_AsyncOperations = "post_AsyncOperations";
+			public const string PostFollow_AsyncOperations = "PostFollow_AsyncOperations";
+			public const string PriceLevel_AsyncOperations = "PriceLevel_AsyncOperations";
+			public const string Privilege_AsyncOperations = "Privilege_AsyncOperations";
+			public const string Product_AsyncOperations = "Product_AsyncOperations";
+			public const string ProductAssociation_AsyncOperations = "ProductAssociation_AsyncOperations";
+			public const string ProductPriceLevel_AsyncOperations = "ProductPriceLevel_AsyncOperations";
+			public const string ProductSubstitute_AsyncOperations = "ProductSubstitute_AsyncOperations";
+			public const string profilerule_AsyncOperations = "profilerule_AsyncOperations";
+			public const string QuarterlyFiscalCalendar_AsyncOperations = "QuarterlyFiscalCalendar_AsyncOperations";
+			public const string Queue_AsyncOperations = "Queue_AsyncOperations";
+			public const string QueueItem_AsyncOperations = "QueueItem_AsyncOperations";
+			public const string Quote_AsyncOperations = "Quote_AsyncOperations";
+			public const string QuoteClose_AsyncOperations = "QuoteClose_AsyncOperations";
+			public const string QuoteDetail_AsyncOperations = "QuoteDetail_AsyncOperations";
+			public const string RecurringAppointmentMaster_AsyncOperations = "RecurringAppointmentMaster_AsyncOperations";
+			public const string RelationshipRole_AsyncOperations = "RelationshipRole_AsyncOperations";
+			public const string RelationshipRoleMap_AsyncOperations = "RelationshipRoleMap_AsyncOperations";
+			public const string Report_AsyncOperations = "Report_AsyncOperations";
+			public const string Resource_AsyncOperations = "Resource_AsyncOperations";
+			public const string ResourceGroup_AsyncOperations = "ResourceGroup_AsyncOperations";
+			public const string ResourceSpec_AsyncOperations = "ResourceSpec_AsyncOperations";
+			public const string Role_AsyncOperations = "Role_AsyncOperations";
+			public const string rollupfield_AsyncOperations = "rollupfield_AsyncOperations";
+			public const string routingrule_AsyncOperations = "routingrule_AsyncOperations";
+			public const string routingruleitem_AsyncOperations = "routingruleitem_AsyncOperations";
+			public const string SalesLiterature_AsyncOperations = "SalesLiterature_AsyncOperations";
+			public const string SalesLiteratureItem_AsyncOperations = "SalesLiteratureItem_AsyncOperations";
+			public const string SalesOrder_AsyncOperations = "SalesOrder_AsyncOperations";
+			public const string SalesOrderDetail_AsyncOperations = "SalesOrderDetail_AsyncOperations";
+			public const string SavedQuery_AsyncOperations = "SavedQuery_AsyncOperations";
+			public const string SdkMessageProcessingStep_AsyncOperations = "SdkMessageProcessingStep_AsyncOperations";
+			public const string SemiAnnualFiscalCalendar_AsyncOperations = "SemiAnnualFiscalCalendar_AsyncOperations";
+			public const string Service_AsyncOperations = "Service_AsyncOperations";
+			public const string ServiceAppointment_AsyncOperations = "ServiceAppointment_AsyncOperations";
+			public const string SharePointDocumentLocation_AsyncOperations = "SharePointDocumentLocation_AsyncOperations";
+			public const string SharePointSite_AsyncOperations = "SharePointSite_AsyncOperations";
+			public const string similarityrule_AsyncOperations = "similarityrule_AsyncOperations";
+			public const string Site_AsyncOperations = "Site_AsyncOperations";
+			public const string slabase_AsyncOperations = "slabase_AsyncOperations";
+			public const string SocialActivity_AsyncOperations = "SocialActivity_AsyncOperations";
+			public const string SocialProfile_AsyncOperations = "SocialProfile_AsyncOperations";
+			public const string Subject_AsyncOperations = "Subject_AsyncOperations";
+			public const string system_user_asyncoperation = "system_user_asyncoperation";
+			public const string SystemForm_AsyncOperations = "SystemForm_AsyncOperations";
+			public const string SystemUser_AsyncOperations = "SystemUser_AsyncOperations";
+			public const string Task_AsyncOperations = "Task_AsyncOperations";
+			public const string team_asyncoperation = "team_asyncoperation";
+			public const string Team_AsyncOperations = "Team_AsyncOperations";
+			public const string Template_AsyncOperations = "Template_AsyncOperations";
+			public const string Territory_AsyncOperations = "Territory_AsyncOperations";
+			public const string theme_AsyncOperations = "theme_AsyncOperations";
+			public const string TransactionCurrency_AsyncOperations = "TransactionCurrency_AsyncOperations";
+			public const string UoM_AsyncOperations = "UoM_AsyncOperations";
+			public const string UoMSchedule_AsyncOperations = "UoMSchedule_AsyncOperations";
+			public const string UserForm_AsyncOperations = "UserForm_AsyncOperations";
+			public const string usermapping_AsyncOperations = "usermapping_AsyncOperations";
+			public const string UserQuery_AsyncOperations = "UserQuery_AsyncOperations";
 		}
 
 		
@@ -369,6 +369,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -381,6 +388,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -587,6 +601,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -599,6 +620,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -693,6 +721,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -726,6 +761,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -738,6 +780,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1401,6 +1450,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_asyncoperation", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_asyncoperation");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_asyncoperation", null, value);
+				this.OnPropertyChanged("business_unit_asyncoperation");
 			}
 		}
 		
@@ -2508,6 +2564,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_asyncoperation_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_asyncoperation_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_asyncoperation_createdby", null, value);
+				this.OnPropertyChanged("lk_asyncoperation_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -2542,6 +2605,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_asyncoperation_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_asyncoperation_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_asyncoperation_modifiedby", null, value);
+				this.OnPropertyChanged("lk_asyncoperation_modifiedby");
 			}
 		}
 		
@@ -3838,6 +3908,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("system_user_asyncoperation", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("system_user_asyncoperation");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("system_user_asyncoperation", null, value);
+				this.OnPropertyChanged("system_user_asyncoperation");
+			}
 		}
 		
 		/// <summary>
@@ -3914,6 +3991,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_asyncoperation", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_asyncoperation");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_asyncoperation", null, value);
+				this.OnPropertyChanged("team_asyncoperation");
 			}
 		}
 		
@@ -4170,12 +4254,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("operationtype")]
-		public virtual asyncoperation_operationtype? OperationTypeEnum
+		public virtual AsyncOperation_OperationType? OperationTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((asyncoperation_operationtype?)(EntityOptionSetEnum.GetEnum(this, "operationtype")));
+				return ((AsyncOperation_OperationType?)(EntityOptionSetEnum.GetEnum(this, "operationtype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -4185,12 +4269,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual asyncoperation_statuscode? StatusCodeEnum
+		public virtual AsyncOperation_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((asyncoperation_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((AsyncOperation_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

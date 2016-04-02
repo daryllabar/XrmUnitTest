@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("processtrigger")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ProcessTrigger : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -47,12 +47,12 @@ namespace DLaB.Xrm.Entities
 			public const string Scope = "scope";
 			public const string SolutionId = "solutionid";
 			public const string VersionNumber = "versionnumber";
-			public const string lk_processtriggerbase_createdby = "createdby";
-			public const string lk_processtriggerbase_createdonbehalfby = "createdonbehalfby";
-			public const string lk_processtriggerbase_modifiedby = "modifiedby";
-			public const string lk_processtriggerbase_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string process_processtrigger = "processid";
-			public const string processtrigger_systemform = "formid";
+			public const string lk_processtriggerbase_createdby = "lk_processtriggerbase_createdby";
+			public const string lk_processtriggerbase_createdonbehalfby = "lk_processtriggerbase_createdonbehalfby";
+			public const string lk_processtriggerbase_modifiedby = "lk_processtriggerbase_modifiedby";
+			public const string lk_processtriggerbase_modifiedonbehalfby = "lk_processtriggerbase_modifiedonbehalfby";
+			public const string process_processtrigger = "process_processtrigger";
+			public const string processtrigger_systemform = "processtrigger_systemform";
 		}
 
 		
@@ -155,6 +155,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -167,6 +174,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -294,6 +308,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -306,6 +327,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -366,6 +394,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -378,6 +413,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -535,6 +577,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_processtriggerbase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_processtriggerbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_processtriggerbase_createdby", null, value);
+				this.OnPropertyChanged("lk_processtriggerbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -569,6 +618,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_processtriggerbase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_processtriggerbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_processtriggerbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_processtriggerbase_modifiedby");
 			}
 		}
 		
@@ -678,22 +734,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("controltype")]
-		public virtual processtrigger_controltype? ControlTypeEnum
+		public virtual ProcessTrigger_ControlType? ControlTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((processtrigger_controltype?)(EntityOptionSetEnum.GetEnum(this, "controltype")));
+				return ((ProcessTrigger_ControlType?)(EntityOptionSetEnum.GetEnum(this, "controltype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -703,12 +759,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("scope")]
-		public virtual pbl_scope? ScopeEnum
+		public virtual ProcessTrigger_Scope? ScopeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((pbl_scope?)(EntityOptionSetEnum.GetEnum(this, "scope")));
+				return ((ProcessTrigger_Scope?)(EntityOptionSetEnum.GetEnum(this, "scope")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("solution")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class Solution : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -46,14 +46,14 @@ namespace DLaB.Xrm.Entities
 			public const string UniqueName = "uniquename";
 			public const string Version = "version";
 			public const string VersionNumber = "versionnumber";
-			public const string lk_solution_createdby = "createdby";
-			public const string lk_solution_modifiedby = "modifiedby";
-			public const string lk_solutionbase_createdonbehalfby = "createdonbehalfby";
-			public const string lk_solutionbase_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string organization_solution = "organizationid";
-			public const string publisher_solution = "publisherid";
-			public const string solution_configuration_webresource = "configurationpageid";
-			public const string Referencingsolution_parent_solution = "parentsolutionid";
+			public const string lk_solution_createdby = "lk_solution_createdby";
+			public const string lk_solution_modifiedby = "lk_solution_modifiedby";
+			public const string lk_solutionbase_createdonbehalfby = "lk_solutionbase_createdonbehalfby";
+			public const string lk_solutionbase_modifiedonbehalfby = "lk_solutionbase_modifiedonbehalfby";
+			public const string organization_solution = "organization_solution";
+			public const string publisher_solution = "publisher_solution";
+			public const string solution_configuration_webresource = "solution_configuration_webresource";
+			public const string Referencingsolution_parent_solution = "solution_parent_solution";
 		}
 
 		
@@ -123,6 +123,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -135,6 +142,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -248,6 +262,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -260,6 +281,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -569,6 +597,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_solution_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_solution_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_solution_createdby", null, value);
+				this.OnPropertyChanged("lk_solution_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -582,6 +617,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_solution_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_solution_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_solution_modifiedby", null, value);
+				this.OnPropertyChanged("lk_solution_modifiedby");
 			}
 		}
 		

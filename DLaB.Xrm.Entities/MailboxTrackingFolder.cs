@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("mailboxtrackingfolder")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class MailboxTrackingFolder : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -39,34 +39,34 @@ namespace DLaB.Xrm.Entities
 			public const string OwningTeam = "owningteam";
 			public const string OwningUser = "owninguser";
 			public const string RegardingObjectId = "regardingobjectid";
-			public const string Account_MailboxTrackingFolder = "regardingobjectid";
-			public const string AsyncOperation_MailboxTrackingFolder = "regardingobjectid";
-			public const string BulkOperation_MailboxTrackingFolder = "regardingobjectid";
-			public const string businessunit_mailboxtrackingfolder = "owningbusinessunit";
-			public const string Campaign_MailboxTrackingFolder = "regardingobjectid";
-			public const string CampaignActivity_MailboxTrackingFolder = "regardingobjectid";
-			public const string Contact_MailboxTrackingFolder = "regardingobjectid";
-			public const string Contract_MailboxTrackingFolder = "regardingobjectid";
-			public const string Entitlement_MailboxTrackingFolder = "regardingobjectid";
-			public const string EntitlementTemplate_MailboxTrackingFolder = "regardingobjectid";
-			public const string Incident_MailboxTrackingFolder = "regardingobjectid";
-			public const string Invoice_MailboxTrackingFolder = "regardingobjectid";
-			public const string Lead_MailboxTrackingFolder = "regardingobjectid";
-			public const string lk_mailboxtrackingfolder_createdby = "createdby";
-			public const string lk_mailboxtrackingfolder_createdonbehalfby = "createdonbehalfby";
-			public const string lk_mailboxtrackingfolder_modifiedby = "modifiedby";
-			public const string lk_mailboxtrackingfolder_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string Mailbox_MailboxTrackingFolder = "mailboxid";
-			public const string msdyn_postalbum_MailboxTrackingFolders = "regardingobjectid";
-			public const string msdyn_postconfig_MailboxTrackingFolders = "regardingobjectid";
-			public const string msdyn_postruleconfig_MailboxTrackingFolders = "regardingobjectid";
-			public const string msdyn_wallsavedquery_MailboxTrackingFolders = "regardingobjectid";
-			public const string msdyn_wallsavedqueryusersettings_MailboxTrackingFolders = "regardingobjectid";
-			public const string Opportunity_MailboxTrackingFolder = "regardingobjectid";
-			public const string Organization_MailboxTrackingFolder = "organizationid";
-			public const string Quote_MailboxTrackingFolder = "regardingobjectid";
-			public const string SalesOrder_MailboxTrackingFolder = "regardingobjectid";
-			public const string team_mailboxtrackingfolder = "owningteam";
+			public const string Account_MailboxTrackingFolder = "Account_MailboxTrackingFolder";
+			public const string AsyncOperation_MailboxTrackingFolder = "AsyncOperation_MailboxTrackingFolder";
+			public const string BulkOperation_MailboxTrackingFolder = "BulkOperation_MailboxTrackingFolder";
+			public const string businessunit_mailboxtrackingfolder = "businessunit_mailboxtrackingfolder";
+			public const string Campaign_MailboxTrackingFolder = "Campaign_MailboxTrackingFolder";
+			public const string CampaignActivity_MailboxTrackingFolder = "CampaignActivity_MailboxTrackingFolder";
+			public const string Contact_MailboxTrackingFolder = "Contact_MailboxTrackingFolder";
+			public const string Contract_MailboxTrackingFolder = "Contract_MailboxTrackingFolder";
+			public const string Entitlement_MailboxTrackingFolder = "Entitlement_MailboxTrackingFolder";
+			public const string EntitlementTemplate_MailboxTrackingFolder = "EntitlementTemplate_MailboxTrackingFolder";
+			public const string Incident_MailboxTrackingFolder = "Incident_MailboxTrackingFolder";
+			public const string Invoice_MailboxTrackingFolder = "Invoice_MailboxTrackingFolder";
+			public const string Lead_MailboxTrackingFolder = "Lead_MailboxTrackingFolder";
+			public const string lk_mailboxtrackingfolder_createdby = "lk_mailboxtrackingfolder_createdby";
+			public const string lk_mailboxtrackingfolder_createdonbehalfby = "lk_mailboxtrackingfolder_createdonbehalfby";
+			public const string lk_mailboxtrackingfolder_modifiedby = "lk_mailboxtrackingfolder_modifiedby";
+			public const string lk_mailboxtrackingfolder_modifiedonbehalfby = "lk_mailboxtrackingfolder_modifiedonbehalfby";
+			public const string Mailbox_MailboxTrackingFolder = "Mailbox_MailboxTrackingFolder";
+			public const string msdyn_postalbum_MailboxTrackingFolders = "msdyn_postalbum_MailboxTrackingFolders";
+			public const string msdyn_postconfig_MailboxTrackingFolders = "msdyn_postconfig_MailboxTrackingFolders";
+			public const string msdyn_postruleconfig_MailboxTrackingFolders = "msdyn_postruleconfig_MailboxTrackingFolders";
+			public const string msdyn_wallsavedquery_MailboxTrackingFolders = "msdyn_wallsavedquery_MailboxTrackingFolders";
+			public const string msdyn_wallsavedqueryusersettings_MailboxTrackingFolders = "msdyn_wallsavedqueryusersettings_MailboxTrackingFolders";
+			public const string Opportunity_MailboxTrackingFolder = "Opportunity_MailboxTrackingFolder";
+			public const string Organization_MailboxTrackingFolder = "Organization_MailboxTrackingFolder";
+			public const string Quote_MailboxTrackingFolder = "Quote_MailboxTrackingFolder";
+			public const string SalesOrder_MailboxTrackingFolder = "SalesOrder_MailboxTrackingFolder";
+			public const string team_mailboxtrackingfolder = "team_mailboxtrackingfolder";
 		}
 
 		
@@ -116,6 +116,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -128,6 +135,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -270,6 +284,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -282,6 +303,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -349,6 +377,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -362,6 +397,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -374,6 +416,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -471,6 +520,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("businessunit_mailboxtrackingfolder", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("businessunit_mailboxtrackingfolder");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("businessunit_mailboxtrackingfolder", null, value);
+				this.OnPropertyChanged("businessunit_mailboxtrackingfolder");
 			}
 		}
 		
@@ -675,6 +731,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_mailboxtrackingfolder_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_mailboxtrackingfolder_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_mailboxtrackingfolder_createdby", null, value);
+				this.OnPropertyChanged("lk_mailboxtrackingfolder_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -709,6 +772,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_mailboxtrackingfolder_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_mailboxtrackingfolder_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_mailboxtrackingfolder_modifiedby", null, value);
+				this.OnPropertyChanged("lk_mailboxtrackingfolder_modifiedby");
 			}
 		}
 		
@@ -947,6 +1017,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_mailboxtrackingfolder", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_mailboxtrackingfolder");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_mailboxtrackingfolder", null, value);
+				this.OnPropertyChanged("team_mailboxtrackingfolder");
 			}
 		}
 		

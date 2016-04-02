@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("isvconfig")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class IsvConfig : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -32,11 +32,11 @@ namespace DLaB.Xrm.Entities
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string OrganizationId = "organizationid";
 			public const string VersionNumber = "versionnumber";
-			public const string lk_isvconfig_createdonbehalfby = "createdonbehalfby";
-			public const string lk_isvconfig_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_isvconfigbase_createdby = "createdby";
-			public const string lk_isvconfigbase_modifiedby = "modifiedby";
-			public const string organization_isvconfigs = "organizationid";
+			public const string lk_isvconfig_createdonbehalfby = "lk_isvconfig_createdonbehalfby";
+			public const string lk_isvconfig_modifiedonbehalfby = "lk_isvconfig_modifiedonbehalfby";
+			public const string lk_isvconfigbase_createdby = "lk_isvconfigbase_createdby";
+			public const string lk_isvconfigbase_modifiedby = "lk_isvconfigbase_modifiedby";
+			public const string organization_isvconfigs = "organization_isvconfigs";
 		}
 
 		
@@ -106,6 +106,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -118,6 +125,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -195,6 +209,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -207,6 +228,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -370,6 +398,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_isvconfigbase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_isvconfigbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_isvconfigbase_createdby", null, value);
+				this.OnPropertyChanged("lk_isvconfigbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -383,6 +418,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_isvconfigbase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_isvconfigbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_isvconfigbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_isvconfigbase_modifiedby");
 			}
 		}
 		

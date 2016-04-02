@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("pluginassembly")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class PluginAssembly : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -51,11 +51,11 @@ namespace DLaB.Xrm.Entities
 			public const string SourceType = "sourcetype";
 			public const string Version = "version";
 			public const string VersionNumber = "versionnumber";
-			public const string createdby_pluginassembly = "createdby";
-			public const string lk_pluginassembly_createdonbehalfby = "createdonbehalfby";
-			public const string lk_pluginassembly_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string modifiedby_pluginassembly = "modifiedby";
-			public const string organization_pluginassembly = "organizationid";
+			public const string createdby_pluginassembly = "createdby_pluginassembly";
+			public const string lk_pluginassembly_createdonbehalfby = "lk_pluginassembly_createdonbehalfby";
+			public const string lk_pluginassembly_modifiedonbehalfby = "lk_pluginassembly_modifiedonbehalfby";
+			public const string modifiedby_pluginassembly = "modifiedby_pluginassembly";
+			public const string organization_pluginassembly = "organization_pluginassembly";
 		}
 
 		
@@ -138,6 +138,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -150,6 +157,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -336,6 +350,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -348,6 +369,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -651,6 +679,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("createdby_pluginassembly", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("createdby_pluginassembly");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("createdby_pluginassembly", null, value);
+				this.OnPropertyChanged("createdby_pluginassembly");
+			}
 		}
 		
 		/// <summary>
@@ -706,6 +741,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("modifiedby_pluginassembly", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("modifiedby_pluginassembly");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("modifiedby_pluginassembly", null, value);
+				this.OnPropertyChanged("modifiedby_pluginassembly");
 			}
 		}
 		
@@ -766,22 +808,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isolationmode")]
-		public virtual pluginassembly_isolationmode? IsolationModeEnum
+		public virtual PluginAssembly_IsolationMode? IsolationModeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((pluginassembly_isolationmode?)(EntityOptionSetEnum.GetEnum(this, "isolationmode")));
+				return ((PluginAssembly_IsolationMode?)(EntityOptionSetEnum.GetEnum(this, "isolationmode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -791,12 +833,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sourcetype")]
-		public virtual pluginassembly_sourcetype? SourceTypeEnum
+		public virtual PluginAssembly_SourceType? SourceTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((pluginassembly_sourcetype?)(EntityOptionSetEnum.GetEnum(this, "sourcetype")));
+				return ((PluginAssembly_SourceType?)(EntityOptionSetEnum.GetEnum(this, "sourcetype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

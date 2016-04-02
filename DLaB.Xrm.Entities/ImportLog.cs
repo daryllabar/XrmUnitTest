@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum ImportLogState
 	{
 		
@@ -24,7 +24,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("importlog")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ImportLog : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -54,14 +54,14 @@ namespace DLaB.Xrm.Entities
 			public const string SequenceNumber = "sequencenumber";
 			public const string StateCode = "statecode";
 			public const string StatusCode = "statuscode";
-			public const string BusinessUnit_ImportLogs = "owningbusinessunit";
-			public const string ImportLog_ImportFile = "importfileid";
-			public const string lk_importlog_createdonbehalfby = "createdonbehalfby";
-			public const string lk_importlog_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_importlogbase_createdby = "createdby";
-			public const string lk_importlogbase_modifiedby = "modifiedby";
-			public const string SystemUser_ImportLogs = "owninguser";
-			public const string team_ImportLogs = "owningteam";
+			public const string BusinessUnit_ImportLogs = "BusinessUnit_ImportLogs";
+			public const string ImportLog_ImportFile = "ImportLog_ImportFile";
+			public const string lk_importlog_createdonbehalfby = "lk_importlog_createdonbehalfby";
+			public const string lk_importlog_modifiedonbehalfby = "lk_importlog_modifiedonbehalfby";
+			public const string lk_importlogbase_createdby = "lk_importlogbase_createdby";
+			public const string lk_importlogbase_modifiedby = "lk_importlogbase_modifiedby";
+			public const string SystemUser_ImportLogs = "SystemUser_ImportLogs";
+			public const string team_ImportLogs = "team_ImportLogs";
 		}
 
 		
@@ -151,6 +151,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -163,6 +170,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -380,6 +394,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -392,6 +413,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -446,6 +474,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -459,6 +494,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -471,6 +513,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -600,6 +649,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("BusinessUnit_ImportLogs", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("BusinessUnit_ImportLogs");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("BusinessUnit_ImportLogs", null, value);
+				this.OnPropertyChanged("BusinessUnit_ImportLogs");
+			}
 		}
 		
 		/// <summary>
@@ -677,6 +733,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_importlogbase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_importlogbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_importlogbase_createdby", null, value);
+				this.OnPropertyChanged("lk_importlogbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -690,6 +753,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_importlogbase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_importlogbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_importlogbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_importlogbase_modifiedby");
 			}
 		}
 		
@@ -705,6 +775,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("SystemUser_ImportLogs", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SystemUser_ImportLogs");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("SystemUser_ImportLogs", null, value);
+				this.OnPropertyChanged("SystemUser_ImportLogs");
+			}
 		}
 		
 		/// <summary>
@@ -718,6 +795,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_ImportLogs", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_ImportLogs");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_ImportLogs", null, value);
+				this.OnPropertyChanged("team_ImportLogs");
 			}
 		}
 		
@@ -764,12 +848,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("logphasecode")]
-		public virtual importlog_logphasecode? LogPhaseCodeEnum
+		public virtual ImportLog_LogPhaseCode? LogPhaseCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((importlog_logphasecode?)(EntityOptionSetEnum.GetEnum(this, "logphasecode")));
+				return ((ImportLog_LogPhaseCode?)(EntityOptionSetEnum.GetEnum(this, "logphasecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -779,12 +863,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual importlog_statuscode? StatusCodeEnum
+		public virtual ImportLog_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((importlog_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((ImportLog_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

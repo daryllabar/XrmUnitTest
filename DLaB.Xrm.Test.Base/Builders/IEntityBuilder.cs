@@ -1,4 +1,5 @@
-﻿using Microsoft.Xrm.Sdk;
+﻿using System;
+using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test.Builders
 {

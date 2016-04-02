@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("sdkmessageresponsefield")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class SdkMessageResponseField : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -41,12 +41,12 @@ namespace DLaB.Xrm.Entities
 			public const string SdkMessageResponseId = "sdkmessageresponseid";
 			public const string Value = "value";
 			public const string VersionNumber = "versionnumber";
-			public const string createdby_sdkmessageresponsefield = "createdby";
-			public const string lk_sdkmessageresponsefield_createdonbehalfby = "createdonbehalfby";
-			public const string lk_sdkmessageresponsefield_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string messageresponse_sdkmessageresponsefield = "sdkmessageresponseid";
-			public const string modifiedby_sdkmessageresponsefield = "modifiedby";
-			public const string organization_sdkmessageresponsefield = "organizationid";
+			public const string createdby_sdkmessageresponsefield = "createdby_sdkmessageresponsefield";
+			public const string lk_sdkmessageresponsefield_createdonbehalfby = "lk_sdkmessageresponsefield_createdonbehalfby";
+			public const string lk_sdkmessageresponsefield_modifiedonbehalfby = "lk_sdkmessageresponsefield_modifiedonbehalfby";
+			public const string messageresponse_sdkmessageresponsefield = "messageresponse_sdkmessageresponsefield";
+			public const string modifiedby_sdkmessageresponsefield = "modifiedby_sdkmessageresponsefield";
+			public const string organization_sdkmessageresponsefield = "organization_sdkmessageresponsefield";
 		}
 
 		
@@ -116,6 +116,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -128,6 +135,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -195,6 +209,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -207,6 +228,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -450,6 +478,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("createdby_sdkmessageresponsefield", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("createdby_sdkmessageresponsefield");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("createdby_sdkmessageresponsefield", null, value);
+				this.OnPropertyChanged("createdby_sdkmessageresponsefield");
+			}
 		}
 		
 		/// <summary>
@@ -519,6 +554,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("modifiedby_sdkmessageresponsefield", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("modifiedby_sdkmessageresponsefield");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("modifiedby_sdkmessageresponsefield", null, value);
+				this.OnPropertyChanged("modifiedby_sdkmessageresponsefield");
 			}
 		}
 		

@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("customeraddress")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class CustomerAddress : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -28,7 +28,6 @@ namespace DLaB.Xrm.Entities
 			public const string Country = "country";
 			public const string County = "county";
 			public const string CreatedBy = "createdby";
-			public const string CreatedByExternalParty = "createdbyexternalparty";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string CustomerAddressId = "customeraddressid";
@@ -43,7 +42,6 @@ namespace DLaB.Xrm.Entities
 			public const string Line3 = "line3";
 			public const string Longitude = "longitude";
 			public const string ModifiedBy = "modifiedby";
-			public const string ModifiedByExternalParty = "modifiedbyexternalparty";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string Name = "name";
@@ -67,15 +65,13 @@ namespace DLaB.Xrm.Entities
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string UTCOffset = "utcoffset";
 			public const string VersionNumber = "versionnumber";
-			public const string Account_CustomerAddress = "parentid";
-			public const string Contact_CustomerAddress = "parentid";
-			public const string lk_customeraddress_createdonbehalfby = "createdonbehalfby";
-			public const string lk_customeraddress_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_customeraddressbase_createdby = "createdby";
-			public const string lk_customeraddressbase_modifiedby = "modifiedby";
-			public const string lk_externalparty_customeraddress_createdby = "createdbyexternalparty";
-			public const string lk_externalparty_customeraddress_modifiedby = "modifiedbyexternalparty";
-			public const string TransactionCurrency_CustomerAddress = "transactioncurrencyid";
+			public const string Account_CustomerAddress = "Account_CustomerAddress";
+			public const string Contact_CustomerAddress = "Contact_CustomerAddress";
+			public const string lk_customeraddress_createdonbehalfby = "lk_customeraddress_createdonbehalfby";
+			public const string lk_customeraddress_modifiedonbehalfby = "lk_customeraddress_modifiedonbehalfby";
+			public const string lk_customeraddressbase_createdby = "lk_customeraddressbase_createdby";
+			public const string lk_customeraddressbase_modifiedby = "lk_customeraddressbase_modifiedby";
+			public const string TransactionCurrency_CustomerAddress = "TransactionCurrency_CustomerAddress";
 		}
 
 		
@@ -238,18 +234,12 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
-		}
-		
-		/// <summary>
-		/// Shows the external party who created the record.
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdbyexternalparty")]
-		public Microsoft.Xrm.Sdk.EntityReference CreatedByExternalParty
-		{
 			[System.Diagnostics.DebuggerNonUserCode()]
-			get
+			set
 			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdbyexternalparty");
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
 			}
 		}
 		
@@ -263,6 +253,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -513,18 +510,12 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
-		}
-		
-		/// <summary>
-		/// Shows the external party who modified the record.
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedbyexternalparty")]
-		public Microsoft.Xrm.Sdk.EntityReference ModifiedByExternalParty
-		{
 			[System.Diagnostics.DebuggerNonUserCode()]
-			get
+			set
 			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedbyexternalparty");
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
 			}
 		}
 		
@@ -538,6 +529,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -645,6 +643,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -657,6 +662,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1209,6 +1221,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_customeraddressbase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_customeraddressbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_customeraddressbase_createdby", null, value);
+				this.OnPropertyChanged("lk_customeraddressbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -1223,33 +1242,12 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_customeraddressbase_modifiedby", null);
 			}
-		}
-		
-		/// <summary>
-		/// N:1 lk_externalparty_customeraddress_createdby
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdbyexternalparty")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_customeraddress_createdby")]
-		public DLaB.Xrm.Entities.ExternalParty lk_externalparty_customeraddress_createdby
-		{
 			[System.Diagnostics.DebuggerNonUserCode()]
-			get
+			set
 			{
-				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_customeraddress_createdby", null);
-			}
-		}
-		
-		/// <summary>
-		/// N:1 lk_externalparty_customeraddress_modifiedby
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedbyexternalparty")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_externalparty_customeraddress_modifiedby")]
-		public DLaB.Xrm.Entities.ExternalParty lk_externalparty_customeraddress_modifiedby
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExternalParty>("lk_externalparty_customeraddress_modifiedby", null);
+				this.OnPropertyChanging("lk_customeraddressbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_customeraddressbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_customeraddressbase_modifiedby");
 			}
 		}
 		
@@ -1317,12 +1315,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("addresstypecode")]
-		public virtual customeraddress_addresstypecode? AddressTypeCodeEnum
+		public virtual CustomerAddress_AddressTypeCode? AddressTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((customeraddress_addresstypecode?)(EntityOptionSetEnum.GetEnum(this, "addresstypecode")));
+				return ((CustomerAddress_AddressTypeCode?)(EntityOptionSetEnum.GetEnum(this, "addresstypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1332,12 +1330,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("freighttermscode")]
-		public virtual customeraddress_freighttermscode? FreightTermsCodeEnum
+		public virtual CustomerAddress_FreightTermsCode? FreightTermsCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((customeraddress_freighttermscode?)(EntityOptionSetEnum.GetEnum(this, "freighttermscode")));
+				return ((CustomerAddress_FreightTermsCode?)(EntityOptionSetEnum.GetEnum(this, "freighttermscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1347,12 +1345,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("shippingmethodcode")]
-		public virtual customeraddress_shippingmethodcode? ShippingMethodCodeEnum
+		public virtual CustomerAddress_ShippingMethodCode? ShippingMethodCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((customeraddress_shippingmethodcode?)(EntityOptionSetEnum.GetEnum(this, "shippingmethodcode")));
+				return ((CustomerAddress_ShippingMethodCode?)(EntityOptionSetEnum.GetEnum(this, "shippingmethodcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

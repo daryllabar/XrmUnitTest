@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum OrderCloseState
 	{
 		
@@ -30,7 +30,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("orderclose")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class OrderClose : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -75,18 +75,18 @@ namespace DLaB.Xrm.Entities
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string activity_pointer_order_close = "activityid";
-			public const string business_unit_order_close_activities = "owningbusinessunit";
-			public const string lk_externalparty_orderclose_createdby = "createdbyexternalparty";
-			public const string lk_externalparty_orderclose_modifiedby = "modifiedbyexternalparty";
-			public const string lk_orderclose_createdby = "createdby";
-			public const string lk_orderclose_createdonbehalfby = "createdonbehalfby";
-			public const string lk_orderclose_modifiedby = "modifiedby";
-			public const string lk_orderclose_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string SalesOrder_OrderClose = "salesorderid";
-			public const string service_orderclose = "serviceid";
-			public const string team_orderclose = "owningteam";
-			public const string user_orderclose = "owninguser";
+			public const string activity_pointer_order_close = "activity_pointer_order_close";
+			public const string business_unit_order_close_activities = "business_unit_order_close_activities";
+			public const string lk_externalparty_orderclose_createdby = "lk_externalparty_orderclose_createdby";
+			public const string lk_externalparty_orderclose_modifiedby = "lk_externalparty_orderclose_modifiedby";
+			public const string lk_orderclose_createdby = "lk_orderclose_createdby";
+			public const string lk_orderclose_createdonbehalfby = "lk_orderclose_createdonbehalfby";
+			public const string lk_orderclose_modifiedby = "lk_orderclose_modifiedby";
+			public const string lk_orderclose_modifiedonbehalfby = "lk_orderclose_modifiedonbehalfby";
+			public const string SalesOrder_OrderClose = "SalesOrder_OrderClose";
+			public const string service_orderclose = "service_orderclose";
+			public const string team_orderclose = "team_orderclose";
+			public const string user_orderclose = "user_orderclose";
 		}
 
 		
@@ -272,6 +272,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -297,6 +304,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -424,6 +438,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -449,6 +470,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -543,6 +571,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -556,6 +591,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -568,6 +610,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -965,6 +1014,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_order_close_activities", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_order_close_activities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_order_close_activities", null, value);
+				this.OnPropertyChanged("business_unit_order_close_activities");
+			}
 		}
 		
 		/// <summary>
@@ -1007,6 +1063,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_orderclose_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_orderclose_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_orderclose_createdby", null, value);
+				this.OnPropertyChanged("lk_orderclose_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -1041,6 +1104,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_orderclose_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_orderclose_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_orderclose_modifiedby", null, value);
+				this.OnPropertyChanged("lk_orderclose_modifiedby");
 			}
 		}
 		
@@ -1119,6 +1189,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_orderclose", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_orderclose");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_orderclose", null, value);
+				this.OnPropertyChanged("team_orderclose");
+			}
 		}
 		
 		/// <summary>
@@ -1132,6 +1209,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_orderclose", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_orderclose");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_orderclose", null, value);
+				this.OnPropertyChanged("user_orderclose");
 			}
 		}
 		
@@ -1178,12 +1262,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual orderclose_statuscode? StatusCodeEnum
+		public virtual OrderClose_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((orderclose_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((OrderClose_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\BusinessUnit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Email.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Incident.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\OpportunityProduct.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SystemUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Template.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />

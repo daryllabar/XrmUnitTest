@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("sharepointdocument")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class SharePointDocument : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -69,21 +69,21 @@ namespace DLaB.Xrm.Entities
 			public const string Title = "title";
 			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string Version = "version";
-			public const string Account_SharepointDocument = "regardingobjectid";
-			public const string business_unit_sharepointdocument = "owningbusinessunit";
-			public const string business_unit_sharepointdocument2 = "businessunitid";
-			public const string KbArticle_SharepointDocument = "regardingobjectid";
-			public const string Lead_SharepointDocument = "regardingobjectid";
-			public const string lk_sharepointdocumentbase_createdby = "createdby";
-			public const string lk_sharepointdocumentbase_createdonbehalfby = "createdonbehalfby";
-			public const string lk_sharepointdocumentbase_modifiedby = "modifiedby";
-			public const string lk_sharepointdocumentbase_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string Opportunity_SharepointDocument = "regardingobjectid";
-			public const string organization_sharepointdocument = "organizationid";
-			public const string Product_SharepointDocument = "regardingobjectid";
-			public const string Quote_SharepointDocument = "regardingobjectid";
-			public const string SalesLiterature_SharepointDocument = "regardingobjectid";
-			public const string TransactionCurrency_SharePointDocument = "transactioncurrencyid";
+			public const string Account_SharepointDocument = "Account_SharepointDocument";
+			public const string business_unit_sharepointdocument = "business_unit_sharepointdocument";
+			public const string business_unit_sharepointdocument2 = "business_unit_sharepointdocument2";
+			public const string KbArticle_SharepointDocument = "KbArticle_SharepointDocument";
+			public const string Lead_SharepointDocument = "Lead_SharepointDocument";
+			public const string lk_sharepointdocumentbase_createdby = "lk_sharepointdocumentbase_createdby";
+			public const string lk_sharepointdocumentbase_createdonbehalfby = "lk_sharepointdocumentbase_createdonbehalfby";
+			public const string lk_sharepointdocumentbase_modifiedby = "lk_sharepointdocumentbase_modifiedby";
+			public const string lk_sharepointdocumentbase_modifiedonbehalfby = "lk_sharepointdocumentbase_modifiedonbehalfby";
+			public const string Opportunity_SharepointDocument = "Opportunity_SharepointDocument";
+			public const string organization_sharepointdocument = "organization_sharepointdocument";
+			public const string Product_SharepointDocument = "Product_SharepointDocument";
+			public const string Quote_SharepointDocument = "Quote_SharepointDocument";
+			public const string SalesLiterature_SharepointDocument = "SalesLiterature_SharepointDocument";
+			public const string TransactionCurrency_SharePointDocument = "TransactionCurrency_SharePointDocument";
 		}
 
 		
@@ -303,6 +303,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -315,6 +322,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -531,6 +545,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -543,6 +564,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -610,6 +638,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -623,6 +658,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -635,6 +677,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -865,6 +914,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_sharepointdocument", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_sharepointdocument");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_sharepointdocument", null, value);
+				this.OnPropertyChanged("business_unit_sharepointdocument");
+			}
 		}
 		
 		/// <summary>
@@ -942,6 +998,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_sharepointdocumentbase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_sharepointdocumentbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_sharepointdocumentbase_createdby", null, value);
+				this.OnPropertyChanged("lk_sharepointdocumentbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -976,6 +1039,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_sharepointdocumentbase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_sharepointdocumentbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_sharepointdocumentbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_sharepointdocumentbase_modifiedby");
 			}
 		}
 		
@@ -1155,22 +1225,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("documentlocationtype")]
-		public virtual sharepointdocumentlocation_locationtype? DocumentLocationTypeEnum
+		public virtual SharePointDocumentLocation_LocationType? DocumentLocationTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((sharepointdocumentlocation_locationtype?)(EntityOptionSetEnum.GetEnum(this, "documentlocationtype")));
+				return ((SharePointDocumentLocation_LocationType?)(EntityOptionSetEnum.GetEnum(this, "documentlocationtype")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("servicetype")]
-		public virtual sharepointsite_servicetype? ServiceTypeEnum
+		public virtual sharepointsite_ServiceType? ServiceTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((sharepointsite_servicetype?)(EntityOptionSetEnum.GetEnum(this, "servicetype")));
+				return ((sharepointsite_ServiceType?)(EntityOptionSetEnum.GetEnum(this, "servicetype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

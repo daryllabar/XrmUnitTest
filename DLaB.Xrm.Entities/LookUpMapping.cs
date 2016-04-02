@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum LookUpMappingState
 	{
 		
@@ -24,7 +24,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("lookupmapping")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class LookUpMapping : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -46,12 +46,12 @@ namespace DLaB.Xrm.Entities
 			public const string StateCode = "statecode";
 			public const string StatusCode = "statuscode";
 			public const string TransformationParameterMappingId = "transformationparametermappingid";
-			public const string lk_lookupmapping_createdby = "createdby";
-			public const string lk_lookupmapping_createdonbehalfby = "createdonbehalfby";
-			public const string lk_lookupmapping_modifiedby = "modifiedby";
-			public const string lk_lookupmapping_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string LookUpMapping_ColumnMapping = "columnmappingid";
-			public const string LookUpMapping_TransformationParameterMapping = "transformationparametermappingid";
+			public const string lk_lookupmapping_createdby = "lk_lookupmapping_createdby";
+			public const string lk_lookupmapping_createdonbehalfby = "lk_lookupmapping_createdonbehalfby";
+			public const string lk_lookupmapping_modifiedby = "lk_lookupmapping_modifiedby";
+			public const string lk_lookupmapping_modifiedonbehalfby = "lk_lookupmapping_modifiedonbehalfby";
+			public const string LookUpMapping_ColumnMapping = "LookUpMapping_ColumnMapping";
+			public const string LookUpMapping_TransformationParameterMapping = "LookUpMapping_TransformationParameterMapping";
 		}
 
 		
@@ -121,6 +121,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -133,6 +140,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -270,6 +284,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -282,6 +303,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -418,6 +446,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_lookupmapping_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_lookupmapping_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_lookupmapping_createdby", null, value);
+				this.OnPropertyChanged("lk_lookupmapping_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -452,6 +487,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_lookupmapping_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_lookupmapping_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_lookupmapping_modifiedby", null, value);
+				this.OnPropertyChanged("lk_lookupmapping_modifiedby");
 			}
 		}
 		
@@ -561,12 +603,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lookupsourcecode")]
-		public virtual lookupmapping_lookupsourcecode? LookUpSourceCodeEnum
+		public virtual LookUpMapping_LookUpSourceCode? LookUpSourceCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((lookupmapping_lookupsourcecode?)(EntityOptionSetEnum.GetEnum(this, "lookupsourcecode")));
+				return ((LookUpMapping_LookUpSourceCode?)(EntityOptionSetEnum.GetEnum(this, "lookupsourcecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -576,12 +618,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("processcode")]
-		public virtual lookupmapping_processcode? ProcessCodeEnum
+		public virtual LookUpMapping_ProcessCode? ProcessCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((lookupmapping_processcode?)(EntityOptionSetEnum.GetEnum(this, "processcode")));
+				return ((LookUpMapping_ProcessCode?)(EntityOptionSetEnum.GetEnum(this, "processcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -591,12 +633,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual lookupmapping_statuscode? StatusCodeEnum
+		public virtual LookUpMapping_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((lookupmapping_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((LookUpMapping_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

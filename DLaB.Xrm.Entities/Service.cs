@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("service")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class Service : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -46,14 +46,14 @@ namespace DLaB.Xrm.Entities
 			public const string StrategyId = "strategyid";
 			public const string VersionNumber = "versionnumber";
 			public const string CalendarRules = "calendarrules";
-			public const string calendar_services = "calendarid";
-			public const string lk_service_createdby = "createdby";
-			public const string lk_service_createdonbehalfby = "createdonbehalfby";
-			public const string lk_service_modifiedby = "modifiedby";
-			public const string lk_service_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string organization_services = "organizationid";
-			public const string plugin_type_service = "strategyid";
-			public const string resource_spec_services = "resourcespecid";
+			public const string calendar_services = "calendar_services";
+			public const string lk_service_createdby = "lk_service_createdby";
+			public const string lk_service_createdonbehalfby = "lk_service_createdonbehalfby";
+			public const string lk_service_modifiedby = "lk_service_modifiedby";
+			public const string lk_service_modifiedonbehalfby = "lk_service_modifiedonbehalfby";
+			public const string organization_services = "organization_services";
+			public const string plugin_type_service = "plugin_type_service";
+			public const string resource_spec_services = "resource_spec_services";
 		}
 
 		
@@ -143,6 +143,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -155,6 +162,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -329,6 +343,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -341,6 +362,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -1062,6 +1090,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_service_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_service_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_service_createdby", null, value);
+				this.OnPropertyChanged("lk_service_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -1096,6 +1131,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_service_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_service_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_service_modifiedby", null, value);
+				this.OnPropertyChanged("lk_service_modifiedby");
 			}
 		}
 		
@@ -1219,12 +1261,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("initialstatuscode")]
-		public virtual service_initialstatuscode? InitialStatusCodeEnum
+		public virtual Service_StatusCode? InitialStatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((service_initialstatuscode?)(EntityOptionSetEnum.GetEnum(this, "initialstatuscode")));
+				return ((Service_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "initialstatuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

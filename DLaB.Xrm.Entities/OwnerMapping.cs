@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum OwnerMappingState
 	{
 		
@@ -24,7 +24,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("ownermapping")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class OwnerMapping : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -47,12 +47,12 @@ namespace DLaB.Xrm.Entities
 			public const string TargetSystemUserDomainName = "targetsystemuserdomainname";
 			public const string TargetSystemUserId = "targetsystemuserid";
 			public const string TargetUserValueForSourceCRMUserLink = "targetuservalueforsourcecrmuserlink";
-			public const string lk_ownermapping_createdby = "createdby";
-			public const string lk_ownermapping_createdonbehalfby = "createdonbehalfby";
-			public const string lk_ownermapping_modifiedby = "modifiedby";
-			public const string lk_ownermapping_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string OwnerMapping_ImportMap = "importmapid";
-			public const string OwnerMapping_SystemUser = "targetsystemuserid";
+			public const string lk_ownermapping_createdby = "lk_ownermapping_createdby";
+			public const string lk_ownermapping_createdonbehalfby = "lk_ownermapping_createdonbehalfby";
+			public const string lk_ownermapping_modifiedby = "lk_ownermapping_modifiedby";
+			public const string lk_ownermapping_modifiedonbehalfby = "lk_ownermapping_modifiedonbehalfby";
+			public const string OwnerMapping_ImportMap = "OwnerMapping_ImportMap";
+			public const string OwnerMapping_SystemUser = "OwnerMapping_SystemUser";
 		}
 
 		
@@ -102,6 +102,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -114,6 +121,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -168,6 +182,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -180,6 +201,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -439,6 +467,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ownermapping_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_ownermapping_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ownermapping_createdby", null, value);
+				this.OnPropertyChanged("lk_ownermapping_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -473,6 +508,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ownermapping_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_ownermapping_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_ownermapping_modifiedby", null, value);
+				this.OnPropertyChanged("lk_ownermapping_modifiedby");
 			}
 		}
 		
@@ -582,12 +624,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("processcode")]
-		public virtual ownermapping_processcode? ProcessCodeEnum
+		public virtual OwnerMapping_ProcessCode? ProcessCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((ownermapping_processcode?)(EntityOptionSetEnum.GetEnum(this, "processcode")));
+				return ((OwnerMapping_ProcessCode?)(EntityOptionSetEnum.GetEnum(this, "processcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -597,12 +639,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual ownermapping_statuscode? StatusCodeEnum
+		public virtual OwnerMapping_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((ownermapping_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((OwnerMapping_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

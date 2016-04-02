@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("salesliteratureitem")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class SalesLiteratureItem : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -45,11 +45,11 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "salesliteratureitemid";
 			public const string Title = "title";
 			public const string VersionNumber = "versionnumber";
-			public const string lk_salesliteratureitem_createdonbehalfby = "createdonbehalfby";
-			public const string lk_salesliteratureitem_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_salesliteratureitembase_createdby = "createdby";
-			public const string lk_salesliteratureitembase_modifiedby = "modifiedby";
-			public const string sales_literature_items = "salesliteratureid";
+			public const string lk_salesliteratureitem_createdonbehalfby = "lk_salesliteratureitem_createdonbehalfby";
+			public const string lk_salesliteratureitem_modifiedonbehalfby = "lk_salesliteratureitem_modifiedonbehalfby";
+			public const string lk_salesliteratureitembase_createdby = "lk_salesliteratureitembase_createdby";
+			public const string lk_salesliteratureitembase_modifiedby = "lk_salesliteratureitembase_modifiedby";
+			public const string sales_literature_items = "sales_literature_items";
 		}
 
 		
@@ -159,6 +159,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -171,6 +178,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -358,6 +372,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -370,6 +391,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -656,6 +684,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_salesliteratureitembase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_salesliteratureitembase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_salesliteratureitembase_createdby", null, value);
+				this.OnPropertyChanged("lk_salesliteratureitembase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -669,6 +704,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_salesliteratureitembase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_salesliteratureitembase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_salesliteratureitembase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_salesliteratureitembase_modifiedby");
 			}
 		}
 		
@@ -736,12 +778,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("filetypecode")]
-		public virtual salesliteratureitem_filetypecode? FileTypeCodeEnum
+		public virtual SalesLiteratureItem_FileTypeCode? FileTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((salesliteratureitem_filetypecode?)(EntityOptionSetEnum.GetEnum(this, "filetypecode")));
+				return ((SalesLiteratureItem_FileTypeCode?)(EntityOptionSetEnum.GetEnum(this, "filetypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

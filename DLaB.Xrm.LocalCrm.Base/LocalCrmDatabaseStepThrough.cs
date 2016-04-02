@@ -13,6 +13,17 @@ namespace DLaB.Xrm.LocalCrm
     // </summary>
     partial class LocalCrmDatabase
     {
+        [DebuggerStepThrough]
+        public static Guid Create<T>(LocalCrmDatabaseOrganizationService service, T entity) where T : Entity
+        {
+            var delay = new DelayedException();
+            var id = Create(service, entity, delay);
+            if (delay.Exception != null)
+            {
+                throw delay.Exception;
+            }
+            return id;
+        }
 
         [DebuggerStepThrough]
         public static void Update<T>(LocalCrmDatabaseOrganizationService service, T entity) where T : Entity
@@ -30,6 +41,18 @@ namespace DLaB.Xrm.LocalCrm
         {
             var delay = new DelayedException();
             var result = Read<T>(service, id, cs, delay);
+            if (delay.Exception != null)
+            {
+                throw delay.Exception;
+            }
+            return result;
+        }
+
+        [DebuggerStepThrough]
+        public static EntityCollection ReadEntitiesByAttribute<T>(LocalCrmDatabaseOrganizationService service, QueryByAttribute query) where T : Entity
+        {
+            var delay = new DelayedException();
+            var result = ReadEntitiesByAttribute<T>(service, query, delay);
             if (delay.Exception != null)
             {
                 throw delay.Exception;

@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("tracelog")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class TraceLog : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -50,14 +50,14 @@ namespace DLaB.Xrm.Entities
 			public const string TraceParameterXml = "traceparameterxml";
 			public const string TraceStatus = "tracestatus";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
-			public const string lk_tracelog_createdby = "createdby";
-			public const string lk_tracelog_createdonbehalfby = "createdonbehalfby";
-			public const string lk_tracelog_modifiedby = "modifiedby";
-			public const string lk_tracelog_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string organization_tracelog = "organizationid";
-			public const string tracelog_EmailServerProfile = "regardingobjectid";
-			public const string tracelog_Mailbox = "regardingobjectid";
-			public const string Referencingtracelog_parent_tracelog = "parenttracelogid";
+			public const string lk_tracelog_createdby = "lk_tracelog_createdby";
+			public const string lk_tracelog_createdonbehalfby = "lk_tracelog_createdonbehalfby";
+			public const string lk_tracelog_modifiedby = "lk_tracelog_modifiedby";
+			public const string lk_tracelog_modifiedonbehalfby = "lk_tracelog_modifiedonbehalfby";
+			public const string organization_tracelog = "organization_tracelog";
+			public const string tracelog_EmailServerProfile = "tracelog_EmailServerProfile";
+			public const string tracelog_Mailbox = "tracelog_Mailbox";
+			public const string Referencingtracelog_parent_tracelog = "tracelog_parent_tracelog";
 		}
 
 		
@@ -147,6 +147,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -159,6 +166,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -293,6 +307,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -305,6 +326,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -655,6 +683,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_tracelog_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_tracelog_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_tracelog_createdby", null, value);
+				this.OnPropertyChanged("lk_tracelog_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -689,6 +724,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_tracelog_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_tracelog_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_tracelog_modifiedby", null, value);
+				this.OnPropertyChanged("lk_tracelog_modifiedby");
 			}
 		}
 		
@@ -833,12 +875,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("level")]
-		public virtual tracelog_level? LevelEnum
+		public virtual TraceLog_Level? LevelEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((tracelog_level?)(EntityOptionSetEnum.GetEnum(this, "level")));
+				return ((TraceLog_Level?)(EntityOptionSetEnum.GetEnum(this, "level")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

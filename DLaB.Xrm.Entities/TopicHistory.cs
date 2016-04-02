@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("topichistory")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class TopicHistory : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -26,7 +26,7 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "topichistoryid";
 			public const string TopicModelExecutionHistoryId = "topicmodelexecutionhistoryid";
 			public const string Weight = "weight";
-			public const string topicmodelexecutionhistory_topichistory = "topicmodelexecutionhistoryid";
+			public const string topicmodelexecutionhistory_topichistory = "topicmodelexecutionhistory_topichistory";
 		}
 
 		

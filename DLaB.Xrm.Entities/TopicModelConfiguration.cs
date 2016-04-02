@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("topicmodelconfiguration")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class TopicModelConfiguration : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -40,8 +40,8 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "topicmodelconfigurationid";
 			public const string TopicModelConfigurationIdUnique = "topicmodelconfigurationidunique";
 			public const string TopicModelId = "topicmodelid";
-			public const string organization_topicmodelconfiguration = "organizationid";
-			public const string topicmodel_topicmodelconfiguration = "topicmodelid";
+			public const string organization_topicmodelconfiguration = "organization_topicmodelconfiguration";
+			public const string topicmodel_topicmodelconfiguration = "topicmodel_topicmodelconfiguration";
 		}
 
 		
@@ -559,22 +559,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timefilter")]
-		public virtual topicmodelconfiguration_timefilter? TimeFilterEnum
+		public virtual TopicModelConfiguration_TimeFilter? TimeFilterEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((topicmodelconfiguration_timefilter?)(EntityOptionSetEnum.GetEnum(this, "timefilter")));
+				return ((TopicModelConfiguration_TimeFilter?)(EntityOptionSetEnum.GetEnum(this, "timefilter")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("processstage")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ProcessStage : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -30,7 +30,7 @@ namespace DLaB.Xrm.Entities
 			public const string StageCategory = "stagecategory";
 			public const string StageName = "stagename";
 			public const string VersionNumber = "versionnumber";
-			public const string process_processstage = "processid";
+			public const string process_processstage = "process_processstage";
 		}
 
 		
@@ -92,6 +92,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("owningbusinessunit");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
 			}
 		}
 		
@@ -815,12 +822,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("stagecategory")]
-		public virtual processstage_category? StageCategoryEnum
+		public virtual Processstage_Category? StageCategoryEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((processstage_category?)(EntityOptionSetEnum.GetEnum(this, "stagecategory")));
+				return ((Processstage_Category?)(EntityOptionSetEnum.GetEnum(this, "stagecategory")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("plugintypestatistic")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class PluginTypeStatistic : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -42,12 +42,12 @@ namespace DLaB.Xrm.Entities
 			public const string TerminateHandlesContributionPercent = "terminatehandlescontributionpercent";
 			public const string TerminateMemoryContributionPercent = "terminatememorycontributionpercent";
 			public const string TerminateOtherContributionPercent = "terminateothercontributionpercent";
-			public const string createdby_plugintypestatistic = "createdby";
-			public const string lk_plugintypestatisticbase_createdonbehalfby = "createdonbehalfby";
-			public const string lk_plugintypestatisticbase_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string modifiedby_plugintypestatistic = "modifiedby";
-			public const string organization_plugintypestatistic = "organizationid";
-			public const string plugintype_plugintypestatistic = "plugintypeid";
+			public const string createdby_plugintypestatistic = "createdby_plugintypestatistic";
+			public const string lk_plugintypestatisticbase_createdonbehalfby = "lk_plugintypestatisticbase_createdonbehalfby";
+			public const string lk_plugintypestatisticbase_modifiedonbehalfby = "lk_plugintypestatisticbase_modifiedonbehalfby";
+			public const string modifiedby_plugintypestatistic = "modifiedby_plugintypestatistic";
+			public const string organization_plugintypestatistic = "organization_plugintypestatistic";
+			public const string plugintype_plugintypestatistic = "plugintype_plugintypestatistic";
 		}
 
 		
@@ -149,6 +149,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -161,6 +168,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -234,6 +248,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -246,6 +267,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -407,6 +435,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("createdby_plugintypestatistic", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("createdby_plugintypestatistic");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("createdby_plugintypestatistic", null, value);
+				this.OnPropertyChanged("createdby_plugintypestatistic");
+			}
 		}
 		
 		/// <summary>
@@ -462,6 +497,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("modifiedby_plugintypestatistic", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("modifiedby_plugintypestatistic");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("modifiedby_plugintypestatistic", null, value);
+				this.OnPropertyChanged("modifiedby_plugintypestatistic");
 			}
 		}
 		

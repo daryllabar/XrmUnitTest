@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Xrm.Client;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test.Builders
@@ -51,21 +49,11 @@ namespace DLaB.Xrm.Test.Builders
 
         #region IEntityBuilder Implementation
 
-        Entity IEntityBuilder.Build()
-        {
-            return Build();
-        }
+        Entity IEntityBuilder.Build() { return Build(); }
 
-        Entity IEntityBuilder.Create(IOrganizationService service)
-        {
-            return Create(service);
-        }
+        Entity IEntityBuilder.Create(IOrganizationService service) { return Create(service); }
 
-
-        void IEntityBuilder.PostCreate(IOrganizationService service, Entity entity)
-        {
-            PostCreate(service, (TEntity)entity);
-        }
+        void IEntityBuilder.PostCreate(IOrganizationService service, Entity entity) { PostCreate(service, (TEntity) entity); }
 
         /// <summary>
         /// Defines that the entity should be built with the given attribute value

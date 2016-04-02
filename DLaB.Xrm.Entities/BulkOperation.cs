@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum BulkOperationState
 	{
 		
@@ -30,7 +30,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("bulkoperation")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class BulkOperation : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -76,16 +76,16 @@ namespace DLaB.Xrm.Entities
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string activity_pointer_BulkOperation = "activityid";
-			public const string business_unit_BulkOperation_activities = "owningbusinessunit";
-			public const string CampaignActivity_BulkOperations = "regardingobjectid";
-			public const string List_BulkOperations = "regardingobjectid";
-			public const string lk_BulkOperation_createdby = "createdby";
-			public const string lk_BulkOperation_createdonbehalfby = "createdonbehalfby";
-			public const string lk_BulkOperation_modifiedby = "modifiedby";
-			public const string lk_BulkOperation_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string team_BulkOperation = "owningteam";
-			public const string user_BulkOperation = "owninguser";
+			public const string activity_pointer_BulkOperation = "activity_pointer_BulkOperation";
+			public const string business_unit_BulkOperation_activities = "business_unit_BulkOperation_activities";
+			public const string CampaignActivity_BulkOperations = "CampaignActivity_BulkOperations";
+			public const string List_BulkOperations = "List_BulkOperations";
+			public const string lk_BulkOperation_createdby = "lk_BulkOperation_createdby";
+			public const string lk_BulkOperation_createdonbehalfby = "lk_BulkOperation_createdonbehalfby";
+			public const string lk_BulkOperation_modifiedby = "lk_BulkOperation_modifiedby";
+			public const string lk_BulkOperation_modifiedonbehalfby = "lk_BulkOperation_modifiedonbehalfby";
+			public const string team_BulkOperation = "team_BulkOperation";
+			public const string user_BulkOperation = "user_BulkOperation";
 		}
 
 		
@@ -243,6 +243,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -255,6 +262,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -380,6 +394,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -392,6 +413,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -459,6 +487,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -472,6 +507,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -484,6 +526,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1078,6 +1127,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_BulkOperation_activities", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_BulkOperation_activities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_BulkOperation_activities", null, value);
+				this.OnPropertyChanged("business_unit_BulkOperation_activities");
+			}
 		}
 		
 		/// <summary>
@@ -1134,6 +1190,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_BulkOperation_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_BulkOperation_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_BulkOperation_createdby", null, value);
+				this.OnPropertyChanged("lk_BulkOperation_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -1168,6 +1231,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_BulkOperation_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_BulkOperation_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_BulkOperation_modifiedby", null, value);
+				this.OnPropertyChanged("lk_BulkOperation_modifiedby");
 			}
 		}
 		
@@ -1204,6 +1274,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_BulkOperation", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_BulkOperation");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_BulkOperation", null, value);
+				this.OnPropertyChanged("team_BulkOperation");
+			}
 		}
 		
 		/// <summary>
@@ -1217,6 +1294,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_BulkOperation", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_BulkOperation");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_BulkOperation", null, value);
+				this.OnPropertyChanged("user_BulkOperation");
 			}
 		}
 		
@@ -1263,32 +1347,32 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdrecordtypecode")]
-		public virtual bulkoperation_createdrecordtypecode? CreatedRecordTypeCodeEnum
+		public virtual BulkOperation_CreatedRecordTypeCode? CreatedRecordTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((bulkoperation_createdrecordtypecode?)(EntityOptionSetEnum.GetEnum(this, "createdrecordtypecode")));
+				return ((BulkOperation_CreatedRecordTypeCode?)(EntityOptionSetEnum.GetEnum(this, "createdrecordtypecode")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("operationtypecode")]
-		public virtual bulkoperation_operationtypecode? OperationTypeCodeEnum
+		public virtual BulkOperation_OperationTypeCode? OperationTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((bulkoperation_operationtypecode?)(EntityOptionSetEnum.GetEnum(this, "operationtypecode")));
+				return ((BulkOperation_OperationTypeCode?)(EntityOptionSetEnum.GetEnum(this, "operationtypecode")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual bulkoperation_statuscode? StatusCodeEnum
+		public virtual BulkOperation_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((bulkoperation_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((BulkOperation_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1298,12 +1382,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("targetedrecordtypecode")]
-		public virtual bulkoperation_targetedrecordtypecode? TargetedRecordTypeCodeEnum
+		public virtual BulkOperation_TargetedRecordTypeCode? TargetedRecordTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((bulkoperation_targetedrecordtypecode?)(EntityOptionSetEnum.GetEnum(this, "targetedrecordtypecode")));
+				return ((BulkOperation_TargetedRecordTypeCode?)(EntityOptionSetEnum.GetEnum(this, "targetedrecordtypecode")));
 			}
 		}
 	}

@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("webresource")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class WebResource : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -48,11 +48,11 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "webresourceid";
 			public const string WebResourceIdUnique = "webresourceidunique";
 			public const string WebResourceType = "webresourcetype";
-			public const string lk_webresourcebase_createdonbehalfby = "createdonbehalfby";
-			public const string lk_webresourcebase_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string webresource_createdby = "createdby";
-			public const string webresource_modifiedby = "modifiedby";
-			public const string webresource_organization = "organizationid";
+			public const string lk_webresourcebase_createdonbehalfby = "lk_webresourcebase_createdonbehalfby";
+			public const string lk_webresourcebase_modifiedonbehalfby = "lk_webresourcebase_modifiedonbehalfby";
+			public const string webresource_createdby = "webresource_createdby";
+			public const string webresource_modifiedby = "webresource_modifiedby";
+			public const string webresource_organization = "webresource_organization";
 		}
 
 		
@@ -155,6 +155,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -167,6 +174,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -354,6 +368,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -366,6 +387,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -711,6 +739,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("webresource_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("webresource_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("webresource_createdby", null, value);
+				this.OnPropertyChanged("webresource_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -724,6 +759,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("webresource_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("webresource_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("webresource_modifiedby", null, value);
+				this.OnPropertyChanged("webresource_modifiedby");
 			}
 		}
 		
@@ -784,22 +826,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("webresourcetype")]
-		public virtual webresource_webresourcetype? WebResourceTypeEnum
+		public virtual WebResource_WebResourceType? WebResourceTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((webresource_webresourcetype?)(EntityOptionSetEnum.GetEnum(this, "webresourcetype")));
+				return ((WebResource_WebResourceType?)(EntityOptionSetEnum.GetEnum(this, "webresourcetype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

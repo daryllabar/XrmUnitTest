@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum UoMScheduleState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("uomschedule")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class UoMSchedule : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -52,13 +52,13 @@ namespace DLaB.Xrm.Entities
 			public const string UoMScheduleId = "uomscheduleid";
 			public const string Id = "uomscheduleid";
 			public const string VersionNumber = "versionnumber";
-			public const string lk_externalparty_uomschedule_createdby = "createdbyexternalparty";
-			public const string lk_externalparty_uomschedule_modifiedby = "modifiedbyexternalparty";
-			public const string lk_uomschedule_createdonbehalfby = "createdonbehalfby";
-			public const string lk_uomschedule_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_uomschedulebase_createdby = "createdby";
-			public const string lk_uomschedulebase_modifiedby = "modifiedby";
-			public const string organization_uof_schedules = "organizationid";
+			public const string lk_externalparty_uomschedule_createdby = "lk_externalparty_uomschedule_createdby";
+			public const string lk_externalparty_uomschedule_modifiedby = "lk_externalparty_uomschedule_modifiedby";
+			public const string lk_uomschedule_createdonbehalfby = "lk_uomschedule_createdonbehalfby";
+			public const string lk_uomschedule_modifiedonbehalfby = "lk_uomschedule_modifiedonbehalfby";
+			public const string lk_uomschedulebase_createdby = "lk_uomschedulebase_createdby";
+			public const string lk_uomschedulebase_modifiedby = "lk_uomschedulebase_modifiedby";
+			public const string organization_uof_schedules = "organization_uof_schedules";
 		}
 
 		
@@ -128,6 +128,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -153,6 +160,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -227,6 +241,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -252,6 +273,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -661,6 +689,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_uomschedulebase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_uomschedulebase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_uomschedulebase_createdby", null, value);
+				this.OnPropertyChanged("lk_uomschedulebase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -674,6 +709,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_uomschedulebase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_uomschedulebase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_uomschedulebase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_uomschedulebase_modifiedby");
 			}
 		}
 		
@@ -734,12 +776,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual uomschedule_statuscode? StatusCodeEnum
+		public virtual UoMSchedule_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((uomschedule_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((UoMSchedule_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

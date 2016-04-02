@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum ProcessSessionState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("processsession")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ProcessSession : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -68,113 +68,113 @@ namespace DLaB.Xrm.Entities
 			public const string StateCode = "statecode";
 			public const string StatusCode = "statuscode";
 			public const string StepName = "stepname";
-			public const string Account_ProcessSessions = "regardingobjectid";
-			public const string Annotation_ProcessSessions = "regardingobjectid";
-			public const string Appointment_ProcessSessions = "regardingobjectid";
-			public const string BusinessUnit_ProcessSessions = "regardingobjectid";
-			public const string BusinessUnitNewsArticle_ProcessSessions = "regardingobjectid";
-			public const string Campaign_ProcessSessions = "regardingobjectid";
-			public const string CampaignActivity_ProcessSessions = "regardingobjectid";
-			public const string CampaignResponse_ProcessSessions = "regardingobjectid";
-			public const string channelaccessprofile_ProcessSession = "regardingobjectid";
-			public const string Competitor_ProcessSessions = "regardingobjectid";
-			public const string Connection_ProcessSessions = "regardingobjectid";
-			public const string ConnectionRole_ProcessSessions = "regardingobjectid";
-			public const string ConstraintBasedGroup_ProcessSessions = "regardingobjectid";
-			public const string Contact_ProcessSessions = "regardingobjectid";
-			public const string Contract_ProcessSessions = "regardingobjectid";
-			public const string ContractDetail_ProcessSessions = "regardingobjectid";
-			public const string ContractTemplate_ProcessSessions = "regardingobjectid";
-			public const string ConvertRule_ProcessSessions = "regardingobjectid";
-			public const string CustomerAddress_ProcessSessions = "regardingobjectid";
-			public const string CustomerOpportunityRole_ProcessSessions = "regardingobjectid";
-			public const string CustomerRelationship_ProcessSessions = "regardingobjectid";
-			public const string Discount_ProcessSessions = "regardingobjectid";
-			public const string DiscountType_ProcessSessions = "regardingobjectid";
-			public const string Email_ProcessSessions = "regardingobjectid";
-			public const string entitlement_ProcessSession = "regardingobjectid";
-			public const string entitlementchannel_ProcessSession = "regardingobjectid";
-			public const string entitlementtemplate_ProcessSession = "regardingobjectid";
-			public const string Equipment_ProcessSessions = "regardingobjectid";
-			public const string externalparty_ProcessSession = "regardingobjectid";
-			public const string externalpartyitem_ProcessSession = "regardingobjectid";
-			public const string Fax_ProcessSessions = "regardingobjectid";
-			public const string Goal_ProcessSessions = "regardingobjectid";
-			public const string goalrollupquery_ProcessSessions = "regardingobjectid";
-			public const string Incident_ProcessSessions = "regardingobjectid";
-			public const string Invoice_ProcessSessions = "regardingobjectid";
-			public const string InvoiceDetail_ProcessSessions = "regardingobjectid";
-			public const string KbArticle_ProcessSessions = "regardingobjectid";
-			public const string KbArticleComment_ProcessSessions = "regardingobjectid";
-			public const string KbArticleTemplate_ProcessSessions = "regardingobjectid";
-			public const string knowledgearticle_ProcessSession = "regardingobjectid";
-			public const string KnowledgeBaseRecord_ProcessSession = "regardingobjectid";
-			public const string Lead_ProcessSessions = "regardingobjectid";
-			public const string Letter_ProcessSessions = "regardingobjectid";
-			public const string List_ProcessSessions = "regardingobjectid";
-			public const string lk_processsession_canceledby = "canceledby";
-			public const string lk_processsession_completedby = "completedby";
-			public const string lk_processsession_createdby = "createdby";
-			public const string lk_processsession_executedby = "executedby";
-			public const string lk_processsession_modifiedby = "modifiedby";
-			public const string Referencinglk_processsession_nextlinkedsessionid = "nextlinkedsessionid";
-			public const string Referencinglk_processsession_originatingsessionid = "originatingsessionid";
-			public const string Referencinglk_processsession_previouslinkedsessionid = "previouslinkedsessionid";
-			public const string lk_processsession_processid = "processid";
-			public const string lk_processsession_startedby = "startedby";
-			public const string lk_processsessionbase_createdonbehalfby = "createdonbehalfby";
-			public const string lk_processsessionbase_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string mailbox_processsessions = "regardingobjectid";
-			public const string MailMergeTemplate_ProcessSessions = "regardingobjectid";
-			public const string metric_ProcessSessions = "regardingobjectid";
-			public const string msdyn_postalbum_ProcessSession = "regardingobjectid";
-			public const string msdyn_postconfig_ProcessSession = "regardingobjectid";
-			public const string msdyn_postruleconfig_ProcessSession = "regardingobjectid";
-			public const string msdyn_wallsavedquery_ProcessSession = "regardingobjectid";
-			public const string msdyn_wallsavedqueryusersettings_ProcessSession = "regardingobjectid";
-			public const string Opportunity_ProcessSessions = "regardingobjectid";
-			public const string OpportunityProduct_ProcessSessions = "regardingobjectid";
-			public const string Owning_businessunit_processsessions = "owningbusinessunit";
-			public const string PhoneCall_ProcessSessions = "regardingobjectid";
-			public const string position_ProcessSession = "regardingobjectid";
-			public const string PriceLevel_ProcessSessions = "regardingobjectid";
-			public const string Product_ProcessSessions = "regardingobjectid";
-			public const string ProductAssociation_ProcessSessions = "regardingobjectid";
-			public const string ProductPriceLevel_ProcessSessions = "regardingobjectid";
-			public const string ProductSubstitute_ProcessSession = "regardingobjectid";
-			public const string profilerule_ProcessSession = "regardingobjectid";
-			public const string Queue_ProcessSessions = "regardingobjectid";
-			public const string QueueItem_ProcessSessions = "regardingobjectid";
-			public const string Quote_ProcessSessions = "regardingobjectid";
-			public const string QuoteDetail_ProcessSessions = "regardingobjectid";
-			public const string RecurringAppointmentMaster_ProcessSessions = "regardingobjectid";
-			public const string RelationshipRole_ProcessSessions = "regardingobjectid";
-			public const string Report_ProcessSessions = "regardingobjectid";
-			public const string rollupfield_ProcessSessions = "regardingobjectid";
-			public const string routingrule_ProcessSessions = "regardingobjectid";
-			public const string routingruleitem_ProcessSessions = "regardingobjectid";
-			public const string SalesLiterature_ProcessSessions = "regardingobjectid";
-			public const string SalesLiteratureItem_ProcessSessions = "regardingobjectid";
-			public const string SalesOrder_ProcessSessions = "regardingobjectid";
-			public const string SalesOrderDetail_ProcessSessions = "regardingobjectid";
-			public const string Service_ProcessSessions = "regardingobjectid";
-			public const string ServiceAppointment_ProcessSessions = "regardingobjectid";
-			public const string SharePointDocumentLocation_ProcessSessions = "regardingobjectid";
-			public const string SharePointSite_ProcessSessions = "regardingobjectid";
-			public const string Site_ProcessSessions = "regardingobjectid";
-			public const string slabase_ProcessSessions = "regardingobjectid";
-			public const string SocialActivity_ProcessSessions = "regardingobjectid";
-			public const string SocialProfile_ProcessSessions = "regardingobjectid";
-			public const string Subject_ProcessSessions = "regardingobjectid";
-			public const string SystemUser_ProcessSessions = "regardingobjectid";
-			public const string Task_ProcessSessions = "regardingobjectid";
-			public const string team_processsession = "owningteam";
-			public const string Team_ProcessSessions = "regardingobjectid";
-			public const string Template_ProcessSessions = "regardingobjectid";
-			public const string Territory_ProcessSessions = "regardingobjectid";
-			public const string theme_ProcessSession = "regardingobjectid";
-			public const string TransactionCurrency_ProcessSessions = "regardingobjectid";
-			public const string usermapping_ProcessSession = "regardingobjectid";
+			public const string Account_ProcessSessions = "Account_ProcessSessions";
+			public const string Annotation_ProcessSessions = "Annotation_ProcessSessions";
+			public const string Appointment_ProcessSessions = "Appointment_ProcessSessions";
+			public const string BusinessUnit_ProcessSessions = "BusinessUnit_ProcessSessions";
+			public const string BusinessUnitNewsArticle_ProcessSessions = "BusinessUnitNewsArticle_ProcessSessions";
+			public const string Campaign_ProcessSessions = "Campaign_ProcessSessions";
+			public const string CampaignActivity_ProcessSessions = "CampaignActivity_ProcessSessions";
+			public const string CampaignResponse_ProcessSessions = "CampaignResponse_ProcessSessions";
+			public const string channelaccessprofile_ProcessSession = "channelaccessprofile_ProcessSession";
+			public const string Competitor_ProcessSessions = "Competitor_ProcessSessions";
+			public const string Connection_ProcessSessions = "Connection_ProcessSessions";
+			public const string ConnectionRole_ProcessSessions = "ConnectionRole_ProcessSessions";
+			public const string ConstraintBasedGroup_ProcessSessions = "ConstraintBasedGroup_ProcessSessions";
+			public const string Contact_ProcessSessions = "Contact_ProcessSessions";
+			public const string Contract_ProcessSessions = "Contract_ProcessSessions";
+			public const string ContractDetail_ProcessSessions = "ContractDetail_ProcessSessions";
+			public const string ContractTemplate_ProcessSessions = "ContractTemplate_ProcessSessions";
+			public const string ConvertRule_ProcessSessions = "ConvertRule_ProcessSessions";
+			public const string CustomerAddress_ProcessSessions = "CustomerAddress_ProcessSessions";
+			public const string CustomerOpportunityRole_ProcessSessions = "CustomerOpportunityRole_ProcessSessions";
+			public const string CustomerRelationship_ProcessSessions = "CustomerRelationship_ProcessSessions";
+			public const string Discount_ProcessSessions = "Discount_ProcessSessions";
+			public const string DiscountType_ProcessSessions = "DiscountType_ProcessSessions";
+			public const string Email_ProcessSessions = "Email_ProcessSessions";
+			public const string entitlement_ProcessSession = "entitlement_ProcessSession";
+			public const string entitlementchannel_ProcessSession = "entitlementchannel_ProcessSession";
+			public const string entitlementtemplate_ProcessSession = "entitlementtemplate_ProcessSession";
+			public const string Equipment_ProcessSessions = "Equipment_ProcessSessions";
+			public const string externalparty_ProcessSession = "externalparty_ProcessSession";
+			public const string externalpartyitem_ProcessSession = "externalpartyitem_ProcessSession";
+			public const string Fax_ProcessSessions = "Fax_ProcessSessions";
+			public const string Goal_ProcessSessions = "Goal_ProcessSessions";
+			public const string goalrollupquery_ProcessSessions = "goalrollupquery_ProcessSessions";
+			public const string Incident_ProcessSessions = "Incident_ProcessSessions";
+			public const string Invoice_ProcessSessions = "Invoice_ProcessSessions";
+			public const string InvoiceDetail_ProcessSessions = "InvoiceDetail_ProcessSessions";
+			public const string KbArticle_ProcessSessions = "KbArticle_ProcessSessions";
+			public const string KbArticleComment_ProcessSessions = "KbArticleComment_ProcessSessions";
+			public const string KbArticleTemplate_ProcessSessions = "KbArticleTemplate_ProcessSessions";
+			public const string knowledgearticle_ProcessSession = "knowledgearticle_ProcessSession";
+			public const string KnowledgeBaseRecord_ProcessSession = "KnowledgeBaseRecord_ProcessSession";
+			public const string Lead_ProcessSessions = "Lead_ProcessSessions";
+			public const string Letter_ProcessSessions = "Letter_ProcessSessions";
+			public const string List_ProcessSessions = "List_ProcessSessions";
+			public const string lk_processsession_canceledby = "lk_processsession_canceledby";
+			public const string lk_processsession_completedby = "lk_processsession_completedby";
+			public const string lk_processsession_createdby = "lk_processsession_createdby";
+			public const string lk_processsession_executedby = "lk_processsession_executedby";
+			public const string lk_processsession_modifiedby = "lk_processsession_modifiedby";
+			public const string Referencinglk_processsession_nextlinkedsessionid = "lk_processsession_nextlinkedsessionid";
+			public const string Referencinglk_processsession_originatingsessionid = "lk_processsession_originatingsessionid";
+			public const string Referencinglk_processsession_previouslinkedsessionid = "lk_processsession_previouslinkedsessionid";
+			public const string lk_processsession_processid = "lk_processsession_processid";
+			public const string lk_processsession_startedby = "lk_processsession_startedby";
+			public const string lk_processsessionbase_createdonbehalfby = "lk_processsessionbase_createdonbehalfby";
+			public const string lk_processsessionbase_modifiedonbehalfby = "lk_processsessionbase_modifiedonbehalfby";
+			public const string mailbox_processsessions = "mailbox_processsessions";
+			public const string MailMergeTemplate_ProcessSessions = "MailMergeTemplate_ProcessSessions";
+			public const string metric_ProcessSessions = "metric_ProcessSessions";
+			public const string msdyn_postalbum_ProcessSession = "msdyn_postalbum_ProcessSession";
+			public const string msdyn_postconfig_ProcessSession = "msdyn_postconfig_ProcessSession";
+			public const string msdyn_postruleconfig_ProcessSession = "msdyn_postruleconfig_ProcessSession";
+			public const string msdyn_wallsavedquery_ProcessSession = "msdyn_wallsavedquery_ProcessSession";
+			public const string msdyn_wallsavedqueryusersettings_ProcessSession = "msdyn_wallsavedqueryusersettings_ProcessSession";
+			public const string Opportunity_ProcessSessions = "Opportunity_ProcessSessions";
+			public const string OpportunityProduct_ProcessSessions = "OpportunityProduct_ProcessSessions";
+			public const string Owning_businessunit_processsessions = "Owning_businessunit_processsessions";
+			public const string PhoneCall_ProcessSessions = "PhoneCall_ProcessSessions";
+			public const string position_ProcessSession = "position_ProcessSession";
+			public const string PriceLevel_ProcessSessions = "PriceLevel_ProcessSessions";
+			public const string Product_ProcessSessions = "Product_ProcessSessions";
+			public const string ProductAssociation_ProcessSessions = "ProductAssociation_ProcessSessions";
+			public const string ProductPriceLevel_ProcessSessions = "ProductPriceLevel_ProcessSessions";
+			public const string ProductSubstitute_ProcessSession = "ProductSubstitute_ProcessSession";
+			public const string profilerule_ProcessSession = "profilerule_ProcessSession";
+			public const string Queue_ProcessSessions = "Queue_ProcessSessions";
+			public const string QueueItem_ProcessSessions = "QueueItem_ProcessSessions";
+			public const string Quote_ProcessSessions = "Quote_ProcessSessions";
+			public const string QuoteDetail_ProcessSessions = "QuoteDetail_ProcessSessions";
+			public const string RecurringAppointmentMaster_ProcessSessions = "RecurringAppointmentMaster_ProcessSessions";
+			public const string RelationshipRole_ProcessSessions = "RelationshipRole_ProcessSessions";
+			public const string Report_ProcessSessions = "Report_ProcessSessions";
+			public const string rollupfield_ProcessSessions = "rollupfield_ProcessSessions";
+			public const string routingrule_ProcessSessions = "routingrule_ProcessSessions";
+			public const string routingruleitem_ProcessSessions = "routingruleitem_ProcessSessions";
+			public const string SalesLiterature_ProcessSessions = "SalesLiterature_ProcessSessions";
+			public const string SalesLiteratureItem_ProcessSessions = "SalesLiteratureItem_ProcessSessions";
+			public const string SalesOrder_ProcessSessions = "SalesOrder_ProcessSessions";
+			public const string SalesOrderDetail_ProcessSessions = "SalesOrderDetail_ProcessSessions";
+			public const string Service_ProcessSessions = "Service_ProcessSessions";
+			public const string ServiceAppointment_ProcessSessions = "ServiceAppointment_ProcessSessions";
+			public const string SharePointDocumentLocation_ProcessSessions = "SharePointDocumentLocation_ProcessSessions";
+			public const string SharePointSite_ProcessSessions = "SharePointSite_ProcessSessions";
+			public const string Site_ProcessSessions = "Site_ProcessSessions";
+			public const string slabase_ProcessSessions = "slabase_ProcessSessions";
+			public const string SocialActivity_ProcessSessions = "SocialActivity_ProcessSessions";
+			public const string SocialProfile_ProcessSessions = "SocialProfile_ProcessSessions";
+			public const string Subject_ProcessSessions = "Subject_ProcessSessions";
+			public const string SystemUser_ProcessSessions = "SystemUser_ProcessSessions";
+			public const string Task_ProcessSessions = "Task_ProcessSessions";
+			public const string team_processsession = "team_processsession";
+			public const string Team_ProcessSessions = "Team_ProcessSessions";
+			public const string Template_ProcessSessions = "Template_ProcessSessions";
+			public const string Territory_ProcessSessions = "Territory_ProcessSessions";
+			public const string theme_ProcessSession = "theme_ProcessSession";
+			public const string TransactionCurrency_ProcessSessions = "TransactionCurrency_ProcessSessions";
+			public const string usermapping_ProcessSession = "usermapping_ProcessSession";
 		}
 
 		
@@ -330,6 +330,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -342,6 +349,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -449,6 +463,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -461,6 +482,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -575,6 +603,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -588,6 +623,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -600,6 +642,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1998,6 +2047,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_processsession_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_processsession_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_processsession_createdby", null, value);
+				this.OnPropertyChanged("lk_processsession_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -2032,6 +2088,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_processsession_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_processsession_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_processsession_modifiedby", null, value);
+				this.OnPropertyChanged("lk_processsession_modifiedby");
 			}
 		}
 		
@@ -2396,6 +2459,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("Owning_businessunit_processsessions", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Owning_businessunit_processsessions");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("Owning_businessunit_processsessions", null, value);
+				this.OnPropertyChanged("Owning_businessunit_processsessions");
 			}
 		}
 		
@@ -3104,6 +3174,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_processsession", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_processsession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_processsession", null, value);
+				this.OnPropertyChanged("team_processsession");
+			}
 		}
 		
 		/// <summary>
@@ -3275,12 +3352,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual processsession_statuscode? StatusCodeEnum
+		public virtual ProcessSession_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((processsession_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((ProcessSession_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

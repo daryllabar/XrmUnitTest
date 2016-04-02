@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("userqueryvisualization")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class UserQueryVisualization : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -41,14 +41,14 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "userqueryvisualizationid";
 			public const string VersionNumber = "versionnumber";
 			public const string WebResourceId = "webresourceid";
-			public const string business_unit_userqueryvisualizations = "owningbusinessunit";
-			public const string lk_userqueryvisualization_createdby = "createdby";
-			public const string lk_userqueryvisualization_modifiedby = "modifiedby";
-			public const string lk_userqueryvisualizationbase_createdonbehalfby = "createdonbehalfby";
-			public const string lk_userqueryvisualizationbase_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string team_userqueryvisualizations = "owningteam";
-			public const string user_userqueryvisualizations = "owninguser";
-			public const string webresource_userqueryvisualizations = "webresourceid";
+			public const string business_unit_userqueryvisualizations = "business_unit_userqueryvisualizations";
+			public const string lk_userqueryvisualization_createdby = "lk_userqueryvisualization_createdby";
+			public const string lk_userqueryvisualization_modifiedby = "lk_userqueryvisualization_modifiedby";
+			public const string lk_userqueryvisualizationbase_createdonbehalfby = "lk_userqueryvisualizationbase_createdonbehalfby";
+			public const string lk_userqueryvisualizationbase_modifiedonbehalfby = "lk_userqueryvisualizationbase_modifiedonbehalfby";
+			public const string team_userqueryvisualizations = "team_userqueryvisualizations";
+			public const string user_userqueryvisualizations = "user_userqueryvisualizations";
+			public const string webresource_userqueryvisualizations = "webresource_userqueryvisualizations";
 		}
 
 		
@@ -98,6 +98,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -110,6 +117,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -204,6 +218,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -216,6 +237,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -290,6 +318,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -303,6 +338,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -315,6 +357,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -466,6 +515,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_userqueryvisualizations", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_userqueryvisualizations");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_userqueryvisualizations", null, value);
+				this.OnPropertyChanged("business_unit_userqueryvisualizations");
+			}
 		}
 		
 		/// <summary>
@@ -480,6 +536,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_userqueryvisualization_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_userqueryvisualization_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_userqueryvisualization_createdby", null, value);
+				this.OnPropertyChanged("lk_userqueryvisualization_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -493,6 +556,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_userqueryvisualization_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_userqueryvisualization_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_userqueryvisualization_modifiedby", null, value);
+				this.OnPropertyChanged("lk_userqueryvisualization_modifiedby");
 			}
 		}
 		
@@ -550,6 +620,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_userqueryvisualizations", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_userqueryvisualizations");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_userqueryvisualizations", null, value);
+				this.OnPropertyChanged("team_userqueryvisualizations");
+			}
 		}
 		
 		/// <summary>
@@ -563,6 +640,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_userqueryvisualizations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_userqueryvisualizations");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_userqueryvisualizations", null, value);
+				this.OnPropertyChanged("user_userqueryvisualizations");
 			}
 		}
 		

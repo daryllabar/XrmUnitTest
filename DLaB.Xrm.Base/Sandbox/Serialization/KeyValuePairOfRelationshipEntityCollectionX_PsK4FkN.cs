@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Microsoft.Xrm.Sdk;
 // ReSharper disable InconsistentNaming
 
@@ -43,6 +44,18 @@ namespace DLaB.Xrm.Sandbox.Serialization
         /// <param name="value">The value.</param>
         public KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN(Relationship key, EntityCollection value): this(key, new SerializableEntityCollection(value))
         {
+        }
+
+        /// <summary>
+        /// Performs an explicit conversion from <see cref="KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN"/> to <see cref="KeyValuePair{Relationship, EntityCollection}"/>.
+        /// </summary>
+        /// <param name="pair">The pair.</param>
+        /// <returns>
+        /// The result of the conversion.
+        /// </returns>
+        public static explicit operator KeyValuePair<Relationship, EntityCollection>(KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN pair)
+        {
+            return new KeyValuePair<Relationship, EntityCollection>(pair.key, (EntityCollection)pair.value);
         }
     }
 }

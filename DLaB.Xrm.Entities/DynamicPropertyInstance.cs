@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("dynamicpropertyinstance")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class DynamicPropertyInstance : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -44,19 +44,19 @@ namespace DLaB.Xrm.Entities
 			public const string ValueInteger = "valueinteger";
 			public const string ValueString = "valuestring";
 			public const string VersionNumber = "versionnumber";
-			public const string business_unit_dynamicproperyinstance = "owningbusinessunit";
-			public const string DynamicProperty_DynamicPropertyInstance = "dynamicpropertyid";
-			public const string Dynamicpropertyinsatance_createdby = "createdby";
-			public const string InvoiceDetail_Dynamicpropertyinstance = "regardingobjectid";
-			public const string lk_Dynamicpropertyinsatanceattribute_createdonbehalfby = "createdonbehalfby";
-			public const string lk_Dynamicpropertyinsatanceattribute_ModifiedBy = "modifiedby";
-			public const string lk_Dynamicpropertyinsatanceattribute_ModifiedOnBehalfBy = "modifiedonbehalfby";
-			public const string OpportunityProduct_Dynamicpropertyinstance = "regardingobjectid";
-			public const string OwningUser_Dynamicpropertyinsatance = "dynamicpropertyinstanceid";
-			public const string QuoteDetail_Dynamicpropertyinstance = "regardingobjectid";
-			public const string SalesOrderDetail_Dynamicpropertyinstance = "regardingobjectid";
-			public const string team_DynamicPropertyInstance = "owningteam";
-			public const string TransactionCurrency_Dynamicpropertyinsatance = "dynamicpropertyinstanceid";
+			public const string business_unit_dynamicproperyinstance = "business_unit_dynamicproperyinstance";
+			public const string DynamicProperty_DynamicPropertyInstance = "DynamicProperty_DynamicPropertyInstance";
+			public const string Dynamicpropertyinsatance_createdby = "Dynamicpropertyinsatance_createdby";
+			public const string InvoiceDetail_Dynamicpropertyinstance = "InvoiceDetail_Dynamicpropertyinstance";
+			public const string lk_Dynamicpropertyinsatanceattribute_createdonbehalfby = "lk_Dynamicpropertyinsatanceattribute_createdonbehalfby";
+			public const string lk_Dynamicpropertyinsatanceattribute_ModifiedBy = "lk_Dynamicpropertyinsatanceattribute_ModifiedBy";
+			public const string lk_Dynamicpropertyinsatanceattribute_ModifiedOnBehalfBy = "lk_Dynamicpropertyinsatanceattribute_ModifiedOnBehalfBy";
+			public const string OpportunityProduct_Dynamicpropertyinstance = "OpportunityProduct_Dynamicpropertyinstance";
+			public const string OwningUser_Dynamicpropertyinsatance = "OwningUser_Dynamicpropertyinsatance";
+			public const string QuoteDetail_Dynamicpropertyinstance = "QuoteDetail_Dynamicpropertyinstance";
+			public const string SalesOrderDetail_Dynamicpropertyinstance = "SalesOrderDetail_Dynamicpropertyinstance";
+			public const string team_DynamicPropertyInstance = "team_DynamicPropertyInstance";
+			public const string TransactionCurrency_Dynamicpropertyinsatance = "TransactionCurrency_Dynamicpropertyinsatance";
 		}
 
 		
@@ -106,6 +106,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -118,6 +125,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -248,6 +262,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -260,6 +281,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -314,6 +342,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -327,6 +362,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -339,6 +381,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -507,6 +556,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_dynamicproperyinstance", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_dynamicproperyinstance");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_dynamicproperyinstance", null, value);
+				this.OnPropertyChanged("business_unit_dynamicproperyinstance");
+			}
 		}
 		
 		/// <summary>
@@ -541,6 +597,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("Dynamicpropertyinsatance_createdby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Dynamicpropertyinsatance_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("Dynamicpropertyinsatance_createdby", null, value);
+				this.OnPropertyChanged("Dynamicpropertyinsatance_createdby");
 			}
 		}
 		
@@ -597,6 +660,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_Dynamicpropertyinsatanceattribute_ModifiedBy", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_Dynamicpropertyinsatanceattribute_ModifiedBy");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_Dynamicpropertyinsatanceattribute_ModifiedBy", null, value);
+				this.OnPropertyChanged("lk_Dynamicpropertyinsatanceattribute_ModifiedBy");
 			}
 		}
 		
@@ -716,6 +786,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_DynamicPropertyInstance", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_DynamicPropertyInstance");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_DynamicPropertyInstance", null, value);
+				this.OnPropertyChanged("team_DynamicPropertyInstance");
 			}
 		}
 		

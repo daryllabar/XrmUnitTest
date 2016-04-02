@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("invoicedetail")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class InvoiceDetail : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -87,17 +87,17 @@ namespace DLaB.Xrm.Entities
 			public const string VolumeDiscountAmount = "volumediscountamount";
 			public const string VolumeDiscountAmount_Base = "volumediscountamount_base";
 			public const string WillCall = "willcall";
-			public const string invoice_details = "invoiceid";
-			public const string Referencinginvoicedetail_parent_invoicedetail = "parentbundleid";
-			public const string lk_invoicedetail_createdonbehalfby = "createdonbehalfby";
-			public const string lk_invoicedetail_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_invoicedetailbase_createdby = "createdby";
-			public const string lk_invoicedetailbase_modifiedby = "modifiedby";
-			public const string product_invoice_details = "productid";
-			public const string productAssociation_invoice_details = "productassociationid";
-			public const string system_user_invoicedetail = "salesrepid";
-			public const string transactioncurrency_invoicedetail = "transactioncurrencyid";
-			public const string unit_of_measurement_invoice_details = "uomid";
+			public const string invoice_details = "invoice_details";
+			public const string Referencinginvoicedetail_parent_invoicedetail = "invoicedetail_parent_invoicedetail";
+			public const string lk_invoicedetail_createdonbehalfby = "lk_invoicedetail_createdonbehalfby";
+			public const string lk_invoicedetail_modifiedonbehalfby = "lk_invoicedetail_modifiedonbehalfby";
+			public const string lk_invoicedetailbase_createdby = "lk_invoicedetailbase_createdby";
+			public const string lk_invoicedetailbase_modifiedby = "lk_invoicedetailbase_modifiedby";
+			public const string product_invoice_details = "product_invoice_details";
+			public const string productAssociation_invoice_details = "productAssociation_invoice_details";
+			public const string system_user_invoicedetail = "system_user_invoicedetail";
+			public const string transactioncurrency_invoicedetail = "transactioncurrency_invoicedetail";
+			public const string unit_of_measurement_invoice_details = "unit_of_measurement_invoice_details";
 		}
 
 		
@@ -200,6 +200,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -212,6 +219,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -534,6 +548,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -546,6 +567,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -613,6 +641,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -625,6 +660,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1562,6 +1604,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_invoicedetailbase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_invoicedetailbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_invoicedetailbase_createdby", null, value);
+				this.OnPropertyChanged("lk_invoicedetailbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -1575,6 +1624,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_invoicedetailbase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_invoicedetailbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_invoicedetailbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_invoicedetailbase_modifiedby");
 			}
 		}
 		
@@ -1719,12 +1775,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("pricingerrorcode")]
-		public virtual qooi_pricingerrorcode? PricingErrorCodeEnum
+		public virtual Qooi_PricingErrorCode? PricingErrorCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((qooi_pricingerrorcode?)(EntityOptionSetEnum.GetEnum(this, "pricingerrorcode")));
+				return ((Qooi_PricingErrorCode?)(EntityOptionSetEnum.GetEnum(this, "pricingerrorcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1734,12 +1790,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("producttypecode")]
-		public virtual qooiproduct_producttype? ProductTypeCodeEnum
+		public virtual QooiProduct_ProductType? ProductTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((qooiproduct_producttype?)(EntityOptionSetEnum.GetEnum(this, "producttypecode")));
+				return ((QooiProduct_ProductType?)(EntityOptionSetEnum.GetEnum(this, "producttypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1749,12 +1805,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("propertyconfigurationstatus")]
-		public virtual qooiproduct_propertiesconfigurationstatus? PropertyConfigurationStatusEnum
+		public virtual QooiProduct_PropertiesConfigurationStatus? PropertyConfigurationStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((qooiproduct_propertiesconfigurationstatus?)(EntityOptionSetEnum.GetEnum(this, "propertyconfigurationstatus")));
+				return ((QooiProduct_PropertiesConfigurationStatus?)(EntityOptionSetEnum.GetEnum(this, "propertyconfigurationstatus")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1764,12 +1820,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("shipto_freighttermscode")]
-		public virtual invoicedetail_shipto_freighttermscode? ShipTo_FreightTermsCodeEnum
+		public virtual InvoiceDetail_ShipTo_FreightTermsCode? ShipTo_FreightTermsCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((invoicedetail_shipto_freighttermscode?)(EntityOptionSetEnum.GetEnum(this, "shipto_freighttermscode")));
+				return ((InvoiceDetail_ShipTo_FreightTermsCode?)(EntityOptionSetEnum.GetEnum(this, "shipto_freighttermscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

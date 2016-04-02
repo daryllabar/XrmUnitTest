@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("dynamicpropertyassociation")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class DynamicPropertyAssociation : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -40,15 +40,15 @@ namespace DLaB.Xrm.Entities
 			public const string RegardingObjectid = "regardingobjectid";
 			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string VersionNumber = "versionnumber";
-			public const string Dynamicproperty_DynamicPropertyAssociation = "dynamicpropertyid";
-			public const string DynamicPropertyAssociation_organization = "organizationid";
-			public const string DynamicPropertyAssociation_TransactionCurrency = "transactioncurrencyid";
-			public const string lk_DynamicPropertyAssociationattribute_createdby = "createdby";
-			public const string lk_DynamicPropertyAssociationattribute_CreatedOnBehalfBy = "createdonbehalfby";
-			public const string lk_DynamicPropertyAssociationattribute_ModifiedBy = "modifiedby";
-			public const string lk_DynamicPropertyAssociationattribute_ModifiedOnBehalfBy = "modifiedonbehalfby";
-			public const string Product_DynamicPropertyAssociation = "regardingobjectid";
-			public const string ProductAssociation_DynamicPropertyAssociation = "regardingobjectid";
+			public const string Dynamicproperty_DynamicPropertyAssociation = "Dynamicproperty_DynamicPropertyAssociation";
+			public const string DynamicPropertyAssociation_organization = "DynamicPropertyAssociation_organization";
+			public const string DynamicPropertyAssociation_TransactionCurrency = "DynamicPropertyAssociation_TransactionCurrency";
+			public const string lk_DynamicPropertyAssociationattribute_createdby = "lk_DynamicPropertyAssociationattribute_createdby";
+			public const string lk_DynamicPropertyAssociationattribute_CreatedOnBehalfBy = "lk_DynamicPropertyAssociationattribute_CreatedOnBehalfBy";
+			public const string lk_DynamicPropertyAssociationattribute_ModifiedBy = "lk_DynamicPropertyAssociationattribute_ModifiedBy";
+			public const string lk_DynamicPropertyAssociationattribute_ModifiedOnBehalfBy = "lk_DynamicPropertyAssociationattribute_ModifiedOnBehalfBy";
+			public const string Product_DynamicPropertyAssociation = "Product_DynamicPropertyAssociation";
+			public const string ProductAssociation_DynamicPropertyAssociation = "ProductAssociation_DynamicPropertyAssociation";
 		}
 
 		
@@ -118,6 +118,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -130,6 +137,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -300,6 +314,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -312,6 +333,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -489,6 +517,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_DynamicPropertyAssociationattribute_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_DynamicPropertyAssociationattribute_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_DynamicPropertyAssociationattribute_createdby", null, value);
+				this.OnPropertyChanged("lk_DynamicPropertyAssociationattribute_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -523,6 +558,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_DynamicPropertyAssociationattribute_ModifiedBy", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_DynamicPropertyAssociationattribute_ModifiedBy");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_DynamicPropertyAssociationattribute_ModifiedBy", null, value);
+				this.OnPropertyChanged("lk_DynamicPropertyAssociationattribute_ModifiedBy");
 			}
 		}
 		
@@ -632,12 +674,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("associationstatus")]
-		public virtual dynamicpropertyassociation_associationstatus? AssociationStatusEnum
+		public virtual DynamicPropertyAssociation_AssociationStatus? AssociationStatusEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((dynamicpropertyassociation_associationstatus?)(EntityOptionSetEnum.GetEnum(this, "associationstatus")));
+				return ((DynamicPropertyAssociation_AssociationStatus?)(EntityOptionSetEnum.GetEnum(this, "associationstatus")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -647,12 +689,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("inheritancestate")]
-		public virtual dynamicpropertyassociation_inheritancestate? InheritanceStateEnum
+		public virtual DynamicPropertyAssociation_InheritanceState? InheritanceStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((dynamicpropertyassociation_inheritancestate?)(EntityOptionSetEnum.GetEnum(this, "inheritancestate")));
+				return ((DynamicPropertyAssociation_InheritanceState?)(EntityOptionSetEnum.GetEnum(this, "inheritancestate")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

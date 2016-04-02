@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum GoalState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("goal")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class Goal : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -118,28 +118,28 @@ namespace DLaB.Xrm.Entities
 			public const string TreeId = "treeid";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string business_unit_goal = "owningbusinessunit";
-			public const string Referencinggoal_parent_goal = "parentgoalid";
-			public const string ReferencingGoal_RollupError_Goal = "goalwitherrorid";
-			public const string goal_rollupquery_actualdecimal = "rollupqueryactualdecimalid";
-			public const string goal_rollupquery_actualmoney = "rollupqueryactualmoneyid";
-			public const string goal_rollupquery_customdecimal = "rollupquerycustomdecimalid";
-			public const string goal_rollupquery_customint = "rollupquerycustomintegerid";
-			public const string goal_rollupquery_custommoney = "rollupquerycustommoneyid";
-			public const string goal_rollupquery_inprogressdecimal = "rollupqueryinprogressdecimalid";
-			public const string goal_rollupquery_inprogressint = "rollupqueryinprogressintegerid";
-			public const string goal_rollupquery_inprogressmoney = "rollupqueryinprogressmoneyid";
-			public const string goalrollupquery_actualint = "rollupqueryactualintegerid";
-			public const string lk_goal_createdby = "createdby";
-			public const string lk_goal_createdonbehalfby = "createdonbehalfby";
-			public const string lk_goal_modifiedby = "modifiedby";
-			public const string lk_goal_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string metric_goal = "metricid";
-			public const string team_goal = "owningteam";
-			public const string team_goal_goalowner = "goalownerid";
-			public const string TransactionCurrency_Goal = "transactioncurrencyid";
-			public const string user_goal = "owninguser";
-			public const string user_goal_goalowner = "goalownerid";
+			public const string business_unit_goal = "business_unit_goal";
+			public const string Referencinggoal_parent_goal = "goal_parent_goal";
+			public const string ReferencingGoal_RollupError_Goal = "Goal_RollupError_Goal";
+			public const string goal_rollupquery_actualdecimal = "goal_rollupquery_actualdecimal";
+			public const string goal_rollupquery_actualmoney = "goal_rollupquery_actualmoney";
+			public const string goal_rollupquery_customdecimal = "goal_rollupquery_customdecimal";
+			public const string goal_rollupquery_customint = "goal_rollupquery_customint";
+			public const string goal_rollupquery_custommoney = "goal_rollupquery_custommoney";
+			public const string goal_rollupquery_inprogressdecimal = "goal_rollupquery_inprogressdecimal";
+			public const string goal_rollupquery_inprogressint = "goal_rollupquery_inprogressint";
+			public const string goal_rollupquery_inprogressmoney = "goal_rollupquery_inprogressmoney";
+			public const string goalrollupquery_actualint = "goalrollupquery_actualint";
+			public const string lk_goal_createdby = "lk_goal_createdby";
+			public const string lk_goal_createdonbehalfby = "lk_goal_createdonbehalfby";
+			public const string lk_goal_modifiedby = "lk_goal_modifiedby";
+			public const string lk_goal_modifiedonbehalfby = "lk_goal_modifiedonbehalfby";
+			public const string metric_goal = "metric_goal";
+			public const string team_goal = "team_goal";
+			public const string team_goal_goalowner = "team_goal_goalowner";
+			public const string TransactionCurrency_Goal = "TransactionCurrency_Goal";
+			public const string user_goal = "user_goal";
+			public const string user_goal_goalowner = "user_goal_goalowner";
 		}
 
 		
@@ -380,6 +380,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -392,6 +399,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -986,6 +1000,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -998,6 +1019,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -1072,6 +1100,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -1085,6 +1120,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -1097,6 +1139,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1918,6 +1967,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_goal", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_goal");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_goal", null, value);
+				this.OnPropertyChanged("business_unit_goal");
+			}
 		}
 		
 		/// <summary>
@@ -2163,6 +2219,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_goal_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_goal_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_goal_createdby", null, value);
+				this.OnPropertyChanged("lk_goal_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -2197,6 +2260,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_goal_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_goal_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_goal_modifiedby", null, value);
+				this.OnPropertyChanged("lk_goal_modifiedby");
 			}
 		}
 		
@@ -2254,6 +2324,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_goal", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_goal");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_goal", null, value);
+				this.OnPropertyChanged("team_goal");
+			}
 		}
 		
 		/// <summary>
@@ -2302,6 +2379,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_goal", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_goal");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_goal", null, value);
+				this.OnPropertyChanged("user_goal");
 			}
 		}
 		
@@ -2369,12 +2453,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("amountdatatype")]
-		public virtual metric_goaltype? AmountDataTypeEnum
+		public virtual Metric_GoalType? AmountDataTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((metric_goaltype?)(EntityOptionSetEnum.GetEnum(this, "amountdatatype")));
+				return ((Metric_GoalType?)(EntityOptionSetEnum.GetEnum(this, "amountdatatype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2384,12 +2468,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("fiscalperiod")]
-		public virtual goal_fiscalperiod? FiscalPeriodEnum
+		public virtual Goal_FiscalPeriod? FiscalPeriodEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((goal_fiscalperiod?)(EntityOptionSetEnum.GetEnum(this, "fiscalperiod")));
+				return ((Goal_FiscalPeriod?)(EntityOptionSetEnum.GetEnum(this, "fiscalperiod")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2399,12 +2483,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("fiscalyear")]
-		public virtual goal_fiscalyear? FiscalYearEnum
+		public virtual Goal_FiscalYear? FiscalYearEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((goal_fiscalyear?)(EntityOptionSetEnum.GetEnum(this, "fiscalyear")));
+				return ((Goal_FiscalYear?)(EntityOptionSetEnum.GetEnum(this, "fiscalyear")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2414,12 +2498,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual goal_statuscode? StatusCodeEnum
+		public virtual Goal_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((goal_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((Goal_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

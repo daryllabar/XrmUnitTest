@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("contracttemplate")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ContractTemplate : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -48,11 +48,11 @@ namespace DLaB.Xrm.Entities
 			public const string SolutionId = "solutionid";
 			public const string UseDiscountAsPercentage = "usediscountaspercentage";
 			public const string VersionNumber = "versionnumber";
-			public const string lk_contracttemplate_createdonbehalfby = "createdonbehalfby";
-			public const string lk_contracttemplate_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_contracttemplatebase_createdby = "createdby";
-			public const string lk_contracttemplatebase_modifiedby = "modifiedby";
-			public const string organization_contract_templates = "organizationid";
+			public const string lk_contracttemplate_createdonbehalfby = "lk_contracttemplate_createdonbehalfby";
+			public const string lk_contracttemplate_modifiedonbehalfby = "lk_contracttemplate_modifiedonbehalfby";
+			public const string lk_contracttemplatebase_createdby = "lk_contracttemplatebase_createdby";
+			public const string lk_contracttemplatebase_modifiedby = "lk_contracttemplatebase_modifiedby";
+			public const string organization_contract_templates = "organization_contract_templates";
 		}
 
 		
@@ -251,6 +251,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -263,6 +270,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -410,6 +424,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -422,6 +443,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -711,6 +739,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_contracttemplatebase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_contracttemplatebase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_contracttemplatebase_createdby", null, value);
+				this.OnPropertyChanged("lk_contracttemplatebase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -724,6 +759,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_contracttemplatebase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_contracttemplatebase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_contracttemplatebase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_contracttemplatebase_modifiedby");
 			}
 		}
 		
@@ -784,12 +826,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("allotmenttypecode")]
-		public virtual contracttemplate_allotmenttypecode? AllotmentTypeCodeEnum
+		public virtual ContractTemplate_AllotmentTypeCode? AllotmentTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((contracttemplate_allotmenttypecode?)(EntityOptionSetEnum.GetEnum(this, "allotmenttypecode")));
+				return ((ContractTemplate_AllotmentTypeCode?)(EntityOptionSetEnum.GetEnum(this, "allotmenttypecode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -799,12 +841,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("billingfrequencycode")]
-		public virtual contracttemplate_billingfrequencycode? BillingFrequencyCodeEnum
+		public virtual ContractTemplate_BillingFrequencyCode? BillingFrequencyCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((contracttemplate_billingfrequencycode?)(EntityOptionSetEnum.GetEnum(this, "billingfrequencycode")));
+				return ((ContractTemplate_BillingFrequencyCode?)(EntityOptionSetEnum.GetEnum(this, "billingfrequencycode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -814,22 +856,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("contractservicelevelcode")]
-		public virtual contracttemplate_contractservicelevelcode? ContractServiceLevelCodeEnum
+		public virtual ContractTemplate_ContractServiceLevelCode? ContractServiceLevelCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((contracttemplate_contractservicelevelcode?)(EntityOptionSetEnum.GetEnum(this, "contractservicelevelcode")));
+				return ((ContractTemplate_ContractServiceLevelCode?)(EntityOptionSetEnum.GetEnum(this, "contractservicelevelcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

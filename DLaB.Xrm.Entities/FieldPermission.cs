@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("fieldpermission")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class FieldPermission : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -36,7 +36,7 @@ namespace DLaB.Xrm.Entities
 			public const string OverwriteTime = "overwritetime";
 			public const string SolutionId = "solutionid";
 			public const string VersionNumber = "versionnumber";
-			public const string lk_fieldpermission_fieldsecurityprofileid = "fieldsecurityprofileid";
+			public const string lk_fieldpermission_fieldsecurityprofileid = "lk_fieldpermission_fieldsecurityprofileid";
 		}
 
 		
@@ -413,12 +413,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cancreate")]
-		public virtual field_security_permission_type? CanCreateEnum
+		public virtual Field_Security_Permission_Type? CanCreateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((field_security_permission_type?)(EntityOptionSetEnum.GetEnum(this, "cancreate")));
+				return ((Field_Security_Permission_Type?)(EntityOptionSetEnum.GetEnum(this, "cancreate")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -428,12 +428,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("canread")]
-		public virtual field_security_permission_type? CanReadEnum
+		public virtual Field_Security_Permission_Type? CanReadEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((field_security_permission_type?)(EntityOptionSetEnum.GetEnum(this, "canread")));
+				return ((Field_Security_Permission_Type?)(EntityOptionSetEnum.GetEnum(this, "canread")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -443,12 +443,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("canupdate")]
-		public virtual field_security_permission_type? CanUpdateEnum
+		public virtual Field_Security_Permission_Type? CanUpdateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((field_security_permission_type?)(EntityOptionSetEnum.GetEnum(this, "canupdate")));
+				return ((Field_Security_Permission_Type?)(EntityOptionSetEnum.GetEnum(this, "canupdate")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -458,12 +458,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 	}

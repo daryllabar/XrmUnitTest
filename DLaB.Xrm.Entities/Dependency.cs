@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("dependency")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class Dependency : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -320,32 +320,32 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dependencytype")]
-		public virtual dependencytype? DependencyTypeEnum
+		public virtual DependencyType? DependencyTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((dependencytype?)(EntityOptionSetEnum.GetEnum(this, "dependencytype")));
+				return ((DependencyType?)(EntityOptionSetEnum.GetEnum(this, "dependencytype")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dependentcomponenttype")]
-		public virtual componenttype? DependentComponentTypeEnum
+		public virtual ComponentType? DependentComponentTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componenttype?)(EntityOptionSetEnum.GetEnum(this, "dependentcomponenttype")));
+				return ((ComponentType?)(EntityOptionSetEnum.GetEnum(this, "dependentcomponenttype")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("requiredcomponenttype")]
-		public virtual componenttype? RequiredComponentTypeEnum
+		public virtual ComponentType? RequiredComponentTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componenttype?)(EntityOptionSetEnum.GetEnum(this, "requiredcomponenttype")));
+				return ((ComponentType?)(EntityOptionSetEnum.GetEnum(this, "requiredcomponenttype")));
 			}
 		}
 	}

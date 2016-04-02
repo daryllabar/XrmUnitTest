@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("duplicaterulecondition")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class DuplicateRuleCondition : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -38,11 +38,11 @@ namespace DLaB.Xrm.Entities
 			public const string OwningBusinessUnit = "owningbusinessunit";
 			public const string OwningUser = "owninguser";
 			public const string RegardingObjectId = "regardingobjectid";
-			public const string DuplicateRule_DuplicateRuleConditions = "regardingobjectid";
-			public const string lk_duplicaterulecondition_createdonbehalfby = "createdonbehalfby";
-			public const string lk_duplicaterulecondition_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_duplicateruleconditionbase_createdby = "createdby";
-			public const string lk_duplicateruleconditionbase_modifiedby = "modifiedby";
+			public const string DuplicateRule_DuplicateRuleConditions = "DuplicateRule_DuplicateRuleConditions";
+			public const string lk_duplicaterulecondition_createdonbehalfby = "lk_duplicaterulecondition_createdonbehalfby";
+			public const string lk_duplicaterulecondition_modifiedonbehalfby = "lk_duplicaterulecondition_modifiedonbehalfby";
+			public const string lk_duplicateruleconditionbase_createdby = "lk_duplicateruleconditionbase_createdby";
+			public const string lk_duplicateruleconditionbase_modifiedby = "lk_duplicateruleconditionbase_modifiedby";
 		}
 
 		
@@ -112,6 +112,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -124,6 +131,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -241,6 +255,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -253,6 +274,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -340,6 +368,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -352,6 +387,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -470,6 +512,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_duplicateruleconditionbase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_duplicateruleconditionbase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_duplicateruleconditionbase_createdby", null, value);
+				this.OnPropertyChanged("lk_duplicateruleconditionbase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -483,6 +532,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_duplicateruleconditionbase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_duplicateruleconditionbase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_duplicateruleconditionbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_duplicateruleconditionbase_modifiedby");
 			}
 		}
 		
@@ -529,12 +585,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("operatorcode")]
-		public virtual duplicaterulecondition_operatorcode? OperatorCodeEnum
+		public virtual DuplicateRuleCondition_OperatorCode? OperatorCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((duplicaterulecondition_operatorcode?)(EntityOptionSetEnum.GetEnum(this, "operatorcode")));
+				return ((DuplicateRuleCondition_OperatorCode?)(EntityOptionSetEnum.GetEnum(this, "operatorcode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("userentityinstancedata")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class UserEntityInstanceData : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -44,195 +44,195 @@ namespace DLaB.Xrm.Entities
 			public const string UserEntityInstanceDataId = "userentityinstancedataid";
 			public const string Id = "userentityinstancedataid";
 			public const string VersionNumber = "versionnumber";
-			public const string channelaccessprofile_UserEntityInstanceDatas = "objectid";
-			public const string ConvertRule_userentityinstancedatas = "objectid";
-			public const string entitlement_UserEntityInstanceDatas = "objectid";
-			public const string entitlementchannel_UserEntityInstanceDatas = "objectid";
-			public const string entitlementtemplate_UserEntityInstanceDatas = "objectid";
-			public const string externalparty_UserEntityInstanceDatas = "objectid";
-			public const string knowledgearticle_UserEntityInstanceDatas = "objectid";
-			public const string KnowledgeBaseRecord_UserEntityInstanceDatas = "objectid";
-			public const string mailbox_userentityinstancedatas = "objectid";
-			public const string msdyn_postalbum_UserEntityInstanceDatas = "objectid";
-			public const string msdyn_postconfig_UserEntityInstanceDatas = "objectid";
-			public const string msdyn_postruleconfig_UserEntityInstanceDatas = "objectid";
-			public const string msdyn_wallsavedquery_UserEntityInstanceDatas = "objectid";
-			public const string msdyn_wallsavedqueryusersettings_UserEntityInstanceDatas = "objectid";
-			public const string profilerule_UserEntityInstanceDatas = "objectid";
-			public const string routingrule_userentityinstancedatas = "objectid";
-			public const string routingruleitem_userentityinstancedatas = "objectid";
-			public const string slabase_userentityinstancedatas = "objectid";
-			public const string team_userentityinstancedata = "owningteam";
-			public const string theme_UserEntityInstanceDatas = "objectid";
-			public const string userentityinstancedata_account = "objectid";
-			public const string userentityinstancedata_activitymimeattachment = "objectid";
-			public const string userentityinstancedata_activityparty = "objectid";
-			public const string userentityinstancedata_annotation = "objectid";
-			public const string userentityinstancedata_appointment = "objectid";
-			public const string userentityinstancedata_asyncoperation = "objectid";
-			public const string userentityinstancedata_attributemap = "objectid";
-			public const string userentityinstancedata_audit = "objectid";
-			public const string userentityinstancedata_bulkdeletefailure = "objectid";
-			public const string userentityinstancedata_bulkdeleteoperation = "objectid";
-			public const string userentityinstancedata_bulkoperation = "objectid";
-			public const string userentityinstancedata_bulkoperationlog = "objectid";
-			public const string userentityinstancedata_businessunit = "owningbusinessunit";
-			public const string userentityinstancedata_businessunitnewsarticle = "objectid";
-			public const string userentityinstancedata_calendar = "objectid";
-			public const string userentityinstancedata_campaign = "objectid";
-			public const string userentityinstancedata_campaignactivity = "objectid";
-			public const string userentityinstancedata_campaignactivityitem = "objectid";
-			public const string userentityinstancedata_campaignitem = "objectid";
-			public const string userentityinstancedata_campaignresponse = "objectid";
-			public const string userentityinstancedata_columnmapping = "objectid";
-			public const string userentityinstancedata_competitor = "objectid";
-			public const string userentityinstancedata_competitorproduct = "objectid";
-			public const string userentityinstancedata_competitorsalesliterature = "objectid";
-			public const string userentityinstancedata_connection = "objectid";
-			public const string userentityinstancedata_connectionrole = "objectid";
-			public const string userentityinstancedata_connectionroleassociation = "objectid";
-			public const string userentityinstancedata_connectionroleobjecttypecode = "objectid";
-			public const string userentityinstancedata_constraintbasedgroup = "objectid";
-			public const string userentityinstancedata_contact = "objectid";
-			public const string userentityinstancedata_contract = "objectid";
-			public const string userentityinstancedata_contractdetail = "objectid";
-			public const string userentityinstancedata_contracttemplate = "objectid";
-			public const string userentityinstancedata_customeraddress = "objectid";
-			public const string userentityinstancedata_customeropportunityrole = "objectid";
-			public const string userentityinstancedata_customerrelationship = "objectid";
-			public const string userentityinstancedata_dependency = "objectid";
-			public const string userentityinstancedata_discount = "objectid";
-			public const string userentityinstancedata_discounttype = "objectid";
-			public const string userentityinstancedata_displaystring = "objectid";
-			public const string userentityinstancedata_duplicaterecord = "objectid";
-			public const string userentityinstancedata_duplicaterule = "objectid";
-			public const string userentityinstancedata_duplicaterulecondition = "objectid";
-			public const string userentityinstancedata_email = "objectid";
-			public const string userentityinstancedata_entitymap = "objectid";
-			public const string userentityinstancedata_equipment = "objectid";
-			public const string userentityinstancedata_fax = "objectid";
-			public const string userentityinstancedata_fieldpermission = "objectid";
-			public const string userentityinstancedata_fieldsecurityprofile = "objectid";
-			public const string userentityinstancedata_goal = "objectid";
-			public const string userentityinstancedata_goalrollupquery = "objectid";
-			public const string userentityinstancedata_import = "objectid";
-			public const string userentityinstancedata_importentitymapping = "objectid";
-			public const string userentityinstancedata_importfile = "objectid";
-			public const string userentityinstancedata_importjob = "objectid";
-			public const string userentityinstancedata_importlog = "objectid";
-			public const string userentityinstancedata_importmap = "objectid";
-			public const string userentityinstancedata_incident = "objectid";
-			public const string userentityinstancedata_incidentresolution = "objectid";
-			public const string userentityinstancedata_invaliddependency = "objectid";
-			public const string userentityinstancedata_invoice = "objectid";
-			public const string userentityinstancedata_invoicedetail = "objectid";
-			public const string userentityinstancedata_isvconfig = "objectid";
-			public const string userentityinstancedata_kbarticle = "objectid";
-			public const string userentityinstancedata_kbarticlecomment = "objectid";
-			public const string userentityinstancedata_kbarticletemplate = "objectid";
-			public const string userentityinstancedata_lead = "objectid";
-			public const string userentityinstancedata_leadaddress = "objectid";
-			public const string userentityinstancedata_leadproduct = "objectid";
-			public const string userentityinstancedata_letter = "objectid";
-			public const string userentityinstancedata_license = "objectid";
-			public const string userentityinstancedata_list = "objectid";
-			public const string userentityinstancedata_listmember = "objectid";
-			public const string userentityinstancedata_lookupmapping = "objectid";
-			public const string userentityinstancedata_mailmergetemplate = "objectid";
-			public const string userentityinstancedata_metric = "objectid";
-			public const string userentityinstancedata_opportunity = "objectid";
-			public const string userentityinstancedata_opportunityclose = "objectid";
-			public const string userentityinstancedata_opportunityproduct = "objectid";
-			public const string userentityinstancedata_orderclose = "objectid";
-			public const string userentityinstancedata_organization = "objectid";
-			public const string userentityinstancedata_ownermapping = "objectid";
-			public const string userentityinstancedata_owning_user = "owninguser";
-			public const string userentityinstancedata_phonecall = "objectid";
-			public const string userentityinstancedata_picklistmapping = "objectid";
-			public const string userentityinstancedata_pluginassembly = "objectid";
-			public const string userentityinstancedata_plugintype = "objectid";
-			public const string userentityinstancedata_plugintypestatistic = "objectid";
-			public const string userentityinstancedata_pricelevel = "objectid";
-			public const string userentityinstancedata_principalentitymap = "objectid";
-			public const string userentityinstancedata_principalobjectattributeaccess = "objectid";
-			public const string userentityinstancedata_privilege = "objectid";
-			public const string userentityinstancedata_processsession = "objectid";
-			public const string userentityinstancedata_product = "objectid";
-			public const string userentityinstancedata_productassociation = "objectid";
-			public const string userentityinstancedata_productpricelevel = "objectid";
-			public const string userentityinstancedata_productsalesliterature = "objectid";
-			public const string userentityinstancedata_publisher = "objectid";
-			public const string userentityinstancedata_publisheraddress = "objectid";
-			public const string userentityinstancedata_queue = "objectid";
-			public const string userentityinstancedata_queueitem = "objectid";
-			public const string userentityinstancedata_quote = "objectid";
-			public const string userentityinstancedata_quoteclose = "objectid";
-			public const string userentityinstancedata_quotedetail = "objectid";
-			public const string userentityinstancedata_recurringappointmentmaster = "objectid";
-			public const string userentityinstancedata_relationshiprole = "objectid";
-			public const string userentityinstancedata_relationshiprolemap = "objectid";
-			public const string userentityinstancedata_report = "objectid";
-			public const string userentityinstancedata_reportcategory = "objectid";
-			public const string userentityinstancedata_reportentity = "objectid";
-			public const string userentityinstancedata_reportlink = "objectid";
-			public const string userentityinstancedata_reportvisibility = "objectid";
-			public const string userentityinstancedata_resource = "objectid";
-			public const string userentityinstancedata_resourcegroup = "objectid";
-			public const string userentityinstancedata_resourcespec = "objectid";
-			public const string userentityinstancedata_ribboncustomization = "objectid";
-			public const string userentityinstancedata_role = "objectid";
-			public const string userentityinstancedata_rollupfield = "objectid";
-			public const string userentityinstancedata_salesliterature = "objectid";
-			public const string userentityinstancedata_salesliteratureitem = "objectid";
-			public const string userentityinstancedata_salesorder = "objectid";
-			public const string userentityinstancedata_salesorderdetail = "objectid";
-			public const string userentityinstancedata_savedquery = "objectid";
-			public const string userentityinstancedata_savedqueryvisualization = "objectid";
-			public const string userentityinstancedata_sdkmessage = "objectid";
-			public const string userentityinstancedata_sdkmessagefilter = "objectid";
-			public const string userentityinstancedata_sdkmessagepair = "objectid";
-			public const string userentityinstancedata_sdkmessageprocessingstep = "objectid";
-			public const string userentityinstancedata_sdkmessageprocessingstepimage = "objectid";
-			public const string userentityinstancedata_sdkmessageprocessingstepsecureconfig = "objectid";
-			public const string userentityinstancedata_sdkmessagerequest = "objectid";
-			public const string userentityinstancedata_sdkmessagerequestfield = "objectid";
-			public const string userentityinstancedata_sdkmessageresponse = "objectid";
-			public const string userentityinstancedata_sdkmessageresponsefield = "objectid";
-			public const string userentityinstancedata_service = "objectid";
-			public const string userentityinstancedata_serviceappointment = "objectid";
-			public const string userentityinstancedata_serviceendpoint = "objectid";
-			public const string userentityinstancedata_sharepointdocumentlocation = "objectid";
-			public const string userentityinstancedata_sharepointsite = "objectid";
-			public const string userentityinstancedata_site = "objectid";
-			public const string userentityinstancedata_sitemap = "objectid";
-			public const string userentityinstancedata_socialactivity = "objectid";
-			public const string userentityinstancedata_solution = "objectid";
-			public const string userentityinstancedata_solutioncomponent = "objectid";
-			public const string userentityinstancedata_subject = "objectid";
-			public const string userentityinstancedata_subscriptionmanuallytrackedobject = "objectid";
-			public const string userentityinstancedata_systemuser = "objectid";
-			public const string userentityinstancedata_task = "objectid";
-			public const string userentityinstancedata_team = "objectid";
-			public const string userentityinstancedata_teammembership = "objectid";
-			public const string userentityinstancedata_template = "objectid";
-			public const string userentityinstancedata_territory = "objectid";
-			public const string userentityinstancedata_timezonedefinition = "objectid";
-			public const string userentityinstancedata_timezonelocalizedname = "objectid";
-			public const string userentityinstancedata_timezonerule = "objectid";
-			public const string userentityinstancedata_transactioncurrency = "objectid";
-			public const string userentityinstancedata_transformationmapping = "objectid";
-			public const string userentityinstancedata_transformationparametermapping = "objectid";
-			public const string userentityinstancedata_uom = "objectid";
-			public const string userentityinstancedata_uomschedule = "objectid";
-			public const string userentityinstancedata_userentityuisettings = "objectid";
-			public const string userentityinstancedata_userform = "objectid";
-			public const string userentityinstancedata_userquery = "objectid";
-			public const string userentityinstancedata_userqueryvisualization = "objectid";
-			public const string userentityinstancedata_webresource = "objectid";
-			public const string userentityinstancedata_workflow = "objectid";
-			public const string userentityinstancedata_workflowdependency = "objectid";
-			public const string userentityinstancedata_workflowlog = "objectid";
-			public const string usermapping_UserEntityInstanceDatas = "objectid";
+			public const string channelaccessprofile_UserEntityInstanceDatas = "channelaccessprofile_UserEntityInstanceDatas";
+			public const string ConvertRule_userentityinstancedatas = "ConvertRule_userentityinstancedatas";
+			public const string entitlement_UserEntityInstanceDatas = "entitlement_UserEntityInstanceDatas";
+			public const string entitlementchannel_UserEntityInstanceDatas = "entitlementchannel_UserEntityInstanceDatas";
+			public const string entitlementtemplate_UserEntityInstanceDatas = "entitlementtemplate_UserEntityInstanceDatas";
+			public const string externalparty_UserEntityInstanceDatas = "externalparty_UserEntityInstanceDatas";
+			public const string knowledgearticle_UserEntityInstanceDatas = "knowledgearticle_UserEntityInstanceDatas";
+			public const string KnowledgeBaseRecord_UserEntityInstanceDatas = "KnowledgeBaseRecord_UserEntityInstanceDatas";
+			public const string mailbox_userentityinstancedatas = "mailbox_userentityinstancedatas";
+			public const string msdyn_postalbum_UserEntityInstanceDatas = "msdyn_postalbum_UserEntityInstanceDatas";
+			public const string msdyn_postconfig_UserEntityInstanceDatas = "msdyn_postconfig_UserEntityInstanceDatas";
+			public const string msdyn_postruleconfig_UserEntityInstanceDatas = "msdyn_postruleconfig_UserEntityInstanceDatas";
+			public const string msdyn_wallsavedquery_UserEntityInstanceDatas = "msdyn_wallsavedquery_UserEntityInstanceDatas";
+			public const string msdyn_wallsavedqueryusersettings_UserEntityInstanceDatas = "msdyn_wallsavedqueryusersettings_UserEntityInstanceDatas";
+			public const string profilerule_UserEntityInstanceDatas = "profilerule_UserEntityInstanceDatas";
+			public const string routingrule_userentityinstancedatas = "routingrule_userentityinstancedatas";
+			public const string routingruleitem_userentityinstancedatas = "routingruleitem_userentityinstancedatas";
+			public const string slabase_userentityinstancedatas = "slabase_userentityinstancedatas";
+			public const string team_userentityinstancedata = "team_userentityinstancedata";
+			public const string theme_UserEntityInstanceDatas = "theme_UserEntityInstanceDatas";
+			public const string userentityinstancedata_account = "userentityinstancedata_account";
+			public const string userentityinstancedata_activitymimeattachment = "userentityinstancedata_activitymimeattachment";
+			public const string userentityinstancedata_activityparty = "userentityinstancedata_activityparty";
+			public const string userentityinstancedata_annotation = "userentityinstancedata_annotation";
+			public const string userentityinstancedata_appointment = "userentityinstancedata_appointment";
+			public const string userentityinstancedata_asyncoperation = "userentityinstancedata_asyncoperation";
+			public const string userentityinstancedata_attributemap = "userentityinstancedata_attributemap";
+			public const string userentityinstancedata_audit = "userentityinstancedata_audit";
+			public const string userentityinstancedata_bulkdeletefailure = "userentityinstancedata_bulkdeletefailure";
+			public const string userentityinstancedata_bulkdeleteoperation = "userentityinstancedata_bulkdeleteoperation";
+			public const string userentityinstancedata_bulkoperation = "userentityinstancedata_bulkoperation";
+			public const string userentityinstancedata_bulkoperationlog = "userentityinstancedata_bulkoperationlog";
+			public const string userentityinstancedata_businessunit = "userentityinstancedata_businessunit";
+			public const string userentityinstancedata_businessunitnewsarticle = "userentityinstancedata_businessunitnewsarticle";
+			public const string userentityinstancedata_calendar = "userentityinstancedata_calendar";
+			public const string userentityinstancedata_campaign = "userentityinstancedata_campaign";
+			public const string userentityinstancedata_campaignactivity = "userentityinstancedata_campaignactivity";
+			public const string userentityinstancedata_campaignactivityitem = "userentityinstancedata_campaignactivityitem";
+			public const string userentityinstancedata_campaignitem = "userentityinstancedata_campaignitem";
+			public const string userentityinstancedata_campaignresponse = "userentityinstancedata_campaignresponse";
+			public const string userentityinstancedata_columnmapping = "userentityinstancedata_columnmapping";
+			public const string userentityinstancedata_competitor = "userentityinstancedata_competitor";
+			public const string userentityinstancedata_competitorproduct = "userentityinstancedata_competitorproduct";
+			public const string userentityinstancedata_competitorsalesliterature = "userentityinstancedata_competitorsalesliterature";
+			public const string userentityinstancedata_connection = "userentityinstancedata_connection";
+			public const string userentityinstancedata_connectionrole = "userentityinstancedata_connectionrole";
+			public const string userentityinstancedata_connectionroleassociation = "userentityinstancedata_connectionroleassociation";
+			public const string userentityinstancedata_connectionroleobjecttypecode = "userentityinstancedata_connectionroleobjecttypecode";
+			public const string userentityinstancedata_constraintbasedgroup = "userentityinstancedata_constraintbasedgroup";
+			public const string userentityinstancedata_contact = "userentityinstancedata_contact";
+			public const string userentityinstancedata_contract = "userentityinstancedata_contract";
+			public const string userentityinstancedata_contractdetail = "userentityinstancedata_contractdetail";
+			public const string userentityinstancedata_contracttemplate = "userentityinstancedata_contracttemplate";
+			public const string userentityinstancedata_customeraddress = "userentityinstancedata_customeraddress";
+			public const string userentityinstancedata_customeropportunityrole = "userentityinstancedata_customeropportunityrole";
+			public const string userentityinstancedata_customerrelationship = "userentityinstancedata_customerrelationship";
+			public const string userentityinstancedata_dependency = "userentityinstancedata_dependency";
+			public const string userentityinstancedata_discount = "userentityinstancedata_discount";
+			public const string userentityinstancedata_discounttype = "userentityinstancedata_discounttype";
+			public const string userentityinstancedata_displaystring = "userentityinstancedata_displaystring";
+			public const string userentityinstancedata_duplicaterecord = "userentityinstancedata_duplicaterecord";
+			public const string userentityinstancedata_duplicaterule = "userentityinstancedata_duplicaterule";
+			public const string userentityinstancedata_duplicaterulecondition = "userentityinstancedata_duplicaterulecondition";
+			public const string userentityinstancedata_email = "userentityinstancedata_email";
+			public const string userentityinstancedata_entitymap = "userentityinstancedata_entitymap";
+			public const string userentityinstancedata_equipment = "userentityinstancedata_equipment";
+			public const string userentityinstancedata_fax = "userentityinstancedata_fax";
+			public const string userentityinstancedata_fieldpermission = "userentityinstancedata_fieldpermission";
+			public const string userentityinstancedata_fieldsecurityprofile = "userentityinstancedata_fieldsecurityprofile";
+			public const string userentityinstancedata_goal = "userentityinstancedata_goal";
+			public const string userentityinstancedata_goalrollupquery = "userentityinstancedata_goalrollupquery";
+			public const string userentityinstancedata_import = "userentityinstancedata_import";
+			public const string userentityinstancedata_importentitymapping = "userentityinstancedata_importentitymapping";
+			public const string userentityinstancedata_importfile = "userentityinstancedata_importfile";
+			public const string userentityinstancedata_importjob = "userentityinstancedata_importjob";
+			public const string userentityinstancedata_importlog = "userentityinstancedata_importlog";
+			public const string userentityinstancedata_importmap = "userentityinstancedata_importmap";
+			public const string userentityinstancedata_incident = "userentityinstancedata_incident";
+			public const string userentityinstancedata_incidentresolution = "userentityinstancedata_incidentresolution";
+			public const string userentityinstancedata_invaliddependency = "userentityinstancedata_invaliddependency";
+			public const string userentityinstancedata_invoice = "userentityinstancedata_invoice";
+			public const string userentityinstancedata_invoicedetail = "userentityinstancedata_invoicedetail";
+			public const string userentityinstancedata_isvconfig = "userentityinstancedata_isvconfig";
+			public const string userentityinstancedata_kbarticle = "userentityinstancedata_kbarticle";
+			public const string userentityinstancedata_kbarticlecomment = "userentityinstancedata_kbarticlecomment";
+			public const string userentityinstancedata_kbarticletemplate = "userentityinstancedata_kbarticletemplate";
+			public const string userentityinstancedata_lead = "userentityinstancedata_lead";
+			public const string userentityinstancedata_leadaddress = "userentityinstancedata_leadaddress";
+			public const string userentityinstancedata_leadproduct = "userentityinstancedata_leadproduct";
+			public const string userentityinstancedata_letter = "userentityinstancedata_letter";
+			public const string userentityinstancedata_license = "userentityinstancedata_license";
+			public const string userentityinstancedata_list = "userentityinstancedata_list";
+			public const string userentityinstancedata_listmember = "userentityinstancedata_listmember";
+			public const string userentityinstancedata_lookupmapping = "userentityinstancedata_lookupmapping";
+			public const string userentityinstancedata_mailmergetemplate = "userentityinstancedata_mailmergetemplate";
+			public const string userentityinstancedata_metric = "userentityinstancedata_metric";
+			public const string userentityinstancedata_opportunity = "userentityinstancedata_opportunity";
+			public const string userentityinstancedata_opportunityclose = "userentityinstancedata_opportunityclose";
+			public const string userentityinstancedata_opportunityproduct = "userentityinstancedata_opportunityproduct";
+			public const string userentityinstancedata_orderclose = "userentityinstancedata_orderclose";
+			public const string userentityinstancedata_organization = "userentityinstancedata_organization";
+			public const string userentityinstancedata_ownermapping = "userentityinstancedata_ownermapping";
+			public const string userentityinstancedata_owning_user = "userentityinstancedata_owning_user";
+			public const string userentityinstancedata_phonecall = "userentityinstancedata_phonecall";
+			public const string userentityinstancedata_picklistmapping = "userentityinstancedata_picklistmapping";
+			public const string userentityinstancedata_pluginassembly = "userentityinstancedata_pluginassembly";
+			public const string userentityinstancedata_plugintype = "userentityinstancedata_plugintype";
+			public const string userentityinstancedata_plugintypestatistic = "userentityinstancedata_plugintypestatistic";
+			public const string userentityinstancedata_pricelevel = "userentityinstancedata_pricelevel";
+			public const string userentityinstancedata_principalentitymap = "userentityinstancedata_principalentitymap";
+			public const string userentityinstancedata_principalobjectattributeaccess = "userentityinstancedata_principalobjectattributeaccess";
+			public const string userentityinstancedata_privilege = "userentityinstancedata_privilege";
+			public const string userentityinstancedata_processsession = "userentityinstancedata_processsession";
+			public const string userentityinstancedata_product = "userentityinstancedata_product";
+			public const string userentityinstancedata_productassociation = "userentityinstancedata_productassociation";
+			public const string userentityinstancedata_productpricelevel = "userentityinstancedata_productpricelevel";
+			public const string userentityinstancedata_productsalesliterature = "userentityinstancedata_productsalesliterature";
+			public const string userentityinstancedata_publisher = "userentityinstancedata_publisher";
+			public const string userentityinstancedata_publisheraddress = "userentityinstancedata_publisheraddress";
+			public const string userentityinstancedata_queue = "userentityinstancedata_queue";
+			public const string userentityinstancedata_queueitem = "userentityinstancedata_queueitem";
+			public const string userentityinstancedata_quote = "userentityinstancedata_quote";
+			public const string userentityinstancedata_quoteclose = "userentityinstancedata_quoteclose";
+			public const string userentityinstancedata_quotedetail = "userentityinstancedata_quotedetail";
+			public const string userentityinstancedata_recurringappointmentmaster = "userentityinstancedata_recurringappointmentmaster";
+			public const string userentityinstancedata_relationshiprole = "userentityinstancedata_relationshiprole";
+			public const string userentityinstancedata_relationshiprolemap = "userentityinstancedata_relationshiprolemap";
+			public const string userentityinstancedata_report = "userentityinstancedata_report";
+			public const string userentityinstancedata_reportcategory = "userentityinstancedata_reportcategory";
+			public const string userentityinstancedata_reportentity = "userentityinstancedata_reportentity";
+			public const string userentityinstancedata_reportlink = "userentityinstancedata_reportlink";
+			public const string userentityinstancedata_reportvisibility = "userentityinstancedata_reportvisibility";
+			public const string userentityinstancedata_resource = "userentityinstancedata_resource";
+			public const string userentityinstancedata_resourcegroup = "userentityinstancedata_resourcegroup";
+			public const string userentityinstancedata_resourcespec = "userentityinstancedata_resourcespec";
+			public const string userentityinstancedata_ribboncustomization = "userentityinstancedata_ribboncustomization";
+			public const string userentityinstancedata_role = "userentityinstancedata_role";
+			public const string userentityinstancedata_rollupfield = "userentityinstancedata_rollupfield";
+			public const string userentityinstancedata_salesliterature = "userentityinstancedata_salesliterature";
+			public const string userentityinstancedata_salesliteratureitem = "userentityinstancedata_salesliteratureitem";
+			public const string userentityinstancedata_salesorder = "userentityinstancedata_salesorder";
+			public const string userentityinstancedata_salesorderdetail = "userentityinstancedata_salesorderdetail";
+			public const string userentityinstancedata_savedquery = "userentityinstancedata_savedquery";
+			public const string userentityinstancedata_savedqueryvisualization = "userentityinstancedata_savedqueryvisualization";
+			public const string userentityinstancedata_sdkmessage = "userentityinstancedata_sdkmessage";
+			public const string userentityinstancedata_sdkmessagefilter = "userentityinstancedata_sdkmessagefilter";
+			public const string userentityinstancedata_sdkmessagepair = "userentityinstancedata_sdkmessagepair";
+			public const string userentityinstancedata_sdkmessageprocessingstep = "userentityinstancedata_sdkmessageprocessingstep";
+			public const string userentityinstancedata_sdkmessageprocessingstepimage = "userentityinstancedata_sdkmessageprocessingstepimage";
+			public const string userentityinstancedata_sdkmessageprocessingstepsecureconfig = "userentityinstancedata_sdkmessageprocessingstepsecureconfig";
+			public const string userentityinstancedata_sdkmessagerequest = "userentityinstancedata_sdkmessagerequest";
+			public const string userentityinstancedata_sdkmessagerequestfield = "userentityinstancedata_sdkmessagerequestfield";
+			public const string userentityinstancedata_sdkmessageresponse = "userentityinstancedata_sdkmessageresponse";
+			public const string userentityinstancedata_sdkmessageresponsefield = "userentityinstancedata_sdkmessageresponsefield";
+			public const string userentityinstancedata_service = "userentityinstancedata_service";
+			public const string userentityinstancedata_serviceappointment = "userentityinstancedata_serviceappointment";
+			public const string userentityinstancedata_serviceendpoint = "userentityinstancedata_serviceendpoint";
+			public const string userentityinstancedata_sharepointdocumentlocation = "userentityinstancedata_sharepointdocumentlocation";
+			public const string userentityinstancedata_sharepointsite = "userentityinstancedata_sharepointsite";
+			public const string userentityinstancedata_site = "userentityinstancedata_site";
+			public const string userentityinstancedata_sitemap = "userentityinstancedata_sitemap";
+			public const string userentityinstancedata_socialactivity = "userentityinstancedata_socialactivity";
+			public const string userentityinstancedata_solution = "userentityinstancedata_solution";
+			public const string userentityinstancedata_solutioncomponent = "userentityinstancedata_solutioncomponent";
+			public const string userentityinstancedata_subject = "userentityinstancedata_subject";
+			public const string userentityinstancedata_subscriptionmanuallytrackedobject = "userentityinstancedata_subscriptionmanuallytrackedobject";
+			public const string userentityinstancedata_systemuser = "userentityinstancedata_systemuser";
+			public const string userentityinstancedata_task = "userentityinstancedata_task";
+			public const string userentityinstancedata_team = "userentityinstancedata_team";
+			public const string userentityinstancedata_teammembership = "userentityinstancedata_teammembership";
+			public const string userentityinstancedata_template = "userentityinstancedata_template";
+			public const string userentityinstancedata_territory = "userentityinstancedata_territory";
+			public const string userentityinstancedata_timezonedefinition = "userentityinstancedata_timezonedefinition";
+			public const string userentityinstancedata_timezonelocalizedname = "userentityinstancedata_timezonelocalizedname";
+			public const string userentityinstancedata_timezonerule = "userentityinstancedata_timezonerule";
+			public const string userentityinstancedata_transactioncurrency = "userentityinstancedata_transactioncurrency";
+			public const string userentityinstancedata_transformationmapping = "userentityinstancedata_transformationmapping";
+			public const string userentityinstancedata_transformationparametermapping = "userentityinstancedata_transformationparametermapping";
+			public const string userentityinstancedata_uom = "userentityinstancedata_uom";
+			public const string userentityinstancedata_uomschedule = "userentityinstancedata_uomschedule";
+			public const string userentityinstancedata_userentityuisettings = "userentityinstancedata_userentityuisettings";
+			public const string userentityinstancedata_userform = "userentityinstancedata_userform";
+			public const string userentityinstancedata_userquery = "userentityinstancedata_userquery";
+			public const string userentityinstancedata_userqueryvisualization = "userentityinstancedata_userqueryvisualization";
+			public const string userentityinstancedata_webresource = "userentityinstancedata_webresource";
+			public const string userentityinstancedata_workflow = "userentityinstancedata_workflow";
+			public const string userentityinstancedata_workflowdependency = "userentityinstancedata_workflowdependency";
+			public const string userentityinstancedata_workflowlog = "userentityinstancedata_workflowlog";
+			public const string usermapping_UserEntityInstanceDatas = "usermapping_UserEntityInstanceDatas";
 		}
 
 		
@@ -462,6 +462,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -475,6 +482,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -487,6 +501,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1096,6 +1117,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_userentityinstancedata", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_userentityinstancedata");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_userentityinstancedata", null, value);
+				this.OnPropertyChanged("team_userentityinstancedata");
+			}
 		}
 		
 		/// <summary>
@@ -1382,6 +1410,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("userentityinstancedata_businessunit", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("userentityinstancedata_businessunit");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("userentityinstancedata_businessunit", null, value);
+				this.OnPropertyChanged("userentityinstancedata_businessunit");
 			}
 		}
 		
@@ -2845,6 +2880,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("userentityinstancedata_owning_user", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("userentityinstancedata_owning_user");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("userentityinstancedata_owning_user", null, value);
+				this.OnPropertyChanged("userentityinstancedata_owning_user");
 			}
 		}
 		

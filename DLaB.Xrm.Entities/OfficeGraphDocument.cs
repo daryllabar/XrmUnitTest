@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("officegraphdocument")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class OfficeGraphDocument : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -52,10 +52,10 @@ namespace DLaB.Xrm.Entities
 			public const string VersionNumber = "versionnumber";
 			public const string ViewCount = "viewcount";
 			public const string WebLocationUrl = "weblocationurl";
-			public const string lk_officegraphdocument_createdonbehalfby = "createdonbehalfby";
-			public const string lk_officegraphdocument_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string organization_officegraphdocument = "organizationid";
-			public const string TransactionCurrency_officegraphdocument = "transactioncurrencyid";
+			public const string lk_officegraphdocument_createdonbehalfby = "lk_officegraphdocument_createdonbehalfby";
+			public const string lk_officegraphdocument_modifiedonbehalfby = "lk_officegraphdocument_modifiedonbehalfby";
+			public const string organization_officegraphdocument = "organization_officegraphdocument";
+			public const string TransactionCurrency_officegraphdocument = "TransactionCurrency_officegraphdocument";
 		}
 
 		
@@ -117,6 +117,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<string>("createdby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
 			}
 		}
 		
@@ -261,6 +268,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<string>("modifiedby");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
 			}
 		}
 		

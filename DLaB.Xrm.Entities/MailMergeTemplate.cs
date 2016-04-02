@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum MailMergeTemplateState
 	{
 		
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("mailmergetemplate")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class MailMergeTemplate : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -72,12 +72,12 @@ namespace DLaB.Xrm.Entities
 			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string business_unit_mailmergetemplates = "owningbusinessunit";
-			public const string lk_mailmergetemplate_createdonbehalfby = "createdonbehalfby";
-			public const string lk_mailmergetemplate_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string lk_mailmergetemplatebase_createdby = "createdby";
-			public const string lk_mailmergetemplatebase_modifiedby = "modifiedby";
-			public const string TransactionCurrency_MailMergeTemplate = "transactioncurrencyid";
+			public const string business_unit_mailmergetemplates = "business_unit_mailmergetemplates";
+			public const string lk_mailmergetemplate_createdonbehalfby = "lk_mailmergetemplate_createdonbehalfby";
+			public const string lk_mailmergetemplate_modifiedonbehalfby = "lk_mailmergetemplate_modifiedonbehalfby";
+			public const string lk_mailmergetemplatebase_createdby = "lk_mailmergetemplatebase_createdby";
+			public const string lk_mailmergetemplatebase_modifiedby = "lk_mailmergetemplatebase_modifiedby";
+			public const string TransactionCurrency_MailMergeTemplate = "TransactionCurrency_MailMergeTemplate";
 		}
 
 		
@@ -160,6 +160,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -172,6 +179,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -501,6 +515,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -513,6 +534,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -600,6 +628,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -613,6 +648,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -625,6 +667,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -894,6 +943,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_mailmergetemplates", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_mailmergetemplates");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_mailmergetemplates", null, value);
+				this.OnPropertyChanged("business_unit_mailmergetemplates");
+			}
 		}
 		
 		/// <summary>
@@ -950,6 +1006,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_mailmergetemplatebase_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_mailmergetemplatebase_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_mailmergetemplatebase_createdby", null, value);
+				this.OnPropertyChanged("lk_mailmergetemplatebase_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -963,6 +1026,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_mailmergetemplatebase_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_mailmergetemplatebase_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_mailmergetemplatebase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_mailmergetemplatebase_modifiedby");
 			}
 		}
 		
@@ -1030,22 +1100,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
-		public virtual componentstate? ComponentStateEnum
+		public virtual ComponentState? ComponentStateEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((componentstate?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("documentformat")]
-		public virtual mailmergetemplate_documentformat? DocumentFormatEnum
+		public virtual MailMergeTemplate_DocumentFormat? DocumentFormatEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((mailmergetemplate_documentformat?)(EntityOptionSetEnum.GetEnum(this, "documentformat")));
+				return ((MailMergeTemplate_DocumentFormat?)(EntityOptionSetEnum.GetEnum(this, "documentformat")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1055,12 +1125,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("mailmergetype")]
-		public virtual mailmergetemplate_mailmergetype? MailMergeTypeEnum
+		public virtual MailMergeTemplate_MailMergeType? MailMergeTypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((mailmergetemplate_mailmergetype?)(EntityOptionSetEnum.GetEnum(this, "mailmergetype")));
+				return ((MailMergeTemplate_MailMergeType?)(EntityOptionSetEnum.GetEnum(this, "mailmergetype")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -1070,12 +1140,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual mailmergetemplate_statuscode? StatusCodeEnum
+		public virtual MailMergeTemplate_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((mailmergetemplate_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((MailMergeTemplate_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

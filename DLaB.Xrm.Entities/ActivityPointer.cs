@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public enum ActivityPointerState
 	{
 		
@@ -33,7 +33,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("activitypointer")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class ActivityPointer : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -88,33 +88,33 @@ namespace DLaB.Xrm.Entities
 			public const string TraversedPath = "traversedpath";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string Account_ActivityPointers = "regardingobjectid";
-			public const string activitypointer_sendermailboxid_mailbox = "sendermailboxid";
-			public const string BulkOperation_ActivityPointers = "regardingobjectid";
-			public const string business_unit_activitypointer = "owningbusinessunit";
-			public const string Campaign_ActivityPointers = "regardingobjectid";
-			public const string CampaignActivity_ActivityPointers = "regardingobjectid";
-			public const string Contact_ActivityPointers = "regardingobjectid";
-			public const string Contract_ActivityPointers = "regardingobjectid";
-			public const string entitlement_ActivityPointers = "regardingobjectid";
-			public const string entitlementtemplate_ActivityPointers = "regardingobjectid";
-			public const string Incident_ActivityPointers = "regardingobjectid";
-			public const string Invoice_ActivityPointers = "regardingobjectid";
-			public const string KnowledgeArticle_ActivityPointers = "regardingobjectid";
-			public const string KnowledgeBaseRecord_ActivityPointers = "regardingobjectid";
-			public const string Lead_ActivityPointers = "regardingobjectid";
-			public const string lk_activitypointer_createdby = "createdby";
-			public const string lk_activitypointer_createdonbehalfby = "createdonbehalfby";
-			public const string lk_activitypointer_modifiedby = "modifiedby";
-			public const string lk_activitypointer_modifiedonbehalfby = "modifiedonbehalfby";
-			public const string msdyn_postalbum_ActivityPointers = "regardingobjectid";
-			public const string Opportunity_ActivityPointers = "regardingobjectid";
-			public const string Quote_ActivityPointers = "regardingobjectid";
-			public const string SalesOrder_ActivityPointers = "regardingobjectid";
-			public const string service_activity_pointers = "serviceid";
-			public const string team_activity = "owningteam";
-			public const string TransactionCurrency_ActivityPointer = "transactioncurrencyid";
-			public const string user_activity = "owninguser";
+			public const string Account_ActivityPointers = "Account_ActivityPointers";
+			public const string activitypointer_sendermailboxid_mailbox = "activitypointer_sendermailboxid_mailbox";
+			public const string BulkOperation_ActivityPointers = "BulkOperation_ActivityPointers";
+			public const string business_unit_activitypointer = "business_unit_activitypointer";
+			public const string Campaign_ActivityPointers = "Campaign_ActivityPointers";
+			public const string CampaignActivity_ActivityPointers = "CampaignActivity_ActivityPointers";
+			public const string Contact_ActivityPointers = "Contact_ActivityPointers";
+			public const string Contract_ActivityPointers = "Contract_ActivityPointers";
+			public const string entitlement_ActivityPointers = "entitlement_ActivityPointers";
+			public const string entitlementtemplate_ActivityPointers = "entitlementtemplate_ActivityPointers";
+			public const string Incident_ActivityPointers = "Incident_ActivityPointers";
+			public const string Invoice_ActivityPointers = "Invoice_ActivityPointers";
+			public const string KnowledgeArticle_ActivityPointers = "KnowledgeArticle_ActivityPointers";
+			public const string KnowledgeBaseRecord_ActivityPointers = "KnowledgeBaseRecord_ActivityPointers";
+			public const string Lead_ActivityPointers = "Lead_ActivityPointers";
+			public const string lk_activitypointer_createdby = "lk_activitypointer_createdby";
+			public const string lk_activitypointer_createdonbehalfby = "lk_activitypointer_createdonbehalfby";
+			public const string lk_activitypointer_modifiedby = "lk_activitypointer_modifiedby";
+			public const string lk_activitypointer_modifiedonbehalfby = "lk_activitypointer_modifiedonbehalfby";
+			public const string msdyn_postalbum_ActivityPointers = "msdyn_postalbum_ActivityPointers";
+			public const string Opportunity_ActivityPointers = "Opportunity_ActivityPointers";
+			public const string Quote_ActivityPointers = "Quote_ActivityPointers";
+			public const string SalesOrder_ActivityPointers = "SalesOrder_ActivityPointers";
+			public const string service_activity_pointers = "service_activity_pointers";
+			public const string team_activity = "team_activity";
+			public const string TransactionCurrency_ActivityPointer = "TransactionCurrency_ActivityPointer";
+			public const string user_activity = "user_activity";
 		}
 
 		
@@ -342,6 +342,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -354,6 +361,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -560,6 +574,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -572,6 +593,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -626,6 +654,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -639,6 +674,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
 		}
 		
 		/// <summary>
@@ -651,6 +693,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -1662,6 +1711,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_activitypointer", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("business_unit_activitypointer");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_activitypointer", null, value);
+				this.OnPropertyChanged("business_unit_activitypointer");
+			}
 		}
 		
 		/// <summary>
@@ -1907,6 +1963,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_activitypointer_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_activitypointer_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_activitypointer_createdby", null, value);
+				this.OnPropertyChanged("lk_activitypointer_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -1941,6 +2004,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_activitypointer_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_activitypointer_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_activitypointer_modifiedby", null, value);
+				this.OnPropertyChanged("lk_activitypointer_modifiedby");
 			}
 		}
 		
@@ -2082,6 +2152,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_activity", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_activity");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_activity", null, value);
+				this.OnPropertyChanged("team_activity");
+			}
 		}
 		
 		/// <summary>
@@ -2116,6 +2193,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_activity", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_activity");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_activity", null, value);
+				this.OnPropertyChanged("user_activity");
 			}
 		}
 		
@@ -2162,12 +2246,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("community")]
-		public virtual socialprofile_community? CommunityEnum
+		public virtual SocialProfile_Community? CommunityEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((socialprofile_community?)(EntityOptionSetEnum.GetEnum(this, "community")));
+				return ((SocialProfile_Community?)(EntityOptionSetEnum.GetEnum(this, "community")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2177,12 +2261,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("deliveryprioritycode")]
-		public virtual activitypointer_deliveryprioritycode? DeliveryPriorityCodeEnum
+		public virtual activitypointer_DeliveryPriorityCode? DeliveryPriorityCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((activitypointer_deliveryprioritycode?)(EntityOptionSetEnum.GetEnum(this, "deliveryprioritycode")));
+				return ((activitypointer_DeliveryPriorityCode?)(EntityOptionSetEnum.GetEnum(this, "deliveryprioritycode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2192,22 +2276,22 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("instancetypecode")]
-		public virtual activitypointer_instancetypecode? InstanceTypeCodeEnum
+		public virtual ActivityPointer_InstanceTypeCode? InstanceTypeCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((activitypointer_instancetypecode?)(EntityOptionSetEnum.GetEnum(this, "instancetypecode")));
+				return ((ActivityPointer_InstanceTypeCode?)(EntityOptionSetEnum.GetEnum(this, "instancetypecode")));
 			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("prioritycode")]
-		public virtual activitypointer_prioritycode? PriorityCodeEnum
+		public virtual ActivityPointer_PriorityCode? PriorityCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((activitypointer_prioritycode?)(EntityOptionSetEnum.GetEnum(this, "prioritycode")));
+				return ((ActivityPointer_PriorityCode?)(EntityOptionSetEnum.GetEnum(this, "prioritycode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -2217,12 +2301,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual activitypointer_statuscode? StatusCodeEnum
+		public virtual ActivityPointer_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((activitypointer_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((ActivityPointer_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set

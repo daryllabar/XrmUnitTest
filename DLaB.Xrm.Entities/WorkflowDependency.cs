@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("workflowdependency")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "7.1.0001.3108")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
 	public partial class WorkflowDependency : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -44,12 +44,12 @@ namespace DLaB.Xrm.Entities
 			public const string WorkflowDependencyId = "workflowdependencyid";
 			public const string Id = "workflowdependencyid";
 			public const string WorkflowId = "workflowid";
-			public const string sdkmessageid_workflow_dependency = "sdkmessageid";
-			public const string workflow_dependencies = "workflowid";
-			public const string workflow_dependency_createdby = "createdby";
-			public const string workflow_dependency_createdonbehalfby = "createdonbehalfby";
-			public const string workflow_dependency_modifiedby = "modifiedby";
-			public const string workflow_dependency_modifiedonbehalfby = "modifiedonbehalfby";
+			public const string sdkmessageid_workflow_dependency = "sdkmessageid_workflow_dependency";
+			public const string workflow_dependencies = "workflow_dependencies";
+			public const string workflow_dependency_createdby = "workflow_dependency_createdby";
+			public const string workflow_dependency_createdonbehalfby = "workflow_dependency_createdonbehalfby";
+			public const string workflow_dependency_modifiedby = "workflow_dependency_modifiedby";
+			public const string workflow_dependency_modifiedonbehalfby = "workflow_dependency_modifiedonbehalfby";
 		}
 
 		
@@ -99,6 +99,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedBy");
+				this.SetAttributeValue("createdby", value);
+				this.OnPropertyChanged("CreatedBy");
+			}
 		}
 		
 		/// <summary>
@@ -111,6 +118,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CreatedOn");
+				this.SetAttributeValue("createdon", value);
+				this.OnPropertyChanged("CreatedOn");
 			}
 		}
 		
@@ -225,6 +239,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedBy");
+				this.SetAttributeValue("modifiedby", value);
+				this.OnPropertyChanged("ModifiedBy");
+			}
 		}
 		
 		/// <summary>
@@ -237,6 +258,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ModifiedOn");
+				this.SetAttributeValue("modifiedon", value);
+				this.OnPropertyChanged("ModifiedOn");
 			}
 		}
 		
@@ -284,6 +312,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("owningbusinessunit");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningBusinessUnit");
+				this.SetAttributeValue("owningbusinessunit", value);
+				this.OnPropertyChanged("OwningBusinessUnit");
+			}
 		}
 		
 		/// <summary>
@@ -296,6 +331,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("owninguser");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningUser");
+				this.SetAttributeValue("owninguser", value);
+				this.OnPropertyChanged("OwningUser");
 			}
 		}
 		
@@ -569,6 +611,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("workflow_dependency_createdby", null);
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("workflow_dependency_createdby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("workflow_dependency_createdby", null, value);
+				this.OnPropertyChanged("workflow_dependency_createdby");
+			}
 		}
 		
 		/// <summary>
@@ -603,6 +652,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("workflow_dependency_modifiedby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("workflow_dependency_modifiedby");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("workflow_dependency_modifiedby", null, value);
+				this.OnPropertyChanged("workflow_dependency_modifiedby");
 			}
 		}
 		
@@ -670,12 +726,12 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("type")]
-		public virtual workflowdependency_type? TypeEnum
+		public virtual WorkflowDependency_Type? TypeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((workflowdependency_type?)(EntityOptionSetEnum.GetEnum(this, "type")));
+				return ((WorkflowDependency_Type?)(EntityOptionSetEnum.GetEnum(this, "type")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
