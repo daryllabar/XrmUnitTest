@@ -403,22 +403,22 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void LocalCrmTests_FormattedValuePopulated()
         {
             var service = GetService();
-            var id = service.Create(new Lead {BudgetStatusEnum = budgetstatus.CanBuy});
+            var id = service.Create(new Lead {BudgetStatusEnum = BudgetStatus.CanBuy});
 
             // Retrieve
             var entity = service.GetEntity<Lead>(id);
-            Assert.AreEqual(budgetstatus.CanBuy.ToString(), entity.GetFormattedAttributeValueOrNull(Lead.Fields.BudgetStatus));
+            Assert.AreEqual(BudgetStatus.CanBuy.ToString(), entity.GetFormattedAttributeValueOrNull(Lead.Fields.BudgetStatus));
 
             // RetrieveMultiple
             entity = service.GetEntitiesById<Lead>(id).Single();
-            Assert.AreEqual(budgetstatus.CanBuy.ToString(), entity.GetFormattedAttributeValueOrNull(Lead.Fields.BudgetStatus));
+            Assert.AreEqual(BudgetStatus.CanBuy.ToString(), entity.GetFormattedAttributeValueOrNull(Lead.Fields.BudgetStatus));
         }
 
         [TestMethod]
         public void LocalCrmTests_AliasedFormattedValuePopulated()
         {
             var service = GetService();
-            var id = service.Create(new Lead {BudgetStatusEnum = budgetstatus.MayBuy});
+            var id = service.Create(new Lead {BudgetStatusEnum = BudgetStatus.MayBuy});
             service.Create(new Account {OriginatingLeadId = new EntityReference(Lead.EntityLogicalName, id)});
 
             var qe = QueryExpressionFactory.Create<Account>();
@@ -426,8 +426,8 @@ namespace DLaB.Xrm.LocalCrm.Tests
 
             // Retrieve
             var entity = service.GetFirst(qe);
-            Assert.AreEqual(budgetstatus.MayBuy.ToString(), entity.GetFormattedAttributeValueOrNull(Lead.Fields.BudgetStatus));
-            Assert.AreEqual(budgetstatus.MayBuy.ToString(), entity.GetFormattedAttributeValueOrNull(Lead.Fields.BudgetStatus));
+            Assert.AreEqual(BudgetStatus.MayBuy.ToString(), entity.GetFormattedAttributeValueOrNull(Lead.Fields.BudgetStatus));
+            Assert.AreEqual(BudgetStatus.MayBuy.ToString(), entity.GetFormattedAttributeValueOrNull(Lead.Fields.BudgetStatus));
         }
 
         [TestMethod]
@@ -435,13 +435,13 @@ namespace DLaB.Xrm.LocalCrm.Tests
         {
             var service = GetService();
 
-            var contact = new Contact {AccountRoleCodeEnum = contact_accountrolecode.DecisionMaker};
+            var contact = new Contact {AccountRoleCodeEnum = Contact_AccountRoleCode.DecisionMaker};
             contact.FormattedValues.Add(Contact.Fields.AccountRoleCode, "Verify Formatted Values Are Ignored");
             service.Create(contact);
 
             contact = service.GetFirstOrDefault<Contact>();
-            Assert.AreEqual(contact_accountrolecode.DecisionMaker, contact.AccountRoleCodeEnum);
-            Assert.AreEqual(contact_accountrolecode.DecisionMaker.ToString(), contact.FormattedValues[Contact.Fields.AccountRoleCode]);
+            Assert.AreEqual(Contact_AccountRoleCode.DecisionMaker, contact.AccountRoleCodeEnum);
+            Assert.AreEqual(Contact_AccountRoleCode.DecisionMaker.ToString(), contact.FormattedValues[Contact.Fields.AccountRoleCode]);
         }
 
         [TestMethod]
