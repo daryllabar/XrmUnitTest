@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using DLaB.Xrm;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.LocalCrm;
@@ -8,6 +9,8 @@ using Example.MsTestBase;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using Example.MsTestBase.Builders;
+using FakeXrmEasy;
+using Microsoft.Xrm.Sdk.Messages;
 
 namespace Example.MsTest
 {
@@ -16,6 +19,85 @@ namespace Example.MsTest
     {
 
         #region MakeNameMatchCase
+
+        /// <summary>
+        /// Example test for running a unit test only in memory
+        /// </summary>
+        [TestMethod]
+        public void MakeNameMatchCase_NameIsMcdonald_Should_UpdateToMcDonald_MsFakes()
+        {
+            //
+            // Arrange
+            //
+            Entity updatedEntity = null;
+            IOrganizationService service = new Microsoft.Xrm.Sdk.Fakes.StubIOrganizationService()
+            {
+                ExecuteOrganizationRequest = request =>
+                {
+                    if (request is RetrieveMultipleRequest)
+                    {
+                        var response = new RetrieveMultipleResponse
+                        {
+                            Results =
+                            {
+                                ["EntityCollection"] = new EntityCollection()
+                            }
+                        };
+
+                        response.EntityCollection.Entities.Add(
+                            new Contact
+                            {
+                                Id = Guid.NewGuid(),
+                                LastName = "Mcdonald"
+                            });
+                        return response;
+                    }
+
+                    var updateRequest = request as UpdateRequest;
+                    if (updateRequest != null)
+                    {
+                        updatedEntity = updateRequest.Target;
+                        return new UpdateResponse();
+                    }
+
+                    throw new NotImplementedException("Unrecognized Request");
+                },
+            };
+
+            // 
+            // Act
+            // 
+            MakeNameMatchCase(service, "McDonald");
+
+            //
+            // Assert
+            // 
+            Assert.IsNotNull(updatedEntity);
+            Assert.AreEqual("McDonald", updatedEntity.ToEntity<Contact>().LastName);
+        }
+
+        /// <summary>
+        /// Example test for running a unit test only in memory
+        /// </summary>
+        [TestMethod]
+        public void MakeNameMatchCase_NameIsMcdonald_Should_UpdateToMcDonald_Fake()
+        {
+            //
+            // Arrange
+            //
+            var service = new XrmFakedContext { ProxyTypesAssembly = Assembly.GetAssembly(typeof(CrmContext)) }.GetFakedOrganizationService();
+            var id = service.Create(new Contact { LastName = "Mcdonald" });
+
+            // 
+            // Act
+            // 
+            MakeNameMatchCase(service, "McDonald");
+
+            //
+            // Assert
+            // 
+            Assert.AreEqual("McDonald", service.GetEntity<Contact>(id).LastName);
+        }
 
         /// <summary>
         /// Example test for running a unit test only in memory
@@ -93,7 +175,6 @@ namespace Example.MsTest
             private struct Ids 
             {
                 public static readonly Id<Account> Account = new Id<Account>("64387F79-5B4A-42F0-BA41-E348A1183379");
-
             }
 
             /// <summary>
@@ -116,6 +197,14 @@ namespace Example.MsTest
             /// <param name="service">The service.</param>
             protected override void Test(IOrganizationService service)
             {
+                var myEntity = new Entity();
+                service = new OrganizationServiceBuilder(service).WithFakeRetrieveMultiple(
+                    (s, q) =>
+                    {
+                        var col = new EntityCollection();
+                        col.Entities.Add(myEntity);
+                        return col;
+                    }).Build();
                 using (var context = new CrmContext(service))
                 {
                     var account = context.AccountSet.FirstOrDefault(c => c.Name == Ids.Account.Entity.Name);
