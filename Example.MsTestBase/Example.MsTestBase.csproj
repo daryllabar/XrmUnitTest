@@ -341,8 +341,8 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="UnitTestSettings.User.config" />
     <None Include="UnitTestSettings.config" />
+    <None Include="UnitTestSettings.User.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.TeamFoundationServer.ExtendedClient.14.89.0\build\Microsoft.TeamFoundationServer.ExtendedClient.targets" Condition="Exists('..\packages\Microsoft.TeamFoundationServer.ExtendedClient.14.89.0\build\Microsoft.TeamFoundationServer.ExtendedClient.targets')" />
