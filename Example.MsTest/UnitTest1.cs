@@ -86,7 +86,7 @@ namespace Example.MsTest
             // Arrange
             //
             var service = new XrmFakedContext { ProxyTypesAssembly = Assembly.GetAssembly(typeof(CrmContext)) }.GetFakedOrganizationService();
-            var id = service.Create(new Contact { LastName = "Mcdonald" });
+            var id = service.Create(new Contact { LastName = "Mcdonald", FirstName = "Ron" });
 
             // 
             // Act
@@ -197,14 +197,6 @@ namespace Example.MsTest
             /// <param name="service">The service.</param>
             protected override void Test(IOrganizationService service)
             {
-                var myEntity = new Entity();
-                service = new OrganizationServiceBuilder(service).WithFakeRetrieveMultiple(
-                    (s, q) =>
-                    {
-                        var col = new EntityCollection();
-                        col.Entities.Add(myEntity);
-                        return col;
-                    }).Build();
                 using (var context = new CrmContext(service))
                 {
                     var account = context.AccountSet.FirstOrDefault(c => c.Name == Ids.Account.Entity.Name);

@@ -54,24 +54,24 @@
       <HintPath>..\packages\DLaB.Common.1.0.1.6\lib\net452\DLaB.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DLaB.Xrm.2016, Version=1.1.4.7, Culture=neutral, PublicKeyToken=4da76fa437c5906e, processorArchitecture=MSIL">
-      <HintPath>..\packages\DLaB.Xrm.2016.1.1.4-alpha07\lib\net452\DLaB.Xrm.2016.dll</HintPath>
+    <Reference Include="DLaB.Xrm.2016, Version=1.1.4.8, Culture=neutral, PublicKeyToken=4da76fa437c5906e, processorArchitecture=MSIL">
+      <HintPath>..\packages\DLaB.Xrm.2016.1.1.4\lib\net452\DLaB.Xrm.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DLaB.Xrm.Client.2016, Version=1.1.4.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XrmUnitTest.2016.1.1.4-alpha09\lib\net452\DLaB.Xrm.Client.2016.dll</HintPath>
+      <HintPath>..\packages\XrmUnitTest.2016.1.1.4\lib\net452\DLaB.Xrm.Client.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DLaB.Xrm.Entities, Version=1.0.5870.30963, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DLaB.Xrm.Entities.1.1.1\lib\net452\DLaB.Xrm.Entities.dll</HintPath>
+    <Reference Include="DLaB.Xrm.Entities, Version=8.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DLaB.Xrm.Entities.8.0.1\lib\net452\DLaB.Xrm.Entities.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DLaB.Xrm.LocalCrm.2016, Version=1.1.4.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XrmUnitTest.2016.1.1.4-alpha09\lib\net452\DLaB.Xrm.LocalCrm.2016.dll</HintPath>
+      <HintPath>..\packages\XrmUnitTest.2016.1.1.4\lib\net452\DLaB.Xrm.LocalCrm.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DLaB.Xrm.Test.2016, Version=1.1.4.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XrmUnitTest.2016.1.1.4-alpha09\lib\net452\DLaB.Xrm.Test.2016.dll</HintPath>
+      <HintPath>..\packages\XrmUnitTest.2016.1.1.4\lib\net452\DLaB.Xrm.Test.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FakeItEasy, Version=1.25.3.0, Culture=neutral, PublicKeyToken=eff28e2146d5fd2c, processorArchitecture=MSIL">
@@ -79,7 +79,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="FakeXrmEasy, Version=1.9.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FakeXrmEasy.2016.1.10.1\lib\net452\FakeXrmEasy.dll</HintPath>
+      <HintPath>..\packages\FakeXrmEasy.2016.1.11.0\lib\net452\FakeXrmEasy.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
