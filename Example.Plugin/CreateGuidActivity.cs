@@ -4,26 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DLaB.Xrm.Entities;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Workflow;
 using DLaB.Xrm.Plugin;
 
 namespace Example.Plugin
 {
-    public class AssignRandomNumberActivity : CodeActivity
+    public class CreateGuidActivity : CodeActivity
     {
-        [RequiredArgument]
-        [Input("Field")]
-        public InArgument<string> Field { get; set; }
-
-        [Input("Entity")]
-        [ReferenceTarget("Contact")]
-        public InArgument<bool> Contact { get; set; }
+        [Output("Guid")]
+        public OutArgument<string> Guid { get; set; }
 
         protected override void Execute(CodeActivityContext activityContext)
         {
-            var context = activityContext.GetExtension<IWorkflowContext>();
-
+            Guid.Set(activityContext, System.Guid.NewGuid().ToString());
         }
     }
 }

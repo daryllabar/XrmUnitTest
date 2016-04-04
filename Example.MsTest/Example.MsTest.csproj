@@ -350,6 +350,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AssumptionExample.cs" />
+    <Compile Include="CreateGuidActivityTests.cs" />
+    <Compile Include="EntityBuilderExample.cs" />
     <Compile Include="RemovePhoneNumberFormattingTests.cs" />
     <Compile Include="SyncContactToAccountTests.cs" />
     <Compile Include="UnitTest1.cs" />
