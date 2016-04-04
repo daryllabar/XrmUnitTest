@@ -1,4 +1,5 @@
-﻿using DLaB.Xrm.Test;
+﻿using System.Diagnostics;
+using DLaB.Xrm.Test;
 namespace Example.MsTestBase
 {
     public abstract class TestMethodClassBase : TestMethodClassBaseDLaB
@@ -9,6 +10,7 @@ namespace Example.MsTestBase
             TestInitializer.InitializeTestSettings();
         }
 
+        [DebuggerHidden]
         public void Test()
         {
             Test(new DebugLogger());

@@ -349,6 +349,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AssumptionExample.cs" />
     <Compile Include="RemovePhoneNumberFormattingTests.cs" />
     <Compile Include="SyncContactToAccountTests.cs" />
     <Compile Include="UnitTest1.cs" />

@@ -20,6 +20,50 @@ namespace Example.MsTest
     [TestClass]
     public class SyncContactToAccountTests
     {
+        [TestMethod]
+        public void SyncContactToAccount_UpdateContactAddress_Should_UpdateAccountAddress_FakeXrm()
+        {
+            //
+            // Arrange
+            //
+            var context = new XrmFakedContext
+            {
+                ProxyTypesAssembly = typeof(Account).Assembly
+            };
+            var service = context.GetFakedOrganizationService();
+
+            var contact = new Contact
+            {
+                Address1_Line1 = "742 Evergreen Terrace"
+            };
+            contact.Id = service.Create(contact);
+            var accountId = service.Create(
+                new Account
+                {
+                    PrimaryContactId = contact.ToEntityReference()
+                });
+
+            //
+            // Act
+            //
+            context.ExecutePluginWith<SyncContactToAccount>(
+                new XrmFakedPluginExecutionContext
+                {
+                    MessageName = MessageType.Create.Value,
+                    InputParameters = new ParameterCollection
+                    {
+                        {"Target", contact}
+                    },
+                    Stage = (int)PipelineStage.PostOperation
+                });
+
+            //
+            // Assert
+            //   
+            var account = service.GetEntity<Account>(accountId);
+            Assert.AreEqual(contact.Address1_Line1, account.Address1_Line1);
+        }
+
         #region UpdateContactAddress_Should_UpdateAccountAddress
 
         [TestMethod]
@@ -75,50 +119,5 @@ namespace Example.MsTest
         }
 
         #endregion UpdateContactAddress_Should_UpdateAccountAddress
-
-        [TestMethod]
-        public void SyncContactToAccount_UpdateContactAddress_Should_UpdateAccountAddress_FakeXrm()
-        {
-            //
-            // Arrange
-            //
-            var context = new FakeXrmEasy.XrmFakedContext
-            {
-                ProxyTypesAssembly = typeof(Account).Assembly
-            };
-            var service = context.GetFakedOrganizationService();
-
-            var id = service.Create(new Contact());
-            var accountId = service.Create(
-                new Account
-                {
-                    PrimaryContactId = new EntityReference(Contact.EntityLogicalName, id)
-                });
-            var contact = new Contact
-            {
-                Id = id,
-                Address1_Line1 = "742 Evergreen Terrace"
-            };
-
-            //
-            // Act
-            //
-            var fakedPlugin = context.ExecutePluginWith<SyncContactToAccount>(
-                new XrmFakedPluginExecutionContext
-                {
-                    MessageName = MessageType.Create.Value,
-                    InputParameters = new ParameterCollection
-                    {
-                        {"Target", contact}
-                    },
-                    Stage = (int)PipelineStage.PostOperation
-                });
-
-            //
-            // Assert
-            //   
-            var account = service.GetEntity<Account>(accountId);
-            Assert.AreEqual(contact.Address1_Line1, account.Address1_Line1);
-        }
     }
 }
