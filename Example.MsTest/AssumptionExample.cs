@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DLaB.Xrm.Entities;
+using DLaB.Xrm;
 using DLaB.Xrm.Test;
 using Example.MsTestBase;
 using Example.MsTestBase.Assumptions;
@@ -32,10 +33,13 @@ namespace Example.MsTest
                 // Act
                 //
                 var product = AssumedEntities.Get<Product_Install, Product>();
+                var description = service.GetEntity<Product>(product.Id).Description;
+
                 //
                 // Assert
                 //
                 Assert.IsNotNull(product.Description);
+                Assert.AreEqual(product.Description, description);
             }
         }
 
