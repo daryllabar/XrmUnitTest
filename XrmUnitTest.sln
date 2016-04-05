@@ -95,6 +95,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{216D6F92
 		DLaB.Xrm.Test.2015\XrmUnitTest.2015.nuspec = DLaB.Xrm.Test.2015\XrmUnitTest.2015.nuspec
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code Snippets", "Code Snippets", "{D2B7919C-8DC8-468B-90E5-10A26D771028}"
+	ProjectSection(SolutionItems) = preProject
+		Code Snippets\crmplugin.snippet = Code Snippets\crmplugin.snippet
+		Code Snippets\crmplugintest.snippet = Code Snippets\crmplugintest.snippet
+		Code Snippets\crmtestmethodclass.snippet = Code Snippets\crmtestmethodclass.snippet
+		Code Snippets\region.snippet = Code Snippets\region.snippet
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		DLaB.Xrm.LocalCrm.Tests.Base\DLaB.Xrm.LocalCrm.Tests.Base.projitems*{04895326-dbd8-41a0-9ea6-5dddaf5c95f8}*SharedItemsImports = 4
