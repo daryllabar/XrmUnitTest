@@ -1,6 +1,5 @@
 ﻿using System;
 using DLaB.Common;
-using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Sandbox
 {
@@ -11,13 +10,12 @@ namespace DLaB.Xrm.Sandbox
     {
         /// <summary>
         /// Determines whether the given exception can be thrown in sandbox mode.
-        /// Throws a Safe if it can't
+        /// Throws a "Sandbox-Safe" Exception if it can't
         /// </summary>
         /// <param name="ex">The ex.</param>
         /// <returns></returns>
-        /// <exception cref="InvalidPluginExecutionException"></exception>
-        /// <exception cref="Exception"></exception>
-        public static bool CanThrow(Exception ex)
+        /// <exception cref="System.Exception"></exception>
+        public static bool AssertCanThrow(Exception ex)
         {
             var currentException = ex;
             var canThrow = true;
@@ -45,7 +43,7 @@ namespace DLaB.Xrm.Sandbox
             // ReSharper disable once InvertIf - I like it better this way
             if (IsValidToBeThrown(ex))
             {
-                // Attempt to throw the exact Exception Type, with the 
+                // Attempt to throw the exact Exception Type
                 var ctor = ex.GetType().GetConstructor(new[] { typeof(string) });
                 if (ctor != null)
                 {
@@ -65,7 +63,7 @@ namespace DLaB.Xrm.Sandbox
         private static bool IsValidToBeThrown(Exception ex)
         {
             var assembly = ex.GetType().Assembly.FullName.ToLower();
-            return assembly.StartsWith("mscorlib,") || assembly.StartsWith("microsoft.xrm.sdk,");
+            return assembly.StartsWith("mscorlib,") || assembly.StartsWith("microsoft.xrm.sdk,") || assembly.StartsWith("system.");
         }
     }
 }

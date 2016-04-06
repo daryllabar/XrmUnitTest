@@ -113,40 +113,15 @@ namespace DLaB.Xrm.Plugin
 
                 ExecuteRegisteredEvent(context);
             }
-            catch (InvalidPluginExecutionException ex)
-            {
-                context.LogException(ex);
-                // This error is already being thrown from the plugin, just throw
-                if (context.IsolationMode == IsolationMode.Sandbox)
-                {
-                    if (Sandbox.ExceptionHandler.CanThrow(ex))
-                    {
-                        throw;
-                    }
-                }
-                else
-                {
-                    throw;
-                }
-            }
             catch (Exception ex)
             {
-                // Unexpected Exception occurred, log exception then wrap and throw new exception
                 context.LogException(ex);
-                ex = new InvalidPluginExecutionException(ex.Message, ex);
+                // Unexpected Exception occurred, log exception then wrap and throw new exception
                 if (context.IsolationMode == IsolationMode.Sandbox)
                 {
-                    if (Sandbox.ExceptionHandler.CanThrow(ex))
-                    {
-                        // ReSharper disable once PossibleIntendedRethrow - Wrap the exception in an InvalidPluginExecutionException
-                        throw ex;
-                    }
+                    Sandbox.ExceptionHandler.AssertCanThrow(ex);
                 }
-                else
-                {
-                    // ReSharper disable once PossibleIntendedRethrow - Wrap the exception in an InvalidPluginExecutionException
-                    throw ex;
-                }
+                throw;
             }
             finally
             {
