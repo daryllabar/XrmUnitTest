@@ -18,7 +18,7 @@ namespace DLaB.Xrm.Tests.Sandbox
             {
                 try
                 {
-                    Assert.IsFalse(Xrm.Sandbox.ExceptionHandler.CanThrow(ex));
+                    Assert.IsFalse(Xrm.Sandbox.ExceptionHandler.AssertCanThrow(ex));
                 }
                 catch (Exception inner)
                 {

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>CrmTestMethodClass</Title>
+			<Shortcut>crmtestmethodclass</Shortcut>
+			<Description>Code snippet for Crm Test Method and class</Description>
+			<Author>Daryl LaBar</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Plugin/Workflow/Method to Test</ToolTip>
+					<Default>PluginName</Default>
+				</Literal>
+				<Literal>
+					<ID>state</ID>
+					<ToolTip>State Being Tested</ToolTip>
+					<Default>StateBeingTested</Default>
+				</Literal>
+				<Literal>
+					<ID>behavior</ID>
+					<ToolTip>Behavior Expected</ToolTip>
+					<Default>BehaviorExpected</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[#region $state$_Should_$behavior$
+
+        [TestMethod]
+        public void $name$_$state$_Should_$behavior$()
+        {
+            new $state$_Should_$behavior$().Test(_output);
+        }
+
+        // ReSharper disable once InconsistentNaming
+        private class $state$_Should_$behavior$ : TestMethodClassBase
+        {
+            private struct Ids
+            {
+                public static readonly Id Lead = new Id<Lead>("00000000-0000-0000-0000-00000000000");
+                $selected$$end$
+            }
+
+            protected override void InitializeTestData(IOrganizationService service)
+            {
+ 	            new CrmEnvironmentBuilder().WithEntities<Ids>().Create(service);
+            }
+
+            protected override void Test(IOrganizationService service)
+            {
+                //
+                // Arrange
+                //
+				
+                //
+                // Act
+                //
+				
+                //
+                // Assert
+                //
+ 	            throw new NotImplementedException();
+            }
+        }
+
+        #endregion $state$_Should_$behavior$]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

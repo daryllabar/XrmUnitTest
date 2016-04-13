@@ -18,7 +18,7 @@ Please check out the [Wiki](https://github.com/daryllabar/XrmUnitTest/wiki) for 
 
 There are two methods for utilizing the code base, depending on how you'd like to consume the code base.  
 
-1.  **Use NuGet** - This is by far the quickest and easiet method.  Search for and add the NuGet Pacakge "DLaB.Xrm(2015 or 2016)" to your Xrm Plugin\Service Assemblies.  Then search for and add the NuGet Package "XrmUnitTest(2015 or 2016)" to your Unit Test projects and base unit test project(See [Wiki](https://github.com/daryllabar/XrmUnitTest/wiki) on what is meant by base unit test project).
+1.  **Use NuGet** - This is by far the quickest and easiet method.  Search for and add the NuGet Pacakge "DLaB.Xrm(2015 or 2016)" to your Xrm Plugin\Service Assemblies.  Then search for and add the NuGet Package "XrmUnitTest(2015 or 2016)" to your Unit Test projects and base unit test project (See [Wiki](https://github.com/daryllabar/XrmUnitTest/wiki) on what is meant by base unit test project).
 2.  **Use The Source Directly** - The only reason I list this method is for anyone that doesn't want to utilize ILMerge in order to create their CRM Plugin.  The classes are all implemented using the new Shared Project functionality in VS 2015, which allow you to reference the source code, without duplicating it.  This allows for your plugins to not require any IlMerge when running in a sandboxed (online) environment.
   
 Again, more information is available on the [Wiki](https://github.com/daryllabar/XrmUnitTest/wiki)!

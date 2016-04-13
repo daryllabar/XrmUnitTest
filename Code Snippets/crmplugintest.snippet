@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>CrmPluginTest</Title>
+      <Shortcut>crmplugintest</Shortcut>
+      <Description>Code snippet for testing a Crm Plugin</Description>
+      <Author>Daryl LaBar</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>pluginType</ID>
+          <ToolTip>Plugin Type</ToolTip>
+          <Default>PluginName</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[
+			//
+			// Arrange
+			//
+			var plugin = new $pluginType$();
+			var context = new PluginExecutionContextBuilder().WithFirstRegisteredEvent(plugin).Build();
+			var serviceProvider = new ServiceProviderBuilder(service, context, Logger).Build();
+			
+			//
+			// Act
+			//
+			plugin.Execute(serviceProvider);
+			
+			//
+			// Assert
+			//
+			throw new NotImplementedException();]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
