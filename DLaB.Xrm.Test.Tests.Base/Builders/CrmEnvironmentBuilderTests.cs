@@ -51,6 +51,40 @@ namespace DLaB.Xrm.Test.Tests.Builders
             AssertCrm.Exists(service, incident);
         }
 
+        /// <summary>
+        /// Incident's can't be created without a customer, so attempt to force the incident to be created first
+        /// </summary>
+        [TestMethod]
+        public void CrmEnvironmentBuilder_WithChildEntities_IncidentAndAccountButAccountAddedIncidentFirst_Should_CreateAccountFirst()
+        {
+            //
+            // Arrange
+            //
+            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            var account = new Id<Account>(Guid.NewGuid());
+            var incident = new Id<Incident>(Guid.NewGuid());
+            var lead = new Id<Lead>(Guid.NewGuid());
+
+            // The Account and Incident will be added as Account first, and Incident second. 
+            // The Lead will force an reorder and the Account incident would normally get placed after the Incident
+            var builder = new CrmEnvironmentBuilder().
+                WithEntities(new Id<PhoneCall>(Guid.NewGuid()), incident, account).
+                WithChildEntities(account, incident);
+
+            //
+            // Act
+            //
+            builder.Create(service);
+
+
+            //
+            // Assert
+            //
+
+            AssertCrm.Exists(service, account);
+            AssertCrm.Exists(service, incident);
+        }
+
         [TestMethod]
         public void CrmEnvironmentBuilder_WithEntities_GivenIdStruct_Should_CreateAll()
         {
@@ -254,6 +288,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
             Assert.AreEqual(email, lead.EMailAddress1);
         }
 
+
         public class MyLeadBuilder : EntityBuilder<Lead>
         {
             public Lead Lead { get; set; }
@@ -336,6 +371,5 @@ namespace DLaB.Xrm.Test.Tests.Builders
             public static readonly Id Value1 = new Id<Contact>(Guid.NewGuid());
             public static readonly Id Value2 = new Id<Contact>(Guid.NewGuid());
         }
-
     }
 }

@@ -121,7 +121,7 @@ namespace DLaB.Xrm.Test
             }
 
             var lastDependOn = Types.LastOrDefault(t => info.DependsOn(t));
-            var firstDependOnCurrent = Types.LastOrDefault(t => t.DependsOn(info));
+            var firstDependOnCurrent = Types.FirstOrDefault(t => t.DependsOn(info));
             if (lastDependOn == null)
             {
                 if (firstDependOnCurrent == null)
