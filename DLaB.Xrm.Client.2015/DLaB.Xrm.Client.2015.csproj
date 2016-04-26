@@ -50,8 +50,8 @@
       <HintPath>..\packages\DLaB.Common.1.0.1.8\lib\net452\DLaB.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DLaB.Xrm.2015, Version=1.1.5.3, Culture=neutral, PublicKeyToken=4da76fa437c5906e, processorArchitecture=MSIL">
-      <HintPath>..\packages\DLaB.Xrm.2015.1.1.5.3\lib\net452\DLaB.Xrm.2015.dll</HintPath>
+    <Reference Include="DLaB.Xrm.2015, Version=1.1.6.1, Culture=neutral, PublicKeyToken=4da76fa437c5906e, processorArchitecture=MSIL">
+      <HintPath>..\packages\DLaB.Xrm.2015.1.1.6-alpha01\lib\net452\DLaB.Xrm.2015.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
