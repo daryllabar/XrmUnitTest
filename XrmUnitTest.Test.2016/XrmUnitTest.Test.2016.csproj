@@ -51,8 +51,8 @@
       <HintPath>..\packages\DLaB.Common.1.0.1.8\lib\net452\DLaB.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DLaB.Xrm.2016, Version=1.1.6.1, Culture=neutral, PublicKeyToken=4da76fa437c5906e, processorArchitecture=MSIL">
-      <HintPath>..\packages\DLaB.Xrm.2016.1.1.6-alpha01\lib\net452\DLaB.Xrm.2016.dll</HintPath>
+    <Reference Include="DLaB.Xrm.2016, Version=1.1.6.4, Culture=neutral, PublicKeyToken=4da76fa437c5906e, processorArchitecture=MSIL">
+      <HintPath>..\packages\DLaB.Xrm.2016.1.1.6.4\lib\net452\DLaB.Xrm.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DLaB.Xrm.Client.2016, Version=1.1.6.2, Culture=neutral, processorArchitecture=MSIL">
