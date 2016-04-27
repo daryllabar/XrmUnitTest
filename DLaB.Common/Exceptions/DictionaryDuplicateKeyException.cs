@@ -7,7 +7,7 @@ namespace DLaB.Common.Exceptions
     /// The exception that is thrown when an attempt is made to add a duplicate key to a dictionary.
     /// It's primary purpose is to provide a better error message than ArgumentException, An item with the smae key has already been added.
     /// </summary>
-    [Serializable()]
+    [Serializable]
     public class DictionaryDuplicateKeyException : Exception
     {
         /// <summary>

@@ -238,7 +238,7 @@ namespace DLaB.Common
         /// <param name="getDupKeyErrorMessage">Delegate function used to populate the message property of the exception
         /// generated when an element is added to the dictionary whose key already exists.</param>
         public static void Add<TKey, TValue>(this Dictionary<TKey, TValue> source, TKey key, TValue value,
-            Func<String> getDupKeyErrorMessage)
+            Func<string> getDupKeyErrorMessage)
         {
             try
             {

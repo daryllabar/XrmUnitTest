@@ -587,26 +587,7 @@ namespace DLaB.Xrm.Plugin
 
             // Obtain the target business entity from the input parmameters.
 
-            var target = ((Entity)parameters[ParameterName.Target]).ToEntity<T>();
-            // Currently I believe this to be a issue with CRM, where the Parent Plugin Context contain the actual Target, for the post operation.
-            // https://social.microsoft.com/Forums/en-US/19435dde-31ad-419d-826c-3f4e89ce6370/when-does-the-parent-plugin-context-contain-the-actual-target?forum=crm
-            if (context.ParentContext != null)
-            {
-                var message = context.GetMessageType();
-                var stage = context.GetPipelineStage();
-                if (stage == PipelineStage.PostOperation && 
-                    message == MessageType.Update && 
-                    (target.Attributes.ContainsKey("statecode") || target.Attributes.ContainsKey("statuscode")))
-                {
-                    var parentTarget = context.ParentContext.GetTarget<T>();
-                    if (parentTarget != null && target.Id == parentTarget.Id)
-                    {
-                        target = parentTarget;
-                    }
-                }
-            }
-
-            return target;
+            return ((Entity)parameters[ParameterName.Target]).ToEntity<T>();
         }
 
         /// <summary>

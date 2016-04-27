@@ -24,8 +24,15 @@ namespace DLaB.Common
         /// <returns></returns>
         public static T GetAppSettingOrDefault<T>(string appSetting, T defaultValue)
         {
-            var config = ConfigurationManager.AppSettings[appSetting];
-            return config == null ? defaultValue : config.ParseOrConvertString<T>();
+            try
+            {
+                var config = ConfigurationManager.AppSettings[appSetting];
+                return config == null ? defaultValue : config.ParseOrConvertString<T>();
+            }
+            catch (Exception ex)
+            {
+                throw new FormatException($"Error occured processing app setting \"{appSetting}\" with default value \"{defaultValue}\"", ex);
+            }
         }
 
         /// <summary>
@@ -40,8 +47,15 @@ namespace DLaB.Common
         /// <returns></returns>
         public static T GetAppSettingOrDefault<T>(string appSetting, Func<T> getDefault)
         {
-            var config = ConfigurationManager.AppSettings[appSetting];
-            return config == null ? getDefault() : config.ParseOrConvertString<T>();
+            try
+            {
+                var config = ConfigurationManager.AppSettings[appSetting];
+                return config == null ? getDefault() : config.ParseOrConvertString<T>();
+            }
+            catch (Exception ex)
+            {
+                throw new FormatException("Error occured processing app setting " + appSetting, ex);
+            }
         }
 
         /// <summary>
@@ -54,34 +68,41 @@ namespace DLaB.Common
         /// <returns></returns>
         public static decimal GetAppSettingFractionOrDefault(string appSetting, decimal defaultValue)
         {
-            var config = ConfigurationManager.AppSettings[appSetting];
-
-            if (config == null)
+            try
             {
+                var config = ConfigurationManager.AppSettings[appSetting];
+
+                if (config == null)
+                {
+                    return defaultValue;
+                }
+
+                if (config.Contains('/'))
+                {
+                    var fraction = config.Split('/');
+                    if (fraction.Length != 2)
+                    {
+                        throw new FormatException($"\"{config}\" was not in the expected format Numerator//Denominator");
+                    }
+
+                    int numerator;
+                    int denominator;
+
+                    if (int.TryParse(fraction[0], out numerator) && int.TryParse(fraction[1], out denominator))
+                    {
+                        if (denominator == 0)
+                        {
+                            throw new InvalidOperationException("Divide by 0 occurred");
+                        }
+                        return (decimal) numerator/denominator;
+                    }
+                }
                 return defaultValue;
             }
-
-            if (config.Contains('/'))
+            catch (Exception ex)
             {
-                var fraction = config.Split('/');
-                if (fraction.Length != 2)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                int numerator;
-                int denominator;
-
-                if (int.TryParse(fraction[0], out numerator) && int.TryParse(fraction[1], out denominator))
-                {
-                    if (denominator == 0)
-                    {
-                        throw new InvalidOperationException("Divide by 0 occurred");
-                    }
-                    return (decimal) numerator/denominator;
-                }
+                throw new FormatException($"Error occured processing app setting \"{appSetting}\" with default value \"{defaultValue}\"", ex);
             }
-            return defaultValue;
         }
 
         /// <summary>
@@ -99,20 +120,27 @@ namespace DLaB.Common
         /// <returns></returns>
         public static T GetAppSettingOrDefaultByKey<T>(string appSetting, string key, T defaultValue, ConfigKeyValueSplitInfo info = null)
         {
-            var config = ConfigurationManager.AppSettings[appSetting];
-            if (config == null)
+            try
             {
-                return defaultValue;
+                var config = ConfigurationManager.AppSettings[appSetting];
+                if (config == null)
+                {
+                    return defaultValue;
+                }
+
+                info = info ?? ConfigKeyValueSplitInfo.Default;
+
+                // Find the Key:Value where the Key Matches
+                config = config.Split(info.EntrySeperators).
+                                FirstOrDefault(v => v.Split(info.KeyValueSeperators).
+                                                      Select(k => info.ParseKey<string>(k)).
+                                                      FirstOrDefault() == info.ParseKey<string>(key));
+                return config == null ? defaultValue : SubstringByString(config, info.KeyValueSeperators.ToString()).ParseOrConvertString<T>();
             }
-
-            info = info ?? ConfigKeyValueSplitInfo.Default;
-
-            // Find the Key:Value where the Key Matches
-            config = config.Split(info.EntrySeperators).
-                FirstOrDefault(v => v.Split(info.KeyValueSeperators).
-                                      Select(k => info.ParseKey<string>(k)).
-                                      FirstOrDefault() == info.ParseKey<string>(key));
-            return config == null ? defaultValue : SubstringByString(config, info.KeyValueSeperators.ToString()).ParseOrConvertString<T>();
+            catch (Exception ex)
+            {
+                throw new FormatException($"Error occured processing app setting \"{appSetting}\" for key \"{key}\" with default value \"{defaultValue}\"", ex);
+            }
         }
 
         /// <summary>
@@ -143,25 +171,32 @@ namespace DLaB.Common
         /// <returns></returns>
         public static List<T> GetAppSettingListOrDefault<T>(string appSetting, List<T> defaultValue, char[] seperator = null)
         {
-            var config = ConfigurationManager.AppSettings[appSetting];
-
-            if (config == null)
+            try
             {
-                return defaultValue;
-            }
+                var config = ConfigurationManager.AppSettings[appSetting];
 
-            var value = new List<T>();
-            var configs = config.Split(seperator ?? new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            if (!configs.Any())
-            {
-                value = defaultValue;
-            }
-            else if (typeof(T).IsEnum)
-            {
-                value.AddRange(configs.Select(Extensions.ParseOrConvertString<T>));
-            }
+                if (config == null)
+                {
+                    return defaultValue;
+                }
 
-            return value;
+                var value = new List<T>();
+                var configs = config.Split(seperator ?? new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                if (!configs.Any())
+                {
+                    value = defaultValue;
+                }
+                else if (typeof (T).IsEnum)
+                {
+                    value.AddRange(configs.Select(Extensions.ParseOrConvertString<T>));
+                }
+
+                return value;
+            }
+            catch (Exception ex)
+            {
+                throw new FormatException($"Error occured parsing list for app setting \"{appSetting}\"", ex);
+            }
         }
 
         #endregion GetList
@@ -185,8 +220,15 @@ namespace DLaB.Common
                                                                            Func<Dictionary<TKey, TValue>> getDefault,
                                                                            ConfigKeyValueSplitInfo info = null)
         {
-            var config = ConfigurationManager.AppSettings[appSetting];
-            return config == null ? getDefault() : GetDictionary<TKey, TValue>(info, config);
+            try
+            {
+                var config = ConfigurationManager.AppSettings[appSetting];
+                return config == null ? getDefault() : GetDictionary<TKey, TValue>(info, config);
+            }
+            catch (Exception ex)
+            {
+                throw new FormatException($"Error occured parsing dictionary for app setting \"{appSetting}\"", ex);
+            }
         }
 
         /// <summary>
@@ -206,8 +248,15 @@ namespace DLaB.Common
                                                                            Dictionary<TKey, TValue> defaultValue,
                                                                            ConfigKeyValueSplitInfo info = null)
         {
-            var config = ConfigurationManager.AppSettings[appSetting];
-            return config == null ? defaultValue : GetDictionary<TKey, TValue>(info, config);
+            try
+            {
+                var config = ConfigurationManager.AppSettings[appSetting];
+                return config == null ? defaultValue : GetDictionary<TKey, TValue>(info, config);
+            }
+            catch (Exception ex)
+            {
+                throw new FormatException($"Error occured parsing dictionary for app setting \"{appSetting}\"", ex);
+            }
         }
 
         /// <summary>
@@ -227,7 +276,14 @@ namespace DLaB.Common
                                                                            string defaultValue,
                                                                            ConfigKeyValueSplitInfo info = null)
         {
-            return GetDictionary<TKey, TValue>(info, ConfigurationManager.AppSettings[appSetting] ?? defaultValue);
+            try
+            {
+                return GetDictionary<TKey, TValue>(info, ConfigurationManager.AppSettings[appSetting] ?? defaultValue);
+            }
+            catch (Exception ex)
+            {
+                throw new FormatException($"Error occured parsing dictionary for app setting \"{appSetting}\", with defaultValue, \"{defaultValue}\"", ex);
+            }
         }
 
         private static Dictionary<TKey, TValue> GetDictionary<TKey, TValue>(ConfigKeyValueSplitInfo info, string config)
@@ -261,8 +317,15 @@ namespace DLaB.Common
                                                                                      Dictionary<TKey, List<TValue>> defaultValue,
                                                                                      ConfigKeyValuesSplitInfo info = null)
         {
-            var config = ConfigurationManager.AppSettings[appSetting];
-            return config == null ? defaultValue : GetDictionaryList<TKey, TValue>(info, config);
+            try
+            {
+                var config = ConfigurationManager.AppSettings[appSetting];
+                return config == null ? defaultValue : GetDictionaryList<TKey, TValue>(info, config);
+            }
+            catch (Exception ex)
+            {
+                throw new FormatException($"Error occured parsing dictionary list for app setting \"{appSetting}\"", ex);
+            }
         }
 
         /// <summary>
@@ -282,8 +345,15 @@ namespace DLaB.Common
                                                                                      string defaultValue,
                                                                                      ConfigKeyValuesSplitInfo info = null)
         {
-            var config = ConfigurationManager.AppSettings[appSetting] ?? defaultValue;
-            return GetDictionaryList<TKey, TValue>(info, config);
+            try
+            {
+                var config = ConfigurationManager.AppSettings[appSetting] ?? defaultValue;
+                return GetDictionaryList<TKey, TValue>(info, config);
+            }
+            catch (Exception ex)
+            {
+                throw new FormatException($"Error occured parsing dictionary list for app setting \"{appSetting}\", with default value \"{defaultValue}\"", ex);
+            }
         }
 
         /// <summary>
@@ -303,8 +373,15 @@ namespace DLaB.Common
                                                                                      Func<Dictionary<TKey, List<TValue>>> getDefault,
                                                                                      ConfigKeyValuesSplitInfo info = null)
         {
-            var config = ConfigurationManager.AppSettings[appSetting];
-            return config == null ? getDefault() : GetDictionaryList<TKey, TValue>(info, config);
+            try
+            {
+                var config = ConfigurationManager.AppSettings[appSetting];
+                return config == null ? getDefault() : GetDictionaryList<TKey, TValue>(info, config);
+            }
+            catch (Exception ex)
+            {
+                throw new FormatException($"Error occured parsing dictionary list for app setting \"{appSetting}\"", ex);
+            }
         }
 
         private static Dictionary<TKey, List<TValue>> GetDictionaryList<TKey, TValue>(ConfigKeyValuesSplitInfo info, string config)
@@ -344,8 +421,15 @@ namespace DLaB.Common
                                                                                      Dictionary<TKey, HashSet<TValue>> defaultValue,
                                                                                      ConfigKeyValuesSplitInfo info = null)
         {
-            var config = ConfigurationManager.AppSettings[appSetting];
-            return config == null ? defaultValue : GetDictionaryHash<TKey, TValue>(info, config);
+            try
+            {
+                var config = ConfigurationManager.AppSettings[appSetting];
+                return config == null ? defaultValue : GetDictionaryHash<TKey, TValue>(info, config);
+            }
+            catch (Exception ex)
+            {
+                throw new FormatException($"Error occured parsing dictionary Hash for app setting \"{appSetting}\"", ex);
+            }
         }
 
         /// <summary>
@@ -365,8 +449,15 @@ namespace DLaB.Common
                                                                                         string defaultValue,
                                                                                         ConfigKeyValuesSplitInfo info = null)
         {
-            var config = ConfigurationManager.AppSettings[appSetting] ?? defaultValue;
-            return GetDictionaryHash<TKey, TValue>(info, config);
+            try
+            {
+                var config = ConfigurationManager.AppSettings[appSetting] ?? defaultValue;
+                return GetDictionaryHash<TKey, TValue>(info, config);
+            }
+            catch (Exception ex)
+            {
+                throw new FormatException($"Error occured parsing dictionary Hash for app setting \"{appSetting}\", with default value \"{defaultValue}\"", ex);
+            }
         }
 
         /// <summary>
@@ -386,8 +477,15 @@ namespace DLaB.Common
                                                                                         Func<Dictionary<TKey, HashSet<TValue>>> getDefault,
                                                                                         ConfigKeyValuesSplitInfo info = null)
         {
-            var config = ConfigurationManager.AppSettings[appSetting];
-            return config == null ? getDefault() : GetDictionaryHash<TKey, TValue>(info, config);
+            try
+            {
+                var config = ConfigurationManager.AppSettings[appSetting];
+                return config == null ? getDefault() : GetDictionaryHash<TKey, TValue>(info, config);
+            }
+            catch (Exception ex)
+            {
+                throw new FormatException($"Error occured parsing dictionary Hash for app setting \"{appSetting}\"", ex);
+            }
         }
 
         private static Dictionary<TKey, HashSet<TValue>> GetDictionaryHash<TKey, TValue>(ConfigKeyValuesSplitInfo info, string config)
@@ -419,14 +517,21 @@ namespace DLaB.Common
         /// <returns></returns>
         public static HashSet<T> GetHashSet<T>(string appSetting, ConfigKeyValueSplitInfo info = null)
         {
-            var value = new HashSet<T>();
-            var config = ConfigurationManager.AppSettings[appSetting];
-            if (config != null)
+            try
             {
-                info = info ?? ConfigKeyValueSplitInfo.Default;
-                value = new HashSet<T>(config.Split(info.EntrySeperators).Select(info.ParseKey<T>));
+                var value = new HashSet<T>();
+                var config = ConfigurationManager.AppSettings[appSetting];
+                if (config != null)
+                {
+                    info = info ?? ConfigKeyValueSplitInfo.Default;
+                    value = new HashSet<T>(config.Split(info.EntrySeperators).Select(info.ParseKey<T>));
+                }
+                return value;
             }
-            return value;
+            catch (Exception ex)
+            {
+                throw new FormatException($"Error occured parsing hash for app setting \"{appSetting}\"", ex);
+            }
         }
 
         #endregion GetHashSet
