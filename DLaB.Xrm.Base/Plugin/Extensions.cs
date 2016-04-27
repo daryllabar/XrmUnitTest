@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using DLaB.Common;
 using DLaB.Xrm.Exceptions;
 using Microsoft.Xrm.Sdk;
 
@@ -151,6 +149,25 @@ namespace DLaB.Xrm.Plugin
         public static bool HasPluginHandlerExecutionBeenPrevented(this IExtendedPluginContext context)
         {
             return context.HasPluginHandlerExecutionBeenPreventedInternal(context.Event, GetPreventPluginHandlerSharedVariableName(context.PluginTypeName));
+        }
+
+        /// <summary>
+        /// Cast the Target to the given Entity Type T. 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static T GetTarget<T>(this IExtendedPluginContext context) where T : Entity
+        {
+            // Obtain the target business entity from the input parmameters.
+            try
+            {
+                return ((IPluginExecutionContext)context).GetTarget<T>();
+            }
+            catch (Exception ex)
+            {
+                context.LogException(ex);
+            }
+            return null;
         }
 
         #endregion IExtendedPluginContext
@@ -402,6 +419,13 @@ namespace DLaB.Xrm.Plugin
 
         #endregion GetFirstSharedVariable
 
+        /// <summary>
+        /// Gets the type of the message.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <returns></returns>
+        public static MessageType GetMessageType(this IPluginExecutionContext context) { return new MessageType(context.MessageName); }
+
         #region GetParameterValue
 
         /// <summary>
@@ -475,6 +499,13 @@ namespace DLaB.Xrm.Plugin
 
         #endregion GetParameterValue
 
+        /// <summary>
+        /// Gets the pipeline stage.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <returns></returns>
+        public static PipelineStage GetPipelineStage(this IPluginExecutionContext context) { return (PipelineStage)context.Stage; }
+
         #region Get(Pre/Post)Entities
 
         /// <summary>
@@ -544,25 +575,6 @@ namespace DLaB.Xrm.Plugin
         /// Cast the Target to the given Entity Type T. 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public static T GetTarget<T>(this IExtendedPluginContext context) where T : Entity
-        {
-            // Obtain the target business entity from the input parmameters.
-            try
-            {
-                return ((IPluginExecutionContext)context).GetTarget<T>();
-            }
-            catch (Exception ex)
-            {
-                context.LogException(ex);
-            }
-            return null;
-        }
-
-        /// <summary>
-        /// Cast the Target to the given Entity Type T. 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="context">The context.</param>
         /// <returns></returns>
         public static T GetTarget<T>(this IPluginExecutionContext context) where T : Entity
@@ -575,7 +587,26 @@ namespace DLaB.Xrm.Plugin
 
             // Obtain the target business entity from the input parmameters.
 
-            return ((Entity)parameters[ParameterName.Target]).ToEntity<T>();
+            var target = ((Entity)parameters[ParameterName.Target]).ToEntity<T>();
+            // Currently I believe this to be a issue with CRM, where the Parent Plugin Context contain the actual Target, for the post operation.
+            // https://social.microsoft.com/Forums/en-US/19435dde-31ad-419d-826c-3f4e89ce6370/when-does-the-parent-plugin-context-contain-the-actual-target?forum=crm
+            if (context.ParentContext != null)
+            {
+                var message = context.GetMessageType();
+                var stage = context.GetPipelineStage();
+                if (stage == PipelineStage.PostOperation && 
+                    message == MessageType.Update && 
+                    (target.Attributes.ContainsKey("statecode") || target.Attributes.ContainsKey("statuscode")))
+                {
+                    var parentTarget = context.ParentContext.GetTarget<T>();
+                    if (parentTarget != null && target.Id == parentTarget.Id)
+                    {
+                        target = parentTarget;
+                    }
+                }
+            }
+
+            return target;
         }
 
         /// <summary>

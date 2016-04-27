@@ -19,8 +19,8 @@ namespace DLaB.Xrm.Plugin
         /// <param name="nameValue">The name value.</param>
         public MessageType(string nameValue) : base(nameValue, nameValue) { }
 
+        #region Default OOB CRM Message Types
 
-        // Default OOB CRM Messages
         /// <summary>
         /// Add Item Message.
         /// </summary>
@@ -389,6 +389,8 @@ namespace DLaB.Xrm.Plugin
         /// Win Message.
         /// </summary>
         public static MessageType Win = new MessageType("Win");
+
+        #endregion Default OOB CRM Message Types
 
         /// <summary>
         /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.

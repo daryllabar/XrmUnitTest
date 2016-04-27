@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Plugin
 {
