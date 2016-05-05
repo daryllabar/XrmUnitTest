@@ -1421,6 +1421,53 @@ namespace DLaB.Xrm
             return proxy.ServiceConfiguration?.CurrentServiceEndpoint.Address.Uri;
         }
 
+
+        #region InitializeFrom
+
+        /// <summary>
+        /// Utilizes the standard OOB Mappings from CRM to hydrate fields on child record from a parent.
+        /// </summary>
+        /// <param name="service">The service.</param>
+        /// <param name="parentEntity">The Parent Entity.</param>
+        /// <param name="childLogicalName">The logical name of the child</param>
+        /// <param name="targetFieldType">The Target Field Type</param>
+        /// <returns></returns>
+        public static Entity InitializeFrom(this IOrganizationService service, EntityReference parentEntity, string childLogicalName, TargetFieldType targetFieldType = TargetFieldType.All)
+        {
+            var initialize = new InitializeFromRequest
+            {
+                TargetEntityName = childLogicalName,
+                EntityMoniker = parentEntity,
+                TargetFieldType = targetFieldType
+            };
+            var initialized = (InitializeFromResponse)service.Execute(initialize);
+
+            return initialized.Entity;
+        }
+
+        /// <summary>
+        /// Utilizes the standard OOB Mappings from CRM to hydrate fields on child record from a parent.
+        /// </summary>
+        /// <typeparam name="T">The Entity Type to Return</typeparam>
+        /// <param name="service">The service.</param>
+        /// <param name="parentEntity">The Parent Entity.</param>
+        /// <param name="targetFieldType">The Target Field Type</param>
+        /// <returns></returns>
+        public static T InitializeFrom<T>(this IOrganizationService service, EntityReference parentEntity, TargetFieldType targetFieldType = TargetFieldType.All) where T: Entity
+        {
+            var initialize = new InitializeFromRequest
+            {
+                TargetEntityName = EntityHelper.GetEntityLogicalName<T>(),
+                EntityMoniker = parentEntity,
+                TargetFieldType = targetFieldType
+            };
+            var initialized = (InitializeFromResponse)service.Execute(initialize);
+
+            return initialized.Entity.ToEntity<T>();
+        }
+
+        #endregion InitializeFrom
+
         /// <summary>
         /// Currently only tested against System Users.  Not sure if it will work with other entities
         /// </summary>
