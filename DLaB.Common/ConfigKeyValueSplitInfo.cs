@@ -3,27 +3,15 @@
     /// <summary>
     /// Settings used to control how a Key/Value config setting is parsed.  
     /// </summary>
-    public class ConfigKeyValueSplitInfo
+    public class ConfigKeyValueSplitInfo : ConfigValuesSplitInfo
     {
-        private static ConfigKeyValueSplitInfo @default = new ConfigKeyValueSplitInfo();
-        internal static ConfigKeyValueSplitInfo Default { get { return @default; } }
+        internal new static ConfigKeyValueSplitInfo Default { get; } = new ConfigKeyValueSplitInfo();
 
-        /// <summary>
-        /// The Default Entry Seperator
-        /// </summary>
-        public const char Entry_Seperator = '|';
         /// <summary>
         /// The Default Key/Value Seperator
         /// </summary>
-        public const char KeyValue_Seperator = ':';
+        public const char KeyValueSeperator = ':';
 
-        /// <summary>
-        /// Gets or sets the entry seperators.
-        /// </summary>
-        /// <value>
-        /// The entry seperators.
-        /// </value>
-        public char[] EntrySeperators { get; set; }
         /// <summary>
         /// Gets or sets the key value seperators.
         /// </summary>
@@ -39,13 +27,6 @@
         ///   <c>true</c> if [convert keys to lower]; otherwise, <c>false</c>.
         /// </value>
         public bool ConvertKeysToLower { get; set; }
-        /// <summary>
-        /// Gets or sets a value indicating whether [convert values to lower].
-        /// </summary>
-        /// <value>
-        /// <c>true</c> if [convert values to lower]; otherwise, <c>false</c>.
-        /// </value>
-        public bool ConvertValuesToLower { get; set; }
 
         /// <summary>
         /// Defaults to splitting entries by "|", and Key/values by ":", lower casing the keys.<para />
@@ -54,28 +35,13 @@
         /// </summary>
         public ConfigKeyValueSplitInfo()
         {
-            EntrySeperators = new[] { Entry_Seperator };
-            KeyValueSeperators = new[] { KeyValue_Seperator };
+            KeyValueSeperators = new[] { KeyValueSeperator };
             ConvertKeysToLower = true;
-            ConvertValuesToLower = false;
         }
 
         internal T ParseKey<T>(string key)
         {
-            if(key == null)
-            {
-                return default(T);
-            }
-            return (ConvertKeysToLower ? key.ToLower() : key).ParseOrConvertString<T>();
-        }
-
-        internal T ParseValue<T>(string value)
-        {
-            if (value == null)
-            {
-                return default(T);
-            }
-            return (ConvertValuesToLower ? value.ToLower() : value).ParseOrConvertString<T>();
+            return key == null ? default(T) : (ConvertKeysToLower ? key.ToLower() : key).ParseOrConvertString<T>();
         }
     }
 }
