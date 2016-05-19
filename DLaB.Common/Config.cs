@@ -638,7 +638,7 @@ namespace DLaB.Common
         /// <returns>
         /// A <see cref="string" /> that represents this instance.
         /// </returns>
-        public static string ToString<T>(List<T> list, ConfigKeyValueSplitInfo info = null, Func<T, string> getString = null)
+        public static string ToString<T>(IEnumerable<T> list, ConfigKeyValueSplitInfo info = null, Func<T, string> getString = null)
         {
             info = info ?? ConfigKeyValuesSplitInfo.Default;
             getString = getString ?? ToStringDefault;
