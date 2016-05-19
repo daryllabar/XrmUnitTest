@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.ServiceModel;
@@ -541,7 +542,7 @@ namespace DLaB.Xrm.LocalCrm
         private static void PopulateFormattedValues<T>(Entity entity) where T : Entity
         {
             // TODO: Handle Names?
-            if(!entity.Attributes.Values.Any(v => v is OptionSetValue || (v as AliasedValue)?.Value is OptionSetValue))
+            if (!entity.Attributes.Values.Any(HasFormattedAttribute))
             {
                 return;
             }
@@ -550,7 +551,11 @@ namespace DLaB.Xrm.LocalCrm
             foreach (var osvAttribute in entity.Attributes.Where(a => a.Value is OptionSetValue || (a.Value as AliasedValue)?.Value is OptionSetValue))
             {
                 PropertyInfo property;
-                if (!properties.TryGetValue(osvAttribute.Key + "enum", out property))
+                if (osvAttribute.Key == Email.Fields.StateCode)
+                {
+                    property = properties[osvAttribute.Key];
+                }
+                else if (!properties.TryGetValue(osvAttribute.Key + "enum", out property))
                 {
                     var aliased = osvAttribute.Value as AliasedValue;
                     if (aliased == null)
@@ -568,6 +573,36 @@ namespace DLaB.Xrm.LocalCrm
                 }
                 entity.FormattedValues.Add(osvAttribute.Key, property.GetValue(entity).ToString());
             }
+            foreach (var stringyAttribute in entity.Attributes.Where(a => !(a.Value is OptionSetValue)
+                                                                          && !((a.Value as AliasedValue)?.Value is OptionSetValue)
+                                                                          && HasFormattedAttribute(a.Value)))
+            {
+                var att = (stringyAttribute.Value as AliasedValue)?.Value ?? stringyAttribute.Value;
+                if (att is Money)
+                {
+                    att = (att as Money).Value.ToString("C", CultureInfo.CurrentCulture);
+                }
+                if (att is DateTime)
+                {
+                    att = ((DateTime)att).ToString("g");
+                }
+                entity.FormattedValues.Add(stringyAttribute.Key, att.ToString());
+            }
+        }
+
+        private static bool HasFormattedAttribute(object value)
+        {
+            while (value != null)
+            {
+                var aliased = value as AliasedValue;
+                if (aliased == null)
+                {
+                    return value is OptionSetValue || value is Money || value is bool? || value is DateTime;
+                }
+                value = aliased.Value;
+            }
+
+            return false;
         }
 
         private static IQueryable<T> ApplyFilter<T>(IQueryable<T> query, FilterExpression filter) where T : Entity
