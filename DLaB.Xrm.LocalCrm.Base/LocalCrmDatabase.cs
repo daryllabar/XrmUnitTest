@@ -22,10 +22,10 @@ namespace DLaB.Xrm.LocalCrm
     [DebuggerNonUserCode]
     internal partial class LocalCrmDatabase : Database
     {
-        private readonly static LocalCrmDatabase Default = new LocalCrmDatabase();
-        private readonly static ConcurrentDictionary<string, LocalCrmDatabase> Databases = new ConcurrentDictionary<string, LocalCrmDatabase>();
-        private readonly ConcurrentDictionary<string, ITable> _tables = new ConcurrentDictionary<string, ITable>();
+        private static readonly LocalCrmDatabase Default = new LocalCrmDatabase();
+        private static readonly ConcurrentDictionary<string, LocalCrmDatabase> Databases = new ConcurrentDictionary<string, LocalCrmDatabase>();
         private static readonly object DatabaseCreationLock = new object();
+        private readonly ConcurrentDictionary<string, ITable> _tables = new ConcurrentDictionary<string, ITable>();
 
         private static ITable<T> SchemaGetOrCreate<T>(LocalCrmDatabaseInfo info) where T : Entity
         {
