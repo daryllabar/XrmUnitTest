@@ -163,7 +163,7 @@ namespace DLaB.Xrm.Plugin
 
             context.TraceFormat("{0}.{1} is Executing for Entity: {2}, Message: {3}",
                 context.PluginTypeName,
-                execute.Method.Name,
+                context.Event.ExecuteMethodName,
                 context.PrimaryEntityName,
                 context.MessageName);
 

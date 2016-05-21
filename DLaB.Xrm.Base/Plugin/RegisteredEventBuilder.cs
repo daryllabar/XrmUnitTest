@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Plugin
         /// <value>
         /// The entity logical names.
         /// </value>
-        protected List<String> EntityLogicalNames { get; set; }
+        protected List<string> EntityLogicalNames { get; set; }
         /// <summary>
         /// Gets or sets the execute.
         /// </summary>
@@ -23,6 +23,14 @@ namespace DLaB.Xrm.Plugin
         /// The execute.
         /// </value>
         protected Action<IExtendedPluginContext> Execute { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the Execute method for logging purposes.
+        /// </summary>
+        /// <value>
+        /// The name of the execute method.
+        /// </value>
+        protected string ExecuteMethodName { get; set; }
         /// <summary>
         /// Gets or sets the message types.
         /// </summary>
@@ -47,7 +55,7 @@ namespace DLaB.Xrm.Plugin
         {
             if (!messageTypes.Any())
             {
-                throw new ArgumentException("messageTypes must contain at least one value", "messageTypes");
+                throw new ArgumentException("messageTypes must contain at least one value", nameof(messageTypes));
             }
 
             EntityLogicalNames = new List<string>();
@@ -63,7 +71,7 @@ namespace DLaB.Xrm.Plugin
         /// </summary>
         /// <param name="logicalnames">The logicalnames.</param>
         /// <returns></returns>
-        public RegisteredEventBuilder ForEntities(params String[] logicalnames)
+        public RegisteredEventBuilder ForEntities(params string[] logicalnames)
         {
             EntityLogicalNames.AddRange(logicalnames);
             return this;
@@ -76,6 +84,7 @@ namespace DLaB.Xrm.Plugin
         /// <returns></returns>
         public RegisteredEventBuilder WithExecuteAction<T>(Action<T> execute) where T : IExtendedPluginContext
         {
+            ExecuteMethodName = execute.Method.Name;
             Execute = context => execute((T)context);
             return this;
         }
@@ -87,6 +96,7 @@ namespace DLaB.Xrm.Plugin
         /// <returns></returns>
         public RegisteredEventBuilder WithExecuteAction(Action<IExtendedPluginContext> execute)
         {
+            ExecuteMethodName = execute.Method.Name;
             Execute = execute;
             return this;
         }
@@ -104,11 +114,17 @@ namespace DLaB.Xrm.Plugin
             {
                 if (EntityLogicalNames.Any())
                 {
-                    events.AddRange(EntityLogicalNames.Select(logicalName => new RegisteredEvent(Stage, messageType, Execute, logicalName)));
+                    events.AddRange(EntityLogicalNames.Select(logicalName => new RegisteredEvent(Stage, messageType, Execute, logicalName)
+                                                                                 {
+                                                                                     ExecuteMethodName = ExecuteMethodName
+                                                                                 }));
                 }
                 else
                 {
-                    events.Add(new RegisteredEvent(Stage, messageType, Execute));
+                    events.Add(new RegisteredEvent(Stage, messageType, Execute)
+                                   {
+                                       ExecuteMethodName = ExecuteMethodName
+                                   });
                 }
             }
 
