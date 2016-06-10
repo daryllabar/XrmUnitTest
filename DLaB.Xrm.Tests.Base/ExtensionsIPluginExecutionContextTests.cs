@@ -11,11 +11,12 @@ namespace DLaB.Xrm.Tests
     public class ExtensionsIPluginExecutionContextTests
     {
         [TestMethod]
-        public void Extensions_IPluginExecutionContext_GetTarget_ForHijackedUpdate()
+        public void Extensions_IPluginExecutionContext_GetTarget()
         {
             // Currently I believe this to be a issue with CRM, where the Parent Plugin Context contain the actual Target, for the post operation.
             // https://social.microsoft.com/Forums/en-US/19435dde-31ad-419d-826c-3f4e89ce6370/when-does-the-parent-plugin-context-contain-the-actual-target?forum=crm
             //
+            // Update Finally understood, changings this to return what it should
             // Arrange
             //
             var target = new Lead
@@ -48,7 +49,7 @@ namespace DLaB.Xrm.Tests
             //
             // Assert
             //
-            Assert.AreEqual(target.FirstName, pluginTarget.FirstName);
+            Assert.AreNotEqual(target.FirstName, pluginTarget.FirstName);
 
         }
     }

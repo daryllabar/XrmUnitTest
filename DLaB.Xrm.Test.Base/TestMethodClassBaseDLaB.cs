@@ -288,7 +288,7 @@ namespace DLaB.Xrm.Test
         #endregion Assumptions
 
         private static bool IsLoaded { get; set; }
-        private static readonly object IsLoadedLock = new Object();
+        private static readonly object IsLoadedLock = new object();
         private static void LoadConfigurationSettingsOnce(TestMethodClassBaseDLaB value)
         {
             if (IsLoaded) return;

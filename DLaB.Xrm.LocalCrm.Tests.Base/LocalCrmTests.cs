@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.ServiceModel;
 using DLaB.Common;
@@ -403,15 +404,26 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void LocalCrmTests_FormattedValuePopulated()
         {
             var service = GetService();
-            var id = service.Create(new Lead {BudgetStatusEnum = BudgetStatus.CanBuy});
+            var lead = new Lead
+            {
+                BudgetStatusEnum = BudgetStatus.CanBuy,
+                StatusCodeEnum = Lead_StatusCode.New,
+                StateCode = LeadState.Open,
+                BudgetAmount = new Money(10.05m)
+            };
+            var id = service.Create(lead);
 
-            // Retrieve
-            var entity = service.GetEntity<Lead>(id);
-            Assert.AreEqual(BudgetStatus.CanBuy.ToString(), entity.GetFormattedAttributeValueOrNull(Lead.Fields.BudgetStatus));
+            LocalCrmTests_FormattedValuesPopulated_Assert(lead, service.GetEntity<Lead>(id));
+            LocalCrmTests_FormattedValuesPopulated_Assert(lead, service.GetEntitiesById<Lead>(id).Single());
+        }
 
-            // RetrieveMultiple
-            entity = service.GetEntitiesById<Lead>(id).Single();
-            Assert.AreEqual(BudgetStatus.CanBuy.ToString(), entity.GetFormattedAttributeValueOrNull(Lead.Fields.BudgetStatus));
+        private void LocalCrmTests_FormattedValuesPopulated_Assert(Lead expected, Lead actual)
+        {
+            Assert.AreEqual(expected.BudgetStatusEnum.ToString(), actual.GetFormattedAttributeValueOrNull(Lead.Fields.BudgetStatus));
+            Assert.AreEqual(expected.StatusCodeEnum.ToString(), actual.GetFormattedAttributeValueOrNull(Lead.Fields.StatusCode));
+            Assert.AreEqual(expected.StateCode.ToString(), actual.GetFormattedAttributeValueOrNull(Lead.Fields.StateCode));
+            Assert.AreEqual(expected.BudgetAmount.Value.ToString("C", CultureInfo.CurrentCulture), actual.GetFormattedAttributeValueOrNull(Lead.Fields.BudgetAmount));
+
         }
 
         [TestMethod]

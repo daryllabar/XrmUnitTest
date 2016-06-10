@@ -23,7 +23,6 @@ namespace DLaB.Common.Tests
             Assert.IsNull(SingleTestString.SubstringByString(0, "b"));
             Assert.IsNull(SingleTestString.SubstringByString(0, "b", out endIndex));
             Assert.AreEqual(-1, endIndex);
-
         }
 
         [TestMethod]

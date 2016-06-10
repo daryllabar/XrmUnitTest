@@ -11,13 +11,12 @@ namespace DLaB.Common
     /// </summary>
     public class ConfigKeyValuesSplitInfo : ConfigKeyValueSplitInfo
     {
-        private static readonly ConfigKeyValuesSplitInfo @default = new ConfigKeyValuesSplitInfo();
-        internal static new ConfigKeyValuesSplitInfo Default { get { return @default; } }
+        internal new static ConfigKeyValuesSplitInfo Default { get; } = new ConfigKeyValuesSplitInfo();
 
         /// <summary>
         /// The Default Entry Values Seperator
         /// </summary>
-        public const char EntryValues_Sperator = ',';
+        public const char EntryValuesSperator = ',';
         /// <summary>
         /// Gets or sets the entry values seperators.
         /// </summary>
@@ -33,7 +32,7 @@ namespace DLaB.Common
         /// </summary>
         public ConfigKeyValuesSplitInfo()
         {
-            EntryValuesSeperators = new[] { EntryValues_Sperator };
+            EntryValuesSeperators = new[] { EntryValuesSperator };
         }
     }
 }

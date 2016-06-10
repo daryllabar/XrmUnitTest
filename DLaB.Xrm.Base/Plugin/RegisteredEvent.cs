@@ -44,6 +44,17 @@ namespace DLaB.Xrm.Plugin
         /// </value>
         public Action<IExtendedPluginContext> Execute { get; set; }
 
+        private string _executeMethodName;
+        /// <summary>
+        /// Gets or sets the Execute's Method Name for logging purposes.
+        /// </summary>
+        /// <value>
+        /// The execute.
+        /// </value>
+        public string ExecuteMethodName {
+            get { return _executeMethodName ?? Execute?.Method.Name ?? "Execute"; }
+            set { _executeMethodName = value; } }
+
         /// <summary>
         /// Defaults the execute method to be InternalExecute and run against all entities.
         /// </summary>

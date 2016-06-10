@@ -47,28 +47,28 @@
       <HintPath>..\packages\Microsoft.CrmSdk.Extensions.7.1.0.1\lib\net45\AntiXSSLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DLaB.Common, Version=1.0.1.8, Culture=neutral, PublicKeyToken=046d6d5d1685e1b4, processorArchitecture=MSIL">
-      <HintPath>..\packages\DLaB.Common.1.0.1.8\lib\net452\DLaB.Common.dll</HintPath>
+    <Reference Include="DLaB.Common, Version=1.0.1.12, Culture=neutral, PublicKeyToken=046d6d5d1685e1b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\DLaB.Common.1.0.1.12\lib\net452\DLaB.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DLaB.Xrm.2016, Version=1.1.6.4, Culture=neutral, PublicKeyToken=4da76fa437c5906e, processorArchitecture=MSIL">
-      <HintPath>..\packages\DLaB.Xrm.2016.1.1.6.4\lib\net452\DLaB.Xrm.2016.dll</HintPath>
+    <Reference Include="DLaB.Xrm.2016, Version=1.1.7.6, Culture=neutral, PublicKeyToken=4da76fa437c5906e, processorArchitecture=MSIL">
+      <HintPath>..\packages\DLaB.Xrm.2016.1.1.7.6\lib\net452\DLaB.Xrm.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DLaB.Xrm.Client.2016, Version=1.1.6.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XrmUnitTest.2016.1.1.6-alpha02\lib\net452\DLaB.Xrm.Client.2016.dll</HintPath>
+    <Reference Include="DLaB.Xrm.Client.2016, Version=1.1.7.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XrmUnitTest.2016.1.1.7.6\lib\net452\DLaB.Xrm.Client.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DLaB.Xrm.LocalCrm.2016, Version=1.1.6.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XrmUnitTest.2016.1.1.6-alpha02\lib\net452\DLaB.Xrm.LocalCrm.2016.dll</HintPath>
+    <Reference Include="DLaB.Xrm.LocalCrm.2016, Version=1.1.7.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XrmUnitTest.2016.1.1.7.6\lib\net452\DLaB.Xrm.LocalCrm.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DLaB.Xrm.Test.2016, Version=1.1.6.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XrmUnitTest.2016.1.1.6-alpha02\lib\net452\DLaB.Xrm.Test.2016.dll</HintPath>
+    <Reference Include="DLaB.Xrm.Test.2016, Version=1.1.7.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XrmUnitTest.2016.1.1.7.6\lib\net452\DLaB.Xrm.Test.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.8.0.1\lib\net45\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
+      <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.8.1.0\lib\net45\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -257,15 +257,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Xrm.Sdk, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.8.0.1\lib\net45\Microsoft.Xrm.Sdk.dll</HintPath>
+      <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.8.1.0\lib\net45\Microsoft.Xrm.Sdk.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Xrm.Sdk.Deployment, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CrmSdk.Deployment.8.0.1\lib\net45\Microsoft.Xrm.Sdk.Deployment.dll</HintPath>
+      <HintPath>..\packages\Microsoft.CrmSdk.Deployment.8.1.0\lib\net45\Microsoft.Xrm.Sdk.Deployment.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Xrm.Sdk.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CrmSdk.Workflow.8.0.1\lib\net45\Microsoft.Xrm.Sdk.Workflow.dll</HintPath>
+      <HintPath>..\packages\Microsoft.CrmSdk.Workflow.8.1.0\lib\net45\Microsoft.Xrm.Sdk.Workflow.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
