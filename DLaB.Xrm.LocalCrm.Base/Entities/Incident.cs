@@ -1,4 +1,4 @@
-﻿// ReSharper disable InconsistentNaming
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace DLaB.Xrm.LocalCrm.Entities
 {
@@ -15,6 +15,7 @@ namespace DLaB.Xrm.LocalCrm.Entities
         Canceled = 2,
     }
 
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     internal class Incident
     {
         public struct Fields

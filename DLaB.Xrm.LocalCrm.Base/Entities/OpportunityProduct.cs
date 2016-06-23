@@ -1,5 +1,8 @@
-﻿namespace DLaB.Xrm.LocalCrm.Entities
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace DLaB.Xrm.LocalCrm.Entities
 {
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     internal class OpportunityProduct
     {
         public struct Fields
@@ -65,7 +68,6 @@
             public const string productAssociation_opportunity_product = "productAssociation_opportunity_product";
             public const string transactioncurrency_opportunityproduct = "transactioncurrency_opportunityproduct";
             public const string unit_of_measurement_opportunity_products = "unit_of_measurement_opportunity_products";
-
         }
 
         public const string EntityLogicalName = "opportunityproduct";

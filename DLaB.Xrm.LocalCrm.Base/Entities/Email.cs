@@ -1,5 +1,8 @@
-﻿namespace DLaB.Xrm.LocalCrm.Entities
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace DLaB.Xrm.LocalCrm.Entities
 {
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     internal class Email
     {
         public struct Fields

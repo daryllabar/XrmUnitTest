@@ -16,16 +16,8 @@ namespace DLaB.Xrm.LocalCrm.Tests
 {
 
     [TestClass]
-    public class LocalCrmTests
+    public class LocalCrmTests : BaseTestClass
     {
-        private static IOrganizationService GetService(bool createUnique = true, Guid? businessUnitId = null)
-        {
-            var info = createUnique
-                ? LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString(), userBusinessUnit: businessUnitId)
-                : LocalCrmDatabaseInfo.Create<CrmContext>(userBusinessUnit: businessUnitId);
-            return new LocalCrmDatabaseOrganizationService(info);
-        }
-
         [TestMethod]
         public void LocalCrmTests_RetrieveById()
         {
@@ -43,6 +35,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         {
             var service = GetService();
             var johnId = service.Create(new Contact {FirstName = "John"});
+            // ReSharper disable once UnusedVariable
             var janeId = service.Create(new Contact {FirstName = "Jane"});
 
             // Happy Path

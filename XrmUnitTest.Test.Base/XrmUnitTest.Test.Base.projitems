@@ -14,6 +14,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Builders\CrmEnvironmentBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\EntityBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\LeadBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\OrganizationServiceBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\PluginExecutionContextBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\ServiceProviderBuilder.cs" />

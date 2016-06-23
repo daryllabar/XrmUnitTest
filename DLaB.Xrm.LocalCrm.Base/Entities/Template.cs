@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System.Diagnostics.CodeAnalysis;
 
 namespace DLaB.Xrm.LocalCrm.Entities
 {
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     internal class Template
     {
         public struct Fields

@@ -1,6 +1,8 @@
-﻿// ReSharper disable InconsistentNaming
+﻿using System.Diagnostics.CodeAnalysis;
+
 namespace DLaB.Xrm.LocalCrm.Entities
 {
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     internal class BusinessUnit
     {
         public struct Fields

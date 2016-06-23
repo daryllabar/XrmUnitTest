@@ -12,6 +12,8 @@
     <None Include="$(MSBuildThisFileDirectory)app.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)BaseTestClass.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabaseOrganizationServiceExecuteTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmTests.cs" />
   </ItemGroup>
 </Project>
