@@ -250,6 +250,8 @@ namespace DLaB.Xrm
 
                     case "customerrelationship":
                         info.AttributeName = "customerroleidname";
+                        info.ReadOnly = true;
+                        info.IsAttributeOf = true;
                         break;
 
                     case "importjob":
@@ -271,6 +273,7 @@ namespace DLaB.Xrm
                     case "lead":
                     case "systemuser":
                         info.AttributeName = "fullname";
+                        info.ReadOnly = true;
                         break;
 
                     case "solution":
@@ -362,6 +365,8 @@ namespace DLaB.Xrm
                     case "activityparty":
                         info.AttributeName = "partyidname";
                         info.MaximumLength = 400;
+                        info.ReadOnly = true;
+                        info.IsAttributeOf = true;
                         break;
 
                     case "invoicedetail":
@@ -370,6 +375,8 @@ namespace DLaB.Xrm
                     case "quotedetail":
                     case "salesorderdetail":
                         info.AttributeName = "productidname";
+                        info.ReadOnly = true;
+                        info.IsAttributeOf = true;
                         break;
 
                     case "socialprofile":
@@ -378,6 +385,8 @@ namespace DLaB.Xrm
 
                     case "postfollow":
                         info.AttributeName = "regardingobjectidname";
+                        info.ReadOnly = true;
+                        info.IsAttributeOf = true;
                         info.MaximumLength = 4000;
                         break;
 
@@ -472,7 +481,25 @@ namespace DLaB.Xrm
             public PrimaryFieldInfo()
             {
                 MaximumLength = 100;
+                ReadOnly = false;
+                IsAttributeOf = false;
             }
+
+            /// <summary>
+            /// Gets or sets a value indicating whether the name field is [read only].
+            /// </summary>
+            /// <value>
+            ///   <c>true</c> if [read only]; otherwise, <c>false</c>.
+            /// </value>
+            public bool ReadOnly { get; set; }
+
+            /// <summary>
+            /// Gets or sets a value indicating whether the name field is an is attribute of another entity, and therefor, not created via standard Early Bound Generation.
+            /// </summary>
+            /// <value>
+            /// <c>true</c> if this instance is attribute of; otherwise, <c>false</c>.
+            /// </value>
+            public bool IsAttributeOf { get; set; }
         }
 
         #endregion Determine Entity Attribute Name Name
