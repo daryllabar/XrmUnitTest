@@ -407,7 +407,7 @@ namespace DLaB.Xrm.Test.Builders
                 {
                     var info = EntityHelper.GetPrimaryFieldInfo(logicalName);
 
-                    if (info.AttributeName != null && !e.Attributes.ContainsKey(info.AttributeName))
+                    if (info.AttributeName != null && !e.Attributes.ContainsKey(info.AttributeName) && !info.IsAttributeOf)
                     {
                         var name = getName(e, info);
                         e[info.AttributeName] = name.PadRight(info.MaximumLength).Substring(0, info.MaximumLength).TrimEnd();

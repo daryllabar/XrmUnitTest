@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -444,11 +443,11 @@ namespace DLaB.Xrm.LocalCrm
             /// <summary>
             /// Gets the properties by attribute and relationship attributes where the referencing type is of the matching relationship entity.
             /// </summary>
-            /// <param name="logicalName">Name of the logical.</param>
+            /// <param name="type">Type of the entity to lookup that properties of.</param>
             /// <param name="matchingRelationshipEntityLogicalName">Name of the matching relationship entity logical.</param>
             /// <param name="propertiesByAttribute">The properties by attribute.</param>
             /// <param name="relationshipProperties">The relationship properties.</param>
-            public static void GetPropertiesByAttributeWithMatchingRelationships(Type type,
+            public static void GetPropertiesByAttributeWithMatchingRelationships(IReflect type,
                                                                                  string matchingRelationshipEntityLogicalName,
                                                                                  out Dictionary<string, PropertyInfo> propertiesByAttribute,
                                                                                  out List<string> relationshipProperties)
