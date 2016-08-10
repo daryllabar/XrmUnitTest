@@ -69,7 +69,7 @@ namespace DLaB.Xrm.Test
             // Find all nested Ids
             var nestedIds = new Dictionary<string, List<Id>>();
             foreach (var id in GetType().GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic).SelectMany(Extensions.GetIds)) {
-                nestedIds.AddOrAppend(id);
+                nestedIds.AddOrAppend(id, id);
             }
 
             // Add the nested Ids' Logical Names to the Mapper
@@ -173,7 +173,7 @@ namespace DLaB.Xrm.Test
                         ActiveOnly = false,
                         Columns = new ColumnSet(false),
                     }).
-                    WhereIn(EntityHelper.GetIdAttributeName(entityType.Key), entityType.Value);
+                    WhereIn(EntityHelper.GetIdAttributeName(entityType.Key), entityType.Value.Select(i => i.EntityId));
 
                 foreach (var entity in service.RetrieveMultiple(qe).Entities)
                 {

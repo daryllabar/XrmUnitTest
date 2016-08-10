@@ -607,7 +607,7 @@ namespace DLaB.Xrm.Test
         /// <param name="entity">The entity.</param>
         /// <param name="message">The message.</param>
         [DebuggerHidden]
-        public static void NotExist(IOrganizationService service, Entity entity, string message)
+        public static void NotExists(IOrganizationService service, Entity entity, string message)
         {
             NotExists(service, entity, message, null);
         }
