@@ -944,6 +944,26 @@ namespace DLaB.Xrm
 
         #endregion Associate
 
+        #region CreateWithSupressDuplicateDetection
+
+        /// <summary>
+        /// Creates a record with SupressDuplicateDetection Enabled to Ignore any potential Duplicates Created
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public static Guid CreateWithSupressDuplicateDetection(this IOrganizationService service, Entity entity)
+        {
+            var response = (CreateResponse)service.Execute(new CreateRequest
+                                                           {
+                                                               Target = entity,
+                                                               ["SuppressDuplicateDetection"] = true
+                                                           });
+            return response.id;
+        }
+
+        #endregion CreateWithSupressDuplicateDetection
+
         #region Delete
 
         /// <summary>
@@ -1421,7 +1441,6 @@ namespace DLaB.Xrm
             return proxy.ServiceConfiguration?.CurrentServiceEndpoint.Address.Uri;
         }
 
-
         #region InitializeFrom
 
         /// <summary>
@@ -1540,6 +1559,25 @@ namespace DLaB.Xrm
 
             return exists;
         }
+
+        #region UpdateWithSupressDuplicateDetection
+
+        /// <summary>
+        /// Creates a record with SupressDuplicateDetection Enabled to Ignore any potential Duplicates Created
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public static void UpdateWithSupressDuplicateDetection(this IOrganizationService service, Entity entity)
+        {
+            service.Execute(new UpdateRequest
+            {
+                Target = entity,
+                ["SuppressDuplicateDetection"] = true
+            });
+        }
+
+        #endregion CreateWithSupressDuplicateDetection
 
         #endregion IOrganizationService
 
