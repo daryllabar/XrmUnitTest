@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 
 namespace DLaB.Common
@@ -26,7 +25,7 @@ namespace DLaB.Common
         {
             try
             {
-                var config = ConfigurationManager.AppSettings[appSetting];
+                var config = ConfigProvider.Instance[appSetting];
                 return config == null ? defaultValue : config.ParseOrConvertString<T>();
             }
             catch (Exception ex)
@@ -49,7 +48,7 @@ namespace DLaB.Common
         {
             try
             {
-                var config = ConfigurationManager.AppSettings[appSetting];
+                var config = ConfigProvider.Instance[appSetting];
                 return config == null ? getDefault() : config.ParseOrConvertString<T>();
             }
             catch (Exception ex)
@@ -70,7 +69,7 @@ namespace DLaB.Common
         {
             try
             {
-                var config = ConfigurationManager.AppSettings[appSetting];
+                var config = ConfigProvider.Instance[appSetting];
 
                 if (config == null)
                 {
@@ -122,7 +121,7 @@ namespace DLaB.Common
         {
             try
             {
-                var config = ConfigurationManager.AppSettings[appSetting];
+                var config = ConfigProvider.Instance[appSetting];
                 if (config == null)
                 {
                     return defaultValue;
@@ -173,7 +172,7 @@ namespace DLaB.Common
         {
             try
             {
-                var config = ConfigurationManager.AppSettings[appSetting];
+                var config = ConfigProvider.Instance[appSetting];
                 return config == null ? defaultValue : GetList<T>(config, info);
             }
             catch (Exception ex)
@@ -195,7 +194,7 @@ namespace DLaB.Common
         {
             try
             {
-                var config = ConfigurationManager.AppSettings[appSetting] ?? defaultValue;
+                var config = ConfigProvider.Instance[appSetting] ?? defaultValue;
                 return GetList<T>(config, info);
             }
             catch (Exception ex)
@@ -217,7 +216,7 @@ namespace DLaB.Common
         {
             try
             {
-                var config = ConfigurationManager.AppSettings[appSetting];
+                var config = ConfigProvider.Instance[appSetting];
                 return config == null ? getDefaultValue() : GetList<T>(config, info);
             }
             catch (Exception ex)
@@ -255,7 +254,7 @@ namespace DLaB.Common
         {
             try
             {
-                var config = ConfigurationManager.AppSettings[appSetting];
+                var config = ConfigProvider.Instance[appSetting];
                 return config == null ? getDefault() : GetDictionary<TKey, TValue>(info, config);
             }
             catch (Exception ex)
@@ -283,7 +282,7 @@ namespace DLaB.Common
         {
             try
             {
-                var config = ConfigurationManager.AppSettings[appSetting];
+                var config = ConfigProvider.Instance[appSetting];
                 return config == null ? defaultValue : GetDictionary<TKey, TValue>(info, config);
             }
             catch (Exception ex)
@@ -311,7 +310,7 @@ namespace DLaB.Common
         {
             try
             {
-                return GetDictionary<TKey, TValue>(info, ConfigurationManager.AppSettings[appSetting] ?? defaultValue);
+                return GetDictionary<TKey, TValue>(info, ConfigProvider.Instance[appSetting] ?? defaultValue);
             }
             catch (Exception ex)
             {
@@ -352,7 +351,7 @@ namespace DLaB.Common
         {
             try
             {
-                var config = ConfigurationManager.AppSettings[appSetting];
+                var config = ConfigProvider.Instance[appSetting];
                 return config == null ? defaultValue : GetDictionaryList<TKey, TValue>(info, config);
             }
             catch (Exception ex)
@@ -380,7 +379,7 @@ namespace DLaB.Common
         {
             try
             {
-                var config = ConfigurationManager.AppSettings[appSetting] ?? defaultValue;
+                var config = ConfigProvider.Instance[appSetting] ?? defaultValue;
                 return GetDictionaryList<TKey, TValue>(info, config);
             }
             catch (Exception ex)
@@ -408,7 +407,7 @@ namespace DLaB.Common
         {
             try
             {
-                var config = ConfigurationManager.AppSettings[appSetting];
+                var config = ConfigProvider.Instance[appSetting];
                 return config == null ? getDefault() : GetDictionaryList<TKey, TValue>(info, config);
             }
             catch (Exception ex)
@@ -456,7 +455,7 @@ namespace DLaB.Common
         {
             try
             {
-                var config = ConfigurationManager.AppSettings[appSetting];
+                var config = ConfigProvider.Instance[appSetting];
                 return config == null ? defaultValue : GetDictionaryHash<TKey, TValue>(info, config);
             }
             catch (Exception ex)
@@ -484,7 +483,7 @@ namespace DLaB.Common
         {
             try
             {
-                var config = ConfigurationManager.AppSettings[appSetting] ?? defaultValue;
+                var config = ConfigProvider.Instance[appSetting] ?? defaultValue;
                 return GetDictionaryHash<TKey, TValue>(info, config);
             }
             catch (Exception ex)
@@ -512,7 +511,7 @@ namespace DLaB.Common
         {
             try
             {
-                var config = ConfigurationManager.AppSettings[appSetting];
+                var config = ConfigProvider.Instance[appSetting];
                 return config == null ? getDefault() : GetDictionaryHash<TKey, TValue>(info, config);
             }
             catch (Exception ex)
@@ -554,7 +553,7 @@ namespace DLaB.Common
         {
             try
             {
-                var config = ConfigurationManager.AppSettings[appSetting];
+                var config = ConfigProvider.Instance[appSetting];
                 if (config != null)
                 {
                     return GetHashSet<T>(config, info);
@@ -579,7 +578,7 @@ namespace DLaB.Common
         {
             try
             {
-                var config = ConfigurationManager.AppSettings[appSetting];
+                var config = ConfigProvider.Instance[appSetting];
                 if (config == null)
                 {
                     return defaultValue;
@@ -604,7 +603,7 @@ namespace DLaB.Common
         {
             try
             {
-                return GetHashSet<T>(ConfigurationManager.AppSettings[appSetting] ?? defaultValue, info);
+                return GetHashSet<T>(ConfigProvider.Instance[appSetting] ?? defaultValue, info);
             }
             catch (Exception ex)
             {
