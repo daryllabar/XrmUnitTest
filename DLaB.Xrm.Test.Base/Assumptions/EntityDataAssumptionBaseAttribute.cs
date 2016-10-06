@@ -218,7 +218,7 @@ namespace DLaB.Xrm.Test.Assumptions
                     (mock == null && !(service is LocalCrmDatabaseOrganizationService)) ||
                     FileIsNullOrEmpty(GetSerializedFilePath(AssumptionsNamespaceRelativePath)))
                 {
-                    throw new Exception(string.Format("Assumption {0} made an ass out of you and me.  The entity assumed to be there, was not found.", AssumptionsNamespaceRelativePath));
+                    throw new Exception($"Assumption {AssumptionsNamespaceRelativePath} was invalid!  The entity assumed to be there, was not found.");
                 }
 
                 entity = GetTestEntityFromXml(AssumptionsNamespaceRelativePath);

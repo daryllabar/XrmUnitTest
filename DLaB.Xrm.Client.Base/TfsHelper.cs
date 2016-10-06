@@ -18,13 +18,13 @@ namespace DLaB.Xrm.Client
         /// </summary>
         /// <param name="filePath">The file path.</param>
         /// <param name="contents">The contents.</param>
-        /// <exception cref="System.ArgumentException">File Path cannot be contain a directory that is null or empty!;filePath</exception>
+        /// <exception cref="System.ArgumentException">File Path cannot contain a directory that is null or empty!</exception>
         public static void CheckoutAndUpdateFileIfDifferent(string filePath, string contents)
         {
             var dir = Path.GetDirectoryName(filePath);
             if (string.IsNullOrWhiteSpace(dir))
             {
-                throw new ArgumentException("File Path cannot be contain a directory that is null or empty!", "filePath");
+                throw new ArgumentException($"File Path \"{filePath}\" contains a directory that is null or empty!", nameof(filePath));
             }
 
             if (!Directory.Exists(dir))
