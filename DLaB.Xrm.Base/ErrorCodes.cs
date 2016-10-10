@@ -3,9 +3,9 @@
 //  Summary:	Contains helper types for building queries.
 // =====================================================================
 //
-//  This file is part of the Microsoft CRM V4 SDK Code Samples.
+//  This file is part of the Microsoft CRM SDK Code Samples.
 //
-//  Copyright (C) 2007 Microsoft Corporation.  All rights reserved.
+//  Copyright (C) Microsoft Corporation.  All rights reserved.
 //
 //  This source code is intended only as a supplement to Microsoft
 //  Development Tools and/or on-line documentation.  See these other
@@ -17,12 +17,13 @@
 //  PARTICULAR PURPOSE.
 //
 // =====================================================================
-using System;
+
 using System.Collections;
 // ReSharper disable InconsistentNaming
 // ReSharper disable RedundantCast
 // ReSharper disable CheckNamespace
 // ReSharper disable FieldCanBeMadeReadOnly.Local
+// ReSharper disable RedundantOverflowCheckingContext
 
 namespace DLaB.Xrm.CrmSdk
 {
@@ -31,12 +32,42 @@ namespace DLaB.Xrm.CrmSdk
     /// </summary>
     public static class ErrorCodes
     {
+        /// <summary>
+        /// Error Types
+        /// </summary>
+        public enum ErrorType
+        {
+            /// <summary>
+            /// The system failure
+            /// </summary>
+            SystemFailure,
+            /// <summary>
+            /// The timeout
+            /// </summary>
+            Timeout,
+            /// <summary>
+            /// The client error
+            /// </summary>
+            ClientError
+        };
+
         // To prevent instantiation
 
         private static Hashtable ErrorMessages = new Hashtable();
+        //private static Hashtable ErrorTypes = new Hashtable();
 
         static ErrorCodes()
         {
+            ErrorMessages.Add(LowerVersionUpgrade, "The import solution must have a higher version than the existing solution it is upgrading.");
+            ErrorMessages.Add(PatchMissingBase, "You can't import the patch ({0}) for the solution ({1}) because the solution isn't present. The operation has been canceled.");
+            ErrorMessages.Add(SubcomponentDoesNotExist, "Subcomponent {0} of type {1} is not found in the organization, it can not be added to the SolutionComponents.");
+            ErrorMessages.Add(SubcomponentMissingARoot, "Subcomponent {0} cannot be added to the solution because the root component {1} is missing.");
+            ErrorMessages.Add(CannotModifyPatchedSolution, "Cannot modify solution because it has the following patches: {0}.");
+            ErrorMessages.Add(CloneSolutionException, "Operation on clone solution failed.");
+            ErrorMessages.Add(CloneSolutionPatchException, "Patch '{0}' has a matching or higher version ({1}) than that of the patch being installed.");
+            ErrorMessages.Add(QuickFindSavedQueryAlreadyExists, "\"Only one quickfind saved query can exist for an entity. There already exists a quick-find saved query for entity with objecttypecode: {0}\"");
+            ErrorMessages.Add(SolutionUpgradeNotAvailable, "\"The {0} solution doesn’t have an upgrade that is ready to be applied.\"");
+            ErrorMessages.Add(SolutionUpgradeWrongSolutionSelected, "\"To use this action, you must first select the old solution and then try again.\"");
             ErrorMessages.Add(CustomImageAttributeOnlyAllowedOnCustomEntity, "A custom image attribute can only be added to a custom entity.");
             ErrorMessages.Add(SqlEncryptionSymmetricKeyCannotOpenBecauseWrongPassword, "Cannot open encryption Symmetric Key because the password is wrong.");
             ErrorMessages.Add(SqlEncryptionSymmetricKeyDoesNotExistOrNoPermission, "Cannot open encryption Symmetric Key because it does not exist in the database or user does not have permission.");
@@ -116,6 +147,7 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(ImportTemplateLanguageIgnored, "You cannot import this template because its language is not enabled in your Microsoft Dynamics CRM organization.");
             ErrorMessages.Add(ImportTemplatePersonalIgnored, "You cannot import this template because it is set as \"personal\" in your Microsoft Dynamics CRM organization.");
             ErrorMessages.Add(ImportComponentDeletedIgnored, "You cannot update this component because it does not exist in this Microsoft Dynamics CRM organization.");
+            ErrorMessages.Add(CustomerRelationshipCannotBeDeleted, "This relationship {1} is required by the {0} attribute and can't be deleted. To delete this relationship, first delete the lookup attribute.");
             ErrorMessages.Add(RelationshipRoleNodeNumberInvalid, "There must be two entity relationship role nodes when creating a new many-to-many entity relationship.");
             ErrorMessages.Add(AssociationRoleOrdinalInvalid, "The association role ordinal is not valid - it must be 1 or 2.");
             ErrorMessages.Add(RelationshipRoleMismatch, "The relationship role name {0} does not match either expected entity name of {1} or {2}.");
@@ -486,7 +518,7 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(DisabledCRMGoingOffline, "Microsoft Dynamics CRM functionality is not available while Offline Synchronization is occuring");
             ErrorMessages.Add(DisabledCRMGoingOnline, "Microsoft Dynamics CRM functionality is not available while Online Synchronization is occuring");
             ErrorMessages.Add(DisabledCRMAddinLoadFailure, "An error occurred loading Microsoft Dynamics CRM functionality. Try restarting Outlook. Contact your system administrator if errors persist.");
-            ErrorMessages.Add(DisabledCRMClientVersionLower, "Offline functionality is not supported in this earlier version of Microsoft Dynamics CRM for Outlook and this Microsoft Dynamics CRM organization {0}. Download a compatible Outlook Client version.");
+            ErrorMessages.Add(DisabledCRMClientVersionLower, "You're running a version of Microsoft Dynamics CRM for Outlook that is not supported for offline mode with this Microsoft Dynamics CRM organization {0}. You'll need to upgrade to a compatible version of CRM for Outlook. Make sure your current version of CRM for Outlook is supported for upgrading to the compatible version.");
             ErrorMessages.Add(DisabledCRMClientVersionHigher, "The Microsoft Dynamics CRM server needs to be upgraded before Microsoft Dynamics CRM client can be used. Contact your system administrator for assistance.");
             ErrorMessages.Add(DisabledCRMPostOfflineUpgrade, "Microsoft Dynamics CRM functionality is not available until the Microsoft Dynamics CRM client is taken back online");
             ErrorMessages.Add(DisabledCRMOnlineCrmNotAvailable, "Microsoft Dynamics CRM server is not available");
@@ -501,6 +533,27 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(DoNotTrackItem, "Selected item will not be tracked.");
             ErrorMessages.Add(GoOfflineFileWasDeleted, "Data file was deleted on server before it was sent to client.");
             ErrorMessages.Add(GoOfflineEmptyFileForDelete, "Data file for delete is empty.");
+            ErrorMessages.Add(InvalidForOfficeGraph, "One or both entities are not enabled for officegraph and they cannot be used for officegraph.");
+            ErrorMessages.Add(TrendingDocumentsOnpremiseDeploymentError, "The Trending Documents dashboard component isn't supported by your company's Microsoft Office service.");
+            ErrorMessages.Add(TrendingDocumentsIntegrationDisabledError, "Trending Documents is disabled for your Microsoft Dynamics CRM account.");
+            ErrorMessages.Add(TrendingDocumentsDataRetrievalFailure, "We can't get to the trending documents. Try again later.");
+            ErrorMessages.Add(RelationshipNotCreatedForOfficeGraphError, "This relationship cannot be created because neither entity is enabled for officegraph.");
+            ErrorMessages.Add(RelationshipNotUpdatedForOfficeGraphError, "This relationship cannot be updated for officegraph because neither entity is enabled for officegraph.");
+            ErrorMessages.Add(AttributeNotCreatedForOfficeGraphError, "This attribute cannot be created since support to enable attribute for officegraph is not available.");
+            ErrorMessages.Add(AttributeNotUpdatedForOfficeGraphError, "This attribute cannot be updated since support to enable attribute for officegraph is not available.");
+            ErrorMessages.Add(OfficeGraphDisabledError, "Document Recommendations has been disabled for this organization.");
+            ErrorMessages.Add(BaseAttributeNameNotPresentError, "BaseAttribute name should be present in condition xml.");
+            ErrorMessages.Add(OperatorCodeNotPresentError, "OperatorCode should be present in condition xml.");
+            ErrorMessages.Add(InvalidBaseAttributeError, "Invalid Base attribute.");
+            ErrorMessages.Add(MatchingAttributeNameNotNullError, "Matching attribute name should be null single entity rule.");
+            ErrorMessages.Add(InvalidMatchingAttributeError, "Invalid Matching attribute.");
+            ErrorMessages.Add(BaseMatchingAttributeNotSameError, "Base and Matching attribute should be of same type.");
+            ErrorMessages.Add(InvalidOperatorCodeError, "Invalid operator code.");
+            ErrorMessages.Add(InvalidSimilarityRuleStateError, "Invalid similarity rule state.");
+            ErrorMessages.Add(TrendingDocumentsIntegrationTurnedOffError, "Trending Documents is turned off. Please contact your system administrator to turn this feature on in System Settings.");
+            ErrorMessages.Add(OfficeGraphSiteNotConfigured, "No default SharePoint site has been configured.");
+            ErrorMessages.Add(TrendingDocumentsOfflineModeError, "Trending Documents isn't available in offline mode.");
+            ErrorMessages.Add(S2SNotConfigured, "Office Graph Integration relies on server-based SharePoint integration. To use this feature, enable server-based integration and have at least one active SharePoint site.");
             ErrorMessages.Add(ClientVersionTooLow, "This version of Outlook client isn't compatible with your CRM organization (current version {0} is too low).");
             ErrorMessages.Add(ClientVersionTooHigh, "This version of Outlook client isn't compatible with your CRM organization (current version {0} is too high).");
             ErrorMessages.Add(InsufficientAccessMode, "User does not have read-write access to the CRM organization.");
@@ -789,6 +842,7 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(unManagedidsbizmgmtcantchangeorgname, "The organization name cannot be changed.");
             ErrorMessages.Add(MultipleOrganizationsNotAllowed, "Only one organization and one root business are allowed.");
             ErrorMessages.Add(UserSettingsInvalidAdvancedFindStartupMode, "Invalid advanced find startup mode.");
+            ErrorMessages.Add(UserSettingsInvalidSearchExperienceValue, "Invalid search experience value.");
             ErrorMessages.Add(CannotModifySpecialUser, "No modifications to the 'SYSTEM' or 'INTEGRATION' user are permitted.");
             ErrorMessages.Add(unManagedidsbizmgmtcannotaddlocaluser, "A local user cannot be added to the CRM.");
             ErrorMessages.Add(CannotModifySysAdmin, "The System Administrator Role cannot be modified.");
@@ -1086,6 +1140,7 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(CannotDeleteAsBackgroundOperationInProgress, "This record is currently being used by Microsoft Dynamics CRM and cannot be deleted. Try again later. If  the problem persists, contact your system administrator.");
             ErrorMessages.Add(FilteredDuetoInactiveState, "This customer is filtered due to inactive state.");
             ErrorMessages.Add(MissingBOWFRules, "Bulk Operation related workflow rules are missing.");
+            ErrorMessages.Add(AsyncOperationPostponed, "This operation has been postponed because it failed for more than {0} times in {1} minutes");
             ErrorMessages.Add(CannotSpecifyOwnerForActivityPropagation, "Cannot specify owner on activity for distribution");
             ErrorMessages.Add(CampaignActivityAlreadyPropagated, "This campaign activity has been distributed already. Campaign activities cannot be distributed more than one time.");
             ErrorMessages.Add(FilteredDuetoAntiSpam, "This customer is filtered due to AntiSpam settings.");
@@ -1440,6 +1495,8 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(InvalidAssemblyProcessorArchitecture, "The given plugin assembly was built with an unsupported target platform and cannot be loaded.");
             ErrorMessages.Add(CyclicReferencesNotSupported, "The input contains a cyclic reference, which is not supported.");
             ErrorMessages.Add(InvalidQuery, "The query specified for this operation is invalid");
+            ErrorMessages.Add(SandboxWorkerPluginExecuteTimeout, "Didn’t receive a response from the {0} plug-in within the 2:20-minute limit.");
+            ErrorMessages.Add(ServiceBusEndpointNotConfigured, "Configuration of required credentials must be completed before messages can be sent.");
             ErrorMessages.Add(InvalidEmailAddressFormat, "Invalid e-mail address. For more information, contact your system administrator.");
             ErrorMessages.Add(ContractInvalidDiscount, "Discount cannot be greater than total price.");
             ErrorMessages.Add(InvalidLanguageCode, "The specified language code is not valid for this organization.");
@@ -1996,7 +2053,7 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(ReportImportCategoryOptionNotFound, "A category option for the reports was not found.");
             ErrorMessages.Add(RequiredChildReportHasOtherParent, "A category option for the reports was not found.");
             ErrorMessages.Add(InvalidManagedPropertyException, "Managed property {0} does not contain enough information to be created.  Please provide (assembly, class), or (entity, attribute) or set the managed property to custom.");
-            ErrorMessages.Add(OnlyOwnerCanSetManagedProperties, "Cannot import component {0}: {1}. The publisher of the solution that is being imported does not match the publisher of the solution that installed this component.");
+            ErrorMessages.Add(OnlyOwnerCanSetManagedProperties, "Cannot import component {0}: {1} because managed property {2} with value {3} is different than the current value {4} and the publisher of the solution that is being imported does not match the publisher of the solution that installed this component.");
             ErrorMessages.Add(CannotDeleteMetadata, "The '{2}' operation on the current component(name='{0}', id='{1}') failed during managed property evaluation of condition: '{3}'");
             ErrorMessages.Add(CannotUpdateReadOnlyPublisher, "Attempting to update a readonly publisher.");
             ErrorMessages.Add(CannotSelectReadOnlyPublisher, "Attempting to  select a readonly publisher for solution.");
@@ -2129,6 +2186,10 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(InvalidDeactivateFormType, "You can’t deactivate {0} forms. Only Main forms can be inactive.");
             ErrorMessages.Add(FallbackFormDeactivation, "This operation can’t be completed. You must have at least one active Main form.");
             ErrorMessages.Add(DeprecatedFormActivation, "This form has been deprecated in the previous release and cannot be used anymore. Please migrate your changes to a different form. Deprecated forms will be removed from the system in the future.");
+            ErrorMessages.Add(CannotUpdateEntitySetName, "EntitySetName cannot be updated for OOB entities");
+            ErrorMessages.Add(FallbackCardFormDeactivation, "This operation can’t be completed. You must have at least one active Card form.");
+            ErrorMessages.Add(FallbackQuickFormDeactivation, "This operation can’t be completed. You must have at least one active Quick form.");
+            ErrorMessages.Add(FallbackMainInteractionCentricFormDeactivation, "This operation can’t be completed. You must have at least one active MainInteractionCentric form.");
             ErrorMessages.Add(RuntimeRibbonXmlValidation, "The most recent customized ribbon for a tab on this page cannot be generated. The out-of-box version of the ribbon is displayed instead.");
             ErrorMessages.Add(InitializeErrorNoReadOnSource, "The operation could not be completed because you donot have read access on some of the fields in {0} record.");
             ErrorMessages.Add(NoRollupAttributesDefined, "For rollup to succeed atleast one rollup attribute needs to be associated with the goal metric");
@@ -2191,6 +2252,7 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(ExpectingAtLeastOneBusinessRuleStep, "There should be a minimum of one Business rule step.");
             ErrorMessages.Add(RuleCreationNotAllowedForCyclicReferences, "You can't create this rule because it contains a cyclical reference. Fix the rule and try again.");
             ErrorMessages.Add(NoConditionRuleCreationNotAllowedForSetValueShowError, "The \"Show error message\" and \"Set value\" actions can't be used in a business rule that doesn't have a condition.");
+            ErrorMessages.Add(RuleActivationNotAllowedWithDeletedStages, "You can't activate this rule because it contains a deleted stage or stage category. Fix the rule and try again.");
             ErrorMessages.Add(EntityLimitExceeded, "MultiEntitySearch exceeded Entity Limit defined for the Organization.");
             ErrorMessages.Add(InvalidSearchEntity, "Invalid Search Entity - {0}.");
             ErrorMessages.Add(InvalidSearchEntities, "Search - {0} did not find any valid Entities.");
@@ -2198,6 +2260,9 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(InvalidSearchName, "Invalid Search Name - {0}.");
             ErrorMessages.Add(EntityGroupNameOrEntityNamesMustBeProvided, "Missing parameter. You must provide EntityGroupName or EntityNames.");
             ErrorMessages.Add(OnlyOneSearchParameterMustBeProvided, "Extra parameter. You only need to provide EntityGroupName or EntityNames, not both.");
+            ErrorMessages.Add(ExternalSearchAttributeLimitExceeded, "The maximum number of indexed fields has been reached. Update the Relevance Search configuration to reduce the total number of indexed fields below {0}.");
+            ErrorMessages.Add(CannotEnableEntityForRelevanceSearch, "Entity {0} can’t be enabled for relevance search because of the configuration of its managed properties.");
+            ErrorMessages.Add(CannotDisableRelevanceSearchManagedProperty, "The {0} entity is currently syncing to an external search index.  You must remove the entity from the external search index before you can set the \"Can Enable Sync to External Search Index\" property to False.");
             ErrorMessages.Add(ProcessEmptyBranches, "This process contains empty branches. Define or delete these branches and try again.");
             ErrorMessages.Add(WorkflowIdIsNull, "Workflow Id cannot be NULL while creating business process flow category");
             ErrorMessages.Add(PrimaryEntityIsNull, "Primary Entity cannot be NULL while creating business process flow category");
@@ -2243,6 +2308,11 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(InvalidSourceType, "SourceType {0} isn't valid for the {1} data type.");
             ErrorMessages.Add(CalculatedFieldsInvalidSourceTypeMask, "The formula can't be saved because it contains references to the following fields that have invalid definitions: {0}.");
             ErrorMessages.Add(AttributeFormulaDefinitionIsEmpty, "The formula is empty.");
+            ErrorMessages.Add(InvalidWorkflowOrWorkflowDoesNotExist, "Invalid workflow or workflow does not exist.");
+            ErrorMessages.Add(WorkflowDoesNotExist, "Workflow does not exist.");
+            ErrorMessages.Add(ActionStepInvalidStageid, "ActionStep references invalid Stage Id.");
+            ErrorMessages.Add(ActionStepInvalidProcessid, "ActionStep references invalid Process Id.");
+            ErrorMessages.Add(ActionStepInvalidPipelineStageid, "ActionStep references invalid Pipeline Stage Id.");
             ErrorMessages.Add(CalculatedFieldsDateOnlyBehaviorTypeMismatch, "You can only use a Date Only type of field.");
             ErrorMessages.Add(CalculatedFieldsTimeInvBehaviorTypeMismatch, "You can only use a Time-Zone Independent Date Time type of field.");
             ErrorMessages.Add(CalculatedFieldsUserLocBehaviorTypeMismatch, "You can only use a User Local Date Time type of field.");
@@ -2296,6 +2366,8 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(EmailServerProfileAutoDiscoverNotAllowed, "Auto discover server URL can location can only be used for an exchange e-mail server type.");
             ErrorMessages.Add(EmailServerProfileLocationNotRequired, "You cannot specify the incoming/outgoing e-mail server location when Autodiscover server location has been set to true.");
             ErrorMessages.Add(ForwardMailboxCannotAssociateWithUser, "A forward mailbox cannot be created for a specific user or a queue.  Please remove the regarding field and try again.");
+            ErrorMessages.Add(HybridSSSExchangeOnlineS2SCertExpired, "Certificate used for S2S authentication of CRM Onpremise with Exchange Online has expired");
+            ErrorMessages.Add(HybridSSSExchangeOnlineS2SCertActsExpired, "Certificate used for S2S authentication of CRM Onpremise with Exchange Online has expired");
             ErrorMessages.Add(MailboxCannotModifyEmailAddress, "E-mail Address of a mailbox cannot be updated when associated with an user/queue.");
             ErrorMessages.Add(MailboxCredentialNotSpecified, "Username is not specified");
             ErrorMessages.Add(EmailServerProfileInvalidServerLocation, "The specified server location {0} is invalid. Correct the server location and try again.");
@@ -2342,8 +2414,26 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(S2SAccessTokenCannotBeAcquired, "Failed to acquire S2S access token from authorization server.");
             ErrorMessages.Add(InvalidValueProcessEmailAfter, "The date in the Process Email From field is earlier than what is allowed for your organization. Enter a date that is later than the one specified, and try again.");
             ErrorMessages.Add(InvalidS2SAuthentication, "You can use server-to-server authentication only for email server profiles created for a Microsoft Dynamics CRM Online organization that was set up through the Microsoft online services environment (Office 365).");
-            ErrorMessages.Add(RouterIsDisabled, "Microsoft Dynamics CRM has been configured to use server-side synchronization to process email. If you want to use the Email Router to process email, go to System Settings and change the Process Email Using field to Microsoft Dynamics CRM 2013 Email Router.");
+            ErrorMessages.Add(RouterIsDisabled, "Microsoft Dynamics CRM has been configured to use server-side synchronization to process email. If you want to use the Email Router to process email, go to System Settings and change the Process Email Using field to Microsoft Dynamics CRM 2016 Email Router.");
             ErrorMessages.Add(MailboxUnsupportedEmailServerType, "Server-side synchronization for appointments, contacts, and tasks isn't supported for POP3 or SMTP server types. Select a supported email type or change the synchronization method for appointments, contacts, and tasks to None.");
+            ErrorMessages.Add(TestEmailConfigurationScheduledInProgress, "Test email configuration scheduled is in progress. Please save after completion of test.");
+            ErrorMessages.Add(ServiceAccountMailboxesCountIsZero, "No service account mailbox is associated for the email server profile.");
+            ErrorMessages.Add(ServiceAccountMailboxesCountIsGreaterThanOne, "More no of service account mailboxes is associated to emailserver profile");
+            ErrorMessages.Add(TenantIDIsEmpty, "Exchange Online Tenant ID field cannot be empty.");
+            ErrorMessages.Add(InvalidTenantIDValue, "Exchange Online Tenant ID value is not valid.The Field value should be a string in the structure of GUID.");
+            ErrorMessages.Add(TenantIDValueChanged, "The detected tenantId for your exchange is different than the once you saved.");
+            ErrorMessages.Add(SpecifyIncomingServerLocation, "Specify the URL of the incoming server location");
+            ErrorMessages.Add(SpecifyOutgoingServerLocation, "Specify the URL of the outgoing server location");
+            ErrorMessages.Add(UserNameRequiredForImpersonation, "Type in a user name and save again");
+            ErrorMessages.Add(PasswordRequiredForImpersonation, "Type in a password and save again");
+            ErrorMessages.Add(ServerLocationIsEmpty, "Server Location Field cannot be Empty");
+            ErrorMessages.Add(SpecifyIncomingUserName, "Specify username for Incoming Connection");
+            ErrorMessages.Add(SpecifyOutgoingUserName, "Specify username for Outgoing Connection");
+            ErrorMessages.Add(SpecifyIncomingPassword, "Specify password for Incoming Connection");
+            ErrorMessages.Add(SpecifyOutgoingPassword, "Specify password for Outgoing Connection");
+            ErrorMessages.Add(ServerLocationAndSSLSetToYes, "The URL specified for Server Location uses HTTP but Secure Sockets Layer(SSL) is required for Exchange Online.");
+            ErrorMessages.Add(SpecifyInComingPort, "Specify Incomming Port and save again");
+            ErrorMessages.Add(SpecifyOutgoingPort, "Specify Outgoing Port and save again");
             ErrorMessages.Add(TraceMessageConstructionError, "The trace record has an invalid trace code or an insufficient number of trace parameters.");
             ErrorMessages.Add(TooManyBytesInInputStream, "The stream being read from has too many bytes.");
             ErrorMessages.Add(EmailRouterFileTooLargeToProcess, "One or more of the email router configuration files is too large to get processed.");
@@ -2370,7 +2460,43 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(DataSourceOfflineErrorCode, "This operation failed because you're offline. Reconnect and try again.");
             ErrorMessages.Add(PingFailureErrorCode, "The system couldn't reconnect with your {#Brand_CRM} server.");
             ErrorMessages.Add(RetrieveRecordOfflineErrorCode, "This record isn't available while you're offline.  Reconnect and try again.");
+            ErrorMessages.Add(CantSaveRecordInOffline, "You can't save this record while you're offline.");
             ErrorMessages.Add(NotMobileEnabled, "You can't view this type of record on your tablet. Contact your system administrator.");
+            ErrorMessages.Add(InvalidPreviewModeOperation, "You can’t perform this operation in preview mode.");
+            ErrorMessages.Add(PageNotFound, "Page not found. The record might not exist, or the link might be incorrect.");
+            ErrorMessages.Add(ViewNotAvailableForMobileOffline, "Currently view is not available Offline. Please try switching view or contact administrator");
+            ErrorMessages.Add(NotMobileWriteEnabled, "You can't create this type of record on your device. Contact your system administrator.");
+            ErrorMessages.Add(DataStoreKeyNotFoundErrorCode, "Not in local store with key '{0}'");
+            ErrorMessages.Add(RelatedEntityAlreadyExistsInProfile, "The related entity already exists in this profile.");
+            ErrorMessages.Add(RelatedEntityDoesNotExistsInProfile, "The related entity doesn’t exist in the profile items.");
+            ErrorMessages.Add(RelatedEntityGenericError, "An unexpected error occurred while creating the profile association. Please try again.");
+            ErrorMessages.Add(RelatioshipAlreadyExists, "Selected Relationship for entity already exists in profile. ");
+            ErrorMessages.Add(InvalidDataDownloadFilterBusinessUnit, "For an entity owned by the Business Owner, you can only use the following data download filters: All records or Download related data only.");
+            ErrorMessages.Add(InvalidDataDownloadFilterOrganization, "For an entity owned by the Organization, you can only use the following data download filters: All records or Download related data only.");
+            ErrorMessages.Add(CantUpdateOnlineRecord, "You can’t update this record because it doesn’t exist in the offline mode.");
+            ErrorMessages.Add(ApplicationMetadataUserValidationUnknownError, "Sorry, something went wrong. Please try again, or restart the app.");
+            ErrorMessages.Add(ApplicationMetadataPrepareCustomizationsUnknownError, "Sorry, something went wrong. Please try again, or restart the app.");
+            ErrorMessages.Add(ApplicationMetadataRetrieveUserContextUnknownError, "Sorry, something went wrong. Please try again, or restart the app.");
+            ErrorMessages.Add(ApplicationMetadataSyncUnknownError, "Sorry, something went wrong. Please try again, or restart the app.");
+            ErrorMessages.Add(ApplicationMetadataRetrieveUnknownError, "Sorry, something went wrong. Please try again, or restart the app.");
+            ErrorMessages.Add(ApplicationMetadataGetPreviewMetadataUnknownError, "Sorry, something went wrong. Please try again, or restart the app.");
+            ErrorMessages.Add(ApplicationMetadataConverterFailed, "Sorry, something went wrong. Please try again, or restart the app.");
+            ErrorMessages.Add(ApplicationMetadatadaNullData, "Sorry, something went wrong. Please try again, or restart the app.");
+            ErrorMessages.Add(ApplicationMetadatadaCreateFailed, "Sorry, something went wrong. Please try again, or restart the app.");
+            ErrorMessages.Add(ApplicationMetadatadaUpdateFailed, "Sorry, something went wrong. Please try again, or restart the app.");
+            ErrorMessages.Add(ApplicationMetadataPrepareCustomizationsRetrieverError, "There was a problem with the server configuration changes.  Users can continue using the application, but may experience difficulties, including the inability to save changes.");
+            ErrorMessages.Add(ApplicationMetadataPrepareCustomizationsTimeout, "Sorry, but your client customization changes could not be processed.  This may be due to a large number of entities enabled for your users, or the number of languages enabled.  Users will not receive customizations until this issue is resolved.");
+            ErrorMessages.Add(ApplicationMetadataPrepareCustomizationsAppLock, "We encountered some issues when we tried to prepare your customizations for your users. Users on some clients won't be able to download your customization updates until this issue is resolved.");
+            ErrorMessages.Add(EntityMetadataSyncFailed, "There were problems with the server configurations.  There was a problem with the server configuration changes.  We are unable to load the application, please contact your CRM administrator.");
+            ErrorMessages.Add(EntityMetadataSyncFailedWithContinue, "There were difficulties with the server configuration changes.  You can continue to use the app with the older configuration, however, you may experience problems including errors when saving.  Please contact your CRM administrator. ");
+            ErrorMessages.Add(ApplicationMetadataSyncFailed, "There was a problem with the server configuration changes.  We are unable to load the application, please contact your CRM administrator.");
+            ErrorMessages.Add(ApplicationMetadataFailedWithContinue, "There was a problem with the server configuration changes.  You can continue using the application, but may experience difficulties, including the inability to save changes. Please contact your CRM administrator and give them the information available in ‘more information’.");
+            ErrorMessages.Add(ApplicationMetadataSyncTimeout, "Sorry, but your server configuration changes could not be downloaded.  This may be due to a slow connection, or due to a large number of entities enabled for mobile use.  Please verify your connection and try again.  If this issue continues please contact your CRM administrator.");
+            ErrorMessages.Add(ApplicationMetadataSyncTimeoutWithContinue, "Sorry, but your server configuration changes could not be downloaded.  This may be due to a slow connection, or due to a large number of entities enabled for mobile use.  Please verify your connection and try again. You can continue to use the app with the older configuration, however you may experience problems including errors when saving.  If this issue continues please contact your CRM administrator.");
+            ErrorMessages.Add(ApplicationMetadataSyncAppLock, "Sorry, your server is busy so configurations can’t be downloaded right now. Your changes should be available in a few minutes.  Wait a few minutes, and sign in again.");
+            ErrorMessages.Add(ApplicationMetadataSyncAppLockWithContinue, "Sorry, your server is busy so configuration changes can’t be downloaded right now. Your changes should be available in a few minutes.  In the meantime, you can continue using the app, and you’ll be reminded later to try downloading the changes. Or, you can wait a few minutes, restart the app, and accept the prompt to try again.");
+            ErrorMessages.Add(GenericMetadataSyncFailed, "Sorry, something went wrong. Please try again, or restart the app.");
+            ErrorMessages.Add(GenericMetadataSyncFailedWithContinue, "Sorry, something went wrong downloading server configuration changes.  You can continue to use the app with the older configuration, however you may experience problems including errors when saving.  If this issue continues please contact your CRM administrator and provide the information available when you choose ‘more information’.");
             ErrorMessages.Add(EntitlementInvalidStartEndDate, "Start Date cannot be more than the End Date");
             ErrorMessages.Add(EntitlementInvalidState, "You cannot delete an entitlement that is in active or waiting state");
             ErrorMessages.Add(InvalidChannelOrigin, "An entitlement channel term with the same channel already exists. Specify a different channel and try again.");
@@ -2436,6 +2562,8 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(ImportConvertRuleError, "An error occurred while importing Convert Rules.");
             ErrorMessages.Add(CannotDeleteActiveSla, "You can't delete an active SLA. Deactivate the SLA, and then try deleting it.");
             ErrorMessages.Add(ActiveSlaCannotEdit, "You can't edit an active SLA. Deactivate the SLA, and then try editing it.");
+            ErrorMessages.Add(MaxActiveSLAError, "You can’t activate this SLA because you’ve exceeded the maxiumum number of entities that can have active SLAs for your organization.");
+            ErrorMessages.Add(MaxActiveSLAKPIError, "You can’t activate this SLA because you’ve exceeded the maxiumum number of SLA KPIs that are allowed per entity for your organization.");
             ErrorMessages.Add(BundleCannotContainBundle, "You can't add a bundle to a bundle.");
             ErrorMessages.Add(ProductOrBundleCannotBeAsParent, "Only Product Families can be parents to products.");
             ErrorMessages.Add(CannotAssociateRetiredProducts, "You can't create a product relationship with a retired product.");
@@ -2582,6 +2710,20 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(SPRequiredColCheckInErrorCode, "Exception occurred while doing document check-in as some columns are made required at SharePoint");
             ErrorMessages.Add(SPFileIsCheckedOutByOtherUser, "File is checked out to a user other than the current user");
             ErrorMessages.Add(SPFileNameModifiedErrorCode, "The folder can't be found. If you changed the automatically generated folder name for this document location directly in SharePoint, you must change the folder name in CRM to match the renamed folder. To do this, select Edit Location and type the matching name in Folder Name field.");
+            ErrorMessages.Add(SPAccountNameFetchFailure, "Exception occured while fetching account name from Sharepoint.");
+            ErrorMessages.Add(SPPersonalSiteNotFound, "Personal Site not found for the user.");
+            ErrorMessages.Add(SPFolderRenameFailure, "Exception occurred while Editing Sharepoint Document Proeprties.");
+            ErrorMessages.Add(SPMultipleOdbSitesError, "More than one site with One Drive enabled is not allowed.");
+            ErrorMessages.Add(SPOdbDisabledError, "Please enable ODB(One Drive for Business) feature to create ODB site.");
+            ErrorMessages.Add(SPOdbUpdateDeleteError, "You cannot update or delete ODB(One Drive for Business) site.");
+            ErrorMessages.Add(SPDocumentMappingFailure, "Can't map documents to their location.");
+            ErrorMessages.Add(SPOdbDuplicateLocationError, "More than one ODB (OneDrive for Business) location is not allowed.");
+            ErrorMessages.Add(SPOdbUpdateDeleteLocationError, "You cannot update or delete SharePoint Document Location of type ODB (OneDrive for Business).");
+            ErrorMessages.Add(SPSearchOneDriveNotCreated, "OneDrive location is not created yet. Please create the location before searching.");
+            ErrorMessages.Add(SPSiteProtocolError, "Protocol error in accessing SharePoint");
+            ErrorMessages.Add(SPDefaultSiteNotPresent, "OneDrive activation needs a default SharePoint site.");
+            ErrorMessages.Add(SPUploadFailure, "Upload failed on SharePoint due to unknown reasons. Probably the file is too large");
+            ErrorMessages.Add(SPAllFilesErrorScenario, "One or more sites in all files view of SharePointDocument failed.");
             ErrorMessages.Add(RequiredBundleProductCannotBeDeleted, "You can't delete this product record because it's a required product in a bundle.");
             ErrorMessages.Add(RequiredBundleItemCannotBeUpdated, "You can't delete this bundle item because it's a required product in the bundle.");
             ErrorMessages.Add(DynamicPropertyInstanceMissingRequiredColumns, "The property instance can't be updated. Verify that the following fields are present: dynamicpropertyid, dynamicpropertyoptionsetvalueid, and regardingobjectid.");
@@ -2605,6 +2747,11 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(ImportHierarchyRuleOtcMismatchError, "There was an error processing hierarchy rules of the same object type code.(unresolvable system collision)");
             ErrorMessages.Add(HonorPauseWithoutSLAKPIError, "SLA can be set to honor pause and resume only if Use SLA KPI is set to Yes.");
             ErrorMessages.Add(CannotSetCaseOnHold, "You do not have the permissions to set this case to an on hold status type. Please contact your system administrator.");
+            ErrorMessages.Add(ApplyActiveSLAOnly, "You can only apply active service level agreements (SLAs) to cases.");
+            ErrorMessages.Add(NoPrivilegeToApplyManualSLA, "You don't have appropriate permissions to apply Servie Level Agreement (SLA) to this case record.");
+            ErrorMessages.Add(SlaNotEnabledEntity, "SLA is not enabled for this entity.");
+            ErrorMessages.Add(CannotSetEntityOnHold, "You don’t have permission to put this record on hold. Contact your system administrator.");
+            ErrorMessages.Add(CannotCreateSLAForEntity, "You can't create a service level agreement (SLA) for this entity because it’s not enabled for creating SLAs");
             ErrorMessages.Add(SyncAttributeMappingCannotBeUpdated, "The sync attribute mapping cannot be updated.");
             ErrorMessages.Add(InvalidSyncDirectionValueForUpdate, "The sync direction is invalid as per the allowed sync direction for one or more attribute mappings.");
             ErrorMessages.Add(InvalidLanguageForCreate, "Rows with localizable attributes can only be created when the user interface (UI) language for the current user is set to the organization's base language.");
@@ -2644,6 +2791,11 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(IndexSizeConstraintViolated, "Index size exceeded the size limit of {0} bytes. The key is too large. Try removing some columns or making the strings in string columns shorter.");
             ErrorMessages.Add(CannotSecureEntityKeyAttribute, "The field {0} is not securable as it is part of entity keys ( {1} ). Please remove the field from all entity keys to make it securable.");
             ErrorMessages.Add(ReactivateEntityKeyOnlyForFailedJobs, "Reactivate entity key is only supported for failed job");
+            ErrorMessages.Add(RefRoleNavPaneDisplayOptionRequired, "The NavPaneDisplayOption attribute is required for the Referencing Role of a one-to-many relationship {0}.");
+            ErrorMessages.Add(InvalidRoleTypeForOneToManyRelationship, "This relationship role type isn't valid for a one-to-many relationship {0}.");
+            ErrorMessages.Add(InvalidRoleOccurrencesForOneToManyRelationship, "There can't be more than two entity relationship roles for a one-to-many relationship {0}.");
+            ErrorMessages.Add(InvalidEntitySetName, "An entity with the specified entity set name {0} already exists. Specify a unique name.");
+            ErrorMessages.Add(IncorrectEntitySetName, "The entity set name {0} must start with a valid customization prefix.");
             ErrorMessages.Add(WopiDiscoveryFailed, "Request for retrieving the WOPI discovery XML failed.");
             ErrorMessages.Add(WopiApplicationUrl, "Error in retrieving information from WOPI application url.");
             ErrorMessages.Add(WopiMaxFileSizeExceeded, "{0} file exceeded size limit of {1}.");
@@ -2683,6 +2835,25 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(XlsxImportColumnHeadersInvalid, "Invalid columns.");
             ErrorMessages.Add(XlsxExportGeneratingExcelFailed, "Failed to generate excel.");
             ErrorMessages.Add(XlsxImportExcelFailed, "Failed to import data.");
+            ErrorMessages.Add(DocumentTemplateFeatureNotEnabled, "Document template feature is not enabled.");
+            ErrorMessages.Add(WordTemplateFeatureNotEnabled, "Word document template feature is not enabled.");
+            ErrorMessages.Add(MobileExcelFeatureNotEnabled, "Mobile export to excel feature is not enabled.");
+            ErrorMessages.Add(InvalidDocumentTemplate, "Invalid document template.");
+            ErrorMessages.Add(InvalidFileType, "Invalid File Type.");
+            ErrorMessages.Add(DocxExportGeneratingWordFailed, "An error occurred while generating the Word document. Please try again.");
+            ErrorMessages.Add(DocxValidationFailed, "We could not validate this Word document.");
+            ErrorMessages.Add(LegacyXlsxFileNotSupported, "Legacy .xlsx files cannot be used for Excel Templates.");
+            ErrorMessages.Add(InvalidWordFileType, "The file type isn't supported.");
+            ErrorMessages.Add(InvalidWordDocumentTemplate, "The document template is not valid.");
+            ErrorMessages.Add(InvalidWordTemplateContent, "The template content is not valid.");
+            ErrorMessages.Add(DataTableNotAvailable, "The original data table has been deleted or renamed.");
+            ErrorMessages.Add(InvalidEntitySpecified, "The entity is not specified in the template.");
+            ErrorMessages.Add(InvalidTemplateContent, "The template content is invalid.");
+            ErrorMessages.Add(InvalidViewReference, "The view is not specified or is invalid.");
+            ErrorMessages.Add(FileTypeNotSupported, "The specified file type is not supported as template.");
+            ErrorMessages.Add(DatasheetNotAvailable, "The data sheet is not available.");
+            ErrorMessages.Add(HiddensheetNotAvailable, "The hidden sheet is not available.");
+            ErrorMessages.Add(CorruptedHiddensheetData, "The hidden sheet data is corrupted.");
             ErrorMessages.Add(NoActiveLocation, "No active location found.");
             ErrorMessages.Add(FolderDoesNotExist, "Folder doesn't exist.");
             ErrorMessages.Add(OneNoteCreationFailed, "OneNote creation failed.");
@@ -2712,19 +2883,191 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(UserDoesNotHavePrivilegesToRunTheTool, "You must be a system administrator to execute this request.");
             ErrorMessages.Add(NoTimeZoneCodeForConversionRule, "The TimeZoneCode property is required when the value of the ConversionRule property is SpecificTimeZone.");
             ErrorMessages.Add(NoEntitySpecified, "At least one Entity is expected by the tool to process.");
+            ErrorMessages.Add(InvalidOtherDataFilterOptions, "You should select at least one option from Download My Records, My Team Records or My Business Unit's Records for Other Data Filter");
+            ErrorMessages.Add(RelatedEntityDoesNotExistInProfileItem, "The related entity {0} of the mobile offline profile item association {1} of the mobile offline profile item {2} doesn’t exist in the profile items of profile {3}.");
+            ErrorMessages.Add(DownloadAllEntityRecordsChangedOrCreatedWithinTheseDays, "Download all entity records changed or created within this number of days.");
+            ErrorMessages.Add(MobileOfflineDaysSinceRecordLastModifiedZero, "No records will be available in the mobile offline mode if the value for number of days is 0.");
+            ErrorMessages.Add(IncreasingDaysWillResetMobileOfflineData, "Increasing the number of days will cause a reset of mobile offline data and a resynchronization with mobile devices.");
+            ErrorMessages.Add(DecreasingDaysWillDeleteOlderData, "Decreasing the number of days will delete mobile offline data older than the number of days specified.");
+            ErrorMessages.Add(InvalidDataFiltersForUnownedEntities, "You can’t set the All Record or Other Data filters for unowned entities.");
+            ErrorMessages.Add(InvalidDataFiltersForBUOwnedEntities, "You can’t set Records Owned By Me or Records Owned By My Team for business unit-owned entities.");
+            ErrorMessages.Add(InvalidDataFiltersForOrgOwnedEntities, "You can’t set the Other Data filter for organization-owned entities.");
+            ErrorMessages.Add(InvalidCustomDataDownloadFilters, "You can’t set custom download filters because Record Distribution Criteria isn’t set to Other Data Filters.");
+            ErrorMessages.Add(MOPIAssociationNameCannotBeEmptyOrSpace, "The Mobile Offline Profile Item Association name can’t be a space or an empty string.");
+            ErrorMessages.Add(NoDefinedRelationshipsForMOPIAssociation, "The Profile Item Association entity doesn’t have any defined relationships.");
+            ErrorMessages.Add(InvalidRelationshipInMOPIAssociation, "This relationship doesn’t exist with the entity selected in the parent profile item.");
+            ErrorMessages.Add(CannotDeleteDefaultProfile, "To delete this profile, you first need to set it so that it’s no longer a default mobile offline profile.");
+            ErrorMessages.Add(CannotAssociateInvalidEntityToProfileItem, "Invalid object type code.");
+            ErrorMessages.Add(CanAssociateOnlyMobileOfflineEnableEntityToProfileItem, "This entity needs to be enabled for mobile offline.");
+            ErrorMessages.Add(CanAssociateOnlyOneEntityPerProfileItem, "You can only add one mobile offline profile item record per entity to a mobile offline profile record. ");
+            ErrorMessages.Add(ImportMobileOfflineProfileError, "An error occurred while importing Mobile Offline Profiles.");
+            ErrorMessages.Add(SavedQueryValidationError, "You can’t publish profile {0} because one of its profile items {1} has an entity {2} in the saved query {3}, which isn’t part of this profile.");
+            ErrorMessages.Add(ChangeTrackingDisabledForMobileOfflineError, "You can not disable change tracking for this entity since mobile offline is already enabled.");
+            ErrorMessages.Add(EnableMobileOfflineDisableChangeTrackingError, "You must enable change tracking for this entity since mobile offline client is enabled.");
+            ErrorMessages.Add(CannotDeleteUserProfile, "You can’t delete an active mobile offline profile. Remove all users from the profile and try again.");
+            ErrorMessages.Add(CannotChangeDaysSinceRecordLastModified, "You need to enable this entity for mobile offline before you can set or change the number of days since the record was last modified.");
+            ErrorMessages.Add(CannotDisableMobileOfflineFlagForEntity, "You cannot disable Mobile Offline flag for this entity as it is being used in Mobile Offline Profiles");
+            ErrorMessages.Add(CannotAddUserToMobileOfflineProfile, "You can’t add this user to this mobile offline profile because the user’s role is either missing or doesn’t have the CRM for mobile privilege.");
+            ErrorMessages.Add(MobileOfflineProfileNameAlreadyExists, "A mobile offline profile with this name already exists. Enter a unique name.");
+            ErrorMessages.Add(MobileOfflineProfileItemNameAlreadyExists, "A mobile offline profile item with this name already exists for this mobile offline profile. Enter a unique name.");
+            ErrorMessages.Add(MobileOfflineProfileNameCanNotBeNullOrEmpty, "The mobile offline profile name can’t be null or empty. Enter a name for this profile.");
+            ErrorMessages.Add(MobileOfflineProfileItemNameCanNotBeNullOrEmpty, "The mobile offline profile item name can’t be null or empty. Enter a name for this profile item.");
+            ErrorMessages.Add(CannotAddIntersectEntityToMobileOfflineProfileItem, "You can’t add the intersect entity to the mobile offline profile item because it’s added automatically when its parent entities are added to the profile.");
+            ErrorMessages.Add(CannotAddBusinessDataLocalizedLabelEntityToMobileOfflineProfileItem, "You can’t add the BusinessDataLocalizedLabel entity to the mobile offline profile item because it’s added automatically when the Product entity is added to the profile.");
+            ErrorMessages.Add(CannotAddActivityPartyEntityToMobileOfflineProfileItem, "You can’t add the ActivityParty entity to the mobile offline profile item because it’s added automatically when an activity entity is added to the profile.");
+            ErrorMessages.Add(InvalidAssociatedSavedQuery, "Selected saved query does not belong to associated entity of the mobile offline profile item.");
+            ErrorMessages.Add(CannotDisableMobileOfflineFlagForImportEntity, "You cannot disable Mobile Offline flag for {0} entity as it is being used in Mobile Offline Profiles");
+            ErrorMessages.Add(CloneTitleTooLong, "A validation error occurred. The length of the Name attribute of the mobileofflineprofile entity exceeded the maximum allowed length of 200.");
+            ErrorMessages.Add(InvalidMobileOfflineFiltersFetchXml, "XML Format mismatch. Check for the correctness of XML.");
+            ErrorMessages.Add(MaxConditionsMobileOfflineFilters, "You can only define 3 Mobile offline Org  filter for each entity.");
+            ErrorMessages.Add(UnsupportedAttributeOrOperatorMobileOfflineFilters, "Attribute or Operator “{0}” is not supported for Mobile Offline Org Filter.");
             ErrorMessages.Add(OfficeGroupsFeatureNotEnabled, "Office Groups feature is not enabled.");
             ErrorMessages.Add(OfficeGroupsExceptionRetrieveSetting, "Office Groups Exception occured in RetrieveOfficeGroupsSetting: {0}.");
             ErrorMessages.Add(OfficeGroupsInvalidSettingType, "Invalid setting type for Office Groups feature: {0}.");
             ErrorMessages.Add(OfficeGroupsNotSupportedCall, "Office Groups feature attempted an unsupported call.");
             ErrorMessages.Add(OfficeGroupsNoAuthServersFound, "Office Groups feature could not find any authorization servers.");
+            ErrorMessages.Add(ProfileRuleMissingRuleCriteria, "You can't activate this rule until you resolve any missing rule criteria information in the rule items.");
+            ErrorMessages.Add(ProfileRuleWorkflowAuthorGenericError, "An error occurred while authoring workflow. Please fix workflow definition and try again.");
+            ErrorMessages.Add(ProfileRuleActivateDeactivateByNonOwner, "This Profile Rule cannot be activated or deactivated by someone who is not its owner.");
+            ErrorMessages.Add(ProfileRulePublishedByOwner, "Your rule can't be activated until the current active rule is deactivated. The active rule can only be deactivated by the rule owner.");
+            ErrorMessages.Add(CannotDeleteGuestProfile, "You can't delete this guest channel access profile.");
+            ErrorMessages.Add(CannotDeactivateGuestProfile, "You can't set this guest channel access profile as inactive.");
+            ErrorMessages.Add(CannotDeleteProfileWithProfileRules, "You can't delete this channel access profile because it's being used by one or more channel access profile rules. Remove this profile from the channel access profile rules, and then try again.");
+            ErrorMessages.Add(CannotDeleteProfileWithExternalPartyItem, "You can't delete this channel access profile because it's associated to an external party item. Remove the association, and then try again.");
+            ErrorMessages.Add(CannotDeleteChannelAccessProfileRule, "You can't delete an active channel access profile rule. Deactivate the rule and then delete it.");
+            ErrorMessages.Add(InsufficientRetrievePrivilege, "External Party don't have sufficient privilege to retrieve record.");
+            ErrorMessages.Add(InsufficientCreatePrivilege, "External Party don't have sufficient privilege to create new record with given parameters.");
+            ErrorMessages.Add(InsufficientUpdatePrivilege, "External Party don't have sufficient privilege to update record.");
+            ErrorMessages.Add(OwnerAttributeMissing, "Owner Attribute is not present in the request.");
+            ErrorMessages.Add(InvalidOrganizationSettings, "Organization Settings are not properly configured for External Party.");
+            ErrorMessages.Add(InvalidRequestParameters, "Request parameters are not valid to server External Party request.");
+            ErrorMessages.Add(InvalidExternalPartyConfiguration, "Multiple External Party Items are present for request parameters.");
+            ErrorMessages.Add(InvalidExternalPartyParent, "External Party has invalid parent attribute.");
+            ErrorMessages.Add(InvalidExternalPartyOperation, "External Party is not allowed.");
+            ErrorMessages.Add(CannotCreateExternalPartyWithSameCorrelationKey, "An external party record already exists with the same correlation key value.");
+            ErrorMessages.Add(FeatureNotEnabled, "This operation couldn't be completed because this feature isn’t enabled for your organization.");
+            ErrorMessages.Add(CannotUpdateExternalPartyWithSameCorrelationKey, "An external party record already exists with the same correlation key value.");
+            ErrorMessages.Add(ChannelAccessProfileRuleAlreadyInDraftState, "You can't deactivate a draft channel access profile rule.");
+            ErrorMessages.Add(CannotActOnBehalfOfExternalParty, "User does not have the privilege to act on behalf of External Party.");
+            ErrorMessages.Add(CannotAssociateExternalPartyItem, "You can’t associate more than one external party item with an entity record that has been enabled as an external party.");
+            ErrorMessages.Add(DuplicatePrivilegeInRolecontrol, "The Channel Access Profile privilege array contains duplicate privilege references.");
+            ErrorMessages.Add(ErrorsInProfileRuleWorkflowActivation, "You can't activate this profile rule. You don't have the required permissions on the record types that are referenced by this profile rule.");
+            ErrorMessages.Add(CantSetIsGuestProfile, "You can’t set or change the value of the IsGuestProfile field because it’s for internal use only.");
+            ErrorMessages.Add(EntityIsNotEnabledForExternalParty, "You can't create/update an external party item associated to an entity that is not enabled for external party.");
             ErrorMessages.Add(MailApp_UnsupportedDevice, "Your device is currently unsupported.");
             ErrorMessages.Add(MailApp_UnsupportedBrowser, "Your browser is currently unsupported.");
             ErrorMessages.Add(MailApp_MailboxNotConfiguredWithServerSideSync, "We’re unable to load this app because your email mailbox isn't configured with Microsoft Dynamics CRM server-side synchronization for incoming email. Contact your system administrator to set up server-side synchronization for incoming email.");
             ErrorMessages.Add(MailApp_ReadWriteAccessRequired, "You only have administrative access to Microsoft Dynamics CRM. To use this app, you must have read-write access.");
             ErrorMessages.Add(MailApp_FeatureControlBitDisabled, "Access to the app hasn’t been enabled for this Dynamics CRM organization. Contact your system administrator to enable access to this app.");
             ErrorMessages.Add(MailApp_PermissionToUseCrmForOfficeAppsRequired, "You don’t have permission to access this app. Contact your system administrator to add the \"Use CRM for Office Apps\" privilege to your user role.");
-
-            ErrorMessages.Add(UseCloseIncidentRequest, "This message can not be used to set the state of incident to Closed.  In order to set state of incident to Closed, use the CloseIncidentRequest message instead.");
+            ErrorMessages.Add(MailApp_TrackingIsNotSupported, "This version of Outlook doesn't support tracking new emails.");
+            ErrorMessages.Add(MailApp_MobileBrowserIsNotSupported, "The mobile browser version of Outlook is currently unsupported. Please try again from the Outlook desktop application.");
+            ErrorMessages.Add(MailApp_DifferentSecurityZoneError, "Try adding the following URLs to your Trusted Sites:{0} {1} {2}");
+            ErrorMessages.Add(UnsupportedImportComponent, "Sorry, your import failed because the {0} component isn’t supported for import and export.");
+            ErrorMessages.Add(InvalidLocaleIdForKnowledgeArticle, "Language with Locale ID {0}, does not exist");
+            ErrorMessages.Add(PublishArticle_TranslationWithMoreThanOneApprovedVersion, "There is more than one approved version of the {0} language. You can only publish one version of each language.");
+            ErrorMessages.Add(TranslateArticle_OnlyPrimaryArticlesCanBeTranslated, "This article is a translation of the original article. It cannot be translated again. If you want another translation, start with the original article rather than this one.");
+            ErrorMessages.Add(TranslateArticle_TranslationCanNotBeCreatedForTheSameLanguage, "A translation for this language already exists for this version of the article");
+            ErrorMessages.Add(ColorStripAttributesExceeded, "Color Strip section cannot have more than 1 attribute");
+            ErrorMessages.Add(AttributesExceeded, "Attributes cannot be more than 4");
+            ErrorMessages.Add(ColorStripAttributesInvalid, "Color Strip section can only have attributes of type Two Options, Option Set and Status Reason");
+            ErrorMessages.Add(InvalidClassIdInReferencePanelSection, "Reference panel section can have only reference panel sub-grid and reference panel quick view form controls. Found control with invalid classid {0}.");
+            ErrorMessages.Add(InvalidNumberOfReferencePanelSections, "MainInteractionCentric form can have only 1 reference panel section. Found {0}.");
+            ErrorMessages.Add(InvalidNumberOfCardFormSections, "Number of sections in a card form must be 4. Found {0}.");
+            ErrorMessages.Add(EmptyCommandOrEntity, "Command or entity name cannot be empty.");
+            ErrorMessages.Add(CommandNotSupported, "Command is not supported in offline mode.");
+            ErrorMessages.Add(OperationFailedTryAgain, "Operation could not be performed at the moment. Please try again.");
+            ErrorMessages.Add(NoUserPrivilege, "You do not have sufficient permissions.");
+            ErrorMessages.Add(XamlNotFound, "This feature is not available in offline mode.");
+            ErrorMessages.Add(CustomControlsImportError, "An error occurred while importing Custom Controls. Try importing this solution again.");
+            ErrorMessages.Add(ManifestXsdValidationError, "The import manifest file is invalid. XSD validation failed with the following error: '{0}'.\"");
+            ErrorMessages.Add(CustomControlsDependentPropertyConfiguration, "Property \"{0}\" can only be configured after property \"{1}\" has been assigned a value.");
+            ErrorMessages.Add(CustomControlsPropertySetConfiguration, "Property \"{0}\" can only be configured after Corresponding DataSet \"{1}\" view has been assigned a value.");
+            ErrorMessages.Add(ProductRecommendationsFeatureNotEnabled, "Product Recommendations feature is not enabled.");
+            ErrorMessages.Add(RecommendationModelActiveVersionNotSet, "The model version used is empty. To activate the model, specify the model version.");
+            ErrorMessages.Add(RecommendationModelActiveVersionInvalidStatus, "The model version used must be successfully built before the model can be activated.");
+            ErrorMessages.Add(AzureRecommendationModelNotExist, "The Azure recommendation model doesn’t exist.");
+            ErrorMessages.Add(AzureRecommendationModelBuildNotExist, "The Azure recommendation model build corresponding to the used model version doesn’t exist.");
+            ErrorMessages.Add(RecommendationsUnavailable, "Azure Machine Learning product recommendations are temporarily unavailable. Only catalog recommendations are available.");
+            ErrorMessages.Add(RecommendationModelBuildConnectionMustBeActive, "The Azure Machine Learning recommendation service connection must be activated before building a recommendation model. Please activate the recommendation service connection and try again.");
+            ErrorMessages.Add(RecommendationModelActivateConnectionMustBeActive, "The Azure Machine Learning recommendation service connection must be activated before the model can be activated. Please activate the recommendation service connection and try again.");
+            ErrorMessages.Add(RecommendationModelExpired, "The recommendation model has expired. Change the Valid Until date and try to activate the model again.");
+            ErrorMessages.Add(RecommendationModelMappingDuplicateRecord, "The recommendation model mapping values for entity, mapping type and version must be unique.");
+            ErrorMessages.Add(RecommendationModelMappingReadOnly, "You can't modify a Recommendation entity if it has a corresponding Basket entity.");
+            ErrorMessages.Add(CannotDeleteDueToBasketEntityAssociation, "You can't delete a Recommendation entity if it has a corresponding Basket entity.");
+            ErrorMessages.Add(RecommendationModelVersionActive, "The RecommendationModel Version is selected as the active version on a model and cannot be deleted.");
+            ErrorMessages.Add(RecommendationModelVersionBuildInProgress, "A workflow to build a model is already in progress. You can't start another build workflow until the current workflow has finished.");
+            ErrorMessages.Add(RecommendationModelVersionDuplicateName, "A model version with the same name already exists. Specify a different name.");
+            ErrorMessages.Add(AzureServiceConnectionInvalidUri, "Provide a valid service URL.");
+            ErrorMessages.Add(RecommendationAzureConnectionFailed, "Failed to connect to the Azure Recommendations service. Check that the service URL and the Azure account key are valid and the service subscription is active.");
+            ErrorMessages.Add(TextAnalyticsAzureTestConnectionFailed, "Failed to connect to the Azure Text Analytics service. Check that the service URL and the Azure account key are valid and the service subscription is active.");
+            ErrorMessages.Add(RecommendationAzureConnectionCascadeActivateFailed, "One or more recommendation models couldn't be activated. Try activating the existing recommendation models separately from the Azure service connection.");
+            ErrorMessages.Add(TextAnalyticsAzureConnectionCascadeActivateFailed, "One or more text analytics models couldn't be activated. Try activating the existing text analytics models separately from the Azure service connection.");
+            ErrorMessages.Add(AzureOperationResponseTimedOut, "An Azure operation request did not return a response within stated timeout period. Retry the operation or increase timeout provided for the operation.");
+            ErrorMessages.Add(AzureServiceConnectionCascadeDeleteFailed, "One or more models use the connection. Delete all models using this connection, and try deleting the connection again.");
+            ErrorMessages.Add(TextAnalyticsAzureConnectionFailed, "Unable to connect to Text Analytics API.");
+            ErrorMessages.Add(TopicModelScheduleBuildSettingsEmpty, "Activation requires setting the build schedule. Specify the schedule build settings before activation.");
+            ErrorMessages.Add(TextAnalyticsFeatureNotEnabled, "The Azure Text Analytics feature isn’t activated. The system administrator must activate this feature and set up the required configuration.");
+            ErrorMessages.Add(TopicModelConfigurationUsedEmpty, "Activation requires specifying the build configuration. Specify the configuration used for the build before activation.");
+            ErrorMessages.Add(TopicModelTestWithoutConfiguration, "Specify the configuration used for the build.");
+            ErrorMessages.Add(TextAnalyticsAzureUnableToConnectWithBuild, "CRM failed to connect with the Azure text analytics service. Verify that the service URI and account key are valid, and the Azure subscription is active.");
+            ErrorMessages.Add(TopicModelActivateWithInvalidConfiguration, "The configuration used for the build is invalid. Topic determination fields are required for the configuration used for topic analysis.");
+            ErrorMessages.Add(TextAnalyticsModelActivateConnectionMustBeActive, "The Azure Machine Learning Text Analytics service connection must be activated before the model can be activated. Please activate the text analytics service connection and try again.");
+            ErrorMessages.Add(TextAnalyticsMappingUsedForActiveConfiguration, "This text analytics entity mapping is used for an active configuration. It can’t be modified or deleted while it is used by an active config.");
+            ErrorMessages.Add(TopicModelConfigurationAssociatedModelAlreadyActive, "Cannot update or delete topic model configuration because it is associated with an active topic model.");
+            ErrorMessages.Add(KnowledgeSearchActiveModelsAlreadyExist, "An active configuration already exists for source entity {0}. Only one active configuration is allowed per source entity.");
+            ErrorMessages.Add(TextAnalyticsAPIActiveConfigurationDoesNotExist, "Active configuration does not exist for entity.");
+            ErrorMessages.Add(TextAnalyticsAPIAllowedOnlyForEnglishLanguage, "Text Analytics feature is available for organizations with base language as English.");
+            ErrorMessages.Add(TextAnalyticsAPIAzureUnableToConnectWithBuild, "CRM failed to connect with the Azure text analytics service. Verify that the service URI and account key are valid, and the Azure subscription is active.");
+            ErrorMessages.Add(TextAnalyticsAzureSchedulerError, "CRM failed to connect with the Azure text analytics service. Please try again and if the problem persists contact your system administrator.");
+            ErrorMessages.Add(TextAnalyticsMaxLimitForTopicModelReached, "Maximum number of topic models allowed for your organization has been reached.");
+            ErrorMessages.Add(TextAnalyticsAPIActiveSimilarityConfigurationDoesNotExist, "No active similarity rule exists. The system administrator must set up a similarity rule configuration.");
+            ErrorMessages.Add(AdvancedSimilarityAzureSearchUnexpectedError, "An unexpected error occurred executing the search. Try again later.");
+            ErrorMessages.Add(TaskFlowNameIsNotUnique, "A task flow with the specified name already exists.  Please specify a unique name.");
+            ErrorMessages.Add(TaskFlowInvalidCharactersInName, "The name field can only contain alphanumeric characters.");
+            ErrorMessages.Add(TaskFlowEmptyName, "The name field cannot be empty. Please enter a name.");
+            ErrorMessages.Add(TaskFlowFormXmlNotFound, "Could not find the system form {0} for Task flow {1}.");
+            ErrorMessages.Add(TaskFlowPageMissingFormXmlTab, "Could not find the pages {0} for Task flow {1}.");
+            ErrorMessages.Add(TaskFlowUnsupportedEntities, "The following entities are not enabled for Task flows: {0}.");
+            ErrorMessages.Add(TaskFlowEntityRelationshipIsNotValid, "Invalid relationship type: {0}.");
+            ErrorMessages.Add(TaskFlowEntityAttributeIsNotValid, "Invalid attribute type: {0}.{1}.");
+            ErrorMessages.Add(TaskFlowMaxNumberPages, "The task flow has exceeded the maximum number of pages allowed ({0}). To continue, you need to remove some pages.");
+            ErrorMessages.Add(TaskFlowMaxNumberControls, "The task flow has exceeded the maximum number of controls allowed ({0}). To continue, you need to remove some controls.");
+            ErrorMessages.Add(TaskFlowNotValid, "Task flow definition is invalid.");
+            ErrorMessages.Add(FeedbackFeatureNotEnabled, "Feedback feature is not enabled.");
+            ErrorMessages.Add(DelveActionHubDisabledError, "Delve action hub feature is not enabled.");
+            ErrorMessages.Add(ErrorGeneratingActionHub, "An error has occurred. Please try again later.");
+            ErrorMessages.Add(DelveActionHubAttributeMissingInResponseException, "Attribute not present in exchange oData response.");
+            ErrorMessages.Add(DelveActionHubInvalidStateCodeException, "Invalid state code passed in expression.");
+            ErrorMessages.Add(DelveActionHubInvalidResponseFormatException, "Invalid response format.");
+            ErrorMessages.Add(DelveActionHubResponseRetievalFailureException, "Error while fetching actions from Exchange.");
+            ErrorMessages.Add(EvoStsAuthorizationServerRecordCreationFailureException, "Database operation failed while creating authorization record for Evo STS.");
+            ErrorMessages.Add(DelveActionHubAuthorizationFailureException, "You don’t have the proper Office 365 license to view actions. Please contact your system administrator.");
+            ErrorMessages.Add(DelveActionHubS2SSetupFailureException, "Server to Server Authentication with Exchange for Delve Action Hub is not set up.");
+            ErrorMessages.Add(DocumentManagementIsDisabledOnEntity, "You must enable document management for this Entity in order to enable Document Recommendations.");
+            ErrorMessages.Add(RegardingObjectValuesRetrievalFailure, "Failed to retrieve regarding object values.");
+            ErrorMessages.Add(RelatedRecordsFailure, "Failed to retrieve related records.");
+            ErrorMessages.Add(SharePointSiteNotConfigured, "SharePointSite is not configured, it need to be configured.");
+            ErrorMessages.Add(RecommendedDocumentsRetrievalFailure, "Unable to retrieve document recommendations from the document source.");
+            ErrorMessages.Add(SimilarityRuleDisabled, "No similarity rule active for this entity.");
+            ErrorMessages.Add(SharePointS2SIsDisabled, "SharePoint server-based SharePoint integration not enabled.");
+            ErrorMessages.Add(SimilarityRuleFCBOff, "Similarity rules not enabled.");
+            ErrorMessages.Add(DocumentRecommendationsFCBOff, "Document recommendations not enabled.");
+            ErrorMessages.Add(PluginSecureStoreKeyVaultClient, "Unable to initialize KeyVaultClientProvider under Sandbox WorkerProcess");
+            ErrorMessages.Add(PluginSecureStoreKeyVaultClientGetSecret, "Unable to GetSecret from KeyVault");
+            ErrorMessages.Add(PluginSecureStoreKeyVaultClientSetSecret, "Unable to SetSecret to KeyVault");
+            ErrorMessages.Add(PluginSecureStoreKeyVaultClientDecrypt, "Unable to Decrypt using KeyVault");
+            ErrorMessages.Add(PluginSecureStoreKeyVaultClientEncrypt, "Unable to Encrypt using KeyVault");
+            ErrorMessages.Add(PluginSecureStoreAdalAcquireToken, "Unable to AcquireToken for resource");
+            ErrorMessages.Add(PluginSecureStoreTPSKeyVaultUnconfigured, "KeyVaultURI was not configured for an Assembly in TPS");
+            ErrorMessages.Add(PluginSecureStoreTPSAssemblyNotRegistered, "Assembly is not registered in TPS");
+            ErrorMessages.Add(PluginSecureStoreS2SMissing, "S2S Credentials missing");
+            ErrorMessages.Add(PluginSecureStoreTPSClient, "Unable to create TPS Client");
+            ErrorMessages.Add(PluginSecureStoreLocalConfigStoreGetData, "Unable to get data from LocalConfigStore");
+            ErrorMessages.Add(PluginSecureStoreLocalConfigStoreSetData, "Unable to set data to LocalConfigStore");
+            ErrorMessages.Add(PluginSecureStoreKeyVaultServiceProviderGetData, "Missing AppId / Secrets in KeyVault");
+            ErrorMessages.Add(PluginSecureStoreKeyVaultServiceCertFormat, "Certificate not stored as a Base64String in KeyVault");
+            ErrorMessages.Add(PluginSecureStoreNoFullySigned, "Assembly not fully signed");
         }
 
         /// <summary>
@@ -2734,7 +3077,7 @@ namespace DLaB.Xrm.CrmSdk
         /// <returns></returns>
         public static string GetErrorMessage(int hResult)
         {
-            var errorMessage = ErrorMessages[hResult] as String;
+            string errorMessage = ErrorMessages[hResult] as string;
             if (string.IsNullOrEmpty(errorMessage))
             {
                 errorMessage = "Server was unable to process request.";
@@ -2742,8 +3085,31 @@ namespace DLaB.Xrm.CrmSdk
             return errorMessage;
         }
 
+        //public static ErrorType GetErrorType(int errorCode)
+        //{
+        //    if (ErrorTypes[errorCode] == null)
+        //    {
+        //        return ErrorType.SystemFailure;
+        //    }
+        //    else
+        //    {
+        //        ErrorType errorType = (ErrorType)ErrorTypes[errorCode];
+        //        return errorType;
+        //    }
+        //}
+
         #pragma warning disable 1591
 
+        public const int LowerVersionUpgrade = unchecked((int)0x80048541); // -2147187391
+        public const int PatchMissingBase = unchecked((int)0x80048540); // -2147187392
+        public const int SubcomponentDoesNotExist = unchecked((int)0x80048537); // -2147187401
+        public const int SubcomponentMissingARoot = unchecked((int)0x80048536); // -2147187402
+        public const int CannotModifyPatchedSolution = unchecked((int)0x80048538); // -2147187400
+        public const int CloneSolutionException = unchecked((int)0x80048539); // -2147187399
+        public const int CloneSolutionPatchException = unchecked((int)0x80061771); // -2147084431
+        public const int QuickFindSavedQueryAlreadyExists = unchecked((int)0x8004853a); // -2147187398
+        public const int SolutionUpgradeNotAvailable = unchecked((int)0x8004853b); // -2147187397
+        public const int SolutionUpgradeWrongSolutionSelected = unchecked((int)0x8004853c); // -2147187396
         public const int CustomImageAttributeOnlyAllowedOnCustomEntity = unchecked((int)0x80048531); // -2147187407
         public const int SqlEncryptionSymmetricKeyCannotOpenBecauseWrongPassword = unchecked((int)0x80048530); // -2147187408
         public const int SqlEncryptionSymmetricKeyDoesNotExistOrNoPermission = unchecked((int)0x8004852f); // -2147187409
@@ -2823,6 +3189,7 @@ namespace DLaB.Xrm.CrmSdk
         public const int ImportTemplateLanguageIgnored = unchecked((int)0x8004847a); // -2147187590
         public const int ImportTemplatePersonalIgnored = unchecked((int)0x8004847b); // -2147187589
         public const int ImportComponentDeletedIgnored = unchecked((int)0x8004847c); // -2147187588
+        public const int CustomerRelationshipCannotBeDeleted = unchecked((int)0x8004847d); // -2147187587
         public const int RelationshipRoleNodeNumberInvalid = unchecked((int)0x80048469); // -2147187607
         public const int AssociationRoleOrdinalInvalid = unchecked((int)0x80048468); // -2147187608
         public const int RelationshipRoleMismatch = unchecked((int)0x80048467); // -2147187609
@@ -3208,6 +3575,27 @@ namespace DLaB.Xrm.CrmSdk
         public const int DoNotTrackItem = unchecked((int)0x80044228); // -2147204568
         public const int GoOfflineFileWasDeleted = unchecked((int)0x80044229); // -2147204567
         public const int GoOfflineEmptyFileForDelete = unchecked((int)0x80044230); // -2147204560
+        public const int InvalidForOfficeGraph = unchecked((int)0x80044231); // -2147204559
+        public const int TrendingDocumentsOnpremiseDeploymentError = unchecked((int)0x80044232); // -2147204558
+        public const int TrendingDocumentsIntegrationDisabledError = unchecked((int)0x80044233); // -2147204557
+        public const int TrendingDocumentsDataRetrievalFailure = unchecked((int)0x80044234); // -2147204556
+        public const int RelationshipNotCreatedForOfficeGraphError = unchecked((int)0x80044235); // -2147204555
+        public const int RelationshipNotUpdatedForOfficeGraphError = unchecked((int)0x80044236); // -2147204554
+        public const int AttributeNotCreatedForOfficeGraphError = unchecked((int)0x80044237); // -2147204553
+        public const int AttributeNotUpdatedForOfficeGraphError = unchecked((int)0x80044238); // -2147204552
+        public const int OfficeGraphDisabledError = unchecked((int)0x80044239); // -2147204551
+        public const int BaseAttributeNameNotPresentError = unchecked((int)0x80044240); // -2147204544
+        public const int OperatorCodeNotPresentError = unchecked((int)0x80044241); // -2147204543
+        public const int InvalidBaseAttributeError = unchecked((int)0x80044242); // -2147204542
+        public const int MatchingAttributeNameNotNullError = unchecked((int)0x80044243); // -2147204541
+        public const int InvalidMatchingAttributeError = unchecked((int)0x80044244); // -2147204540
+        public const int BaseMatchingAttributeNotSameError = unchecked((int)0x80044245); // -2147204539
+        public const int InvalidOperatorCodeError = unchecked((int)0x80044253); // -2147204525
+        public const int InvalidSimilarityRuleStateError = unchecked((int)0x80044254); // -2147204524
+        public const int TrendingDocumentsIntegrationTurnedOffError = unchecked((int)0x80044255); // -2147204523
+        public const int OfficeGraphSiteNotConfigured = unchecked((int)0x80044257); // -2147204521
+        public const int TrendingDocumentsOfflineModeError = unchecked((int)0x80044258); // -2147204520
+        public const int S2SNotConfigured = unchecked((int)0x80044259); // -2147204519
         public const int ClientVersionTooLow = unchecked((int)0x80044500); // -2147203840
         public const int ClientVersionTooHigh = unchecked((int)0x80044501); // -2147203839
         public const int InsufficientAccessMode = unchecked((int)0x80044502); // -2147203838
@@ -3496,6 +3884,7 @@ namespace DLaB.Xrm.CrmSdk
         public const int unManagedidsbizmgmtcantchangeorgname = unchecked((int)0x80041d36); // -2147214026
         public const int MultipleOrganizationsNotAllowed = unchecked((int)0x80041d35); // -2147214027
         public const int UserSettingsInvalidAdvancedFindStartupMode = unchecked((int)0x80041d34); // -2147214028
+        public const int UserSettingsInvalidSearchExperienceValue = unchecked((int)0x80041d53); // -2147213997
         public const int CannotModifySpecialUser = unchecked((int)0x80041d33); // -2147214029
         public const int unManagedidsbizmgmtcannotaddlocaluser = unchecked((int)0x80041d32); // -2147214030
         public const int CannotModifySysAdmin = unchecked((int)0x80041d31); // -2147214031
@@ -3793,6 +4182,7 @@ namespace DLaB.Xrm.CrmSdk
         public const int CannotDeleteAsBackgroundOperationInProgress = unchecked((int)0x8004032b); // -2147220693
         public const int FilteredDuetoInactiveState = unchecked((int)0x8004032a); // -2147220694
         public const int MissingBOWFRules = unchecked((int)0x80040329); // -2147220695
+        public const int AsyncOperationPostponed = unchecked((int)0x80040328); // -2147220696
         public const int CannotSpecifyOwnerForActivityPropagation = unchecked((int)0x80040327); // -2147220697
         public const int CampaignActivityAlreadyPropagated = unchecked((int)0x80040326); // -2147220698
         public const int FilteredDuetoAntiSpam = unchecked((int)0x80040325); // -2147220699
@@ -4147,6 +4537,8 @@ namespace DLaB.Xrm.CrmSdk
         public const int InvalidAssemblyProcessorArchitecture = unchecked((int)0x8004417e); // -2147204738
         public const int CyclicReferencesNotSupported = unchecked((int)0x8004417f); // -2147204737
         public const int InvalidQuery = unchecked((int)0x80044183); // -2147204733
+        public const int SandboxWorkerPluginExecuteTimeout = unchecked((int)0x80081111); // -2146954991
+        public const int ServiceBusEndpointNotConfigured = unchecked((int)0x80081112); // -2146954990
         public const int InvalidEmailAddressFormat = unchecked((int)0x80044192); // -2147204718
         public const int ContractInvalidDiscount = unchecked((int)0x80044193); // -2147204717
         public const int InvalidLanguageCode = unchecked((int)0x80044195); // -2147204715
@@ -4836,6 +5228,10 @@ namespace DLaB.Xrm.CrmSdk
         public const int InvalidDeactivateFormType = unchecked((int)0x8004f660); // -2147158432
         public const int FallbackFormDeactivation = unchecked((int)0x8004f661); // -2147158431
         public const int DeprecatedFormActivation = unchecked((int)0x8004f662); // -2147158430
+        public const int CannotUpdateEntitySetName = unchecked((int)0x8004f663); // -2147158429
+        public const int FallbackCardFormDeactivation = unchecked((int)0x8004f664); // -2147158428
+        public const int FallbackQuickFormDeactivation = unchecked((int)0x8004f665); // -2147158427
+        public const int FallbackMainInteractionCentricFormDeactivation = unchecked((int)0x8004f666); // -2147158426
         public const int RuntimeRibbonXmlValidation = unchecked((int)0x8004f671); // -2147158415
         public const int InitializeErrorNoReadOnSource = unchecked((int)0x8004f800); // -2147158016
         public const int NoRollupAttributesDefined = unchecked((int)0x8004f681); // -2147158399
@@ -4898,6 +5294,7 @@ namespace DLaB.Xrm.CrmSdk
         public const int ExpectingAtLeastOneBusinessRuleStep = unchecked((int)0x80060011); // -2147090415
         public const int RuleCreationNotAllowedForCyclicReferences = unchecked((int)0x80060012); // -2147090414
         public const int NoConditionRuleCreationNotAllowedForSetValueShowError = unchecked((int)0x80060013); // -2147090413
+        public const int RuleActivationNotAllowedWithDeletedStages = unchecked((int)0x80060014); // -2147090412
         public const int EntityLimitExceeded = unchecked((int)0x80060200); // -2147089920
         public const int InvalidSearchEntity = unchecked((int)0x80060201); // -2147089919
         public const int InvalidSearchEntities = unchecked((int)0x80060202); // -2147089918
@@ -4905,6 +5302,9 @@ namespace DLaB.Xrm.CrmSdk
         public const int InvalidSearchName = unchecked((int)0x80060204); // -2147089916
         public const int EntityGroupNameOrEntityNamesMustBeProvided = unchecked((int)0x80060205); // -2147089915
         public const int OnlyOneSearchParameterMustBeProvided = unchecked((int)0x80060206); // -2147089914
+        public const int ExternalSearchAttributeLimitExceeded = unchecked((int)0x80060300); // -2147089664
+        public const int CannotEnableEntityForRelevanceSearch = unchecked((int)0x80060302); // -2147089662
+        public const int CannotDisableRelevanceSearchManagedProperty = unchecked((int)0x80060303); // -2147089661
         public const int ProcessEmptyBranches = unchecked((int)0x80060399); // -2147089511
         public const int WorkflowIdIsNull = unchecked((int)0x80060400); // -2147089408
         public const int PrimaryEntityIsNull = unchecked((int)0x80060401); // -2147089407
@@ -4950,6 +5350,11 @@ namespace DLaB.Xrm.CrmSdk
         public const int InvalidSourceType = unchecked((int)0x80060437); // -2147089353
         public const int CalculatedFieldsInvalidSourceTypeMask = unchecked((int)0x80060438); // -2147089352
         public const int AttributeFormulaDefinitionIsEmpty = unchecked((int)0x80060439); // -2147089351
+        public const int InvalidWorkflowOrWorkflowDoesNotExist = unchecked((int)0x8006040a); // -2147089398
+        public const int WorkflowDoesNotExist = unchecked((int)0x8006040b); // -2147089397
+        public const int ActionStepInvalidStageid = unchecked((int)0x8006040c); // -2147089396
+        public const int ActionStepInvalidProcessid = unchecked((int)0x8006040d); // -2147089395
+        public const int ActionStepInvalidPipelineStageid = unchecked((int)0x8006040e); // -2147089394
         public const int CalculatedFieldsDateOnlyBehaviorTypeMismatch = unchecked((int)0x8006043a); // -2147089350
         public const int CalculatedFieldsTimeInvBehaviorTypeMismatch = unchecked((int)0x8006043b); // -2147089349
         public const int CalculatedFieldsUserLocBehaviorTypeMismatch = unchecked((int)0x8006043c); // -2147089348
@@ -5003,6 +5408,8 @@ namespace DLaB.Xrm.CrmSdk
         public const int EmailServerProfileAutoDiscoverNotAllowed = unchecked((int)0x8005e204); // -2147098108
         public const int EmailServerProfileLocationNotRequired = unchecked((int)0x8005e205); // -2147098107
         public const int ForwardMailboxCannotAssociateWithUser = unchecked((int)0x8005e207); // -2147098105
+        public const int HybridSSSExchangeOnlineS2SCertExpired = unchecked((int)0x80131509); // -2146233079
+        public const int HybridSSSExchangeOnlineS2SCertActsExpired = unchecked((int)0x80131500); // -2146233088
         public const int MailboxCannotModifyEmailAddress = unchecked((int)0x8005e208); // -2147098104
         public const int MailboxCredentialNotSpecified = unchecked((int)0x8005e209); // -2147098103
         public const int EmailServerProfileInvalidServerLocation = unchecked((int)0x8005e20a); // -2147098102
@@ -5051,6 +5458,24 @@ namespace DLaB.Xrm.CrmSdk
         public const int InvalidS2SAuthentication = unchecked((int)0x8005e245); // -2147098043
         public const int RouterIsDisabled = unchecked((int)0x8005e246); // -2147098042
         public const int MailboxUnsupportedEmailServerType = unchecked((int)0x8005e247); // -2147098041
+        public const int TestEmailConfigurationScheduledInProgress = unchecked((int)0x8005e248); // -2147098040
+        public const int ServiceAccountMailboxesCountIsZero = unchecked((int)0x8005e249); // -2147098039
+        public const int ServiceAccountMailboxesCountIsGreaterThanOne = unchecked((int)0x8005e24a); // -2147098038
+        public const int TenantIDIsEmpty = unchecked((int)0x8005e25a); // -2147098022
+        public const int InvalidTenantIDValue = unchecked((int)0x8005e25b); // -2147098021
+        public const int TenantIDValueChanged = unchecked((int)0x8005e25c); // -2147098020
+        public const int SpecifyIncomingServerLocation = unchecked((int)0x8005e24b); // -2147098037
+        public const int SpecifyOutgoingServerLocation = unchecked((int)0x8005e24c); // -2147098036
+        public const int UserNameRequiredForImpersonation = unchecked((int)0x8005e24d); // -2147098035
+        public const int PasswordRequiredForImpersonation = unchecked((int)0x8005e24e); // -2147098034
+        public const int ServerLocationIsEmpty = unchecked((int)0x8005e250); // -2147098032
+        public const int SpecifyIncomingUserName = unchecked((int)0x8005e251); // -2147098031
+        public const int SpecifyOutgoingUserName = unchecked((int)0x8005e252); // -2147098030
+        public const int SpecifyIncomingPassword = unchecked((int)0x8005e253); // -2147098029
+        public const int SpecifyOutgoingPassword = unchecked((int)0x8005e254); // -2147098028
+        public const int ServerLocationAndSSLSetToYes = unchecked((int)0x8005e255); // -2147098027
+        public const int SpecifyInComingPort = unchecked((int)0x8005e24f); // -2147098033
+        public const int SpecifyOutgoingPort = unchecked((int)0x8005e256); // -2147098026
         public const int TraceMessageConstructionError = unchecked((int)0x8004f900); // -2147157760
         public const int TooManyBytesInInputStream = unchecked((int)0x8004f901); // -2147157759
         public const int EmailRouterFileTooLargeToProcess = unchecked((int)0x8005f031); // -2147094479
@@ -5077,7 +5502,43 @@ namespace DLaB.Xrm.CrmSdk
         public const int DataSourceOfflineErrorCode = unchecked((int)0x8005f211); // -2147093999
         public const int PingFailureErrorCode = unchecked((int)0x8005f212); // -2147093998
         public const int RetrieveRecordOfflineErrorCode = unchecked((int)0x8005f213); // -2147093997
+        public const int CantSaveRecordInOffline = unchecked((int)0x8005f214); // -2147093996
         public const int NotMobileEnabled = unchecked((int)0x8005f215); // -2147093995
+        public const int InvalidPreviewModeOperation = unchecked((int)0x8005f219); // -2147093991
+        public const int PageNotFound = unchecked((int)0x8005f21a); // -2147093990
+        public const int ViewNotAvailableForMobileOffline = unchecked((int)0x8005f21b); // -2147093989
+        public const int NotMobileWriteEnabled = unchecked((int)0x8005f21c); // -2147093988
+        public const int DataStoreKeyNotFoundErrorCode = unchecked((int)0x8005f21d); // -2147093987
+        public const int RelatedEntityAlreadyExistsInProfile = unchecked((int)0x8005f21e); // -2147093986
+        public const int RelatedEntityDoesNotExistsInProfile = unchecked((int)0x8005f21f); // -2147093985
+        public const int RelatedEntityGenericError = unchecked((int)0x8005f220); // -2147093984
+        public const int RelatioshipAlreadyExists = unchecked((int)0x8005f221); // -2147093983
+        public const int InvalidDataDownloadFilterBusinessUnit = unchecked((int)0x8005f222); // -2147093982
+        public const int InvalidDataDownloadFilterOrganization = unchecked((int)0x8005f223); // -2147093981
+        public const int CantUpdateOnlineRecord = unchecked((int)0x8005f224); // -2147093980
+        public const int ApplicationMetadataUserValidationUnknownError = unchecked((int)0x8005f225); // -2147093979
+        public const int ApplicationMetadataPrepareCustomizationsUnknownError = unchecked((int)0x8005f226); // -2147093978
+        public const int ApplicationMetadataRetrieveUserContextUnknownError = unchecked((int)0x8005f227); // -2147093977
+        public const int ApplicationMetadataSyncUnknownError = unchecked((int)0x8005f228); // -2147093976
+        public const int ApplicationMetadataRetrieveUnknownError = unchecked((int)0x8005f229); // -2147093975
+        public const int ApplicationMetadataGetPreviewMetadataUnknownError = unchecked((int)0x8005f230); // -2147093968
+        public const int ApplicationMetadataConverterFailed = unchecked((int)0x8005f231); // -2147093967
+        public const int ApplicationMetadatadaNullData = unchecked((int)0x8005f232); // -2147093966
+        public const int ApplicationMetadatadaCreateFailed = unchecked((int)0x8005f233); // -2147093965
+        public const int ApplicationMetadatadaUpdateFailed = unchecked((int)0x8005f234); // -2147093964
+        public const int ApplicationMetadataPrepareCustomizationsRetrieverError = unchecked((int)0x8005f235); // -2147093963
+        public const int ApplicationMetadataPrepareCustomizationsTimeout = unchecked((int)0x8005f236); // -2147093962
+        public const int ApplicationMetadataPrepareCustomizationsAppLock = unchecked((int)0x8005f237); // -2147093961
+        public const int EntityMetadataSyncFailed = unchecked((int)0x8005f238); // -2147093960
+        public const int EntityMetadataSyncFailedWithContinue = unchecked((int)0x8005f239); // -2147093959
+        public const int ApplicationMetadataSyncFailed = unchecked((int)0x8005f240); // -2147093952
+        public const int ApplicationMetadataFailedWithContinue = unchecked((int)0x8005f241); // -2147093951
+        public const int ApplicationMetadataSyncTimeout = unchecked((int)0x8005f242); // -2147093950
+        public const int ApplicationMetadataSyncTimeoutWithContinue = unchecked((int)0x8005f243); // -2147093949
+        public const int ApplicationMetadataSyncAppLock = unchecked((int)0x8005f244); // -2147093948
+        public const int ApplicationMetadataSyncAppLockWithContinue = unchecked((int)0x8005f245); // -2147093947
+        public const int GenericMetadataSyncFailed = unchecked((int)0x8005f246); // -2147093946
+        public const int GenericMetadataSyncFailedWithContinue = unchecked((int)0x8005f247); // -2147093945
         public const int EntitlementInvalidStartEndDate = unchecked((int)0x80060600); // -2147088896
         public const int EntitlementInvalidState = unchecked((int)0x80060601); // -2147088895
         public const int InvalidChannelOrigin = unchecked((int)0x80060602); // -2147088894
@@ -5143,6 +5604,8 @@ namespace DLaB.Xrm.CrmSdk
         public const int ImportConvertRuleError = unchecked((int)0x8004f869); // -2147157911
         public const int CannotDeleteActiveSla = unchecked((int)0x8004f870); // -2147157904
         public const int ActiveSlaCannotEdit = unchecked((int)0x8004f871); // -2147157903
+        public const int MaxActiveSLAError = unchecked((int)0x8004f897); // -2147157865
+        public const int MaxActiveSLAKPIError = unchecked((int)0x8004f898); // -2147157864
         public const int BundleCannotContainBundle = unchecked((int)0x8004f972); // -2147157646
         public const int ProductOrBundleCannotBeAsParent = unchecked((int)0x8004f973); // -2147157645
         public const int CannotAssociateRetiredProducts = unchecked((int)0x8004f974); // -2147157644
@@ -5289,6 +5752,20 @@ namespace DLaB.Xrm.CrmSdk
         public const int SPRequiredColCheckInErrorCode = unchecked((int)0x80060725); // -2147088603
         public const int SPFileIsCheckedOutByOtherUser = unchecked((int)0x80060728); // -2147088600
         public const int SPFileNameModifiedErrorCode = unchecked((int)0x80060729); // -2147088599
+        public const int SPAccountNameFetchFailure = unchecked((int)0x8006072a); // -2147088598
+        public const int SPPersonalSiteNotFound = unchecked((int)0x8006072b); // -2147088597
+        public const int SPFolderRenameFailure = unchecked((int)0x8006072c); // -2147088596
+        public const int SPMultipleOdbSitesError = unchecked((int)0x8006072d); // -2147088595
+        public const int SPOdbDisabledError = unchecked((int)0x8006072e); // -2147088594
+        public const int SPOdbUpdateDeleteError = unchecked((int)0x8006072f); // -2147088593
+        public const int SPDocumentMappingFailure = unchecked((int)0x80060734); // -2147088588
+        public const int SPOdbDuplicateLocationError = unchecked((int)0x80060735); // -2147088587
+        public const int SPOdbUpdateDeleteLocationError = unchecked((int)0x80060736); // -2147088586
+        public const int SPSearchOneDriveNotCreated = unchecked((int)0x80060737); // -2147088585
+        public const int SPSiteProtocolError = unchecked((int)0x80060738); // -2147088584
+        public const int SPDefaultSiteNotPresent = unchecked((int)0x80060739); // -2147088583
+        public const int SPUploadFailure = unchecked((int)0x80060740); // -2147088576
+        public const int SPAllFilesErrorScenario = unchecked((int)0x80060760); // -2147088544
         public const int RequiredBundleProductCannotBeDeleted = unchecked((int)0x80081008); // -2146955256
         public const int RequiredBundleItemCannotBeUpdated = unchecked((int)0x80081009); // -2146955255
         public const int DynamicPropertyInstanceMissingRequiredColumns = unchecked((int)0x8008100a); // -2146955254
@@ -5312,6 +5789,11 @@ namespace DLaB.Xrm.CrmSdk
         public const int ImportHierarchyRuleOtcMismatchError = unchecked((int)0x8004f9a3); // -2147157597
         public const int HonorPauseWithoutSLAKPIError = unchecked((int)0x80045000); // -2147201024
         public const int CannotSetCaseOnHold = unchecked((int)0x80055000); // -2147135488
+        public const int ApplyActiveSLAOnly = unchecked((int)0x80055001); // -2147135487
+        public const int NoPrivilegeToApplyManualSLA = unchecked((int)0x80055002); // -2147135486
+        public const int SlaNotEnabledEntity = unchecked((int)0x80055003); // -2147135485
+        public const int CannotSetEntityOnHold = unchecked((int)0x80055004); // -2147135484
+        public const int CannotCreateSLAForEntity = unchecked((int)0x80055005); // -2147135483
         public const int SyncAttributeMappingCannotBeUpdated = unchecked((int)0x80060741); // -2147088575
         public const int InvalidSyncDirectionValueForUpdate = unchecked((int)0x80060742); // -2147088574
         public const int InvalidLanguageForCreate = unchecked((int)0x80060750); // -2147088560
@@ -5351,6 +5833,11 @@ namespace DLaB.Xrm.CrmSdk
         public const int IndexSizeConstraintViolated = unchecked((int)0x80060895); // -2147088235
         public const int CannotSecureEntityKeyAttribute = unchecked((int)0x80060896); // -2147088234
         public const int ReactivateEntityKeyOnlyForFailedJobs = unchecked((int)0x80060897); // -2147088233
+        public const int RefRoleNavPaneDisplayOptionRequired = unchecked((int)0x80060898); // -2147088232
+        public const int InvalidRoleTypeForOneToManyRelationship = unchecked((int)0x80060899); // -2147088231
+        public const int InvalidRoleOccurrencesForOneToManyRelationship = unchecked((int)0x8006089a); // -2147088230
+        public const int InvalidEntitySetName = unchecked((int)0x8006089b); // -2147088229
+        public const int IncorrectEntitySetName = unchecked((int)0x8006089c); // -2147088228
         public const int WopiDiscoveryFailed = unchecked((int)0x80060800); // -2147088384
         public const int WopiApplicationUrl = unchecked((int)0x80060802); // -2147088382
         public const int WopiMaxFileSizeExceeded = unchecked((int)0x80060803); // -2147088381
@@ -5390,6 +5877,25 @@ namespace DLaB.Xrm.CrmSdk
         public const int XlsxImportColumnHeadersInvalid = unchecked((int)0x800608c6); // -2147088186
         public const int XlsxExportGeneratingExcelFailed = unchecked((int)0x800608c7); // -2147088185
         public const int XlsxImportExcelFailed = unchecked((int)0x800608c8); // -2147088184
+        public const int DocumentTemplateFeatureNotEnabled = unchecked((int)0x800608c9); // -2147088183
+        public const int WordTemplateFeatureNotEnabled = unchecked((int)0x800608db); // -2147088165
+        public const int MobileExcelFeatureNotEnabled = unchecked((int)0x800608ca); // -2147088182
+        public const int InvalidDocumentTemplate = unchecked((int)0x800608cb); // -2147088181
+        public const int InvalidFileType = unchecked((int)0x800608cc); // -2147088180
+        public const int DocxExportGeneratingWordFailed = unchecked((int)0x800608cd); // -2147088179
+        public const int DocxValidationFailed = unchecked((int)0x800608ce); // -2147088178
+        public const int LegacyXlsxFileNotSupported = unchecked((int)0x800608cf); // -2147088177
+        public const int InvalidWordFileType = unchecked((int)0x800608ee); // -2147088146
+        public const int InvalidWordDocumentTemplate = unchecked((int)0x800608ef); // -2147088145
+        public const int InvalidWordTemplateContent = unchecked((int)0x800608fb); // -2147088133
+        public const int DataTableNotAvailable = unchecked((int)0x800609b0); // -2147087952
+        public const int InvalidEntitySpecified = unchecked((int)0x800609b1); // -2147087951
+        public const int InvalidTemplateContent = unchecked((int)0x800609b2); // -2147087950
+        public const int InvalidViewReference = unchecked((int)0x800609b3); // -2147087949
+        public const int FileTypeNotSupported = unchecked((int)0x800609b4); // -2147087948
+        public const int DatasheetNotAvailable = unchecked((int)0x800609b5); // -2147087947
+        public const int HiddensheetNotAvailable = unchecked((int)0x800609b6); // -2147087946
+        public const int CorruptedHiddensheetData = unchecked((int)0x800609b7); // -2147087945
         public const int NoActiveLocation = unchecked((int)0x80060900); // -2147088128
         public const int FolderDoesNotExist = unchecked((int)0x80060901); // -2147088127
         public const int OneNoteCreationFailed = unchecked((int)0x80060902); // -2147088126
@@ -5419,19 +5925,191 @@ namespace DLaB.Xrm.CrmSdk
         public const int UserDoesNotHavePrivilegesToRunTheTool = unchecked((int)0x800608f8); // -2147088136
         public const int NoTimeZoneCodeForConversionRule = unchecked((int)0x800608f9); // -2147088135
         public const int NoEntitySpecified = unchecked((int)0x800608fa); // -2147088134
+        public const int InvalidOtherDataFilterOptions = unchecked((int)0x8006098d); // -2147087987
+        public const int RelatedEntityDoesNotExistInProfileItem = unchecked((int)0x8006098e); // -2147087986
+        public const int DownloadAllEntityRecordsChangedOrCreatedWithinTheseDays = unchecked((int)0x8006098f); // -2147087985
+        public const int MobileOfflineDaysSinceRecordLastModifiedZero = unchecked((int)0x80060990); // -2147087984
+        public const int IncreasingDaysWillResetMobileOfflineData = unchecked((int)0x80060991); // -2147087983
+        public const int DecreasingDaysWillDeleteOlderData = unchecked((int)0x80060992); // -2147087982
+        public const int InvalidDataFiltersForUnownedEntities = unchecked((int)0x80060993); // -2147087981
+        public const int InvalidDataFiltersForBUOwnedEntities = unchecked((int)0x80060994); // -2147087980
+        public const int InvalidDataFiltersForOrgOwnedEntities = unchecked((int)0x80060995); // -2147087979
+        public const int InvalidCustomDataDownloadFilters = unchecked((int)0x80060996); // -2147087978
+        public const int MOPIAssociationNameCannotBeEmptyOrSpace = unchecked((int)0x80060997); // -2147087977
+        public const int NoDefinedRelationshipsForMOPIAssociation = unchecked((int)0x80060998); // -2147087976
+        public const int InvalidRelationshipInMOPIAssociation = unchecked((int)0x80060999); // -2147087975
+        public const int CannotDeleteDefaultProfile = unchecked((int)0x8006099a); // -2147087974
+        public const int CannotAssociateInvalidEntityToProfileItem = unchecked((int)0x8006099b); // -2147087973
+        public const int CanAssociateOnlyMobileOfflineEnableEntityToProfileItem = unchecked((int)0x8006099c); // -2147087972
+        public const int CanAssociateOnlyOneEntityPerProfileItem = unchecked((int)0x8006099d); // -2147087971
+        public const int ImportMobileOfflineProfileError = unchecked((int)0x8006099f); // -2147087969
+        public const int SavedQueryValidationError = unchecked((int)0x800609a0); // -2147087968
+        public const int ChangeTrackingDisabledForMobileOfflineError = unchecked((int)0x800609a1); // -2147087967
+        public const int EnableMobileOfflineDisableChangeTrackingError = unchecked((int)0x800609a2); // -2147087966
+        public const int CannotDeleteUserProfile = unchecked((int)0x800609a3); // -2147087965
+        public const int CannotChangeDaysSinceRecordLastModified = unchecked((int)0x800609a4); // -2147087964
+        public const int CannotDisableMobileOfflineFlagForEntity = unchecked((int)0x800609a5); // -2147087963
+        public const int CannotAddUserToMobileOfflineProfile = unchecked((int)0x800609a6); // -2147087962
+        public const int MobileOfflineProfileNameAlreadyExists = unchecked((int)0x800609a7); // -2147087961
+        public const int MobileOfflineProfileItemNameAlreadyExists = unchecked((int)0x800609a8); // -2147087960
+        public const int MobileOfflineProfileNameCanNotBeNullOrEmpty = unchecked((int)0x800609a9); // -2147087959
+        public const int MobileOfflineProfileItemNameCanNotBeNullOrEmpty = unchecked((int)0x800609aa); // -2147087958
+        public const int CannotAddIntersectEntityToMobileOfflineProfileItem = unchecked((int)0x800609ab); // -2147087957
+        public const int CannotAddBusinessDataLocalizedLabelEntityToMobileOfflineProfileItem = unchecked((int)0x800609ac); // -2147087956
+        public const int CannotAddActivityPartyEntityToMobileOfflineProfileItem = unchecked((int)0x800609ad); // -2147087955
+        public const int InvalidAssociatedSavedQuery = unchecked((int)0x800609ae); // -2147087954
+        public const int CannotDisableMobileOfflineFlagForImportEntity = unchecked((int)0x80071111); // -2147020527
+        public const int CloneTitleTooLong = unchecked((int)0x80071112); // -2147020526
+        public const int InvalidMobileOfflineFiltersFetchXml = unchecked((int)0x80071113); // -2147020525
+        public const int MaxConditionsMobileOfflineFilters = unchecked((int)0x80071114); // -2147020524
+        public const int UnsupportedAttributeOrOperatorMobileOfflineFilters = unchecked((int)0x80071115); // -2147020523
         public const int OfficeGroupsFeatureNotEnabled = unchecked((int)0x800610ea); // -2147086102
         public const int OfficeGroupsExceptionRetrieveSetting = unchecked((int)0x800610eb); // -2147086101
         public const int OfficeGroupsInvalidSettingType = unchecked((int)0x800610ec); // -2147086100
         public const int OfficeGroupsNotSupportedCall = unchecked((int)0x800610ed); // -2147086099
         public const int OfficeGroupsNoAuthServersFound = unchecked((int)0x800610ee); // -2147086098
+        public const int ProfileRuleMissingRuleCriteria = unchecked((int)0x80061100); // -2147086080
+        public const int ProfileRuleWorkflowAuthorGenericError = unchecked((int)0x80061101); // -2147086079
+        public const int ProfileRuleActivateDeactivateByNonOwner = unchecked((int)0x80061102); // -2147086078
+        public const int ProfileRulePublishedByOwner = unchecked((int)0x80061103); // -2147086077
+        public const int CannotDeleteGuestProfile = unchecked((int)0x80061104); // -2147086076
+        public const int CannotDeactivateGuestProfile = unchecked((int)0x80061105); // -2147086075
+        public const int CannotDeleteProfileWithProfileRules = unchecked((int)0x80061106); // -2147086074
+        public const int CannotDeleteProfileWithExternalPartyItem = unchecked((int)0x80061107); // -2147086073
+        public const int CannotDeleteChannelAccessProfileRule = unchecked((int)0x80061108); // -2147086072
+        public const int InsufficientRetrievePrivilege = unchecked((int)0x80061109); // -2147086071
+        public const int InsufficientCreatePrivilege = unchecked((int)0x8006110a); // -2147086070
+        public const int InsufficientUpdatePrivilege = unchecked((int)0x8006110b); // -2147086069
+        public const int OwnerAttributeMissing = unchecked((int)0x8006110c); // -2147086068
+        public const int InvalidOrganizationSettings = unchecked((int)0x8006110d); // -2147086067
+        public const int InvalidRequestParameters = unchecked((int)0x8006110e); // -2147086066
+        public const int InvalidExternalPartyConfiguration = unchecked((int)0x8006110f); // -2147086065
+        public const int InvalidExternalPartyParent = unchecked((int)0x80061110); // -2147086064
+        public const int InvalidExternalPartyOperation = unchecked((int)0x80061111); // -2147086063
+        public const int CannotCreateExternalPartyWithSameCorrelationKey = unchecked((int)0x80061112); // -2147086062
+        public const int FeatureNotEnabled = unchecked((int)0x80061113); // -2147086061
+        public const int CannotUpdateExternalPartyWithSameCorrelationKey = unchecked((int)0x80061114); // -2147086060
+        public const int ChannelAccessProfileRuleAlreadyInDraftState = unchecked((int)0x80061115); // -2147086059
+        public const int CannotActOnBehalfOfExternalParty = unchecked((int)0x80061116); // -2147086058
+        public const int CannotAssociateExternalPartyItem = unchecked((int)0x80061117); // -2147086057
+        public const int DuplicatePrivilegeInRolecontrol = unchecked((int)0x80061118); // -2147086056
+        public const int ErrorsInProfileRuleWorkflowActivation = unchecked((int)0x80061119); // -2147086055
+        public const int CantSetIsGuestProfile = unchecked((int)0x8006111a); // -2147086054
+        public const int EntityIsNotEnabledForExternalParty = unchecked((int)0x8006111b); // -2147086053
         public const int MailApp_UnsupportedDevice = unchecked((int)0x80061200); // -2147085824
         public const int MailApp_UnsupportedBrowser = unchecked((int)0x80061201); // -2147085823
         public const int MailApp_MailboxNotConfiguredWithServerSideSync = unchecked((int)0x80061202); // -2147085822
         public const int MailApp_ReadWriteAccessRequired = unchecked((int)0x80061203); // -2147085821
         public const int MailApp_FeatureControlBitDisabled = unchecked((int)0x80061204); // -2147085820
         public const int MailApp_PermissionToUseCrmForOfficeAppsRequired = unchecked((int)0x80061205); // -2147085819
-
-        public const int UseCloseIncidentRequest = unchecked((int) 0x80131500); // -2146233088
+        public const int MailApp_TrackingIsNotSupported = unchecked((int)0x80061207); // -2147085817
+        public const int MailApp_MobileBrowserIsNotSupported = unchecked((int)0x80061208); // -2147085816
+        public const int MailApp_DifferentSecurityZoneError = unchecked((int)0x80061210); // -2147085808
+        public const int UnsupportedImportComponent = unchecked((int)0x80061302); // -2147085566
+        public const int InvalidLocaleIdForKnowledgeArticle = unchecked((int)0x80061400); // -2147085312
+        public const int PublishArticle_TranslationWithMoreThanOneApprovedVersion = unchecked((int)0x80061401); // -2147085311
+        public const int TranslateArticle_OnlyPrimaryArticlesCanBeTranslated = unchecked((int)0x80061402); // -2147085310
+        public const int TranslateArticle_TranslationCanNotBeCreatedForTheSameLanguage = unchecked((int)0x80061403); // -2147085309
+        public const int ColorStripAttributesExceeded = unchecked((int)0x80061500); // -2147085056
+        public const int AttributesExceeded = unchecked((int)0x80061501); // -2147085055
+        public const int ColorStripAttributesInvalid = unchecked((int)0x80061502); // -2147085054
+        public const int InvalidClassIdInReferencePanelSection = unchecked((int)0x80061503); // -2147085053
+        public const int InvalidNumberOfReferencePanelSections = unchecked((int)0x80061504); // -2147085052
+        public const int InvalidNumberOfCardFormSections = unchecked((int)0x80061505); // -2147085051
+        public const int EmptyCommandOrEntity = unchecked((int)0x80154b51); // -2146088111
+        public const int CommandNotSupported = unchecked((int)0x80154b52); // -2146088110
+        public const int OperationFailedTryAgain = unchecked((int)0x80154b53); // -2146088109
+        public const int NoUserPrivilege = unchecked((int)0x80154b50); // -2146088112
+        public const int XamlNotFound = unchecked((int)0x80154b4f); // -2146088113
+        public const int CustomControlsImportError = unchecked((int)0x80160000); // -2146041856
+        public const int ManifestXsdValidationError = unchecked((int)0x80160001); // -2146041855
+        public const int CustomControlsDependentPropertyConfiguration = unchecked((int)0x80160002); // -2146041854
+        public const int CustomControlsPropertySetConfiguration = unchecked((int)0x80160003); // -2146041853
+        public const int ProductRecommendationsFeatureNotEnabled = unchecked((int)0x80061600); // -2147084800
+        public const int RecommendationModelActiveVersionNotSet = unchecked((int)0x80061601); // -2147084799
+        public const int RecommendationModelActiveVersionInvalidStatus = unchecked((int)0x80061602); // -2147084798
+        public const int AzureRecommendationModelNotExist = unchecked((int)0x80061603); // -2147084797
+        public const int AzureRecommendationModelBuildNotExist = unchecked((int)0x80061604); // -2147084796
+        public const int RecommendationsUnavailable = unchecked((int)0x80061605); // -2147084795
+        public const int RecommendationModelBuildConnectionMustBeActive = unchecked((int)0x80061606); // -2147084794
+        public const int RecommendationModelActivateConnectionMustBeActive = unchecked((int)0x80061607); // -2147084793
+        public const int RecommendationModelExpired = unchecked((int)0x80061608); // -2147084792
+        public const int RecommendationModelMappingDuplicateRecord = unchecked((int)0x80061610); // -2147084784
+        public const int RecommendationModelMappingReadOnly = unchecked((int)0x80061611); // -2147084783
+        public const int CannotDeleteDueToBasketEntityAssociation = unchecked((int)0x80061612); // -2147084782
+        public const int RecommendationModelVersionActive = unchecked((int)0x80061620); // -2147084768
+        public const int RecommendationModelVersionBuildInProgress = unchecked((int)0x80061621); // -2147084767
+        public const int RecommendationModelVersionDuplicateName = unchecked((int)0x80061622); // -2147084766
+        public const int AzureServiceConnectionInvalidUri = unchecked((int)0x80061630); // -2147084752
+        public const int RecommendationAzureConnectionFailed = unchecked((int)0x80061631); // -2147084751
+        public const int TextAnalyticsAzureTestConnectionFailed = unchecked((int)0x80061632); // -2147084750
+        public const int RecommendationAzureConnectionCascadeActivateFailed = unchecked((int)0x80061633); // -2147084749
+        public const int TextAnalyticsAzureConnectionCascadeActivateFailed = unchecked((int)0x80061634); // -2147084748
+        public const int AzureOperationResponseTimedOut = unchecked((int)0x80061635); // -2147084747
+        public const int AzureServiceConnectionCascadeDeleteFailed = unchecked((int)0x80061636); // -2147084746
+        public const int TextAnalyticsAzureConnectionFailed = unchecked((int)0x80061650); // -2147084720
+        public const int TopicModelScheduleBuildSettingsEmpty = unchecked((int)0x80061651); // -2147084719
+        public const int TextAnalyticsFeatureNotEnabled = unchecked((int)0x80061652); // -2147084718
+        public const int TopicModelConfigurationUsedEmpty = unchecked((int)0x80061653); // -2147084717
+        public const int TopicModelTestWithoutConfiguration = unchecked((int)0x80061654); // -2147084716
+        public const int TextAnalyticsAzureUnableToConnectWithBuild = unchecked((int)0x80061655); // -2147084715
+        public const int TopicModelActivateWithInvalidConfiguration = unchecked((int)0x80061656); // -2147084714
+        public const int TextAnalyticsModelActivateConnectionMustBeActive = unchecked((int)0x80061657); // -2147084713
+        public const int TextAnalyticsMappingUsedForActiveConfiguration = unchecked((int)0x80061667); // -2147084697
+        public const int TopicModelConfigurationAssociatedModelAlreadyActive = unchecked((int)0x80061670); // -2147084688
+        public const int KnowledgeSearchActiveModelsAlreadyExist = unchecked((int)0x80061680); // -2147084672
+        public const int TextAnalyticsAPIActiveConfigurationDoesNotExist = unchecked((int)0x80061690); // -2147084656
+        public const int TextAnalyticsAPIAllowedOnlyForEnglishLanguage = unchecked((int)0x80061691); // -2147084655
+        public const int TextAnalyticsAPIAzureUnableToConnectWithBuild = unchecked((int)0x80061692); // -2147084654
+        public const int TextAnalyticsAzureSchedulerError = unchecked((int)0x80061693); // -2147084653
+        public const int TextAnalyticsMaxLimitForTopicModelReached = unchecked((int)0x80061694); // -2147084652
+        public const int TextAnalyticsAPIActiveSimilarityConfigurationDoesNotExist = unchecked((int)0x80061695); // -2147084651
+        public const int AdvancedSimilarityAzureSearchUnexpectedError = unchecked((int)0x80061696); // -2147084650
+        public const int TaskFlowNameIsNotUnique = unchecked((int)0x80061710); // -2147084528
+        public const int TaskFlowInvalidCharactersInName = unchecked((int)0x80061711); // -2147084527
+        public const int TaskFlowEmptyName = unchecked((int)0x80061712); // -2147084526
+        public const int TaskFlowFormXmlNotFound = unchecked((int)0x80061713); // -2147084525
+        public const int TaskFlowPageMissingFormXmlTab = unchecked((int)0x80061714); // -2147084524
+        public const int TaskFlowUnsupportedEntities = unchecked((int)0x80061715); // -2147084523
+        public const int TaskFlowEntityRelationshipIsNotValid = unchecked((int)0x80061716); // -2147084522
+        public const int TaskFlowEntityAttributeIsNotValid = unchecked((int)0x80061717); // -2147084521
+        public const int TaskFlowMaxNumberPages = unchecked((int)0x80061718); // -2147084520
+        public const int TaskFlowMaxNumberControls = unchecked((int)0x80061719); // -2147084519
+        public const int TaskFlowNotValid = unchecked((int)0x8006172f); // -2147084497
+        public const int FeedbackFeatureNotEnabled = unchecked((int)0x80061770); // -2147084432
+        public const int DelveActionHubDisabledError = unchecked((int)0x80071000); // -2147020800
+        public const int ErrorGeneratingActionHub = unchecked((int)0x80071001); // -2147020799
+        public const int DelveActionHubAttributeMissingInResponseException = unchecked((int)0x80071002); // -2147020798
+        public const int DelveActionHubInvalidStateCodeException = unchecked((int)0x80071003); // -2147020797
+        public const int DelveActionHubInvalidResponseFormatException = unchecked((int)0x80071004); // -2147020796
+        public const int DelveActionHubResponseRetievalFailureException = unchecked((int)0x80071005); // -2147020795
+        public const int EvoStsAuthorizationServerRecordCreationFailureException = unchecked((int)0x80071006); // -2147020794
+        public const int DelveActionHubAuthorizationFailureException = unchecked((int)0x80071007); // -2147020793
+        public const int DelveActionHubS2SSetupFailureException = unchecked((int)0x80071008); // -2147020792
+        public const int DocumentManagementIsDisabledOnEntity = unchecked((int)0x80071011); // -2147020783
+        public const int RegardingObjectValuesRetrievalFailure = unchecked((int)0x80071012); // -2147020782
+        public const int RelatedRecordsFailure = unchecked((int)0x80071013); // -2147020781
+        public const int SharePointSiteNotConfigured = unchecked((int)0x80071014); // -2147020780
+        public const int RecommendedDocumentsRetrievalFailure = unchecked((int)0x80071015); // -2147020779
+        public const int SimilarityRuleDisabled = unchecked((int)0x80071016); // -2147020778
+        public const int SharePointS2SIsDisabled = unchecked((int)0x80071017); // -2147020777
+        public const int SimilarityRuleFCBOff = unchecked((int)0x80071018); // -2147020776
+        public const int DocumentRecommendationsFCBOff = unchecked((int)0x80071019); // -2147020775
+        public const int PluginSecureStoreKeyVaultClient = unchecked((int)0x80091000); // -2146889728
+        public const int PluginSecureStoreKeyVaultClientGetSecret = unchecked((int)0x80091001); // -2146889727
+        public const int PluginSecureStoreKeyVaultClientSetSecret = unchecked((int)0x80091002); // -2146889726
+        public const int PluginSecureStoreKeyVaultClientDecrypt = unchecked((int)0x80091003); // -2146889725
+        public const int PluginSecureStoreKeyVaultClientEncrypt = unchecked((int)0x80091004); // -2146889724
+        public const int PluginSecureStoreAdalAcquireToken = unchecked((int)0x80091005); // -2146889723
+        public const int PluginSecureStoreTPSKeyVaultUnconfigured = unchecked((int)0x80091006); // -2146889722
+        public const int PluginSecureStoreTPSAssemblyNotRegistered = unchecked((int)0x80091007); // -2146889721
+        public const int PluginSecureStoreS2SMissing = unchecked((int)0x80091008); // -2146889720
+        public const int PluginSecureStoreTPSClient = unchecked((int)0x80091009); // -2146889719
+        public const int PluginSecureStoreLocalConfigStoreGetData = unchecked((int)0x8009100a); // -2146889718
+        public const int PluginSecureStoreLocalConfigStoreSetData = unchecked((int)0x8009100b); // -2146889717
+        public const int PluginSecureStoreKeyVaultServiceProviderGetData = unchecked((int)0x8009100c); // -2146889716
+        public const int PluginSecureStoreKeyVaultServiceCertFormat = unchecked((int)0x8009100d); // -2146889715
+        public const int PluginSecureStoreNoFullySigned = unchecked((int)0x8009100f); // -2146889713
 
     }
 }

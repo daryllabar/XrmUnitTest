@@ -318,7 +318,7 @@ namespace DLaB.Xrm.LocalCrm
             AssertTypeContainsColumns<T>(entity.Attributes.Keys);
             AssertEntityReferencesExists(service, entity);
             SimulateCrmAttributeManipulations(entity);
-            if (SimulateCrmCreateActionPrevention(service, entity, exception))
+            if (SimulateCrmCreateActionPrevention(entity, exception))
             {
                 return Guid.Empty;
             }
@@ -328,7 +328,7 @@ namespace DLaB.Xrm.LocalCrm
             // Clear non Attribute Related Values
             entity.FormattedValues.Clear();
             entity.KeyAttributes.Clear();
-            var relatedEntities = entity.RelatedEntities.ToList();
+            //var relatedEntities = entity.RelatedEntities.ToList();
             entity.RelatedEntities.Clear();
 
             if (entity.Id == Guid.Empty)
@@ -396,7 +396,7 @@ namespace DLaB.Xrm.LocalCrm
             {
                 entity = Activator.CreateInstance<T>();
                 entity.Id = id;
-                exception.Exception = GetEntityDoesNotExistException(entity);
+                exception.Exception = CrmExceptions.GetEntityDoesNotExistException(entity);
                 return null;
             }
 
@@ -429,7 +429,7 @@ namespace DLaB.Xrm.LocalCrm
 
         private static EntityCollection ReadEntitiesByAttribute<T>(LocalCrmDatabaseOrganizationService service, QueryByAttribute query, DelayedException delay) where T : Entity
         {
-            if (AssertValidQueryByAttribute<T>(query, delay)) { return null; }
+            if (AssertValidQueryByAttribute(query, delay)) { return null; }
             
             var qe = new QueryExpression(query.EntityName)
             {
@@ -447,16 +447,16 @@ namespace DLaB.Xrm.LocalCrm
             return ReadEntities<T>(service, qe);
         }
 
-        private static bool AssertValidQueryByAttribute<T>(QueryByAttribute query, DelayedException delay) where T : Entity
+        private static bool AssertValidQueryByAttribute(QueryByAttribute query, DelayedException delay)
         {
             if (!query.Attributes.Any())
             {
-                delay.Exception = GetFaultException(ErrorCodes.QueryBuilderByAttributeNonEmpty);
+                delay.Exception = CrmExceptions.GetFaultException(ErrorCodes.QueryBuilderByAttributeNonEmpty);
                 return true;
             }
             if (query.Attributes.Count != query.Values.Count)
             {
-                delay.Exception = GetFaultException(ErrorCodes.QueryBuilderByAttributeMismatch);
+                delay.Exception = CrmExceptions.GetFaultException(ErrorCodes.QueryBuilderByAttributeMismatch);
                 return true;
             }
             return false;
@@ -466,6 +466,7 @@ namespace DLaB.Xrm.LocalCrm
         {
             var query = SchemaGetOrCreate<T>(service.Info).AsQueryable();
             
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed - this updates the query expression
             HandleFilterExpressionsWithAliases(qe, qe.Criteria).ToList();
 
             query = qe.LinkEntities.Aggregate(query, (q, e) => CallJoin(service.Info, q, e));
@@ -636,8 +637,11 @@ namespace DLaB.Xrm.LocalCrm
 
         private static bool ConditionIsTrue<T>(T entity, ConditionExpression condition) where T : Entity
         {
+            // Date Time Details: https://community.dynamics.com/crm/b/gonzaloruiz/archive/2012/07/29/date-and-time-operators-in-crm-explained
+
+            int days;
             bool value;
-            var name = string.IsNullOrWhiteSpace(condition.EntityName) ? condition.AttributeName : condition.EntityName + "." + condition.AttributeName;
+            var name = condition.GetQualifiedAttributeName();
             switch (condition.Operator)
             {
                 case ConditionOperator.Equal:
@@ -690,16 +694,25 @@ namespace DLaB.Xrm.LocalCrm
                 case ConditionOperator.NotNull:
                     value = Compare(entity, name, null) != 0;
                     break;
-                //case ConditionOperator.Yesterday:
-                //    break;
-                //case ConditionOperator.Today:
-                //    break;
-                //case ConditionOperator.Tomorrow:
-                //    break;
-                //case ConditionOperator.Last7Days:
-                //    break;
-                //case ConditionOperator.Next7Days:
-                //    break;
+                case ConditionOperator.Yesterday:
+                    value = IsBetween(entity, condition, DateTime.UtcNow.Date.AddDays(-1), DateTime.UtcNow.Date);
+                    break;
+                case ConditionOperator.Today:
+                    value = IsBetween(entity, condition, DateTime.UtcNow.Date, DateTime.UtcNow.Date.AddDays(1));
+                    break;
+                case ConditionOperator.Tomorrow:
+                    value = IsBetween(entity, condition, DateTime.UtcNow.Date.AddDays(1), DateTime.UtcNow.Date.AddDays(2));
+                    break;
+                case ConditionOperator.Last7Days:
+                    condition.Operator = ConditionOperator.LastXDays;
+                    condition.Values.Add(7);
+                    value = ConditionIsTrue(entity, condition);
+                    break;
+                case ConditionOperator.Next7Days:
+                    condition.Operator = ConditionOperator.NextXDays;
+                    condition.Values.Add(7);
+                    value = ConditionIsTrue(entity, condition);
+                    break;
                 //case ConditionOperator.LastWeek:
                 //    break;
                 //case ConditionOperator.ThisWeek:
@@ -728,10 +741,22 @@ namespace DLaB.Xrm.LocalCrm
                 //    break;
                 //case ConditionOperator.NextXHours:
                 //    break;
-                //case ConditionOperator.LastXDays:
-                //    break;
-                //case ConditionOperator.NextXDays:
-                //    break;
+                case ConditionOperator.LastXDays:
+                    days = condition.GetIntValueFromIntOrString();
+                    if (days <= 0)
+                    {
+                        throw CrmExceptions.GetConditionValueGreaterThan0Exception();
+                    }
+                    value = IsBetween(entity, condition, DateTime.UtcNow.Date.AddDays(-1d*days), DateTime.UtcNow);
+                    break;
+                case ConditionOperator.NextXDays:
+                    days = condition.GetIntValueFromIntOrString();
+                    if (days <= 0)
+                    {
+                        throw CrmExceptions.GetConditionValueGreaterThan0Exception();
+                    }
+                    value = IsBetween(entity, condition, DateTime.UtcNow, DateTime.UtcNow.Date.AddDays(days+1));
+                    break;
                 //case ConditionOperator.LastXWeeks:
                 //    break;
                 //case ConditionOperator.NextXWeeks:
@@ -816,6 +841,14 @@ namespace DLaB.Xrm.LocalCrm
             return value;
         }
 
+        private static bool IsBetween<T>(T entity, ConditionExpression condition, DateTime start, DateTime end, bool inclusiveStart = true, bool inclusiveEnd = false) where T : Entity
+        {
+            var isGreaterThan = inclusiveStart ? ConditionOperator.GreaterThan : ConditionOperator.GreaterEqual;
+            var isLessThan = inclusiveEnd ? ConditionOperator.LessThan : ConditionOperator.LessEqual;
+            return ConditionIsTrue(entity, new ConditionExpression(condition.AttributeName, isGreaterThan, start)) 
+                && ConditionIsTrue(entity, new ConditionExpression(condition.AttributeName, isLessThan, end));
+        }
+
         private static void AssertEntityReferencesExists(LocalCrmDatabaseOrganizationService service, Entity entity)
         {
             foreach (var foreign in entity.Attributes.Select(attribute => attribute.Value).OfType<EntityReference>())
@@ -823,7 +856,7 @@ namespace DLaB.Xrm.LocalCrm
                 service.Retrieve(foreign.LogicalName, foreign.Id, new ColumnSet(true));
             }
         }
-        private static bool SimulateCrmCreateActionPrevention<T>(LocalCrmDatabaseOrganizationService service, T entity, DelayedException exception) where T : Entity
+        private static bool SimulateCrmCreateActionPrevention<T>(T entity, DelayedException exception) where T : Entity
         {
             switch (entity.LogicalName)
             {
@@ -841,7 +874,7 @@ namespace DLaB.Xrm.LocalCrm
         {
             if (entity.GetAttributeValue<EntityReference>(Incident.Fields.CustomerId) == null)
             {
-                exception.Exception = GetFaultException(ErrorCodes.unManagedidsincidentparentaccountandparentcontactnotpresent);
+                exception.Exception = CrmExceptions.GetFaultException(ErrorCodes.unManagedidsincidentparentaccountandparentcontactnotpresent);
             }
         }
 
@@ -849,7 +882,7 @@ namespace DLaB.Xrm.LocalCrm
         {
             if (entity.GetAttributeValue<EntityReference>(OpportunityProduct.Fields.UoMId) == null)
             {
-                exception.Exception = GetFaultException(ErrorCodes.MissingUomId);
+                exception.Exception = CrmExceptions.GetFaultException(ErrorCodes.MissingUomId);
             }
         }
 
@@ -896,7 +929,7 @@ namespace DLaB.Xrm.LocalCrm
                         entity.GetAttributeValue<OptionSetValue>(Incident.Fields.StateCode).GetValueOrDefault() == (int) IncidentState.Resolved)
                     {
                         // Not executing as a part of a CloseIncidentRequest.  Disallow updating the State Code to Resolved.
-                        exception.Exception = GetFaultException(ErrorCodes.UseCloseIncidentRequest);
+                        exception.Exception = CrmExceptions.GetFaultException(ErrorCodes.UseCloseIncidentRequest);
                         return true;
                     }
                     break;
@@ -977,7 +1010,7 @@ namespace DLaB.Xrm.LocalCrm
             var databaseValue = SchemaGetOrCreate<T>(service.Info).FirstOrDefault(e => e.Id == entity.Id);
             if (databaseValue == null)
             {
-                exception.Exception = GetEntityDoesNotExistException(entity);
+                exception.Exception = CrmExceptions.GetEntityDoesNotExistException(entity);
                 return;
             }
 
@@ -1011,7 +1044,7 @@ namespace DLaB.Xrm.LocalCrm
             entity.Id = id;
             if (!SchemaGetOrCreate<T>(service.Info).Any(e => e.Id == id))
             {
-                exception.Exception = GetEntityDoesNotExistException(entity);
+                exception.Exception = CrmExceptions.GetEntityDoesNotExistException(entity);
                 return;
             }
 
@@ -1027,33 +1060,6 @@ namespace DLaB.Xrm.LocalCrm
             }
 
             service.Delete(ActivityPointer.EntityLogicalName, id);
-        }
-
-
-        private static FaultException<OrganizationServiceFault> GetEntityDoesNotExistException(Entity entity)
-        {
-            var message = $"{ErrorCodes.GetErrorMessage(ErrorCodes.ObjectDoesNotExist)}  {entity.LogicalName} With Id = {entity.Id} Does Not Exist";
-            return new FaultException<OrganizationServiceFault>(new OrganizationServiceFault
-            {
-                ErrorCode = ErrorCodes.ObjectDoesNotExist,
-                Message = message,
-                Timestamp = DateTime.UtcNow,
-            }, message);
-        }
-
-        private static FaultException<OrganizationServiceFault> GetFaultException(int hResult, params object[] args)
-        {
-            var message = ErrorCodes.GetErrorMessage(hResult);
-            if (args.Length > 0)
-            {
-                message = string.Format(message, args);
-            }
-            return new FaultException<OrganizationServiceFault>(new OrganizationServiceFault
-            {
-                ErrorCode = hResult,
-                Message = message,
-                Timestamp = DateTime.UtcNow
-            }, message);
         }
     }
 }

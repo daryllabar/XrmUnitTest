@@ -11,6 +11,42 @@ namespace DLaB.Xrm.LocalCrm
     /// </summary>
     public static class Extensions
     {
+        #region ConditionExpression
+
+        /// <summary>
+        /// Gets the int value from int or string.
+        /// </summary>
+        /// <param name="condition">The condition expression.</param>
+        /// <param name="index">The index of the value in the condition Values collection.  Defaults to 0.</param>
+        /// <returns></returns>
+        public static int GetIntValueFromIntOrString(this ConditionExpression condition, int index = 0)
+        {
+            var value = condition.Values[index];
+            if (value is string)
+            {
+                return int.Parse(value as string);
+            }
+
+            if (value is int)
+            {
+                return (int)value;
+            }
+
+            throw CrmExceptions.GetIntShouldBeStringOrIntException(condition.GetQualifiedAttributeName());
+        }
+
+        /// <summary>
+        /// Gets the name of the qualified attribute.
+        /// </summary>
+        /// <param name="condition">The condition.</param>
+        /// <returns></returns>
+        public static string GetQualifiedAttributeName(this ConditionExpression condition)
+        {
+            return string.IsNullOrWhiteSpace(condition.EntityName) ? condition.AttributeName : condition.EntityName + "." + condition.AttributeName;
+        }
+
+        #endregion ConditionExpression
+
         #region IEnumerable<FetchAttributeInfo>
 
         /// <summary>

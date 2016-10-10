@@ -9,6 +9,7 @@
     <Import_RootNamespace>DLaB.Xrm.LocalCrm</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CrmExceptions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DynamicQueryable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\ActivityPointer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\BusinessUnit.cs" />
