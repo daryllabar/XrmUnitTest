@@ -39,12 +39,12 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DLaB.Common, Version=1.0.1.13, Culture=neutral, PublicKeyToken=046d6d5d1685e1b4, processorArchitecture=MSIL">
-      <HintPath>..\packages\DLaB.Common.1.0.1.13\lib\net452\DLaB.Common.dll</HintPath>
+    <Reference Include="DLaB.Common, Version=1.0.2.1, Culture=neutral, PublicKeyToken=046d6d5d1685e1b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\DLaB.Common.1.0.2-alpha01\lib\net452\DLaB.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DLaB.Xrm.2016, Version=1.1.8.7, Culture=neutral, PublicKeyToken=4da76fa437c5906e, processorArchitecture=MSIL">
-      <HintPath>..\packages\DLaB.Xrm.2016.1.1.8.7\lib\net452\DLaB.Xrm.2016.dll</HintPath>
+    <Reference Include="DLaB.Xrm.2016, Version=1.1.9.3, Culture=neutral, PublicKeyToken=4da76fa437c5906e, processorArchitecture=MSIL">
+      <HintPath>..\packages\DLaB.Xrm.2016.1.1.9-alpha03\lib\net452\DLaB.Xrm.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -59,7 +59,14 @@
       <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.8.1.0.2\lib\net452\Microsoft.Xrm.Sdk.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Xrm.Sdk.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.Workflow.8.1.0.2\lib\net452\Microsoft.Xrm.Sdk.Workflow.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Activities.Presentation" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
@@ -69,6 +76,9 @@
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Workflow.Activities" />
+    <Reference Include="System.Workflow.ComponentModel" />
+    <Reference Include="System.Workflow.Runtime" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -85,6 +95,7 @@
     <Compile Include="Simple\RemovePhoneNumberFormatting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Simple\SyncContactToAccount.cs" />
+    <Compile Include="Workflow\CreateGuidActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj">

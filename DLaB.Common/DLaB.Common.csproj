@@ -71,10 +71,14 @@
     <Compile Include="Exceptions\EnumCaseUndefinedException.cs" />
     <Compile Include="Exceptions\TypeArgumentException.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="ProcessExecutor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypeSafeEnumBase.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="VersionControl\ISourceControlProvider.cs" />
+    <Compile Include="VersionControl\SourceControl.cs" />
+    <Compile Include="VersionControl\VsTfsSourceControlProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DLaB.Common.snk" />

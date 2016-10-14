@@ -3068,6 +3068,11 @@ namespace DLaB.Xrm.CrmSdk
             ErrorMessages.Add(PluginSecureStoreKeyVaultServiceProviderGetData, "Missing AppId / Secrets in KeyVault");
             ErrorMessages.Add(PluginSecureStoreKeyVaultServiceCertFormat, "Certificate not stored as a Base64String in KeyVault");
             ErrorMessages.Add(PluginSecureStoreNoFullySigned, "Assembly not fully signed");
+
+#if Xrm2015
+            ErrorMessages[UseCloseIncidentRequest] = "This message can not be used to set the state of incident to Closed.  In order to set state of incident to Closed, use the CloseIncidentRequest message instead.";
+#endif
+
         }
 
         /// <summary>
@@ -3099,6 +3104,8 @@ namespace DLaB.Xrm.CrmSdk
         //}
 
         #pragma warning disable 1591
+
+        public const int UseCloseIncidentRequest = unchecked((int)0x80131500); // -2146233088
 
         public const int LowerVersionUpgrade = unchecked((int)0x80048541); // -2147187391
         public const int PatchMissingBase = unchecked((int)0x80048540); // -2147187392

@@ -922,6 +922,9 @@ namespace DLaB.Xrm.LocalCrm
         /// <returns></returns>
         private static bool SimulateCrmUpdateActionPrevention<T>(LocalCrmDatabaseOrganizationService service, T entity, DelayedException exception) where T : Entity
         {
+#if Xrm2015
+                return false;
+#endif
             switch (entity.LogicalName)
             {
                 case Incident.EntityLogicalName:

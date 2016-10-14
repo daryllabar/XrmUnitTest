@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using DLaB.Common;
-using DLaB.Xrm.Client;
 using DLaB.Xrm.LocalCrm;
 using Microsoft.Xrm.Sdk;
 
@@ -235,7 +234,7 @@ namespace DLaB.Xrm.Test.Assumptions
             }
             else if (Debugger.IsAttached)
             {
-                TfsHelper.CheckoutAndUpdateFileIfDifferent(GetSerializedFilePath(AssumptionsNamespaceRelativePath), entity.Serialize(true));
+                Common.VersionControl.SourceControl.CheckoutAndUpdateFileIfDifferent(GetSerializedFilePath(AssumptionsNamespaceRelativePath), entity.Serialize(true));
             }
 
             return entity;

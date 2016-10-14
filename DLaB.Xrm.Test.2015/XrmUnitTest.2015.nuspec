@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>XrmUnitTest.2015</id>
-    <version>1.1.8.8</version>
+    <version>1.1.9-alpha03</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>
@@ -19,8 +19,6 @@
       <dependency id="Microsoft.CrmSdk.Deployment" version="7.1.1" />
       <dependency id="Microsoft.CrmSdk.Workflow" version="7.1.1" />
       <dependency id="Microsoft.CrmSdk.Extensions" version="7.1.0.1" />
-      <dependency id="Microsoft.TeamFoundationServer.ExtendedClient" version="14.89.0" />
-      <dependency id="Microsoft.VisualStudio.Services.Client" version="14.89.0" />
     </group>
   </dependencies>
   </metadata>

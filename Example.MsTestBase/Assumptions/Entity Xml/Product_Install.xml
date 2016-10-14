@@ -1,0 +1,23 @@
+﻿<Product xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="1" z:Type="DLaB.Xrm.Entities.Product" z:Assembly="DLaB.Xrm.Entities, Version=8.0.1.0, Culture=neutral, PublicKeyToken=null" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/DLaB.Xrm.Entities">
+  <Attributes z:Id="2" xmlns:d2p1="http://schemas.datacontract.org/2004/07/System.Collections.Generic" xmlns="http://schemas.microsoft.com/xrm/2011/Contracts">
+    <KeyValuePairOfstringanyType>
+      <d2p1:key z:Id="3">productnumber</d2p1:key>
+      <d2p1:value z:Id="4" z:Type="System.String" z:Assembly="0">Install</d2p1:value>
+    </KeyValuePairOfstringanyType>
+    <KeyValuePairOfstringanyType>
+      <d2p1:key z:Id="5">productid</d2p1:key>
+      <d2p1:value z:Id="6" z:Type="System.Guid" z:Assembly="0">705585d9-05fa-e511-80e4-fc15b428aa58</d2p1:value>
+    </KeyValuePairOfstringanyType>
+    <KeyValuePairOfstringanyType>
+      <d2p1:key z:Id="7">description</d2p1:key>
+      <d2p1:value z:Id="8" z:Type="System.String" z:Assembly="0">Expert Install of our System</d2p1:value>
+    </KeyValuePairOfstringanyType>
+  </Attributes>
+  <EntityState i:nil="true" xmlns="http://schemas.microsoft.com/xrm/2011/Contracts" />
+  <FormattedValues z:Id="9" xmlns:d2p1="http://schemas.datacontract.org/2004/07/System.Collections.Generic" xmlns="http://schemas.microsoft.com/xrm/2011/Contracts" />
+  <Id xmlns="http://schemas.microsoft.com/xrm/2011/Contracts">705585d9-05fa-e511-80e4-fc15b428aa58</Id>
+  <KeyAttributes xmlns:d2p1="http://schemas.microsoft.com/xrm/7.1/Contracts" z:Id="10" xmlns:d2p2="http://schemas.datacontract.org/2004/07/System.Collections.Generic" xmlns="http://schemas.microsoft.com/xrm/2011/Contracts" />
+  <LogicalName z:Id="11" xmlns="http://schemas.microsoft.com/xrm/2011/Contracts">product</LogicalName>
+  <RelatedEntities z:Id="12" xmlns:d2p1="http://schemas.datacontract.org/2004/07/System.Collections.Generic" xmlns="http://schemas.microsoft.com/xrm/2011/Contracts" />
+  <RowVersion z:Id="13" xmlns="http://schemas.microsoft.com/xrm/2011/Contracts">554931</RowVersion>
+</Product>
