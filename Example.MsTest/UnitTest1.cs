@@ -14,7 +14,6 @@ namespace Example.MsTest
     [TestClass]
     public class UnitTest1
     {
-
         #region MakeNameMatchCase
 
         /// <summary>
@@ -76,13 +75,13 @@ namespace Example.MsTest
 
         #endregion MakeNameMatchCase
 
-        #region CreateAccount_Should_RetrieveByName
+        #region AccoutnBuilder_CreateAccount_Should_PopulateAccountNumber
 
         /// <summary>
         /// Example test for being able to run a Unit Test in memory, or against CRM.
         /// </summary>
         [TestMethod]
-        public void CreateAccount_Should_RetrieveByName()
+        public void AccountBuilder_CreateAccount_Should_PopulateAccountNumber()
         {
             new CreateAccount_Should_PopulateAccountNumber().Test();
         }
@@ -127,6 +126,6 @@ namespace Example.MsTest
             }
         }
 
-        #endregion CreateAccount_Should_RetrieveByName
+        #endregion AccoutnBuilder_CreateAccount_Should_PopulateAccountNumber
     }
 }
