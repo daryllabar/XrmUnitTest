@@ -15,7 +15,6 @@ namespace Example.MsTest
     [TestClass]
     public class RenameLogicTests
     {
-
         /// <summary>
         /// Example test for running a unit test using MS Fakes
         /// </summary>
