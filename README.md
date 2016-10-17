@@ -9,7 +9,7 @@ Xrm Unit Testing Framework Provides a long list of features that makes developin
 
 XrmUnitTest contains two seperate, but complementary items:
 
-- **DLaB.Xrm** - A library of XRM Extensions intended to be used by any XRM project, in any Xrm Plugin.  Ever had a QueryExpression, and whished you get generate SQL from the QueryExpression while debugging?  Now you can:  `queryExpression.GetSqlStatement()`.  Ever wish your plugins had a built in method to prevent recusive lookps?  Just inherit from the `GenericPluginHandlerBase`, they will.  Contains both [Xrm 2015](https://www.nuget.org/packages/DLaB.Xrm.2015/) and [Xrm 2016](https://www.nuget.org/packages/DLaB.Xrm.2016/) versions
+- **DLaB.Xrm** - A library of XRM Extensions intended to be used by any XRM project, in any Xrm Plugin.  Ever had a QueryExpression, and wished you get generate SQL from the QueryExpression while debugging?  Now you can:  `queryExpression.GetSqlStatement()`.  Ever wish your plugins had a built in method to prevent recusive lookps?  Just inherit from the `GenericPluginHandlerBase`, they will.  Contains both [Xrm 2015](https://www.nuget.org/packages/DLaB.Xrm.2015/) and [Xrm 2016](https://www.nuget.org/packages/DLaB.Xrm.2016/) versions
 - **XrmUnitTest** - A XrmUnitTesting framework that is designed to maximize the userfullness of your Unit Tests, while minimizing the amount of time to create or maintain them.  You can even utilize the in memory, fake CRM server to test your plugin, before ever deploying it to CRM.
 
 Please check out the [Wiki](https://github.com/daryllabar/XrmUnitTest/wiki) for more information!
