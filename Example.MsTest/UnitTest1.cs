@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using DLaB.Xrm;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.LocalCrm;
@@ -8,73 +7,13 @@ using Example.MsTestBase;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using Example.MsTestBase.Builders;
+using Example.Plugin;
 
 namespace Example.MsTest
 {
     [TestClass]
     public class UnitTest1
     {
-        #region MakeNameMatchCase
-
-        /// <summary>
-        /// Example test for running a unit test only in memory
-        /// </summary>
-        [TestMethod]
-        public void MakeNameMatchCase_NameIsMcdonald_Should_UpdateToMcDonald()
-        {
-            //
-            // Arrange
-            //
-            var service = new LocalCrmDatabaseOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>());
-            var id = service.Create(new Contact {LastName = "Mcdonald"});
-
-            // 
-            // Act
-            // 
-            MakeNameMatchCase(service, "McDonald");
-
-            //
-            // Assert
-            // 
-            Assert.AreEqual("McDonald", service.GetEntity<Contact>(id).LastName);
-        }
-
-        /// <summary>
-        /// Updates the First or Last Name of the contact to match the given case
-        /// </summary>
-        /// <param name="service">The service.</param>
-        /// <param name="name">The name.</param>
-        public static void MakeNameMatchCase(IOrganizationService service, string name)
-        {
-            using (var context = new CrmContext(service))
-            {
-                var contacts = (from c in context.ContactSet
-                                where c.FirstName == name || c.LastName == name
-                                select new Contact {Id = c.Id, FirstName = c.FirstName, LastName = c.LastName}).ToList();
-
-                foreach (var contact in contacts.Where(c => StringsAreEqualButCaseIsNot(c.FirstName, name)))
-                {
-                    contact.FirstName = name;
-                    context.UpdateObject(contact);
-                }
-
-                foreach (var contact in contacts.Where(c => StringsAreEqualButCaseIsNot(c.LastName, name)))
-                {
-                    contact.LastName = name;
-                    context.UpdateObject(contact);
-                }
-
-                context.SaveChanges();
-            }
-        }
-
-        private static bool StringsAreEqualButCaseIsNot(string a, string b)
-        {
-            return a != b && string.Equals(a, b, StringComparison.OrdinalIgnoreCase);
-        }
-
-        #endregion MakeNameMatchCase
-
         #region AccoutnBuilder_CreateAccount_Should_PopulateAccountNumber
 
         /// <summary>

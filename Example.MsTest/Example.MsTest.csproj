@@ -78,6 +78,9 @@
       <HintPath>..\packages\Microsoft.IdentityModel.6.1.7600.16394\lib\net35\Microsoft.IdentityModel.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="Microsoft.Xrm.Client, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CrmSdk.Extensions.7.1.0.1\lib\net45\Microsoft.Xrm.Client.dll</HintPath>
       <Private>True</Private>
@@ -97,6 +100,9 @@
     <Reference Include="Microsoft.Xrm.Sdk, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.8.1.0.2\lib\net452\Microsoft.Xrm.Sdk.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Sdk.8.0.0.0.Fakes">
+      <HintPath>FakesAssemblies\Microsoft.Xrm.Sdk.8.0.0.0.Fakes.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Xrm.Sdk.Deployment, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CrmSdk.Deployment.8.1.0.2\lib\net452\Microsoft.Xrm.Sdk.Deployment.dll</HintPath>
@@ -155,6 +161,7 @@
     <Compile Include="CreateGuidActivityTests.cs" />
     <Compile Include="EntityBuilderExample.cs" />
     <Compile Include="RemovePhoneNumberFormattingTests.cs" />
+    <Compile Include="RenameLogicTests.cs" />
     <Compile Include="SyncContactToAccountTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -175,6 +182,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Fakes Include="Fakes\Microsoft.Xrm.Sdk.fakes" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
