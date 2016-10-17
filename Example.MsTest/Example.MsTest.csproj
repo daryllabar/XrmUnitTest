@@ -157,13 +157,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="AssumptionExample.cs" />
-    <Compile Include="CreateGuidActivityTests.cs" />
-    <Compile Include="EntityBuilderExample.cs" />
-    <Compile Include="RemovePhoneNumberFormattingTests.cs" />
-    <Compile Include="RenameLogicTests.cs" />
-    <Compile Include="SyncContactToAccountTests.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="AssumptionExampleTests.cs" />
+    <Compile Include="WorkflowActivityExampleTests.cs" />
+    <Compile Include="EntityBuilderExampleTests.cs" />
+    <Compile Include="SimplePluginTests.cs" />
+    <Compile Include="MsFakesVsXrmUnitTestExampleTests.cs" />
+    <Compile Include="LocalOrServerPluginTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -13,7 +13,7 @@ namespace Example.MsTest
     /// This serves to demonstrate the differences between MS Fakes or similar Faking Frameworks, and XrmUnitTest
     /// </summary>
     [TestClass]
-    public class RenameLogicTests
+    public class MsFakesVsXrmUnitTestExampleTests
     {
         /// <summary>
         /// Example test for running a unit test using MS Fakes

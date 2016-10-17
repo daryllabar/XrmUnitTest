@@ -4,12 +4,14 @@ using DLaB.Xrm.Entities;
 using DLaB.Xrm.Plugin; // Contains Early Bound Entities
 using Example.MsTestBase; // Test Base Project.  Contains code that is shared amoung all Unit Test Projects
 using Example.MsTestBase.Builders; // Fluent Builder Namespace.  Builders can be used to create anything that's required, from creating an entity, to a OrganizationService, to a Plugin
-using Example.Plugin; // Generic Plugin that contains the plugin to test
 
 namespace Example.MsTest
 {
+    /// <summary>
+    /// A simple plugin tests.  Testing the plugin does not need the IOrganizationService, so plugin is tested directly without utilizing a Test Method Class
+    /// </summary>
     [TestClass]
-    public class RemovePhoneNumberFormattingTests
+    public class SimplePluginTests
     {
         #region ContactHasFormatting_Should_RemoveFormatting
 

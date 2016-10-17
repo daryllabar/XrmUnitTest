@@ -1,26 +1,26 @@
-﻿using System.Linq;
-using DLaB.Xrm;
-using DLaB.Xrm.Entities;
-using DLaB.Xrm.LocalCrm;
+﻿using DLaB.Xrm.Entities;
 using DLaB.Xrm.Test;
 using Example.MsTestBase;
+using Example.MsTestBase.Builders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
-using Example.MsTestBase.Builders;
-using Example.Plugin;
 
 namespace Example.MsTest
 {
+    /// <summary>
+    /// Entity Builders are used to automatically create default values for entities, as well as allow for reusable instantiation code.
+    /// This test example demonstrates how the Account Builder defaults the Account Number
+    /// </summary>
     [TestClass]
-    public class UnitTest1
+    public class EntityBuilderExampleTests
     {
-        #region AccoutnBuilder_CreateAccount_Should_PopulateAccountNumber
+        #region CreateAccount_Should_RetrieveByName
 
         /// <summary>
         /// Example test for being able to run a Unit Test in memory, or against CRM.
         /// </summary>
         [TestMethod]
-        public void AccountBuilder_CreateAccount_Should_PopulateAccountNumber()
+        public void EntityBuilderExample_CreateAccount_Should_PopulateAccountNumber()
         {
             new CreateAccount_Should_PopulateAccountNumber().Test();
         }
@@ -28,10 +28,9 @@ namespace Example.MsTest
         // ReSharper disable once InconsistentNaming
         private class CreateAccount_Should_PopulateAccountNumber : TestMethodClassBase // Test Method Class Base Handles Setup and Cleanup
         {
-            private struct Ids 
+            private struct Ids
             {
                 public static readonly Id<Account> Account = new Id<Account>("64387F79-5B4A-42F0-BA41-E348A1183379");
-
             }
 
             /// <summary>
@@ -40,7 +39,9 @@ namespace Example.MsTest
             /// <param name="service">The service.</param>
             protected override void InitializeTestData(IOrganizationService service)
             {
-                Ids.Account.Entity.Name = "John Doe";
+                //
+                // Arrange / Act
+                // 
 
                 // The Crm Environment Builder Handles Creating all Entities.  
                 // It can also associate entities together and determine which order entities should be created in
@@ -54,17 +55,16 @@ namespace Example.MsTest
             /// <param name="service">The service.</param>
             protected override void Test(IOrganizationService service)
             {
-                using (var context = new CrmContext(service))
-                {
-                    var account = context.AccountSet.FirstOrDefault(c => c.Name == Ids.Account.Entity.Name);
-                    Assert.IsNotNull(account);
-                    Assert.IsNotNull(account.AccountNumber, "Account Number should have been populated by Builder");
-                    account = context.AccountSet.FirstOrDefault(c => c.Name == "Jane Doe");
-                    Assert.IsNull(account, "Jane Doe was not added and the query should have returned null");
-                }
+                //
+                // Assert
+                // 
+                var account = service.GetEntity(Ids.Account);
+
+                Assert.IsNotNull(account);
+                Assert.IsNotNull(account.AccountNumber, "Account Number should have been populated by Builder");
             }
         }
 
-        #endregion AccoutnBuilder_CreateAccount_Should_PopulateAccountNumber
+        #endregion CreateAccount_Should_RetrieveByName
     }
 }

@@ -8,7 +8,7 @@ using Microsoft.Xrm.Sdk;
 namespace Example.MsTest
 {
     [TestClass]
-    public class AssumptionExample
+    public class AssumptionExampleTests
     {
         #region InstallProduct_Should_ContainDescription
 

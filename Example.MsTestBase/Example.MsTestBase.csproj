@@ -162,8 +162,8 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="UnitTestSettings.User.config" />
     <None Include="UnitTestSettings.config" />
+    <None Include="UnitTestSettings.User.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assumptions\Entity Xml\Product_Install.xml" />

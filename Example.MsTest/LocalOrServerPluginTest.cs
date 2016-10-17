@@ -1,22 +1,20 @@
-﻿using System;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DLaB.Xrm.Entities;
-using DLaB.Xrm.Plugin;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using DLaB.Xrm.Entities; // Contains Early Bound Entities
 using DLaB.Xrm.Test;
-// Contains Early Bound Entities
 using Example.MsTestBase; // Test Base Project.  Contains code that is shared amoung all Unit Test Projects
 using Example.MsTestBase.Builders; // Fluent Builder Namespace.  Builders can be used to create anything that's required, from creating an entity, to a OrganizationService, to a Plugin
-using Example.Plugin;
 using Example.Plugin.Simple;
 using Microsoft.Xrm.Sdk;
 
-// Generic Plugin that contains the plugin to test
-
 namespace Example.MsTest
 {
+    /// <summary>
+    /// Example of a Local or CRM Server Based Plugin test.  
+    /// The Test Method Class gives structure to declaring the data that is required by the test, as well as cleaning up the data pre and post test.
+    /// Utilizes the Example.MsTestBase.UnitTestSettings.User.config for whether it is in memory or against CRM
+    /// </summary>
     [TestClass]
-    public class SyncContactToAccountTests
+    public class LocalOrServerPluginTest
     {
         #region UpdateContactAddress_Should_UpdateAccountAddress
 

@@ -7,8 +7,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Example.MsTest
 {
+    /// <summary>
+    /// Workflow Example.  Utilizes the WorkflowInvokerBuilder to Invoke the workflow
+    /// </summary>
     [TestClass]
-    public class CreateGuidActivityTests
+    public class WorkflowActivityExampleTests
     {
         [TestMethod]
         public void CreateGuidActivity_Request_Should_CreateGuid()
