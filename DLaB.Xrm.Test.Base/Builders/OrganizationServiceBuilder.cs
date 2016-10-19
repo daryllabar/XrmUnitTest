@@ -329,18 +329,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="entityToFakeSetStateFor">The entity to fake set state for.</param>
         /// <param name="setStateAction">The set state function.</param>
         /// <returns></returns>
-        public TDerived WithFakeSetStateForEntity(Entity entityToFakeSetStateFor, Action<SetStateRequest> setStateAction)
-        {
-            return WithFakeSetStateForEntity(entityToFakeSetStateFor.ToEntityReference(), setStateAction);
-        }
-
-        /// <summary>
-        /// Performs custom function for SetState of entity
-        /// </summary>
-        /// <param name="entityToFakeSetStateFor">The entity to fake set state for.</param>
-        /// <param name="setStateAction">The set state function.</param>
-        /// <returns></returns>
-        public TDerived WithFakeSetStateForEntity(EntityReference entityToFakeSetStateFor, Action<SetStateRequest> setStateAction)
+        public TDerived WithFakeSetStateForEntity(EntityReference entityToFakeSetStateFor, Action<SetStateRequest> setStateAction = null)
         {
             WithFakeExecute((s, r) =>
             {
@@ -364,23 +353,13 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         /// <param name="entityToMock">The entity to mock.</param>
         /// <param name="action">The action.</param>
-        public TDerived WithFakeUpdateForEntity(Entity entityToMock, Action<Entity> action)
-        {
-            return WithFakeUpdateForEntity(entityToMock.ToEntityReference(), action);
-        }
-
-        /// <summary>
-        /// Performs custom action for update, rather than default update
-        /// </summary>
-        /// <param name="entityToMock">The entity to mock.</param>
-        /// <param name="action">The action.</param>
-        public TDerived WithFakeUpdateForEntity(EntityReference entityToMock, Action<Entity> action)
+        public TDerived WithFakeUpdateForEntity(EntityReference entityToMock, Action<Entity> action = null)
         {
             WithFakeUpdate((s, e) =>
             {
                 if (e.LogicalName == entityToMock.LogicalName && e.Id == entityToMock.Id)
                 {
-                    action(e);
+                    action?.Invoke(e);
                 }
                 else
                 {
