@@ -338,7 +338,7 @@ namespace DLaB.Xrm.Test.Builders
                 {
                     return s.Execute(r);
                 }
-                setStateAction(setState);
+                setStateAction?.Invoke(setState);
                 return new SetStateResponse();
             });
             return This;
@@ -436,7 +436,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         public TDerived WithLocalOptionSetsRetrievedFromEnum(int? defaultLangaugeCode = null)
         {
-            defaultLangaugeCode = defaultLangaugeCode ?? AppConfig.DefaultLanguageCode;
+            defaultLangaugeCode = defaultLangaugeCode ?? Client.AppConfig.DefaultLanguageCode;
             ExecuteFuncs.Add((s, r) =>
             {
                 var attRequest = r as RetrieveAttributeRequest;
