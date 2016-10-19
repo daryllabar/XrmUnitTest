@@ -403,6 +403,26 @@ namespace DLaB.Xrm.Test
         #region IOrganizationService
 
         /// <summary>
+        /// Deletes the specified entity
+        /// </summary>
+        /// <param name="service">The service.</param>
+        /// <param name="entity">The entity to be deleted.</param>
+        public static void Delete(this IOrganizationService service, Id entity)
+        {
+            service.Delete(entity.LogicalName, entity.EntityId);
+        }
+
+        /// <summary>
+        /// Deletes the specified entity
+        /// </summary>
+        /// <param name="service">The service.</param>
+        /// <param name="entity">The entity to be deleted.</param>
+        public static void Delete<TEntity>(this IOrganizationService service, Id<TEntity> entity) where TEntity: Entity
+        {
+            service.Delete(entity.LogicalName, entity.EntityId);
+        }
+
+        /// <summary>
         /// Handles deleting the business unit by first disabling it.
         /// </summary>
         /// <param name="service">The service.</param>

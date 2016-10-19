@@ -38,7 +38,7 @@ namespace DLaB.Xrm.Tests
                 Assert.IsNotNull(contact);
 
                 // Test Not Exists
-                service.Delete(Ids.Contact);
+                service.Delete<Contact>(Ids.Contact);
                 contact = service.GetFirstOrDefault<Contact>();
                 Assert.IsNull(contact);
             }

@@ -195,5 +195,15 @@ namespace DLaB.Xrm.Test
         /// </summary>
         /// <param name="entityId">The entity identifier.</param>
         public Id(string entityId) : base(EntityHelper.GetEntityLogicalName<TEntity>(), entityId) { }
+
+        /// <summary>
+        /// Performs an implicit conversion from <see cref="T:DLaB.Xrm.Test.Id" /> to <see cref="T:System.String" />.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns>The result of the conversion.</returns>
+        public static implicit operator TEntity(Id<TEntity> entity)
+        {
+            return entity?.Entity;
+        }
     }
 }
