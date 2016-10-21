@@ -19,7 +19,7 @@ using NMemory.Tables;
 
 namespace DLaB.Xrm.LocalCrm
 {
-    [DebuggerNonUserCode]
+    //[DebuggerNonUserCode]
     internal partial class LocalCrmDatabase : Database
     {
         private static readonly LocalCrmDatabase Default = new LocalCrmDatabase();
@@ -202,13 +202,16 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
+
+        [ThreadStatic]
+        private static int _aliasedEntityCount;
         private static TFrom AddAliasedColumns<TFrom, TTo>(TFrom fromEntity, TTo toEntity, string alias, ColumnSet columns)
             where TFrom : Entity
             where TTo : Entity
         {
             if (toEntity == null) { return fromEntity; }
 
-            alias = alias ?? toEntity.LogicalName;
+            alias = alias ?? toEntity.LogicalName + _aliasedEntityCount--;
             // Since the Projection is modifying the underlying objects, a HasAliasedAttribute Call is required.  
             if (columns.AllColumns)
             {
@@ -461,9 +464,10 @@ namespace DLaB.Xrm.LocalCrm
             }
             return false;
         }
-
+        
         public static EntityCollection ReadEntities<T>(LocalCrmDatabaseOrganizationService service, QueryExpression qe) where T : Entity
         {
+            _aliasedEntityCount = GetLinkedEntitiesWithoutAliasNameCount(qe);
             var query = SchemaGetOrCreate<T>(service.Info).AsQueryable();
             
             // ReSharper disable once ReturnValueOfPureMethodIsNotUsed - this updates the query expression
@@ -502,6 +506,28 @@ namespace DLaB.Xrm.LocalCrm
             var result = new EntityCollection();
             result.Entities.AddRange(entities);
             return result;
+        }
+
+        private static int GetLinkedEntitiesWithoutAliasNameCount(QueryExpression qe)
+        {
+            var count = 0;
+            var searchQueue = new Queue<DataCollection<LinkEntity>>();
+            searchQueue.Enqueue(qe.LinkEntities);
+            while (searchQueue.Count > 0)
+            {
+                foreach (var link in searchQueue.Dequeue())
+                {
+                    if (link.LinkEntities != null && link.LinkEntities.Count > 0)
+                    {
+                        searchQueue.Enqueue(link.LinkEntities);
+                    }
+                    if (link.EntityAlias == null)
+                    {
+                        count++;
+                    }
+                }
+            }
+            return count;
         }
 
         private static IEnumerable<FilterExpression> HandleFilterExpressionsWithAliases(QueryExpression qe, FilterExpression fe) {
