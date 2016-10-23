@@ -19,7 +19,7 @@ using NMemory.Tables;
 
 namespace DLaB.Xrm.LocalCrm
 {
-    //[DebuggerNonUserCode]
+    [DebuggerNonUserCode]
     internal partial class LocalCrmDatabase : Database
     {
         private static readonly LocalCrmDatabase Default = new LocalCrmDatabase();
@@ -133,8 +133,7 @@ namespace DLaB.Xrm.LocalCrm
             where TFrom : Entity
             where TTo : Entity
         {
-            query = filter.Conditions.Any() ? query.Where(l => EvaluateFilter(l.Current, filter)) : query;
-            return filter.Filters.Aggregate(query, ApplyLinkFilter);
+            return query.Where(l => EvaluateFilter(l.Current, filter));
         }
 
         private static IQueryable<TRoot> CallChildJoin<TRoot, TFrom>(LocalCrmDatabaseInfo info, IQueryable<LinkEntityTypes<TRoot, TFrom>> query, LinkEntity link)

@@ -17,11 +17,9 @@ namespace DLaB.Xrm
         /// -or- ConditionExpressions
         /// </summary>
         /// <param name="filterExpression"></param>
-        /// <param name="entityName"></param>
         /// <param name="columnNameAndValuePairs">List of pairs that look like this:
         /// (string name of the column, value of the column) ie. "name", "John Doe" </param>
-        public static FilterExpression WhereEqual(this FilterExpression filterExpression, string entityName,
-            params object[] columnNameAndValuePairs)
+        public static FilterExpression WhereEqual(this FilterExpression filterExpression, params object[] columnNameAndValuePairs)
         {
             if (columnNameAndValuePairs == null) { throw new ArgumentNullException(nameof(columnNameAndValuePairs)); }
             int length = columnNameAndValuePairs.Length;
@@ -82,7 +80,7 @@ namespace DLaB.Xrm
                 {
                     // Non Condition Expression
                     AddNameValuePairCondition(currentFilter,
-                        (string)columnNameAndValuePairs[i], columnNameAndValuePairs[i + 1], entityName);
+                        (string)columnNameAndValuePairs[i], columnNameAndValuePairs[i + 1]);
                 }
             }
 
@@ -90,7 +88,7 @@ namespace DLaB.Xrm
         }
 
         // ReSharper disable once UnusedParameter.Local
-        private static void AddNameValuePairCondition(FilterExpression filter, string attributeName, object value, string entityName)
+        private static void AddNameValuePairCondition(FilterExpression filter, string attributeName, object value)
         {
             if (value == null)
             {
@@ -653,7 +651,7 @@ namespace DLaB.Xrm
         /// (string name of the column, value of the column) ie. "name", "John Doe" </param>
         public static LinkEntity WhereEqual(this LinkEntity linkEntity, params object[] columnNameAndValuePairs)
         {
-            linkEntity.LinkCriteria.WhereEqual(linkEntity.LinkToEntityName, columnNameAndValuePairs);
+            linkEntity.LinkCriteria.WhereEqual(columnNameAndValuePairs);
             return linkEntity;
         }
 
@@ -712,7 +710,7 @@ namespace DLaB.Xrm
         {
             // Removing the active only condition is rather dangerous commented out for now, may change in the future
             // query.Criteria.WhereEqual(query.EntityName, columnNameAndValuePairs);
-            query.Criteria.WhereEqual(null, columnNameAndValuePairs);
+            query.Criteria.WhereEqual(columnNameAndValuePairs);
             return query;
         }
 

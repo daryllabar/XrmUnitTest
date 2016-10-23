@@ -2,6 +2,7 @@
 using DLaB.Xrm.CrmSdk;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.Test;
+using DLaB.Xrm.Test.Builders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
@@ -260,5 +261,77 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.AreEqual(id1, service.GetEntity<Contact>(id1).Id, "Failed looking up Contact 1 by Id");
             Assert.AreEqual(id2, service.GetEntity<Contact>(id2).Id, "Failed looking up Contact 2 by Id");
         }
+
+        [TestMethod]
+        public void LocalCrmTests_Crud_MultipleOr()
+        {
+            var service = GetService();
+            const string telephone = "9998881111";
+            service.Create(new Account {Telephone1 = telephone});
+            var qe = QueryExpressionFactory.Create<Account>();
+            TestForPhoneNumber(service, qe, qe.Criteria, telephone);
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_Crud_LinkedMultipleOr()
+        {
+            var service = GetService();
+            const string telephone = "9998882222";
+            var id = service.Create(new Account
+            {
+                Telephone1 = telephone
+            });
+            service.Create(new Contact
+            {
+                ParentCustomerId = new EntityReference(Account.EntityLogicalName, id)
+            });
+
+            var qe = QueryExpressionFactory.Create<Contact>();
+
+            TestForPhoneNumber(service, qe, qe.AddLink<Account>(Contact.Fields.ParentCustomerId, Account.Fields.Id).LinkCriteria, telephone);
+           
+        }
+
+        #region Shared Methods
+
+        private static void TestForPhoneNumber(IOrganizationService service, QueryExpression qe, FilterExpression accountFilter, string telephone)
+        {
+            accountFilter.WhereEqual(
+                Account.Fields.Telephone1, telephone,
+                LogicalOperator.Or,
+                Account.Fields.Telephone2, telephone,
+                LogicalOperator.Or,
+                Account.Fields.Telephone3, telephone
+                );
+
+            var entity = service.GetFirstOrDefault(qe);
+            Assert.IsNotNull(entity, $"{qe.EntityName} should have been found with matching telephone 1 number.");
+
+            var account = service.GetFirst<Account>();
+            account.Telephone2 = telephone;
+            account.Telephone1 = telephone + "1";
+            service.Update(account);
+            entity = service.GetFirstOrDefault(qe);
+            Assert.IsNotNull(entity, $"{qe.EntityName} should have been found with matching telephone 2 number.");
+
+            account.Telephone3 = telephone;
+            account.Telephone2 = telephone + "2";
+            service.Update(account);
+            entity = service.GetFirstOrDefault(qe);
+            Assert.IsNotNull(entity, $"{qe.EntityName} should have been found with matching telephone 3 number.");
+
+            service = new OrganizationServiceBuilder(service)
+                .WithEntityFilter<Account>(account.Id).Build();
+            entity = service.GetFirstOrDefault(qe);
+            Assert.IsNotNull(entity, $"{qe.EntityName} should have been found with matching telephone 3 number and Id.");
+
+            account.Telephone3 += "A";
+            service.Update(account);
+            entity = service.GetFirstOrDefault(qe);
+            Assert.IsNull(entity, $"{qe.EntityName} should have not have been found with a non-matching telephone 3 number and Id.");
+        }
+
+
+        #endregion Shared Methods
     }
 }

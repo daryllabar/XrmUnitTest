@@ -27,12 +27,12 @@ namespace DLaB.Xrm
         /// <param name="entityName">Name of the entity.</param>
         /// <param name="columnNameAndValuePairs">The column name and value pairs.</param>
         /// <returns></returns>
-        public static bool HasCondition(this FilterExpression filter, string entityName, params object[] columnNameAndValuePairs)
+        public static bool HasCondition(this FilterExpression filter, params object[] columnNameAndValuePairs)
         {
             var tmp = new FilterExpression();
 
             // match all conditions one at a time.
-            return tmp.WhereEqual(entityName, columnNameAndValuePairs).Conditions.All(filter.HasCondition);
+            return tmp.WhereEqual(columnNameAndValuePairs).Conditions.All(filter.HasCondition);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace DLaB.Xrm
             var tmp = new FilterExpression();
 
             // match all conditions one at a time.
-            return tmp.WhereEqual(link.LinkToEntityName, columnNameAndValuePairs).Conditions.All(link.HasCondition);
+            return tmp.WhereEqual(columnNameAndValuePairs).Conditions.All(link.HasCondition);
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace DLaB.Xrm
             var tmp = new FilterExpression();
 
             // match all conditions one at a time.
-            return tmp.WhereEqual(qe.EntityName, columnNameAndValuePairs).Conditions.All(qe.HasCondition);
+            return tmp.WhereEqual(columnNameAndValuePairs).Conditions.All(qe.HasCondition);
         }
 
         /// <summary>
