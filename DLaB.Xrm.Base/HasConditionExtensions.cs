@@ -24,7 +24,6 @@ namespace DLaB.Xrm
         /// Determines whether the specified entity name has condition.
         /// </summary>
         /// <param name="filter">The filter.</param>
-        /// <param name="entityName">Name of the entity.</param>
         /// <param name="columnNameAndValuePairs">The column name and value pairs.</param>
         /// <returns></returns>
         public static bool HasCondition(this FilterExpression filter, params object[] columnNameAndValuePairs)
