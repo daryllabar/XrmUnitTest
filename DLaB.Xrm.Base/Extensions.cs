@@ -842,10 +842,20 @@ namespace DLaB.Xrm
             if (ConfigurationManager.AppSettings.AllKeys.Any())
             {
                 lines.Add("* App Config Values *");
-                lines.AddRange(ConfigurationManager.AppSettings.AllKeys.Select(key => "    [" + key + "]: " + ConfigurationManager.AppSettings[key]));
+                lines.AddRange(ConfigurationManager.AppSettings.AllKeys.Select(key => $"    [{key}]: {GetConfigValueMaskingPasswords(key)}"));
             }
 
             return lines;
+        }
+
+        private static string GetConfigValueMaskingPasswords(string key)
+        {
+            var value = ConfigurationManager.AppSettings[key];
+            if (!string.IsNullOrWhiteSpace(value) && key.ContainsIgnoreCase("password"))
+            {
+                value = new string('*', value.Length);
+            }
+            return value;
         }
 
         #endregion IExecutionContext
