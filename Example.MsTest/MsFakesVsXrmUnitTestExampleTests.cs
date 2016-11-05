@@ -17,8 +17,7 @@ namespace Example.MsTest
     {
         // MsFakes Isn't suppored by Appveyor.  To test:
         // 1. Right click on the Microsoft.Xrm.Sdk.dll in the references, and select "Add Fakes Assembly"
-        // 2. May need to overwrite Fakes/Microsoft.Xrm.Sdk.fakes file.
-        // 3. Uncomment this test.
+        // 2. Uncomment this test.
         /// <summary>
         /// Example test for running a unit test using MS Fakes
         /// </summary>
