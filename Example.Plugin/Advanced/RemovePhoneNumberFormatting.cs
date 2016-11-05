@@ -65,7 +65,7 @@ namespace Example.Plugin.Advanced
                 return;
             }
 
-            entity[attribute] = new String(number.Where(char.IsNumber).ToArray());
+            entity[attribute] = new string(number.Where(char.IsNumber).ToArray());
         }
 
         private void ExecuteCrmAddresses(ExtendedPluginContext context)

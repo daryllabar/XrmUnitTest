@@ -11,6 +11,9 @@ namespace Example.MsTestBase
     /// </summary>
     public class TestInitializer
     {
+        /// <summary>
+        /// Initializes the test settings.
+        /// </summary>
         public static void InitializeTestSettings()
         {
             if (!TestSettings.AssumptionXmlPath.IsConfigured)
