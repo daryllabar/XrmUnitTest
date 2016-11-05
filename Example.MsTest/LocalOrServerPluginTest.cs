@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DLaB.Xrm.Entities; // Contains Early Bound Entities
 using DLaB.Xrm.Test;
+using DLaB.Xrm;
 using Example.MsTestBase; // Test Base Project.  Contains code that is shared amoung all Unit Test Projects
 using Example.MsTestBase.Builders; // Fluent Builder Namespace.  Builders can be used to create anything that's required, from creating an entity, to a OrganizationService, to a Plugin
 using Example.Plugin.Simple;
@@ -16,6 +17,58 @@ namespace Example.MsTest
     [TestClass]
     public class LocalOrServerPluginTest
     {
+        #region SyncContactToAccount_UpdateContactAddress_Should_UpdateAccountAddress_Dirty
+
+        /// <summary>
+        /// Example of text that can be ran locally or against the server, but is not environment agnostic, and does not clean up the data
+        /// </summary>
+        [TestMethod]
+        public void SyncContactToAccount_UpdateContactAddress_Should_UpdateAccountAddress_Dirty()
+        {
+            //
+            // Arrange
+            //
+            TestInitializer.InitializeTestSettings();
+            var service = TestBase.GetOrganizationService();
+            var contactId = service.Create(new Contact());
+            var accountId = service.Create(new Account
+            {
+                PrimaryContactId = new EntityReference(Contact.EntityLogicalName, contactId)
+            });
+
+            var contact = new Contact
+            {
+                Id = contactId,
+                Address1_Line1 = "742 Evergreen Terrace"
+            };
+
+            var plugin = new SyncContactToAccount();
+            var context = new PluginExecutionContextBuilder().
+                          WithFirstRegisteredEvent(plugin).
+                          WithTarget(contact).Build();
+            var provider = new ServiceProviderBuilder(service, context, new DebugLogger()).Build();
+
+            //
+            // Act
+            //
+            plugin.Execute(provider);
+
+            //
+            // Assert
+            //
+            var account = service.GetEntity<Account>(accountId);
+            Assert.AreEqual(contact.Address1_Line1, account.Address1_Line1);
+
+            //
+            // Clean up
+            //
+            service.Delete(Account.EntityLogicalName, accountId);
+            service.Delete(Contact.EntityLogicalName, contactId);
+        }
+
+
+        #endregion SyncContactToAccount_UpdateContactAddress_Should_UpdateAccountAddress_Dirty
+
         #region UpdateContactAddress_Should_UpdateAccountAddress
 
         [TestMethod]
