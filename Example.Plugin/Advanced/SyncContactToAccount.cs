@@ -4,12 +4,12 @@ using DLaB.Xrm.Entities;
 using DLaB.Xrm.Plugin;
 using Microsoft.Xrm.Sdk;
 
-namespace Example.Plugin.Simple
+namespace Example.Plugin.Advanced
 {
     /// <summary>
     /// Class to Sync a Contact's Address Information to the Account, if it is the primary account
     /// </summary>
-    public class SyncContactToAccount : DLaBPluginBase
+    public class SyncContactToAccount : PluginBase
     {
         #region Constructors
 
@@ -26,7 +26,7 @@ namespace Example.Plugin.Simple
         }
     }
 
-    internal class SyncContactToAccountLogic : DLaBPluginHandlerBase
+    internal class SyncContactToAccountLogic : PluginHandlerBase
     {
         public override void RegisterEvents()
         {
@@ -34,7 +34,7 @@ namespace Example.Plugin.Simple
                 ForEntities(Contact.EntityLogicalName).Build());
         }
 
-        protected override void ExecuteInternal(IExtendedPluginContext context)
+        protected override void ExecuteInternal(ExtendedPluginContext context)
         {
             // Get the Target
             var contact = context.GetTarget<Contact>();

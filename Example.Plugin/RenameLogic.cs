@@ -8,7 +8,7 @@ namespace Example.Plugin
     public class RenameLogic
     {
         /// <summary>
-        /// Updates the First or Last Name of the contact to match the given case
+        /// Updates the First or Last Name of the contact to match the given casing
         /// </summary>
         /// <param name="service">The service.</param>
         /// <param name="name">The name.</param>

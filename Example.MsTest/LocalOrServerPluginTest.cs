@@ -4,7 +4,7 @@ using DLaB.Xrm.Test;
 using DLaB.Xrm;
 using Example.MsTestBase; // Test Base Project.  Contains code that is shared amoung all Unit Test Projects
 using Example.MsTestBase.Builders; // Fluent Builder Namespace.  Builders can be used to create anything that's required, from creating an entity, to a OrganizationService, to a Plugin
-using Example.Plugin.Simple;
+using Example.Plugin.Advanced;
 using Microsoft.Xrm.Sdk;
 
 namespace Example.MsTest
@@ -35,35 +35,39 @@ namespace Example.MsTest
             {
                 PrimaryContactId = new EntityReference(Contact.EntityLogicalName, contactId)
             });
-
-            var contact = new Contact
+            try
             {
-                Id = contactId,
-                Address1_Line1 = "742 Evergreen Terrace"
-            };
+                var contact = new Contact
+                {
+                    Id = contactId,
+                    Address1_Line1 = "742 Evergreen Terrace"
+                };
 
-            var plugin = new SyncContactToAccount();
-            var context = new PluginExecutionContextBuilder().
-                          WithFirstRegisteredEvent(plugin).
-                          WithTarget(contact).Build();
-            var provider = new ServiceProviderBuilder(service, context, new DebugLogger()).Build();
+                var plugin = new SyncContactToAccount();
+                var context = new PluginExecutionContextBuilder().
+                    WithFirstRegisteredEvent(plugin).
+                    WithTarget(contact).Build();
+                var provider = new ServiceProviderBuilder(service, context, new DebugLogger()).Build();
 
-            //
-            // Act
-            //
-            plugin.Execute(provider);
+                //
+                // Act
+                //
+                plugin.Execute(provider);
 
-            //
-            // Assert
-            //
-            var account = service.GetEntity<Account>(accountId);
-            Assert.AreEqual(contact.Address1_Line1, account.Address1_Line1);
-
-            //
-            // Clean up
-            //
-            service.Delete(Account.EntityLogicalName, accountId);
-            service.Delete(Contact.EntityLogicalName, contactId);
+                //
+                // Assert
+                //
+                var account = service.GetEntity<Account>(accountId);
+                Assert.AreEqual(contact.Address1_Line1, account.Address1_Line1);
+            }
+            finally
+            {
+                //
+                // Clean up
+                //
+                service.Delete(Account.EntityLogicalName, accountId);
+                service.Delete(Contact.EntityLogicalName, contactId);
+            }
         }
 
 

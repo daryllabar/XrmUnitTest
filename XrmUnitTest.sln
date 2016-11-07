@@ -105,6 +105,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code Snippets", "Code Snipp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Common.Tests", "DLaB.Common.Tests\DLaB.Common.Tests.csproj", "{4BCE674F-352E-4A6B-BAFF-3E6186E3CF5B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Walkthrough", "Example.Walkthrough\Example.Walkthrough.csproj", "{3E728B41-02E5-42FD-B8D3-CF2C664E2226}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		DLaB.Xrm.LocalCrm.Tests.Base\DLaB.Xrm.LocalCrm.Tests.Base.projitems*{04895326-dbd8-41a0-9ea6-5dddaf5c95f8}*SharedItemsImports = 4
@@ -245,6 +247,12 @@ Global
 		{4BCE674F-352E-4A6B-BAFF-3E6186E3CF5B}.LocalNuget|Any CPU.Build.0 = Release|Any CPU
 		{4BCE674F-352E-4A6B-BAFF-3E6186E3CF5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BCE674F-352E-4A6B-BAFF-3E6186E3CF5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E728B41-02E5-42FD-B8D3-CF2C664E2226}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E728B41-02E5-42FD-B8D3-CF2C664E2226}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E728B41-02E5-42FD-B8D3-CF2C664E2226}.LocalNuget|Any CPU.ActiveCfg = Release|Any CPU
+		{3E728B41-02E5-42FD-B8D3-CF2C664E2226}.LocalNuget|Any CPU.Build.0 = Release|Any CPU
+		{3E728B41-02E5-42FD-B8D3-CF2C664E2226}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E728B41-02E5-42FD-B8D3-CF2C664E2226}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
