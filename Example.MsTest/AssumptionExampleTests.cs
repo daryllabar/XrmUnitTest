@@ -18,7 +18,7 @@ namespace Example.MsTest
             new InstallProduct_Should_ContainDescription().Test();
         }
 
-        [Product_Install]
+        [Product_Install] // Assumption Attribute
         private class InstallProduct_Should_ContainDescription : TestMethodClassBase
         {
             protected override void Test(IOrganizationService service)

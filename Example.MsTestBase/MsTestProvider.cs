@@ -4,9 +4,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Example.MsTestBase
 {
-    class MsTestProvider : ITestFrameworkProvider
+    public class MsTestProvider : ITestFrameworkProvider
     {
-        public Type TestMethodAttributeType { get { return typeof (TestMethodAttribute); } }
+        public Type TestMethodAttributeType => typeof (TestMethodAttribute);
+
         public Exception GetFailedException(string message)
         {
             return new AssertFailedException(message);

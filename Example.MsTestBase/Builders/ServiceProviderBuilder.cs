@@ -5,7 +5,7 @@ namespace Example.MsTestBase.Builders
 {
     public class ServiceProviderBuilder : DLaB.Xrm.Test.Builders.ServiceProviderBuilderBase<ServiceProviderBuilder>
     {
-        public ServiceProviderBuilder()
+        public ServiceProviderBuilder() : this(null, new FakePluginExecutionContext(), (ITestLogger)null)
         {
             
         }
