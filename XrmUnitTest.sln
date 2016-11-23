@@ -100,6 +100,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code Snippets", "Code Snipp
 		Code Snippets\crmplugin.snippet = Code Snippets\crmplugin.snippet
 		Code Snippets\crmplugintest.snippet = Code Snippets\crmplugintest.snippet
 		Code Snippets\crmtestmethodclass.snippet = Code Snippets\crmtestmethodclass.snippet
+		LINQPadGuidGenerator.txt = LINQPadGuidGenerator.txt
 		Code Snippets\region.snippet = Code Snippets\region.snippet
 	EndProjectSection
 EndProject

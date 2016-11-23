@@ -91,7 +91,7 @@ namespace Example.MsTest
                 new CrmEnvironmentBuilder()
                     .WithBuilder<AccountBuilder>(Ids.Accounts.WithAddress, b => b.WithAddress1())
                     .WithEntities<Ids>() // Creates all Entities within Ids struct
-                 // .WithEntities(Ids.Accounts.WithoutAddress) // Allows for specifying 1:N entities
+                 // .WithEntities(Ids.Accounts.WithoutAddress) // Allows for specifying specific entities
                     .Create(service);
             }
 

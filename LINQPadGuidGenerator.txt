@@ -1,0 +1,159 @@
+// Great tool for generating Ids quickly and easily
+void Main()
+{
+	// Need to create multiple Ids for mulitiple entities?
+	var entityTypes = new []
+	{
+		"Account",
+		"Contact"
+	};
+
+	var existingIds = (string) null;
+	// Want to duplicate an existing Structure?  Use this:
+	/*
+	existingIds = @"
+        private struct Ids
+        {
+            public struct Accounts
+            {
+                public static readonly Id<Account> WithAddress = new Id<Account>(""63A3FD8E-BA19-46C2-A1DD-8EBBBA0CF886"");
+                public static readonly Id<Account> WithoutAddress = new Id<Account>(""CC083E9A-7FFE-4164-AF23-9D7B53F1C323"");
+            }
+        }
+	";
+	*/
+
+	if (string.IsNullOrWhiteSpace(existingIds))
+	{
+		var idInfos = CreateIdInfo(entityTypes);
+		GenerateOutput(idInfos);
+	}
+	else
+	{
+		ParseExisting(existingIds);
+    }
+}
+
+private void ParseExisting(string existingIds)
+{
+	var lines = existingIds.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+	var output = new List<string>();
+	foreach (var line in lines)
+	{
+		var i = line.IndexOf("(\"") + 2;
+		if (i > 2)
+		{
+			output.Add(line.Substring(0, i) + $"{Guid.NewGuid()}\");");
+		}
+		else
+		{
+			output.Add(line);
+		}
+	}
+	
+	string.Join(Environment.NewLine, output).Dump();
+}
+
+private List<IdInfo> CreateIdInfo(string[] entityTypes)
+{
+	entityTypes = entityTypes.OrderBy(t => t.ToLower()).ToArray();
+	var nameChar = (int)'a';
+	var dictionary = new Dictionary<string, int>();
+	var areMultiple = entityTypes.GroupBy(v => v).Count() != entityTypes.Length;
+	var idInfos = new List<IdInfo>(entityTypes.Length);
+	foreach (var entityType in entityTypes)
+	{
+		var name = entityType == "Entity" ? ((char)nameChar++).ToString() : entityType;
+		if (name.Contains("_"))
+		{
+			name = String.Join(string.Empty, name.Split('_').Skip(1).ToArray());
+		}
+
+		name = name.ToUpper()[0] + name.Remove(0, 1);
+		int count;
+		dictionary.TryGetValue(name, out count);
+		dictionary[name] = count + 1;
+		if (count > 0)
+		{
+			name = name + count;
+		}
+		else if (areMultiple)
+		{
+			name += " ";
+		}
+		idInfos.Add(new IdInfo
+		{
+			EntityType = entityType,
+			Name = name,
+			Index = count
+		});
+	}
+	
+	return idInfos;
+}
+
+private void GenerateOutput(List<IdInfo> idInfos)
+{
+	foreach (var entityType in idInfos.GroupBy(i => i.EntityType))
+	{
+		var isMultiple = entityType.Count() > 1;
+		if (isMultiple)
+		{
+			$"public struct {entityType.First(t => t.Index == 0).Name}".Dump();
+			"{".Dump();
+		}
+		foreach (var id in entityType)
+		{
+			if (isMultiple)
+			{
+				$"    public static readonly Id<{id.EntityType}> {IntToBase(id.Index + 1)} = new Id<{id.EntityType}>(\"{Guid.NewGuid().ToString().ToUpper()}\");".Dump();
+			}
+			else
+			{
+				$"public static readonly Id<{id.EntityType}> {id.Name}= new Id<{id.EntityType}>(\"{Guid.NewGuid().ToString().ToUpper()}\");".Dump();
+			}
+		}
+
+		if (isMultiple)
+		{
+			"}".Dump();
+		}
+	}
+}
+
+public class IdInfo
+{
+	public string EntityType { get; set; }
+	public string Name { get; set; }
+	public int Index { get; set; }
+}
+
+private static readonly char[] BaseChars =
+		 "zabcdefghijklmnopqrstuvwxy".ToCharArray();
+private static readonly Dictionary<char, int> CharValues = BaseChars
+		   .Select((c, i) => new { Char = c, Index = i })
+		   .ToDictionary(c => c.Char, c => c.Index);
+
+public static string IntToBase(int value)
+{
+	int targetBase = BaseChars.Length;
+	// Determine exact number of characters to use.
+	char[] buffer = new char[Math.Max(
+			   (int)Math.Ceiling(Math.Log(value + 1, targetBase)), 1)];
+
+	var i = (long)buffer.Length;
+	do
+	{
+		buffer[--i] = BaseChars[value % targetBase];
+		value = value / targetBase;
+	}
+	while (value > 0);
+
+	if (buffer.Length > 0)
+	{	
+		buffer[0] = buffer[0].ToString().ToUpper()[0];
+	}
+	return new string(buffer);
+}
+
+// Define other methods and classes here
