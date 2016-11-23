@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AssertCrm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assumptions\AssumedEntities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assumptions\EntityDataAssumptionBaseAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assumptions\IAssumptionEntityType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assumptions\MultipleEntityDataAssumptionBaseAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\CrmEnvironmentBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\EntityBuilder.cs" />

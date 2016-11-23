@@ -1,11 +1,12 @@
 ﻿using DLaB.Xrm;
 using DLaB.Xrm.Entities;
+using DLaB.Xrm.Test.Assumptions;
 using Microsoft.Xrm.Sdk;
 
 namespace Example.MsTestBase.Assumptions
 {
     // ReSharper disable once InconsistentNaming
-    public class Product_Install : DLaB.Xrm.Test.Assumptions.EntityDataAssumptionBaseAttribute
+    public class Product_Install : EntityDataAssumptionBaseAttribute, IAssumptionEntityType<Product_Install, Product>
     {
         protected override Entity RetrieveEntity(IOrganizationService service)
         {

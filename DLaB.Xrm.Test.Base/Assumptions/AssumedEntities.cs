@@ -53,11 +53,24 @@ namespace DLaB.Xrm.Test.Assumptions
             Entity entity;
             if (!InternalStore.TryGetValue(GetKey<T>(), out entity))
             {
-                throw new Exception(string.Format("Assumption {0} made an ass out of you and me.  AssumedEntities does not contain an entity for Assumption {0}.",
-                    typeof(T).Name));
+                throw new Exception($"AssumedEntities does not contain an entity for Assumption {typeof(T).Name}.");
             }
 
             return entity;
+        }
+
+        /// <summary>
+        /// Gets the Assumed Entity by Assumption Attribute Type, casting it to the Entity Type.
+        /// </summary>
+        /// <typeparam name="TAttribute">The type of the attribute.</typeparam>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <param name="assumption">The assumption.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception"></exception>
+        public TEntity Get<TAttribute, TEntity>(IAssumptionEntityType<TAttribute, TEntity> assumption) where TAttribute : EntityDataAssumptionBaseAttribute
+                                                                                                      where TEntity : Entity
+        {
+            return Get<TAttribute>().ToEntity<TEntity>();
         }
 
         /// <summary>

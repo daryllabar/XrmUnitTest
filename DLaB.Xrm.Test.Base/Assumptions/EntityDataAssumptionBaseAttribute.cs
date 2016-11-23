@@ -32,6 +32,21 @@ namespace DLaB.Xrm.Test.Assumptions
         private AssumedEntities _assumedEntities;
         private HashSet<Type> _currentlyProcessingPreReqs;
 
+
+        /// <summary>
+        /// Gets the assumed entity.
+        /// </summary>
+        /// <typeparam name="TAttribute">The type of the attribute.</typeparam>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <param name="assumption">The assumption.</param>
+        /// <returns></returns>
+        protected TEntity GetAssumedEntity<TAttribute, TEntity>(IAssumptionEntityType<TAttribute, TEntity> assumption)
+            where TAttribute : EntityDataAssumptionBaseAttribute
+            where TEntity : Entity
+        {
+            return GetAssumedEntity<TAttribute, TEntity>();
+        }
+
         /// <summary>
         /// Checks to ensure that the assumption being asked for has been defined in the PrerequisiteAssumptions for the current Assumption
         /// </summary>
@@ -44,7 +59,7 @@ namespace DLaB.Xrm.Test.Assumptions
         {
             if (!Prerequisites.Any())
             {
-                throw new Exception(String.Format(
+                throw new Exception(string.Format(
                     "Assumption {0} is attempting to retrieve Assumption of type {1}, but it has not defined a PrerequisiteAssumptions Attribute.{2}{2}" +
                     "Please add a PrerequisiteAssumption Attribute with a(n) {1} in it's constructor to Assumption {0}.",
                     ShortName, GetShortName(typeof(TAttribute)), Environment.NewLine));
@@ -52,7 +67,7 @@ namespace DLaB.Xrm.Test.Assumptions
 
             if (Prerequisites.All(t => t != typeof(TAttribute)))
             {
-                throw new Exception(String.Format(
+                throw new Exception(string.Format(
                     "Assumption {0} is attempting to retrieve Assumption of type {1}, but it has not defined it in it's PrerequisiteAssumptions Attribute.{2}{2}" +
                     "Please add a(n) {1} to the PrerequisiteAssumption Attribute in Assumption {0}.",
                     ShortName, GetShortName(typeof(TAttribute)), Environment.NewLine));

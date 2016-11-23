@@ -38,20 +38,20 @@
       <HintPath>..\packages\DLaB.Common.1.0.2-alpha01\lib\net452\DLaB.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DLaB.Xrm.2016, Version=1.1.9.6, Culture=neutral, PublicKeyToken=4da76fa437c5906e, processorArchitecture=MSIL">
-      <HintPath>..\packages\DLaB.Xrm.2016.1.1.9-alpha06\lib\net452\DLaB.Xrm.2016.dll</HintPath>
+    <Reference Include="DLaB.Xrm.2016, Version=1.1.9.8, Culture=neutral, PublicKeyToken=4da76fa437c5906e, processorArchitecture=MSIL">
+      <HintPath>..\packages\DLaB.Xrm.2016.1.1.9-alpha08\lib\net452\DLaB.Xrm.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DLaB.Xrm.Client.2016, Version=1.1.9.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XrmUnitTest.2016.1.1.9-alpha06\lib\net452\DLaB.Xrm.Client.2016.dll</HintPath>
+    <Reference Include="DLaB.Xrm.Client.2016, Version=1.1.9.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XrmUnitTest.2016.1.1.9-alpha08\lib\net452\DLaB.Xrm.Client.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DLaB.Xrm.LocalCrm.2016, Version=1.1.9.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XrmUnitTest.2016.1.1.9-alpha06\lib\net452\DLaB.Xrm.LocalCrm.2016.dll</HintPath>
+    <Reference Include="DLaB.Xrm.LocalCrm.2016, Version=1.1.9.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XrmUnitTest.2016.1.1.9-alpha08\lib\net452\DLaB.Xrm.LocalCrm.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DLaB.Xrm.Test.2016, Version=1.1.9.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XrmUnitTest.2016.1.1.9-alpha06\lib\net452\DLaB.Xrm.Test.2016.dll</HintPath>
+    <Reference Include="DLaB.Xrm.Test.2016, Version=1.1.9.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XrmUnitTest.2016.1.1.9-alpha08\lib\net452\DLaB.Xrm.Test.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">

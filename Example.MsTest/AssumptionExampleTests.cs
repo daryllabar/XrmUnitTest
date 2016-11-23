@@ -26,7 +26,7 @@ namespace Example.MsTest
                 //
                 // Act
                 //
-                var product = AssumedEntities.Get<Product_Install, Product>();
+                var product = AssumedEntities.Get(new Product_Install());
                 var description = service.GetEntity<Product>(product.Id).Description;
 
                 //
