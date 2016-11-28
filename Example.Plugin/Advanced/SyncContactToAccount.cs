@@ -11,6 +11,8 @@ namespace Example.Plugin.Advanced
     /// </summary>
     public class SyncContactToAccount : PluginBase
     {
+        public const string AddressNotUpdatedMessage = "Address not updated, no need to update Account.";
+
         #region Constructors
 
         public SyncContactToAccount() : this(null, null) { }
@@ -40,7 +42,7 @@ namespace Example.Plugin.Advanced
             var contact = context.GetTarget<Contact>();
             if (string.IsNullOrWhiteSpace(contact.Address1_Line1))
             {
-                // Address not updated, no need to update Account
+                context.Trace(SyncContactToAccount.AddressNotUpdatedMessage);
                 return;
             }
 

@@ -40,13 +40,15 @@ namespace DLaB.Xrm.Test
         /// </value>
         protected AssertCrm AssertCrm { get; set; }
 
+        private LogRecorder _recorder;
+        /// <summary>Gets or sets the logger.</summary>
+        /// <value>The logger.</value>
+        protected ITestLogger Logger { get { return _recorder; } set { _recorder = new LogRecorder(value); } }
+
         /// <summary>
-        /// Gets or sets the logger.
+        /// List of Logs that have been recorded.  This includes both internal TestMethodClassBase Logs, and any logs logged with the Logger
         /// </summary>
-        /// <value>
-        /// The logger.
-        /// </value>
-        protected ITestLogger Logger { get; set; }
+        protected IEnumerable<TraceParams> Logs => _recorder.Logs;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TestMethodClassBaseDLaB"/> class.

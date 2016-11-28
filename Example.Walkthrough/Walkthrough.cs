@@ -83,7 +83,7 @@ namespace Example.Walkthrough
         /// </summary>
         private void TestingAPluginLocallyOrAgainstCrmAgnosticly()
         {
-            // Testing method that does does guarantee agnostic environment testings.
+            // Testing method that does guarantee agnostic environment testings.
             new LocalOrServerPluginTest().SyncContactToAccount_UpdateContactAddress_Should_UpdateAccountAddress();
         }
 

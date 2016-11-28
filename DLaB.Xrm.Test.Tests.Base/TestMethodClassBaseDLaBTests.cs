@@ -39,5 +39,43 @@ namespace DLaB.Xrm.Test.Tests
         }
 
         #endregion GivenEntityIds_Should_CleanupTestsBeforeTestRun
+
+        #region TestService_Should_ForceIdsToBeDefined
+
+        [TestMethod]
+        public void TestMethodClassBaseDLaB_TestService_Should_ForceIdsToBeDefined()
+        {
+            new TestService_Should_ForceIdsToBeDefined().Test();
+        }
+
+        private class TestService_Should_ForceIdsToBeDefined : TestMethodClassBase
+        {
+            protected override void Test(IOrganizationService service)
+            {
+                //
+                // Arrange
+                //
+                var contact = new Contact();
+
+                //
+                // Act
+                //
+                try
+                {
+                    service.Create(contact);
+                }
+                catch (AssertFailedException ex)
+                {
+                    //
+                    // Assert
+                    //
+                    Assert.IsTrue(ex.Message.Contains("An attempt was made to create an entity of type contact without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate."), "Test Service should have had AssertIdNonEmptyOnCreate.");
+                    return;
+                }
+                Assert.Fail("IOrganizationService should enforce Ids being defined");
+            }
+        }
+
+        #endregion TestService_Should_ForceIdsToBeDefined
     }
 }

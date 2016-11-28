@@ -44,6 +44,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)IPathFinder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ITestFrameworkProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ITestLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LogRecorder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PatherFinderProjectOfType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PathFinderAbsolute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\NamespaceSetting.cs" />
@@ -53,5 +54,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)TestBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestMethodClassBaseDLaB.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TraceParams.cs" />
   </ItemGroup>
 </Project>
