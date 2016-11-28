@@ -327,7 +327,7 @@ namespace DLaB.Xrm.Test
             {
                 methodClassName = methodClassName.Substring(0, methodClassName.Length - "method".Length);
             }
-            return ("Unit Test - " + methodClassName.SpaceOutCamelCase()).PadRight(maxNameLength).Substring(0, maxNameLength).TrimEnd();
+            return ("Unit Test - " + methodClassName.SpaceOutCamelCase().Replace("_ ", " ").Replace("_", " ")).PadRight(maxNameLength).Substring(0, maxNameLength).TrimEnd();
         }
 
         /// <summary>

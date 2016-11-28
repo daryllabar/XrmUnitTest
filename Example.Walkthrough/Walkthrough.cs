@@ -108,14 +108,30 @@ namespace Example.Walkthrough
             // Defines a Builder for Account
             new AccountBuilder();
 
+            var tests = new EntityBuilderExampleTests();
+
             // Testing Method that utilizes the AccountBuilder
-            new EntityBuilderExampleTests().EntityBuilderExample_CreateWithAccountBuilder_Should_PopulateAccountInfo();
+            tests.EntityBuilderExample_CreateWithAccountBuilder_Should_PopulateAccountInfo();
+
             // Testing Method that utilizes the EnvironmentBuilder
-            new EntityBuilderExampleTests().EntityBuilderExample_CreateWithEnvironmentBuilder_Should_PopulateAccountInfo();
-            // Testing Method that utilizes the EnvironmentBuidler to assoicate child entity to parent
-            new EntityBuilderExampleTests().EntityBuilderExample_CreateChildContact_Should_SetParentAccountOnContact();
+            tests.EntityBuilderExample_CreateWithEnvironmentBuilder_Should_PopulateAccountInfo();
+
+            // Testing Method that utilizes the EnvironmentBuidler to associate child entity to parent
+            tests.EntityBuilderExample_CreateChildContact_Should_SetParentAccountOnContact();
         }
 
-        // Entity Builders
+        private void TestMethodClassBase_IOrganizationservice_Indepth()
+        {
+            var tests = new TestMethodClassExampleTests();
+
+            // Testing Method that accesses Trace Log
+            tests.TestMethodClassExample_TraceMessageCreated_Should_BeAccessible();
+
+            // Testing Method that demonstrates how to allow plugin to create records
+            tests.TestMethodClassExample_CreationOfEntity_Should_RequireIdDefined();
+
+            // Testing Method that demonstrates that names are auto-defaulted if empty
+            tests.TestMethodClassExample_CreationOfEntity_Should_DefineName();
+        }
     }
 }
