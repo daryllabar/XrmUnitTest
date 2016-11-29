@@ -11,9 +11,6 @@ namespace DLaB.Common
     /// </summary>
     public class ProcessExecutor
     {
-        [ThreadStatic]
-        private static StringBuilder _commandOutput;
-
         /// <summary>
         /// Executes the command.
         /// </summary>
@@ -32,7 +29,6 @@ namespace DLaB.Common
         /// <returns></returns>
         public static string ExecuteCmd(ProcessExecutorInfo info)
         {
-            _commandOutput = new StringBuilder();
             var color = Console.ForegroundColor;
 
             if (!info.RedirectStandardOutput.HasValue)
@@ -40,13 +36,20 @@ namespace DLaB.Common
                 info.RedirectStandardOutput = true;
             }
 
+            if (!info.RedirectStandardError.HasValue)
+            {
+                info.RedirectStandardError = true;
+            }
+
             var cmdProcess = new Process
             {
                 StartInfo = info.GetStartInfo()
             };
 
-            cmdProcess.ErrorDataReceived += cmd_Error;
-            cmdProcess.OutputDataReceived += cmd_DataReceived;
+            var commandOutput = new StringBuilder();
+            var commandOutputLock = new object();
+            cmdProcess.ErrorDataReceived += (sender, e) => cmd_Error(e, commandOutput, commandOutputLock);
+            cmdProcess.OutputDataReceived += (sender, e) => cmd_DataReceived(e, commandOutput, commandOutputLock);
             cmdProcess.EnableRaisingEvents = true;
             cmdProcess.Start();
             cmdProcess.BeginOutputReadLine();
@@ -56,23 +59,31 @@ namespace DLaB.Common
 
             cmdProcess.WaitForExit();
             Console.ForegroundColor = color;
-            return _commandOutput.ToString();
+            return commandOutput.ToString();
         }
 
-        private static void cmd_DataReceived(object sender, DataReceivedEventArgs e)
+        private static void cmd_DataReceived(DataReceivedEventArgs e, StringBuilder sb, object sbLock)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            _commandOutput.AppendLine(e.Data);
-            Console.WriteLine(e.Data);
+            lock (sbLock)
+            {
+                var color = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                sb.AppendLine(e?.Data);
+                Console.WriteLine(e?.Data);
+                Console.ForegroundColor = color;
+            }
         }
 
-        private static void cmd_Error(object sender, DataReceivedEventArgs e)
+        private static void cmd_Error(DataReceivedEventArgs e, StringBuilder sb, object sbLock)
         {
-            var color = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Red;
-            _commandOutput.AppendLine(e.Data);
-            Console.WriteLine(e.Data);
-            Console.ForegroundColor = color;
+            lock (sbLock)
+            {
+                var color = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Red;
+                sb.AppendLine(e?.Data);
+                Console.WriteLine(e?.Data);
+                Console.ForegroundColor = color;
+            }
         }
     }
 

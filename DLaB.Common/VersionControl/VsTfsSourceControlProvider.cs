@@ -29,6 +29,21 @@ namespace DLaB.Common.VersionControl
             return Path.Combine(programFiles, @"Microsoft Visual Studio 14.0\Common7\IDE\TF.exe");
         }
 
+        private string WrapPathInQuotes(string filePath)
+        {
+            if (filePath == null)
+            {
+                return null;
+            }
+            filePath = filePath.Trim();
+            if (filePath.EndsWith("\"") && filePath.StartsWith("\""))
+            {
+                return filePath;
+            }
+
+            return $"\"{filePath}\"";
+        }
+
         /// <summary>
         /// Adds the file.
         /// </summary>
@@ -37,7 +52,7 @@ namespace DLaB.Common.VersionControl
         {
             try
             {
-                var info = new ProcessExecutorInfo($"\"{TfPath}\"", $"add {filePath}")
+                var info = new ProcessExecutorInfo($"\"{TfPath}\"", $"add {WrapPathInQuotes(filePath)}")
                 {
                     WorkingDirectory = Directory.GetParent(filePath).FullName
                 };
@@ -61,19 +76,21 @@ namespace DLaB.Common.VersionControl
         /// </exception>
         public void Checkout(string filePath)
         {
+
             if (!File.GetAttributes(filePath).HasFlag(FileAttributes.ReadOnly))
             {
                 return;
             }
 
+            string output;
             try
             {
-                var info = new ProcessExecutorInfo($"\"{TfPath}\"", $"checkout {filePath}")
+                var info = new ProcessExecutorInfo($"\"{TfPath}\"", $"checkout {WrapPathInQuotes(filePath)}")
                 {
                     WorkingDirectory = Directory.GetParent(filePath).FullName
                 };
 
-                ProcessExecutor.ExecuteCmd(info);
+                output = ProcessExecutor.ExecuteCmd(info);
             }
             catch (Exception ex)
             {
@@ -82,7 +99,7 @@ namespace DLaB.Common.VersionControl
 
             if (File.GetAttributes(filePath).HasFlag(FileAttributes.ReadOnly))
             {
-                throw new Exception("File \"" + filePath + "\" is read only even though it should have been checked out, please checkout the file before running");
+                throw new Exception("File \"" + filePath + "\" is read only even though it should have been checked out, please checkout the file before running.  Output: " + output);
             }
         }
 
@@ -107,16 +124,17 @@ namespace DLaB.Common.VersionControl
         /// <returns></returns>
         public bool UndoCheckoutIfUnchanged(string filePath)
         {
+
             try
             {
-                var info = new ProcessExecutorInfo($"\"{TfPath}\"", $"Diff {filePath}")
+                var info = new ProcessExecutorInfo($"\"{TfPath}\"", $"Diff {WrapPathInQuotes(filePath)}")
                 {
                     WorkingDirectory = Directory.GetParent(filePath).FullName
                 };
 
                 var output = ProcessExecutor.ExecuteCmd(info);
 
-                if (output.EndsWith("files differ"))
+                if (output.Trim() != "edit: " + filePath.Trim())
                 {
                     return false;
                 }
@@ -139,7 +157,7 @@ namespace DLaB.Common.VersionControl
         {
             try
             {
-                var info = new ProcessExecutorInfo($"\"{TfPath}\"", $"undo {filePath} /noprompt")
+                var info = new ProcessExecutorInfo($"\"{TfPath}\"", $"undo {WrapPathInQuotes(filePath)} /noprompt")
                 {
                     WorkingDirectory = Directory.GetParent(filePath).FullName
                 };

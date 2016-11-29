@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DLaB.Xrm.2016</id>
-    <version>1.1.9-alpha08</version>
+    <version>1.1.9-alpha16</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>
@@ -15,7 +15,7 @@
     <tags>Dynamics CRM 2016 Plugin XRM</tags>
 	<dependencies>
     <group targetFramework=".NETFramework4.5">
-      <dependency id="DLaB.Common" version="1.0.2-alpha01" />
+      <dependency id="DLaB.Common" version="1.0.2-alpha03" />
       <dependency id="Microsoft.CrmSdk.CoreAssemblies" version="8.2.0" />
     </group>
   </dependencies>
