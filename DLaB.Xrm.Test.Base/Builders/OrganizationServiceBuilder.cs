@@ -386,15 +386,49 @@ namespace DLaB.Xrm.Test.Builders
                 {
                     var info = EntityHelper.GetPrimaryFieldInfo(logicalName);
 
-                    if (info.AttributeName != null && !e.Attributes.ContainsKey(info.AttributeName) && !info.IsAttributeOf)
-                    {
-                        var name = getName(e, info);
-                        e[info.AttributeName] = name.PadRight(info.MaximumLength).Substring(0, info.MaximumLength).TrimEnd();
-                    }
+                    SetName(e, info, getName);
                 }
                 return s.Create(e);
             });
             return This;
+        }
+
+        private static void SetName(Entity e, EntityHelper.PrimaryFieldInfo info, Func<Entity, EntityHelper.PrimaryFieldInfo, string> getName)
+        {
+            if (info.IsAttributeOf 
+                || (info.ReadOnly && info.BaseAttributes.Count == 0))
+            {
+                return;
+            }
+
+            var name = getName(e, info).PadRight(info.MaximumLength).Substring(0, info.MaximumLength).TrimEnd();
+            if (info.ReadOnly)
+            {
+                if (info.BaseAttributes.Count == 1)
+                {
+
+                    e[info.BaseAttributes[0]] = name;
+                }
+
+                // Split name amoungst first two attributes.  If odd, subtract 1 to have equal lengths
+                var length = name.Length%2 == 0 ? name.Length : name.Length - 1;
+                length = length/2;
+                SetIfNotDefined(e, info.BaseAttributes[0], name.Substring(0, length));
+                SetIfNotDefined(e, info.BaseAttributes[1], name.Substring(length, length));
+            }
+            else
+            {
+                e[info.AttributeName] = name;
+            }
+        }
+
+        private static void SetIfNotDefined(Entity e, string attributeName, object value)
+        {
+            if (e.Attributes.ContainsKey(attributeName))
+            {
+                return;
+            }
+            e[attributeName] = value;
         }
 
         #region WithIdsDefaultedForCreate

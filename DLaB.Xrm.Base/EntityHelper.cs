@@ -270,9 +270,15 @@ namespace DLaB.Xrm
                         break;
 
                     case "contact":
-                    case "lead":
                     case "systemuser":
+                    case "lead":
                         info.AttributeName = "fullname";
+                        info.BaseAttributes.Add("firstname");
+                        info.BaseAttributes.Add("lastname");
+                        if (logicalName == "lead")
+                        {
+                            info.BaseAttributes.Add("companyname"); 
+                        }
                         info.ReadOnly = true;
                         break;
 
@@ -476,6 +482,14 @@ namespace DLaB.Xrm
             public int MaximumLength { get; set; }
 
             /// <summary>
+            /// Gets the base attributes that make up the actual real name, so "firstname" and "lastname" for contact.
+            /// </summary>
+            /// <value>
+            /// The base attributes.
+            /// </value>
+            public List<string> BaseAttributes { get; private set; }
+
+            /// <summary>
             /// Initializes a new instance of the <see cref="PrimaryFieldInfo"/> class.
             /// </summary>
             public PrimaryFieldInfo()
@@ -483,6 +497,7 @@ namespace DLaB.Xrm
                 MaximumLength = 100;
                 ReadOnly = false;
                 IsAttributeOf = false;
+                BaseAttributes = new List<string>();
             }
 
             /// <summary>

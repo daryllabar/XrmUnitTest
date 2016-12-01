@@ -1,11 +1,14 @@
-// Great tool for generating Ids quickly and easily
 void Main()
 {
 	// Need to create multiple Ids for mulitiple entities?
 	var entityTypes = new []
 	{
+		"Campaign",
+		"Lead",
+		"Lead",
 		"Account",
-		"Contact"
+		"Account",
+		"Account"
 	};
 
 	var existingIds = (string) null;
@@ -99,7 +102,8 @@ private void GenerateOutput(List<IdInfo> idInfos)
 		var isMultiple = entityType.Count() > 1;
 		if (isMultiple)
 		{
-			$"public struct {entityType.First(t => t.Index == 0).Name}".Dump();
+			var service = System.Data.Entity.Design.PluralizationServices.PluralizationService.CreateService(new System.Globalization.CultureInfo("en-US"));
+			$"public struct {service.Pluralize(entityType.First(t => t.Index == 0).Name.TrimEnd())}".Dump();
 			"{".Dump();
 		}
 		foreach (var id in entityType)
