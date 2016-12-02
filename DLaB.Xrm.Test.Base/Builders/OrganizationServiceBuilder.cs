@@ -45,7 +45,7 @@ namespace DLaB.Xrm.Test.Builders
     /// Base class for Organization Service Builder
     /// </summary>
     /// <typeparam name="TDerived">The type of the derived.</typeparam>
-    public abstract class OrganizationServiceBuilderBase<TDerived> where TDerived : OrganizationServiceBuilderBase<TDerived>
+    public abstract class OrganizationServiceBuilderBase<TDerived> : IAgnosticServiceBuilder where TDerived : OrganizationServiceBuilderBase<TDerived>
     {
         #region Properties
 
@@ -375,16 +375,16 @@ namespace DLaB.Xrm.Test.Builders
         /// <summary>
         /// Defaults the entity name of all created entitites.
         /// </summary>
-        /// <param name="getName">Name of the get.</param>
+        /// <param name="getName">function to call to get the name for the given Entity and it's Primary Field Info</param>
         /// <returns></returns>
-        public TDerived WithEntityNameDefaulted(Func<Entity, EntityHelper.PrimaryFieldInfo, string> getName)
+        public TDerived WithEntityNameDefaulted(Func<Entity, PrimaryFieldInfo, string> getName)
         {
             CreateFuncs.Add((s, e) =>
             {
                 var logicalName = e.LogicalName;
                 if (!string.IsNullOrWhiteSpace(logicalName))
                 {
-                    var info = EntityHelper.GetPrimaryFieldInfo(logicalName);
+                    var info = GetPrimaryFieldInfo(logicalName);
 
                     SetName(e, info, getName);
                 }
@@ -393,43 +393,6 @@ namespace DLaB.Xrm.Test.Builders
             return This;
         }
 
-        private static void SetName(Entity e, EntityHelper.PrimaryFieldInfo info, Func<Entity, EntityHelper.PrimaryFieldInfo, string> getName)
-        {
-            if (info.IsAttributeOf 
-                || (info.ReadOnly && info.BaseAttributes.Count == 0))
-            {
-                return;
-            }
-
-            var name = getName(e, info).PadRight(info.MaximumLength).Substring(0, info.MaximumLength).TrimEnd();
-            if (info.ReadOnly)
-            {
-                if (info.BaseAttributes.Count == 1)
-                {
-
-                    e[info.BaseAttributes[0]] = name;
-                }
-
-                // Split name amoungst first two attributes.  If odd, subtract 1 to have equal lengths
-                var length = name.Length%2 == 0 ? name.Length : name.Length - 1;
-                length = length/2;
-                SetIfNotDefined(e, info.BaseAttributes[0], name.Substring(0, length));
-                SetIfNotDefined(e, info.BaseAttributes[1], name.Substring(length, length));
-            }
-            else
-            {
-                e[info.AttributeName] = name;
-            }
-        }
-
-        private static void SetIfNotDefined(Entity e, string attributeName, object value)
-        {
-            if (e.Attributes.ContainsKey(attributeName))
-            {
-                return;
-            }
-            e[attributeName] = value;
-        }
 
         #region WithIdsDefaultedForCreate
 
@@ -739,5 +702,78 @@ namespace DLaB.Xrm.Test.Builders
             entity.Id = ids.Dequeue();
         }
 
+        /// <summary>
+        /// Gets the primary field information.
+        /// </summary>
+        /// <param name="logicalName">Logical name of the entity.</param>
+        /// <returns></returns>
+        public virtual PrimaryFieldInfo GetPrimaryFieldInfo(string logicalName)
+        {
+            return EntityHelper.GetPrimaryFieldInfo(logicalName);
+        }
+
+        private static void SetName(Entity e, PrimaryFieldInfo info, Func<Entity, PrimaryFieldInfo, string> getName)
+        {
+            if (info.AttributeName == null
+                || info.IsAttributeOf
+                || (info.ReadOnly && info.BaseAttributes.Count == 0))
+            {
+                return;
+            }
+
+            var name = getName(e, info).PadRight(info.MaximumLength).Substring(0, info.MaximumLength).TrimEnd();
+            if (info.ReadOnly)
+            {
+                if (info.BaseAttributes.Count == 1)
+                {
+
+                    e[info.BaseAttributes[0]] = name;
+                }
+
+                // Split name amoungst first two attributes.  If odd, subtract 1 to have equal lengths
+                var length = name.Length % 2 == 0 ? name.Length : name.Length - 1;
+                length = length / 2;
+                SetIfNotDefined(e, info.BaseAttributes[0], name.Substring(0, length));
+                SetIfNotDefined(e, info.BaseAttributes[1], name.Substring(length, length));
+            }
+            else
+            {
+                SetIfNotDefined(e, info.AttributeName, name);
+            }
+        }
+
+        private static void SetIfNotDefined(Entity e, string attributeName, object value)
+        {
+            if (e.Attributes.ContainsKey(attributeName))
+            {
+                return;
+            }
+            e[attributeName] = value;
+        }
+
+        IAgnosticServiceBuilder IAgnosticServiceBuilder.WithDefaultParentBu()
+        {
+            return WithDefaultParentBu();
+        }
+
+        IAgnosticServiceBuilder IAgnosticServiceBuilder.WithEntityNameDefaulted(Func<Entity, PrimaryFieldInfo, string> getName)
+        {
+            return WithEntityNameDefaulted(getName);
+        }
+
+        IAgnosticServiceBuilder IAgnosticServiceBuilder.AssertIdNonEmptyOnCreate()
+        {
+            return AssertIdNonEmptyOnCreate();
+        }
+
+        IAgnosticServiceBuilder IAgnosticServiceBuilder.WithBusinessUnitDeleteAsDeactivate()
+        {
+            return WithBusinessUnitDeleteAsDeactivate();
+        }
+
+        IOrganizationService IAgnosticServiceBuilder.Build()
+        {
+            return Build();
+        }
     }
 }

@@ -339,13 +339,18 @@ namespace DLaB.Xrm.Test
 
         }
 
+        protected virtual IAgnosticServiceBuilder GetOrganizationServiceBuilder(IOrganizationService service)
+        {
+            return new OrganizationServiceBuilder(service);
+        }
+
         /// <summary>
         /// Gets either the Local Crm Organization Service, or the real connection to CRM, depending on the UnitTestSettings.user.config settings.
         /// </summary>
         /// <returns></returns>
         protected virtual IOrganizationService GetIOrganizationService()
         {
-            return new OrganizationServiceBuilder(GetInternalOrganizationServiceProxy()).
+            return GetOrganizationServiceBuilder(GetInternalOrganizationServiceProxy()).
                 WithEntityNameDefaulted((e, i) => GetUnitTestName(i.MaximumLength)).
                 AssertIdNonEmptyOnCreate().
                 WithDefaultParentBu().Build();
@@ -354,7 +359,7 @@ namespace DLaB.Xrm.Test
         private IClientSideOrganizationService Service { get; set; }
         private IClientSideOrganizationService GetInternalOrganizationServiceProxy()
         {
-            return Service ?? (Service = (IClientSideOrganizationService)new OrganizationServiceBuilder(new FakeIOrganizationService(TestBase.GetOrganizationService(), Logger)).WithBusinessUnitDeleteAsDeactivate().Build());
+            return Service ?? (Service = (IClientSideOrganizationService)GetOrganizationServiceBuilder(new FakeIOrganizationService(TestBase.GetOrganizationService(), Logger)).WithBusinessUnitDeleteAsDeactivate().Build());
         }
 
         /// <summary>

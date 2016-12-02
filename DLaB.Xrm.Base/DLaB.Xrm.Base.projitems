@@ -50,6 +50,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\PipelineStage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\RegisteredEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\RegisteredEventBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PrimaryFieldInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)QueryExpressionConvertExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)QueryExpressionFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)QuerySettings.cs" />

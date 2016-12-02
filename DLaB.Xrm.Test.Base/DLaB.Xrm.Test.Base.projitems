@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Builders\EntityBuilderManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\GenericBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\IAgnosticServiceBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\IEntityBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\OrganizationServiceBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\PluginExecutionContextBuilder.cs" />
