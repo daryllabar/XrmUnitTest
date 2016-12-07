@@ -5,10 +5,7 @@ namespace Example.MsTestBase.Builders
 {
     public class OrganizationServiceBuilder : DLaB.Xrm.Test.Builders.OrganizationServiceBuilderBase<OrganizationServiceBuilder>
     {
-        protected override OrganizationServiceBuilder This
-        {
-            get { return this; }
-        }
+        protected override OrganizationServiceBuilder This => this;
 
         #region Constructors
 

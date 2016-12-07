@@ -339,6 +339,11 @@ namespace DLaB.Xrm.Test
 
         }
 
+        /// <summary>
+        /// Gets the organization service builder that will be used to 
+        /// </summary>
+        /// <param name="service">The service.</param>
+        /// <returns></returns>
         protected virtual IAgnosticServiceBuilder GetOrganizationServiceBuilder(IOrganizationService service)
         {
             return new OrganizationServiceBuilder(service);
@@ -359,7 +364,7 @@ namespace DLaB.Xrm.Test
         private IClientSideOrganizationService Service { get; set; }
         private IClientSideOrganizationService GetInternalOrganizationServiceProxy()
         {
-            return Service ?? (Service = (IClientSideOrganizationService)GetOrganizationServiceBuilder(new FakeIOrganizationService(TestBase.GetOrganizationService(), Logger)).WithBusinessUnitDeleteAsDeactivate().Build());
+            return Service ?? (Service = (IClientSideOrganizationService) new OrganizationServiceBuilder(new FakeIOrganizationService(TestBase.GetOrganizationService(), Logger)).WithBusinessUnitDeleteAsDeactivate().Build());
         }
 
         /// <summary>

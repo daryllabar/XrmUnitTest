@@ -766,11 +766,6 @@ namespace DLaB.Xrm.Test.Builders
             return AssertIdNonEmptyOnCreate();
         }
 
-        IAgnosticServiceBuilder IAgnosticServiceBuilder.WithBusinessUnitDeleteAsDeactivate()
-        {
-            return WithBusinessUnitDeleteAsDeactivate();
-        }
-
         IOrganizationService IAgnosticServiceBuilder.Build()
         {
             return Build();
