@@ -55,16 +55,16 @@
       <HintPath>..\packages\DLaB.Xrm.2016.1.1.10-alpha06\lib\net452\DLaB.Xrm.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DLaB.Xrm.Client.2016, Version=1.1.10.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XrmUnitTest.2016.1.1.10-alpha06\lib\net452\DLaB.Xrm.Client.2016.dll</HintPath>
+    <Reference Include="DLaB.Xrm.Client.2016, Version=1.1.10.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XrmUnitTest.2016.1.1.10-alpha07\lib\net452\DLaB.Xrm.Client.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DLaB.Xrm.LocalCrm.2016, Version=1.1.10.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XrmUnitTest.2016.1.1.10-alpha06\lib\net452\DLaB.Xrm.LocalCrm.2016.dll</HintPath>
+    <Reference Include="DLaB.Xrm.LocalCrm.2016, Version=1.1.10.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XrmUnitTest.2016.1.1.10-alpha07\lib\net452\DLaB.Xrm.LocalCrm.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DLaB.Xrm.Test.2016, Version=1.1.10.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XrmUnitTest.2016.1.1.10-alpha06\lib\net452\DLaB.Xrm.Test.2016.dll</HintPath>
+    <Reference Include="DLaB.Xrm.Test.2016, Version=1.1.10.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XrmUnitTest.2016.1.1.10-alpha07\lib\net452\DLaB.Xrm.Test.2016.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -144,7 +144,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="UnitTestSettings.config" />
     <None Include="UnitTestSettings.user.config" />
   </ItemGroup>
