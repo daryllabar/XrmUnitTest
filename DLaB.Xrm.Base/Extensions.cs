@@ -1976,6 +1976,27 @@ namespace DLaB.Xrm
 
         #endregion ParameterCollection
 
+        #region PropertyInfo
+
+        /// <summary>
+        /// Gets the logical attribute name of the given properyt.  Assumes that the property contains an AttributeLogicalNameAttribute
+        /// </summary>
+        /// <param name="property">The property.</param>
+        /// <param name="throwIfNotFound">Throws an error if the property does not contain an AttributeLogicalNameAttribute</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception"></exception>
+        public static string GetAttributeLogicalName(this PropertyInfo property, bool throwIfNotFound = true)
+        {
+            var attribute = property.GetCustomAttribute<AttributeLogicalNameAttribute>();
+            if (attribute == null && throwIfNotFound)
+            {
+                throw new Exception($"Property \"{property.Name}\" does not contain an AttributeLogicalNameAttribute.  Unable to determine the Attribute Logical Name.");    
+            }
+            return attribute?.LogicalName;
+        }
+
+        #endregion PropertyInfo
+
         #region QueryExpression
 
         /// <summary>

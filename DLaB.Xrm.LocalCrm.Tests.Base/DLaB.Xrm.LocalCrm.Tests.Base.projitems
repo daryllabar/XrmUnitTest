@@ -21,5 +21,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)JoinTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabaseOrganizationServiceExecuteTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MismatchedAttributeToLogicalNameTests.cs" />
   </ItemGroup>
 </Project>

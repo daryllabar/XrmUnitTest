@@ -469,17 +469,12 @@ namespace DLaB.Xrm
         /// <exception cref="System.NotImplementedException"></exception>
         public static string GetParentEntityAttributeName(Type childType, Type parentType)
         {
-            var attributeName = childType.GetProperties().Where(p => p.PropertyType == parentType).Select(GetNameAttribute).FirstOrDefault();
-            if (attributeName == null)
+            var property = childType.GetProperties().FirstOrDefault(p => p.PropertyType == parentType);
+            if (property == null)
             {
-                throw new Exception(String.Format("No Property found for type {0}, of type {1} with AttributeLogicalNameAttribute", childType.FullName, parentType.FullName));
+                throw new Exception($"No Property found for type {childType.FullName}, of type {parentType.FullName}.");
             }
-            return attributeName.LogicalName; 
-        }
-
-        private static AttributeLogicalNameAttribute GetNameAttribute(PropertyInfo property)
-        {
-            return property.GetCustomAttribute(typeof(AttributeLogicalNameAttribute), true) as AttributeLogicalNameAttribute;
+            return property.GetAttributeLogicalName();
         }
 
         /// <summary>

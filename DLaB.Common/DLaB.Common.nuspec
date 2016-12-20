@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DLaB.Common</id>
-    <version>1.0.2.4</version>
+    <version>1.0.3-alpha04</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>

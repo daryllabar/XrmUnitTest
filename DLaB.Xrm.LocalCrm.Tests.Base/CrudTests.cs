@@ -273,6 +273,54 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
+        public void LocalCrmTests_Crud_WhereCrmDataTypes()
+        {
+            var service = GetService();
+            var campaignId = service.Create(new Campaign());
+            var opportunity = new Opportunity
+            {
+                ActualValue = new Money(10m),
+                BudgetStatusEnum = BudgetStatus.CanBuy,
+                CampaignId = new EntityReference(Campaign.EntityLogicalName, campaignId),
+                SendThankYouNote = true,
+                StageId = Guid.NewGuid(),
+                ActualCloseDate = DateTime.UtcNow,
+                CloseProbability = 10,
+                DiscountPercentage = .05m,
+                InitialCommunication = new OptionSetValue(1)
+            };
+            var oppId = service.Create(opportunity);
+            service.Create(new Opportunity());
+
+            var dbOpportunity = service.GetFirst<Opportunity>(
+                new ConditionExpression(Opportunity.Fields.ActualValue, ConditionOperator.NotNull),
+                new ConditionExpression(Opportunity.Fields.BudgetStatus, ConditionOperator.NotNull),
+                new ConditionExpression(Opportunity.Fields.CampaignId, ConditionOperator.NotNull),
+                new ConditionExpression(Opportunity.Fields.SendThankYouNote, ConditionOperator.NotNull),
+                new ConditionExpression(Opportunity.Fields.StageId, ConditionOperator.NotNull),
+                new ConditionExpression(Opportunity.Fields.ActualCloseDate, ConditionOperator.NotNull),
+                new ConditionExpression(Opportunity.Fields.CloseProbability, ConditionOperator.NotNull),
+                new ConditionExpression(Opportunity.Fields.DiscountPercentage, ConditionOperator.NotNull),
+                new ConditionExpression(Opportunity.Fields.InitialCommunication, ConditionOperator.NotNull));
+
+            Assert.AreEqual(oppId, dbOpportunity.Id);
+
+            dbOpportunity = service.GetFirst<Opportunity>(
+                Opportunity.Fields.ActualCloseDate, opportunity.ActualCloseDate.GetValueOrDefault(),
+                Opportunity.Fields.ActualValue, opportunity.ActualValue.GetValueOrDefault(),
+                Opportunity.Fields.BudgetStatus, opportunity.BudgetStatus.GetValueOrDefault(),
+                Opportunity.Fields.CampaignId, opportunity.CampaignId.GetIdOrDefault(),
+                Opportunity.Fields.SendThankYouNote, opportunity.SendThankYouNote.GetValueOrDefault(),
+                Opportunity.Fields.StageId, opportunity.StageId.GetValueOrDefault(),
+                Opportunity.Fields.CloseProbability, opportunity.CloseProbability.GetValueOrDefault(),
+                Opportunity.Fields.DiscountPercentage, opportunity.DiscountPercentage.GetValueOrDefault(),
+                Opportunity.Fields.InitialCommunication, opportunity.InitialCommunication.GetValueOrDefault());
+
+            Assert.AreEqual(oppId, dbOpportunity.Id);
+
+        }
+
+        [TestMethod]
         public void LocalCrmTests_Crud_LinkedMultipleOr()
         {
             var service = GetService();
@@ -289,7 +337,6 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var qe = QueryExpressionFactory.Create<Contact>();
 
             TestForPhoneNumber(service, qe, qe.AddLink<Account>(Contact.Fields.ParentCustomerId, Account.Fields.Id).LinkCriteria, telephone);
-           
         }
 
         #region Shared Methods

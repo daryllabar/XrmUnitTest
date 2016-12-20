@@ -26,6 +26,7 @@ namespace DLaB.Xrm.LocalCrm
         private static readonly ConcurrentDictionary<string, LocalCrmDatabase> Databases = new ConcurrentDictionary<string, LocalCrmDatabase>();
         private static readonly object DatabaseCreationLock = new object();
         private readonly ConcurrentDictionary<string, ITable> _tables = new ConcurrentDictionary<string, ITable>();
+        internal static readonly EntityPropertiesCache PropertiesCache = EntityPropertiesCache.Instance;
 
         private static ITable<T> SchemaGetOrCreate<T>(LocalCrmDatabaseInfo info) where T : Entity
         {
@@ -84,6 +85,10 @@ namespace DLaB.Xrm.LocalCrm
             }
             catch (TargetInvocationException ex)
             {
+                if (ex.InnerException == null)
+                {
+                    throw;
+                }
                 throw ex.InnerException;
             }
         }
@@ -150,6 +155,10 @@ namespace DLaB.Xrm.LocalCrm
             }
             catch (TargetInvocationException ex)
             {
+                if (ex.InnerException == null)
+                {
+                    throw;
+                }
                 throw ex.InnerException;
             }
         }
@@ -260,10 +269,18 @@ namespace DLaB.Xrm.LocalCrm
                 throw new FaultException(string.Format(@"The formatter threw an exception while trying to deserialize the message: There was an error while trying to deserialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:query. The InnerException message was 'Error in line 1 position 1978. Element 'http://schemas.microsoft.com/2003/10/Serialization/Arrays:anyType' contains data from a type that maps to the name " +
                                          "'{0}:{1}'.The deserializer has no knowledge of any type that maps to this name. Consider changing the implementation of the ResolveName method on your DataContractResolver to return a non-null value for name '{1}' and namespace '{0}'.'. Please see InnerException for more details.", compareToType.Namespace, compareToType.Name));
             }
+
             if (compareToType == typeof(string) && value is string)
             {
                 // Handle String Casing Issues
                return string.Compare((string) value, (string) compareTo, StringComparison.OrdinalIgnoreCase);
+            }
+
+            if (compareToType == typeof(DateTime) && value is DateTime)
+            {
+                var compareToDate = (DateTime)compareTo;
+                compareToDate = compareToDate.AddMilliseconds(-compareToDate.Millisecond);
+                return DateTime.Compare((DateTime)value, compareToDate);
             }
 
             return value.CompareTo(compareTo);
@@ -291,6 +308,11 @@ namespace DLaB.Xrm.LocalCrm
 
         private static IComparable ConvertCrmTypeToBasicComparable(object o)
         {
+            if (o == null)
+            {
+                return null;
+            }
+
             var reference = o as EntityReference;
             if (reference != null)
             {
@@ -307,6 +329,12 @@ namespace DLaB.Xrm.LocalCrm
             if (aliasedValue != null)
             {
                 return ConvertCrmTypeToBasicComparable(aliasedValue.Value);
+            }
+
+            var money = o as Money;
+            if (money != null)
+            {
+                return money.GetValueOrDefault();
             }
 
             return (IComparable)o;
@@ -358,29 +386,20 @@ namespace DLaB.Xrm.LocalCrm
                 return; // Type is already an activity pointer, no need to recreated
             }
 
-            var properties = typeof(T).GetProperties().ToDictionary(p => p.Name);
-            if (!IsActivityType<T>(properties))
+            if (!PropertiesCache.For<T>().IsActivityType)
             {
                 return; // Type is not an activity type
             }
 
             // Copy over matching values and create
-            service.Create(GetActivtyPointerForActivityEntity(entity, properties));
+            service.Create(GetActivtyPointerForActivityEntity(entity));
         }
 
-        private static bool IsActivityType<T>(Dictionary<string, PropertyInfo> properties = null) where T : Entity
+        private static Entity GetActivtyPointerForActivityEntity<T>(T entity) where T : Entity
         {
-            properties = properties ?? typeof(T).GetProperties().ToDictionary(p => p.Name);
-            return properties.ContainsKey("ActivityId");
-        }
-
-        private static Entity GetActivtyPointerForActivityEntity<T>(T entity, Dictionary<string, PropertyInfo> properties = null) where T : Entity
-        {
-            properties = properties ?? typeof(T).GetProperties().ToDictionary(p => p.Name);
             var pointerFields = typeof(ActivityPointer.Fields).GetFields();
             var pointer = new Entity(ActivityPointer.EntityLogicalName, entity.Id);
-            PropertyInfo prop;
-            foreach (var att in pointerFields.Where(p => properties.TryGetValue(p.Name, out prop)).
+            foreach (var att in pointerFields.Where(p => PropertiesCache.For<T>().ContainsProperty(p.Name)).
                 Select(field => field.GetRawConstantValue().ToString()).
                 Where(entity.Contains))
             {
@@ -573,15 +592,15 @@ namespace DLaB.Xrm.LocalCrm
                 return;
             }
             var type = typeof (T);
-            var properties = type.GetProperties().ToDictionary(p => p.Name.ToLower());
+            var properties = PropertiesCache.For<T>();
             foreach (var osvAttribute in entity.Attributes.Where(a => a.Value is OptionSetValue || (a.Value as AliasedValue)?.Value is OptionSetValue))
             {
                 PropertyInfo property;
                 if (osvAttribute.Key == Email.Fields.StateCode)
                 {
-                    property = properties[osvAttribute.Key];
+                    property = properties.GetProperty(osvAttribute.Key);
                 }
-                else if (!properties.TryGetValue(osvAttribute.Key + "enum", out property))
+                else if (!properties.PropertiesByLowerCaseName.TryGetValue(osvAttribute.Key + "enum", out property))
                 {
                     var aliased = osvAttribute.Value as AliasedValue;
                     if (aliased == null)
@@ -589,7 +608,7 @@ namespace DLaB.Xrm.LocalCrm
                         continue;
                     }
                     // Handle Aliased Value
-                    var aliasedDictionary = EntityHelper.GetType(type.Assembly, type.Namespace, aliased.EntityLogicalName).GetProperties().ToDictionary(p => p.Name.ToLower());
+                    var aliasedDictionary = PropertiesCache.For(type, aliased.EntityLogicalName).PropertiesByLowerCaseName;
                     if (!aliasedDictionary.TryGetValue(aliased.AttributeLogicalName + "enum", out property))
                     {
                         continue;
@@ -911,14 +930,12 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
-        private static void AssertTypeContainsColumns<T>(IEnumerable<string> cols)
+        private static void AssertTypeContainsColumns<T>(IEnumerable<string> cols) where T: Entity
         {
-            var properties = new HashSet<string>(typeof (T).GetProperties().Select(p => p.Name.ToLower()));
-            var invalid = cols.FirstOrDefault(c => !properties.Contains(c));
-            if (invalid != null)
+            var properties = PropertiesCache.For<T>();
+            foreach (var col in cols.Where(c => !properties.ContainsProperty(c)))
             {
-                //TODO: Need to lookup error message
-                throw new Exception("Type " + typeof(T).Name + " does not contain an attribute with name " + invalid);
+                throw new Exception($"Type {typeof(T).Name} does not contain a property or a properyt with an AttributeLogicalNameAttribute, with name {col}.");
             }
         }
 
@@ -1058,7 +1075,7 @@ namespace DLaB.Xrm.LocalCrm
 
         private static void UpdateActivityPointer<T>(LocalCrmDatabaseOrganizationService service, T entity) where T : Entity
         {
-            if (entity.LogicalName == ActivityPointer.EntityLogicalName || !IsActivityType<T>())
+            if (entity.LogicalName == ActivityPointer.EntityLogicalName || !PropertiesCache.For<T>().IsActivityType)
             {
                 return; // Type is already an activity pointer, no need to reupdate
             }
@@ -1082,7 +1099,7 @@ namespace DLaB.Xrm.LocalCrm
 
         private static void DeleteActivityPointer<T>(LocalCrmDatabaseOrganizationService service, Guid id) where T : Entity
         {
-            if (EntityHelper.GetEntityLogicalName<T>() == ActivityPointer.EntityLogicalName || !IsActivityType<T>())
+            if (EntityHelper.GetEntityLogicalName<T>() == ActivityPointer.EntityLogicalName || !PropertiesCache.For<T>().IsActivityType)
             {
                 return; // Type is already an activity pointer, no need to redelete, or type is not an activity type
             }

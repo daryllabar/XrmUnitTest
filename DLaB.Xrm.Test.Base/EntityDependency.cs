@@ -289,17 +289,17 @@ namespace DLaB.Xrm.Test
                     // Only process Properties that contain an attribute logical name, and a Relationship Schema Name
                     p.ContainsCustomAttributeTypes(typeof (AttributeLogicalNameAttribute), typeof (RelationshipSchemaNameAttribute))))
                 {
-                    var attribute = property.GetCustomAttribute<AttributeLogicalNameAttribute>();
+                    var attribute = property.GetAttributeLogicalName();
                     var propertyType = property.PropertyType.GetCustomAttribute<EntityLogicalNameAttribute>(true);
                     EntityDependencyRelationship relationship;
                     if (!Dependencies.TryGetValue(propertyType.LogicalName, out relationship))
                     {
-                        relationship = new EntityDependencyRelationship(logicalName, propertyType.LogicalName, attribute.LogicalName, LogicalName == propertyType.LogicalName);
+                        relationship = new EntityDependencyRelationship(logicalName, propertyType.LogicalName, attribute, LogicalName == propertyType.LogicalName);
                         Dependencies.Add(propertyType.LogicalName, relationship);
                     }
                     else
                     {
-                        relationship.Attributes.Add(attribute.LogicalName);
+                        relationship.Attributes.Add(attribute);
                     }
                 }
             }

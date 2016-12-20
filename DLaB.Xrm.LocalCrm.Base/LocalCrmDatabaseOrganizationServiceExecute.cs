@@ -447,14 +447,14 @@ namespace DLaB.Xrm.LocalCrm
             /// <param name="matchingRelationshipEntityLogicalName">Name of the matching relationship entity logical.</param>
             /// <param name="propertiesByAttribute">The properties by attribute.</param>
             /// <param name="relationshipProperties">The relationship properties.</param>
-            public static void GetPropertiesByAttributeWithMatchingRelationships(IReflect type,
+            public static void GetPropertiesByAttributeWithMatchingRelationships(Type type,
                                                                                  string matchingRelationshipEntityLogicalName,
                                                                                  out Dictionary<string, PropertyInfo> propertiesByAttribute,
                                                                                  out List<string> relationshipProperties)
             {
                 propertiesByAttribute = new Dictionary<string, PropertyInfo>();
                 relationshipProperties = new List<string>();
-                foreach (var property in type.GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(p => p.Name != "Id"))
+                foreach (var property in EntityPropertiesCache.Instance.For(type).PropertiesByName.Values.Where(p => p.Name != "Id"))
                 {
                     var att = property.GetCustomAttribute<AttributeLogicalNameAttribute>();
                     if (att == null || (property.PropertyType.IsGenericType && property.PropertyType.GenericTypeArguments[0].IsEnum && property.Name.EndsWith("Enum")))

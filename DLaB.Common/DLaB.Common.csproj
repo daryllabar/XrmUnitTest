@@ -89,7 +89,7 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == LocalNuget "$(SolutionDir)LocalNuGet\nuget" pack "$(ProjectDir)$(TargetName).nuspec" -Symbols -OutputDirectory "$(SolutionDir)LocalNuGet"</PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == LocalNuget "C:\Users\dlabar\Google Drive\NuGet\LocalBuild\Publish - DLaB.Common.bat"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

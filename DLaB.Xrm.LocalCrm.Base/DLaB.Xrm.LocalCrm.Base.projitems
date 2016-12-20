@@ -18,6 +18,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\OpportunityProduct.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SystemUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Template.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityPropertiesCache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FetchXml\CountColumnAggregateInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FetchXml\FetchAttributeInfo.cs" />

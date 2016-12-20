@@ -529,8 +529,8 @@ namespace DLaB.Xrm.LocalCrm
         private void SetAttributeId<T>(T entity) where T : Entity
         {
             if (entity.Id == Guid.Empty) { return; }
-            var attribute = (AttributeLogicalNameAttribute) typeof (T).GetProperty("Id").GetCustomAttributes(typeof (AttributeLogicalNameAttribute), false)[0];
-            entity[attribute.LogicalName] = entity.Id;
+            var attribute = EntityPropertiesCache.Instance.For<T>().GetProperty("Id").GetAttributeLogicalName();
+            entity[attribute] = entity.Id;
         }
 
         private void SetStatusToActiveForCreate<T>(T entity) where T : Entity
