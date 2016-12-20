@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DLaB.Xrm.LocalCrm.FetchXml;
 using Microsoft.Xrm.Sdk;
@@ -46,6 +47,30 @@ namespace DLaB.Xrm.LocalCrm
         }
 
         #endregion ConditionExpression
+
+        #region DateTime
+
+        /// <summary>
+        /// Removes the milliseconds from the date.  CRM doesn't store milliseconds, so this is used frequently when working with dates.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <returns></returns>
+        public static DateTime RemoveMilliseconds(this DateTime date)
+        {
+            return date.AddTicks(-(date.Ticks % TimeSpan.TicksPerSecond));
+        }
+
+        /// <summary>
+        /// Removes the milliseconds from the date.  CRM doesn't store milliseconds, so this is used frequently when working with dates.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <returns></returns>
+        public static DateTime? RemoveMilliseconds(this DateTime? date)
+        {
+            return date?.AddTicks(-(date.Value.Ticks % TimeSpan.TicksPerSecond));
+        }
+
+        #endregion DateTime
 
         #region IEnumerable<FetchAttributeInfo>
 

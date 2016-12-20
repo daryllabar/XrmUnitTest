@@ -278,9 +278,7 @@ namespace DLaB.Xrm.LocalCrm
 
             if (compareToType == typeof(DateTime) && value is DateTime)
             {
-                var compareToDate = (DateTime)compareTo;
-                compareToDate = compareToDate.AddMilliseconds(-compareToDate.Millisecond);
-                return DateTime.Compare((DateTime)value, compareToDate);
+                return DateTime.Compare((DateTime)value, ((DateTime)compareTo).RemoveMilliseconds());
             }
 
             return value.CompareTo(compareTo);
@@ -885,6 +883,17 @@ namespace DLaB.Xrm.LocalCrm
             return value;
         }
 
+        /// <summary>
+        /// Determines whether the condtion specified entity is between.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity">The entity.</param>
+        /// <param name="condition">The condition.</param>
+        /// <param name="start">The start.</param>
+        /// <param name="end">The end.</param>
+        /// <param name="inclusiveStart">if set to <c>true</c> [inclusive start].</param>
+        /// <param name="inclusiveEnd">if set to <c>true</c> [inclusive end].</param>
+        /// <returns></returns>
         private static bool IsBetween<T>(T entity, ConditionExpression condition, DateTime start, DateTime end, bool inclusiveStart = true, bool inclusiveEnd = false) where T : Entity
         {
             var isGreaterThan = inclusiveStart ? ConditionOperator.GreaterThan : ConditionOperator.GreaterEqual;
@@ -1025,7 +1034,7 @@ namespace DLaB.Xrm.LocalCrm
                 return;
             }
             var time = value.Value;
-            entity[key] = (DateTime?)(time.AddMilliseconds(-time.Millisecond));
+            entity[key] = time.RemoveMilliseconds();
         }
 
         public static bool IsSameOrSubclass(Type potentialBase, Type potentialDescendant)

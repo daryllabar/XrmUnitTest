@@ -27,6 +27,9 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 LastUsedInCampaign = DateTime.UtcNow.AddDays(-2d)
             });
 
+            var contact = service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.CreatedOn, ConditionOperator.LastXDays, 2));
+            Assert.IsNotNull(contact, "Contact should have been found because it was created in the last 2 days");
+
             Func<int, Entity> getContact = (days) => service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.LastUsedInCampaign, ConditionOperator.LastXDays, days));
 
             Assert.IsNull(getContact(1));

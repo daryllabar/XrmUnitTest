@@ -393,7 +393,7 @@ namespace DLaB.Xrm.LocalCrm
                                    entity.GetAttributeValue<string>("lastname"));
 
             // TODO: Need to add logic to see if an update to the Full Name is being Performed
-            ConditionallyAddAutoPopulatedValue(entity, properties, "fullname", name, !String.IsNullOrWhiteSpace(name));
+            ConditionallyAddAutoPopulatedValue(entity, properties, "fullname", name, !string.IsNullOrWhiteSpace(name));
             
             AutoPopulateOpportunityFields(entity, properties);
             AutoPopulateContactFields(entity, properties);
@@ -518,7 +518,15 @@ namespace DLaB.Xrm.LocalCrm
                 return;
             }
 
-            entity[attributeName] = value;
+            var date = value as DateTime?;
+            if (date.HasValue)
+            {
+                entity[attributeName] = date.RemoveMilliseconds();
+            }
+            else
+            {
+                entity[attributeName] = value;
+            }
         }
 
         /// <summary>
