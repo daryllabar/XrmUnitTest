@@ -8,15 +8,18 @@ namespace DLaB.Common.VersionControl
     /// </summary>
     public class VsTfsSourceControlProvider : ISourceControlProvider
     {
-        private string TfPath { get; set; }
+        private string TfPath { get; }
+        private ProcessExecutorInfo DefaultProcessExectorInfo { get; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="VsTfsSourceControlProvider"/> class.
+        /// Initializes a new instance of the <see cref="VsTfsSourceControlProvider" /> class.
         /// </summary>
         /// <param name="tfPath">The tf path.</param>
-        public VsTfsSourceControlProvider(string tfPath = null)
+        /// <param name="info">The default Process Executor Info information.</param>
+        public VsTfsSourceControlProvider(string tfPath = null, ProcessExecutorInfo info = null)
         {
             TfPath = tfPath ?? Config.GetAppSettingOrDefault("DLaB.Common.VersionControl.TfsPath", GetDefaultTfPath);
+            DefaultProcessExectorInfo = info;
         }
 
         private string GetDefaultTfPath()
@@ -48,21 +51,27 @@ namespace DLaB.Common.VersionControl
         /// Adds the file.
         /// </summary>
         /// <param name="filePath">The file path.</param>
+        /// <exception cref="System.Exception">Unable to Add the file {filePath}</exception>
         public void Add(string filePath)
         {
             try
             {
-                var info = new ProcessExecutorInfo($"\"{TfPath}\"", $"add {WrapPathInQuotes(filePath)}")
-                {
-                    WorkingDirectory = Directory.GetParent(filePath).FullName
-                };
-
+                var info = CreateProcessExecutorInfo("add", filePath);
                 ProcessExecutor.ExecuteCmd(info);
             }
             catch (Exception ex)
             {
                 throw new Exception("Unable to Add the file " + filePath + Environment.NewLine + ex);
             }
+        }
+
+        private ProcessExecutorInfo CreateProcessExecutorInfo(string action, string filePath, string postArguments = null)
+        {
+            var info = DefaultProcessExectorInfo ?? new ProcessExecutorInfo();
+            info.FileName = $"\"{TfPath}\"";
+            info.Arguments = $"{action} {WrapPathInQuotes(filePath)} {postArguments}";
+            info.WorkingDirectory = Directory.GetParent(filePath).FullName;
+            return info;
         }
 
         /// <summary>
@@ -85,11 +94,7 @@ namespace DLaB.Common.VersionControl
             string output;
             try
             {
-                var info = new ProcessExecutorInfo($"\"{TfPath}\"", $"checkout {WrapPathInQuotes(filePath)}")
-                {
-                    WorkingDirectory = Directory.GetParent(filePath).FullName
-                };
-
+                var info = CreateProcessExecutorInfo("checkout", filePath);
                 output = ProcessExecutor.ExecuteCmd(info);
             }
             catch (Exception ex)
@@ -127,11 +132,7 @@ namespace DLaB.Common.VersionControl
 
             try
             {
-                var info = new ProcessExecutorInfo($"\"{TfPath}\"", $"Diff {WrapPathInQuotes(filePath)}")
-                {
-                    WorkingDirectory = Directory.GetParent(filePath).FullName
-                };
-
+                var info = CreateProcessExecutorInfo("Diff", filePath);
                 var output = ProcessExecutor.ExecuteCmd(info);
 
                 if (output.Trim() != "edit: " + filePath.Trim())
@@ -157,10 +158,7 @@ namespace DLaB.Common.VersionControl
         {
             try
             {
-                var info = new ProcessExecutorInfo($"\"{TfPath}\"", $"undo {WrapPathInQuotes(filePath)} /noprompt")
-                {
-                    WorkingDirectory = Directory.GetParent(filePath).FullName
-                };
+                var info = CreateProcessExecutorInfo("undo", filePath, "/noprompt");
 
                 ProcessExecutor.ExecuteCmd(info);
             }
