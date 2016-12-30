@@ -16,10 +16,10 @@ namespace DLaB.Common.VersionControl
         void Add(string filePath);
 
         /// <summary>
-        /// Checks the file out.
+        /// Checks the files out.
         /// </summary>
-        /// <param name="filePath">The file path.</param>
-        void Checkout(string filePath);
+        /// <param name="fileNames">The file paths.</param>
+        string Checkout(params string[] fileNames);
 
         /// <summary>
         /// Returns true if the file was unchanged and an undo operation was performed

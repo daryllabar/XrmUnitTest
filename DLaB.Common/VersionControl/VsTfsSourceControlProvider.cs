@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace DLaB.Common.VersionControl
 {
@@ -65,47 +66,74 @@ namespace DLaB.Common.VersionControl
             }
         }
 
-        private ProcessExecutorInfo CreateProcessExecutorInfo(string action, string filePath, string postArguments = null)
+        /// <summary>
+        /// Determines whether the specified files are different.
+        /// </summary>
+        /// <param name="sourcePath">The source path.</param>
+        /// <param name="diffPath">The difference path.</param>
+        /// <returns></returns>
+        public bool AreDifferent(string sourcePath, string diffPath)
         {
+            try
+            {
+                var info = CreateProcessExecutorInfo("Diff", sourcePath, WrapPathInQuotes(diffPath) + " /format:Brief");
+                var output = ProcessExecutor.ExecuteCmd(info);
+
+                return output.Contains("files differ");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Unable to determine if \"{sourcePath}\" is different than \"{diffPath}" + sourcePath + Environment.NewLine + ex);
+            }
+        }
+
+        private ProcessExecutorInfo CreateProcessExecutorInfo(string action, string filePath, string postArguments = null, string workingDirectory = null)
+        {
+            workingDirectory = workingDirectory ?? Directory.GetParent(filePath).FullName;
             var info = DefaultProcessExectorInfo ?? new ProcessExecutorInfo();
             info.FileName = $"\"{TfPath}\"";
             info.Arguments = $"{action} {WrapPathInQuotes(filePath)} {postArguments}";
-            info.WorkingDirectory = Directory.GetParent(filePath).FullName;
+            info.WorkingDirectory = workingDirectory;
             return info;
         }
 
         /// <summary>
-        /// Checks the file out.
+        /// Checks the file(s) out.
         /// </summary>
-        /// <param name="filePath">The file path.</param>
-        /// <exception cref="System.Exception">
-        /// Unable to check out file
+        /// <param name="fileNames">The file names.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Unable to check out file
         /// or
-        /// File is read only, please checkout the file before running
-        /// </exception>
-        public void Checkout(string filePath)
+        /// File is read only, please checkout the file before running</exception>
+        public string Checkout(params string[] fileNames)
         {
-
-            if (!File.GetAttributes(filePath).HasFlag(FileAttributes.ReadOnly))
+            if (fileNames == null || fileNames.Length == 0)
             {
-                return;
+                return "No Files Given";
             }
+
+            var fileNamesToCheckout = fileNames.Where(f => File.GetAttributes(f).HasFlag(FileAttributes.ReadOnly)).ToList();
 
             string output;
             try
             {
-                var info = CreateProcessExecutorInfo("checkout", filePath);
+                var files = string.Join(" ", fileNames.Select(WrapPathInQuotes));
+                var info = CreateProcessExecutorInfo("checkout", null, files, Directory.GetParent(fileNames.First()).FullName);
                 output = ProcessExecutor.ExecuteCmd(info);
             }
             catch (Exception ex)
             {
-                throw new Exception("Unable to check out file " + filePath + Environment.NewLine + ex);
+                throw new Exception("Unable to check out files " + string.Join(", ", fileNamesToCheckout) + Environment.NewLine + ex);
             }
 
-            if (File.GetAttributes(filePath).HasFlag(FileAttributes.ReadOnly))
+            foreach (var file in fileNamesToCheckout)
             {
-                throw new Exception("File \"" + filePath + "\" is read only even though it should have been checked out, please checkout the file before running.  Output: " + output);
+                if (File.GetAttributes(file).HasFlag(FileAttributes.ReadOnly))
+                {
+                    throw new Exception("File \"" + file + "\" is read only even though it should have been checked out, please checkout the file before running.  Output: " + output);
+                }
             }
+            return output;
         }
 
         /// <summary>
@@ -116,10 +144,41 @@ namespace DLaB.Common.VersionControl
         /// <returns></returns>
         public bool CheckoutAndUpdateIfDifferent(string filePath, string contents)
         {
-            Checkout(filePath);
-            File.WriteAllText(filePath, contents);
+            try
+            {
+                Checkout(filePath);
+                File.WriteAllText(filePath, contents);
 
-            return UndoCheckoutIfUnchanged(filePath);
+                return UndoCheckoutIfUnchanged(filePath);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Unable to Checkout and Update if Different for file " + filePath + Environment.NewLine + ex);
+            }
+        }
+
+        /// <summary>
+        /// Gets the specified files from the server, potentially overwriting it, even if it's checked out.
+        /// </summary>
+        /// <param name="overwrite">if set to <c>true</c> [overwrite].</param>
+        /// <param name="fileNames">The file names.</param>
+        /// <exception cref="System.Exception">Unable to determin if file is different than contents for the file  + sourcePath + Environment.NewLine + ex</exception>
+        public string Get(bool overwrite, params string[] fileNames)
+        {
+            if (fileNames == null || fileNames.Length == 0)
+            {
+                return "No Files Given";
+            }
+            var files = string.Join(" ", fileNames.Select(WrapPathInQuotes));
+            try
+            {
+                var info = CreateProcessExecutorInfo("get", null, files + (overwrite ? " /overwrite": ""), Directory.GetParent(fileNames.First()).FullName);
+                return ProcessExecutor.ExecuteCmd(info);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Unable to get files " + files + Environment.NewLine + ex);
+            }
         }
 
         /// <summary>
@@ -129,13 +188,12 @@ namespace DLaB.Common.VersionControl
         /// <returns></returns>
         public bool UndoCheckoutIfUnchanged(string filePath)
         {
-
             try
             {
-                var info = CreateProcessExecutorInfo("Diff", filePath);
+                var info = CreateProcessExecutorInfo("Diff", filePath, "/format:Brief");
                 var output = ProcessExecutor.ExecuteCmd(info);
 
-                if (output.Trim() != "edit: " + filePath.Trim())
+                if (output.Contains("files differ"))
                 {
                     return false;
                 }
