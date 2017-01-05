@@ -663,6 +663,49 @@ namespace DLaB.Common
 
         #endregion IEnumerable<T>
 
+        #region IEnumerable<string>
+
+        /// <summary>
+        /// Batches the values into batches with the maximum length less than the max.  Useful when executing a command line that can only be a certain length, but there are a large number of arguments to potentially adds.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <param name="maxLength">The maximum length, with the optional additional padding for each value.</param>
+        /// <param name="errorFormat">The error format {0} is the value, {1} is the Max Length.</param>
+        /// <param name="padding">The padding.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception"></exception>
+        public static List<List<string>> BatchLessThanMaxLength(this IEnumerable<string> values, int maxLength, string errorFormat = "Value \"{0}\" is longer than than max length {1}.", int padding = 0)
+        {
+            var batches = new List<List<string>>();
+            var length = 0;
+            var batch = new List<string>();
+            foreach (var value in values)
+            {
+                if (value.Length + length + padding > maxLength)
+                {
+                    if (length == 0)
+                    {
+                        throw new Exception(string.Format(errorFormat, value, maxLength));
+                    }
+
+                    batches.Add(batch);
+                    batch = new List<string>();
+                    length = 0;
+                }
+                batch.Add(value);
+                length += value.Length + padding;
+            }
+
+            if (batch.Count > 0)
+            {
+                batches.Add(batch);
+            }
+
+            return batches;
+        }
+
+        #endregion IEnumerable<string>
+
         #region IEquatable<T>
 
         /// <summary>

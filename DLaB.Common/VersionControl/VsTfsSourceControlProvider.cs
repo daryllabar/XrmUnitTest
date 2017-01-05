@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace DLaB.Common.VersionControl
 {
@@ -9,6 +10,7 @@ namespace DLaB.Common.VersionControl
     /// </summary>
     public class VsTfsSourceControlProvider : ISourceControlProvider
     {
+        private const int MaxCommandLength = 30000; // Total max Length for a command is 32768 I believe.  Just limit it to 30000 to allow for the length of other values.
         private string TfPath { get; }
         private ProcessExecutorInfo DefaultProcessExectorInfo { get; }
 
@@ -112,28 +114,35 @@ namespace DLaB.Common.VersionControl
                 return "No Files Given";
             }
 
-            var fileNamesToCheckout = fileNames.Where(f => File.GetAttributes(f).HasFlag(FileAttributes.ReadOnly)).ToList();
+            var fileNamesToCheckoutBatches = fileNames.Where(f => File.GetAttributes(f).HasFlag(FileAttributes.ReadOnly))
+                                                      .BatchLessThanMaxLength(MaxCommandLength, 
+                                                                              "Filename \"{0}\" is longer than the max length {1}.", 
+                                                                              3 // 1 for each quote, and one more for the space between.
+                                                                              );
 
-            string output;
-            try
+            var output = new StringBuilder();
+            foreach (var batch in fileNamesToCheckoutBatches)
             {
-                var files = string.Join(" ", fileNames.Select(WrapPathInQuotes));
-                var info = CreateProcessExecutorInfo("checkout", null, files, Directory.GetParent(fileNames.First()).FullName);
-                output = ProcessExecutor.ExecuteCmd(info);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Unable to check out files " + string.Join(", ", fileNamesToCheckout) + Environment.NewLine + ex);
+                try
+                {
+                    var files = string.Join(" ", batch.Select(WrapPathInQuotes));
+                    var info = CreateProcessExecutorInfo("checkout", null, files, Directory.GetParent(fileNames.First()).FullName);
+                    output.AppendLine(ProcessExecutor.ExecuteCmd(info));
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Unable to check out files " + string.Join(", ", batch) + Environment.NewLine + ex);
+                }
             }
 
-            foreach (var file in fileNamesToCheckout)
+            foreach (var file in fileNamesToCheckoutBatches.SelectMany(v => v))
             {
                 if (File.GetAttributes(file).HasFlag(FileAttributes.ReadOnly))
                 {
                     throw new Exception("File \"" + file + "\" is read only even though it should have been checked out, please checkout the file before running.  Output: " + output);
                 }
             }
-            return output;
+            return output.ToString();
         }
 
         /// <summary>
@@ -169,16 +178,27 @@ namespace DLaB.Common.VersionControl
             {
                 return "No Files Given";
             }
-            var files = string.Join(" ", fileNames.Select(WrapPathInQuotes));
-            try
+
+            var fileNameBatches = fileNames.BatchLessThanMaxLength(MaxCommandLength,
+                                                      "Filename \"{0}\" is longer than the max length {1}.",
+                                                      3 // 1 for each quote, and one more for the space between.
+                                                      );
+
+            var output = new StringBuilder();
+            foreach (var batch in fileNameBatches)
             {
-                var info = CreateProcessExecutorInfo("get", null, files + (overwrite ? " /overwrite": ""), Directory.GetParent(fileNames.First()).FullName);
-                return ProcessExecutor.ExecuteCmd(info);
+                try
+                {
+                    var files = string.Join(" ", batch.Select(WrapPathInQuotes));
+                    var info = CreateProcessExecutorInfo("get", null, files + (overwrite ? " /overwrite": ""), Directory.GetParent(fileNames.First()).FullName);
+                    output.AppendLine(ProcessExecutor.ExecuteCmd(info));
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Unable to get files " + string.Join(", ", batch) + Environment.NewLine + ex);
+                }
             }
-            catch (Exception ex)
-            {
-                throw new Exception("Unable to get files " + files + Environment.NewLine + ex);
-            }
+            return output.ToString();
         }
 
         /// <summary>
