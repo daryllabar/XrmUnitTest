@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test
@@ -9,20 +10,37 @@ namespace DLaB.Xrm.Test
     public class FakeOrganizationServiceFactory : IOrganizationServiceFactory
     {
         /// <summary>
-        /// Gets or sets the service.
+        /// Gets the services key'd by User Id.
         /// </summary>
         /// <value>
-        /// The service.
+        /// The services.
         /// </value>
-        public IOrganizationService Service { get; set; }
+        public Dictionary<Guid, IOrganizationService> Services { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FakeOrganizationServiceFactory"/> class.
+        /// </summary>
+        public FakeOrganizationServiceFactory()
+        {
+            Services = new Dictionary<Guid, IOrganizationService>();
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FakeOrganizationServiceFactory"/> class.
         /// </summary>
         /// <param name="service">The service.</param>
-        public FakeOrganizationServiceFactory(IOrganizationService service)
+        public FakeOrganizationServiceFactory(IOrganizationService service): this()
         {
-            Service = service;
+            Services.Add(Guid.Empty, service);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FakeOrganizationServiceFactory"/> class.
+        /// </summary>
+        /// <param name="services">The services.</param>
+        public FakeOrganizationServiceFactory(Dictionary<Guid, IOrganizationService> services)
+        {
+            Services = services;            
         }
 
         /// <summary>
@@ -32,7 +50,26 @@ namespace DLaB.Xrm.Test
         /// <returns></returns>
         public IOrganizationService CreateOrganizationService(Guid? userId)
         {
-            return Service;
+            IOrganizationService service;
+            if (Services.TryGetValue(userId.GetValueOrDefault(), out service) 
+                ||
+                Services.TryGetValue(Guid.Empty, out service)
+                )
+            {
+                return service;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Sets the service for the given user.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="service">The service.</param>
+        public void SetService(Guid? userId, IOrganizationService service)
+        {
+            Services[userId.GetValueOrDefault()] = service;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test.Builders
@@ -119,7 +120,7 @@ namespace DLaB.Xrm.Test.Builders
             ServiceProvider.AddService(trace);
         }
 
-        #region Fleunt Methods
+        #region Fluent Methods
 
         /// <summary>
         /// Causes the Build Service provider to have the given context.
@@ -144,6 +145,38 @@ namespace DLaB.Xrm.Test.Builders
         }
 
         /// <summary>
+        /// Causes the Build Service provider to have an IOrganizationServiceFactory that returns the given service.
+        /// </summary>
+        /// <param name="service">The service.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="setWhoAmIUserId">if set to <c>true</c> wraps service with a WhoAmI of the current user.</param>
+        /// <returns></returns>
+        public TDerived WithService(IOrganizationService service, Guid userId, bool setWhoAmIUserId = true)
+        {
+            if (setWhoAmIUserId)
+            {
+                var builder = new OrganizationServiceBuilder(service);
+
+                builder.WithFakeExecute((s, r) =>
+                {
+                    if (r is WhoAmIRequest)
+                    {
+                        var result = (WhoAmIResponse)s.Execute(r);
+                        result.Results["UserId"] = userId;
+                        return result;
+                    }
+
+                    return s.Execute(r);
+                });
+
+                service = builder.Build();
+                
+            }
+            ((FakeOrganizationServiceFactory)ServiceProvider.GetService<IOrganizationServiceFactory>()).SetService(userId, service);
+            return This;
+        }
+
+        /// <summary>
         /// Causes the Build Service provider to have the given service.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -155,7 +188,7 @@ namespace DLaB.Xrm.Test.Builders
             return This;
         }
 
-        #endregion Fleunt Methods
+        #endregion Fluent Methods
 
         /// <summary>
         /// Builds a Cloned version of the Service Provider.

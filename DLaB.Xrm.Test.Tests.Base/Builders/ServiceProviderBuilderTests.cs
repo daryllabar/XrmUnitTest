@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DLaB.Xrm.Plugin;
 using DLaB.Xrm.Test.Builders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -32,8 +28,21 @@ namespace DLaB.Xrm.Test.Tests.Builders
             //
             // Assert
             //
-            Assert.IsFalse(Object.ReferenceEquals(providerContext, context), "The Context Retrieved should have been the context set");
+            Assert.IsFalse(ReferenceEquals(providerContext, context), "The Context Retrieved should have been the context set");
             Assert.AreEqual(providerContext.GetFirstSharedVariable<int>("TEST"), 1);
+        }
+
+        public void ServiceProviderBuilder_WithUserSpecificServices_Should_ReturnMatchingService()
+        {
+            var provider = new ServiceProviderBuilder();
+
+            var defaultService = provider.Build().GetService<IOrganizationServiceFactory>().CreateOrganizationService(null);
+            Assert.IsNotNull(defaultService);
+            var userId = Guid.NewGuid();
+            provider.WithService(defaultService, userId);
+            var userService = provider.Build().GetService<IOrganizationServiceFactory>().CreateOrganizationService(userId);
+            var response = userService.GetCurrentlyExecutingUserInfo();
+            Assert.AreEqual(userId, response.UserId);
         }
     }
 
