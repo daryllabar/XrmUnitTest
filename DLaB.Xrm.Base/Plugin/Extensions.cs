@@ -475,6 +475,32 @@ namespace DLaB.Xrm.Plugin
         }
 
         /// <summary>
+        /// Populates a local version of the request using the parameters from the context.  This exposes (most of) the parameters of that particular request
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="context">The context.</param>
+        /// <returns></returns>
+        public static T GetRequestParameters<T>(this IPluginExecutionContext context) where T : OrganizationRequest
+        {
+            var request = Activator.CreateInstance<T>();
+            request.Parameters = context.InputParameters;
+            return request;
+        }
+
+        /// <summary>
+        /// Populates a local version of the response using the parameters from the context.  This exposes (most of) the parameters of that particular response
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="context">The context.</param>
+        /// <returns></returns>
+        public static T GetResponseParameters<T>(this IPluginExecutionContext context) where T : OrganizationResponse
+        {
+            var response = Activator.CreateInstance<T>();
+            response.Results = context.OutputParameters;
+            return response;
+        }
+
+        /// <summary>
         /// Gets the variable value from the SharedVariables collection, cast to type 'T', or default(T) if the collection doesn't contain a variable with the given name.
         /// </summary>
         /// <typeparam name="T">Type of the variable to be returned</typeparam>

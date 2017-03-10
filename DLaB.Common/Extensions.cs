@@ -859,16 +859,18 @@ namespace DLaB.Common
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="text">The text.</param>
+        /// <param name="settings">The settings.</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentNullException">text</exception>
-        public static T DeserializeJson<T>(this string text){
+        public static T DeserializeJson<T>(this string text, DataContractJsonSerializerSettings settings = null)
+        {
             if(text == null){
                 throw new ArgumentNullException(nameof(text));
             }
 
             using(var reader = new MemoryStream(Encoding.Default.GetBytes(text)))
             {
-                var serializer = new DataContractJsonSerializer(typeof(T));
+                var serializer = new DataContractJsonSerializer(typeof(T), settings);
                 return (T)serializer.ReadObject(reader);
             }
         }
