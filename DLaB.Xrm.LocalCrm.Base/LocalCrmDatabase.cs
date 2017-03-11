@@ -906,7 +906,21 @@ namespace DLaB.Xrm.LocalCrm
         {
             foreach (var foreign in entity.Attributes.Select(attribute => attribute.Value).OfType<EntityReference>())
             {
-                service.Retrieve(foreign.LogicalName, foreign.Id, new ColumnSet(true));
+                if (foreign.Id == Guid.Empty && foreign.KeyAttributes.Count > 0)
+                {
+                    var kvps = new List<object>();
+                    foreach (var kvp in foreign.KeyAttributes)
+                    {
+                        kvps.Add(kvp.Key);
+                        kvps.Add(kvp.Value);
+                    }
+                    // Throw an error if not found.
+                    foreign.Id = service.GetFirst(foreign.LogicalName, kvps.ToArray()).Id;
+                }
+                else
+                {
+                    service.Retrieve(foreign.LogicalName, foreign.Id, new ColumnSet(true));
+                }
             }
         }
         private static bool SimulateCrmCreateActionPrevention<T>(T entity, DelayedException exception) where T : Entity

@@ -31,6 +31,23 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
+        public void LocalCrmTests_Crud_AlternateKey()
+        {
+            var service = GetService();
+            var contact1 = new Contact { EMailAddress1 = "test1@test.com" };
+            contact1.Id = service.Create(contact1);
+            var contact2 = new Contact { EMailAddress1 = "test2@test.com" };
+            contact2.Id = service.Create(contact2);
+            var accountId = service.Create(new Account { PrimaryContactId = new EntityReference(Contact.EntityLogicalName, Contact.Fields.EMailAddress1, contact1.EMailAddress1) });
+
+            Assert.AreEqual(contact1.Id, service.GetEntity<Account>(accountId).PrimaryContactId.Id, "Failed to create an account with a relationship to primary contact defined by alternate key");
+
+            service.Update(new Account { Id = accountId, PrimaryContactId = new EntityReference(Contact.EntityLogicalName, Contact.Fields.EMailAddress1, contact2.EMailAddress1) });
+
+            Assert.AreEqual(contact2.Id, service.GetEntity<Account>(accountId).PrimaryContactId.Id, "Failed to update an account with a relationship to primary contact defined by alternate key");
+        }
+
+        [TestMethod]
         public void LocalCrmTests_Crud_AndOrConstraints()
         {
             var service = GetService();

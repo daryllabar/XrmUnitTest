@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>XrmUnitTest.2016</id>
-    <version>1.1.10-alpha08</version>
+    <version>1.1.10.9</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>
@@ -15,7 +15,7 @@
     <tags>Dynamics CRM 2016 Plugin XRM UnitTest</tags>
 	<dependencies>
     <group targetFramework=".NETFramework4.5">
-      <dependency id="DLaB.Xrm.2016" version="1.1.10-alpha08" />
+      <dependency id="DLaB.Xrm.2016" version="1.1.10.9" />
       <dependency id="Microsoft.CrmSdk.Deployment" version="8.2.0.2" />
       <dependency id="Microsoft.CrmSdk.Workflow" version="8.2.0.2" />
       <dependency id="Microsoft.CrmSdk.Extensions" version="7.1.0.1" />
