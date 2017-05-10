@@ -5,6 +5,7 @@ using DLaB.Xrm.Test;
 using DLaB.Xrm.Test.Builders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.LocalCrm.Tests
@@ -134,6 +135,11 @@ namespace DLaB.Xrm.LocalCrm.Tests
             lateContact.Id = service.Create(lateContact);
 
             Assert.IsNotNull(service.Retrieve(contact.LogicalName, contact.Id, new ColumnSet()), "Failed Create or Read");
+            service.Execute(new RetrieveRequest
+            {
+                ColumnSet = new ColumnSet(),
+                Target = contact.ToEntityReference()
+            });
             Assert.IsNotNull(service.Retrieve(lateContact.LogicalName, lateContact.Id, new ColumnSet()), "Failed Create or Read");
             Assert.AreEqual(2, service.GetEntities<Contact>().Count, "Failed Create or Read");
 

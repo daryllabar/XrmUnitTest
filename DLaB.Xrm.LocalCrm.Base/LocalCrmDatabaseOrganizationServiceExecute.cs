@@ -328,6 +328,23 @@ namespace DLaB.Xrm.LocalCrm
             return response;
         }
 
+        private RetrieveResponse ExecuteInternal(RetrieveRequest request)
+        {
+            var response = new RetrieveResponse();
+            var entity = Retrieve(request.Target.LogicalName, request.Target.Id, request.ColumnSet);
+            response.Results.Add("Entity", entity);
+            
+            if (request.RelatedEntitiesQuery != null)
+            {
+                foreach (var kvp in request.RelatedEntitiesQuery)
+                {
+                    var related = RetrieveMultiple(kvp.Value);
+                    entity.RelatedEntities.Add(kvp.Key, related);
+                }
+            }
+
+            return response;
+        }
 
         private SendEmailFromTemplateResponse ExecuteInternal(SendEmailFromTemplateRequest request)
         {

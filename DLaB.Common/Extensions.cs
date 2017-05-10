@@ -1287,9 +1287,10 @@ namespace DLaB.Common
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="value">The Value to serialize to JSON</param>
+        /// <param name="settings">The settings.</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentNullException">text</exception>
-        public static string SerializeToJson<T>(this T value)
+        public static string SerializeToJson<T>(this T value, DataContractJsonSerializerSettings settings = null)
         {
             if (value == null)
             {
@@ -1298,7 +1299,7 @@ namespace DLaB.Common
 
             using (var memoryStream = new MemoryStream())
             {
-                var serializer = new DataContractJsonSerializer(typeof(T));
+                var serializer = new DataContractJsonSerializer(typeof(T), settings);
                 serializer.WriteObject(memoryStream, value);
                 return Encoding.Default.GetString(memoryStream.ToArray());
             }
