@@ -1,4 +1,5 @@
-﻿using DLaB.Xrm.Entities;
+﻿using System.Linq;
+using DLaB.Xrm.Entities;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using XrmUnitTest.Test.Builders;
@@ -66,6 +67,27 @@ namespace DLaB.Xrm.LocalCrm.Tests
                     $"Field {attribute.Key} was not mapped correctly.");
             }
             service.Create(contact);
+        }
+
+        [TestMethod]
+        public void LocalCrmDatabaseOrganizationServiceExecuteTests_RetrieveRelationshipRequest()
+        {
+            var service = GetService();
+            var equipment = new Equipment();
+            equipment.Id = service.Create(equipment);
+
+            var currency = new Contact
+            {
+                PreferredEquipmentId = equipment.ToEntityReference()
+            };
+            currency.Id = service.Create(currency);
+
+            using (var context = new CrmContext(service))
+            {
+                var firstContact = context.ContactSet.First();
+                context.LoadProperty(firstContact, Contact.Fields.equipment_contacts);
+                Assert.AreEqual(firstContact.PreferredEquipmentId, equipment.ToEntityReference());
+            }
         }
     }
 }

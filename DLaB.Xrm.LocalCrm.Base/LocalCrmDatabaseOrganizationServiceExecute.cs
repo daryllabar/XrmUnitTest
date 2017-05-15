@@ -302,6 +302,69 @@ namespace DLaB.Xrm.LocalCrm
             };
         }
 
+        private RetrieveRelationshipResponse ExecuteInternal(RetrieveRelationshipRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(request.Name))
+            {
+                throw new NotImplementedException("Unable to process a RetrieveRelationshipRequest without a Name");
+            }
+
+            PropertyInfo property = null;
+            foreach (var type in CrmServiceUtility.GetEarlyBoundProxyAssembly(Info.EarlyBoundEntityAssembly).GetTypes())
+            {
+                property = type.GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                               .FirstOrDefault(a =>
+                               {
+                                   if (a.GetCustomAttributes(typeof(AttributeLogicalNameAttribute), false).Length == 0)
+                                   {
+                                       return false;
+                                   }
+                                   
+                                   var att = a.GetCustomAttributes(typeof(RelationshipSchemaNameAttribute), false);
+                                   return att.Length == 0 ? false : ((RelationshipSchemaNameAttribute)att.FirstOrDefault()).SchemaName == request.Name;
+                               });
+                if (property != null)
+                {
+                    break;
+                }
+            }
+
+            if (property == null)
+            {
+                throw new KeyNotFoundException($"Unable to find a relationship {request.Name}.");
+            }
+
+            RelationshipMetadataBase relationship;
+            if (typeof(Entity).IsAssignableFrom(property.PropertyType))
+            {
+                var referencedType = EntityHelper.GetEntityLogicalName(property.PropertyType);
+                relationship = new OneToManyRelationshipMetadata
+                {
+                    ReferencedEntity = referencedType,
+                    ReferencedAttribute = EntityHelper.GetIdAttributeName(referencedType),
+                    ReferencingEntity = EntityHelper.GetEntityLogicalName(property.DeclaringType),
+                    ReferencingAttribute = property.GetAttributeLogicalName()
+                };
+            }
+            else
+            {
+                var att = property.GetAttributeLogicalName();
+                relationship = new ManyToManyRelationshipMetadata
+                {
+                    IntersectEntityName = att.Substring(0, att.Length - "_association".Length)
+                };
+                throw new NotImplementedException("Many to Many Relationships have not been implemented");
+            }
+            var response = new RetrieveRelationshipResponse
+            {
+                Results =
+                {
+                    ["RelationshipMetadata"] = relationship
+                }
+            };
+            return response;    
+        }
+
         private RetrieveMultipleResponse ExecuteInternal(RetrieveMultipleRequest request)
         {
             return new RetrieveMultipleResponse
@@ -320,7 +383,7 @@ namespace DLaB.Xrm.LocalCrm
 
             response.Results["OptionSetMetadata"] = optionSet;
 
-            var types = CrmServiceUtility.GetEarlyBoundProxyAssembly().GetTypes();
+            var types = CrmServiceUtility.GetEarlyBoundProxyAssembly(Info.EarlyBoundEntityAssembly).GetTypes();
             var enumType = types.FirstOrDefault(t => IsEnumType(t, request.Name)) ?? types.FirstOrDefault(t => IsEnumType(t, request.Name + "Enum"));
 
             AddEnumTypeValues(optionSet, enumType, "Unable to find global optionset enum " + request.Name);
