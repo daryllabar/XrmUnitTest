@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using Microsoft.Xrm.Sdk;
@@ -9,7 +9,11 @@ namespace DLaB.Xrm.Sandbox.Serialization
     /// Sandbox safe FormattedValueCollection
     /// </summary>
     [CollectionDataContract(Name = "FormattedValueCollection", Namespace = "http://schemas.datacontract.org/2004/07/System.Collections.Generic")]
+#if DLAB_PUBLIC
     public class SerializableFormattedValueCollection: List<KeyValuePairOfstringstring>
+#else
+    internal class SerializableFormattedValueCollection: List<KeyValuePairOfstringstring>
+#endif
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SerializableFormattedValueCollection"/> class.

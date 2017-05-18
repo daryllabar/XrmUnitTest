@@ -2,11 +2,15 @@
 
 namespace DLaB.Xrm.Plugin
 {
-    #pragma warning disable 1591
+#pragma warning disable 1591
     /// <summary>
     /// This was a CRM 4 static class, but has changed for some values: Commented out unverified values
     /// </summary>
+#if DLAB_PUBLIC
     public struct ParameterName
+#else
+    internal struct ParameterName
+#endif
     {
         //public const string Assignee = "Assignee";
         //public const string AsyncOperationId = "AsyncOperationId";

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq.Expressions;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
@@ -9,7 +9,11 @@ namespace DLaB.Xrm
     /// A QueryExpression Typed to the Entity that is being received 
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
+#if DLAB_PUBLIC
     public class TypedQueryExpression<TEntity> where TEntity : Entity
+#else
+    internal class TypedQueryExpression<TEntity> where TEntity : Entity
+#endif
     {
         /// <summary>
         /// Gets or sets the query.

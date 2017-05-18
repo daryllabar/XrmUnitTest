@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Plugin
@@ -6,7 +6,11 @@ namespace DLaB.Xrm.Plugin
     /// <summary>
     /// Plugin Context Interface for Handling 
     /// </summary>
+#if DLAB_PUBLIC
     public interface IExtendedPluginContext : IPluginExecutionContext
+#else
+    internal interface IExtendedPluginContext : IPluginExecutionContext
+#endif
     {
         #region Properties
 

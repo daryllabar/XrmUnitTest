@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.Serialization;
 
 namespace DLaB.Xrm.Exceptions
@@ -7,7 +7,11 @@ namespace DLaB.Xrm.Exceptions
     /// Thrown when an Entity is expected to contain an Attribute, but the attribute isn't found
     /// </summary>
     [Serializable]
+#if DLAB_PUBLIC
     public class MissingAttributeException : Exception
+#else
+    internal class MissingAttributeException : Exception
+#endif
     {
         #region Constructors
 

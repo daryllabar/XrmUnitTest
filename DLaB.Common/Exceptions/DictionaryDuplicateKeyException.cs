@@ -8,7 +8,11 @@ namespace DLaB.Common.Exceptions
     /// It's primary purpose is to provide a better error message than ArgumentException, An item with the smae key has already been added.
     /// </summary>
     [Serializable]
+#if DLAB_PUBLIC
     public class DictionaryDuplicateKeyException : Exception
+#else
+    internal class DictionaryDuplicateKeyException : Exception
+#endif
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DictionaryDuplicateKeyException"/> class.

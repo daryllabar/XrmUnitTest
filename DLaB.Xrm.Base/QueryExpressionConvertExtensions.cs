@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -8,7 +8,11 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm
 {
+#if DLAB_PUBLIC
     public static partial class Extensions
+#else
+    internal static partial class Extensions
+#endif
     {
         #region ConditionExpression
 

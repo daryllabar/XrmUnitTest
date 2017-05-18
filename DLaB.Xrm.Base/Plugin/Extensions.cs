@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DLaB.Xrm.Exceptions;
@@ -9,7 +9,11 @@ namespace DLaB.Xrm.Plugin
     /// <summary>
     /// Extension Class for Plugins
     /// </summary>
+#if DLAB_PUBLIC
     public static class Extensions
+#else
+    internal static class Extensions
+#endif
     {
         #region List<RegisteredEvent>
 

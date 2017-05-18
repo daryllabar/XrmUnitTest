@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using DLaB.Common;
 using Microsoft.Xrm.Sdk.Query;
 
@@ -7,7 +7,11 @@ namespace DLaB.Xrm.Comparers
     /// <summary>
     /// Compares Paging Infos
     /// </summary>
+#if DLAB_PUBLIC
     public class PagingInfoComparer : IEqualityComparer<PagingInfo>
+#else
+    internal class PagingInfoComparer : IEqualityComparer<PagingInfo>
+#endif
     {
         private static IEqualityComparer<PagingInfo> Comparer { get; set; }
 

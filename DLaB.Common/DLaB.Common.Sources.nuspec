@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>DLaB.Common</id>
-    <version>1.0.3.17</version>
+    <id>DLaB.Common.Sources</id>
+    <version>1.0.4-alpha02</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>
@@ -13,10 +13,14 @@
     <releaseNotes>Added SubstringByString and SubstringAllByString overloads</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>C# Common Utility Extensions</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Configuration" />
+      <frameworkAssembly assemblyName="System.Runtime.Serialization" />
+    </frameworkAssemblies>
   </metadata>
   <files>
-	  <file src="*.cs" target="content\App_Packages\DLaB.Common.1.0.3.17" />
-    <file src="Exceptions\*.cs" target="content\App_Packages\DLaB.Common.1.0.3.17\Exceptions" />
-    <file src="VersionControl\*.cs" target="content\App_Packages\DLaB.Common.1.0.3.17\VersionControl" />
+	  <file src="*.cs" target="content\App_Packages\DLaB.Common.Sources.1.0.4-alpha02" />
+    <file src="Exceptions\*.cs" target="content\App_Packages\DLaB.Common.Sources.1.0.4-alpha02\Exceptions" />
+    <file src="VersionControl\*.cs" target="content\App_Packages\DLaB.Common.Sources.1.0.4-alpha02\VersionControl" />
   </files>
 </package>

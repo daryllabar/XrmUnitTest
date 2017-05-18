@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DLaB.Common;
@@ -10,7 +10,11 @@ namespace DLaB.Xrm.Exceptions
     /// The Exception that is thrown when a Pre/Post Image or attribute on the image isn't registered for the plugin
     /// </summary>
     [Serializable]
+#if DLAB_PUBLIC
     public class InvalidPluginStepRegistrationException : Exception
+#else
+    internal class InvalidPluginStepRegistrationException : Exception
+#endif
     {
         /// <summary>
         /// Defines if the Image is a pre or post image

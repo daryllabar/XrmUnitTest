@@ -9,7 +9,11 @@ namespace DLaB.Common
     /// <summary>
     /// Settings used to control how a Key/List&lt;Value&gt; config setting is parsed.  
     /// </summary>
+#if DLAB_PUBLIC
     public class ConfigKeyValuesSplitInfo : ConfigKeyValueSplitInfo
+#else
+    internal class ConfigKeyValuesSplitInfo : ConfigKeyValueSplitInfo
+#endif
     {
         internal new static ConfigKeyValuesSplitInfo Default { get; } = new ConfigKeyValuesSplitInfo();
 

@@ -7,7 +7,11 @@ namespace DLaB.Common.Exceptions
     /// Exception thrown to indicate that an inappropriate type argument was used for
     /// a type parameter to a generic type or method.
     /// </summary>
+#if DLAB_PUBLIC
     public class TypeArgumentException : Exception
+#else
+    internal class TypeArgumentException : Exception
+#endif
     {
         /// <summary>
         /// Constructs a new instance of TypeArgumentException with no message.

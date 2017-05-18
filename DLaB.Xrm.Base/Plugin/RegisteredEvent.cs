@@ -1,12 +1,15 @@
-﻿using System;
-using Microsoft.Xrm.Sdk;
+using System;
 
 namespace DLaB.Xrm.Plugin
 {
     /// <summary>
     /// Class for Defining a Plugin Execution Event
     /// </summary>
+#if DLAB_PUBLIC
     public class RegisteredEvent
+#else
+    internal class RegisteredEvent
+#endif
     {
         /// <summary>
         /// Gets or sets the pipeline stage.
