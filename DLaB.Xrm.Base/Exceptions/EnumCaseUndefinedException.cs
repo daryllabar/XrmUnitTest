@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Exceptions
@@ -17,11 +17,7 @@ namespace DLaB.Xrm.Exceptions
     ///     }
     /// </summary>
     [Serializable]
-#if DLAB_PUBLIC
     public class EnumCaseUndefinedException<TEnum> : Common.Exceptions.EnumCaseUndefinedException<TEnum> where TEnum : struct
-#else
-    internal class EnumCaseUndefinedException<TEnum> : Common.Exceptions.EnumCaseUndefinedException<TEnum> where TEnum : struct
-#endif
     {
         #region Constructors
 

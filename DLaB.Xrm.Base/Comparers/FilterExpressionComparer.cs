@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DLaB.Common;
 using Microsoft.Xrm.Sdk.Query;
 
@@ -7,11 +7,7 @@ namespace DLaB.Xrm.Comparers
     /// <summary>
     /// Comparer for FilterExpressions
     /// </summary>
-#if DLAB_PUBLIC
     public class FilterExpressionComparer : IEqualityComparer<FilterExpression>
-#else
-    internal class FilterExpressionComparer : IEqualityComparer<FilterExpression>
-#endif
     {
         /// <summary>
         /// Compares the two filters

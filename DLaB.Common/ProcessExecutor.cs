@@ -7,11 +7,7 @@ namespace DLaB.Common
     /// <summary>
     /// Executes Command Line calls, redirecting output to Console
     /// </summary>
-#if DLAB_PUBLIC
     public class ProcessExecutor
-#else
-    internal class ProcessExecutor
-#endif
     {
         /// <summary>
         /// Executes the command.

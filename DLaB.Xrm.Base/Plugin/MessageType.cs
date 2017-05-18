@@ -1,15 +1,11 @@
-using DLaB.Common;
+﻿using DLaB.Common;
 
 namespace DLaB.Xrm.Plugin
 {
     /// <summary>
     /// Defines all Default CRM Message Types.  Utilizes a TypeSafeEnumBase to allow for custom Actions to be added
     /// </summary>
-#if DLAB_PUBLIC
     public class MessageType : TypeSafeEnumBase<string>
-#else
-    internal class MessageType : TypeSafeEnumBase<string>
-#endif
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MessageType" /> class.

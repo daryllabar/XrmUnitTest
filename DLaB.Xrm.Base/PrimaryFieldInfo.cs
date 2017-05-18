@@ -1,15 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace DLaB.Xrm
 {
     /// <summary>
     /// Contains information about the given Primary Name Field for an Entity
     /// </summary>
-#if DLAB_PUBLIC
     public class PrimaryFieldInfo
-#else
-    internal class PrimaryFieldInfo
-#endif
     {
         /// <summary>
         /// Gets or sets the name of the attribute.

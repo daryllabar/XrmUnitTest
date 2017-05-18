@@ -3,11 +3,7 @@
     /// <summary>
     /// Settings used to control how a values config setting is parsed.  
     /// </summary>
-#if DLAB_PUBLIC
     public class ConfigValuesSplitInfo
-#else
-    internal class ConfigValuesSplitInfo
-# endif
     {
         internal static ConfigValuesSplitInfo Default { get; } = new ConfigValuesSplitInfo();
 

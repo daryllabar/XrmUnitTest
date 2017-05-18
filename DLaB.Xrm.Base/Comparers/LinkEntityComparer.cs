@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DLaB.Common;
 using Microsoft.Xrm.Sdk.Query;
 
@@ -7,11 +7,7 @@ namespace DLaB.Xrm.Comparers
     /// <summary>
     /// Comparer for LinkEntities
     /// </summary>
-#if DLAB_PUBLIC
     public class LinkEntityComparer : IEqualityComparer<LinkEntity>
-#else
-    internal class LinkEntityComparer : IEqualityComparer<LinkEntity>
-#endif
     {
         /// <summary>
         /// Compares the two link entities.

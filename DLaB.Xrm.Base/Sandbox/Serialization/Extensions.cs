@@ -1,15 +1,11 @@
-using Microsoft.Xrm.Sdk;
+﻿using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Sandbox.Serialization
 {
     /// <summary>
     /// Extensions for the DLaB.Xrm.Sandbox.Serialization namespace
     /// </summary>
-#if DLAB_PUBLIC
     public static class Extensions
-#else
-    internal static class Extensions
-#endif
     {
         #region string
 

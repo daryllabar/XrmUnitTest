@@ -10,19 +10,15 @@ namespace DLaB.Xrm.Sandbox.Serialization
     /// Sandbox Serialization Safe KeyValuePairOfstringanyType
     /// </summary>
     [DataContract (Namespace = "http://schemas.datacontract.org/2004/07/System.Collections.Generic")]
-#if DLAB_PUBLIC
     public struct KeyValuePairOfstringanyType
-#else
-    public struct KeyValuePairOfstringanyType
-#endif
     {
-    /// <summary>
-    /// Gets or sets the key.
-    /// </summary>
-    /// <value>
-    /// The key.
-    /// </value>
-    [DataMember]
+        /// <summary>
+        /// Gets or sets the key.
+        /// </summary>
+        /// <value>
+        /// The key.
+        /// </value>
+        [DataMember]
         public string key { get; set; }
         /// <summary>
         /// Gets or sets the value.

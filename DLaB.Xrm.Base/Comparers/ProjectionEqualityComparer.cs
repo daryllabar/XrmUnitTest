@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using DLaB.Common;
 
@@ -9,11 +9,7 @@ namespace DLaB.Xrm.Comparers
     /// which Jon Skeet copied from his MiscUtil.
     /// </summary>
     /// 
-#if DLAB_PUBLIC
     public static class ProjectionEqualityComparer
-#else
-    internal static class ProjectionEqualityComparer
-#endif
     {
         /// <summary>
         /// Creates the comparer.

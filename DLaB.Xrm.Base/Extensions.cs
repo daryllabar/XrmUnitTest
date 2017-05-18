@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Globalization;
 using System.IO;
@@ -23,11 +23,7 @@ namespace DLaB.Xrm
     /// <summary>
     /// Extension class for Xrm
     /// </summary>
-#if DLAB_PUBLIC
     public static partial class Extensions
-#else
-    internal static partial class Extensions
-#endif
     {
         #region AttributeMetadata
         /// <summary>

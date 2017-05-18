@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using DLaB.Common;
 
 namespace DLaB.Xrm.Sandbox
@@ -6,11 +6,7 @@ namespace DLaB.Xrm.Sandbox
     /// <summary>
     /// Exception Handler For Exceptions when executing in Sandbox Isolation Mode
     /// </summary>
-#if DLAB_PUBLIC
     public class ExceptionHandler
-#else
-    internal class ExceptionHandler
-#endif
     {
         /// <summary>
         /// Determines whether the given exception can be thrown in sandbox mode.

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,11 +7,7 @@ namespace DLaB.Xrm.Plugin
     /// <summary>
     /// Fluent Builder for Registered Events
     /// </summary>
-#if DLAB_PUBLIC
     public class RegisteredEventBuilder
-#else
-    internal class RegisteredEventBuilder
-#endif
     {
         /// <summary>
         /// Gets or sets the entity logical names.

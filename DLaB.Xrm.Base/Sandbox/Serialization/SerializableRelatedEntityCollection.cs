@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using Microsoft.Xrm.Sdk;
@@ -9,11 +9,7 @@ namespace DLaB.Xrm.Sandbox.Serialization
     /// Sandbox safe Serialization for Related Entity Collection
     /// </summary>
     [CollectionDataContract(Name = "RelatedEntityCollection", Namespace = "http://schemas.datacontract.org/2004/07/System.Collections.Generic")]
-#if DLAB_PUBLIC
     public class SerializableRelatedEntityCollection: List<KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN>
-#else
-    internal class SerializableRelatedEntityCollection: List<KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN>
-#endif
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SerializableRelatedEntityCollection"/> class.

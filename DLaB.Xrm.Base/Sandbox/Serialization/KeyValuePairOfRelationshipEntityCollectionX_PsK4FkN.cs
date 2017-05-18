@@ -9,11 +9,7 @@ namespace DLaB.Xrm.Sandbox.Serialization
     /// Sandbox Serialization Safe KeyValuePairOfRelationship
     /// </summary>
     [DataContract(Namespace = "http://schemas.datacontract.org/2004/07/System.Collections.Generic")]
-#if DLAB_PUBLIC
     public struct KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN
-#else
-    internal struct KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN
-#endif
     {
         /// <summary>
         /// Gets or sets the key.

@@ -3,11 +3,7 @@
     /// <summary>
     /// Settings used to control how a Key/Value config setting is parsed.  
     /// </summary>
-#if DLAB_PUBLIC
     public class ConfigKeyValueSplitInfo : ConfigValuesSplitInfo
-#else
-    internal class ConfigKeyValueSplitInfo : ConfigValuesSplitInfo
-#endif
     {
         internal new static ConfigKeyValueSplitInfo Default { get; } = new ConfigKeyValueSplitInfo();
 

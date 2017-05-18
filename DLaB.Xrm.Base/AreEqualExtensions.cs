@@ -1,13 +1,9 @@
-using DLaB.Xrm.Comparers;
+﻿using DLaB.Xrm.Comparers;
 using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm
 {
-#if DLAB_PUBLIC
     public static partial class Extensions
-#else
-    internal static partial class Extensions
-#endif
     {
         #region ColumnSet
 

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using DLaB.Common;
 using Microsoft.Xrm.Sdk.Query;
@@ -8,11 +8,7 @@ namespace DLaB.Xrm.Comparers
     /// <summary>
     /// Comparer for ColumnSets
     /// </summary>
-#if DLAB_PUBLIC
     public class ColumnSetComparer : IEqualityComparer<ColumnSet>
-#else
-    internal class ColumnSetComparer : IEqualityComparer<ColumnSet>
-#endif
     {
         /// <summary>
         /// Compaes the two Column Sets

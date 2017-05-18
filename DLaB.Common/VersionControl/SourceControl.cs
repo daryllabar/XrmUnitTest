@@ -6,11 +6,7 @@ namespace DLaB.Common.VersionControl
     /// <summary>
     /// Helper Class to Checkout/Checking text to a Version Contorl System
     /// </summary>
-#if DLAB_PUBLIC
     public class SourceControl
-#else
-    internal class SourceControl
-#endif
     {
         [ThreadStatic]
         private static ISourceControlProvider _provider;

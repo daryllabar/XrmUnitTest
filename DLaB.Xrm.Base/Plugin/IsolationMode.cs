@@ -9,11 +9,7 @@ namespace DLaB.Xrm.Plugin
     /// <summary>
     /// Isolation Mode of the Plugin Assembly
     /// </summary>
-#if DLAB_PUBLIC
     public enum IsolationMode
-#else
-    internal enum IsolationMode
-#endif
     {
         /// <summary>
         /// No Isolation Mode

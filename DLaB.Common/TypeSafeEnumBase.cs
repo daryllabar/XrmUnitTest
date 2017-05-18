@@ -6,11 +6,7 @@ namespace DLaB.Common
     /// Base class to Create Enums that are typed to something besides int, and allowed to be exapnded by other code bases
     /// </summary>
     /// <typeparam name="T"></typeparam>
-#if DLAB_PUBLIC
     public abstract class TypeSafeEnumBase<T>
-#else
-    internal abstract class TypeSafeEnumBase<T>
-# endif
     {
         /// <summary>
         /// The text name of the Enum.

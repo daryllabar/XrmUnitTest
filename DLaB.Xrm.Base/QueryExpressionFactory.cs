@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.Xrm.Sdk.Query;
 using Microsoft.Xrm.Sdk;
 using System.Collections;
@@ -9,11 +9,7 @@ namespace DLaB.Xrm
     /// <summary>
     /// Class for helping to create QueryExpressions
     /// </summary>
-#if DLAB_PUBLIC
     public class QueryExpressionFactory
-#else
-    internal class QueryExpressionFactory
-#endif
     {
         #region Create
 

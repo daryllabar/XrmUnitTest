@@ -17,7 +17,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;DLAB_PUBLIC</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -39,6 +39,14 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DLaB.Common, Version=1.0.3.17, Culture=neutral, PublicKeyToken=046d6d5d1685e1b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\DLaB.Common.1.0.3.17\lib\net452\DLaB.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DLaB.Xrm.2016, Version=1.1.10.9, Culture=neutral, PublicKeyToken=4da76fa437c5906e, processorArchitecture=MSIL">
+      <HintPath>..\packages\DLaB.Xrm.2016.1.1.10.9\lib\net452\DLaB.Xrm.2016.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.8.2.0.2\lib\net452\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
       <Private>True</Private>
@@ -59,7 +67,6 @@
     <Reference Include="System" />
     <Reference Include="System.Activities" />
     <Reference Include="System.Activities.Presentation" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
@@ -85,71 +92,6 @@
     <Compile Include="Advanced\PluginBase.cs" />
     <Compile Include="Advanced\PluginHandlerBase.cs" />
     <Compile Include="Advanced\RemovePhoneNumberFormatting.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4-alpha02\Config.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4-alpha02\ConfigKeyValueSplitInfo.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4-alpha02\ConfigKeyValuesSplitInfo.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4-alpha02\ConfigProvider.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4-alpha02\ConfigValuesSplitInfo.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4-alpha02\Exceptions\DictionaryDuplicateKeyException.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4-alpha02\Exceptions\EnumCaseUndefinedException.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4-alpha02\Exceptions\TypeArgumentException.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4-alpha02\Extensions.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4-alpha02\ProcessExecutor.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4-alpha02\ProcessExecutorInfo.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4-alpha02\TypeSafeEnumBase.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4-alpha02\VersionControl\ISourceControlProvider.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4-alpha02\VersionControl\SourceControl.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4-alpha02\VersionControl\VsTfsSourceControlProvider.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\ActivityPropertyInfo.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\AddLinkExtensions.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\AliasedExtensions.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\AreEqualExtensions.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\ByIdExtensions.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Comparers\ColumnSetComparer.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Comparers\ConditionExpressionComparer.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Comparers\EnumerableComparer.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Comparers\FilterExpressionComparer.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Comparers\HashCode.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Comparers\LinkEntityComparer.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Comparers\OrderExpressionComparer.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Comparers\PagingInfoComparer.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Comparers\ProjectionEqualityComparer.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Comparers\QueryExpressionComparer.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\EntityHelper.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\ErrorCodes.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Exceptions\EnumCaseUndefinedException.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Exceptions\InvalidPluginStepRegistrationException.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Exceptions\MissingAttributeException.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Extensions.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\HasConditionExtensions.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\HasConditionInWithValuesExtensions.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\IIOrganizationServiceWrapper.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\LateBoundActivePropertyInfo.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\LateBoundQuerySettings.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\OptimisticConcurrencyExtensions.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Plugin\DLaBExtendedPluginContextBase.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Plugin\DLaBPluginBase.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Plugin\DLaBPluginHandlerBase.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Plugin\Extensions.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Plugin\GenericPluginHandlerBase.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Plugin\IExtendedPluginContext.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Plugin\IRegisteredEventsPlugin.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Plugin\IRegisteredEventsPluginHandler.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Plugin\IsolationMode.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Plugin\MessageType.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Plugin\ParameterName.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Plugin\PipelineStage.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Plugin\RegisteredEvent.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Plugin\RegisteredEventBuilder.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\PrimaryFieldInfo.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\QueryExpressionConvertExtensions.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\QueryExpressionFactory.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\QuerySettings.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\RetrieveAllEntities.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Sandbox\ExceptionHandler.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\TypedQueryExpression.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\WhereEqualExtensions.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\WhereInExtensions.cs" />
     <Compile Include="RenameLogic.cs" />
     <Compile Include="Simple\RemovePhoneNumberFormatting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

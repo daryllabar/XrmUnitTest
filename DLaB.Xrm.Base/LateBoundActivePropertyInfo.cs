@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 
@@ -7,11 +7,7 @@ namespace DLaB.Xrm
     /// <summary>
     /// Determines the Active Attribute for the Latebound Entity
     /// </summary>
-#if DLAB_PUBLIC
     public class LateBoundActivePropertyInfo : ActivePropertyInfo<Entity>
-#else
-    internal class LateBoundActivePropertyInfo : ActivePropertyInfo<Entity>
-#endif
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="LateBoundActivePropertyInfo"/> class.

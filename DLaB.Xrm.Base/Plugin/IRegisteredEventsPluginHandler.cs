@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Plugin
@@ -6,11 +6,7 @@ namespace DLaB.Xrm.Plugin
     /// <summary>
     /// 
     /// </summary>
-#if DLAB_PUBLIC
     public interface IRegisteredEventsPluginHandler : IPlugin
-#else
-    internal interface IRegisteredEventsPluginHandler : IPlugin
-#endif
     {
         /// <summary>
         /// Gets the registered events.

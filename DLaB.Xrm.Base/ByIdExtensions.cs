@@ -1,4 +1,4 @@
-using Microsoft.Xrm.Sdk;
+﻿using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using System;
 using System.Collections.Generic;
@@ -6,11 +6,7 @@ using System.Linq.Expressions;
 
 namespace DLaB.Xrm
 {
-#if DLAB_PUBLIC
     public static partial class Extensions
-#else
-    internal static partial class Extensions
-#endif
     {
         #region IOrganizationService
 

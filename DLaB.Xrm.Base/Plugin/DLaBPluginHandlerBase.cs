@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Microsoft.Xrm.Sdk;
 
@@ -8,11 +8,7 @@ namespace DLaB.Xrm.Plugin
     /// Plugin Handler Base.  Allows for Registered Events, preventing infinite loops, and auto logging
     /// </summary>
     // ReSharper disable once InconsistentNaming
-#if DLAB_PUBLIC
     public abstract class DLaBPluginHandlerBase : GenericPluginHandlerBase<IExtendedPluginContext>
-#else
-    internal abstract class DLaBPluginHandlerBase : GenericPluginHandlerBase<IExtendedPluginContext>
-#endif
     {
         /// <summary>
         /// Creates the plugin context.

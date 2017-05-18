@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.Xrm.Sdk.Query;
 using Microsoft.Xrm.Sdk;
 using System.Linq.Expressions;
@@ -10,11 +10,7 @@ namespace DLaB.Xrm
     /// Typed QuerySettings class
     /// </summary>
     /// <typeparam name="T"></typeparam>
-#if DLAB_PUBLIC
     public class QuerySettings<T> where T: Entity
-#else
-    internal class QuerySettings<T> where T: Entity
-#endif
     {
         /// <summary>
         /// Columns to retrieve

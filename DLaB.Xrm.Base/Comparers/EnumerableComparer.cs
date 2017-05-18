@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace DLaB.Xrm.Comparers
@@ -10,11 +10,7 @@ namespace DLaB.Xrm.Comparers
     /// <para>The ability for it to accept an IEqualityComparer for type T was added.</para>
     ///  </summary>
     /// <typeparam name="T"></typeparam>
-#if DLAB_PUBLIC
     public class EnumerableComparer<T> : IEqualityComparer<IEnumerable<T>>
-#else
-    internal class EnumerableComparer<T> : IEqualityComparer<IEnumerable<T>>
-#endif
     {
 
         private IEqualityComparer<T> Comparer { get; }

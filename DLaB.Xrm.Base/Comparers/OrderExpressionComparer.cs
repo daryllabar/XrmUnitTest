@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DLaB.Common;
 using Microsoft.Xrm.Sdk.Query;
 
@@ -7,11 +7,7 @@ namespace DLaB.Xrm.Comparers
     /// <summary>
     /// Comparer for OrderExpressions
     /// </summary>
-#if DLAB_PUBLIC
     public class OrderExpressionComparer : IEqualityComparer<OrderExpression>
-#else
-    internal class OrderExpressionComparer : IEqualityComparer<OrderExpression>
-#endif
     {
         private static IEqualityComparer<OrderExpression> Comparer { get; set; }
 

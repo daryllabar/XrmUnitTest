@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace DLaB.Xrm.Plugin
@@ -7,11 +7,7 @@ namespace DLaB.Xrm.Plugin
     /// An abstract base Plugin that Implments the IRegisteredEventsPlugin interface
     /// </summary>
     // ReSharper disable once InconsistentNaming
-#if DLAB_PUBLIC
     public abstract class DLaBPluginBase : IRegisteredEventsPlugin 
-#else
-    internal abstract class DLaBPluginBase : IRegisteredEventsPlugin 
-#endif
     {
         private readonly object _handlerLock = new object();
         private IRegisteredEventsPluginHandler _handler;

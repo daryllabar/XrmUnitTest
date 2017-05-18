@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using DLaB.Common;
 using Microsoft.Xrm.Sdk;
 
@@ -8,11 +8,7 @@ namespace DLaB.Xrm.Plugin
     /// The Implementation of the IExtendedPluginContext
     /// </summary>
     // ReSharper disable once InconsistentNaming
-#if DLAB_PUBLIC
     public class DLaBExtendedPluginContextBase : IExtendedPluginContext
-#else
-    internal class DLaBExtendedPluginContextBase : IExtendedPluginContext
-#endif
     {
         #region Properties
 

@@ -15,12 +15,8 @@ namespace DLaB.Common.Exceptions
     ///        throw new EnumCaseUndefinedException&lt;BindingFlags&gt;(c, "Unable to perform reflection operation");
     ///     }
     /// </summary>
-    [Serializable]
-#if DLAB_PUBLIC
+    [Serializable()]
     public class EnumCaseUndefinedException<TEnum> : Exception where TEnum : struct
-#else    
-    internal class EnumCaseUndefinedException<TEnum> : Exception where TEnum : struct
-#endif
     {
         #region Constructors
 

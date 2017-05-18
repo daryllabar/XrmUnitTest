@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,11 +12,7 @@ namespace DLaB.Xrm.Sandbox.Serialization
     /// In Sandbox Mode, You can't serialize and entity.  This Entity Type removes the dependencies that required a non-sandboxed plugin from serializing an Entity
     /// </summary>
     [DataContract(Name = "Entity", Namespace = "http://schemas.microsoft.com/xrm/2011/Contracts")]
-#if DLAB_PUBLIC
     public class SerializableEntity : IExtensibleDataObject
-#else
-    internal class SerializableEntity : IExtensibleDataObject
-#endif
     {
         /// <summary>
         /// Gets or sets the name of the logical.

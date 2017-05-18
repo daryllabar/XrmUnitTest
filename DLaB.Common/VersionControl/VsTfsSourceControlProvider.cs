@@ -8,11 +8,7 @@ namespace DLaB.Common.VersionControl
     /// <summary>
     /// Class to handle Checkingout from TFS
     /// </summary>
-#if DLAB_PUBLIC
     public class VsTfsSourceControlProvider : ISourceControlProvider
-#else
-    internal class VsTfsSourceControlProvider : ISourceControlProvider
-#endif
     {
         private const int MaxCommandLength = 30000; // Total max Length for a command is 32768 I believe.  Just limit it to 30000 to allow for the length of other values.
         private string TfPath { get; }

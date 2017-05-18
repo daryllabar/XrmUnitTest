@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm
@@ -6,11 +6,7 @@ namespace DLaB.Xrm
     /// <summary>
     /// A wrapper of an IOrganizationService
     /// </summary>
-#if DLAB_PUBLIC
     public interface IIOrganizationServiceWrapper
-#else
-    internal interface IIOrganizationServiceWrapper
-#endif
     {
         /// <summary>
         /// The base IOrganizationService.

@@ -1,4 +1,4 @@
-// =====================================================================
+﻿// =====================================================================
 //  File:		ErrorCodes.cs
 //  Summary:	Contains helper types for building queries.
 // =====================================================================
@@ -30,11 +30,7 @@ namespace DLaB.Xrm.CrmSdk
     /// <summary>
     /// Contains the Error Codes as defined via the SDK Sample
     /// </summary>
-#if DLAB_PUBLIC
     public static class ErrorCodes
-#else
-    internal static class ErrorCodes
-#endif
     {
         /// <summary>
         /// Error Types
