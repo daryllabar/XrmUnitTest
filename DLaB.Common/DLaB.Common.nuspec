@@ -15,6 +15,6 @@
     <tags>C# Common Utility Extensions</tags>
   </metadata>
   <files>
-	  <file src="bin\Release\DLaB.Common.*" target="lib\net452" />
+	<file src="bin\Release\DLaB.Common.*" target="lib\net452" />
   </files>
 </package>

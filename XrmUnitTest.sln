@@ -22,7 +22,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{C80A3A8A-7A62-45E1-924D-FE87D915CEA9}"
 	ProjectSection(SolutionItems) = preProject
 		DLaB.Common\DLaB.Common.nuspec = DLaB.Common\DLaB.Common.nuspec
-		DLaB.Common\DLaB.Common.Sources.nuspec = DLaB.Common\DLaB.Common.Sources.nuspec
 		DLaB.Xrm.2015\DLaB.Xrm.2015.nuspec = DLaB.Xrm.2015\DLaB.Xrm.2015.nuspec
 		DLaB.Xrm.2016\DLaB.Xrm.2016.nuspec = DLaB.Xrm.2016\DLaB.Xrm.2016.nuspec
 		DLaB.Xrm.Entities\DLaB.Xrm.Entities.nuspec = DLaB.Xrm.Entities\DLaB.Xrm.Entities.nuspec
