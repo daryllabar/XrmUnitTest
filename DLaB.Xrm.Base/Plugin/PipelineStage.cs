@@ -9,7 +9,11 @@ namespace DLaB.Xrm.Plugin
     /// <summary>
     /// The Pipeline stage of the Plugin
     /// </summary>
+#if DLAB_PUBLIC
     public enum PipelineStage
+#else
+    internal enum PipelineStage
+#endif
     {
         /// <summary>
         /// The pre validation - 10

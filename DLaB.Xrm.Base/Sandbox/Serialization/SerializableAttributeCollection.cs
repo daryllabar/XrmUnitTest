@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using Microsoft.Xrm.Sdk;
@@ -9,7 +9,11 @@ namespace DLaB.Xrm.Sandbox.Serialization
     /// Sandbox safe Serializable Attribute Collection
     /// </summary>
     [CollectionDataContract(Name = "AttributeCollection", Namespace = "http://schemas.microsoft.com/xrm/2011/Contracts")]
+#if DLAB_PUBLIC
     public class SerializableAttributeCollection : List<KeyValuePairOfstringanyType>
+#else
+    internal class SerializableAttributeCollection : List<KeyValuePairOfstringanyType>
+#endif
     {
 
         /// <summary>

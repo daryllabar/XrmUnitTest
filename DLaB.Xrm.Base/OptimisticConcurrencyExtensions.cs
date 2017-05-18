@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ServiceModel;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
@@ -8,7 +8,11 @@ namespace DLaB.Xrm
     /// <summary>
     /// Extenions for handling Optimistic Concurrency that was first used in CRM 2015.1
     /// </summary>
+#if DLAB_PUBLIC
     public static class OptimisticConcurrencyExtensions {
+#else
+    internal static class OptimisticConcurrencyExtensions {
+#endif
         /// <summary>
         /// Preforms an Optimistic Update.  If the entity's RowVersion doesn't match, the exception will be caught, and a reconciliation will be attempted before re-updating, indefinitely.
         /// Return null from reconcileEntity to skip cancel update

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.Serialization;
 using Microsoft.Xrm.Sdk;
 
@@ -8,7 +8,11 @@ namespace DLaB.Xrm.Sandbox.Serialization
     /// Sandbox Serializable Entity Reference
     /// </summary>
     [DataContract(Name = "EntityReference", Namespace = "http://schemas.microsoft.com/xrm/2011/Contracts")]
+#if DLAB_PUBLIC
     public class SerializableEntityReference : IExtensibleDataObject
+#else
+    internal class SerializableEntityReference : IExtensibleDataObject
+#endif
     {
         /// <summary>
         /// Gets or sets the ID of the record.

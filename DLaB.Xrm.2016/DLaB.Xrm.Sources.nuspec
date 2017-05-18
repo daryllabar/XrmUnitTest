@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>DLaB.Xrm.Sources</id>
+    <version>1.1.11-alpha02</version>
+    <authors>Daryl LaBar</authors>
+    <owners>Daryl LaBar</owners>
+    <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/daryllabar/XrmUnitTest</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/daryllabar/XrmUnitTest/master/DLaB_Dynamics_64x64.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Contains extensions for Xrm development.  </description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>Dynamics 365 Plugin XRM</tags>
+	<dependencies>
+    <group targetFramework=".NETFramework4.5">
+      <dependency id="DLaB.Common.Sources" version="1.0.4-alpha01" />
+      <dependency id="Microsoft.CrmSdk.CoreAssemblies" version="8.2.0.2" />
+    </group>
+  </dependencies>
+  </metadata>
+  <files>
+    <file src="..\DLaB.Xrm.Base\*.cs" target="content\App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02" />
+    <file src="..\DLaB.Xrm.Base\Comparers\*.cs" target="content\App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Comparers" />
+    <file src="..\DLaB.Xrm.Base\Exceptions\*.cs" target="content\App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Exceptions" />
+    <file src="..\DLaB.Xrm.Base\Plugin\*.cs" target="content\App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Plugin" />
+    <file src="..\DLaB.Xrm.Base\Sandbox\*.cs" target="content\App_Packages\DLaB.Xrm.Sources.1.1.11-alpha02\Sandbox" />
+  </files>
+</package>  

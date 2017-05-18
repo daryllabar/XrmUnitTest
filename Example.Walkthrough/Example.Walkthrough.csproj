@@ -34,14 +34,6 @@
       <HintPath>..\packages\Microsoft.CrmSdk.Extensions.7.1.0.1\lib\net45\AntiXSSLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DLaB.Common, Version=1.0.3.17, Culture=neutral, PublicKeyToken=046d6d5d1685e1b4, processorArchitecture=MSIL">
-      <HintPath>..\packages\DLaB.Common.1.0.3.17\lib\net452\DLaB.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DLaB.Xrm.2016, Version=1.1.10.9, Culture=neutral, PublicKeyToken=4da76fa437c5906e, processorArchitecture=MSIL">
-      <HintPath>..\packages\DLaB.Xrm.2016.1.1.10.9\lib\net452\DLaB.Xrm.2016.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="DLaB.Xrm.Client.2016, Version=1.1.10.11, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\XrmUnitTest.2016.1.1.10.11\lib\net452\DLaB.Xrm.Client.2016.dll</HintPath>
       <Private>True</Private>

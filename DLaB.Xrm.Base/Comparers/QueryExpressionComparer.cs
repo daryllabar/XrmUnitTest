@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using DLaB.Common;
 using Microsoft.Xrm.Sdk.Query;
 
@@ -7,7 +7,11 @@ namespace DLaB.Xrm.Comparers
     /// <summary>
     /// Class to allow for comparing QueryExpressions
     /// </summary>
+#if DLAB_PUBLIC
     public class QueryExpressionComparer : IEqualityComparer<QueryExpression>
+#else
+    internal class QueryExpressionComparer : IEqualityComparer<QueryExpression>
+#endif
     {
         /// <summary>
         /// Compares qe1 to qe2

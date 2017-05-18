@@ -7,9 +7,13 @@ namespace DLaB.Common
     /// <summary>
     /// Config Helper Class
     /// </summary>
+#if DLAB_PUBLIC
     public class Config
+#else
+    internal class Config
+#endif
     {
-        #region Single Value GetAppSettings
+#region Single Value GetAppSettings
 
         /// <summary>
         /// Attempts to read the setting from the config file, and Parse to get the value.
@@ -155,9 +159,9 @@ namespace DLaB.Common
             return start < 0 ? null : value.Substring(start + startString.Length);
         }
 
-        #endregion Single Value GetAppSettings
+#endregion Single Value GetAppSettings
 
-        #region GetList
+#region GetList
 
         /// <summary>
         /// Attempts to read the setting from the config file and Parse to get the value.
@@ -231,9 +235,9 @@ namespace DLaB.Common
             return new List<T>(value.Split(info.EntrySeperators, StringSplitOptions.RemoveEmptyEntries).Select(v => info.ParseValue<T>(v)));
         } 
 
-        #endregion GetList
+#endregion GetList
 
-        #region GetDictionary
+#region GetDictionary
 
         /// <summary>
         /// Attempts to read the setting from the config file, and Parse into a Dictionary.
@@ -328,9 +332,9 @@ namespace DLaB.Common
                               values => info.ParseValue<TValue>(values.Length > 1 ? values[1] : null));
         }
 
-        #endregion GetDictionary
+#endregion GetDictionary
 
-        #region GetDictionaryList
+#region GetDictionaryList
 
         /// <summary>
         /// Attempts to read the setting from the config file, and Parse into a Dictionary.
@@ -432,9 +436,9 @@ namespace DLaB.Common
             return dict;
         }
 
-        #endregion GetDictionaryList
+#endregion GetDictionaryList
 
-        #region GetDictionaryHash
+#region GetDictionaryHash
 
         /// <summary>
         /// Attempts to read the setting from the config file, and Parse into a Dictionary.
@@ -536,9 +540,9 @@ namespace DLaB.Common
             return dict;
         }
 
-        #endregion GetDictionaryHash
+#endregion GetDictionaryHash
 
-        #region GetHashSet
+#region GetHashSet
 
         /// <summary>
         /// Config Value must be in the format "Value|Value|Value" by Default
@@ -623,9 +627,9 @@ namespace DLaB.Common
             return new HashSet<T>(value.Split(info.EntrySeperators).Select(v => info.ParseValue<T>(v)));
         }
 
-        #endregion GetHashSet
+#endregion GetHashSet
 
-        #region ToString
+#region ToString
 
         /// <summary>
         /// Returns a <see cref="string" /> that represents this given list to be stored as a string.
@@ -760,6 +764,6 @@ namespace DLaB.Common
             return result == null ? null : result.ToString();
         }
 
-        #endregion ToString
+#endregion ToString
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using DLaB.Common;
 using Microsoft.Xrm.Sdk.Query;
@@ -8,7 +8,11 @@ namespace DLaB.Xrm.Comparers
     /// <summary>
     /// Comparer for Condition Expressions.
     /// </summary>
+#if DLAB_PUBLIC
     public class ConditionExpressionComparer : IEqualityComparer<ConditionExpression>
+#else
+    internal class ConditionExpressionComparer : IEqualityComparer<ConditionExpression>
+#endif
     {
         /// <summary>
         /// Compares the two conditions.

@@ -8,7 +8,11 @@ namespace DLaB.Xrm.Comparers
     /// Changed methods so it was a new, followed by Hash.
     /// Added overload for Comparers
     /// </summary>
+#if DLAB_PUBLIC
     public struct HashCode
+#else
+    internal struct HashCode
+#endif
     {
         private const int SeedPrime = 17;
         private const int MultiperPrime = 23;

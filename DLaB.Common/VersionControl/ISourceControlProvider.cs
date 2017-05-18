@@ -7,7 +7,11 @@ namespace DLaB.Common.VersionControl
     /// <summary>
     /// Source Control Provider for Internacting with Source Control Versioning
     /// </summary>
+#if DLAB_PUBLIC
     public interface ISourceControlProvider
+#else
+    internal interface ISourceControlProvider
+#endif
     {
         /// <summary>
         /// Adds the file out.

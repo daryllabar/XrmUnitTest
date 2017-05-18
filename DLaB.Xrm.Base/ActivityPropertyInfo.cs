@@ -8,7 +8,11 @@ namespace DLaB.Xrm
     /// <summary>
     /// Type of Active Attribute
     /// </summary>
+#if DLAB_PUBLIC
     public enum ActiveAttributeType
+#else
+    internal enum ActiveAttributeType
+#endif
     {
         /// <summary>
         /// Entity does not support an Active Attribute
@@ -28,9 +32,13 @@ namespace DLaB.Xrm
     /// Determines the Active Attribute for the Entity
     /// </summary>
     /// <typeparam name="T"></typeparam>
+#if DLAB_PUBLIC
     public class ActivePropertyInfo<T> where T : Entity
+#else
+    internal class ActivePropertyInfo<T> where T : Entity
+#endif
     {
-        #region Properties
+#region Properties
 
         /// <summary>
         /// Gets or sets the active attribute type.
@@ -61,7 +69,7 @@ namespace DLaB.Xrm
         /// </value>
         public int? NotActiveState { get; set; }
 
-        #endregion Properties
+#endregion Properties
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ActivePropertyInfo{T}"/> class.
@@ -103,7 +111,7 @@ namespace DLaB.Xrm
                     AttributeName = "isdisabled";
                     break;
 
-                #region Default CRM Entites with no active flag
+#region Default CRM Entites with no active flag
 
                 case "accountleads":
                 case "activitymimeattachment":
@@ -290,7 +298,7 @@ namespace DLaB.Xrm
                 case "workflowdependency":
                 case "workflowlog":
 
-                    #endregion Default CRM Entites with no active flag
+#endregion Default CRM Entites with no active flag
 
                     ActiveAttribute = ActiveAttributeType.None;
                     break;

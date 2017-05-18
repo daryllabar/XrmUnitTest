@@ -6,7 +6,11 @@ namespace DLaB.Common
     /// <summary>
     /// Allows for Injection Custom Config provider.  Defaults to ConfigurationManager.AppSettings
     /// </summary>
+#if DLAB_PUBLIC
     public class ConfigProvider
+#else
+    internal class ConfigProvider
+# endif
     {
         private static readonly object SingletonLock = new object();
         private static NameValueCollection _instance;

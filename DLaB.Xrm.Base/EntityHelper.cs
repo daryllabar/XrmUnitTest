@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,11 @@ namespace DLaB.Xrm
     /// <summary>
     /// Utiltiy class to get an Entity Type form a name, and visa-versa, and for determining Entity Id Attribute Name
     /// </summary>
+#if DLAB_PUBLIC
     public class EntityHelper
+#else
+    internal class EntityHelper
+#endif
     {
         /// <summary>
         /// Gets the entity logical name for the given type.

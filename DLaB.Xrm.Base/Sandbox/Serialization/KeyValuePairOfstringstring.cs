@@ -8,7 +8,11 @@ namespace DLaB.Xrm.Sandbox.Serialization
     /// Sandbox Serialization Safe KeyValuePairOfstringstring
     /// </summary>
     [DataContract(Namespace = "http://schemas.datacontract.org/2004/07/System.Collections.Generic")]
+#if DLAB_PUBLIC
     public struct KeyValuePairOfstringstring
+#else
+    internal struct KeyValuePairOfstringstring
+#endif
     {
         /// <summary>
         /// Gets or sets the key.

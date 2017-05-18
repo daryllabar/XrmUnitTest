@@ -9,13 +9,17 @@ namespace DLaB.Common
     /// <summary>
     /// Settings to override default
     /// </summary>
+#if DLAB_PUBLIC
     public class ProcessExecutorInfo
+#else
+    internal class ProcessExecutorInfo
+#endif
     {
 
-        /// <summary>Gets or sets the verb to use when opening the application or document specified by the <see cref="P:System.Diagnostics.ProcessStartInfo.FileName" /> property.</summary>
-        /// <returns>The action to take with the file that the process opens. The default is an empty string (""), which signifies no action.</returns>
-        /// <filterpriority>2</filterpriority>
-        public string Verb { get; set; }
+    /// <summary>Gets or sets the verb to use when opening the application or document specified by the <see cref="P:System.Diagnostics.ProcessStartInfo.FileName" /> property.</summary>
+    /// <returns>The action to take with the file that the process opens. The default is an empty string (""), which signifies no action.</returns>
+    /// <filterpriority>2</filterpriority>
+    public string Verb { get; set; }
 
         /// <summary>Gets or sets the set of command-line arguments to use when starting the application.</summary>
         /// <returns>A single string containing the arguments to pass to the target application specified in the <see cref="P:System.Diagnostics.ProcessStartInfo.FileName" /> property. The default is an empty string (""). On Windows Vista and earlier versions of the Windows operating system, the length of the arguments added to the length of the full path to the process must be less than 2080. On Windows 7 and later versions, the length must be less than 32699.Arguments are parsed and interpreted by the target application, so must align with the expectations of that application. For.NET applications as demonstrated in the Examples below, spaces are interpreted as a separator between multiple arguments. A single argument that includes spaces must be surrounded by quotation marks, but those quotation marks are not carried through to the target application. In include quotation marks in the final parsed argument, triple-escape each mark.</returns>
