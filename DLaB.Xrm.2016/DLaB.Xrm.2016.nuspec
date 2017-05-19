@@ -15,7 +15,7 @@
     <tags>Dynamics CRM 2016 Plugin XRM</tags>
 	<dependencies>
     <group targetFramework=".NETFramework4.5">
-      <dependency id="DLaB.Common" version="1.0.3.14" />
+      <dependency id="DLaB.Common" version="1.0.3.17" />
       <dependency id="Microsoft.CrmSdk.CoreAssemblies" version="8.2.0.2" />
     </group>
   </dependencies>

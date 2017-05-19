@@ -123,6 +123,7 @@ namespace DLaB.Xrm.Test.Builders
             {
                 var name = EntityHelper.GetParentEntityAttributeName(TestBase.GetType(id), TestBase.GetType(parent));
                 EntityBuilders.Get(id).WithAttributeValue(name, parent.EntityReference);
+                id.Entity[name] = parent.EntityReference;
             }
 
             return This;

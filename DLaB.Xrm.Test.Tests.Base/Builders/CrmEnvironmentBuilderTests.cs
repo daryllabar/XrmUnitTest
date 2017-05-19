@@ -32,7 +32,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
             var lead = new Id<Lead>(Guid.NewGuid());
 
             // The Account and Incident will be added as Account first, and Incident second. 
-            // The Lead will force an reorder and the Account incident would normally get placed after the Incident
+            // The Lead will force a reorder and the Account incident would normally get placed after the Incident
             var builder = new CrmEnvironmentBuilder().
                 WithChildEntities(account, incident).
                 WithEntities(lead);
@@ -49,6 +49,8 @@ namespace DLaB.Xrm.Test.Tests.Builders
 
             AssertCrm.Exists(service, account);
             AssertCrm.Exists(service, incident);
+            Assert.AreEqual(account.EntityReference, service.GetEntity(incident).CustomerId);
+            Assert.AreEqual(account.EntityReference, incident.Entity.CustomerId);
         }
 
         /// <summary>
@@ -63,7 +65,6 @@ namespace DLaB.Xrm.Test.Tests.Builders
             var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
             var account = new Id<Account>(Guid.NewGuid());
             var incident = new Id<Incident>(Guid.NewGuid());
-            var lead = new Id<Lead>(Guid.NewGuid());
 
             // The Account and Incident will be added as Account first, and Incident second. 
             // The Lead will force an reorder and the Account incident would normally get placed after the Incident
@@ -83,6 +84,8 @@ namespace DLaB.Xrm.Test.Tests.Builders
 
             AssertCrm.Exists(service, account);
             AssertCrm.Exists(service, incident);
+            Assert.AreEqual(account.EntityReference, service.GetEntity(incident).CustomerId);
+            Assert.AreEqual(account.EntityReference, incident.Entity.CustomerId);
         }
 
         [TestMethod]
