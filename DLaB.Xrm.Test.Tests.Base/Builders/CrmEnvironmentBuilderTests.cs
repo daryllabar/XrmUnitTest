@@ -57,6 +57,43 @@ namespace DLaB.Xrm.Test.Tests.Builders
         /// Incident's can't be created without a customer, so attempt to force the incident to be created first
         /// </summary>
         [TestMethod]
+        public void CrmEnvironmentBuilder_WithChildEntities_BiDirectionalRelationship_Should_PopulateBothIds()
+        {
+            //
+            // Arrange
+            //
+            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            var contact = new Id<Contact>(Guid.NewGuid());
+            var account = new Id<Account>(Guid.NewGuid());
+
+            // The Account and Incident will be added as Account first, and Incident second. 
+            // The Lead will force a reorder and the Account incident would normally get placed after the Incident
+            var builder = new CrmEnvironmentBuilder().
+                WithChildEntities(contact, account).
+                WithChildEntities(account, contact);
+
+            //
+            // Act
+            //
+            builder.Create(service);
+
+
+            //
+            // Assert
+            //
+
+            AssertCrm.Exists(service, account);
+            AssertCrm.Exists(service, contact);
+            Assert.AreEqual(contact.EntityReference, service.GetEntity(account).PrimaryContactId);
+            Assert.AreEqual(contact.EntityReference, account.Entity.PrimaryContactId);
+            Assert.AreEqual(account.EntityReference, service.GetEntity(contact).ParentCustomerId);
+            Assert.AreEqual(account.EntityReference, contact.Entity.ParentCustomerId);
+        }
+
+        /// <summary>
+        /// Incident's can't be created without a customer, so attempt to force the incident to be created first
+        /// </summary>
+        [TestMethod]
         public void CrmEnvironmentBuilder_WithChildEntities_IncidentAndAccountButAccountAddedIncidentFirst_Should_CreateAccountFirst()
         {
             //

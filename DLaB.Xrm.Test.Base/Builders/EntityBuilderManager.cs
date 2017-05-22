@@ -183,14 +183,7 @@ namespace DLaB.Xrm.Test.Builders
                     try
                     {
                         var entity = CreateEntity(service, value, info.CyclicAttributes, postCreateUpdates);
-
-                        Id id;
-                        results.Add(entity.Id, entity);
-                        if (Ids.TryGetValue(entity.Id, out id))
-                        {
-                            id.Entity = entity;
-                        }
-
+                        UpdateIdEntityWithBuiltEntity(results, entity);
                     }
                     catch (Exception ex)
                     {
@@ -209,6 +202,7 @@ namespace DLaB.Xrm.Test.Builders
                 try
                 {
                     service.Update(entity);
+                    AddPostCreateAttributesToIdEntity(results, entity); 
                 }
                 catch (Exception ex)
                 {
@@ -218,6 +212,37 @@ namespace DLaB.Xrm.Test.Builders
             }
 
             return results;
+        }
+
+        private void UpdateIdEntityWithBuiltEntity(Dictionary<Guid, Entity> results, Entity entity)
+        {
+            Id id;
+            results.Add(entity.Id, entity);
+            if (Ids.TryGetValue(entity.Id, out id))
+            {
+                id.Entity = entity;
+            }
+        }
+
+        private void AddPostCreateAttributesToIdEntity(Dictionary<Guid, Entity> results, Entity postCreateEntity)
+        {
+            Entity entity;
+            if (results.TryGetValue(postCreateEntity.Id, out entity))
+            {
+                foreach (var att in postCreateEntity.Attributes)
+                {
+                    entity[att.Key] = att.Value;
+                }
+            }
+
+            Id id;
+            if (Ids.TryGetValue(postCreateEntity.Id, out id))
+            {
+                foreach (var att in postCreateEntity.Attributes)
+                {
+                    id.Entity[att.Key] = att.Value;
+                }
+            }
         }
 
         /// <summary>
