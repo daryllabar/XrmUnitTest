@@ -68,6 +68,21 @@ namespace DLaB.Xrm
 
         #region Entity
 
+
+        /// <summary>
+        /// Checks to see if the entity is already of the given type.
+        /// If it is, it just returns the entity cast as the type, else ToEntity is called.
+        ///  the entity.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
+        public static T AsEntity<T>(this Entity entity) where T: Entity
+        {
+            var tEntity = entity as T;
+            return tEntity == null ? entity.ToEntity<T>() : tEntity;
+        }
+
         #region AssertContainsAllNonNull
 
         /// <summary>
@@ -572,7 +587,7 @@ namespace DLaB.Xrm
                 return (List<T>)(object)col.Entities.ToList();
             }
 
-            return col.Entities.Select(e => e.ToEntity<T>()).ToList();
+            return col.Entities.Select(e => e.AsEntity<T>()).ToList();
         }
 
         #endregion EntityCollection
@@ -1244,7 +1259,7 @@ namespace DLaB.Xrm
         public static T GetEntity<T>(this IOrganizationService service, Guid id, ColumnSet columnSet)
             where T : Entity
         {
-            return service.Retrieve(EntityHelper.GetEntityLogicalName<T>(), id, columnSet).ToEntity<T>();
+            return service.Retrieve(EntityHelper.GetEntityLogicalName<T>(), id, columnSet).AsEntity<T>();
         }
 
         #endregion GetEntity
@@ -1343,7 +1358,7 @@ namespace DLaB.Xrm
         public static T GetFirstOrDefault<T>(this IOrganizationService service, FetchExpression fe) where T : Entity
         {
             var entity = service.RetrieveMultiple(fe).Entities.FirstOrDefault();
-            return entity?.ToEntity<T>();
+            return entity?.AsEntity<T>();
         }
 
         /// <summary>
@@ -1492,7 +1507,7 @@ namespace DLaB.Xrm
             };
             var initialized = (InitializeFromResponse)service.Execute(initialize);
 
-            return initialized.Entity.ToEntity<T>();
+            return initialized.Entity.AsEntity<T>();
         }
 
         #endregion InitializeFrom
@@ -2079,11 +2094,7 @@ namespace DLaB.Xrm
         public static T DeserializeEntity<T>(this string xml) where T : Entity
         {
             var entity = xml.DeserializeEntity();
-            if(entity?.GetType() == typeof(T))
-            {
-                return (T)entity;
-            }
-            return entity?.ToEntity<T>();
+            return entity?.AsEntity<T>();
         }
 
         /// <summary>

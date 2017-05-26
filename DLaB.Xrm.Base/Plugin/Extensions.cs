@@ -568,7 +568,7 @@ namespace DLaB.Xrm.Plugin
         private static T GetEntity<T>(DataCollection<string, Entity> images, string imageName) where T : Entity
         {
             Entity entity;
-            return images.TryGetValue(imageName, out entity) ? entity.ToEntity<T>() : null;
+            return images.TryGetValue(imageName, out entity) ? entity.AsEntity<T>() : null;
         }
 
         #endregion Get(Pre/Post)Entities
@@ -613,7 +613,7 @@ namespace DLaB.Xrm.Plugin
 
             // Obtain the target business entity from the input parmameters.
 
-            return ((Entity)parameters[ParameterName.Target]).ToEntity<T>();
+            return ((Entity)parameters[ParameterName.Target]).AsEntity<T>();
         }
 
         /// <summary>

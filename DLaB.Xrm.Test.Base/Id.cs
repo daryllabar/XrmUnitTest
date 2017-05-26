@@ -174,7 +174,7 @@ namespace DLaB.Xrm.Test
                 var value = base.Entity as TEntity;
                 if (value == null)
                 {
-                    value = base.Entity.ToEntity<TEntity>();
+                    value = base.Entity.AsEntity<TEntity>();
                     base.Entity = value;
                 }
                 return value;

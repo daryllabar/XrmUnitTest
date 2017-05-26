@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Sandbox.Serialization
         public static T DeserializeSerializedEntity<T>(this string xml) where T : Entity
         {
             var entity = DeserializeSerializedEntity(xml);
-            return ((Entity) entity).ToEntity<T>();
+            return ((Entity) entity).AsEntity<T>();
         }
 
         #endregion string

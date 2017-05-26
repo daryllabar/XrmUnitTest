@@ -70,7 +70,7 @@ namespace Example.MsTest
         //    // Assert
         //    // 
         //    Assert.IsNotNull(updatedEntity);
-        //    Assert.AreEqual("McDonald", updatedEntity.ToEntity<Contact>().LastName);
+        //    Assert.AreEqual("McDonald", updatedEntity.AsEntity<Contact>().LastName);
         //}
 
         /// <summary>

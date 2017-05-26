@@ -39,7 +39,7 @@ namespace DLaB.Xrm.Test.Assumptions
             where TAttribute : EntityDataAssumptionBaseAttribute
             where TEntity : Entity
         {
-            return Get<TAttribute>().ToEntity<TEntity>();
+            return Get<TAttribute>().AsEntity<TEntity>();
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace DLaB.Xrm.Test.Assumptions
         public TEntity Get<TAttribute, TEntity>(IAssumptionEntityType<TAttribute, TEntity> assumption) where TAttribute : EntityDataAssumptionBaseAttribute
                                                                                                       where TEntity : Entity
         {
-            return Get<TAttribute>().ToEntity<TEntity>();
+            return Get<TAttribute>().AsEntity<TEntity>();
         }
 
         /// <summary>
