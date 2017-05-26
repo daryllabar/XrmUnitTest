@@ -747,7 +747,7 @@ namespace DLaB.Xrm
                 case ActiveAttributeType.None:
                     break;
                 default:
-                    throw new Common.Exceptions.EnumCaseUndefinedException<ActiveAttributeType>(activeInfo.ActiveAttribute);
+                    throw new EnumCaseUndefinedException<ActiveAttributeType>(activeInfo.ActiveAttribute);
             }
             return fe;
         }

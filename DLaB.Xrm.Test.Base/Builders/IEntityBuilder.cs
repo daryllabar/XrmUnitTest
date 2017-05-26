@@ -7,7 +7,6 @@ namespace DLaB.Xrm.Test.Builders
     /// A generic Interface for Fluent Building of Entities
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    /// <seealso cref="DLaB.Xrm.Test.Builders.IEntityBuilder" />
     public interface IEntityBuilder<out T> : IEntityBuilder where T : Entity
     {
         /// <summary>
@@ -26,7 +25,6 @@ namespace DLaB.Xrm.Test.Builders
     /// <summary>
     /// An Interface for Fluent Building of Entities
     /// </summary>
-    /// <seealso cref="DLaB.Xrm.Test.Builders.IEntityBuilder" />
     public interface IEntityBuilder
     {
         /// <summary>

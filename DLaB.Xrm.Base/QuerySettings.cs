@@ -2,7 +2,7 @@
 using Microsoft.Xrm.Sdk.Query;
 using Microsoft.Xrm.Sdk;
 using System.Linq.Expressions;
-using DLaB.Common.Exceptions;
+using DLaB.Xrm.DLaB.Common.Exceptions;
 
 namespace DLaB.Xrm
 {

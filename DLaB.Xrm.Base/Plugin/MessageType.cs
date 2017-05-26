@@ -1,4 +1,4 @@
-﻿using DLaB.Common;
+﻿using DLaB.Xrm.DLaB.Common;
 
 namespace DLaB.Xrm.Plugin
 {

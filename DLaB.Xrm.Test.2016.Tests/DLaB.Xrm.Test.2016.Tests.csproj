@@ -46,6 +46,10 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DLaB.Xrm.2016, Version=1.2.0.2, Culture=neutral, PublicKeyToken=4da76fa437c5906e, processorArchitecture=MSIL">
+      <HintPath>..\packages\DLaB.Xrm.2016.1.2.0.2\lib\net452\DLaB.Xrm.2016.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.8.2.0.2\lib\net452\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
       <Private>True</Private>
@@ -93,14 +97,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DLaB.Common\DLaB.Common.csproj">
-      <Project>{a7284a23-15f3-411d-bc26-2890a11053fe}</Project>
-      <Name>DLaB.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DLaB.Xrm.2016\DLaB.Xrm.2016.csproj">
-      <Project>{47b47bdc-eb17-45bb-9c85-9b82bffa7ab1}</Project>
-      <Name>DLaB.Xrm.2016</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DLaB.Xrm.Client.2016\DLaB.Xrm.Client.2016.csproj">
       <Project>{457ea8b5-9847-4ede-8191-54e9c822699d}</Project>
       <Name>DLaB.Xrm.Client.2016</Name>

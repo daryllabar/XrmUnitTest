@@ -17,7 +17,7 @@ namespace DLaB.Xrm.Exceptions
     ///     }
     /// </summary>
     [Serializable]
-    public class EnumCaseUndefinedException<TEnum> : Common.Exceptions.EnumCaseUndefinedException<TEnum> where TEnum : struct
+    public class EnumCaseUndefinedException<TEnum> : DLaB.Common.Exceptions.EnumCaseUndefinedException<TEnum> where TEnum : struct
     {
         #region Constructors
 
@@ -112,12 +112,9 @@ namespace DLaB.Xrm.Exceptions
             var enumType = typeof(TEnum);
             if (!IsEnum(enumType, ref message)) { return message; }
 
-            if (undefinedEnumValue == null)
-            {
-                return String.Format("{0}OptionSetValue was null for enum type {1}!", message, enumType.FullName);
-            }
-
-            return FormatMessage(message, enumType, (TEnum)(object)undefinedEnumValue.Value, undefinedEnumValue.Value);
+            return undefinedEnumValue == null 
+                ? $"{message}OptionSetValue was null for enum type {enumType.FullName}!" 
+                : FormatMessage(message, enumType, (TEnum)(object)undefinedEnumValue.Value, undefinedEnumValue.Value);
         }
     }
 }
