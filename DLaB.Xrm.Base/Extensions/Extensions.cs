@@ -528,10 +528,10 @@ namespace DLaB.Xrm
         public static string ToStringAttributes(this Entity entity, int tabSpacing = 4, string attributeFormat = "[{0}]: {1}")
         {
             return string.Join(Environment.NewLine, entity.Attributes.Select(att =>
-                GenerateNonBreakingSpace(tabSpacing) + string.Format(attributeFormat, att.Key, GetAttributeValue(att.Value))));
+                GenerateNonBreakingSpace(tabSpacing) + string.Format(attributeFormat, att.Key, GetAttributeValue(att.Value, attributeFormat, tabSpacing, tabSpacing))));
         }
 
-        private static string GetAttributeValue(object value)
+        private static string GetAttributeValue(object value, string attributeFormat, int tabSpacing, int initialTabSpacing)
         {
             if (value == null)
             {
@@ -554,6 +554,26 @@ namespace DLaB.Xrm
             if (money != null)
             {
                 return money.Value.ToString(CultureInfo.InvariantCulture);
+            }
+
+            var collection = value as EntityCollection;
+            if (collection != null)
+            {
+                tabSpacing += initialTabSpacing;
+                var entities = collection.Entities;
+                var lines = new List<string>();
+                for(var i = 0; i < entities.Count; i++)
+                {
+                    var localI = i;
+                    lines.AddRange(entities[i].Attributes.Select(att =>
+                        GenerateNonBreakingSpace(tabSpacing) 
+                        + string.Format(attributeFormat, 
+                                        localI + ":" + att.Key, 
+                                        GetAttributeValue(att.Value, attributeFormat, tabSpacing, initialTabSpacing))));
+                }
+                return lines.Count > 0 
+                    ? Environment.NewLine + string.Join(Environment.NewLine, lines)
+                    : "Empty";
             }
 
             return value.ToString();
