@@ -497,7 +497,7 @@ namespace DLaB.Xrm
         }
 
         /// <summary>
-        /// Converts an Earlybound Entity to a base class Entity
+        /// Converts an Earlybound Entity to the SDK Entity, as well as all child Entities in EntityCollection Attributes
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns></returns>
@@ -515,7 +515,23 @@ namespace DLaB.Xrm
             sdkEntity.RelatedEntities.AddRange(entity.RelatedEntities);
             sdkEntity.RowVersion = entity.RowVersion;
 
+            ConvertEntitiesInEntityCollectionAttributesToSdkEntities(sdkEntity);
             return sdkEntity;
+        }
+
+        private static void ConvertEntitiesInEntityCollectionAttributesToSdkEntities(Entity entity)
+        {
+            foreach (var att in entity.Attributes.Select(a => new
+            {
+                a.Key,
+                Value = a.Value as EntityCollection
+            }).Where(a => a.Value != null).ToList())
+            {
+                var sdkEntities = att.Value.Entities.Select(e => e.ToSdkEntity()).ToList();
+
+                att.Value.Entities.Clear();
+                att.Value.Entities.AddRange(sdkEntities);
+            }
         }
 
         /// <summary>
