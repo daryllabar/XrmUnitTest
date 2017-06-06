@@ -1082,6 +1082,9 @@ namespace DLaB.Xrm.LocalCrm
                 return;
             }
 
+            // Clone Entity attributes so updating a non-primative attribute type does not cause changes to the database value
+            entity = entity.Serialize().DeserializeEntity<T>();
+
             // Update all of the attributes from the entity passed in, to the database entity
             foreach (var attribute in entity.Attributes)
             {

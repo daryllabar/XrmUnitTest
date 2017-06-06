@@ -6,7 +6,6 @@ using DLaB.Xrm.Entities;
 using DLaB.Xrm.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.LocalCrm.Tests
 {
@@ -121,6 +120,45 @@ namespace DLaB.Xrm.LocalCrm.Tests
 
             Assert.IsNotNull(user, "User was not created by default");
             Assert.IsNotNull(bu, "Business Unit was not created");
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_NonPrimativeDataTypesAreCloned()
+        {
+            var service = GetService();
+            var contact = new Contact();
+            contact.Id = service.Create(contact);
+            var phoneCall = new PhoneCall();
+            phoneCall.Id = service.Create(phoneCall);
+
+            SetActivityParty(phoneCall, PhoneCall.Fields.From, new ActivityParty { PartyId = contact.ToEntityReference()});
+            phoneCall.CreatedBy = contact.ToEntityReference();
+
+            service.Update(phoneCall);
+
+            phoneCall.CreatedBy.Name = "Test";
+            Assert.AreEqual(1, service.GetFirst<PhoneCall>().From.Count());
+
+            var from = phoneCall.GetAttributeValue<EntityCollection>(PhoneCall.Fields.From);
+            from.Entities.Clear();
+
+            Assert.IsNull(service.GetFirst<PhoneCall>().CreatedBy.Name);
+            Assert.AreEqual(1, service.GetFirst<PhoneCall>().From.Count());
+        }
+
+        private static void SetActivityParty(Entity entity, string fieldName, ActivityParty party)
+        {
+            var partyList = entity.GetAttributeValue<EntityCollection>(fieldName);
+            if (partyList == null)
+            {
+                partyList = new EntityCollection();
+                entity[fieldName] = partyList;
+            }
+            else
+            {
+                partyList.Entities.Clear();
+            }
+            partyList.Entities.Add(party);
         }
     }
 }
