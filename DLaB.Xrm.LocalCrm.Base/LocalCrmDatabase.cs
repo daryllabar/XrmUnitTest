@@ -429,7 +429,7 @@ namespace DLaB.Xrm.LocalCrm
 
             service.RemoveFieldsCrmDoesNotReturn(entity);
             PopulateFormattedValues<T>(entity);
-            return entity;
+            return entity.Serialize().DeserializeEntity<T>();
         }
 
         /// <summary>
@@ -513,14 +513,14 @@ namespace DLaB.Xrm.LocalCrm
                 }
             }
 
+            var result = new EntityCollection();
             foreach (var entity in entities)
             {
                 service.RemoveFieldsCrmDoesNotReturn(entity);
                 PopulateFormattedValues<T>(entity);
+                result.Entities.Add(entity.Serialize().DeserializeEntity<T>());
             }
 
-            var result = new EntityCollection();
-            result.Entities.AddRange(entities);
             return result;
         }
 
@@ -640,7 +640,7 @@ namespace DLaB.Xrm.LocalCrm
                 var aliased = value as AliasedValue;
                 if (aliased == null)
                 {
-                    return value is OptionSetValue || value is Money || value is bool? || value is DateTime;
+                    return value is OptionSetValue || value is Money || value is bool || value is DateTime;
                 }
                 value = aliased.Value;
             }

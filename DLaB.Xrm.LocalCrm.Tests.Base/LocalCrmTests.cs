@@ -123,6 +123,25 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
+        public void LocalCrmTests_RetrievesAreCloned()
+        {
+            var service = GetService();
+            var contact = new Contact();
+            contact.Id = service.Create(contact);
+            var contact1 = service.GetEntity<Contact>(contact.Id);
+            var contact2 = service.GetEntity<Contact>(contact.Id);
+            Assert.AreNotSame(contact1,contact2, "Each retrieve should create a new instance");
+
+            var phoneCall = new PhoneCall();
+            SetActivityParty(phoneCall, PhoneCall.Fields.From, new ActivityParty { PartyId = contact.ToEntityReference() });
+            phoneCall.Id = service.Create(phoneCall);
+            var phoneCall1 = service.GetEntity<PhoneCall>(phoneCall.Id);
+            var phoneCall2 = service.GetEntity<PhoneCall>(phoneCall.Id);
+            Assert.AreNotSame(phoneCall1[PhoneCall.Fields.From], phoneCall2[PhoneCall.Fields.From], "Each retrieve should create a new instance");
+
+        }
+
+        [TestMethod]
         public void LocalCrmTests_NonPrimativeDataTypesAreCloned()
         {
             var service = GetService();

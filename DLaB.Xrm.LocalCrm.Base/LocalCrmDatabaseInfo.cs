@@ -78,7 +78,7 @@ namespace DLaB.Xrm.LocalCrm
                 throw new Exception("Must pass in a derived type from Microsoft.Xrm.Sdk.Client.OrganizationServiceContext");
             }
 
-            databaseName = databaseName ?? String.Empty;
+            databaseName = databaseName ?? string.Empty;
 
             return Create(contextType.Assembly, contextType.Namespace, databaseName, userId, userOnBehalfOf, userBusinessUnit);
         }
@@ -95,7 +95,7 @@ namespace DLaB.Xrm.LocalCrm
         /// <returns></returns>
         public static LocalCrmDatabaseInfo Create(Assembly earlyBoundAssembly, string earlyBoundNamespace, string databaseName = null, Guid? userId = null, Guid? userOnBehalfOf = null, Guid? userBusinessUnit = null)
         {
-            databaseName = databaseName ?? String.Empty;
+            databaseName = databaseName ?? string.Empty;
 
             return new LocalCrmDatabaseInfo
             {
