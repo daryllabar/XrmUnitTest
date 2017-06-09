@@ -84,5 +84,13 @@ namespace DLaB.Xrm.Plugin
         /// <param name="format">The format.</param>
         /// <param name="args">The arguments.</param>
         void TraceFormat(string format, params object[] args);
+
+        /// <summary>
+        /// Traces the time.
+        /// </summary>
+        /// <param name="format">The format.</param>
+        /// <param name="args">The arguments.</param>
+        /// <returns></returns>
+        IDisposable TraceTime(string format, params object[] args);
     }
 }

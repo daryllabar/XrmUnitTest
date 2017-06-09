@@ -433,6 +433,17 @@ namespace DLaB.Xrm.Plugin
             }
         }
 
+        /// <summary>
+        /// Traces the time from call to dispose.  Designed to be used in a using statement
+        /// </summary>
+        /// <param name="format">The format.</param>
+        /// <param name="args">The arguments.</param>
+        /// <returns></returns>
+        public IDisposable TraceTime(string format, params object[] args)
+        {
+            return new TraceTimer(TracingService, string.Format(format, args));
+        }
+
         #endregion Trace
     }
 }

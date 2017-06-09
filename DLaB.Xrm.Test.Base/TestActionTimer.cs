@@ -32,7 +32,7 @@ namespace DLaB.Xrm.Test
         /// <param name="actionToTime"></param>
         /// <param name="actionDescription"></param>
         [DebuggerHidden]
-        public void Time(Action actionToTime, String actionDescription)
+        public void Time(Action actionToTime, string actionDescription)
         {
             var watch = new Stopwatch();
             watch.Start();
@@ -60,7 +60,7 @@ namespace DLaB.Xrm.Test
         /// <param name="actionDescriptionFormat"></param>
         /// <param name="values">Used for a String.Format.  The ElapsedMilliseconds will be added to the end of the array</param>
         [DebuggerHidden]
-        public void Time(Action actionToTime, String actionDescriptionFormat, params object[] values)
+        public void Time(Action actionToTime, string actionDescriptionFormat, params object[] values)
         {
             Array.Resize(ref values, values.Length + 1);
             var watch = new Stopwatch();
