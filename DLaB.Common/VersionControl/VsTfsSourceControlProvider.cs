@@ -26,6 +26,10 @@ namespace DLaB.Common.VersionControl
         public VsTfsSourceControlProvider(string tfPath = null, ProcessExecutorInfo info = null)
         {
             TfPath = tfPath ?? Config.GetAppSettingOrDefault("DLaB.Common.VersionControl.TfsPath", GetDefaultTfPath);
+            if (!File.Exists(TfPath))
+            {
+                throw new Exception($"No TF.exe was found at '{TfPath}'.  Please create/update the app setting for 'DLaB.Common.VersionControl.TfsPath' to a valid path");
+            }
             DefaultProcessExectorInfo = info;
         }
 
@@ -34,9 +38,35 @@ namespace DLaB.Common.VersionControl
             var programFiles = Environment.GetEnvironmentVariable("ProgramFiles(x86)");
             if (programFiles == null)
             {
-                throw new Exception($"Error in TfsSourceOntorlProvider.GetDefaultTfPath: Unable to get Environment Variable ProgramFiles(x86).");
+                throw new Exception($"Error in TfsSourceContorlProvider.GetDefaultTfPath: Unable to get Environment Variable ProgramFiles(x86).");
             }
-            return Path.Combine(programFiles, @"Microsoft Visual Studio 14.0\Common7\IDE\TF.exe");
+            var path = Path.Combine(programFiles, @"Microsoft Visual Studio 14.0\Common7\IDE\TF.exe");
+            if (File.Exists(path))
+            {
+                return path;
+            }
+            else
+            {
+                // VS 2017 changed the location to be under the format of "Microsoft Visual Studio\(Year?Version?)\Edition"
+                // attempt to future proof by checking all version and all editions
+                path = Path.Combine(programFiles, @"Microsoft Visual Studio");
+                if (!Directory.Exists(path))
+                {
+                    return path;
+                }
+                foreach(var version in Directory.GetDirectories(path))
+                {
+                    foreach(var edition in Directory.GetDirectories(version))
+                    {
+                        var tmp = Path.Combine(edition, @"Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\TF.exe");
+                        if (File.Exists(tmp))
+                        {
+                            return tmp;
+                        }
+                    }
+                }
+                return path;
+            }
         }
 
         private string WrapPathInQuotes(string filePath)

@@ -198,3 +198,10 @@ FakesAssemblies/
 # Visual Studio 6 workspace options file
 *.opt
 
+/Example.Plugin/App_Packages
+/DLaB.Xrm.Test.2016/App_Packages
+/DLaB.Xrm.LocalCrm.2016/App_Packages
+/DLaB.Xrm.LocalCrm.2015/App_Packages
+/DLaB.Xrm.Client.2016/App_Packages
+/DLaB.Xrm.2016/App_Packages
+/DLaB.Xrm.2015/App_Packages
