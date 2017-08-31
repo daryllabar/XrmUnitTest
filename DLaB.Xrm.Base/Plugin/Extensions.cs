@@ -264,20 +264,22 @@ namespace DLaB.Xrm.Plugin
         #region CoallesceTarget
 
         /// <summary>
-        /// Creates a new Entity of type T, adding the attributes from both the Target and the Post Image if they exist.  
+        /// Creates a new Entity of type T, adding the attributes from both the Target and the Post Image if they exist.
+        /// If imageName is null, the first non-null image found is used.
         /// Does not return null.
         /// Does not return a reference to Target
         /// </summary>
         /// <param name="context">The context</param>
         /// <param name="imageName">Name of the image.</param>
         /// <returns></returns>
-        public static T CoallesceTargetWithPreEntity<T>(this IPluginExecutionContext context, string imageName = DLaBExtendedPluginContextBase.PluginImageNames.PreImage) where T : Entity
+        public static T CoallesceTargetWithPreEntity<T>(this IPluginExecutionContext context, string imageName = null) where T : Entity
         {
             return DereferenceTarget<T>(context).CoallesceEntity(context.GetPreEntity<T>(imageName));
         }
 
         /// <summary>
         /// Creates a new Entity of type T, adding the attributes from both the Target and the Post Image if they exist.
+        /// If imageName is null, the first non-null image found is used.
         /// Does not return null.
         /// Does not return a reference to Target
         /// </summary>
@@ -285,7 +287,7 @@ namespace DLaB.Xrm.Plugin
         /// <param name="context">The context.</param>
         /// <param name="imageName">Name of the image.</param>
         /// <returns></returns>
-        public static T CoallesceTargetWithPostEntity<T>(this IPluginExecutionContext context, string imageName = DLaBExtendedPluginContextBase.PluginImageNames.PostImage) where T : Entity
+        public static T CoallesceTargetWithPostEntity<T>(this IPluginExecutionContext context, string imageName = null) where T : Entity
         {
             return DereferenceTarget<T>(context).CoallesceEntity(context.GetPostEntity<T>(imageName));
         }
@@ -535,40 +537,63 @@ namespace DLaB.Xrm.Plugin
         #region Get(Pre/Post)Entities
 
         /// <summary>
-        /// If the PreEntityImages contains the given imageName Key, the Value is cast to the Entity type T, else null is returned
+        /// If the imageName is populated and the PreEntityImages contains the given imageName Key, the Value is cast to the Entity type T, else null is returned
+        /// If the imageName is not populated, than the first image in PreEntityImages with a value, is cast to the Entity type T, else null is returned
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="context"></param>
         /// <param name="imageName"></param>
         /// <returns></returns>
-        public static T GetPreEntity<T>(this IPluginExecutionContext context, string imageName = DLaBExtendedPluginContextBase.PluginImageNames.PreImage) where T : Entity
+        public static T GetPreEntity<T>(this IPluginExecutionContext context, string imageName = null) where T : Entity
         {
-            return GetEntity<T>(context.PreEntityImages, imageName);
+            return GetEntity<T>(context.PreEntityImages, imageName, DLaBExtendedPluginContextBase.PluginImageNames.PreImage);
         }
 
         /// <summary>
-        /// If the PostEntityImages contains the given imageName Key, the Value is cast to the Entity type T, else null is returned
+        /// If the imageName is populated and the PostEntityImages contains the given imageName Key, the Value is cast to the Entity type T, else null is returned
+        /// If the imageName is not populated, than the first image in PostEntityImages with a value, is cast to the Entity type T, else null is returned
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="context"></param>
         /// <param name="imageName"></param>
         /// <returns></returns>
-        public static T GetPostEntity<T>(this IPluginExecutionContext context, string imageName = DLaBExtendedPluginContextBase.PluginImageNames.PostImage) where T : Entity
+        public static T GetPostEntity<T>(this IPluginExecutionContext context, string imageName) where T : Entity
         {
-            return GetEntity<T>(context.PostEntityImages, imageName);
+            return GetEntity<T>(context.PostEntityImages, imageName, DLaBExtendedPluginContextBase.PluginImageNames.PostImage);
         }
 
         /// <summary>
-        /// If the images collection contains the given imageName Key, the Value is cast to the Entity type T, else null is returned
+        /// If the imageName is populated, then if images collection contains the given imageName Key, the Value is cast to the Entity type T, else null is returned
+        /// If the imageName is not populated but the default name is, then the defaultname is searched for in the images collection and if it has a value, it is cast to the Entity type T.
+        /// Else, the first non-null value in the images collection is returned.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="images"></param>
         /// <param name="imageName"></param>
+        /// <param name="defaultName"></param>
         /// <returns></returns>
-        private static T GetEntity<T>(DataCollection<string, Entity> images, string imageName) where T : Entity
+        private static T GetEntity<T>(DataCollection<string, Entity> images, string imageName, string defaultName) where T: Entity
         {
+            if (images.Count == 0)
+            {
+                return null;
+            }
+
+            if (images.Count == 1 && imageName == null)
+            {
+                return images.Values.FirstOrDefault().AsEntity<T>();
+            }
+
             Entity entity;
-            return images.TryGetValue(imageName, out entity) ? entity.AsEntity<T>() : null;
+
+            if (imageName != null)
+            {
+                return images.TryGetValue(imageName, out entity) ? entity.AsEntity<T>() : null;
+            }
+
+            return defaultName != null && images.TryGetValue(defaultName, out entity)
+                ? entity.AsEntity<T>()
+                : images.Values.FirstOrDefault(v => v != null).AsEntity<T>();
         }
 
         #endregion Get(Pre/Post)Entities

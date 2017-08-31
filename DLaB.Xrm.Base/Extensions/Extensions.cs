@@ -80,7 +80,7 @@ namespace DLaB.Xrm
         public static T AsEntity<T>(this Entity entity) where T: Entity
         {
             var tEntity = entity as T;
-            return tEntity == null ? entity.ToEntity<T>() : tEntity;
+            return tEntity ?? entity.ToEntity<T>();
         }
 
         #region AssertContainsAllNonNull
