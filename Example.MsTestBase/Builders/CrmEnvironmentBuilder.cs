@@ -5,7 +5,7 @@
     /// </summary>
     public class CrmEnvironmentBuilder : DLaB.Xrm.Test.Builders.CrmEnvironmentBuilderBase<CrmEnvironmentBuilder>
     {
-        protected override CrmEnvironmentBuilder This { get { return this; } }
+        protected override CrmEnvironmentBuilder This => this;
 
         #region Fluent Methods
 
