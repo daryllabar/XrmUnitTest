@@ -25,7 +25,7 @@ namespace DLaB.Xrm.Tests.Plugin
             Assert.IsTrue(trace.Traces[0].Trace.Contains(message));
             var end = trace.Traces[1].Trace;
             Assert.IsTrue(end.Contains(message));
-            Assert.IsTrue(end.Contains(" 0.01"), $"Expected '{end}' to contain ' 0.01'");
+            Assert.IsTrue(end.Contains(" 0.01") || end.Contains(" 0.02"), $"Expected '{end}' to contain ' 0.01' or ' 0.02'");
         }
 
         private class EmptyTrace : ITestLogger
