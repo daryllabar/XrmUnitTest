@@ -105,6 +105,12 @@
   <PropertyGroup>
     <PostBuildEvent>if $(ConfigurationName) == LocalNuget "C:\Users\dlabar\Google Drive\NuGet\LocalBuild\Publish - DLaB.Xrm.2016.bat"</PostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>REM Copy New Content Files
+SET myCmd= "$(SolutionDir)References\NuGetContentInstaller.exe" "$(SolutionDir) " "$(ProjectPath)"
+echo %25myCmd%25
+%25myCmd%25</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
