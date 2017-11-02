@@ -372,9 +372,14 @@ namespace DLaB.Xrm.Plugin
         public static RegisteredEvent GetEvent(this IPluginExecutionContext context, IEnumerable<RegisteredEvent> events)
         {
             return events.FirstOrDefault(a =>
-                (int)a.Stage == context.Stage &&
-                a.MessageName == context.MessageName &&
-                (string.IsNullOrWhiteSpace(a.EntityLogicalName) || a.EntityLogicalName == context.PrimaryEntityName)
+                (int)a.Stage == context.Stage 
+                && a.MessageName == context.MessageName
+                && (string.IsNullOrWhiteSpace(a.EntityLogicalName) || a.EntityLogicalName == context.PrimaryEntityName)
+                ) 
+                ?? events.FirstOrDefault(a =>
+                (int)a.Stage == context.Stage 
+                && a.Message == RegisteredEvent.Any 
+                && (string.IsNullOrWhiteSpace(a.EntityLogicalName) || a.EntityLogicalName == context.PrimaryEntityName)
                 );
         }
 

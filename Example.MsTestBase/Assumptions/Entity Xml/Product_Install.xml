@@ -1,4 +1,4 @@
-﻿<Product xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="1" z:Type="DLaB.Xrm.Entities.Product" z:Assembly="DLaB.Xrm.Entities, Version=8.0.1.0, Culture=neutral, PublicKeyToken=null" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/DLaB.Xrm.Entities">
+﻿<Product xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="1" z:Type="DLaB.Xrm.Entities.Product" z:Assembly="DLaB.Xrm.Entities, Version=8.1.1.1, Culture=neutral, PublicKeyToken=null" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/DLaB.Xrm.Entities">
   <Attributes z:Id="2" xmlns:d2p1="http://schemas.datacontract.org/2004/07/System.Collections.Generic" xmlns="http://schemas.microsoft.com/xrm/2011/Contracts">
     <KeyValuePairOfstringanyType>
       <d2p1:key z:Id="3">productnumber</d2p1:key>

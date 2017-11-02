@@ -9,6 +9,11 @@ namespace DLaB.Xrm.Plugin
     public class RegisteredEvent
     {
         /// <summary>
+        /// Defines an Any Message Type
+        /// </summary>
+        public static MessageType Any = new MessageType("Any");
+
+        /// <summary>
         /// Gets or sets the pipeline stage.
         /// </summary>
         /// <value>

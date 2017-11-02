@@ -391,7 +391,7 @@ namespace DLaB.Xrm.Plugin
         public static MessageType Win = new MessageType("Win");
 
         #endregion Default OOB CRM Message Types
-
+        
         /// <summary>
         /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.
         /// Since this is open (the constructors are public, not private) to allow for Custom Actions to be added, overriding the ToString to allow for value equality
