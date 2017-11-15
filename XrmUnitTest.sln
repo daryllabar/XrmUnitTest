@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Common", "DLaB.Common\DLaB.Common.csproj", "{A7284A23-15F3-411D-BC26-2890A11053FE}"
 EndProject
@@ -26,6 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{C80A3A8A
 		DLaB.Xrm.2015\DLaB.Xrm.2015.nuspec = DLaB.Xrm.2015\DLaB.Xrm.2015.nuspec
 		DLaB.Xrm.2016\DLaB.Xrm.2016.nuspec = DLaB.Xrm.2016\DLaB.Xrm.2016.nuspec
 		DLaB.Xrm.Entities\DLaB.Xrm.Entities.nuspec = DLaB.Xrm.Entities\DLaB.Xrm.Entities.nuspec
+		DLaB.Xrm.2016\DLaB.Xrm.Sources.nuspec = DLaB.Xrm.2016\DLaB.Xrm.Sources.nuspec
 		DLaB.Xrm.Test.2015\XrmUnitTest.2015.nuspec = DLaB.Xrm.Test.2015\XrmUnitTest.2015.nuspec
 		DLaB.Xrm.Test.2016\XrmUnitTest.2016.nuspec = DLaB.Xrm.Test.2016\XrmUnitTest.2016.nuspec
 	EndProjectSection
@@ -274,5 +275,8 @@ Global
 		{B6AA0881-3D1C-44E8-B2E2-E1F7258726EC} = {AF470AF1-A3ED-41B9-A35F-1D65AFBED5F5}
 		{01004EF9-FF2B-4CBB-93B6-19366600D905} = {AF470AF1-A3ED-41B9-A35F-1D65AFBED5F5}
 		{216D6F92-64EF-4C6C-9618-3531929DB82A} = {56965403-1D14-4364-8B4A-ADE3CE4CAE44}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3C4F140B-7118-4292-9392-253BE1444510}
 	EndGlobalSection
 EndGlobal

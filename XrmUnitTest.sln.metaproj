@@ -1,0 +1,616 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" InitialTargets="ValidateSolutionConfiguration;ValidateToolsVersions;ValidateProjects" DefaultTargets="Build">
+  <PropertyGroup>
+    <MSBuildToolsPath32>C:\Program Files (x86)\MSBuild\14.0\bin\</MSBuildToolsPath32>
+    <MSBuildToolsRoot>C:\Program Files (x86)\MSBuild\</MSBuildToolsRoot>
+    <MSBuildFrameworkToolsPath>C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319\</MSBuildFrameworkToolsPath>
+    <MSBuildFrameworkToolsPath32>C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319\</MSBuildFrameworkToolsPath32>
+    <MSBuildFrameworkToolsRoot>C:\WINDOWS\Microsoft.NET\Framework\</MSBuildFrameworkToolsRoot>
+    <MSBuildRuntimeVersion>4.0.30319</MSBuildRuntimeVersion>
+    <FrameworkSDKRoot />
+    <SDK35ToolsPath>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\</SDK35ToolsPath>
+    <SDK40ToolsPath />
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+    <WindowsSDK80Path />
+    <Configuration>Debug</Configuration>
+    <Platform>Any CPU</Platform>
+    <AspNetConfiguration>Debug</AspNetConfiguration>
+    <SolutionDir>C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\</SolutionDir>
+    <SolutionExt>.sln</SolutionExt>
+    <SolutionFileName>XrmUnitTest.sln</SolutionFileName>
+    <SolutionName>XrmUnitTest</SolutionName>
+    <SolutionPath>C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\XrmUnitTest.sln</SolutionPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{A7284A23-15F3-411D-BC26-2890A11053FE}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Common\DLaB.Common.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{66688025-2F6D-40EC-914E-87AF88AFC5DE}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{F62103E9-D25D-4F99-AABE-ECF348424366}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.MsTestBase\Example.MsTestBase.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3016D729-1A3B-43C0-AC2F-D4EF6A305FA6}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.MsTest\Example.MsTest.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{E19C051F-32D2-4A47-8F08-A4F251C59B4C}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.Plugin\Example.Plugin.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{44B2AD76-2052-4813-86CD-2782E9863216}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2015\DLaB.Xrm.2015.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{70697A74-32E0-4C77-BACB-A82512621A3E}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2015\DLaB.Xrm.LocalCrm.2015.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{BE26D8E5-7A39-463C-B456-0D80725B54B6}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Client.2015\DLaB.Xrm.Client.2015.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{FE764186-BFF2-43BE-A18A-D06857A0E617}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2015\DLaB.Xrm.Test.2015.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{47B47BDC-EB17-45BB-9C85-9B82BFFA7AB1}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2016\DLaB.Xrm.2016.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{457EA8B5-9847-4EDE-8191-54E9C822699D}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Client.2016\DLaB.Xrm.Client.2016.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{76D1648F-4508-46C1-BDA1-B62C32EEB750}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2016\DLaB.Xrm.LocalCrm.2016.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0D338AE7-2639-41D5-92A8-37BE3B8C1DF9}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2016\DLaB.Xrm.Test.2016.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{1925EF27-03AE-4E55-B354-962ED7AF9222}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\XrmUnitTest.Test.2016\XrmUnitTest.Test.2016.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{580E2F05-08D9-49A3-AAF6-C14434F610DD}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2016.Tests\DLaB.Xrm.Test.2016.Tests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{04895326-DBD8-41A0-9EA6-5DDDAF5C95F8}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2016.Tests\DLaB.Xrm.LocalCrm.2016.Tests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{B6AA0881-3D1C-44E8-B2E2-E1F7258726EC}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2016.Tests\DLaB.Xrm.2016.Tests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{4BCE674F-352E-4A6B-BAFF-3E6186E3CF5B}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Common.Tests\DLaB.Common.Tests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3E728B41-02E5-42FD-B8D3-CF2C664E2226}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.Walkthrough\Example.Walkthrough.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <SolutionConfiguration Include="Debug|Any CPU">
+      <Configuration>Debug</Configuration>
+      <Platform>Any CPU</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{A7284A23-15F3-411D-BC26-2890A11053FE}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Common\DLaB.Common.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{66688025-2F6D-40EC-914E-87AF88AFC5DE}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{F62103E9-D25D-4F99-AABE-ECF348424366}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.MsTestBase\Example.MsTestBase.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3016D729-1A3B-43C0-AC2F-D4EF6A305FA6}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.MsTest\Example.MsTest.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{E19C051F-32D2-4A47-8F08-A4F251C59B4C}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.Plugin\Example.Plugin.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{44B2AD76-2052-4813-86CD-2782E9863216}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2015\DLaB.Xrm.2015.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{70697A74-32E0-4C77-BACB-A82512621A3E}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2015\DLaB.Xrm.LocalCrm.2015.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{BE26D8E5-7A39-463C-B456-0D80725B54B6}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Client.2015\DLaB.Xrm.Client.2015.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{FE764186-BFF2-43BE-A18A-D06857A0E617}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2015\DLaB.Xrm.Test.2015.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{47B47BDC-EB17-45BB-9C85-9B82BFFA7AB1}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2016\DLaB.Xrm.2016.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{457EA8B5-9847-4EDE-8191-54E9C822699D}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Client.2016\DLaB.Xrm.Client.2016.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{76D1648F-4508-46C1-BDA1-B62C32EEB750}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2016\DLaB.Xrm.LocalCrm.2016.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0D338AE7-2639-41D5-92A8-37BE3B8C1DF9}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2016\DLaB.Xrm.Test.2016.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{1925EF27-03AE-4E55-B354-962ED7AF9222}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\XrmUnitTest.Test.2016\XrmUnitTest.Test.2016.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{580E2F05-08D9-49A3-AAF6-C14434F610DD}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2016.Tests\DLaB.Xrm.Test.2016.Tests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{04895326-DBD8-41A0-9EA6-5DDDAF5C95F8}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2016.Tests\DLaB.Xrm.LocalCrm.2016.Tests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{B6AA0881-3D1C-44E8-B2E2-E1F7258726EC}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2016.Tests\DLaB.Xrm.2016.Tests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{4BCE674F-352E-4A6B-BAFF-3E6186E3CF5B}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Common.Tests\DLaB.Common.Tests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3E728B41-02E5-42FD-B8D3-CF2C664E2226}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.Walkthrough\Example.Walkthrough.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+    <SolutionConfiguration Include="LocalNuget|Any CPU">
+      <Configuration>LocalNuget</Configuration>
+      <Platform>Any CPU</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{A7284A23-15F3-411D-BC26-2890A11053FE}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Common\DLaB.Common.csproj" BuildProjectInSolution="True">LocalNuget|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{66688025-2F6D-40EC-914E-87AF88AFC5DE}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj" BuildProjectInSolution="True">LocalNuget|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{F62103E9-D25D-4F99-AABE-ECF348424366}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.MsTestBase\Example.MsTestBase.csproj" BuildProjectInSolution="True">LocalNuget|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3016D729-1A3B-43C0-AC2F-D4EF6A305FA6}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.MsTest\Example.MsTest.csproj" BuildProjectInSolution="True">LocalNuget|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{E19C051F-32D2-4A47-8F08-A4F251C59B4C}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.Plugin\Example.Plugin.csproj" BuildProjectInSolution="True">LocalNuget|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{44B2AD76-2052-4813-86CD-2782E9863216}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2015\DLaB.Xrm.2015.csproj" BuildProjectInSolution="True">LocalNuget|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{70697A74-32E0-4C77-BACB-A82512621A3E}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2015\DLaB.Xrm.LocalCrm.2015.csproj" BuildProjectInSolution="True">LocalNuget|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{BE26D8E5-7A39-463C-B456-0D80725B54B6}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Client.2015\DLaB.Xrm.Client.2015.csproj" BuildProjectInSolution="True">LocalNuget|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{FE764186-BFF2-43BE-A18A-D06857A0E617}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2015\DLaB.Xrm.Test.2015.csproj" BuildProjectInSolution="True">LocalNuget|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{47B47BDC-EB17-45BB-9C85-9B82BFFA7AB1}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2016\DLaB.Xrm.2016.csproj" BuildProjectInSolution="True">LocalNuget|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{457EA8B5-9847-4EDE-8191-54E9C822699D}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Client.2016\DLaB.Xrm.Client.2016.csproj" BuildProjectInSolution="True">LocalNuget|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{76D1648F-4508-46C1-BDA1-B62C32EEB750}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2016\DLaB.Xrm.LocalCrm.2016.csproj" BuildProjectInSolution="True">LocalNuget|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0D338AE7-2639-41D5-92A8-37BE3B8C1DF9}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2016\DLaB.Xrm.Test.2016.csproj" BuildProjectInSolution="True">LocalNuget|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{1925EF27-03AE-4E55-B354-962ED7AF9222}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\XrmUnitTest.Test.2016\XrmUnitTest.Test.2016.csproj" BuildProjectInSolution="True">LocalNuget|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{580E2F05-08D9-49A3-AAF6-C14434F610DD}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2016.Tests\DLaB.Xrm.Test.2016.Tests.csproj" BuildProjectInSolution="True">LocalNuget|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{04895326-DBD8-41A0-9EA6-5DDDAF5C95F8}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2016.Tests\DLaB.Xrm.LocalCrm.2016.Tests.csproj" BuildProjectInSolution="True">LocalNuget|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{B6AA0881-3D1C-44E8-B2E2-E1F7258726EC}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2016.Tests\DLaB.Xrm.2016.Tests.csproj" BuildProjectInSolution="True">LocalNuget|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{4BCE674F-352E-4A6B-BAFF-3E6186E3CF5B}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Common.Tests\DLaB.Common.Tests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3E728B41-02E5-42FD-B8D3-CF2C664E2226}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.Walkthrough\Example.Walkthrough.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+    <SolutionConfiguration Include="Release|Any CPU">
+      <Configuration>Release</Configuration>
+      <Platform>Any CPU</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{A7284A23-15F3-411D-BC26-2890A11053FE}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Common\DLaB.Common.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{66688025-2F6D-40EC-914E-87AF88AFC5DE}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{F62103E9-D25D-4F99-AABE-ECF348424366}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.MsTestBase\Example.MsTestBase.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3016D729-1A3B-43C0-AC2F-D4EF6A305FA6}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.MsTest\Example.MsTest.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{E19C051F-32D2-4A47-8F08-A4F251C59B4C}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.Plugin\Example.Plugin.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{44B2AD76-2052-4813-86CD-2782E9863216}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2015\DLaB.Xrm.2015.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{70697A74-32E0-4C77-BACB-A82512621A3E}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2015\DLaB.Xrm.LocalCrm.2015.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{BE26D8E5-7A39-463C-B456-0D80725B54B6}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Client.2015\DLaB.Xrm.Client.2015.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{FE764186-BFF2-43BE-A18A-D06857A0E617}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2015\DLaB.Xrm.Test.2015.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{47B47BDC-EB17-45BB-9C85-9B82BFFA7AB1}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2016\DLaB.Xrm.2016.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{457EA8B5-9847-4EDE-8191-54E9C822699D}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Client.2016\DLaB.Xrm.Client.2016.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{76D1648F-4508-46C1-BDA1-B62C32EEB750}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2016\DLaB.Xrm.LocalCrm.2016.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0D338AE7-2639-41D5-92A8-37BE3B8C1DF9}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2016\DLaB.Xrm.Test.2016.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{1925EF27-03AE-4E55-B354-962ED7AF9222}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\XrmUnitTest.Test.2016\XrmUnitTest.Test.2016.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{580E2F05-08D9-49A3-AAF6-C14434F610DD}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2016.Tests\DLaB.Xrm.Test.2016.Tests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{04895326-DBD8-41A0-9EA6-5DDDAF5C95F8}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2016.Tests\DLaB.Xrm.LocalCrm.2016.Tests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{B6AA0881-3D1C-44E8-B2E2-E1F7258726EC}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2016.Tests\DLaB.Xrm.2016.Tests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{4BCE674F-352E-4A6B-BAFF-3E6186E3CF5B}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Common.Tests\DLaB.Common.Tests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3E728B41-02E5-42FD-B8D3-CF2C664E2226}" AbsolutePath="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.Walkthrough\Example.Walkthrough.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Common\DLaB.Common.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.MsTestBase\Example.MsTestBase.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.MsTest\Example.MsTest.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.Plugin\Example.Plugin.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2015\DLaB.Xrm.2015.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2015\DLaB.Xrm.LocalCrm.2015.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Client.2015\DLaB.Xrm.Client.2015.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2015\DLaB.Xrm.Test.2015.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2016\DLaB.Xrm.2016.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Client.2016\DLaB.Xrm.Client.2016.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2016\DLaB.Xrm.LocalCrm.2016.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2016\DLaB.Xrm.Test.2016.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\XrmUnitTest.Test.2016\XrmUnitTest.Test.2016.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2016.Tests\DLaB.Xrm.Test.2016.Tests.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2016.Tests\DLaB.Xrm.LocalCrm.2016.Tests.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2016.Tests\DLaB.Xrm.2016.Tests.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Common.Tests\DLaB.Common.Tests.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.Walkthrough\Example.Walkthrough.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+  </ItemGroup>
+  <Target Name="ValidateSolutionConfiguration">
+    <Error Condition="('$(CurrentSolutionConfigurationContents)' == '') and ('$(SkipInvalidConfigurations)' != 'true')" Text="The specified solution configuration &quot;$(Configuration)|$(Platform)&quot; is invalid. Please specify a valid solution configuration using the Configuration and Platform properties (e.g. MSBuild.exe Solution.sln /p:Configuration=Debug /p:Platform=&quot;Any CPU&quot;) or leave those properties blank to use the default solution configuration." Code="MSB4126" HelpKeyword="MSBuild.SolutionInvalidSolutionConfiguration" />
+    <Warning Condition="('$(CurrentSolutionConfigurationContents)' == '') and ('$(SkipInvalidConfigurations)' == 'true')" Text="The specified solution configuration &quot;$(Configuration)|$(Platform)&quot; is invalid. Please specify a valid solution configuration using the Configuration and Platform properties (e.g. MSBuild.exe Solution.sln /p:Configuration=Debug /p:Platform=&quot;Any CPU&quot;) or leave those properties blank to use the default solution configuration." Code="MSB4126" HelpKeyword="MSBuild.SolutionInvalidSolutionConfiguration" />
+    <Message Condition="'$(CurrentSolutionConfigurationContents)' != ''" Text="Building solution configuration &quot;$(Configuration)|$(Platform)&quot;." />
+  </Target>
+  <Target Name="ValidateToolsVersions">
+    <Error Condition="'$(MSBuildToolsVersion)' == '2.0' and ('$(ProjectToolsVersion)' != '2.0' and '$(ProjectToolsVersion)' != '')" Text="The tools version &quot;$(MSBuildToolsVersion)&quot; of the solution does not support building projects with a different tools version." Code="MSB4149" HelpKeyword="MSBuild.SolutionToolsVersionDoesNotSupportProjectToolsVersion" />
+  </Target>
+  <Target Name="ValidateProjects" />
+  <Target Name="GetSolutionConfigurationContents" Outputs="$(SolutionConfigurationContents)" />
+  <Target Name="Build" Outputs="@(CollectedBuildOutput)">
+    <MSBuild Projects="@(ProjectReference)" BuildInParallel="True" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Clean">
+    <MSBuild Projects="@(ProjectReference-&gt;Reverse())" Targets="Clean" BuildInParallel="True" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)" />
+  </Target>
+  <Target Name="Rebuild" Outputs="@(CollectedBuildOutput)">
+    <MSBuild Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Publish">
+    <MSBuild Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)" />
+  </Target>
+  <Target Name="DLaB_Common" Outputs="@(DLaB_CommonBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Common\DLaB.Common.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="DLaB_CommonBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="DLaB_Common:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Common\DLaB.Common.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="DLaB_Common:Rebuild" Outputs="@(DLaB_CommonBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Common\DLaB.Common.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="DLaB_CommonBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="DLaB_Common:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Common\DLaB.Common.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="DLaB_Xrm_Entities" Outputs="@(DLaB_Xrm_EntitiesBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="DLaB_Xrm_EntitiesBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="DLaB_Xrm_Entities:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="DLaB_Xrm_Entities:Rebuild" Outputs="@(DLaB_Xrm_EntitiesBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="DLaB_Xrm_EntitiesBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="DLaB_Xrm_Entities:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Example_MsTestBase" Outputs="@(Example_MsTestBaseBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.MsTestBase\Example.MsTestBase.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Example_MsTestBaseBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Example_MsTestBase:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.MsTestBase\Example.MsTestBase.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Example_MsTestBase:Rebuild" Outputs="@(Example_MsTestBaseBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.MsTestBase\Example.MsTestBase.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Example_MsTestBaseBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Example_MsTestBase:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.MsTestBase\Example.MsTestBase.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Example_MsTest" Outputs="@(Example_MsTestBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.MsTest\Example.MsTest.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Example_MsTestBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Example_MsTest:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.MsTest\Example.MsTest.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Example_MsTest:Rebuild" Outputs="@(Example_MsTestBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.MsTest\Example.MsTest.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Example_MsTestBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Example_MsTest:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.MsTest\Example.MsTest.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Example_Plugin" Outputs="@(Example_PluginBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.Plugin\Example.Plugin.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Example_PluginBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Example_Plugin:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.Plugin\Example.Plugin.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Example_Plugin:Rebuild" Outputs="@(Example_PluginBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.Plugin\Example.Plugin.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Example_PluginBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Example_Plugin:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.Plugin\Example.Plugin.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2015\DLaB_Xrm_2015" Outputs="@(_015_DLaB_Xrm_2015BuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2015\DLaB.Xrm.2015.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_015_DLaB_Xrm_2015BuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2015\DLaB_Xrm_2015:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2015\DLaB.Xrm.2015.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2015\DLaB_Xrm_2015:Rebuild" Outputs="@(_015_DLaB_Xrm_2015BuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2015\DLaB.Xrm.2015.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_015_DLaB_Xrm_2015BuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2015\DLaB_Xrm_2015:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2015\DLaB.Xrm.2015.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2015\DLaB_Xrm_LocalCrm_2015" Outputs="@(_015_DLaB_Xrm_LocalCrm_2015BuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2015\DLaB.Xrm.LocalCrm.2015.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_015_DLaB_Xrm_LocalCrm_2015BuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2015\DLaB_Xrm_LocalCrm_2015:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2015\DLaB.Xrm.LocalCrm.2015.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2015\DLaB_Xrm_LocalCrm_2015:Rebuild" Outputs="@(_015_DLaB_Xrm_LocalCrm_2015BuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2015\DLaB.Xrm.LocalCrm.2015.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_015_DLaB_Xrm_LocalCrm_2015BuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2015\DLaB_Xrm_LocalCrm_2015:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2015\DLaB.Xrm.LocalCrm.2015.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2015\DLaB_Xrm_Client_2015" Outputs="@(_015_DLaB_Xrm_Client_2015BuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Client.2015\DLaB.Xrm.Client.2015.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_015_DLaB_Xrm_Client_2015BuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2015\DLaB_Xrm_Client_2015:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Client.2015\DLaB.Xrm.Client.2015.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2015\DLaB_Xrm_Client_2015:Rebuild" Outputs="@(_015_DLaB_Xrm_Client_2015BuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Client.2015\DLaB.Xrm.Client.2015.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_015_DLaB_Xrm_Client_2015BuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2015\DLaB_Xrm_Client_2015:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Client.2015\DLaB.Xrm.Client.2015.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2015\DLaB_Xrm_Test_2015" Outputs="@(_015_DLaB_Xrm_Test_2015BuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2015\DLaB.Xrm.Test.2015.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_015_DLaB_Xrm_Test_2015BuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2015\DLaB_Xrm_Test_2015:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2015\DLaB.Xrm.Test.2015.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2015\DLaB_Xrm_Test_2015:Rebuild" Outputs="@(_015_DLaB_Xrm_Test_2015BuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2015\DLaB.Xrm.Test.2015.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_015_DLaB_Xrm_Test_2015BuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2015\DLaB_Xrm_Test_2015:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2015\DLaB.Xrm.Test.2015.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2016\DLaB_Xrm_2016" Outputs="@(_016_DLaB_Xrm_2016BuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2016\DLaB.Xrm.2016.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_016_DLaB_Xrm_2016BuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2016\DLaB_Xrm_2016:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2016\DLaB.Xrm.2016.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2016\DLaB_Xrm_2016:Rebuild" Outputs="@(_016_DLaB_Xrm_2016BuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2016\DLaB.Xrm.2016.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_016_DLaB_Xrm_2016BuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2016\DLaB_Xrm_2016:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2016\DLaB.Xrm.2016.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2016\DLaB_Xrm_Client_2016" Outputs="@(_016_DLaB_Xrm_Client_2016BuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Client.2016\DLaB.Xrm.Client.2016.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_016_DLaB_Xrm_Client_2016BuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2016\DLaB_Xrm_Client_2016:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Client.2016\DLaB.Xrm.Client.2016.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2016\DLaB_Xrm_Client_2016:Rebuild" Outputs="@(_016_DLaB_Xrm_Client_2016BuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Client.2016\DLaB.Xrm.Client.2016.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_016_DLaB_Xrm_Client_2016BuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2016\DLaB_Xrm_Client_2016:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Client.2016\DLaB.Xrm.Client.2016.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2016\DLaB_Xrm_LocalCrm_2016" Outputs="@(_016_DLaB_Xrm_LocalCrm_2016BuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2016\DLaB.Xrm.LocalCrm.2016.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_016_DLaB_Xrm_LocalCrm_2016BuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2016\DLaB_Xrm_LocalCrm_2016:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2016\DLaB.Xrm.LocalCrm.2016.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2016\DLaB_Xrm_LocalCrm_2016:Rebuild" Outputs="@(_016_DLaB_Xrm_LocalCrm_2016BuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2016\DLaB.Xrm.LocalCrm.2016.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_016_DLaB_Xrm_LocalCrm_2016BuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2016\DLaB_Xrm_LocalCrm_2016:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2016\DLaB.Xrm.LocalCrm.2016.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2016\DLaB_Xrm_Test_2016" Outputs="@(_016_DLaB_Xrm_Test_2016BuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2016\DLaB.Xrm.Test.2016.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_016_DLaB_Xrm_Test_2016BuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2016\DLaB_Xrm_Test_2016:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2016\DLaB.Xrm.Test.2016.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2016\DLaB_Xrm_Test_2016:Rebuild" Outputs="@(_016_DLaB_Xrm_Test_2016BuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2016\DLaB.Xrm.Test.2016.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_016_DLaB_Xrm_Test_2016BuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2016\DLaB_Xrm_Test_2016:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2016\DLaB.Xrm.Test.2016.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2016\XrmUnitTest_Test_2016" Outputs="@(_016_XrmUnitTest_Test_2016BuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\XrmUnitTest.Test.2016\XrmUnitTest.Test.2016.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_016_XrmUnitTest_Test_2016BuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2016\XrmUnitTest_Test_2016:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\XrmUnitTest.Test.2016\XrmUnitTest.Test.2016.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2016\XrmUnitTest_Test_2016:Rebuild" Outputs="@(_016_XrmUnitTest_Test_2016BuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\XrmUnitTest.Test.2016\XrmUnitTest.Test.2016.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_016_XrmUnitTest_Test_2016BuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2016\XrmUnitTest_Test_2016:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\XrmUnitTest.Test.2016\XrmUnitTest.Test.2016.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2016\DLaB_Xrm_Test_2016_Tests" Outputs="@(_016_DLaB_Xrm_Test_2016_TestsBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2016.Tests\DLaB.Xrm.Test.2016.Tests.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_016_DLaB_Xrm_Test_2016_TestsBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2016\DLaB_Xrm_Test_2016_Tests:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2016.Tests\DLaB.Xrm.Test.2016.Tests.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2016\DLaB_Xrm_Test_2016_Tests:Rebuild" Outputs="@(_016_DLaB_Xrm_Test_2016_TestsBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2016.Tests\DLaB.Xrm.Test.2016.Tests.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_016_DLaB_Xrm_Test_2016_TestsBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2016\DLaB_Xrm_Test_2016_Tests:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.Test.2016.Tests\DLaB.Xrm.Test.2016.Tests.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2016\DLaB_Xrm_LocalCrm_2016_Tests" Outputs="@(_016_DLaB_Xrm_LocalCrm_2016_TestsBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2016.Tests\DLaB.Xrm.LocalCrm.2016.Tests.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_016_DLaB_Xrm_LocalCrm_2016_TestsBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2016\DLaB_Xrm_LocalCrm_2016_Tests:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2016.Tests\DLaB.Xrm.LocalCrm.2016.Tests.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2016\DLaB_Xrm_LocalCrm_2016_Tests:Rebuild" Outputs="@(_016_DLaB_Xrm_LocalCrm_2016_TestsBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2016.Tests\DLaB.Xrm.LocalCrm.2016.Tests.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_016_DLaB_Xrm_LocalCrm_2016_TestsBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2016\DLaB_Xrm_LocalCrm_2016_Tests:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.LocalCrm.2016.Tests\DLaB.Xrm.LocalCrm.2016.Tests.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2016\DLaB_Xrm_2016_Tests" Outputs="@(_016_DLaB_Xrm_2016_TestsBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2016.Tests\DLaB.Xrm.2016.Tests.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_016_DLaB_Xrm_2016_TestsBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2016\DLaB_Xrm_2016_Tests:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2016.Tests\DLaB.Xrm.2016.Tests.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="2016\DLaB_Xrm_2016_Tests:Rebuild" Outputs="@(_016_DLaB_Xrm_2016_TestsBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2016.Tests\DLaB.Xrm.2016.Tests.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="_016_DLaB_Xrm_2016_TestsBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="2016\DLaB_Xrm_2016_Tests:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Xrm.2016.Tests\DLaB.Xrm.2016.Tests.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="DLaB_Common_Tests" Outputs="@(DLaB_Common_TestsBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Common.Tests\DLaB.Common.Tests.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="DLaB_Common_TestsBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="DLaB_Common_Tests:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Common.Tests\DLaB.Common.Tests.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="DLaB_Common_Tests:Rebuild" Outputs="@(DLaB_Common_TestsBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Common.Tests\DLaB.Common.Tests.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="DLaB_Common_TestsBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="DLaB_Common_Tests:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\DLaB.Common.Tests\DLaB.Common.Tests.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Example_Walkthrough" Outputs="@(Example_WalkthroughBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.Walkthrough\Example.Walkthrough.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Example_WalkthroughBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Example_Walkthrough:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.Walkthrough\Example.Walkthrough.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Example_Walkthrough:Rebuild" Outputs="@(Example_WalkthroughBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.Walkthrough\Example.Walkthrough.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Example_WalkthroughBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Example_Walkthrough:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Users\daryl.labar\Documents\GitHub\XrmUnitTest\Example.Walkthrough\Example.Walkthrough.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+</Project>

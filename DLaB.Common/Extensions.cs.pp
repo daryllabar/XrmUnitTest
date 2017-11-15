@@ -13,10 +13,14 @@ using System.Text;
 #if DLAB_PUBLIC
 using DLaB.Common.Exceptions;
 #else
-using $rootnamespace$.DLaB.Common.Exceptions;
+using Source.DLaB.Common.Exceptions;
 #endif
 
+#if DLAB_UNROOT_NAMESPACE
 namespace DLaB.Common
+#else
+namespace Source.DLaB.Common
+#endif
 {
     /// <summary>
     /// Extension Class

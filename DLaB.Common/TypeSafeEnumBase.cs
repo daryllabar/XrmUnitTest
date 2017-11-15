@@ -1,12 +1,9 @@
-﻿#if DLAB_PUBLIC
-using System;
+﻿using System;
 
+#if DLAB_UNROOT_NAMESPACE
 namespace DLaB.Common
 #else
-using System;
-using DLaB.Common;
-
-namespace $rootnamespace$.DLaB.Common
+namespace Source.DLaB.Common
 #endif
 {
     /// <summary>

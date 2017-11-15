@@ -1,9 +1,9 @@
 ﻿using System;
 
-#if DLAB_PUBLIC
+#if DLAB_UNROOT_NAMESPACE
 namespace DLaB.Common.Exceptions
 #else
-namespace $rootnamespace$.DLaB.Common.Exceptions
+namespace Source.DLaB.Common.Exceptions
 #endif
 {
     /// <summary>

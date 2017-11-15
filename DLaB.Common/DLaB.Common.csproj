@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;DLAB_PUBLIC</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;DLAB_PUBLIC DLAB_UNROOT_NAMESPACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>
@@ -28,7 +28,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;DLAB_PUBLIC</DefineConstants>
+    <DefineConstants>TRACE;DLAB_PUBLIC DLAB_UNROOT_NAMESPACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\DLaB.Common.xml</DocumentationFile>
@@ -90,14 +90,7 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == LocalNuget "C:\Users\dlabar\Google Drive\NuGet\LocalBuild\Publish - DLaB.Common.bat"
-
-REM COPY Files For Nuget Source Packaging
-COPY /Y "$(ProjectDir)Extensions.cs" "$(ProjectDir)Extensions.cs.pp"
-COPY /Y "$(ProjectDir)TypeSafeEnumBase.cs" "$(ProjectDir)TypeSafeEnumBase.cs.pp"
-COPY /Y "$(ProjectDir)Exceptions\DictionaryDuplicateKeyException.cs" "$(ProjectDir)Exceptions\DictionaryDuplicateKeyException.cs.pp"
-COPY /Y "$(ProjectDir)Exceptions\EnumCaseUndefinedException.cs" "$(ProjectDir)Exceptions\EnumCaseUndefinedException.cs.pp"
-COPY /Y "$(ProjectDir)Exceptions\TypeArgumentException.cs" "$(ProjectDir)Exceptions\TypeArgumentException.cs.pp"</PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == LocalNuget "C:\Users\dlabar\Google Drive\NuGet\LocalBuild\Publish - DLaB.Common.bat"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

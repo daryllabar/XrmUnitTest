@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>DLaB.Xrm.Sources</id>
+    <version>1.4.0-alpha03</version>
+    <authors>Daryl LaBar</authors>
+    <owners>Daryl LaBar</owners>
+    <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/daryllabar/XrmUnitTest</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/daryllabar/XrmUnitTest/master/DLaB_Dynamics_64x64.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Contains extensions for Xrm development.  </description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>Dynamics CRM Plugin XRM</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5">
+        <dependency id="DLaB.Common.Sources" version="1.1.0-alpha01" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Configuration" />
+      <frameworkAssembly assemblyName="System.Runtime.Serialization" />
+    </frameworkAssemblies> 
+  </metadata>
+  <files>
+    <file src="..\DLaB.Xrm.Base\*.pp" target="content\App_Packages\DLaB.Xrm.Sources.1.4.0-alpha03" />
+    <file src="..\DLaB.Xrm.Base\Comparers\*.pp" target="content\App_Packages\DLaB.Xrm.Sources.1.4.0-alpha03\Comparers" />
+    <file src="..\DLaB.Xrm.Base\Exceptions\*.pp" target="content\App_Packages\DLaB.Xrm.Sources.1.4.0-alpha03\Exceptions" />
+    <file src="..\DLaB.Xrm.Base\Extensions\*.pp" target="content\App_Packages\DLaB.Xrm.Sources.1.4.0-alpha03\Extensions" />
+    <file src="..\DLaB.Xrm.Base\Plugin\*.pp" target="content\App_Packages\DLaB.Xrm.Sources.1.4.0-alpha03\Plugin" />
+    <file src="..\DLaB.Xrm.Base\Sandbox\*.pp" target="content\App_Packages\DLaB.Xrm.Sources.1.4.0-alpha03\Sandbox" />
+    <file src="..\DLaB.Xrm.Base\Sandbox\Serialization\*.pp" target="content\App_Packages\DLaB.Xrm.Sources.1.4.0-alpha03\Serialization" />
+  </files>
+</package>  
