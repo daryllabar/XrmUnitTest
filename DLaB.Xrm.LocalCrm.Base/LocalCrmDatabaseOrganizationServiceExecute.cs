@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Xml.Serialization;
 using DLaB.Common;
-using DLaB.Xrm.LocalCrm.DLaB.Common.Exceptions;
+using DLaB.Common.Exceptions;
 using DLaB.Xrm.Client;
 using DLaB.Xrm.LocalCrm.Entities;
 using DLaB.Xrm.LocalCrm.FetchXml;

@@ -1,16 +1,12 @@
 using System;
 using System.Collections.Generic;
-#if DLAB_UNROOT_NAMESPACE
-using DLaB.Common;
-
-namespace DLaB.Xrm.Comparers
-#else
 using Source.DLaB.Common;
 
+#if DLAB_UNROOT_NAMESPACE || DLAB_XRM
+namespace DLaB.Xrm.Comparers
+#else
 namespace Source.DLaB.Xrm.Comparers
 #endif
-
-
 {
     /// <summary>
     /// Taken from http://stackoverflow.com/questions/716552/can-you-create-a-simple-equalitycomparert-using-a-lamba-expression,

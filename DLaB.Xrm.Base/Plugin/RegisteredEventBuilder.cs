@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-#if DLAB_UNROOT_NAMESPACE
+#if DLAB_UNROOT_NAMESPACE || DLAB_XRM
 namespace DLaB.Xrm.Plugin
 #else
 namespace Source.DLaB.Xrm.Plugin
@@ -52,7 +52,7 @@ namespace Source.DLaB.Xrm.Plugin
         protected PipelineStage Stage { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RegisteredEventBuilder"/> class.  With the only required attributes, what pipelines stage to execute, and for what message type(s)
+        /// Initializes a new instance of the <see cref="RegisteredEventBuilder"/> class.  With the only required attributes, what pipelines stage to execute
         /// </summary>
         /// <param name="stage">The stage.</param>
         /// <param name="messageTypes">The message types.</param>
@@ -60,7 +60,7 @@ namespace Source.DLaB.Xrm.Plugin
         {
             if (!messageTypes.Any())
             {
-                throw new ArgumentException("messageTypes must contain at least one value", nameof(messageTypes));
+                messageTypes = new [] { RegisteredEvent.Any};
             }
 
             EntityLogicalNames = new List<string>();

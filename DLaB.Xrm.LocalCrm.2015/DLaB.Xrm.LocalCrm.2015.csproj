@@ -43,6 +43,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DLaB.Common, Version=1.0.4.11, Culture=neutral, PublicKeyToken=046d6d5d1685e1b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\DLaB.Common.1.0.4.11\lib\net452\DLaB.Common.dll</HintPath>
+    </Reference>
     <Reference Include="DLaB.Xrm.2015, Version=1.3.0.2, Culture=neutral, PublicKeyToken=4da76fa437c5906e, processorArchitecture=MSIL">
       <HintPath>..\packages\DLaB.Xrm.2015.1.3.0.2\lib\net452\DLaB.Xrm.2015.dll</HintPath>
     </Reference>
@@ -80,21 +83,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.11\Config.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.11\ConfigKeyValueSplitInfo.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.11\ConfigKeyValuesSplitInfo.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.11\ConfigProvider.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.11\ConfigValuesSplitInfo.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.11\Exceptions\DictionaryDuplicateKeyException.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.11\Exceptions\EnumCaseUndefinedException.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.11\Exceptions\TypeArgumentException.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.11\Extensions.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.11\ProcessExecutor.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.11\ProcessExecutorInfo.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.11\TypeSafeEnumBase.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.11\VersionControl\ISourceControlProvider.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.11\VersionControl\SourceControl.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.11\VersionControl\VsTfsSourceControlProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

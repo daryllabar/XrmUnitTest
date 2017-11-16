@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-#if DLAB_UNROOT_NAMESPACE
+#if DLAB_UNROOT_NAMESPACE || DLAB_XRM
 namespace DLaB.Xrm.Comparers
 #else
 namespace Source.DLaB.Xrm.Comparers

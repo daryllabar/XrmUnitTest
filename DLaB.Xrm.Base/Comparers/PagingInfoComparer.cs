@@ -1,16 +1,12 @@
 using System.Collections.Generic;
 using Microsoft.Xrm.Sdk.Query;
-
-#if DLAB_UNROOT_NAMESPACE
-using DLaB.Common;
-
-namespace DLaB.Xrm.Comparers
-#else
 using Source.DLaB.Common;
 
+#if DLAB_UNROOT_NAMESPACE || DLAB_XRM
+namespace DLaB.Xrm.Comparers
+#else
 namespace Source.DLaB.Xrm.Comparers
 #endif
-
 {
     /// <summary>
     /// Compares Paging Infos

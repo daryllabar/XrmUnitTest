@@ -25,7 +25,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;DLAB_2016 DLAB_UNROOT_NAMESPACE</DefineConstants>
+    <DefineConstants>TRACE;DLAB_2016 DLAB_XRM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\DLaB.Xrm.2016.XML</DocumentationFile>
@@ -77,21 +77,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.14\Config.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.14\ConfigKeyValueSplitInfo.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.14\ConfigKeyValuesSplitInfo.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.14\ConfigProvider.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.14\ConfigValuesSplitInfo.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.14\Exceptions\DictionaryDuplicateKeyException.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.14\Exceptions\EnumCaseUndefinedException.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.14\Exceptions\TypeArgumentException.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.14\Extensions.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.14\ProcessExecutor.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.14\ProcessExecutorInfo.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.14\TypeSafeEnumBase.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.14\VersionControl\ISourceControlProvider.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.14\VersionControl\SourceControl.cs" />
-    <Compile Include="App_Packages\DLaB.Common.Sources.1.0.4.14\VersionControl\VsTfsSourceControlProvider.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Sources.1.1.0.1\Config.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Sources.1.1.0.1\ConfigKeyValueSplitInfo.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Sources.1.1.0.1\ConfigKeyValuesSplitInfo.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Sources.1.1.0.1\ConfigProvider.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Sources.1.1.0.1\ConfigValuesSplitInfo.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Sources.1.1.0.1\Exceptions\DictionaryDuplicateKeyException.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Sources.1.1.0.1\Exceptions\EnumCaseUndefinedException.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Sources.1.1.0.1\Exceptions\TypeArgumentException.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Sources.1.1.0.1\Extensions.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Sources.1.1.0.1\ProcessExecutor.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Sources.1.1.0.1\ProcessExecutorInfo.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Sources.1.1.0.1\TypeSafeEnumBase.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Sources.1.1.0.1\VersionControl\ISourceControlProvider.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Sources.1.1.0.1\VersionControl\SourceControl.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Sources.1.1.0.1\VersionControl\VsTfsSourceControlProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
