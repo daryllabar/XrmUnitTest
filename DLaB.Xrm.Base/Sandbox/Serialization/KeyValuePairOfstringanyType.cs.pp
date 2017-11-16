@@ -4,7 +4,7 @@ using Microsoft.Xrm.Sdk;
 
 // ReSharper disable InconsistentNaming
 
-#if DLAB_UNROOT_NAMESPACE
+#if DLAB_UNROOT_NAMESPACE || DLAB_XRM
 namespace DLaB.Xrm.Sandbox.Serialization
 #else
 namespace Source.DLaB.Xrm.Sandbox.Serialization

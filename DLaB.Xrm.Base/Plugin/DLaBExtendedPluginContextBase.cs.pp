@@ -1,12 +1,10 @@
 using System;
 using Microsoft.Xrm.Sdk;
-#if DLAB_UNROOT_NAMESPACE
-using DLaB.Common;
-
-namespace DLaB.Xrm.Plugin
-#else
 using Source.DLaB.Common;
 
+#if DLAB_UNROOT_NAMESPACE || DLAB_XRM
+namespace DLaB.Xrm.Plugin
+#else
 namespace Source.DLaB.Xrm.Plugin
 #endif
 {
@@ -355,6 +353,10 @@ namespace Source.DLaB.Xrm.Plugin
         private void InitializePluginProperties(IPluginExecutionContext context, IRegisteredEventsPluginHandler plugin)
         {
             Event = context.GetEvent(plugin.RegisteredEvents);
+            if (Event.Message == RegisteredEvent.Any)
+            {
+                Event = new RegisteredEvent(Event.Stage, context.GetMessageType(), Event.Execute);
+            }
             IsolationMode = (IsolationMode)context.IsolationMode;
             PluginTypeName = plugin.GetType().FullName;
         }

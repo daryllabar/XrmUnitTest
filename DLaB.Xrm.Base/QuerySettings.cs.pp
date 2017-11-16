@@ -2,13 +2,11 @@ using System;
 using Microsoft.Xrm.Sdk.Query;
 using Microsoft.Xrm.Sdk;
 using System.Linq.Expressions;
-#if DLAB_UNROOT_NAMESPACE
-using DLaB.Common.Exceptions;
-
-namespace DLaB.Xrm
-#else
 using Source.DLaB.Common.Exceptions;
 
+#if DLAB_UNROOT_NAMESPACE || DLAB_XRM
+namespace DLaB.Xrm
+#else
 namespace Source.DLaB.Xrm
 #endif
 {

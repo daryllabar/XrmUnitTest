@@ -60,7 +60,7 @@ namespace Source.DLaB.Xrm.Plugin
         {
             if (!messageTypes.Any())
             {
-                messageTypes = new [] { RegisteredEvent.Any};
+                messageTypes = new [] { RegisteredEvent.Any };
             }
 
             EntityLogicalNames = new List<string>();

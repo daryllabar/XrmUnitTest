@@ -25,7 +25,7 @@ using System.Collections;
 // ReSharper disable FieldCanBeMadeReadOnly.Local
 // ReSharper disable RedundantOverflowCheckingContext
 
-#if DLAB_UNROOT_NAMESPACE
+#if DLAB_UNROOT_NAMESPACE || DLAB_XRM
 namespace DLaB.Xrm.CrmSdk
 #else
 namespace Source.DLaB.Xrm.CrmSdk

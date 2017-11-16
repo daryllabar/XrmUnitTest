@@ -1,11 +1,9 @@
 using System;
-#if DLAB_UNROOT_NAMESPACE
-using DLaB.Common;
-
-namespace DLaB.Xrm.Sandbox
-#else
 using Source.DLaB.Common;
 
+#if DLAB_UNROOT_NAMESPACE || DLAB_XRM
+namespace DLaB.Xrm.Sandbox
+#else
 namespace Source.DLaB.Xrm.Sandbox
 #endif
 {

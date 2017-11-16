@@ -3,7 +3,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using Microsoft.Xrm.Sdk;
 
-#if DLAB_UNROOT_NAMESPACE
+#if DLAB_UNROOT_NAMESPACE || DLAB_XRM
 namespace DLaB.Xrm.Sandbox.Serialization
 #else
 namespace Source.DLaB.Xrm.Sandbox.Serialization

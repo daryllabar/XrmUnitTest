@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xrm.Sdk;
 
-#if DLAB_UNROOT_NAMESPACE
+#if DLAB_UNROOT_NAMESPACE || DLAB_XRM
 namespace DLaB.Xrm.Exceptions
 #else
 namespace Source.DLaB.Xrm.Exceptions
@@ -22,11 +22,7 @@ namespace Source.DLaB.Xrm.Exceptions
     ///     }
     /// </summary>
     [Serializable]
-#if DLAB_UNROOT_NAMESPACE
-    public class EnumCaseUndefinedException<TEnum> : DLaB.Common.Exceptions.EnumCaseUndefinedException<TEnum> where TEnum : struct
-#else
-    public class EnumCaseUndefinedException<TEnum> : Source.DLaB.Common.Exceptions.EnumCaseUndefinedException<TEnum> where TEnum : struct
-#endif
+   public class EnumCaseUndefinedException<TEnum> : Source.DLaB.Common.Exceptions.EnumCaseUndefinedException<TEnum> where TEnum : struct
     {
         #region Constructors
 

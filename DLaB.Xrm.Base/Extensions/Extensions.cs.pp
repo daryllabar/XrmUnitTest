@@ -15,13 +15,12 @@ using System.Linq.Expressions;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
-#if DLAB_UNROOT_NAMESPACE
-using DLaB.Common;
+using Source.DLaB.Common;
+#if DLAB_UNROOT_NAMESPACE || DLAB_XRM
 using DLaB.Xrm.Exceptions;
 
 namespace DLaB.Xrm
 #else
-using Source.DLaB.Common;
 using Source.DLaB.Xrm.Exceptions;
 
 namespace Source.DLaB.Xrm

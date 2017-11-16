@@ -1,10 +1,8 @@
-#if DLAB_UNROOT_NAMESPACE
-using DLaB.Common;
-
-namespace DLaB.Xrm.Plugin
-#else
 using Source.DLaB.Common;
 
+#if DLAB_UNROOT_NAMESPACE || DLAB_XRM
+namespace DLaB.Xrm.Plugin
+#else
 namespace Source.DLaB.Xrm.Plugin
 #endif
 {
