@@ -1,6 +1,6 @@
 ﻿using System;
 
-#if DLAB_UNROOT_NAMESPACE
+#if DLAB_UNROOT_COMMON_NAMESPACE
 namespace DLaB.Common.Exceptions
 #else
 namespace Source.DLaB.Common.Exceptions

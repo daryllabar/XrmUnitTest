@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-#if DLAB_UNROOT_NAMESPACE
+#if DLAB_UNROOT_COMMON_NAMESPACE
 namespace DLaB.Common.VersionControl
 #else
 namespace Source.DLaB.Common.VersionControl

@@ -1,4 +1,4 @@
-﻿#if DLAB_UNROOT_NAMESPACE
+﻿#if DLAB_UNROOT_COMMON_NAMESPACE
 namespace DLaB.Common
 #else
 namespace Source.DLaB.Common

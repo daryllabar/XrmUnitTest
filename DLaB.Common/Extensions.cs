@@ -10,15 +10,15 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization.Json;
 using System.Text;
-#if DLAB_PUBLIC
-using DLaB.Common.Exceptions;
-#else
-using Source.DLaB.Common.Exceptions;
-#endif
 
-#if DLAB_UNROOT_NAMESPACE
+#if DLAB_UNROOT_COMMON_NAMESPACE
+using DLaB.Common.Exceptions;
+
 namespace DLaB.Common
 #else
+
+using Source.DLaB.Common.Exceptions;
+
 namespace Source.DLaB.Common
 #endif
 {

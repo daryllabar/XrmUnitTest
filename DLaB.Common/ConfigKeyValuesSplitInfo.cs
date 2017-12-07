@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-#if DLAB_UNROOT_NAMESPACE
+#if DLAB_UNROOT_COMMON_NAMESPACE
 namespace DLaB.Common
 #else
 namespace Source.DLaB.Common

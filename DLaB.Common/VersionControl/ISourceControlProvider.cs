@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-#if DLAB_UNROOT_NAMESPACE
+#if DLAB_UNROOT_COMMON_NAMESPACE
 namespace DLaB.Common.VersionControl
 #else
 namespace Source.DLaB.Common.VersionControl

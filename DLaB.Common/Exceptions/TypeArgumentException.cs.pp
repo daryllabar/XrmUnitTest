@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-#if DLAB_UNROOT_NAMESPACE
+#if DLAB_UNROOT_COMMON_NAMESPACE
 namespace DLaB.Common.Exceptions
 #else
 namespace Source.DLaB.Common.Exceptions
