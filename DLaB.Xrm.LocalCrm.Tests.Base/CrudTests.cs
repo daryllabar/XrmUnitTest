@@ -111,6 +111,39 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
+        public void LocalCrmTests_Crud_CustomerId()
+        {
+            var contact = new Id<Contact>(Guid.NewGuid());
+            var account = new Id<Account>(Guid.NewGuid());
+            var opp = new Opportunity { Id = Guid.NewGuid(), CustomerId = contact};
+            var service = GetService();
+
+            service.Create(contact);
+            service.Create(account);
+            service.Create(opp);
+
+            Assert.AreEqual(contact.EntityId, service.GetFirstOrDefault<Opportunity>().ParentContactId.Id, "Contact should have been set to parent contact.");
+
+            opp.CustomerId = account;
+            service.Update(opp);
+
+            opp = service.GetFirstOrDefault<Opportunity>();
+            Assert.AreEqual(account.EntityId, opp.ParentAccountId.Id, "Account should have been set to parent account.");
+            Assert.AreEqual(account.EntityId, opp.CustomerId.Id, "Account should have been set to customer.");
+
+            opp.Attributes.Remove(Opportunity.Fields.CustomerId);
+            opp.ParentAccountId = null;
+            service.Update(opp);
+
+            Assert.AreEqual(contact.EntityId, service.GetFirstOrDefault<Opportunity>().CustomerId.Id, "Contact should have been set to parent account.");
+
+            opp.ParentContactId = null;
+            service.Update(opp);
+
+            Assert.IsNull(service.GetFirstOrDefault<Opportunity>().CustomerId, "Removing the Parent Contact Id should have set Customer to null.");
+        }
+
+        [TestMethod]
         public void LocalCrmTests_Crud_ColumnSetLookups()
         {
             var service = GetService();

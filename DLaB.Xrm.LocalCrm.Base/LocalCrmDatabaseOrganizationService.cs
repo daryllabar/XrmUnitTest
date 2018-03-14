@@ -395,7 +395,7 @@ namespace DLaB.Xrm.LocalCrm
             // TODO: Need to add logic to see if an update to the Full Name is being Performed
             ConditionallyAddAutoPopulatedValue(entity, properties, "fullname", name, !string.IsNullOrWhiteSpace(name));
             
-            AutoPopulateOpportunityFields(entity, properties);
+            AutoPopulateOpportunityFields(entity, properties, isCreate);
             AutoPopulateContactFields(entity, properties);
 
             if (isCreate)
@@ -456,7 +456,8 @@ namespace DLaB.Xrm.LocalCrm
         /// <typeparam name="T"></typeparam>
         /// <param name="entity">The entity.</param>
         /// <param name="properties">The properties.</param>
-        private void AutoPopulateOpportunityFields<T>(T entity, PropertyInfo[] properties) where T : Entity
+        /// <param name="isCreate">If called from Create Message</param>
+        private void AutoPopulateOpportunityFields<T>(T entity, PropertyInfo[] properties, bool isCreate) where T : Entity
         {
             if (entity.LogicalName != "opportunity")
             {
@@ -464,17 +465,62 @@ namespace DLaB.Xrm.LocalCrm
             }
 
             var customer = entity.GetAttributeValue<EntityReference>("customerid");
-            if (customer == null)
+            var opp = isCreate 
+                ? new Entity()
+                : Retrieve("opportunity", entity.Id, new ColumnSet(true));
+
+            var parentName = "parent" + customer?.LogicalName + "id";
+            // Customer was set, set correct parent field to customer
+            if (customer != null 
+                && !entity.Contains(parentName))
             {
-                ConditionallyAddAutoPopulatedValue<EntityReference>(entity, properties, "parentcontactid", null, entity.GetAttributeValue<EntityReference>("parentcontactid") != null);
-                ConditionallyAddAutoPopulatedValue<EntityReference>(entity, properties, "parentaccountid", null, entity.GetAttributeValue<EntityReference>("parentaccountid") != null);
-                return;
+                entity[parentName] = customer;
+            }
+            
+            var hadAccount = opp.GetAttributeValue<EntityReference>("parentaccountid") != null;
+            var hadContact = opp.GetAttributeValue<EntityReference>("parentcontactid") != null;
+
+            // Customer was cleared, set correct parent field to null;
+            if (entity.ContainsNullValue("customerid"))
+            {
+                if (hadAccount)
+                {
+                    entity["parentaccountid"] = null;
+                }
+                else if (hadContact)
+                {
+                    entity["parentcontactid"] = null;
+                }
             }
 
-            var field = "parent" + entity.GetAttributeValue<EntityReference>("customerid").LogicalName + "id";
-            var siblingField = field == "parentcontactid" ? "parentaccountid" : "parentcontactid"; // Sibling is opposite
-            ConditionallyAddAutoPopulatedValue(entity, properties, field, customer, !customer.Equals(entity.GetAttributeValue<EntityReference>(field)));
-            ConditionallyAddAutoPopulatedValue<EntityReference>(entity, properties, siblingField, null, entity.GetAttributeValue<EntityReference>(siblingField) != null);
+            var hasAccount = entity.GetAttributeValue<EntityReference>("parentaccountid") != null;
+            var hasContact = entity.GetAttributeValue<EntityReference>("parentcontactid") != null;
+            var willHaveAccount = hasAccount
+                                  || hadAccount
+                                  && !entity.ContainsNullValue("parentaccountid");
+            var willHaveContact = hasContact
+                                  || hadContact
+                                  && !entity.ContainsNullValue("parentcontactid");
+
+            if (hasAccount)
+            {
+                entity["customerid"] = entity["parentaccountid"];
+            }
+            else if (hasContact
+                && !willHaveAccount)
+            {
+                entity["customerid"] = entity["parentcontactid"];
+            }
+
+            if (!willHaveAccount && willHaveContact)
+            {
+                entity["customerid"] = entity.GetAttributeValue<EntityReference>("parentcontactid")
+                                       ?? opp.GetAttributeValue<EntityReference>("parentcontactid");
+            }
+            else if (!willHaveAccount && !willHaveContact)
+            {
+                entity["customerid"] = null;
+            }
         }
 
         /// <summary>

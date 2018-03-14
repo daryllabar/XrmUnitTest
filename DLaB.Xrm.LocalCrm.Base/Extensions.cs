@@ -72,6 +72,18 @@ namespace DLaB.Xrm.LocalCrm
 
         #endregion DateTime
 
+        #region Entity
+
+        /// <summary>
+        /// Checks if the entity contains the given attribute and it is null.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="attName"></param>
+        /// <returns></returns>
+        public static bool ContainsNullValue(this Entity entity, string attName) { return entity.Contains(attName) && entity[attName] == null; }
+
+        #endregion Entity
+
         #region IEnumerable<FetchAttributeInfo>
 
         /// <summary>
