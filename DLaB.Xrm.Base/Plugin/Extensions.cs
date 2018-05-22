@@ -192,12 +192,10 @@ namespace Source.DLaB.Xrm.Plugin
         public static void AssertEntityImageAttributesExist(this IPluginExecutionContext context, string imageName, params string[] attributeNames)
         {
             AssertEntityImageRegistered(context, imageName);
-            Entity preImage;
-            Entity postImage;
-            var imageCollection = context.PreEntityImages.TryGetValue(imageName, out preImage) ? 
-                InvalidPluginStepRegistrationException.ImageCollection.Pre : 
+            var imageCollection = context.PreEntityImages.TryGetValue(imageName, out Entity preImage) ?
+                InvalidPluginStepRegistrationException.ImageCollection.Pre :
                 InvalidPluginStepRegistrationException.ImageCollection.Post;
-            context.PostEntityImages.TryGetValue(imageName, out postImage);
+            context.PostEntityImages.TryGetValue(imageName, out Entity postImage);
 
             var image = preImage ?? postImage;
             var missingAttributes = attributeNames.Where(attribute => !image.Contains(attribute)).ToList();
@@ -710,8 +708,7 @@ namespace Source.DLaB.Xrm.Plugin
         public static void PreventPluginHandlerExecution(this IPluginExecutionContext context, string handlerTypeFullName, string messageName = null, string logicalName = null, PipelineStage? stage = null)
         {
             var preventionName = GetPreventPluginHandlerSharedVariableName(handlerTypeFullName);
-            object value;
-            if (!context.SharedVariables.TryGetValue(preventionName, out value))
+            if (!context.SharedVariables.TryGetValue(preventionName, out object value))
             {
                 value = new Entity();
                 context.SharedVariables.Add(preventionName, value);
@@ -737,7 +734,7 @@ namespace Source.DLaB.Xrm.Plugin
         /// <param name="context">The context.</param>
         /// <param name="messageType">Type of the message.</param>
         public static void PreventPluginHandlerExecution<T>(this IPluginExecutionContext context, MessageType messageType)
-            where T : IRegisteredEventsPluginHandler
+            where T : IRegisteredEventsPlugin
         {
             context.PreventPluginHandlerExecution<T>(messageType.Name);
         }
@@ -749,7 +746,7 @@ namespace Source.DLaB.Xrm.Plugin
         /// <param name="context">The context.</param>
         /// <param name="event">Type of the event.</param>
         public static void PreventPluginHandlerExecution<T>(this IPluginExecutionContext context, RegisteredEvent @event)
-            where T : IRegisteredEventsPluginHandler
+            where T : IRegisteredEventsPlugin
         {
             context.PreventPluginHandlerExecution(typeof(T).FullName, @event);
         }
@@ -759,7 +756,7 @@ namespace Source.DLaB.Xrm.Plugin
         /// </summary>
         /// <typeparam name="T">The type of the plugin.</typeparam>
         public static void PreventPluginHandlerExecution<T>(this IPluginExecutionContext context, string messageName = null, string logicalName = null, PipelineStage? stage = null)
-            where T : IRegisteredEventsPluginHandler
+            where T : IRegisteredEventsPlugin
         {
             context.PreventPluginHandlerExecution(typeof(T).FullName, messageName, logicalName, stage);
         }
@@ -788,7 +785,7 @@ namespace Source.DLaB.Xrm.Plugin
         /// <typeparam name="T">The type of the plugin.</typeparam>
         /// <returns></returns>
         public static bool HasPluginHandlerExecutionBeenPrevented<T>(this IPluginExecutionContext context, RegisteredEvent @event)
-            where T : IRegisteredEventsPluginHandler
+            where T : IRegisteredEventsPlugin
         {
             var preventionName = GetPreventPluginHandlerSharedVariableName(typeof(T).FullName);
             return context.HasPluginHandlerExecutionBeenPreventedInternal(@event, preventionName);

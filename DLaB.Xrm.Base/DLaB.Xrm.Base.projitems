@@ -39,15 +39,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)IIOrganizationServiceWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LateBoundActivePropertyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LateBoundQuerySettings.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Plugin\DLaBPluginHandlerBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\ExtendedContextCreator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\DLaBPluginBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Plugin\GenericPluginHandlerBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Plugin\DLaBGenericPluginBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\IExtendedContextCreator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\IExtendedPluginContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\IRegisteredEventsPlugin.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Plugin\IRegisteredEventsPluginHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\IsolationMode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\DLaBExtendedPluginContextBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\MessageType.cs" />

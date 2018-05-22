@@ -14,11 +14,16 @@ namespace Source.DLaB.Xrm.Plugin
     public interface IRegisteredEventsPlugin : IPlugin
     {
         /// <summary>
-        /// Gets the registered events.
+        /// Gets the registered events that the plug-in should fire for, and what the action should be.
         /// </summary>
         /// <value>
         /// The registered events.
         /// </value>
         IEnumerable<RegisteredEvent> RegisteredEvents { get; }
+
+        /// <summary>
+        /// Gets all registered events for the current plugin.
+        /// </summary>
+        IEnumerable<RegisteredEvent> GetRegisterEvents();
     }
 }

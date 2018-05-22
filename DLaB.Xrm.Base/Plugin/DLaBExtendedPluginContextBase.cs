@@ -313,7 +313,7 @@ namespace Source.DLaB.Xrm.Plugin
         /// or
         /// plugin
         /// </exception>
-        public DLaBExtendedPluginContextBase(IServiceProvider serviceProvider, IRegisteredEventsPluginHandler plugin)
+        public DLaBExtendedPluginContextBase(IServiceProvider serviceProvider, IRegisteredEventsPlugin plugin)
         {
             if (serviceProvider == null)
             {
@@ -350,7 +350,7 @@ namespace Source.DLaB.Xrm.Plugin
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="plugin">The plugin.</param>
-        private void InitializePluginProperties(IPluginExecutionContext context, IRegisteredEventsPluginHandler plugin)
+        private void InitializePluginProperties(IPluginExecutionContext context, IRegisteredEventsPlugin plugin)
         {
             Event = context.GetEvent(plugin.RegisteredEvents);
             if (Event.Message == RegisteredEvent.Any)

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Microsoft.Xrm.Sdk;
 
 #if DLAB_UNROOT_NAMESPACE || DLAB_XRM
 namespace DLaB.Xrm.Plugin
@@ -9,32 +8,34 @@ namespace Source.DLaB.Xrm.Plugin
 #endif
 	
 {
+    /// <inheritdoc />
     /// <summary>
     /// Plugin Handler Base.  Allows for Registered Events, preventing infinite loops, and auto logging
     /// </summary>
-    // ReSharper disable once InconsistentNaming
-    public abstract class GenericPluginHandlerBase<T> : IRegisteredEventsPluginHandler where T: IExtendedPluginContext
+    public abstract class DLaBGenericPluginBase<T> : IRegisteredEventsPlugin where T: IExtendedPluginContext
     {
         #region Properties
 
-        /// <summary>
-        /// Gets the List of RegisteredEvents that the plug-in should fire for
-        /// </summary>
-        public List<RegisteredEvent> RegisteredEvents { get; }
+        private readonly object _handlerLock = new object();
+        private volatile bool _isIntialized;
+
+        /// <inheritdoc />
+        public IEnumerable<RegisteredEvent> RegisteredEvents { get; private set; }
+
         /// <summary>
         /// Gets or sets the secure configuration.
         /// </summary>
         /// <value>
         /// The secure configuration.
         /// </value>
-        protected string SecureConfig { get; set; }
+        public string SecureConfig { get; }
         /// <summary>
         /// Gets or sets the unsecure configuration.
         /// </summary>
         /// <value>
         /// The unsecure configuration.
         /// </value>
-        protected string UnsecureConfig { get; set; }
+        public string UnsecureConfig { get; }
 
         #endregion Properties
 
@@ -43,25 +44,17 @@ namespace Source.DLaB.Xrm.Plugin
         /// <summary>
         /// Initializes a new instance of the GenericPluginHandlerBase class.
         /// </summary>
-        protected GenericPluginHandlerBase()
+        /// <param name="unsecureConfig"></param>
+        /// <param name="secureConfig"></param>
+        protected DLaBGenericPluginBase(string unsecureConfig, string secureConfig)
         {
-            RegisteredEvents = new List<RegisteredEvent>();
+            SecureConfig = secureConfig;
+            UnsecureConfig = unsecureConfig;
         }
 
         #endregion Constructors
 
-        #region Abstract Methods / Properties
-
-        /// <summary>
-        /// The default method to be executed by the plugin.  The Registered Event could specify a different method.
-        /// </summary>
-        /// <param name="context">The plugin context.</param>
-        protected abstract void ExecuteInternal(T context);
-
-        /// <summary>
-        /// Adds all registered events to the RegisteredEvents Property;
-        /// </summary>
-        public abstract void RegisterEvents();
+        #region Abstract Methods
 
         /// <summary>
         /// Creates the local plugin context.
@@ -70,13 +63,52 @@ namespace Source.DLaB.Xrm.Plugin
         /// <returns></returns>
         protected abstract T CreatePluginContext(IServiceProvider serviceProvider);
 
-        #endregion Abstract Methods / Properties
+        /// <summary>
+        /// The default method to be executed by the plugin.  The Registered Event could specify a different method.
+        /// </summary>
+        /// <param name="context">The plugin context.</param>
+        protected abstract void ExecuteInternal(T context);
+
+        /// <inheritdoc />
+        public abstract IEnumerable<RegisteredEvent> GetRegisterEvents();
+
+        #endregion Abstract Methods
+
+        #region Initialize
+
+        private void Initialize()
+        {
+            if (_isIntialized) { return; }
+
+            lock (_handlerLock)
+            {
+                if (_isIntialized) { return; }
+
+                PreInitialize();
+                RegisteredEvents = GetRegisterEvents();
+                _isIntialized = true;
+                PostInitialize();
+            }
+        }
+
+        /// <summary>
+        /// Called once directly before the initialization of the plugin instance, before the first PreExecute is called
+        /// </summary>
+        protected virtual void PreInitialize() { }
+
+        /// <summary>
+        /// Called once directly after the initialization of the plugin instance, before the first PreExecute is called
+        /// </summary>
+        protected virtual void PostInitialize() { }
+
+
+        #endregion Initialize
 
         /// <summary>
         /// Executes the plug-in.
         /// </summary>
         /// <param name="serviceProvider">The service provider.</param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="T:System.ArgumentNullException"></exception>
         /// <remarks>
         /// For improved performance, Microsoft Dynamics CRM caches plug-in instances.
         /// The plug-in's Execute method should be written to be stateless as the constructor
@@ -86,6 +118,10 @@ namespace Source.DLaB.Xrm.Plugin
         /// </remarks>
         public void Execute(IServiceProvider serviceProvider)
         {
+            if (!_isIntialized)
+            {
+                Initialize();
+            }
             PreExecute(serviceProvider);
 
             if (serviceProvider == null)
@@ -104,6 +140,7 @@ namespace Source.DLaB.Xrm.Plugin
                     context.TraceFormat("No Registered Event Found for Event: {0}, Entity: {1}, and Stage: {2}!", context.MessageName, context.PrimaryEntityName, context.Stage);
                     return;
                 }
+
                 if (PreventRecursiveCall(context))
                 {
                     context.Trace("Duplicate Recursive Call Prevented!");
@@ -113,6 +150,12 @@ namespace Source.DLaB.Xrm.Plugin
                 if (context.HasPluginHandlerExecutionBeenPrevented())
                 {
                     context.Trace("Context has Specified Call to be Prevented!");
+                    return;
+                }
+
+                if (SkipExecution(context))
+                {
+                    context.Trace("Execution Has Been Skipped!");
                     return;
                 }
 
@@ -142,21 +185,17 @@ namespace Source.DLaB.Xrm.Plugin
         protected virtual void PreExecute(IServiceProvider serviceProvider) { }
 
         /// <summary>
-        /// Methods that gets called in the finally block of the Execute
+        /// Method that gets called in the finally block of the Execute
         /// </summary>
         /// <param name="context">The context.</param>
         protected virtual void PostExecute(IExtendedPluginContext context) { }
 
         /// <summary>
-        /// Sets the configuration values.
+        /// Method that gets called directly before Execute(context).  Returning true will skip the Execute(context) from getting called.  
         /// </summary>
-        /// <param name="unsecureConfig">The unsecure configuration.</param>
-        /// <param name="secureConfig">The secure configuration.</param>
-        public void SetConfigValues(string unsecureConfig = null, string secureConfig = null)
-        {
-            UnsecureConfig = unsecureConfig;
-            SecureConfig = secureConfig;
-        }
+        /// <param name="context"></param>
+        /// <returns></returns>
+        protected virtual bool SkipExecution(T context) { return false; }
 
         /// <summary>
         /// Traces the Execution of the registered event of the context.
