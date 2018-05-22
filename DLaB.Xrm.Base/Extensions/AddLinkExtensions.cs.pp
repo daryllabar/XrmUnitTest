@@ -237,7 +237,7 @@ namespace Source.DLaB.Xrm
             /// <returns></returns>
             public static LinkEntity AddLink<T>(this LinkEntity link, string linkFromAttributeName, string linkToAttributeName, JoinOperator joinType, Expression<Func<T, object>> anonymousTypeInitializer) where T : Entity
             {
-                var childLink = link.AddLink(linkFromAttributeName, linkToAttributeName, joinType);
+                var childLink = link.AddLink<T>(linkFromAttributeName, linkToAttributeName, joinType);
                 childLink.Columns.AddColumns(anonymousTypeInitializer);
                 return childLink;
             }

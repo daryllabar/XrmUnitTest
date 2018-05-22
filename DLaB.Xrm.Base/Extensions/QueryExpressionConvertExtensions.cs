@@ -100,8 +100,7 @@ namespace Source.DLaB.Xrm
 
             if (typeof(String).IsAssignableFrom(type))
             {
-                DateTime localTime;
-                if (DateTime.TryParse(value as String, out localTime))
+                if (DateTime.TryParse(value as String, out DateTime localTime))
                 {
                     value = localTime.ToUniversalTime().ToString(CultureInfo.InvariantCulture);
                 }

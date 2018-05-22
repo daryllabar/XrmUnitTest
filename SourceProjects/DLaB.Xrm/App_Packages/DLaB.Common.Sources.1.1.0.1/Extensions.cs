@@ -145,8 +145,7 @@ namespace Source.DLaB.Common
             var dictionary = new ConcurrentDictionary<TKey, List<TElement>>();
             foreach (var local in source)
             {
-                List<TElement> elements;
-                if (!dictionary.TryGetValue(keySelector(local), out elements))
+                if (!dictionary.TryGetValue(keySelector(local), out List<TElement> elements))
                 {
                     elements = new List<TElement>();
                     dictionary.TryAdd(keySelector(local), elements);
@@ -172,8 +171,7 @@ namespace Source.DLaB.Common
             this ConcurrentDictionary<TKey, TElement> source, object lockObj, TKey key,
                     Func<TKey, TElement> valueFactory)
         {
-            TElement value;
-            if (!source.TryGetValue(key, out value))
+            if (!source.TryGetValue(key, out TElement value))
             {
                 lock (lockObj)
                 {
@@ -302,8 +300,7 @@ namespace Source.DLaB.Common
             var dictionary = new Dictionary<TKey, List<TElement>>();
             foreach (TSource local in source)
             {
-                List<TElement> elements;
-                if (!dictionary.TryGetValue(keySelector(local), out elements))
+                if (!dictionary.TryGetValue(keySelector(local), out List<TElement> elements))
                 {
                     elements = new List<TElement>();
                     dictionary.Add(keySelector(local), elements);
@@ -338,8 +335,7 @@ namespace Source.DLaB.Common
         /// <returns></returns>
         public static TValue GetValue<TKey, TValue>(this Dictionary<TKey, TValue> source, TKey key, TValue defaultValue)
         {
-            TValue value;
-            return source.TryGetValue(key, out value) ? value : defaultValue;
+            return source.TryGetValue(key, out TValue value) ? value : defaultValue;
         }
 
 #endregion Dictionary<,>
@@ -356,8 +352,7 @@ namespace Source.DLaB.Common
         /// <param name="value">Value to add to the list</param>
         public static void AddOrAppend<TKey, TValue>(this Dictionary<TKey, HashSet<TValue>> dict, TKey key, TValue value)
         {
-            HashSet<TValue> values;
-            if (dict.TryGetValue(key, out values))
+            if (dict.TryGetValue(key, out HashSet<TValue> values))
             {
                 values.Add(value);
             }
@@ -382,8 +377,7 @@ namespace Source.DLaB.Common
         /// <param name="value">Values to add to the list</param>
         public static void AddOrAppend<TKey, TValue>(this Dictionary<TKey, HashSet<TValue>> dict, TKey key, params TValue[] value)
         {
-            HashSet<TValue> values;
-            if (dict.TryGetValue(key, out values))
+            if (dict.TryGetValue(key, out HashSet<TValue> values))
             {
                 value.ToList().ForEach(g => values.Add(g));
             }
@@ -409,14 +403,13 @@ namespace Source.DLaB.Common
         /// <param name="value">Value to add to the list</param>
         public static void AddOrAppend<TKey, TValue>(this Dictionary<TKey, List<TValue>> dict, TKey key, TValue value)
         {
-            List<TValue> values;
-            if (dict.TryGetValue(key, out values))
+            if (dict.TryGetValue(key, out List<TValue> values))
             {
                 values.Add(value);
             }
             else
             {
-                values = new List<TValue> {value};
+                values = new List<TValue> { value };
                 dict.Add(key, values);
             }
         }
@@ -432,8 +425,7 @@ namespace Source.DLaB.Common
         /// <param name="value">Values to add to the list</param>
         public static void AddOrAppend<TKey, TValue>(this Dictionary<TKey, List<TValue>> dict, TKey key, params TValue[] value)
         {
-            List<TValue> values;
-            if (dict.TryGetValue(key, out values))
+            if (dict.TryGetValue(key, out List<TValue> values))
             {
                 values.AddRange(value);
             }
@@ -589,8 +581,7 @@ namespace Source.DLaB.Common
                 catch (Exception ex)
                 {
                     var key = ex.GetType().FullName;
-                    Tuple<Exception, int> exceptionWithCount;
-                    if (errors.TryGetValue(key, out exceptionWithCount))
+                    if (errors.TryGetValue(key, out Tuple<Exception, int> exceptionWithCount))
                     {
                         errors[key] = new Tuple<Exception, int>(exceptionWithCount.Item1, exceptionWithCount.Item2 + 1);
                     }
@@ -1062,9 +1053,8 @@ namespace Source.DLaB.Common
         /// <returns></returns>
         public static int? ParseInt(this string stringInt)
         {
-            int i;
             int? value = null;
-            if (stringInt != null && int.TryParse(stringInt, out i))
+            if (stringInt != null && int.TryParse(stringInt, out int i))
             {
                 value = i;
             }
@@ -1099,8 +1089,7 @@ namespace Source.DLaB.Common
         /// <returns></returns>
         public static string SubstringByString(this string value, string startString, string endString, StringComparison comparison = StringComparison.Ordinal)
         {
-            int endIndex;
-            return value.SubstringByString(startString, endString, out endIndex);
+            return value.SubstringByString(startString, endString, out int endIndex);
         }
 
         /// <summary>
@@ -1140,8 +1129,7 @@ namespace Source.DLaB.Common
         /// <returns></returns>
         public static string SubstringByString(this string value, int startIndex, string endString, StringComparison comparison = StringComparison.Ordinal)
         {
-            int endIndex;
-            return value.SubstringByString(startIndex, endString, out endIndex, comparison);
+            return value.SubstringByString(startIndex, endString, out int endIndex, comparison);
         }
 
         /// <summary>
@@ -1191,8 +1179,7 @@ namespace Source.DLaB.Common
 
             while (true)
             {
-                int index;
-                var sub = value.SubstringByString(startString, endString, out index, comparison);
+                var sub = value.SubstringByString(startString, endString, out int index, comparison);
                 if (index < 0)
                 {
                     break;

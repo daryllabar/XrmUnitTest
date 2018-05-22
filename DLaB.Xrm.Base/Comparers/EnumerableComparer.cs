@@ -63,11 +63,9 @@ namespace Source.DLaB.Xrm.Comparers
 
         private static bool HaveMismatchedElement(IEnumerable<T> first, IEnumerable<T> second, IEqualityComparer<T> comparer = null)
         {
-            int firstCount;
-            int secondCount;
 
-            var firstElementCounts = GetElementCounts(first, out firstCount, comparer);
-            var secondElementCounts = GetElementCounts(second, out secondCount, comparer);
+            var firstElementCounts = GetElementCounts(first, out int firstCount, comparer);
+            var secondElementCounts = GetElementCounts(second, out int secondCount, comparer);
 
             return firstCount != secondCount 
                    || 
@@ -90,8 +88,7 @@ namespace Source.DLaB.Xrm.Comparers
                 }
                 else
                 {
-                    int num;
-                    dictionary.TryGetValue(element, out num);
+                    dictionary.TryGetValue(element, out int num);
                     num++;
                     dictionary[element] = num;
                 }

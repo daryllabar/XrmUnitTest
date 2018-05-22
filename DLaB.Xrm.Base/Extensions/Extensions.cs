@@ -99,8 +99,7 @@ namespace Source.DLaB.Xrm
         /// <returns></returns>
         public static void AssertContainsAllNonNull(this Entity entity, params string[] attributeNames)
         {
-            List<string> missingAttributes;
-            if (entity.ContainsAllNonNull(out missingAttributes, attributeNames)) { return; }
+            if (entity.ContainsAllNonNull(out List<string> missingAttributes, attributeNames)) { return; }
 
             if (missingAttributes.Count == 1)
             {

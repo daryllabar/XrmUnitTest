@@ -98,8 +98,7 @@ namespace Source.DLaB.Xrm
                     ToDictionary(v => v.Key, v => v.Value);
             });
 
-            Type otherType;
-            if (!mappings.TryGetValue(entityLogicalName, out otherType))
+            if (!mappings.TryGetValue(entityLogicalName, out Type otherType))
             {
                 throw new Exception($"Unable to find a Type in assembly \"{earlyBoundAssembly.FullName}\", namespace \"{@namespace}\", with a logical name of \"{entityLogicalName}\"");
             }

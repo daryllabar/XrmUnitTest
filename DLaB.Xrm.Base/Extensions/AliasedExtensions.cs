@@ -127,8 +127,7 @@ namespace Source.DLaB.Xrm
                     ))
                 {
                     aliasedEntity[aliased.AttributeLogicalName] = aliased.Value;
-                    string formattedValue;
-                    if (entity.FormattedValues.TryGetValue(entry.Key, out formattedValue))
+                    if (entity.FormattedValues.TryGetValue(entry.Key, out string formattedValue))
                     {
                         aliasedEntity.FormattedValues[aliased.AttributeLogicalName] = formattedValue;
                     }
