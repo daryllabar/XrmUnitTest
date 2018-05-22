@@ -22,7 +22,7 @@ namespace Source.DLaB.Xrm.Exceptions
     ///     }
     /// </summary>
     [Serializable]
-   public class EnumCaseUndefinedException<TEnum> : Source.DLaB.Common.Exceptions.EnumCaseUndefinedException<TEnum> where TEnum : struct
+   public class EnumCaseUndefinedException<TEnum> : DLaB.Common.Exceptions.EnumCaseUndefinedException<TEnum> where TEnum : struct
     {
         #region Constructors
 

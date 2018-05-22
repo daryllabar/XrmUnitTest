@@ -15,7 +15,11 @@ using System.Linq.Expressions;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
+#if DLAB_UNROOT_COMMON_NAMESPACE
+using DLaB.Common;
+#else
 using Source.DLaB.Common;
+#endif
 #if DLAB_UNROOT_NAMESPACE || DLAB_XRM
 using DLaB.Xrm.Exceptions;
 
@@ -43,8 +47,8 @@ namespace Source.DLaB.Xrm
             {
                 return false;
             }
-            var picklist = attribute as PicklistAttributeMetadata;
-            if (picklist != null)
+
+            if (attribute is PicklistAttributeMetadata picklist)
             {
                 return picklist.OptionSet.IsGlobal.HasValue && !picklist.OptionSet.IsGlobal.Value;
             }

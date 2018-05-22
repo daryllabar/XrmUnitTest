@@ -64,14 +64,23 @@ namespace DLaB.Xrm.Test.Builders
             var genericInterface = typeof (IEntityBuilder<>);
             // Load all types that have EntityBuilder<> as a base class
             var entityBuilders = from t in TestSettings.EntityBuilder.Assembly.GetTypes()
-                                 where builderInterface.IsAssignableFrom(t)
+                                 where builderInterface.IsAssignableFrom(t) && t.IsPublic
                                  select new
                                  {
-                                     EntityType = t.GetInterfaces().First(i => i.IsGenericType && i.GetGenericTypeDefinition() == genericInterface).GenericTypeArguments[0],
-                                     Builder = t
+                                     Entity = EntityHelper.GetEntityLogicalName(t.GetInterfaces().First(i => i.IsGenericType && i.GetGenericTypeDefinition() == genericInterface).GenericTypeArguments[0]),
+                                     Builder = t,
+                                     Ass = t.Assembly.GetName().Name
                                  };
 
-            DefaultBuilderConstructors = entityBuilders.ToDictionary(k => EntityHelper.GetEntityLogicalName(k.EntityType), v => v.Builder.GetConstructor(new[] {typeof (Id)}));
+            var groupedBuilder = entityBuilders.GroupBy(b => b.Entity).ToList();
+            var dup = groupedBuilder.Where(g => g.Count() > 1).Select(g => new { g.Key, Names = g.Select(b => b.Builder.FullName)}).ToList();
+
+            if (dup.Any())
+            {
+                throw new Exception($"Duplicate EntityBuilders {string.Join(", ", dup.First().Names)} found for Entity {dup.First().Key}.");
+            }
+            
+            DefaultBuilderConstructors = groupedBuilder.ToDictionary(g => g.Key, g => g.First().Builder.GetConstructor(new[] { typeof(Id) }));
 
             foreach (var builder in DefaultBuilderConstructors)
             {

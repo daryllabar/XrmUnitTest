@@ -1,7 +1,11 @@
 using System;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
+#if DLAB_UNROOT_COMMON_NAMESPACE
+using DLaB.Common.Exceptions;
+#else
 using Source.DLaB.Common.Exceptions;
+#endif
 
 #if DLAB_UNROOT_NAMESPACE || DLAB_XRM
 namespace DLaB.Xrm
@@ -34,7 +38,7 @@ namespace Source.DLaB.Xrm
     /// <typeparam name="T"></typeparam>
     public class ActivePropertyInfo<T> where T : Entity
     {
-        #region Properties
+#region Properties
 
         /// <summary>
         /// Gets or sets the active attribute type.
@@ -65,7 +69,7 @@ namespace Source.DLaB.Xrm
         /// </value>
         public int? NotActiveState { get; set; }
 
-        #endregion Properties
+#endregion Properties
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ActivePropertyInfo{T}"/> class.
@@ -107,7 +111,7 @@ namespace Source.DLaB.Xrm
                     AttributeName = "isdisabled";
                     break;
 
-                #region Default CRM Entites with no active flag
+#region Default CRM Entites with no active flag
 
                 case "accountleads":
                 case "activitymimeattachment":
@@ -294,7 +298,7 @@ namespace Source.DLaB.Xrm
                 case "workflowdependency":
                 case "workflowlog":
 
-                    #endregion Default CRM Entites with no active flag
+#endregion Default CRM Entites with no active flag
 
                     ActiveAttribute = ActiveAttributeType.None;
                     break;

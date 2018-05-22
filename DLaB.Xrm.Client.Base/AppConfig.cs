@@ -7,77 +7,20 @@ namespace DLaB.Xrm.Client
     /// </summary>
     public class AppConfig
     {
-
-        private static string _crmDiscoveryServerUrl;
-
-        /// <summary>
-        /// Gets or sets the CRM discovery server URL.
-        /// </summary>
-        /// <value>
-        /// The CRM discovery server URL.
-        /// </value>
-        public static string CrmDiscoveryServerUrl
-        {
-            get { return _crmDiscoveryServerUrl ?? (_crmDiscoveryServerUrl = Config.GetAppSettingOrDefault("CrmDiscoveryServerUrl", string.Empty)); }
-            set { _crmDiscoveryServerUrl = value; }
-        }
-
-        private static string _crmServerUrl;
+        private static string _connectionString;
 
         /// <summary>
-        /// Base Url to the Crm Server
+        /// The Connection string used to access CRM
         /// </summary>
-        /// <value>
-        /// The CRM server URL.
-        /// </value>
-        public static string CrmServerUrl
+        public static string ConnectionString
         {
-            get { return _crmServerUrl ?? (_crmServerUrl = Config.GetAppSettingOrDefault("CrmServerUrl", string.Empty)); }
-            set { _crmServerUrl = value; }
+            get => _connectionString ?? (_connectionString = Config.GetAppSettingOrDefault(ConnectionPrefix + "ConnectionString", string.Empty));
+            set => _connectionString = value;
         }
 
+        private static string _connectionPrefix;
 
-        private static string _debugUserAccountName;
-
-        /// <summary>
-        /// Domain\UserName when connecting to IFD, just use the UserName when connecting to a non IFD and populate the DebugUserAccountDomain config value
-        /// </summary>
-        /// <value>
-        /// The name of the debug user account.
-        /// </value>
-        public static string DebugUserAccountName
-        {
-            get { return _debugUserAccountName ?? (_debugUserAccountName = Config.GetAppSettingOrDefault("DebugUserAccountName", string.Empty)); }
-            set { _debugUserAccountName = value; }
-        }
-
-        private static string _debugUserAccountPassword;
-
-        /// <summary>
-        /// Password for the Debug User Account
-        /// </summary>
-        /// <value>
-        /// The debug user account password.
-        /// </value>
-        public static string DebugUserAccountPassword
-        {
-            get { return _debugUserAccountPassword ?? (_debugUserAccountPassword = Config.GetAppSettingOrDefault("DebugUserAccountPassword", string.Empty)); }
-            set { _debugUserAccountPassword = value; }
-        }
-
-        private static string _debugUserAccountDomain;
-
-        /// <summary>
-        /// Domain of Non-IFD CRM connections
-        /// </summary>
-        /// <value>
-        /// The debug user account domain.
-        /// </value>
-        public static string DebugUserAccountDomain
-        {
-            get { return _debugUserAccountDomain ?? (_debugUserAccountDomain = Config.GetAppSettingOrDefault("DebugUserAccountDomain", string.Empty)); }
-            set { _debugUserAccountDomain = value; }
-        }
+        public static string ConnectionPrefix => _connectionPrefix ?? (_connectionPrefix = Config.GetAppSettingOrDefault("ConnectionPrefix", string.Empty));
 
         private static int? _defaultLanguageCode;
 
@@ -89,10 +32,23 @@ namespace DLaB.Xrm.Client
         /// </value>
         public static int DefaultLanguageCode
         {
-            get { return GetValue(ref _defaultLanguageCode, "DefaultLanguageCode", 1033); }
-            set { _defaultLanguageCode = value; }
+            get => GetValue(ref _defaultLanguageCode, "DefaultLanguageCode", 1033);
+            set => _defaultLanguageCode = value;
         }
 
+        private static string _password;
+
+        /// <summary>
+        /// Password for the Debug User Account
+        /// </summary>
+        /// <value>
+        /// The debug user account password.
+        /// </value>
+        public static string Password
+        {
+            get => _password ?? (_password = Config.GetAppSettingOrDefault("Password", string.Empty));
+            set => _password = value;
+        }
 
         /// <summary>
         /// CrmEntities Settings
@@ -110,8 +66,8 @@ namespace DLaB.Xrm.Client
             public static string ContextType
             {
                 
-                get { return _contextType ?? (_contextType = Config.GetAppSettingOrDefault("DLaB.Xrm.Entities.CrmContext, DLaB.Xrm.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", string.Empty)); }
-                set { _contextType = value; }
+                get => _contextType ?? (_contextType = Config.GetAppSettingOrDefault("DLaB.Xrm.Entities.CrmContext, DLaB.Xrm.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", string.Empty));
+                set => _contextType = value;
             }
 
         }
@@ -136,8 +92,8 @@ namespace DLaB.Xrm.Client
             /// </value>
             public static string FullNameFormat
             {
-                get { return _fullNameFormat ?? (_fullNameFormat = Config.GetAppSettingOrDefault("CrmSystemSettings.FullNameFormat", "F I L").ToUpper()); }
-                set { _fullNameFormat = value; }
+                get => _fullNameFormat ?? (_fullNameFormat = Config.GetAppSettingOrDefault("CrmSystemSettings.FullNameFormat", "F I L").ToUpper());
+                set => _fullNameFormat = value;
             }
         }   
 

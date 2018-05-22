@@ -329,7 +329,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
         }
 
 
-        public class MyLeadBuilder : EntityBuilder<Lead>
+        private class MyLeadBuilder : EntityBuilder<Lead>
         {
             public Lead Lead { get; set; }
 
@@ -369,7 +369,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
             
         }
 
-        public class MyOtherBuilder : MyGenericBuilder<Lead>
+        private class MyOtherBuilder : MyGenericBuilder<Lead>
         {
             public Lead Lead { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xrm.Sdk;
 using System;
+using DLaB.Xrm;
 
 namespace DLaB.Xrm.Client
 {

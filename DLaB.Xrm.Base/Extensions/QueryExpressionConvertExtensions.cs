@@ -4,7 +4,11 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using Microsoft.Xrm.Sdk.Query;
+#if DLAB_UNROOT_COMMON_NAMESPACE
+using DLaB.Common;
+#else
 using Source.DLaB.Common;
+#endif
 
 #if DLAB_UNROOT_NAMESPACE || DLAB_XRM
 namespace DLaB.Xrm

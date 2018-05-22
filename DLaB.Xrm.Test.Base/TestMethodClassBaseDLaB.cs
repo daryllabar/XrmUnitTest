@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using DLaB.Common;
 using DLaB.Xrm.Client;
-using DLaB.Xrm.CrmSdk;
 using DLaB.Xrm.Test.Builders;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
+#if DLAB_UNROOT_COMMON_NAMESPACE
+using DLaB.Common;
+#else
+using Source.DLaB.Common;
+#endif
+
+using DLaB.Xrm.CrmSdk;
 
 // ReSharper disable once CheckNamespace
 namespace DLaB.Xrm.Test
@@ -83,8 +88,7 @@ namespace DLaB.Xrm.Test
             // Add the nested Ids in the Deletion Order of the Mapper
             foreach (var entity in EntityDependency.Mapper.EntityDeletionOrder)
             {
-                List<Id> ids;
-                if (nestedIds.TryGetValue(entity, out ids))
+                if (nestedIds.TryGetValue(entity, out List<Id> ids))
                 {
                     EntityIdsByLogicalName.AddOrAppend(entity, ids.ToArray());
                 }
@@ -222,8 +226,7 @@ namespace DLaB.Xrm.Test
                     totalWatch.ElapsedMilliseconds);
             }
 
-            List<Id> businessIds;
-            if (!EntityIdsByLogicalName.TryGetValue("businessunit", out businessIds))
+            if (!EntityIdsByLogicalName.TryGetValue("businessunit", out List<Id> businessIds))
             {
                 return;
             }

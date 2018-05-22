@@ -1,4 +1,8 @@
-﻿using DLaB.Common;
+﻿#if DLAB_UNROOT_COMMON_NAMESPACE
+using DLaB.Common;
+#else
+using Source.DLaB.Common;
+#endif
 
 namespace DLaB.Xrm.Test
 {
@@ -7,23 +11,6 @@ namespace DLaB.Xrm.Test
     /// </summary>
     public class AppConfig : Client.AppConfig
     {
-        private static bool? _useDebugCredentialsForTesting;
-
-        /// <summary>
-        /// Determines whether the DebugUserAccountName, DebugUserAccountPassword, and DebugUserAccountDomain should be used to connect to CRM, rather than the default windows credentials
-        /// </summary>
-        /// <value>
-        /// <c>true</c> if [use debug credentials for testing]; otherwise, <c>false</c>.
-        /// </value>
-        public static bool UseDebugCredentialsForTesting
-        {
-            get
-            {
-                return GetValue(ref _useDebugCredentialsForTesting, "UseDebugCredentialsForTesting", true);
-            }
-            set { _useDebugCredentialsForTesting = value; }
-        }
-
         private static string _orgName;
 
         /// <summary>
@@ -34,8 +21,23 @@ namespace DLaB.Xrm.Test
         /// </value>
         public static string OrgName
         {
-            get { return _orgName ?? (_orgName = Config.GetAppSettingOrDefault("OrgName", "Specify \"OrgName\" in App.Config")); }
-            set { _orgName = value; }
+            get
+            {
+                if (_orgName != null)
+                {
+                    return _orgName;
+                }
+
+                _orgName = Config.GetAppSettingOrDefault("OrgName", "Specify \"OrgName\" in App.Config");
+                if (_orgName.EndsWith("."))
+                {
+                    _orgName.Remove(_orgName.Length - 1);
+                }
+
+                return _orgName;
+
+            }
+            set => _orgName = value;
         }
 
         private static bool? _useLocalCrmDatabase;
@@ -48,8 +50,8 @@ namespace DLaB.Xrm.Test
         /// </value>
         public static bool UseLocalCrmDatabase
         {
-            get { return GetValue(ref _useLocalCrmDatabase, "UseLocalCrmDatabase", true); }
-            set { _useLocalCrmDatabase = value; }
+            get => GetValue(ref _useLocalCrmDatabase, "UseLocalCrmDatabase", true);
+            set => _useLocalCrmDatabase = value;
         }
     }
 }

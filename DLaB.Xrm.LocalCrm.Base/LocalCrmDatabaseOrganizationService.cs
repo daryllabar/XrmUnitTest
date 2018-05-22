@@ -41,11 +41,7 @@ namespace DLaB.Xrm.LocalCrm
         /// <exception cref="System.ArgumentNullException"></exception>
         public LocalCrmDatabaseOrganizationService(LocalCrmDatabaseInfo info)
         {
-            if (info == null)
-            {
-                throw new ArgumentNullException(nameof(info));
-            }
-            Info = info;
+            Info = info ?? throw new ArgumentNullException(nameof(info));
             CreateRequiredEntitiesIfNeeded();
         }
 

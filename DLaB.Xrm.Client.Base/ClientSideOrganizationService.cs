@@ -36,45 +36,18 @@ namespace DLaB.Xrm.Client
         /// <summary>
         /// Initializes a new instance of the <see cref="ClientSideOrganizationService"/> class.
         /// </summary>
-        /// <param name="info">The information.</param>
         [System.Diagnostics.DebuggerHidden]
-        public ClientSideOrganizationService(CrmServiceInfo info) :
-            this(CrmServiceUtility.GetOrganizationService(info))
+        public ClientSideOrganizationService() :
+            this(CrmServiceUtility.GetOrganizationService())
         { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ClientSideOrganizationService"/> class.
         /// </summary>
-        /// <param name="crmOrganization">The CRM organization.</param>
-        /// <param name="impersonationUserId">The impersonation user identifier.</param>
+        /// <param name="connectionString">The CRM organization Connection String.</param>
         [System.Diagnostics.DebuggerHidden]
-        public ClientSideOrganizationService(string crmOrganization, Guid impersonationUserId = new Guid()) :
-            this(CrmServiceUtility.GetOrganizationService(crmOrganization, impersonationUserId))
-        { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ClientSideOrganizationService"/> class.
-        /// </summary>
-        /// <param name="crmOrganizationUrl">The CRM organization URL.</param>
-        /// <param name="crmDiscoveryUrl">The CRM discovery URL.</param>
-        /// <param name="crmOrganization">The CRM organization.</param>
-        /// <param name="impersonationUserId">The impersonation user identifier.</param>
-        /// <param name="enableProxyTypes">if set to <c>true</c> [enable proxy types].</param>
-        [System.Diagnostics.DebuggerHidden]
-        public ClientSideOrganizationService(string crmOrganizationUrl, string crmDiscoveryUrl, string crmOrganization,
-                                             Guid impersonationUserId = new Guid(), bool enableProxyTypes = true) :
-            this(CrmServiceUtility.GetOrganizationService(crmOrganizationUrl, crmDiscoveryUrl, crmOrganization,
-                                                               impersonationUserId, enableProxyTypes))
-        { }
-
-        /// <summary>
-        /// Create the Organization proxy given the network user credentials
-        /// </summary>
-        [System.Diagnostics.DebuggerHidden]
-        public ClientSideOrganizationService(string crmOrganizationUrl, string crmDiscoveryUrl, string crmOrganization,
-                                             string domain, string userName, string password, bool enableProxyTypes = true) :
-            this(CrmServiceUtility.GetOrganizationService(crmOrganizationUrl, crmDiscoveryUrl, crmOrganization,
-                                                               domain, userName, password, enableProxyTypes))
+        public ClientSideOrganizationService(string connectionString) :
+            this(CrmServiceUtility.GetOrganizationService(connectionString))
         { }
 
         #endregion Constructors

@@ -1,7 +1,11 @@
 ﻿using System;
 using System.ServiceModel;
-using DLaB.Xrm.CrmSdk;
 using Microsoft.Xrm.Sdk;
+#if DLAB_UNROOT_COMMON_NAMESPACE
+using DLaB.Xrm.CrmSdk;
+#else
+using Source.DLaB.Xrm.CrmSdk;
+#endif
 
 namespace DLaB.Xrm.LocalCrm
 {

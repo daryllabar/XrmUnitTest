@@ -92,16 +92,14 @@ namespace Source.DLaB.Common
                         throw new FormatException($"\"{config}\" was not in the expected format Numerator//Denominator");
                     }
 
-                    int numerator;
-                    int denominator;
 
-                    if (int.TryParse(fraction[0], out numerator) && int.TryParse(fraction[1], out denominator))
+                    if (int.TryParse(fraction[0], out var numerator) && int.TryParse(fraction[1], out var denominator))
                     {
                         if (denominator == 0)
                         {
                             throw new InvalidOperationException("Divide by 0 occurred");
                         }
-                        return (decimal) numerator/denominator;
+                        return (decimal)numerator / denominator;
                     }
                 }
                 return defaultValue;
@@ -765,7 +763,7 @@ namespace Source.DLaB.Common
                 return value.ToString();
             }
             var result = default(T);
-            return result == null ? null : result.ToString();
+            return result?.ToString();
         }
 
 #endregion ToString

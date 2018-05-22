@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E9401E5A-22A1-4F2B-99E2-8C4055011C7F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DLaB.Xrm.Client</RootNamespace>
+    <AssemblyName>DLaB.Xrm.Client</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;DLAB_UNROOT_COMMON_NAMESPACE DLAB_PUBLIC</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.0-alpha02\Config.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.0-alpha02\ConfigKeyValueSplitInfo.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.0-alpha02\ConfigKeyValuesSplitInfo.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.0-alpha02\ConfigProvider.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.0-alpha02\ConfigValuesSplitInfo.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.0-alpha02\Exceptions\DictionaryDuplicateKeyException.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.0-alpha02\Exceptions\EnumCaseUndefinedException.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.0-alpha02\Exceptions\TypeArgumentException.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.0-alpha02\Extensions.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.0-alpha02\ProcessExecutor.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.0-alpha02\ProcessExecutorInfo.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.0-alpha02\TypeSafeEnumBase.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.0-alpha02\VersionControl\ISourceControlProvider.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.0-alpha02\VersionControl\SourceControl.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.0-alpha02\VersionControl\VsTfsSourceControlProvider.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\ActivityPropertyInfo.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Comparers\ColumnSetComparer.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Comparers\ConditionExpressionComparer.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Comparers\EnumerableComparer.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Comparers\FilterExpressionComparer.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Comparers\HashCode.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Comparers\LinkEntityComparer.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Comparers\OrderExpressionComparer.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Comparers\PagingInfoComparer.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Comparers\ProjectionEqualityComparer.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Comparers\QueryExpressionComparer.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\EntityHelper.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\ErrorCodes.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Exceptions\EnumCaseUndefinedException.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Exceptions\InvalidPluginStepRegistrationException.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Exceptions\MissingAttributeException.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Extensions\AddLinkExtensions.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Extensions\AliasedExtensions.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Extensions\AreEqualExtensions.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Extensions\ByIdExtensions.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Extensions\Extensions.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Extensions\HasConditionExtensions.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Extensions\HasConditionInWithValuesExtensions.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Extensions\OptimisticConcurrencyExtensions.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Extensions\QueryExpressionConvertExtensions.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Extensions\WhereEqualExtensions.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Extensions\WhereInExtensions.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\IIOrganizationServiceWrapper.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\LateBoundActivePropertyInfo.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\LateBoundQuerySettings.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Plugin\DLaBExtendedPluginContextBase.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Plugin\DLaBPluginBase.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Plugin\DLaBPluginHandlerBase.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Plugin\Extensions.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Plugin\GenericPluginHandlerBase.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Plugin\IExtendedPluginContext.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Plugin\IRegisteredEventsPlugin.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Plugin\IRegisteredEventsPluginHandler.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Plugin\IsolationMode.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Plugin\MessageType.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Plugin\ParameterName.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Plugin\PipelineStage.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Plugin\RegisteredEvent.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Plugin\RegisteredEventBuilder.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Plugin\TraceTimer.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\PrimaryFieldInfo.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\QueryExpressionFactory.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\QuerySettings.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\RetrieveAllEntities.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Sandbox\ExceptionHandler.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Serialization\Extensions.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Serialization\KeyValuePairOfRelationshipEntityCollectionX_PsK4FkN.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Serialization\KeyValuePairOfstringanyType.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Serialization\KeyValuePairOfstringstring.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Serialization\SerializableAttributeCollection.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Serialization\SerializableEntity.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Serialization\SerializableEntityCollection.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Serialization\SerializableEntityReference.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Serialization\SerializableFormattedValueCollection.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Serialization\SerializableKeyAttributeCollection.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\Serialization\SerializableRelatedEntityCollection.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.2.0.0-alpha00\TypedQueryExpression.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

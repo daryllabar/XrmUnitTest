@@ -2,8 +2,7 @@
 using System.Diagnostics;
 using System.Reflection;
 using System.ServiceModel.Description;
-using Microsoft.Xrm.Client;
-using Microsoft.Xrm.Client.Services;
+using Microsoft.Xrm.Tooling.Connector;
 
 namespace DLaB.Xrm.Client
 {
@@ -21,133 +20,26 @@ namespace DLaB.Xrm.Client
         #region GetOrganizationService
 
         /// <summary>
-        /// Gets the organization service.
+        /// Gets the organization service using the AppConfig
         /// </summary>
-        /// <param name="info">The information.</param>
         /// <returns></returns>
-        public static IClientSideOrganizationService GetOrganizationService(CrmServiceInfo info)
+        public static IClientSideOrganizationService GetOrganizationService()
         {
-            return CreateService(info);
+            return GetOrganizationService(AppConfig.ConnectionString);
         }
 
         /// <summary>
         /// Gets the organization service.
         /// </summary>
-        /// <param name="crmOrganization">The CRM organization.</param>
-        /// <param name="impersonationUserId">The impersonation user identifier.</param>
+        /// <param name="connectionString">The ConnectionString to use.</param>
         /// <returns></returns>
-        public static IClientSideOrganizationService GetOrganizationService(string crmOrganization,
-            Guid impersonationUserId = new Guid())
+        public static IClientSideOrganizationService GetOrganizationService(string connectionString)
         {
-            return GetOrganizationService(new CrmServiceInfo(crmOrganization, impersonationUserId));
-        }
-
-        /// <summary>
-        /// Gets the organization service.
-        /// </summary>
-        /// <param name="crmOrganizationUrl">The CRM organization URL.</param>
-        /// <param name="crmDiscoveryUrl">The CRM discovery URL.</param>
-        /// <param name="crmOrganization">The CRM organization.</param>
-        /// <param name="impersonationUserId">The impersonation user identifier.</param>
-        /// <param name="enableProxyTypes">if set to <c>true</c> [enable proxy types].</param>
-        /// <returns></returns>
-        public static IClientSideOrganizationService GetOrganizationService(string crmOrganizationUrl,
-            string crmDiscoveryUrl, string crmOrganization, Guid impersonationUserId = new Guid(),
-            bool enableProxyTypes = true)
-        {
-            return CreateService(new CrmServiceInfo(crmOrganizationUrl, crmDiscoveryUrl, crmOrganization,
-                impersonationUserId) { EnableProxyTypes = enableProxyTypes });
-        }
-
-        /// <summary>
-        /// Create the Organization proxy given the network user credentials
-        /// </summary>
-        public static IClientSideOrganizationService GetOrganizationService(string crmOrganizationUrl,
-            string crmDiscoveryUrl, string crmOrganization, string domain, string userName, string password,
-            bool enableProxyTypes = true)
-        {
-            return CreateService(new CrmServiceInfo(crmOrganizationUrl, crmDiscoveryUrl, crmOrganization)
-            {
-                UserDomainName = domain,
-                UserName = userName,
-                UserPassword = password,
-                EnableProxyTypes = enableProxyTypes
-            });
+            var client = new CrmServiceClient(connectionString);
+            return new ClientSideOrganizationService(client.OrganizationServiceProxy);
         }
 
         #endregion GetOrganizationService
-
-        private static IClientSideOrganizationService CreateService(CrmServiceInfo info)
-        {
-            var url = info.CrmServerUrl + "/" + info.CrmOrganization;
-            if(info.CrmServerUrl.Contains("crm.dynamics.com"))
-            {
-                const string onlinePrefix = "https://";
-                url = onlinePrefix + info.CrmOrganization + "." + info.CrmServerUrl.Substring(onlinePrefix.Length);
-            }
-
-            var client = new CrmConnection
-            {
-                CallerId = info.ImpersonationUserId == Guid.Empty ? null : new Guid?(info.ImpersonationUserId),
-                ClientCredentials = GetCredentials(info),
-                ProxyTypesAssembly = info.EnableProxyTypes ? GetEarlyBoundProxyAssembly(info) : null,
-                ProxyTypesEnabled = info.EnableProxyTypes,
-                ServiceUri = new Uri(url),
-                Timeout =  info.Timeout.Ticks == 0 ? null : new TimeSpan?(info.Timeout),
-            };
-
-            return new ClientSideOrganizationService(new OrganizationService(client));
-
-        }
-
-        private static ClientCredentials GetCredentials(CrmServiceInfo info)
-        {
-            var cred = new ClientCredentials();
-            var userName = String.Empty;
-            var password = String.Empty;
-            var domain = String.Empty;
-
-            if (info == null)
-            {
-                if (!Debugger.IsAttached)
-                {
-                    return cred;
-                }
-            }
-            else
-            {
-                userName = info.UserName;
-                password = info.UserPassword;
-                domain = info.UserDomainName;
-            }
-
-            // If the caller hasn't explicitly set the user name and password, user the Debug credentials
-            if (Debugger.IsAttached && string.IsNullOrWhiteSpace(userName) && string.IsNullOrWhiteSpace(password))
-            {
-                userName = AppConfig.DebugUserAccountName;
-                password = AppConfig.DebugUserAccountPassword;
-                domain = AppConfig.DebugUserAccountDomain;
-            }
-            
-            // If UserName or Password is null, return standard Client Credentials
-            if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password))
-            {
-                return cred;
-            }
-
-            // If there is a domain, use Network Credentials.  If there is not a domain just set client credentials
-            if (String.IsNullOrWhiteSpace(domain))
-            {
-                cred.UserName.UserName = userName;
-                cred.UserName.Password = password;
-            }
-            else
-            {
-                cred.Windows.ClientCredential = new System.Net.NetworkCredential(userName, password, domain);
-            }
-
-            return cred;
-        }
 
         #region EarlyBoundProxy
 
@@ -183,41 +75,6 @@ namespace DLaB.Xrm.Client
             return _crmEntitiesAssembly;
         }
 
-        private static Assembly GetEarlyBoundProxyAssembly(CrmServiceInfo info)
-        {
-            if (String.IsNullOrWhiteSpace(info.ProxyTypeAssembly))
-            {
-                return GetEarlyBoundProxyAssembly();
-            }
-
-            return GetEarlyBoundProxyAssembly(info.ProxyTypeAssembly);
-        }
-
         #endregion EarlyBoundProxy
-
-        #region Url Formatting
-
-        /// <summary>
-        /// Gets the discovery service URI.
-        /// </summary>
-        /// <param name="serverName">Name of the server.</param>
-        /// <returns></returns>
-        public static Uri GetDiscoveryServiceUri(string serverName)
-        {
-            return new Uri($@"{serverName}/XRMServices/2011/Discovery.svc");
-        }
-
-        /// <summary>
-        /// Gets the organization service URI.
-        /// </summary>
-        /// <param name="info">The information.</param>
-        /// <returns></returns>
-        public static Uri GetOrganizationServiceUri(CrmServiceInfo info)
-        {
-            return new Uri($@"{info.CrmServerUrl}/{info.CrmOrganization}/XRMServices/2011/Organization.svc");
-        }
-
-        #endregion Url Formatting
-
     }
 }

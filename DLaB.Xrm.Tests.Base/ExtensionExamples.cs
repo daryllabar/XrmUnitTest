@@ -7,6 +7,7 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using XrmUnitTest.Test;
 using DLaB.Xrm.Test.Builders;
+//using Source.DLaB.Xrm;
 
 namespace DLaB.Xrm.Tests
 {
@@ -220,8 +221,7 @@ namespace DLaB.Xrm.Tests
                 LinkToAttributeName = "activityid"
             };
 
-            activityPartyLink.LinkCriteria = new FilterExpression();
-            activityPartyLink.LinkCriteria.FilterOperator = LogicalOperator.And;
+            activityPartyLink.LinkCriteria = new FilterExpression {FilterOperator = LogicalOperator.And};
             activityPartyLink.LinkCriteria.AddCondition("participationtypemask", ConditionOperator.Equal, 5); // required attendee
 
             var customerPartyLink = new LinkEntity
@@ -241,11 +241,10 @@ namespace DLaB.Xrm.Tests
                 LinkFromEntityName = "contact",
                 LinkFromAttributeName = "parentcontactid",
                 LinkToEntityName = "opportunity",
-                LinkToAttributeName = "contactid"
+                LinkToAttributeName = "contactid",
+                LinkCriteria = new FilterExpression {FilterOperator = LogicalOperator.And}
             };
 
-            customerOppertunityLink.LinkCriteria = new FilterExpression();
-            customerOppertunityLink.LinkCriteria.FilterOperator = LogicalOperator.And;
             customerOppertunityLink.LinkCriteria.AddCondition("campaignid", ConditionOperator.NotEqual, "898EFDEA-6BAB-E211-AE0A-BC305BEFA6F9");
             customerPartyLink.LinkEntities.Add(customerOppertunityLink);
 

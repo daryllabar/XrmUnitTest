@@ -43,25 +43,15 @@ namespace DLaB.Xrm.Test
         /// </summary>
         /// <param name="organizationName">Name of the organization.</param>
         /// <param name="impersonationUserId">The impersonation user identifier.</param>
-        /// <param name="enableProxyTypes">if set to <c>true</c> [enable proxy types].</param>
         /// <returns></returns>
         public static IClientSideOrganizationService GetOrganizationService(string organizationName = null,
-            Guid impersonationUserId = new Guid(), bool enableProxyTypes = true)
+            Guid impersonationUserId = new Guid())
         {
             LoadUserUnitTestSettings();
             organizationName = organizationName ?? OrgName;
-            if (UseLocalCrmDatabase) { return GetLocalCrmDatabaseOrganizationService(organizationName, impersonationUserId); }
-
-            var info = GetCrmServiceEntity(organizationName, enableProxyTypes);
-
-            if (AppConfig.UseDebugCredentialsForTesting)
-            {
-                // Only in Unit tests should this be allowed.
-                info.UserName = AppConfig.DebugUserAccountName;
-                info.UserPassword = AppConfig.DebugUserAccountPassword;
-                info.UserDomainName = AppConfig.DebugUserAccountDomain;
-            }
-            return CrmServiceUtility.GetOrganizationService(info);
+            return UseLocalCrmDatabase
+                ? GetLocalCrmDatabaseOrganizationService(organizationName, impersonationUserId)
+                : CrmServiceUtility.GetOrganizationService();
         }
 
         private static IClientSideOrganizationService GetLocalCrmDatabaseOrganizationService(string organizationName, Guid impersonationUserId)
@@ -105,28 +95,6 @@ namespace DLaB.Xrm.Test
             return frames.Reverse(). // Stacks are LIFO, Reverse to start at the bottom.
                           Select(frame => frame.GetMethod()).
                           FirstOrDefault(method => method.GetCustomAttributes(false).Any(o => o.GetType() == TestSettings.TestFrameworkProvider.Value.TestMethodAttributeType));
-        }
-
-        /// <summary>
-        /// Gets the CRM service entity.
-        /// </summary>
-        /// <param name="enableProxyTypes">if set to <c>true</c> [enable proxy types].</param>
-        /// <returns></returns>
-        public static CrmServiceInfo GetCrmServiceEntity(bool enableProxyTypes = true)
-        {
-            return GetCrmServiceEntity(OrgName, enableProxyTypes);
-        }
-
-        /// <summary>
-        /// Gets the CRM service entity.
-        /// </summary>
-        /// <param name="organizationName">Name of the organization.</param>
-        /// <param name="enableProxyTypes">if set to <c>true</c> [enable proxy types].</param>
-        /// <returns></returns>
-        public static CrmServiceInfo GetCrmServiceEntity(string organizationName, bool enableProxyTypes = true)
-        {
-            LoadUserUnitTestSettings();
-            return new CrmServiceInfo(organizationName) { EnableProxyTypes = enableProxyTypes };
         }
 
         #endregion GetOrganizationServiceProxy

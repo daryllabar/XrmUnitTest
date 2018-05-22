@@ -42,7 +42,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'LocalNuget|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\LocalNuget\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;DLAB_PUBLIC</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;DLAB_PUBLIC DLAB_UNROOT_COMMON_NAMESPACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>

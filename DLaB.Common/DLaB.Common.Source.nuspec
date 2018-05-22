@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DLaB.Common.Source</id>
-    <version>1.1.0-alpha02</version>
+    <version>1.1.2.0</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>
@@ -19,8 +19,8 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="*.pp" target="content\App_Packages\DLaB.Common.Source.1.1.0-alpha02" />
-    <file src="Exceptions\*.pp" target="content\App_Packages\DLaB.Common.Source.1.1.0-alpha02\Exceptions" />
-    <file src="VersionControl\*.pp" target="content\App_Packages\DLaB.Common.Source.1.1.0-alpha02\VersionControl" />
+    <file src="*.pp" target="content\App_Packages\DLaB.Common.Source.1.1.2.0" />
+    <file src="Exceptions\*.pp" target="content\App_Packages\DLaB.Common.Source.1.1.2.0\Exceptions" />
+    <file src="VersionControl\*.pp" target="content\App_Packages\DLaB.Common.Source.1.1.2.0\VersionControl" />
   </files>
 </package>
