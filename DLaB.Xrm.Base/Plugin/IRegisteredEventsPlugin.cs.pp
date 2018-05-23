@@ -20,10 +20,5 @@ namespace Source.DLaB.Xrm.Plugin
         /// The registered events.
         /// </value>
         IEnumerable<RegisteredEvent> RegisteredEvents { get; }
-
-        /// <summary>
-        /// Gets all registered events for the current plugin.
-        /// </summary>
-        IEnumerable<RegisteredEvent> GetRegisterEvents();
     }
 }

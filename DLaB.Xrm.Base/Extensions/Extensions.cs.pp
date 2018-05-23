@@ -15,7 +15,11 @@ using System.Linq.Expressions;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
+#if DLAB_UNROOT_COMMON_NAMESPACE
+using DLaB.Common;
+#else
 using Source.DLaB.Common;
+#endif
 #if DLAB_UNROOT_NAMESPACE || DLAB_XRM
 using DLaB.Xrm.Exceptions;
 
@@ -43,8 +47,8 @@ namespace Source.DLaB.Xrm
             {
                 return false;
             }
-            var picklist = attribute as PicklistAttributeMetadata;
-            if (picklist != null)
+
+            if (attribute is PicklistAttributeMetadata picklist)
             {
                 return picklist.OptionSet.IsGlobal.HasValue && !picklist.OptionSet.IsGlobal.Value;
             }
@@ -259,7 +263,7 @@ namespace Source.DLaB.Xrm
         /// <returns></returns>
         public static string GetFormUrl(this Entity entity, Uri uri)
         {
-            string parameters = $"etn={entity.LogicalName}&pagetype=entityrecord&id={entity.Id.ToString("D")}";
+            string parameters = $"etn={entity.LogicalName}&pagetype=entityrecord&id={entity.Id:D}";
             string url;
             if (uri == null)
             {
@@ -489,7 +493,7 @@ namespace Source.DLaB.Xrm
             var name = property.Name.ToLower();
             if (name == "id")
             {
-                var attribute = typeof(T).GetProperty("Id").GetCustomAttributes<AttributeLogicalNameAttribute>().FirstOrDefault();
+                var attribute = typeof(T).GetProperty("Id")?.GetCustomAttributes<AttributeLogicalNameAttribute>().FirstOrDefault();
                 if (attribute == null)
                 {
                     throw new ArgumentException(property.Name + " does not contain an AttributeLogicalNameAttribute.  Unable to determine id");
@@ -559,26 +563,22 @@ namespace Source.DLaB.Xrm
                 return "Null";
             }
 
-            var osv = value as OptionSetValue;
-            if (osv != null)
+            if (value is OptionSetValue osv)
             {
                 return osv.Value.ToString(CultureInfo.InvariantCulture);
             }
 
-            var entity = value as EntityReference;
-            if (entity != null)
+            if (value is EntityReference entity)
             {
                 return entity.GetNameId();
             }
 
-            var money = value as Money;
-            if (money != null)
+            if (value is Money money)
             {
                 return money.Value.ToString(CultureInfo.InvariantCulture);
             }
 
-            var collection = value as EntityCollection;
-            if (collection != null)
+            if (value is EntityCollection collection)
             {
                 tabSpacing += initialTabSpacing;
                 var entities = collection.Entities;
@@ -1363,7 +1363,7 @@ namespace Source.DLaB.Xrm
             return entity;
         }
 
-        // ReSharper disable once UnusedParameter.Local
+        // ReSharper disable once ParameterOnlyUsedForPreconditionCheck.Local
         private static void AssertExists<T>(T entity, QueryExpression qe) where T : Entity
         {
             if (entity == null)
@@ -1484,11 +1484,10 @@ namespace Source.DLaB.Xrm
                 throw new ArgumentNullException(nameof(service));
             }
 
-            var proxy = service as ServiceProxy<IOrganizationService>;
-            if (proxy == null)
+            if (!(service is ServiceProxy<IOrganizationService> proxy))
             {
-                var wrapper = service as IIOrganizationServiceWrapper;
-                if (wrapper == null)
+                // ReSharper disable once SuspiciousTypeConversion.Global
+                if (!(service is IIOrganizationServiceWrapper wrapper))
                 {
                     // Check for Xrm.Client.Services.OrganizationService
                     var innerService = service.GetType().GetProperty("InnerService");
@@ -1945,7 +1944,7 @@ namespace Source.DLaB.Xrm
         public static T GetParameterValue<T>(this ParameterCollection parameters, string parameterName)
         {
             var attributeValue = parameters.GetParameterValue(parameterName);
-            return attributeValue == null ? default(T) : (T)attributeValue;
+            return (T)(attributeValue ?? default(T));
         }
 
         /// <summary>
@@ -1978,13 +1977,12 @@ namespace Source.DLaB.Xrm
                 values.Add("* " + name + " *");
                 foreach (var param in parameters)
                 {
-                    var entity = param.Value as Entity;
                     var entityRef = param.Value as EntityReference;
                     var entityRefCollection = param.Value as EntityReferenceCollection;
                     var enumerable = param.Value as IEnumerable;
                     var entities = param.Value as EntityCollection;
                     var optionSet = param.Value as OptionSetValue;
-                    if (entity != null)
+                    if (param.Value is Entity entity)
                     {
                         values.Add(entity.ToStringAttributes(4, "Param[" + param.Key + "][{0}]: {1}"));
                     }

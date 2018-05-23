@@ -12,12 +12,11 @@ namespace DLaB.Common.Tests
         [TestMethod]
         public void SubstringByString_NoSubstringFound_Should_ReturnNull()
         {
-            int endIndex;
             Assert.IsNull(SingleTestString.SubstringByString("a"));
             Assert.IsNull(SingleTestString.SubstringByString("a", "b"));
             Assert.IsNull(SingleTestString.SubstringByString("a", "B"));
             Assert.IsNull(SingleTestString.SubstringByString("A", "b"));
-            Assert.IsNull(SingleTestString.SubstringByString("a", "B", out endIndex));
+            Assert.IsNull(SingleTestString.SubstringByString("a", "B", out var endIndex));
             Assert.IsNull(SingleTestString.SubstringByString("A", "b", out endIndex));
             Assert.AreEqual(-1, endIndex);
             Assert.IsNull(SingleTestString.SubstringByString(0, "b"));
@@ -37,9 +36,8 @@ namespace DLaB.Common.Tests
         {
             // _123456789_123456789_123456789_123456789_123456789_
             const string expected = "123456789";
-            int endIndex;
             Assert.AreEqual(expected, RepeatingTestString.SubstringByString("_", "_"));
-            Assert.AreEqual(expected, RepeatingTestString.SubstringByString("_", "_", out endIndex));
+            Assert.AreEqual(expected, RepeatingTestString.SubstringByString("_", "_", out var endIndex));
             Assert.AreEqual(10, endIndex);
             
             Assert.AreEqual(expected, RepeatingTestString.SubstringByString(41, "_"));

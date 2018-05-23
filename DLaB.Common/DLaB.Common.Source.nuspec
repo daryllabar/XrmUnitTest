@@ -19,8 +19,8 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="*.pp" target="content\App_Packages\DLaB.Common.Source.1.1.2.0" />
-    <file src="Exceptions\*.pp" target="content\App_Packages\DLaB.Common.Source.1.1.2.0\Exceptions" />
-    <file src="VersionControl\*.pp" target="content\App_Packages\DLaB.Common.Source.1.1.2.0\VersionControl" />
+    <file src="*.cs" target="content\App_Packages\DLaB.Common.Source.1.1.2.0" />
+    <file src="Exceptions\*.cs" target="content\App_Packages\DLaB.Common.Source.1.1.2.0\Exceptions" />
+    <file src="VersionControl\*.cs" target="content\App_Packages\DLaB.Common.Source.1.1.2.0\VersionControl" />
   </files>
 </package>

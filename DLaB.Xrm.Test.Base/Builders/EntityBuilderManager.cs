@@ -113,8 +113,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="action">The action.</param>
         private void AddCustomAction(string logicalName, Action<object> action)
         {
-            Action<object> customAction;
-            if (CustomBuilderFluentActions.TryGetValue(logicalName, out customAction))
+            if (CustomBuilderFluentActions.TryGetValue(logicalName, out var customAction))
             {
                 // Builder already has custom Action.  Create new custom Action that first calls old, then calls new
                 CustomBuilderFluentActions[logicalName] = b =>
@@ -138,8 +137,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <exception cref="System.Exception"></exception>
         private void ApplyCustomAction<TBuilder>(string logicalName, Action<TBuilder> action) where TBuilder : class, IEntityBuilder
         {
-            List<BuilderInfo> builders;
-            if (!BuildersByEntityType.TryGetValue(logicalName, out builders))
+            if (!BuildersByEntityType.TryGetValue(logicalName, out List<BuilderInfo> builders))
             {
                 return;
             }
@@ -162,8 +160,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="builder">The builder.</param>
         private void ApplyCustomActions(string logicalName, object builder)
         {
-            Action<object> customAction;
-            if (CustomBuilderFluentActions.TryGetValue(logicalName, out customAction))
+            if (CustomBuilderFluentActions.TryGetValue(logicalName, out Action<object> customAction))
             {
                 customAction(builder);
             }
@@ -180,8 +177,7 @@ namespace DLaB.Xrm.Test.Builders
             var postCreateUpdates = new List<Entity>();
             foreach (var info in EntityDependency.Mapper.EntityCreationOrder)
             {
-                List<BuilderInfo> values;
-                if (!BuildersByEntityType.TryGetValue(info.LogicalName, out values))
+                if (!BuildersByEntityType.TryGetValue(info.LogicalName, out List<BuilderInfo> values))
                 {
                     // The Entity Creation Order is a Singleton.
                     // If this continue occurs, most likely another instance of a Crm Environment Builder used a type that wasn't utilized by this instance
@@ -225,9 +221,8 @@ namespace DLaB.Xrm.Test.Builders
 
         private void UpdateIdEntityWithBuiltEntity(Dictionary<Guid, Entity> results, Entity entity)
         {
-            Id id;
             results.Add(entity.Id, entity);
-            if (Ids.TryGetValue(entity.Id, out id))
+            if (Ids.TryGetValue(entity.Id, out Id id))
             {
                 id.Entity = entity;
             }
@@ -235,8 +230,7 @@ namespace DLaB.Xrm.Test.Builders
 
         private void AddPostCreateAttributesToIdEntity(Dictionary<Guid, Entity> results, Entity postCreateEntity)
         {
-            Entity entity;
-            if (results.TryGetValue(postCreateEntity.Id, out entity))
+            if (results.TryGetValue(postCreateEntity.Id, out Entity entity))
             {
                 foreach (var att in postCreateEntity.Attributes)
                 {
@@ -244,8 +238,7 @@ namespace DLaB.Xrm.Test.Builders
                 }
             }
 
-            Id id;
-            if (Ids.TryGetValue(postCreateEntity.Id, out id))
+            if (Ids.TryGetValue(postCreateEntity.Id, out Id id))
             {
                 foreach (var att in postCreateEntity.Attributes)
                 {
@@ -316,15 +309,13 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         public IEntityBuilder Get(Id id)
         {
-            BuilderInfo builder;
             if (id != Guid.Empty && !Ids.ContainsKey(id))
             {
                 Ids.Add(id, id);
             }
-            if (Builders.TryGetValue(id, out builder)) { return builder.Builder; }
+            if (Builders.TryGetValue(id, out BuilderInfo builder)) { return builder.Builder; }
 
-            ConstructorInfo constructor;
-            if (!DefaultBuilderConstructors.TryGetValue(id, out constructor))
+            if (!DefaultBuilderConstructors.TryGetValue(id, out ConstructorInfo constructor))
             {
                 constructor = GetGenericConstructor(id);
             }
@@ -359,8 +350,7 @@ namespace DLaB.Xrm.Test.Builders
         {
             var constructor = GetIdConstructor<TBuilder>();
 
-            ConstructorInfo existingConstructor;
-            if (DefaultBuilderConstructors.TryGetValue(logicalName, out existingConstructor))
+            if (DefaultBuilderConstructors.TryGetValue(logicalName, out ConstructorInfo existingConstructor))
             {
                 // Should only have one type.  Check to make sure type is the same
                 if (existingConstructor.DeclaringType != constructor.DeclaringType)
@@ -386,10 +376,7 @@ namespace DLaB.Xrm.Test.Builders
             {
                 Ids.Remove(id);
             }
-
-            List<BuilderInfo> builders;
-            BuilderInfo builder;
-            if (BuildersByEntityType.TryGetValue(id, out builders) && Builders.TryGetValue(id, out builder))
+            if (BuildersByEntityType.TryGetValue(id, out List<BuilderInfo> builders) && Builders.TryGetValue(id, out BuilderInfo builder))
             {
                 Builders.Remove(id);
                 builders.Remove(builder);
@@ -403,8 +390,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         private ConstructorInfo GetGenericConstructor(string logicalName)
         {
-            ConstructorInfo constructor;
-            if (DefaultBuilderConstructors.TryGetValue(logicalName, out constructor))
+            if (DefaultBuilderConstructors.TryGetValue(logicalName, out ConstructorInfo constructor))
             {
                 return constructor;
             }

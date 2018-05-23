@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\XrmUnitTest.09.xml</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>XrmUnitTest.09.Snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DLaB.Common, Version=1.0.4.11, Culture=neutral, PublicKeyToken=046d6d5d1685e1b4, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DLaB.Common.1.0.4.11\lib\net452\DLaB.Common.dll</HintPath>
@@ -93,6 +99,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="XrmUnitTest.09.nuspec" />
+    <None Include="XrmUnitTest.09.Snk" />
   </ItemGroup>
   <Import Project="..\..\DLaB.Xrm.Base\DLaB.Xrm.Base.projitems" Label="Shared" />
   <Import Project="..\..\DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems" Label="Shared" />

@@ -1,11 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using DLaB.Xrm.Test;
-using Xyz.MsTest;
-using Xyz.MsTestBase;
-using Xyz.MsTestBase.Assumptions;
-using Xyz.MsTestBase.Builders;
-using Xyz.Plugin;
-using Xyz.Plugin.Advanced;
+using Xyz.Xrm.Plugin;
+using Xyz.Xrm.Plugin.Advanced;
+using Xyz.Xrm.Plugin.Tests;
+using Xyz.Xrm.Test;
 
 namespace Xyz.Walkthrough
 {
@@ -56,7 +54,7 @@ namespace Xyz.Walkthrough
                 UserTestConfigPath. // Defines the path to a configuration file
                 Configure(new PatherFinderProjectOfType( // Defines that path, by the root of the 
                                                          // project with the given type
-                    typeof(TestMethodClassBase), // The type to find the project
+                    typeof(MsTestProvider), // The type to find the project
                     "UnitTestSettings.user.config")); // The name of the config file in the root of the project
 
             TestSettings.UserTestConfigPath.Configure(
