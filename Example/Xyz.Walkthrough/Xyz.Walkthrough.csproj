@@ -146,8 +146,6 @@
       <Name>Xyz.Xrm.Test</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="..\Xyz.Xrm\Xyz.Xrm.projitems" Label="Shared" />
-  <Import Project="..\..\Xyz.Xrm.TestCore\Xyz.Xrm.TestCore.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

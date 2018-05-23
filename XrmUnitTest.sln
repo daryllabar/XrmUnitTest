@@ -132,8 +132,6 @@ Global
 		XrmUnitTest.Test.Base\XrmUnitTest.Test.Base.projitems*{0773e17c-ddbc-4dd9-812b-85c1299a6aca}*SharedItemsImports = 13
 		DLaB.Xrm.LocalCrm.Tests.Base\DLaB.Xrm.LocalCrm.Tests.Base.projitems*{1a5ef03b-b261-4971-8f91-448b43f3e642}*SharedItemsImports = 13
 		Example\Xyz.Xrm.TestCore\Xyz.Xrm.TestCore.projitems*{3016d729-1a3b-43c0-ac2f-d4ef6a305fa6}*SharedItemsImports = 4
-		Example\Xyz.Xrm\Xyz.Xrm.projitems*{3e728b41-02e5-42fd-b8d3-cf2c664e2226}*SharedItemsImports = 4
-		Xyz.Xrm.TestCore\Xyz.Xrm.TestCore.projitems*{3e728b41-02e5-42fd-b8d3-cf2c664e2226}*SharedItemsImports = 4
 		DLaB.Xrm.Tests.Base\DLaB.Xrm.Tests.Base.projitems*{56ea5d74-e2a7-499f-99d9-40404fd781b6}*SharedItemsImports = 13
 		NMemory.Base\NMemory.Base.projitems*{59b000b7-d796-4065-aaba-8d6c91542bb9}*SharedItemsImports = 13
 		Example\Xyz.Xrm.TestCore\Xyz.Xrm.TestCore.projitems*{8f91efc7-351b-4802-99aa-6c6f16110505}*SharedItemsImports = 13

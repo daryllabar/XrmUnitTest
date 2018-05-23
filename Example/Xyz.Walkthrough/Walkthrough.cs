@@ -4,6 +4,8 @@ using Xyz.Xrm.Plugin;
 using Xyz.Xrm.Plugin.Advanced;
 using Xyz.Xrm.Plugin.Tests;
 using Xyz.Xrm.Test;
+using Xyz.Xrm.Test.Assumptions;
+using Xyz.Xrm.Test.Builders;
 
 namespace Xyz.Walkthrough
 {
