@@ -20,6 +20,9 @@ namespace DLaB.Xrm.Client
 
         private static string _connectionPrefix;
 
+        /// <summary>
+        /// The Connection Prefix to use to determine the Connection String to use to connect.
+        /// </summary>
         public static string ConnectionPrefix => _connectionPrefix ?? (_connectionPrefix = Config.GetAppSettingOrDefault("ConnectionPrefix", string.Empty));
 
         private static int? _defaultLanguageCode;
@@ -46,7 +49,8 @@ namespace DLaB.Xrm.Client
         /// </value>
         public static string Password
         {
-            get => _password ?? (_password = Config.GetAppSettingOrDefault("Password", string.Empty));
+            get => _password ?? (_password = Config.GetAppSettingOrDefault(ConnectionPrefix + "Password",
+                       Config.GetAppSettingOrDefault("Password", string.Empty)));
             set => _password = value;
         }
 

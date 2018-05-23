@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>XrmUnitTest.09</id>
+    <version>2.0.0.1</version>
+    <authors>Daryl LaBar</authors>
+    <owners>Daryl LaBar</owners>
+    <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/daryllabar/XrmUnitTest</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/daryllabar/XrmUnitTest/master/DLaB_Dynamics_64x64.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Contains Xrm Unit Testing Library</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>Dynamics CRM v9 Plugin XRM UnitTest</tags>
+	<dependencies>
+    <group targetFramework=".NETFramework4.5">
+      <dependency id="Microsoft.CrmSdk.XrmTooling.CoreAssembly" version="9.0.2.3" />
+    </group>
+  </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\XrmUnitTest.09.dll" target="lib\net452" />
+    <file src="bin\Release\XrmUnitTest.09.pdb" target="lib\net452" />
+    <file src="bin\Release\XrmUnitTest.09.xml" target="lib\net452" />
+  </files>
+</package>

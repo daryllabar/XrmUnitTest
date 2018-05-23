@@ -18,6 +18,7 @@ namespace Source.DLaB.Xrm.Plugin
         {
         }
 
+        /// <inheritdoc />
         protected override IExtendedPluginContext CreatePluginContext(IServiceProvider serviceProvider)
         {
             return new DLaBExtendedPluginContextBase(serviceProvider, this);
