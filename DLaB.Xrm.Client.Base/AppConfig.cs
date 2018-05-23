@@ -1,4 +1,5 @@
-﻿using DLaB.Common;
+﻿using System.Data.Common;
+using DLaB.Common;
 
 namespace DLaB.Xrm.Client
 {
@@ -14,7 +15,21 @@ namespace DLaB.Xrm.Client
         /// </summary>
         public static string ConnectionString
         {
-            get => _connectionString ?? (_connectionString = Config.GetAppSettingOrDefault(ConnectionPrefix + "ConnectionString", string.Empty));
+            get
+            {
+                if (_connectionString != null)
+                {
+                    return _connectionString;
+                }
+
+                var builder = new DbConnectionStringBuilder
+                {
+                    ConnectionString = Config.GetAppSettingOrDefault(ConnectionPrefix + "ConnectionString", string.Empty)
+                };
+                builder.Add("Password", Password);
+
+                return builder.ConnectionString;
+            }
             set => _connectionString = value;
         }
 

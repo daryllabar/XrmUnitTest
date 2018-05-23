@@ -49,9 +49,19 @@ namespace DLaB.Xrm.Test
         {
             LoadUserUnitTestSettings();
             organizationName = organizationName ?? OrgName;
-            return UseLocalCrmDatabase
-                ? GetLocalCrmDatabaseOrganizationService(organizationName, impersonationUserId)
-                : CrmServiceUtility.GetOrganizationService();
+            if (UseLocalCrmDatabase)
+            {
+                return GetLocalCrmDatabaseOrganizationService(organizationName, impersonationUserId);
+            }
+            else
+            {
+                var service = CrmServiceUtility.GetOrganizationService();
+                if (service == null)
+                {
+                    throw new Exception("Organziatino Service was Null!");
+                }
+                return service;
+            }
         }
 
         private static IClientSideOrganizationService GetLocalCrmDatabaseOrganizationService(string organizationName, Guid impersonationUserId)

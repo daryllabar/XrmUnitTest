@@ -120,8 +120,8 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
-    <Reference Include="XrmUnitTest.09, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XrmUnitTest.09.2.0.0.1\lib\net452\XrmUnitTest.09.dll</HintPath>
+    <Reference Include="XrmUnitTest.09, Version=2.0.0.3, Culture=neutral, PublicKeyToken=9172705c53320911, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\XrmUnitTest.09.2.0.0.3\lib\net452\XrmUnitTest.09.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
