@@ -91,12 +91,6 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DLaB.Xrm.Client.2015\DLaB.Xrm.Client.2015.csproj">
-      <Project>{be26d8e5-7a39-463c-b456-0d80725b54b6}</Project>
-      <Name>DLaB.Xrm.Client.2015</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="..\DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems" Label="Shared" />
   <Import Project="..\NMemory.Base\NMemory.Base.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

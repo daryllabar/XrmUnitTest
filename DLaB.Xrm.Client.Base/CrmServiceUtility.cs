@@ -1,8 +1,11 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Reflection;
-using System.ServiceModel.Description;
+#if XRM_2015
+using Microsoft.Xrm.Client;
+using Microsoft.Xrm.Client.Services;
+#else
 using Microsoft.Xrm.Tooling.Connector;
+#endif
 
 namespace DLaB.Xrm.Client
 {
@@ -35,13 +38,19 @@ namespace DLaB.Xrm.Client
         /// <returns></returns>
         public static IClientSideOrganizationService GetOrganizationService(string connectionString)
         {
+#if XRM_2015
+            CrmConnection crmConnection = CrmConnection.Parse(connectionString);
+            OrganizationService service = new OrganizationService(crmConnection);
+            return new ClientSideOrganizationService(service);
+#else
             var client = new CrmServiceClient(connectionString);
             return new ClientSideOrganizationService(client.OrganizationServiceProxy);
+#endif
         }
 
-        #endregion GetOrganizationService
+#endregion GetOrganizationService
 
-        #region EarlyBoundProxy
+#region EarlyBoundProxy
 
         /// <summary>
         /// Gets the early bound proxy assembly.
@@ -75,6 +84,6 @@ namespace DLaB.Xrm.Client
             return _crmEntitiesAssembly;
         }
 
-        #endregion EarlyBoundProxy
+#endregion EarlyBoundProxy
     }
 }
