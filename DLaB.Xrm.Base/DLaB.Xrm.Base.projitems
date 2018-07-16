@@ -25,6 +25,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\EnumCaseUndefinedException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\InvalidPluginStepRegistrationException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\MissingAttributeException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtendedOrganizationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtendedOrganizationServiceSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\AddLinkExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\AliasedExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\AreEqualExtensions.cs" />
@@ -36,9 +38,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\QueryExpressionConvertExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\WhereEqualExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\WhereInExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IIOrganizationServiceWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LateBoundActivePropertyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LateBoundQuerySettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Plugin\DLaBExtendedPluginContextSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\ExtendedContextCreator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\DLaBPluginBase.cs" />

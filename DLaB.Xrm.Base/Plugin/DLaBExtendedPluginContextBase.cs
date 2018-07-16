@@ -246,12 +246,13 @@ namespace Source.DLaB.Xrm.Plugin
         /// <summary>
         /// The IOrganizationService of the plugin, Impersonated as the user that the plugin is was initiated by
         /// </summary>
-        public virtual IOrganizationService InitiatingUserOrganizationService => _triggeredUserOrganizationService ?? (_triggeredUserOrganizationService = ServiceFactory.CreateOrganizationService(InitiatingUserId));
+        public virtual IOrganizationService InitiatingUserOrganizationService => _triggeredUserOrganizationService ?? (_triggeredUserOrganizationService = InitializeIOrganizationService(ServiceFactory, InitiatingUserId));
 
+        /// <inheritdoc />
         /// <summary>
         /// The IOrganizationService of the plugin, Impersonated as the user that the plugin is registered to run as.
         /// </summary>
-        public virtual IOrganizationService OrganizationService => _organizationService ?? (_organizationService = ServiceFactory.CreateOrganizationService(UserId));
+        public virtual IOrganizationService OrganizationService => _organizationService ?? (_organizationService = InitializeIOrganizationService(ServiceFactory, UserId));
 
         /// <summary>
         /// The IPluginExecutionContext of the plugin.
@@ -275,7 +276,7 @@ namespace Source.DLaB.Xrm.Plugin
         /// <summary>
         /// The IOrganizationService of the plugin, using the System User
         /// </summary>
-        public virtual IOrganizationService SystemOrganizationService => _systemOrganizationService ?? (_systemOrganizationService = ServiceFactory.CreateOrganizationService(null));
+        public virtual IOrganizationService SystemOrganizationService => _systemOrganizationService ?? (_systemOrganizationService = InitializeIOrganizationService(ServiceFactory, null));
 
         /// <summary>
         /// The ITracingService of the plugin.
@@ -283,6 +284,8 @@ namespace Source.DLaB.Xrm.Plugin
         public ITracingService TracingService { get; private set; }
 
         #endregion IExtendedPluginContext Properties
+
+        private DLaBExtendedPluginContextSettings Settings { get; set; }
 
         #endregion Properties
 
@@ -312,12 +315,13 @@ namespace Source.DLaB.Xrm.Plugin
         /// </summary>
         /// <param name="serviceProvider">The service provider.</param>
         /// <param name="plugin">The plugin.</param>
+        /// <param name="settings">Settings used to control services of context</param>
         /// <exception cref="System.ArgumentNullException">
         /// serviceProvider
         /// or
         /// plugin
         /// </exception>
-        public DLaBExtendedPluginContextBase(IServiceProvider serviceProvider, IRegisteredEventsPlugin plugin)
+        public DLaBExtendedPluginContextBase(IServiceProvider serviceProvider, IRegisteredEventsPlugin plugin, DLaBExtendedPluginContextSettings settings = null)
         {
             if (serviceProvider == null)
             {
@@ -329,6 +333,7 @@ namespace Source.DLaB.Xrm.Plugin
                 throw new ArgumentNullException(nameof(plugin));
             }
 
+            Settings = Settings ?? new DLaBExtendedPluginContextSettings();
             InitializeServiceProviderProperties(serviceProvider);
             InitializePluginProperties(PluginExecutionContext, plugin);
         }
@@ -343,10 +348,10 @@ namespace Source.DLaB.Xrm.Plugin
         /// <param name="serviceProvider">The service provider.</param>
         private void InitializeServiceProviderProperties(IServiceProvider serviceProvider)
         {
-            PluginExecutionContext = (IPluginExecutionContext)serviceProvider.GetService(typeof(IPluginExecutionContext));
-            ServiceFactory = (IOrganizationServiceFactory)serviceProvider.GetService(typeof(IOrganizationServiceFactory));
             ServiceProvider = serviceProvider;
-            TracingService = (ITracingService)serviceProvider.GetService(typeof(ITracingService));
+            TracingService = InitializeTracingService(serviceProvider);
+            PluginExecutionContext = InitializePluginExecutionContext(serviceProvider);
+            ServiceFactory = InitializeServiceFactory(serviceProvider);
         }
 
         /// <summary>
@@ -363,6 +368,26 @@ namespace Source.DLaB.Xrm.Plugin
             }
             IsolationMode = (IsolationMode)context.IsolationMode;
             PluginTypeName = plugin.GetType().FullName;
+        }
+
+        protected virtual IPluginExecutionContext InitializePluginExecutionContext(IServiceProvider serviceProvider)
+        {
+            return (IPluginExecutionContext) serviceProvider.GetService(typeof(IPluginExecutionContext));
+        }
+
+        protected virtual IOrganizationServiceFactory InitializeServiceFactory(IServiceProvider serviceProvider)
+        {
+            return (IOrganizationServiceFactory)serviceProvider.GetService(typeof(IOrganizationServiceFactory));
+        }
+
+        protected virtual ITracingService InitializeTracingService(IServiceProvider serviceProvider)
+        {
+            return (ITracingService)serviceProvider.GetService(typeof(ITracingService));
+        }
+
+        protected virtual IOrganizationService InitializeIOrganizationService(IOrganizationServiceFactory factory, Guid? userId)
+        {
+            return new ExtendedOrganizationService(factory.CreateOrganizationService(userId), TracingService, Settings.OrganizationServiceSettings);
         }
 
         #endregion PropertyInitializers
