@@ -93,6 +93,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\EntityMap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Equipment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\ExchangeSyncIdMapping.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Extensions\IAddressable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\ExternalParty.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\ExternalPartyItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Fax.cs" />
