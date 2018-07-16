@@ -17,9 +17,9 @@ namespace Source.DLaB.Xrm
 {
     public class ExtendedOrganizationService : IOrganizationService
     {
-        private ExtendedOrganizationServiceSettings Settings { get; set; }
-        private IOrganizationService Service { get; set; }
-        private ITracingService TraceService { get; set; }
+        private ExtendedOrganizationServiceSettings Settings { get; }
+        private IOrganizationService Service { get; }
+        private ITracingService TraceService { get; }
 
         /// <summary>
         /// Constructor for determining if statements are timed and or logged.
