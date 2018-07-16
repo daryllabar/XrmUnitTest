@@ -220,7 +220,7 @@ namespace DLaB.Xrm.Client
 
         #endregion
 
-        #region IIOrganizationServiceWrapper
+        #region ICliendSideOrganizationService Members
 
         /// <summary>
         /// Gets the service URI.
@@ -231,6 +231,6 @@ namespace DLaB.Xrm.Client
             return Service == null ? new Uri("localhost") : Service.GetServiceUri();
         }
 
-        #endregion IIOrganizationServiceWrapper
+        #endregion ICliendSideOrganizationService Members
     }
 }

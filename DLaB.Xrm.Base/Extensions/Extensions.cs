@@ -7,7 +7,6 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
 using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Query;
 using System.Collections.Generic;
 using System.Configuration;
@@ -282,17 +281,6 @@ namespace Source.DLaB.Xrm
                 url = $@"http://{host}/{orgName}main.aspx?{parameters}";
             }
             return url;
-        }
-
-        /// <summary>
-        /// Gets the form URL.
-        /// </summary>
-        /// <param name="entity">The entity.</param>
-        /// <param name="service">The service.</param>
-        /// <returns></returns>
-        public static string GetFormUrl(this Entity entity, IOrganizationService service)
-        {
-            return entity.GetFormUrl(service.GetServiceUri());
         }
 
         /// <summary>
@@ -1428,83 +1416,6 @@ namespace Source.DLaB.Xrm
         }
 
         #endregion GetFirstOrDefault
-        
-        /// <summary>
-        /// Returns a unique string key for the given IOrganizationService
-        /// If the service is remote, the uri will be used, including the org Name
-        /// If the service is on the server (i.e. plugin), the org id will be used
-        /// </summary>
-        /// <param name="service"></param>
-        /// <returns></returns>
-        public static string GetOrganizationKey(this IOrganizationService service)
-        {
-            var uri = service.GetServiceUri();
-            if (uri != null)
-            {
-                return uri.Host.ToLower() + "|" + uri.Segments[1].Replace(@"/", "|").ToLower();
-            }
-
-            // Already on the server, grab organization guid
-            // Service should be of type Microsoft.Crm.Extensibility.InProcessServiceProxy which is an internal class.  Use reflection to grab the private field Org Id;
-            var field = service.GetType().GetField("_organizationId", BindingFlags.Instance | BindingFlags.NonPublic);
-            if (field == null)
-            {
-                return string.Empty;
-            }
-
-            var orgId = field.GetValue(service).ToString();
-            return "localOrgId" + orgId;
-        }
-
-        /// <summary>
-        /// Retrieves the Organization Name from the URL being used by the IOrganizationService.
-        /// </summary>
-        /// <param name="service"></param>
-        /// <returns></returns>
-        /// <remarks>This method will not support IFD</remarks>
-        public static string GetOrganizationName(this IOrganizationService service)
-        {
-            var uri = service.GetServiceUri();
-            if (uri == null)
-            {
-                throw new Exception("GetOrganizationName does not support In Process implementations of the IOrganizationService.");
-            }
-            return uri.Segments[1].Replace(@"/", "").ToLower();
-        }
-
-        /// <summary>
-        /// Assumes that this service is of type ServiceProxy&lt;IOrganizationService&gt; or IIOrganizationServiceWrapper
-        /// </summary>
-        /// <param name="service">The service.</param>
-        /// <returns></returns>
-        public static Uri GetServiceUri(this IOrganizationService service)
-        {
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
-            if (!(service is ServiceProxy<IOrganizationService> proxy))
-            {
-                // ReSharper disable once SuspiciousTypeConversion.Global
-                if (!(service is IIOrganizationServiceWrapper wrapper))
-                {
-                    // Check for Xrm.Client.Services.OrganizationService
-                    var innerService = service.GetType().GetProperty("InnerService");
-                    if (innerService == null)
-                    {
-                        throw new ArgumentException("Unable to determine the Uri for the IOrganizationService of type " + service.GetType().FullName);
-                    }
-                    proxy = (ServiceProxy<IOrganizationService>)innerService.GetValue(service);
-                }
-                else
-                {
-                    return wrapper.GetServiceUri();
-                }
-            }
-
-            return proxy.ServiceConfiguration?.CurrentServiceEndpoint.Address.Uri;
-        }
 
         #region InitializeFrom
 

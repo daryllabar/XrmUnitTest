@@ -460,6 +460,33 @@ namespace DLaB.Xrm.Test
             return clientSide != null && clientSide.GetOrganizationKey().StartsWith("www.localcrmdatabase.com");
         }
 
+        /// <summary>
+        /// Returns a unique string key for the given IOrganizationService
+        /// If the service is remote, the uri will be used, including the org Name
+        /// If the service is on the server (i.e. plugin), the org id will be used
+        /// </summary>
+        /// <param name="service"></param>
+        /// <returns></returns>
+        public static string GetOrganizationKey(this IOrganizationService service)
+        {
+            var uri = service.GetServiceUri();
+            if (uri != null)
+            {
+                return uri.Host.ToLower() + "|" + uri.Segments[1].Replace(@"/", "|").ToLower();
+            }
+
+            // Already on the server, grab organization guid
+            // Service should be of type Microsoft.Crm.Extensibility.InProcessServiceProxy which is an internal class.  Use reflection to grab the private field Org Id;
+            var field = service.GetType().GetField("_organizationId", BindingFlags.Instance | BindingFlags.NonPublic);
+            if (field == null)
+            {
+                return string.Empty;
+            }
+
+            var orgId = field.GetValue(service).ToString();
+            return "localOrgId" + orgId;
+        }
+
         #region MockOrDefault
 
         #region Retrieve
