@@ -9,6 +9,7 @@
     <Import_RootNamespace>DLaB.Xrm.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ExtendedOrganizationServiceTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionExamples.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionsEntityTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionsIOrganizationServiceTests.cs" />

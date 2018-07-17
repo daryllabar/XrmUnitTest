@@ -98,6 +98,7 @@ namespace Source.DLaB.Xrm
                     TraceStart(message);
                     timer.Start();
                     Service.Update(entity);
+                    return;
                 }
                 finally
                 {
@@ -122,6 +123,7 @@ namespace Source.DLaB.Xrm
                     TraceStart(message);
                     timer.Start();
                     Service.Delete(entityName, id);
+                    return;
                 }
                 finally
                 {
@@ -171,6 +173,7 @@ namespace Source.DLaB.Xrm
                     TraceStart(message);
                     timer.Start();
                     Service.Associate(entityName, entityId, relationship, relatedEntities);
+                    return;
                 }
                 finally
                 {
@@ -195,6 +198,7 @@ namespace Source.DLaB.Xrm
                     TraceStart(message);
                     timer.Start();
                     Service.Disassociate(entityName, entityId, relationship, relatedEntities);
+                    return;
                 }
                 finally
                 {
@@ -219,6 +223,12 @@ namespace Source.DLaB.Xrm
                 {
                     TraceStart(message);
                     timer.Start();
+                    if (Settings.LogDetailedRequests)
+                    {
+                        var results = Service.RetrieveMultiple(query);
+                        TraceService.Trace("Returned: " + results.Entities.Count);
+                        return results;
+                    }
                     return Service.RetrieveMultiple(query);
                 }
                 finally
@@ -228,6 +238,12 @@ namespace Source.DLaB.Xrm
             }
 
             TraceExecute(message);
+            if (Settings.LogDetailedRequests)
+            {
+                var results = Service.RetrieveMultiple(query);
+                TraceService.Trace("Returned: " + results.Entities.Count);
+                return results;
+            }
             return Service.RetrieveMultiple(query);
         }
 
@@ -244,7 +260,7 @@ namespace Source.DLaB.Xrm
 
                     break;
                 default:
-                    message += $"{request.Parameters.ToStringDebug("Parameters")}.";
+                    message += $"{request.Parameters.ToStringDebug("Parameters").ToCsv()}.";
                     break;
             }
 
@@ -257,17 +273,17 @@ namespace Source.DLaB.Xrm
             switch (query)
             {
                 case QueryExpression qe:
-                    message = $"Query Expression: {qe.GetSqlStatement()}.";
+                    message = $"Query Expression: {qe.GetSqlStatement()}";
                     break;
                 case FetchExpression fe:
-                    message = $"Fetch Expression: {fe.Query}.";
+                    message = $"Fetch Expression: {fe.Query}";
                     break;
                 case QueryByAttribute ba:
                     message =
                         $"Query By Attribute for {ba.EntityName} with attributes {string.Join(", ", ba.Attributes)} and values {string.Join(", ", ba.Values)} and Columns {string.Join(", ", ba.ColumnSet.Columns)}";
                     break;
                 default:
-                    message = $"Unknown Query Base {query.GetType().FullName}.";
+                    message = $"Unknown Query Base {query.GetType().FullName}";
                     break;
             }
 

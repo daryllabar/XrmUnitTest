@@ -1,12 +1,9 @@
 ﻿using DLaB.Xrm.Entities;
-using DLaB.Xrm.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using XrmUnitTest.Test;
-using XrmUnitTest.Test.Builders;
 
 namespace DLaB.Xrm.Tests
 {

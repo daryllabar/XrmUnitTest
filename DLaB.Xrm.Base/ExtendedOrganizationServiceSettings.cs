@@ -27,7 +27,7 @@ namespace Source.DLaB.Xrm
 
         /// <summary>
         /// The format of the message to use when logging the start of a request.  Must include "{0}" for the name of the request.
-        /// Defaults to "Starting Timer for {0}."
+        /// Defaults to "Starting Timer for {0}"
         /// </summary>
         public string TimeStartMessageFormat
         {
@@ -39,7 +39,7 @@ namespace Source.DLaB.Xrm
                 try
                 {
                     var tmp = string.Format(value, key);
-                    if (tmp.Contains(key))
+                    if (!tmp.Contains(key))
                     {
                         throw new FormatException(errMsg);
                     }
@@ -91,7 +91,7 @@ namespace Source.DLaB.Xrm
         {
             LogDetailedRequests = true;
             TimeRequests = true;
-            TimeStartMessageFormat = "Starting Timer for {0}.";
+            TimeStartMessageFormat = "Starting Timer for {0}";
             TimeEndMessageFormat = "Timer Ended ({0,7:F3} seconds)";
         }
     }
