@@ -9,7 +9,7 @@ namespace Source.DLaB.Xrm.Plugin
 	
 {
     /// <summary>
-    /// Plugin Context Interface for Handling 
+    /// Plugin Context Interface for Handling Additional functionality
     /// </summary>
     public interface IExtendedPluginContext : IPluginExecutionContext
     {

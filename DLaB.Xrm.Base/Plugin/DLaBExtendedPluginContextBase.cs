@@ -333,7 +333,7 @@ namespace Source.DLaB.Xrm.Plugin
                 throw new ArgumentNullException(nameof(plugin));
             }
 
-            Settings = Settings ?? new DLaBExtendedPluginContextSettings();
+            Settings = settings ?? new DLaBExtendedPluginContextSettings();
             InitializeServiceProviderProperties(serviceProvider);
             InitializePluginProperties(PluginExecutionContext, plugin);
         }
