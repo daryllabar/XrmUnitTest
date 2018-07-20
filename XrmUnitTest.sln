@@ -85,9 +85,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmUnitTest.2015", "2015\Xr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmUnitTest.2016", "2016\XrmUnitTest.2016\XrmUnitTest.2016.csproj", "{E8C237CB-FFB2-4163-A985-01ECC0B8F399}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DLaB.Xrm.Workflow", "DLaB.Xrm.Workflow.Base\DLaB.Xrm.Workflow.shproj", "{0A4F992C-57F2-4910-AECC-13AD1CD271AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm.Workflow", "DLaB.Xrm.Workflow\DLaB.Xrm.Workflow.csproj", "{B43C4D97-A9A4-476B-995E-FB201BF17CCE}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		XrmUnitTest.Test.Base\XrmUnitTest.Test.Base.projitems*{0773e17c-ddbc-4dd9-812b-85c1299a6aca}*SharedItemsImports = 13
+		DLaB.Xrm.Workflow.Base\DLaB.Xrm.Workflow.Base.projitems*{0a4f992c-57f2-4910-aecc-13ad1cd271ad}*SharedItemsImports = 13
 		DLaB.Xrm.LocalCrm.Tests.Base\DLaB.Xrm.LocalCrm.Tests.Base.projitems*{1a5ef03b-b261-4971-8f91-448b43f3e642}*SharedItemsImports = 13
 		Example\Xyz.Xrm.TestCore\Xyz.Xrm.TestCore.projitems*{3016d729-1a3b-43c0-ac2f-d4ef6a305fa6}*SharedItemsImports = 4
 		DLaB.Xrm.Base\DLaB.Xrm.Base.projitems*{33c4e42f-b410-4570-bbc9-da4c695b1f4d}*SharedItemsImports = 4
@@ -104,6 +109,7 @@ Global
 		XrmUnitTest.Test.Base\XrmUnitTest.Test.Base.projitems*{913c6b2b-affe-4819-9b22-b1e840e86738}*SharedItemsImports = 4
 		DLaB.Xrm.Base\DLaB.Xrm.Base.projitems*{a3b3ce75-dfae-4035-97a3-afd49ad47bc5}*SharedItemsImports = 13
 		Example\Xyz.Xrm\Xyz.Xrm.projitems*{b22b3bc6-0ac6-4cdd-a118-16e318818ad7}*SharedItemsImports = 13
+		DLaB.Xrm.Workflow.Base\DLaB.Xrm.Workflow.Base.projitems*{b43c4d97-a9a4-476b-995e-fb201bf17cce}*SharedItemsImports = 4
 		DLaB.Xrm.Base\DLaB.Xrm.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 4
 		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 4
 		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 4
@@ -199,6 +205,12 @@ Global
 		{E8C237CB-FFB2-4163-A985-01ECC0B8F399}.LocalNuget|Any CPU.Build.0 = Release|Any CPU
 		{E8C237CB-FFB2-4163-A985-01ECC0B8F399}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8C237CB-FFB2-4163-A985-01ECC0B8F399}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B43C4D97-A9A4-476B-995E-FB201BF17CCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B43C4D97-A9A4-476B-995E-FB201BF17CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B43C4D97-A9A4-476B-995E-FB201BF17CCE}.LocalNuget|Any CPU.ActiveCfg = Release|Any CPU
+		{B43C4D97-A9A4-476B-995E-FB201BF17CCE}.LocalNuget|Any CPU.Build.0 = Release|Any CPU
+		{B43C4D97-A9A4-476B-995E-FB201BF17CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B43C4D97-A9A4-476B-995E-FB201BF17CCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -215,6 +227,7 @@ Global
 		{8F91EFC7-351B-4802-99AA-6C6F16110505} = {F766865B-5548-49CA-B4A3-2BEC6A5E3E6E}
 		{33C4E42F-B410-4570-BBC9-DA4C695B1F4D} = {56965403-1D14-4364-8B4A-ADE3CE4CAE44}
 		{E8C237CB-FFB2-4163-A985-01ECC0B8F399} = {AF470AF1-A3ED-41B9-A35F-1D65AFBED5F5}
+		{B43C4D97-A9A4-476B-995E-FB201BF17CCE} = {DF42195B-074C-4C34-9F6C-C13BC5931539}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3C4F140B-7118-4292-9392-253BE1444510}

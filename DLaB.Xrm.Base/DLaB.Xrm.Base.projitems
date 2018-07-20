@@ -38,6 +38,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\QueryExpressionConvertExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\WhereEqualExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\WhereInExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IExtendedExecutionContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LateBoundActivePropertyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LateBoundQuerySettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\DLaBExtendedPluginContextSettings.cs" />

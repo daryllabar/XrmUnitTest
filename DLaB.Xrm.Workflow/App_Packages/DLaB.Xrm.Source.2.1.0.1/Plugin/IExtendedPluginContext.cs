@@ -6,7 +6,7 @@ namespace DLaB.Xrm.Plugin
 #else
 namespace Source.DLaB.Xrm.Plugin
 #endif
-
+	
 {
     /// <summary>
     /// Plugin Context Interface for Handling Additional functionality

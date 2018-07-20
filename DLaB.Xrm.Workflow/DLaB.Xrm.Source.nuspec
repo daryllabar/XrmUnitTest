@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>DLaB.Xrm.Workflow.Source</id>
-    <version>1.0.0.0</version>
+    <id>DLaB.Xrm.Source</id>
+    <version>2.1.0.1</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>
@@ -11,12 +11,11 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Contains extensions for Xrm development.  </description>
     <releaseNotes></releaseNotes>
-    <copyright>Copyright 2018</copyright>
-    <tags>Dynamics CRM Workflow XRM</tags>
+    <copyright>Copyright 2016</copyright>
+    <tags>Dynamics CRM Plugin XRM</tags>
     <dependencies>
       <group targetFramework=".NETFramework4.5">
         <dependency id="DLaB.Common.Source" version="1.1.2" />
-        <dependency id="DLaB.Common.Source" version="2.1.0.1" />
       </group>
     </dependencies>
     <frameworkAssemblies>
@@ -25,6 +24,12 @@
     </frameworkAssemblies> 
   </metadata>
   <files>
-    <file src="..\..\DLaB.Xrm.Workflow.Base\*.cs" target="content\App_Packages\DLaB.Xrm.Workflow.Source.1.0.0.0" />
+    <file src="..\..\DLaB.Xrm.Base\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.1" />
+    <file src="..\..\DLaB.Xrm.Base\Comparers\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.1\Comparers" />
+    <file src="..\..\DLaB.Xrm.Base\Exceptions\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.1\Exceptions" />
+    <file src="..\..\DLaB.Xrm.Base\Extensions\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.1\Extensions" />
+    <file src="..\..\DLaB.Xrm.Base\Plugin\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.1\Plugin" />
+    <file src="..\..\DLaB.Xrm.Base\Sandbox\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.1\Sandbox" />
+    <file src="..\..\DLaB.Xrm.Base\Sandbox\Serialization\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.1\Serialization" />
   </files>
 </package>  

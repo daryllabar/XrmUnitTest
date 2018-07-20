@@ -241,8 +241,7 @@ namespace Source.DLaB.Xrm.Plugin
         private IOrganizationService _organizationService;
         private IOrganizationService _systemOrganizationService;
         private IOrganizationService _triggeredUserOrganizationService;
-        private IOrganizationServiceFactory _serviceFactory;
-        private ITracingService _tracingService;
+        private IOrganizationServiceFactory ServiceFactory { get; set; }
 
         /// <summary>
         /// The IOrganizationService of the plugin, Impersonated as the user that the plugin is was initiated by
@@ -274,8 +273,6 @@ namespace Source.DLaB.Xrm.Plugin
         /// </value>
         public virtual EntityReference PrimaryEntity => new EntityReference(PrimaryEntityName, PrimaryEntityId);
 
-        private IOrganizationServiceFactory ServiceFactory => _serviceFactory ?? (_serviceFactory = InitializeServiceFactory(ServiceProvider));
-
         /// <summary>
         /// The IOrganizationService of the plugin, using the System User
         /// </summary>
@@ -284,7 +281,7 @@ namespace Source.DLaB.Xrm.Plugin
         /// <summary>
         /// The ITracingService of the plugin.
         /// </summary>
-        public ITracingService TracingService => _tracingService ?? (_tracingService = InitializeTracingService(ServiceProvider));
+        public ITracingService TracingService { get; private set; }
 
         #endregion IExtendedPluginContext Properties
 
@@ -326,14 +323,19 @@ namespace Source.DLaB.Xrm.Plugin
         /// </exception>
         public DLaBExtendedPluginContextBase(IServiceProvider serviceProvider, IRegisteredEventsPlugin plugin, DLaBExtendedPluginContextSettings settings = null)
         {
+            if (serviceProvider == null)
+            {
+                throw new ArgumentNullException(nameof(serviceProvider));
+            }
+
             if (plugin == null)
             {
                 throw new ArgumentNullException(nameof(plugin));
             }
 
             Settings = settings ?? new DLaBExtendedPluginContextSettings();
-            ServiceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
-            InitializePluginProperties(serviceProvider, plugin);
+            InitializeServiceProviderProperties(serviceProvider);
+            InitializePluginProperties(PluginExecutionContext, plugin);
         }
 
         #endregion Constructors
@@ -341,23 +343,32 @@ namespace Source.DLaB.Xrm.Plugin
         #region PropertyInitializers
 
         /// <summary>
-        /// Initializes the plugin properties.
+        /// Initializes the IServiceProvider properties.
         /// </summary>
-        /// <param name="serviceProvider">The Service Provider</param>
-        /// <param name="plugin">The plugin.</param>
-        private void InitializePluginProperties(IServiceProvider serviceProvider, IRegisteredEventsPlugin plugin)
+        /// <param name="serviceProvider">The service provider.</param>
+        private void InitializeServiceProviderProperties(IServiceProvider serviceProvider)
         {
+            ServiceProvider = serviceProvider;
+            TracingService = InitializeTracingService(serviceProvider);
             PluginExecutionContext = InitializePluginExecutionContext(serviceProvider);
-            Event = PluginExecutionContext.GetEvent(plugin.RegisteredEvents);
-            if (Event.Message == RegisteredEvent.Any)
-            {
-                Event = new RegisteredEvent(Event.Stage, PluginExecutionContext.GetMessageType(), Event.Execute);
-            }
-            IsolationMode = (IsolationMode)PluginExecutionContext.IsolationMode;
-            PluginTypeName = plugin.GetType().FullName;
+            ServiceFactory = InitializeServiceFactory(serviceProvider);
         }
 
-        #region Initializers
+        /// <summary>
+        /// Initializes the plugin properties.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="plugin">The plugin.</param>
+        private void InitializePluginProperties(IPluginExecutionContext context, IRegisteredEventsPlugin plugin)
+        {
+            Event = context.GetEvent(plugin.RegisteredEvents);
+            if (Event.Message == RegisteredEvent.Any)
+            {
+                Event = new RegisteredEvent(Event.Stage, context.GetMessageType(), Event.Execute);
+            }
+            IsolationMode = (IsolationMode)context.IsolationMode;
+            PluginTypeName = plugin.GetType().FullName;
+        }
 
         protected virtual IPluginExecutionContext InitializePluginExecutionContext(IServiceProvider serviceProvider)
         {
@@ -378,8 +389,6 @@ namespace Source.DLaB.Xrm.Plugin
         {
             return new ExtendedOrganizationService(factory.CreateOrganizationService(userId), TracingService, Settings.OrganizationServiceSettings);
         }
-
-        #endregion Initializers
 
         #endregion PropertyInitializers
 
