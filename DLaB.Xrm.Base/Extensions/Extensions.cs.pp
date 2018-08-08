@@ -856,7 +856,7 @@ namespace Source.DLaB.Xrm
 
         #region IExecutionContext
 
-        private static List<string> ToStringDebug(this IExecutionContext context)
+        internal static List<string> ToStringDebug(this IExecutionContext context)
         {
             var lines = new List<string>
             {

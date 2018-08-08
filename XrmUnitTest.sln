@@ -87,7 +87,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmUnitTest.2016", "2016\Xr
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DLaB.Xrm.Workflow", "DLaB.Xrm.Workflow.Base\DLaB.Xrm.Workflow.shproj", "{0A4F992C-57F2-4910-AECC-13AD1CD271AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm.Workflow", "DLaB.Xrm.Workflow\DLaB.Xrm.Workflow.csproj", "{B43C4D97-A9A4-476B-995E-FB201BF17CCE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm.Workflow", "SourceProjects\DLaB.Xrm.Workflow\DLaB.Xrm.Workflow.csproj", "{DDA6BAD7-C9E4-45E8-A8E7-B6275AD95933}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -109,7 +109,6 @@ Global
 		XrmUnitTest.Test.Base\XrmUnitTest.Test.Base.projitems*{913c6b2b-affe-4819-9b22-b1e840e86738}*SharedItemsImports = 4
 		DLaB.Xrm.Base\DLaB.Xrm.Base.projitems*{a3b3ce75-dfae-4035-97a3-afd49ad47bc5}*SharedItemsImports = 13
 		Example\Xyz.Xrm\Xyz.Xrm.projitems*{b22b3bc6-0ac6-4cdd-a118-16e318818ad7}*SharedItemsImports = 13
-		DLaB.Xrm.Workflow.Base\DLaB.Xrm.Workflow.Base.projitems*{b43c4d97-a9a4-476b-995e-fb201bf17cce}*SharedItemsImports = 4
 		DLaB.Xrm.Base\DLaB.Xrm.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 4
 		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 4
 		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 4
@@ -117,6 +116,7 @@ Global
 		NMemory.Base\NMemory.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 4
 		DLaB.Xrm.Base\DLaB.Xrm.Base.projitems*{c11c3523-d4f4-4c7d-b072-46e96947efc2}*SharedItemsImports = 4
 		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{d2ccbfcf-54c0-405c-a829-100a3deb4229}*SharedItemsImports = 13
+		DLaB.Xrm.Workflow.Base\DLaB.Xrm.Workflow.Base.projitems*{dda6bad7-c9e4-45e8-a8e7-b6275ad95933}*SharedItemsImports = 4
 		Example\Xyz.Xrm\Xyz.Xrm.projitems*{e19c051f-32d2-4a47-8f08-a4f251c59b4c}*SharedItemsImports = 4
 		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{e8ad0e5d-2969-463a-96a7-8d8a3240fd7f}*SharedItemsImports = 13
 		DLaB.Xrm.Base\DLaB.Xrm.Base.projitems*{e8c237cb-ffb2-4163-a985-01ecc0b8f399}*SharedItemsImports = 4
@@ -205,12 +205,12 @@ Global
 		{E8C237CB-FFB2-4163-A985-01ECC0B8F399}.LocalNuget|Any CPU.Build.0 = Release|Any CPU
 		{E8C237CB-FFB2-4163-A985-01ECC0B8F399}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8C237CB-FFB2-4163-A985-01ECC0B8F399}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B43C4D97-A9A4-476B-995E-FB201BF17CCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B43C4D97-A9A4-476B-995E-FB201BF17CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B43C4D97-A9A4-476B-995E-FB201BF17CCE}.LocalNuget|Any CPU.ActiveCfg = Release|Any CPU
-		{B43C4D97-A9A4-476B-995E-FB201BF17CCE}.LocalNuget|Any CPU.Build.0 = Release|Any CPU
-		{B43C4D97-A9A4-476B-995E-FB201BF17CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B43C4D97-A9A4-476B-995E-FB201BF17CCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDA6BAD7-C9E4-45E8-A8E7-B6275AD95933}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDA6BAD7-C9E4-45E8-A8E7-B6275AD95933}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDA6BAD7-C9E4-45E8-A8E7-B6275AD95933}.LocalNuget|Any CPU.ActiveCfg = Release|Any CPU
+		{DDA6BAD7-C9E4-45E8-A8E7-B6275AD95933}.LocalNuget|Any CPU.Build.0 = Release|Any CPU
+		{DDA6BAD7-C9E4-45E8-A8E7-B6275AD95933}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDA6BAD7-C9E4-45E8-A8E7-B6275AD95933}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -227,7 +227,7 @@ Global
 		{8F91EFC7-351B-4802-99AA-6C6F16110505} = {F766865B-5548-49CA-B4A3-2BEC6A5E3E6E}
 		{33C4E42F-B410-4570-BBC9-DA4C695B1F4D} = {56965403-1D14-4364-8B4A-ADE3CE4CAE44}
 		{E8C237CB-FFB2-4163-A985-01ECC0B8F399} = {AF470AF1-A3ED-41B9-A35F-1D65AFBED5F5}
-		{B43C4D97-A9A4-476B-995E-FB201BF17CCE} = {DF42195B-074C-4C34-9F6C-C13BC5931539}
+		{DDA6BAD7-C9E4-45E8-A8E7-B6275AD95933} = {DF42195B-074C-4C34-9F6C-C13BC5931539}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3C4F140B-7118-4292-9392-253BE1444510}
