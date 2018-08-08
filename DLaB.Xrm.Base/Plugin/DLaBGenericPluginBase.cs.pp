@@ -160,19 +160,34 @@ namespace Source.DLaB.Xrm.Plugin
             }
             catch (Exception ex)
             {
-                context.LogException(ex);
-                // Unexpected Exception occurred, log exception then wrap and throw new exception
-                if (context.IsolationMode == IsolationMode.Sandbox)
+                if(ExecuteExceptionHandler(ex, context))
                 {
-                    Sandbox.ExceptionHandler.AssertCanThrow(ex);
+                    throw;
                 }
-                throw;
             }
             finally
             {
                 context.TraceFormat("Exiting {0}.Execute()", context.PluginTypeName);
                 PostExecute(context);
             }
+        }
+
+        /// <summary>
+        /// Method that gets called when an exception occurs in the Execute method.  Return true if the exception should be rethrown.
+        /// This prevents losing the stack trace by rethrowing the originally caught error.
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        protected virtual bool ExecuteExceptionHandler(Exception ex, T context)
+        { 
+            context.LogException(ex);
+            // Unexpected Exception occurred, log exception then wrap and throw new exception
+            if (context.IsolationMode == IsolationMode.Sandbox)
+            {
+                Sandbox.ExceptionHandler.AssertCanThrow(ex);
+            }
+            return true;
         }
 
         /// <summary>
