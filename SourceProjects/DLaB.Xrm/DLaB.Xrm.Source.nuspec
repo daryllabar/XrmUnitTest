@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>DLaB.Xrm.Source</id>
-    <version>2.1.0.4</version>
+    <version>2.1.0.5</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>
@@ -24,12 +24,12 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="..\..\DLaB.Xrm.Base\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.4" />
-    <file src="..\..\DLaB.Xrm.Base\Comparers\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.4\Comparers" />
-    <file src="..\..\DLaB.Xrm.Base\Exceptions\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.4\Exceptions" />
-    <file src="..\..\DLaB.Xrm.Base\Extensions\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.4\Extensions" />
-    <file src="..\..\DLaB.Xrm.Base\Plugin\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.4\Plugin" />
-    <file src="..\..\DLaB.Xrm.Base\Sandbox\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.4\Sandbox" />
-    <file src="..\..\DLaB.Xrm.Base\Sandbox\Serialization\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.4\Serialization" />
+    <file src="..\..\DLaB.Xrm.Base\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.5" />
+    <file src="..\..\DLaB.Xrm.Base\Comparers\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.5\Comparers" />
+    <file src="..\..\DLaB.Xrm.Base\Exceptions\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.5\Exceptions" />
+    <file src="..\..\DLaB.Xrm.Base\Extensions\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.5\Extensions" />
+    <file src="..\..\DLaB.Xrm.Base\Plugin\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.5\Plugin" />
+    <file src="..\..\DLaB.Xrm.Base\Sandbox\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.5\Sandbox" />
+    <file src="..\..\DLaB.Xrm.Base\Sandbox\Serialization\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.1.0.5\Serialization" />
   </files>
 </package>

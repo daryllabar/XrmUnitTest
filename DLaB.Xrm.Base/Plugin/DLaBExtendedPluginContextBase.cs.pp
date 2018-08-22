@@ -349,6 +349,13 @@ namespace Source.DLaB.Xrm.Plugin
         {
             PluginExecutionContext = InitializePluginExecutionContext(serviceProvider);
             Event = PluginExecutionContext.GetEvent(plugin.RegisteredEvents);
+            if (Event == null)
+            {
+                var message = $"No RegisteredEvent found for the current context of Stage: {this.GetPipelineStage()}, Message: {MessageName}, Entity: {this.PrimaryEntityName}.  Either Unregister the plugin for this event, or include this as a RegisteredEvent in the Plugin's RegisteredEvents.";
+                Trace(message);
+                Trace(this.GetContextInfo());
+                throw new InvalidPluginExecutionException(message);
+            }
             if (Event.Message == RegisteredEvent.Any)
             {
                 Event = new RegisteredEvent(Event.Stage, PluginExecutionContext.GetMessageType(), Event.Execute);
