@@ -44,6 +44,10 @@ namespace Source.DLaB.Xrm.Plugin
         /// </value>
         protected List<MessageType> MessageTypes { get; set; }
         /// <summary>
+        /// The Previous Builder if any.  This is set via the And() method
+        /// </summary>
+        protected RegisteredEventBuilder PreviousBuilder { get; set; }
+        /// <summary>
         /// Gets or sets the stage.
         /// </summary>
         /// <value>
@@ -109,31 +113,56 @@ namespace Source.DLaB.Xrm.Plugin
         #endregion Fluent Methods
 
         /// <summary>
+        /// Creates a new RegisteredEventBuilder, but keeps the previous RegisteredEventBuilder linked so a call to build, will build the previous objects in the chain.
+        /// </summary>
+        /// <param name="stage"></param>
+        /// <param name="messageTypes"></param>
+        /// <returns></returns>
+        public RegisteredEventBuilder And(PipelineStage stage, params MessageType[] messageTypes)
+        {
+            var builder = new RegisteredEventBuilder(stage, messageTypes)
+            {
+                PreviousBuilder = this
+            };
+
+            return builder;
+        }
+
+        /// <summary>
         /// Builds this instance.
         /// </summary>
         /// <returns></returns>
         public List<RegisteredEvent> Build()
         {
             var events = new List<RegisteredEvent>();
+            BuildAndAddTo(events);
+            return events;
+        }
+
+        private void BuildAndAddTo(List<RegisteredEvent> events)
+        {
+            PreviousBuilder?.BuildAndAddTo(events);
+
             foreach (var messageType in MessageTypes)
             {
                 if (EntityLogicalNames.Any())
                 {
-                    events.AddRange(EntityLogicalNames.Select(logicalName => new RegisteredEvent(Stage, messageType, Execute, logicalName)
-                                                                                 {
-                                                                                     ExecuteMethodName = ExecuteMethodName
-                                                                                 }));
+                    events.AddRange(
+                        EntityLogicalNames.Select(
+                            logicalName => new RegisteredEvent(Stage, messageType, Execute, logicalName)
+                            {
+                                ExecuteMethodName = ExecuteMethodName
+                            }));
                 }
                 else
                 {
-                    events.Add(new RegisteredEvent(Stage, messageType, Execute)
-                                   {
-                                       ExecuteMethodName = ExecuteMethodName
-                                   });
+                    events.Add(
+                        new RegisteredEvent(Stage, messageType, Execute)
+                        {
+                            ExecuteMethodName = ExecuteMethodName
+                        });
                 }
             }
-
-            return events;
-        } 
+        }
     }
 }

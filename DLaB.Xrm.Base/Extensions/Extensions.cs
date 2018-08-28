@@ -144,7 +144,7 @@ namespace Source.DLaB.Xrm
         /// <param name="baseEntity"></param>
         /// <param name="entity">The entity.</param>
         /// <returns></returns>
-        public static T CoallesceEntity<T>(this T baseEntity, Entity entity) where T : Entity
+        public static T CoalesceEntity<T>(this T baseEntity, Entity entity) where T : Entity
         {
             if (entity == null)
             {

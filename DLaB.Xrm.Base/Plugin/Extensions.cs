@@ -265,7 +265,7 @@ namespace Source.DLaB.Xrm.Plugin
 
         #endregion CalledFrom
 
-        #region CoallesceTarget
+        #region CoalesceTarget
 
         /// <summary>
         /// Creates a new Entity of type T, adding the attributes from both the Target and the Post Image if they exist.
@@ -276,9 +276,9 @@ namespace Source.DLaB.Xrm.Plugin
         /// <param name="context">The context</param>
         /// <param name="imageName">Name of the image.</param>
         /// <returns></returns>
-        public static T CoallesceTargetWithPreEntity<T>(this IPluginExecutionContext context, string imageName = null) where T : Entity
+        public static T CoalesceTargetWithPreEntity<T>(this IPluginExecutionContext context, string imageName = null) where T : Entity
         {
-            return DereferenceTarget<T>(context).CoallesceEntity(context.GetPreEntity<T>(imageName));
+            return DereferenceTarget<T>(context).CoalesceEntity(context.GetPreEntity<T>(imageName));
         }
 
         /// <summary>
@@ -291,12 +291,12 @@ namespace Source.DLaB.Xrm.Plugin
         /// <param name="context">The context.</param>
         /// <param name="imageName">Name of the image.</param>
         /// <returns></returns>
-        public static T CoallesceTargetWithPostEntity<T>(this IPluginExecutionContext context, string imageName = null) where T : Entity
+        public static T CoalesceTargetWithPostEntity<T>(this IPluginExecutionContext context, string imageName = null) where T : Entity
         {
-            return DereferenceTarget<T>(context).CoallesceEntity(context.GetPostEntity<T>(imageName));
+            return DereferenceTarget<T>(context).CoalesceEntity(context.GetPostEntity<T>(imageName));
         }
 
-        #endregion CoallesceTarget
+        #endregion CoalesceTarget
 
         #region ContainsAllNonNull
 
