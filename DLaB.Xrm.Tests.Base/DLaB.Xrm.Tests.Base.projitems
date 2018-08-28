@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionsEntityTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionsIOrganizationServiceTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionsIPluginExecutionContextTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Plugin\RegisteredEventBuilderTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\TraceTimerTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sandbox\ExceptionHandlerTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sandbox\Serialization\SerializableEntityTests.cs" />
