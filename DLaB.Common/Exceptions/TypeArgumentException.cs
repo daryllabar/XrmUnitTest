@@ -11,6 +11,7 @@ namespace Source.DLaB.Common.Exceptions
     /// Exception thrown to indicate that an inappropriate type argument was used for
     /// a type parameter to a generic type or method.
     /// </summary>
+    [Serializable]
     public class TypeArgumentException : Exception
     {
         /// <summary>
