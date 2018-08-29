@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Activities;
-using System.ServiceModel;
 #if DLAB_UNROOT_NAMESPACE || DLAB_XRM
 using DLaB.Xrm.Plugin;
 #else
@@ -16,7 +15,7 @@ namespace Source.DLaB.Xrm.Workflow
 {
     public abstract class DLaBGenericCodeActivityBase<T> : CodeActivity where T:IExtendedWorkflowContext
     {
-        protected abstract T CreateWorkflowContext(CodeActivityContext serviceProvider);
+        protected abstract T CreateWorkflowContext(CodeActivityContext context);
 
         protected override void Execute(CodeActivityContext codeActivityContext)
         {
@@ -84,7 +83,7 @@ namespace Source.DLaB.Xrm.Workflow
         /// <summary>
         /// Method that gets called after the Execute
         /// </summary>
-        /// <param name="codeActivityContext"></param>
+        /// <param name="context">The context.</param>
         protected virtual void PostExecute(T context) { }
     }
 }

@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>DLaB.Xrm.Workflow.Source</id>
-    <version>1.1.0.1</version>
+    <version>1.1.0.2</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>
@@ -26,6 +26,6 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="..\..\DLaB.Xrm.Workflow.Base\*.cs" target="content\App_Packages\DLaB.Xrm.Workflow.Source.1.1.0.1" />
+    <file src="..\..\DLaB.Xrm.Workflow.Base\*.cs" target="content\App_Packages\DLaB.Xrm.Workflow.Source.1.1.0.2" />
   </files>
 </package>

@@ -130,33 +130,35 @@ namespace Source.DLaB.Xrm.Plugin
 
             try
             {
-                context.Trace("Entered {0}.Execute()", context.PluginTypeName);
-
-                if (context.Event == null)
+                using (context.TraceTime("{0}.Execute()", context.PluginTypeName))
                 {
-                    context.Trace("No Registered Event Found for Event: {0}, Entity: {1}, and Stage: {2}!", context.MessageName, context.PrimaryEntityName, context.Stage);
-                    return;
-                }
 
-                if (PreventRecursiveCall(context))
-                {
-                    context.Trace("Duplicate Recursive Call Prevented!");
-                    return;
-                }
+                    if (context.Event == null)
+                    {
+                        context.Trace("No Registered Event Found for Event: {0}, Entity: {1}, and Stage: {2}!", context.MessageName, context.PrimaryEntityName, context.Stage);
+                        return;
+                    }
 
-                if (context.HasPluginHandlerExecutionBeenPrevented())
-                {
-                    context.Trace("Context has Specified Call to be Prevented!");
-                    return;
-                }
+                    if (PreventRecursiveCall(context))
+                    {
+                        context.Trace("Duplicate Recursive Call Prevented!");
+                        return;
+                    }
 
-                if (SkipExecution(context))
-                {
-                    context.Trace("Execution Has Been Skipped!");
-                    return;
-                }
+                    if (context.HasPluginHandlerExecutionBeenPrevented())
+                    {
+                        context.Trace("Context has Specified Call to be Prevented!");
+                        return;
+                    }
 
-                ExecuteRegisteredEvent(context);
+                    if (SkipExecution(context))
+                    {
+                        context.Trace("Execution Has Been Skipped!");
+                        return;
+                    }
+
+                    ExecuteRegisteredEvent(context);
+                }
             }
             catch (Exception ex)
             {
@@ -167,7 +169,6 @@ namespace Source.DLaB.Xrm.Plugin
             }
             finally
             {
-                context.Trace("Exiting {0}.Execute()", context.PluginTypeName);
                 PostExecute(context);
             }
         }

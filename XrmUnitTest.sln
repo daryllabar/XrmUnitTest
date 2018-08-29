@@ -58,6 +58,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Common.Tests", "DLaB.Common.Tests\DLaB.Common.Tests.csproj", "{4BCE674F-352E-4A6B-BAFF-3E6186E3CF5B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SourceProjects", "SourceProjects", "{DF42195B-074C-4C34-9F6C-C13BC5931539}"
+	ProjectSection(SolutionItems) = preProject
+		SourceProjects\XrmUnitTest.ruleset = SourceProjects\XrmUnitTest.ruleset
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm", "SourceProjects\DLaB.Xrm\DLaB.Xrm.csproj", "{C11C3523-D4F4-4C7D-B072-46E96947EFC2}"
 EndProject
