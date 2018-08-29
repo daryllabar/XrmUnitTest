@@ -39,7 +39,7 @@ namespace Source.DLaB.Common.Exceptions
         /// exception propagates from a remoting server to the client.
         /// </remarks>
         protected DictionaryDuplicateKeyException(System.Runtime.Serialization.SerializationInfo info,
-            System.Runtime.Serialization.StreamingContext context) { }
+            System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
 
 
     }
