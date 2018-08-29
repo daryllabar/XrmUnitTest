@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>DLaB.Xrm.Source</id>
-    <version>2.2.0.0</version>
+    <version>2.2.0.1</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>
@@ -15,7 +15,7 @@
     <tags>Dynamics CRM Plugin XRM</tags>
     <dependencies>
       <group targetFramework=".NETFramework4.5">
-        <dependency id="DLaB.Common.Source" version="1.1.2" />
+        <dependency id="DLaB.Common.Source" version="1.1.2.7" />
       </group>
     </dependencies>
     <frameworkAssemblies>
@@ -24,12 +24,12 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="..\..\DLaB.Xrm.Base\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.2.0.0" />
-    <file src="..\..\DLaB.Xrm.Base\Comparers\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.2.0.0\Comparers" />
-    <file src="..\..\DLaB.Xrm.Base\Exceptions\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.2.0.0\Exceptions" />
-    <file src="..\..\DLaB.Xrm.Base\Extensions\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.2.0.0\Extensions" />
-    <file src="..\..\DLaB.Xrm.Base\Plugin\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.2.0.0\Plugin" />
-    <file src="..\..\DLaB.Xrm.Base\Sandbox\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.2.0.0\Sandbox" />
-    <file src="..\..\DLaB.Xrm.Base\Sandbox\Serialization\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.2.0.0\Serialization" />
+    <file src="..\..\DLaB.Xrm.Base\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.2.0.1" />
+    <file src="..\..\DLaB.Xrm.Base\Comparers\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.2.0.1\Comparers" />
+    <file src="..\..\DLaB.Xrm.Base\Exceptions\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.2.0.1\Exceptions" />
+    <file src="..\..\DLaB.Xrm.Base\Extensions\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.2.0.1\Extensions" />
+    <file src="..\..\DLaB.Xrm.Base\Plugin\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.2.0.1\Plugin" />
+    <file src="..\..\DLaB.Xrm.Base\Sandbox\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.2.0.1\Sandbox" />
+    <file src="..\..\DLaB.Xrm.Base\Sandbox\Serialization\*.cs" target="content\App_Packages\DLaB.Xrm.Source.2.2.0.1\Serialization" />
   </files>
 </package>

@@ -20,8 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{C80A3A8A
 		DLaB.Xrm.Entities\DLaB.Xrm.Entities.nuspec = DLaB.Xrm.Entities\DLaB.Xrm.Entities.nuspec
 		SourceProjects\DLaB.Xrm\DLaB.Xrm.Source.nuspec = SourceProjects\DLaB.Xrm\DLaB.Xrm.Source.nuspec
 		09\XrmUnitTest.09\XrmUnitTest.09.nuspec = 09\XrmUnitTest.09\XrmUnitTest.09.nuspec
-		DLaB.Xrm.Test.2015\XrmUnitTest.2015.nuspec = DLaB.Xrm.Test.2015\XrmUnitTest.2015.nuspec
-		DLaB.Xrm.Test.2016\XrmUnitTest.2016.nuspec = DLaB.Xrm.Test.2016\XrmUnitTest.2016.nuspec
+		2015\XrmUnitTest.2015\XrmUnitTest.2015.nuspec = 2015\XrmUnitTest.2015\XrmUnitTest.2015.nuspec
+		2016\XrmUnitTest.2016\XrmUnitTest.2016.nuspec = 2016\XrmUnitTest.2016\XrmUnitTest.2016.nuspec
 	EndProjectSection
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DLaB.Xrm", "DLaB.Xrm.Base\DLaB.Xrm.shproj", "{A3B3CE75-DFAE-4035-97A3-AFD49AD47BC5}"

@@ -37,35 +37,35 @@ namespace Source.DLaB.Xrm.Workflow
         /// <summary>
         /// The IOrganizationService of the workflow, Impersonated as the user that the plugin is was initiated by
         /// </summary>
-        public virtual IOrganizationService InitiatingUserOrganizationService => _triggeredUserOrganizationService ?? (_triggeredUserOrganizationService = InitializeIOrganizationService(ServiceFactory, InitiatingUserId));
+        public IOrganizationService InitiatingUserOrganizationService => _triggeredUserOrganizationService ?? (_triggeredUserOrganizationService = Settings.InitializeIOrganizationService(ServiceFactory, InitiatingUserId, TracingService));
 
         /// <inheritdoc />
         /// <summary>
         /// The IOrganizationService of the workflow, Impersonated as the user that the plugin is registered to run as.
         /// </summary>
-        public virtual IOrganizationService OrganizationService => _organizationService ?? (_organizationService = InitializeIOrganizationService(ServiceFactory, UserId));
+        public IOrganizationService OrganizationService => _organizationService ?? (_organizationService = Settings.InitializeIOrganizationService(ServiceFactory, UserId, TracingService));
 
         /// <summary>
         /// The IOrganizationService of the workflow, using the System User
         /// </summary>
-        public virtual IOrganizationService SystemOrganizationService => _systemOrganizationService ?? (_systemOrganizationService = InitializeIOrganizationService(ServiceFactory, null));
+        public IOrganizationService SystemOrganizationService => _systemOrganizationService ?? (_systemOrganizationService = Settings.InitializeIOrganizationService(ServiceFactory, null, TracingService));
 
         /// <summary>
         /// The IOrganizationServiceFactory for the workflow
         /// </summary>
-        public virtual IOrganizationServiceFactory ServiceFactory => _serviceFactory ?? (_serviceFactory = InitializeServiceFactory(CodeActivityContext));
+        public IOrganizationServiceFactory ServiceFactory => _serviceFactory ?? (_serviceFactory = Settings.InitializeServiceFactory(CodeActivityContext, TracingService));
 
         /// <summary>
         /// The TracingService for the workflow
         /// </summary>
-        public virtual ITracingService TracingService => _tracingService ?? (_tracingService = InitializeTracingService(CodeActivityContext));
+        public ITracingService TracingService => _tracingService ?? (_tracingService = Settings.InitializeTracingService(CodeActivityContext));
 
         #region IWorkflowContext Implmentation
 
         /// <summary>
         /// The WorkflowContext for the workflow
         /// </summary>
-        public IWorkflowContext WorkflowContext => _workflowContext ?? (_workflowContext = InitializeWorkflowContext(CodeActivityContext));
+        public IWorkflowContext WorkflowContext => _workflowContext ?? (_workflowContext = Settings.InitializeWorkflowContext(CodeActivityContext, TracingService));
 
         public int Mode => WorkflowContext.Mode;
 
@@ -131,11 +131,13 @@ namespace Source.DLaB.Xrm.Workflow
 
         #endregion IWorkflowContext Implmentation
 
-        private DLaBExtendedWorkflowContextSettings Settings { get; }
+        private IExtendedWorkflowContextInitializer Settings { get; }
 
         #endregion Properties
 
-        public DLaBExtendedWorkflowContext(CodeActivityContext executionContext, CodeActivity codeActivity, DLaBExtendedWorkflowContextSettings settings = null)
+        #region Constructors
+
+        public DLaBExtendedWorkflowContext(CodeActivityContext executionContext, CodeActivity codeActivity, IExtendedWorkflowContextInitializer settings = null)
         {
             CodeActivityContext = executionContext;
             CodeActivityTypeName = codeActivity.GetType().FullName;
@@ -143,29 +145,7 @@ namespace Source.DLaB.Xrm.Workflow
             Settings = settings ?? new DLaBExtendedWorkflowContextSettings();
         }
 
-        #region Initializers
-
-        protected virtual IWorkflowContext InitializeWorkflowContext(CodeActivityContext executionContext)
-        {
-            return executionContext.GetExtension<IWorkflowContext>();
-        }
-
-        protected virtual IOrganizationServiceFactory InitializeServiceFactory(CodeActivityContext executionContext)
-        {
-            return executionContext.GetExtension<IOrganizationServiceFactory>();
-        }
-
-        protected virtual ITracingService InitializeTracingService(CodeActivityContext executionContext)
-        {
-            return executionContext.GetExtension<ITracingService>();
-        }
-
-        protected virtual IOrganizationService InitializeIOrganizationService(IOrganizationServiceFactory factory, Guid? userId)
-        {
-            return new ExtendedOrganizationService(factory.CreateOrganizationService(userId), TracingService, Settings.OrganizationServiceSettings);
-        }
-
-        #endregion Initializers
+        #endregion Constructors
 
         #region Exception Logging
 
@@ -175,29 +155,21 @@ namespace Source.DLaB.Xrm.Workflow
         /// <param name="ex">The exception.</param>
         public virtual void LogException(Exception ex)
         {
-            TraceFormat("Exception: {0}", ex.ToStringWithCallStack());
-            Trace(this.GetContextInfo());
+            TracingService.Trace("Exception: {0}", ex.ToStringWithCallStack());
+            TracingService.Trace(this.GetContextInfo());
         }
 
         #endregion Exception Logging
 
         #region Trace
 
-        /// <summary>
-        /// Traces the specified message.  Guaranteed to not throw an exception.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        public virtual void Trace(string message)
-        {
-            TracingService.Trace(message);
-        }
 
         /// <summary>
-        /// Traces the format.   Guaranteed to not throw an exception.
+        /// Traces the specified message.  By default, is guaranteed to not throw an exception.
         /// </summary>
-        /// <param name="format">The format.</param>
-        /// <param name="args">The arguments.</param>
-        public void TraceFormat(string format, params object[] args)
+        /// <param name="format">The message format.</param>
+        /// <param name="args">Optional Args</param>
+        public void Trace(string format, params object[] args)
         {
             TracingService.Trace(format, args);
         }

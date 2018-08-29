@@ -460,7 +460,7 @@ namespace Source.DLaB.Xrm.Plugin
                 return true;
             }
 
-            return (object)a != null && a.Equals(b);
+            return !(a is null) && a.Equals(b);
         }
 
         /// <summary>
