@@ -27,6 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\MissingAttributeException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtendedOrganizationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtendedOrganizationServiceSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtendedTracingService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\AddLinkExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\AliasedExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\AreEqualExtensions.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\DLaBGenericPluginBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\IExtendedContextCreator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\IExtendedPluginContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Plugin\IExtendedPluginContextInitializer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\IRegisteredEventsPlugin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\IsolationMode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin\DLaBExtendedPluginContextBase.cs" />

@@ -130,11 +130,11 @@ namespace Source.DLaB.Xrm.Plugin
 
             try
             {
-                context.TraceFormat("Entered {0}.Execute()", context.PluginTypeName);
+                context.Trace("Entered {0}.Execute()", context.PluginTypeName);
 
                 if (context.Event == null)
                 {
-                    context.TraceFormat("No Registered Event Found for Event: {0}, Entity: {1}, and Stage: {2}!", context.MessageName, context.PrimaryEntityName, context.Stage);
+                    context.Trace("No Registered Event Found for Event: {0}, Entity: {1}, and Stage: {2}!", context.MessageName, context.PrimaryEntityName, context.Stage);
                     return;
                 }
 
@@ -167,7 +167,7 @@ namespace Source.DLaB.Xrm.Plugin
             }
             finally
             {
-                context.TraceFormat("Exiting {0}.Execute()", context.PluginTypeName);
+                context.Trace("Exiting {0}.Execute()", context.PluginTypeName);
                 PostExecute(context);
             }
         }
@@ -217,7 +217,7 @@ namespace Source.DLaB.Xrm.Plugin
         {
             var execute = context.Event.Execute == null ? ExecuteInternal : new Action<T>(c => context.Event.Execute(c));
 
-            context.TraceFormat("{0}.{1} is Executing for Entity: {2}, Message: {3}",
+            context.Trace("{0}.{1} is Executing for Entity: {2}, Message: {3}",
                 context.PluginTypeName,
                 context.Event.ExecuteMethodName,
                 context.PrimaryEntityName,

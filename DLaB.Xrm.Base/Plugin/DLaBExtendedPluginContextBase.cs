@@ -50,14 +50,14 @@ namespace Source.DLaB.Xrm.Plugin
         /// <value>
         /// The name of the message.
         /// </value>
-        public virtual string MessageName => PluginExecutionContext.MessageName;
+        public string MessageName => PluginExecutionContext.MessageName;
         /// <summary>
         /// Gets the name of the primary entity.
         /// </summary>
         /// <value>
         /// The name of the primary entity.
         /// </value>
-        public virtual string PrimaryEntityName => PluginExecutionContext.PrimaryEntityName;
+        public string PrimaryEntityName => PluginExecutionContext.PrimaryEntityName;
         /// <summary>
         /// Gets the request identifier.
         /// </summary>
@@ -236,7 +236,7 @@ namespace Source.DLaB.Xrm.Plugin
         /// <summary>
         /// The current event the plugin is executing for.
         /// </summary>
-        public virtual RegisteredEvent Event { get; private set; }
+        public RegisteredEvent Event { get; private set; }
 
         private IOrganizationService _organizationService;
         private IOrganizationService _systemOrganizationService;
@@ -247,13 +247,13 @@ namespace Source.DLaB.Xrm.Plugin
         /// <summary>
         /// The IOrganizationService of the plugin, Impersonated as the user that the plugin is was initiated by
         /// </summary>
-        public virtual IOrganizationService InitiatingUserOrganizationService => _triggeredUserOrganizationService ?? (_triggeredUserOrganizationService = InitializeIOrganizationService(ServiceFactory, InitiatingUserId));
+        public IOrganizationService InitiatingUserOrganizationService => _triggeredUserOrganizationService ?? (_triggeredUserOrganizationService = Settings.InitializeIOrganizationService(ServiceFactory, InitiatingUserId, TracingService));
 
         /// <inheritdoc />
         /// <summary>
         /// The IOrganizationService of the plugin, Impersonated as the user that the plugin is registered to run as.
         /// </summary>
-        public virtual IOrganizationService OrganizationService => _organizationService ?? (_organizationService = InitializeIOrganizationService(ServiceFactory, UserId));
+        public IOrganizationService OrganizationService => _organizationService ?? (_organizationService = Settings.InitializeIOrganizationService(ServiceFactory, UserId, TracingService));
 
         /// <summary>
         /// The IPluginExecutionContext of the plugin.
@@ -274,21 +274,21 @@ namespace Source.DLaB.Xrm.Plugin
         /// </value>
         public virtual EntityReference PrimaryEntity => new EntityReference(PrimaryEntityName, PrimaryEntityId);
 
-        private IOrganizationServiceFactory ServiceFactory => _serviceFactory ?? (_serviceFactory = InitializeServiceFactory(ServiceProvider));
+        private IOrganizationServiceFactory ServiceFactory => _serviceFactory ?? (_serviceFactory = Settings.InitializeServiceFactory(ServiceProvider, TracingService));
 
         /// <summary>
         /// The IOrganizationService of the plugin, using the System User
         /// </summary>
-        public virtual IOrganizationService SystemOrganizationService => _systemOrganizationService ?? (_systemOrganizationService = InitializeIOrganizationService(ServiceFactory, null));
+        public IOrganizationService SystemOrganizationService => _systemOrganizationService ?? (_systemOrganizationService = Settings.InitializeIOrganizationService(ServiceFactory, null, TracingService));
 
         /// <summary>
         /// The ITracingService of the plugin.
         /// </summary>
-        public ITracingService TracingService => _tracingService ?? (_tracingService = InitializeTracingService(ServiceProvider));
+        public ITracingService TracingService => _tracingService ?? (_tracingService = Settings.InitializeTracingService(ServiceProvider));
 
         #endregion IExtendedPluginContext Properties
 
-        private DLaBExtendedPluginContextSettings Settings { get; set; }
+        private IExtendedPluginContextInitializer Settings { get; }
 
         #endregion Properties
 
@@ -324,7 +324,7 @@ namespace Source.DLaB.Xrm.Plugin
         /// or
         /// plugin
         /// </exception>
-        public DLaBExtendedPluginContextBase(IServiceProvider serviceProvider, IRegisteredEventsPlugin plugin, DLaBExtendedPluginContextSettings settings = null)
+        public DLaBExtendedPluginContextBase(IServiceProvider serviceProvider, IRegisteredEventsPlugin plugin, IExtendedPluginContextInitializer settings = null)
         {
             if (plugin == null)
             {
@@ -333,7 +333,8 @@ namespace Source.DLaB.Xrm.Plugin
 
             Settings = settings ?? new DLaBExtendedPluginContextSettings();
             ServiceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
-            InitializePluginProperties(serviceProvider, plugin);
+            PluginExecutionContext = Settings.InitializePluginExecutionContext(serviceProvider, TracingService);
+            InitializePluginProperties(plugin);
         }
 
         #endregion Constructors
@@ -343,18 +344,22 @@ namespace Source.DLaB.Xrm.Plugin
         /// <summary>
         /// Initializes the plugin properties.
         /// </summary>
-        /// <param name="serviceProvider">The Service Provider</param>
         /// <param name="plugin">The plugin.</param>
-        private void InitializePluginProperties(IServiceProvider serviceProvider, IRegisteredEventsPlugin plugin)
+        private void InitializePluginProperties(IRegisteredEventsPlugin plugin)
         {
-            PluginExecutionContext = InitializePluginExecutionContext(serviceProvider);
             Event = PluginExecutionContext.GetEvent(plugin.RegisteredEvents);
             if (Event == null)
             {
-                var message = $"No RegisteredEvent found for the current context of Stage: {this.GetPipelineStage()}, Message: {MessageName}, Entity: {this.PrimaryEntityName}.  Either Unregister the plugin for this event, or include this as a RegisteredEvent in the Plugin's RegisteredEvents.";
-                Trace(message);
-                Trace(this.GetContextInfo());
-                throw new InvalidPluginExecutionException(message);
+                var message = $"No RegisteredEvent found for the current context of Stage: {this.GetPipelineStage()}, Message: {MessageName}, Entity: {PrimaryEntityName}.  Either Unregister the plugin for this event, or include this as a RegisteredEvent in the Plugin's RegisteredEvents.";
+                try
+                {
+                    TracingService.Trace(message);
+                    TracingService.Trace(this.GetContextInfo());
+                }
+                finally
+                {
+                    throw new InvalidPluginExecutionException(message);
+                }
             }
             if (Event.Message == RegisteredEvent.Any)
             {
@@ -363,30 +368,6 @@ namespace Source.DLaB.Xrm.Plugin
             IsolationMode = (IsolationMode)PluginExecutionContext.IsolationMode;
             PluginTypeName = plugin.GetType().FullName;
         }
-
-        #region Initializers
-
-        protected virtual IPluginExecutionContext InitializePluginExecutionContext(IServiceProvider serviceProvider)
-        {
-            return (IPluginExecutionContext) serviceProvider.GetService(typeof(IPluginExecutionContext));
-        }
-
-        protected virtual IOrganizationServiceFactory InitializeServiceFactory(IServiceProvider serviceProvider)
-        {
-            return (IOrganizationServiceFactory)serviceProvider.GetService(typeof(IOrganizationServiceFactory));
-        }
-
-        protected virtual ITracingService InitializeTracingService(IServiceProvider serviceProvider)
-        {
-            return (ITracingService)serviceProvider.GetService(typeof(ITracingService));
-        }
-
-        protected virtual IOrganizationService InitializeIOrganizationService(IOrganizationServiceFactory factory, Guid? userId)
-        {
-            return new ExtendedOrganizationService(factory.CreateOrganizationService(userId), TracingService, Settings.OrganizationServiceSettings);
-        }
-
-        #endregion Initializers
 
         #endregion PropertyInitializers
 
@@ -398,8 +379,8 @@ namespace Source.DLaB.Xrm.Plugin
         /// <param name="ex">The exception.</param>
         public virtual void LogException(Exception ex)
         {
-            TraceFormat("Exception: {0}", ex.ToStringWithCallStack());
-            Trace(this.GetContextInfo());
+            TracingService.Trace("Exception: {0}", ex.ToStringWithCallStack());
+            TracingService.Trace(this.GetContextInfo());
         }
 
         #endregion Exception Logging
@@ -407,65 +388,13 @@ namespace Source.DLaB.Xrm.Plugin
         #region Trace
 
         /// <summary>
-        /// Traces the specified message.  Guaranteed to not throw an exception.
+        /// Traces the specified message.  By default, is guaranteed to not throw an exception.
         /// </summary>
-        /// <param name="message">The message.</param>
-        public virtual void Trace(string message)
+        /// <param name="format">The message format.</param>
+        /// <param name="args">Optional Args</param>
+        public void Trace(string format, params object[] args)
         {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(message) || TracingService == null)
-                {
-                    return;
-                }
-
-                TracingService.Trace(message);
-            }
-            catch (Exception ex)
-            {
-                try
-                {
-                    // ReSharper disable once PossibleNullReferenceException
-                    TracingService.Trace("Exception occured attempting to trace {0}: {1}", message, ex);
-                }
-                // ReSharper disable once EmptyGeneralCatchClause
-                catch
-                {
-                    // Attempted to trace a message, and had an exception, and then had another exception attempting to trace the exception that occured when tracing.
-                    // Better to give up rather than stopping the entire program when attempting to write a Trace message
-                }
-            }
-        }
-
-        /// <summary>
-        /// Traces the format.   Guaranteed to not throw an exception.
-        /// </summary>
-        /// <param name="format">The format.</param>
-        /// <param name="args">The arguments.</param>
-        public void TraceFormat(string format, params object[] args)
-        {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(format) || TracingService == null)
-                {
-                    return;
-                }
-                TracingService.Trace(format, args);
-            }
-            catch (Exception ex)
-            {
-                try
-                {
-                    // ReSharper disable once PossibleNullReferenceException
-                    TracingService.Trace("Exception occured attempting to trace {0}: {1}", format, ex);
-                }
-                // ReSharper disable once EmptyGeneralCatchClause
-                catch
-                {
-                    // Attempted to trace a message, and had an exception, and then had another exception attempting to trace the exception that occured when tracing.
-                    // Better to give up rather than stopping the entire program when attempting to write a Trace message
-                }
-            }
+            TracingService.Trace(format, args);
         }
 
         /// <summary>

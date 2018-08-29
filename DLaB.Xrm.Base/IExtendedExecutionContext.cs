@@ -7,7 +7,7 @@ namespace DLaB.Xrm
 namespace Source.DLaB.Xrm
 #endif
 {
-    public interface IExtendedExecutionContext : IExecutionContext
+    public interface IExtendedExecutionContext : IExecutionContext, ITracingService
     {
         /// <summary>
         /// The IOrganizationService of the plugin, Impersonated as the user that triggered the services using the InitiatingUserId.
@@ -34,19 +34,6 @@ namespace Source.DLaB.Xrm
         /// </summary>
         /// <param name="ex">The exception.</param>
         void LogException(Exception ex);
-
-        /// <summary>
-        /// Traces the specified message.  Guaranteed to not throw an exception.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        void Trace(string message);
-
-        /// <summary>
-        /// Traces the format.   Guaranteed to not throw an exception.
-        /// </summary>
-        /// <param name="format">The format.</param>
-        /// <param name="args">The arguments.</param>
-        void TraceFormat(string format, params object[] args);
 
         /// <summary>
         /// Traces the time from call to dispose.  Designed to be used in a using statement
