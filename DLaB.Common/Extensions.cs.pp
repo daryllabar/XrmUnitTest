@@ -57,6 +57,7 @@ namespace Source.DLaB.Common
         /// </summary>
         /// <param name="bytes">The bytes.</param>
         /// <returns></returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
         public static byte[] Zip(this byte[] bytes)
         {
             byte[] compressed;
