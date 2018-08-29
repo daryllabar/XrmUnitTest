@@ -36,8 +36,7 @@ namespace Source.DLaB.Xrm
         /// <exception cref="System.ArgumentException">HasConditionInWithValues requires the first value in the columnNameAndValuePairs attribute to be the attribute name.;columnNameAndValuePairs</exception>
         public static bool HasConditionInWithValues(this FilterExpression filter, params object[] columnNameAndValuePairs)
         {
-            var attributeName = columnNameAndValuePairs[0] as string;
-            if (attributeName == null)
+            if (!(columnNameAndValuePairs[0] is string attributeName))
             {
                 throw new ArgumentException("HasConditionInWithValues requires the first value in the columnNameAndValuePairs attribute to be the attribute name.", "columnNameAndValuePairs");
             }

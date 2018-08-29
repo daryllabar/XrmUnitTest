@@ -135,6 +135,26 @@ namespace Source.DLaB.Xrm.Workflow
 
         #endregion Properties
 
+        
+        #region ImageNames struct
+
+        /// <summary>
+        /// Struct for the Standard Plugin Image Names
+        /// </summary>
+        public struct WorkflowImageNames
+        {
+            /// <summary>
+            /// The default pre image
+            /// </summary>
+            public const string PreImage = "PreBusinessEntity";
+            /// <summary>
+            /// The default post image
+            /// </summary>
+            public const string PostImage = "PostBusinessEntity";
+        }
+
+        #endregion ImageNames struct
+
         #region Constructors
 
         public DLaBExtendedWorkflowContext(CodeActivityContext executionContext, CodeActivity codeActivity, IExtendedWorkflowContextInitializer settings = null)

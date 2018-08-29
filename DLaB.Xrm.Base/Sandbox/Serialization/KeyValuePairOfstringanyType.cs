@@ -44,8 +44,7 @@ namespace Source.DLaB.Xrm.Sandbox.Serialization
         public KeyValuePairOfstringanyType(string key, object value)
         {
             this.key = key;
-            var reference = value as EntityReference;
-            if (reference != null)
+            if (value is EntityReference reference)
             {
                 value = new SerializableEntityReference(reference); 
             }
@@ -70,8 +69,7 @@ namespace Source.DLaB.Xrm.Sandbox.Serialization
         /// </returns>
         public static explicit operator KeyValuePair<string, object>(KeyValuePairOfstringanyType pair)
         {
-            var reference = pair.value as SerializableEntityReference;
-            if (reference != null)
+            if (pair.value is SerializableEntityReference reference)
             {
                 pair.value = (EntityReference)reference;
             }

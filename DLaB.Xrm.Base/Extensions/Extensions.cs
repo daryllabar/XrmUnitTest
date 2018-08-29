@@ -75,6 +75,43 @@ namespace Source.DLaB.Xrm
 
         #endregion ColumnSet
 
+        #region DataCollection<string,Entity>
+
+        /// <summary>
+        /// If the imageName is populated, then if images collection contains the given imageName Key, the Value is cast to the Entity type T, else null is returned
+        /// If the imageName is not populated but the default name is, then the defaultname is searched for in the images collection and if it has a value, it is cast to the Entity type T.
+        /// Else, the first non-null value in the images collection is returned.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="images"></param>
+        /// <param name="imageName">The name to Search For</param>
+        /// <param name="defaultName">The Default Name to use</param>
+        /// <returns></returns>
+        public static T GetEntity<T>(this DataCollection<string, Entity> images, string imageName = null, string defaultName = null) where T: Entity
+        {
+            if (images.Count == 0)
+            {
+                return null;
+            }
+
+            if (images.Count == 1 && imageName == null)
+            {
+                return images.Values.FirstOrDefault().AsEntity<T>();
+            }
+
+            Entity entity;
+
+            if (imageName != null)
+            {
+                return images.TryGetValue(imageName, out entity) ? entity.AsEntity<T>() : null;
+            }
+
+            return defaultName != null && images.TryGetValue(defaultName, out entity)
+                ? entity.AsEntity<T>()
+                : images.Values.FirstOrDefault(v => v != null).AsEntity<T>();
+        }
+
+        #endregion DataCollection<string,Entity>
         #region Entity
 
 
@@ -856,60 +893,6 @@ namespace Source.DLaB.Xrm
 
         #region IExecutionContext
 
-        #region AssertEntityImageAttributesExist
-
-        /// <summary>
-        /// Checks the Pre/Post Entity Images to determine if the image collections contains an image with the given key, that contains the attributes.
-        /// Throws an exception if the image name is contained in both the Pre and Post Image.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <param name="imageName">Name of the image.</param>
-        /// <param name="attributeNames">The attribute names.</param>
-        public static void AssertEntityImageAttributesExist(this IExecutionContext context, string imageName, params string[] attributeNames)
-        {
-            AssertEntityImageRegistered(context, imageName);
-            var imageCollection = context.PreEntityImages.TryGetValue(imageName, out Entity preImage) ?
-                InvalidPluginStepRegistrationException.ImageCollection.Pre :
-                InvalidPluginStepRegistrationException.ImageCollection.Post;
-            context.PostEntityImages.TryGetValue(imageName, out Entity postImage);
-
-            var image = preImage ?? postImage;
-            var missingAttributes = attributeNames.Where(attribute => !image.Contains(attribute)).ToList();
-
-            if (missingAttributes.Any())
-            {
-                throw InvalidPluginStepRegistrationException.ImageMissingRequiredAttributes(imageCollection, imageName, missingAttributes);
-            }
-        }
-
-        #endregion AssertEntityImageAttributesExist
-
-        #region AssertEntityImageRegistered
-
-        /// <summary>
-        /// Checks the Pre/Post Entity Images to determine if the the collection contains an image with the given key.
-        /// Throws an exception if the image name is contained in both the Pre and Post Image.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <param name="imageName">Name of the image.</param>
-        public static void AssertEntityImageRegistered(this IExecutionContext context, string imageName)
-        {
-            var pre = context.PreEntityImages.ContainsKey(imageName);
-            var post =  context.PostEntityImages.ContainsKey(imageName);
-
-            if (pre && post)
-            {
-                throw new Exception($"Both Preimage and Post Image Contain the Image \"{imageName}\".  Unable to determine what entity collection to search for the given attributes.");
-            }
-
-            if (!pre && !post)
-            {
-                throw InvalidPluginStepRegistrationException.ImageMissing(imageName);
-            }
-        }
-
-        #endregion AssertEntityImageRegistered
-
         #region ContainsAllNonNull
 
         /// <summary>
@@ -962,7 +945,7 @@ namespace Source.DLaB.Xrm
         }
 
         /// <summary>
-        /// Gets the parameter value from the PluginExecutionContext.InputParameters collection, or null if the collection doesn't contain a parameter with the given name.
+        /// Gets the parameter value from the ExecutionContext.InputParameters collection, or null if the collection doesn't contain a parameter with the given name.
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="parameterName">Name of the parameter.</param>
@@ -1045,70 +1028,6 @@ namespace Source.DLaB.Xrm
         }
 
         #endregion GetParameterValue
-
-                #region Get(Pre/Post)Entities
-
-        /// <summary>
-        /// If the imageName is populated and the PreEntityImages contains the given imageName Key, the Value is cast to the Entity type T, else null is returned
-        /// If the imageName is not populated, than the first image in PreEntityImages with a value, is cast to the Entity type T, else null is returned
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="context"></param>
-        /// <param name="imageName"></param>
-        /// <returns></returns>
-        public static T GetPreEntity<T>(this IExecutionContext context, string imageName = null) where T : Entity
-        {
-            return GetEntity<T>(context.PreEntityImages, imageName, DLaBExtendedPluginContextBase.PluginImageNames.PreImage);
-        }
-
-        /// <summary>
-        /// If the imageName is populated and the PostEntityImages contains the given imageName Key, the Value is cast to the Entity type T, else null is returned
-        /// If the imageName is not populated, than the first image in PostEntityImages with a value, is cast to the Entity type T, else null is returned
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="context"></param>
-        /// <param name="imageName"></param>
-        /// <returns></returns>
-        public static T GetPostEntity<T>(this IExecutionContext context, string imageName) where T : Entity
-        {
-            return GetEntity<T>(context.PostEntityImages, imageName, Plugin.DLaBExtendedPluginContextBase.PluginImageNames.PostImage);
-        }
-
-        /// <summary>
-        /// If the imageName is populated, then if images collection contains the given imageName Key, the Value is cast to the Entity type T, else null is returned
-        /// If the imageName is not populated but the default name is, then the defaultname is searched for in the images collection and if it has a value, it is cast to the Entity type T.
-        /// Else, the first non-null value in the images collection is returned.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="images"></param>
-        /// <param name="imageName"></param>
-        /// <param name="defaultName"></param>
-        /// <returns></returns>
-        private static T GetEntity<T>(DataCollection<string, Entity> images, string imageName, string defaultName) where T: Entity
-        {
-            if (images.Count == 0)
-            {
-                return null;
-            }
-
-            if (images.Count == 1 && imageName == null)
-            {
-                return images.Values.FirstOrDefault().AsEntity<T>();
-            }
-
-            Entity entity;
-
-            if (imageName != null)
-            {
-                return images.TryGetValue(imageName, out entity) ? entity.AsEntity<T>() : null;
-            }
-
-            return defaultName != null && images.TryGetValue(defaultName, out entity)
-                ? entity.AsEntity<T>()
-                : images.Values.FirstOrDefault(v => v != null).AsEntity<T>();
-        }
-
-        #endregion Get(Pre/Post)Entities
 
         #region ToStringDebug
 
@@ -1814,27 +1733,6 @@ namespace Source.DLaB.Xrm
         #endregion CreateWithSupressDuplicateDetection
 
         #endregion IOrganizationService
-
-        #region IPluginExecutionContext
-
-        /// <summary>
-        /// Returns an indepth view of the context
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <returns></returns>
-        public static string ToStringDebug(this IPluginExecutionContext context)
-        {
-            var lines = ((IExecutionContext)context).ToStringDebug();
-            lines.AddRange(new[]
-            {
-                "Has Parent Context: " + (context.ParentContext != null),
-                "Stage: " + context.Stage
-            });
-
-            return string.Join(Environment.NewLine, lines);
-        }
-
-        #endregion IPluginExecutionContext
 
         #region IServiceProvider
 

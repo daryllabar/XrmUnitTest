@@ -2,6 +2,11 @@
 using System.Activities;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Workflow;
+#if DLAB_UNROOT_NAMESPACE || DLAB_XRM
+using DLaB.Xrm;
+#else
+using Source.DLaB.Xrm;
+#endif
 
 #if DLAB_UNROOT_NAMESPACE || DLAB_XRM_WORKFLOW
 namespace DLaB.Xrm.Workflow
@@ -50,6 +55,36 @@ namespace Source.DLaB.Xrm.Workflow
         #endregion InOutArugument<T>
 
         #region IWorkflowContext
+
+        #region Get(Pre/Post)Entities
+
+        /// <summary>
+        /// If the imageName is populated and the PreEntityImages contains the given imageName Key, the Value is cast to the Entity type T, else null is returned
+        /// If the imageName is not populated, than the first image in PreEntityImages with a value, is cast to the Entity type T, else null is returned
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="context"></param>
+        /// <param name="imageName"></param>
+        /// <returns></returns>
+        public static T GetPreEntity<T>(this IWorkflowContext context) where T : Entity
+        {
+            return context.PreEntityImages.GetEntity<T>(DLaBExtendedWorkflowContext.WorkflowImageNames.PreImage);
+        }
+
+        /// <summary>
+        /// If the imageName is populated and the PostEntityImages contains the given imageName Key, the Value is cast to the Entity type T, else null is returned
+        /// If the imageName is not populated, than the first image in PostEntityImages with a value, is cast to the Entity type T, else null is returned
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="context"></param>
+        /// <param name="imageName"></param>
+        /// <returns></returns>
+        public static T GetPostEntity<T>(this IWorkflowContext context, string imageName) where T : Entity
+        {
+            return context.PreEntityImages.GetEntity<T>(DLaBExtendedWorkflowContext.WorkflowImageNames.PostImage);
+        }
+
+        #endregion Get(Pre/Post)Entities
 
         /// <summary>
         /// Returns an indepth view of the context

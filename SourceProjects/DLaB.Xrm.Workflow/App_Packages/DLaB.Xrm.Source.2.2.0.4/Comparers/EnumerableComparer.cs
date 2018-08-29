@@ -46,9 +46,8 @@ namespace Source.DLaB.Xrm.Comparers
             if (ReferenceEquals(first, second))
                 return true;
 
-            var firstCollection = first as ICollection<T>;
             var secondCollection = second as ICollection<T>;
-            if (firstCollection == null || secondCollection == null)
+            if (!(first is ICollection<T> firstCollection) || secondCollection == null)
             {
                 return !HaveMismatchedElement(first, second, Comparer);
             }

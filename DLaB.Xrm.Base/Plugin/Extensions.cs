@@ -180,6 +180,60 @@ namespace Source.DLaB.Xrm.Plugin
 
         #region IPluginExecutionContext
 
+        #region AssertEntityImageAttributesExist
+
+        /// <summary>
+        /// Checks the Pre/Post Entity Images to determine if the image collections contains an image with the given key, that contains the attributes.
+        /// Throws an exception if the image name is contained in both the Pre and Post Image.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="imageName">Name of the image.</param>
+        /// <param name="attributeNames">The attribute names.</param>
+        public static void AssertEntityImageAttributesExist(this IPluginExecutionContext context, string imageName, params string[] attributeNames)
+        {
+            AssertEntityImageRegistered(context, imageName);
+            var imageCollection = context.PreEntityImages.TryGetValue(imageName, out Entity preImage) ?
+                InvalidPluginStepRegistrationException.ImageCollection.Pre :
+                InvalidPluginStepRegistrationException.ImageCollection.Post;
+            context.PostEntityImages.TryGetValue(imageName, out Entity postImage);
+
+            var image = preImage ?? postImage;
+            var missingAttributes = attributeNames.Where(attribute => !image.Contains(attribute)).ToList();
+
+            if (missingAttributes.Any())
+            {
+                throw InvalidPluginStepRegistrationException.ImageMissingRequiredAttributes(imageCollection, imageName, missingAttributes);
+            }
+        }
+
+        #endregion AssertEntityImageAttributesExist
+
+        #region AssertEntityImageRegistered
+
+        /// <summary>
+        /// Checks the Pre/Post Entity Images to determine if the the collection contains an image with the given key.
+        /// Throws an exception if the image name is contained in both the Pre and Post Image.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="imageName">Name of the image.</param>
+        public static void AssertEntityImageRegistered(this IPluginExecutionContext context, string imageName)
+        {
+            var pre = context.PreEntityImages.ContainsKey(imageName);
+            var post =  context.PostEntityImages.ContainsKey(imageName);
+
+            if (pre && post)
+            {
+                throw new Exception($"Both Preimage and Post Image Contain the Image \"{imageName}\".  Unable to determine what entity collection to search for the given attributes.");
+            }
+
+            if (!pre && !post)
+            {
+                throw InvalidPluginStepRegistrationException.ImageMissing(imageName);
+            }
+        }
+
+        #endregion AssertEntityImageRegistered
+
         #region CalledFrom
 
         /// <summary>
@@ -345,6 +399,36 @@ namespace Source.DLaB.Xrm.Plugin
         /// <param name="context">The context.</param>
         /// <returns></returns>
         public static MessageType GetMessageType(this IPluginExecutionContext context) { return new MessageType(context.MessageName); }
+
+        #region Get(Pre/Post)Entities
+
+        /// <summary>
+        /// If the imageName is populated and the PreEntityImages contains the given imageName Key, the Value is cast to the Entity type T, else null is returned
+        /// If the imageName is not populated, than the first image in PreEntityImages with a value, is cast to the Entity type T, else null is returned
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="context"></param>
+        /// <param name="imageName"></param>
+        /// <returns></returns>
+        public static T GetPreEntity<T>(this IExecutionContext context, string imageName = null) where T : Entity
+        {
+            return context.PreEntityImages.GetEntity<T>(imageName, DLaBExtendedPluginContextBase.PluginImageNames.PreImage);
+        }
+
+        /// <summary>
+        /// If the imageName is populated and the PostEntityImages contains the given imageName Key, the Value is cast to the Entity type T, else null is returned
+        /// If the imageName is not populated, than the first image in PostEntityImages with a value, is cast to the Entity type T, else null is returned
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="context"></param>
+        /// <param name="imageName"></param>
+        /// <returns></returns>
+        public static T GetPostEntity<T>(this IExecutionContext context, string imageName) where T : Entity
+        {
+            return context.PreEntityImages.GetEntity<T>(imageName, DLaBExtendedPluginContextBase.PluginImageNames.PostImage);
+        }
+
+        #endregion Get(Pre/Post)Entities
 
         /// <summary>
         /// Gets the pipeline stage.
@@ -559,6 +643,23 @@ namespace Source.DLaB.Xrm.Plugin
         #endregion HasPluginHandlerExecutionBeenPrevented
 
         #endregion Prevent Plugin Execution
+
+        /// <summary>
+        /// Returns an indepth view of the context
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <returns></returns>
+        public static string ToStringDebug(this IPluginExecutionContext context)
+        {
+            var lines = ((IExecutionContext)context).ToStringDebug();
+            lines.AddRange(new[]
+            {
+                "Has Parent Context: " + (context.ParentContext != null),
+                "Stage: " + context.Stage
+            });
+
+            return string.Join(Environment.NewLine, lines);
+        }
 
         #endregion IPluginExecutionContext
     }
