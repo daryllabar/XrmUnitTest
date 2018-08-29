@@ -54,7 +54,7 @@ namespace Source.DLaB.Xrm.Workflow
         /// 
         /// </summary>
         /// <param name="context"></param>
-        public abstract void Execute(T context);
+        protected abstract void Execute(T context);
 
         /// <summary>
         /// Method that gets called when an exception occurs in the Execute method.  Return true if the exception should be rethrown.
