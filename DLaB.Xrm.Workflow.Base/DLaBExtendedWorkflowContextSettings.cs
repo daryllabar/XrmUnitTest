@@ -35,7 +35,7 @@ namespace Source.DLaB.Xrm.Workflow
 
         public virtual ITracingService InitializeTracingService(CodeActivityContext executionContext)
         {
-            return executionContext.GetExtension<ITracingService>();
+            return new ExtendedTracingService(executionContext.GetExtension<ITracingService>());
         }
 
         public virtual IOrganizationService InitializeIOrganizationService(IOrganizationServiceFactory factory, Guid? userId, ITracingService tracingService)

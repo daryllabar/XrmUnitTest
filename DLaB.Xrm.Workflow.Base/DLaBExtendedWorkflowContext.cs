@@ -163,7 +163,6 @@ namespace Source.DLaB.Xrm.Workflow
 
         #region Trace
 
-
         /// <summary>
         /// Traces the specified message.  By default, is guaranteed to not throw an exception.
         /// </summary>
