@@ -17,6 +17,7 @@ namespace Source.DLaB.Xrm.Sandbox.Serialization
     [DataContract (Namespace = "http://schemas.datacontract.org/2004/07/System.Collections.Generic")]
     public struct KeyValuePairOfstringanyType
     {
+#pragma warning disable IDE1006 // Naming Styles
         /// <summary>
         /// Gets or sets the key.
         /// </summary>
@@ -33,6 +34,7 @@ namespace Source.DLaB.Xrm.Sandbox.Serialization
         /// </value>
         [DataMember]
         public object value { get; set; }
+#pragma warning restore IDE1006 // Naming Styles
 
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyValuePairOfstringanyType"/> class.
