@@ -172,12 +172,10 @@ namespace DLaB.Xrm.LocalCrm
         private InitializeFromResponse ExecuteInternal(InitializeFromRequest request)
         {
             var entity = new Entity(request.TargetEntityName);
-            Dictionary<string, PropertyInfo> propertiesByAttribute;
-            List<string> relationshipProperties;
             InitializeFromLogic.GetPropertiesByAttributeWithMatchingRelationships(GetType(request.TargetEntityName),
                 request.EntityMoniker.LogicalName,
-                out propertiesByAttribute,
-                out relationshipProperties);
+                out Dictionary<string, PropertyInfo> propertiesByAttribute,
+                out List<string> relationshipProperties);
 
             var prefixlessKeys = propertiesByAttribute.Keys
                                                       .Where(k => k.Contains("_"))

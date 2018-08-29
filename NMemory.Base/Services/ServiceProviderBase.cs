@@ -44,9 +44,8 @@ namespace NMemory.Services
 
         public T GetService<T>() where T : class
         {
-            object result;
 
-            if (!this.services.TryGetValue(typeof(T), out result))
+            if (!this.services.TryGetValue(typeof(T), out object result))
             {
                 return null;
             }

@@ -53,9 +53,8 @@ namespace NMemory.DataStructures
 
         IEnumerable<TEntity> IDataStructure<TKey, TEntity>.Select(TKey key)
         {
-            List<TEntity> result = null;
 
-            if (this.inner.TryGetValue(key, out result))
+            if (this.inner.TryGetValue(key, out List<TEntity> result))
             {
                 return result;
             }
@@ -78,9 +77,8 @@ namespace NMemory.DataStructures
 
         public void Insert(TKey key, TEntity entity)
         {
-            List<TEntity> bucket = null;
 
-            if (this.inner.TryGetValue(key, out bucket))
+            if (this.inner.TryGetValue(key, out List<TEntity> bucket))
             {
                 bucket.Add(entity);
             }
@@ -88,7 +86,7 @@ namespace NMemory.DataStructures
             {
                 this.inner.Add(key, new List<TEntity>() { entity });
             }
-            
+
             this.Count++;
         }
 
@@ -101,9 +99,8 @@ namespace NMemory.DataStructures
 
         public void Delete(TKey key, TEntity item)
         {
-            List<TEntity> bucket = null;
 
-            if (this.inner.TryGetValue(key, out bucket))
+            if (this.inner.TryGetValue(key, out List<TEntity> bucket))
             {
                 if (bucket.Remove(item))
                 {

@@ -50,8 +50,7 @@ namespace DLaB.Xrm.Test
         /// <returns></returns>
         public IOrganizationService CreateOrganizationService(Guid? userId)
         {
-            IOrganizationService service;
-            if (Services.TryGetValue(userId.GetValueOrDefault(), out service) 
+            if (Services.TryGetValue(userId.GetValueOrDefault(), out IOrganizationService service)
                 ||
                 Services.TryGetValue(Guid.Empty, out service)
                 )

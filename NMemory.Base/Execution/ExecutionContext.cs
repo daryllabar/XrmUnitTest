@@ -82,9 +82,8 @@ namespace NMemory.Execution
 
         public T GetParameter<T>(string name)
         {
-            object result = default(T);
 
-            if (!this.parameters.TryGetValue(name, out result))
+            if (!this.parameters.TryGetValue(name, out object result))
             {
                 throw new ParameterException();
             }

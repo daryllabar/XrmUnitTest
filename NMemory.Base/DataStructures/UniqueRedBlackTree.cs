@@ -72,9 +72,8 @@ namespace NMemory.DataStructures
 
         TEntity IUniqueDataStructure<TKey, TEntity>.Select(TKey key)
         {
-            TEntity result = null;
 
-            if (this.inner.TryGetValue(key, out result))
+            if (this.inner.TryGetValue(key, out TEntity result))
             {
                 return result;
             }
@@ -86,9 +85,8 @@ namespace NMemory.DataStructures
 
         IEnumerable<TEntity> IDataStructure<TKey, TEntity>.Select(TKey key)
         {
-            TEntity result = null;
 
-            if (this.inner.TryGetValue(key, out result))
+            if (this.inner.TryGetValue(key, out TEntity result))
             {
                 return new TEntity[] { result };
             }

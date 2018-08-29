@@ -67,8 +67,7 @@ namespace NMemory.Transactions
 
         private void ReleaseResources(Transaction transaction)
         {
-            TransactionLog log;
-            this.transactionLogs.TryRemove(transaction, out log);
+            this.transactionLogs.TryRemove(transaction, out TransactionLog log);
 
             if (log != null)
             {

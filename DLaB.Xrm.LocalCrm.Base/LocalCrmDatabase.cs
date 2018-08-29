@@ -33,8 +33,7 @@ namespace DLaB.Xrm.LocalCrm
             var db = GetDatabaseForService(info);
             var logicalName = EntityHelper.GetEntityLogicalName<T>();
 
-            ITable table;
-            if (db._tables.TryGetValue(logicalName, out table)) { return (ITable<T>)table; }
+            if (db._tables.TryGetValue(logicalName, out ITable table)) { return (ITable<T>)table; }
             table = db.Tables.Create<T, Guid>(e => e.Id, null);
             if (db._tables.TryAdd(logicalName, table)) { return (ITable<T>)table; }
 

@@ -39,12 +39,11 @@ namespace NMemory.Execution.Optimization.Rewriters
     {
         protected override Expression VisitMethodCall(MethodCallExpression node)
         {
-            LambdaExpression collectionSelector = null;
 
             // Check if the method is SelectMany and get the collection selector
             if (!QueryExpressionHelper.GetSelectManyCollectionSelector(
-                node, 
-                out collectionSelector))
+                node,
+                out LambdaExpression collectionSelector))
             {
                 return base.VisitMethodCall(node);
             }
@@ -54,10 +53,9 @@ namespace NMemory.Execution.Optimization.Rewriters
                 ExpressionHelper.SkipConversionNodes(collectionSelector.Body) 
                     as MethodCallExpression;
 
-            LambdaExpression predicate = null;
 
             // Check if the selector of SelectMany is Where and get the predicate
-            if (!QueryExpressionHelper.GetWherePredicate(where, out predicate))
+            if (!QueryExpressionHelper.GetWherePredicate(where, out LambdaExpression predicate))
             {
                 return base.VisitMethodCall(node);
             }
@@ -94,18 +92,14 @@ namespace NMemory.Execution.Optimization.Rewriters
             Type outerType = collectionSelector.Parameters[0].Type;
             Type innerType = predicate.Parameters[0].Type;
 
-            // Build the keys
-            LambdaExpression outerKey;
-            LambdaExpression innerKey;
-
             LinqJoinKeyHelper.CreateKeySelectors(
                 outerType,
                 innerType,
                 detector.LeftMembers,
                 detector.RightMembers,
-                out outerKey,
-                out innerKey);
-            
+                out LambdaExpression outerKey,
+                out LambdaExpression innerKey);
+
             // Create the Join method definition:
             // It has the same generic type arguments as the SelectMany
             // Only add the key type (third argument)

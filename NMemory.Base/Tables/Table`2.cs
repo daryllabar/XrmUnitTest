@@ -713,9 +713,8 @@ namespace NMemory.Tables
                     .ServiceProvider
                     .GetService<IKeyInfoService>();
 
-                IKeyInfoHelper helper;
 
-                keyInfoService.TryCreateKeyInfoHelper(typeof(TPrimaryKey), out helper);
+                keyInfoService.TryCreateKeyInfoHelper(typeof(TPrimaryKey), out IKeyInfoHelper helper);
 
                 if (helper == null)
                 {

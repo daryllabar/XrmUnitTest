@@ -481,7 +481,6 @@ namespace DLaB.Xrm.LocalCrm
             foreach (var entity in entities.Where(e => e.HasAliasedAttribute(aggregate.alias) &&
                                                        e.GetAliasedValue<object>(aggregate.alias) != null))
             {
-                T temp;
                 var key = new StringBuilder();
                 foreach (var attribute in attributes.Where(a => a.Attribute != aggregate))
                 {
@@ -500,7 +499,7 @@ namespace DLaB.Xrm.LocalCrm
                     distinctValues.Add(value);
                 }
 
-                if (aggregateEntities.TryGetValue(key.ToString(), out temp))
+                if (aggregateEntities.TryGetValue(key.ToString(), out T temp))
                 {
                     temp[aggregate.alias] = temp.GetAliasedValue<int>(aggregate.alias) + 1;
                 }

@@ -520,8 +520,7 @@ namespace DLaB.Xrm.Test.Builders
 
             RetrieveFuncs.Add((s, name, id, cs) =>
             {
-                List<Entity> list;
-                if (entities.TryGetValue(name, out list))
+                if (entities.TryGetValue(name, out List<Entity> list))
                 {
                     var entity = list.FirstOrDefault(e => e.Id == id);
                     if (entity != null)
@@ -688,8 +687,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="entity">The entity.</param>
         private void DefaultIdForEntity(Entity entity)
         {
-            Queue<Guid> ids;
-            if (entity.Id != Guid.Empty || !NewEntityDefaultIds.TryGetValue(entity.LogicalName, out ids))
+            if (entity.Id != Guid.Empty || !NewEntityDefaultIds.TryGetValue(entity.LogicalName, out Queue<Guid> ids))
             {
                 return;
             }

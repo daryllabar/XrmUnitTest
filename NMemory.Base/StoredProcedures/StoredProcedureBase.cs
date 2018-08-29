@@ -58,9 +58,8 @@ namespace NMemory.StoredProcedures
             for (int i = 0; i < this.Parameters.Count; i++)
             {
                 ParameterDescription parameter = this.Parameters[i];
-                object value = null;
 
-                if (parameters.TryGetValue(parameter.Name, out value))
+                if (parameters.TryGetValue(parameter.Name, out object value))
                 {
                     VerifyParameterValue(parameter, value);
                 }

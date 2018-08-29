@@ -37,8 +37,7 @@ namespace NMemory.Concurrency
 
         public int Increment(long id)
         {
-            int count = 0;
-            if (this.counter.TryGetValue(id, out count))
+            if (this.counter.TryGetValue(id, out int count))
             {
                 count++;
             }
@@ -49,8 +48,7 @@ namespace NMemory.Concurrency
 
         public int Decrement(long id)
         {
-            int count = 0;
-            if (!this.counter.TryGetValue(id, out count))
+            if (!this.counter.TryGetValue(id, out int count))
             {
                 return 0;
             }

@@ -152,15 +152,13 @@ namespace DLaB.Xrm.LocalCrm
 
     public class DynamicProperty
     {
-        private string name;
-        private Type type;
+        private readonly string name;
+        private readonly Type type;
 
         public DynamicProperty(string name, Type type)
         {
-            if (name == null) throw new ArgumentNullException("name");
-            if (type == null) throw new ArgumentNullException("type");
-            this.name = name;
-            this.type = type;
+            this.name = name ?? throw new ArgumentNullException("name");
+            this.type = type ?? throw new ArgumentNullException("type");
         }
 
         public string Name
@@ -258,7 +256,7 @@ namespace DLaB.Xrm.LocalCrm
 
         static ClassFactory() {} // Trigger lazy initialization of static fields
 
-        private ModuleBuilder module;
+        private readonly ModuleBuilder module;
         private Dictionary<Signature, Type> classes;
         private int classCount;
         private ReaderWriterLock rwLock;
@@ -290,8 +288,7 @@ namespace DLaB.Xrm.LocalCrm
             try
             {
                 Signature signature = new Signature(properties);
-                Type type;
-                if (!classes.TryGetValue(signature, out type))
+                if (!classes.TryGetValue(signature, out Type type))
                 {
                     type = CreateDynamicClass(signature.properties);
                     classes.Add(signature, type);
@@ -428,7 +425,7 @@ namespace DLaB.Xrm.LocalCrm
 
     public sealed class ParseException : Exception
     {
-        private int position;
+        private readonly int position;
 
         public ParseException(string message, int position)
             : base(message)
@@ -639,19 +636,18 @@ namespace DLaB.Xrm.LocalCrm
         private ParameterExpression it;
         private string text;
         private int textPos;
-        private int textLen;
+        private readonly int textLen;
         private char ch;
         private Token token;
 
         public ExpressionParser(ParameterExpression[] parameters, string expression, object[] values)
         {
-            if (expression == null) throw new ArgumentNullException("expression");
             if (keywords == null) keywords = CreateKeywords();
             symbols = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
             literals = new Dictionary<Expression, string>();
             if (parameters != null) ProcessParameters(parameters);
             if (values != null) ProcessValues(values);
-            text = expression;
+            text = expression ?? throw new ArgumentNullException("expression");
             textLen = text.Length;
             SetTextPos(0);
             NextToken();
@@ -1016,8 +1012,7 @@ namespace DLaB.Xrm.LocalCrm
             string text = token.text;
             if (text[0] != '-')
             {
-                ulong value;
-                if (!UInt64.TryParse(text, out value))
+                if (!UInt64.TryParse(text, out var value))
                     throw ParseError(Res.InvalidIntegerLiteral, text);
                 NextToken();
                 if (value <= (ulong) Int32.MaxValue) return CreateLiteral((int) value, text);
@@ -1027,9 +1022,11 @@ namespace DLaB.Xrm.LocalCrm
             }
             else
             {
-                long value;
-                if (!Int64.TryParse(text, out value))
+                if (!long.TryParse(text, out long value))
+                {
                     throw ParseError(Res.InvalidIntegerLiteral, text);
+                }
+
                 NextToken();
                 if (value >= Int32.MinValue && value <= Int32.MaxValue)
                     return CreateLiteral((int) value, text);
@@ -1045,13 +1042,11 @@ namespace DLaB.Xrm.LocalCrm
             char last = text[text.Length - 1];
             if (last == 'F' || last == 'f')
             {
-                float f;
-                if (Single.TryParse(text.Substring(0, text.Length - 1), out f)) value = f;
+                if (Single.TryParse(text.Substring(0, text.Length - 1), out float f)) value = f;
             }
             else
             {
-                double d;
-                if (Double.TryParse(text, out d)) value = d;
+                if (Double.TryParse(text, out double d)) value = d;
             }
             if (value == null) throw ParseError(Res.InvalidRealLiteral, text);
             NextToken();
@@ -1078,29 +1073,30 @@ namespace DLaB.Xrm.LocalCrm
         private Expression ParseIdentifier()
         {
             ValidateToken(TokenId.Identifier);
-            object value;
-            if (keywords.TryGetValue(token.text, out value))
+            if (keywords.TryGetValue(token.text, out object value))
             {
-                if (value is Type) return ParseTypeAccess((Type) value);
-                if (value == (object) keywordIt) return ParseIt();
-                if (value == (object) keywordIif) return ParseIif();
-                if (value == (object) keywordNew) return ParseNew();
+                if (value is Type) return ParseTypeAccess((Type)value);
+                if (value == (object)keywordIt) return ParseIt();
+                if (value == (object)keywordIif) return ParseIif();
+                if (value == (object)keywordNew) return ParseNew();
                 NextToken();
-                return (Expression) value;
+                return (Expression)value;
             }
             if (symbols.TryGetValue(token.text, out value) ||
                 externals != null && externals.TryGetValue(token.text, out value))
             {
-                Expression expr = value as Expression;
-                if (expr == null)
+                if (value is Expression expr)
                 {
-                    expr = Expression.Constant(value);
+                    if (expr is LambdaExpression lambda)
+                    {
+                        return ParseLambdaInvocation(lambda);
+                    }
                 }
                 else
                 {
-                    LambdaExpression lambda = expr as LambdaExpression;
-                    if (lambda != null) return ParseLambdaInvocation(lambda);
+                    expr = Expression.Constant(value);
                 }
+
                 NextToken();
                 return expr;
             }
@@ -1174,8 +1170,10 @@ namespace DLaB.Xrm.LocalCrm
                 }
                 else
                 {
-                    MemberExpression me = expr as MemberExpression;
-                    if (me == null) throw ParseError(exprPos, Res.MissingAsClause);
+                    if (!(expr is MemberExpression me))
+                    {
+                        throw ParseError(exprPos, Res.MissingAsClause);
+                    }
                     propName = me.Member.Name;
                 }
                 expressions.Add(expr);
@@ -1197,8 +1195,7 @@ namespace DLaB.Xrm.LocalCrm
             int errorPos = token.pos;
             NextToken();
             Expression[] args = ParseArgumentList();
-            MethodBase method;
-            if (FindMethod(lambda.Type, "Invoke", false, args, out method) != 1)
+            if (FindMethod(lambda.Type, "Invoke", false, args, out MethodBase method) != 1)
                 throw ParseError(errorPos, Res.ArgsIncompatibleWithLambda);
             return Expression.Invoke(lambda, args);
         }
@@ -1217,15 +1214,14 @@ namespace DLaB.Xrm.LocalCrm
             if (token.id == TokenId.OpenParen)
             {
                 Expression[] args = ParseArgumentList();
-                MethodBase method;
-                switch (FindBestMethod(type.GetConstructors(), args, out method))
+                switch (FindBestMethod(type.GetConstructors(), args, out MethodBase method))
                 {
                     case 0:
                         if (args.Length == 1)
                             return GenerateConversion(args[0], type, errorPos);
                         throw ParseError(errorPos, Res.NoMatchingConstructor, GetTypeName(type));
                     case 1:
-                        return Expression.New((ConstructorInfo) method, args);
+                        return Expression.New((ConstructorInfo)method, args);
                     default:
                         throw ParseError(errorPos, Res.AmbiguousConstructorInvocation, GetTypeName(type));
                 }
@@ -1273,20 +1269,19 @@ namespace DLaB.Xrm.LocalCrm
                     }
                 }
                 Expression[] args = ParseArgumentList();
-                MethodBase mb;
-                switch (FindMethod(type, id, instance == null, args, out mb))
+                switch (FindMethod(type, id, instance == null, args, out MethodBase mb))
                 {
                     case 0:
                         throw ParseError(errorPos, Res.NoApplicableMethod,
                             id, GetTypeName(type));
                     case 1:
-                        MethodInfo method = (MethodInfo) mb;
+                        MethodInfo method = (MethodInfo)mb;
                         if (!IsPredefinedType(method.DeclaringType))
                             throw ParseError(errorPos, Res.MethodsAreInaccessible, GetTypeName(method.DeclaringType));
-                        if (method.ReturnType == typeof (void))
+                        if (method.ReturnType == typeof(void))
                             throw ParseError(errorPos, Res.MethodIsVoid,
                                 id, GetTypeName(method.DeclaringType));
-                        return Expression.Call(instance, (MethodInfo) method, args);
+                        return Expression.Call(instance, (MethodInfo)method, args);
                     default:
                         throw ParseError(errorPos, Res.AmbiguousMethodInvocation,
                             id, GetTypeName(type));
@@ -1329,8 +1324,7 @@ namespace DLaB.Xrm.LocalCrm
             it = innerIt;
             Expression[] args = ParseArgumentList();
             it = outerIt;
-            MethodBase signature;
-            if (FindMethod(typeof (IEnumerableSignatures), methodName, false, args, out signature) != 1)
+            if (FindMethod(typeof(IEnumerableSignatures), methodName, false, args, out MethodBase signature) != 1)
                 throw ParseError(errorPos, Res.NoApplicableAggregate, methodName);
             Type[] typeArgs;
             if (signature.Name == "Min" || signature.Name == "Max")
@@ -1393,14 +1387,13 @@ namespace DLaB.Xrm.LocalCrm
             }
             else
             {
-                MethodBase mb;
-                switch (FindIndexer(expr.Type, args, out mb))
+                switch (FindIndexer(expr.Type, args, out MethodBase mb))
                 {
                     case 0:
                         throw ParseError(errorPos, Res.NoApplicableIndexer,
                             GetTypeName(expr.Type));
                     case 1:
-                        return Expression.Call(expr, (MethodInfo) mb, args);
+                        return Expression.Call(expr, (MethodInfo)mb, args);
                     default:
                         throw ParseError(errorPos, Res.AmbiguousIndexerInvocation,
                             GetTypeName(expr.Type));
@@ -1481,8 +1474,7 @@ namespace DLaB.Xrm.LocalCrm
         private void CheckAndPromoteOperand(Type signatures, string opName, ref Expression expr, int errorPos)
         {
             Expression[] args = new Expression[] {expr};
-            MethodBase method;
-            if (FindMethod(signatures, "F", false, args, out method) != 1)
+            if (FindMethod(signatures, "F", false, args, out MethodBase method) != 1)
                 throw ParseError(errorPos, Res.IncompatibleOperand,
                     opName, GetTypeName(args[0].Type));
             expr = args[0];
@@ -1491,8 +1483,7 @@ namespace DLaB.Xrm.LocalCrm
         private void CheckAndPromoteOperands(Type signatures, string opName, ref Expression left, ref Expression right, int errorPos)
         {
             Expression[] args = new Expression[] {left, right};
-            MethodBase method;
-            if (FindMethod(signatures, "F", false, args, out method) != 1)
+            if (FindMethod(signatures, "F", false, args, out MethodBase method) != 1)
                 throw IncompatibleOperandsError(opName, left, right, errorPos);
             left = args[0];
             right = args[1];
@@ -1631,9 +1622,8 @@ namespace DLaB.Xrm.LocalCrm
         private Expression PromoteExpression(Expression expr, Type type, bool exact)
         {
             if (expr.Type == type) return expr;
-            if (expr is ConstantExpression)
+            if (expr is ConstantExpression ce)
             {
-                ConstantExpression ce = (ConstantExpression) expr;
                 if (ce == nullLiteral)
                 {
                     if (!type.IsValueType || IsNullableType(type))
@@ -1641,8 +1631,7 @@ namespace DLaB.Xrm.LocalCrm
                 }
                 else
                 {
-                    string text;
-                    if (literals.TryGetValue(ce, out text))
+                    if (literals.TryGetValue(ce, out string text))
                     {
                         Type target = GetNonNullableType(type);
                         Object value = null;
@@ -1655,7 +1644,7 @@ namespace DLaB.Xrm.LocalCrm
                                 value = ParseNumber(text, target);
                                 break;
                             case TypeCode.Double:
-                                if (target == typeof (decimal)) value = ParseNumber(text, target);
+                                if (target == typeof(decimal)) value = ParseNumber(text, target);
                                 break;
                             case TypeCode.String:
                                 value = ParseEnum(text, target);
@@ -2243,13 +2232,15 @@ namespace DLaB.Xrm.LocalCrm
 
         private static Dictionary<string, object> CreateKeywords()
         {
-            Dictionary<string, object> d = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
-            d.Add("true", trueLiteral);
-            d.Add("false", falseLiteral);
-            d.Add("null", nullLiteral);
-            d.Add(keywordIt, keywordIt);
-            d.Add(keywordIif, keywordIif);
-            d.Add(keywordNew, keywordNew);
+            Dictionary<string, object> d = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                { "true", trueLiteral },
+                { "false", falseLiteral },
+                { "null", nullLiteral },
+                { keywordIt, keywordIt },
+                { keywordIif, keywordIif },
+                { keywordNew, keywordNew }
+            };
             foreach (Type type in predefinedTypes) d.Add(type.Name, type);
             return d;
         }

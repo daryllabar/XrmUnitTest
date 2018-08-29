@@ -99,9 +99,8 @@ namespace NMemory.Execution.Optimization
             Expression source,
             IList<IExpressionBuilder> collector)
         {
-            UnaryExpressionCloner expander = null;
 
-            if (!UnaryExpressionCloner.TryCreate(expression, source, out expander))
+            if (!UnaryExpressionCloner.TryCreate(expression, source, out UnaryExpressionCloner expander))
             {
                 return false;
             }

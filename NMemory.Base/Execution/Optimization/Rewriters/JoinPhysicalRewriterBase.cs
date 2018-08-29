@@ -83,12 +83,11 @@ namespace NMemory.Execution.Optimization.Rewriters
             }
 
             // Try to parse expression
-            MemberInfo[] keyMembers;
 
             if (!helper.TryParseKeySelectorExpression(
-                secondKeySelector.Body, 
-                false, 
-                out keyMembers))
+                secondKeySelector.Body,
+                false,
+                out MemberInfo[] keyMembers))
             {
                 // Cannot parse key
                 return base.VisitMethodCall(node);
@@ -203,8 +202,7 @@ namespace NMemory.Execution.Optimization.Rewriters
                 service = DefaultServiceConfigurations.CreateDefaultKeyInfoService();
             }
 
-            IKeyInfoHelper result;
-            service.TryCreateKeyInfoHelper(keyType, out result);
+            service.TryCreateKeyInfoHelper(keyType, out IKeyInfoHelper result);
 
             return result;
         }

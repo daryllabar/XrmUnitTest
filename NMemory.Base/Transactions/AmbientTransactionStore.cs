@@ -46,8 +46,7 @@ namespace NMemory.Transactions
 
         public static void RemoveTransaction(System.Transactions.Transaction ambient)
         {
-            Transaction removedTransaction;
-            transactions.TryRemove(ambient.TransactionInformation.LocalIdentifier, out removedTransaction);
+            transactions.TryRemove(ambient.TransactionInformation.LocalIdentifier, out Transaction removedTransaction);
         }
 
         private static Transaction CreateTransaction(System.Transactions.Transaction ambient)

@@ -41,8 +41,7 @@ namespace NMemory.Concurrency
 
         public IList<Item> GetAllForRelease(Transaction transaction)
         {
-            HashSet<Item> entries = null;
-            if (this.collection.TryRemove(transaction, out entries))
+            if (this.collection.TryRemove(transaction, out HashSet<Item> entries))
             {
                 return entries.ToArray();
             }

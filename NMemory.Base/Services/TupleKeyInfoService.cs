@@ -45,14 +45,13 @@ namespace NMemory.Services
 
             IKeyInfoHelper helper = TupleKeyInfo<TEntity, TKey>.KeyInfoHelper;
 
-            MemberInfo[] members;
 
-            if (!helper.TryParseKeySelectorExpression(keySelector.Body, true, out members))
+            if (!helper.TryParseKeySelectorExpression(keySelector.Body, true, out MemberInfo[] members))
             {
                 result = null;
                 return false;
             }
-            
+
             result = new TupleKeyInfo<TEntity, TKey>(members);
             return true;
         }

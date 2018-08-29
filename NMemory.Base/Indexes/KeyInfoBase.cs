@@ -119,15 +119,14 @@ namespace NMemory.Indexes
             Expression<Func<TEntity, TKey>> selector,
             IKeyInfoHelper helper)
         {
-            MemberInfo[] result = null;
 
             if (!helper.TryParseKeySelectorExpression(
                 selector.Body,
-                true, 
-                out result))
+                true,
+                out MemberInfo[] result))
             {
                 throw new ArgumentException(
-                    ExceptionMessages.InvalidKeySelector, 
+                    ExceptionMessages.InvalidKeySelector,
                     "keySelector");
             }
 

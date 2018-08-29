@@ -31,8 +31,7 @@ namespace Xyz.Xrm.Plugin.Tests
             //
             // Assert
             //
-            Guid tmp;
-            Assert.IsTrue(Guid.TryParse(results.First().Value.ToString(), out tmp));
+            Assert.IsTrue(Guid.TryParse(results.First().Value.ToString(), out Guid tmp));
         }
     }
 }

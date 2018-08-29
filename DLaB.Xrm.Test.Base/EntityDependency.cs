@@ -291,8 +291,7 @@ namespace DLaB.Xrm.Test
                 {
                     var attribute = property.GetAttributeLogicalName();
                     var propertyType = property.PropertyType.GetCustomAttribute<EntityLogicalNameAttribute>(true);
-                    EntityDependencyRelationship relationship;
-                    if (!Dependencies.TryGetValue(propertyType.LogicalName, out relationship))
+                    if (!Dependencies.TryGetValue(propertyType.LogicalName, out EntityDependencyRelationship relationship))
                     {
                         relationship = new EntityDependencyRelationship(logicalName, propertyType.LogicalName, attribute, LogicalName == propertyType.LogicalName);
                         Dependencies.Add(propertyType.LogicalName, relationship);
@@ -333,11 +332,10 @@ namespace DLaB.Xrm.Test
 
             public EntityDependencyRelationship(string entity, string dependencyEntity, string attribute, bool isCurrentlyCyclic)
             {
-                HashSet<string> hash;
-                Attributes = new List<string> {attribute};
+                Attributes = new List<string> { attribute };
                 DependencyEntity = dependencyEntity;
                 IsCurrentlyCyclic = isCurrentlyCyclic;
-                IsRequired = RequiredDependenciesByEntity.TryGetValue(entity, out hash) && hash.Contains(dependencyEntity);
+                IsRequired = RequiredDependenciesByEntity.TryGetValue(entity, out HashSet<string> hash) && hash.Contains(dependencyEntity);
             }
         }
     }

@@ -192,13 +192,11 @@ namespace NMemory.DataStructures.Internal.Trees
 
             if (this.count > 2)
             {
-                RedBlackTreeNode<TKey, TValue> parent, grandParent, greatGrandParent;
-
                 this.GetNodesAbove(
                     insertedNode,
-                    out parent,
-                    out grandParent,
-                    out greatGrandParent);
+                    out RedBlackTreeNode<TKey, TValue> parent,
+                    out RedBlackTreeNode<TKey, TValue> grandParent,
+                    out RedBlackTreeNode<TKey, TValue> greatGrandParent);
 
                 this.FixTreeAfterInsertion(
                     insertedNode,
@@ -290,7 +288,7 @@ namespace NMemory.DataStructures.Internal.Trees
                     curNode = this.nodeBeingDeleted.Right;
                 }
 
-                RedBlackTreeNode<TKey, TValue> parent, sibling, grandParent;
+                RedBlackTreeNode<TKey, TValue> parent;
                 if (curNode == null)
                 {
                     parent = this.nodeBeingDeleted.Parent;
@@ -303,8 +301,8 @@ namespace NMemory.DataStructures.Internal.Trees
                 this.GetParentGrandParentSibling(
                     curNode,
                     parent,
-                    out sibling,
-                    out grandParent);
+                    out RedBlackTreeNode<TKey, TValue> sibling,
+                    out RedBlackTreeNode<TKey, TValue> grandParent);
 
                 if (curNode != null && curNode.Red)
                 {

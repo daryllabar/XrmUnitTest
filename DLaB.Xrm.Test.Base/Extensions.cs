@@ -89,8 +89,7 @@ namespace DLaB.Xrm.Test
         /// <param name="value">Value to enqueue</param>
         public static void AddOrEnqueue<TKey, TValue>(this Dictionary<TKey, Queue<TValue>> dict, TKey key, TValue value)
         {
-            Queue<TValue> values;
-            if (dict.TryGetValue(key, out values))
+            if (dict.TryGetValue(key, out Queue<TValue> values))
             {
                 values.Enqueue(value);
             }
@@ -113,8 +112,7 @@ namespace DLaB.Xrm.Test
         /// <param name="values">Values to enqueue</param>
         public static void AddOrEnqueue<TKey, TValue>(this Dictionary<TKey, Queue<TValue>> dict, TKey key, params TValue[] values)
         {
-            Queue<TValue> value;
-            if (dict.TryGetValue(key, out value))
+            if (dict.TryGetValue(key, out Queue<TValue> value))
             {
                 value.EnqueueRange(value);
             }
@@ -137,8 +135,7 @@ namespace DLaB.Xrm.Test
         /// <param name="dictionaryList">Values to enqueue</param>
         public static void AddOrEnqueue<TKey, TValue>(this Dictionary<TKey, Queue<TValue>> dict, TKey key, Dictionary<TKey, List<TValue>> dictionaryList)
         {
-            List<TValue> listValues;
-            if (!dictionaryList.TryGetValue(key, out listValues))
+            if (!dictionaryList.TryGetValue(key, out List<TValue> listValues))
             {
                 // Didn't find any an associated list in the dictionary, nothing to Enqueue
                 return;
@@ -161,14 +158,13 @@ namespace DLaB.Xrm.Test
         {
             foreach (var id in ids)
             {
-                List<Guid> values;
-                if (dict.TryGetValue(id, out values))
+                if (dict.TryGetValue(id, out List<Guid> values))
                 {
                     values.Add(id);
                 }
                 else
                 {
-                    values = new List<Guid> {id};
+                    values = new List<Guid> { id };
                     dict.Add(id, values);
                 }
             }
@@ -218,8 +214,7 @@ namespace DLaB.Xrm.Test
         {
             foreach (var id in ids)
             {
-                Queue<Guid> value;
-                if (dict.TryGetValue(id, out value))
+                if (dict.TryGetValue(id, out Queue<Guid> value))
                 {
                     value.Enqueue(id);
                 }

@@ -30,8 +30,7 @@ namespace DLaB.Xrm.LocalCrm
 
         public PropertyInfo GetProperty(string name)
         {
-            PropertyInfo property;
-            if (PropertiesByName.TryGetValue(name, out property) ||
+            if (PropertiesByName.TryGetValue(name, out PropertyInfo property) ||
                 PropertiesByLogicalName.TryGetValue(name, out property))
             {
                 return property;

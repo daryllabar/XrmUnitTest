@@ -45,9 +45,8 @@ namespace NMemory.Services
 
             IKeyInfoHelper helper = PrimitiveKeyInfo<TEntity, TKey>.KeyInfoHelper;
 
-            MemberInfo[] members;
 
-            if (!helper.TryParseKeySelectorExpression(keySelector.Body, true, out members))
+            if (!helper.TryParseKeySelectorExpression(keySelector.Body, true, out MemberInfo[] members))
             {
                 result = null;
                 return false;

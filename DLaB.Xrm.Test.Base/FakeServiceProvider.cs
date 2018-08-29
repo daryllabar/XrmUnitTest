@@ -26,12 +26,11 @@ namespace DLaB.Xrm.Test
         /// <exception cref="System.Exception">No Service Found For Type:  + serviceType.FullName</exception>
         public object GetService(Type serviceType)
         {
-            object service;
-            if (Services.TryGetValue(serviceType, out service))
+            if (Services.TryGetValue(serviceType, out object service))
             {
                 return service;
             }
-            
+
             throw new Exception("No Service Found For Type: " + serviceType.FullName);
         }
 

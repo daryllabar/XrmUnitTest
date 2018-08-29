@@ -58,13 +58,11 @@ namespace NMemory.Execution.Optimization.Rewriters
 
         protected override Expression VisitMethodCall(MethodCallExpression node)
         {
-            Expression expr = null;
-            LambdaExpression collectionSelector = null;
 
             // Check if the method is SelectMany and get the collection selector
             if (!QueryExpressionHelper.GetSelectManyCollectionSelector(
-                node, 
-                out collectionSelector))
+                node,
+                out LambdaExpression collectionSelector))
             {
                 return base.VisitMethodCall(node);
             }
@@ -75,16 +73,15 @@ namespace NMemory.Execution.Optimization.Rewriters
 
             // Check if the collection selector of the SelectMany is DefaultOrEmpty and
             // get its source
-            if (!QueryExpressionHelper.GetDefaultOrEmptySource(defaultIfEmpty, out expr))
+            if (!QueryExpressionHelper.GetDefaultOrEmptySource(defaultIfEmpty, out Expression expr))
             {
                 return base.VisitMethodCall(node);
             }
 
             MethodCallExpression where = expr as MethodCallExpression;
-            LambdaExpression predicate = null;
 
             // Check if the source of DefaultOrEmpty is Where and get its predicate
-            if (!QueryExpressionHelper.GetWherePredicate(where, out predicate))
+            if (!QueryExpressionHelper.GetWherePredicate(where, out LambdaExpression predicate))
             {
                 return base.VisitMethodCall(node);
             }
@@ -132,17 +129,13 @@ namespace NMemory.Execution.Optimization.Rewriters
             Type outerType = collectionSelector.Parameters[0].Type;
             Type innerType = predicate.Parameters[0].Type;
 
-            // Build the keys
-            LambdaExpression outerKey;
-            LambdaExpression innerKey;
-
             LinqJoinKeyHelper.CreateKeySelectors(
-                outerType, 
+                outerType,
                 innerType,
                 detector.LeftMembers,
-                detector.RightMembers, 
-                out outerKey, 
-                out innerKey);
+                detector.RightMembers,
+                out LambdaExpression outerKey,
+                out LambdaExpression innerKey);
 
             // Create the result selector of the GroupJoin
             LambdaExpression groupJoinResultSelector =

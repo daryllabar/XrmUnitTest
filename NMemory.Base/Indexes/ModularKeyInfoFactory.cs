@@ -57,12 +57,11 @@ namespace NMemory.Indexes
         public IKeyInfo<TEntity, TKey> Create<TEntity, TKey>(
             Expression<Func<TEntity, TKey>> keySelector) where TEntity : class
         {
-            IKeyInfo<TEntity, TKey> result;
 
-            if (!this.service.TryCreateKeyInfo<TEntity, TKey>(keySelector, out result))
+            if (!this.service.TryCreateKeyInfo<TEntity, TKey>(keySelector, out IKeyInfo<TEntity, TKey> result))
             {
                 throw new NMemoryException(
-                    ErrorCode.GenericError, 
+                    ErrorCode.GenericError,
                     ExceptionMessages.CannotCreateKeyInfo);
             }
 

@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)DLaBCodeActivityBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DLaBGenericCodeActivityBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DLaBExtendedWorkflowContextSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IExtendedWorkflowContext.cs" />

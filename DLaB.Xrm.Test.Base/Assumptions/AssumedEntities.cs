@@ -50,8 +50,7 @@ namespace DLaB.Xrm.Test.Assumptions
         /// <exception cref="System.Exception"></exception>
         public Entity Get<T>() where T : EntityDataAssumptionBaseAttribute
         {
-            Entity entity;
-            if (!InternalStore.TryGetValue(GetKey<T>(), out entity))
+            if (!InternalStore.TryGetValue(GetKey<T>(), out Entity entity))
             {
                 throw new Exception($"AssumedEntities does not contain an entity for Assumption {typeof(T).Name}.");
             }
