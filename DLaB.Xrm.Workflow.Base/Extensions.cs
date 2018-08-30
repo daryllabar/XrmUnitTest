@@ -2,11 +2,6 @@
 using System.Activities;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Workflow;
-#if DLAB_UNROOT_NAMESPACE || DLAB_XRM
-using DLaB.Xrm;
-#else
-using Source.DLaB.Xrm;
-#endif
 
 #if DLAB_UNROOT_NAMESPACE || DLAB_XRM_WORKFLOW
 namespace DLaB.Xrm.Workflow
@@ -64,7 +59,6 @@ namespace Source.DLaB.Xrm.Workflow
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="context"></param>
-        /// <param name="imageName"></param>
         /// <returns></returns>
         public static T GetPreEntity<T>(this IWorkflowContext context) where T : Entity
         {
@@ -77,9 +71,8 @@ namespace Source.DLaB.Xrm.Workflow
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="context"></param>
-        /// <param name="imageName"></param>
         /// <returns></returns>
-        public static T GetPostEntity<T>(this IWorkflowContext context, string imageName) where T : Entity
+        public static T GetPostEntity<T>(this IWorkflowContext context) where T : Entity
         {
             return context.PreEntityImages.GetEntity<T>(DLaBExtendedWorkflowContext.WorkflowImageNames.PostImage);
         }
