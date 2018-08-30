@@ -112,6 +112,7 @@ namespace Source.DLaB.Xrm
         }
 
         #endregion DataCollection<string,Entity>
+
         #region Entity
 
 

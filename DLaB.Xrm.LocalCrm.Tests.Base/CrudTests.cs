@@ -101,13 +101,20 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.IsNotNull(service.GetFirstOrDefault<Opportunity>(Opportunity.Fields.ParentContactId, c1.Id), "Failed Simple Lookup by Attribute Entity Reference");
             Assert.AreEqual(1, service.GetEntitiesById<Contact>(c1.Id).Count, "Failed Simple Where In Lookup by Id");
 
+            // *** WIKI Start - DLaB.Xrm ***
+
             var qe = QueryExpressionFactory.Create<Opportunity>();
-            qe.AddLink<Contact>(Opportunity.Fields.ParentContactId, "contactid", c => new { c.FirstName });
+            // This AddLink will lookup the logical name of the Contact Entity when adding the link,
+            //     and it will only return the FirstName attribute
+            // If the joining attributes happened to be contactid for both, this could have just been written as :
+            // qe.AddLink<Contact>(Contact.Fields.ContactId, c => new { c.FirstName });
+            qe.AddLink<Contact>(Opportunity.Fields.ParentContactId, Contact.Fields.ContactId, c => new { c.FirstName });
+            var contact = service.GetFirstOrDefault(qe);
 
-            var otherC = service.GetFirstOrDefault(qe);
+            // *** WIKI End - DLaB.Xrm ***
 
-            Assert.IsNotNull(otherC, "Failed Simple Lookup with Linked Entity on Entity Reference");
-            Assert.AreEqual(c1.FirstName, otherC.GetAliasedEntity<Contact>().FirstName, "Failed Simple Lookup retrieving Linked Entity columns");
+            Assert.IsNotNull(contact, "Failed Simple Lookup with Linked Entity on Entity Reference");
+            Assert.AreEqual(c1.FirstName, contact.GetAliasedEntity<Contact>().FirstName, "Failed Simple Lookup retrieving Linked Entity columns");
         }
 
         [TestMethod]

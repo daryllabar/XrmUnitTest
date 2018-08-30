@@ -25,9 +25,17 @@ namespace DLaB.Xrm.Tests.Plugin
         [TestMethod]
         public void RegisteredEventBuilder_WithAnd_Should_CreateMultipleRegisteredEvents()
         {
+            // Previous Syntax
+            var events = new RegisteredEventBuilder(PipelineStage.PreOperation, MessageType.Create).Build();
+            events.AddRange(new RegisteredEventBuilder(PipelineStage.PostOperation, MessageType.Update).Build());
+
+            // New Syntax
             var values = new RegisteredEventBuilder(PipelineStage.PreOperation, MessageType.Create)
                 .And(PipelineStage.PostOperation, MessageType.Update)
                 .Build();
+
+            
+            
 
             Assert.AreEqual(2, values.Count, "Two events should have been created, a single Pre Operation Registered Event and a Single Post Operation Event.");
             var pre = values.Single(v => v.Stage == PipelineStage.PreOperation);

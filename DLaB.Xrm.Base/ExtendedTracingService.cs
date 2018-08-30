@@ -8,7 +8,7 @@ namespace Source.DLaB.Xrm
 #endif
 {
     /// <summary>
-    /// Tracing Service Guarenteed to not throw an exception
+    /// Tracing Service guaranteed to not throw an exception
     /// </summary>
     public class ExtendedTracingService: ITracingService
     {
