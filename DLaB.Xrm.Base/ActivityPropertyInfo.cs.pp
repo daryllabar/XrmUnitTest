@@ -38,7 +38,7 @@ namespace Source.DLaB.Xrm
     /// <typeparam name="T"></typeparam>
     public class ActivePropertyInfo<T> where T : Entity
     {
-#region Properties
+        #region Properties
 
         /// <summary>
         /// Gets or sets the active attribute type.
@@ -69,7 +69,7 @@ namespace Source.DLaB.Xrm
         /// </value>
         public int? NotActiveState { get; set; }
 
-#endregion Properties
+        #endregion Properties
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ActivePropertyInfo{T}"/> class.

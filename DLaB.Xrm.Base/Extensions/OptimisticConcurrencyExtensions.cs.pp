@@ -11,7 +11,7 @@ namespace Source.DLaB.Xrm
 	
 {
     /// <summary>
-    /// Extenions for handling Optimistic Concurrency that was first used in CRM 2015.1
+    /// Extensions for handling Optimistic Concurrency that was first used in CRM 2015.1
     /// </summary>
     public static class OptimisticConcurrencyExtensions {
         /// <summary>

@@ -338,16 +338,13 @@ namespace Source.DLaB.Xrm.Plugin
         /// <returns></returns>
         public static RegisteredEvent GetEvent(this IPluginExecutionContext context, IEnumerable<RegisteredEvent> events)
         {
-            return events.FirstOrDefault(a =>
-                (int)a.Stage == context.Stage 
-                && a.MessageName == context.MessageName
-                && (string.IsNullOrWhiteSpace(a.EntityLogicalName) || a.EntityLogicalName == context.PrimaryEntityName)
-                ) 
-                ?? events.FirstOrDefault(a =>
-                (int)a.Stage == context.Stage 
-                && a.Message == RegisteredEvent.Any 
-                && (string.IsNullOrWhiteSpace(a.EntityLogicalName) || a.EntityLogicalName == context.PrimaryEntityName)
-                );
+            return events.Where(
+                    e =>
+                        (int) e.Stage == context.Stage
+                        && (e.MessageName == context.MessageName || e.Message == RegisteredEvent.Any)
+                        && (string.IsNullOrWhiteSpace(e.EntityLogicalName) || e.EntityLogicalName == context.PrimaryEntityName))
+                .OrderBy(e => e.MessageName == RegisteredEvent.Any) // Favor the specific message match first
+                .FirstOrDefault();
         }
 
         #region GetFirstSharedVariable
@@ -423,9 +420,9 @@ namespace Source.DLaB.Xrm.Plugin
         /// <param name="context"></param>
         /// <param name="imageName"></param>
         /// <returns></returns>
-        public static T GetPostEntity<T>(this IExecutionContext context, string imageName) where T : Entity
+        public static T GetPostEntity<T>(this IExecutionContext context, string imageName = null) where T : Entity
         {
-            return context.PreEntityImages.GetEntity<T>(imageName, DLaBExtendedPluginContextBase.PluginImageNames.PostImage);
+            return context.PostEntityImages.GetEntity<T>(imageName, DLaBExtendedPluginContextBase.PluginImageNames.PostImage);
         }
 
         #endregion Get(Pre/Post)Entities
