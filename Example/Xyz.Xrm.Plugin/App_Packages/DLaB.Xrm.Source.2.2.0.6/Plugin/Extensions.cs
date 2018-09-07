@@ -298,43 +298,6 @@ namespace Source.DLaB.Xrm.Plugin
 
         #endregion CoalesceTarget
 
-        #region ContainsAllNonNull
-
-        /// <summary>
-        /// Checks to see if the PluginExecutionContext.InputParameters Contains the attribute names, and the value is not null
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <param name="parameterNames">The parameter names.</param>
-        /// <returns></returns>
-        public static bool InputContainsAllNonNull(this IPluginExecutionContext context, params string[] parameterNames)
-        {
-            return context.InputParameters.ContainsAllNonNull(parameterNames);
-        }
-
-        /// <summary>
-        /// Checks to see if the PluginExecutionContext.OutputParameters Contains the attribute names, and the value is not null
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <param name="parameterNames">The parameter names.</param>
-        /// <returns></returns>
-        public static bool OutputContainsAllNonNull(this IPluginExecutionContext context, params string[] parameterNames)
-        {
-            return context.OutputParameters.ContainsAllNonNull(parameterNames);
-        }
-
-        /// <summary>
-        /// Checks to see if the PluginExecutionContext.SharedVariables Contains the attribute names, and the value is not null
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <param name="parameterNames">The parameter names.</param>
-        /// <returns></returns>
-        public static bool SharedContainsAllNonNull(this IPluginExecutionContext context, params string[] parameterNames)
-        {
-            return context.SharedVariables.ContainsAllNonNull(parameterNames);
-        }
-
-        #endregion ContainsAllNonNull
-
         #region GetContexts
 
         /// <summary>
@@ -375,16 +338,13 @@ namespace Source.DLaB.Xrm.Plugin
         /// <returns></returns>
         public static RegisteredEvent GetEvent(this IPluginExecutionContext context, IEnumerable<RegisteredEvent> events)
         {
-            return events.FirstOrDefault(a =>
-                (int)a.Stage == context.Stage 
-                && a.MessageName == context.MessageName
-                && (string.IsNullOrWhiteSpace(a.EntityLogicalName) || a.EntityLogicalName == context.PrimaryEntityName)
-                ) 
-                ?? events.FirstOrDefault(a =>
-                (int)a.Stage == context.Stage 
-                && a.Message == RegisteredEvent.Any 
-                && (string.IsNullOrWhiteSpace(a.EntityLogicalName) || a.EntityLogicalName == context.PrimaryEntityName)
-                );
+            return events.Where(
+                    e =>
+                        (int) e.Stage == context.Stage
+                        && (e.MessageName == context.MessageName || e.Message == RegisteredEvent.Any)
+                        && (string.IsNullOrWhiteSpace(e.EntityLogicalName) || e.EntityLogicalName == context.PrimaryEntityName))
+                .OrderBy(e => e.MessageName == RegisteredEvent.Any) // Favor the specific message match first
+                .FirstOrDefault();
         }
 
         #region GetFirstSharedVariable
@@ -437,112 +397,6 @@ namespace Source.DLaB.Xrm.Plugin
         /// <returns></returns>
         public static MessageType GetMessageType(this IPluginExecutionContext context) { return new MessageType(context.MessageName); }
 
-        #region GetParameterValue
-
-        /// <summary>
-        /// Gets the parameter value from the PluginExecutionContext.InputParameters collection, cast to type 'T', or default(T) if the collection doesn't contain a parameter with the given name.
-        /// </summary>
-        /// <typeparam name="T">Type of the parameter to be returned</typeparam>
-        /// <param name="context">The context.</param>
-        /// <param name="parameterName">Name of the parameter.</param>
-        /// <returns></returns>
-        public static T GetInputParameterValue<T>(this IPluginExecutionContext context, string parameterName)
-        {
-            return context.InputParameters.GetParameterValue<T>(parameterName);
-        }
-
-        /// <summary>
-        /// Gets the parameter value from the PluginExecutionContext.InputParameters collection, or null if the collection doesn't contain a parameter with the given name.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <param name="parameterName">Name of the parameter.</param>
-        /// <returns></returns>
-        public static object GetInputParameterValue(this IPluginExecutionContext context, string parameterName)
-        {
-            return context.InputParameters.GetParameterValue(parameterName);
-        }
-
-        /// <summary>
-        /// Gets the parameter value from the OutputParameters collection, cast to type 'T', or default(T) if the collection doesn't contain a parameter with the given name.
-        /// </summary>
-        /// <typeparam name="T">Type of the parameter to be returned</typeparam>
-        /// <param name="context">The context.</param>
-        /// <param name="parameterName">Name of the parameter.</param>
-        /// <returns></returns>
-        public static T GetOutputParameterValue<T>(this IPluginExecutionContext context, string parameterName)
-        {
-            return context.OutputParameters.GetParameterValue<T>(parameterName);
-        }
-
-        /// <summary>
-        /// Gets the parameter value from the OutputParameters collection, or null if the collection doesn't contain a parameter with the given name.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <param name="parameterName">Name of the parameter.</param>
-        /// <returns></returns>
-        public static object GetOutputParameterValue(this IPluginExecutionContext context, string parameterName)
-        {
-            return context.OutputParameters.GetParameterValue(parameterName);
-        }
-
-        /// <summary>
-        /// Populates a local version of the request using the parameters from the context.  This exposes (most of) the parameters of that particular request
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="context">The context.</param>
-        /// <returns></returns>
-        public static T GetRequestParameters<T>(this IPluginExecutionContext context) where T : OrganizationRequest
-        {
-            var request = Activator.CreateInstance<T>();
-            request.Parameters = context.InputParameters;
-            return request;
-        }
-
-        /// <summary>
-        /// Populates a local version of the response using the parameters from the context.  This exposes (most of) the parameters of that particular response
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="context">The context.</param>
-        /// <returns></returns>
-        public static T GetResponseParameters<T>(this IPluginExecutionContext context) where T : OrganizationResponse
-        {
-            var response = Activator.CreateInstance<T>();
-            response.Results = context.OutputParameters;
-            return response;
-        }
-
-        /// <summary>
-        /// Gets the variable value from the SharedVariables collection, cast to type 'T', or default(T) if the collection doesn't contain a variable with the given name.
-        /// </summary>
-        /// <typeparam name="T">Type of the variable to be returned</typeparam>
-        /// <param name="context">The context.</param>
-        /// <param name="variableName">Name of the variable.</param>
-        /// <returns></returns>
-        public static T GetSharedVariable<T>(this IPluginExecutionContext context, string variableName)
-        {
-            return context.SharedVariables.GetParameterValue<T>(variableName);
-        }
-
-        /// <summary>
-        /// Gets the variable value from the PluginExecutionContext.SharedVariables collection, or null if the collection doesn't contain a variable with the given name.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <param name="variableName">Name of the variable.</param>
-        /// <returns></returns>
-        public static object GetSharedVariable(this IPluginExecutionContext context, string variableName)
-        {
-            return context.SharedVariables.GetParameterValue(variableName);
-        }
-
-        #endregion GetParameterValue
-
-        /// <summary>
-        /// Gets the pipeline stage.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <returns></returns>
-        public static PipelineStage GetPipelineStage(this IPluginExecutionContext context) { return (PipelineStage)context.Stage; }
-
         #region Get(Pre/Post)Entities
 
         /// <summary>
@@ -553,9 +407,9 @@ namespace Source.DLaB.Xrm.Plugin
         /// <param name="context"></param>
         /// <param name="imageName"></param>
         /// <returns></returns>
-        public static T GetPreEntity<T>(this IPluginExecutionContext context, string imageName = null) where T : Entity
+        public static T GetPreEntity<T>(this IExecutionContext context, string imageName = null) where T : Entity
         {
-            return GetEntity<T>(context.PreEntityImages, imageName, DLaBExtendedPluginContextBase.PluginImageNames.PreImage);
+            return context.PreEntityImages.GetEntity<T>(imageName, DLaBExtendedPluginContextBase.PluginImageNames.PreImage);
         }
 
         /// <summary>
@@ -566,46 +420,19 @@ namespace Source.DLaB.Xrm.Plugin
         /// <param name="context"></param>
         /// <param name="imageName"></param>
         /// <returns></returns>
-        public static T GetPostEntity<T>(this IPluginExecutionContext context, string imageName) where T : Entity
+        public static T GetPostEntity<T>(this IExecutionContext context, string imageName = null) where T : Entity
         {
-            return GetEntity<T>(context.PostEntityImages, imageName, DLaBExtendedPluginContextBase.PluginImageNames.PostImage);
-        }
-
-        /// <summary>
-        /// If the imageName is populated, then if images collection contains the given imageName Key, the Value is cast to the Entity type T, else null is returned
-        /// If the imageName is not populated but the default name is, then the defaultname is searched for in the images collection and if it has a value, it is cast to the Entity type T.
-        /// Else, the first non-null value in the images collection is returned.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="images"></param>
-        /// <param name="imageName"></param>
-        /// <param name="defaultName"></param>
-        /// <returns></returns>
-        private static T GetEntity<T>(DataCollection<string, Entity> images, string imageName, string defaultName) where T: Entity
-        {
-            if (images.Count == 0)
-            {
-                return null;
-            }
-
-            if (images.Count == 1 && imageName == null)
-            {
-                return images.Values.FirstOrDefault().AsEntity<T>();
-            }
-
-            Entity entity;
-
-            if (imageName != null)
-            {
-                return images.TryGetValue(imageName, out entity) ? entity.AsEntity<T>() : null;
-            }
-
-            return defaultName != null && images.TryGetValue(defaultName, out entity)
-                ? entity.AsEntity<T>()
-                : images.Values.FirstOrDefault(v => v != null).AsEntity<T>();
+            return context.PostEntityImages.GetEntity<T>(imageName, DLaBExtendedPluginContextBase.PluginImageNames.PostImage);
         }
 
         #endregion Get(Pre/Post)Entities
+
+        /// <summary>
+        /// Gets the pipeline stage.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <returns></returns>
+        public static PipelineStage GetPipelineStage(this IPluginExecutionContext context) { return (PipelineStage)context.Stage; }
 
         #region GetTarget
 
@@ -813,6 +640,23 @@ namespace Source.DLaB.Xrm.Plugin
         #endregion HasPluginHandlerExecutionBeenPrevented
 
         #endregion Prevent Plugin Execution
+
+        /// <summary>
+        /// Returns an indepth view of the context
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <returns></returns>
+        public static string ToStringDebug(this IPluginExecutionContext context)
+        {
+            var lines = ((IExecutionContext)context).ToStringDebug();
+            lines.AddRange(new[]
+            {
+                "Has Parent Context: " + (context.ParentContext != null),
+                "Stage: " + context.Stage
+            });
+
+            return string.Join(Environment.NewLine, lines);
+        }
 
         #endregion IPluginExecutionContext
     }

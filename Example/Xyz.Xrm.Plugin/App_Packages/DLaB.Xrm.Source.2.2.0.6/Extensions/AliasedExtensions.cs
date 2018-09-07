@@ -114,8 +114,7 @@ namespace Source.DLaB.Xrm
 
             foreach (var entry in entity.Attributes)
             {
-                var aliased = entry.Value as AliasedValue;
-                if (aliased != null && aliased.EntityLogicalName == entityLogicalName &&
+                if (entry.Value is AliasedValue aliased && aliased.EntityLogicalName == entityLogicalName &&
                     (
                         (aliasedEntityName == null && // No Entity Attribute Name Specified
                             (entry.Key.Contains(".") || entry.Key == aliased.AttributeLogicalName || aliased.AttributeLogicalName == idAttribute))
@@ -140,8 +139,7 @@ namespace Source.DLaB.Xrm
                 var nonNameAttribute = entry.Key.Substring(0, entry.Key.Length - "name".Length);
                 if (aliasedEntity.Contains(nonNameAttribute))
                 {
-                    var entityRef = aliasedEntity[nonNameAttribute] as EntityReference;
-                    if (entityRef != null && entityRef.Name == (string)entry.Value)
+                    if (aliasedEntity[nonNameAttribute] is EntityReference entityRef && entityRef.Name == (string)entry.Value)
                     {
                         aliasedEntity.Attributes.Remove(entry.Key);
                     }
@@ -183,24 +181,23 @@ namespace Source.DLaB.Xrm
                 return default(T);
             }
 
-            var aliased = value as AliasedValue;
-            if (aliased == null)
+            if (!(value is AliasedValue aliased))
             {
-                throw new InvalidCastException(String.Format("Attribute {0} was of type {1}, not AliasedValue", attributeName, value.GetType().FullName));
+                throw new InvalidCastException(string.Format("Attribute {0} was of type {1}, not AliasedValue", attributeName, value.GetType().FullName));
             }
 
             try
             {
                 // If the primary key of an entity is returned, it is returned as a Guid.  If it is a FK, it is returned as an Entity Reference
                 // Handle that here
-                if (typeof(T) == typeof(EntityReference) && aliased.Value is Guid)
+                if (typeof(T) == typeof(EntityReference) && aliased.Value is Guid guid)
                 {
-                    return (T)(object)new EntityReference(aliased.EntityLogicalName, (Guid)aliased.Value);
+                    return (T)(object)new EntityReference(aliased.EntityLogicalName, guid);
                 }
 
-                if (typeof(T) == typeof(Guid) && aliased.Value is EntityReference)
+                if (typeof(T) == typeof(Guid) && aliased.Value is EntityReference reference)
                 {
-                    return (T)(object)((EntityReference)aliased.Value).Id;
+                    return (T)(object)reference.Id;
                 }
 
                 return (T)aliased.Value;
@@ -208,7 +205,7 @@ namespace Source.DLaB.Xrm
             catch (InvalidCastException)
             {
                 throw new InvalidCastException(
-                    String.Format("Unable to cast attribute {0}.{1} from type {2} to type {3}",
+                    string.Format("Unable to cast attribute {0}.{1} from type {2} to type {3}",
                         aliased.EntityLogicalName, aliased.AttributeLogicalName,
                         aliased.Value.GetType().Name, typeof(T).Name));
             }
@@ -238,8 +235,7 @@ namespace Source.DLaB.Xrm
 
         private static bool IsSpecifiedAliasedValue(this KeyValuePair<string, object> entry, string aliasedEntityName, string attributeName)
         {
-            var aliased = entry.Value as AliasedValue;
-            if (aliased == null)
+            if (!(entry.Value is AliasedValue aliased))
             {
                 return false;
             }
@@ -248,7 +244,7 @@ namespace Source.DLaB.Xrm
             //   1. At the Entity level in Query Expression or Fetch Xml.  This makes the key in the format AliasedEntityName.AttributeName
             //   2. At the attribute level in FetchXml Group.   This makes the key the Attribute Name.  The aliased Entity Name should always be null in this case
 
-            bool value = false;
+            var value = false;
             if (aliasedEntityName == null)
             {
                 // No aliased entity name specified.  If attribute name matches, assume it's correct, or, 

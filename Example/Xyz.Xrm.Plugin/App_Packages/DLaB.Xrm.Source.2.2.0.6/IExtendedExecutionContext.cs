@@ -20,6 +20,11 @@ namespace Source.DLaB.Xrm
         IOrganizationService OrganizationService { get; }
 
         /// <summary>
+        /// The IOrganizationServiceFactory of the plugin.
+        /// </summary>
+        IOrganizationServiceFactory ServiceFactory { get; }
+
+        /// <summary>
         /// The IOrganizationService of the plugin, using the System User by not specifying a UserId.
         /// </summary>
         IOrganizationService SystemOrganizationService { get; }

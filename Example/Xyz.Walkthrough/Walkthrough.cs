@@ -31,7 +31,7 @@ namespace Xyz.Walkthrough
             // There is a simple plugin and an advanced plugin.  The only difference is the advanced
             //   plugin inherits from Example.Plugin.PluginBase, which is the recommended approach,
             //   rather than from the DLaBPluginBase directly.
-            new SimplePluginTests().RemovePhoneNumberFormatting_ContactHasFormatting_Should_RemoveFormatting_Advanced();
+            new SimplePluginTests().RemovePhoneNumberFormatting_ContactHasFormatting_Should_RemoveFormatting();
         }
 
         /// <summary>

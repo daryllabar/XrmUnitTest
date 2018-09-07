@@ -75,6 +75,44 @@ namespace Source.DLaB.Xrm
 
         #endregion ColumnSet
 
+        #region DataCollection<string,Entity>
+
+        /// <summary>
+        /// If the imageName is populated, then if images collection contains the given imageName Key, the Value is cast to the Entity type T, else null is returned
+        /// If the imageName is not populated but the default name is, then the defaultname is searched for in the images collection and if it has a value, it is cast to the Entity type T.
+        /// Else, the first non-null value in the images collection is returned.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="images"></param>
+        /// <param name="imageName">The name to Search For</param>
+        /// <param name="defaultName">The Default Name to use</param>
+        /// <returns></returns>
+        public static T GetEntity<T>(this DataCollection<string, Entity> images, string imageName = null, string defaultName = null) where T: Entity
+        {
+            if (images.Count == 0)
+            {
+                return null;
+            }
+
+            if (images.Count == 1 && imageName == null)
+            {
+                return images.Values.FirstOrDefault().AsEntity<T>();
+            }
+
+            Entity entity;
+
+            if (imageName != null)
+            {
+                return images.TryGetValue(imageName, out entity) ? entity.AsEntity<T>() : null;
+            }
+
+            return defaultName != null && images.TryGetValue(defaultName, out entity)
+                ? entity.AsEntity<T>()
+                : images.Values.FirstOrDefault(v => v != null).AsEntity<T>();
+        }
+
+        #endregion DataCollection<string,Entity>
+
         #region Entity
 
 
@@ -856,6 +894,144 @@ namespace Source.DLaB.Xrm
 
         #region IExecutionContext
 
+        #region ContainsAllNonNull
+
+        /// <summary>
+        /// Checks to see if the PluginExecutionContext.InputParameters Contains the attribute names, and the value is not null
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="parameterNames">The parameter names.</param>
+        /// <returns></returns>
+        public static bool InputContainsAllNonNull(this IExecutionContext context, params string[] parameterNames)
+        {
+            return context.InputParameters.ContainsAllNonNull(parameterNames);
+        }
+
+        /// <summary>
+        /// Checks to see if the PluginExecutionContext.OutputParameters Contains the attribute names, and the value is not null
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="parameterNames">The parameter names.</param>
+        /// <returns></returns>
+        public static bool OutputContainsAllNonNull(this IExecutionContext context, params string[] parameterNames)
+        {
+            return context.OutputParameters.ContainsAllNonNull(parameterNames);
+        }
+
+        /// <summary>
+        /// Checks to see if the PluginExecutionContext.SharedVariables Contains the attribute names, and the value is not null
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="parameterNames">The parameter names.</param>
+        /// <returns></returns>
+        public static bool SharedContainsAllNonNull(this IExecutionContext context, params string[] parameterNames)
+        {
+            return context.SharedVariables.ContainsAllNonNull(parameterNames);
+        }
+
+        #endregion ContainsAllNonNull
+
+        #region GetParameterValue
+
+        /// <summary>
+        /// Gets the parameter value from the PluginExecutionContext.InputParameters collection, cast to type 'T', or default(T) if the collection doesn't contain a parameter with the given name.
+        /// </summary>
+        /// <typeparam name="T">Type of the parameter to be returned</typeparam>
+        /// <param name="context">The context.</param>
+        /// <param name="parameterName">Name of the parameter.</param>
+        /// <returns></returns>
+        public static T GetInputParameterValue<T>(this IExecutionContext context, string parameterName)
+        {
+            return context.InputParameters.GetParameterValue<T>(parameterName);
+        }
+
+        /// <summary>
+        /// Gets the parameter value from the ExecutionContext.InputParameters collection, or null if the collection doesn't contain a parameter with the given name.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="parameterName">Name of the parameter.</param>
+        /// <returns></returns>
+        public static object GetInputParameterValue(this IExecutionContext context, string parameterName)
+        {
+            return context.InputParameters.GetParameterValue(parameterName);
+        }
+
+        /// <summary>
+        /// Gets the parameter value from the OutputParameters collection, cast to type 'T', or default(T) if the collection doesn't contain a parameter with the given name.
+        /// </summary>
+        /// <typeparam name="T">Type of the parameter to be returned</typeparam>
+        /// <param name="context">The context.</param>
+        /// <param name="parameterName">Name of the parameter.</param>
+        /// <returns></returns>
+        public static T GetOutputParameterValue<T>(this IExecutionContext context, string parameterName)
+        {
+            return context.OutputParameters.GetParameterValue<T>(parameterName);
+        }
+
+        /// <summary>
+        /// Gets the parameter value from the OutputParameters collection, or null if the collection doesn't contain a parameter with the given name.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="parameterName">Name of the parameter.</param>
+        /// <returns></returns>
+        public static object GetOutputParameterValue(this IExecutionContext context, string parameterName)
+        {
+            return context.OutputParameters.GetParameterValue(parameterName);
+        }
+
+        /// <summary>
+        /// Populates a local version of the request using the parameters from the context.  This exposes (most of) the parameters of that particular request
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="context">The context.</param>
+        /// <returns></returns>
+        public static T GetRequestParameters<T>(this IExecutionContext context) where T : OrganizationRequest
+        {
+            var request = Activator.CreateInstance<T>();
+            request.Parameters = context.InputParameters;
+            return request;
+        }
+
+        /// <summary>
+        /// Populates a local version of the response using the parameters from the context.  This exposes (most of) the parameters of that particular response
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="context">The context.</param>
+        /// <returns></returns>
+        public static T GetResponseParameters<T>(this IExecutionContext context) where T : OrganizationResponse
+        {
+            var response = Activator.CreateInstance<T>();
+            response.Results = context.OutputParameters;
+            return response;
+        }
+
+        /// <summary>
+        /// Gets the variable value from the SharedVariables collection, cast to type 'T', or default(T) if the collection doesn't contain a variable with the given name.
+        /// </summary>
+        /// <typeparam name="T">Type of the variable to be returned</typeparam>
+        /// <param name="context">The context.</param>
+        /// <param name="variableName">Name of the variable.</param>
+        /// <returns></returns>
+        public static T GetSharedVariable<T>(this IExecutionContext context, string variableName)
+        {
+            return context.SharedVariables.GetParameterValue<T>(variableName);
+        }
+
+        /// <summary>
+        /// Gets the variable value from the PluginExecutionContext.SharedVariables collection, or null if the collection doesn't contain a variable with the given name.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="variableName">Name of the variable.</param>
+        /// <returns></returns>
+        public static object GetSharedVariable(this IExecutionContext context, string variableName)
+        {
+            return context.SharedVariables.GetParameterValue(variableName);
+        }
+
+        #endregion GetParameterValue
+
+        #region ToStringDebug
+
         internal static List<string> ToStringDebug(this IExecutionContext context)
         {
             var lines = new List<string>
@@ -901,6 +1077,8 @@ namespace Source.DLaB.Xrm
             }
             return value;
         }
+
+        #endregion ToStringDebug
 
         #endregion IExecutionContext
 
@@ -1556,27 +1734,6 @@ namespace Source.DLaB.Xrm
         #endregion CreateWithSupressDuplicateDetection
 
         #endregion IOrganizationService
-
-        #region IPluginExecutionContext
-
-        /// <summary>
-        /// Returns an indepth view of the context
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <returns></returns>
-        public static string ToStringDebug(this IPluginExecutionContext context)
-        {
-            var lines = ((IExecutionContext)context).ToStringDebug();
-            lines.AddRange(new[]
-            {
-                "Has Parent Context: " + (context.ParentContext != null),
-                "Stage: " + context.Stage
-            });
-
-            return string.Join(Environment.NewLine, lines);
-        }
-
-        #endregion IPluginExecutionContext
 
         #region IServiceProvider
 

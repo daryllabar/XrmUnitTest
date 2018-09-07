@@ -5,23 +5,24 @@ using Xyz.Xrm.Entities;
 using Source.DLaB.Xrm.Plugin;
 using Microsoft.Xrm.Sdk;
 
-namespace Xyz.Xrm.Plugin.Simple
+namespace Xyz.Xrm.Plugin
 {
     /// <summary>
-    /// Class to remove all formatting of phone numbers.  
+    /// Plugin to remove all formatting of phone numbers.  
     /// </summary>
-    public class RemovePhoneNumberFormatting : DLaBPluginBase
+    public class RemovePhoneNumberFormatting : PluginBase, IPlugin
     {
         #region Constructors
-
         public RemovePhoneNumberFormatting() : this(null, null) { }
-        public RemovePhoneNumberFormatting(string unsecureConfig, string secureConfig) : base(unsecureConfig, secureConfig) { }
+        public RemovePhoneNumberFormatting(string unsecureConfig, string secureConfig) : base(unsecureConfig, secureConfig)
+        {
+        }
 
         #endregion Constructors
 
         protected override IEnumerable<RegisteredEvent> CreateEvents()
         {
-            var events =  
+            var events =
                 new RegisteredEventBuilder(PipelineStage.PreOperation, MessageType.Create, MessageType.Update).
                     ForEntities(Account.EntityLogicalName, Contact.EntityLogicalName, Lead.EntityLogicalName).
                     WithExecuteAction(ExecuteCrmPhoneNumber).Build();
@@ -30,15 +31,16 @@ namespace Xyz.Xrm.Plugin.Simple
                 new RegisteredEventBuilder(PipelineStage.PreOperation, MessageType.Create, MessageType.Update).
                     ForEntities(BusinessUnit.EntityLogicalName, Competitor.EntityLogicalName, Site.EntityLogicalName, SystemUser.EntityLogicalName).
                     WithExecuteAction(ExecuteCrmAddresses).Build());
+
             return events;
         }
 
-        protected override void ExecuteInternal(IExtendedPluginContext context)
+        protected override void ExecuteInternal(ExtendedPluginContext context)
         {
             throw new InvalidOperationException("Should Never Get Called!");
         }
 
-        private void ExecuteCrmPhoneNumber(IExtendedPluginContext context)
+        private void ExecuteCrmPhoneNumber(ExtendedPluginContext context)
         {
             // Account is used here, but since all Entities have the same exact field names, this works just fine
             var target = context.GetTarget<Entity>();
@@ -60,7 +62,7 @@ namespace Xyz.Xrm.Plugin.Simple
             entity[attribute] = new string(number.Where(char.IsNumber).ToArray());
         }
 
-        private void ExecuteCrmAddresses(IExtendedPluginContext context)
+        private void ExecuteCrmAddresses(ExtendedPluginContext context)
         {
             // Account is used here, but since all Entities have the same exact field names, this works just fine
             var target = context.GetTarget<Entity>();
