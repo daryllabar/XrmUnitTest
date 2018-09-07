@@ -17,6 +17,7 @@ namespace Source.DLaB.Xrm
         private static readonly bool _activeOnly = new LateBoundQuerySettings(string.Empty).ActiveOnly;
 
         #region LinkEntity
+
         #region AddChildLink:  All methods created due to possible bug - http://stackoverflow.com/questions/10722307/why-does-linkentity-addlink-initialize-the-linkfromentityname-with-its-own-lin
             /// <summary>
             /// Adds the new LinkEntity as a child to this LinkEnity, rather than this LinkEntity's LinkFrom Entity

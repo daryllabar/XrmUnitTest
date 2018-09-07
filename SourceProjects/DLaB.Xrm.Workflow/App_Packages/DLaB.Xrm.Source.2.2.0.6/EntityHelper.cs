@@ -17,7 +17,7 @@ namespace Source.DLaB.Xrm
 #endif
 {
     /// <summary>
-    /// Utiltiy class to get an Entity Type form a name, and visa-versa, and for determining Entity Id Attribute Name
+    /// Utility class to get an Entity Type from a name, and visa-versa, and for determining Entity Id Attribute Name
     /// </summary>
     public class EntityHelper
     {

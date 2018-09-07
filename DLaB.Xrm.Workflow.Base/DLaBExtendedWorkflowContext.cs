@@ -27,6 +27,8 @@ namespace Source.DLaB.Xrm.Workflow
 
         public CodeActivityContext CodeActivityContext { get; }
 
+        #region IExtendedExecutionContext Implementation
+
         private IOrganizationService _organizationService;
         private IOrganizationService _systemOrganizationService;
         private IOrganizationService _triggeredUserOrganizationService;
@@ -59,6 +61,8 @@ namespace Source.DLaB.Xrm.Workflow
         /// The TracingService for the workflow
         /// </summary>
         public ITracingService TracingService => _tracingService ?? (_tracingService = Settings.InitializeTracingService(CodeActivityContext));
+
+        #endregion IExtendedExecutionContext Implementation
 
         #region IWorkflowContext Implmentation
 
@@ -134,7 +138,6 @@ namespace Source.DLaB.Xrm.Workflow
         private IExtendedWorkflowContextInitializer Settings { get; }
 
         #endregion Properties
-
         
         #region ImageNames struct
 
@@ -167,7 +170,7 @@ namespace Source.DLaB.Xrm.Workflow
 
         #endregion Constructors
 
-        #region Exception Logging
+        #region IExtendedExecutionContext Implementation
 
         /// <summary>
         /// Logs the exception.
@@ -177,20 +180,6 @@ namespace Source.DLaB.Xrm.Workflow
         {
             TracingService.Trace("Exception: {0}", ex.ToStringWithCallStack());
             TracingService.Trace(this.GetContextInfo());
-        }
-
-        #endregion Exception Logging
-
-        #region Trace
-
-        /// <summary>
-        /// Traces the specified message.  By default, is guaranteed to not throw an exception.
-        /// </summary>
-        /// <param name="format">The message format.</param>
-        /// <param name="args">Optional Args</param>
-        public void Trace(string format, params object[] args)
-        {
-            TracingService.Trace(format, args);
         }
 
         /// <summary>
@@ -204,8 +193,21 @@ namespace Source.DLaB.Xrm.Workflow
             return new TraceTimer(TracingService, string.Format(format, args));
         }
 
-        #endregion Trace
+        #endregion IExtendedExecutionContext Implementation
 
+        #region ITracingService Implementation
+
+        /// <summary>
+        /// Traces the specified message.  By default, is guaranteed to not throw an exception.
+        /// </summary>
+        /// <param name="format">The message format.</param>
+        /// <param name="args">Optional Args</param>
+        public void Trace(string format, params object[] args)
+        {
+            TracingService.Trace(format, args);
+        }
+
+        #endregion ITracingService Implementation
 
         /// <summary>
         /// Allows for SomeInOrOutParameter.Get&lt;string&gt;(context)
