@@ -28,10 +28,7 @@ namespace Xyz.Walkthrough
             new RemovePhoneNumberFormatting();
 
             // Testing method, showing how to fake the plugin context
-            // There is a simple plugin and an advanced plugin.  The only difference is the advanced
-            //   plugin inherits from Example.Plugin.PluginBase, which is the recommended approach,
-            //   rather than from the DLaBPluginBase directly.
-            new SimplePluginTests().RemovePhoneNumberFormatting_ContactHasFormatting_Should_RemoveFormatting();
+            new RemovePhoneNumberFormattingTests().RemovePhoneNumberFormatting_ContactHasFormatting_Should_RemoveFormatting();
         }
 
         /// <summary>
@@ -52,10 +49,9 @@ namespace Xyz.Walkthrough
         /// </summary>
         private void SettingUpConnectingToCrm()
         {
-            TestSettings. // Test Settings class for XrmUnitTest Framework
-                UserTestConfigPath. // Defines the path to a configuration file
-                Configure(new PatherFinderProjectOfType( // Defines that path, by the root of the 
-                                                         // project with the given type
+            TestSettings // Test Settings class for XrmUnitTest Framework
+                .UserTestConfigPath // Defines the path to a configuration file
+                .Configure(new PatherFinderProjectOfType( // Defines that path, by the root of the project with the given type
                     typeof(MsTestProvider), // The type to find the project
                     "UnitTestSettings.user.config")); // The name of the config file in the root of the project
 

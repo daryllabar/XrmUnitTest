@@ -135,7 +135,7 @@
     <Compile Include="TestMethodClassExampleTests.cs" />
     <Compile Include="WorkflowActivityExampleTests.cs" />
     <Compile Include="EntityBuilderExampleTests.cs" />
-    <Compile Include="SimplePluginTests.cs" />
+    <Compile Include="RemovePhoneNumberFormattingTests.cs" />
     <Compile Include="MsFakesVsXrmUnitTestExampleTests.cs" />
     <Compile Include="LocalOrServerPluginTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
