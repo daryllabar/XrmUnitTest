@@ -59,6 +59,8 @@ namespace Xyz.Walkthrough
                 new PatherFinderProjectOfType(
                     typeof(TestMethodClassBase), 
                     "UnitTestSettings.user.config")); 
+
+            TestInitializer.InitializeTestSettings();
         }
 
         /// <summary>

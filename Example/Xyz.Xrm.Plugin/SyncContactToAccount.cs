@@ -35,7 +35,7 @@ namespace Xyz.Xrm.Plugin.Advanced
             var contact = context.GetTarget<Contact>();
             if (string.IsNullOrWhiteSpace(contact.Address1_Line1))
             {
-                context.Trace(SyncContactToAccount.AddressNotUpdatedMessage);
+                context.Trace(AddressNotUpdatedMessage);
                 return;
             }
 
