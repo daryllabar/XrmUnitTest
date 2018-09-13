@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace DLaB.Xrm.Test
@@ -64,35 +65,68 @@ namespace DLaB.Xrm.Test
                 sb.AppendLine(dll.DirectoryName);
                 if (dll.DirectoryName == @"C:\a\bin")
                 {
-                    // Build is on VSOnline.  Redirect to other c:\a\src\Branch Name
-                    var s = new System.Diagnostics.StackTrace(true);
-                    sb.AppendLine(s.ToString());
-                    for (var i = 0; i < s.FrameCount; i++)
-                    {
-                        var fileName = s.GetFrame(i).GetFileName();
-                        sb.AppendLine(fileName ?? String.Empty);
-                        if (!String.IsNullOrEmpty(fileName))
-                        {
-                            // File name will be in the form of c:\a\src\Branch Name\project\filename.  Get everything up to and including the Branch Name
-                            var parts = fileName.Split(Path.DirectorySeparatorChar);
-                            solutionFolder = Path.Combine(parts[0] + Path.DirectorySeparatorChar + parts[1], parts[2], parts[3]);
-                            sb.AppendLine(solutionFolder);
-                            break;
-                        }
-                    }
+                    return GetSolutionFolderForVSOnline(sb, solutionFolder);
                 }
+            }
+
+            var folders = dllFilePath.ToLower().Split(Path.DirectorySeparatorChar);
+
+            if (folders.Contains(".vs") && folders.Contains("lut"))
+            {
+                solutionFolder = GetSolutionFolderForLiveUnitTest(sb, dll, folders);
             }
             else
             {
-                // Check for XUnit Temp Directory
-                if (dll.Directory.Parent.Parent.Parent.Name.ToLower() == "assembly" && dll.Directory.Parent.Parent.Name.ToLower() == "dl3")
-                {
-                    // Return null and let recall happen with CodeBase rather than location
-                    return null;
-                }
-                //  ..\Solution\Project\bin\Build 
-                solutionFolder = dll.Directory.Parent.Parent.Parent.FullName;
+                solutionFolder = GetSolutionFolderForXUnit(dll);
             }
+            return solutionFolder;
+        }
+
+        private static string GetSolutionFolderForXUnit(FileInfo dll)
+        {
+            // Check for XUnit Temp Directory
+            return dll.Directory.Parent.Parent.Parent.Name.ToLower() != "assembly" 
+                   || dll.Directory.Parent.Parent.Name.ToLower() != "dl3"
+                ? dll.Directory.Parent.Parent.Parent.FullName
+                : null;
+        }
+
+        private static string GetSolutionFolderForLiveUnitTest(StringBuilder sb, FileInfo dll, string[] folders)
+        {
+            string solutionFolder = null;
+            sb.AppendLine("Checking for Live Unit Tests");
+            sb.AppendLine(dll.DirectoryName);
+            var vsIndex = Array.IndexOf(folders, ".vs");
+            var lutIndex = Array.IndexOf(folders, "lut");
+            if (vsIndex < lutIndex)
+            {
+                var values = folders.ToList();
+                values.RemoveRange(vsIndex, folders.Length - vsIndex);
+                solutionFolder = string.Join(Path.DirectorySeparatorChar + "", values);
+            }
+
+            return solutionFolder;
+        }
+
+        private static string GetSolutionFolderForVSOnline(StringBuilder sb, string solutionFolder)
+        {
+            // Build is on VSOnline.  Redirect to other c:\a\src\Branch Name
+            var s = new System.Diagnostics.StackTrace(true);
+            sb.AppendLine(s.ToString());
+            for (var i = 0; i < s.FrameCount; i++)
+            {
+                var fileName = s.GetFrame(i).GetFileName();
+                sb.AppendLine(fileName ?? String.Empty);
+                if (!string.IsNullOrEmpty(fileName))
+                {
+                    // File name will be in the form of c:\a\src\Branch Name\project\filename.  Get everything up to and including the Branch Name
+                    var parts = fileName.Split(Path.DirectorySeparatorChar);
+                    solutionFolder = Path.Combine(parts[0] + Path.DirectorySeparatorChar + parts[1], parts[2], parts[3]);
+                    sb.AppendLine(solutionFolder);
+                    break;
+                }
+            }
+
             return solutionFolder;
         }
 

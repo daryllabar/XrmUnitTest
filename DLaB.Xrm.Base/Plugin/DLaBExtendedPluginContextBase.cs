@@ -274,6 +274,9 @@ namespace Source.DLaB.Xrm.Plugin
         /// </value>
         public virtual EntityReference PrimaryEntity => new EntityReference(PrimaryEntityName, PrimaryEntityId);
 
+        /// <summary>
+        /// Service Factory
+        /// </summary>
         public IOrganizationServiceFactory ServiceFactory => _serviceFactory ?? (_serviceFactory = Settings.InitializeServiceFactory(ServiceProvider, TracingService));
 
         /// <summary>

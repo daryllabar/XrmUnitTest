@@ -9,7 +9,10 @@ namespace DLaB.Xrm.Client
     /// </summary>
     public interface IClientSideOrganizationService : IOrganizationService, IDisposable
     {
-
+        /// <summary>
+        /// Returns an Uri for the Organization Service
+        /// </summary>
+        /// <returns></returns>
         Uri GetServiceUri();
     }
 }

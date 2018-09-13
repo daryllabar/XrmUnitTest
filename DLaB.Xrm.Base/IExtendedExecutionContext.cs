@@ -7,6 +7,9 @@ namespace DLaB.Xrm
 namespace Source.DLaB.Xrm
 #endif
 {
+    /// <summary>
+    /// BaseIExtendedExecutionContext interface
+    /// </summary>
     public interface IExtendedExecutionContext : IExecutionContext, ITracingService
     {
         /// <summary>
