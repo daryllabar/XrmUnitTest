@@ -19,7 +19,7 @@ namespace DLaB.Xrm.Workflow
 namespace Source.DLaB.Xrm.Workflow
 #endif
 {
-    public class DLaBExtendedWorkflowContext: IExtendedWorkflowContext
+    public class DLaBExtendedWorkflowContext : IExtendedWorkflowContext
     {
         #region Properties
 
@@ -129,11 +129,27 @@ namespace Source.DLaB.Xrm.Workflow
 
         public IWorkflowContext ParentContext => WorkflowContext.ParentContext;
 
-        public WorkflowCategory WorkflowCategoryEnum => (WorkflowCategory)WorkflowContext.WorkflowCategory;
+        public WorkflowCategory WorkflowCategoryEnum => (WorkflowCategory) WorkflowContext.WorkflowCategory;
 
-        public WorkflowMode WorkflowModeEnum => (WorkflowMode)WorkflowContext.WorkflowMode;
+        public WorkflowMode WorkflowModeEnum => (WorkflowMode) WorkflowContext.WorkflowMode;
 
         #endregion IWorkflowContext Implmentation
+
+        #region CodeActivityContext Accessors
+
+        /// <summary>Gets the unique identifier of the currently executing activity instance.</summary>
+        /// <returns>The unique identifier of the currently executing activity instance.</returns>
+        public string ActivityInstanceId => CodeActivityContext.ActivityInstanceId;
+
+        /// <summary>Gets the unique indentifier of the currently executing workflow instance.</summary>
+        /// <returns>The unique identifier of the currently executing workflow instance.</returns>
+        public Guid WorkflowInstanceId => CodeActivityContext.WorkflowInstanceId;
+
+        /// <summary>Gets the data context of the currently executing activity.</summary>
+        /// <returns>The workflow data context of the currently executing activity.</returns>
+        public WorkflowDataContext DataContext => CodeActivityContext.DataContext;
+
+        #endregion CodeActivityContext Accessors
 
         private IExtendedWorkflowContextInitializer Settings { get; }
 
@@ -180,6 +196,11 @@ namespace Source.DLaB.Xrm.Workflow
         {
             TracingService.Trace("Exception: {0}", ex.ToStringWithCallStack());
             TracingService.Trace(this.GetContextInfo());
+        }
+
+        public void TraceContext()
+        {
+            Trace(this.ToStringDebug());
         }
 
         /// <summary>

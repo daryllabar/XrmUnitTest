@@ -7,6 +7,9 @@ namespace DLaB.Xrm
 namespace Source.DLaB.Xrm
 #endif
 {
+    /// <summary>
+    /// BaseIExtendedExecutionContext interface
+    /// </summary>
     public interface IExtendedExecutionContext : IExecutionContext, ITracingService
     {
         /// <summary>
@@ -39,6 +42,11 @@ namespace Source.DLaB.Xrm
         /// </summary>
         /// <param name="ex">The exception.</param>
         void LogException(Exception ex);
+
+        /// <summary>
+        /// Traces the entire context.
+        /// </summary>
+        void TraceContext();
 
         /// <summary>
         /// Traces the time from call to dispose.  Designed to be used in a using statement

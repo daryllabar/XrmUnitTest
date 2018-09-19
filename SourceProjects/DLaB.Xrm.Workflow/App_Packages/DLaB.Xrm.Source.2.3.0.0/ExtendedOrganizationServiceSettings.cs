@@ -8,6 +8,9 @@ namespace DLaB.Xrm
 namespace Source.DLaB.Xrm
 #endif
 {
+    /// <summary>
+    /// The Settings for the ExtendedOrganizationServiceSettings
+    /// </summary>
     public class ExtendedOrganizationServiceSettings
     {
         #region Properties
@@ -87,6 +90,7 @@ namespace Source.DLaB.Xrm
 
         #endregion Properties
 
+        /// <inheritdoc />
         public ExtendedOrganizationServiceSettings()
         {
             LogDetailedRequests = true;

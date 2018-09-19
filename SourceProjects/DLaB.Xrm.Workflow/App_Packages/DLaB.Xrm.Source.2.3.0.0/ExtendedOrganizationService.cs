@@ -39,6 +39,7 @@ namespace Source.DLaB.Xrm
 
         #region Implementation of IOrganizationService
 
+        /// <inheritdoc />
         public Guid Create(Entity entity)
         {
             var message = Settings.LogDetailedRequests
@@ -63,6 +64,7 @@ namespace Source.DLaB.Xrm
             return Service.Create(entity);
         }
 
+        /// <inheritdoc />
         public Entity Retrieve(string entityName, Guid id, ColumnSet columnSet)
         {
             var message = Settings.LogDetailedRequests
@@ -88,6 +90,7 @@ namespace Source.DLaB.Xrm
             return Service.Retrieve(entityName, id, columnSet);
         }
 
+        /// <inheritdoc />
         public void Update(Entity entity)
         {
             var message = Settings.LogDetailedRequests
@@ -113,6 +116,7 @@ namespace Source.DLaB.Xrm
             Service.Update(entity);
         }
 
+        /// <inheritdoc />
         public void Delete(string entityName, Guid id)
         {
             var message = Settings.LogDetailedRequests
@@ -138,6 +142,7 @@ namespace Source.DLaB.Xrm
             Service.Delete(entityName, id);
         }
 
+        /// <inheritdoc />
         public OrganizationResponse Execute(OrganizationRequest request)
         {
             var message = Settings.LogDetailedRequests
@@ -163,6 +168,7 @@ namespace Source.DLaB.Xrm
             return Service.Execute(request);
         }
 
+        /// <inheritdoc />
         public void Associate(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
         {
             var message = Settings.LogDetailedRequests
@@ -188,6 +194,7 @@ namespace Source.DLaB.Xrm
             Service.Associate(entityName, entityId, relationship, relatedEntities);
         }
 
+        /// <inheritdoc />
         public void Disassociate(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
         {
             var message = Settings.LogDetailedRequests
@@ -213,6 +220,7 @@ namespace Source.DLaB.Xrm
             Service.Disassociate(entityName, entityId, relationship, relatedEntities);
         }
 
+        /// <inheritdoc />
         public EntityCollection RetrieveMultiple(QueryBase query)
         {
             var message = Settings.LogDetailedRequests
@@ -252,6 +260,11 @@ namespace Source.DLaB.Xrm
 
         #endregion
 
+        /// <summary>
+        /// Gets the detailed message for the request
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         protected virtual string GetDetailedMessage(OrganizationRequest request)
         {
             var message = $"Execute Request for {request.RequestName} with ";

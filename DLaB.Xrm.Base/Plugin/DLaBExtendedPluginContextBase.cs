@@ -400,6 +400,14 @@ namespace Source.DLaB.Xrm.Plugin
         }
 
         /// <summary>
+        /// Traces the entire context.
+        /// </summary>
+        public virtual void TraceContext()
+        {
+            Trace(this.ToStringDebug());
+        }
+
+        /// <summary>
         /// Traces the time from call to dispose.  Designed to be used in a using statement
         /// </summary>
         /// <param name="format">The format.</param>

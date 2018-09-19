@@ -44,6 +44,11 @@ namespace Source.DLaB.Xrm
         void LogException(Exception ex);
 
         /// <summary>
+        /// Traces the entire context.
+        /// </summary>
+        void TraceContext();
+
+        /// <summary>
         /// Traces the time from call to dispose.  Designed to be used in a using statement
         /// </summary>
         /// <param name="format">The format.</param>

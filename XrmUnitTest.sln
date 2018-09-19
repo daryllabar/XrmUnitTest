@@ -19,6 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{C80A3A8A
 		DLaB.Common\DLaB.Common.Source.nuspec = DLaB.Common\DLaB.Common.Source.nuspec
 		DLaB.Xrm.Entities\DLaB.Xrm.Entities.nuspec = DLaB.Xrm.Entities\DLaB.Xrm.Entities.nuspec
 		SourceProjects\DLaB.Xrm\DLaB.Xrm.Source.nuspec = SourceProjects\DLaB.Xrm\DLaB.Xrm.Source.nuspec
+		SourceProjects\DLaB.Xrm.Workflow\DLaB.Xrm.Workflow.Source.nuspec = SourceProjects\DLaB.Xrm.Workflow\DLaB.Xrm.Workflow.Source.nuspec
 		09\XrmUnitTest.09\XrmUnitTest.09.nuspec = 09\XrmUnitTest.09\XrmUnitTest.09.nuspec
 		2015\XrmUnitTest.2015\XrmUnitTest.2015.nuspec = 2015\XrmUnitTest.2015\XrmUnitTest.2015.nuspec
 		2016\XrmUnitTest.2016\XrmUnitTest.2016.nuspec = 2016\XrmUnitTest.2016\XrmUnitTest.2016.nuspec
