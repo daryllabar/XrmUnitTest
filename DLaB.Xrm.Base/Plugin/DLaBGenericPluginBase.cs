@@ -280,7 +280,8 @@ namespace Source.DLaB.Xrm.Plugin
 
         private bool ContainsAnyIgnoreCase(string source, params string[] values)
         {
-            return values.Any(v => CultureInfo.InvariantCulture.CompareInfo.IndexOf(source, v, CompareOptions.IgnoreCase) >= 0);
+            return source != null 
+                && values.Any(v => CultureInfo.InvariantCulture.CompareInfo.IndexOf(source, v, CompareOptions.IgnoreCase) >= 0);
         }
     }
 }
