@@ -67,7 +67,7 @@ namespace DLaB.Xrm.Test
                 throw new Exception("\"Entity\" is not a valid entityname.  Ids must be be of a valid Early Bound Type, ie Contact, Opportunity, etc... ! " + entityId);
             }
 
-            Entity = new Entity(logicalName, entityId);
+            Entity = new Entity(logicalName){ Id = entityId };
         }
 
         /// <summary>

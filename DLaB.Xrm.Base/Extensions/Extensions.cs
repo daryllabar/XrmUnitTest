@@ -542,13 +542,15 @@ namespace Source.DLaB.Xrm
             sdkEntity.Attributes.AddRange(entity.Attributes);
             sdkEntity.EntityState = entity.EntityState;
             sdkEntity.FormattedValues.AddRange(entity.FormattedValues);
+#if !PRE_KEYATTRIBUTE
             sdkEntity.KeyAttributes.AddRange(entity.KeyAttributes);
+            sdkEntity.RowVersion = entity.RowVersion;
+#endif
             if (entity.Id != Guid.Empty)
             {
                 sdkEntity.Id = entity.Id;
             }
             sdkEntity.RelatedEntities.AddRange(entity.RelatedEntities);
-            sdkEntity.RowVersion = entity.RowVersion;
 
             ConvertEntitiesInEntityCollectionAttributesToSdkEntities(sdkEntity);
             return sdkEntity;

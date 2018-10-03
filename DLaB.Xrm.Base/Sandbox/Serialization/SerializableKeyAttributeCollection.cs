@@ -1,3 +1,4 @@
+#if !PRE_KEYATTRIBUTE
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -52,3 +53,4 @@ namespace Source.DLaB.Xrm.Sandbox.Serialization
         }
     }
 }
+#endif

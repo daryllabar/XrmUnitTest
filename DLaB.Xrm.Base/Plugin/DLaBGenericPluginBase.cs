@@ -18,8 +18,17 @@ namespace Source.DLaB.Xrm.Plugin
     {
         #region Constants
 
+        /// <summary>
+        /// Key to look for in the Security Settings for Tracing the Pre Context
+        /// </summary>
         public const string TracePreContext = "PluginBase.TracePreContext";
+        /// <summary>
+        /// Key to look for in the Security Settings for Tracing the Pre and Post Context
+        /// </summary>
         public const string TracePrePostContext = "PluginBase.TraceContext";
+        /// <summary>
+        /// Key to look for in the Security Settings for Tracing the Post Context
+        /// </summary>
         public const string TracePostContext = "PluginBase.TracePostContext";
 
         #endregion Constants

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-#if XRM_2015
+#if XRM_2015 || PRE_KEYATTRIBUTE
 using Microsoft.Xrm.Client;
 using Microsoft.Xrm.Client.Services;
 #else
@@ -38,7 +38,7 @@ namespace DLaB.Xrm.Client
         /// <returns></returns>
         public static IClientSideOrganizationService GetOrganizationService(string connectionString)
         {
-#if XRM_2015
+#if XRM_2015 || PRE_KEYATTRIBUTE
             CrmConnection crmConnection = CrmConnection.Parse(connectionString);
             OrganizationService service = new OrganizationService(crmConnection);
             return new ClientSideOrganizationService(service);

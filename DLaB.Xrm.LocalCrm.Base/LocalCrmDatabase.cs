@@ -354,7 +354,9 @@ namespace DLaB.Xrm.LocalCrm
 
             // Clear non Attribute Related Values
             entity.FormattedValues.Clear();
+#if !PRE_KEYATTRIBUTE
             entity.KeyAttributes.Clear();
+#endif
             //var relatedEntities = entity.RelatedEntities.ToList();
             entity.RelatedEntities.Clear();
 
@@ -395,7 +397,10 @@ namespace DLaB.Xrm.LocalCrm
         private static Entity GetActivtyPointerForActivityEntity<T>(T entity) where T : Entity
         {
             var pointerFields = typeof(ActivityPointer.Fields).GetFields();
-            var pointer = new Entity(ActivityPointer.EntityLogicalName, entity.Id);
+            var pointer = new Entity(ActivityPointer.EntityLogicalName)
+            {
+                Id = entity.Id
+            };
             foreach (var att in pointerFields.Where(p => PropertiesCache.For<T>().ContainsProperty(p.Name)).
                 Select(field => field.GetRawConstantValue().ToString()).
                 Where(entity.Contains))
@@ -905,6 +910,7 @@ namespace DLaB.Xrm.LocalCrm
         {
             foreach (var foreign in entity.Attributes.Select(attribute => attribute.Value).OfType<EntityReference>())
             {
+#if !PRE_KEYATTRIBUTE
                 if (foreign.Id == Guid.Empty && foreign.KeyAttributes.Count > 0)
                 {
                     var kvps = new List<object>();
@@ -918,8 +924,11 @@ namespace DLaB.Xrm.LocalCrm
                 }
                 else
                 {
+#endif
                     service.Retrieve(foreign.LogicalName, foreign.Id, new ColumnSet(true));
+#if !PRE_KEYATTRIBUTE
                 }
+#endif
             }
         }
         private static bool SimulateCrmCreateActionPrevention<T>(T entity, DelayedException exception) where T : Entity

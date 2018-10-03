@@ -81,7 +81,7 @@ namespace Source.DLaB.Xrm.Sandbox.Serialization
         /// </value>
         [DataMember]
         public string RowVersion { get; set; }
-
+#if !PRE_KEYATTRIBUTE
         /// <summary>
         /// Gets or sets the key attributes.
         /// </summary>
@@ -90,7 +90,7 @@ namespace Source.DLaB.Xrm.Sandbox.Serialization
         /// </value>
         [DataMember]
         public SerializableKeyAttributeCollection KeyAttributes { get; set; }
-
+#endif
         /// <summary>
         /// Gets or sets the extension data.
         /// </summary>
@@ -107,7 +107,9 @@ namespace Source.DLaB.Xrm.Sandbox.Serialization
             Attributes = new SerializableAttributeCollection();
             FormattedValues = new SerializableFormattedValueCollection();
             RelatedEntities = new SerializableRelatedEntityCollection();
+#if !PRE_KEYATTRIBUTE
             KeyAttributes = new SerializableKeyAttributeCollection();
+#endif
         }
 
         /// <summary>
@@ -121,10 +123,12 @@ namespace Source.DLaB.Xrm.Sandbox.Serialization
             ExtensionData = entity.ExtensionData;
             FormattedValues = new SerializableFormattedValueCollection(entity.FormattedValues);
             Id = entity.Id;
-            KeyAttributes = new SerializableKeyAttributeCollection(entity.KeyAttributes);
             LogicalName = entity.LogicalName;
             RelatedEntities = new SerializableRelatedEntityCollection(entity.RelatedEntities);
+#if !PRE_KEYATTRIBUTE
+            KeyAttributes = new SerializableKeyAttributeCollection(entity.KeyAttributes);
             RowVersion = entity.RowVersion;
+#endif
         }
 
         /// <summary>
@@ -145,8 +149,10 @@ namespace Source.DLaB.Xrm.Sandbox.Serialization
                 LogicalName = entity.LogicalName,
                 Id = entity.Id,
                 Attributes = (AttributeCollection) entity.Attributes,
+#if !PRE_KEYATTRIBUTE
                 KeyAttributes = (KeyAttributeCollection) entity.KeyAttributes,
                 RowVersion = entity.RowVersion,
+#endif
                 EntityState = entity.EntityState,
                 ExtensionData = entity.ExtensionData,
             };
