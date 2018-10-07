@@ -267,14 +267,13 @@ namespace Source.DLaB.Xrm.Plugin
                 return false;
             }
 
-            var sharedVariables = context.SharedVariables;
             var key = $"{context.PluginTypeName}|{context.Event.MessageName}|{context.Event.Stage}|{context.PrimaryEntityId}";
             if (context.GetFirstSharedVariable<int>(key) > 0)
             {
                 return true;
             }
 
-            sharedVariables.Add(key, 1);
+            context.SharedVariables.Add(key, 1);
             return false;
         }
 
