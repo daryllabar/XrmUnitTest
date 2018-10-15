@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xrm.Sdk;
 
 #if DLAB_UNROOT_NAMESPACE || DLAB_XRM
 namespace DLaB.Xrm.Plugin
@@ -75,6 +76,8 @@ namespace Source.DLaB.Xrm.Plugin
 
         #region Fluent Methods
 
+        #region ForEntities
+
         /// <summary>
         /// Defines the Entities that will be created for the registered events
         /// </summary>
@@ -85,6 +88,94 @@ namespace Source.DLaB.Xrm.Plugin
             EntityLogicalNames.AddRange(logicalnames);
             return this;
         }
+
+        /// <summary>
+        /// Defines the Entities that will be created for the registered events
+        /// </summary>
+        /// <returns></returns>
+        public RegisteredEventBuilder ForEntities<T1>() where T1: Entity
+        {
+            EntityLogicalNames.Add(EntityHelper.GetEntityLogicalName<T1>());
+            return this;
+        }
+
+        /// <summary>
+        /// Defines the Entities that will be created for the registered events
+        /// </summary>
+        /// <returns></returns>
+        public RegisteredEventBuilder ForEntities<T1, T2>() 
+            where T1: Entity
+            where T2: Entity
+        {
+            EntityLogicalNames.AddRange(
+            new [] {
+                EntityHelper.GetEntityLogicalName<T1>(),
+                EntityHelper.GetEntityLogicalName<T2>()
+            });
+            return this;
+        }
+
+        /// <summary>
+        /// Defines the Entities that will be created for the registered events
+        /// </summary>
+        /// <returns></returns>
+        public RegisteredEventBuilder ForEntities<T1, T2, T3>() 
+            where T1: Entity
+            where T2: Entity
+            where T3: Entity
+        {
+            EntityLogicalNames.AddRange(
+                new [] {
+                    EntityHelper.GetEntityLogicalName<T1>(),
+                    EntityHelper.GetEntityLogicalName<T2>(),
+                    EntityHelper.GetEntityLogicalName<T3>()
+                });
+            return this;
+        }
+
+        /// <summary>
+        /// Defines the Entities that will be created for the registered events
+        /// </summary>
+        /// <returns></returns>
+        public RegisteredEventBuilder ForEntities<T1, T2, T3, T4>() 
+            where T1: Entity
+            where T2: Entity
+            where T3: Entity
+            where T4: Entity
+        {
+            EntityLogicalNames.AddRange(
+                new [] {
+                    EntityHelper.GetEntityLogicalName<T1>(),
+                    EntityHelper.GetEntityLogicalName<T2>(),
+                    EntityHelper.GetEntityLogicalName<T3>(),
+                    EntityHelper.GetEntityLogicalName<T4>()
+                });
+            return this;
+        }
+
+        /// <summary>
+        /// Defines the Entities that will be created for the registered events
+        /// </summary>
+        /// <returns></returns>
+        public RegisteredEventBuilder ForEntities<T1, T2, T3, T4, T5>() 
+            where T1: Entity
+            where T2: Entity
+            where T3: Entity
+            where T4: Entity
+            where T5: Entity
+        {
+            EntityLogicalNames.AddRange(
+                new [] {
+                    EntityHelper.GetEntityLogicalName<T1>(),
+                    EntityHelper.GetEntityLogicalName<T2>(),
+                    EntityHelper.GetEntityLogicalName<T3>(),
+                    EntityHelper.GetEntityLogicalName<T4>(),
+                    EntityHelper.GetEntityLogicalName<T5>()
+                });
+            return this;
+        }
+
+        #endregion ForEntities
 
         /// <summary>
         /// Defines the custom Action to be performed rather than the standard ExecuteInternal.

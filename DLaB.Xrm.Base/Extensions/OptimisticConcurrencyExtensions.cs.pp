@@ -1,3 +1,4 @@
+#if !PRE_KEYATTRIBUTE
 using System;
 using System.ServiceModel;
 using Microsoft.Xrm.Sdk;
@@ -70,3 +71,4 @@ namespace Source.DLaB.Xrm
         }
     }
 }
+#endif

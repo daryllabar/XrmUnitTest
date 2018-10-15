@@ -18,8 +18,17 @@ namespace Source.DLaB.Xrm.Plugin
     {
         #region Constants
 
+        /// <summary>
+        /// Key to look for in the Security Settings for Tracing the Pre Context
+        /// </summary>
         public const string TracePreContext = "PluginBase.TracePreContext";
+        /// <summary>
+        /// Key to look for in the Security Settings for Tracing the Pre and Post Context
+        /// </summary>
         public const string TracePrePostContext = "PluginBase.TraceContext";
+        /// <summary>
+        /// Key to look for in the Security Settings for Tracing the Post Context
+        /// </summary>
         public const string TracePostContext = "PluginBase.TracePostContext";
 
         #endregion Constants
@@ -258,14 +267,13 @@ namespace Source.DLaB.Xrm.Plugin
                 return false;
             }
 
-            var sharedVariables = context.SharedVariables;
             var key = $"{context.PluginTypeName}|{context.Event.MessageName}|{context.Event.Stage}|{context.PrimaryEntityId}";
             if (context.GetFirstSharedVariable<int>(key) > 0)
             {
                 return true;
             }
 
-            sharedVariables.Add(key, 1);
+            context.SharedVariables.Add(key, 1);
             return false;
         }
 

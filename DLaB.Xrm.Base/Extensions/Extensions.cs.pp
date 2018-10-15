@@ -542,13 +542,15 @@ namespace Source.DLaB.Xrm
             sdkEntity.Attributes.AddRange(entity.Attributes);
             sdkEntity.EntityState = entity.EntityState;
             sdkEntity.FormattedValues.AddRange(entity.FormattedValues);
+#if !PRE_KEYATTRIBUTE
             sdkEntity.KeyAttributes.AddRange(entity.KeyAttributes);
+            sdkEntity.RowVersion = entity.RowVersion;
+#endif
             if (entity.Id != Guid.Empty)
             {
                 sdkEntity.Id = entity.Id;
             }
             sdkEntity.RelatedEntities.AddRange(entity.RelatedEntities);
-            sdkEntity.RowVersion = entity.RowVersion;
 
             ConvertEntitiesInEntityCollectionAttributesToSdkEntities(sdkEntity);
             return sdkEntity;
@@ -1478,11 +1480,11 @@ namespace Source.DLaB.Xrm
         /// </summary>
         /// <typeparam name="T">Type of Entity List to return</typeparam>
         /// <param name="service">The service.</param>
-        /// <param name="qe">Query Expression to Execute.</param>
+        /// <param name="qb">Query to Execute.</param>
         /// <returns></returns>
-        public static List<T> GetEntities<T>(this IOrganizationService service, QueryExpression qe) where T : Entity
+        public static List<T> GetEntities<T>(this IOrganizationService service, QueryBase qb) where T : Entity
         {
-            return service.RetrieveMultiple(qe).ToEntityList<T>();
+            return service.RetrieveMultiple(qb).ToEntityList<T>();
         }
 
         /// <summary>
@@ -1547,12 +1549,12 @@ namespace Source.DLaB.Xrm
         /// Gets the first entity that matches the query expression.  Null is returned if none are found.
         /// </summary>
         /// <param name="service">The service.</param>
-        /// <param name="qe">The query expression.</param>
+        /// <param name="query">The query.</param>
         /// <returns></returns>
-        public static Entity GetFirstOrDefault(this IOrganizationService service, QueryExpression qe)
+        public static Entity GetFirstOrDefault(this IOrganizationService service, QueryBase query)
         {
-            qe.First();
-            return service.RetrieveMultiple(qe).Entities.FirstOrDefault();
+            query.First();
+            return service.RetrieveMultiple(query).Entities.FirstOrDefault();
         }
 
         /// <summary>
@@ -1569,16 +1571,16 @@ namespace Source.DLaB.Xrm
         }
 
         /// <summary>
-        /// Gets the first entity that matches the query expression.  Null is returned if none are found.
+        /// Gets the first entity that matches the query.  Null is returned if none are found.
         /// </summary>
         /// <typeparam name="T">The Entity Type.</typeparam>
         /// <param name="service">The service.</param>
-        /// <param name="qe">The query expression.</param>
+        /// <param name="qb">The query.</param>
         /// <returns></returns>
-        public static T GetFirstOrDefault<T>(this IOrganizationService service, QueryExpression qe) where T : Entity
+        public static T GetFirstOrDefault<T>(this IOrganizationService service, QueryBase qb) where T : Entity
         {
-            qe.First();
-            return service.GetEntities<T>(qe).FirstOrDefault();
+            qb.First();
+            return service.GetEntities<T>(qb).FirstOrDefault();
         }
 
         /// <summary>
@@ -1970,10 +1972,10 @@ namespace Source.DLaB.Xrm
         /// Adds a retrieve multiple request to the OrganizationRequestCollection.
         /// </summary>
         /// <param name="requests">The requests.</param>
-        /// <param name="qe">The qe.</param>
-        public static void AddRetrieveMultiple(this OrganizationRequestCollection requests, QueryExpression qe)
+        /// <param name="query">The query.</param>
+        public static void AddRetrieveMultiple(this OrganizationRequestCollection requests, QueryBase query)
         {
-            requests.Add(new RetrieveMultipleRequest { Query = qe });
+            requests.Add(new RetrieveMultipleRequest { Query = query });
         }
 
         /// <summary>
@@ -2119,6 +2121,100 @@ namespace Source.DLaB.Xrm
 
         #endregion PropertyInfo
 
+        #region QueryByAttribute
+
+        /// <summary>
+        /// Sets the Count and Page number of the query to return just the first entity.
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <returns></returns>
+        public static QueryByAttribute First(this QueryByAttribute query)
+        {
+            var p = GetPageInfo(query);
+            p.Count = 1;
+            p.PageNumber = 1;
+            
+            return query;
+        }
+
+        /// <summary>
+        /// Updates the Query to only return only the first entity that matches the query criteria.
+        /// Shortcut for setting the Query's PageInfo.Count and PageInfo.PageNumber to 1.
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <param name="count">The count of entities to restrict the result of the query to.</param>
+        public static QueryByAttribute Take(this QueryByAttribute query, int count)
+        {
+            if (count > 5000)
+            {
+                throw new ArgumentException("Count must be 5000 or less", nameof(count));
+            }
+
+            var p = GetPageInfo(query);
+            p.Count = count;
+            p.PageNumber = 1;
+
+            return query;
+        }
+
+        #endregion QueryByAttribute
+
+        #region QueryBase
+
+        /// <summary>
+        /// Sets the Count and Page number of the query to return just the first entity.
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <returns></returns>
+        public static QueryBase First(this QueryBase query)
+        {
+            var p = GetPageInfo(query);
+            p.Count = 1;
+            p.PageNumber = 1;
+            
+            return query;
+        }
+
+        private static PagingInfo GetPageInfo<T>(T qb) where T : QueryBase
+        {
+            PagingInfo p;
+            switch ((QueryBase) qb)
+            {
+                case QueryExpression qe:
+                    p = qe.PageInfo;
+                    break;
+                case QueryByAttribute qa:
+                    p = qa.PageInfo;
+                    break;
+                default:
+                    throw new NotSupportedException("QueryBase of type " + qb.GetType().FullName + " not supported for Getting PageInfo");
+            }
+
+            return p;
+        }
+
+        /// <summary>
+        /// Updates the Query to only return only the first entity that matches the query criteria.
+        /// Shortcut for setting the Query's PageInfo.Count and PageInfo.PageNumber to 1.
+        /// </summary>
+        /// <param name="qb">The query.</param>
+        /// <param name="count">The count of entities to restrict the result of the query to.</param>
+        public static QueryBase Take(this QueryBase qb, int count)
+        {
+            if (count > 5000)
+            {
+                throw new ArgumentException("Count must be 5000 or less", nameof(count));
+            }
+
+            var p = GetPageInfo(qb);
+            p.Count = count;
+            p.PageNumber = 1;
+
+            return qb;
+        }
+
+        #endregion QueryBase
+
         #region QueryExpression
 
         /// <summary>
@@ -2152,11 +2248,12 @@ namespace Source.DLaB.Xrm
         /// <returns></returns>
         public static QueryExpression First(this QueryExpression query)
         {
-            query.PageInfo.Count = 1;
-            query.PageInfo.PageNumber = 1;
+            var p = GetPageInfo(query);
+            p.Count = 1;
+            p.PageNumber = 1;
+            
             return query;
         }
-
 
         /// <summary>
         /// Updates the QueryExpression to only return entities with the given state.
@@ -2171,7 +2268,7 @@ namespace Source.DLaB.Xrm
         }
 
         /// <summary>
-        /// Updates the Query Expression to only return only the first entity that matches the query expression expression criteria.
+        /// Updates the Query to only return only the first entity that matches the query criteria.
         /// Shortcut for setting the Query's PageInfo.Count and PageInfo.PageNumber to 1.
         /// </summary>
         /// <param name="qe">The query.</param>
@@ -2182,8 +2279,10 @@ namespace Source.DLaB.Xrm
             {
                 throw new ArgumentException("Count must be 5000 or less", nameof(count));
             }
-            qe.PageInfo.Count = count;
-            qe.PageInfo.PageNumber = 1;
+
+            var p = GetPageInfo(qe);
+            p.Count = count;
+            p.PageNumber = 1;
 
             return qe;
         }

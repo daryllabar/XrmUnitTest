@@ -46,7 +46,7 @@ namespace Source.DLaB.Xrm
                 case ConditionOperator.Between:
                     if (ce.Values.Count == 2)
                     {
-                        condition = $"{ce.AttributeName} {ce.Operator} {GetDisplayValue(ce.Values[0])} AND {GetDisplayValue(ce.Values[1])}";
+                        condition = $"{ce.AttributeName} {ce.Operator} {GetDisplayValue(GetValue(ce, 0))} AND {GetDisplayValue(GetValue(ce, 1))}";
                     }
                     else
                     {
@@ -54,19 +54,31 @@ namespace Source.DLaB.Xrm
                     }
                     break;
                 case ConditionOperator.Equal:
-                    condition = $"{entityAttribute} = {GetDisplayValue(ce.Values[0])} ";
+                    condition = $"{entityAttribute} = {GetDisplayValue(GetValue(ce, 0))} ";
                     break;
                 case ConditionOperator.GreaterThan:
-                    condition = $"{entityAttribute} > {GetDisplayValue(ce.Values[0])} ";
+                    condition = $"{entityAttribute} > {GetDisplayValue(GetValue(ce, 0))} ";
                     break;
                 case ConditionOperator.GreaterEqual:
-                    condition = $"{entityAttribute} >= {GetDisplayValue(ce.Values[0])} ";
+                    condition = $"{entityAttribute} >= {GetDisplayValue(GetValue(ce, 0))} ";
                     break;
                 case ConditionOperator.LessThan:
-                    condition = $"{entityAttribute} < {GetDisplayValue(ce.Values[0])} ";
+                    condition = $"{entityAttribute} < {GetDisplayValue(GetValue(ce, 0))} ";
                     break;
                 case ConditionOperator.LessEqual:
-                    condition = $"{entityAttribute} <= {GetDisplayValue(ce.Values[0])} ";
+                    condition = $"{entityAttribute} <= {GetDisplayValue(GetValue(ce, 0))} ";
+                    break;
+                case ConditionOperator.EqualUserId:
+                    condition = "Is Current User";
+                    break;
+                case ConditionOperator.EqualBusinessId:
+                    condition = "Is Current Business Unit";
+                    break;
+                case ConditionOperator.NotEqualUserId:
+                    condition = "Is Not Current User";
+                    break;
+                case ConditionOperator.NotEqualBusinessId:
+                    condition = "Is Not Current Business Unit";
                     break;
                 case ConditionOperator.Last7Days:
                 case ConditionOperator.LastFiscalPeriod:
@@ -88,13 +100,22 @@ namespace Source.DLaB.Xrm
                 case ConditionOperator.Today:
                 case ConditionOperator.Tomorrow:
                 case ConditionOperator.Yesterday:
-                    condition = String.Format("{0} IS IN {1} ", entityAttribute, ce.Operator);
+                    condition = $"{entityAttribute} IS IN {ce.Operator} ";
                     break;
                 default:
-                    condition = String.Format("{0} {1} {2} ", ce.AttributeName, ce.Operator, GetDisplayValue(ce.Values[0]));
+                    condition = $"{ce.AttributeName} {ce.Operator} {GetDisplayValue(GetValue(ce, 0))} ";
                     break;
             }
             return condition;
+        }
+
+        private static object GetValue(ConditionExpression ce, int index)
+        {
+            if (ce.Values.Count <= index)
+            {
+                return "Invalid Index!  Requested " + index + " but count was " + ce.Values.Count;
+            }
+            return ce.Values[index];
         }
 
         private static string GetDisplayValue(object value)
