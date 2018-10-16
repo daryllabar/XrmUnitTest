@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum GoalRollupQueryState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("goalrollupquery")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class GoalRollupQuery : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
@@ -62,7 +62,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_goalrollupquery_modifiedonbehalfby = "lk_goalrollupquery_modifiedonbehalfby";
 			public const string team_goalrollupquery = "team_goalrollupquery";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -74,6 +73,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "goalrollupquery";
+		
+		public const string PrimaryIdAttribute = "goalrollupqueryid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9602;
 		
@@ -120,7 +123,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -263,7 +266,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -807,6 +810,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("goalrollupquery_ProcessSessions");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProcessSession>("goalrollupquery_ProcessSessions", null, value);
 				this.OnPropertyChanged("goalrollupquery_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N GoalRollupQuery_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("GoalRollupQuery_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> GoalRollupQuery_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("GoalRollupQuery_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("GoalRollupQuery_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("GoalRollupQuery_SyncErrors", null, value);
+				this.OnPropertyChanged("GoalRollupQuery_SyncErrors");
 			}
 		}
 		

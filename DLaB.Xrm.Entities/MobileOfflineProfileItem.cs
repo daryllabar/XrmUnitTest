@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("mobileofflineprofileitem")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class MobileOfflineProfileItem : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CanBeFollowed = "canbefollowed";
 			public const string ComponentState = "componentstate";
@@ -42,6 +42,7 @@ namespace DLaB.Xrm.Entities
 			public const string OrganizationId = "organizationid";
 			public const string OverwriteTime = "overwritetime";
 			public const string ProcessId = "processid";
+			public const string ProfileItemEntityFilter = "profileitementityfilter";
 			public const string ProfileItemRule = "profileitemrule";
 			public const string PublishedOn = "publishedon";
 			public const string RecordDistributionCriteria = "recorddistributioncriteria";
@@ -65,7 +66,6 @@ namespace DLaB.Xrm.Entities
 			public const string MobileOfflineProfile_MobileOfflineProfileItem = "MobileOfflineProfile_MobileOfflineProfileItem";
 			public const string MobileOfflineProfileItem_organization = "MobileOfflineProfileItem_organization";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -77,6 +77,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "mobileofflineprofileitem";
+		
+		public const string PrimaryIdAttribute = "mobileofflineprofileitemid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9867;
 		
@@ -157,7 +161,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -373,7 +377,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -475,6 +479,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ProcessId");
 				this.SetAttributeValue("processid", value);
 				this.OnPropertyChanged("ProcessId");
+			}
+		}
+		
+		/// <summary>
+		/// Profile item entity filter criteria
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("profileitementityfilter")]
+		public string ProfileItemEntityFilter
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("profileitementityfilter");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ProfileItemEntityFilter");
+				this.SetAttributeValue("profileitementityfilter", value);
+				this.OnPropertyChanged("ProfileItemEntityFilter");
 			}
 		}
 		

@@ -11,23 +11,8 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
 	public enum SalesOrderDetail_SalesOrderStateCode
 	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Active = 0,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Canceled = 2,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Fulfilled = 3,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Invoiced = 4,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Submitted = 1,
 	}
 }

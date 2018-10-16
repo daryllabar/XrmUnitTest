@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum ConnectionRoleState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("connectionrole")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ConnectionRole : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string Category = "category";
 			public const string ComponentState = "componentstate";
@@ -62,7 +62,6 @@ namespace DLaB.Xrm.Entities
 			public const string modifiedby_connection_role = "modifiedby_connection_role";
 			public const string organization_connection_roles = "organization_connection_roles";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -74,6 +73,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "connectionrole";
+		
+		public const string PrimaryIdAttribute = "connectionroleid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 3231;
 		
@@ -625,6 +628,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ConnectionRole_ProcessSessions");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProcessSession>("ConnectionRole_ProcessSessions", null, value);
 				this.OnPropertyChanged("ConnectionRole_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N ConnectionRole_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ConnectionRole_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> ConnectionRole_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ConnectionRole_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ConnectionRole_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ConnectionRole_SyncErrors", null, value);
+				this.OnPropertyChanged("ConnectionRole_SyncErrors");
 			}
 		}
 		

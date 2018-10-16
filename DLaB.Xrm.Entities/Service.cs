@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("service")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Service : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AnchorOffset = "anchoroffset";
 			public const string CalendarId = "calendarid";
@@ -44,6 +44,8 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "serviceid";
 			public const string ShowResources = "showresources";
 			public const string StrategyId = "strategyid";
+			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
+			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
 			public const string CalendarRules = "calendarrules";
 			public const string calendar_services = "calendar_services";
@@ -55,7 +57,6 @@ namespace DLaB.Xrm.Entities
 			public const string plugin_type_service = "plugin_type_service";
 			public const string resource_spec_services = "resource_spec_services";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -67,6 +68,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "service";
+		
+		public const string PrimaryIdAttribute = "serviceid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 4001;
 		
@@ -113,7 +118,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the calendar.
+		/// calendar_services
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("calendarid")]
 		public System.Nullable<System.Guid> CalendarId
@@ -133,7 +138,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the user who created the service.
+		/// lk_service_createdby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
@@ -173,7 +178,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the delegate user who created the service.
+		/// lk_service_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
@@ -333,7 +338,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the user who last modified the service.
+		/// lk_service_modifiedby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
@@ -373,7 +378,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the delegate user who last modified the service.
+		/// lk_service_modifiedonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
@@ -413,7 +418,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the organization with which the service is associated.
+		/// organization_services
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("organizationid")]
 		public Microsoft.Xrm.Sdk.EntityReference OrganizationId
@@ -446,7 +451,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the resource specification with which the service is associated.
+		/// resource_spec_services
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("resourcespecid")]
 		public Microsoft.Xrm.Sdk.EntityReference ResourceSpecId
@@ -529,7 +534,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Value that is taken from PluginTypeId in the Plugin Type record for the scheduling strategy. This is the ID of the scheduling strategy plug-in associated with the service.
+		/// plugin_type_service
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("strategyid")]
 		public Microsoft.Xrm.Sdk.EntityReference StrategyId
@@ -549,6 +554,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timezoneruleversionnumber")]
+		public System.Nullable<int> TimeZoneRuleVersionNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timezoneruleversionnumber");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
+				this.SetAttributeValue("timezoneruleversionnumber", value);
+				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Time zone code that was in use when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
+		public System.Nullable<int> UTCConversionTimeZoneCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("utcconversiontimezonecode");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("UTCConversionTimeZoneCode");
+				this.SetAttributeValue("utcconversiontimezonecode", value);
+				this.OnPropertyChanged("UTCConversionTimeZoneCode");
+			}
+		}
+		
+		/// <summary>
 		/// Version number of the service.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
@@ -558,6 +603,46 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_approval_service_serviceid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_approval_service_serviceid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_approval> msdyn_approval_service_serviceid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_service_serviceid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_approval_service_serviceid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_service_serviceid", null, value);
+				this.OnPropertyChanged("msdyn_approval_service_serviceid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_bookingalert_service_serviceid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalert_service_serviceid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bookingalert> msdyn_bookingalert_service_serviceid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_service_serviceid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingalert_service_serviceid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_service_serviceid", null, value);
+				this.OnPropertyChanged("msdyn_bookingalert_service_serviceid");
 			}
 		}
 		
@@ -858,6 +943,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N service_MailboxTrackingFolders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("service_MailboxTrackingFolders")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> service_MailboxTrackingFolders
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("service_MailboxTrackingFolders", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("service_MailboxTrackingFolders");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("service_MailboxTrackingFolders", null, value);
+				this.OnPropertyChanged("service_MailboxTrackingFolders");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N service_opportunityclose
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("service_opportunityclose")]
@@ -914,6 +1019,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("service_phonecalls");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.PhoneCall>("service_phonecalls", null, value);
 				this.OnPropertyChanged("service_phonecalls");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N service_PrincipalObjectAttributeAccesses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("service_PrincipalObjectAttributeAccesses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess> service_PrincipalObjectAttributeAccesses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("service_PrincipalObjectAttributeAccesses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("service_PrincipalObjectAttributeAccesses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("service_PrincipalObjectAttributeAccesses", null, value);
+				this.OnPropertyChanged("service_PrincipalObjectAttributeAccesses");
 			}
 		}
 		
@@ -1014,6 +1139,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("service_socialactivities");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.SocialActivity>("service_socialactivities", null, value);
 				this.OnPropertyChanged("service_socialactivities");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Service_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Service_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Service_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Service_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Service_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Service_SyncErrors", null, value);
+				this.OnPropertyChanged("Service_SyncErrors");
 			}
 		}
 		

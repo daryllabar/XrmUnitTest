@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("userentityuisettings")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class UserEntityUISettings : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string InsertIntoEmailMRUXml = "insertintoemailmruxml";
 			public const string LastViewedFormXml = "lastviewedformxml";
@@ -41,7 +41,6 @@ namespace DLaB.Xrm.Entities
 			public const string userentityuisettings_businessunit = "userentityuisettings_businessunit";
 			public const string userentityuisettings_owning_user = "userentityuisettings_owning_user";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -53,6 +52,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "userentityuisettings";
+		
+		public const string PrimaryIdAttribute = "userentityuisettingsid";
 		
 		public const int EntityTypeCode = 2500;
 		

@@ -11,26 +11,8 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
 	public enum ContractDetail_ContractStateCode
 	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Active = 2,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Canceled = 4,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Draft = 0,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Expired = 5,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Invoiced = 1,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		OnHold = 3,
 	}
 }

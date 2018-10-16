@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum PriceLevelState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("pricelevel")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class PriceLevel : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string BeginDate = "begindate";
 			public const string CreatedBy = "createdby";
@@ -45,6 +45,11 @@ namespace DLaB.Xrm.Entities
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string msdyn_BreakHoursBillable = "msdyn_breakhoursbillable";
+			public const string msdyn_CopiedFromPriceLevel = "msdyn_copiedfrompricelevel";
+			public const string msdyn_Entity = "msdyn_entity";
+			public const string msdyn_Module = "msdyn_module";
+			public const string msdyn_TimeUnit = "msdyn_timeunit";
 			public const string Name = "name";
 			public const string OrganizationId = "organizationid";
 			public const string OverriddenCreatedOn = "overriddencreatedon";
@@ -62,10 +67,11 @@ namespace DLaB.Xrm.Entities
 			public const string lk_pricelevel_modifiedonbehalfby = "lk_pricelevel_modifiedonbehalfby";
 			public const string lk_pricelevelbase_createdby = "lk_pricelevelbase_createdby";
 			public const string lk_pricelevelbase_modifiedby = "lk_pricelevelbase_modifiedby";
+			public const string Referencingmsdyn_pricelevel_pricelevel_CopiedFromPriceLevel = "msdyn_pricelevel_pricelevel_CopiedFromPriceLevel";
+			public const string msdyn_uom_pricelevel_TimeUnit = "msdyn_uom_pricelevel_TimeUnit";
 			public const string organization_price_levels = "organization_price_levels";
 			public const string transactioncurrency_pricelevel = "transactioncurrency_pricelevel";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -77,6 +83,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "pricelevel";
+		
+		public const string PrimaryIdAttribute = "pricelevelid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 1022;
 		
@@ -163,7 +173,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the delegate user who created the pricelevel.
+		/// lk_pricelevelbase_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
@@ -316,7 +326,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the delegate user who last modified the pricelevel.
+		/// lk_pricelevelbase_modifiedonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
@@ -332,6 +342,106 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ModifiedOnBehalfBy");
 				this.SetAttributeValue("modifiedonbehalfby", value);
 				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_breakhoursbillable")]
+		public System.Nullable<bool> msdyn_BreakHoursBillable
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("msdyn_breakhoursbillable");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_BreakHoursBillable");
+				this.SetAttributeValue("msdyn_breakhoursbillable", value);
+				this.OnPropertyChanged("msdyn_BreakHoursBillable");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the price level that this price level was copied from.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_copiedfrompricelevel")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_CopiedFromPriceLevel
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_copiedfrompricelevel");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_CopiedFromPriceLevel");
+				this.SetAttributeValue("msdyn_copiedfrompricelevel", value);
+				this.OnPropertyChanged("msdyn_CopiedFromPriceLevel");
+			}
+		}
+		
+		/// <summary>
+		/// Select the entity for this price level.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_entity")]
+		public Microsoft.Xrm.Sdk.OptionSetValue msdyn_Entity
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("msdyn_entity");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_Entity");
+				this.SetAttributeValue("msdyn_entity", value);
+				this.OnPropertyChanged("msdyn_Entity");
+			}
+		}
+		
+		/// <summary>
+		/// Select the context for this price level i.e whether it is sales prices, cost prices or purchase prices
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_module")]
+		public Microsoft.Xrm.Sdk.OptionSetValue msdyn_Module
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("msdyn_module");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_Module");
+				this.SetAttributeValue("msdyn_module", value);
+				this.OnPropertyChanged("msdyn_Module");
+			}
+		}
+		
+		/// <summary>
+		/// Select the default unit of role based time on this price list
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_timeunit")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_TimeUnit
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_timeunit");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_TimeUnit");
+				this.SetAttributeValue("msdyn_timeunit", value);
+				this.OnPropertyChanged("msdyn_TimeUnit");
 			}
 		}
 		
@@ -356,7 +466,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the organization associated with the price list.
+		/// organization_price_levels
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("organizationid")]
 		public Microsoft.Xrm.Sdk.EntityReference OrganizationId
@@ -547,7 +657,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the currency associated with the price level.
+		/// transactioncurrency_pricelevel
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("transactioncurrencyid")]
 		public Microsoft.Xrm.Sdk.EntityReference TransactionCurrencyId
@@ -596,6 +706,646 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_accountpricelist_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_accountpricelist_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_accountpricelist> msdyn_pricelevel_msdyn_accountpricelist_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_accountpricelist>("msdyn_pricelevel_msdyn_accountpricelist_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_accountpricelist_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_accountpricelist>("msdyn_pricelevel_msdyn_accountpricelist_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_accountpricelist_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_actual_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_actual_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_actual> msdyn_pricelevel_msdyn_actual_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_actual>("msdyn_pricelevel_msdyn_actual_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_actual_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_actual>("msdyn_pricelevel_msdyn_actual_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_actual_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_agreement_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_agreement_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_agreement> msdyn_pricelevel_msdyn_agreement_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_pricelevel_msdyn_agreement_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_agreement_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_pricelevel_msdyn_agreement_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_agreement_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_agreementbookingproduct_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_agreementbookingproduct_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_agreementbookingproduct> msdyn_pricelevel_msdyn_agreementbookingproduct_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_pricelevel_msdyn_agreementbookingproduct_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_agreementbookingproduct_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_pricelevel_msdyn_agreementbookingproduct_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_agreementbookingproduct_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_agreementbookingservice_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_agreementbookingservice_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_agreementbookingservice> msdyn_pricelevel_msdyn_agreementbookingservice_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_pricelevel_msdyn_agreementbookingservice_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_agreementbookingservice_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_pricelevel_msdyn_agreementbookingservice_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_agreementbookingservice_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_agreementinvoiceproduct_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_agreementinvoiceproduct_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct> msdyn_pricelevel_msdyn_agreementinvoiceproduct_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_pricelevel_msdyn_agreementinvoiceproduct_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_agreementinvoiceproduct_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_pricelevel_msdyn_agreementinvoiceproduct_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_agreementinvoiceproduct_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_contactpricelist_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_contactpricelist_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_contactpricelist> msdyn_pricelevel_msdyn_contactpricelist_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_contactpricelist>("msdyn_pricelevel_msdyn_contactpricelist_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_contactpricelist_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_contactpricelist>("msdyn_pricelevel_msdyn_contactpricelist_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_contactpricelist_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_estimateline_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_estimateline_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_estimateline> msdyn_pricelevel_msdyn_estimateline_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_estimateline>("msdyn_pricelevel_msdyn_estimateline_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_estimateline_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_estimateline>("msdyn_pricelevel_msdyn_estimateline_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_estimateline_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_fieldservicepricelistitem_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_fieldservicepricelistitem_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_fieldservicepricelistitem> msdyn_pricelevel_msdyn_fieldservicepricelistitem_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_fieldservicepricelistitem>("msdyn_pricelevel_msdyn_fieldservicepricelistitem_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_fieldservicepricelistitem_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_fieldservicepricelistitem>("msdyn_pricelevel_msdyn_fieldservicepricelistitem_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_fieldservicepricelistitem_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_invoicelinetransaction_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_invoicelinetransaction_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_invoicelinetransaction> msdyn_pricelevel_msdyn_invoicelinetransaction_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_invoicelinetransaction>("msdyn_pricelevel_msdyn_invoicelinetransaction_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_invoicelinetransaction_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_invoicelinetransaction>("msdyn_pricelevel_msdyn_invoicelinetransaction_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_invoicelinetransaction_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_journalline_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_journalline_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_journalline> msdyn_pricelevel_msdyn_journalline_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_journalline>("msdyn_pricelevel_msdyn_journalline_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_journalline_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_journalline>("msdyn_pricelevel_msdyn_journalline_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_journalline_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_opportunitylinetransaction_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_opportunitylinetransaction_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction> msdyn_pricelevel_msdyn_opportunitylinetransaction_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction>("msdyn_pricelevel_msdyn_opportunitylinetransaction_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_opportunitylinetransaction_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction>("msdyn_pricelevel_msdyn_opportunitylinetransaction_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_opportunitylinetransaction_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_opportunitypricelist_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_opportunitypricelist_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_opportunitypricelist> msdyn_pricelevel_msdyn_opportunitypricelist_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_opportunitypricelist>("msdyn_pricelevel_msdyn_opportunitypricelist_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_opportunitypricelist_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_opportunitypricelist>("msdyn_pricelevel_msdyn_opportunitypricelist_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_opportunitypricelist_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_orderlinetransaction_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_orderlinetransaction_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_orderlinetransaction> msdyn_pricelevel_msdyn_orderlinetransaction_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_orderlinetransaction>("msdyn_pricelevel_msdyn_orderlinetransaction_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_orderlinetransaction_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_orderlinetransaction>("msdyn_pricelevel_msdyn_orderlinetransaction_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_orderlinetransaction_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_orderpricelist_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_orderpricelist_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_orderpricelist> msdyn_pricelevel_msdyn_orderpricelist_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_orderpricelist>("msdyn_pricelevel_msdyn_orderpricelist_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_orderpricelist_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_orderpricelist>("msdyn_pricelevel_msdyn_orderpricelist_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_orderpricelist_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_projectparameterpricelist_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_projectparameterpricelist_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_projectparameterpricelist> msdyn_pricelevel_msdyn_projectparameterpricelist_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_projectparameterpricelist>("msdyn_pricelevel_msdyn_projectparameterpricelist_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_projectparameterpricelist_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_projectparameterpricelist>("msdyn_pricelevel_msdyn_projectparameterpricelist_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_projectparameterpricelist_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_projectpricelist_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_projectpricelist_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_projectpricelist> msdyn_pricelevel_msdyn_projectpricelist_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_projectpricelist>("msdyn_pricelevel_msdyn_projectpricelist_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_projectpricelist_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_projectpricelist>("msdyn_pricelevel_msdyn_projectpricelist_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_projectpricelist_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_quotebookingproduct_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_quotebookingproduct_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quotebookingproduct> msdyn_pricelevel_msdyn_quotebookingproduct_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_pricelevel_msdyn_quotebookingproduct_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_quotebookingproduct_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_pricelevel_msdyn_quotebookingproduct_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_quotebookingproduct_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_quotebookingservice_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_quotebookingservice_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quotebookingservice> msdyn_pricelevel_msdyn_quotebookingservice_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_pricelevel_msdyn_quotebookingservice_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_quotebookingservice_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_pricelevel_msdyn_quotebookingservice_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_quotebookingservice_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_quotelinetransaction_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_quotelinetransaction_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quotelinetransaction> msdyn_pricelevel_msdyn_quotelinetransaction_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotelinetransaction>("msdyn_pricelevel_msdyn_quotelinetransaction_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_quotelinetransaction_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotelinetransaction>("msdyn_pricelevel_msdyn_quotelinetransaction_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_quotelinetransaction_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_quotepricelist_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_quotepricelist_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quotepricelist> msdyn_pricelevel_msdyn_quotepricelist_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotepricelist>("msdyn_pricelevel_msdyn_quotepricelist_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_quotepricelist_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotepricelist>("msdyn_pricelevel_msdyn_quotepricelist_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_quotepricelist_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_resourcecategorypricelevel_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_resourcecategorypricelevel_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_resourcecategorypricelevel> msdyn_pricelevel_msdyn_resourcecategorypricelevel_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_resourcecategorypricelevel>("msdyn_pricelevel_msdyn_resourcecategorypricelevel_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_resourcecategorypricelevel_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_resourcecategorypricelevel>("msdyn_pricelevel_msdyn_resourcecategorypricelevel_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_resourcecategorypricelevel_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_rma_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_rma_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_rma> msdyn_pricelevel_msdyn_rma_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_rma>("msdyn_pricelevel_msdyn_rma_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_rma_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_rma>("msdyn_pricelevel_msdyn_rma_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_rma_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_rmaproduct_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_rmaproduct_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_rmaproduct> msdyn_pricelevel_msdyn_rmaproduct_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_pricelevel_msdyn_rmaproduct_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_rmaproduct_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_pricelevel_msdyn_rmaproduct_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_rmaproduct_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_transactioncategorypricelevel_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_transactioncategorypricelevel_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_transactioncategorypricelevel> msdyn_pricelevel_msdyn_transactioncategorypricelevel_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_transactioncategorypricelevel>("msdyn_pricelevel_msdyn_transactioncategorypricelevel_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_transactioncategorypricelevel_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_transactioncategorypricelevel>("msdyn_pricelevel_msdyn_transactioncategorypricelevel_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_transactioncategorypricelevel_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_workorder_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_workorder_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_workorder> msdyn_pricelevel_msdyn_workorder_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_pricelevel_msdyn_workorder_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_workorder_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_pricelevel_msdyn_workorder_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_workorder_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_workorderproduct_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_workorderproduct_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_workorderproduct> msdyn_pricelevel_msdyn_workorderproduct_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_pricelevel_msdyn_workorderproduct_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_workorderproduct_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_pricelevel_msdyn_workorderproduct_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_workorderproduct_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_workorderservice_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_workorderservice_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_workorderservice> msdyn_pricelevel_msdyn_workorderservice_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_pricelevel_msdyn_workorderservice_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_workorderservice_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_pricelevel_msdyn_workorderservice_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_workorderservice_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_msdyn_workordertype_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_msdyn_workordertype_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_workordertype> msdyn_pricelevel_msdyn_workordertype_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_workordertype>("msdyn_pricelevel_msdyn_workordertype_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_msdyn_workordertype_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_workordertype>("msdyn_pricelevel_msdyn_workordertype_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_msdyn_workordertype_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_opportunityproduct_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_opportunityproduct_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OpportunityProduct> msdyn_pricelevel_opportunityproduct_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OpportunityProduct>("msdyn_pricelevel_opportunityproduct_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_opportunityproduct_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OpportunityProduct>("msdyn_pricelevel_opportunityproduct_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_opportunityproduct_PriceList");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_pricelevel_CopiedFromPriceLevel
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_pricelevel_CopiedFromPriceLevel", Microsoft.Xrm.Sdk.EntityRole.Referenced)]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PriceLevel> Referencedmsdyn_pricelevel_pricelevel_CopiedFromPriceLevel
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PriceLevel>("msdyn_pricelevel_pricelevel_CopiedFromPriceLevel", Microsoft.Xrm.Sdk.EntityRole.Referenced);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Referencedmsdyn_pricelevel_pricelevel_CopiedFromPriceLevel");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PriceLevel>("msdyn_pricelevel_pricelevel_CopiedFromPriceLevel", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
+				this.OnPropertyChanged("Referencedmsdyn_pricelevel_pricelevel_CopiedFromPriceLevel");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_pricelevel_quotedetail_PriceList
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_quotedetail_PriceList")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.QuoteDetail> msdyn_pricelevel_quotedetail_PriceList
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.QuoteDetail>("msdyn_pricelevel_quotedetail_PriceList", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_pricelevel_quotedetail_PriceList");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.QuoteDetail>("msdyn_pricelevel_quotedetail_PriceList", null, value);
+				this.OnPropertyChanged("msdyn_pricelevel_quotedetail_PriceList");
 			}
 		}
 		
@@ -840,6 +1590,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N pricelevel_MailboxTrackingFolders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("pricelevel_MailboxTrackingFolders")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> pricelevel_MailboxTrackingFolders
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("pricelevel_MailboxTrackingFolders", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("pricelevel_MailboxTrackingFolders");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("pricelevel_MailboxTrackingFolders", null, value);
+				this.OnPropertyChanged("pricelevel_MailboxTrackingFolders");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N pricelevel_principalobjectattributeaccess
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("pricelevel_principalobjectattributeaccess")]
@@ -880,6 +1650,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N PriceLevel_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("PriceLevel_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> PriceLevel_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("PriceLevel_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("PriceLevel_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("PriceLevel_SyncErrors", null, value);
+				this.OnPropertyChanged("PriceLevel_SyncErrors");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N PriceList_Campaigns
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("PriceList_Campaigns")]
@@ -916,6 +1706,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("userentityinstancedata_pricelevel");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.UserEntityInstanceData>("userentityinstancedata_pricelevel", null, value);
 				this.OnPropertyChanged("userentityinstancedata_pricelevel");
+			}
+		}
+		
+		/// <summary>
+		/// N:N msdyn_organizationalunit_pricelevel
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_organizationalunit_pricelevel")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_organizationalunit> msdyn_organizationalunit_pricelevel
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_organizationalunit>("msdyn_organizationalunit_pricelevel", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_organizationalunit_pricelevel");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_organizationalunit>("msdyn_organizationalunit_pricelevel", null, value);
+				this.OnPropertyChanged("msdyn_organizationalunit_pricelevel");
 			}
 		}
 		
@@ -1000,6 +1810,48 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("lk_pricelevelbase_modifiedby");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_pricelevelbase_modifiedby", null, value);
 				this.OnPropertyChanged("lk_pricelevelbase_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_pricelevel_pricelevel_CopiedFromPriceLevel
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_copiedfrompricelevel")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_pricelevel_pricelevel_CopiedFromPriceLevel", Microsoft.Xrm.Sdk.EntityRole.Referencing)]
+		public DLaB.Xrm.Entities.PriceLevel Referencingmsdyn_pricelevel_pricelevel_CopiedFromPriceLevel
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.PriceLevel>("msdyn_pricelevel_pricelevel_CopiedFromPriceLevel", Microsoft.Xrm.Sdk.EntityRole.Referencing);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Referencingmsdyn_pricelevel_pricelevel_CopiedFromPriceLevel");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.PriceLevel>("msdyn_pricelevel_pricelevel_CopiedFromPriceLevel", Microsoft.Xrm.Sdk.EntityRole.Referencing, value);
+				this.OnPropertyChanged("Referencingmsdyn_pricelevel_pricelevel_CopiedFromPriceLevel");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_uom_pricelevel_TimeUnit
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_timeunit")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_uom_pricelevel_TimeUnit")]
+		public DLaB.Xrm.Entities.UoM msdyn_uom_pricelevel_TimeUnit
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.UoM>("msdyn_uom_pricelevel_TimeUnit", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_uom_pricelevel_TimeUnit");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.UoM>("msdyn_uom_pricelevel_TimeUnit", null, value);
+				this.OnPropertyChanged("msdyn_uom_pricelevel_TimeUnit");
 			}
 		}
 		
@@ -1092,6 +1944,36 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				FreightTermsCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_entity")]
+		public virtual msdyn_PriceListEntity? msdyn_EntityEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((msdyn_PriceListEntity?)(EntityOptionSetEnum.GetEnum(this, "msdyn_entity")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				msdyn_Entity = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_module")]
+		public virtual msdyn_Module? msdyn_ModuleEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((msdyn_Module?)(EntityOptionSetEnum.GetEnum(this, "msdyn_module")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				msdyn_Module = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 		

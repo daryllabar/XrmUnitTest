@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("principalentitymap")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class PrincipalEntityMap : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ObjectTypeCode = "objecttypecode";
 			public const string PrincipalEntityMapId = "principalentitymapid";
@@ -27,7 +27,6 @@ namespace DLaB.Xrm.Entities
 			public const string PrincipalId = "principalid";
 			public const string VersionNumber = "versionnumber";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -39,6 +38,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "principalentitymap";
+		
+		public const string PrimaryIdAttribute = "principalentitymapid";
 		
 		public const int EntityTypeCode = 41;
 		

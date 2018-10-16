@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("equipment")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Equipment : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string BusinessUnitId = "businessunitid";
 			public const string CalendarId = "calendarid";
@@ -58,7 +58,6 @@ namespace DLaB.Xrm.Entities
 			public const string site_equipment = "site_equipment";
 			public const string TransactionCurrency_Equipment = "TransactionCurrency_Equipment";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -70,6 +69,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "equipment";
+		
+		public const string PrimaryIdAttribute = "equipmentid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 4000;
 		
@@ -96,7 +99,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the associated business unit.
+		/// Shows the associated business unit.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("businessunitid")]
 		public Microsoft.Xrm.Sdk.EntityReference BusinessUnitId
@@ -116,7 +119,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Fiscal calendar associated with the facility/equipment.
+		/// calendar_equipment
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("calendarid")]
 		public Microsoft.Xrm.Sdk.EntityReference CalendarId
@@ -176,7 +179,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the delegate user who created the equipment.
+		/// Shows the delegate user who created the equipment.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
@@ -392,7 +395,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the delegate user who last modified the equipment.
+		/// lk_equipment_modifiedonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
@@ -432,7 +435,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the parent business unit.
+		/// organization_equipment
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("organizationid")]
 		public Microsoft.Xrm.Sdk.EntityReference OrganizationId
@@ -465,7 +468,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Site where the facility/equipment is located.
+		/// site_equipment
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("siteid")]
 		public Microsoft.Xrm.Sdk.EntityReference SiteId
@@ -545,7 +548,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the currency associated with the equipment.
+		/// TransactionCurrency_Equipment
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("transactioncurrencyid")]
 		public Microsoft.Xrm.Sdk.EntityReference TransactionCurrencyId
@@ -818,6 +821,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N equipment_MailboxTrackingFolders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("equipment_MailboxTrackingFolders")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> equipment_MailboxTrackingFolders
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("equipment_MailboxTrackingFolders", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("equipment_MailboxTrackingFolders");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("equipment_MailboxTrackingFolders", null, value);
+				this.OnPropertyChanged("equipment_MailboxTrackingFolders");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N equipment_principalobjectattributeaccess
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("equipment_principalobjectattributeaccess")]
@@ -874,6 +897,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("equipment_resources");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Resource>("equipment_resources", null, value);
 				this.OnPropertyChanged("equipment_resources");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Equipment_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Equipment_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Equipment_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Equipment_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Equipment_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Equipment_SyncErrors", null, value);
+				this.OnPropertyChanged("Equipment_SyncErrors");
 			}
 		}
 		

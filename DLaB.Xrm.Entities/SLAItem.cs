@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("slaitem")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class SLAItem : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ApplicableWhenXml = "applicablewhenxml";
 			public const string ComponentState = "componentstate";
@@ -58,7 +58,6 @@ namespace DLaB.Xrm.Entities
 			public const string slaitembase_workflowid = "slaitembase_workflowid";
 			public const string TransactionCurrency_SLAItem = "TransactionCurrency_SLAItem";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -70,6 +69,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "slaitem";
+		
+		public const string PrimaryIdAttribute = "slaitemid";
 		
 		public const int EntityTypeCode = 9751;
 		
@@ -149,7 +150,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -275,7 +276,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -619,6 +620,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("WorkflowId");
 				this.SetAttributeValue("workflowid", value);
 				this.OnPropertyChanged("WorkflowId");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N SLAItem_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("SLAItem_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> SLAItem_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("SLAItem_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SLAItem_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("SLAItem_SyncErrors", null, value);
+				this.OnPropertyChanged("SLAItem_SyncErrors");
 			}
 		}
 		

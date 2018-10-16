@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum MailMergeTemplateState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("mailmergetemplate")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class MailMergeTemplate : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string Body = "body";
 			public const string ComponentState = "componentstate";
@@ -79,7 +79,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_mailmergetemplatebase_modifiedby = "lk_mailmergetemplatebase_modifiedby";
 			public const string TransactionCurrency_MailMergeTemplate = "TransactionCurrency_MailMergeTemplate";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -91,6 +90,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "mailmergetemplate";
+		
+		public const string PrimaryIdAttribute = "mailmergetemplateid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9106;
 		
@@ -908,6 +911,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("MailMergeTemplate_ProcessSessions");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProcessSession>("MailMergeTemplate_ProcessSessions", null, value);
 				this.OnPropertyChanged("MailMergeTemplate_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N MailMergeTemplate_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("MailMergeTemplate_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> MailMergeTemplate_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("MailMergeTemplate_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("MailMergeTemplate_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("MailMergeTemplate_SyncErrors", null, value);
+				this.OnPropertyChanged("MailMergeTemplate_SyncErrors");
 			}
 		}
 		

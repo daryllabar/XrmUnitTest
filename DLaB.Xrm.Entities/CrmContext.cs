@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // </auto-generated>
-// Created via this command line: "C:\CRM Tools\XrmToolBox\Plugins\CrmSvcUtil Ref\crmsvcutil.exe" /url:"https://xrmvituralunittest.api.crm.dynamics.com/XRMServices/2011/Organization.svc" /namespace:"DLaB.Xrm.Entities" /out:"C:\Temp\Entities\CrmContext.cs" /servicecontextname:"CrmContext" /codecustomization:"DLaB.CrmSvcUtilExtensions.Entity.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.Entity.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.Entity.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.Entity.MetadataProviderService,DLaB.CrmSvcUtilExtensions" /namingservice:"DLaB.CrmSvcUtilExtensions.NamingService,DLaB.CrmSvcUtilExtensions" /username:"kenm@XrmVituralUnitTest.onmicrosoft.com" /password:"**********" 
+// Created via this command line: "C:\Users\daryl.labar\AppData\Roaming\MscrmTools\XrmToolBox\Plugins\CrmSvcUtil Ref\crmsvcutil.exe" /url:"https://dlab.api.crm.dynamics.com/XRMServices/2011/Organization.svc" /namespace:"DLaB.Xrm.Entities" /out:"C:\Temp\EBG\Entities\CrmContext.cs" /servicecontextname:"CrmContext" /codecustomization:"DLaB.CrmSvcUtilExtensions.Entity.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.Entity.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.Entity.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /namingservice:"DLaB.CrmSvcUtilExtensions.NamingService,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.Entity.MetadataProviderService,DLaB.CrmSvcUtilExtensions" /username:"Daryl@RaiseLaBar.onmicrosoft.com" /password:"********" 
 //------------------------------------------------------------------------------
 
 [assembly: Microsoft.Xrm.Sdk.Client.ProxyTypesAssemblyAttribute()]
@@ -16,7 +16,7 @@ namespace DLaB.Xrm.Entities
 	/// <summary>
 	/// Represents a source of entities bound to a CRM service. It tracks and manages changes made to the retrieved entities.
 	/// </summary>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class CrmContext : Microsoft.Xrm.Sdk.Client.OrganizationServiceContext
 	{
 		
@@ -50,6 +50,54 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.AccountLeads>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.ACIViewMapper"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.ACIViewMapper> ACIViewMapperSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.ACIViewMapper>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.ActionCard"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.ActionCard> ActionCardSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.ActionCard>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.ActionCardUserSettings"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.ActionCardUserSettings> ActionCardUserSettingsSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.ActionCardUserSettings>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.ActionCardUserState"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.ActionCardUserState> ActionCardUserStateSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.ActionCardUserState>();
 			}
 		}
 		
@@ -90,6 +138,30 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.adminsettingsentity"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.adminsettingsentity> adminsettingsentitySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.adminsettingsentity>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.AdvancedSimilarityRule"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.AdvancedSimilarityRule> AdvancedSimilarityRuleSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.AdvancedSimilarityRule>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.Annotation"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.Annotation> AnnotationSet
@@ -110,6 +182,78 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.AnnualFiscalCalendar>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.AppConfig"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.AppConfig> AppConfigSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.AppConfig>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.AppConfigInstance"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.AppConfigInstance> AppConfigInstanceSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.AppConfigInstance>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.AppConfigMaster"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.AppConfigMaster> AppConfigMasterSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.AppConfigMaster>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.AppModule"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.AppModule> AppModuleSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.AppModule>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.AppModuleComponent"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.AppModuleComponent> AppModuleComponentSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.AppModuleComponent>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.AppModuleRoles"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.AppModuleRoles> AppModuleRolesSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.AppModuleRoles>();
 			}
 		}
 		
@@ -174,6 +318,114 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.BookableResource"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.BookableResource> BookableResourceSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.BookableResource>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.BookableResourceBooking"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.BookableResourceBooking> BookableResourceBookingSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.BookableResourceBooking>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.BookableResourceBookingExchangeSyncIdMapping"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.BookableResourceBookingExchangeSyncIdMapping> BookableResourceBookingExchangeSyncIdMappingSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.BookableResourceBookingExchangeSyncIdMapping>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.BookableResourceBookingHeader"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.BookableResourceBookingHeader> BookableResourceBookingHeaderSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.BookableResourceBookingHeader>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.BookableResourceCategory"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.BookableResourceCategory> BookableResourceCategorySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.BookableResourceCategory>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.BookableResourceCategoryAssn"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.BookableResourceCategoryAssn> BookableResourceCategoryAssnSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.BookableResourceCategoryAssn>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.BookableResourceCharacteristic"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.BookableResourceCharacteristic> BookableResourceCharacteristicSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.BookableResourceCharacteristic>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.BookableResourceGroup"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.BookableResourceGroup> BookableResourceGroupSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.BookableResourceGroup>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.BookingStatus"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.BookingStatus> BookingStatusSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.BookingStatus>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.BulkDeleteFailure"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.BulkDeleteFailure> BulkDeleteFailureSet
@@ -218,6 +470,18 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.BulkOperationLog>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.BusinessProcessFlowInstance"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.BusinessProcessFlowInstance> BusinessProcessFlowInstanceSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.BusinessProcessFlowInstance>();
 			}
 		}
 		
@@ -318,6 +582,42 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.CanvasApp"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.CanvasApp> CanvasAppSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.CanvasApp>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.CardType"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.CardType> CardTypeSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.CardType>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.Category"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.Category> CategorySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.Category>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.ChannelAccessProfile"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.ChannelAccessProfile> ChannelAccessProfileSet
@@ -390,6 +690,18 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.Characteristic"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.Characteristic> CharacteristicSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.Characteristic>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.ColumnMapping"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.ColumnMapping> ColumnMappingSet
@@ -398,6 +710,18 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.ColumnMapping>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.Commitment"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.Commitment> CommitmentSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.Commitment>();
 			}
 		}
 		
@@ -690,6 +1014,30 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.DataPerformance"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.DataPerformance> DataPerformanceSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.DataPerformance>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.DelveActionHub"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.DelveActionHub> DelveActionHubSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.DelveActionHub>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.Dependency"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.Dependency> DependencySet
@@ -858,6 +1206,18 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.EmailSignature"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.EmailSignature> EmailSignatureSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.EmailSignature>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.Entitlement"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.Entitlement> EntitlementSet
@@ -942,6 +1302,30 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.EntityDataProvider"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.EntityDataProvider> EntityDataProviderSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.EntityDataProvider>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.EntityDataSource"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.EntityDataSource> EntityDataSourceSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.EntityDataSource>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.EntityMap"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.EntityMap> EntityMapSet
@@ -978,6 +1362,30 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.ExpanderEvent"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.ExpanderEvent> ExpanderEventSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.ExpanderEvent>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.ExpiredProcess"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.ExpiredProcess> ExpiredProcessSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.ExpiredProcess>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.ExternalParty"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.ExternalParty> ExternalPartySet
@@ -1010,6 +1418,18 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.Fax>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.Feedback"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.Feedback> FeedbackSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.Feedback>();
 			}
 		}
 		
@@ -1206,6 +1626,18 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.InteractionForEmail"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.InteractionForEmail> InteractionForEmailSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.InteractionForEmail>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.InvalidDependency"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.InvalidDependency> InvalidDependencySet
@@ -1314,6 +1746,18 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.KnowledgeArticlesCategories"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.KnowledgeArticlesCategories> KnowledgeArticlesCategoriesSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.KnowledgeArticlesCategories>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.KnowledgeArticleViews"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.KnowledgeArticleViews> KnowledgeArticleViewsSet
@@ -1410,6 +1854,18 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.LeadToOpportunitySalesProcess"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.LeadToOpportunitySalesProcess> LeadToOpportunitySalesProcessSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.LeadToOpportunitySalesProcess>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.Letter"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.Letter> LetterSet
@@ -1490,6 +1946,18 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.MailboxStatistics>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.MailboxTrackingCategory"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.MailboxTrackingCategory> MailboxTrackingCategorySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.MailboxTrackingCategory>();
 			}
 		}
 		
@@ -1578,6 +2046,1050 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_accountpricelist"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_accountpricelist> msdyn_accountpricelistSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_accountpricelist>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_actual"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_actual> msdyn_actualSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_actual>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_agreement"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_agreement> msdyn_agreementSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_agreement>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_agreementbookingdate"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_agreementbookingdate> msdyn_agreementbookingdateSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_agreementbookingdate>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_agreementbookingincident"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_agreementbookingincident> msdyn_agreementbookingincidentSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_agreementbookingincident>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_agreementbookingproduct"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_agreementbookingproduct> msdyn_agreementbookingproductSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_agreementbookingservice"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_agreementbookingservice> msdyn_agreementbookingserviceSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_agreementbookingservice>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_agreementbookingservicetask"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask> msdyn_agreementbookingservicetaskSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_agreementbookingsetup"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_agreementbookingsetup> msdyn_agreementbookingsetupSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_agreementinvoicedate"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_agreementinvoicedate> msdyn_agreementinvoicedateSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct> msdyn_agreementinvoiceproductSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_agreementinvoicesetup"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup> msdyn_agreementinvoicesetupSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_agreementsubstatus"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_agreementsubstatus> msdyn_agreementsubstatusSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_agreementsubstatus>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_approval"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_approval> msdyn_approvalSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_approval>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_batchjob"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_batchjob> msdyn_batchjobSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_batchjob>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_bookingalert"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_bookingalert> msdyn_bookingalertSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_bookingalert>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_bookingalertstatus"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_bookingalertstatus> msdyn_bookingalertstatusSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_bookingalertstatus>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_bookingchange"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_bookingchange> msdyn_bookingchangeSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_bookingchange>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_bookingjournal"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_bookingjournal> msdyn_bookingjournalSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_bookingjournal>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_bookingrule"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_bookingrule> msdyn_bookingruleSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_bookingrule>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_bookingsetupmetadata"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_bookingsetupmetadata> msdyn_bookingsetupmetadataSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_bookingsetupmetadata>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_bookingtimestamp"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_bookingtimestamp> msdyn_bookingtimestampSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_bookingtimestamp>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_bpf_2c5fe86acc8b414b8322ae571000c799"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_bpf_2c5fe86acc8b414b8322ae571000c799> msdyn_bpf_2c5fe86acc8b414b8322ae571000c799Set
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_bpf_2c5fe86acc8b414b8322ae571000c799>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_bpf_665e73aa18c247d886bfc50499c73b82"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_bpf_665e73aa18c247d886bfc50499c73b82> msdyn_bpf_665e73aa18c247d886bfc50499c73b82Set
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_bpf_665e73aa18c247d886bfc50499c73b82>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_bpf_989e9b1857e24af18787d5143b67523b"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_bpf_989e9b1857e24af18787d5143b67523b> msdyn_bpf_989e9b1857e24af18787d5143b67523bSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_bpf_989e9b1857e24af18787d5143b67523b>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3> msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3Set
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39> msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39Set
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d> msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470dSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_characteristicreqforteammember"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_characteristicreqforteammember> msdyn_characteristicreqforteammemberSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_characteristicreqforteammember>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_contactpricelist"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_contactpricelist> msdyn_contactpricelistSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_contactpricelist>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_contractlineinvoiceschedule"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_contractlineinvoiceschedule> msdyn_contractlineinvoicescheduleSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_contractlineinvoiceschedule>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_contractlinescheduleofvalue"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_contractlinescheduleofvalue> msdyn_contractlinescheduleofvalueSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_contractlinescheduleofvalue>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_customerasset"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_customerasset> msdyn_customerassetSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_customerasset>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_dataexport"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_dataexport> msdyn_dataexportSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_dataexport>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_delegation"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_delegation> msdyn_delegationSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_delegation>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_estimate"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_estimate> msdyn_estimateSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_estimate>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_estimateline"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_estimateline> msdyn_estimatelineSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_estimateline>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_expense"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_expense> msdyn_expenseSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_expense>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_expensecategory"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_expensecategory> msdyn_expensecategorySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_expensecategory>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_expensereceipt"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_expensereceipt> msdyn_expensereceiptSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_expensereceipt>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_fact"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_fact> msdyn_factSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_fact>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_fieldcomputation"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_fieldcomputation> msdyn_fieldcomputationSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_fieldcomputation>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_fieldservicepricelistitem"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_fieldservicepricelistitem> msdyn_fieldservicepricelistitemSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_fieldservicepricelistitem>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_fieldservicesetting"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_fieldservicesetting> msdyn_fieldservicesettingSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_fieldservicesetting>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_fieldservicesystemjob"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_fieldservicesystemjob> msdyn_fieldservicesystemjobSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_fieldservicesystemjob>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_findworkevent"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_findworkevent> msdyn_findworkeventSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_findworkevent>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_icebreakersconfig"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_icebreakersconfig> msdyn_icebreakersconfigSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_icebreakersconfig>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_incidenttype"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_incidenttype> msdyn_incidenttypeSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_incidenttype>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic> msdyn_incidenttypecharacteristicSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_incidenttypeproduct"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_incidenttypeproduct> msdyn_incidenttypeproductSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_incidenttypeservice"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_incidenttypeservice> msdyn_incidenttypeserviceSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_incidenttypeservice>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_incidenttypeservicetask"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_incidenttypeservicetask> msdyn_incidenttypeservicetaskSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_incidenttypeservicetask>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_integrationjob"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_integrationjob> msdyn_integrationjobSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_integrationjob>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_integrationjobdetail"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_integrationjobdetail> msdyn_integrationjobdetailSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_integrationjobdetail>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_inventoryadjustment"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_inventoryadjustment> msdyn_inventoryadjustmentSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_inventoryadjustment>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct> msdyn_inventoryadjustmentproductSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_inventoryjournal"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_inventoryjournal> msdyn_inventoryjournalSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_inventoryjournal>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_inventorytransfer"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_inventorytransfer> msdyn_inventorytransferSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_inventorytransfer>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_invoicefrequency"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_invoicefrequency> msdyn_invoicefrequencySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_invoicefrequency>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_invoicefrequencydetail"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_invoicefrequencydetail> msdyn_invoicefrequencydetailSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_invoicefrequencydetail>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_invoicelinetransaction"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_invoicelinetransaction> msdyn_invoicelinetransactionSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_invoicelinetransaction>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_journal"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_journal> msdyn_journalSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_journal>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_journalline"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_journalline> msdyn_journallineSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_journalline>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_mlresultcache"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_mlresultcache> msdyn_mlresultcacheSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_mlresultcache>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_notesanalysisconfig"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_notesanalysisconfig> msdyn_notesanalysisconfigSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_notesanalysisconfig>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_odatav4ds"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_odatav4ds> msdyn_odatav4dsSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_odatav4ds>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_opportunitylineresourcecategory"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_opportunitylineresourcecategory> msdyn_opportunitylineresourcecategorySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_opportunitylineresourcecategory>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_opportunitylinetransaction"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction> msdyn_opportunitylinetransactionSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_opportunitylinetransactioncategory"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_opportunitylinetransactioncategory> msdyn_opportunitylinetransactioncategorySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_opportunitylinetransactioncategory>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_opportunitylinetransactionclassificatio"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_opportunitylinetransactionclassificatio> msdyn_opportunitylinetransactionclassificatioSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_opportunitylinetransactionclassificatio>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_opportunitypricelist"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_opportunitypricelist> msdyn_opportunitypricelistSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_opportunitypricelist>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_orderinvoicingdate"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_orderinvoicingdate> msdyn_orderinvoicingdateSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_orderinvoicingdate>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_orderinvoicingproduct"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_orderinvoicingproduct> msdyn_orderinvoicingproductSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_orderinvoicingproduct>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_orderinvoicingsetup"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_orderinvoicingsetup> msdyn_orderinvoicingsetupSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_orderinvoicingsetup>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_orderinvoicingsetupdate"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_orderinvoicingsetupdate> msdyn_orderinvoicingsetupdateSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_orderinvoicingsetupdate>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_orderlineresourcecategory"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_orderlineresourcecategory> msdyn_orderlineresourcecategorySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_orderlineresourcecategory>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_orderlinetransaction"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_orderlinetransaction> msdyn_orderlinetransactionSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_orderlinetransaction>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_orderlinetransactioncategory"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_orderlinetransactioncategory> msdyn_orderlinetransactioncategorySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_orderlinetransactioncategory>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_orderlinetransactionclassification"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_orderlinetransactionclassification> msdyn_orderlinetransactionclassificationSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_orderlinetransactionclassification>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_orderpricelist"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_orderpricelist> msdyn_orderpricelistSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_orderpricelist>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_organizationalunit"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_organizationalunit> msdyn_organizationalunitSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_organizationalunit>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_organizationalunit_pricelevel"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_organizationalunit_pricelevel> msdyn_organizationalunit_pricelevelSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_organizationalunit_pricelevel>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_orginsightsuserdashboarddefinition"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_orginsightsuserdashboarddefinition> msdyn_orginsightsuserdashboarddefinitionSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_orginsightsuserdashboarddefinition>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_payment"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_payment> msdyn_paymentSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_payment>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_paymentdetail"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_paymentdetail> msdyn_paymentdetailSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_paymentdetail>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_paymentmethod"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_paymentmethod> msdyn_paymentmethodSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_paymentmethod>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_paymentterm"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_paymentterm> msdyn_paymenttermSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_paymentterm>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_PostAlbum"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_PostAlbum> msdyn_PostAlbumSet
@@ -1586,6 +3098,18 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_PostAlbum>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_postalcode"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_postalcode> msdyn_postalcodeSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_postalcode>();
 			}
 		}
 		
@@ -1614,6 +3138,1050 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_priority"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_priority> msdyn_prioritySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_priority>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_processnotes"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_processnotes> msdyn_processnotesSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_processnotes>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_productinventory"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_productinventory> msdyn_productinventorySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_productinventory>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_project"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_project> msdyn_projectSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_project>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_projectapproval"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_projectapproval> msdyn_projectapprovalSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_projectapproval>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_projectparameter"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_projectparameter> msdyn_projectparameterSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_projectparameter>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_projectparameterpricelist"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_projectparameterpricelist> msdyn_projectparameterpricelistSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_projectparameterpricelist>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_projectpricelist"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_projectpricelist> msdyn_projectpricelistSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_projectpricelist>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_projecttask"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_projecttask> msdyn_projecttaskSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_projecttask>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_projecttaskdependency"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_projecttaskdependency> msdyn_projecttaskdependencySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_projecttaskdependency>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_projecttaskstatususer"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_projecttaskstatususer> msdyn_projecttaskstatususerSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_projecttaskstatususer>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_projectteam"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_projectteam> msdyn_projectteamSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_projectteam>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_projectteammembersignup"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_projectteammembersignup> msdyn_projectteammembersignupSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_projectteammembersignup>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_projecttransactioncategory"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_projecttransactioncategory> msdyn_projecttransactioncategorySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_projecttransactioncategory>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_purchaseorder"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_purchaseorder> msdyn_purchaseorderSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_purchaseorder>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_purchaseorderbill"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_purchaseorderbill> msdyn_purchaseorderbillSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_purchaseorderbill>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_purchaseorderproduct"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_purchaseorderproduct> msdyn_purchaseorderproductSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_purchaseorderreceipt"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt> msdyn_purchaseorderreceiptSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct> msdyn_purchaseorderreceiptproductSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_purchaseordersubstatus"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus> msdyn_purchaseordersubstatusSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_quotebookingincident"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_quotebookingincident> msdyn_quotebookingincidentSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_quotebookingincident>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_quotebookingproduct"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_quotebookingproduct> msdyn_quotebookingproductSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_quotebookingproduct>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_quotebookingservice"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_quotebookingservice> msdyn_quotebookingserviceSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_quotebookingservice>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_quotebookingservicetask"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_quotebookingservicetask> msdyn_quotebookingservicetaskSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_quotebookingsetup"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_quotebookingsetup> msdyn_quotebookingsetupSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_quotebookingsetup>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_quoteinvoicingproduct"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_quoteinvoicingproduct> msdyn_quoteinvoicingproductSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_quoteinvoicingproduct>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_quoteinvoicingsetup"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_quoteinvoicingsetup> msdyn_quoteinvoicingsetupSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_quoteinvoicingsetup>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_quotelineanalyticsbreakdown"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_quotelineanalyticsbreakdown> msdyn_quotelineanalyticsbreakdownSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_quotelineanalyticsbreakdown>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_quotelineinvoiceschedule"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_quotelineinvoiceschedule> msdyn_quotelineinvoicescheduleSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_quotelineinvoiceschedule>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_quotelineresourcecategory"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_quotelineresourcecategory> msdyn_quotelineresourcecategorySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_quotelineresourcecategory>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_quotelinescheduleofvalue"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_quotelinescheduleofvalue> msdyn_quotelinescheduleofvalueSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_quotelinescheduleofvalue>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_quotelinetransaction"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_quotelinetransaction> msdyn_quotelinetransactionSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_quotelinetransaction>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_quotelinetransactioncategory"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_quotelinetransactioncategory> msdyn_quotelinetransactioncategorySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_quotelinetransactioncategory>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_quotelinetransactionclassification"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_quotelinetransactionclassification> msdyn_quotelinetransactionclassificationSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_quotelinetransactionclassification>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_quotepricelist"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_quotepricelist> msdyn_quotepricelistSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_quotepricelist>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_relationshipinsightsunifiedconfig"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_relationshipinsightsunifiedconfig> msdyn_relationshipinsightsunifiedconfigSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_relationshipinsightsunifiedconfig>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_requirementcharacteristic"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_requirementcharacteristic> msdyn_requirementcharacteristicSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_requirementcharacteristic>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_requirementorganizationunit"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_requirementorganizationunit> msdyn_requirementorganizationunitSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_requirementorganizationunit>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_requirementresourcecategory"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_requirementresourcecategory> msdyn_requirementresourcecategorySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_requirementresourcecategory>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_requirementresourcepreference"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_requirementresourcepreference> msdyn_requirementresourcepreferenceSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_requirementresourcepreference>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_requirementstatus"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_requirementstatus> msdyn_requirementstatusSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_requirementstatus>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_resourceassignment"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_resourceassignment> msdyn_resourceassignmentSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_resourceassignment>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_resourceassignmentdetail"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_resourceassignmentdetail> msdyn_resourceassignmentdetailSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_resourceassignmentdetail>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_resourcecategorypricelevel"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_resourcecategorypricelevel> msdyn_resourcecategorypricelevelSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_resourcecategorypricelevel>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_resourcepaytype"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_resourcepaytype> msdyn_resourcepaytypeSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_resourcepaytype>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_resourcerequest"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_resourcerequest> msdyn_resourcerequestSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_resourcerequest>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_resourcerequirement"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_resourcerequirement> msdyn_resourcerequirementSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_resourcerequirement>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_resourcerequirement_bookableresource"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_resourcerequirement_bookableresource> msdyn_resourcerequirement_bookableresourceSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_resourcerequirement_bookableresource>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_resourcerequirement_bookingheader"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_resourcerequirement_bookingheader> msdyn_resourcerequirement_bookingheaderSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_resourcerequirement_bookingheader>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_resourcerequirement_systemuser"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_resourcerequirement_systemuser> msdyn_resourcerequirement_systemuserSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_resourcerequirement_systemuser>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_resourcerequirementdetail"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_resourcerequirementdetail> msdyn_resourcerequirementdetailSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_resourcerequirementdetail>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_resourceterritory"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_resourceterritory> msdyn_resourceterritorySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_resourceterritory>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_rma"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_rma> msdyn_rmaSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_rma>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_rmaproduct"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_rmaproduct> msdyn_rmaproductSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_rmaproduct>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_rmareceipt"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_rmareceipt> msdyn_rmareceiptSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_rmareceipt>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_rmareceiptproduct"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_rmareceiptproduct> msdyn_rmareceiptproductSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_rmareceiptproduct>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_rmasubstatus"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_rmasubstatus> msdyn_rmasubstatusSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_rmasubstatus>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_rolecompetencyrequirement"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_rolecompetencyrequirement> msdyn_rolecompetencyrequirementSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_rolecompetencyrequirement>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_roleutilization"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_roleutilization> msdyn_roleutilizationSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_roleutilization>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_rtv"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_rtv> msdyn_rtvSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_rtv>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_rtvproduct"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_rtvproduct> msdyn_rtvproductSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_rtvproduct>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_rtvsubstatus"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_rtvsubstatus> msdyn_rtvsubstatusSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_rtvsubstatus>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_scheduleboardsetting"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_scheduleboardsetting> msdyn_scheduleboardsettingSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_scheduleboardsetting>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_schedulingparameter"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_schedulingparameter> msdyn_schedulingparameterSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_schedulingparameter>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_servicetasktype"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_servicetasktype> msdyn_servicetasktypeSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_servicetasktype>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_shipvia"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_shipvia> msdyn_shipviaSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_shipvia>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_siconfig"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_siconfig> msdyn_siconfigSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_siconfig>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_solutioncomponentdatasource"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_solutioncomponentdatasource> msdyn_solutioncomponentdatasourceSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_solutioncomponentdatasource>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_solutioncomponentsummary"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_solutioncomponentsummary> msdyn_solutioncomponentsummarySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_solutioncomponentsummary>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_systemuserschedulersetting"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting> msdyn_systemuserschedulersettingSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_taxcode"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_taxcode> msdyn_taxcodeSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_taxcode>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_taxcodedetail"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_taxcodedetail> msdyn_taxcodedetailSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_taxcodedetail>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_timeentry"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_timeentry> msdyn_timeentrySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_timeentry>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_timegroup"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_timegroup> msdyn_timegroupSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_timegroup>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_timegroupdetail"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_timegroupdetail> msdyn_timegroupdetailSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_timegroupdetail>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_timeoffcalendar"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_timeoffcalendar> msdyn_timeoffcalendarSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_timeoffcalendar>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_timeoffrequest"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_timeoffrequest> msdyn_timeoffrequestSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_timeoffrequest>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_transactioncategory"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_transactioncategory> msdyn_transactioncategorySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_transactioncategory>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_transactioncategoryclassification"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_transactioncategoryclassification> msdyn_transactioncategoryclassificationSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_transactioncategoryclassification>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_transactioncategoryhierarchyelement"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_transactioncategoryhierarchyelement> msdyn_transactioncategoryhierarchyelementSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_transactioncategoryhierarchyelement>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_transactioncategorypricelevel"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_transactioncategorypricelevel> msdyn_transactioncategorypricelevelSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_transactioncategorypricelevel>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_transactionconnection"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_transactionconnection> msdyn_transactionconnectionSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_transactionconnection>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_transactionorigin"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_transactionorigin> msdyn_transactionoriginSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_transactionorigin>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_transactiontype"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_transactiontype> msdyn_transactiontypeSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_transactiontype>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_uniquenumber"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_uniquenumber> msdyn_uniquenumberSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_uniquenumber>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_untrackedappointment"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_untrackedappointment> msdyn_untrackedappointmentSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_untrackedappointment>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_userworkhistory"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_userworkhistory> msdyn_userworkhistorySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_userworkhistory>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_wallsavedquery"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_wallsavedquery> msdyn_wallsavedquerySet
@@ -1638,6 +4206,174 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_warehouse"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_warehouse> msdyn_warehouseSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_warehouse>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_workhourtemplate"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_workhourtemplate> msdyn_workhourtemplateSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_workhourtemplate>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_workorder"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_workorder> msdyn_workorderSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_workorder>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_workordercharacteristic"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_workordercharacteristic> msdyn_workordercharacteristicSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_workordercharacteristic>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_workorderdetailsgenerationqueue"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_workorderdetailsgenerationqueue> msdyn_workorderdetailsgenerationqueueSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_workorderdetailsgenerationqueue>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_workorderincident"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_workorderincident> msdyn_workorderincidentSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_workorderincident>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_workorderproduct"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_workorderproduct> msdyn_workorderproductSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_workorderproduct>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_workorderresourcerestriction"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction> msdyn_workorderresourcerestrictionSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_workorderservice"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_workorderservice> msdyn_workorderserviceSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_workorderservice>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_workorderservicetask"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_workorderservicetask> msdyn_workorderservicetaskSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_workorderservicetask>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_workordersubstatus"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_workordersubstatus> msdyn_workordersubstatusSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_workordersubstatus>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.msdyn_workordertype"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.msdyn_workordertype> msdyn_workordertypeSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.msdyn_workordertype>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.NavigationSetting"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.NavigationSetting> NavigationSettingSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.NavigationSetting>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.NewProcess"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.NewProcess> NewProcessSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.NewProcess>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.OfficeGraphDocument"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.OfficeGraphDocument> OfficeGraphDocumentSet
@@ -1646,6 +4382,18 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.OfficeGraphDocument>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.OfflineCommandDefinition"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.OfflineCommandDefinition> OfflineCommandDefinitionSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.OfflineCommandDefinition>();
 			}
 		}
 		
@@ -1698,6 +4446,18 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.OpportunitySalesProcess"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.OpportunitySalesProcess> OpportunitySalesProcessSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.OpportunitySalesProcess>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.OrderClose"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.OrderClose> OrderCloseSet
@@ -1734,6 +4494,30 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.OrgInsightsMetric"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.OrgInsightsMetric> OrgInsightsMetricSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.OrgInsightsMetric>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.OrgInsightsNotification"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.OrgInsightsNotification> OrgInsightsNotificationSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.OrgInsightsNotification>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.OwnerMapping"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.OwnerMapping> OwnerMappingSet
@@ -1766,6 +4550,18 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.PhoneCall>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.PhoneToCaseProcess"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.PhoneToCaseProcess> PhoneToCaseProcessSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.PhoneToCaseProcess>();
 			}
 		}
 		
@@ -2142,62 +4938,38 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.RecommendationCache"/> entities.
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.RatingModel"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<DLaB.Xrm.Entities.RecommendationCache> RecommendationCacheSet
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.RatingModel> RatingModelSet
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.CreateQuery<DLaB.Xrm.Entities.RecommendationCache>();
+				return this.CreateQuery<DLaB.Xrm.Entities.RatingModel>();
 			}
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.RecommendationModel"/> entities.
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.RatingValue"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<DLaB.Xrm.Entities.RecommendationModel> RecommendationModelSet
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.RatingValue> RatingValueSet
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.CreateQuery<DLaB.Xrm.Entities.RecommendationModel>();
+				return this.CreateQuery<DLaB.Xrm.Entities.RatingValue>();
 			}
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.RecommendationModelMapping"/> entities.
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.RecommendedDocument"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<DLaB.Xrm.Entities.RecommendationModelMapping> RecommendationModelMappingSet
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.RecommendedDocument> RecommendedDocumentSet
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.CreateQuery<DLaB.Xrm.Entities.RecommendationModelMapping>();
-			}
-		}
-		
-		/// <summary>
-		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.RecommendationModelVersion"/> entities.
-		/// </summary>
-		public System.Linq.IQueryable<DLaB.Xrm.Entities.RecommendationModelVersion> RecommendationModelVersionSet
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.CreateQuery<DLaB.Xrm.Entities.RecommendationModelVersion>();
-			}
-		}
-		
-		/// <summary>
-		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.RecommendationModelVersionHistory"/> entities.
-		/// </summary>
-		public System.Linq.IQueryable<DLaB.Xrm.Entities.RecommendationModelVersionHistory> RecommendationModelVersionHistorySet
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.CreateQuery<DLaB.Xrm.Entities.RecommendationModelVersionHistory>();
+				return this.CreateQuery<DLaB.Xrm.Entities.RecommendedDocument>();
 			}
 		}
 		
@@ -2478,6 +5250,18 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.SavedOrgInsightsConfiguration"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.SavedOrgInsightsConfiguration> SavedOrgInsightsConfigurationSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.SavedOrgInsightsConfiguration>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.SavedQuery"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.SavedQuery> SavedQuerySet
@@ -2730,18 +5514,6 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.SimilarityRule"/> entities.
-		/// </summary>
-		public System.Linq.IQueryable<DLaB.Xrm.Entities.SimilarityRule> SimilarityRuleSet
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.CreateQuery<DLaB.Xrm.Entities.SimilarityRule>();
-			}
-		}
-		
-		/// <summary>
 		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.Site"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<DLaB.Xrm.Entities.Site> SiteSet
@@ -2894,6 +5666,18 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.SubscriptionTrackingDeletedObject>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.SuggestionCardTemplate"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.SuggestionCardTemplate> SuggestionCardTemplateSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.SuggestionCardTemplate>();
 			}
 		}
 		
@@ -3254,6 +6038,18 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.CreateQuery<DLaB.Xrm.Entities.TransformationParameterMapping>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.TranslationProcess"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.TranslationProcess> TranslationProcessSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<DLaB.Xrm.Entities.TranslationProcess>();
 			}
 		}
 		

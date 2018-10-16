@@ -15,23 +15,27 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("campaignitem")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class CampaignItem : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CampaignId = "campaignid";
 			public const string CampaignItemId = "campaignitemid";
 			public const string Id = "campaignitemid";
 			public const string EntityId = "entityid";
 			public const string EntityType = "entitytype";
+			public const string ImportSequenceNumber = "importsequencenumber";
+			public const string Name = "name";
+			public const string OverriddenCreatedOn = "overriddencreatedon";
 			public const string OwnerId = "ownerid";
 			public const string OwningBusinessUnit = "owningbusinessunit";
 			public const string OwningUser = "owninguser";
+			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
+			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -43,6 +47,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "campaignitem";
+		
+		public const string PrimaryIdAttribute = "campaignitemid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 4403;
 		
@@ -172,6 +180,66 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Sequence number of the import that created this record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("importsequencenumber")]
+		public System.Nullable<int> ImportSequenceNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("importsequencenumber");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ImportSequenceNumber");
+				this.SetAttributeValue("importsequencenumber", value);
+				this.OnPropertyChanged("ImportSequenceNumber");
+			}
+		}
+		
+		/// <summary>
+		/// name
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("name")]
+		public string Name
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("name");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Name");
+				this.SetAttributeValue("name", value);
+				this.OnPropertyChanged("Name");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time that the record was migrated.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overriddencreatedon")]
+		public System.Nullable<System.DateTime> OverriddenCreatedOn
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overriddencreatedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OverriddenCreatedOn");
+				this.SetAttributeValue("overriddencreatedon", value);
+				this.OnPropertyChanged("OverriddenCreatedOn");
+			}
+		}
+		
+		/// <summary>
 		/// Unique identifier of the user or team who owns the campaign item.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ownerid")]
@@ -225,6 +293,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timezoneruleversionnumber")]
+		public System.Nullable<int> TimeZoneRuleVersionNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timezoneruleversionnumber");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
+				this.SetAttributeValue("timezoneruleversionnumber", value);
+				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Time zone code that was in use when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
+		public System.Nullable<int> UTCConversionTimeZoneCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("utcconversiontimezonecode");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("UTCConversionTimeZoneCode");
+				this.SetAttributeValue("utcconversiontimezonecode", value);
+				this.OnPropertyChanged("UTCConversionTimeZoneCode");
+			}
+		}
+		
+		/// <summary>
 		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
@@ -234,6 +342,106 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N campaignitem_AsyncOperations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("campaignitem_AsyncOperations")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.AsyncOperation> campaignitem_AsyncOperations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.AsyncOperation>("campaignitem_AsyncOperations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("campaignitem_AsyncOperations");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.AsyncOperation>("campaignitem_AsyncOperations", null, value);
+				this.OnPropertyChanged("campaignitem_AsyncOperations");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N campaignitem_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("campaignitem_BulkDeleteFailures")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.BulkDeleteFailure> campaignitem_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.BulkDeleteFailure>("campaignitem_BulkDeleteFailures", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("campaignitem_BulkDeleteFailures");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.BulkDeleteFailure>("campaignitem_BulkDeleteFailures", null, value);
+				this.OnPropertyChanged("campaignitem_BulkDeleteFailures");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N campaignitem_MailboxTrackingFolders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("campaignitem_MailboxTrackingFolders")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> campaignitem_MailboxTrackingFolders
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("campaignitem_MailboxTrackingFolders", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("campaignitem_MailboxTrackingFolders");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("campaignitem_MailboxTrackingFolders", null, value);
+				this.OnPropertyChanged("campaignitem_MailboxTrackingFolders");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N campaignitem_PrincipalObjectAttributeAccesses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("campaignitem_PrincipalObjectAttributeAccesses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess> campaignitem_PrincipalObjectAttributeAccesses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("campaignitem_PrincipalObjectAttributeAccesses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("campaignitem_PrincipalObjectAttributeAccesses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("campaignitem_PrincipalObjectAttributeAccesses", null, value);
+				this.OnPropertyChanged("campaignitem_PrincipalObjectAttributeAccesses");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N campaignitem_UserEntityInstanceDatas
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("campaignitem_UserEntityInstanceDatas")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.UserEntityInstanceData> campaignitem_UserEntityInstanceDatas
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.UserEntityInstanceData>("campaignitem_UserEntityInstanceDatas", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("campaignitem_UserEntityInstanceDatas");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.UserEntityInstanceData>("campaignitem_UserEntityInstanceDatas", null, value);
+				this.OnPropertyChanged("campaignitem_UserEntityInstanceDatas");
 			}
 		}
 		

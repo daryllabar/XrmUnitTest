@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("processtrigger")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ProcessTrigger : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ComponentState = "componentstate";
 			public const string ControlName = "controlname";
@@ -39,6 +39,7 @@ namespace DLaB.Xrm.Entities
 			public const string OwnerId = "ownerid";
 			public const string OwningBusinessUnit = "owningbusinessunit";
 			public const string OwningUser = "owninguser";
+			public const string PipelineStage = "pipelinestage";
 			public const string PrimaryEntityTypeCode = "primaryentitytypecode";
 			public const string ProcessId = "processid";
 			public const string ProcessTriggerId = "processtriggerid";
@@ -54,7 +55,6 @@ namespace DLaB.Xrm.Entities
 			public const string process_processtrigger = "process_processtrigger";
 			public const string processtrigger_systemform = "processtrigger_systemform";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -66,6 +66,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "processtrigger";
+		
+		public const string PrimaryIdAttribute = "processtriggerid";
 		
 		public const int EntityTypeCode = 4712;
 		
@@ -165,7 +167,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -318,7 +320,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -420,6 +422,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("OwningUser");
 				this.SetAttributeValue("owninguser", value);
 				this.OnPropertyChanged("OwningUser");
+			}
+		}
+		
+		/// <summary>
+		/// Pipeline Stage to Execute Workflow Event Plugin.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("pipelinestage")]
+		public Microsoft.Xrm.Sdk.OptionSetValue PipelineStage
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("pipelinestage");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("PipelineStage");
+				this.SetAttributeValue("pipelinestage", value);
+				this.OnPropertyChanged("PipelineStage");
 			}
 		}
 		
@@ -562,6 +584,26 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N ProcessTrigger_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ProcessTrigger_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> ProcessTrigger_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ProcessTrigger_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ProcessTrigger_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ProcessTrigger_SyncErrors", null, value);
+				this.OnPropertyChanged("ProcessTrigger_SyncErrors");
 			}
 		}
 		
@@ -755,6 +797,21 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				ControlType = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("pipelinestage")]
+		public virtual ProcessTrigger_PipelineStage? PipelineStageEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((ProcessTrigger_PipelineStage?)(EntityOptionSetEnum.GetEnum(this, "pipelinestage")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				PipelineStage = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 		

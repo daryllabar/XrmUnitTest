@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("teamtemplate")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class TeamTemplate : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
@@ -39,7 +39,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_teamtemplate_modifiedby = "lk_teamtemplate_modifiedby";
 			public const string lk_teamtemplate_modifiedonbehalfby = "lk_teamtemplate_modifiedonbehalfby";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -51,6 +50,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "teamtemplate";
+		
+		public const string PrimaryIdAttribute = "teamtemplateid";
+		
+		public const string PrimaryNameAttribute = "teamtemplatename";
 		
 		public const int EntityTypeCode = 92;
 		
@@ -329,6 +332,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("TeamTemplateName");
 				this.SetAttributeValue("teamtemplatename", value);
 				this.OnPropertyChanged("TeamTemplateName");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N TeamTemplate_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TeamTemplate_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> TeamTemplate_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("TeamTemplate_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TeamTemplate_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("TeamTemplate_SyncErrors", null, value);
+				this.OnPropertyChanged("TeamTemplate_SyncErrors");
 			}
 		}
 		

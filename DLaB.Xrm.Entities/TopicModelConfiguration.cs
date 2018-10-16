@@ -15,35 +15,39 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("topicmodelconfiguration")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class TopicModelConfiguration : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ComponentState = "componentstate";
 			public const string DataFilter = "datafilter";
 			public const string Description = "description";
 			public const string FetchXmlList = "fetchxmllist";
+			public const string ImportSequenceNumber = "importsequencenumber";
 			public const string IsManaged = "ismanaged";
 			public const string MinRelevanceScore = "minrelevancescore";
 			public const string Name = "name";
 			public const string NgramSize = "ngramsize";
 			public const string OrganizationId = "organizationid";
+			public const string OverriddenCreatedOn = "overriddencreatedon";
 			public const string OverwriteTime = "overwritetime";
 			public const string SolutionId = "solutionid";
 			public const string SourceEntity = "sourceentity";
 			public const string StopWords = "stopwords";
 			public const string TimeFilter = "timefilter";
 			public const string TimeFilterDuration = "timefilterduration";
+			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string TopicModelConfigurationId = "topicmodelconfigurationid";
 			public const string Id = "topicmodelconfigurationid";
 			public const string TopicModelConfigurationIdUnique = "topicmodelconfigurationidunique";
 			public const string TopicModelId = "topicmodelid";
+			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
+			public const string VersionNumber = "versionnumber";
 			public const string organization_topicmodelconfiguration = "organization_topicmodelconfiguration";
 			public const string topicmodel_topicmodelconfiguration = "topicmodel_topicmodelconfiguration";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -55,6 +59,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "topicmodelconfiguration";
+		
+		public const string PrimaryIdAttribute = "topicmodelconfigurationid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9942;
 		
@@ -154,6 +162,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Sequence number of the import that created this record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("importsequencenumber")]
+		public System.Nullable<int> ImportSequenceNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("importsequencenumber");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ImportSequenceNumber");
+				this.SetAttributeValue("importsequencenumber", value);
+				this.OnPropertyChanged("ImportSequenceNumber");
+			}
+		}
+		
+		/// <summary>
 		/// Is Manageed
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ismanaged")]
@@ -227,7 +255,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the organization associated with the topic model configuration.
+		/// organization_topicmodelconfiguration
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("organizationid")]
 		public Microsoft.Xrm.Sdk.EntityReference OrganizationId
@@ -236,6 +264,26 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("organizationid");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time that the record was migrated.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overriddencreatedon")]
+		public System.Nullable<System.DateTime> OverriddenCreatedOn
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overriddencreatedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OverriddenCreatedOn");
+				this.SetAttributeValue("overriddencreatedon", value);
+				this.OnPropertyChanged("OverriddenCreatedOn");
 			}
 		}
 		
@@ -346,6 +394,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timezoneruleversionnumber")]
+		public System.Nullable<int> TimeZoneRuleVersionNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timezoneruleversionnumber");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
+				this.SetAttributeValue("timezoneruleversionnumber", value);
+				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
+			}
+		}
+		
+		/// <summary>
 		/// Unique identifier for entity instances
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("topicmodelconfigurationid")]
@@ -389,7 +457,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the Topic Model Configuration used when synchronizing customizations for the Microsoft Dynamics CRM client for Outlook
+		/// Unique identifier of the Topic Model Configuration used when synchronizing customizations for the Microsoft Dynamics 365 client for Outlook
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("topicmodelconfigurationidunique")]
 		public System.Nullable<System.Guid> TopicModelConfigurationIdUnique
@@ -402,7 +470,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier for Model associated with Topic Model Configuration.
+		/// topicmodel_topicmodelconfiguration
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("topicmodelid")]
 		public Microsoft.Xrm.Sdk.EntityReference TopicModelId
@@ -418,6 +486,139 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("TopicModelId");
 				this.SetAttributeValue("topicmodelid", value);
 				this.OnPropertyChanged("TopicModelId");
+			}
+		}
+		
+		/// <summary>
+		/// Time zone code that was in use when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
+		public System.Nullable<int> UTCConversionTimeZoneCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("utcconversiontimezonecode");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("UTCConversionTimeZoneCode");
+				this.SetAttributeValue("utcconversiontimezonecode", value);
+				this.OnPropertyChanged("UTCConversionTimeZoneCode");
+			}
+		}
+		
+		/// <summary>
+		/// Version Number
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
+		public System.Nullable<long> VersionNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N topicmodelconfiguration_AsyncOperations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("topicmodelconfiguration_AsyncOperations")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.AsyncOperation> topicmodelconfiguration_AsyncOperations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.AsyncOperation>("topicmodelconfiguration_AsyncOperations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("topicmodelconfiguration_AsyncOperations");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.AsyncOperation>("topicmodelconfiguration_AsyncOperations", null, value);
+				this.OnPropertyChanged("topicmodelconfiguration_AsyncOperations");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N topicmodelconfiguration_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("topicmodelconfiguration_BulkDeleteFailures")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.BulkDeleteFailure> topicmodelconfiguration_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.BulkDeleteFailure>("topicmodelconfiguration_BulkDeleteFailures", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("topicmodelconfiguration_BulkDeleteFailures");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.BulkDeleteFailure>("topicmodelconfiguration_BulkDeleteFailures", null, value);
+				this.OnPropertyChanged("topicmodelconfiguration_BulkDeleteFailures");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N topicmodelconfiguration_MailboxTrackingFolders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("topicmodelconfiguration_MailboxTrackingFolders")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> topicmodelconfiguration_MailboxTrackingFolders
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("topicmodelconfiguration_MailboxTrackingFolders", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("topicmodelconfiguration_MailboxTrackingFolders");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("topicmodelconfiguration_MailboxTrackingFolders", null, value);
+				this.OnPropertyChanged("topicmodelconfiguration_MailboxTrackingFolders");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N topicmodelconfiguration_PrincipalObjectAttributeAccesses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("topicmodelconfiguration_PrincipalObjectAttributeAccesses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess> topicmodelconfiguration_PrincipalObjectAttributeAccesses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("topicmodelconfiguration_PrincipalObjectAttributeAccesses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("topicmodelconfiguration_PrincipalObjectAttributeAccesses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("topicmodelconfiguration_PrincipalObjectAttributeAccesses", null, value);
+				this.OnPropertyChanged("topicmodelconfiguration_PrincipalObjectAttributeAccesses");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N topicmodelconfiguration_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("topicmodelconfiguration_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> topicmodelconfiguration_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("topicmodelconfiguration_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("topicmodelconfiguration_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("topicmodelconfiguration_SyncErrors", null, value);
+				this.OnPropertyChanged("topicmodelconfiguration_SyncErrors");
 			}
 		}
 		
@@ -478,6 +679,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("topicmodelconfiguration_topicmodelexecutionhistory");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.TopicModelExecutionHistory>("topicmodelconfiguration_topicmodelexecutionhistory", null, value);
 				this.OnPropertyChanged("topicmodelconfiguration_topicmodelexecutionhistory");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N topicmodelconfiguration_UserEntityInstanceDatas
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("topicmodelconfiguration_UserEntityInstanceDatas")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.UserEntityInstanceData> topicmodelconfiguration_UserEntityInstanceDatas
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.UserEntityInstanceData>("topicmodelconfiguration_UserEntityInstanceDatas", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("topicmodelconfiguration_UserEntityInstanceDatas");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.UserEntityInstanceData>("topicmodelconfiguration_UserEntityInstanceDatas", null, value);
+				this.OnPropertyChanged("topicmodelconfiguration_UserEntityInstanceDatas");
 			}
 		}
 		

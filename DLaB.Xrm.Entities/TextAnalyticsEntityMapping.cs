@@ -15,12 +15,13 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("textanalyticsentitymapping")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class TextAnalyticsEntityMapping : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
+			public const string AdvancedSimilarityRuleId = "advancedsimilarityruleid";
 			public const string ComponentState = "componentstate";
 			public const string Entity = "entity";
 			public const string EntityDisplayName = "entitydisplayname";
@@ -29,6 +30,7 @@ namespace DLaB.Xrm.Entities
 			public const string FieldDisplayName = "fielddisplayname";
 			public const string FieldPickList = "fieldpicklist";
 			public const string IsManaged = "ismanaged";
+			public const string IsTextMatchMapping = "istextmatchmapping";
 			public const string KnowledgeSearchModelId = "knowledgesearchmodelid";
 			public const string ModelType = "modeltype";
 			public const string OrganizationId = "organizationid";
@@ -40,12 +42,11 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "textanalyticsentitymappingid";
 			public const string TextAnalyticsEntityMappingIdUnique = "textanalyticsentitymappingidunique";
 			public const string TopicModelConfigurationId = "topicmodelconfigurationid";
+			public const string advancedsimilarityrule_textanalyticsentitymapping = "advancedsimilarityrule_textanalyticsentitymapping";
 			public const string knowledgesearchmodel_textanalyticsentitymapping = "knowledgesearchmodel_textanalyticsentitymapping";
 			public const string organization_textanalyticsentitymapping = "organization_textanalyticsentitymapping";
-			public const string similarityrule_textanalyticsentitymapping = "similarityrule_textanalyticsentitymapping";
 			public const string topicmodelconfiguration_textanalyticsentitymapping = "topicmodelconfiguration_textanalyticsentitymapping";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -57,6 +58,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "textanalyticsentitymapping";
+		
+		public const string PrimaryIdAttribute = "textanalyticsentitymappingid";
 		
 		public const int EntityTypeCode = 9945;
 		
@@ -79,6 +82,26 @@ namespace DLaB.Xrm.Entities
 			if ((this.PropertyChanging != null))
 			{
 				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// Advanced Similarity RuleId associated with entity mapping.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("advancedsimilarityruleid")]
+		public Microsoft.Xrm.Sdk.EntityReference AdvancedSimilarityRuleId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("advancedsimilarityruleid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("AdvancedSimilarityRuleId");
+				this.SetAttributeValue("advancedsimilarityruleid", value);
+				this.OnPropertyChanged("AdvancedSimilarityRuleId");
 			}
 		}
 		
@@ -139,12 +162,12 @@ namespace DLaB.Xrm.Entities
 		/// Select Entity
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("entitypicklist")]
-		public Microsoft.Xrm.Sdk.OptionSetValue EntityPickList
+		public string EntityPickList
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("entitypicklist");
+				return this.GetAttributeValue<string>("entitypicklist");
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -225,6 +248,26 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<bool>>("ismanaged");
+			}
+		}
+		
+		/// <summary>
+		/// Specify if the mapping is for text match or exact match
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("istextmatchmapping")]
+		public System.Nullable<bool> IsTextMatchMapping
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("istextmatchmapping");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IsTextMatchMapping");
+				this.SetAttributeValue("istextmatchmapping", value);
+				this.OnPropertyChanged("IsTextMatchMapping");
 			}
 		}
 		
@@ -404,7 +447,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Topic Model Configuration associated with entity mapping.
+		/// topicmodelconfiguration_textanalyticsentitymapping
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("topicmodelconfigurationid")]
 		public Microsoft.Xrm.Sdk.EntityReference TopicModelConfigurationId
@@ -420,6 +463,27 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("TopicModelConfigurationId");
 				this.SetAttributeValue("topicmodelconfigurationid", value);
 				this.OnPropertyChanged("TopicModelConfigurationId");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 advancedsimilarityrule_textanalyticsentitymapping
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("advancedsimilarityruleid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("advancedsimilarityrule_textanalyticsentitymapping")]
+		public DLaB.Xrm.Entities.AdvancedSimilarityRule advancedsimilarityrule_textanalyticsentitymapping
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.AdvancedSimilarityRule>("advancedsimilarityrule_textanalyticsentitymapping", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("advancedsimilarityrule_textanalyticsentitymapping");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.AdvancedSimilarityRule>("advancedsimilarityrule_textanalyticsentitymapping", null, value);
+				this.OnPropertyChanged("advancedsimilarityrule_textanalyticsentitymapping");
 			}
 		}
 		
@@ -455,27 +519,6 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Organization>("organization_textanalyticsentitymapping", null);
-			}
-		}
-		
-		/// <summary>
-		/// N:1 similarityrule_textanalyticsentitymapping
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("similarityruleid")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("similarityrule_textanalyticsentitymapping")]
-		public DLaB.Xrm.Entities.SimilarityRule similarityrule_textanalyticsentitymapping
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntity<DLaB.Xrm.Entities.SimilarityRule>("similarityrule_textanalyticsentitymapping", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("similarityrule_textanalyticsentitymapping");
-				this.SetRelatedEntity<DLaB.Xrm.Entities.SimilarityRule>("similarityrule_textanalyticsentitymapping", null, value);
-				this.OnPropertyChanged("similarityrule_textanalyticsentitymapping");
 			}
 		}
 		
@@ -549,21 +592,6 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("entitypicklist")]
-		public virtual TextAnalyticsEntityMapping_EntityPickList? EntityPickListEnum
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return ((TextAnalyticsEntityMapping_EntityPickList?)(EntityOptionSetEnum.GetEnum(this, "entitypicklist")));
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				EntityPickList = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 		

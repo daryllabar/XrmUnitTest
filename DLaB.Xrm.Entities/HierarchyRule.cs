@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("hierarchyrule")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class HierarchyRule : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ComponentState = "componentstate";
 			public const string Description = "description";
@@ -43,7 +43,6 @@ namespace DLaB.Xrm.Entities
 			public const string VersionNumber = "versionnumber";
 			public const string organization_hierarchyrules = "organization_hierarchyrules";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -55,6 +54,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "hierarchyrule";
+		
+		public const string PrimaryIdAttribute = "hierarchyruleid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 8840;
 		
@@ -157,7 +160,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the hierarchy rule used when synchronizing customizations for the Microsoft Dynamics CRM client for Outlook
+		/// Unique identifier of the hierarchy rule used when synchronizing customizations for the Microsoft Dynamics 365 client for Outlook
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("hierarchyruleidunique")]
 		public System.Nullable<System.Guid> HierarchyRuleIDUnique

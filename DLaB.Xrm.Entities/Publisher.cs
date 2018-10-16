@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("publisher")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Publisher : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string Address1_AddressId = "address1_addressid";
 			public const string Address1_AddressTypeCode = "address1_addresstypecode";
@@ -93,7 +93,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_publisherbase_modifiedonbehalfby = "lk_publisherbase_modifiedonbehalfby";
 			public const string organization_publisher = "organization_publisher";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -105,6 +104,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "publisher";
+		
+		public const string PrimaryIdAttribute = "publisherid";
+		
+		public const string PrimaryNameAttribute = "friendlyname";
 		
 		public const int EntityTypeCode = 7101;
 		
@@ -1398,6 +1401,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N publisher_appmodule
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("publisher_appmodule")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.AppModule> publisher_appmodule
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.AppModule>("publisher_appmodule", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("publisher_appmodule");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.AppModule>("publisher_appmodule", null, value);
+				this.OnPropertyChanged("publisher_appmodule");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N Publisher_DuplicateBaseRecord
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Publisher_DuplicateBaseRecord")]
@@ -1474,6 +1497,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("publisher_solution");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Solution>("publisher_solution", null, value);
 				this.OnPropertyChanged("publisher_solution");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Publisher_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Publisher_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Publisher_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Publisher_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Publisher_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Publisher_SyncErrors", null, value);
+				this.OnPropertyChanged("Publisher_SyncErrors");
 			}
 		}
 		

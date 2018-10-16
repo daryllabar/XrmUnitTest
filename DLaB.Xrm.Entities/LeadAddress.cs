@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("leadaddress")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class LeadAddress : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AddressNumber = "addressnumber";
 			public const string AddressTypeCode = "addresstypecode";
@@ -32,6 +32,7 @@ namespace DLaB.Xrm.Entities
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string ExchangeRate = "exchangerate";
 			public const string Fax = "fax";
+			public const string ImportSequenceNumber = "importsequencenumber";
 			public const string Latitude = "latitude";
 			public const string LeadAddressId = "leadaddressid";
 			public const string Id = "leadaddressid";
@@ -43,6 +44,7 @@ namespace DLaB.Xrm.Entities
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string Name = "name";
+			public const string OverriddenCreatedOn = "overriddencreatedon";
 			public const string OwningBusinessUnit = "owningbusinessunit";
 			public const string ParentId = "parentid";
 			public const string PostalCode = "postalcode";
@@ -52,8 +54,10 @@ namespace DLaB.Xrm.Entities
 			public const string Telephone1 = "telephone1";
 			public const string Telephone2 = "telephone2";
 			public const string Telephone3 = "telephone3";
+			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string UPSZone = "upszone";
+			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string UTCOffset = "utcoffset";
 			public const string VersionNumber = "versionnumber";
 			public const string lead_addresses = "lead_addresses";
@@ -63,7 +67,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_leadaddressbase_modifiedby = "lk_leadaddressbase_modifiedby";
 			public const string TransactionCurrency_LeadAddress = "TransactionCurrency_LeadAddress";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -75,6 +78,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "leadaddress";
+		
+		public const string PrimaryIdAttribute = "leadaddressid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 1017;
 		
@@ -214,7 +221,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the user who created the lead address.
+		/// lk_leadaddressbase_createdby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
@@ -254,7 +261,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the delegate user who created the leadaddress.
+		/// lk_leadaddress_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
@@ -303,6 +310,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Fax");
 				this.SetAttributeValue("fax", value);
 				this.OnPropertyChanged("Fax");
+			}
+		}
+		
+		/// <summary>
+		/// Sequence number of the import that created this record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("importsequencenumber")]
+		public System.Nullable<int> ImportSequenceNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("importsequencenumber");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ImportSequenceNumber");
+				this.SetAttributeValue("importsequencenumber", value);
+				this.OnPropertyChanged("ImportSequenceNumber");
 			}
 		}
 		
@@ -450,7 +477,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the user who last modified the lead address.
+		/// lk_leadaddressbase_modifiedby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
@@ -490,7 +517,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the delegate user who last modified the leadaddress.
+		/// lk_leadaddress_modifiedonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
@@ -530,6 +557,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Date and time that the record was migrated.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overriddencreatedon")]
+		public System.Nullable<System.DateTime> OverriddenCreatedOn
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overriddencreatedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OverriddenCreatedOn");
+				this.SetAttributeValue("overriddencreatedon", value);
+				this.OnPropertyChanged("OverriddenCreatedOn");
+			}
+		}
+		
+		/// <summary>
 		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
@@ -550,7 +597,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the parent object with which the lead address is associated.
+		/// lead_addresses
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("parentid")]
 		public Microsoft.Xrm.Sdk.EntityReference ParentId
@@ -710,7 +757,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the currency associated with the leadaddress.
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timezoneruleversionnumber")]
+		public System.Nullable<int> TimeZoneRuleVersionNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timezoneruleversionnumber");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
+				this.SetAttributeValue("timezoneruleversionnumber", value);
+				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
+			}
+		}
+		
+		/// <summary>
+		/// TransactionCurrency_LeadAddress
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("transactioncurrencyid")]
 		public Microsoft.Xrm.Sdk.EntityReference TransactionCurrencyId
@@ -750,6 +817,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Time zone code that was in use when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
+		public System.Nullable<int> UTCConversionTimeZoneCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("utcconversiontimezonecode");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("UTCConversionTimeZoneCode");
+				this.SetAttributeValue("utcconversiontimezonecode", value);
+				this.OnPropertyChanged("UTCConversionTimeZoneCode");
+			}
+		}
+		
+		/// <summary>
 		/// UTC offset for the lead address. This is the difference between local time and standard Coordinated Universal Time.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcoffset")]
@@ -779,6 +866,106 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N leadaddress_AsyncOperations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("leadaddress_AsyncOperations")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.AsyncOperation> leadaddress_AsyncOperations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.AsyncOperation>("leadaddress_AsyncOperations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("leadaddress_AsyncOperations");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.AsyncOperation>("leadaddress_AsyncOperations", null, value);
+				this.OnPropertyChanged("leadaddress_AsyncOperations");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N leadaddress_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("leadaddress_BulkDeleteFailures")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.BulkDeleteFailure> leadaddress_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.BulkDeleteFailure>("leadaddress_BulkDeleteFailures", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("leadaddress_BulkDeleteFailures");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.BulkDeleteFailure>("leadaddress_BulkDeleteFailures", null, value);
+				this.OnPropertyChanged("leadaddress_BulkDeleteFailures");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N leadaddress_MailboxTrackingFolders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("leadaddress_MailboxTrackingFolders")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> leadaddress_MailboxTrackingFolders
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("leadaddress_MailboxTrackingFolders", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("leadaddress_MailboxTrackingFolders");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("leadaddress_MailboxTrackingFolders", null, value);
+				this.OnPropertyChanged("leadaddress_MailboxTrackingFolders");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N leadaddress_PrincipalObjectAttributeAccesses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("leadaddress_PrincipalObjectAttributeAccesses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess> leadaddress_PrincipalObjectAttributeAccesses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("leadaddress_PrincipalObjectAttributeAccesses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("leadaddress_PrincipalObjectAttributeAccesses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("leadaddress_PrincipalObjectAttributeAccesses", null, value);
+				this.OnPropertyChanged("leadaddress_PrincipalObjectAttributeAccesses");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N LeadAddress_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("LeadAddress_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> LeadAddress_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("LeadAddress_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("LeadAddress_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("LeadAddress_SyncErrors", null, value);
+				this.OnPropertyChanged("LeadAddress_SyncErrors");
 			}
 		}
 		

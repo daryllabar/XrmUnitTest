@@ -15,27 +15,33 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("sdkmessagepair")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class SdkMessagePair : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
+			public const string ComponentState = "componentstate";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string CustomizationLevel = "customizationlevel";
+			public const string DeprecatedVersion = "deprecatedversion";
 			public const string Endpoint = "endpoint";
+			public const string IntroducedVersion = "introducedversion";
+			public const string IsManaged = "ismanaged";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string Namespace = "namespace";
 			public const string OrganizationId = "organizationid";
+			public const string OverwriteTime = "overwritetime";
 			public const string SdkMessageBindingInformation = "sdkmessagebindinginformation";
 			public const string SdkMessageId = "sdkmessageid";
 			public const string SdkMessagePairId = "sdkmessagepairid";
 			public const string Id = "sdkmessagepairid";
 			public const string SdkMessagePairIdUnique = "sdkmessagepairidunique";
+			public const string SolutionId = "solutionid";
 			public const string VersionNumber = "versionnumber";
 			public const string createdby_sdkmessagepair = "createdby_sdkmessagepair";
 			public const string lk_sdkmessagepair_createdonbehalfby = "lk_sdkmessagepair_createdonbehalfby";
@@ -44,7 +50,6 @@ namespace DLaB.Xrm.Entities
 			public const string modifiedby_sdkmessagepair = "modifiedby_sdkmessagepair";
 			public const string organization_sdkmessagepair = "organization_sdkmessagepair";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -56,6 +61,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "sdkmessagepair";
+		
+		public const string PrimaryIdAttribute = "sdkmessagepairid";
 		
 		public const int EntityTypeCode = 4613;
 		
@@ -78,6 +85,19 @@ namespace DLaB.Xrm.Entities
 			if ((this.PropertyChanging != null))
 			{
 				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
+		public Microsoft.Xrm.Sdk.OptionSetValue ComponentState
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("componentstate");
 			}
 		}
 		
@@ -155,6 +175,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Version in which the component is deprecated.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("deprecatedversion")]
+		public string DeprecatedVersion
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("deprecatedversion");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("DeprecatedVersion");
+				this.SetAttributeValue("deprecatedversion", value);
+				this.OnPropertyChanged("DeprecatedVersion");
+			}
+		}
+		
+		/// <summary>
 		/// Endpoint that the message pair is associated with.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("endpoint")]
@@ -171,6 +211,39 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Endpoint");
 				this.SetAttributeValue("endpoint", value);
 				this.OnPropertyChanged("Endpoint");
+			}
+		}
+		
+		/// <summary>
+		/// Version in which the component is introduced.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("introducedversion")]
+		public string IntroducedVersion
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("introducedversion");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IntroducedVersion");
+				this.SetAttributeValue("introducedversion", value);
+				this.OnPropertyChanged("IntroducedVersion");
+			}
+		}
+		
+		/// <summary>
+		/// Information that specifies whether this component is managed.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ismanaged")]
+		public System.Nullable<bool> IsManaged
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("ismanaged");
 			}
 		}
 		
@@ -268,6 +341,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overwritetime")]
+		public System.Nullable<System.DateTime> OverwriteTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overwritetime");
+			}
+		}
+		
+		/// <summary>
 		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sdkmessagebindinginformation")]
@@ -353,6 +439,19 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("sdkmessagepairidunique");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the associated solution.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("solutionid")]
+		public System.Nullable<System.Guid> SolutionId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("solutionid");
 			}
 		}
 		
@@ -561,6 +660,16 @@ namespace DLaB.Xrm.Entities
                         break;
                 }
             }
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
+		public virtual ComponentState? ComponentStateEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+			}
 		}
 	}
 }

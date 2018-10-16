@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum PhoneCallState
 	{
 		
@@ -30,11 +30,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("phonecall")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class PhoneCall : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ActivityAdditionalParams = "activityadditionalparams";
 			public const string ActivityId = "activityid";
@@ -55,10 +55,12 @@ namespace DLaB.Xrm.Entities
 			public const string IsBilled = "isbilled";
 			public const string IsRegularActivity = "isregularactivity";
 			public const string IsWorkflowCreated = "isworkflowcreated";
+			public const string LastOnHoldTime = "lastonholdtime";
 			public const string LeftVoiceMail = "leftvoicemail";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string OnHoldTime = "onholdtime";
 			public const string OverriddenCreatedOn = "overriddencreatedon";
 			public const string OwnerId = "ownerid";
 			public const string OwningBusinessUnit = "owningbusinessunit";
@@ -72,6 +74,9 @@ namespace DLaB.Xrm.Entities
 			public const string ScheduledEnd = "scheduledend";
 			public const string ScheduledStart = "scheduledstart";
 			public const string ServiceId = "serviceid";
+			public const string SLAId = "slaid";
+			public const string SLAInvokedId = "slainvokedid";
+			public const string SortDate = "sortdate";
 			public const string StageId = "stageid";
 			public const string StateCode = "statecode";
 			public const string StatusCode = "statuscode";
@@ -86,6 +91,8 @@ namespace DLaB.Xrm.Entities
 			public const string VersionNumber = "versionnumber";
 			public const string Account_Phonecalls = "Account_Phonecalls";
 			public const string activity_pointer_phonecall = "activity_pointer_phonecall";
+			public const string bookableresourcebooking_PhoneCalls = "bookableresourcebooking_PhoneCalls";
+			public const string bookableresourcebookingheader_PhoneCalls = "bookableresourcebookingheader_PhoneCalls";
 			public const string BulkOperation_Phonecall = "BulkOperation_Phonecall";
 			public const string business_unit_phone_call_activities = "business_unit_phone_call_activities";
 			public const string Campaign_Phonecalls = "Campaign_Phonecalls";
@@ -103,17 +110,81 @@ namespace DLaB.Xrm.Entities
 			public const string lk_phonecall_createdonbehalfby = "lk_phonecall_createdonbehalfby";
 			public const string lk_phonecall_modifiedby = "lk_phonecall_modifiedby";
 			public const string lk_phonecall_modifiedonbehalfby = "lk_phonecall_modifiedonbehalfby";
+			public const string manualsla_phonecall = "manualsla_phonecall";
+			public const string msdyn_agreement_PhoneCalls = "msdyn_agreement_PhoneCalls";
+			public const string msdyn_agreementbookingdate_PhoneCalls = "msdyn_agreementbookingdate_PhoneCalls";
+			public const string msdyn_agreementbookingincident_PhoneCalls = "msdyn_agreementbookingincident_PhoneCalls";
+			public const string msdyn_agreementbookingproduct_PhoneCalls = "msdyn_agreementbookingproduct_PhoneCalls";
+			public const string msdyn_agreementbookingservice_PhoneCalls = "msdyn_agreementbookingservice_PhoneCalls";
+			public const string msdyn_agreementbookingservicetask_PhoneCalls = "msdyn_agreementbookingservicetask_PhoneCalls";
+			public const string msdyn_agreementbookingsetup_PhoneCalls = "msdyn_agreementbookingsetup_PhoneCalls";
+			public const string msdyn_agreementinvoicedate_PhoneCalls = "msdyn_agreementinvoicedate_PhoneCalls";
+			public const string msdyn_agreementinvoiceproduct_PhoneCalls = "msdyn_agreementinvoiceproduct_PhoneCalls";
+			public const string msdyn_agreementinvoicesetup_PhoneCalls = "msdyn_agreementinvoicesetup_PhoneCalls";
+			public const string msdyn_bookingalertstatus_PhoneCalls = "msdyn_bookingalertstatus_PhoneCalls";
+			public const string msdyn_bookingrule_PhoneCalls = "msdyn_bookingrule_PhoneCalls";
+			public const string msdyn_bookingtimestamp_PhoneCalls = "msdyn_bookingtimestamp_PhoneCalls";
+			public const string msdyn_customerasset_PhoneCalls = "msdyn_customerasset_PhoneCalls";
+			public const string msdyn_fieldservicesetting_PhoneCalls = "msdyn_fieldservicesetting_PhoneCalls";
+			public const string msdyn_incidenttypecharacteristic_PhoneCalls = "msdyn_incidenttypecharacteristic_PhoneCalls";
+			public const string msdyn_incidenttypeproduct_PhoneCalls = "msdyn_incidenttypeproduct_PhoneCalls";
+			public const string msdyn_incidenttypeservice_PhoneCalls = "msdyn_incidenttypeservice_PhoneCalls";
+			public const string msdyn_inventoryadjustment_PhoneCalls = "msdyn_inventoryadjustment_PhoneCalls";
+			public const string msdyn_inventoryadjustmentproduct_PhoneCalls = "msdyn_inventoryadjustmentproduct_PhoneCalls";
+			public const string msdyn_inventoryjournal_PhoneCalls = "msdyn_inventoryjournal_PhoneCalls";
+			public const string msdyn_inventorytransfer_PhoneCalls = "msdyn_inventorytransfer_PhoneCalls";
+			public const string msdyn_payment_PhoneCalls = "msdyn_payment_PhoneCalls";
+			public const string msdyn_paymentdetail_PhoneCalls = "msdyn_paymentdetail_PhoneCalls";
+			public const string msdyn_paymentmethod_PhoneCalls = "msdyn_paymentmethod_PhoneCalls";
+			public const string msdyn_paymentterm_PhoneCalls = "msdyn_paymentterm_PhoneCalls";
 			public const string msdyn_postalbum_PhoneCalls = "msdyn_postalbum_PhoneCalls";
+			public const string msdyn_postalcode_PhoneCalls = "msdyn_postalcode_PhoneCalls";
+			public const string msdyn_processnotes_PhoneCalls = "msdyn_processnotes_PhoneCalls";
+			public const string msdyn_productinventory_PhoneCalls = "msdyn_productinventory_PhoneCalls";
+			public const string msdyn_projectteam_PhoneCalls = "msdyn_projectteam_PhoneCalls";
+			public const string msdyn_purchaseorder_PhoneCalls = "msdyn_purchaseorder_PhoneCalls";
+			public const string msdyn_purchaseorderbill_PhoneCalls = "msdyn_purchaseorderbill_PhoneCalls";
+			public const string msdyn_purchaseorderproduct_PhoneCalls = "msdyn_purchaseorderproduct_PhoneCalls";
+			public const string msdyn_purchaseorderreceipt_PhoneCalls = "msdyn_purchaseorderreceipt_PhoneCalls";
+			public const string msdyn_purchaseorderreceiptproduct_PhoneCalls = "msdyn_purchaseorderreceiptproduct_PhoneCalls";
+			public const string msdyn_purchaseordersubstatus_PhoneCalls = "msdyn_purchaseordersubstatus_PhoneCalls";
+			public const string msdyn_quotebookingincident_PhoneCalls = "msdyn_quotebookingincident_PhoneCalls";
+			public const string msdyn_quotebookingproduct_PhoneCalls = "msdyn_quotebookingproduct_PhoneCalls";
+			public const string msdyn_quotebookingservice_PhoneCalls = "msdyn_quotebookingservice_PhoneCalls";
+			public const string msdyn_quotebookingservicetask_PhoneCalls = "msdyn_quotebookingservicetask_PhoneCalls";
+			public const string msdyn_resourceterritory_PhoneCalls = "msdyn_resourceterritory_PhoneCalls";
+			public const string msdyn_rma_PhoneCalls = "msdyn_rma_PhoneCalls";
+			public const string msdyn_rmaproduct_PhoneCalls = "msdyn_rmaproduct_PhoneCalls";
+			public const string msdyn_rmareceipt_PhoneCalls = "msdyn_rmareceipt_PhoneCalls";
+			public const string msdyn_rmareceiptproduct_PhoneCalls = "msdyn_rmareceiptproduct_PhoneCalls";
+			public const string msdyn_rmasubstatus_PhoneCalls = "msdyn_rmasubstatus_PhoneCalls";
+			public const string msdyn_rtv_PhoneCalls = "msdyn_rtv_PhoneCalls";
+			public const string msdyn_rtvproduct_PhoneCalls = "msdyn_rtvproduct_PhoneCalls";
+			public const string msdyn_rtvsubstatus_PhoneCalls = "msdyn_rtvsubstatus_PhoneCalls";
+			public const string msdyn_shipvia_PhoneCalls = "msdyn_shipvia_PhoneCalls";
+			public const string msdyn_systemuserschedulersetting_PhoneCalls = "msdyn_systemuserschedulersetting_PhoneCalls";
+			public const string msdyn_timegroup_PhoneCalls = "msdyn_timegroup_PhoneCalls";
+			public const string msdyn_timegroupdetail_PhoneCalls = "msdyn_timegroupdetail_PhoneCalls";
+			public const string msdyn_timeoffrequest_PhoneCalls = "msdyn_timeoffrequest_PhoneCalls";
+			public const string msdyn_warehouse_PhoneCalls = "msdyn_warehouse_PhoneCalls";
+			public const string msdyn_workorder_PhoneCalls = "msdyn_workorder_PhoneCalls";
+			public const string msdyn_workordercharacteristic_PhoneCalls = "msdyn_workordercharacteristic_PhoneCalls";
+			public const string msdyn_workorderincident_PhoneCalls = "msdyn_workorderincident_PhoneCalls";
+			public const string msdyn_workorderproduct_PhoneCalls = "msdyn_workorderproduct_PhoneCalls";
+			public const string msdyn_workorderresourcerestriction_PhoneCalls = "msdyn_workorderresourcerestriction_PhoneCalls";
+			public const string msdyn_workorderservice_PhoneCalls = "msdyn_workorderservice_PhoneCalls";
+			public const string msdyn_workorderservicetask_PhoneCalls = "msdyn_workorderservicetask_PhoneCalls";
 			public const string Opportunity_Phonecalls = "Opportunity_Phonecalls";
 			public const string processstage_phonecalls = "processstage_phonecalls";
 			public const string Quote_Phonecalls = "Quote_Phonecalls";
 			public const string SalesOrder_Phonecalls = "SalesOrder_Phonecalls";
 			public const string service_phonecalls = "service_phonecalls";
+			public const string site_PhoneCalls = "site_PhoneCalls";
+			public const string sla_phonecall = "sla_phonecall";
 			public const string team_phonecall = "team_phonecall";
 			public const string TransactionCurrency_PhoneCall = "TransactionCurrency_PhoneCall";
 			public const string user_phonecall = "user_phonecall";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -125,6 +196,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "phonecall";
+		
+		public const string PrimaryIdAttribute = "activityid";
+		
+		public const string PrimaryNameAttribute = "subject";
 		
 		public const int EntityTypeCode = 4210;
 		
@@ -327,7 +402,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -529,6 +604,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Contains the date and time stamp of the last on hold time.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lastonholdtime")]
+		public System.Nullable<System.DateTime> LastOnHoldTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("lastonholdtime");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("LastOnHoldTime");
+				this.SetAttributeValue("lastonholdtime", value);
+				this.OnPropertyChanged("LastOnHoldTime");
+			}
+		}
+		
+		/// <summary>
 		/// Select whether a voice mail was left for the person.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("leftvoicemail")]
@@ -569,7 +664,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -605,6 +700,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ModifiedOnBehalfBy");
 				this.SetAttributeValue("modifiedonbehalfby", value);
 				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Shows how long, in minutes, that the record was on hold.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("onholdtime")]
+		public System.Nullable<int> OnHoldTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("onholdtime");
 			}
 		}
 		
@@ -769,7 +877,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the record that the phone call relates to.
+		/// SalesOrder_Phonecalls
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
 		public Microsoft.Xrm.Sdk.EntityReference RegardingObjectId
@@ -842,7 +950,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier for an associated service.
+		/// service_phonecalls
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("serviceid")]
 		public Microsoft.Xrm.Sdk.EntityReference ServiceId
@@ -858,6 +966,59 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ServiceId");
 				this.SetAttributeValue("serviceid", value);
 				this.OnPropertyChanged("ServiceId");
+			}
+		}
+		
+		/// <summary>
+		/// Choose the service level agreement (SLA) that you want to apply to the Phone Call record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slaid")]
+		public Microsoft.Xrm.Sdk.EntityReference SLAId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("slaid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SLAId");
+				this.SetAttributeValue("slaid", value);
+				this.OnPropertyChanged("SLAId");
+			}
+		}
+		
+		/// <summary>
+		/// Last SLA that was applied to this Phone Call. This field is for internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slainvokedid")]
+		public Microsoft.Xrm.Sdk.EntityReference SLAInvokedId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("slainvokedid");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the date and time by which the activities are sorted.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sortdate")]
+		public System.Nullable<System.DateTime> SortDate
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("sortdate");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SortDate");
+				this.SetAttributeValue("sortdate", value);
+				this.OnPropertyChanged("SortDate");
 			}
 		}
 		
@@ -1126,6 +1287,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N phonecall_actioncard
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("phonecall_actioncard")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActionCard> phonecall_actioncard
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ActionCard>("phonecall_actioncard", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("phonecall_actioncard");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ActionCard>("phonecall_actioncard", null, value);
+				this.OnPropertyChanged("phonecall_actioncard");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N phonecall_activity_parties
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("phonecall_activity_parties")]
@@ -1386,6 +1567,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N PhoneCall_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("PhoneCall_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> PhoneCall_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("PhoneCall_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("PhoneCall_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("PhoneCall_SyncErrors", null, value);
+				this.OnPropertyChanged("PhoneCall_SyncErrors");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N slakpiinstance_phonecall
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_phonecall")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SLAKPIInstance> slakpiinstance_phonecall
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SLAKPIInstance>("slakpiinstance_phonecall", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_phonecall");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SLAKPIInstance>("slakpiinstance_phonecall", null, value);
+				this.OnPropertyChanged("slakpiinstance_phonecall");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N userentityinstancedata_phonecall
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("userentityinstancedata_phonecall")]
@@ -1444,6 +1665,48 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("activity_pointer_phonecall");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.ActivityPointer>("activity_pointer_phonecall", null, value);
 				this.OnPropertyChanged("activity_pointer_phonecall");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcebooking_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebooking_PhoneCalls")]
+		public DLaB.Xrm.Entities.BookableResourceBooking bookableresourcebooking_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBooking>("bookableresourcebooking_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bookableresourcebooking_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBooking>("bookableresourcebooking_PhoneCalls", null, value);
+				this.OnPropertyChanged("bookableresourcebooking_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcebookingheader_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebookingheader_PhoneCalls")]
+		public DLaB.Xrm.Entities.BookableResourceBookingHeader bookableresourcebookingheader_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBookingHeader>("bookableresourcebookingheader_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bookableresourcebookingheader_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBookingHeader>("bookableresourcebookingheader_PhoneCalls", null, value);
+				this.OnPropertyChanged("bookableresourcebookingheader_PhoneCalls");
 			}
 		}
 		
@@ -1805,6 +2068,573 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 manualsla_phonecall
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slaid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_phonecall")]
+		public DLaB.Xrm.Entities.SLA manualsla_phonecall
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SLA>("manualsla_phonecall", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_phonecall");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SLA>("manualsla_phonecall", null, value);
+				this.OnPropertyChanged("manualsla_phonecall");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreement_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreement_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_agreement msdyn_agreement_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreement_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_agreement_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingdate_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingdate_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingdate msdyn_agreementbookingdate_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingdate_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingdate_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingincident_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingincident_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingincident msdyn_agreementbookingincident_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingincident>("msdyn_agreementbookingincident_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingincident_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingincident>("msdyn_agreementbookingincident_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingincident_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingproduct_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingproduct_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingproduct msdyn_agreementbookingproduct_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_agreementbookingproduct_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingproduct_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_agreementbookingproduct_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingproduct_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservice_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservice_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservice msdyn_agreementbookingservice_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_agreementbookingservice_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingservice_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_agreementbookingservice_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingservice_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservicetask_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservicetask_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservicetask msdyn_agreementbookingservicetask_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask>("msdyn_agreementbookingservicetask_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingservicetask_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask>("msdyn_agreementbookingservicetask_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingservicetask_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingsetup_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingsetup_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingsetup msdyn_agreementbookingsetup_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingsetup_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingsetup_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicedate_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicedate_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicedate msdyn_agreementinvoicedate_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoicedate_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoicedate_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoiceproduct_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoiceproduct_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct msdyn_agreementinvoiceproduct_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_agreementinvoiceproduct_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoiceproduct_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_agreementinvoiceproduct_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoiceproduct_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicesetup_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicesetup_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicesetup msdyn_agreementinvoicesetup_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoicesetup_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoicesetup_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingalertstatus_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalertstatus_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_bookingalertstatus msdyn_bookingalertstatus_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalertstatus>("msdyn_bookingalertstatus_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingalertstatus_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalertstatus>("msdyn_bookingalertstatus_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_bookingalertstatus_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingrule_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingrule_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_bookingrule msdyn_bookingrule_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingrule>("msdyn_bookingrule_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingrule_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingrule>("msdyn_bookingrule_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_bookingrule_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingtimestamp_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingtimestamp_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_bookingtimestamp msdyn_bookingtimestamp_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingtimestamp_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_bookingtimestamp_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_customerasset_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_customerasset_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_customerasset msdyn_customerasset_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_customerasset_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_customerasset_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_customerasset_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_customerasset_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fieldservicesetting_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fieldservicesetting_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_fieldservicesetting msdyn_fieldservicesetting_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicesetting>("msdyn_fieldservicesetting_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_fieldservicesetting_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicesetting>("msdyn_fieldservicesetting_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_fieldservicesetting_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypecharacteristic_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypecharacteristic_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic msdyn_incidenttypecharacteristic_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic>("msdyn_incidenttypecharacteristic_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypecharacteristic_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic>("msdyn_incidenttypecharacteristic_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypecharacteristic_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeproduct_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeproduct_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeproduct msdyn_incidenttypeproduct_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypeproduct_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypeproduct_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeservice_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeservice_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeservice msdyn_incidenttypeservice_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_incidenttypeservice_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypeservice_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_incidenttypeservice_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypeservice_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustment_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustment_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustment msdyn_inventoryadjustment_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryadjustment_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_inventoryadjustment_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustmentproduct_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustmentproduct_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct msdyn_inventoryadjustmentproduct_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryadjustmentproduct_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_inventoryadjustmentproduct_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryjournal_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryjournal_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_inventoryjournal msdyn_inventoryjournal_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_inventoryjournal_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryjournal_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_inventoryjournal_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_inventoryjournal_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventorytransfer_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventorytransfer_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_inventorytransfer msdyn_inventorytransfer_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventorytransfer_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_inventorytransfer_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_payment_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_payment_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_payment msdyn_payment_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_payment>("msdyn_payment_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_payment_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_payment>("msdyn_payment_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_payment_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentdetail_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentdetail_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_paymentdetail msdyn_paymentdetail_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentdetail>("msdyn_paymentdetail_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentdetail_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentdetail>("msdyn_paymentdetail_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_paymentdetail_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentmethod_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentmethod_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_paymentmethod msdyn_paymentmethod_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentmethod>("msdyn_paymentmethod_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentmethod_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentmethod>("msdyn_paymentmethod_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_paymentmethod_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentterm_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentterm_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_paymentterm msdyn_paymentterm_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentterm>("msdyn_paymentterm_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentterm_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentterm>("msdyn_paymentterm_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_paymentterm_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 msdyn_postalbum_PhoneCalls
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1822,6 +2652,762 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("msdyn_postalbum_PhoneCalls");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_PostAlbum>("msdyn_postalbum_PhoneCalls", null, value);
 				this.OnPropertyChanged("msdyn_postalbum_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_postalcode_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_postalcode_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_postalcode msdyn_postalcode_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_postalcode_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_postalcode_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_postalcode_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_postalcode_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_processnotes_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_processnotes_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_processnotes msdyn_processnotes_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_processnotes>("msdyn_processnotes_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_processnotes_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_processnotes>("msdyn_processnotes_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_processnotes_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_productinventory_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_productinventory_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_productinventory msdyn_productinventory_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_productinventory_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_productinventory_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_productinventory_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_productinventory_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectteam_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectteam_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_projectteam msdyn_projectteam_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteam>("msdyn_projectteam_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_projectteam_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteam>("msdyn_projectteam_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_projectteam_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorder_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorder_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorder msdyn_purchaseorder_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorder_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorder_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderbill_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderbill_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderbill msdyn_purchaseorderbill_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("msdyn_purchaseorderbill_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderbill_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("msdyn_purchaseorderbill_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderbill_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderproduct_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderproduct_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderproduct msdyn_purchaseorderproduct_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_purchaseorderproduct_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderproduct_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_purchaseorderproduct_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderproduct_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceipt_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceipt_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceipt msdyn_purchaseorderreceipt_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderreceipt_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderreceipt_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceiptproduct_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceiptproduct_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct msdyn_purchaseorderreceiptproduct_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct>("msdyn_purchaseorderreceiptproduct_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderreceiptproduct_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct>("msdyn_purchaseorderreceiptproduct_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderreceiptproduct_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseordersubstatus_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseordersubstatus_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_purchaseordersubstatus msdyn_purchaseordersubstatus_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus>("msdyn_purchaseordersubstatus_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseordersubstatus_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus>("msdyn_purchaseordersubstatus_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_purchaseordersubstatus_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingincident_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingincident_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingincident msdyn_quotebookingincident_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quotebookingincident_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingincident_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quotebookingincident_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingincident_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingproduct_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingproduct_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingproduct msdyn_quotebookingproduct_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quotebookingproduct_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingproduct_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quotebookingproduct_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingproduct_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservice_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservice_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservice msdyn_quotebookingservice_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quotebookingservice_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingservice_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quotebookingservice_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingservice_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservicetask_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservicetask_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservicetask msdyn_quotebookingservicetask_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quotebookingservicetask_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingservicetask_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quotebookingservicetask_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingservicetask_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourceterritory_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourceterritory_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_resourceterritory msdyn_resourceterritory_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_resourceterritory_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_resourceterritory_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rma_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rma_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_rma msdyn_rma_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rma_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_rma_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmaproduct_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmaproduct_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_rmaproduct msdyn_rmaproduct_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_rmaproduct_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmaproduct_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_rmaproduct_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_rmaproduct_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceipt_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceipt_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_rmareceipt msdyn_rmareceipt_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmareceipt_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_rmareceipt_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceiptproduct_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceiptproduct_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_rmareceiptproduct msdyn_rmareceiptproduct_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceiptproduct>("msdyn_rmareceiptproduct_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmareceiptproduct_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceiptproduct>("msdyn_rmareceiptproduct_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_rmareceiptproduct_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmasubstatus_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmasubstatus_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_rmasubstatus msdyn_rmasubstatus_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmasubstatus>("msdyn_rmasubstatus_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmasubstatus_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmasubstatus>("msdyn_rmasubstatus_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_rmasubstatus_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtv_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtv_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_rtv msdyn_rtv_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtv_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_rtv_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvproduct_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvproduct_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_rtvproduct msdyn_rtvproduct_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_rtvproduct_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtvproduct_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_rtvproduct_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_rtvproduct_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvsubstatus_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvsubstatus_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_rtvsubstatus msdyn_rtvsubstatus_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvsubstatus>("msdyn_rtvsubstatus_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtvsubstatus_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvsubstatus>("msdyn_rtvsubstatus_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_rtvsubstatus_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_shipvia_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_shipvia_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_shipvia msdyn_shipvia_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_shipvia>("msdyn_shipvia_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_shipvia_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_shipvia>("msdyn_shipvia_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_shipvia_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_systemuserschedulersetting_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_systemuserschedulersetting_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_systemuserschedulersetting msdyn_systemuserschedulersetting_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting>("msdyn_systemuserschedulersetting_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_systemuserschedulersetting_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting>("msdyn_systemuserschedulersetting_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_systemuserschedulersetting_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroup_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroup_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_timegroup msdyn_timegroup_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timegroup_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_timegroup_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroupdetail_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroupdetail_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_timegroupdetail msdyn_timegroupdetail_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timegroupdetail_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_timegroupdetail_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timeoffrequest_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timeoffrequest_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_timeoffrequest msdyn_timeoffrequest_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffrequest>("msdyn_timeoffrequest_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timeoffrequest_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffrequest>("msdyn_timeoffrequest_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_timeoffrequest_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_warehouse_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_warehouse_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_warehouse msdyn_warehouse_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_warehouse_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_warehouse_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorder_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorder_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_workorder msdyn_workorder_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorder_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_workorder_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workordercharacteristic_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workordercharacteristic_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_workordercharacteristic msdyn_workordercharacteristic_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordercharacteristic>("msdyn_workordercharacteristic_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workordercharacteristic_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordercharacteristic>("msdyn_workordercharacteristic_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_workordercharacteristic_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderincident_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderincident_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_workorderincident msdyn_workorderincident_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderincident_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_workorderincident_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderproduct_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderproduct_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_workorderproduct msdyn_workorderproduct_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_workorderproduct_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderproduct_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_workorderproduct_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_workorderproduct_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderresourcerestriction_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderresourcerestriction_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_workorderresourcerestriction msdyn_workorderresourcerestriction_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_workorderresourcerestriction_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderresourcerestriction_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_workorderresourcerestriction_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_workorderresourcerestriction_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservice_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservice_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_workorderservice msdyn_workorderservice_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderservice_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_workorderservice_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservicetask_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservicetask_PhoneCalls")]
+		public DLaB.Xrm.Entities.msdyn_workorderservicetask msdyn_workorderservicetask_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderservicetask_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_PhoneCalls", null, value);
+				this.OnPropertyChanged("msdyn_workorderservicetask_PhoneCalls");
 			}
 		}
 		
@@ -1927,6 +3513,41 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("service_phonecalls");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.Service>("service_phonecalls", null, value);
 				this.OnPropertyChanged("service_phonecalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 site_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_PhoneCalls")]
+		public DLaB.Xrm.Entities.Site site_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Site>("site_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_PhoneCalls");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Site>("site_PhoneCalls", null, value);
+				this.OnPropertyChanged("site_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 sla_phonecall
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slainvokedid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_phonecall")]
+		public DLaB.Xrm.Entities.SLA sla_phonecall
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SLA>("sla_phonecall", null);
 			}
 		}
 		

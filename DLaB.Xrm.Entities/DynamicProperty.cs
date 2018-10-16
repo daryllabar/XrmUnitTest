@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum DynamicPropertyState
 	{
 		
@@ -30,11 +30,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("dynamicproperty")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class DynamicProperty : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string BaseDynamicPropertyId = "basedynamicpropertyid";
 			public const string CreatedBy = "createdby";
@@ -71,8 +71,10 @@ namespace DLaB.Xrm.Entities
 			public const string Precision = "precision";
 			public const string RegardingObjectId = "regardingobjectid";
 			public const string RootDynamicPropertyId = "rootdynamicpropertyid";
-			public const string statecode = "statecode";
-			public const string statuscode = "statuscode";
+			public const string StateCode = "statecode";
+			public const string StatusCode = "statuscode";
+			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
+			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
 			public const string DefaultValueOptionSet_DynamicProperty = "DefaultValueOptionSet_DynamicProperty";
 			public const string Referencingdynamicproperty_base_dynamicproperty = "dynamicproperty_base_dynamicproperty";
@@ -84,7 +86,6 @@ namespace DLaB.Xrm.Entities
 			public const string Product_DynamicProperty = "Product_DynamicProperty";
 			public const string ProductAssociation_DynamicProperty = "ProductAssociation_DynamicProperty";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -96,6 +97,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "dynamicproperty";
+		
+		public const string PrimaryIdAttribute = "dynamicpropertyid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 1048;
 		
@@ -122,7 +127,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the property in the product family that this property is being inherited from.
+		/// dynamicproperty_base_dynamicproperty
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("basedynamicpropertyid")]
 		public Microsoft.Xrm.Sdk.EntityReference BaseDynamicPropertyId
@@ -282,7 +287,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the default value of the property.
+		/// DefaultValueOptionSet_DynamicProperty
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("defaultvalueoptionset")]
 		public Microsoft.Xrm.Sdk.EntityReference DefaultValueOptionSet
@@ -705,7 +710,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the organization associated with the property.
+		/// dynamicproperty_organization
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("organizationid")]
 		public Microsoft.Xrm.Sdk.EntityReference OrganizationId
@@ -778,7 +783,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the product that the property is associated with.
+		/// ProductAssociation_DynamicProperty
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
 		public Microsoft.Xrm.Sdk.EntityReference RegardingObjectId
@@ -821,7 +826,7 @@ namespace DLaB.Xrm.Entities
 		/// Shows the state of the property.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
-		public System.Nullable<DLaB.Xrm.Entities.DynamicPropertyState> statecode
+		public System.Nullable<DLaB.Xrm.Entities.DynamicPropertyState> StateCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -839,7 +844,7 @@ namespace DLaB.Xrm.Entities
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("statecode");
+				this.OnPropertyChanging("StateCode");
 				if ((value == null))
 				{
 					this.SetAttributeValue("statecode", null);
@@ -848,7 +853,7 @@ namespace DLaB.Xrm.Entities
 				{
 					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
 				}
-				this.OnPropertyChanged("statecode");
+				this.OnPropertyChanged("StateCode");
 			}
 		}
 		
@@ -856,7 +861,7 @@ namespace DLaB.Xrm.Entities
 		/// Shows whether the property is active or inactive.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public Microsoft.Xrm.Sdk.OptionSetValue statuscode
+		public Microsoft.Xrm.Sdk.OptionSetValue StatusCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -866,9 +871,49 @@ namespace DLaB.Xrm.Entities
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("statuscode");
+				this.OnPropertyChanging("StatusCode");
 				this.SetAttributeValue("statuscode", value);
-				this.OnPropertyChanged("statuscode");
+				this.OnPropertyChanged("StatusCode");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timezoneruleversionnumber")]
+		public System.Nullable<int> TimeZoneRuleVersionNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timezoneruleversionnumber");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
+				this.SetAttributeValue("timezoneruleversionnumber", value);
+				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Time zone code that was in use when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
+		public System.Nullable<int> UTCConversionTimeZoneCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("utcconversiontimezonecode");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("UTCConversionTimeZoneCode");
+				this.SetAttributeValue("utcconversiontimezonecode", value);
+				this.OnPropertyChanged("UTCConversionTimeZoneCode");
 			}
 		}
 		
@@ -882,6 +927,26 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N dynamicproperty_AsyncOperations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dynamicproperty_AsyncOperations")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.AsyncOperation> dynamicproperty_AsyncOperations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.AsyncOperation>("dynamicproperty_AsyncOperations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("dynamicproperty_AsyncOperations");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.AsyncOperation>("dynamicproperty_AsyncOperations", null, value);
+				this.OnPropertyChanged("dynamicproperty_AsyncOperations");
 			}
 		}
 		
@@ -902,6 +967,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Referenceddynamicproperty_base_dynamicproperty");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.DynamicProperty>("dynamicproperty_base_dynamicproperty", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
 				this.OnPropertyChanged("Referenceddynamicproperty_base_dynamicproperty");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N dynamicproperty_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dynamicproperty_BulkDeleteFailures")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.BulkDeleteFailure> dynamicproperty_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.BulkDeleteFailure>("dynamicproperty_BulkDeleteFailures", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("dynamicproperty_BulkDeleteFailures");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.BulkDeleteFailure>("dynamicproperty_BulkDeleteFailures", null, value);
+				this.OnPropertyChanged("dynamicproperty_BulkDeleteFailures");
 			}
 		}
 		
@@ -962,6 +1047,106 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("DynamicProperty_DynamicPropertyOptionSetItem");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.DynamicPropertyOptionSetItem>("DynamicProperty_DynamicPropertyOptionSetItem", null, value);
 				this.OnPropertyChanged("DynamicProperty_DynamicPropertyOptionSetItem");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N dynamicproperty_MailboxTrackingFolders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dynamicproperty_MailboxTrackingFolders")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> dynamicproperty_MailboxTrackingFolders
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("dynamicproperty_MailboxTrackingFolders", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("dynamicproperty_MailboxTrackingFolders");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("dynamicproperty_MailboxTrackingFolders", null, value);
+				this.OnPropertyChanged("dynamicproperty_MailboxTrackingFolders");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N dynamicproperty_PrincipalObjectAttributeAccesses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dynamicproperty_PrincipalObjectAttributeAccesses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess> dynamicproperty_PrincipalObjectAttributeAccesses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("dynamicproperty_PrincipalObjectAttributeAccesses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("dynamicproperty_PrincipalObjectAttributeAccesses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("dynamicproperty_PrincipalObjectAttributeAccesses", null, value);
+				this.OnPropertyChanged("dynamicproperty_PrincipalObjectAttributeAccesses");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N dynamicproperty_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dynamicproperty_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> dynamicproperty_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("dynamicproperty_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("dynamicproperty_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("dynamicproperty_SyncErrors", null, value);
+				this.OnPropertyChanged("dynamicproperty_SyncErrors");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N dynamicproperty_UserEntityInstanceDatas
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dynamicproperty_UserEntityInstanceDatas")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.UserEntityInstanceData> dynamicproperty_UserEntityInstanceDatas
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.UserEntityInstanceData>("dynamicproperty_UserEntityInstanceDatas", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("dynamicproperty_UserEntityInstanceDatas");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.UserEntityInstanceData>("dynamicproperty_UserEntityInstanceDatas", null, value);
+				this.OnPropertyChanged("dynamicproperty_UserEntityInstanceDatas");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_dynamicproperty_msdyn_fieldcomputation_PropertyId
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_dynamicproperty_msdyn_fieldcomputation_PropertyId")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_fieldcomputation> msdyn_dynamicproperty_msdyn_fieldcomputation_PropertyId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_fieldcomputation>("msdyn_dynamicproperty_msdyn_fieldcomputation_PropertyId", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_dynamicproperty_msdyn_fieldcomputation_PropertyId");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_fieldcomputation>("msdyn_dynamicproperty_msdyn_fieldcomputation_PropertyId", null, value);
+				this.OnPropertyChanged("msdyn_dynamicproperty_msdyn_fieldcomputation_PropertyId");
 			}
 		}
 		
@@ -1205,7 +1390,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual DynamicProperty_StatusCode? statuscodeEnum
+		public virtual DynamicProperty_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -1215,7 +1400,7 @@ namespace DLaB.Xrm.Entities
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				statuscode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+				StatusCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 	}

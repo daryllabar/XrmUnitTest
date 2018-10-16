@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum ProductAssociationState
 	{
 		
@@ -33,11 +33,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("productassociation")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ProductAssociation : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AssociatedProduct = "associatedproduct";
 			public const string CreatedBy = "createdby";
@@ -57,10 +57,12 @@ namespace DLaB.Xrm.Entities
 			public const string ProductIsRequired = "productisrequired";
 			public const string PropertyCustomizationStatus = "propertycustomizationstatus";
 			public const string Quantity = "quantity";
-			public const string statecode = "statecode";
-			public const string statuscode = "statuscode";
+			public const string StateCode = "statecode";
+			public const string StatusCode = "statuscode";
+			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string UoMId = "uomid";
+			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
 			public const string lk_ProductAssociate_createdby = "lk_ProductAssociate_createdby";
 			public const string lk_ProductAssociation_createdonbehalfby = "lk_ProductAssociation_createdonbehalfby";
@@ -72,7 +74,6 @@ namespace DLaB.Xrm.Entities
 			public const string transactioncurrency_ProductAssociation = "transactioncurrency_ProductAssociation";
 			public const string unit_of_measurement_productassociation = "unit_of_measurement_productassociation";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -84,6 +85,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "productassociation";
+		
+		public const string PrimaryIdAttribute = "productassociationid";
+		
+		public const string PrimaryNameAttribute = "productidname";
 		
 		public const int EntityTypeCode = 1025;
 		
@@ -110,7 +115,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Select a product to add to the bundle or kit.
+		/// Product_ProductAssociation_AssocProd
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("associatedproduct")]
 		public Microsoft.Xrm.Sdk.EntityReference AssociatedProduct
@@ -303,7 +308,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the organization associated with the record.
+		/// organization_ProductAssociation
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("organizationid")]
 		public Microsoft.Xrm.Sdk.EntityReference OrganizationId
@@ -379,7 +384,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Select a bundle or a kit.
+		/// Product_ProductAssociation_Prod
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("productid")]
 		public Microsoft.Xrm.Sdk.EntityReference ProductId
@@ -462,7 +467,7 @@ namespace DLaB.Xrm.Entities
 		/// Shows whether the associated product is active or inactive.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
-		public System.Nullable<DLaB.Xrm.Entities.ProductAssociationState> statecode
+		public System.Nullable<DLaB.Xrm.Entities.ProductAssociationState> StateCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -480,7 +485,7 @@ namespace DLaB.Xrm.Entities
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("statecode");
+				this.OnPropertyChanging("StateCode");
 				if ((value == null))
 				{
 					this.SetAttributeValue("statecode", null);
@@ -489,7 +494,7 @@ namespace DLaB.Xrm.Entities
 				{
 					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
 				}
-				this.OnPropertyChanged("statecode");
+				this.OnPropertyChanged("StateCode");
 			}
 		}
 		
@@ -497,7 +502,7 @@ namespace DLaB.Xrm.Entities
 		/// Select the associated product's status.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public Microsoft.Xrm.Sdk.OptionSetValue statuscode
+		public Microsoft.Xrm.Sdk.OptionSetValue StatusCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -507,14 +512,34 @@ namespace DLaB.Xrm.Entities
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("statuscode");
+				this.OnPropertyChanging("StatusCode");
 				this.SetAttributeValue("statuscode", value);
-				this.OnPropertyChanged("statuscode");
+				this.OnPropertyChanged("StatusCode");
 			}
 		}
 		
 		/// <summary>
-		/// Shows the currency associated with the record.
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timezoneruleversionnumber")]
+		public System.Nullable<int> TimeZoneRuleVersionNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timezoneruleversionnumber");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
+				this.SetAttributeValue("timezoneruleversionnumber", value);
+				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
+			}
+		}
+		
+		/// <summary>
+		/// transactioncurrency_ProductAssociation
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("transactioncurrencyid")]
 		public Microsoft.Xrm.Sdk.EntityReference TransactionCurrencyId
@@ -534,7 +559,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the unit of the product association.
+		/// unit_of_measurement_productassociation
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("uomid")]
 		public Microsoft.Xrm.Sdk.EntityReference UoMId
@@ -550,6 +575,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("UoMId");
 				this.SetAttributeValue("uomid", value);
 				this.OnPropertyChanged("UoMId");
+			}
+		}
+		
+		/// <summary>
+		/// Time zone code that was in use when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
+		public System.Nullable<int> UTCConversionTimeZoneCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("utcconversiontimezonecode");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("UTCConversionTimeZoneCode");
+				this.SetAttributeValue("utcconversiontimezonecode", value);
+				this.OnPropertyChanged("UTCConversionTimeZoneCode");
 			}
 		}
 		
@@ -583,6 +628,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ProductAssociation_AsyncOperations");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.AsyncOperation>("ProductAssociation_AsyncOperations", null, value);
 				this.OnPropertyChanged("ProductAssociation_AsyncOperations");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N productassociation_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("productassociation_BulkDeleteFailures")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.BulkDeleteFailure> productassociation_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.BulkDeleteFailure>("productassociation_BulkDeleteFailures", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("productassociation_BulkDeleteFailures");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.BulkDeleteFailure>("productassociation_BulkDeleteFailures", null, value);
+				this.OnPropertyChanged("productassociation_BulkDeleteFailures");
 			}
 		}
 		
@@ -643,6 +708,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("productAssociation_invoice_details");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.InvoiceDetail>("productAssociation_invoice_details", null, value);
 				this.OnPropertyChanged("productAssociation_invoice_details");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N productassociation_MailboxTrackingFolders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("productassociation_MailboxTrackingFolders")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> productassociation_MailboxTrackingFolders
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("productassociation_MailboxTrackingFolders", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("productassociation_MailboxTrackingFolders");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("productassociation_MailboxTrackingFolders", null, value);
+				this.OnPropertyChanged("productassociation_MailboxTrackingFolders");
 			}
 		}
 		
@@ -743,6 +828,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("productAssociation_salesorder_details");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.SalesOrderDetail>("productAssociation_salesorder_details", null, value);
 				this.OnPropertyChanged("productAssociation_salesorder_details");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N ProductAssociation_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ProductAssociation_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> ProductAssociation_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ProductAssociation_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ProductAssociation_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ProductAssociation_SyncErrors", null, value);
+				this.OnPropertyChanged("ProductAssociation_SyncErrors");
 			}
 		}
 		
@@ -1021,7 +1126,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual ProductAssociation_StatusCode? statuscodeEnum
+		public virtual ProductAssociation_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -1031,7 +1136,7 @@ namespace DLaB.Xrm.Entities
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				statuscode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+				StatusCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 	}

@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("annualfiscalcalendar")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class AnnualFiscalCalendar : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string Annual = "annual";
 			public const string Annual_Base = "annual_base";
@@ -46,7 +46,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_annualfiscalcalendar_salespersonid = "lk_annualfiscalcalendar_salespersonid";
 			public const string transactioncurrency_annualfiscalcalendar = "transactioncurrency_annualfiscalcalendar";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -58,6 +57,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "annualfiscalcalendar";
+		
+		public const string PrimaryIdAttribute = "userfiscalcalendarid";
 		
 		public const int EntityTypeCode = 2000;
 		

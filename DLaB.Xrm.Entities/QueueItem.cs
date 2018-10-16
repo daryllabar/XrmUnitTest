@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum QueueItemState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("queueitem")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class QueueItem : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
@@ -81,6 +81,23 @@ namespace DLaB.Xrm.Entities
 			public const string lk_queueitembase_createdby = "lk_queueitembase_createdby";
 			public const string lk_queueitembase_modifiedby = "lk_queueitembase_modifiedby";
 			public const string lk_queueitembase_workerid = "lk_queueitembase_workerid";
+			public const string msdyn_agreementbookingdate_QueueItems = "msdyn_agreementbookingdate_QueueItems";
+			public const string msdyn_agreementbookingsetup_QueueItems = "msdyn_agreementbookingsetup_QueueItems";
+			public const string msdyn_agreementinvoicedate_QueueItems = "msdyn_agreementinvoicedate_QueueItems";
+			public const string msdyn_agreementinvoicesetup_QueueItems = "msdyn_agreementinvoicesetup_QueueItems";
+			public const string msdyn_approval_QueueItems = "msdyn_approval_QueueItems";
+			public const string msdyn_bookingalert_QueueItems = "msdyn_bookingalert_QueueItems";
+			public const string msdyn_inventoryadjustment_QueueItems = "msdyn_inventoryadjustment_QueueItems";
+			public const string msdyn_inventorytransfer_QueueItems = "msdyn_inventorytransfer_QueueItems";
+			public const string msdyn_project_QueueItems = "msdyn_project_QueueItems";
+			public const string msdyn_projecttask_QueueItems = "msdyn_projecttask_QueueItems";
+			public const string msdyn_resourcerequest_QueueItems = "msdyn_resourcerequest_QueueItems";
+			public const string msdyn_timegroup_QueueItems = "msdyn_timegroup_QueueItems";
+			public const string msdyn_timegroupdetail_QueueItems = "msdyn_timegroupdetail_QueueItems";
+			public const string msdyn_workorder_QueueItems = "msdyn_workorder_QueueItems";
+			public const string msdyn_workorderincident_QueueItems = "msdyn_workorderincident_QueueItems";
+			public const string msdyn_workorderservice_QueueItems = "msdyn_workorderservice_QueueItems";
+			public const string msdyn_workorderservicetask_QueueItems = "msdyn_workorderservicetask_QueueItems";
 			public const string organization_queueitems = "organization_queueitems";
 			public const string PhoneCall_QueueItem = "PhoneCall_QueueItem";
 			public const string queue_entries = "queue_entries";
@@ -91,7 +108,6 @@ namespace DLaB.Xrm.Entities
 			public const string team_queueitembase_workerid = "team_queueitembase_workerid";
 			public const string TransactionCurrency_QueueItem = "TransactionCurrency_QueueItem";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -103,6 +119,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "queueitem";
+		
+		public const string PrimaryIdAttribute = "queueitemid";
+		
+		public const string PrimaryNameAttribute = "title";
 		
 		public const int EntityTypeCode = 2029;
 		
@@ -149,7 +169,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -255,7 +275,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -295,7 +315,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the activity, case, or article assigned to the queue.
+		/// ServiceAppointment_QueueItem
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
 		public Microsoft.Xrm.Sdk.EntityReference ObjectId
@@ -836,6 +856,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N QueueItem_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("QueueItem_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> QueueItem_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("QueueItem_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("QueueItem_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("QueueItem_SyncErrors", null, value);
+				this.OnPropertyChanged("QueueItem_SyncErrors");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N userentityinstancedata_queueitem
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("userentityinstancedata_queueitem")]
@@ -1167,6 +1207,363 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("lk_queueitembase_workerid");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_queueitembase_workerid", null, value);
 				this.OnPropertyChanged("lk_queueitembase_workerid");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingdate_QueueItems
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingdate_QueueItems")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingdate msdyn_agreementbookingdate_QueueItems
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_QueueItems", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingdate_QueueItems");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_QueueItems", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingdate_QueueItems");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingsetup_QueueItems
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingsetup_QueueItems")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingsetup msdyn_agreementbookingsetup_QueueItems
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_QueueItems", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingsetup_QueueItems");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_QueueItems", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingsetup_QueueItems");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicedate_QueueItems
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicedate_QueueItems")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicedate msdyn_agreementinvoicedate_QueueItems
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_QueueItems", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoicedate_QueueItems");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_QueueItems", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoicedate_QueueItems");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicesetup_QueueItems
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicesetup_QueueItems")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicesetup msdyn_agreementinvoicesetup_QueueItems
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_QueueItems", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoicesetup_QueueItems");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_QueueItems", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoicesetup_QueueItems");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_approval_QueueItems
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_approval_QueueItems")]
+		public DLaB.Xrm.Entities.msdyn_approval msdyn_approval_QueueItems
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_QueueItems", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_approval_QueueItems");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_QueueItems", null, value);
+				this.OnPropertyChanged("msdyn_approval_QueueItems");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingalert_QueueItems
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalert_QueueItems")]
+		public DLaB.Xrm.Entities.msdyn_bookingalert msdyn_bookingalert_QueueItems
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_QueueItems", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingalert_QueueItems");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_QueueItems", null, value);
+				this.OnPropertyChanged("msdyn_bookingalert_QueueItems");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustment_QueueItems
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustment_QueueItems")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustment msdyn_inventoryadjustment_QueueItems
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_QueueItems", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryadjustment_QueueItems");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_QueueItems", null, value);
+				this.OnPropertyChanged("msdyn_inventoryadjustment_QueueItems");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventorytransfer_QueueItems
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventorytransfer_QueueItems")]
+		public DLaB.Xrm.Entities.msdyn_inventorytransfer msdyn_inventorytransfer_QueueItems
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_QueueItems", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventorytransfer_QueueItems");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_QueueItems", null, value);
+				this.OnPropertyChanged("msdyn_inventorytransfer_QueueItems");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_project_QueueItems
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_project_QueueItems")]
+		public DLaB.Xrm.Entities.msdyn_project msdyn_project_QueueItems
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_project>("msdyn_project_QueueItems", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_project_QueueItems");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_project>("msdyn_project_QueueItems", null, value);
+				this.OnPropertyChanged("msdyn_project_QueueItems");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projecttask_QueueItems
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projecttask_QueueItems")]
+		public DLaB.Xrm.Entities.msdyn_projecttask msdyn_projecttask_QueueItems
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttask>("msdyn_projecttask_QueueItems", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_projecttask_QueueItems");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttask>("msdyn_projecttask_QueueItems", null, value);
+				this.OnPropertyChanged("msdyn_projecttask_QueueItems");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourcerequest_QueueItems
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourcerequest_QueueItems")]
+		public DLaB.Xrm.Entities.msdyn_resourcerequest msdyn_resourcerequest_QueueItems
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcerequest>("msdyn_resourcerequest_QueueItems", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_resourcerequest_QueueItems");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcerequest>("msdyn_resourcerequest_QueueItems", null, value);
+				this.OnPropertyChanged("msdyn_resourcerequest_QueueItems");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroup_QueueItems
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroup_QueueItems")]
+		public DLaB.Xrm.Entities.msdyn_timegroup msdyn_timegroup_QueueItems
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_QueueItems", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timegroup_QueueItems");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_QueueItems", null, value);
+				this.OnPropertyChanged("msdyn_timegroup_QueueItems");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroupdetail_QueueItems
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroupdetail_QueueItems")]
+		public DLaB.Xrm.Entities.msdyn_timegroupdetail msdyn_timegroupdetail_QueueItems
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_QueueItems", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timegroupdetail_QueueItems");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_QueueItems", null, value);
+				this.OnPropertyChanged("msdyn_timegroupdetail_QueueItems");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorder_QueueItems
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorder_QueueItems")]
+		public DLaB.Xrm.Entities.msdyn_workorder msdyn_workorder_QueueItems
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_QueueItems", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorder_QueueItems");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_QueueItems", null, value);
+				this.OnPropertyChanged("msdyn_workorder_QueueItems");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderincident_QueueItems
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderincident_QueueItems")]
+		public DLaB.Xrm.Entities.msdyn_workorderincident msdyn_workorderincident_QueueItems
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_QueueItems", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderincident_QueueItems");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_QueueItems", null, value);
+				this.OnPropertyChanged("msdyn_workorderincident_QueueItems");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservice_QueueItems
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservice_QueueItems")]
+		public DLaB.Xrm.Entities.msdyn_workorderservice msdyn_workorderservice_QueueItems
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_QueueItems", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderservice_QueueItems");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_QueueItems", null, value);
+				this.OnPropertyChanged("msdyn_workorderservice_QueueItems");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservicetask_QueueItems
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservicetask_QueueItems")]
+		public DLaB.Xrm.Entities.msdyn_workorderservicetask msdyn_workorderservicetask_QueueItems
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_QueueItems", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderservicetask_QueueItems");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_QueueItems", null, value);
+				this.OnPropertyChanged("msdyn_workorderservicetask_QueueItems");
 			}
 		}
 		

@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("resource")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Resource : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string BusinessUnitId = "businessunitid";
 			public const string CalendarId = "calendarid";
@@ -28,13 +28,17 @@ namespace DLaB.Xrm.Entities
 			public const string EntityImage_Timestamp = "entityimage_timestamp";
 			public const string EntityImage_URL = "entityimage_url";
 			public const string EntityImageId = "entityimageid";
+			public const string ImportSequenceNumber = "importsequencenumber";
 			public const string IsDisabled = "isdisabled";
 			public const string Name = "name";
 			public const string ObjectTypeCode = "objecttypecode";
 			public const string OrganizationId = "organizationid";
+			public const string OverriddenCreatedOn = "overriddencreatedon";
 			public const string ResourceId = "resourceid";
 			public const string Id = "resourceid";
 			public const string SiteId = "siteid";
+			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
+			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
 			public const string business_unit_resources = "business_unit_resources";
 			public const string equipment_resources = "equipment_resources";
@@ -43,7 +47,6 @@ namespace DLaB.Xrm.Entities
 			public const string site_resources = "site_resources";
 			public const string systemuser_resources = "systemuser_resources";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -55,6 +58,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "resource";
+		
+		public const string PrimaryIdAttribute = "resourceid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 4002;
 		
@@ -81,7 +88,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the business unit with which the resource is associated.
+		/// business_unit_resources
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("businessunitid")]
 		public Microsoft.Xrm.Sdk.EntityReference BusinessUnitId
@@ -200,6 +207,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Sequence number of the import that created this record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("importsequencenumber")]
+		public System.Nullable<int> ImportSequenceNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("importsequencenumber");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ImportSequenceNumber");
+				this.SetAttributeValue("importsequencenumber", value);
+				this.OnPropertyChanged("ImportSequenceNumber");
+			}
+		}
+		
+		/// <summary>
 		/// Information about whether the resource is enabled.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isdisabled")]
@@ -260,7 +287,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the organization with which the resource is associated.
+		/// organization_resources
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("organizationid")]
 		public Microsoft.Xrm.Sdk.EntityReference OrganizationId
@@ -270,10 +297,37 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("organizationid");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OrganizationId");
+				this.SetAttributeValue("organizationid", value);
+				this.OnPropertyChanged("OrganizationId");
+			}
 		}
 		
 		/// <summary>
-		/// Unique identifier of the resource.
+		/// Date and time that the record was migrated.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overriddencreatedon")]
+		public System.Nullable<System.DateTime> OverriddenCreatedOn
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overriddencreatedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OverriddenCreatedOn");
+				this.SetAttributeValue("overriddencreatedon", value);
+				this.OnPropertyChanged("OverriddenCreatedOn");
+			}
+		}
+		
+		/// <summary>
+		/// systemuser_resources
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("resourceid")]
 		public System.Nullable<System.Guid> ResourceId
@@ -316,7 +370,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the site at which the resource is located.
+		/// site_resources
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("siteid")]
 		public Microsoft.Xrm.Sdk.EntityReference SiteId
@@ -332,6 +386,46 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("SiteId");
 				this.SetAttributeValue("siteid", value);
 				this.OnPropertyChanged("SiteId");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timezoneruleversionnumber")]
+		public System.Nullable<int> TimeZoneRuleVersionNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timezoneruleversionnumber");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
+				this.SetAttributeValue("timezoneruleversionnumber", value);
+				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Time zone code that was in use when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
+		public System.Nullable<int> UTCConversionTimeZoneCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("utcconversiontimezonecode");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("UTCConversionTimeZoneCode");
+				this.SetAttributeValue("utcconversiontimezonecode", value);
+				this.OnPropertyChanged("UTCConversionTimeZoneCode");
 			}
 		}
 		
@@ -385,6 +479,66 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Resource_BulkDeleteFailures");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.BulkDeleteFailure>("Resource_BulkDeleteFailures", null, value);
 				this.OnPropertyChanged("Resource_BulkDeleteFailures");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N resource_MailboxTrackingFolders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("resource_MailboxTrackingFolders")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> resource_MailboxTrackingFolders
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("resource_MailboxTrackingFolders", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("resource_MailboxTrackingFolders");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("resource_MailboxTrackingFolders", null, value);
+				this.OnPropertyChanged("resource_MailboxTrackingFolders");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N resource_PrincipalObjectAttributeAccesses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("resource_PrincipalObjectAttributeAccesses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess> resource_PrincipalObjectAttributeAccesses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("resource_PrincipalObjectAttributeAccesses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("resource_PrincipalObjectAttributeAccesses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("resource_PrincipalObjectAttributeAccesses", null, value);
+				this.OnPropertyChanged("resource_PrincipalObjectAttributeAccesses");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Resource_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Resource_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Resource_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Resource_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Resource_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Resource_SyncErrors", null, value);
+				this.OnPropertyChanged("Resource_SyncErrors");
 			}
 		}
 		
@@ -461,6 +615,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Organization>("organization_resources", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("organization_resources");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Organization>("organization_resources", null, value);
+				this.OnPropertyChanged("organization_resources");
 			}
 		}
 		

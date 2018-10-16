@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum KnowledgeSearchModelState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("knowledgesearchmodel")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class KnowledgeSearchModel : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AzureServiceConnectionId = "azureserviceconnectionid";
 			public const string ComponentState = "componentstate";
@@ -64,7 +64,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_knowledgesearchmodel_modifiedonbehalfby = "lk_knowledgesearchmodel_modifiedonbehalfby";
 			public const string organization_knowledgesearchmodel = "organization_knowledgesearchmodel";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -76,6 +75,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "knowledgesearchmodel";
+		
+		public const string PrimaryIdAttribute = "knowledgesearchmodelid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9947;
 		
@@ -311,7 +314,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the Knowledge Search Model used when synchronizing customizations for the Microsoft Dynamics CRM client for Outlook
+		/// Unique identifier of the Knowledge Search Model used when synchronizing customizations for the Microsoft Dynamics 365 client for Outlook
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("knowledgesearchmodelidunique")]
 		public System.Nullable<System.Guid> KnowledgeSearchModelIdUnique

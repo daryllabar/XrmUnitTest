@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("plugintypestatistic")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class PluginTypeStatistic : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AverageExecuteTimeInMilliseconds = "averageexecutetimeinmilliseconds";
 			public const string CrashContributionPercent = "crashcontributionpercent";
@@ -49,7 +49,6 @@ namespace DLaB.Xrm.Entities
 			public const string organization_plugintypestatistic = "organization_plugintypestatistic";
 			public const string plugintype_plugintypestatistic = "plugintype_plugintypestatistic";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -61,6 +60,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "plugintypestatistic";
+		
+		public const string PrimaryIdAttribute = "plugintypestatisticid";
 		
 		public const int EntityTypeCode = 4603;
 		

@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum ProductState
 	{
 		
@@ -19,7 +19,7 @@ namespace DLaB.Xrm.Entities
 		Active = 0,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Inactive = 1,
+		Retired = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Draft = 2,
@@ -33,11 +33,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("product")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Product : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CreatedBy = "createdby";
 			public const string CreatedByExternalParty = "createdbyexternalparty";
@@ -57,11 +57,19 @@ namespace DLaB.Xrm.Entities
 			public const string HierarchyPath = "hierarchypath";
 			public const string ImportSequenceNumber = "importsequencenumber";
 			public const string IsKit = "iskit";
+			public const string IsReparented = "isreparented";
 			public const string IsStockItem = "isstockitem";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedByExternalParty = "modifiedbyexternalparty";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string msdyn_ConvertToCustomerAsset = "msdyn_converttocustomerasset";
+			public const string msdyn_DefaultVendor = "msdyn_defaultvendor";
+			public const string msdyn_FieldServiceProductType = "msdyn_fieldserviceproducttype";
+			public const string msdyn_PurchaseName = "msdyn_purchasename";
+			public const string msdyn_Taxable = "msdyn_taxable";
+			public const string msdyn_TransactionCategory = "msdyn_transactioncategory";
+			public const string msdyn_UPCCode = "msdyn_upccode";
 			public const string Name = "name";
 			public const string OrganizationId = "organizationid";
 			public const string OverriddenCreatedOn = "overriddencreatedon";
@@ -104,6 +112,8 @@ namespace DLaB.Xrm.Entities
 			public const string lk_product_modifiedonbehalfby = "lk_product_modifiedonbehalfby";
 			public const string lk_productbase_createdby = "lk_productbase_createdby";
 			public const string lk_productbase_modifiedby = "lk_productbase_modifiedby";
+			public const string msdyn_account_product_DefaultVendor = "msdyn_account_product_DefaultVendor";
+			public const string msdyn_msdyn_transactioncategory_product_TransactionCategory = "msdyn_msdyn_transactioncategory_product_TransactionCategory";
 			public const string organization_products = "organization_products";
 			public const string price_level_products = "price_level_products";
 			public const string processstage_products = "processstage_products";
@@ -113,7 +123,6 @@ namespace DLaB.Xrm.Entities
 			public const string unit_of_measurement_products = "unit_of_measurement_products";
 			public const string unit_of_measurement_schedule_products = "unit_of_measurement_schedule_products";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -125,6 +134,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "product";
+		
+		public const string PrimaryIdAttribute = "productid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 1024;
 		
@@ -204,7 +217,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the delegate user who created the product.
+		/// lk_productbase_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
@@ -257,7 +270,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Default unit for the product.
+		/// unit_of_measurement_products
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("defaultuomid")]
 		public Microsoft.Xrm.Sdk.EntityReference DefaultUoMId
@@ -277,7 +290,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Default unit group for the product.
+		/// unit_of_measurement_schedule_products
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("defaultuomscheduleid")]
 		public Microsoft.Xrm.Sdk.EntityReference DefaultUoMScheduleId
@@ -462,6 +475,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isreparented")]
+		public System.Nullable<bool> IsReparented
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isreparented");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IsReparented");
+				this.SetAttributeValue("isreparented", value);
+				this.OnPropertyChanged("IsReparented");
+			}
+		}
+		
+		/// <summary>
 		/// Information about whether the product is a stock item.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isstockitem")]
@@ -535,7 +568,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the delegate user who last modified the product.
+		/// lk_uomschedulebase_modifiedonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
@@ -551,6 +584,146 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ModifiedOnBehalfBy");
 				this.SetAttributeValue("modifiedonbehalfby", value);
 				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Specify whether a product is to be converted to a customer asset. When a product is used on a work order, the system will automatically convert it into a customer asset when the work order is closed.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_converttocustomerasset")]
+		public System.Nullable<bool> msdyn_ConvertToCustomerAsset
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("msdyn_converttocustomerasset");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_ConvertToCustomerAsset");
+				this.SetAttributeValue("msdyn_converttocustomerasset", value);
+				this.OnPropertyChanged("msdyn_ConvertToCustomerAsset");
+			}
+		}
+		
+		/// <summary>
+		/// Default vendor that supplies this product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_defaultvendor")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_DefaultVendor
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_defaultvendor");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_DefaultVendor");
+				this.SetAttributeValue("msdyn_defaultvendor", value);
+				this.OnPropertyChanged("msdyn_DefaultVendor");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_fieldserviceproducttype")]
+		public Microsoft.Xrm.Sdk.OptionSetValue msdyn_FieldServiceProductType
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("msdyn_fieldserviceproducttype");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_FieldServiceProductType");
+				this.SetAttributeValue("msdyn_fieldserviceproducttype", value);
+				this.OnPropertyChanged("msdyn_FieldServiceProductType");
+			}
+		}
+		
+		/// <summary>
+		/// Type the name for the product when used on a purchase order.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_purchasename")]
+		public string msdyn_PurchaseName
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("msdyn_purchasename");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_PurchaseName");
+				this.SetAttributeValue("msdyn_purchasename", value);
+				this.OnPropertyChanged("msdyn_PurchaseName");
+			}
+		}
+		
+		/// <summary>
+		/// Select whether the item is taxable. If an item is set as not taxable, it won't be taxable even on a taxable work order.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_taxable")]
+		public System.Nullable<bool> msdyn_Taxable
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("msdyn_taxable");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_Taxable");
+				this.SetAttributeValue("msdyn_taxable", value);
+				this.OnPropertyChanged("msdyn_Taxable");
+			}
+		}
+		
+		/// <summary>
+		/// Select the transaction category for this product.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_transactioncategory")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_TransactionCategory
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_transactioncategory");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_TransactionCategory");
+				this.SetAttributeValue("msdyn_transactioncategory", value);
+				this.OnPropertyChanged("msdyn_TransactionCategory");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the UPC Code for product. Used for bar code scanning.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_upccode")]
+		public string msdyn_UPCCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("msdyn_upccode");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_UPCCode");
+				this.SetAttributeValue("msdyn_upccode", value);
+				this.OnPropertyChanged("msdyn_UPCCode");
 			}
 		}
 		
@@ -575,7 +748,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the organization associated with the product.
+		/// organization_products
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("organizationid")]
 		public Microsoft.Xrm.Sdk.EntityReference OrganizationId
@@ -661,7 +834,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Select the default price list for the product.
+		/// price_level_products
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("pricelevelid")]
 		public Microsoft.Xrm.Sdk.EntityReference PriceLevelId
@@ -884,7 +1057,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the ID of the stage.
+		/// processstage_products
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("stageid")]
 		public System.Nullable<System.Guid> StageId
@@ -1032,7 +1205,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Select a category for the product.
+		/// subject_products
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("subjectid")]
 		public Microsoft.Xrm.Sdk.EntityReference SubjectId
@@ -1092,7 +1265,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the currency associated with the product.
+		/// transactioncurrency_product
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("transactioncurrencyid")]
 		public Microsoft.Xrm.Sdk.EntityReference TransactionCurrencyId
@@ -1261,6 +1434,586 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_actual_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_actual_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_actual> msdyn_product_msdyn_actual_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_actual>("msdyn_product_msdyn_actual_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_actual_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_actual>("msdyn_product_msdyn_actual_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_actual_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_agreementbookingproduct_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_agreementbookingproduct_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_agreementbookingproduct> msdyn_product_msdyn_agreementbookingproduct_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_product_msdyn_agreementbookingproduct_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_agreementbookingproduct_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_product_msdyn_agreementbookingproduct_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_agreementbookingproduct_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_agreementbookingservice_Service
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_agreementbookingservice_Service")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_agreementbookingservice> msdyn_product_msdyn_agreementbookingservice_Service
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_product_msdyn_agreementbookingservice_Service", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_agreementbookingservice_Service");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_product_msdyn_agreementbookingservice_Service", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_agreementbookingservice_Service");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_agreementinvoiceproduct_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_agreementinvoiceproduct_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct> msdyn_product_msdyn_agreementinvoiceproduct_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_product_msdyn_agreementinvoiceproduct_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_agreementinvoiceproduct_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_product_msdyn_agreementinvoiceproduct_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_agreementinvoiceproduct_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_customerasset_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_customerasset_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_customerasset> msdyn_product_msdyn_customerasset_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_product_msdyn_customerasset_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_customerasset_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_product_msdyn_customerasset_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_customerasset_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_estimateline_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_estimateline_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_estimateline> msdyn_product_msdyn_estimateline_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_estimateline>("msdyn_product_msdyn_estimateline_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_estimateline_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_estimateline>("msdyn_product_msdyn_estimateline_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_estimateline_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_fact_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_fact_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_fact> msdyn_product_msdyn_fact_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_fact>("msdyn_product_msdyn_fact_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_fact_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_fact>("msdyn_product_msdyn_fact_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_fact_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_fieldcomputation_ProductId
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_fieldcomputation_ProductId")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_fieldcomputation> msdyn_product_msdyn_fieldcomputation_ProductId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_fieldcomputation>("msdyn_product_msdyn_fieldcomputation_ProductId", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_fieldcomputation_ProductId");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_fieldcomputation>("msdyn_product_msdyn_fieldcomputation_ProductId", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_fieldcomputation_ProductId");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_fieldservicepricelistitem_ProductService
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_fieldservicepricelistitem_ProductService")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_fieldservicepricelistitem> msdyn_product_msdyn_fieldservicepricelistitem_ProductService
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_fieldservicepricelistitem>("msdyn_product_msdyn_fieldservicepricelistitem_ProductService", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_fieldservicepricelistitem_ProductService");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_fieldservicepricelistitem>("msdyn_product_msdyn_fieldservicepricelistitem_ProductService", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_fieldservicepricelistitem_ProductService");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_fieldservicesetting
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_fieldservicesetting")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_fieldservicesetting> msdyn_product_msdyn_fieldservicesetting
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_fieldservicesetting>("msdyn_product_msdyn_fieldservicesetting", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_fieldservicesetting");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_fieldservicesetting>("msdyn_product_msdyn_fieldservicesetting", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_fieldservicesetting");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_incidenttypeproduct_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_incidenttypeproduct_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_incidenttypeproduct> msdyn_product_msdyn_incidenttypeproduct_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_product_msdyn_incidenttypeproduct_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_incidenttypeproduct_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_product_msdyn_incidenttypeproduct_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_incidenttypeproduct_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_incidenttypeservice_Service
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_incidenttypeservice_Service")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_incidenttypeservice> msdyn_product_msdyn_incidenttypeservice_Service
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_product_msdyn_incidenttypeservice_Service", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_incidenttypeservice_Service");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_product_msdyn_incidenttypeservice_Service", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_incidenttypeservice_Service");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_inventoryadjustmentproduct_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_inventoryadjustmentproduct_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct> msdyn_product_msdyn_inventoryadjustmentproduct_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_product_msdyn_inventoryadjustmentproduct_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_inventoryadjustmentproduct_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_product_msdyn_inventoryadjustmentproduct_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_inventoryadjustmentproduct_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_inventoryjournal_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_inventoryjournal_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_inventoryjournal> msdyn_product_msdyn_inventoryjournal_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_product_msdyn_inventoryjournal_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_inventoryjournal_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_product_msdyn_inventoryjournal_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_inventoryjournal_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_invoicelinetransaction_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_invoicelinetransaction_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_invoicelinetransaction> msdyn_product_msdyn_invoicelinetransaction_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_invoicelinetransaction>("msdyn_product_msdyn_invoicelinetransaction_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_invoicelinetransaction_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_invoicelinetransaction>("msdyn_product_msdyn_invoicelinetransaction_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_invoicelinetransaction_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_journalline_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_journalline_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_journalline> msdyn_product_msdyn_journalline_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_journalline>("msdyn_product_msdyn_journalline_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_journalline_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_journalline>("msdyn_product_msdyn_journalline_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_journalline_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_opportunitylinetransaction_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_opportunitylinetransaction_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction> msdyn_product_msdyn_opportunitylinetransaction_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction>("msdyn_product_msdyn_opportunitylinetransaction_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_opportunitylinetransaction_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction>("msdyn_product_msdyn_opportunitylinetransaction_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_opportunitylinetransaction_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_orderinvoicingproduct_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_orderinvoicingproduct_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_orderinvoicingproduct> msdyn_product_msdyn_orderinvoicingproduct_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_orderinvoicingproduct>("msdyn_product_msdyn_orderinvoicingproduct_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_orderinvoicingproduct_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_orderinvoicingproduct>("msdyn_product_msdyn_orderinvoicingproduct_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_orderinvoicingproduct_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_orderlinetransaction_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_orderlinetransaction_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_orderlinetransaction> msdyn_product_msdyn_orderlinetransaction_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_orderlinetransaction>("msdyn_product_msdyn_orderlinetransaction_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_orderlinetransaction_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_orderlinetransaction>("msdyn_product_msdyn_orderlinetransaction_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_orderlinetransaction_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_productinventory_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_productinventory_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_productinventory> msdyn_product_msdyn_productinventory_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_product_msdyn_productinventory_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_productinventory_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_product_msdyn_productinventory_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_productinventory_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_purchaseorderproduct_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_purchaseorderproduct_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_purchaseorderproduct> msdyn_product_msdyn_purchaseorderproduct_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_product_msdyn_purchaseorderproduct_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_purchaseorderproduct_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_product_msdyn_purchaseorderproduct_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_purchaseorderproduct_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_quotebookingproduct_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_quotebookingproduct_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quotebookingproduct> msdyn_product_msdyn_quotebookingproduct_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_product_msdyn_quotebookingproduct_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_quotebookingproduct_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_product_msdyn_quotebookingproduct_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_quotebookingproduct_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_quotebookingservice_Service
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_quotebookingservice_Service")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quotebookingservice> msdyn_product_msdyn_quotebookingservice_Service
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_product_msdyn_quotebookingservice_Service", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_quotebookingservice_Service");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_product_msdyn_quotebookingservice_Service", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_quotebookingservice_Service");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_quoteinvoicingproduct_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_quoteinvoicingproduct_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quoteinvoicingproduct> msdyn_product_msdyn_quoteinvoicingproduct_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quoteinvoicingproduct>("msdyn_product_msdyn_quoteinvoicingproduct_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_quoteinvoicingproduct_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quoteinvoicingproduct>("msdyn_product_msdyn_quoteinvoicingproduct_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_quoteinvoicingproduct_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_quotelinetransaction_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_quotelinetransaction_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quotelinetransaction> msdyn_product_msdyn_quotelinetransaction_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotelinetransaction>("msdyn_product_msdyn_quotelinetransaction_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_quotelinetransaction_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotelinetransaction>("msdyn_product_msdyn_quotelinetransaction_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_quotelinetransaction_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_rmaproduct_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_rmaproduct_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_rmaproduct> msdyn_product_msdyn_rmaproduct_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_product_msdyn_rmaproduct_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_rmaproduct_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_product_msdyn_rmaproduct_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_rmaproduct_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_rtvproduct_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_rtvproduct_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_rtvproduct> msdyn_product_msdyn_rtvproduct_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_product_msdyn_rtvproduct_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_rtvproduct_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_product_msdyn_rtvproduct_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_rtvproduct_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_workorderproduct_Product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_workorderproduct_Product")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_workorderproduct> msdyn_product_msdyn_workorderproduct_Product
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_product_msdyn_workorderproduct_Product", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_workorderproduct_Product");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_product_msdyn_workorderproduct_Product", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_workorderproduct_Product");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_product_msdyn_workorderservice_Service
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_product_msdyn_workorderservice_Service")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_workorderservice> msdyn_product_msdyn_workorderservice_Service
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_product_msdyn_workorderservice_Service", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_product_msdyn_workorderservice_Service");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_product_msdyn_workorderservice_Service", null, value);
+				this.OnPropertyChanged("msdyn_product_msdyn_workorderservice_Service");
 			}
 		}
 		
@@ -1485,6 +2238,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N product_MailboxTrackingFolders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("product_MailboxTrackingFolders")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> product_MailboxTrackingFolders
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("product_MailboxTrackingFolders", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("product_MailboxTrackingFolders");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("product_MailboxTrackingFolders", null, value);
+				this.OnPropertyChanged("product_MailboxTrackingFolders");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N product_order_details
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("product_order_details")]
@@ -1685,46 +2458,6 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// 1:N Product_RecommendationCache_ItemId
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Product_RecommendationCache_ItemId")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.RecommendationCache> Product_RecommendationCache_ItemId
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.RecommendationCache>("Product_RecommendationCache_ItemId", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("Product_RecommendationCache_ItemId");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.RecommendationCache>("Product_RecommendationCache_ItemId", null, value);
-				this.OnPropertyChanged("Product_RecommendationCache_ItemId");
-			}
-		}
-		
-		/// <summary>
-		/// 1:N Product_RecommendationCache_RecommendedItemId
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Product_RecommendationCache_RecommendedItemId")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.RecommendationCache> Product_RecommendationCache_RecommendedItemId
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.RecommendationCache>("Product_RecommendationCache_RecommendedItemId", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("Product_RecommendationCache_RecommendedItemId");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.RecommendationCache>("Product_RecommendationCache_RecommendedItemId", null, value);
-				this.OnPropertyChanged("Product_RecommendationCache_RecommendedItemId");
-			}
-		}
-		
-		/// <summary>
 		/// 1:N Product_SharepointDocument
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Product_SharepointDocument")]
@@ -1761,6 +2494,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Product_SharepointDocumentLocation");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.SharePointDocumentLocation>("Product_SharepointDocumentLocation", null, value);
 				this.OnPropertyChanged("Product_SharepointDocumentLocation");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Product_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Product_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Product_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Product_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Product_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Product_SyncErrors", null, value);
+				this.OnPropertyChanged("Product_SyncErrors");
 			}
 		}
 		
@@ -2017,6 +2770,48 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 msdyn_account_product_DefaultVendor
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_defaultvendor")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_product_DefaultVendor")]
+		public DLaB.Xrm.Entities.Account msdyn_account_product_DefaultVendor
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Account>("msdyn_account_product_DefaultVendor", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_product_DefaultVendor");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Account>("msdyn_account_product_DefaultVendor", null, value);
+				this.OnPropertyChanged("msdyn_account_product_DefaultVendor");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_msdyn_transactioncategory_product_TransactionCategory
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_transactioncategory")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_msdyn_transactioncategory_product_TransactionCategory")]
+		public DLaB.Xrm.Entities.msdyn_transactioncategory msdyn_msdyn_transactioncategory_product_TransactionCategory
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategory>("msdyn_msdyn_transactioncategory_product_TransactionCategory", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_msdyn_transactioncategory_product_TransactionCategory");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategory>("msdyn_msdyn_transactioncategory_product_TransactionCategory", null, value);
+				this.OnPropertyChanged("msdyn_msdyn_transactioncategory_product_TransactionCategory");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 organization_products
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("organizationid")]
@@ -2217,6 +3012,21 @@ namespace DLaB.Xrm.Entities
                         break;
                 }
             }
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_fieldserviceproducttype")]
+		public virtual msdyn_FieldServiceProductType? msdyn_FieldServiceProductTypeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((msdyn_FieldServiceProductType?)(EntityOptionSetEnum.GetEnum(this, "msdyn_fieldserviceproducttype")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				msdyn_FieldServiceProductType = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("productstructure")]

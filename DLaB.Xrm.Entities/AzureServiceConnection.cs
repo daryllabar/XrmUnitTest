@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum AzureServiceConnectionState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("azureserviceconnection")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class AzureServiceConnection : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AccountKey = "accountkey";
 			public const string AzureServiceConnectionId = "azureserviceconnectionid";
@@ -57,7 +57,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_azureserviceconnection_modifiedonbehalfby = "lk_azureserviceconnection_modifiedonbehalfby";
 			public const string organization_azureserviceconnection = "organization_azureserviceconnection";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -69,6 +68,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "azureserviceconnection";
+		
+		public const string PrimaryIdAttribute = "azureserviceconnectionid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9936;
 		
@@ -466,6 +469,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N azureserviceconnection_advancedsimilarityrule
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("azureserviceconnection_advancedsimilarityrule")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.AdvancedSimilarityRule> azureserviceconnection_advancedsimilarityrule
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.AdvancedSimilarityRule>("azureserviceconnection_advancedsimilarityrule", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("azureserviceconnection_advancedsimilarityrule");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.AdvancedSimilarityRule>("azureserviceconnection_advancedsimilarityrule", null, value);
+				this.OnPropertyChanged("azureserviceconnection_advancedsimilarityrule");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N azureserviceconnection_knowledgesearchmodel
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("azureserviceconnection_knowledgesearchmodel")]
@@ -482,26 +505,6 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("azureserviceconnection_knowledgesearchmodel");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeSearchModel>("azureserviceconnection_knowledgesearchmodel", null, value);
 				this.OnPropertyChanged("azureserviceconnection_knowledgesearchmodel");
-			}
-		}
-		
-		/// <summary>
-		/// 1:N azureserviceconnection_recommendationmodel
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("azureserviceconnection_recommendationmodel")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.RecommendationModel> azureserviceconnection_recommendationmodel
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.RecommendationModel>("azureserviceconnection_recommendationmodel", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("azureserviceconnection_recommendationmodel");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.RecommendationModel>("azureserviceconnection_recommendationmodel", null, value);
-				this.OnPropertyChanged("azureserviceconnection_recommendationmodel");
 			}
 		}
 		

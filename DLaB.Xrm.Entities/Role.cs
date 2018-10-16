@@ -15,13 +15,14 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("role")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Role : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string BusinessUnitId = "businessunitid";
+			public const string CanBeDeleted = "canbedeleted";
 			public const string ComponentState = "componentstate";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
@@ -52,8 +53,8 @@ namespace DLaB.Xrm.Entities
 			public const string organization_roles = "organization_roles";
 			public const string Referencingrole_parent_role = "role_parent_role";
 			public const string Referencingrole_parent_root_role = "role_parent_root_role";
+			public const string solution_role = "solution_role";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -65,6 +66,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "role";
+		
+		public const string PrimaryIdAttribute = "roleid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 1036;
 		
@@ -107,6 +112,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("BusinessUnitId");
 				this.SetAttributeValue("businessunitid", value);
 				this.OnPropertyChanged("BusinessUnitId");
+			}
+		}
+		
+		/// <summary>
+		/// Tells whether the role can be deleted.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("canbedeleted")]
+		public Microsoft.Xrm.Sdk.BooleanManagedProperty CanBeDeleted
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.BooleanManagedProperty>("canbedeleted");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CanBeDeleted");
+				this.SetAttributeValue("canbedeleted", value);
+				this.OnPropertyChanged("CanBeDeleted");
 			}
 		}
 		
@@ -564,6 +589,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N Role_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Role_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Role_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Role_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Role_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Role_SyncErrors", null, value);
+				this.OnPropertyChanged("Role_SyncErrors");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N userentityinstancedata_role
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("userentityinstancedata_role")]
@@ -580,6 +625,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("userentityinstancedata_role");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.UserEntityInstanceData>("userentityinstancedata_role", null, value);
 				this.OnPropertyChanged("userentityinstancedata_role");
+			}
+		}
+		
+		/// <summary>
+		/// N:N appmoduleroles_association
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("appmoduleroles_association")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.AppModule> appmoduleroles_association
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.AppModule>("appmoduleroles_association", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("appmoduleroles_association");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.AppModule>("appmoduleroles_association", null, value);
+				this.OnPropertyChanged("appmoduleroles_association");
 			}
 		}
 		
@@ -787,6 +852,20 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Role>("role_parent_root_role", Microsoft.Xrm.Sdk.EntityRole.Referencing);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 solution_role
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("solutionid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("solution_role")]
+		public DLaB.Xrm.Entities.Solution solution_role
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Solution>("solution_role", null);
 			}
 		}
 		

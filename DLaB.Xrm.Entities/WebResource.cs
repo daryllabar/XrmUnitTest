@@ -15,21 +15,24 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("webresource")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class WebResource : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CanBeDeleted = "canbedeleted";
 			public const string ComponentState = "componentstate";
 			public const string Content = "content";
+			public const string ContentJson = "contentjson";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
+			public const string DependencyXml = "dependencyxml";
 			public const string Description = "description";
 			public const string DisplayName = "displayname";
 			public const string IntroducedVersion = "introducedversion";
+			public const string IsAvailableForMobileOffline = "isavailableformobileoffline";
 			public const string IsCustomizable = "iscustomizable";
 			public const string IsEnabledForMobileClient = "isenabledformobileclient";
 			public const string IsHidden = "ishidden";
@@ -54,7 +57,6 @@ namespace DLaB.Xrm.Entities
 			public const string webresource_modifiedby = "webresource_modifiedby";
 			public const string webresource_organization = "webresource_organization";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -66,6 +68,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "webresource";
+		
+		public const string PrimaryIdAttribute = "webresourceid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9333;
 		
@@ -145,6 +151,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Json representation of the content of the resource.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("contentjson")]
+		public string ContentJson
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("contentjson");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ContentJson");
+				this.SetAttributeValue("contentjson", value);
+				this.OnPropertyChanged("ContentJson");
+			}
+		}
+		
+		/// <summary>
 		/// Unique identifier of the user who created the web resource.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
@@ -205,6 +231,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dependencyxml")]
+		public string DependencyXml
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("dependencyxml");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("DependencyXml");
+				this.SetAttributeValue("dependencyxml", value);
+				this.OnPropertyChanged("DependencyXml");
+			}
+		}
+		
+		/// <summary>
 		/// Description of the web resource.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("description")]
@@ -261,6 +307,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("IntroducedVersion");
 				this.SetAttributeValue("introducedversion", value);
 				this.OnPropertyChanged("IntroducedVersion");
+			}
+		}
+		
+		/// <summary>
+		/// Information that specifies whether this web resource is available for mobile client in offline mode.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isavailableformobileoffline")]
+		public System.Nullable<bool> IsAvailableForMobileOffline
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isavailableformobileoffline");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IsAvailableForMobileOffline");
+				this.SetAttributeValue("isavailableformobileoffline", value);
+				this.OnPropertyChanged("IsAvailableForMobileOffline");
 			}
 		}
 		

@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum QuoteState
 	{
 		
@@ -33,11 +33,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("quote")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Quote : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AccountId = "accountid";
 			public const string BillTo_AddressId = "billto_addressid";
@@ -66,16 +66,54 @@ namespace DLaB.Xrm.Entities
 			public const string DiscountPercentage = "discountpercentage";
 			public const string EffectiveFrom = "effectivefrom";
 			public const string EffectiveTo = "effectiveto";
+			public const string EmailAddress = "emailaddress";
 			public const string ExchangeRate = "exchangerate";
 			public const string ExpiresOn = "expireson";
 			public const string FreightAmount = "freightamount";
 			public const string FreightAmount_Base = "freightamount_base";
 			public const string FreightTermsCode = "freighttermscode";
 			public const string ImportSequenceNumber = "importsequencenumber";
+			public const string LastOnHoldTime = "lastonholdtime";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string msdyn_Account = "msdyn_account";
+			public const string msdyn_AccountManagerId = "msdyn_accountmanagerid";
+			public const string msdyn_AdjustedGrossMargin = "msdyn_adjustedgrossmargin";
+			public const string msdyn_Competitive = "msdyn_competitive";
+			public const string msdyn_ContractOrganizationalUnitId = "msdyn_contractorganizationalunitid";
+			public const string msdyn_CustomerBudgetRollUp = "msdyn_customerbudgetrollup";
+			public const string msdyn_customerbudgetrollup_Base = "msdyn_customerbudgetrollup_base";
+			public const string msdyn_CustomerBudgetRollUp_Date = "msdyn_customerbudgetrollup_date";
+			public const string msdyn_CustomerBudgetRollUp_State = "msdyn_customerbudgetrollup_state";
+			public const string msdyn_EstimatedBudget = "msdyn_estimatedbudget";
+			public const string msdyn_EstimatedCompletionRollUp = "msdyn_estimatedcompletionrollup";
+			public const string msdyn_EstimatedCompletionRollUp_Date = "msdyn_estimatedcompletionrollup_date";
+			public const string msdyn_EstimatedCompletionRollUp_State = "msdyn_estimatedcompletionrollup_state";
+			public const string msdyn_EstimatedCost = "msdyn_estimatedcost";
+			public const string msdyn_estimatedcost_Base = "msdyn_estimatedcost_base";
+			public const string msdyn_EstimatedQuoteMargin = "msdyn_estimatedquotemargin";
+			public const string msdyn_EstimatedSchedule = "msdyn_estimatedschedule";
+			public const string msdyn_feasible = "msdyn_feasible";
+			public const string msdyn_GrossMargin = "msdyn_grossmargin";
+			public const string msdyn_InvoiceSetupTotals = "msdyn_invoicesetuptotals";
+			public const string msdyn_invoicesetuptotals_Base = "msdyn_invoicesetuptotals_base";
+			public const string msdyn_OrderType = "msdyn_ordertype";
+			public const string msdyn_Profitability = "msdyn_profitability";
+			public const string msdyn_QuoteLineEndDate = "msdyn_quotelineenddate";
+			public const string msdyn_QuoteLineStartDate = "msdyn_quotelinestartdate";
+			public const string msdyn_TotalAmount = "msdyn_totalamount";
+			public const string msdyn_totalamount_Base = "msdyn_totalamount_base";
+			public const string msdyn_TotalChargeableCostRollup = "msdyn_totalchargeablecostrollup";
+			public const string msdyn_totalchargeablecostrollup_Base = "msdyn_totalchargeablecostrollup_base";
+			public const string msdyn_TotalChargeableCostRollup_Date = "msdyn_totalchargeablecostrollup_date";
+			public const string msdyn_TotalChargeableCostRollup_State = "msdyn_totalchargeablecostrollup_state";
+			public const string msdyn_TotalNonchargeableCostRollup = "msdyn_totalnonchargeablecostrollup";
+			public const string msdyn_totalnonchargeablecostrollup_Base = "msdyn_totalnonchargeablecostrollup_base";
+			public const string msdyn_TotalNonchargeableCostRollup_Date = "msdyn_totalnonchargeablecostrollup_date";
+			public const string msdyn_TotalNonchargeableCostRollup_State = "msdyn_totalnonchargeablecostrollup_state";
 			public const string Name = "name";
+			public const string OnHoldTime = "onholdtime";
 			public const string OpportunityId = "opportunityid";
 			public const string OverriddenCreatedOn = "overriddencreatedon";
 			public const string OwnerId = "ownerid";
@@ -106,6 +144,8 @@ namespace DLaB.Xrm.Entities
 			public const string ShipTo_PostalCode = "shipto_postalcode";
 			public const string ShipTo_StateOrProvince = "shipto_stateorprovince";
 			public const string ShipTo_Telephone = "shipto_telephone";
+			public const string SLAId = "slaid";
+			public const string SLAInvokedId = "slainvokedid";
 			public const string StageId = "stageid";
 			public const string StateCode = "statecode";
 			public const string StatusCode = "statuscode";
@@ -133,16 +173,20 @@ namespace DLaB.Xrm.Entities
 			public const string lk_quote_modifiedonbehalfby = "lk_quote_modifiedonbehalfby";
 			public const string lk_quotebase_createdby = "lk_quotebase_createdby";
 			public const string lk_quotebase_modifiedby = "lk_quotebase_modifiedby";
+			public const string manualsla_quote = "manualsla_quote";
+			public const string msdyn_account_quote_Account = "msdyn_account_quote_Account";
+			public const string msdyn_accountmanager_quote = "msdyn_accountmanager_quote";
+			public const string msdyn_organizationalunit_quote = "msdyn_organizationalunit_quote";
 			public const string opportunity_quotes = "opportunity_quotes";
 			public const string price_level_quotes = "price_level_quotes";
 			public const string processstage_quotes = "processstage_quotes";
 			public const string quote_customer_accounts = "quote_customer_accounts";
 			public const string quote_customer_contacts = "quote_customer_contacts";
+			public const string sla_quote = "sla_quote";
 			public const string system_user_quotes = "system_user_quotes";
 			public const string team_quotes = "team_quotes";
 			public const string transactioncurrency_quote = "transactioncurrency_quote";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -154,6 +198,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "quote";
+		
+		public const string PrimaryIdAttribute = "quoteid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 1084;
 		
@@ -446,7 +494,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the campaign that the order was created from.
+		/// campaign_quotes
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("campaignid")]
 		public Microsoft.Xrm.Sdk.EntityReference CampaignId
@@ -499,7 +547,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows who created the record.
+		/// lk_quotebase_createdby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
@@ -519,7 +567,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -539,7 +587,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows who created the record on behalf of another user.
+		/// lk_quote_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
@@ -559,7 +607,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Select the customer account or contact to provide a quick link to additional customer details, such as account information, activities, and opportunities.
+		/// quote_customer_contacts
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("customerid")]
 		public Microsoft.Xrm.Sdk.EntityReference CustomerId
@@ -692,6 +740,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// The primary email address for the entity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("emailaddress")]
+		public string EmailAddress
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("emailaddress");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("EmailAddress");
+				this.SetAttributeValue("emailaddress", value);
+				this.OnPropertyChanged("EmailAddress");
+			}
+		}
+		
+		/// <summary>
 		/// Shows the conversion rate of the record's currency. The exchange rate is used to convert all money fields in the record from the local currency to the system's default currency.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("exchangerate")]
@@ -798,7 +866,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows who last updated the record.
+		/// Contains the date time stamp of the last on hold time.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lastonholdtime")]
+		public System.Nullable<System.DateTime> LastOnHoldTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("lastonholdtime");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("LastOnHoldTime");
+				this.SetAttributeValue("lastonholdtime", value);
+				this.OnPropertyChanged("LastOnHoldTime");
+			}
+		}
+		
+		/// <summary>
+		/// lk_quotebase_modifiedby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
@@ -818,7 +906,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -838,7 +926,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows who last updated the record on behalf of another user.
+		/// lk_quote_modifiedonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
@@ -854,6 +942,524 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ModifiedOnBehalfBy");
 				this.SetAttributeValue("modifiedonbehalfby", value);
 				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Customer Account associated with this Quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_account")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_Account
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_account");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_Account");
+				this.SetAttributeValue("msdyn_account", value);
+				this.OnPropertyChanged("msdyn_Account");
+			}
+		}
+		
+		/// <summary>
+		/// Account manager responsible for the quote.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_accountmanagerid")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_AccountManagerId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_accountmanagerid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_AccountManagerId");
+				this.SetAttributeValue("msdyn_accountmanagerid", value);
+				this.OnPropertyChanged("msdyn_AccountManagerId");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the estimated gross margin after accounting for non-chargeable components.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_adjustedgrossmargin")]
+		public System.Nullable<decimal> msdyn_AdjustedGrossMargin
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("msdyn_adjustedgrossmargin");
+			}
+		}
+		
+		/// <summary>
+		/// Shows how the quote estimation of sales value and schedule compare to customer expectations on those parameters. Possible values are 1: Within Customer expectations, 2: Not Within Customer expectations, and 0: Customer expectations Not Available.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_competitive")]
+		public Microsoft.Xrm.Sdk.OptionSetValue msdyn_Competitive
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("msdyn_competitive");
+			}
+		}
+		
+		/// <summary>
+		/// The organizational unit in charge of the contract.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_contractorganizationalunitid")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_ContractOrganizationalUnitId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_contractorganizationalunitid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_ContractOrganizationalUnitId");
+				this.SetAttributeValue("msdyn_contractorganizationalunitid", value);
+				this.OnPropertyChanged("msdyn_ContractOrganizationalUnitId");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the total customer budget for the quote, computed from all the quote lines.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_customerbudgetrollup")]
+		public Microsoft.Xrm.Sdk.Money msdyn_CustomerBudgetRollUp
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_customerbudgetrollup");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the value of the customer budget in the base currency.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_customerbudgetrollup_base")]
+		public Microsoft.Xrm.Sdk.Money msdyn_customerbudgetrollup_Base
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_customerbudgetrollup_base");
+			}
+		}
+		
+		/// <summary>
+		/// Last Updated time of rollup field Customer Budget.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_customerbudgetrollup_date")]
+		public System.Nullable<System.DateTime> msdyn_CustomerBudgetRollUp_Date
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("msdyn_customerbudgetrollup_date");
+			}
+		}
+		
+		/// <summary>
+		/// State of rollup field Customer Budget.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_customerbudgetrollup_state")]
+		public System.Nullable<int> msdyn_CustomerBudgetRollUp_State
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("msdyn_customerbudgetrollup_state");
+			}
+		}
+		
+		/// <summary>
+		/// Shows how the estimated sales value on the quote compares to customer budgets. Possible values are 1: Within Customer Budget, 2: Exceeds Customer Budget, 0: Budget Estimate Not Available
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_estimatedbudget")]
+		public Microsoft.Xrm.Sdk.OptionSetValue msdyn_EstimatedBudget
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("msdyn_estimatedbudget");
+			}
+		}
+		
+		/// <summary>
+		/// Estimated completion date, computed from the details of each quote line.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_estimatedcompletionrollup")]
+		public System.Nullable<System.DateTime> msdyn_EstimatedCompletionRollUp
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("msdyn_estimatedcompletionrollup");
+			}
+		}
+		
+		/// <summary>
+		/// Last Updated time of rollup field Estimated Completion.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_estimatedcompletionrollup_date")]
+		public System.Nullable<System.DateTime> msdyn_EstimatedCompletionRollUp_Date
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("msdyn_estimatedcompletionrollup_date");
+			}
+		}
+		
+		/// <summary>
+		/// State of rollup field Estimated Completion.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_estimatedcompletionrollup_state")]
+		public System.Nullable<int> msdyn_EstimatedCompletionRollUp_State
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("msdyn_estimatedcompletionrollup_state");
+			}
+		}
+		
+		/// <summary>
+		/// The estimated cost of this quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_estimatedcost")]
+		public Microsoft.Xrm.Sdk.Money msdyn_EstimatedCost
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_estimatedcost");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_EstimatedCost");
+				this.SetAttributeValue("msdyn_estimatedcost", value);
+				this.OnPropertyChanged("msdyn_EstimatedCost");
+			}
+		}
+		
+		/// <summary>
+		/// Value of the Estimated Cost in base currency.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_estimatedcost_base")]
+		public Microsoft.Xrm.Sdk.Money msdyn_estimatedcost_Base
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_estimatedcost_base");
+			}
+		}
+		
+		/// <summary>
+		/// Estimated Margin of this quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_estimatedquotemargin")]
+		public System.Nullable<decimal> msdyn_EstimatedQuoteMargin
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("msdyn_estimatedquotemargin");
+			}
+		}
+		
+		/// <summary>
+		/// Shows how the estimated schedule on the quote compares to customer expectations. Possible values are 1: Estimated To Finish Early, 2: Estimated To Finish Late, 3: Estimated To Finish On Schedule, and 0: Schedule Not Available.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_estimatedschedule")]
+		public Microsoft.Xrm.Sdk.OptionSetValue msdyn_EstimatedSchedule
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("msdyn_estimatedschedule");
+			}
+		}
+		
+		/// <summary>
+		/// Shows how the quote estimation compares to project estimation. Possible values are 0: Feasibility Not Available, 1: Feasible, and 2: Not Feasible.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_feasible")]
+		public Microsoft.Xrm.Sdk.OptionSetValue msdyn_feasible
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("msdyn_feasible");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_feasible");
+				this.SetAttributeValue("msdyn_feasible", value);
+				this.OnPropertyChanged("msdyn_feasible");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the estimated gross margin without accounting for non-chargeable components.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_grossmargin")]
+		public System.Nullable<decimal> msdyn_GrossMargin
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("msdyn_grossmargin");
+			}
+		}
+		
+		/// <summary>
+		/// The totals of all assigned Invoice Setups
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_invoicesetuptotals")]
+		public Microsoft.Xrm.Sdk.Money msdyn_InvoiceSetupTotals
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_invoicesetuptotals");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_InvoiceSetupTotals");
+				this.SetAttributeValue("msdyn_invoicesetuptotals", value);
+				this.OnPropertyChanged("msdyn_InvoiceSetupTotals");
+			}
+		}
+		
+		/// <summary>
+		/// Value of the Invoice Setup Totals in base currency.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_invoicesetuptotals_base")]
+		public Microsoft.Xrm.Sdk.Money msdyn_invoicesetuptotals_Base
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_invoicesetuptotals_base");
+			}
+		}
+		
+		/// <summary>
+		/// Internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_ordertype")]
+		public Microsoft.Xrm.Sdk.OptionSetValue msdyn_OrderType
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("msdyn_ordertype");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_OrderType");
+				this.SetAttributeValue("msdyn_ordertype", value);
+				this.OnPropertyChanged("msdyn_OrderType");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the estimated profitability of the quote. Possible values are Profitable, Not Profitable, and Profitability not available.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_profitability")]
+		public Microsoft.Xrm.Sdk.OptionSetValue msdyn_Profitability
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("msdyn_profitability");
+			}
+		}
+		
+		/// <summary>
+		/// The latest end date of all associated quote lines
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_quotelineenddate")]
+		public System.Nullable<System.DateTime> msdyn_QuoteLineEndDate
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("msdyn_quotelineenddate");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_QuoteLineEndDate");
+				this.SetAttributeValue("msdyn_quotelineenddate", value);
+				this.OnPropertyChanged("msdyn_QuoteLineEndDate");
+			}
+		}
+		
+		/// <summary>
+		/// The earliest Start Date of all Quote Lines that are associated to this quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_quotelinestartdate")]
+		public System.Nullable<System.DateTime> msdyn_QuoteLineStartDate
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("msdyn_quotelinestartdate");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_QuoteLineStartDate");
+				this.SetAttributeValue("msdyn_quotelinestartdate", value);
+				this.OnPropertyChanged("msdyn_QuoteLineStartDate");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_totalamount")]
+		public Microsoft.Xrm.Sdk.Money msdyn_TotalAmount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_totalamount");
+			}
+		}
+		
+		/// <summary>
+		/// Value of the TotalAmount in base currency.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_totalamount_base")]
+		public Microsoft.Xrm.Sdk.Money msdyn_totalamount_Base
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_totalamount_base");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_totalchargeablecostrollup")]
+		public Microsoft.Xrm.Sdk.Money msdyn_TotalChargeableCostRollup
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_totalchargeablecostrollup");
+			}
+		}
+		
+		/// <summary>
+		/// Value of the Total Chargeable Cost in base currency.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_totalchargeablecostrollup_base")]
+		public Microsoft.Xrm.Sdk.Money msdyn_totalchargeablecostrollup_Base
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_totalchargeablecostrollup_base");
+			}
+		}
+		
+		/// <summary>
+		/// Last Updated time of rollup field Total Chargeable Cost.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_totalchargeablecostrollup_date")]
+		public System.Nullable<System.DateTime> msdyn_TotalChargeableCostRollup_Date
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("msdyn_totalchargeablecostrollup_date");
+			}
+		}
+		
+		/// <summary>
+		/// State of rollup field Total Chargeable Cost.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_totalchargeablecostrollup_state")]
+		public System.Nullable<int> msdyn_TotalChargeableCostRollup_State
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("msdyn_totalchargeablecostrollup_state");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_totalnonchargeablecostrollup")]
+		public Microsoft.Xrm.Sdk.Money msdyn_TotalNonchargeableCostRollup
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_totalnonchargeablecostrollup");
+			}
+		}
+		
+		/// <summary>
+		/// Value of the Total Non-chargeable Cost in base currency.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_totalnonchargeablecostrollup_base")]
+		public Microsoft.Xrm.Sdk.Money msdyn_totalnonchargeablecostrollup_Base
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_totalnonchargeablecostrollup_base");
+			}
+		}
+		
+		/// <summary>
+		/// Last Updated time of rollup field Total Non-chargeable Cost.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_totalnonchargeablecostrollup_date")]
+		public System.Nullable<System.DateTime> msdyn_TotalNonchargeableCostRollup_Date
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("msdyn_totalnonchargeablecostrollup_date");
+			}
+		}
+		
+		/// <summary>
+		/// State of rollup field Total Non-chargeable Cost.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_totalnonchargeablecostrollup_state")]
+		public System.Nullable<int> msdyn_TotalNonchargeableCostRollup_State
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("msdyn_totalnonchargeablecostrollup_state");
 			}
 		}
 		
@@ -878,7 +1484,20 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the opportunity that the quote is related to for reporting and analytics.
+		/// Shows the duration in minutes for which the quote was on hold.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("onholdtime")]
+		public System.Nullable<int> OnHoldTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("onholdtime");
+			}
+		}
+		
+		/// <summary>
+		/// opportunity_quotes
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("opportunityid")]
 		public Microsoft.Xrm.Sdk.EntityReference OpportunityId
@@ -918,7 +1537,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Enter the user or team who is assigned to manage the record. This field is updated every time the record is assigned to a different user.
+		/// owner_quotes
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ownerid")]
 		public Microsoft.Xrm.Sdk.EntityReference OwnerId
@@ -938,7 +1557,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the business unit that owns the quote.
+		/// business_unit_quotes
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
 		public Microsoft.Xrm.Sdk.EntityReference OwningBusinessUnit
@@ -958,7 +1577,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the team who owns the quote.
+		/// team_quotes
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
 		public Microsoft.Xrm.Sdk.EntityReference OwningTeam
@@ -978,7 +1597,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the user who owns the quote.
+		/// system_user_quotes
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
 		public Microsoft.Xrm.Sdk.EntityReference OwningUser
@@ -1018,7 +1637,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the price list associated with this record to make sure the products associated with the campaign are offered at the correct prices.
+		/// price_level_quotes
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("pricelevelid")]
 		public Microsoft.Xrm.Sdk.EntityReference PriceLevelId
@@ -1387,7 +2006,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Type a name for the customer's shipping address, such as "Headquarters" or "Field office", to identify the address.
+		/// Type a name for the customer's shipping address, such as "Headquarters" or "Field office",  to identify the address.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("shipto_name")]
 		public string ShipTo_Name
@@ -1467,7 +2086,40 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the ID of the stage.
+		/// manualsla_quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slaid")]
+		public Microsoft.Xrm.Sdk.EntityReference SLAId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("slaid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SLAId");
+				this.SetAttributeValue("slaid", value);
+				this.OnPropertyChanged("SLAId");
+			}
+		}
+		
+		/// <summary>
+		/// sla_quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slainvokedid")]
+		public Microsoft.Xrm.Sdk.EntityReference SLAInvokedId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("slainvokedid");
+			}
+		}
+		
+		/// <summary>
+		/// processstage_quotes
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("stageid")]
 		public System.Nullable<System.Guid> StageId
@@ -1760,7 +2412,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the local currency for the record to make sure budgets are reported in the correct currency.
+		/// transactioncurrency_quote
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("transactioncurrencyid")]
 		public Microsoft.Xrm.Sdk.EntityReference TransactionCurrencyId
@@ -1849,6 +2501,226 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("WillCall");
 				this.SetAttributeValue("willcall", value);
 				this.OnPropertyChanged("WillCall");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N bpf_quote_OpportunitySalesProcess
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bpf_quote_OpportunitySalesProcess")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OpportunitySalesProcess> bpf_quote_OpportunitySalesProcess
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OpportunitySalesProcess>("bpf_quote_OpportunitySalesProcess", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bpf_quote_OpportunitySalesProcess");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OpportunitySalesProcess>("bpf_quote_OpportunitySalesProcess", null, value);
+				this.OnPropertyChanged("bpf_quote_OpportunitySalesProcess");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_opportunitysalesprocess_quoteid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_opportunitysalesprocess_quoteid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OpportunitySalesProcess> lk_opportunitysalesprocess_quoteid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OpportunitySalesProcess>("lk_opportunitysalesprocess_quoteid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_opportunitysalesprocess_quoteid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OpportunitySalesProcess>("lk_opportunitysalesprocess_quoteid", null, value);
+				this.OnPropertyChanged("lk_opportunitysalesprocess_quoteid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_quote_msdyn_quotebookingincident_Quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quote_msdyn_quotebookingincident_Quote")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quotebookingincident> msdyn_quote_msdyn_quotebookingincident_Quote
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quote_msdyn_quotebookingincident_Quote", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quote_msdyn_quotebookingincident_Quote");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quote_msdyn_quotebookingincident_Quote", null, value);
+				this.OnPropertyChanged("msdyn_quote_msdyn_quotebookingincident_Quote");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_quote_msdyn_quotebookingproduct_Quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quote_msdyn_quotebookingproduct_Quote")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quotebookingproduct> msdyn_quote_msdyn_quotebookingproduct_Quote
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quote_msdyn_quotebookingproduct_Quote", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quote_msdyn_quotebookingproduct_Quote");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quote_msdyn_quotebookingproduct_Quote", null, value);
+				this.OnPropertyChanged("msdyn_quote_msdyn_quotebookingproduct_Quote");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_quote_msdyn_quotebookingservice_Quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quote_msdyn_quotebookingservice_Quote")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quotebookingservice> msdyn_quote_msdyn_quotebookingservice_Quote
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quote_msdyn_quotebookingservice_Quote", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quote_msdyn_quotebookingservice_Quote");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quote_msdyn_quotebookingservice_Quote", null, value);
+				this.OnPropertyChanged("msdyn_quote_msdyn_quotebookingservice_Quote");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_quote_msdyn_quotebookingservicetask_Quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quote_msdyn_quotebookingservicetask_Quote")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quotebookingservicetask> msdyn_quote_msdyn_quotebookingservicetask_Quote
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quote_msdyn_quotebookingservicetask_Quote", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quote_msdyn_quotebookingservicetask_Quote");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quote_msdyn_quotebookingservicetask_Quote", null, value);
+				this.OnPropertyChanged("msdyn_quote_msdyn_quotebookingservicetask_Quote");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_quote_msdyn_quotebookingsetup_Quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quote_msdyn_quotebookingsetup_Quote")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quotebookingsetup> msdyn_quote_msdyn_quotebookingsetup_Quote
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotebookingsetup>("msdyn_quote_msdyn_quotebookingsetup_Quote", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quote_msdyn_quotebookingsetup_Quote");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotebookingsetup>("msdyn_quote_msdyn_quotebookingsetup_Quote", null, value);
+				this.OnPropertyChanged("msdyn_quote_msdyn_quotebookingsetup_Quote");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_quote_msdyn_quoteinvoicingsetup_Quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quote_msdyn_quoteinvoicingsetup_Quote")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quoteinvoicingsetup> msdyn_quote_msdyn_quoteinvoicingsetup_Quote
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quoteinvoicingsetup>("msdyn_quote_msdyn_quoteinvoicingsetup_Quote", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quote_msdyn_quoteinvoicingsetup_Quote");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quoteinvoicingsetup>("msdyn_quote_msdyn_quoteinvoicingsetup_Quote", null, value);
+				this.OnPropertyChanged("msdyn_quote_msdyn_quoteinvoicingsetup_Quote");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_quote_msdyn_quotelineanalyticsbreakdown_Quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quote_msdyn_quotelineanalyticsbreakdown_Quote")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quotelineanalyticsbreakdown> msdyn_quote_msdyn_quotelineanalyticsbreakdown_Quote
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotelineanalyticsbreakdown>("msdyn_quote_msdyn_quotelineanalyticsbreakdown_Quote", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quote_msdyn_quotelineanalyticsbreakdown_Quote");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotelineanalyticsbreakdown>("msdyn_quote_msdyn_quotelineanalyticsbreakdown_Quote", null, value);
+				this.OnPropertyChanged("msdyn_quote_msdyn_quotelineanalyticsbreakdown_Quote");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_quote_msdyn_quotelinetransaction
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quote_msdyn_quotelinetransaction")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quotelinetransaction> msdyn_quote_msdyn_quotelinetransaction
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotelinetransaction>("msdyn_quote_msdyn_quotelinetransaction", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quote_msdyn_quotelinetransaction");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotelinetransaction>("msdyn_quote_msdyn_quotelinetransaction", null, value);
+				this.OnPropertyChanged("msdyn_quote_msdyn_quotelinetransaction");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_quote_msdyn_quotepricelist_Quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quote_msdyn_quotepricelist_Quote")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quotepricelist> msdyn_quote_msdyn_quotepricelist_Quote
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotepricelist>("msdyn_quote_msdyn_quotepricelist_Quote", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quote_msdyn_quotepricelist_Quote");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotepricelist>("msdyn_quote_msdyn_quotepricelist_Quote", null, value);
+				this.OnPropertyChanged("msdyn_quote_msdyn_quotepricelist_Quote");
 			}
 		}
 		
@@ -2153,6 +3025,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N quote_msdyn_approvals
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("quote_msdyn_approvals")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_approval> quote_msdyn_approvals
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("quote_msdyn_approvals", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("quote_msdyn_approvals");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("quote_msdyn_approvals", null, value);
+				this.OnPropertyChanged("quote_msdyn_approvals");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N quote_msdyn_bookingalerts
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("quote_msdyn_bookingalerts")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bookingalert> quote_msdyn_bookingalerts
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("quote_msdyn_bookingalerts", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("quote_msdyn_bookingalerts");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("quote_msdyn_bookingalerts", null, value);
+				this.OnPropertyChanged("quote_msdyn_bookingalerts");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N quote_orders
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("quote_orders")]
@@ -2249,6 +3161,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Quote_QuoteClose");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("Quote_QuoteClose", null, value);
 				this.OnPropertyChanged("Quote_QuoteClose");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N quote_QuoteCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("quote_QuoteCloses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.QuoteClose> quote_QuoteCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("quote_QuoteCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("quote_QuoteCloses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("quote_QuoteCloses", null, value);
+				this.OnPropertyChanged("quote_QuoteCloses");
 			}
 		}
 		
@@ -2353,6 +3285,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N Quote_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Quote_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Quote_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Quote_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Quote_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Quote_SyncErrors", null, value);
+				this.OnPropertyChanged("Quote_SyncErrors");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N Quote_Tasks
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Quote_Tasks")]
@@ -2369,6 +3321,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Quote_Tasks");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Task>("Quote_Tasks", null, value);
 				this.OnPropertyChanged("Quote_Tasks");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N slakpiinstance_quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_quote")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SLAKPIInstance> slakpiinstance_quote
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SLAKPIInstance>("slakpiinstance_quote", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_quote");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SLAKPIInstance>("slakpiinstance_quote", null, value);
+				this.OnPropertyChanged("slakpiinstance_quote");
 			}
 		}
 		
@@ -2539,6 +3511,90 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 manualsla_quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slaid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_quote")]
+		public DLaB.Xrm.Entities.SLA manualsla_quote
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SLA>("manualsla_quote", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_quote");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SLA>("manualsla_quote", null, value);
+				this.OnPropertyChanged("manualsla_quote");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_account_quote_Account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_account")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_quote_Account")]
+		public DLaB.Xrm.Entities.Account msdyn_account_quote_Account
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Account>("msdyn_account_quote_Account", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_quote_Account");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Account>("msdyn_account_quote_Account", null, value);
+				this.OnPropertyChanged("msdyn_account_quote_Account");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_accountmanager_quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_accountmanagerid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_accountmanager_quote")]
+		public DLaB.Xrm.Entities.SystemUser msdyn_accountmanager_quote
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("msdyn_accountmanager_quote", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_accountmanager_quote");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("msdyn_accountmanager_quote", null, value);
+				this.OnPropertyChanged("msdyn_accountmanager_quote");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_organizationalunit_quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_contractorganizationalunitid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_organizationalunit_quote")]
+		public DLaB.Xrm.Entities.msdyn_organizationalunit msdyn_organizationalunit_quote
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_organizationalunit>("msdyn_organizationalunit_quote", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_organizationalunit_quote");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_organizationalunit>("msdyn_organizationalunit_quote", null, value);
+				this.OnPropertyChanged("msdyn_organizationalunit_quote");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 opportunity_quotes
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("opportunityid")]
@@ -2640,6 +3696,20 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("quote_customer_contacts");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.Contact>("quote_customer_contacts", null, value);
 				this.OnPropertyChanged("quote_customer_contacts");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 sla_quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slainvokedid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_quote")]
+		public DLaB.Xrm.Entities.SLA sla_quote
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SLA>("sla_quote", null);
 			}
 		}
 		
@@ -2760,6 +3830,76 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				FreightTermsCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_competitive")]
+		public virtual msdyn_competitive? msdyn_CompetitiveEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((msdyn_competitive?)(EntityOptionSetEnum.GetEnum(this, "msdyn_competitive")));
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_estimatedbudget")]
+		public virtual msdyn_BudgetEstimate? msdyn_EstimatedBudgetEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((msdyn_BudgetEstimate?)(EntityOptionSetEnum.GetEnum(this, "msdyn_estimatedbudget")));
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_estimatedschedule")]
+		public virtual msdyn_Schedule? msdyn_EstimatedScheduleEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((msdyn_Schedule?)(EntityOptionSetEnum.GetEnum(this, "msdyn_estimatedschedule")));
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_feasible")]
+		public virtual msdyn_Feasibility? msdyn_feasibleEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((msdyn_Feasibility?)(EntityOptionSetEnum.GetEnum(this, "msdyn_feasible")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				msdyn_feasible = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_ordertype")]
+		public virtual Quote_msdyn_OrderType? msdyn_OrderTypeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((Quote_msdyn_OrderType?)(EntityOptionSetEnum.GetEnum(this, "msdyn_ordertype")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				msdyn_OrderType = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_profitability")]
+		public virtual msdyn_profitability? msdyn_ProfitabilityEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((msdyn_profitability?)(EntityOptionSetEnum.GetEnum(this, "msdyn_profitability")));
 			}
 		}
 		

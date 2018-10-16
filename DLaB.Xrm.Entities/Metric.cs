@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum MetricState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("metric")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Metric : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AmountDataType = "amountdatatype";
 			public const string CreatedBy = "createdby";
@@ -60,7 +60,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_metric_modifiedonbehalfby = "lk_metric_modifiedonbehalfby";
 			public const string organization_metric = "organization_metric";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -72,6 +71,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "metric";
+		
+		public const string PrimaryIdAttribute = "metricid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9603;
 		
@@ -598,6 +601,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("metric_rollupfield");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.RollupField>("metric_rollupfield", null, value);
 				this.OnPropertyChanged("metric_rollupfield");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Metric_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Metric_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Metric_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Metric_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Metric_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Metric_SyncErrors", null, value);
+				this.OnPropertyChanged("Metric_SyncErrors");
 			}
 		}
 		

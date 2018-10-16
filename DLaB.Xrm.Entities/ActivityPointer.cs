@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum ActivityPointerState
 	{
 		
@@ -33,11 +33,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("activitypointer")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ActivityPointer : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ActivityAdditionalParams = "activityadditionalparams";
 			public const string ActivityId = "activityid";
@@ -54,16 +54,20 @@ namespace DLaB.Xrm.Entities
 			public const string DeliveryLastAttemptedOn = "deliverylastattemptedon";
 			public const string DeliveryPriorityCode = "deliveryprioritycode";
 			public const string Description = "description";
+			public const string ExchangeItemId = "exchangeitemid";
 			public const string ExchangeRate = "exchangerate";
+			public const string ExchangeWebLink = "exchangeweblink";
 			public const string InstanceTypeCode = "instancetypecode";
 			public const string IsBilled = "isbilled";
 			public const string IsMapiPrivate = "ismapiprivate";
 			public const string IsRegularActivity = "isregularactivity";
 			public const string IsWorkflowCreated = "isworkflowcreated";
+			public const string LastOnHoldTime = "lastonholdtime";
 			public const string LeftVoiceMail = "leftvoicemail";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string OnHoldTime = "onholdtime";
 			public const string OwnerId = "ownerid";
 			public const string OwningBusinessUnit = "owningbusinessunit";
 			public const string OwningTeam = "owningteam";
@@ -79,6 +83,9 @@ namespace DLaB.Xrm.Entities
 			public const string SentOn = "senton";
 			public const string SeriesId = "seriesid";
 			public const string ServiceId = "serviceid";
+			public const string SLAId = "slaid";
+			public const string SLAInvokedId = "slainvokedid";
+			public const string SortDate = "sortdate";
 			public const string StageId = "stageid";
 			public const string StateCode = "statecode";
 			public const string StatusCode = "statuscode";
@@ -90,6 +97,8 @@ namespace DLaB.Xrm.Entities
 			public const string VersionNumber = "versionnumber";
 			public const string Account_ActivityPointers = "Account_ActivityPointers";
 			public const string activitypointer_sendermailboxid_mailbox = "activitypointer_sendermailboxid_mailbox";
+			public const string bookableresourcebooking_ActivityPointers = "bookableresourcebooking_ActivityPointers";
+			public const string bookableresourcebookingheader_ActivityPointers = "bookableresourcebookingheader_ActivityPointers";
 			public const string BulkOperation_ActivityPointers = "BulkOperation_ActivityPointers";
 			public const string business_unit_activitypointer = "business_unit_activitypointer";
 			public const string Campaign_ActivityPointers = "Campaign_ActivityPointers";
@@ -99,6 +108,7 @@ namespace DLaB.Xrm.Entities
 			public const string entitlement_ActivityPointers = "entitlement_ActivityPointers";
 			public const string entitlementtemplate_ActivityPointers = "entitlementtemplate_ActivityPointers";
 			public const string Incident_ActivityPointers = "Incident_ActivityPointers";
+			public const string interactionforemail_ActivityPointers = "interactionforemail_ActivityPointers";
 			public const string Invoice_ActivityPointers = "Invoice_ActivityPointers";
 			public const string KnowledgeArticle_ActivityPointers = "KnowledgeArticle_ActivityPointers";
 			public const string KnowledgeBaseRecord_ActivityPointers = "KnowledgeBaseRecord_ActivityPointers";
@@ -107,16 +117,80 @@ namespace DLaB.Xrm.Entities
 			public const string lk_activitypointer_createdonbehalfby = "lk_activitypointer_createdonbehalfby";
 			public const string lk_activitypointer_modifiedby = "lk_activitypointer_modifiedby";
 			public const string lk_activitypointer_modifiedonbehalfby = "lk_activitypointer_modifiedonbehalfby";
+			public const string manualsla_activitypointer = "manualsla_activitypointer";
+			public const string msdyn_agreement_ActivityPointers = "msdyn_agreement_ActivityPointers";
+			public const string msdyn_agreementbookingdate_ActivityPointers = "msdyn_agreementbookingdate_ActivityPointers";
+			public const string msdyn_agreementbookingincident_ActivityPointers = "msdyn_agreementbookingincident_ActivityPointers";
+			public const string msdyn_agreementbookingproduct_ActivityPointers = "msdyn_agreementbookingproduct_ActivityPointers";
+			public const string msdyn_agreementbookingservice_ActivityPointers = "msdyn_agreementbookingservice_ActivityPointers";
+			public const string msdyn_agreementbookingservicetask_ActivityPointers = "msdyn_agreementbookingservicetask_ActivityPointers";
+			public const string msdyn_agreementbookingsetup_ActivityPointers = "msdyn_agreementbookingsetup_ActivityPointers";
+			public const string msdyn_agreementinvoicedate_ActivityPointers = "msdyn_agreementinvoicedate_ActivityPointers";
+			public const string msdyn_agreementinvoiceproduct_ActivityPointers = "msdyn_agreementinvoiceproduct_ActivityPointers";
+			public const string msdyn_agreementinvoicesetup_ActivityPointers = "msdyn_agreementinvoicesetup_ActivityPointers";
+			public const string msdyn_bookingalertstatus_ActivityPointers = "msdyn_bookingalertstatus_ActivityPointers";
+			public const string msdyn_bookingrule_ActivityPointers = "msdyn_bookingrule_ActivityPointers";
+			public const string msdyn_bookingtimestamp_ActivityPointers = "msdyn_bookingtimestamp_ActivityPointers";
+			public const string msdyn_customerasset_ActivityPointers = "msdyn_customerasset_ActivityPointers";
+			public const string msdyn_fieldservicesetting_ActivityPointers = "msdyn_fieldservicesetting_ActivityPointers";
+			public const string msdyn_incidenttypecharacteristic_ActivityPointers = "msdyn_incidenttypecharacteristic_ActivityPointers";
+			public const string msdyn_incidenttypeproduct_ActivityPointers = "msdyn_incidenttypeproduct_ActivityPointers";
+			public const string msdyn_incidenttypeservice_ActivityPointers = "msdyn_incidenttypeservice_ActivityPointers";
+			public const string msdyn_inventoryadjustment_ActivityPointers = "msdyn_inventoryadjustment_ActivityPointers";
+			public const string msdyn_inventoryadjustmentproduct_ActivityPointers = "msdyn_inventoryadjustmentproduct_ActivityPointers";
+			public const string msdyn_inventoryjournal_ActivityPointers = "msdyn_inventoryjournal_ActivityPointers";
+			public const string msdyn_inventorytransfer_ActivityPointers = "msdyn_inventorytransfer_ActivityPointers";
+			public const string msdyn_payment_ActivityPointers = "msdyn_payment_ActivityPointers";
+			public const string msdyn_paymentdetail_ActivityPointers = "msdyn_paymentdetail_ActivityPointers";
+			public const string msdyn_paymentmethod_ActivityPointers = "msdyn_paymentmethod_ActivityPointers";
+			public const string msdyn_paymentterm_ActivityPointers = "msdyn_paymentterm_ActivityPointers";
 			public const string msdyn_postalbum_ActivityPointers = "msdyn_postalbum_ActivityPointers";
+			public const string msdyn_postalcode_ActivityPointers = "msdyn_postalcode_ActivityPointers";
+			public const string msdyn_processnotes_ActivityPointers = "msdyn_processnotes_ActivityPointers";
+			public const string msdyn_productinventory_ActivityPointers = "msdyn_productinventory_ActivityPointers";
+			public const string msdyn_projectteam_ActivityPointers = "msdyn_projectteam_ActivityPointers";
+			public const string msdyn_purchaseorder_ActivityPointers = "msdyn_purchaseorder_ActivityPointers";
+			public const string msdyn_purchaseorderbill_ActivityPointers = "msdyn_purchaseorderbill_ActivityPointers";
+			public const string msdyn_purchaseorderproduct_ActivityPointers = "msdyn_purchaseorderproduct_ActivityPointers";
+			public const string msdyn_purchaseorderreceipt_ActivityPointers = "msdyn_purchaseorderreceipt_ActivityPointers";
+			public const string msdyn_purchaseorderreceiptproduct_ActivityPointers = "msdyn_purchaseorderreceiptproduct_ActivityPointers";
+			public const string msdyn_purchaseordersubstatus_ActivityPointers = "msdyn_purchaseordersubstatus_ActivityPointers";
+			public const string msdyn_quotebookingincident_ActivityPointers = "msdyn_quotebookingincident_ActivityPointers";
+			public const string msdyn_quotebookingproduct_ActivityPointers = "msdyn_quotebookingproduct_ActivityPointers";
+			public const string msdyn_quotebookingservice_ActivityPointers = "msdyn_quotebookingservice_ActivityPointers";
+			public const string msdyn_quotebookingservicetask_ActivityPointers = "msdyn_quotebookingservicetask_ActivityPointers";
+			public const string msdyn_resourceterritory_ActivityPointers = "msdyn_resourceterritory_ActivityPointers";
+			public const string msdyn_rma_ActivityPointers = "msdyn_rma_ActivityPointers";
+			public const string msdyn_rmaproduct_ActivityPointers = "msdyn_rmaproduct_ActivityPointers";
+			public const string msdyn_rmareceipt_ActivityPointers = "msdyn_rmareceipt_ActivityPointers";
+			public const string msdyn_rmareceiptproduct_ActivityPointers = "msdyn_rmareceiptproduct_ActivityPointers";
+			public const string msdyn_rmasubstatus_ActivityPointers = "msdyn_rmasubstatus_ActivityPointers";
+			public const string msdyn_rtv_ActivityPointers = "msdyn_rtv_ActivityPointers";
+			public const string msdyn_rtvproduct_ActivityPointers = "msdyn_rtvproduct_ActivityPointers";
+			public const string msdyn_rtvsubstatus_ActivityPointers = "msdyn_rtvsubstatus_ActivityPointers";
+			public const string msdyn_shipvia_ActivityPointers = "msdyn_shipvia_ActivityPointers";
+			public const string msdyn_systemuserschedulersetting_ActivityPointers = "msdyn_systemuserschedulersetting_ActivityPointers";
+			public const string msdyn_timegroup_ActivityPointers = "msdyn_timegroup_ActivityPointers";
+			public const string msdyn_timegroupdetail_ActivityPointers = "msdyn_timegroupdetail_ActivityPointers";
+			public const string msdyn_timeoffrequest_ActivityPointers = "msdyn_timeoffrequest_ActivityPointers";
+			public const string msdyn_warehouse_ActivityPointers = "msdyn_warehouse_ActivityPointers";
+			public const string msdyn_workorder_ActivityPointers = "msdyn_workorder_ActivityPointers";
+			public const string msdyn_workordercharacteristic_ActivityPointers = "msdyn_workordercharacteristic_ActivityPointers";
+			public const string msdyn_workorderincident_ActivityPointers = "msdyn_workorderincident_ActivityPointers";
+			public const string msdyn_workorderproduct_ActivityPointers = "msdyn_workorderproduct_ActivityPointers";
+			public const string msdyn_workorderresourcerestriction_ActivityPointers = "msdyn_workorderresourcerestriction_ActivityPointers";
+			public const string msdyn_workorderservice_ActivityPointers = "msdyn_workorderservice_ActivityPointers";
+			public const string msdyn_workorderservicetask_ActivityPointers = "msdyn_workorderservicetask_ActivityPointers";
 			public const string Opportunity_ActivityPointers = "Opportunity_ActivityPointers";
 			public const string Quote_ActivityPointers = "Quote_ActivityPointers";
 			public const string SalesOrder_ActivityPointers = "SalesOrder_ActivityPointers";
 			public const string service_activity_pointers = "service_activity_pointers";
+			public const string site_ActivityPointers = "site_ActivityPointers";
+			public const string sla_activitypointer = "sla_activitypointer";
 			public const string team_activity = "team_activity";
 			public const string TransactionCurrency_ActivityPointer = "TransactionCurrency_ActivityPointer";
 			public const string user_activity = "user_activity";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -128,6 +202,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "activitypointer";
+		
+		public const string PrimaryIdAttribute = "activityid";
+		
+		public const string PrimaryNameAttribute = "subject";
 		
 		public const int EntityTypeCode = 4200;
 		
@@ -445,6 +523,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// The message id of activity which is returned from Exchange Server.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("exchangeitemid")]
+		public string ExchangeItemId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("exchangeitemid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ExchangeItemId");
+				this.SetAttributeValue("exchangeitemid", value);
+				this.OnPropertyChanged("ExchangeItemId");
+			}
+		}
+		
+		/// <summary>
 		/// Exchange rate for the currency associated with the activitypointer with respect to the base currency.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("exchangerate")]
@@ -454,6 +552,26 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<decimal>>("exchangerate");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the web link of Activity of type email.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("exchangeweblink")]
+		public string ExchangeWebLink
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("exchangeweblink");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ExchangeWebLink");
+				this.SetAttributeValue("exchangeweblink", value);
+				this.OnPropertyChanged("ExchangeWebLink");
 			}
 		}
 		
@@ -544,6 +662,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Contains the date and time stamp of the last on hold time.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lastonholdtime")]
+		public System.Nullable<System.DateTime> LastOnHoldTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("lastonholdtime");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("LastOnHoldTime");
+				this.SetAttributeValue("lastonholdtime", value);
+				this.OnPropertyChanged("LastOnHoldTime");
+			}
+		}
+		
+		/// <summary>
 		/// Left the voice mail
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("leftvoicemail")]
@@ -620,6 +758,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ModifiedOnBehalfBy");
 				this.SetAttributeValue("modifiedonbehalfby", value);
 				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Shows how long, in minutes, that the record was on hold.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("onholdtime")]
+		public System.Nullable<int> OnHoldTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("onholdtime");
 			}
 		}
 		
@@ -876,7 +1027,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of an associated service.
+		/// service_activity_pointers
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("serviceid")]
 		public Microsoft.Xrm.Sdk.EntityReference ServiceId
@@ -892,6 +1043,59 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ServiceId");
 				this.SetAttributeValue("serviceid", value);
 				this.OnPropertyChanged("ServiceId");
+			}
+		}
+		
+		/// <summary>
+		/// Choose the service level agreement (SLA) that you want to apply to the case record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slaid")]
+		public Microsoft.Xrm.Sdk.EntityReference SLAId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("slaid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SLAId");
+				this.SetAttributeValue("slaid", value);
+				this.OnPropertyChanged("SLAId");
+			}
+		}
+		
+		/// <summary>
+		/// Last SLA that was applied to this case. This field is for internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slainvokedid")]
+		public Microsoft.Xrm.Sdk.EntityReference SLAInvokedId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("slainvokedid");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the date and time by which the activities are sorted.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sortdate")]
+		public System.Nullable<System.DateTime> SortDate
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("sortdate");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SortDate");
+				this.SetAttributeValue("sortdate", value);
+				this.OnPropertyChanged("SortDate");
 			}
 		}
 		
@@ -1304,6 +1508,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N activity_pointer_msdyn_approval
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("activity_pointer_msdyn_approval")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_approval> activity_pointer_msdyn_approval
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("activity_pointer_msdyn_approval", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("activity_pointer_msdyn_approval");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("activity_pointer_msdyn_approval", null, value);
+				this.OnPropertyChanged("activity_pointer_msdyn_approval");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N activity_pointer_msdyn_bookingalert
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("activity_pointer_msdyn_bookingalert")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bookingalert> activity_pointer_msdyn_bookingalert
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("activity_pointer_msdyn_bookingalert", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("activity_pointer_msdyn_bookingalert");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("activity_pointer_msdyn_bookingalert", null, value);
+				this.OnPropertyChanged("activity_pointer_msdyn_bookingalert");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N activity_pointer_opportunity_close
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("activity_pointer_opportunity_close")]
@@ -1644,6 +1888,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N slakpiinstance_activitypointer
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_activitypointer")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SLAKPIInstance> slakpiinstance_activitypointer
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SLAKPIInstance>("slakpiinstance_activitypointer", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_activitypointer");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SLAKPIInstance>("slakpiinstance_activitypointer", null, value);
+				this.OnPropertyChanged("slakpiinstance_activitypointer");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 Account_ActivityPointers
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1675,6 +1939,48 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Mailbox>("activitypointer_sendermailboxid_mailbox", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcebooking_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebooking_ActivityPointers")]
+		public DLaB.Xrm.Entities.BookableResourceBooking bookableresourcebooking_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBooking>("bookableresourcebooking_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bookableresourcebooking_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBooking>("bookableresourcebooking_ActivityPointers", null, value);
+				this.OnPropertyChanged("bookableresourcebooking_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcebookingheader_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebookingheader_ActivityPointers")]
+		public DLaB.Xrm.Entities.BookableResourceBookingHeader bookableresourcebookingheader_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBookingHeader>("bookableresourcebookingheader_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bookableresourcebookingheader_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBookingHeader>("bookableresourcebookingheader_ActivityPointers", null, value);
+				this.OnPropertyChanged("bookableresourcebookingheader_ActivityPointers");
 			}
 		}
 		
@@ -1868,6 +2174,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 interactionforemail_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("interactionforemail_ActivityPointers")]
+		public DLaB.Xrm.Entities.InteractionForEmail interactionforemail_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.InteractionForEmail>("interactionforemail_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("interactionforemail_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.InteractionForEmail>("interactionforemail_ActivityPointers", null, value);
+				this.OnPropertyChanged("interactionforemail_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 Invoice_ActivityPointers
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -2036,6 +2363,573 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 manualsla_activitypointer
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slaid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_activitypointer")]
+		public DLaB.Xrm.Entities.SLA manualsla_activitypointer
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SLA>("manualsla_activitypointer", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_activitypointer");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SLA>("manualsla_activitypointer", null, value);
+				this.OnPropertyChanged("manualsla_activitypointer");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreement_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreement_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_agreement msdyn_agreement_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreement_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_agreement_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingdate_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingdate_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingdate msdyn_agreementbookingdate_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingdate_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingdate_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingincident_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingincident_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingincident msdyn_agreementbookingincident_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingincident>("msdyn_agreementbookingincident_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingincident_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingincident>("msdyn_agreementbookingincident_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingincident_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingproduct_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingproduct_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingproduct msdyn_agreementbookingproduct_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_agreementbookingproduct_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingproduct_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_agreementbookingproduct_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingproduct_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservice_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservice_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservice msdyn_agreementbookingservice_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_agreementbookingservice_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingservice_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_agreementbookingservice_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingservice_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservicetask_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservicetask_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservicetask msdyn_agreementbookingservicetask_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask>("msdyn_agreementbookingservicetask_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingservicetask_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask>("msdyn_agreementbookingservicetask_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingservicetask_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingsetup_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingsetup_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingsetup msdyn_agreementbookingsetup_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingsetup_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingsetup_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicedate_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicedate_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicedate msdyn_agreementinvoicedate_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoicedate_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoicedate_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoiceproduct_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoiceproduct_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct msdyn_agreementinvoiceproduct_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_agreementinvoiceproduct_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoiceproduct_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_agreementinvoiceproduct_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoiceproduct_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicesetup_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicesetup_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicesetup msdyn_agreementinvoicesetup_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoicesetup_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoicesetup_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingalertstatus_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalertstatus_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_bookingalertstatus msdyn_bookingalertstatus_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalertstatus>("msdyn_bookingalertstatus_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingalertstatus_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalertstatus>("msdyn_bookingalertstatus_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_bookingalertstatus_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingrule_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingrule_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_bookingrule msdyn_bookingrule_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingrule>("msdyn_bookingrule_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingrule_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingrule>("msdyn_bookingrule_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_bookingrule_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingtimestamp_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingtimestamp_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_bookingtimestamp msdyn_bookingtimestamp_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingtimestamp_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_bookingtimestamp_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_customerasset_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_customerasset_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_customerasset msdyn_customerasset_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_customerasset_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_customerasset_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_customerasset_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_customerasset_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fieldservicesetting_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fieldservicesetting_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_fieldservicesetting msdyn_fieldservicesetting_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicesetting>("msdyn_fieldservicesetting_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_fieldservicesetting_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicesetting>("msdyn_fieldservicesetting_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_fieldservicesetting_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypecharacteristic_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypecharacteristic_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic msdyn_incidenttypecharacteristic_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic>("msdyn_incidenttypecharacteristic_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypecharacteristic_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic>("msdyn_incidenttypecharacteristic_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypecharacteristic_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeproduct_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeproduct_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeproduct msdyn_incidenttypeproduct_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypeproduct_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypeproduct_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeservice_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeservice_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeservice msdyn_incidenttypeservice_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_incidenttypeservice_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypeservice_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_incidenttypeservice_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypeservice_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustment_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustment_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustment msdyn_inventoryadjustment_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryadjustment_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_inventoryadjustment_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustmentproduct_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustmentproduct_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct msdyn_inventoryadjustmentproduct_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryadjustmentproduct_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_inventoryadjustmentproduct_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryjournal_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryjournal_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_inventoryjournal msdyn_inventoryjournal_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_inventoryjournal_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryjournal_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_inventoryjournal_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_inventoryjournal_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventorytransfer_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventorytransfer_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_inventorytransfer msdyn_inventorytransfer_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventorytransfer_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_inventorytransfer_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_payment_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_payment_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_payment msdyn_payment_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_payment>("msdyn_payment_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_payment_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_payment>("msdyn_payment_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_payment_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentdetail_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentdetail_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_paymentdetail msdyn_paymentdetail_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentdetail>("msdyn_paymentdetail_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentdetail_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentdetail>("msdyn_paymentdetail_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_paymentdetail_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentmethod_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentmethod_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_paymentmethod msdyn_paymentmethod_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentmethod>("msdyn_paymentmethod_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentmethod_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentmethod>("msdyn_paymentmethod_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_paymentmethod_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentterm_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentterm_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_paymentterm msdyn_paymentterm_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentterm>("msdyn_paymentterm_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentterm_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentterm>("msdyn_paymentterm_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_paymentterm_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 msdyn_postalbum_ActivityPointers
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -2053,6 +2947,762 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("msdyn_postalbum_ActivityPointers");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_PostAlbum>("msdyn_postalbum_ActivityPointers", null, value);
 				this.OnPropertyChanged("msdyn_postalbum_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_postalcode_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_postalcode_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_postalcode msdyn_postalcode_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_postalcode_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_postalcode_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_postalcode_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_postalcode_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_processnotes_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_processnotes_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_processnotes msdyn_processnotes_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_processnotes>("msdyn_processnotes_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_processnotes_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_processnotes>("msdyn_processnotes_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_processnotes_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_productinventory_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_productinventory_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_productinventory msdyn_productinventory_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_productinventory_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_productinventory_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_productinventory_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_productinventory_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectteam_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectteam_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_projectteam msdyn_projectteam_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteam>("msdyn_projectteam_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_projectteam_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteam>("msdyn_projectteam_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_projectteam_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorder_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorder_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorder msdyn_purchaseorder_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorder_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorder_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderbill_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderbill_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderbill msdyn_purchaseorderbill_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("msdyn_purchaseorderbill_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderbill_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("msdyn_purchaseorderbill_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderbill_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderproduct_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderproduct_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderproduct msdyn_purchaseorderproduct_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_purchaseorderproduct_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderproduct_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_purchaseorderproduct_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderproduct_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceipt_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceipt_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceipt msdyn_purchaseorderreceipt_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderreceipt_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderreceipt_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceiptproduct_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceiptproduct_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct msdyn_purchaseorderreceiptproduct_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct>("msdyn_purchaseorderreceiptproduct_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderreceiptproduct_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct>("msdyn_purchaseorderreceiptproduct_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderreceiptproduct_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseordersubstatus_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseordersubstatus_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_purchaseordersubstatus msdyn_purchaseordersubstatus_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus>("msdyn_purchaseordersubstatus_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseordersubstatus_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus>("msdyn_purchaseordersubstatus_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_purchaseordersubstatus_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingincident_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingincident_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingincident msdyn_quotebookingincident_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quotebookingincident_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingincident_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quotebookingincident_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingincident_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingproduct_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingproduct_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingproduct msdyn_quotebookingproduct_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quotebookingproduct_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingproduct_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quotebookingproduct_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingproduct_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservice_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservice_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservice msdyn_quotebookingservice_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quotebookingservice_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingservice_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quotebookingservice_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingservice_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservicetask_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservicetask_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservicetask msdyn_quotebookingservicetask_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quotebookingservicetask_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingservicetask_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quotebookingservicetask_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingservicetask_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourceterritory_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourceterritory_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_resourceterritory msdyn_resourceterritory_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_resourceterritory_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_resourceterritory_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rma_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rma_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_rma msdyn_rma_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rma_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_rma_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmaproduct_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmaproduct_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_rmaproduct msdyn_rmaproduct_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_rmaproduct_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmaproduct_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_rmaproduct_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_rmaproduct_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceipt_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceipt_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_rmareceipt msdyn_rmareceipt_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmareceipt_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_rmareceipt_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceiptproduct_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceiptproduct_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_rmareceiptproduct msdyn_rmareceiptproduct_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceiptproduct>("msdyn_rmareceiptproduct_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmareceiptproduct_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceiptproduct>("msdyn_rmareceiptproduct_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_rmareceiptproduct_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmasubstatus_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmasubstatus_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_rmasubstatus msdyn_rmasubstatus_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmasubstatus>("msdyn_rmasubstatus_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmasubstatus_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmasubstatus>("msdyn_rmasubstatus_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_rmasubstatus_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtv_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtv_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_rtv msdyn_rtv_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtv_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_rtv_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvproduct_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvproduct_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_rtvproduct msdyn_rtvproduct_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_rtvproduct_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtvproduct_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_rtvproduct_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_rtvproduct_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvsubstatus_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvsubstatus_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_rtvsubstatus msdyn_rtvsubstatus_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvsubstatus>("msdyn_rtvsubstatus_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtvsubstatus_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvsubstatus>("msdyn_rtvsubstatus_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_rtvsubstatus_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_shipvia_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_shipvia_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_shipvia msdyn_shipvia_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_shipvia>("msdyn_shipvia_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_shipvia_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_shipvia>("msdyn_shipvia_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_shipvia_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_systemuserschedulersetting_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_systemuserschedulersetting_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_systemuserschedulersetting msdyn_systemuserschedulersetting_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting>("msdyn_systemuserschedulersetting_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_systemuserschedulersetting_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting>("msdyn_systemuserschedulersetting_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_systemuserschedulersetting_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroup_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroup_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_timegroup msdyn_timegroup_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timegroup_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_timegroup_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroupdetail_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroupdetail_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_timegroupdetail msdyn_timegroupdetail_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timegroupdetail_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_timegroupdetail_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timeoffrequest_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timeoffrequest_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_timeoffrequest msdyn_timeoffrequest_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffrequest>("msdyn_timeoffrequest_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timeoffrequest_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffrequest>("msdyn_timeoffrequest_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_timeoffrequest_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_warehouse_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_warehouse_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_warehouse msdyn_warehouse_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_warehouse_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_warehouse_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorder_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorder_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_workorder msdyn_workorder_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorder_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_workorder_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workordercharacteristic_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workordercharacteristic_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_workordercharacteristic msdyn_workordercharacteristic_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordercharacteristic>("msdyn_workordercharacteristic_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workordercharacteristic_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordercharacteristic>("msdyn_workordercharacteristic_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_workordercharacteristic_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderincident_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderincident_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_workorderincident msdyn_workorderincident_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderincident_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_workorderincident_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderproduct_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderproduct_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_workorderproduct msdyn_workorderproduct_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_workorderproduct_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderproduct_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_workorderproduct_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_workorderproduct_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderresourcerestriction_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderresourcerestriction_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_workorderresourcerestriction msdyn_workorderresourcerestriction_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_workorderresourcerestriction_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderresourcerestriction_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_workorderresourcerestriction_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_workorderresourcerestriction_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservice_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservice_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_workorderservice msdyn_workorderservice_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderservice_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_workorderservice_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservicetask_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservicetask_ActivityPointers")]
+		public DLaB.Xrm.Entities.msdyn_workorderservicetask msdyn_workorderservicetask_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderservicetask_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_ActivityPointers", null, value);
+				this.OnPropertyChanged("msdyn_workorderservicetask_ActivityPointers");
 			}
 		}
 		
@@ -2137,6 +3787,41 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("service_activity_pointers");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.Service>("service_activity_pointers", null, value);
 				this.OnPropertyChanged("service_activity_pointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 site_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_ActivityPointers")]
+		public DLaB.Xrm.Entities.Site site_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Site>("site_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_ActivityPointers");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Site>("site_ActivityPointers", null, value);
+				this.OnPropertyChanged("site_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 sla_activitypointer
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slainvokedid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_activitypointer")]
+		public DLaB.Xrm.Entities.SLA sla_activitypointer
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SLA>("sla_activitypointer", null);
 			}
 		}
 		

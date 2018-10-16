@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum KbArticleState
 	{
 		
@@ -30,11 +30,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("kbarticle")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class KbArticle : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ArticleXml = "articlexml";
 			public const string Comments = "comments";
@@ -75,7 +75,6 @@ namespace DLaB.Xrm.Entities
 			public const string subject_kb_articles = "subject_kb_articles";
 			public const string TransactionCurrency_KbArticle = "TransactionCurrency_KbArticle";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -87,6 +86,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "kbarticle";
+		
+		public const string PrimaryIdAttribute = "kbarticleid";
+		
+		public const string PrimaryNameAttribute = "title";
 		
 		public const int EntityTypeCode = 127;
 		
@@ -421,7 +424,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Select which language the article must be available in. This list is based on the list of language packs that are installed in your Microsoft Dynamics CRM environment.
+		/// Select which language the article must be available in. This list is based on the list of language packs that are installed in your Microsoft Dynamics 365 environment.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("languagecode")]
 		public System.Nullable<int> LanguageCode
@@ -891,6 +894,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("KbArticle_SharepointDocumentLocation");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.SharePointDocumentLocation>("KbArticle_SharepointDocumentLocation", null, value);
 				this.OnPropertyChanged("KbArticle_SharepointDocumentLocation");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N KbArticle_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KbArticle_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> KbArticle_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("KbArticle_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("KbArticle_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("KbArticle_SyncErrors", null, value);
+				this.OnPropertyChanged("KbArticle_SyncErrors");
 			}
 		}
 		

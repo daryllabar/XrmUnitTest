@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
 	public enum ComponentType
 	{
 		
@@ -31,6 +31,9 @@ namespace DLaB.Xrm.Entities
 		AttributePicklistValue = 4,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ComplexControl = 64,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ConnectionRole = 63,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -47,6 +50,9 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		CustomControlDefaultConfig = 68,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		DataSourceMapping = 166,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		DisplayString = 22,
@@ -94,6 +100,12 @@ namespace DLaB.Xrm.Entities
 		HierarchyRule = 65,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ImportMap = 208,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Index = 18,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		KBArticleTemplate = 38,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -122,6 +134,12 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		PluginType = 90,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Privilege = 16,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PrivilegeObjectTypeCode = 17,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Relationship = 3,
@@ -178,10 +196,31 @@ namespace DLaB.Xrm.Entities
 		SavedQueryVisualization = 59,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SDKMessage = 201,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SDKMessageFilter = 202,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SdkMessagePair = 203,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SDKMessageProcessingStep = 92,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SDKMessageProcessingStepImage = 93,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SdkMessageRequest = 204,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SdkMessageRequestField = 205,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SdkMessageResponse = 206,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SdkMessageResponseField = 207,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ServiceEndpoint = 95,
@@ -206,6 +245,9 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		WebResource = 61,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		WebWizard = 210,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Workflow = 29,

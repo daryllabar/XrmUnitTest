@@ -11,12 +11,18 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
 	public enum AsyncOperation_OperationType
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ActivityPropagation = 6,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ALMAnomalyDetectionOperation = 73,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AppModuleMetadataOperation = 72,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		AuditPartitionCreation = 41,
@@ -47,6 +53,9 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Cleanupinactiveworkflowassemblies = 32,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CleanupSolutionComponents = 71,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		CollectionOrganizationSizeStatistics = 20,
@@ -146,6 +155,12 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Reindexallindicesmaintenancejob = 30,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RelationshipAssistantCards = 69,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ResourceBookingSync = 68,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SQMDataCollection = 9,

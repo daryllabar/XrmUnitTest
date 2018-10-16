@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("customeraddress")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class CustomerAddress : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AddressNumber = "addressnumber";
 			public const string AddressTypeCode = "addresstypecode";
@@ -73,7 +73,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_customeraddressbase_modifiedby = "lk_customeraddressbase_modifiedby";
 			public const string TransactionCurrency_CustomerAddress = "TransactionCurrency_CustomerAddress";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -85,6 +84,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "customeraddress";
+		
+		public const string PrimaryIdAttribute = "customeraddressid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 1071;
 		
@@ -244,7 +247,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -520,7 +523,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -1102,6 +1105,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("CustomerAddress_ProcessSessions");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProcessSession>("CustomerAddress_ProcessSessions", null, value);
 				this.OnPropertyChanged("CustomerAddress_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N CustomerAddress_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("CustomerAddress_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> CustomerAddress_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("CustomerAddress_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CustomerAddress_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("CustomerAddress_SyncErrors", null, value);
+				this.OnPropertyChanged("CustomerAddress_SyncErrors");
 			}
 		}
 		

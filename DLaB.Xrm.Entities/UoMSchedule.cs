@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum UoMScheduleState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("uomschedule")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class UoMSchedule : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string BaseUoMName = "baseuomname";
 			public const string CreatedBy = "createdby";
@@ -49,8 +49,10 @@ namespace DLaB.Xrm.Entities
 			public const string OverriddenCreatedOn = "overriddencreatedon";
 			public const string StateCode = "statecode";
 			public const string StatusCode = "statuscode";
+			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UoMScheduleId = "uomscheduleid";
 			public const string Id = "uomscheduleid";
+			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
 			public const string lk_externalparty_uomschedule_createdby = "lk_externalparty_uomschedule_createdby";
 			public const string lk_externalparty_uomschedule_modifiedby = "lk_externalparty_uomschedule_modifiedby";
@@ -60,7 +62,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_uomschedulebase_modifiedby = "lk_uomschedulebase_modifiedby";
 			public const string organization_uof_schedules = "organization_uof_schedules";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -72,6 +73,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "uomschedule";
+		
+		public const string PrimaryIdAttribute = "uomscheduleid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 1056;
 		
@@ -118,7 +123,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the user who created the unit group.
+		/// lk_uomschedulebase_createdby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
@@ -171,7 +176,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the delegate user who created the uomschedule.
+		/// lk_uomschedulebase_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
@@ -231,7 +236,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the user who last modified the unit group.
+		/// lk_uomschedulebase_modifiedby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
@@ -284,7 +289,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the delegate user who last modified the uomschedule.
+		/// lk_uomschedulebase_modifiedonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
@@ -324,7 +329,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the organization associated with the unit group.
+		/// organization_uof_schedules
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("organizationid")]
 		public Microsoft.Xrm.Sdk.EntityReference OrganizationId
@@ -412,6 +417,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timezoneruleversionnumber")]
+		public System.Nullable<int> TimeZoneRuleVersionNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timezoneruleversionnumber");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
+				this.SetAttributeValue("timezoneruleversionnumber", value);
+				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
+			}
+		}
+		
+		/// <summary>
 		/// Unique identifier for the unit group.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("uomscheduleid")]
@@ -455,6 +480,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Time zone code that was in use when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
+		public System.Nullable<int> UTCConversionTimeZoneCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("utcconversiontimezonecode");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("UTCConversionTimeZoneCode");
+				this.SetAttributeValue("utcconversiontimezonecode", value);
+				this.OnPropertyChanged("UTCConversionTimeZoneCode");
+			}
+		}
+		
+		/// <summary>
 		/// Version number of the unit group.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
@@ -484,6 +529,226 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("contract_detail_unit_of_measure_schedule");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ContractDetail>("contract_detail_unit_of_measure_schedule", null, value);
 				this.OnPropertyChanged("contract_detail_unit_of_measure_schedule");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_uomschedule_msdyn_actual_UnitSchedule
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_uomschedule_msdyn_actual_UnitSchedule")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_actual> msdyn_uomschedule_msdyn_actual_UnitSchedule
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_actual>("msdyn_uomschedule_msdyn_actual_UnitSchedule", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_uomschedule_msdyn_actual_UnitSchedule");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_actual>("msdyn_uomschedule_msdyn_actual_UnitSchedule", null, value);
+				this.OnPropertyChanged("msdyn_uomschedule_msdyn_actual_UnitSchedule");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_uomschedule_msdyn_estimateline_UnitSchedule
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_uomschedule_msdyn_estimateline_UnitSchedule")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_estimateline> msdyn_uomschedule_msdyn_estimateline_UnitSchedule
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_estimateline>("msdyn_uomschedule_msdyn_estimateline_UnitSchedule", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_uomschedule_msdyn_estimateline_UnitSchedule");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_estimateline>("msdyn_uomschedule_msdyn_estimateline_UnitSchedule", null, value);
+				this.OnPropertyChanged("msdyn_uomschedule_msdyn_estimateline_UnitSchedule");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_uomschedule_msdyn_invoicelinetransaction_UnitSchedule
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_uomschedule_msdyn_invoicelinetransaction_UnitSchedule")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_invoicelinetransaction> msdyn_uomschedule_msdyn_invoicelinetransaction_UnitSchedule
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_invoicelinetransaction>("msdyn_uomschedule_msdyn_invoicelinetransaction_UnitSchedule", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_uomschedule_msdyn_invoicelinetransaction_UnitSchedule");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_invoicelinetransaction>("msdyn_uomschedule_msdyn_invoicelinetransaction_UnitSchedule", null, value);
+				this.OnPropertyChanged("msdyn_uomschedule_msdyn_invoicelinetransaction_UnitSchedule");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_uomschedule_msdyn_journalline_UnitSchedule
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_uomschedule_msdyn_journalline_UnitSchedule")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_journalline> msdyn_uomschedule_msdyn_journalline_UnitSchedule
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_journalline>("msdyn_uomschedule_msdyn_journalline_UnitSchedule", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_uomschedule_msdyn_journalline_UnitSchedule");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_journalline>("msdyn_uomschedule_msdyn_journalline_UnitSchedule", null, value);
+				this.OnPropertyChanged("msdyn_uomschedule_msdyn_journalline_UnitSchedule");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_uomschedule_msdyn_opportunitylinetransaction_UnitSchedule
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_uomschedule_msdyn_opportunitylinetransaction_UnitSchedule")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction> msdyn_uomschedule_msdyn_opportunitylinetransaction_UnitSchedule
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction>("msdyn_uomschedule_msdyn_opportunitylinetransaction_UnitSchedule", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_uomschedule_msdyn_opportunitylinetransaction_UnitSchedule");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction>("msdyn_uomschedule_msdyn_opportunitylinetransaction_UnitSchedule", null, value);
+				this.OnPropertyChanged("msdyn_uomschedule_msdyn_opportunitylinetransaction_UnitSchedule");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_uomschedule_msdyn_orderlinetransaction_UnitSchedule
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_uomschedule_msdyn_orderlinetransaction_UnitSchedule")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_orderlinetransaction> msdyn_uomschedule_msdyn_orderlinetransaction_UnitSchedule
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_orderlinetransaction>("msdyn_uomschedule_msdyn_orderlinetransaction_UnitSchedule", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_uomschedule_msdyn_orderlinetransaction_UnitSchedule");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_orderlinetransaction>("msdyn_uomschedule_msdyn_orderlinetransaction_UnitSchedule", null, value);
+				this.OnPropertyChanged("msdyn_uomschedule_msdyn_orderlinetransaction_UnitSchedule");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_uomschedule_msdyn_quotelinetransaction_UnitSchedule
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_uomschedule_msdyn_quotelinetransaction_UnitSchedule")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quotelinetransaction> msdyn_uomschedule_msdyn_quotelinetransaction_UnitSchedule
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotelinetransaction>("msdyn_uomschedule_msdyn_quotelinetransaction_UnitSchedule", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_uomschedule_msdyn_quotelinetransaction_UnitSchedule");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotelinetransaction>("msdyn_uomschedule_msdyn_quotelinetransaction_UnitSchedule", null, value);
+				this.OnPropertyChanged("msdyn_uomschedule_msdyn_quotelinetransaction_UnitSchedule");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_uomschedule_msdyn_resourcecategorypricelevel_UnitSchedule
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_uomschedule_msdyn_resourcecategorypricelevel_UnitSchedule")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_resourcecategorypricelevel> msdyn_uomschedule_msdyn_resourcecategorypricelevel_UnitSchedule
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_resourcecategorypricelevel>("msdyn_uomschedule_msdyn_resourcecategorypricelevel_UnitSchedule", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_uomschedule_msdyn_resourcecategorypricelevel_UnitSchedule");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_resourcecategorypricelevel>("msdyn_uomschedule_msdyn_resourcecategorypricelevel_UnitSchedule", null, value);
+				this.OnPropertyChanged("msdyn_uomschedule_msdyn_resourcecategorypricelevel_UnitSchedule");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_uomschedule_msdyn_transactioncategory_UnitGroup
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_uomschedule_msdyn_transactioncategory_UnitGroup")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_transactioncategory> msdyn_uomschedule_msdyn_transactioncategory_UnitGroup
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_transactioncategory>("msdyn_uomschedule_msdyn_transactioncategory_UnitGroup", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_uomschedule_msdyn_transactioncategory_UnitGroup");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_transactioncategory>("msdyn_uomschedule_msdyn_transactioncategory_UnitGroup", null, value);
+				this.OnPropertyChanged("msdyn_uomschedule_msdyn_transactioncategory_UnitGroup");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_uomschedule_msdyn_transactioncategorypricelevel_UnitSchedule
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_uomschedule_msdyn_transactioncategorypricelevel_UnitSchedule")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_transactioncategorypricelevel> msdyn_uomschedule_msdyn_transactioncategorypricelevel_UnitSchedule
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_transactioncategorypricelevel>("msdyn_uomschedule_msdyn_transactioncategorypricelevel_UnitSchedule", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_uomschedule_msdyn_transactioncategorypricelevel_UnitSchedule");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_transactioncategorypricelevel>("msdyn_uomschedule_msdyn_transactioncategorypricelevel_UnitSchedule", null, value);
+				this.OnPropertyChanged("msdyn_uomschedule_msdyn_transactioncategorypricelevel_UnitSchedule");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_uomschedule_msdyn_transactiontype_UnitGroup
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_uomschedule_msdyn_transactiontype_UnitGroup")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_transactiontype> msdyn_uomschedule_msdyn_transactiontype_UnitGroup
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_transactiontype>("msdyn_uomschedule_msdyn_transactiontype_UnitGroup", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_uomschedule_msdyn_transactiontype_UnitGroup");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_transactiontype>("msdyn_uomschedule_msdyn_transactiontype_UnitGroup", null, value);
+				this.OnPropertyChanged("msdyn_uomschedule_msdyn_transactiontype_UnitGroup");
 			}
 		}
 		
@@ -584,6 +849,66 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("UoMSchedule_BulkDeleteFailures");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.BulkDeleteFailure>("UoMSchedule_BulkDeleteFailures", null, value);
 				this.OnPropertyChanged("UoMSchedule_BulkDeleteFailures");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N uomschedule_MailboxTrackingFolders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("uomschedule_MailboxTrackingFolders")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> uomschedule_MailboxTrackingFolders
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("uomschedule_MailboxTrackingFolders", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("uomschedule_MailboxTrackingFolders");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("uomschedule_MailboxTrackingFolders", null, value);
+				this.OnPropertyChanged("uomschedule_MailboxTrackingFolders");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N uomschedule_PrincipalObjectAttributeAccesses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("uomschedule_PrincipalObjectAttributeAccesses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess> uomschedule_PrincipalObjectAttributeAccesses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("uomschedule_PrincipalObjectAttributeAccesses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("uomschedule_PrincipalObjectAttributeAccesses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("uomschedule_PrincipalObjectAttributeAccesses", null, value);
+				this.OnPropertyChanged("uomschedule_PrincipalObjectAttributeAccesses");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N UoMSchedule_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("UoMSchedule_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> UoMSchedule_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("UoMSchedule_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("UoMSchedule_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("UoMSchedule_SyncErrors", null, value);
+				this.OnPropertyChanged("UoMSchedule_SyncErrors");
 			}
 		}
 		

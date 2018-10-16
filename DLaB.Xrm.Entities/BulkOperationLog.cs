@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("bulkoperationlog")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class BulkOperationLog : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AdditionalInfo = "additionalinfo";
 			public const string BulkOperationId = "bulkoperationid";
@@ -27,10 +27,17 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "bulkoperationlogid";
 			public const string CreatedObjectId = "createdobjectid";
 			public const string ErrorNumber = "errornumber";
+			public const string ImportSequenceNumber = "importsequencenumber";
+			public const string Name = "name";
+			public const string OverriddenCreatedOn = "overriddencreatedon";
 			public const string OwnerId = "ownerid";
 			public const string OwningBusinessUnit = "owningbusinessunit";
+			public const string OwningTeam = "owningteam";
 			public const string OwningUser = "owninguser";
 			public const string RegardingObjectId = "regardingobjectid";
+			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
+			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
+			public const string VersionNumber = "versionnumber";
 			public const string activity_pointer_BulkOperation_logs = "activity_pointer_BulkOperation_logs";
 			public const string BulkOperation_logs = "BulkOperation_logs";
 			public const string CreatedAccount_BulkOperationLogs2 = "CreatedAccount_BulkOperationLogs2";
@@ -41,8 +48,9 @@ namespace DLaB.Xrm.Entities
 			public const string SourceAccount_BulkOperationLogs = "SourceAccount_BulkOperationLogs";
 			public const string SourceContact_BulkOperationLogs = "SourceContact_BulkOperationLogs";
 			public const string SourceLead_BulkOperationLogs = "SourceLead_BulkOperationLogs";
+			public const string team_bulkoperationlog = "team_bulkoperationlog";
+			public const string user_bulkoperationlog = "user_bulkoperationlog";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -54,6 +62,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "bulkoperationlog";
+		
+		public const string PrimaryIdAttribute = "bulkoperationlogid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 4405;
 		
@@ -100,7 +112,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the quick campaign record that the log applies to. This information is used to relate log data to the parent quick campaign.
+		/// BulkOperation_logs
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("bulkoperationid")]
 		public Microsoft.Xrm.Sdk.EntityReference BulkOperationId
@@ -163,7 +175,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the activity or other item created by the bulk operation.
+		/// CreatedOpportunity_BulkOperationLogs
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdobjectid")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedObjectId
@@ -192,6 +204,66 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<int>>("errornumber");
+			}
+		}
+		
+		/// <summary>
+		/// Sequence number of the import that created this record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("importsequencenumber")]
+		public System.Nullable<int> ImportSequenceNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("importsequencenumber");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ImportSequenceNumber");
+				this.SetAttributeValue("importsequencenumber", value);
+				this.OnPropertyChanged("ImportSequenceNumber");
+			}
+		}
+		
+		/// <summary>
+		/// name
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("name")]
+		public string Name
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("name");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Name");
+				this.SetAttributeValue("name", value);
+				this.OnPropertyChanged("Name");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time that the record was migrated.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overriddencreatedon")]
+		public System.Nullable<System.DateTime> OverriddenCreatedOn
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overriddencreatedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OverriddenCreatedOn");
+				this.SetAttributeValue("overriddencreatedon", value);
+				this.OnPropertyChanged("OverriddenCreatedOn");
 			}
 		}
 		
@@ -229,6 +301,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Unique identifier for the team that owns the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningTeam
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
+			}
+		}
+		
+		/// <summary>
 		/// Unique identifier of the user who owns the bulk operation log.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
@@ -249,7 +341,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the account, contact, lead, or list that the bulk operation log item applies to.
+		/// SourceLead_BulkOperationLogs
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
 		public Microsoft.Xrm.Sdk.EntityReference RegardingObjectId
@@ -265,6 +357,59 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("RegardingObjectId");
 				this.SetAttributeValue("regardingobjectid", value);
 				this.OnPropertyChanged("RegardingObjectId");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timezoneruleversionnumber")]
+		public System.Nullable<int> TimeZoneRuleVersionNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timezoneruleversionnumber");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
+				this.SetAttributeValue("timezoneruleversionnumber", value);
+				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Time zone code that was in use when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
+		public System.Nullable<int> UTCConversionTimeZoneCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("utcconversiontimezonecode");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("UTCConversionTimeZoneCode");
+				this.SetAttributeValue("utcconversiontimezonecode", value);
+				this.OnPropertyChanged("UTCConversionTimeZoneCode");
+			}
+		}
+		
+		/// <summary>
+		/// Version Number
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
+		public System.Nullable<long> VersionNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
 			}
 		}
 		
@@ -305,6 +450,66 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("BulkOperationLog_BulkDeleteFailures");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.BulkDeleteFailure>("BulkOperationLog_BulkDeleteFailures", null, value);
 				this.OnPropertyChanged("BulkOperationLog_BulkDeleteFailures");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N bulkoperationlog_MailboxTrackingFolders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bulkoperationlog_MailboxTrackingFolders")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> bulkoperationlog_MailboxTrackingFolders
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("bulkoperationlog_MailboxTrackingFolders", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bulkoperationlog_MailboxTrackingFolders");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("bulkoperationlog_MailboxTrackingFolders", null, value);
+				this.OnPropertyChanged("bulkoperationlog_MailboxTrackingFolders");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N bulkoperationlog_PrincipalObjectAttributeAccesses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bulkoperationlog_PrincipalObjectAttributeAccesses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess> bulkoperationlog_PrincipalObjectAttributeAccesses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("bulkoperationlog_PrincipalObjectAttributeAccesses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bulkoperationlog_PrincipalObjectAttributeAccesses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("bulkoperationlog_PrincipalObjectAttributeAccesses", null, value);
+				this.OnPropertyChanged("bulkoperationlog_PrincipalObjectAttributeAccesses");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N bulkoperationlog_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bulkoperationlog_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> bulkoperationlog_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("bulkoperationlog_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bulkoperationlog_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("bulkoperationlog_SyncErrors", null, value);
+				this.OnPropertyChanged("bulkoperationlog_SyncErrors");
 			}
 		}
 		
@@ -535,6 +740,48 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("SourceLead_BulkOperationLogs");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.Lead>("SourceLead_BulkOperationLogs", null, value);
 				this.OnPropertyChanged("SourceLead_BulkOperationLogs");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 team_bulkoperationlog
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_bulkoperationlog")]
+		public DLaB.Xrm.Entities.Team team_bulkoperationlog
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_bulkoperationlog", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_bulkoperationlog");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_bulkoperationlog", null, value);
+				this.OnPropertyChanged("team_bulkoperationlog");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 user_bulkoperationlog
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_bulkoperationlog")]
+		public DLaB.Xrm.Entities.SystemUser user_bulkoperationlog
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_bulkoperationlog", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_bulkoperationlog");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_bulkoperationlog", null, value);
+				this.OnPropertyChanged("user_bulkoperationlog");
 			}
 		}
 		

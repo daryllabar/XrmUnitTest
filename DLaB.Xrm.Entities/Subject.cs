@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("subject")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Subject : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CreatedBy = "createdby";
 			public const string CreatedByExternalParty = "createdbyexternalparty";
@@ -48,7 +48,6 @@ namespace DLaB.Xrm.Entities
 			public const string organization_subjects = "organization_subjects";
 			public const string Referencingsubject_parent_subject = "subject_parent_subject";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -60,6 +59,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "subject";
+		
+		public const string PrimaryIdAttribute = "subjectid";
+		
+		public const string PrimaryNameAttribute = "title";
 		
 		public const int EntityTypeCode = 129;
 		
@@ -292,7 +295,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier for the organization associated with the subject.
+		/// organization_subjects
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("organizationid")]
 		public Microsoft.Xrm.Sdk.EntityReference OrganizationId
@@ -597,6 +600,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("subject_sales_literature");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.SalesLiterature>("subject_sales_literature", null, value);
 				this.OnPropertyChanged("subject_sales_literature");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Subject_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Subject_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Subject_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Subject_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Subject_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Subject_SyncErrors", null, value);
+				this.OnPropertyChanged("Subject_SyncErrors");
 			}
 		}
 		

@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum ChannelAccessProfileState
 	{
 		
@@ -23,15 +23,15 @@ namespace DLaB.Xrm.Entities
 	}
 	
 	/// <summary>
-	/// Information about permissions needed to access Dynamics CRM through external channels.For internal use only
+	/// Information about permissions needed to access Dynamics 365 through external channels.For internal use only
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("channelaccessprofile")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ChannelAccessProfile : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ChannelAccessProfileId = "channelaccessprofileid";
 			public const string Id = "channelaccessprofileid";
@@ -81,7 +81,6 @@ namespace DLaB.Xrm.Entities
 			public const string TransactionCurrency_ChannelAccessProfile = "TransactionCurrency_ChannelAccessProfile";
 			public const string user_channelaccessprofile = "user_channelaccessprofile";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -93,6 +92,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "channelaccessprofile";
+		
+		public const string PrimaryIdAttribute = "channelaccessprofileid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 3005;
 		
@@ -162,7 +165,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the Channel Access Profile used when synchronizing customizations for the Microsoft Dynamics CRM client for Outlook
+		/// Unique identifier of the Channel Access Profile used when synchronizing customizations for the Microsoft Dynamics 365 client for Outlook
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("channelaccessprofileidunique")]
 		public System.Nullable<System.Guid> ChannelAccessProfileIdUnique
@@ -997,6 +1000,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("channelaccessprofile_ProcessSession");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProcessSession>("channelaccessprofile_ProcessSession", null, value);
 				this.OnPropertyChanged("channelaccessprofile_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N ChannelAccessProfile_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ChannelAccessProfile_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> ChannelAccessProfile_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ChannelAccessProfile_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ChannelAccessProfile_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ChannelAccessProfile_SyncErrors", null, value);
+				this.OnPropertyChanged("ChannelAccessProfile_SyncErrors");
 			}
 		}
 		

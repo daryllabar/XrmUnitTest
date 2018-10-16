@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum KnowledgeArticleState
 	{
 		
@@ -42,11 +42,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("knowledgearticle")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class KnowledgeArticle : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ArticlePublicNumber = "articlepublicnumber";
 			public const string Content = "content";
@@ -60,6 +60,7 @@ namespace DLaB.Xrm.Entities
 			public const string ExpirationStatusId = "expirationstatusid";
 			public const string ExpiredReviewOptions = "expiredreviewoptions";
 			public const string ImportSequenceNumber = "importsequencenumber";
+			public const string IsInternal = "isinternal";
 			public const string IsLatestVersion = "islatestversion";
 			public const string IsPrimary = "isprimary";
 			public const string IsRootArticle = "isrootarticle";
@@ -86,10 +87,16 @@ namespace DLaB.Xrm.Entities
 			public const string processid = "processid";
 			public const string PublishOn = "publishon";
 			public const string PublishStatusId = "publishstatusid";
+			public const string Rating = "rating";
+			public const string Rating_Count = "rating_count";
+			public const string Rating_Date = "rating_date";
+			public const string Rating_State = "rating_state";
+			public const string Rating_Sum = "rating_sum";
 			public const string ReadyForReview = "readyforreview";
 			public const string Review = "review";
 			public const string RootArticleId = "rootarticleid";
 			public const string ScheduledStatusId = "scheduledstatusid";
+			public const string SetCategoryAssociations = "setcategoryassociations";
 			public const string SetProductAssociations = "setproductassociations";
 			public const string stageid = "stageid";
 			public const string StateCode = "statecode";
@@ -118,7 +125,6 @@ namespace DLaB.Xrm.Entities
 			public const string TransactionCurrency_knowledgearticle = "TransactionCurrency_knowledgearticle";
 			public const string user_knowledgearticle = "user_knowledgearticle";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -130,6 +136,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "knowledgearticle";
+		
+		public const string PrimaryIdAttribute = "knowledgearticleid";
+		
+		public const string PrimaryNameAttribute = "title";
 		
 		public const int EntityTypeCode = 9953;
 		
@@ -385,6 +395,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ImportSequenceNumber");
 				this.SetAttributeValue("importsequencenumber", value);
 				this.OnPropertyChanged("ImportSequenceNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Shows whether this article is only visible internally.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isinternal")]
+		public System.Nullable<bool> IsInternal
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isinternal");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IsInternal");
+				this.SetAttributeValue("isinternal", value);
+				this.OnPropertyChanged("IsInternal");
 			}
 		}
 		
@@ -891,6 +921,71 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Information which specifies how helpful the related record was.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("rating")]
+		public System.Nullable<decimal> Rating
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("rating");
+			}
+		}
+		
+		/// <summary>
+		/// Rating Count
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("rating_count")]
+		public System.Nullable<int> Rating_Count
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("rating_count");
+			}
+		}
+		
+		/// <summary>
+		/// The date time for Rating.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("rating_date")]
+		public System.Nullable<System.DateTime> Rating_Date
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("rating_date");
+			}
+		}
+		
+		/// <summary>
+		/// State of Rating
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("rating_state")]
+		public System.Nullable<int> Rating_State
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("rating_state");
+			}
+		}
+		
+		/// <summary>
+		/// Total sum of Rating
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("rating_sum")]
+		public System.Nullable<decimal> Rating_Sum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("rating_sum");
+			}
+		}
+		
+		/// <summary>
 		/// Ready For Review
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("readyforreview")]
@@ -967,6 +1062,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ScheduledStatusId");
 				this.SetAttributeValue("scheduledstatusid", value);
 				this.OnPropertyChanged("ScheduledStatusId");
+			}
+		}
+		
+		/// <summary>
+		/// Shows whether category associations have been set
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("setcategoryassociations")]
+		public System.Nullable<bool> SetCategoryAssociations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("setcategoryassociations");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SetCategoryAssociations");
+				this.SetAttributeValue("setcategoryassociations", value);
+				this.OnPropertyChanged("SetCategoryAssociations");
 			}
 		}
 		
@@ -1359,6 +1474,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N knowledgearticle_BulkOperations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_BulkOperations")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.BulkOperation> knowledgearticle_BulkOperations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.BulkOperation>("knowledgearticle_BulkOperations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticle_BulkOperations");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.BulkOperation>("knowledgearticle_BulkOperations", null, value);
+				this.OnPropertyChanged("knowledgearticle_BulkOperations");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N knowledgearticle_CampaignResponses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_CampaignResponses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CampaignResponse> knowledgearticle_CampaignResponses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CampaignResponse>("knowledgearticle_CampaignResponses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticle_CampaignResponses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CampaignResponse>("knowledgearticle_CampaignResponses", null, value);
+				this.OnPropertyChanged("knowledgearticle_CampaignResponses");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N knowledgearticle_connections1
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_connections1")]
@@ -1479,6 +1634,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N KnowledgeArticle_Feedback
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeArticle_Feedback")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Feedback> KnowledgeArticle_Feedback
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Feedback>("KnowledgeArticle_Feedback", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("KnowledgeArticle_Feedback");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Feedback>("KnowledgeArticle_Feedback", null, value);
+				this.OnPropertyChanged("KnowledgeArticle_Feedback");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N knowledgearticle_IncidentResolutions
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_IncidentResolutions")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.IncidentResolution> knowledgearticle_IncidentResolutions
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.IncidentResolution>("knowledgearticle_IncidentResolutions", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticle_IncidentResolutions");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.IncidentResolution>("knowledgearticle_IncidentResolutions", null, value);
+				this.OnPropertyChanged("knowledgearticle_IncidentResolutions");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N KnowledgeArticle_Letters
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeArticle_Letters")]
@@ -1495,6 +1690,86 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("KnowledgeArticle_Letters");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Letter>("KnowledgeArticle_Letters", null, value);
 				this.OnPropertyChanged("KnowledgeArticle_Letters");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N knowledgearticle_msdyn_approvals
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_msdyn_approvals")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_approval> knowledgearticle_msdyn_approvals
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("knowledgearticle_msdyn_approvals", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticle_msdyn_approvals");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("knowledgearticle_msdyn_approvals", null, value);
+				this.OnPropertyChanged("knowledgearticle_msdyn_approvals");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N knowledgearticle_msdyn_bookingalerts
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_msdyn_bookingalerts")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bookingalert> knowledgearticle_msdyn_bookingalerts
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("knowledgearticle_msdyn_bookingalerts", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticle_msdyn_bookingalerts");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("knowledgearticle_msdyn_bookingalerts", null, value);
+				this.OnPropertyChanged("knowledgearticle_msdyn_bookingalerts");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N knowledgearticle_OpportunityCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_OpportunityCloses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OpportunityClose> knowledgearticle_OpportunityCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OpportunityClose>("knowledgearticle_OpportunityCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticle_OpportunityCloses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OpportunityClose>("knowledgearticle_OpportunityCloses", null, value);
+				this.OnPropertyChanged("knowledgearticle_OpportunityCloses");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N knowledgearticle_OrderCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_OrderCloses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OrderClose> knowledgearticle_OrderCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OrderClose>("knowledgearticle_OrderCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticle_OrderCloses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OrderClose>("knowledgearticle_OrderCloses", null, value);
+				this.OnPropertyChanged("knowledgearticle_OrderCloses");
 			}
 		}
 		
@@ -1639,6 +1914,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N knowledgearticle_QuoteCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_QuoteCloses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.QuoteClose> knowledgearticle_QuoteCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("knowledgearticle_QuoteCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticle_QuoteCloses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("knowledgearticle_QuoteCloses", null, value);
+				this.OnPropertyChanged("knowledgearticle_QuoteCloses");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N KnowledgeArticle_RecurringAppointmentMasters
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeArticle_RecurringAppointmentMasters")]
@@ -1719,6 +2014,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N knowledgearticle_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_SharePointDocuments")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SharePointDocument> knowledgearticle_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SharePointDocument>("knowledgearticle_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticle_SharePointDocuments");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SharePointDocument>("knowledgearticle_SharePointDocuments", null, value);
+				this.OnPropertyChanged("knowledgearticle_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N KnowledgeArticle_SocialActivities
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeArticle_SocialActivities")]
@@ -1735,6 +2050,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("KnowledgeArticle_SocialActivities");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.SocialActivity>("KnowledgeArticle_SocialActivities", null, value);
 				this.OnPropertyChanged("KnowledgeArticle_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N KnowledgeArticle_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeArticle_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> KnowledgeArticle_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("KnowledgeArticle_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("KnowledgeArticle_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("KnowledgeArticle_SyncErrors", null, value);
+				this.OnPropertyChanged("KnowledgeArticle_SyncErrors");
 			}
 		}
 		
@@ -1815,6 +2150,86 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("knowledgearticle_views");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleViews>("knowledgearticle_views", null, value);
 				this.OnPropertyChanged("knowledgearticle_views");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_expiredprocess_knowledgearticleid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_expiredprocess_knowledgearticleid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ExpiredProcess> lk_expiredprocess_knowledgearticleid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ExpiredProcess>("lk_expiredprocess_knowledgearticleid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_expiredprocess_knowledgearticleid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ExpiredProcess>("lk_expiredprocess_knowledgearticleid", null, value);
+				this.OnPropertyChanged("lk_expiredprocess_knowledgearticleid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_newprocess_knowledgearticleid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_newprocess_knowledgearticleid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.NewProcess> lk_newprocess_knowledgearticleid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.NewProcess>("lk_newprocess_knowledgearticleid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_newprocess_knowledgearticleid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.NewProcess>("lk_newprocess_knowledgearticleid", null, value);
+				this.OnPropertyChanged("lk_newprocess_knowledgearticleid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_translationprocess_knowledgearticleid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_translationprocess_knowledgearticleid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.TranslationProcess> lk_translationprocess_knowledgearticleid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.TranslationProcess>("lk_translationprocess_knowledgearticleid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_translationprocess_knowledgearticleid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.TranslationProcess>("lk_translationprocess_knowledgearticleid", null, value);
+				this.OnPropertyChanged("lk_translationprocess_knowledgearticleid");
+			}
+		}
+		
+		/// <summary>
+		/// N:N knowledgearticle_category
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_category")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Category> knowledgearticle_category
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Category>("knowledgearticle_category", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticle_category");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Category>("knowledgearticle_category", null, value);
+				this.OnPropertyChanged("knowledgearticle_category");
 			}
 		}
 		

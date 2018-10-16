@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum EmailServerProfileState
 	{
 		
@@ -27,15 +27,18 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("emailserverprofile")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class EmailServerProfile : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
+			public const string CredentialInfo = "credentialinfo";
+			public const string DataEncryptionKey = "dataencryptionkey";
+			public const string DefaultServerLocation = "defaultserverlocation";
 			public const string Description = "description";
 			public const string EmailServerProfileId = "emailserverprofileid";
 			public const string Id = "emailserverprofileid";
@@ -45,6 +48,7 @@ namespace DLaB.Xrm.Entities
 			public const string EntityImage_Timestamp = "entityimage_timestamp";
 			public const string EntityImage_URL = "entityimage_url";
 			public const string EntityImageId = "entityimageid";
+			public const string ExchangeOnlineTenantId = "exchangeonlinetenantid";
 			public const string ExchangeVersion = "exchangeversion";
 			public const string IncomingAuthenticationProtocol = "incomingauthenticationprotocol";
 			public const string IncomingCredentialRetrieval = "incomingcredentialretrieval";
@@ -55,8 +59,11 @@ namespace DLaB.Xrm.Entities
 			public const string IncomingUseImpersonation = "incominguseimpersonation";
 			public const string IncomingUserName = "incomingusername";
 			public const string IncomingUseSSL = "incomingusessl";
+			public const string IsDataEncryptionKeySet = "isdataencryptionkeyset";
 			public const string IsIncomingPasswordSet = "isincomingpasswordset";
 			public const string IsOutgoingPasswordSet = "isoutgoingpasswordset";
+			public const string LastAuthorizationStatus = "lastauthorizationstatus";
+			public const string LastCrmMessage = "lastcrmmessage";
 			public const string LastTestExecutionStatus = "lasttestexecutionstatus";
 			public const string LastTestRequest = "lasttestrequest";
 			public const string LastTestResponse = "lasttestresponse";
@@ -95,8 +102,10 @@ namespace DLaB.Xrm.Entities
 			public const string TimeoutMailboxConnectionAfterAmount = "timeoutmailboxconnectionafteramount";
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UseAutoDiscover = "useautodiscover";
+			public const string UseDefaultTenantId = "usedefaulttenantid";
 			public const string UseSameSettingsForOutgoingConnections = "usesamesettingsforoutgoingconnections";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
+			public const string VersionNumber = "versionnumber";
 			public const string business_unit_emailserverprofile = "business_unit_emailserverprofile";
 			public const string lk_emailserverprofile_createdby = "lk_emailserverprofile_createdby";
 			public const string lk_emailserverprofile_createdonbehalfby = "lk_emailserverprofile_createdonbehalfby";
@@ -105,7 +114,6 @@ namespace DLaB.Xrm.Entities
 			public const string organization_emailserverprofile = "organization_emailserverprofile";
 			public const string team_emailserverprofile = "team_emailserverprofile";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -117,6 +125,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "emailserverprofile";
+		
+		public const string PrimaryIdAttribute = "emailserverprofileid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9605;
 		
@@ -163,7 +175,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -199,6 +211,66 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("CreatedOnBehalfBy");
 				this.SetAttributeValue("createdonbehalfby", value);
 				this.OnPropertyChanged("CreatedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Information about server credentials
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("credentialinfo")]
+		public string CredentialInfo
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("credentialinfo");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CredentialInfo");
+				this.SetAttributeValue("credentialinfo", value);
+				this.OnPropertyChanged("CredentialInfo");
+			}
+		}
+		
+		/// <summary>
+		/// encryption key used for CredentialInfo
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dataencryptionkey")]
+		public string DataEncryptionKey
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("dataencryptionkey");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("DataEncryptionKey");
+				this.SetAttributeValue("dataencryptionkey", value);
+				this.OnPropertyChanged("DataEncryptionKey");
+			}
+		}
+		
+		/// <summary>
+		/// Type the default location of the server.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("defaultserverlocation")]
+		public string DefaultServerLocation
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("defaultserverlocation");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("DefaultServerLocation");
+				this.SetAttributeValue("defaultserverlocation", value);
+				this.OnPropertyChanged("DefaultServerLocation");
 			}
 		}
 		
@@ -354,6 +426,26 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("entityimageid");
+			}
+		}
+		
+		/// <summary>
+		/// Type the tenant ID of Exchange Online.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("exchangeonlinetenantid")]
+		public string ExchangeOnlineTenantId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("exchangeonlinetenantid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ExchangeOnlineTenantId");
+				this.SetAttributeValue("exchangeonlinetenantid", value);
+				this.OnPropertyChanged("ExchangeOnlineTenantId");
 			}
 		}
 		
@@ -553,6 +645,19 @@ namespace DLaB.Xrm.Entities
 		/// <summary>
 		/// 
 		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isdataencryptionkeyset")]
+		public System.Nullable<bool> IsDataEncryptionKeySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isdataencryptionkeyset");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isincomingpasswordset")]
 		public System.Nullable<bool> IsIncomingPasswordSet
 		{
@@ -573,6 +678,46 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<bool>>("isoutgoingpasswordset");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the last test authorization status of email server profile
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lastauthorizationstatus")]
+		public Microsoft.Xrm.Sdk.OptionSetValue LastAuthorizationStatus
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("lastauthorizationstatus");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("LastAuthorizationStatus");
+				this.SetAttributeValue("lastauthorizationstatus", value);
+				this.OnPropertyChanged("LastAuthorizationStatus");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the Dynamics 365 message obtained during the Last Test
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lastcrmmessage")]
+		public string LastCrmMessage
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("lastcrmmessage");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("LastCrmMessage");
+				this.SetAttributeValue("lastcrmmessage", value);
+				this.OnPropertyChanged("LastCrmMessage");
 			}
 		}
 		
@@ -757,7 +902,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -817,7 +962,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Type the name of the email server profile record.
+		/// Type a meaningful name for the email server profile. This name is displayed when you need to select an email server profile.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("name")]
 		public string Name
@@ -1318,7 +1463,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Select whether to automatically discover the server location.
+		/// Select whether to automatically discover the server location
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("useautodiscover")]
 		public System.Nullable<bool> UseAutoDiscover
@@ -1334,6 +1479,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("UseAutoDiscover");
 				this.SetAttributeValue("useautodiscover", value);
 				this.OnPropertyChanged("UseAutoDiscover");
+			}
+		}
+		
+		/// <summary>
+		/// Select whether to use the Exchange Online Tenant ID obtained from running Microsoft Azure PowerShell cmdlets (highly recommended). If you select No, you can edit this field manually
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("usedefaulttenantid")]
+		public System.Nullable<bool> UseDefaultTenantId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("usedefaulttenantid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("UseDefaultTenantId");
+				this.SetAttributeValue("usedefaulttenantid", value);
+				this.OnPropertyChanged("UseDefaultTenantId");
 			}
 		}
 		
@@ -1374,6 +1539,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("UTCConversionTimeZoneCode");
 				this.SetAttributeValue("utcconversiontimezonecode", value);
 				this.OnPropertyChanged("UTCConversionTimeZoneCode");
+			}
+		}
+		
+		/// <summary>
+		/// Version number of the email server profile.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
+		public System.Nullable<long> VersionNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
 			}
 		}
 		
@@ -1514,6 +1692,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("EmailServerProfile_Organization");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Organization>("EmailServerProfile_Organization", null, value);
 				this.OnPropertyChanged("EmailServerProfile_Organization");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N EmailServerProfile_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("EmailServerProfile_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> EmailServerProfile_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("EmailServerProfile_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("EmailServerProfile_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("EmailServerProfile_SyncErrors", null, value);
+				this.OnPropertyChanged("EmailServerProfile_SyncErrors");
 			}
 		}
 		
@@ -1761,6 +1959,21 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				IncomingCredentialRetrieval = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lastauthorizationstatus")]
+		public virtual EmailServerProfile_LastAuthorizationStatus? LastAuthorizationStatusEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((EmailServerProfile_LastAuthorizationStatus?)(EntityOptionSetEnum.GetEnum(this, "lastauthorizationstatus")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				LastAuthorizationStatus = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 		

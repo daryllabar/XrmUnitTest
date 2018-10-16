@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("territory")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Territory : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
@@ -40,7 +40,9 @@ namespace DLaB.Xrm.Entities
 			public const string OverriddenCreatedOn = "overriddencreatedon";
 			public const string TerritoryId = "territoryid";
 			public const string Id = "territoryid";
+			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string TransactionCurrencyId = "transactioncurrencyid";
+			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
 			public const string lk_territory_createdonbehalfby = "lk_territory_createdonbehalfby";
 			public const string lk_territory_modifiedonbehalfby = "lk_territory_modifiedonbehalfby";
@@ -50,7 +52,6 @@ namespace DLaB.Xrm.Entities
 			public const string system_user_territories = "system_user_territories";
 			public const string TransactionCurrency_Territory = "TransactionCurrency_Territory";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -62,6 +63,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "territory";
+		
+		public const string PrimaryIdAttribute = "territoryid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 2013;
 		
@@ -88,7 +93,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the user who created the territory.
+		/// lk_territorybase_createdby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
@@ -128,7 +133,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the delegate user who created the territory.
+		/// lk_territory_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
@@ -260,7 +265,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the manager of the territory.
+		/// system_user_territories
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("managerid")]
 		public Microsoft.Xrm.Sdk.EntityReference ManagerId
@@ -280,7 +285,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the user who last modified the territory.
+		/// lk_territorybase_modifiedby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
@@ -320,7 +325,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the delegate user who last modified the territory.
+		/// lk_territory_modifiedonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
@@ -360,7 +365,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the organization associated with the territory.
+		/// organization_territories
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("organizationid")]
 		public Microsoft.Xrm.Sdk.EntityReference OrganizationId
@@ -436,7 +441,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the currency associated with the territory.
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timezoneruleversionnumber")]
+		public System.Nullable<int> TimeZoneRuleVersionNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timezoneruleversionnumber");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
+				this.SetAttributeValue("timezoneruleversionnumber", value);
+				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
+			}
+		}
+		
+		/// <summary>
+		/// TransactionCurrency_Territory
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("transactioncurrencyid")]
 		public Microsoft.Xrm.Sdk.EntityReference TransactionCurrencyId
@@ -456,6 +481,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Time zone code that was in use when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
+		public System.Nullable<int> UTCConversionTimeZoneCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("utcconversiontimezonecode");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("UTCConversionTimeZoneCode");
+				this.SetAttributeValue("utcconversiontimezonecode", value);
+				this.OnPropertyChanged("UTCConversionTimeZoneCode");
+			}
+		}
+		
+		/// <summary>
 		/// Version number of the territory.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
@@ -465,6 +510,166 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_territory_account_ServiceTerritory
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_territory_account_ServiceTerritory")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Account> msdyn_territory_account_ServiceTerritory
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Account>("msdyn_territory_account_ServiceTerritory", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_territory_account_ServiceTerritory");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Account>("msdyn_territory_account_ServiceTerritory", null, value);
+				this.OnPropertyChanged("msdyn_territory_account_ServiceTerritory");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_territory_msdyn_actual_ServiceTerritory
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_territory_msdyn_actual_ServiceTerritory")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_actual> msdyn_territory_msdyn_actual_ServiceTerritory
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_actual>("msdyn_territory_msdyn_actual_ServiceTerritory", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_territory_msdyn_actual_ServiceTerritory");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_actual>("msdyn_territory_msdyn_actual_ServiceTerritory", null, value);
+				this.OnPropertyChanged("msdyn_territory_msdyn_actual_ServiceTerritory");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_territory_msdyn_agreement_ServiceTerritory
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_territory_msdyn_agreement_ServiceTerritory")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_agreement> msdyn_territory_msdyn_agreement_ServiceTerritory
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_territory_msdyn_agreement_ServiceTerritory", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_territory_msdyn_agreement_ServiceTerritory");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_territory_msdyn_agreement_ServiceTerritory", null, value);
+				this.OnPropertyChanged("msdyn_territory_msdyn_agreement_ServiceTerritory");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_territory_msdyn_postalcode_ServiceTerritory
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_territory_msdyn_postalcode_ServiceTerritory")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_postalcode> msdyn_territory_msdyn_postalcode_ServiceTerritory
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_territory_msdyn_postalcode_ServiceTerritory", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_territory_msdyn_postalcode_ServiceTerritory");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_territory_msdyn_postalcode_ServiceTerritory", null, value);
+				this.OnPropertyChanged("msdyn_territory_msdyn_postalcode_ServiceTerritory");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_territory_msdyn_resourcerequirement_Territory
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_territory_msdyn_resourcerequirement_Territory")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_resourcerequirement> msdyn_territory_msdyn_resourcerequirement_Territory
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_resourcerequirement>("msdyn_territory_msdyn_resourcerequirement_Territory", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_territory_msdyn_resourcerequirement_Territory");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_resourcerequirement>("msdyn_territory_msdyn_resourcerequirement_Territory", null, value);
+				this.OnPropertyChanged("msdyn_territory_msdyn_resourcerequirement_Territory");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_territory_msdyn_resourceterritory_Territory
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_territory_msdyn_resourceterritory_Territory")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_resourceterritory> msdyn_territory_msdyn_resourceterritory_Territory
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_territory_msdyn_resourceterritory_Territory", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_territory_msdyn_resourceterritory_Territory");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_territory_msdyn_resourceterritory_Territory", null, value);
+				this.OnPropertyChanged("msdyn_territory_msdyn_resourceterritory_Territory");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_territory_msdyn_workorder_ServiceTerritory
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_territory_msdyn_workorder_ServiceTerritory")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_workorder> msdyn_territory_msdyn_workorder_ServiceTerritory
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_territory_msdyn_workorder_ServiceTerritory", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_territory_msdyn_workorder_ServiceTerritory");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_territory_msdyn_workorder_ServiceTerritory", null, value);
+				this.OnPropertyChanged("msdyn_territory_msdyn_workorder_ServiceTerritory");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_territory_quotedetail_ServiceTerritory
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_territory_quotedetail_ServiceTerritory")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.QuoteDetail> msdyn_territory_quotedetail_ServiceTerritory
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.QuoteDetail>("msdyn_territory_quotedetail_ServiceTerritory", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_territory_quotedetail_ServiceTerritory");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.QuoteDetail>("msdyn_territory_quotedetail_ServiceTerritory", null, value);
+				this.OnPropertyChanged("msdyn_territory_quotedetail_ServiceTerritory");
 			}
 		}
 		
@@ -609,6 +814,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N territory_MailboxTrackingFolders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("territory_MailboxTrackingFolders")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> territory_MailboxTrackingFolders
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("territory_MailboxTrackingFolders", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("territory_MailboxTrackingFolders");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("territory_MailboxTrackingFolders", null, value);
+				this.OnPropertyChanged("territory_MailboxTrackingFolders");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N territory_principalobjectattributeaccess
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("territory_principalobjectattributeaccess")]
@@ -645,6 +870,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Territory_ProcessSessions");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProcessSession>("Territory_ProcessSessions", null, value);
 				this.OnPropertyChanged("Territory_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Territory_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Territory_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Territory_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Territory_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Territory_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Territory_SyncErrors", null, value);
+				this.OnPropertyChanged("Territory_SyncErrors");
 			}
 		}
 		

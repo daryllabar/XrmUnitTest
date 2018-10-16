@@ -15,12 +15,13 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("pluginassembly")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class PluginAssembly : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
+			public const string AuthType = "authtype";
 			public const string ComponentState = "componentstate";
 			public const string Content = "content";
 			public const string CreatedBy = "createdby";
@@ -30,9 +31,11 @@ namespace DLaB.Xrm.Entities
 			public const string CustomizationLevel = "customizationlevel";
 			public const string Description = "description";
 			public const string IntroducedVersion = "introducedversion";
+			public const string IsCustomizable = "iscustomizable";
 			public const string IsHidden = "ishidden";
 			public const string IsManaged = "ismanaged";
 			public const string IsolationMode = "isolationmode";
+			public const string IsPasswordSet = "ispasswordset";
 			public const string Major = "major";
 			public const string Minor = "minor";
 			public const string ModifiedBy = "modifiedby";
@@ -41,6 +44,7 @@ namespace DLaB.Xrm.Entities
 			public const string Name = "name";
 			public const string OrganizationId = "organizationid";
 			public const string OverwriteTime = "overwritetime";
+			public const string Password = "password";
 			public const string Path = "path";
 			public const string PluginAssemblyId = "pluginassemblyid";
 			public const string Id = "pluginassemblyid";
@@ -49,6 +53,8 @@ namespace DLaB.Xrm.Entities
 			public const string SolutionId = "solutionid";
 			public const string SourceHash = "sourcehash";
 			public const string SourceType = "sourcetype";
+			public const string Url = "url";
+			public const string UserName = "username";
 			public const string Version = "version";
 			public const string VersionNumber = "versionnumber";
 			public const string createdby_pluginassembly = "createdby_pluginassembly";
@@ -57,7 +63,6 @@ namespace DLaB.Xrm.Entities
 			public const string modifiedby_pluginassembly = "modifiedby_pluginassembly";
 			public const string organization_pluginassembly = "organization_pluginassembly";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -69,6 +74,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "pluginassembly";
+		
+		public const string PrimaryIdAttribute = "pluginassemblyid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 4605;
 		
@@ -91,6 +100,26 @@ namespace DLaB.Xrm.Entities
 			if ((this.PropertyChanging != null))
 			{
 				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// Specifies mode of authentication with web sources like WebApp
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("authtype")]
+		public Microsoft.Xrm.Sdk.OptionSetValue AuthType
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("authtype");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("AuthType");
+				this.SetAttributeValue("authtype", value);
+				this.OnPropertyChanged("AuthType");
 			}
 		}
 		
@@ -261,6 +290,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Information that specifies whether this component can be customized.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("iscustomizable")]
+		public Microsoft.Xrm.Sdk.BooleanManagedProperty IsCustomizable
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.BooleanManagedProperty>("iscustomizable");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IsCustomizable");
+				this.SetAttributeValue("iscustomizable", value);
+				this.OnPropertyChanged("IsCustomizable");
+			}
+		}
+		
+		/// <summary>
 		/// Information that specifies whether this component should be hidden.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ishidden")]
@@ -310,6 +359,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("IsolationMode");
 				this.SetAttributeValue("isolationmode", value);
 				this.OnPropertyChanged("IsolationMode");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ispasswordset")]
+		public System.Nullable<bool> IsPasswordSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("ispasswordset");
 			}
 		}
 		
@@ -442,6 +504,26 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overwritetime");
+			}
+		}
+		
+		/// <summary>
+		/// User Password
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("password")]
+		public string Password
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("password");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Password");
+				this.SetAttributeValue("password", value);
+				this.OnPropertyChanged("Password");
 			}
 		}
 		
@@ -591,6 +673,46 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("SourceType");
 				this.SetAttributeValue("sourcetype", value);
 				this.OnPropertyChanged("SourceType");
+			}
+		}
+		
+		/// <summary>
+		/// Web Url
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("url")]
+		public string Url
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("url");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Url");
+				this.SetAttributeValue("url", value);
+				this.OnPropertyChanged("Url");
+			}
+		}
+		
+		/// <summary>
+		/// User Name
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("username")]
+		public string UserName
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("username");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("UserName");
+				this.SetAttributeValue("username", value);
+				this.OnPropertyChanged("UserName");
 			}
 		}
 		
@@ -805,6 +927,21 @@ namespace DLaB.Xrm.Entities
                         break;
                 }
             }
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("authtype")]
+		public virtual PluginAssembly_AuthType? AuthTypeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((PluginAssembly_AuthType?)(EntityOptionSetEnum.GetEnum(this, "authtype")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				AuthType = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]

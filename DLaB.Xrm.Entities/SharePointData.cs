@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("sharepointdata")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class SharePointData : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
@@ -47,7 +47,6 @@ namespace DLaB.Xrm.Entities
 			public const string organization_sharepointdata = "organization_sharepointdata";
 			public const string sharepointdata_sharepointdocumentlocation = "sharepointdata_sharepointdocumentlocation";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -59,6 +58,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "sharepointdata";
+		
+		public const string PrimaryIdAttribute = "sharepointdataid";
 		
 		public const int EntityTypeCode = 9509;
 		

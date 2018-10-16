@@ -15,16 +15,18 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("activitymimeattachment")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ActivityMimeAttachment : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ActivityId = "activityid";
 			public const string ActivityMimeAttachmentId = "activitymimeattachmentid";
 			public const string Id = "activitymimeattachmentid";
 			public const string ActivityMimeAttachmentIdUnique = "activitymimeattachmentidunique";
+			public const string ActivitySubject = "activitysubject";
+			public const string AnonymousLink = "anonymouslink";
 			public const string AttachmentContentId = "attachmentcontentid";
 			public const string AttachmentId = "attachmentid";
 			public const string AttachmentNumber = "attachmentnumber";
@@ -32,6 +34,7 @@ namespace DLaB.Xrm.Entities
 			public const string ComponentState = "componentstate";
 			public const string FileName = "filename";
 			public const string FileSize = "filesize";
+			public const string IsFollowed = "isfollowed";
 			public const string IsManaged = "ismanaged";
 			public const string MimeType = "mimetype";
 			public const string ObjectId = "objectid";
@@ -48,7 +51,6 @@ namespace DLaB.Xrm.Entities
 			public const string email_activity_mime_attachment = "email_activity_mime_attachment";
 			public const string template_activity_mime_attachments = "template_activity_mime_attachments";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -60,6 +62,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "activitymimeattachment";
+		
+		public const string PrimaryIdAttribute = "activitymimeattachmentid";
+		
+		public const string PrimaryNameAttribute = "filename";
 		
 		public const int EntityTypeCode = 1001;
 		
@@ -166,6 +172,32 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ActivityMimeAttachmentIdUnique");
 				this.SetAttributeValue("activitymimeattachmentidunique", value);
 				this.OnPropertyChanged("ActivityMimeAttachmentIdUnique");
+			}
+		}
+		
+		/// <summary>
+		/// Descriptive subject for the activity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("activitysubject")]
+		public string ActivitySubject
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("activitysubject");
+			}
+		}
+		
+		/// <summary>
+		/// anonymous link
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("anonymouslink")]
+		public string AnonymousLink
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("anonymouslink");
 			}
 		}
 		
@@ -292,6 +324,19 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<int>>("filesize");
+			}
+		}
+		
+		/// <summary>
+		/// Indicates if this attachment is followed.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isfollowed")]
+		public System.Nullable<bool> IsFollowed
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isfollowed");
 			}
 		}
 		
@@ -517,6 +562,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ActivityMimeAttachment_BulkDeleteFailures");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.BulkDeleteFailure>("ActivityMimeAttachment_BulkDeleteFailures", null, value);
 				this.OnPropertyChanged("ActivityMimeAttachment_BulkDeleteFailures");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N ActivityMimeAttachment_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ActivityMimeAttachment_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> ActivityMimeAttachment_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ActivityMimeAttachment_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ActivityMimeAttachment_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ActivityMimeAttachment_SyncErrors", null, value);
+				this.OnPropertyChanged("ActivityMimeAttachment_SyncErrors");
 			}
 		}
 		

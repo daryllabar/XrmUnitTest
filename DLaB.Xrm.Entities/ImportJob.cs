@@ -15,25 +15,28 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("importjob")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ImportJob : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CompletedOn = "completedon";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string Data = "data";
+			public const string ImportContext = "importcontext";
 			public const string ImportJobId = "importjobid";
 			public const string Id = "importjobid";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string Name = "name";
+			public const string OperationContext = "operationcontext";
 			public const string OrganizationId = "organizationid";
 			public const string Progress = "progress";
+			public const string SolutionId = "solutionid";
 			public const string SolutionName = "solutionname";
 			public const string StartedOn = "startedon";
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
@@ -44,7 +47,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_importjobbase_modifiedonbehalfby = "lk_importjobbase_modifiedonbehalfby";
 			public const string organization_importjob = "organization_importjob";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -56,6 +58,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "importjob";
+		
+		public const string PrimaryIdAttribute = "importjobid";
 		
 		public const int EntityTypeCode = 9107;
 		
@@ -171,6 +175,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Data");
 				this.SetAttributeValue("data", value);
 				this.OnPropertyChanged("Data");
+			}
+		}
+		
+		/// <summary>
+		/// The context of the import
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("importcontext")]
+		public string ImportContext
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("importcontext");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ImportContext");
+				this.SetAttributeValue("importcontext", value);
+				this.OnPropertyChanged("ImportContext");
 			}
 		}
 		
@@ -298,6 +322,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// The context of the solution operation
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("operationcontext")]
+		public string OperationContext
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("operationcontext");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OperationContext");
+				this.SetAttributeValue("operationcontext", value);
+				this.OnPropertyChanged("OperationContext");
+			}
+		}
+		
+		/// <summary>
 		/// Unique identifier of the organization associated with the importjob.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("organizationid")]
@@ -327,6 +371,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Progress");
 				this.SetAttributeValue("progress", value);
 				this.OnPropertyChanged("Progress");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the associated solution.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("solutionid")]
+		public System.Nullable<System.Guid> SolutionId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("solutionid");
 			}
 		}
 		

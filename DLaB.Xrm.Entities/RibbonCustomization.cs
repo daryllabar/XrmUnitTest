@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("ribboncustomization")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class RibbonCustomization : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ComponentState = "componentstate";
 			public const string Entity = "entity";
@@ -34,7 +34,6 @@ namespace DLaB.Xrm.Entities
 			public const string VersionNumber = "versionnumber";
 			public const string organization_ribbon_customization = "organization_ribbon_customization";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -46,6 +45,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "ribboncustomization";
+		
+		public const string PrimaryIdAttribute = "ribboncustomizationid";
 		
 		public const int EntityTypeCode = 1120;
 		
@@ -226,7 +227,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Represents a version of customizations to be synchronized with the Microsoft Dynamics CRM client for Outlook.
+		/// Represents a version of customizations to be synchronized with the Microsoft Dynamics 365 client for Outlook.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
 		public System.Nullable<long> VersionNumber

@@ -11,9 +11,12 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
 	public enum Processstage_Category
 	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Approval = 7,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Close = 3,

@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum BulkDeleteOperationState
 	{
 		
@@ -33,11 +33,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("bulkdeleteoperation")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class BulkDeleteOperation : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AsyncOperationId = "asyncoperationid";
 			public const string BulkDeleteOperationId = "bulkdeleteoperationid";
@@ -69,7 +69,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_bulkdeleteoperationbase_createdby = "lk_bulkdeleteoperationbase_createdby";
 			public const string lk_bulkdeleteoperationbase_modifiedby = "lk_bulkdeleteoperationbase_modifiedby";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -81,6 +80,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "bulkdeleteoperation";
+		
+		public const string PrimaryIdAttribute = "bulkdeleteoperationid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 4424;
 		

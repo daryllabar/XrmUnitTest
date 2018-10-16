@@ -11,15 +11,15 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum ThemeState
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Active = 0,
+		Custom = 0,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Inactive = 1,
+		System = 1,
 	}
 	
 	/// <summary>
@@ -27,12 +27,13 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("theme")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Theme : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
+			public const string AccentColor = "accentcolor";
 			public const string BackgroundColor = "backgroundcolor";
 			public const string ControlBorder = "controlborder";
 			public const string ControlShade = "controlshade";
@@ -49,6 +50,7 @@ namespace DLaB.Xrm.Entities
 			public const string IsDefaultTheme = "isdefaulttheme";
 			public const string LogoId = "logoid";
 			public const string LogoToolTip = "logotooltip";
+			public const string MainColor = "maincolor";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
@@ -57,10 +59,12 @@ namespace DLaB.Xrm.Entities
 			public const string NavBarShelfColor = "navbarshelfcolor";
 			public const string OrganizationId = "organizationid";
 			public const string OverriddenCreatedOn = "overriddencreatedon";
+			public const string PageHeaderBackgroundColor = "pageheaderbackgroundcolor";
+			public const string PanelHeaderBackgroundColor = "panelheaderbackgroundcolor";
 			public const string ProcessControlColor = "processcontrolcolor";
 			public const string SelectedLinkEffect = "selectedlinkeffect";
-			public const string statecode = "statecode";
-			public const string statuscode = "statuscode";
+			public const string StateCode = "statecode";
+			public const string StatusCode = "statuscode";
 			public const string ThemeId = "themeid";
 			public const string Id = "themeid";
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
@@ -76,7 +80,6 @@ namespace DLaB.Xrm.Entities
 			public const string organization_theme = "organization_theme";
 			public const string TransactionCurrency_Theme = "TransactionCurrency_Theme";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -88,6 +91,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "theme";
+		
+		public const string PrimaryIdAttribute = "themeid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 2015;
 		
@@ -114,7 +121,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the color that CRM will use for all backgrounds, including dashboards, forms, and lists.
+		/// Choose the Unified Interface secondary theme color to be used on the process control
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("accentcolor")]
+		public string AccentColor
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("accentcolor");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("AccentColor");
+				this.SetAttributeValue("accentcolor", value);
+				this.OnPropertyChanged("AccentColor");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("backgroundcolor")]
 		public string BackgroundColor
@@ -154,7 +181,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the color for controls to use to indicate when you hover over items
+		/// Choose the background color for controls to use to indicate when you hover over items
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("controlshade")]
 		public string ControlShade
@@ -287,7 +314,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the color for links, such as email addresses or lookups
+		/// Choose the color for all links, such as e-mail address and lookup links, and for all buttons that are in focus
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("globallinkcolor")]
 		public string GlobalLinkColor
@@ -307,7 +334,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the color for header text, such as form tab labels
+		/// Choose the color for title text, such as form tab labels
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("headercolor")]
 		public string HeaderColor
@@ -327,7 +354,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the color that commands or lists will use when you hover over the items
+		/// Choose the color that commands or lists will use to indicate hovered over items
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("hoverlinkeffect")]
 		public string HoverLinkEffect
@@ -427,6 +454,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Choose the Unified Interface primary theme color to be used on main command bar, buttons and tabs
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("maincolor")]
+		public string MainColor
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("maincolor");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("MainColor");
+				this.SetAttributeValue("maincolor", value);
+				this.OnPropertyChanged("MainColor");
+			}
+		}
+		
+		/// <summary>
 		/// Unique identifier of the user who modified the record.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
@@ -507,7 +554,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the primary Navigation Bar color
+		/// Choose the primary Navigation Bar background color
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("navbarbackgroundcolor")]
 		public string NavBarBackgroundColor
@@ -527,7 +574,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the secondary Navigation Bar color
+		/// Choose the secondary Navigation Bar background color
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("navbarshelfcolor")]
 		public string NavBarShelfColor
@@ -580,7 +627,47 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the primary color for process controls
+		/// Choose the page header background color
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("pageheaderbackgroundcolor")]
+		public string PageHeaderBackgroundColor
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("pageheaderbackgroundcolor");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("PageHeaderBackgroundColor");
+				this.SetAttributeValue("pageheaderbackgroundcolor", value);
+				this.OnPropertyChanged("PageHeaderBackgroundColor");
+			}
+		}
+		
+		/// <summary>
+		/// Choose the panel header background color
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("panelheaderbackgroundcolor")]
+		public string PanelHeaderBackgroundColor
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("panelheaderbackgroundcolor");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("PanelHeaderBackgroundColor");
+				this.SetAttributeValue("panelheaderbackgroundcolor", value);
+				this.OnPropertyChanged("PanelHeaderBackgroundColor");
+			}
+		}
+		
+		/// <summary>
+		/// Choose the primary background color for process controls
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("processcontrolcolor")]
 		public string ProcessControlColor
@@ -623,7 +710,7 @@ namespace DLaB.Xrm.Entities
 		/// Status of the Theme
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
-		public System.Nullable<DLaB.Xrm.Entities.ThemeState> statecode
+		public System.Nullable<DLaB.Xrm.Entities.ThemeState> StateCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -644,7 +731,7 @@ namespace DLaB.Xrm.Entities
 		/// Reason for the status of the Theme
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public Microsoft.Xrm.Sdk.OptionSetValue statuscode
+		public Microsoft.Xrm.Sdk.OptionSetValue StatusCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -654,9 +741,9 @@ namespace DLaB.Xrm.Entities
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("statuscode");
+				this.OnPropertyChanging("StatusCode");
 				this.SetAttributeValue("statuscode", value);
-				this.OnPropertyChanged("statuscode");
+				this.OnPropertyChanged("StatusCode");
 			}
 		}
 		
@@ -1059,7 +1146,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual Theme_StatusCode? statuscodeEnum
+		public virtual Theme_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -1069,7 +1156,7 @@ namespace DLaB.Xrm.Entities
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				statuscode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+				StatusCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 	}

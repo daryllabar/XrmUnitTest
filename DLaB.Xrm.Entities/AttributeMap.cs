@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("attributemap")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class AttributeMap : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AttributeMapId = "attributemapid";
 			public const string Id = "attributemapid";
@@ -49,7 +49,6 @@ namespace DLaB.Xrm.Entities
 			public const string modifiedonbehalfby_attributemap = "modifiedonbehalfby_attributemap";
 			public const string organization_attributemap = "organization_attributemap";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -61,6 +60,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "attributemap";
+		
+		public const string PrimaryIdAttribute = "attributemapid";
 		
 		public const int EntityTypeCode = 4601;
 		

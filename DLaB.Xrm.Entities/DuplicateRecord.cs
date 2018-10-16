@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("duplicaterecord")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class DuplicateRecord : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AsyncOperationId = "asyncoperationid";
 			public const string BaseRecordId = "baserecordid";
@@ -33,15 +33,35 @@ namespace DLaB.Xrm.Entities
 			public const string OwningUser = "owninguser";
 			public const string Account_DuplicateBaseRecord = "Account_DuplicateBaseRecord";
 			public const string Account_DuplicateMatchingRecord = "Account_DuplicateMatchingRecord";
+			public const string adminsettingsentity_DuplicateBaseRecord = "adminsettingsentity_DuplicateBaseRecord";
+			public const string adminsettingsentity_DuplicateMatchingRecord = "adminsettingsentity_DuplicateMatchingRecord";
 			public const string Appointment_DuplicateBaseRecord = "Appointment_DuplicateBaseRecord";
 			public const string Appointment_DuplicateMatchingRecord = "Appointment_DuplicateMatchingRecord";
 			public const string AsyncOperation_DuplicateBaseRecord = "AsyncOperation_DuplicateBaseRecord";
+			public const string bookableresource_DuplicateBaseRecord = "bookableresource_DuplicateBaseRecord";
+			public const string bookableresource_DuplicateMatchingRecord = "bookableresource_DuplicateMatchingRecord";
+			public const string bookableresourcebooking_DuplicateBaseRecord = "bookableresourcebooking_DuplicateBaseRecord";
+			public const string bookableresourcebooking_DuplicateMatchingRecord = "bookableresourcebooking_DuplicateMatchingRecord";
+			public const string bookableresourcebookingheader_DuplicateBaseRecord = "bookableresourcebookingheader_DuplicateBaseRecord";
+			public const string bookableresourcebookingheader_DuplicateMatchingRecord = "bookableresourcebookingheader_DuplicateMatchingRecord";
+			public const string bookableresourcecategory_DuplicateBaseRecord = "bookableresourcecategory_DuplicateBaseRecord";
+			public const string bookableresourcecategory_DuplicateMatchingRecord = "bookableresourcecategory_DuplicateMatchingRecord";
+			public const string bookableresourcecategoryassn_DuplicateBaseRecord = "bookableresourcecategoryassn_DuplicateBaseRecord";
+			public const string bookableresourcecategoryassn_DuplicateMatchingRecord = "bookableresourcecategoryassn_DuplicateMatchingRecord";
+			public const string bookableresourcecharacteristic_DuplicateBaseRecord = "bookableresourcecharacteristic_DuplicateBaseRecord";
+			public const string bookableresourcecharacteristic_DuplicateMatchingRecord = "bookableresourcecharacteristic_DuplicateMatchingRecord";
+			public const string bookableresourcegroup_DuplicateBaseRecord = "bookableresourcegroup_DuplicateBaseRecord";
+			public const string bookableresourcegroup_DuplicateMatchingRecord = "bookableresourcegroup_DuplicateMatchingRecord";
+			public const string bookingstatus_DuplicateBaseRecord = "bookingstatus_DuplicateBaseRecord";
+			public const string bookingstatus_DuplicateMatchingRecord = "bookingstatus_DuplicateMatchingRecord";
 			public const string Campaign_DuplicateBaseRecord = "Campaign_DuplicateBaseRecord";
 			public const string Campaign_DuplicateMatchingRecord = "Campaign_DuplicateMatchingRecord";
 			public const string CampaignResponse_DuplicateBaseRecord = "CampaignResponse_DuplicateBaseRecord";
 			public const string CampaignResponse_DuplicateMatchingRecord = "CampaignResponse_DuplicateMatchingRecord";
 			public const string channelaccessprofile_DuplicateBaseRecord = "channelaccessprofile_DuplicateBaseRecord";
 			public const string channelaccessprofile_DuplicateMatchingRecord = "channelaccessprofile_DuplicateMatchingRecord";
+			public const string characteristic_DuplicateBaseRecord = "characteristic_DuplicateBaseRecord";
+			public const string characteristic_DuplicateMatchingRecord = "characteristic_DuplicateMatchingRecord";
 			public const string Competitor_DuplicateBaseRecord = "Competitor_DuplicateBaseRecord";
 			public const string Competitor_DuplicateMatchingRecord = "Competitor_DuplicateMatchingRecord";
 			public const string Contact_DuplicateBaseRecord = "Contact_DuplicateBaseRecord";
@@ -81,8 +101,318 @@ namespace DLaB.Xrm.Entities
 			public const string Letter_DuplicateMatchingRecord = "Letter_DuplicateMatchingRecord";
 			public const string List_DuplicateBaseRecord = "List_DuplicateBaseRecord";
 			public const string List_DuplicateMatchingRecord = "List_DuplicateMatchingRecord";
+			public const string msdyn_accountpricelist_DuplicateBaseRecord = "msdyn_accountpricelist_DuplicateBaseRecord";
+			public const string msdyn_accountpricelist_DuplicateMatchingRecord = "msdyn_accountpricelist_DuplicateMatchingRecord";
+			public const string msdyn_actual_DuplicateBaseRecord = "msdyn_actual_DuplicateBaseRecord";
+			public const string msdyn_actual_DuplicateMatchingRecord = "msdyn_actual_DuplicateMatchingRecord";
+			public const string msdyn_agreement_DuplicateBaseRecord = "msdyn_agreement_DuplicateBaseRecord";
+			public const string msdyn_agreement_DuplicateMatchingRecord = "msdyn_agreement_DuplicateMatchingRecord";
+			public const string msdyn_agreementbookingdate_DuplicateBaseRecord = "msdyn_agreementbookingdate_DuplicateBaseRecord";
+			public const string msdyn_agreementbookingdate_DuplicateMatchingRecord = "msdyn_agreementbookingdate_DuplicateMatchingRecord";
+			public const string msdyn_agreementbookingincident_DuplicateBaseRecord = "msdyn_agreementbookingincident_DuplicateBaseRecord";
+			public const string msdyn_agreementbookingincident_DuplicateMatchingRecord = "msdyn_agreementbookingincident_DuplicateMatchingRecord";
+			public const string msdyn_agreementbookingproduct_DuplicateBaseRecord = "msdyn_agreementbookingproduct_DuplicateBaseRecord";
+			public const string msdyn_agreementbookingproduct_DuplicateMatchingRecord = "msdyn_agreementbookingproduct_DuplicateMatchingRecord";
+			public const string msdyn_agreementbookingservice_DuplicateBaseRecord = "msdyn_agreementbookingservice_DuplicateBaseRecord";
+			public const string msdyn_agreementbookingservice_DuplicateMatchingRecord = "msdyn_agreementbookingservice_DuplicateMatchingRecord";
+			public const string msdyn_agreementbookingservicetask_DuplicateBaseRecord = "msdyn_agreementbookingservicetask_DuplicateBaseRecord";
+			public const string msdyn_agreementbookingservicetask_DuplicateMatchingRecord = "msdyn_agreementbookingservicetask_DuplicateMatchingRecord";
+			public const string msdyn_agreementbookingsetup_DuplicateBaseRecord = "msdyn_agreementbookingsetup_DuplicateBaseRecord";
+			public const string msdyn_agreementbookingsetup_DuplicateMatchingRecord = "msdyn_agreementbookingsetup_DuplicateMatchingRecord";
+			public const string msdyn_agreementinvoicedate_DuplicateBaseRecord = "msdyn_agreementinvoicedate_DuplicateBaseRecord";
+			public const string msdyn_agreementinvoicedate_DuplicateMatchingRecord = "msdyn_agreementinvoicedate_DuplicateMatchingRecord";
+			public const string msdyn_agreementinvoiceproduct_DuplicateBaseRecord = "msdyn_agreementinvoiceproduct_DuplicateBaseRecord";
+			public const string msdyn_agreementinvoiceproduct_DuplicateMatchingRecord = "msdyn_agreementinvoiceproduct_DuplicateMatchingRecord";
+			public const string msdyn_agreementinvoicesetup_DuplicateBaseRecord = "msdyn_agreementinvoicesetup_DuplicateBaseRecord";
+			public const string msdyn_agreementinvoicesetup_DuplicateMatchingRecord = "msdyn_agreementinvoicesetup_DuplicateMatchingRecord";
+			public const string msdyn_agreementsubstatus_DuplicateBaseRecord = "msdyn_agreementsubstatus_DuplicateBaseRecord";
+			public const string msdyn_agreementsubstatus_DuplicateMatchingRecord = "msdyn_agreementsubstatus_DuplicateMatchingRecord";
+			public const string msdyn_approval_DuplicateBaseRecord = "msdyn_approval_DuplicateBaseRecord";
+			public const string msdyn_approval_DuplicateMatchingRecord = "msdyn_approval_DuplicateMatchingRecord";
+			public const string msdyn_batchjob_DuplicateBaseRecord = "msdyn_batchjob_DuplicateBaseRecord";
+			public const string msdyn_batchjob_DuplicateMatchingRecord = "msdyn_batchjob_DuplicateMatchingRecord";
+			public const string msdyn_bookingalert_DuplicateBaseRecord = "msdyn_bookingalert_DuplicateBaseRecord";
+			public const string msdyn_bookingalert_DuplicateMatchingRecord = "msdyn_bookingalert_DuplicateMatchingRecord";
+			public const string msdyn_bookingalertstatus_DuplicateBaseRecord = "msdyn_bookingalertstatus_DuplicateBaseRecord";
+			public const string msdyn_bookingalertstatus_DuplicateMatchingRecord = "msdyn_bookingalertstatus_DuplicateMatchingRecord";
+			public const string msdyn_bookingrule_DuplicateBaseRecord = "msdyn_bookingrule_DuplicateBaseRecord";
+			public const string msdyn_bookingrule_DuplicateMatchingRecord = "msdyn_bookingrule_DuplicateMatchingRecord";
+			public const string msdyn_bookingtimestamp_DuplicateBaseRecord = "msdyn_bookingtimestamp_DuplicateBaseRecord";
+			public const string msdyn_bookingtimestamp_DuplicateMatchingRecord = "msdyn_bookingtimestamp_DuplicateMatchingRecord";
+			public const string msdyn_characteristicreqforteammember_DuplicateBaseRecord = "msdyn_characteristicreqforteammember_DuplicateBaseRecord";
+			public const string msdyn_characteristicreqforteammember_DuplicateMatchingRecord = "msdyn_characteristicreqforteammember_DuplicateMatchingRecord";
+			public const string msdyn_contactpricelist_DuplicateBaseRecord = "msdyn_contactpricelist_DuplicateBaseRecord";
+			public const string msdyn_contactpricelist_DuplicateMatchingRecord = "msdyn_contactpricelist_DuplicateMatchingRecord";
+			public const string msdyn_contractlineinvoiceschedule_DuplicateBaseRecord = "msdyn_contractlineinvoiceschedule_DuplicateBaseRecord";
+			public const string msdyn_contractlineinvoiceschedule_DuplicateMatchingRecord = "msdyn_contractlineinvoiceschedule_DuplicateMatchingRecord";
+			public const string msdyn_contractlinescheduleofvalue_DuplicateBaseRecord = "msdyn_contractlinescheduleofvalue_DuplicateBaseRecord";
+			public const string msdyn_contractlinescheduleofvalue_DuplicateMatchingRecord = "msdyn_contractlinescheduleofvalue_DuplicateMatchingRecord";
+			public const string msdyn_customerasset_DuplicateBaseRecord = "msdyn_customerasset_DuplicateBaseRecord";
+			public const string msdyn_customerasset_DuplicateMatchingRecord = "msdyn_customerasset_DuplicateMatchingRecord";
+			public const string msdyn_dataexport_DuplicateBaseRecord = "msdyn_dataexport_DuplicateBaseRecord";
+			public const string msdyn_dataexport_DuplicateMatchingRecord = "msdyn_dataexport_DuplicateMatchingRecord";
+			public const string msdyn_delegation_DuplicateBaseRecord = "msdyn_delegation_DuplicateBaseRecord";
+			public const string msdyn_delegation_DuplicateMatchingRecord = "msdyn_delegation_DuplicateMatchingRecord";
+			public const string msdyn_estimate_DuplicateBaseRecord = "msdyn_estimate_DuplicateBaseRecord";
+			public const string msdyn_estimate_DuplicateMatchingRecord = "msdyn_estimate_DuplicateMatchingRecord";
+			public const string msdyn_estimateline_DuplicateBaseRecord = "msdyn_estimateline_DuplicateBaseRecord";
+			public const string msdyn_estimateline_DuplicateMatchingRecord = "msdyn_estimateline_DuplicateMatchingRecord";
+			public const string msdyn_expense_DuplicateBaseRecord = "msdyn_expense_DuplicateBaseRecord";
+			public const string msdyn_expense_DuplicateMatchingRecord = "msdyn_expense_DuplicateMatchingRecord";
+			public const string msdyn_expensecategory_DuplicateBaseRecord = "msdyn_expensecategory_DuplicateBaseRecord";
+			public const string msdyn_expensecategory_DuplicateMatchingRecord = "msdyn_expensecategory_DuplicateMatchingRecord";
+			public const string msdyn_fact_DuplicateBaseRecord = "msdyn_fact_DuplicateBaseRecord";
+			public const string msdyn_fact_DuplicateMatchingRecord = "msdyn_fact_DuplicateMatchingRecord";
+			public const string msdyn_fieldcomputation_DuplicateBaseRecord = "msdyn_fieldcomputation_DuplicateBaseRecord";
+			public const string msdyn_fieldcomputation_DuplicateMatchingRecord = "msdyn_fieldcomputation_DuplicateMatchingRecord";
+			public const string msdyn_fieldservicepricelistitem_DuplicateBaseRecord = "msdyn_fieldservicepricelistitem_DuplicateBaseRecord";
+			public const string msdyn_fieldservicepricelistitem_DuplicateMatchingRecord = "msdyn_fieldservicepricelistitem_DuplicateMatchingRecord";
+			public const string msdyn_findworkevent_DuplicateBaseRecord = "msdyn_findworkevent_DuplicateBaseRecord";
+			public const string msdyn_findworkevent_DuplicateMatchingRecord = "msdyn_findworkevent_DuplicateMatchingRecord";
+			public const string msdyn_icebreakersconfig_DuplicateBaseRecord = "msdyn_icebreakersconfig_DuplicateBaseRecord";
+			public const string msdyn_icebreakersconfig_DuplicateMatchingRecord = "msdyn_icebreakersconfig_DuplicateMatchingRecord";
+			public const string msdyn_incidenttype_DuplicateBaseRecord = "msdyn_incidenttype_DuplicateBaseRecord";
+			public const string msdyn_incidenttype_DuplicateMatchingRecord = "msdyn_incidenttype_DuplicateMatchingRecord";
+			public const string msdyn_incidenttypecharacteristic_DuplicateBaseRecord = "msdyn_incidenttypecharacteristic_DuplicateBaseRecord";
+			public const string msdyn_incidenttypecharacteristic_DuplicateMatchingRecord = "msdyn_incidenttypecharacteristic_DuplicateMatchingRecord";
+			public const string msdyn_incidenttypeproduct_DuplicateBaseRecord = "msdyn_incidenttypeproduct_DuplicateBaseRecord";
+			public const string msdyn_incidenttypeproduct_DuplicateMatchingRecord = "msdyn_incidenttypeproduct_DuplicateMatchingRecord";
+			public const string msdyn_incidenttypeservice_DuplicateBaseRecord = "msdyn_incidenttypeservice_DuplicateBaseRecord";
+			public const string msdyn_incidenttypeservice_DuplicateMatchingRecord = "msdyn_incidenttypeservice_DuplicateMatchingRecord";
+			public const string msdyn_incidenttypeservicetask_DuplicateBaseRecord = "msdyn_incidenttypeservicetask_DuplicateBaseRecord";
+			public const string msdyn_incidenttypeservicetask_DuplicateMatchingRecord = "msdyn_incidenttypeservicetask_DuplicateMatchingRecord";
+			public const string msdyn_inventoryadjustment_DuplicateBaseRecord = "msdyn_inventoryadjustment_DuplicateBaseRecord";
+			public const string msdyn_inventoryadjustment_DuplicateMatchingRecord = "msdyn_inventoryadjustment_DuplicateMatchingRecord";
+			public const string msdyn_inventoryadjustmentproduct_DuplicateBaseRecord = "msdyn_inventoryadjustmentproduct_DuplicateBaseRecord";
+			public const string msdyn_inventoryadjustmentproduct_DuplicateMatchingRecord = "msdyn_inventoryadjustmentproduct_DuplicateMatchingRecord";
+			public const string msdyn_inventoryjournal_DuplicateBaseRecord = "msdyn_inventoryjournal_DuplicateBaseRecord";
+			public const string msdyn_inventoryjournal_DuplicateMatchingRecord = "msdyn_inventoryjournal_DuplicateMatchingRecord";
+			public const string msdyn_inventorytransfer_DuplicateBaseRecord = "msdyn_inventorytransfer_DuplicateBaseRecord";
+			public const string msdyn_inventorytransfer_DuplicateMatchingRecord = "msdyn_inventorytransfer_DuplicateMatchingRecord";
+			public const string msdyn_invoicefrequency_DuplicateBaseRecord = "msdyn_invoicefrequency_DuplicateBaseRecord";
+			public const string msdyn_invoicefrequency_DuplicateMatchingRecord = "msdyn_invoicefrequency_DuplicateMatchingRecord";
+			public const string msdyn_invoicefrequencydetail_DuplicateBaseRecord = "msdyn_invoicefrequencydetail_DuplicateBaseRecord";
+			public const string msdyn_invoicefrequencydetail_DuplicateMatchingRecord = "msdyn_invoicefrequencydetail_DuplicateMatchingRecord";
+			public const string msdyn_invoicelinetransaction_DuplicateBaseRecord = "msdyn_invoicelinetransaction_DuplicateBaseRecord";
+			public const string msdyn_invoicelinetransaction_DuplicateMatchingRecord = "msdyn_invoicelinetransaction_DuplicateMatchingRecord";
+			public const string msdyn_journal_DuplicateBaseRecord = "msdyn_journal_DuplicateBaseRecord";
+			public const string msdyn_journal_DuplicateMatchingRecord = "msdyn_journal_DuplicateMatchingRecord";
+			public const string msdyn_journalline_DuplicateBaseRecord = "msdyn_journalline_DuplicateBaseRecord";
+			public const string msdyn_journalline_DuplicateMatchingRecord = "msdyn_journalline_DuplicateMatchingRecord";
+			public const string msdyn_opportunitylineresourcecategory_DuplicateBaseRecord = "msdyn_opportunitylineresourcecategory_DuplicateBaseRecord";
+			public const string msdyn_opportunitylineresourcecategory_DuplicateMatchingRecord = "msdyn_opportunitylineresourcecategory_DuplicateMatchingRecord";
+			public const string msdyn_opportunitylinetransaction_DuplicateBaseRecord = "msdyn_opportunitylinetransaction_DuplicateBaseRecord";
+			public const string msdyn_opportunitylinetransaction_DuplicateMatchingRecord = "msdyn_opportunitylinetransaction_DuplicateMatchingRecord";
+			public const string msdyn_opportunitylinetransactioncategory_DuplicateBaseRecord = "msdyn_opportunitylinetransactioncategory_DuplicateBaseRecord";
+			public const string msdyn_opportunitylinetransactioncategory_DuplicateMatchingRecord = "msdyn_opportunitylinetransactioncategory_DuplicateMatchingRecord";
+			public const string msdyn_opportunitylinetransactionclassificatio_DuplicateBaseRecord = "msdyn_opportunitylinetransactionclassificatio_DuplicateBaseRecord";
+			public const string msdyn_opportunitylinetransactionclassificatio_DuplicateMatchingRecord = "msdyn_opportunitylinetransactionclassificatio_DuplicateMatchingRecord";
+			public const string msdyn_opportunitypricelist_DuplicateBaseRecord = "msdyn_opportunitypricelist_DuplicateBaseRecord";
+			public const string msdyn_opportunitypricelist_DuplicateMatchingRecord = "msdyn_opportunitypricelist_DuplicateMatchingRecord";
+			public const string msdyn_orderinvoicingdate_DuplicateBaseRecord = "msdyn_orderinvoicingdate_DuplicateBaseRecord";
+			public const string msdyn_orderinvoicingdate_DuplicateMatchingRecord = "msdyn_orderinvoicingdate_DuplicateMatchingRecord";
+			public const string msdyn_orderinvoicingproduct_DuplicateBaseRecord = "msdyn_orderinvoicingproduct_DuplicateBaseRecord";
+			public const string msdyn_orderinvoicingproduct_DuplicateMatchingRecord = "msdyn_orderinvoicingproduct_DuplicateMatchingRecord";
+			public const string msdyn_orderinvoicingsetup_DuplicateBaseRecord = "msdyn_orderinvoicingsetup_DuplicateBaseRecord";
+			public const string msdyn_orderinvoicingsetup_DuplicateMatchingRecord = "msdyn_orderinvoicingsetup_DuplicateMatchingRecord";
+			public const string msdyn_orderinvoicingsetupdate_DuplicateBaseRecord = "msdyn_orderinvoicingsetupdate_DuplicateBaseRecord";
+			public const string msdyn_orderinvoicingsetupdate_DuplicateMatchingRecord = "msdyn_orderinvoicingsetupdate_DuplicateMatchingRecord";
+			public const string msdyn_orderlineresourcecategory_DuplicateBaseRecord = "msdyn_orderlineresourcecategory_DuplicateBaseRecord";
+			public const string msdyn_orderlineresourcecategory_DuplicateMatchingRecord = "msdyn_orderlineresourcecategory_DuplicateMatchingRecord";
+			public const string msdyn_orderlinetransaction_DuplicateBaseRecord = "msdyn_orderlinetransaction_DuplicateBaseRecord";
+			public const string msdyn_orderlinetransaction_DuplicateMatchingRecord = "msdyn_orderlinetransaction_DuplicateMatchingRecord";
+			public const string msdyn_orderlinetransactioncategory_DuplicateBaseRecord = "msdyn_orderlinetransactioncategory_DuplicateBaseRecord";
+			public const string msdyn_orderlinetransactioncategory_DuplicateMatchingRecord = "msdyn_orderlinetransactioncategory_DuplicateMatchingRecord";
+			public const string msdyn_orderlinetransactionclassification_DuplicateBaseRecord = "msdyn_orderlinetransactionclassification_DuplicateBaseRecord";
+			public const string msdyn_orderlinetransactionclassification_DuplicateMatchingRecord = "msdyn_orderlinetransactionclassification_DuplicateMatchingRecord";
+			public const string msdyn_orderpricelist_DuplicateBaseRecord = "msdyn_orderpricelist_DuplicateBaseRecord";
+			public const string msdyn_orderpricelist_DuplicateMatchingRecord = "msdyn_orderpricelist_DuplicateMatchingRecord";
+			public const string msdyn_organizationalunit_DuplicateBaseRecord = "msdyn_organizationalunit_DuplicateBaseRecord";
+			public const string msdyn_organizationalunit_DuplicateMatchingRecord = "msdyn_organizationalunit_DuplicateMatchingRecord";
+			public const string msdyn_payment_DuplicateBaseRecord = "msdyn_payment_DuplicateBaseRecord";
+			public const string msdyn_payment_DuplicateMatchingRecord = "msdyn_payment_DuplicateMatchingRecord";
+			public const string msdyn_paymentdetail_DuplicateBaseRecord = "msdyn_paymentdetail_DuplicateBaseRecord";
+			public const string msdyn_paymentdetail_DuplicateMatchingRecord = "msdyn_paymentdetail_DuplicateMatchingRecord";
+			public const string msdyn_paymentmethod_DuplicateBaseRecord = "msdyn_paymentmethod_DuplicateBaseRecord";
+			public const string msdyn_paymentmethod_DuplicateMatchingRecord = "msdyn_paymentmethod_DuplicateMatchingRecord";
+			public const string msdyn_paymentterm_DuplicateBaseRecord = "msdyn_paymentterm_DuplicateBaseRecord";
+			public const string msdyn_paymentterm_DuplicateMatchingRecord = "msdyn_paymentterm_DuplicateMatchingRecord";
 			public const string msdyn_postalbum_DuplicateBaseRecord = "msdyn_postalbum_DuplicateBaseRecord";
 			public const string msdyn_postalbum_DuplicateMatchingRecord = "msdyn_postalbum_DuplicateMatchingRecord";
+			public const string msdyn_postalcode_DuplicateBaseRecord = "msdyn_postalcode_DuplicateBaseRecord";
+			public const string msdyn_postalcode_DuplicateMatchingRecord = "msdyn_postalcode_DuplicateMatchingRecord";
+			public const string msdyn_priority_DuplicateBaseRecord = "msdyn_priority_DuplicateBaseRecord";
+			public const string msdyn_priority_DuplicateMatchingRecord = "msdyn_priority_DuplicateMatchingRecord";
+			public const string msdyn_processnotes_DuplicateBaseRecord = "msdyn_processnotes_DuplicateBaseRecord";
+			public const string msdyn_processnotes_DuplicateMatchingRecord = "msdyn_processnotes_DuplicateMatchingRecord";
+			public const string msdyn_productinventory_DuplicateBaseRecord = "msdyn_productinventory_DuplicateBaseRecord";
+			public const string msdyn_productinventory_DuplicateMatchingRecord = "msdyn_productinventory_DuplicateMatchingRecord";
+			public const string msdyn_project_DuplicateBaseRecord = "msdyn_project_DuplicateBaseRecord";
+			public const string msdyn_project_DuplicateMatchingRecord = "msdyn_project_DuplicateMatchingRecord";
+			public const string msdyn_projectapproval_DuplicateBaseRecord = "msdyn_projectapproval_DuplicateBaseRecord";
+			public const string msdyn_projectapproval_DuplicateMatchingRecord = "msdyn_projectapproval_DuplicateMatchingRecord";
+			public const string msdyn_projectparameter_DuplicateBaseRecord = "msdyn_projectparameter_DuplicateBaseRecord";
+			public const string msdyn_projectparameter_DuplicateMatchingRecord = "msdyn_projectparameter_DuplicateMatchingRecord";
+			public const string msdyn_projectparameterpricelist_DuplicateBaseRecord = "msdyn_projectparameterpricelist_DuplicateBaseRecord";
+			public const string msdyn_projectparameterpricelist_DuplicateMatchingRecord = "msdyn_projectparameterpricelist_DuplicateMatchingRecord";
+			public const string msdyn_projectpricelist_DuplicateBaseRecord = "msdyn_projectpricelist_DuplicateBaseRecord";
+			public const string msdyn_projectpricelist_DuplicateMatchingRecord = "msdyn_projectpricelist_DuplicateMatchingRecord";
+			public const string msdyn_projecttask_DuplicateBaseRecord = "msdyn_projecttask_DuplicateBaseRecord";
+			public const string msdyn_projecttask_DuplicateMatchingRecord = "msdyn_projecttask_DuplicateMatchingRecord";
+			public const string msdyn_projecttaskdependency_DuplicateBaseRecord = "msdyn_projecttaskdependency_DuplicateBaseRecord";
+			public const string msdyn_projecttaskdependency_DuplicateMatchingRecord = "msdyn_projecttaskdependency_DuplicateMatchingRecord";
+			public const string msdyn_projecttaskstatususer_DuplicateBaseRecord = "msdyn_projecttaskstatususer_DuplicateBaseRecord";
+			public const string msdyn_projecttaskstatususer_DuplicateMatchingRecord = "msdyn_projecttaskstatususer_DuplicateMatchingRecord";
+			public const string msdyn_projectteam_DuplicateBaseRecord = "msdyn_projectteam_DuplicateBaseRecord";
+			public const string msdyn_projectteam_DuplicateMatchingRecord = "msdyn_projectteam_DuplicateMatchingRecord";
+			public const string msdyn_projectteammembersignup_DuplicateBaseRecord = "msdyn_projectteammembersignup_DuplicateBaseRecord";
+			public const string msdyn_projectteammembersignup_DuplicateMatchingRecord = "msdyn_projectteammembersignup_DuplicateMatchingRecord";
+			public const string msdyn_projecttransactioncategory_DuplicateBaseRecord = "msdyn_projecttransactioncategory_DuplicateBaseRecord";
+			public const string msdyn_projecttransactioncategory_DuplicateMatchingRecord = "msdyn_projecttransactioncategory_DuplicateMatchingRecord";
+			public const string msdyn_purchaseorder_DuplicateBaseRecord = "msdyn_purchaseorder_DuplicateBaseRecord";
+			public const string msdyn_purchaseorder_DuplicateMatchingRecord = "msdyn_purchaseorder_DuplicateMatchingRecord";
+			public const string msdyn_purchaseorderbill_DuplicateBaseRecord = "msdyn_purchaseorderbill_DuplicateBaseRecord";
+			public const string msdyn_purchaseorderbill_DuplicateMatchingRecord = "msdyn_purchaseorderbill_DuplicateMatchingRecord";
+			public const string msdyn_purchaseorderreceipt_DuplicateBaseRecord = "msdyn_purchaseorderreceipt_DuplicateBaseRecord";
+			public const string msdyn_purchaseorderreceipt_DuplicateMatchingRecord = "msdyn_purchaseorderreceipt_DuplicateMatchingRecord";
+			public const string msdyn_purchaseorderreceiptproduct_DuplicateBaseRecord = "msdyn_purchaseorderreceiptproduct_DuplicateBaseRecord";
+			public const string msdyn_purchaseorderreceiptproduct_DuplicateMatchingRecord = "msdyn_purchaseorderreceiptproduct_DuplicateMatchingRecord";
+			public const string msdyn_purchaseordersubstatus_DuplicateBaseRecord = "msdyn_purchaseordersubstatus_DuplicateBaseRecord";
+			public const string msdyn_purchaseordersubstatus_DuplicateMatchingRecord = "msdyn_purchaseordersubstatus_DuplicateMatchingRecord";
+			public const string msdyn_quotebookingincident_DuplicateBaseRecord = "msdyn_quotebookingincident_DuplicateBaseRecord";
+			public const string msdyn_quotebookingincident_DuplicateMatchingRecord = "msdyn_quotebookingincident_DuplicateMatchingRecord";
+			public const string msdyn_quotebookingproduct_DuplicateBaseRecord = "msdyn_quotebookingproduct_DuplicateBaseRecord";
+			public const string msdyn_quotebookingproduct_DuplicateMatchingRecord = "msdyn_quotebookingproduct_DuplicateMatchingRecord";
+			public const string msdyn_quotebookingservice_DuplicateBaseRecord = "msdyn_quotebookingservice_DuplicateBaseRecord";
+			public const string msdyn_quotebookingservice_DuplicateMatchingRecord = "msdyn_quotebookingservice_DuplicateMatchingRecord";
+			public const string msdyn_quotebookingservicetask_DuplicateBaseRecord = "msdyn_quotebookingservicetask_DuplicateBaseRecord";
+			public const string msdyn_quotebookingservicetask_DuplicateMatchingRecord = "msdyn_quotebookingservicetask_DuplicateMatchingRecord";
+			public const string msdyn_quotebookingsetup_DuplicateBaseRecord = "msdyn_quotebookingsetup_DuplicateBaseRecord";
+			public const string msdyn_quotebookingsetup_DuplicateMatchingRecord = "msdyn_quotebookingsetup_DuplicateMatchingRecord";
+			public const string msdyn_quoteinvoicingproduct_DuplicateBaseRecord = "msdyn_quoteinvoicingproduct_DuplicateBaseRecord";
+			public const string msdyn_quoteinvoicingproduct_DuplicateMatchingRecord = "msdyn_quoteinvoicingproduct_DuplicateMatchingRecord";
+			public const string msdyn_quoteinvoicingsetup_DuplicateBaseRecord = "msdyn_quoteinvoicingsetup_DuplicateBaseRecord";
+			public const string msdyn_quoteinvoicingsetup_DuplicateMatchingRecord = "msdyn_quoteinvoicingsetup_DuplicateMatchingRecord";
+			public const string msdyn_quotelineanalyticsbreakdown_DuplicateBaseRecord = "msdyn_quotelineanalyticsbreakdown_DuplicateBaseRecord";
+			public const string msdyn_quotelineanalyticsbreakdown_DuplicateMatchingRecord = "msdyn_quotelineanalyticsbreakdown_DuplicateMatchingRecord";
+			public const string msdyn_quotelineinvoiceschedule_DuplicateBaseRecord = "msdyn_quotelineinvoiceschedule_DuplicateBaseRecord";
+			public const string msdyn_quotelineinvoiceschedule_DuplicateMatchingRecord = "msdyn_quotelineinvoiceschedule_DuplicateMatchingRecord";
+			public const string msdyn_quotelineresourcecategory_DuplicateBaseRecord = "msdyn_quotelineresourcecategory_DuplicateBaseRecord";
+			public const string msdyn_quotelineresourcecategory_DuplicateMatchingRecord = "msdyn_quotelineresourcecategory_DuplicateMatchingRecord";
+			public const string msdyn_quotelinescheduleofvalue_DuplicateBaseRecord = "msdyn_quotelinescheduleofvalue_DuplicateBaseRecord";
+			public const string msdyn_quotelinescheduleofvalue_DuplicateMatchingRecord = "msdyn_quotelinescheduleofvalue_DuplicateMatchingRecord";
+			public const string msdyn_quotelinetransaction_DuplicateBaseRecord = "msdyn_quotelinetransaction_DuplicateBaseRecord";
+			public const string msdyn_quotelinetransaction_DuplicateMatchingRecord = "msdyn_quotelinetransaction_DuplicateMatchingRecord";
+			public const string msdyn_quotelinetransactioncategory_DuplicateBaseRecord = "msdyn_quotelinetransactioncategory_DuplicateBaseRecord";
+			public const string msdyn_quotelinetransactioncategory_DuplicateMatchingRecord = "msdyn_quotelinetransactioncategory_DuplicateMatchingRecord";
+			public const string msdyn_quotelinetransactionclassification_DuplicateBaseRecord = "msdyn_quotelinetransactionclassification_DuplicateBaseRecord";
+			public const string msdyn_quotelinetransactionclassification_DuplicateMatchingRecord = "msdyn_quotelinetransactionclassification_DuplicateMatchingRecord";
+			public const string msdyn_quotepricelist_DuplicateBaseRecord = "msdyn_quotepricelist_DuplicateBaseRecord";
+			public const string msdyn_quotepricelist_DuplicateMatchingRecord = "msdyn_quotepricelist_DuplicateMatchingRecord";
+			public const string msdyn_relationshipinsightsunifiedconfig_DuplicateBaseRecord = "msdyn_relationshipinsightsunifiedconfig_DuplicateBaseRecord";
+			public const string msdyn_relationshipinsightsunifiedconfig_DuplicateMatchingRecord = "msdyn_relationshipinsightsunifiedconfig_DuplicateMatchingRecord";
+			public const string msdyn_requirementcharacteristic_DuplicateBaseRecord = "msdyn_requirementcharacteristic_DuplicateBaseRecord";
+			public const string msdyn_requirementcharacteristic_DuplicateMatchingRecord = "msdyn_requirementcharacteristic_DuplicateMatchingRecord";
+			public const string msdyn_requirementorganizationunit_DuplicateBaseRecord = "msdyn_requirementorganizationunit_DuplicateBaseRecord";
+			public const string msdyn_requirementorganizationunit_DuplicateMatchingRecord = "msdyn_requirementorganizationunit_DuplicateMatchingRecord";
+			public const string msdyn_requirementresourcecategory_DuplicateBaseRecord = "msdyn_requirementresourcecategory_DuplicateBaseRecord";
+			public const string msdyn_requirementresourcecategory_DuplicateMatchingRecord = "msdyn_requirementresourcecategory_DuplicateMatchingRecord";
+			public const string msdyn_requirementresourcepreference_DuplicateBaseRecord = "msdyn_requirementresourcepreference_DuplicateBaseRecord";
+			public const string msdyn_requirementresourcepreference_DuplicateMatchingRecord = "msdyn_requirementresourcepreference_DuplicateMatchingRecord";
+			public const string msdyn_requirementstatus_DuplicateBaseRecord = "msdyn_requirementstatus_DuplicateBaseRecord";
+			public const string msdyn_requirementstatus_DuplicateMatchingRecord = "msdyn_requirementstatus_DuplicateMatchingRecord";
+			public const string msdyn_resourceassignmentdetail_DuplicateBaseRecord = "msdyn_resourceassignmentdetail_DuplicateBaseRecord";
+			public const string msdyn_resourceassignmentdetail_DuplicateMatchingRecord = "msdyn_resourceassignmentdetail_DuplicateMatchingRecord";
+			public const string msdyn_resourcecategorypricelevel_DuplicateBaseRecord = "msdyn_resourcecategorypricelevel_DuplicateBaseRecord";
+			public const string msdyn_resourcecategorypricelevel_DuplicateMatchingRecord = "msdyn_resourcecategorypricelevel_DuplicateMatchingRecord";
+			public const string msdyn_resourcerequest_DuplicateBaseRecord = "msdyn_resourcerequest_DuplicateBaseRecord";
+			public const string msdyn_resourcerequest_DuplicateMatchingRecord = "msdyn_resourcerequest_DuplicateMatchingRecord";
+			public const string msdyn_resourcerequirement_DuplicateBaseRecord = "msdyn_resourcerequirement_DuplicateBaseRecord";
+			public const string msdyn_resourcerequirement_DuplicateMatchingRecord = "msdyn_resourcerequirement_DuplicateMatchingRecord";
+			public const string msdyn_resourcerequirementdetail_DuplicateBaseRecord = "msdyn_resourcerequirementdetail_DuplicateBaseRecord";
+			public const string msdyn_resourcerequirementdetail_DuplicateMatchingRecord = "msdyn_resourcerequirementdetail_DuplicateMatchingRecord";
+			public const string msdyn_resourceterritory_DuplicateBaseRecord = "msdyn_resourceterritory_DuplicateBaseRecord";
+			public const string msdyn_resourceterritory_DuplicateMatchingRecord = "msdyn_resourceterritory_DuplicateMatchingRecord";
+			public const string msdyn_rma_DuplicateBaseRecord = "msdyn_rma_DuplicateBaseRecord";
+			public const string msdyn_rma_DuplicateMatchingRecord = "msdyn_rma_DuplicateMatchingRecord";
+			public const string msdyn_rmareceipt_DuplicateBaseRecord = "msdyn_rmareceipt_DuplicateBaseRecord";
+			public const string msdyn_rmareceipt_DuplicateMatchingRecord = "msdyn_rmareceipt_DuplicateMatchingRecord";
+			public const string msdyn_rmareceiptproduct_DuplicateBaseRecord = "msdyn_rmareceiptproduct_DuplicateBaseRecord";
+			public const string msdyn_rmareceiptproduct_DuplicateMatchingRecord = "msdyn_rmareceiptproduct_DuplicateMatchingRecord";
+			public const string msdyn_rmasubstatus_DuplicateBaseRecord = "msdyn_rmasubstatus_DuplicateBaseRecord";
+			public const string msdyn_rmasubstatus_DuplicateMatchingRecord = "msdyn_rmasubstatus_DuplicateMatchingRecord";
+			public const string msdyn_rolecompetencyrequirement_DuplicateBaseRecord = "msdyn_rolecompetencyrequirement_DuplicateBaseRecord";
+			public const string msdyn_rolecompetencyrequirement_DuplicateMatchingRecord = "msdyn_rolecompetencyrequirement_DuplicateMatchingRecord";
+			public const string msdyn_roleutilization_DuplicateBaseRecord = "msdyn_roleutilization_DuplicateBaseRecord";
+			public const string msdyn_roleutilization_DuplicateMatchingRecord = "msdyn_roleutilization_DuplicateMatchingRecord";
+			public const string msdyn_rtv_DuplicateBaseRecord = "msdyn_rtv_DuplicateBaseRecord";
+			public const string msdyn_rtv_DuplicateMatchingRecord = "msdyn_rtv_DuplicateMatchingRecord";
+			public const string msdyn_rtvproduct_DuplicateBaseRecord = "msdyn_rtvproduct_DuplicateBaseRecord";
+			public const string msdyn_rtvproduct_DuplicateMatchingRecord = "msdyn_rtvproduct_DuplicateMatchingRecord";
+			public const string msdyn_rtvsubstatus_DuplicateBaseRecord = "msdyn_rtvsubstatus_DuplicateBaseRecord";
+			public const string msdyn_rtvsubstatus_DuplicateMatchingRecord = "msdyn_rtvsubstatus_DuplicateMatchingRecord";
+			public const string msdyn_scheduleboardsetting_DuplicateBaseRecord = "msdyn_scheduleboardsetting_DuplicateBaseRecord";
+			public const string msdyn_scheduleboardsetting_DuplicateMatchingRecord = "msdyn_scheduleboardsetting_DuplicateMatchingRecord";
+			public const string msdyn_servicetasktype_DuplicateBaseRecord = "msdyn_servicetasktype_DuplicateBaseRecord";
+			public const string msdyn_servicetasktype_DuplicateMatchingRecord = "msdyn_servicetasktype_DuplicateMatchingRecord";
+			public const string msdyn_shipvia_DuplicateBaseRecord = "msdyn_shipvia_DuplicateBaseRecord";
+			public const string msdyn_shipvia_DuplicateMatchingRecord = "msdyn_shipvia_DuplicateMatchingRecord";
+			public const string msdyn_siconfig_DuplicateBaseRecord = "msdyn_siconfig_DuplicateBaseRecord";
+			public const string msdyn_siconfig_DuplicateMatchingRecord = "msdyn_siconfig_DuplicateMatchingRecord";
+			public const string msdyn_systemuserschedulersetting_DuplicateBaseRecord = "msdyn_systemuserschedulersetting_DuplicateBaseRecord";
+			public const string msdyn_systemuserschedulersetting_DuplicateMatchingRecord = "msdyn_systemuserschedulersetting_DuplicateMatchingRecord";
+			public const string msdyn_taxcode_DuplicateBaseRecord = "msdyn_taxcode_DuplicateBaseRecord";
+			public const string msdyn_taxcode_DuplicateMatchingRecord = "msdyn_taxcode_DuplicateMatchingRecord";
+			public const string msdyn_taxcodedetail_DuplicateBaseRecord = "msdyn_taxcodedetail_DuplicateBaseRecord";
+			public const string msdyn_taxcodedetail_DuplicateMatchingRecord = "msdyn_taxcodedetail_DuplicateMatchingRecord";
+			public const string msdyn_timegroup_DuplicateBaseRecord = "msdyn_timegroup_DuplicateBaseRecord";
+			public const string msdyn_timegroup_DuplicateMatchingRecord = "msdyn_timegroup_DuplicateMatchingRecord";
+			public const string msdyn_timegroupdetail_DuplicateBaseRecord = "msdyn_timegroupdetail_DuplicateBaseRecord";
+			public const string msdyn_timegroupdetail_DuplicateMatchingRecord = "msdyn_timegroupdetail_DuplicateMatchingRecord";
+			public const string msdyn_timeoffcalendar_DuplicateBaseRecord = "msdyn_timeoffcalendar_DuplicateBaseRecord";
+			public const string msdyn_timeoffcalendar_DuplicateMatchingRecord = "msdyn_timeoffcalendar_DuplicateMatchingRecord";
+			public const string msdyn_timeoffrequest_DuplicateBaseRecord = "msdyn_timeoffrequest_DuplicateBaseRecord";
+			public const string msdyn_timeoffrequest_DuplicateMatchingRecord = "msdyn_timeoffrequest_DuplicateMatchingRecord";
+			public const string msdyn_transactioncategory_DuplicateBaseRecord = "msdyn_transactioncategory_DuplicateBaseRecord";
+			public const string msdyn_transactioncategory_DuplicateMatchingRecord = "msdyn_transactioncategory_DuplicateMatchingRecord";
+			public const string msdyn_transactioncategoryclassification_DuplicateBaseRecord = "msdyn_transactioncategoryclassification_DuplicateBaseRecord";
+			public const string msdyn_transactioncategoryclassification_DuplicateMatchingRecord = "msdyn_transactioncategoryclassification_DuplicateMatchingRecord";
+			public const string msdyn_transactioncategoryhierarchyelement_DuplicateBaseRecord = "msdyn_transactioncategoryhierarchyelement_DuplicateBaseRecord";
+			public const string msdyn_transactioncategoryhierarchyelement_DuplicateMatchingRecord = "msdyn_transactioncategoryhierarchyelement_DuplicateMatchingRecord";
+			public const string msdyn_transactioncategorypricelevel_DuplicateBaseRecord = "msdyn_transactioncategorypricelevel_DuplicateBaseRecord";
+			public const string msdyn_transactioncategorypricelevel_DuplicateMatchingRecord = "msdyn_transactioncategorypricelevel_DuplicateMatchingRecord";
+			public const string msdyn_transactionconnection_DuplicateBaseRecord = "msdyn_transactionconnection_DuplicateBaseRecord";
+			public const string msdyn_transactionconnection_DuplicateMatchingRecord = "msdyn_transactionconnection_DuplicateMatchingRecord";
+			public const string msdyn_transactionorigin_DuplicateBaseRecord = "msdyn_transactionorigin_DuplicateBaseRecord";
+			public const string msdyn_transactionorigin_DuplicateMatchingRecord = "msdyn_transactionorigin_DuplicateMatchingRecord";
+			public const string msdyn_transactiontype_DuplicateBaseRecord = "msdyn_transactiontype_DuplicateBaseRecord";
+			public const string msdyn_transactiontype_DuplicateMatchingRecord = "msdyn_transactiontype_DuplicateMatchingRecord";
+			public const string msdyn_untrackedappointment_DuplicateBaseRecord = "msdyn_untrackedappointment_DuplicateBaseRecord";
+			public const string msdyn_untrackedappointment_DuplicateMatchingRecord = "msdyn_untrackedappointment_DuplicateMatchingRecord";
+			public const string msdyn_userworkhistory_DuplicateBaseRecord = "msdyn_userworkhistory_DuplicateBaseRecord";
+			public const string msdyn_userworkhistory_DuplicateMatchingRecord = "msdyn_userworkhistory_DuplicateMatchingRecord";
+			public const string msdyn_warehouse_DuplicateBaseRecord = "msdyn_warehouse_DuplicateBaseRecord";
+			public const string msdyn_warehouse_DuplicateMatchingRecord = "msdyn_warehouse_DuplicateMatchingRecord";
+			public const string msdyn_workhourtemplate_DuplicateBaseRecord = "msdyn_workhourtemplate_DuplicateBaseRecord";
+			public const string msdyn_workhourtemplate_DuplicateMatchingRecord = "msdyn_workhourtemplate_DuplicateMatchingRecord";
+			public const string msdyn_workorder_DuplicateBaseRecord = "msdyn_workorder_DuplicateBaseRecord";
+			public const string msdyn_workorder_DuplicateMatchingRecord = "msdyn_workorder_DuplicateMatchingRecord";
+			public const string msdyn_workordercharacteristic_DuplicateBaseRecord = "msdyn_workordercharacteristic_DuplicateBaseRecord";
+			public const string msdyn_workordercharacteristic_DuplicateMatchingRecord = "msdyn_workordercharacteristic_DuplicateMatchingRecord";
+			public const string msdyn_workorderdetailsgenerationqueue_DuplicateBaseRecord = "msdyn_workorderdetailsgenerationqueue_DuplicateBaseRecord";
+			public const string msdyn_workorderdetailsgenerationqueue_DuplicateMatchingRecord = "msdyn_workorderdetailsgenerationqueue_DuplicateMatchingRecord";
+			public const string msdyn_workorderincident_DuplicateBaseRecord = "msdyn_workorderincident_DuplicateBaseRecord";
+			public const string msdyn_workorderincident_DuplicateMatchingRecord = "msdyn_workorderincident_DuplicateMatchingRecord";
+			public const string msdyn_workorderresourcerestriction_DuplicateBaseRecord = "msdyn_workorderresourcerestriction_DuplicateBaseRecord";
+			public const string msdyn_workorderresourcerestriction_DuplicateMatchingRecord = "msdyn_workorderresourcerestriction_DuplicateMatchingRecord";
+			public const string msdyn_workorderservice_DuplicateBaseRecord = "msdyn_workorderservice_DuplicateBaseRecord";
+			public const string msdyn_workorderservice_DuplicateMatchingRecord = "msdyn_workorderservice_DuplicateMatchingRecord";
+			public const string msdyn_workorderservicetask_DuplicateBaseRecord = "msdyn_workorderservicetask_DuplicateBaseRecord";
+			public const string msdyn_workorderservicetask_DuplicateMatchingRecord = "msdyn_workorderservicetask_DuplicateMatchingRecord";
+			public const string msdyn_workordersubstatus_DuplicateBaseRecord = "msdyn_workordersubstatus_DuplicateBaseRecord";
+			public const string msdyn_workordersubstatus_DuplicateMatchingRecord = "msdyn_workordersubstatus_DuplicateMatchingRecord";
+			public const string msdyn_workordertype_DuplicateBaseRecord = "msdyn_workordertype_DuplicateBaseRecord";
+			public const string msdyn_workordertype_DuplicateMatchingRecord = "msdyn_workordertype_DuplicateMatchingRecord";
 			public const string Opportunity_DuplicateBaseRecord = "Opportunity_DuplicateBaseRecord";
 			public const string Opportunity_DuplicateMatchingRecord = "Opportunity_DuplicateMatchingRecord";
 			public const string PhoneCall_DuplicateBaseRecord = "PhoneCall_DuplicateBaseRecord";
@@ -93,6 +423,10 @@ namespace DLaB.Xrm.Entities
 			public const string Queue_DuplicateMatchingRecord = "Queue_DuplicateMatchingRecord";
 			public const string Quote_DuplicateBaseRecord = "Quote_DuplicateBaseRecord";
 			public const string Quote_DuplicateMatchingRecord = "Quote_DuplicateMatchingRecord";
+			public const string ratingmodel_DuplicateBaseRecord = "ratingmodel_DuplicateBaseRecord";
+			public const string ratingmodel_DuplicateMatchingRecord = "ratingmodel_DuplicateMatchingRecord";
+			public const string ratingvalue_DuplicateBaseRecord = "ratingvalue_DuplicateBaseRecord";
+			public const string ratingvalue_DuplicateMatchingRecord = "ratingvalue_DuplicateMatchingRecord";
 			public const string RecurringAppointmentMaster_DuplicateBaseRecord = "RecurringAppointmentMaster_DuplicateBaseRecord";
 			public const string RecurringAppointmentMaster_DuplicateMatchingRecord = "RecurringAppointmentMaster_DuplicateMatchingRecord";
 			public const string ResourceGroup_DuplicateBaseRecord = "ResourceGroup_DuplicateBaseRecord";
@@ -118,7 +452,6 @@ namespace DLaB.Xrm.Entities
 			public const string TransactionCurrency_DuplicateBaseRecord = "TransactionCurrency_DuplicateBaseRecord";
 			public const string TransactionCurrency_DuplicateMatchingRecord = "TransactionCurrency_DuplicateMatchingRecord";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -130,6 +463,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "duplicaterecord";
+		
+		public const string PrimaryIdAttribute = "duplicateid";
 		
 		public const int EntityTypeCode = 4415;
 		
@@ -372,6 +707,34 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 adminsettingsentity_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("adminsettingsentity_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.adminsettingsentity adminsettingsentity_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.adminsettingsentity>("adminsettingsentity_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 adminsettingsentity_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("adminsettingsentity_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.adminsettingsentity adminsettingsentity_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.adminsettingsentity>("adminsettingsentity_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 Appointment_DuplicateBaseRecord
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
@@ -410,6 +773,230 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.AsyncOperation>("AsyncOperation_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresource_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresource_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.BookableResource bookableresource_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResource>("bookableresource_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresource_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresource_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.BookableResource bookableresource_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResource>("bookableresource_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcebooking_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebooking_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.BookableResourceBooking bookableresourcebooking_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBooking>("bookableresourcebooking_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcebooking_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebooking_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.BookableResourceBooking bookableresourcebooking_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBooking>("bookableresourcebooking_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcebookingheader_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebookingheader_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.BookableResourceBookingHeader bookableresourcebookingheader_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBookingHeader>("bookableresourcebookingheader_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcebookingheader_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebookingheader_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.BookableResourceBookingHeader bookableresourcebookingheader_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBookingHeader>("bookableresourcebookingheader_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcecategory_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcecategory_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.BookableResourceCategory bookableresourcecategory_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceCategory>("bookableresourcecategory_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcecategory_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcecategory_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.BookableResourceCategory bookableresourcecategory_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceCategory>("bookableresourcecategory_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcecategoryassn_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcecategoryassn_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.BookableResourceCategoryAssn bookableresourcecategoryassn_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceCategoryAssn>("bookableresourcecategoryassn_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcecategoryassn_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcecategoryassn_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.BookableResourceCategoryAssn bookableresourcecategoryassn_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceCategoryAssn>("bookableresourcecategoryassn_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcecharacteristic_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcecharacteristic_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.BookableResourceCharacteristic bookableresourcecharacteristic_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceCharacteristic>("bookableresourcecharacteristic_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcecharacteristic_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcecharacteristic_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.BookableResourceCharacteristic bookableresourcecharacteristic_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceCharacteristic>("bookableresourcecharacteristic_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcegroup_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcegroup_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.BookableResourceGroup bookableresourcegroup_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceGroup>("bookableresourcegroup_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcegroup_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcegroup_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.BookableResourceGroup bookableresourcegroup_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceGroup>("bookableresourcegroup_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookingstatus_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookingstatus_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.BookingStatus bookingstatus_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookingStatus>("bookingstatus_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookingstatus_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookingstatus_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.BookingStatus bookingstatus_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookingStatus>("bookingstatus_DuplicateMatchingRecord", null);
 			}
 		}
 		
@@ -494,6 +1081,34 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfile>("channelaccessprofile_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 characteristic_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("characteristic_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.Characteristic characteristic_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Characteristic>("characteristic_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 characteristic_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("characteristic_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.Characteristic characteristic_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Characteristic>("characteristic_DuplicateMatchingRecord", null);
 			}
 		}
 		
@@ -1044,6 +1659,1910 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 msdyn_accountpricelist_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_accountpricelist_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_accountpricelist msdyn_accountpricelist_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_accountpricelist>("msdyn_accountpricelist_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_accountpricelist_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_accountpricelist_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_accountpricelist msdyn_accountpricelist_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_accountpricelist>("msdyn_accountpricelist_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_actual_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_actual_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_actual msdyn_actual_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_actual>("msdyn_actual_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_actual_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_actual_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_actual msdyn_actual_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_actual>("msdyn_actual_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreement_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreement_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreement msdyn_agreement_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreement_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreement_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreement msdyn_agreement_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingdate_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingdate_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingdate msdyn_agreementbookingdate_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingdate_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingdate_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingdate msdyn_agreementbookingdate_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingincident_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingincident_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingincident msdyn_agreementbookingincident_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingincident>("msdyn_agreementbookingincident_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingincident_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingincident_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingincident msdyn_agreementbookingincident_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingincident>("msdyn_agreementbookingincident_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingproduct_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingproduct_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingproduct msdyn_agreementbookingproduct_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_agreementbookingproduct_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingproduct_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingproduct_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingproduct msdyn_agreementbookingproduct_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_agreementbookingproduct_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservice_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservice_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservice msdyn_agreementbookingservice_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_agreementbookingservice_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservice_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservice_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservice msdyn_agreementbookingservice_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_agreementbookingservice_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservicetask_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservicetask_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservicetask msdyn_agreementbookingservicetask_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask>("msdyn_agreementbookingservicetask_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservicetask_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservicetask_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservicetask msdyn_agreementbookingservicetask_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask>("msdyn_agreementbookingservicetask_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingsetup_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingsetup_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingsetup msdyn_agreementbookingsetup_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingsetup_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingsetup_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingsetup msdyn_agreementbookingsetup_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicedate_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicedate_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicedate msdyn_agreementinvoicedate_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicedate_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicedate_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicedate msdyn_agreementinvoicedate_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoiceproduct_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoiceproduct_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct msdyn_agreementinvoiceproduct_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_agreementinvoiceproduct_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoiceproduct_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoiceproduct_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct msdyn_agreementinvoiceproduct_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_agreementinvoiceproduct_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicesetup_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicesetup_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicesetup msdyn_agreementinvoicesetup_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicesetup_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicesetup_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicesetup msdyn_agreementinvoicesetup_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementsubstatus_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementsubstatus_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreementsubstatus msdyn_agreementsubstatus_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementsubstatus>("msdyn_agreementsubstatus_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementsubstatus_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementsubstatus_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_agreementsubstatus msdyn_agreementsubstatus_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementsubstatus>("msdyn_agreementsubstatus_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_approval_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_approval_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_approval msdyn_approval_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_approval_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_approval_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_approval msdyn_approval_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_batchjob_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_batchjob_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_batchjob msdyn_batchjob_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_batchjob>("msdyn_batchjob_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_batchjob_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_batchjob_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_batchjob msdyn_batchjob_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_batchjob>("msdyn_batchjob_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingalert_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalert_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_bookingalert msdyn_bookingalert_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingalert_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalert_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_bookingalert msdyn_bookingalert_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingalertstatus_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalertstatus_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_bookingalertstatus msdyn_bookingalertstatus_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalertstatus>("msdyn_bookingalertstatus_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingalertstatus_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalertstatus_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_bookingalertstatus msdyn_bookingalertstatus_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalertstatus>("msdyn_bookingalertstatus_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingrule_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingrule_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_bookingrule msdyn_bookingrule_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingrule>("msdyn_bookingrule_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingrule_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingrule_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_bookingrule msdyn_bookingrule_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingrule>("msdyn_bookingrule_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingtimestamp_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingtimestamp_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_bookingtimestamp msdyn_bookingtimestamp_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingtimestamp_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingtimestamp_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_bookingtimestamp msdyn_bookingtimestamp_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_characteristicreqforteammember_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_characteristicreqforteammember_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_characteristicreqforteammember msdyn_characteristicreqforteammember_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_characteristicreqforteammember>("msdyn_characteristicreqforteammember_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_characteristicreqforteammember_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_characteristicreqforteammember_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_characteristicreqforteammember msdyn_characteristicreqforteammember_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_characteristicreqforteammember>("msdyn_characteristicreqforteammember_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_contactpricelist_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_contactpricelist_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_contactpricelist msdyn_contactpricelist_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_contactpricelist>("msdyn_contactpricelist_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_contactpricelist_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_contactpricelist_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_contactpricelist msdyn_contactpricelist_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_contactpricelist>("msdyn_contactpricelist_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_contractlineinvoiceschedule_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_contractlineinvoiceschedule_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_contractlineinvoiceschedule msdyn_contractlineinvoiceschedule_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_contractlineinvoiceschedule>("msdyn_contractlineinvoiceschedule_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_contractlineinvoiceschedule_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_contractlineinvoiceschedule_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_contractlineinvoiceschedule msdyn_contractlineinvoiceschedule_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_contractlineinvoiceschedule>("msdyn_contractlineinvoiceschedule_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_contractlinescheduleofvalue_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_contractlinescheduleofvalue_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_contractlinescheduleofvalue msdyn_contractlinescheduleofvalue_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_contractlinescheduleofvalue>("msdyn_contractlinescheduleofvalue_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_contractlinescheduleofvalue_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_contractlinescheduleofvalue_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_contractlinescheduleofvalue msdyn_contractlinescheduleofvalue_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_contractlinescheduleofvalue>("msdyn_contractlinescheduleofvalue_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_customerasset_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_customerasset_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_customerasset msdyn_customerasset_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_customerasset_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_customerasset_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_customerasset_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_customerasset msdyn_customerasset_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_customerasset_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_dataexport_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_dataexport_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_dataexport msdyn_dataexport_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_dataexport>("msdyn_dataexport_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_dataexport_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_dataexport_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_dataexport msdyn_dataexport_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_dataexport>("msdyn_dataexport_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_delegation_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_delegation_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_delegation msdyn_delegation_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_delegation>("msdyn_delegation_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_delegation_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_delegation_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_delegation msdyn_delegation_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_delegation>("msdyn_delegation_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_estimate_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_estimate_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_estimate msdyn_estimate_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_estimate>("msdyn_estimate_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_estimate_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_estimate_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_estimate msdyn_estimate_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_estimate>("msdyn_estimate_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_estimateline_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_estimateline_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_estimateline msdyn_estimateline_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_estimateline>("msdyn_estimateline_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_estimateline_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_estimateline_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_estimateline msdyn_estimateline_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_estimateline>("msdyn_estimateline_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_expense_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_expense_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_expense msdyn_expense_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_expense>("msdyn_expense_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_expense_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_expense_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_expense msdyn_expense_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_expense>("msdyn_expense_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_expensecategory_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_expensecategory_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_expensecategory msdyn_expensecategory_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_expensecategory>("msdyn_expensecategory_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_expensecategory_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_expensecategory_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_expensecategory msdyn_expensecategory_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_expensecategory>("msdyn_expensecategory_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fact_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fact_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_fact msdyn_fact_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fact>("msdyn_fact_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fact_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fact_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_fact msdyn_fact_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fact>("msdyn_fact_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fieldcomputation_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fieldcomputation_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_fieldcomputation msdyn_fieldcomputation_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldcomputation>("msdyn_fieldcomputation_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fieldcomputation_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fieldcomputation_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_fieldcomputation msdyn_fieldcomputation_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldcomputation>("msdyn_fieldcomputation_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fieldservicepricelistitem_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fieldservicepricelistitem_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_fieldservicepricelistitem msdyn_fieldservicepricelistitem_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicepricelistitem>("msdyn_fieldservicepricelistitem_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fieldservicepricelistitem_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fieldservicepricelistitem_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_fieldservicepricelistitem msdyn_fieldservicepricelistitem_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicepricelistitem>("msdyn_fieldservicepricelistitem_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_findworkevent_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_findworkevent_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_findworkevent msdyn_findworkevent_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_findworkevent>("msdyn_findworkevent_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_findworkevent_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_findworkevent_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_findworkevent msdyn_findworkevent_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_findworkevent>("msdyn_findworkevent_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_icebreakersconfig_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_icebreakersconfig_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_icebreakersconfig msdyn_icebreakersconfig_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_icebreakersconfig>("msdyn_icebreakersconfig_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_icebreakersconfig_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_icebreakersconfig_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_icebreakersconfig msdyn_icebreakersconfig_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_icebreakersconfig>("msdyn_icebreakersconfig_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttype_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttype_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_incidenttype msdyn_incidenttype_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttype>("msdyn_incidenttype_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttype_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttype_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_incidenttype msdyn_incidenttype_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttype>("msdyn_incidenttype_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypecharacteristic_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypecharacteristic_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic msdyn_incidenttypecharacteristic_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic>("msdyn_incidenttypecharacteristic_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypecharacteristic_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypecharacteristic_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic msdyn_incidenttypecharacteristic_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic>("msdyn_incidenttypecharacteristic_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeproduct_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeproduct_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeproduct msdyn_incidenttypeproduct_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeproduct_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeproduct_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeproduct msdyn_incidenttypeproduct_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeservice_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeservice_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeservice msdyn_incidenttypeservice_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_incidenttypeservice_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeservice_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeservice_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeservice msdyn_incidenttypeservice_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_incidenttypeservice_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeservicetask_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeservicetask_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeservicetask msdyn_incidenttypeservicetask_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservicetask>("msdyn_incidenttypeservicetask_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeservicetask_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeservicetask_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeservicetask msdyn_incidenttypeservicetask_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservicetask>("msdyn_incidenttypeservicetask_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustment_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustment_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustment msdyn_inventoryadjustment_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustment_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustment_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustment msdyn_inventoryadjustment_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustmentproduct_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustmentproduct_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct msdyn_inventoryadjustmentproduct_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustmentproduct_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustmentproduct_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct msdyn_inventoryadjustmentproduct_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryjournal_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryjournal_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_inventoryjournal msdyn_inventoryjournal_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_inventoryjournal_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryjournal_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryjournal_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_inventoryjournal msdyn_inventoryjournal_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_inventoryjournal_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventorytransfer_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventorytransfer_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_inventorytransfer msdyn_inventorytransfer_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventorytransfer_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventorytransfer_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_inventorytransfer msdyn_inventorytransfer_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_invoicefrequency_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_invoicefrequency_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_invoicefrequency msdyn_invoicefrequency_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_invoicefrequency>("msdyn_invoicefrequency_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_invoicefrequency_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_invoicefrequency_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_invoicefrequency msdyn_invoicefrequency_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_invoicefrequency>("msdyn_invoicefrequency_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_invoicefrequencydetail_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_invoicefrequencydetail_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_invoicefrequencydetail msdyn_invoicefrequencydetail_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_invoicefrequencydetail>("msdyn_invoicefrequencydetail_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_invoicefrequencydetail_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_invoicefrequencydetail_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_invoicefrequencydetail msdyn_invoicefrequencydetail_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_invoicefrequencydetail>("msdyn_invoicefrequencydetail_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_invoicelinetransaction_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_invoicelinetransaction_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_invoicelinetransaction msdyn_invoicelinetransaction_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_invoicelinetransaction>("msdyn_invoicelinetransaction_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_invoicelinetransaction_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_invoicelinetransaction_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_invoicelinetransaction msdyn_invoicelinetransaction_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_invoicelinetransaction>("msdyn_invoicelinetransaction_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_journal_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_journal_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_journal msdyn_journal_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_journal>("msdyn_journal_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_journal_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_journal_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_journal msdyn_journal_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_journal>("msdyn_journal_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_journalline_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_journalline_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_journalline msdyn_journalline_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_journalline>("msdyn_journalline_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_journalline_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_journalline_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_journalline msdyn_journalline_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_journalline>("msdyn_journalline_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_opportunitylineresourcecategory_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunitylineresourcecategory_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_opportunitylineresourcecategory msdyn_opportunitylineresourcecategory_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitylineresourcecategory>("msdyn_opportunitylineresourcecategory_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_opportunitylineresourcecategory_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunitylineresourcecategory_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_opportunitylineresourcecategory msdyn_opportunitylineresourcecategory_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitylineresourcecategory>("msdyn_opportunitylineresourcecategory_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_opportunitylinetransaction_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunitylinetransaction_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_opportunitylinetransaction msdyn_opportunitylinetransaction_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction>("msdyn_opportunitylinetransaction_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_opportunitylinetransaction_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunitylinetransaction_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_opportunitylinetransaction msdyn_opportunitylinetransaction_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction>("msdyn_opportunitylinetransaction_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_opportunitylinetransactioncategory_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunitylinetransactioncategory_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_opportunitylinetransactioncategory msdyn_opportunitylinetransactioncategory_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitylinetransactioncategory>("msdyn_opportunitylinetransactioncategory_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_opportunitylinetransactioncategory_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunitylinetransactioncategory_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_opportunitylinetransactioncategory msdyn_opportunitylinetransactioncategory_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitylinetransactioncategory>("msdyn_opportunitylinetransactioncategory_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_opportunitylinetransactionclassificatio_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunitylinetransactionclassificatio_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_opportunitylinetransactionclassificatio msdyn_opportunitylinetransactionclassificatio_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitylinetransactionclassificatio>("msdyn_opportunitylinetransactionclassificatio_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_opportunitylinetransactionclassificatio_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunitylinetransactionclassificatio_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_opportunitylinetransactionclassificatio msdyn_opportunitylinetransactionclassificatio_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitylinetransactionclassificatio>("msdyn_opportunitylinetransactionclassificatio_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_opportunitypricelist_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunitypricelist_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_opportunitypricelist msdyn_opportunitypricelist_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitypricelist>("msdyn_opportunitypricelist_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_opportunitypricelist_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunitypricelist_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_opportunitypricelist msdyn_opportunitypricelist_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitypricelist>("msdyn_opportunitypricelist_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderinvoicingdate_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderinvoicingdate_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_orderinvoicingdate msdyn_orderinvoicingdate_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingdate>("msdyn_orderinvoicingdate_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderinvoicingdate_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderinvoicingdate_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_orderinvoicingdate msdyn_orderinvoicingdate_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingdate>("msdyn_orderinvoicingdate_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderinvoicingproduct_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderinvoicingproduct_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_orderinvoicingproduct msdyn_orderinvoicingproduct_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingproduct>("msdyn_orderinvoicingproduct_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderinvoicingproduct_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderinvoicingproduct_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_orderinvoicingproduct msdyn_orderinvoicingproduct_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingproduct>("msdyn_orderinvoicingproduct_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderinvoicingsetup_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderinvoicingsetup_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_orderinvoicingsetup msdyn_orderinvoicingsetup_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingsetup>("msdyn_orderinvoicingsetup_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderinvoicingsetup_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderinvoicingsetup_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_orderinvoicingsetup msdyn_orderinvoicingsetup_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingsetup>("msdyn_orderinvoicingsetup_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderinvoicingsetupdate_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderinvoicingsetupdate_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_orderinvoicingsetupdate msdyn_orderinvoicingsetupdate_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingsetupdate>("msdyn_orderinvoicingsetupdate_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderinvoicingsetupdate_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderinvoicingsetupdate_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_orderinvoicingsetupdate msdyn_orderinvoicingsetupdate_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingsetupdate>("msdyn_orderinvoicingsetupdate_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderlineresourcecategory_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderlineresourcecategory_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_orderlineresourcecategory msdyn_orderlineresourcecategory_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderlineresourcecategory>("msdyn_orderlineresourcecategory_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderlineresourcecategory_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderlineresourcecategory_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_orderlineresourcecategory msdyn_orderlineresourcecategory_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderlineresourcecategory>("msdyn_orderlineresourcecategory_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderlinetransaction_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderlinetransaction_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_orderlinetransaction msdyn_orderlinetransaction_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderlinetransaction>("msdyn_orderlinetransaction_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderlinetransaction_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderlinetransaction_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_orderlinetransaction msdyn_orderlinetransaction_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderlinetransaction>("msdyn_orderlinetransaction_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderlinetransactioncategory_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderlinetransactioncategory_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_orderlinetransactioncategory msdyn_orderlinetransactioncategory_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderlinetransactioncategory>("msdyn_orderlinetransactioncategory_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderlinetransactioncategory_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderlinetransactioncategory_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_orderlinetransactioncategory msdyn_orderlinetransactioncategory_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderlinetransactioncategory>("msdyn_orderlinetransactioncategory_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderlinetransactionclassification_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderlinetransactionclassification_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_orderlinetransactionclassification msdyn_orderlinetransactionclassification_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderlinetransactionclassification>("msdyn_orderlinetransactionclassification_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderlinetransactionclassification_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderlinetransactionclassification_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_orderlinetransactionclassification msdyn_orderlinetransactionclassification_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderlinetransactionclassification>("msdyn_orderlinetransactionclassification_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderpricelist_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderpricelist_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_orderpricelist msdyn_orderpricelist_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderpricelist>("msdyn_orderpricelist_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderpricelist_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderpricelist_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_orderpricelist msdyn_orderpricelist_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderpricelist>("msdyn_orderpricelist_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_organizationalunit_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_organizationalunit_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_organizationalunit msdyn_organizationalunit_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_organizationalunit>("msdyn_organizationalunit_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_organizationalunit_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_organizationalunit_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_organizationalunit msdyn_organizationalunit_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_organizationalunit>("msdyn_organizationalunit_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_payment_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_payment_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_payment msdyn_payment_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_payment>("msdyn_payment_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_payment_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_payment_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_payment msdyn_payment_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_payment>("msdyn_payment_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentdetail_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentdetail_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_paymentdetail msdyn_paymentdetail_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentdetail>("msdyn_paymentdetail_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentdetail_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentdetail_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_paymentdetail msdyn_paymentdetail_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentdetail>("msdyn_paymentdetail_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentmethod_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentmethod_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_paymentmethod msdyn_paymentmethod_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentmethod>("msdyn_paymentmethod_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentmethod_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentmethod_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_paymentmethod msdyn_paymentmethod_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentmethod>("msdyn_paymentmethod_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentterm_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentterm_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_paymentterm msdyn_paymentterm_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentterm>("msdyn_paymentterm_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentterm_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentterm_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_paymentterm msdyn_paymentterm_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentterm>("msdyn_paymentterm_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 msdyn_postalbum_DuplicateBaseRecord
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
@@ -1068,6 +3587,2442 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_PostAlbum>("msdyn_postalbum_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_postalcode_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_postalcode_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_postalcode msdyn_postalcode_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_postalcode_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_postalcode_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_postalcode_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_postalcode msdyn_postalcode_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_postalcode_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_priority_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_priority_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_priority msdyn_priority_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_priority>("msdyn_priority_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_priority_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_priority_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_priority msdyn_priority_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_priority>("msdyn_priority_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_processnotes_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_processnotes_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_processnotes msdyn_processnotes_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_processnotes>("msdyn_processnotes_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_processnotes_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_processnotes_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_processnotes msdyn_processnotes_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_processnotes>("msdyn_processnotes_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_productinventory_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_productinventory_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_productinventory msdyn_productinventory_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_productinventory_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_productinventory_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_productinventory_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_productinventory msdyn_productinventory_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_productinventory_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_project_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_project_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_project msdyn_project_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_project>("msdyn_project_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_project_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_project_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_project msdyn_project_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_project>("msdyn_project_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectapproval_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectapproval_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_projectapproval msdyn_projectapproval_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectapproval>("msdyn_projectapproval_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectapproval_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectapproval_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_projectapproval msdyn_projectapproval_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectapproval>("msdyn_projectapproval_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectparameter_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectparameter_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_projectparameter msdyn_projectparameter_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectparameter>("msdyn_projectparameter_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectparameter_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectparameter_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_projectparameter msdyn_projectparameter_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectparameter>("msdyn_projectparameter_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectparameterpricelist_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectparameterpricelist_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_projectparameterpricelist msdyn_projectparameterpricelist_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectparameterpricelist>("msdyn_projectparameterpricelist_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectparameterpricelist_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectparameterpricelist_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_projectparameterpricelist msdyn_projectparameterpricelist_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectparameterpricelist>("msdyn_projectparameterpricelist_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectpricelist_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectpricelist_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_projectpricelist msdyn_projectpricelist_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectpricelist>("msdyn_projectpricelist_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectpricelist_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectpricelist_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_projectpricelist msdyn_projectpricelist_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectpricelist>("msdyn_projectpricelist_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projecttask_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projecttask_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_projecttask msdyn_projecttask_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttask>("msdyn_projecttask_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projecttask_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projecttask_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_projecttask msdyn_projecttask_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttask>("msdyn_projecttask_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projecttaskdependency_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projecttaskdependency_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_projecttaskdependency msdyn_projecttaskdependency_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttaskdependency>("msdyn_projecttaskdependency_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projecttaskdependency_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projecttaskdependency_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_projecttaskdependency msdyn_projecttaskdependency_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttaskdependency>("msdyn_projecttaskdependency_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projecttaskstatususer_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projecttaskstatususer_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_projecttaskstatususer msdyn_projecttaskstatususer_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttaskstatususer>("msdyn_projecttaskstatususer_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projecttaskstatususer_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projecttaskstatususer_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_projecttaskstatususer msdyn_projecttaskstatususer_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttaskstatususer>("msdyn_projecttaskstatususer_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectteam_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectteam_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_projectteam msdyn_projectteam_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteam>("msdyn_projectteam_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectteam_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectteam_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_projectteam msdyn_projectteam_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteam>("msdyn_projectteam_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectteammembersignup_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectteammembersignup_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_projectteammembersignup msdyn_projectteammembersignup_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteammembersignup>("msdyn_projectteammembersignup_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectteammembersignup_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectteammembersignup_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_projectteammembersignup msdyn_projectteammembersignup_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteammembersignup>("msdyn_projectteammembersignup_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projecttransactioncategory_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projecttransactioncategory_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_projecttransactioncategory msdyn_projecttransactioncategory_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttransactioncategory>("msdyn_projecttransactioncategory_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projecttransactioncategory_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projecttransactioncategory_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_projecttransactioncategory msdyn_projecttransactioncategory_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttransactioncategory>("msdyn_projecttransactioncategory_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorder_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorder_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorder msdyn_purchaseorder_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorder_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorder_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorder msdyn_purchaseorder_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderbill_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderbill_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderbill msdyn_purchaseorderbill_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("msdyn_purchaseorderbill_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderbill_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderbill_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderbill msdyn_purchaseorderbill_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("msdyn_purchaseorderbill_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceipt_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceipt_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceipt msdyn_purchaseorderreceipt_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceipt_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceipt_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceipt msdyn_purchaseorderreceipt_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceiptproduct_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceiptproduct_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct msdyn_purchaseorderreceiptproduct_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct>("msdyn_purchaseorderreceiptproduct_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceiptproduct_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceiptproduct_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct msdyn_purchaseorderreceiptproduct_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct>("msdyn_purchaseorderreceiptproduct_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseordersubstatus_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseordersubstatus_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_purchaseordersubstatus msdyn_purchaseordersubstatus_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus>("msdyn_purchaseordersubstatus_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseordersubstatus_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseordersubstatus_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_purchaseordersubstatus msdyn_purchaseordersubstatus_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus>("msdyn_purchaseordersubstatus_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingincident_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingincident_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingincident msdyn_quotebookingincident_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quotebookingincident_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingincident_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingincident_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingincident msdyn_quotebookingincident_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quotebookingincident_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingproduct_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingproduct_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingproduct msdyn_quotebookingproduct_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quotebookingproduct_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingproduct_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingproduct_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingproduct msdyn_quotebookingproduct_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quotebookingproduct_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservice_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservice_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservice msdyn_quotebookingservice_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quotebookingservice_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservice_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservice_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservice msdyn_quotebookingservice_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quotebookingservice_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservicetask_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservicetask_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservicetask msdyn_quotebookingservicetask_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quotebookingservicetask_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservicetask_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservicetask_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservicetask msdyn_quotebookingservicetask_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quotebookingservicetask_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingsetup_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingsetup_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingsetup msdyn_quotebookingsetup_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingsetup>("msdyn_quotebookingsetup_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingsetup_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingsetup_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingsetup msdyn_quotebookingsetup_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingsetup>("msdyn_quotebookingsetup_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quoteinvoicingproduct_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quoteinvoicingproduct_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_quoteinvoicingproduct msdyn_quoteinvoicingproduct_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quoteinvoicingproduct>("msdyn_quoteinvoicingproduct_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quoteinvoicingproduct_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quoteinvoicingproduct_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_quoteinvoicingproduct msdyn_quoteinvoicingproduct_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quoteinvoicingproduct>("msdyn_quoteinvoicingproduct_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quoteinvoicingsetup_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quoteinvoicingsetup_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_quoteinvoicingsetup msdyn_quoteinvoicingsetup_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quoteinvoicingsetup>("msdyn_quoteinvoicingsetup_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quoteinvoicingsetup_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quoteinvoicingsetup_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_quoteinvoicingsetup msdyn_quoteinvoicingsetup_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quoteinvoicingsetup>("msdyn_quoteinvoicingsetup_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelineanalyticsbreakdown_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelineanalyticsbreakdown_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotelineanalyticsbreakdown msdyn_quotelineanalyticsbreakdown_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelineanalyticsbreakdown>("msdyn_quotelineanalyticsbreakdown_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelineanalyticsbreakdown_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelineanalyticsbreakdown_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotelineanalyticsbreakdown msdyn_quotelineanalyticsbreakdown_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelineanalyticsbreakdown>("msdyn_quotelineanalyticsbreakdown_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelineinvoiceschedule_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelineinvoiceschedule_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotelineinvoiceschedule msdyn_quotelineinvoiceschedule_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelineinvoiceschedule>("msdyn_quotelineinvoiceschedule_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelineinvoiceschedule_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelineinvoiceschedule_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotelineinvoiceschedule msdyn_quotelineinvoiceschedule_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelineinvoiceschedule>("msdyn_quotelineinvoiceschedule_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelineresourcecategory_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelineresourcecategory_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotelineresourcecategory msdyn_quotelineresourcecategory_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelineresourcecategory>("msdyn_quotelineresourcecategory_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelineresourcecategory_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelineresourcecategory_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotelineresourcecategory msdyn_quotelineresourcecategory_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelineresourcecategory>("msdyn_quotelineresourcecategory_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelinescheduleofvalue_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelinescheduleofvalue_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotelinescheduleofvalue msdyn_quotelinescheduleofvalue_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelinescheduleofvalue>("msdyn_quotelinescheduleofvalue_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelinescheduleofvalue_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelinescheduleofvalue_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotelinescheduleofvalue msdyn_quotelinescheduleofvalue_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelinescheduleofvalue>("msdyn_quotelinescheduleofvalue_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelinetransaction_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelinetransaction_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotelinetransaction msdyn_quotelinetransaction_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelinetransaction>("msdyn_quotelinetransaction_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelinetransaction_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelinetransaction_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotelinetransaction msdyn_quotelinetransaction_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelinetransaction>("msdyn_quotelinetransaction_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelinetransactioncategory_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelinetransactioncategory_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotelinetransactioncategory msdyn_quotelinetransactioncategory_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelinetransactioncategory>("msdyn_quotelinetransactioncategory_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelinetransactioncategory_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelinetransactioncategory_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotelinetransactioncategory msdyn_quotelinetransactioncategory_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelinetransactioncategory>("msdyn_quotelinetransactioncategory_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelinetransactionclassification_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelinetransactionclassification_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotelinetransactionclassification msdyn_quotelinetransactionclassification_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelinetransactionclassification>("msdyn_quotelinetransactionclassification_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelinetransactionclassification_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelinetransactionclassification_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotelinetransactionclassification msdyn_quotelinetransactionclassification_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelinetransactionclassification>("msdyn_quotelinetransactionclassification_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotepricelist_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotepricelist_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotepricelist msdyn_quotepricelist_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotepricelist>("msdyn_quotepricelist_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotepricelist_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotepricelist_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_quotepricelist msdyn_quotepricelist_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotepricelist>("msdyn_quotepricelist_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_relationshipinsightsunifiedconfig_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_relationshipinsightsunifiedconfig_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_relationshipinsightsunifiedconfig msdyn_relationshipinsightsunifiedconfig_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_relationshipinsightsunifiedconfig>("msdyn_relationshipinsightsunifiedconfig_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_relationshipinsightsunifiedconfig_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_relationshipinsightsunifiedconfig_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_relationshipinsightsunifiedconfig msdyn_relationshipinsightsunifiedconfig_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_relationshipinsightsunifiedconfig>("msdyn_relationshipinsightsunifiedconfig_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_requirementcharacteristic_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_requirementcharacteristic_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_requirementcharacteristic msdyn_requirementcharacteristic_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementcharacteristic>("msdyn_requirementcharacteristic_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_requirementcharacteristic_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_requirementcharacteristic_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_requirementcharacteristic msdyn_requirementcharacteristic_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementcharacteristic>("msdyn_requirementcharacteristic_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_requirementorganizationunit_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_requirementorganizationunit_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_requirementorganizationunit msdyn_requirementorganizationunit_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementorganizationunit>("msdyn_requirementorganizationunit_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_requirementorganizationunit_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_requirementorganizationunit_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_requirementorganizationunit msdyn_requirementorganizationunit_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementorganizationunit>("msdyn_requirementorganizationunit_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_requirementresourcecategory_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_requirementresourcecategory_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_requirementresourcecategory msdyn_requirementresourcecategory_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementresourcecategory>("msdyn_requirementresourcecategory_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_requirementresourcecategory_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_requirementresourcecategory_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_requirementresourcecategory msdyn_requirementresourcecategory_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementresourcecategory>("msdyn_requirementresourcecategory_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_requirementresourcepreference_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_requirementresourcepreference_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_requirementresourcepreference msdyn_requirementresourcepreference_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementresourcepreference>("msdyn_requirementresourcepreference_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_requirementresourcepreference_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_requirementresourcepreference_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_requirementresourcepreference msdyn_requirementresourcepreference_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementresourcepreference>("msdyn_requirementresourcepreference_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_requirementstatus_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_requirementstatus_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_requirementstatus msdyn_requirementstatus_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementstatus>("msdyn_requirementstatus_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_requirementstatus_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_requirementstatus_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_requirementstatus msdyn_requirementstatus_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementstatus>("msdyn_requirementstatus_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourceassignmentdetail_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourceassignmentdetail_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_resourceassignmentdetail msdyn_resourceassignmentdetail_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceassignmentdetail>("msdyn_resourceassignmentdetail_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourceassignmentdetail_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourceassignmentdetail_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_resourceassignmentdetail msdyn_resourceassignmentdetail_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceassignmentdetail>("msdyn_resourceassignmentdetail_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourcecategorypricelevel_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourcecategorypricelevel_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_resourcecategorypricelevel msdyn_resourcecategorypricelevel_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcecategorypricelevel>("msdyn_resourcecategorypricelevel_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourcecategorypricelevel_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourcecategorypricelevel_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_resourcecategorypricelevel msdyn_resourcecategorypricelevel_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcecategorypricelevel>("msdyn_resourcecategorypricelevel_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourcerequest_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourcerequest_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_resourcerequest msdyn_resourcerequest_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcerequest>("msdyn_resourcerequest_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourcerequest_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourcerequest_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_resourcerequest msdyn_resourcerequest_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcerequest>("msdyn_resourcerequest_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourcerequirement_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourcerequirement_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_resourcerequirement msdyn_resourcerequirement_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcerequirement>("msdyn_resourcerequirement_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourcerequirement_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourcerequirement_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_resourcerequirement msdyn_resourcerequirement_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcerequirement>("msdyn_resourcerequirement_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourcerequirementdetail_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourcerequirementdetail_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_resourcerequirementdetail msdyn_resourcerequirementdetail_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcerequirementdetail>("msdyn_resourcerequirementdetail_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourcerequirementdetail_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourcerequirementdetail_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_resourcerequirementdetail msdyn_resourcerequirementdetail_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcerequirementdetail>("msdyn_resourcerequirementdetail_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourceterritory_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourceterritory_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_resourceterritory msdyn_resourceterritory_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourceterritory_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourceterritory_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_resourceterritory msdyn_resourceterritory_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rma_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rma_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_rma msdyn_rma_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rma_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rma_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_rma msdyn_rma_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceipt_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceipt_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_rmareceipt msdyn_rmareceipt_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceipt_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceipt_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_rmareceipt msdyn_rmareceipt_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceiptproduct_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceiptproduct_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_rmareceiptproduct msdyn_rmareceiptproduct_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceiptproduct>("msdyn_rmareceiptproduct_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceiptproduct_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceiptproduct_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_rmareceiptproduct msdyn_rmareceiptproduct_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceiptproduct>("msdyn_rmareceiptproduct_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmasubstatus_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmasubstatus_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_rmasubstatus msdyn_rmasubstatus_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmasubstatus>("msdyn_rmasubstatus_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmasubstatus_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmasubstatus_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_rmasubstatus msdyn_rmasubstatus_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmasubstatus>("msdyn_rmasubstatus_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rolecompetencyrequirement_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rolecompetencyrequirement_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_rolecompetencyrequirement msdyn_rolecompetencyrequirement_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rolecompetencyrequirement>("msdyn_rolecompetencyrequirement_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rolecompetencyrequirement_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rolecompetencyrequirement_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_rolecompetencyrequirement msdyn_rolecompetencyrequirement_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rolecompetencyrequirement>("msdyn_rolecompetencyrequirement_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_roleutilization_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_roleutilization_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_roleutilization msdyn_roleutilization_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_roleutilization>("msdyn_roleutilization_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_roleutilization_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_roleutilization_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_roleutilization msdyn_roleutilization_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_roleutilization>("msdyn_roleutilization_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtv_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtv_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_rtv msdyn_rtv_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtv_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtv_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_rtv msdyn_rtv_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvproduct_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvproduct_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_rtvproduct msdyn_rtvproduct_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_rtvproduct_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvproduct_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvproduct_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_rtvproduct msdyn_rtvproduct_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_rtvproduct_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvsubstatus_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvsubstatus_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_rtvsubstatus msdyn_rtvsubstatus_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvsubstatus>("msdyn_rtvsubstatus_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvsubstatus_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvsubstatus_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_rtvsubstatus msdyn_rtvsubstatus_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvsubstatus>("msdyn_rtvsubstatus_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_scheduleboardsetting_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_scheduleboardsetting_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_scheduleboardsetting msdyn_scheduleboardsetting_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_scheduleboardsetting>("msdyn_scheduleboardsetting_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_scheduleboardsetting_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_scheduleboardsetting_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_scheduleboardsetting msdyn_scheduleboardsetting_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_scheduleboardsetting>("msdyn_scheduleboardsetting_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_servicetasktype_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_servicetasktype_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_servicetasktype msdyn_servicetasktype_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_servicetasktype>("msdyn_servicetasktype_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_servicetasktype_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_servicetasktype_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_servicetasktype msdyn_servicetasktype_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_servicetasktype>("msdyn_servicetasktype_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_shipvia_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_shipvia_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_shipvia msdyn_shipvia_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_shipvia>("msdyn_shipvia_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_shipvia_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_shipvia_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_shipvia msdyn_shipvia_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_shipvia>("msdyn_shipvia_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_siconfig_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_siconfig_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_siconfig msdyn_siconfig_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_siconfig>("msdyn_siconfig_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_siconfig_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_siconfig_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_siconfig msdyn_siconfig_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_siconfig>("msdyn_siconfig_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_systemuserschedulersetting_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_systemuserschedulersetting_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_systemuserschedulersetting msdyn_systemuserschedulersetting_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting>("msdyn_systemuserschedulersetting_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_systemuserschedulersetting_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_systemuserschedulersetting_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_systemuserschedulersetting msdyn_systemuserschedulersetting_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting>("msdyn_systemuserschedulersetting_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_taxcode_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_taxcode_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_taxcode msdyn_taxcode_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_taxcode>("msdyn_taxcode_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_taxcode_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_taxcode_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_taxcode msdyn_taxcode_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_taxcode>("msdyn_taxcode_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_taxcodedetail_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_taxcodedetail_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_taxcodedetail msdyn_taxcodedetail_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_taxcodedetail>("msdyn_taxcodedetail_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_taxcodedetail_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_taxcodedetail_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_taxcodedetail msdyn_taxcodedetail_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_taxcodedetail>("msdyn_taxcodedetail_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroup_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroup_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_timegroup msdyn_timegroup_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroup_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroup_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_timegroup msdyn_timegroup_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroupdetail_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroupdetail_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_timegroupdetail msdyn_timegroupdetail_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroupdetail_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroupdetail_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_timegroupdetail msdyn_timegroupdetail_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timeoffcalendar_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timeoffcalendar_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_timeoffcalendar msdyn_timeoffcalendar_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffcalendar>("msdyn_timeoffcalendar_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timeoffcalendar_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timeoffcalendar_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_timeoffcalendar msdyn_timeoffcalendar_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffcalendar>("msdyn_timeoffcalendar_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timeoffrequest_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timeoffrequest_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_timeoffrequest msdyn_timeoffrequest_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffrequest>("msdyn_timeoffrequest_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timeoffrequest_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timeoffrequest_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_timeoffrequest msdyn_timeoffrequest_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffrequest>("msdyn_timeoffrequest_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactioncategory_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactioncategory_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_transactioncategory msdyn_transactioncategory_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategory>("msdyn_transactioncategory_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactioncategory_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactioncategory_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_transactioncategory msdyn_transactioncategory_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategory>("msdyn_transactioncategory_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactioncategoryclassification_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactioncategoryclassification_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_transactioncategoryclassification msdyn_transactioncategoryclassification_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategoryclassification>("msdyn_transactioncategoryclassification_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactioncategoryclassification_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactioncategoryclassification_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_transactioncategoryclassification msdyn_transactioncategoryclassification_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategoryclassification>("msdyn_transactioncategoryclassification_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactioncategoryhierarchyelement_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactioncategoryhierarchyelement_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_transactioncategoryhierarchyelement msdyn_transactioncategoryhierarchyelement_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategoryhierarchyelement>("msdyn_transactioncategoryhierarchyelement_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactioncategoryhierarchyelement_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactioncategoryhierarchyelement_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_transactioncategoryhierarchyelement msdyn_transactioncategoryhierarchyelement_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategoryhierarchyelement>("msdyn_transactioncategoryhierarchyelement_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactioncategorypricelevel_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactioncategorypricelevel_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_transactioncategorypricelevel msdyn_transactioncategorypricelevel_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategorypricelevel>("msdyn_transactioncategorypricelevel_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactioncategorypricelevel_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactioncategorypricelevel_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_transactioncategorypricelevel msdyn_transactioncategorypricelevel_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategorypricelevel>("msdyn_transactioncategorypricelevel_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactionconnection_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactionconnection_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_transactionconnection msdyn_transactionconnection_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactionconnection>("msdyn_transactionconnection_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactionconnection_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactionconnection_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_transactionconnection msdyn_transactionconnection_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactionconnection>("msdyn_transactionconnection_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactionorigin_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactionorigin_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_transactionorigin msdyn_transactionorigin_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactionorigin>("msdyn_transactionorigin_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactionorigin_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactionorigin_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_transactionorigin msdyn_transactionorigin_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactionorigin>("msdyn_transactionorigin_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactiontype_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactiontype_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_transactiontype msdyn_transactiontype_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactiontype>("msdyn_transactiontype_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactiontype_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactiontype_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_transactiontype msdyn_transactiontype_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactiontype>("msdyn_transactiontype_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_untrackedappointment_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_untrackedappointment_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_untrackedappointment msdyn_untrackedappointment_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_untrackedappointment>("msdyn_untrackedappointment_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_untrackedappointment_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_untrackedappointment_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_untrackedappointment msdyn_untrackedappointment_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_untrackedappointment>("msdyn_untrackedappointment_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_userworkhistory_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_userworkhistory_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_userworkhistory msdyn_userworkhistory_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_userworkhistory>("msdyn_userworkhistory_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_userworkhistory_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_userworkhistory_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_userworkhistory msdyn_userworkhistory_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_userworkhistory>("msdyn_userworkhistory_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_warehouse_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_warehouse_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_warehouse msdyn_warehouse_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_warehouse_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_warehouse_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_warehouse msdyn_warehouse_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workhourtemplate_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workhourtemplate_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_workhourtemplate msdyn_workhourtemplate_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workhourtemplate>("msdyn_workhourtemplate_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workhourtemplate_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workhourtemplate_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_workhourtemplate msdyn_workhourtemplate_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workhourtemplate>("msdyn_workhourtemplate_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorder_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorder_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_workorder msdyn_workorder_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorder_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorder_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_workorder msdyn_workorder_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workordercharacteristic_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workordercharacteristic_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_workordercharacteristic msdyn_workordercharacteristic_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordercharacteristic>("msdyn_workordercharacteristic_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workordercharacteristic_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workordercharacteristic_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_workordercharacteristic msdyn_workordercharacteristic_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordercharacteristic>("msdyn_workordercharacteristic_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderdetailsgenerationqueue_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderdetailsgenerationqueue_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_workorderdetailsgenerationqueue msdyn_workorderdetailsgenerationqueue_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderdetailsgenerationqueue>("msdyn_workorderdetailsgenerationqueue_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderdetailsgenerationqueue_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderdetailsgenerationqueue_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_workorderdetailsgenerationqueue msdyn_workorderdetailsgenerationqueue_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderdetailsgenerationqueue>("msdyn_workorderdetailsgenerationqueue_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderincident_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderincident_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_workorderincident msdyn_workorderincident_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderincident_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderincident_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_workorderincident msdyn_workorderincident_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderresourcerestriction_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderresourcerestriction_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_workorderresourcerestriction msdyn_workorderresourcerestriction_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_workorderresourcerestriction_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderresourcerestriction_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderresourcerestriction_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_workorderresourcerestriction msdyn_workorderresourcerestriction_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_workorderresourcerestriction_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservice_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservice_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_workorderservice msdyn_workorderservice_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservice_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservice_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_workorderservice msdyn_workorderservice_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservicetask_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservicetask_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_workorderservicetask msdyn_workorderservicetask_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservicetask_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservicetask_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_workorderservicetask msdyn_workorderservicetask_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workordersubstatus_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workordersubstatus_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_workordersubstatus msdyn_workordersubstatus_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordersubstatus>("msdyn_workordersubstatus_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workordersubstatus_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workordersubstatus_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_workordersubstatus msdyn_workordersubstatus_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordersubstatus>("msdyn_workordersubstatus_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workordertype_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workordertype_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.msdyn_workordertype msdyn_workordertype_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordertype>("msdyn_workordertype_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workordertype_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workordertype_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.msdyn_workordertype msdyn_workordertype_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordertype>("msdyn_workordertype_DuplicateMatchingRecord", null);
 			}
 		}
 		
@@ -1208,6 +6163,62 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Quote>("Quote_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 ratingmodel_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ratingmodel_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.RatingModel ratingmodel_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.RatingModel>("ratingmodel_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 ratingmodel_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ratingmodel_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.RatingModel ratingmodel_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.RatingModel>("ratingmodel_DuplicateMatchingRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 ratingvalue_DuplicateBaseRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ratingvalue_DuplicateBaseRecord")]
+		public DLaB.Xrm.Entities.RatingValue ratingvalue_DuplicateBaseRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.RatingValue>("ratingvalue_DuplicateBaseRecord", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 ratingvalue_DuplicateMatchingRecord
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ratingvalue_DuplicateMatchingRecord")]
+		public DLaB.Xrm.Entities.RatingValue ratingvalue_DuplicateMatchingRecord
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.RatingValue>("ratingvalue_DuplicateMatchingRecord", null);
 			}
 		}
 		

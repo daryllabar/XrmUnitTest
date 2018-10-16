@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("publisheraddress")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class PublisherAddress : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AddressNumber = "addressnumber";
 			public const string AddressTypeCode = "addresstypecode";
@@ -63,7 +63,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_publisheraddressbase_modifiedonbehalfby = "lk_publisheraddressbase_modifiedonbehalfby";
 			public const string Publisher_PublisherAddress = "Publisher_PublisherAddress";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -75,6 +74,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "publisheraddress";
+		
+		public const string PrimaryIdAttribute = "publisheraddressid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 7102;
 		

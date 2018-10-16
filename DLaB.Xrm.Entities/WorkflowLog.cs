@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("workflowlog")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class WorkflowLog : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ActivityName = "activityname";
 			public const string AsyncOperationId = "asyncoperationid";
@@ -29,6 +29,7 @@ namespace DLaB.Xrm.Entities
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string Description = "description";
+			public const string Duration = "duration";
 			public const string ErrorCode = "errorcode";
 			public const string InteractionActivityResult = "interactionactivityresult";
 			public const string Message = "message";
@@ -41,11 +42,18 @@ namespace DLaB.Xrm.Entities
 			public const string OwningUser = "owninguser";
 			public const string RegardingObjectId = "regardingobjectid";
 			public const string StageName = "stagename";
+			public const string StartedOn = "startedon";
 			public const string Status = "status";
 			public const string StepName = "stepname";
 			public const string WorkflowLogId = "workflowlogid";
 			public const string Id = "workflowlogid";
 			public const string business_unit_workflowlogs = "business_unit_workflowlogs";
+			public const string lk_expiredprocess_workflowlogs = "lk_expiredprocess_workflowlogs";
+			public const string lk_leadtoopportunitysalesprocess_workflowlogs = "lk_leadtoopportunitysalesprocess_workflowlogs";
+			public const string lk_newprocess_workflowlogs = "lk_newprocess_workflowlogs";
+			public const string lk_opportunitysalesprocess_workflowlogs = "lk_opportunitysalesprocess_workflowlogs";
+			public const string lk_phonetocaseprocess_workflowlogs = "lk_phonetocaseprocess_workflowlogs";
+			public const string lk_translationprocess_workflowlogs = "lk_translationprocess_workflowlogs";
 			public const string lk_workflowlog_asyncoperation_childworkflow = "lk_workflowlog_asyncoperation_childworkflow";
 			public const string lk_workflowlog_asyncoperations = "lk_workflowlog_asyncoperations";
 			public const string lk_workflowlog_createdby = "lk_workflowlog_createdby";
@@ -54,9 +62,14 @@ namespace DLaB.Xrm.Entities
 			public const string lk_workflowlog_modifiedonbehalfby = "lk_workflowlog_modifiedonbehalfby";
 			public const string lk_workflowlog_processsession = "lk_workflowlog_processsession";
 			public const string lk_workflowlog_processsession_childworkflow = "lk_workflowlog_processsession_childworkflow";
+			public const string msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_WorkflowLogs = "msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_WorkflowLogs";
+			public const string msdyn_bpf_665e73aa18c247d886bfc50499c73b82_WorkflowLogs = "msdyn_bpf_665e73aa18c247d886bfc50499c73b82_WorkflowLogs";
+			public const string msdyn_bpf_989e9b1857e24af18787d5143b67523b_WorkflowLogs = "msdyn_bpf_989e9b1857e24af18787d5143b67523b_WorkflowLogs";
+			public const string msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_WorkflowLogs = "msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_WorkflowLogs";
+			public const string msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_WorkflowLogs = "msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_WorkflowLogs";
+			public const string msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_WorkflowLogs = "msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_WorkflowLogs";
 			public const string team_workflowlog = "team_workflowlog";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -68,6 +81,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "workflowlog";
+		
+		public const string PrimaryIdAttribute = "workflowlogid";
 		
 		public const int EntityTypeCode = 4706;
 		
@@ -114,7 +129,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the parent record.
+		/// lk_opportunitysalesprocess_workflowlogs
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("asyncoperationid")]
 		public Microsoft.Xrm.Sdk.EntityReference AsyncOperationId
@@ -250,6 +265,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Description");
 				this.SetAttributeValue("description", value);
 				this.OnPropertyChanged("Description");
+			}
+		}
+		
+		/// <summary>
+		/// Duration between completed on and started on, used by business process flow.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duration")]
+		public System.Nullable<int> Duration
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("duration");
 			}
 		}
 		
@@ -487,6 +515,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Date and time when the operation was started.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("startedon")]
+		public System.Nullable<System.DateTime> StartedOn
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("startedon");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("StartedOn");
+				this.SetAttributeValue("startedon", value);
+				this.OnPropertyChanged("StartedOn");
+			}
+		}
+		
+		/// <summary>
 		/// Status of the process step for which process log record has been created: In Progress, Successfully Completed, or Failed.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("status")]
@@ -607,6 +655,132 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("business_unit_workflowlogs");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.BusinessUnit>("business_unit_workflowlogs", null, value);
 				this.OnPropertyChanged("business_unit_workflowlogs");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_expiredprocess_workflowlogs
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("asyncoperationid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_expiredprocess_workflowlogs")]
+		public DLaB.Xrm.Entities.ExpiredProcess lk_expiredprocess_workflowlogs
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExpiredProcess>("lk_expiredprocess_workflowlogs", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_expiredprocess_workflowlogs");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.ExpiredProcess>("lk_expiredprocess_workflowlogs", null, value);
+				this.OnPropertyChanged("lk_expiredprocess_workflowlogs");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_leadtoopportunitysalesprocess_workflowlogs
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("asyncoperationid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_leadtoopportunitysalesprocess_workflowlogs")]
+		public DLaB.Xrm.Entities.LeadToOpportunitySalesProcess lk_leadtoopportunitysalesprocess_workflowlogs
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.LeadToOpportunitySalesProcess>("lk_leadtoopportunitysalesprocess_workflowlogs", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_leadtoopportunitysalesprocess_workflowlogs");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.LeadToOpportunitySalesProcess>("lk_leadtoopportunitysalesprocess_workflowlogs", null, value);
+				this.OnPropertyChanged("lk_leadtoopportunitysalesprocess_workflowlogs");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_newprocess_workflowlogs
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("asyncoperationid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_newprocess_workflowlogs")]
+		public DLaB.Xrm.Entities.NewProcess lk_newprocess_workflowlogs
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.NewProcess>("lk_newprocess_workflowlogs", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_newprocess_workflowlogs");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.NewProcess>("lk_newprocess_workflowlogs", null, value);
+				this.OnPropertyChanged("lk_newprocess_workflowlogs");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_opportunitysalesprocess_workflowlogs
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("asyncoperationid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_opportunitysalesprocess_workflowlogs")]
+		public DLaB.Xrm.Entities.OpportunitySalesProcess lk_opportunitysalesprocess_workflowlogs
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.OpportunitySalesProcess>("lk_opportunitysalesprocess_workflowlogs", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_opportunitysalesprocess_workflowlogs");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.OpportunitySalesProcess>("lk_opportunitysalesprocess_workflowlogs", null, value);
+				this.OnPropertyChanged("lk_opportunitysalesprocess_workflowlogs");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_phonetocaseprocess_workflowlogs
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("asyncoperationid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_phonetocaseprocess_workflowlogs")]
+		public DLaB.Xrm.Entities.PhoneToCaseProcess lk_phonetocaseprocess_workflowlogs
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.PhoneToCaseProcess>("lk_phonetocaseprocess_workflowlogs", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_phonetocaseprocess_workflowlogs");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.PhoneToCaseProcess>("lk_phonetocaseprocess_workflowlogs", null, value);
+				this.OnPropertyChanged("lk_phonetocaseprocess_workflowlogs");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_translationprocess_workflowlogs
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("asyncoperationid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_translationprocess_workflowlogs")]
+		public DLaB.Xrm.Entities.TranslationProcess lk_translationprocess_workflowlogs
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.TranslationProcess>("lk_translationprocess_workflowlogs", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_translationprocess_workflowlogs");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.TranslationProcess>("lk_translationprocess_workflowlogs", null, value);
+				this.OnPropertyChanged("lk_translationprocess_workflowlogs");
 			}
 		}
 		
@@ -775,6 +949,132 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("lk_workflowlog_processsession_childworkflow");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.ProcessSession>("lk_workflowlog_processsession_childworkflow", null, value);
 				this.OnPropertyChanged("lk_workflowlog_processsession_childworkflow");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_WorkflowLogs
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("asyncoperationid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_WorkflowLogs")]
+		public DLaB.Xrm.Entities.msdyn_bpf_2c5fe86acc8b414b8322ae571000c799 msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_WorkflowLogs
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_2c5fe86acc8b414b8322ae571000c799>("msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_WorkflowLogs", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_WorkflowLogs");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_2c5fe86acc8b414b8322ae571000c799>("msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_WorkflowLogs", null, value);
+				this.OnPropertyChanged("msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_WorkflowLogs");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bpf_665e73aa18c247d886bfc50499c73b82_WorkflowLogs
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("asyncoperationid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bpf_665e73aa18c247d886bfc50499c73b82_WorkflowLogs")]
+		public DLaB.Xrm.Entities.msdyn_bpf_665e73aa18c247d886bfc50499c73b82 msdyn_bpf_665e73aa18c247d886bfc50499c73b82_WorkflowLogs
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_665e73aa18c247d886bfc50499c73b82>("msdyn_bpf_665e73aa18c247d886bfc50499c73b82_WorkflowLogs", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bpf_665e73aa18c247d886bfc50499c73b82_WorkflowLogs");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_665e73aa18c247d886bfc50499c73b82>("msdyn_bpf_665e73aa18c247d886bfc50499c73b82_WorkflowLogs", null, value);
+				this.OnPropertyChanged("msdyn_bpf_665e73aa18c247d886bfc50499c73b82_WorkflowLogs");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bpf_989e9b1857e24af18787d5143b67523b_WorkflowLogs
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("asyncoperationid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bpf_989e9b1857e24af18787d5143b67523b_WorkflowLogs")]
+		public DLaB.Xrm.Entities.msdyn_bpf_989e9b1857e24af18787d5143b67523b msdyn_bpf_989e9b1857e24af18787d5143b67523b_WorkflowLogs
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_989e9b1857e24af18787d5143b67523b>("msdyn_bpf_989e9b1857e24af18787d5143b67523b_WorkflowLogs", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bpf_989e9b1857e24af18787d5143b67523b_WorkflowLogs");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_989e9b1857e24af18787d5143b67523b>("msdyn_bpf_989e9b1857e24af18787d5143b67523b_WorkflowLogs", null, value);
+				this.OnPropertyChanged("msdyn_bpf_989e9b1857e24af18787d5143b67523b_WorkflowLogs");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_WorkflowLogs
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("asyncoperationid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_WorkflowLogs")]
+		public DLaB.Xrm.Entities.msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3 msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_WorkflowLogs
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3>("msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_WorkflowLogs", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_WorkflowLogs");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3>("msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_WorkflowLogs", null, value);
+				this.OnPropertyChanged("msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_WorkflowLogs");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_WorkflowLogs
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("asyncoperationid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_WorkflowLogs")]
+		public DLaB.Xrm.Entities.msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39 msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_WorkflowLogs
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39>("msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_WorkflowLogs", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_WorkflowLogs");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39>("msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_WorkflowLogs", null, value);
+				this.OnPropertyChanged("msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_WorkflowLogs");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_WorkflowLogs
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("asyncoperationid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_WorkflowLogs")]
+		public DLaB.Xrm.Entities.msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_WorkflowLogs
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d>("msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_WorkflowLogs", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_WorkflowLogs");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d>("msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_WorkflowLogs", null, value);
+				this.OnPropertyChanged("msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_WorkflowLogs");
 			}
 		}
 		

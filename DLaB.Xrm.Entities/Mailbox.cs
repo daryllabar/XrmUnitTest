@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum MailboxState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("mailbox")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Mailbox : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ACTDeliveryMethod = "actdeliverymethod";
 			public const string ACTStatus = "actstatus";
@@ -40,6 +40,8 @@ namespace DLaB.Xrm.Entities
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
+			public const string CredentialInfo = "credentialinfo";
+			public const string DataEncryptionKey = "dataencryptionkey";
 			public const string EmailAddress = "emailaddress";
 			public const string EmailRouterAccessApproval = "emailrouteraccessapproval";
 			public const string EmailServerProfile = "emailserverprofile";
@@ -51,6 +53,8 @@ namespace DLaB.Xrm.Entities
 			public const string EntityImage_URL = "entityimage_url";
 			public const string EntityImageId = "entityimageid";
 			public const string EWSURL = "ewsurl";
+			public const string ExchangeContactsImportCompletedOn = "exchangecontactsimportcompletedon";
+			public const string ExchangeContactsImportStatus = "exchangecontactsimportstatus";
 			public const string ExchangeSyncStateXml = "exchangesyncstatexml";
 			public const string FolderHierarchy = "folderhierarchy";
 			public const string ForcedUnlockCount = "forcedunlockcount";
@@ -58,7 +62,9 @@ namespace DLaB.Xrm.Entities
 			public const string IncomingEmailDeliveryMethod = "incomingemaildeliverymethod";
 			public const string IncomingEmailStatus = "incomingemailstatus";
 			public const string IsACTSyncOrgFlagSet = "isactsyncorgflagset";
+			public const string IsDataEncryptionKeySet = "isdataencryptionkeyset";
 			public const string IsEmailAddressApprovedByO365Admin = "isemailaddressapprovedbyo365admin";
+			public const string IsExchangeContactsImportScheduled = "isexchangecontactsimportscheduled";
 			public const string IsForwardMailbox = "isforwardmailbox";
 			public const string IsPasswordSet = "ispasswordset";
 			public const string IsServiceAccount = "isserviceaccount";
@@ -77,6 +83,7 @@ namespace DLaB.Xrm.Entities
 			public const string MailboxId = "mailboxid";
 			public const string Id = "mailboxid";
 			public const string MailboxProcessingContext = "mailboxprocessingcontext";
+			public const string MailboxStatus = "mailboxstatus";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
@@ -132,7 +139,6 @@ namespace DLaB.Xrm.Entities
 			public const string team_mailbox = "team_mailbox";
 			public const string user_mailbox = "user_mailbox";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -144,6 +150,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "mailbox";
+		
+		public const string PrimaryIdAttribute = "mailboxid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9606;
 		
@@ -199,6 +209,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("actstatus");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ACTStatus");
+				this.SetAttributeValue("actstatus", value);
+				this.OnPropertyChanged("ACTStatus");
 			}
 		}
 		
@@ -256,7 +273,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -292,6 +309,46 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("CreatedOnBehalfBy");
 				this.SetAttributeValue("createdonbehalfby", value);
 				this.OnPropertyChanged("CreatedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Information about server credentials
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("credentialinfo")]
+		public string CredentialInfo
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("credentialinfo");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CredentialInfo");
+				this.SetAttributeValue("credentialinfo", value);
+				this.OnPropertyChanged("CredentialInfo");
+			}
+		}
+		
+		/// <summary>
+		/// encryption key used for CredentialInfo
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dataencryptionkey")]
+		public string DataEncryptionKey
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("dataencryptionkey");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("DataEncryptionKey");
+				this.SetAttributeValue("dataencryptionkey", value);
+				this.OnPropertyChanged("DataEncryptionKey");
 			}
 		}
 		
@@ -366,6 +423,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<System.Nullable<bool>>("enabledforact");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("EnabledForACT");
+				this.SetAttributeValue("enabledforact", value);
+				this.OnPropertyChanged("EnabledForACT");
+			}
 		}
 		
 		/// <summary>
@@ -379,6 +443,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<System.Nullable<bool>>("enabledforincomingemail");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("EnabledForIncomingEmail");
+				this.SetAttributeValue("enabledforincomingemail", value);
+				this.OnPropertyChanged("EnabledForIncomingEmail");
+			}
 		}
 		
 		/// <summary>
@@ -391,6 +462,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<bool>>("enabledforoutgoingemail");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("EnabledForOutgoingEmail");
+				this.SetAttributeValue("enabledforoutgoingemail", value);
+				this.OnPropertyChanged("EnabledForOutgoingEmail");
 			}
 		}
 		
@@ -470,6 +548,39 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("EWSURL");
 				this.SetAttributeValue("ewsurl", value);
 				this.OnPropertyChanged("EWSURL");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the exchange contacts import was last completed for a mailbox record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("exchangecontactsimportcompletedon")]
+		public System.Nullable<System.DateTime> ExchangeContactsImportCompletedOn
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("exchangecontactsimportcompletedon");
+			}
+		}
+		
+		/// <summary>
+		/// Indicates the exchange contacts import status for a mailbox record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("exchangecontactsimportstatus")]
+		public Microsoft.Xrm.Sdk.OptionSetValue ExchangeContactsImportStatus
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("exchangecontactsimportstatus");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ExchangeContactsImportStatus");
+				this.SetAttributeValue("exchangecontactsimportstatus", value);
+				this.OnPropertyChanged("ExchangeContactsImportStatus");
 			}
 		}
 		
@@ -570,6 +681,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("incomingemailstatus");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IncomingEmailStatus");
+				this.SetAttributeValue("incomingemailstatus", value);
+				this.OnPropertyChanged("IncomingEmailStatus");
+			}
 		}
 		
 		/// <summary>
@@ -593,6 +711,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isdataencryptionkeyset")]
+		public System.Nullable<bool> IsDataEncryptionKeySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isdataencryptionkeyset");
+			}
+		}
+		
+		/// <summary>
 		/// Shows the status of approval of the email address by O365 Admin.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isemailaddressapprovedbyo365admin")]
@@ -602,6 +733,26 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<bool>>("isemailaddressapprovedbyo365admin");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IsEmailAddressApprovedByO365Admin");
+				this.SetAttributeValue("isemailaddressapprovedbyo365admin", value);
+				this.OnPropertyChanged("IsEmailAddressApprovedByO365Admin");
+			}
+		}
+		
+		/// <summary>
+		/// Is Exchange Contacts Import Scheduled.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isexchangecontactsimportscheduled")]
+		public System.Nullable<bool> IsExchangeContactsImportScheduled
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isexchangecontactsimportscheduled");
 			}
 		}
 		
@@ -920,6 +1071,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Last Sync Status for Outgoing, Incoming and ACT as a whole.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("mailboxstatus")]
+		public Microsoft.Xrm.Sdk.OptionSetValue MailboxStatus
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("mailboxstatus");
+			}
+		}
+		
+		/// <summary>
 		/// Shows who last updated the record.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
@@ -940,7 +1104,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -1155,6 +1319,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("outgoingemailstatus");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OutgoingEmailStatus");
+				this.SetAttributeValue("outgoingemailstatus", value);
+				this.OnPropertyChanged("OutgoingEmailStatus");
+			}
 		}
 		
 		/// <summary>
@@ -1267,6 +1438,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("postponemailboxprocessinguntil");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("PostponeMailboxProcessingUntil");
+				this.SetAttributeValue("postponemailboxprocessinguntil", value);
+				this.OnPropertyChanged("PostponeMailboxProcessingUntil");
 			}
 		}
 		
@@ -1554,6 +1732,13 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("testmailboxaccesscompletedon");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TestMailboxAccessCompletedOn");
+				this.SetAttributeValue("testmailboxaccesscompletedon", value);
+				this.OnPropertyChanged("TestMailboxAccessCompletedOn");
+			}
 		}
 		
 		/// <summary>
@@ -1703,6 +1888,66 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N bulkoperation_mailbox_sendermailboxid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bulkoperation_mailbox_sendermailboxid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.BulkOperation> bulkoperation_mailbox_sendermailboxid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.BulkOperation>("bulkoperation_mailbox_sendermailboxid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bulkoperation_mailbox_sendermailboxid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.BulkOperation>("bulkoperation_mailbox_sendermailboxid", null, value);
+				this.OnPropertyChanged("bulkoperation_mailbox_sendermailboxid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N campaignactivity_mailbox_sendermailboxid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("campaignactivity_mailbox_sendermailboxid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CampaignActivity> campaignactivity_mailbox_sendermailboxid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CampaignActivity>("campaignactivity_mailbox_sendermailboxid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("campaignactivity_mailbox_sendermailboxid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CampaignActivity>("campaignactivity_mailbox_sendermailboxid", null, value);
+				this.OnPropertyChanged("campaignactivity_mailbox_sendermailboxid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N campaignresponse_mailbox_sendermailboxid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("campaignresponse_mailbox_sendermailboxid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CampaignResponse> campaignresponse_mailbox_sendermailboxid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CampaignResponse>("campaignresponse_mailbox_sendermailboxid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("campaignresponse_mailbox_sendermailboxid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CampaignResponse>("campaignresponse_mailbox_sendermailboxid", null, value);
+				this.OnPropertyChanged("campaignresponse_mailbox_sendermailboxid");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N email_sendermailboxid_mailbox
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("email_sendermailboxid_mailbox")]
@@ -1719,6 +1964,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("email_sendermailboxid_mailbox");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Email>("email_sendermailboxid_mailbox", null, value);
 				this.OnPropertyChanged("email_sendermailboxid_mailbox");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N incidentresolution_mailbox_sendermailboxid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("incidentresolution_mailbox_sendermailboxid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.IncidentResolution> incidentresolution_mailbox_sendermailboxid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.IncidentResolution>("incidentresolution_mailbox_sendermailboxid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("incidentresolution_mailbox_sendermailboxid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.IncidentResolution>("incidentresolution_mailbox_sendermailboxid", null, value);
+				this.OnPropertyChanged("incidentresolution_mailbox_sendermailboxid");
 			}
 		}
 		
@@ -1783,6 +2048,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N Mailbox_mailboxtrackingcategory
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Mailbox_mailboxtrackingcategory")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingCategory> Mailbox_mailboxtrackingcategory
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingCategory>("Mailbox_mailboxtrackingcategory", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Mailbox_mailboxtrackingcategory");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingCategory>("Mailbox_mailboxtrackingcategory", null, value);
+				this.OnPropertyChanged("Mailbox_mailboxtrackingcategory");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N Mailbox_MailboxTrackingFolder
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Mailbox_MailboxTrackingFolder")]
@@ -1823,6 +2108,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N Mailbox_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Mailbox_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Mailbox_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Mailbox_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Mailbox_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Mailbox_SyncErrors", null, value);
+				this.OnPropertyChanged("Mailbox_SyncErrors");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N mailbox_userentityinstancedatas
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("mailbox_userentityinstancedatas")]
@@ -1843,6 +2148,86 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N msdyn_approval_mailbox_sendermailboxid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_approval_mailbox_sendermailboxid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_approval> msdyn_approval_mailbox_sendermailboxid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_mailbox_sendermailboxid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_approval_mailbox_sendermailboxid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_mailbox_sendermailboxid", null, value);
+				this.OnPropertyChanged("msdyn_approval_mailbox_sendermailboxid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_bookingalert_mailbox_sendermailboxid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalert_mailbox_sendermailboxid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bookingalert> msdyn_bookingalert_mailbox_sendermailboxid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_mailbox_sendermailboxid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingalert_mailbox_sendermailboxid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_mailbox_sendermailboxid", null, value);
+				this.OnPropertyChanged("msdyn_bookingalert_mailbox_sendermailboxid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N opportunityclose_mailbox_sendermailboxid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunityclose_mailbox_sendermailboxid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OpportunityClose> opportunityclose_mailbox_sendermailboxid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OpportunityClose>("opportunityclose_mailbox_sendermailboxid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("opportunityclose_mailbox_sendermailboxid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OpportunityClose>("opportunityclose_mailbox_sendermailboxid", null, value);
+				this.OnPropertyChanged("opportunityclose_mailbox_sendermailboxid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N orderclose_mailbox_sendermailboxid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("orderclose_mailbox_sendermailboxid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OrderClose> orderclose_mailbox_sendermailboxid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OrderClose>("orderclose_mailbox_sendermailboxid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("orderclose_mailbox_sendermailboxid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OrderClose>("orderclose_mailbox_sendermailboxid", null, value);
+				this.OnPropertyChanged("orderclose_mailbox_sendermailboxid");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N queue_defaultmailbox_mailbox
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("queue_defaultmailbox_mailbox")]
@@ -1859,6 +2244,46 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("queue_defaultmailbox_mailbox");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Queue>("queue_defaultmailbox_mailbox", null, value);
 				this.OnPropertyChanged("queue_defaultmailbox_mailbox");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N quoteclose_mailbox_sendermailboxid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("quoteclose_mailbox_sendermailboxid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.QuoteClose> quoteclose_mailbox_sendermailboxid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("quoteclose_mailbox_sendermailboxid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("quoteclose_mailbox_sendermailboxid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("quoteclose_mailbox_sendermailboxid", null, value);
+				this.OnPropertyChanged("quoteclose_mailbox_sendermailboxid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N serviceappointment_mailbox_sendermailboxid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("serviceappointment_mailbox_sendermailboxid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ServiceAppointment> serviceappointment_mailbox_sendermailboxid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ServiceAppointment>("serviceappointment_mailbox_sendermailboxid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("serviceappointment_mailbox_sendermailboxid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ServiceAppointment>("serviceappointment_mailbox_sendermailboxid", null, value);
+				this.OnPropertyChanged("serviceappointment_mailbox_sendermailboxid");
 			}
 		}
 		
@@ -2177,6 +2602,11 @@ namespace DLaB.Xrm.Entities
 			{
 				return ((Mailbox_ACTStatus?)(EntityOptionSetEnum.GetEnum(this, "actstatus")));
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				ACTStatus = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("emailrouteraccessapproval")]
@@ -2191,6 +2621,21 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				EmailRouterAccessApproval = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("exchangecontactsimportstatus")]
+		public virtual Mailbox_ExchangeContactsImportStatus? ExchangeContactsImportStatusEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((Mailbox_ExchangeContactsImportStatus?)(EntityOptionSetEnum.GetEnum(this, "exchangecontactsimportstatus")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				ExchangeContactsImportStatus = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 		
@@ -2216,6 +2661,21 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return ((Mailbox_IncomingEmailStatus?)(EntityOptionSetEnum.GetEnum(this, "incomingemailstatus")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				IncomingEmailStatus = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("mailboxstatus")]
+		public virtual Mailbox_MailboxStatus? MailboxStatusEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((Mailbox_MailboxStatus?)(EntityOptionSetEnum.GetEnum(this, "mailboxstatus")));
 			}
 		}
 		
@@ -2256,6 +2716,11 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return ((Mailbox_OutgoingEmailStatus?)(EntityOptionSetEnum.GetEnum(this, "outgoingemailstatus")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				OutgoingEmailStatus = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 		

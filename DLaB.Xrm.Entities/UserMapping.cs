@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("usermapping")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class UserMapping : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ClaimType = "claimtype";
 			public const string CreatedBy = "createdby";
@@ -45,7 +45,6 @@ namespace DLaB.Xrm.Entities
 			public const string organization_UserMapping = "organization_UserMapping";
 			public const string TransactionCurrency_UserMapping = "TransactionCurrency_UserMapping";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -57,6 +56,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "usermapping";
+		
+		public const string PrimaryIdAttribute = "usermappingid";
 		
 		public const int EntityTypeCode = 2016;
 		

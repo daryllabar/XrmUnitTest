@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("channelaccessprofileentityaccesslevel")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ChannelAccessProfileEntityAccessLevel : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ChannelAccessProfileEntityAccessLevelId = "channelaccessprofileentityaccesslevelid";
 			public const string Id = "channelaccessprofileentityaccesslevelid";
@@ -33,7 +33,6 @@ namespace DLaB.Xrm.Entities
 			public const string SolutionId = "solutionid";
 			public const string VersionNumber = "versionnumber";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -45,6 +44,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "channelaccessprofileentityaccesslevel";
+		
+		public const string PrimaryIdAttribute = "channelaccessprofileentityaccesslevelid";
 		
 		public const int EntityTypeCode = 9404;
 		

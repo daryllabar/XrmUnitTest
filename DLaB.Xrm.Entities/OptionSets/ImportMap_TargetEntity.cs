@@ -11,12 +11,33 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
 	public enum ImportMap_TargetEntity
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Account = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AccountLeads = 16,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AccountProjectPriceList = 10033,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ACIViewMapper = 8040,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ActionCard = 9962,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ActionCardType = 9983,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ActionCardUserSettings = 9973,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ActionCardUserState = 9968,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Activity = 4200,
@@ -25,7 +46,52 @@ namespace DLaB.Xrm.Entities
 		ActivityParty = 135,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Actual = 10008,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ActualDataExport_Deprecated = 10042,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Address = 1071,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AdvancedSimilarityRule = 9949,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Agreement = 10109,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AgreementBookingDate = 10110,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AgreementBookingIncident = 10111,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AgreementBookingProduct = 10112,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AgreementBookingService = 10113,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AgreementBookingServiceTask = 10114,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AgreementBookingSetup = 10115,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AgreementBusinessProcess = 10124,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AgreementInvoiceDate = 10116,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AgreementInvoiceProduct = 10117,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AgreementInvoiceSetup = 10118,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AgreementSubStatus = 10119,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Announcement = 132,
@@ -34,13 +100,43 @@ namespace DLaB.Xrm.Entities
 		AnnualFiscalCalendar = 2000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		App = 9006,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AppConfigMaster = 9011,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AppConfiguration = 9012,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AppConfigurationInstance = 9013,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ApplicationFile = 4707,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ApplicationRibbons = 1120,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AppModuleComponent = 9007,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AppModuleMetadata = 8700,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AppModuleMetadataAsyncOperation = 8702,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AppModuleMetadataDependency = 8701,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AppModuleRoles = 9009,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Appointment = 4201,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Approval = 10034,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Article = 127,
@@ -68,6 +164,57 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		AzureServiceConnection = 9936,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BatchJob = 10035,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BookableResource = 1150,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BookableResourceBooking = 1145,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BookableResourceBookingHeader = 1146,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BookableResourceBookingtoExchangeIdMapping = 4421,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BookableResourceCategory = 1147,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BookableResourceCategoryAssn = 1149,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BookableResourceCharacteristic = 1148,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BookableResourceGroup = 1151,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BookingAlert = 10009,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BookingAlertStatus = 10010,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BookingChange = 10011,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BookingJournal = 10120,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BookingRule = 10012,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BookingSetupMetadata = 10013,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BookingStatus = 1152,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BookingTimestamp = 10121,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		BulkDeleteFailure = 4425,
@@ -118,6 +265,12 @@ namespace DLaB.Xrm.Entities
 		CaseResolution = 4206,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CasetoWorkOrderBusinessProcess = 10123,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Category = 9959,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ChannelAccessProfile = 3005,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -133,7 +286,13 @@ namespace DLaB.Xrm.Entities
 		ChannelPropertyGroup = 1234,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Characteristic = 1141,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ChildIncidentCount = 113,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ClientExtension = 10014,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Clientupdate = 36,
@@ -148,6 +307,9 @@ namespace DLaB.Xrm.Entities
 		Commitment = 4215,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CompetencyRequirement_Deprecated = 10038,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Competitor = 123,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -155,6 +317,12 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		CompetitorProduct = 1006,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CompetitorSalesLiterature = 26,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Configuration = 10015,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Connection = 3234,
@@ -167,6 +335,21 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Contact = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ContactInvoices = 17,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ContactLeads = 22,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ContactOrders = 19,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ContactPriceList = 10039,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ContactQuotes = 18,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Contract = 1010,
@@ -190,6 +373,9 @@ namespace DLaB.Xrm.Entities
 		CustomControlResource = 9754,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CustomerAsset = 10126,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		CustomerRelationship = 4502,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -200,6 +386,12 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		DataPerformanceDashboard = 4450,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Delegation = 10043,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		DelveActionHub = 9961,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Dependency = 7105,
@@ -226,6 +418,9 @@ namespace DLaB.Xrm.Entities
 		DocumentLocation = 9508,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		DocumentSuggestions = 1189,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		DocumentTemplate = 9940,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -250,6 +445,9 @@ namespace DLaB.Xrm.Entities
 		EmailServerProfile = 9605,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		EmailSignature = 9997,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		EmailTemplate = 2010,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -259,16 +457,46 @@ namespace DLaB.Xrm.Entities
 		EntitlementChannel = 9701,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		EntitlementContact = 7272,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		EntitlementProduct = 6363,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		EntitlementTemplate = 9702,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		EntitlementTemplateChannel = 9703,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		EntitlementTemplateProduct = 4545,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		EntityMap = 4600,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Estimate = 10044,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		EstimateLine = 10045,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ExchangeSyncIdMapping = 4120,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ExpanderEvent = 4711,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Expense = 10046,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ExpenseCategory = 10047,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ExpenseReceipt = 10048,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ExpiredProcess = 955,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ExternalParty = 3008,
@@ -280,7 +508,16 @@ namespace DLaB.Xrm.Entities
 		FacilityEquipment = 4000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Fact = 10049,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Fax = 4204,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Feedback = 9958,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FieldComputation = 10050,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		FieldPermission = 1201,
@@ -289,19 +526,34 @@ namespace DLaB.Xrm.Entities
 		FieldSecurityProfile = 1200,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FieldServicePriceListItem = 10127,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FieldServiceSetting = 10128,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FieldServiceSystemJob = 10129,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		FieldSharing = 44,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Filter = 10004,
+		Filter = 10007,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		FilterTemplate = 30,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FindWorkEvent = 10051,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		FixedMonthlyFiscalCalendar = 2004,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Follow = 8003,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		GlobalSearchConfiguration = 54,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Goal = 9600,
@@ -334,10 +586,37 @@ namespace DLaB.Xrm.Entities
 		ImportSourceFile = 4412,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		IncidentKnowledgeBaseRecord = 9931,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		IncidentType = 10130,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		IncidentTypeCharacteristic = 10131,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		IncidentTypeProduct = 10132,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		IncidentTypeService = 10133,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		IncidentTypeServiceTask = 10134,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		IndexedArticle = 126,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		IntegrationJob = 10052,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		IntegrationJobDetail = 10053,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		IntegrationStatus = 3000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		InteractionforEmail = 9986,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		InternalAddress = 1003,
@@ -349,16 +628,49 @@ namespace DLaB.Xrm.Entities
 		InvalidDependency = 7107,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		InventoryAdjustment = 10135,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		InventoryAdjustmentProduct = 10136,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		InventoryJournal = 10137,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		InventoryTransfer = 10138,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Invoice = 1090,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		InvoiceProduct = 1091,
+		InvoiceFrequency = 10054,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		InvoiceFrequencyDetail = 10055,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		InvoiceLine = 1091,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		InvoiceLineDetail = 10056,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		InvoiceProcess = 10037,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ISVConfig = 4705,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Journal = 10057,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		JournalLine = 10058,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		KnowledgeArticle = 9953,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		KnowledgeArticleCategory = 9960,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		KnowledgeArticleIncident = 9954,
@@ -382,6 +694,15 @@ namespace DLaB.Xrm.Entities
 		LeadAddress = 1017,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		LeadCompetitors = 24,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		LeadProduct = 27,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		LeadToOpportunitySalesProcess = 954,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Letter = 4207,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -392,6 +713,9 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ListValueMapping = 4418,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		LocalConfigStore = 9201,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		LookupMapping = 4419,
@@ -415,6 +739,9 @@ namespace DLaB.Xrm.Entities
 		MarketingListMember = 4301,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		MarketingSiteMap = 10188,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		MetadataDifference = 4231,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -427,13 +754,22 @@ namespace DLaB.Xrm.Entities
 		MobileOfflineProfileItemAssociation = 9868,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ModelEntityMapping = 9934,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
 		MonthlyFiscalCalendar = 2003,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		msdyn_relationshipinsightsunifiedconfig = 10001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		MultiEntitySearch = 9910,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		MultiSelectOptionValue = 9912,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		NavigationSetting = 9900,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		NewProcess = 950,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Note = 5,
@@ -442,10 +778,16 @@ namespace DLaB.Xrm.Entities
 		Notification = 4110,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ODatav4DataSource = 10000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		OfficeDocument = 4490,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		OfficeGraphDocument = 9950,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		OfflineCommandDefinition = 9870,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Opportunity = 3,
@@ -454,10 +796,31 @@ namespace DLaB.Xrm.Entities
 		OpportunityClose = 4208,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		OpportunityProduct = 1083,
+		OpportunityCompetitors = 25,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		OpportunityLine = 1083,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		OpportunityLineDetail = 10061,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		OpportunityLineResourceCategory = 10060,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		OpportunityLineTransactionCategory = 10062,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		OpportunityLineTransactionClassification = 10063,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		OpportunityProjectPriceList = 10064,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		OpportunityRelationship = 4503,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		OpportunitySalesProcess = 953,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Order = 1088,
@@ -466,10 +829,31 @@ namespace DLaB.Xrm.Entities
 		OrderClose = 4209,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		OrderProduct = 1089,
+		OrderInvoicingDate = 10139,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		OrderInvoicingProduct = 10140,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		OrderInvoicingSetup = 10141,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		OrderInvoicingSetupDate = 10142,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		OrderLine = 1089,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Organization = 1019,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		OrganizationalUnit = 10016,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		OrganizationInsightsMetric = 9699,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		OrganizationInsightsNotification = 9690,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		OrganizationStatistic = 4708,
@@ -487,10 +871,25 @@ namespace DLaB.Xrm.Entities
 		PartnerApplication = 1095,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Payment = 10143,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PaymentDetail = 10144,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PaymentMethod = 10145,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PaymentTerm = 10146,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		PersonalDocumentTemplate = 9941,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		PhoneCall = 4210,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PhoneToCaseProcess = 952,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		PluginAssembly = 4605,
@@ -511,7 +910,10 @@ namespace DLaB.Xrm.Entities
 		Post = 8000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		PostConfiguration = 10001,
+		PostalCode = 10147,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PostConfiguration = 10004,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		PostRegarding = 8002,
@@ -520,7 +922,7 @@ namespace DLaB.Xrm.Entities
 		PostRole = 8001,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		PostRuleConfiguration = 10002,
+		PostRuleConfiguration = 10005,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		PriceList = 1022,
@@ -530,6 +932,9 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		PrincipalSyncAttributeMap = 1404,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Priority = 10017,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Privilege = 1023,
@@ -550,6 +955,9 @@ namespace DLaB.Xrm.Entities
 		ProcessLog = 4706,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProcessNotes = 10070,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ProcessSession = 4710,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -565,13 +973,73 @@ namespace DLaB.Xrm.Entities
 		ProductAssociation = 1025,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ProductRecommendationModel = 9933,
+		ProductInventory = 10148,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ProductRelationship = 1028,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ProfileAlbum = 10000,
+		ProductSalesLiterature = 21,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProfileAlbum = 10003,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Project = 10071,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectApproval = 10072,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectContractLineDetail = 10066,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectContractLineInvoiceSchedule = 10040,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectContractLineMilestone = 10041,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectContractLineResourceCategory = 10065,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectContractLineTransactionCategory = 10067,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectContractLineTransactionClassification = 10068,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectContractProjectPriceList = 10069,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectParameter = 10073,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectParameterPriceList = 10074,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectPriceList = 10075,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectStages = 10036,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectTask = 10076,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectTaskDependency = 10077,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectTaskStatusUser = 10078,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectTeamMember = 10079,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectTeamMemberSignUp = 10080,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectTransactionCategory = 10081,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Property = 1048,
@@ -590,6 +1058,27 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		PublisherAddress = 7102,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PurchaseOrder = 10149,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PurchaseOrderBill = 10150,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PurchaseOrderBusinessProcess = 10122,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PurchaseOrderProduct = 10151,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PurchaseOrderReceipt = 10152,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PurchaseOrderReceiptProduct = 10153,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PurchaseOrderSubStatus = 10154,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		QuarterlyFiscalCalendar = 2002,
@@ -613,19 +1102,61 @@ namespace DLaB.Xrm.Entities
 		Quote = 1084,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		QuoteBookingIncident = 10155,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		QuoteBookingProduct = 10156,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		QuoteBookingService = 10157,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		QuoteBookingServiceTask = 10158,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		QuoteBookingSetup = 10159,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		QuoteClose = 4211,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		QuoteProduct = 1085,
+		QuoteInvoicingProduct = 10160,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		RecommendationCache = 9938,
+		QuoteInvoicingSetup = 10161,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		RecommendationModelVersion = 9935,
+		QuoteLine = 1085,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		RecommendationModelVersionExecutionHistory = 9937,
+		QuoteLineAnalyticsBreakdown = 10082,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		QuoteLineDetail = 10086,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		QuoteLineInvoiceSchedule = 10083,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		QuoteLineMilestone = 10085,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		QuoteLineResourceCategory = 10084,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		QuoteLineTransactionCategory = 10087,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		QuoteLineTransactionClassification = 10088,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		QuoteProjectPriceList = 10089,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RatingModel = 1144,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RatingValue = 1142,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		RecordCreationandUpdateRule = 9300,
@@ -664,7 +1195,28 @@ namespace DLaB.Xrm.Entities
 		ReportVisibility = 9103,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RequirementCharacteristic = 10018,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RequirementOrganizationUnit = 10019,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RequirementResourceCategory = 10020,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RequirementResourcePreference = 10021,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RequirementStatus = 10022,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Resource = 4002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ResourceAssignment = 10090,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ResourceAssignmentDetail_Deprecated = 10091,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ResourceExpansion = 4010,
@@ -673,7 +1225,31 @@ namespace DLaB.Xrm.Entities
 		ResourceGroup = 4007,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ResourcePayType = 10162,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ResourceRequest = 10093,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ResourceRequirement = 10023,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ResourceRequirementDetail = 10024,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ResourceRestriction_Deprecated = 10183,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ResourceSpecification = 4006,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ResourceTerritory = 10025,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ResultCache = 10059,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RibbonClientMetadata = 4579,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		RibbonCommand = 1116,
@@ -691,7 +1267,31 @@ namespace DLaB.Xrm.Entities
 		RibbonTabToCommandMapping = 1113,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RMA = 10163,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RMAProduct = 10164,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RMAReceipt = 10165,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RMAReceiptProduct = 10166,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RMASubStatus = 10167,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Rolecompetencyrequirement = 10094,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RolePrice = 10092,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		RoleTemplate = 1037,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RoleUtilization = 10095,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		RollupField = 9604,
@@ -709,7 +1309,19 @@ namespace DLaB.Xrm.Entities
 		RoutingRuleSet = 8181,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RTV = 10168,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RTVProduct = 10169,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RTVSubStatus = 10170,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		RuleItem = 8199,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RuntimeDependency = 7200,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SalesAttachment = 1070,
@@ -721,10 +1333,22 @@ namespace DLaB.Xrm.Entities
 		SalesProcessInstance = 32,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SalesSiteMap = 10189,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SavedOrganizationInsightsConfiguration = 1309,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SavedView = 4230,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ScheduleBoardSetting = 10026,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SchedulingGroup = 4005,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SchedulingParameter = 10027,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SdkMessage = 4606,
@@ -769,7 +1393,19 @@ namespace DLaB.Xrm.Entities
 		ServiceActivity = 4214,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ServiceContractContact = 20,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ServiceEndpoint = 4618,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ServicesSiteMap = 10190,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ServiceTaskType = 10171,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SettingsSiteMap = 10191,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SharePointData = 9509,
@@ -779,6 +1415,12 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SharePointSite = 9502,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ShipVia = 10172,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		siconfig = 10002,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SimilarityRule = 9951,
@@ -847,6 +1489,9 @@ namespace DLaB.Xrm.Entities
 		SubscriptionSynchronizationInformation = 33,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SuggestionCardTemplate = 1190,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SyncAttributeMapping = 1401,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -877,7 +1522,16 @@ namespace DLaB.Xrm.Entities
 		SystemUserPrincipal = 14,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SystemUserSchedulerSetting = 10028,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Task = 4212,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		TaxCode = 10173,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		TaxCodeDetail = 10174,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Team = 9,
@@ -902,6 +1556,21 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Theme = 2015,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		TimeEntry = 10096,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		TimeGroup = 10029,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		TimeGroupDetail = 10030,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		TimeOffCalendar = 10097,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		TimeOffRequest = 10175,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		TimeStampDateMapping = 9932,
@@ -940,10 +1609,37 @@ namespace DLaB.Xrm.Entities
 		Trackinginformationfordeletedentities = 35,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		TransactionCategory = 10098,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		TransactionCategoryClassification = 10099,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		TransactionCategoryHierarchyElement = 10100,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		TransactionCategoryPrice = 10101,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		TransactionConnection = 10102,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		TransactionOrigin = 10031,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		TransactionType = 10103,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		TransformationMapping = 4426,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		TransformationParameterMapping = 4427,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		TranslationProcess = 951,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		UniqueNumber = 10176,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Unit = 1055,
@@ -953,6 +1649,9 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		UnresolvedAddress = 2012,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		UntrackedEmail = 4220,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		User = 8,
@@ -979,13 +1678,28 @@ namespace DLaB.Xrm.Entities
 		UserMapping = 2016,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		UserSearchFacet = 52,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		UserSettings = 150,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		UserWorkHistory = 10104,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		View = 1039,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		WallView = 10003,
+		VirtualEntityDataProvider = 78,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		VirtualEntityDataSource = 85,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		WallView = 10006,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Warehouse = 10177,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		WebResource = 9333,
@@ -1001,5 +1715,38 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		WorkflowWaitSubscription = 4702,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		WorkOrder = 10178,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		WorkOrderBusinessProcess = 10125,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		WorkOrderCharacteristic_Deprecated = 10179,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		WorkOrderDetailsGenerationQueue_Deprecated = 10180,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		WorkOrderIncident = 10181,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		WorkOrderProduct = 10182,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		WorkOrderService = 10184,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		WorkOrderServiceTask = 10185,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		WorkOrderSubStatus = 10186,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		WorkOrderType = 10187,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Worktemplate = 10032,
 	}
 }

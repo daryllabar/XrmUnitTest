@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum ColumnMappingState
 	{
 		
@@ -24,22 +24,28 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("columnmapping")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ColumnMapping : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ColumnMappingId = "columnmappingid";
 			public const string Id = "columnmappingid";
+			public const string ColumnMappingIdUnique = "columnmappingidunique";
+			public const string ComponentState = "componentstate";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string ImportMapId = "importmapid";
+			public const string IntroducedVersion = "introducedversion";
+			public const string IsManaged = "ismanaged";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string OverwriteTime = "overwritetime";
 			public const string ProcessCode = "processcode";
+			public const string SolutionId = "solutionid";
 			public const string SourceAttributeName = "sourceattributename";
 			public const string SourceEntityName = "sourceentityname";
 			public const string StateCode = "statecode";
@@ -52,7 +58,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_columnmapping_modifiedby = "lk_columnmapping_modifiedby";
 			public const string lk_columnmapping_modifiedonbehalfby = "lk_columnmapping_modifiedonbehalfby";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -64,6 +69,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "columnmapping";
+		
+		public const string PrimaryIdAttribute = "columnmappingid";
+		
+		public const string PrimaryNameAttribute = "sourceattributename";
 		
 		public const int EntityTypeCode = 4417;
 		
@@ -129,6 +138,32 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				this.ColumnMappingId = value;
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the Column Mapping.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("columnmappingidunique")]
+		public System.Nullable<System.Guid> ColumnMappingIdUnique
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("columnmappingidunique");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
+		public Microsoft.Xrm.Sdk.OptionSetValue ComponentState
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("componentstate");
 			}
 		}
 		
@@ -213,6 +248,39 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Version in which the component is introduced.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("introducedversion")]
+		public string IntroducedVersion
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("introducedversion");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IntroducedVersion");
+				this.SetAttributeValue("introducedversion", value);
+				this.OnPropertyChanged("IntroducedVersion");
+			}
+		}
+		
+		/// <summary>
+		/// Information that specifies whether this component is managed.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ismanaged")]
+		public System.Nullable<bool> IsManaged
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("ismanaged");
+			}
+		}
+		
+		/// <summary>
 		/// Unique identifier of the user who last modified the column mapping.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
@@ -273,6 +341,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overwritetime")]
+		public System.Nullable<System.DateTime> OverwriteTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overwritetime");
+			}
+		}
+		
+		/// <summary>
 		/// Information about whether the column mapping needs to be processed.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("processcode")]
@@ -289,6 +370,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ProcessCode");
 				this.SetAttributeValue("processcode", value);
 				this.OnPropertyChanged("ProcessCode");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the associated solution.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("solutionid")]
+		public System.Nullable<System.Guid> SolutionId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("solutionid");
 			}
 		}
 		
@@ -374,7 +468,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Name of the Microsoft Dynamics CRM attribute.
+		/// Name of the Microsoft Dynamics 365 attribute.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("targetattributename")]
 		public string TargetAttributeName
@@ -394,7 +488,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Name of the Microsoft Dynamics CRM entity.
+		/// Name of the Microsoft Dynamics 365 entity.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("targetentityname")]
 		public string TargetEntityName
@@ -618,6 +712,16 @@ namespace DLaB.Xrm.Entities
                         break;
                 }
             }
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
+		public virtual ComponentState? ComponentStateEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("processcode")]

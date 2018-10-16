@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("solution")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Solution : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ConfigurationPageId = "configurationpageid";
 			public const string CreatedBy = "createdby";
@@ -43,7 +43,9 @@ namespace DLaB.Xrm.Entities
 			public const string SolutionId = "solutionid";
 			public const string Id = "solutionid";
 			public const string SolutionPackageVersion = "solutionpackageversion";
+			public const string SolutionType = "solutiontype";
 			public const string UniqueName = "uniquename";
+			public const string UpdatedOn = "updatedon";
 			public const string Version = "version";
 			public const string VersionNumber = "versionnumber";
 			public const string lk_solution_createdby = "lk_solution_createdby";
@@ -55,7 +57,6 @@ namespace DLaB.Xrm.Entities
 			public const string solution_configuration_webresource = "solution_configuration_webresource";
 			public const string Referencingsolution_parent_solution = "solution_parent_solution";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -67,6 +68,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "solution";
+		
+		public const string PrimaryIdAttribute = "solutionid";
+		
+		public const string PrimaryNameAttribute = "friendlyname";
 		
 		public const int EntityTypeCode = 7100;
 		
@@ -473,6 +478,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Solution Type
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("solutiontype")]
+		public Microsoft.Xrm.Sdk.OptionSetValue SolutionType
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("solutiontype");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SolutionType");
+				this.SetAttributeValue("solutiontype", value);
+				this.OnPropertyChanged("SolutionType");
+			}
+		}
+		
+		/// <summary>
 		/// The unique name of this solution
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("uniquename")]
@@ -489,6 +514,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("UniqueName");
 				this.SetAttributeValue("uniquename", value);
 				this.OnPropertyChanged("UniqueName");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the solution was updated.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("updatedon")]
+		public System.Nullable<System.DateTime> UpdatedOn
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("updatedon");
 			}
 		}
 		
@@ -526,6 +564,66 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N FK_CanvasApp_Solution
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("FK_CanvasApp_Solution")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CanvasApp> FK_CanvasApp_Solution
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CanvasApp>("FK_CanvasApp_Solution", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("FK_CanvasApp_Solution");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CanvasApp>("FK_CanvasApp_Solution", null, value);
+				this.OnPropertyChanged("FK_CanvasApp_Solution");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N solution_fieldpermission
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("solution_fieldpermission")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.FieldPermission> solution_fieldpermission
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.FieldPermission>("solution_fieldpermission", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("solution_fieldpermission");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.FieldPermission>("solution_fieldpermission", null, value);
+				this.OnPropertyChanged("solution_fieldpermission");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N solution_fieldsecurityprofile
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("solution_fieldsecurityprofile")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.FieldSecurityProfile> solution_fieldsecurityprofile
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.FieldSecurityProfile>("solution_fieldsecurityprofile", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("solution_fieldsecurityprofile");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.FieldSecurityProfile>("solution_fieldsecurityprofile", null, value);
+				this.OnPropertyChanged("solution_fieldsecurityprofile");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N solution_parent_solution
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("solution_parent_solution", Microsoft.Xrm.Sdk.EntityRole.Referenced)]
@@ -546,6 +644,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N solution_role
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("solution_role")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Role> solution_role
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Role>("solution_role", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("solution_role");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Role>("solution_role", null, value);
+				this.OnPropertyChanged("solution_role");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N solution_solutioncomponent
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("solution_solutioncomponent")]
@@ -562,6 +680,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("solution_solutioncomponent");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.SolutionComponent>("solution_solutioncomponent", null, value);
 				this.OnPropertyChanged("solution_solutioncomponent");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Solution_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Solution_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Solution_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Solution_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Solution_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Solution_SyncErrors", null, value);
+				this.OnPropertyChanged("Solution_SyncErrors");
 			}
 		}
 		
@@ -779,6 +917,21 @@ namespace DLaB.Xrm.Entities
                         break;
                 }
             }
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("solutiontype")]
+		public virtual Solution_SolutionType? SolutionTypeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((Solution_SolutionType?)(EntityOptionSetEnum.GetEnum(this, "solutiontype")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				SolutionType = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
 		}
 	}
 }

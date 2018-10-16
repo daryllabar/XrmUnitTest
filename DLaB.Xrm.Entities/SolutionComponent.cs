@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("solutioncomponent")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class SolutionComponent : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ComponentType = "componenttype";
 			public const string CreatedBy = "createdby";
@@ -41,7 +41,6 @@ namespace DLaB.Xrm.Entities
 			public const string solution_solutioncomponent = "solution_solutioncomponent";
 			public const string Referencingsolutioncomponent_parent_solutioncomponent = "solutioncomponent_parent_solutioncomponent";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -53,6 +52,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "solutioncomponent";
+		
+		public const string PrimaryIdAttribute = "solutioncomponentid";
 		
 		public const int EntityTypeCode = 7103;
 		

@@ -11,15 +11,15 @@ namespace DLaB.Xrm.Entities
 {
 	
 	/// <summary>
-	/// Metadata of knowledge base (KB) articles associated with Microsoft Dynamics CRM entities.
+	/// Metadata of knowledge base (KB) articles associated with Microsoft Dynamics 365 entities.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("knowledgebaserecord")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class KnowledgeBaseRecord : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
@@ -45,7 +45,6 @@ namespace DLaB.Xrm.Entities
 			public const string organization_KnowledgeBaseRecord = "organization_KnowledgeBaseRecord";
 			public const string TransactionCurrency_KnowledgeBaseRecord = "TransactionCurrency_KnowledgeBaseRecord";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -57,6 +56,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "knowledgebaserecord";
+		
+		public const string PrimaryIdAttribute = "knowledgebaserecordid";
+		
+		public const string PrimaryNameAttribute = "title";
 		
 		public const int EntityTypeCode = 9930;
 		
@@ -505,6 +508,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N knowledgebaserecord_BulkOperations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgebaserecord_BulkOperations")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.BulkOperation> knowledgebaserecord_BulkOperations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.BulkOperation>("knowledgebaserecord_BulkOperations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgebaserecord_BulkOperations");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.BulkOperation>("knowledgebaserecord_BulkOperations", null, value);
+				this.OnPropertyChanged("knowledgebaserecord_BulkOperations");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N knowledgebaserecord_CampaignResponses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgebaserecord_CampaignResponses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CampaignResponse> knowledgebaserecord_CampaignResponses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CampaignResponse>("knowledgebaserecord_CampaignResponses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgebaserecord_CampaignResponses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CampaignResponse>("knowledgebaserecord_CampaignResponses", null, value);
+				this.OnPropertyChanged("knowledgebaserecord_CampaignResponses");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N KnowledgeBaseRecord_connections1
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeBaseRecord_connections1")]
@@ -625,6 +668,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N knowledgebaserecord_IncidentResolutions
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgebaserecord_IncidentResolutions")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.IncidentResolution> knowledgebaserecord_IncidentResolutions
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.IncidentResolution>("knowledgebaserecord_IncidentResolutions", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgebaserecord_IncidentResolutions");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.IncidentResolution>("knowledgebaserecord_IncidentResolutions", null, value);
+				this.OnPropertyChanged("knowledgebaserecord_IncidentResolutions");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N KnowledgeBaseRecord_Letters
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeBaseRecord_Letters")]
@@ -641,6 +704,86 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("KnowledgeBaseRecord_Letters");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Letter>("KnowledgeBaseRecord_Letters", null, value);
 				this.OnPropertyChanged("KnowledgeBaseRecord_Letters");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N knowledgebaserecord_msdyn_approvals
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgebaserecord_msdyn_approvals")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_approval> knowledgebaserecord_msdyn_approvals
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("knowledgebaserecord_msdyn_approvals", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgebaserecord_msdyn_approvals");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("knowledgebaserecord_msdyn_approvals", null, value);
+				this.OnPropertyChanged("knowledgebaserecord_msdyn_approvals");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N knowledgebaserecord_msdyn_bookingalerts
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgebaserecord_msdyn_bookingalerts")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bookingalert> knowledgebaserecord_msdyn_bookingalerts
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("knowledgebaserecord_msdyn_bookingalerts", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgebaserecord_msdyn_bookingalerts");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("knowledgebaserecord_msdyn_bookingalerts", null, value);
+				this.OnPropertyChanged("knowledgebaserecord_msdyn_bookingalerts");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N knowledgebaserecord_OpportunityCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgebaserecord_OpportunityCloses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OpportunityClose> knowledgebaserecord_OpportunityCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OpportunityClose>("knowledgebaserecord_OpportunityCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgebaserecord_OpportunityCloses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OpportunityClose>("knowledgebaserecord_OpportunityCloses", null, value);
+				this.OnPropertyChanged("knowledgebaserecord_OpportunityCloses");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N knowledgebaserecord_OrderCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgebaserecord_OrderCloses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OrderClose> knowledgebaserecord_OrderCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OrderClose>("knowledgebaserecord_OrderCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgebaserecord_OrderCloses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OrderClose>("knowledgebaserecord_OrderCloses", null, value);
+				this.OnPropertyChanged("knowledgebaserecord_OrderCloses");
 			}
 		}
 		
@@ -705,6 +848,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N knowledgebaserecord_QuoteCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgebaserecord_QuoteCloses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.QuoteClose> knowledgebaserecord_QuoteCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("knowledgebaserecord_QuoteCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgebaserecord_QuoteCloses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("knowledgebaserecord_QuoteCloses", null, value);
+				this.OnPropertyChanged("knowledgebaserecord_QuoteCloses");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N KnowledgeBaseRecord_RecurringAppointmentMasters
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeBaseRecord_RecurringAppointmentMasters")]
@@ -761,6 +924,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("KnowledgeBaseRecord_SocialActivities");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.SocialActivity>("KnowledgeBaseRecord_SocialActivities", null, value);
 				this.OnPropertyChanged("KnowledgeBaseRecord_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N KnowledgeBaseRecord_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KnowledgeBaseRecord_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> KnowledgeBaseRecord_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("KnowledgeBaseRecord_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("KnowledgeBaseRecord_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("KnowledgeBaseRecord_SyncErrors", null, value);
+				this.OnPropertyChanged("KnowledgeBaseRecord_SyncErrors");
 			}
 		}
 		

@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum LookUpMappingState
 	{
 		
@@ -20,29 +20,35 @@ namespace DLaB.Xrm.Entities
 	}
 	
 	/// <summary>
-	/// In a data map, maps a lookup attribute in a source file to Microsoft Dynamics CRM.
+	/// In a data map, maps a lookup attribute in a source file to Microsoft Dynamics 365.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("lookupmapping")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class LookUpMapping : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ColumnMappingId = "columnmappingid";
+			public const string ComponentState = "componentstate";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
+			public const string IntroducedVersion = "introducedversion";
+			public const string IsManaged = "ismanaged";
 			public const string LookUpAttributeName = "lookupattributename";
 			public const string LookUpEntityName = "lookupentityname";
 			public const string LookUpMappingId = "lookupmappingid";
 			public const string Id = "lookupmappingid";
+			public const string LookUpMappingIdUnique = "lookupmappingidunique";
 			public const string LookUpSourceCode = "lookupsourcecode";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string OverwriteTime = "overwritetime";
 			public const string ProcessCode = "processcode";
+			public const string SolutionId = "solutionid";
 			public const string StateCode = "statecode";
 			public const string StatusCode = "statuscode";
 			public const string TransformationParameterMappingId = "transformationparametermappingid";
@@ -53,7 +59,6 @@ namespace DLaB.Xrm.Entities
 			public const string LookUpMapping_ColumnMapping = "LookUpMapping_ColumnMapping";
 			public const string LookUpMapping_TransformationParameterMapping = "LookUpMapping_TransformationParameterMapping";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -65,6 +70,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "lookupmapping";
+		
+		public const string PrimaryIdAttribute = "lookupmappingid";
 		
 		public const int EntityTypeCode = 4419;
 		
@@ -107,6 +114,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ColumnMappingId");
 				this.SetAttributeValue("columnmappingid", value);
 				this.OnPropertyChanged("ColumnMappingId");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
+		public Microsoft.Xrm.Sdk.OptionSetValue ComponentState
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("componentstate");
 			}
 		}
 		
@@ -167,6 +187,39 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("CreatedOnBehalfBy");
 				this.SetAttributeValue("createdonbehalfby", value);
 				this.OnPropertyChanged("CreatedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Version in which the component is introduced.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("introducedversion")]
+		public string IntroducedVersion
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("introducedversion");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IntroducedVersion");
+				this.SetAttributeValue("introducedversion", value);
+				this.OnPropertyChanged("IntroducedVersion");
+			}
+		}
+		
+		/// <summary>
+		/// Information that specifies whether this component is managed.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ismanaged")]
+		public System.Nullable<bool> IsManaged
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("ismanaged");
 			}
 		}
 		
@@ -254,6 +307,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Unique identifier of the LookUp Mapping.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lookupmappingidunique")]
+		public System.Nullable<System.Guid> LookUpMappingIdUnique
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("lookupmappingidunique");
+			}
+		}
+		
+		/// <summary>
 		/// Lookup source code for lookup mapping.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lookupsourcecode")]
@@ -334,6 +400,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overwritetime")]
+		public System.Nullable<System.DateTime> OverwriteTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overwritetime");
+			}
+		}
+		
+		/// <summary>
 		/// Information about whether the lookup mapping has to be processed.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("processcode")]
@@ -350,6 +429,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ProcessCode");
 				this.SetAttributeValue("processcode", value);
 				this.OnPropertyChanged("ProcessCode");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the associated solution.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("solutionid")]
+		public System.Nullable<System.Guid> SolutionId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("solutionid");
 			}
 		}
 		
@@ -600,6 +692,16 @@ namespace DLaB.Xrm.Entities
                         break;
                 }
             }
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
+		public virtual ComponentState? ComponentStateEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lookupsourcecode")]

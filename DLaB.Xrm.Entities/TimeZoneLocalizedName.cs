@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("timezonelocalizedname")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class TimeZoneLocalizedName : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
@@ -42,7 +42,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_timezonelocalizedname_modifiedonbehalfby = "lk_timezonelocalizedname_modifiedonbehalfby";
 			public const string lk_timezonelocalizedname_timezonedefinitionid = "lk_timezonelocalizedname_timezonedefinitionid";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -54,6 +53,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "timezonelocalizedname";
+		
+		public const string PrimaryIdAttribute = "timezonelocalizednameid";
+		
+		public const string PrimaryNameAttribute = "userinterfacename";
 		
 		public const int EntityTypeCode = 4812;
 		

@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("invoicedetail")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class InvoiceDetail : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ActualDeliveryOn = "actualdeliveryon";
 			public const string BaseAmount = "baseamount";
@@ -34,6 +34,7 @@ namespace DLaB.Xrm.Entities
 			public const string ImportSequenceNumber = "importsequencenumber";
 			public const string InvoiceDetailId = "invoicedetailid";
 			public const string Id = "invoicedetailid";
+			public const string InvoiceDetailName = "invoicedetailname";
 			public const string InvoiceId = "invoiceid";
 			public const string InvoiceIsPriceLocked = "invoiceispricelocked";
 			public const string InvoiceStateCode = "invoicestatecode";
@@ -46,23 +47,49 @@ namespace DLaB.Xrm.Entities
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string msdyn_Agreement = "msdyn_agreement";
+			public const string msdyn_AgreementInvoiceProduct = "msdyn_agreementinvoiceproduct";
+			public const string msdyn_BillingMethod = "msdyn_billingmethod";
+			public const string msdyn_chargeableamount = "msdyn_chargeableamount";
+			public const string msdyn_chargeableamount_Base = "msdyn_chargeableamount_base";
+			public const string msdyn_complimentaryamount = "msdyn_complimentaryamount";
+			public const string msdyn_complimentaryamount_Base = "msdyn_complimentaryamount_base";
+			public const string msdyn_ContractLine = "msdyn_contractline";
+			public const string msdyn_contractlineamount = "msdyn_contractlineamount";
+			public const string msdyn_contractlineamount_Base = "msdyn_contractlineamount_base";
+			public const string msdyn_Currency = "msdyn_currency";
+			public const string msdyn_invoicedtilldate = "msdyn_invoicedtilldate";
+			public const string msdyn_invoicedtilldate_Base = "msdyn_invoicedtilldate_base";
+			public const string msdyn_LineOrder = "msdyn_lineorder";
+			public const string msdyn_LineType = "msdyn_linetype";
+			public const string msdyn_nonchargeableamount = "msdyn_nonchargeableamount";
+			public const string msdyn_nonchargeableamount_Base = "msdyn_nonchargeableamount_base";
+			public const string msdyn_OrderInvoicingProduct = "msdyn_orderinvoicingproduct";
+			public const string msdyn_Project = "msdyn_project";
+			public const string msdyn_WorkOrderId = "msdyn_workorderid";
+			public const string msdyn_WorkOrderProductId = "msdyn_workorderproductid";
+			public const string msdyn_WorkOrderServiceId = "msdyn_workorderserviceid";
 			public const string OverriddenCreatedOn = "overriddencreatedon";
 			public const string OwnerId = "ownerid";
 			public const string OwningBusinessUnit = "owningbusinessunit";
+			public const string OwningTeam = "owningteam";
 			public const string OwningUser = "owninguser";
 			public const string ParentBundleId = "parentbundleid";
+			public const string ParentBundleIdRef = "parentbundleidref";
 			public const string PricePerUnit = "priceperunit";
 			public const string PricePerUnit_Base = "priceperunit_base";
 			public const string PricingErrorCode = "pricingerrorcode";
 			public const string ProductAssociationId = "productassociationid";
 			public const string ProductDescription = "productdescription";
 			public const string ProductId = "productid";
+			public const string ProductName = "productname";
 			public const string ProductTypeCode = "producttypecode";
 			public const string PropertyConfigurationStatus = "propertyconfigurationstatus";
 			public const string Quantity = "quantity";
 			public const string QuantityBackordered = "quantitybackordered";
 			public const string QuantityCancelled = "quantitycancelled";
 			public const string QuantityShipped = "quantityshipped";
+			public const string SalesOrderDetailId = "salesorderdetailid";
 			public const string SalesRepId = "salesrepid";
 			public const string SequenceNumber = "sequencenumber";
 			public const string ShippingTrackingNumber = "shippingtrackingnumber";
@@ -89,17 +116,28 @@ namespace DLaB.Xrm.Entities
 			public const string WillCall = "willcall";
 			public const string invoice_details = "invoice_details";
 			public const string Referencinginvoicedetail_parent_invoicedetail = "invoicedetail_parent_invoicedetail";
+			public const string Referencinginvoicedetail_parentref_invoicedetail = "invoicedetail_parentref_invoicedetail";
 			public const string lk_invoicedetail_createdonbehalfby = "lk_invoicedetail_createdonbehalfby";
 			public const string lk_invoicedetail_modifiedonbehalfby = "lk_invoicedetail_modifiedonbehalfby";
 			public const string lk_invoicedetailbase_createdby = "lk_invoicedetailbase_createdby";
 			public const string lk_invoicedetailbase_modifiedby = "lk_invoicedetailbase_modifiedby";
+			public const string msdyn_msdyn_agreement_invoicedetail_Agreement = "msdyn_msdyn_agreement_invoicedetail_Agreement";
+			public const string msdyn_msdyn_agreementinvoiceproduct_invoicedetail_AgreementInvoiceProduct = "msdyn_msdyn_agreementinvoiceproduct_invoicedetail_AgreementInvoiceProduct";
+			public const string msdyn_msdyn_orderinvoicingproduct_invoicedetail_OrderInvoiceProduct = "msdyn_msdyn_orderinvoicingproduct_invoicedetail_OrderInvoiceProduct";
+			public const string msdyn_msdyn_project_invoicedetail_Project = "msdyn_msdyn_project_invoicedetail_Project";
+			public const string msdyn_msdyn_workorder_invoicedetail = "msdyn_msdyn_workorder_invoicedetail";
+			public const string msdyn_msdyn_workorderproduct_invoicedetail = "msdyn_msdyn_workorderproduct_invoicedetail";
+			public const string msdyn_msdyn_workorderservice_invoicedetail = "msdyn_msdyn_workorderservice_invoicedetail";
+			public const string msdyn_salesorderdetail_invoicedetail = "msdyn_salesorderdetail_invoicedetail";
+			public const string msdyn_transactioncurrency_invoicedetail_Currency = "msdyn_transactioncurrency_invoicedetail_Currency";
 			public const string product_invoice_details = "product_invoice_details";
 			public const string productAssociation_invoice_details = "productAssociation_invoice_details";
 			public const string system_user_invoicedetail = "system_user_invoicedetail";
+			public const string team_invoicedetail = "team_invoicedetail";
 			public const string transactioncurrency_invoicedetail = "transactioncurrency_invoicedetail";
 			public const string unit_of_measurement_invoice_details = "unit_of_measurement_invoice_details";
+			public const string user_invoicedetail = "user_invoicedetail";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -111,6 +149,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "invoicedetail";
+		
+		public const string PrimaryIdAttribute = "invoicedetailid";
+		
+		public const string PrimaryNameAttribute = "invoicedetailname";
 		
 		public const int EntityTypeCode = 1091;
 		
@@ -190,7 +232,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows who created the record.
+		/// Shows the user who created the invoice product line item.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
@@ -210,7 +252,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -230,7 +272,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows who created the record on behalf of another user.
+		/// Shows the delegate user who created the invoice detail.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
@@ -270,7 +312,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the conversion rate of the record's currency. The exchange rate is used to convert all money fields in the record from the local currency to the system's default currency.
+		/// Shows the exchange rate for the currency associated with the invoice detail with respect to the base currency.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("exchangerate")]
 		public System.Nullable<decimal> ExchangeRate
@@ -379,7 +421,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the invoice associated with the invoice product line item.
+		/// Invoice Detail Name. Added for 1:n Referential relationship
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("invoicedetailname")]
+		public string InvoiceDetailName
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("invoicedetailname");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("InvoiceDetailName");
+				this.SetAttributeValue("invoicedetailname", value);
+				this.OnPropertyChanged("InvoiceDetailName");
+			}
+		}
+		
+		/// <summary>
+		/// invoice_details
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("invoiceid")]
 		public Microsoft.Xrm.Sdk.EntityReference InvoiceId
@@ -465,7 +527,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Select whether the product exists in the Microsoft Dynamics CRM product catalog or is a write-in product specific to the parent invoice.
+		/// Select whether the product exists in the Microsoft Dynamics 365 product catalog or is a write-in product specific to the parent invoice.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isproductoverridden")]
 		public System.Nullable<bool> IsProductOverridden
@@ -538,7 +600,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows who last updated the record.
+		/// Shows the user who last modified the invoice product line item.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
@@ -558,7 +620,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -578,7 +640,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows who last updated the record on behalf of another user.
+		/// Shows the delegate user who last modified the invoice detail.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
@@ -594,6 +656,411 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ModifiedOnBehalfBy");
 				this.SetAttributeValue("modifiedonbehalfby", value);
 				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for Agreement associated with Invoice Product.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_agreement")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_Agreement
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_agreement");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_Agreement");
+				this.SetAttributeValue("msdyn_agreement", value);
+				this.OnPropertyChanged("msdyn_Agreement");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for Agreement Invoice Product associated with Invoice Product.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_agreementinvoiceproduct")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_AgreementInvoiceProduct
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_agreementinvoiceproduct");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_AgreementInvoiceProduct");
+				this.SetAttributeValue("msdyn_agreementinvoiceproduct", value);
+				this.OnPropertyChanged("msdyn_AgreementInvoiceProduct");
+			}
+		}
+		
+		/// <summary>
+		/// Billing method for the project invoice line. Valid values are Time and Material and Fixed Price
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_billingmethod")]
+		public Microsoft.Xrm.Sdk.OptionSetValue msdyn_BillingMethod
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("msdyn_billingmethod");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_BillingMethod");
+				this.SetAttributeValue("msdyn_billingmethod", value);
+				this.OnPropertyChanged("msdyn_BillingMethod");
+			}
+		}
+		
+		/// <summary>
+		/// The amount from included line details that is chargeable.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_chargeableamount")]
+		public Microsoft.Xrm.Sdk.Money msdyn_chargeableamount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_chargeableamount");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_chargeableamount");
+				this.SetAttributeValue("msdyn_chargeableamount", value);
+				this.OnPropertyChanged("msdyn_chargeableamount");
+			}
+		}
+		
+		/// <summary>
+		/// Value of the Chargeable Amount in base currency.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_chargeableamount_base")]
+		public Microsoft.Xrm.Sdk.Money msdyn_chargeableamount_Base
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_chargeableamount_base");
+			}
+		}
+		
+		/// <summary>
+		/// The amount from included line details that is complimentary and won't be charged.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_complimentaryamount")]
+		public Microsoft.Xrm.Sdk.Money msdyn_complimentaryamount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_complimentaryamount");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_complimentaryamount");
+				this.SetAttributeValue("msdyn_complimentaryamount", value);
+				this.OnPropertyChanged("msdyn_complimentaryamount");
+			}
+		}
+		
+		/// <summary>
+		/// Value of the Complimentary Amount in base currency.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_complimentaryamount_base")]
+		public Microsoft.Xrm.Sdk.Money msdyn_complimentaryamount_Base
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_complimentaryamount_base");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the project contract line for this invoice line.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_contractline")]
+		public string msdyn_ContractLine
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("msdyn_contractline");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_ContractLine");
+				this.SetAttributeValue("msdyn_contractline", value);
+				this.OnPropertyChanged("msdyn_ContractLine");
+			}
+		}
+		
+		/// <summary>
+		/// Amount from the related project contract line if present.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_contractlineamount")]
+		public Microsoft.Xrm.Sdk.Money msdyn_contractlineamount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_contractlineamount");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_contractlineamount");
+				this.SetAttributeValue("msdyn_contractlineamount", value);
+				this.OnPropertyChanged("msdyn_contractlineamount");
+			}
+		}
+		
+		/// <summary>
+		/// Value of the project contract line amount in base currency.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_contractlineamount_base")]
+		public Microsoft.Xrm.Sdk.Money msdyn_contractlineamount_Base
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_contractlineamount_base");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for Currency associated with Invoice Product.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_currency")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_Currency
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_currency");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_Currency");
+				this.SetAttributeValue("msdyn_currency", value);
+				this.OnPropertyChanged("msdyn_Currency");
+			}
+		}
+		
+		/// <summary>
+		/// Amount already invoiced to customer for the same project contract line.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_invoicedtilldate")]
+		public Microsoft.Xrm.Sdk.Money msdyn_invoicedtilldate
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_invoicedtilldate");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_invoicedtilldate");
+				this.SetAttributeValue("msdyn_invoicedtilldate", value);
+				this.OnPropertyChanged("msdyn_invoicedtilldate");
+			}
+		}
+		
+		/// <summary>
+		/// Value of the Amount Previously Invoiced in base currency.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_invoicedtilldate_base")]
+		public Microsoft.Xrm.Sdk.Money msdyn_invoicedtilldate_Base
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_invoicedtilldate_base");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the order of this invoice product within the invoice.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_lineorder")]
+		public System.Nullable<int> msdyn_LineOrder
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("msdyn_lineorder");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_LineOrder");
+				this.SetAttributeValue("msdyn_lineorder", value);
+				this.OnPropertyChanged("msdyn_LineOrder");
+			}
+		}
+		
+		/// <summary>
+		/// The field to distinguish the Invoice lines to be of project service or field service
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_linetype")]
+		public Microsoft.Xrm.Sdk.OptionSetValue msdyn_LineType
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("msdyn_linetype");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_LineType");
+				this.SetAttributeValue("msdyn_linetype", value);
+				this.OnPropertyChanged("msdyn_LineType");
+			}
+		}
+		
+		/// <summary>
+		/// The amount from included line details that is non-chargeable.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_nonchargeableamount")]
+		public Microsoft.Xrm.Sdk.Money msdyn_nonchargeableamount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_nonchargeableamount");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_nonchargeableamount");
+				this.SetAttributeValue("msdyn_nonchargeableamount", value);
+				this.OnPropertyChanged("msdyn_nonchargeableamount");
+			}
+		}
+		
+		/// <summary>
+		/// Value of the Non Chargeable Amount in base currency.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_nonchargeableamount_base")]
+		public Microsoft.Xrm.Sdk.Money msdyn_nonchargeableamount_Base
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_nonchargeableamount_base");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for Order Invoicing Product associated with Invoice Product.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_orderinvoicingproduct")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_OrderInvoicingProduct
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_orderinvoicingproduct");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_OrderInvoicingProduct");
+				this.SetAttributeValue("msdyn_orderinvoicingproduct", value);
+				this.OnPropertyChanged("msdyn_OrderInvoicingProduct");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the project for this invoice line.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_project")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_Project
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_project");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_Project");
+				this.SetAttributeValue("msdyn_project", value);
+				this.OnPropertyChanged("msdyn_Project");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for Work Order associated with Invoice Product.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_workorderid")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_WorkOrderId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_workorderid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_WorkOrderId");
+				this.SetAttributeValue("msdyn_workorderid", value);
+				this.OnPropertyChanged("msdyn_WorkOrderId");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for Work Order Product associated with Invoice Product.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_workorderproductid")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_WorkOrderProductId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_workorderproductid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_WorkOrderProductId");
+				this.SetAttributeValue("msdyn_workorderproductid", value);
+				this.OnPropertyChanged("msdyn_WorkOrderProductId");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for Work Order Service associated with Invoice Product.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_workorderserviceid")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_WorkOrderServiceId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_workorderserviceid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_WorkOrderServiceId");
+				this.SetAttributeValue("msdyn_workorderserviceid", value);
+				this.OnPropertyChanged("msdyn_WorkOrderServiceId");
 			}
 		}
 		
@@ -634,12 +1101,12 @@ namespace DLaB.Xrm.Entities
 		/// Unique identifier of the business unit that owns the invoice product line item.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
-		public System.Nullable<System.Guid> OwningBusinessUnit
+		public Microsoft.Xrm.Sdk.EntityReference OwningBusinessUnit
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetAttributeValue<System.Nullable<System.Guid>>("owningbusinessunit");
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -647,6 +1114,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("OwningBusinessUnit");
 				this.SetAttributeValue("owningbusinessunit", value);
 				this.OnPropertyChanged("OwningBusinessUnit");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the team that owns the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningTeam
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OwningTeam");
+				this.SetAttributeValue("owningteam", value);
+				this.OnPropertyChanged("OwningTeam");
 			}
 		}
 		
@@ -671,7 +1158,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the parent bundle associated with this product
+		/// invoicedetail_parent_invoicedetail
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("parentbundleid")]
 		public System.Nullable<System.Guid> ParentBundleId
@@ -687,6 +1174,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ParentBundleId");
 				this.SetAttributeValue("parentbundleid", value);
 				this.OnPropertyChanged("ParentBundleId");
+			}
+		}
+		
+		/// <summary>
+		/// Choose the parent bundle associated with this product
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("parentbundleidref")]
+		public Microsoft.Xrm.Sdk.EntityReference ParentBundleIdRef
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("parentbundleidref");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ParentBundleIdRef");
+				this.SetAttributeValue("parentbundleidref", value);
+				this.OnPropertyChanged("ParentBundleIdRef");
 			}
 		}
 		
@@ -744,7 +1251,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the product line item association with bundle in the invoice
+		/// productAssociation_invoice_details
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("productassociationid")]
 		public System.Nullable<System.Guid> ProductAssociationId
@@ -784,7 +1291,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the product to include on the invoice.
+		/// product_invoice_details
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("productid")]
 		public Microsoft.Xrm.Sdk.EntityReference ProductId
@@ -800,6 +1307,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ProductId");
 				this.SetAttributeValue("productid", value);
 				this.OnPropertyChanged("ProductId");
+			}
+		}
+		
+		/// <summary>
+		/// Calculated field that will be populated by name and description of the product.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("productname")]
+		public string ProductName
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("productname");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ProductName");
+				this.SetAttributeValue("productname", value);
+				this.OnPropertyChanged("ProductName");
 			}
 		}
 		
@@ -924,7 +1451,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the user responsible for the sale of the invoice product.
+		/// Unique identifier for Order Line associated with Invoice Line.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("salesorderdetailid")]
+		public Microsoft.Xrm.Sdk.EntityReference SalesOrderDetailId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("salesorderdetailid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SalesOrderDetailId");
+				this.SetAttributeValue("salesorderdetailid", value);
+				this.OnPropertyChanged("SalesOrderDetailId");
+			}
+		}
+		
+		/// <summary>
+		/// system_user_invoicedetail
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("salesrepid")]
 		public Microsoft.Xrm.Sdk.EntityReference SalesRepId
@@ -1124,7 +1671,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Type a name for the customer's shipping address, such as "Headquarters" or "Field office", to identify the address.
+		/// Type a name for the customer's shipping address, such as "Headquarters" or "Field office",  to identify the address.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("shipto_name")]
 		public string ShipTo_Name
@@ -1257,7 +1804,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the local currency for the record to make sure budgets are reported in the correct currency.
+		/// transactioncurrency_invoicedetail
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("transactioncurrencyid")]
 		public Microsoft.Xrm.Sdk.EntityReference TransactionCurrencyId
@@ -1267,10 +1814,17 @@ namespace DLaB.Xrm.Entities
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("transactioncurrencyid");
 			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TransactionCurrencyId");
+				this.SetAttributeValue("transactioncurrencyid", value);
+				this.OnPropertyChanged("TransactionCurrencyId");
+			}
 		}
 		
 		/// <summary>
-		/// Choose the unit of measurement for the base unit quantity for this purchase, such as each or dozen.
+		/// unit_of_measurement_invoice_details
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("uomid")]
 		public Microsoft.Xrm.Sdk.EntityReference UoMId
@@ -1429,6 +1983,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N invoicedetail_MailboxTrackingFolders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("invoicedetail_MailboxTrackingFolders")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> invoicedetail_MailboxTrackingFolders
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("invoicedetail_MailboxTrackingFolders", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("invoicedetail_MailboxTrackingFolders");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("invoicedetail_MailboxTrackingFolders", null, value);
+				this.OnPropertyChanged("invoicedetail_MailboxTrackingFolders");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N invoicedetail_parent_invoicedetail
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("invoicedetail_parent_invoicedetail", Microsoft.Xrm.Sdk.EntityRole.Referenced)]
@@ -1445,6 +2019,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Referencedinvoicedetail_parent_invoicedetail");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.InvoiceDetail>("invoicedetail_parent_invoicedetail", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
 				this.OnPropertyChanged("Referencedinvoicedetail_parent_invoicedetail");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N invoicedetail_parentref_invoicedetail
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("invoicedetail_parentref_invoicedetail", Microsoft.Xrm.Sdk.EntityRole.Referenced)]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.InvoiceDetail> Referencedinvoicedetail_parentref_invoicedetail
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.InvoiceDetail>("invoicedetail_parentref_invoicedetail", Microsoft.Xrm.Sdk.EntityRole.Referenced);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Referencedinvoicedetail_parentref_invoicedetail");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.InvoiceDetail>("invoicedetail_parentref_invoicedetail", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
+				this.OnPropertyChanged("Referencedinvoicedetail_parentref_invoicedetail");
 			}
 		}
 		
@@ -1485,6 +2079,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("InvoiceDetail_ProcessSessions");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProcessSession>("InvoiceDetail_ProcessSessions", null, value);
 				this.OnPropertyChanged("InvoiceDetail_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N InvoiceDetail_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("InvoiceDetail_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> InvoiceDetail_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("InvoiceDetail_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("InvoiceDetail_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("InvoiceDetail_SyncErrors", null, value);
+				this.OnPropertyChanged("InvoiceDetail_SyncErrors");
 			}
 		}
 		
@@ -1547,6 +2161,27 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Referencinginvoicedetail_parent_invoicedetail");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.InvoiceDetail>("invoicedetail_parent_invoicedetail", Microsoft.Xrm.Sdk.EntityRole.Referencing, value);
 				this.OnPropertyChanged("Referencinginvoicedetail_parent_invoicedetail");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 invoicedetail_parentref_invoicedetail
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("parentbundleidref")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("invoicedetail_parentref_invoicedetail", Microsoft.Xrm.Sdk.EntityRole.Referencing)]
+		public DLaB.Xrm.Entities.InvoiceDetail Referencinginvoicedetail_parentref_invoicedetail
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.InvoiceDetail>("invoicedetail_parentref_invoicedetail", Microsoft.Xrm.Sdk.EntityRole.Referencing);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Referencinginvoicedetail_parentref_invoicedetail");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.InvoiceDetail>("invoicedetail_parentref_invoicedetail", Microsoft.Xrm.Sdk.EntityRole.Referencing, value);
+				this.OnPropertyChanged("Referencinginvoicedetail_parentref_invoicedetail");
 			}
 		}
 		
@@ -1635,6 +2270,195 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 msdyn_msdyn_agreement_invoicedetail_Agreement
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_agreement")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_msdyn_agreement_invoicedetail_Agreement")]
+		public DLaB.Xrm.Entities.msdyn_agreement msdyn_msdyn_agreement_invoicedetail_Agreement
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_msdyn_agreement_invoicedetail_Agreement", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_msdyn_agreement_invoicedetail_Agreement");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_msdyn_agreement_invoicedetail_Agreement", null, value);
+				this.OnPropertyChanged("msdyn_msdyn_agreement_invoicedetail_Agreement");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_msdyn_agreementinvoiceproduct_invoicedetail_AgreementInvoiceProduct
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_agreementinvoiceproduct")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_msdyn_agreementinvoiceproduct_invoicedetail_AgreementInvoiceProduct")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct msdyn_msdyn_agreementinvoiceproduct_invoicedetail_AgreementInvoiceProduct
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_msdyn_agreementinvoiceproduct_invoicedetail_AgreementInvoiceProduct", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_msdyn_agreementinvoiceproduct_invoicedetail_AgreementInvoiceProduct");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_msdyn_agreementinvoiceproduct_invoicedetail_AgreementInvoiceProduct", null, value);
+				this.OnPropertyChanged("msdyn_msdyn_agreementinvoiceproduct_invoicedetail_AgreementInvoiceProduct");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_msdyn_orderinvoicingproduct_invoicedetail_OrderInvoiceProduct
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_orderinvoicingproduct")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_msdyn_orderinvoicingproduct_invoicedetail_OrderInvoiceProduct")]
+		public DLaB.Xrm.Entities.msdyn_orderinvoicingproduct msdyn_msdyn_orderinvoicingproduct_invoicedetail_OrderInvoiceProduct
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingproduct>("msdyn_msdyn_orderinvoicingproduct_invoicedetail_OrderInvoiceProduct", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_msdyn_orderinvoicingproduct_invoicedetail_OrderInvoiceProduct");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingproduct>("msdyn_msdyn_orderinvoicingproduct_invoicedetail_OrderInvoiceProduct", null, value);
+				this.OnPropertyChanged("msdyn_msdyn_orderinvoicingproduct_invoicedetail_OrderInvoiceProduct");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_msdyn_project_invoicedetail_Project
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_project")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_msdyn_project_invoicedetail_Project")]
+		public DLaB.Xrm.Entities.msdyn_project msdyn_msdyn_project_invoicedetail_Project
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_project>("msdyn_msdyn_project_invoicedetail_Project", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_msdyn_project_invoicedetail_Project");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_project>("msdyn_msdyn_project_invoicedetail_Project", null, value);
+				this.OnPropertyChanged("msdyn_msdyn_project_invoicedetail_Project");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_msdyn_workorder_invoicedetail
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_workorderid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_msdyn_workorder_invoicedetail")]
+		public DLaB.Xrm.Entities.msdyn_workorder msdyn_msdyn_workorder_invoicedetail
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_msdyn_workorder_invoicedetail", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_msdyn_workorder_invoicedetail");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_msdyn_workorder_invoicedetail", null, value);
+				this.OnPropertyChanged("msdyn_msdyn_workorder_invoicedetail");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_msdyn_workorderproduct_invoicedetail
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_workorderproductid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_msdyn_workorderproduct_invoicedetail")]
+		public DLaB.Xrm.Entities.msdyn_workorderproduct msdyn_msdyn_workorderproduct_invoicedetail
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_msdyn_workorderproduct_invoicedetail", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_msdyn_workorderproduct_invoicedetail");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_msdyn_workorderproduct_invoicedetail", null, value);
+				this.OnPropertyChanged("msdyn_msdyn_workorderproduct_invoicedetail");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_msdyn_workorderservice_invoicedetail
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_workorderserviceid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_msdyn_workorderservice_invoicedetail")]
+		public DLaB.Xrm.Entities.msdyn_workorderservice msdyn_msdyn_workorderservice_invoicedetail
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_msdyn_workorderservice_invoicedetail", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_msdyn_workorderservice_invoicedetail");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_msdyn_workorderservice_invoicedetail", null, value);
+				this.OnPropertyChanged("msdyn_msdyn_workorderservice_invoicedetail");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_salesorderdetail_invoicedetail
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("salesorderdetailid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_salesorderdetail_invoicedetail")]
+		public DLaB.Xrm.Entities.SalesOrderDetail msdyn_salesorderdetail_invoicedetail
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SalesOrderDetail>("msdyn_salesorderdetail_invoicedetail", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_salesorderdetail_invoicedetail");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SalesOrderDetail>("msdyn_salesorderdetail_invoicedetail", null, value);
+				this.OnPropertyChanged("msdyn_salesorderdetail_invoicedetail");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactioncurrency_invoicedetail_Currency
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_currency")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactioncurrency_invoicedetail_Currency")]
+		public DLaB.Xrm.Entities.TransactionCurrency msdyn_transactioncurrency_invoicedetail_Currency
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.TransactionCurrency>("msdyn_transactioncurrency_invoicedetail_Currency", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_transactioncurrency_invoicedetail_Currency");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.TransactionCurrency>("msdyn_transactioncurrency_invoicedetail_Currency", null, value);
+				this.OnPropertyChanged("msdyn_transactioncurrency_invoicedetail_Currency");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 product_invoice_details
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("productid")]
@@ -1698,6 +2522,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 team_invoicedetail
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_invoicedetail")]
+		public DLaB.Xrm.Entities.Team team_invoicedetail
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Team>("team_invoicedetail", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("team_invoicedetail");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Team>("team_invoicedetail", null, value);
+				this.OnPropertyChanged("team_invoicedetail");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 transactioncurrency_invoicedetail
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("transactioncurrencyid")]
@@ -1708,6 +2553,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.TransactionCurrency>("transactioncurrency_invoicedetail", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("transactioncurrency_invoicedetail");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.TransactionCurrency>("transactioncurrency_invoicedetail", null, value);
+				this.OnPropertyChanged("transactioncurrency_invoicedetail");
 			}
 		}
 		
@@ -1729,6 +2581,27 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("unit_of_measurement_invoice_details");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.UoM>("unit_of_measurement_invoice_details", null, value);
 				this.OnPropertyChanged("unit_of_measurement_invoice_details");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 user_invoicedetail
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_invoicedetail")]
+		public DLaB.Xrm.Entities.SystemUser user_invoicedetail
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_invoicedetail", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("user_invoicedetail");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("user_invoicedetail", null, value);
+				this.OnPropertyChanged("user_invoicedetail");
 			}
 		}
 		
@@ -1772,6 +2645,36 @@ namespace DLaB.Xrm.Entities
                         break;
                 }
             }
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_billingmethod")]
+		public virtual msdyn_BillingMethod? msdyn_BillingMethodEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((msdyn_BillingMethod?)(EntityOptionSetEnum.GetEnum(this, "msdyn_billingmethod")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				msdyn_BillingMethod = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_linetype")]
+		public virtual msdyn_LineType? msdyn_LineTypeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((msdyn_LineType?)(EntityOptionSetEnum.GetEnum(this, "msdyn_linetype")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				msdyn_LineType = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("pricingerrorcode")]

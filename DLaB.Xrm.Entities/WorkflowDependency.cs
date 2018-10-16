@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("workflowdependency")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class WorkflowDependency : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
@@ -51,7 +51,6 @@ namespace DLaB.Xrm.Entities
 			public const string workflow_dependency_modifiedby = "workflow_dependency_modifiedby";
 			public const string workflow_dependency_modifiedonbehalfby = "workflow_dependency_modifiedonbehalfby";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -63,6 +62,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "workflowdependency";
+		
+		public const string PrimaryIdAttribute = "workflowdependencyid";
 		
 		public const int EntityTypeCode = 4704;
 		

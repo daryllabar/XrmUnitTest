@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum DuplicateRuleState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("duplicaterule")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class DuplicateRule : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string BaseEntityMatchCodeTable = "baseentitymatchcodetable";
 			public const string BaseEntityName = "baseentityname";
@@ -67,7 +67,6 @@ namespace DLaB.Xrm.Entities
 			public const string SystemUser_DuplicateRules = "SystemUser_DuplicateRules";
 			public const string team_DuplicateRules = "team_DuplicateRules";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -79,6 +78,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "duplicaterule";
+		
+		public const string PrimaryIdAttribute = "duplicateruleid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 4414;
 		
@@ -657,6 +660,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("DuplicateRule_DuplicateRuleConditions");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.DuplicateRuleCondition>("DuplicateRule_DuplicateRuleConditions", null, value);
 				this.OnPropertyChanged("DuplicateRule_DuplicateRuleConditions");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N DuplicateRule_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("DuplicateRule_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> DuplicateRule_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("DuplicateRule_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("DuplicateRule_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("DuplicateRule_SyncErrors", null, value);
+				this.OnPropertyChanged("DuplicateRule_SyncErrors");
 			}
 		}
 		

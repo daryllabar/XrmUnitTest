@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum ChannelAccessProfileRuleState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("channelaccessprofilerule")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ChannelAccessProfileRule : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ChannelAccessProfileRuleId = "channelaccessprofileruleid";
 			public const string Id = "channelaccessprofileruleid";
@@ -71,7 +71,6 @@ namespace DLaB.Xrm.Entities
 			public const string user_profilerule = "user_profilerule";
 			public const string workflowid_profilerule = "workflowid_profilerule";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -83,6 +82,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "channelaccessprofilerule";
+		
+		public const string PrimaryIdAttribute = "channelaccessprofileruleid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9400;
 		
@@ -152,7 +155,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the Channel Access Profile Rule Item used when synchronizing customizations for the Microsoft Dynamics CRM client for Outlook
+		/// Unique identifier of the Channel Access Profile Rule Item used when synchronizing customizations for the Microsoft Dynamics 365 client for Outlook
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("channelaccessprofileruleidunique")]
 		public System.Nullable<System.Guid> ChannelAccessProfileRuleIdUnique
@@ -634,6 +637,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("WorkflowId");
 				this.SetAttributeValue("workflowid", value);
 				this.OnPropertyChanged("WorkflowId");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N ChannelAccessProfileRule_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ChannelAccessProfileRule_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> ChannelAccessProfileRule_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ChannelAccessProfileRule_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ChannelAccessProfileRule_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ChannelAccessProfileRule_SyncErrors", null, value);
+				this.OnPropertyChanged("ChannelAccessProfileRule_SyncErrors");
 			}
 		}
 		

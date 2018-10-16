@@ -11,9 +11,12 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum CampaignResponseState
 	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Scheduled = 3,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Open = 0,
@@ -30,11 +33,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("campaignresponse")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class CampaignResponse : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ActivityAdditionalParams = "activityadditionalparams";
 			public const string ActivityId = "activityid";
@@ -43,27 +46,42 @@ namespace DLaB.Xrm.Entities
 			public const string ActualDurationMinutes = "actualdurationminutes";
 			public const string ActualEnd = "actualend";
 			public const string ActualStart = "actualstart";
+			public const string Bcc = "bcc";
 			public const string Category = "category";
+			public const string Cc = "cc";
 			public const string ChannelTypeCode = "channeltypecode";
+			public const string Community = "community";
 			public const string CompanyName = "companyname";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string Customer = "customer";
+			public const string Customers = "customers";
+			public const string DeliveryLastAttemptedOn = "deliverylastattemptedon";
+			public const string DeliveryPriorityCode = "deliveryprioritycode";
 			public const string Description = "description";
 			public const string EMailAddress = "emailaddress";
+			public const string ExchangeItemId = "exchangeitemid";
 			public const string ExchangeRate = "exchangerate";
+			public const string ExchangeWebLink = "exchangeweblink";
 			public const string Fax = "fax";
 			public const string FirstName = "firstname";
 			public const string From = "from";
 			public const string ImportSequenceNumber = "importsequencenumber";
+			public const string InstanceTypeCode = "instancetypecode";
 			public const string IsBilled = "isbilled";
+			public const string IsMapiPrivate = "ismapiprivate";
 			public const string IsRegularActivity = "isregularactivity";
 			public const string IsWorkflowCreated = "isworkflowcreated";
 			public const string LastName = "lastname";
+			public const string LastOnHoldTime = "lastonholdtime";
+			public const string LeftVoiceMail = "leftvoicemail";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string OnHoldTime = "onholdtime";
+			public const string OptionalAttendees = "optionalattendees";
+			public const string Organizer = "organizer";
 			public const string OriginatingActivityId = "originatingactivityid";
 			public const string OverriddenCreatedOn = "overriddencreatedon";
 			public const string OwnerId = "ownerid";
@@ -71,16 +89,26 @@ namespace DLaB.Xrm.Entities
 			public const string OwningTeam = "owningteam";
 			public const string OwningUser = "owninguser";
 			public const string Partner = "partner";
+			public const string Partners = "partners";
+			public const string PostponeActivityProcessingUntil = "postponeactivityprocessinguntil";
 			public const string PriorityCode = "prioritycode";
 			public const string ProcessId = "processid";
 			public const string PromotionCodeName = "promotioncodename";
 			public const string ReceivedOn = "receivedon";
 			public const string RegardingObjectId = "regardingobjectid";
+			public const string RequiredAttendees = "requiredattendees";
+			public const string Resources = "resources";
 			public const string ResponseCode = "responsecode";
 			public const string ScheduledDurationMinutes = "scheduleddurationminutes";
 			public const string ScheduledEnd = "scheduledend";
 			public const string ScheduledStart = "scheduledstart";
+			public const string SenderMailboxId = "sendermailboxid";
+			public const string SentOn = "senton";
+			public const string SeriesId = "seriesid";
 			public const string ServiceId = "serviceid";
+			public const string SLAId = "slaid";
+			public const string SLAInvokedId = "slainvokedid";
+			public const string SortDate = "sortdate";
 			public const string StageId = "stageid";
 			public const string StateCode = "statecode";
 			public const string StatusCode = "statuscode";
@@ -88,6 +116,7 @@ namespace DLaB.Xrm.Entities
 			public const string Subject = "subject";
 			public const string Telephone = "telephone";
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
+			public const string To = "to";
 			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string TraversedPath = "traversedpath";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
@@ -95,14 +124,35 @@ namespace DLaB.Xrm.Entities
 			public const string YomiCompanyName = "yomicompanyname";
 			public const string YomiFirstName = "yomifirstname";
 			public const string YomiLastName = "yomilastname";
+			public const string account_CampaignResponses = "account_CampaignResponses";
 			public const string activity_campaignresponse = "activity_campaignresponse";
 			public const string activity_pointer_campaignresponse = "activity_pointer_campaignresponse";
 			public const string appointment_campaignresponse = "appointment_campaignresponse";
+			public const string bookableresourcebooking_CampaignResponses = "bookableresourcebooking_CampaignResponses";
+			public const string bookableresourcebookingheader_CampaignResponses = "bookableresourcebookingheader_CampaignResponses";
 			public const string BulkOperation_CampaignResponse = "BulkOperation_CampaignResponse";
 			public const string business_unit_campaignresponse_activities = "business_unit_campaignresponse_activities";
 			public const string Campaign_CampaignResponses = "Campaign_CampaignResponses";
+			public const string campaignactivity_CampaignResponses = "campaignactivity_CampaignResponses";
+			public const string CampaignResponse_BulkOperations = "CampaignResponse_BulkOperations";
+			public const string CampaignResponse_CampaignActivities = "CampaignResponse_CampaignActivities";
+			public const string CampaignResponse_IncidentResolutions = "CampaignResponse_IncidentResolutions";
+			public const string campaignresponse_mailbox_sendermailboxid = "campaignresponse_mailbox_sendermailboxid";
+			public const string CampaignResponse_msdyn_approvals = "CampaignResponse_msdyn_approvals";
+			public const string CampaignResponse_msdyn_bookingalerts = "CampaignResponse_msdyn_bookingalerts";
+			public const string CampaignResponse_OpportunityCloses = "CampaignResponse_OpportunityCloses";
+			public const string CampaignResponse_OrderCloses = "CampaignResponse_OrderCloses";
+			public const string CampaignResponse_QuoteCloses = "CampaignResponse_QuoteCloses";
+			public const string CampaignResponse_ServiceAppointments = "CampaignResponse_ServiceAppointments";
+			public const string campaignresponse_sla_slaid = "campaignresponse_sla_slaid";
+			public const string campaignresponse_sla_slainvokedid = "campaignresponse_sla_slainvokedid";
+			public const string contact_CampaignResponses = "contact_CampaignResponses";
 			public const string email_campaignresponse = "email_campaignresponse";
 			public const string fax_campaignresponse = "fax_campaignresponse";
+			public const string interactionforemail_CampaignResponses = "interactionforemail_CampaignResponses";
+			public const string knowledgearticle_CampaignResponses = "knowledgearticle_CampaignResponses";
+			public const string knowledgebaserecord_CampaignResponses = "knowledgebaserecord_CampaignResponses";
+			public const string lead_CampaignResponses = "lead_CampaignResponses";
 			public const string letter_campaignresponse = "letter_campaignresponse";
 			public const string lk_campaignresponse_createdby = "lk_campaignresponse_createdby";
 			public const string lk_campaignresponse_createdonbehalfby = "lk_campaignresponse_createdonbehalfby";
@@ -115,7 +165,6 @@ namespace DLaB.Xrm.Entities
 			public const string TransactionCurrency_CampaignResponse = "TransactionCurrency_CampaignResponse";
 			public const string user_campaignresponse = "user_campaignresponse";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -127,6 +176,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "campaignresponse";
+		
+		public const string PrimaryIdAttribute = "activityid";
+		
+		public const string PrimaryNameAttribute = "subject";
 		
 		public const int EntityTypeCode = 4401;
 		
@@ -173,7 +226,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the campaign response.
+		/// activity_pointer_campaignresponse
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("activityid")]
 		public System.Nullable<System.Guid> ActivityId
@@ -289,6 +342,42 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Blind Carbon-copy (bcc) recipients of the activity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("bcc")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActivityParty> Bcc
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				Microsoft.Xrm.Sdk.EntityCollection collection = this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityCollection>("bcc");
+				if (((collection != null) 
+							&& (collection.Entities != null)))
+				{
+					return System.Linq.Enumerable.Cast<DLaB.Xrm.Entities.ActivityParty>(collection.Entities);
+				}
+				else
+				{
+					return null;
+				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Bcc");
+				if ((value == null))
+				{
+					this.SetAttributeValue("bcc", value);
+				}
+				else
+				{
+					this.SetAttributeValue("bcc", new Microsoft.Xrm.Sdk.EntityCollection(new System.Collections.Generic.List<Microsoft.Xrm.Sdk.Entity>(value)));
+				}
+				this.OnPropertyChanged("Bcc");
+			}
+		}
+		
+		/// <summary>
 		/// Type a category to identify the campaign response type, such as new business development or customer retention, to tie the campaign response to a business group or function.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("category")]
@@ -305,6 +394,42 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Category");
 				this.SetAttributeValue("category", value);
 				this.OnPropertyChanged("Category");
+			}
+		}
+		
+		/// <summary>
+		/// Carbon-copy (cc) recipients of the activity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cc")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActivityParty> Cc
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				Microsoft.Xrm.Sdk.EntityCollection collection = this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityCollection>("cc");
+				if (((collection != null) 
+							&& (collection.Entities != null)))
+				{
+					return System.Linq.Enumerable.Cast<DLaB.Xrm.Entities.ActivityParty>(collection.Entities);
+				}
+				else
+				{
+					return null;
+				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Cc");
+				if ((value == null))
+				{
+					this.SetAttributeValue("cc", value);
+				}
+				else
+				{
+					this.SetAttributeValue("cc", new Microsoft.Xrm.Sdk.EntityCollection(new System.Collections.Generic.List<Microsoft.Xrm.Sdk.Entity>(value)));
+				}
+				this.OnPropertyChanged("Cc");
 			}
 		}
 		
@@ -329,6 +454,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Shows how contact about the social activity originated, such as from Twitter or Facebook. This field is read-only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("community")]
+		public Microsoft.Xrm.Sdk.OptionSetValue Community
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("community");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Community");
+				this.SetAttributeValue("community", value);
+				this.OnPropertyChanged("Community");
+			}
+		}
+		
+		/// <summary>
 		/// Type the name of the company if the campaign response was received from a new prospect or customer.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("companyname")]
@@ -349,7 +494,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows who created the record.
+		/// lk_campaignresponse_createdby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
@@ -369,7 +514,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -389,7 +534,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows who created the record on behalf of another user.
+		/// lk_campaignresponse_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
@@ -445,6 +590,75 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Customer with which the activity is associated.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("customers")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActivityParty> Customers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				Microsoft.Xrm.Sdk.EntityCollection collection = this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityCollection>("customers");
+				if (((collection != null) 
+							&& (collection.Entities != null)))
+				{
+					return System.Linq.Enumerable.Cast<DLaB.Xrm.Entities.ActivityParty>(collection.Entities);
+				}
+				else
+				{
+					return null;
+				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Customers");
+				if ((value == null))
+				{
+					this.SetAttributeValue("customers", value);
+				}
+				else
+				{
+					this.SetAttributeValue("customers", new Microsoft.Xrm.Sdk.EntityCollection(new System.Collections.Generic.List<Microsoft.Xrm.Sdk.Entity>(value)));
+				}
+				this.OnPropertyChanged("Customers");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the delivery of the activity was last attempted.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("deliverylastattemptedon")]
+		public System.Nullable<System.DateTime> DeliveryLastAttemptedOn
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("deliverylastattemptedon");
+			}
+		}
+		
+		/// <summary>
+		/// Priority of delivery of the activity to the email server.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("deliveryprioritycode")]
+		public Microsoft.Xrm.Sdk.OptionSetValue DeliveryPriorityCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("deliveryprioritycode");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("DeliveryPriorityCode");
+				this.SetAttributeValue("deliveryprioritycode", value);
+				this.OnPropertyChanged("DeliveryPriorityCode");
+			}
+		}
+		
+		/// <summary>
 		/// Type additional information to describe the campaign response, such as key discussion points or objectives.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("description")]
@@ -485,6 +699,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// The message id of activity which is returned from Exchange Server.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("exchangeitemid")]
+		public string ExchangeItemId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("exchangeitemid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ExchangeItemId");
+				this.SetAttributeValue("exchangeitemid", value);
+				this.OnPropertyChanged("ExchangeItemId");
+			}
+		}
+		
+		/// <summary>
 		/// Shows the conversion rate of the record's currency. The exchange rate is used to convert all money fields in the record from the local currency to the system's default currency.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("exchangerate")]
@@ -494,6 +728,26 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<decimal>>("exchangerate");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the web link of Activity of type email.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("exchangeweblink")]
+		public string ExchangeWebLink
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("exchangeweblink");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ExchangeWebLink");
+				this.SetAttributeValue("exchangeweblink", value);
+				this.OnPropertyChanged("ExchangeWebLink");
 			}
 		}
 		
@@ -594,6 +848,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Type of instance of a recurring series.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("instancetypecode")]
+		public Microsoft.Xrm.Sdk.OptionSetValue InstanceTypeCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("instancetypecode");
+			}
+		}
+		
+		/// <summary>
 		/// Specifies whether the campaign response was billed as part of resolving a case.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isbilled")]
@@ -610,6 +877,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("IsBilled");
 				this.SetAttributeValue("isbilled", value);
 				this.OnPropertyChanged("IsBilled");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ismapiprivate")]
+		public System.Nullable<bool> IsMapiPrivate
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("ismapiprivate");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IsMapiPrivate");
+				this.SetAttributeValue("ismapiprivate", value);
+				this.OnPropertyChanged("IsMapiPrivate");
 			}
 		}
 		
@@ -667,7 +954,47 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows who last updated the record.
+		/// Contains the date and time stamp of the last on hold time.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lastonholdtime")]
+		public System.Nullable<System.DateTime> LastOnHoldTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("lastonholdtime");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("LastOnHoldTime");
+				this.SetAttributeValue("lastonholdtime", value);
+				this.OnPropertyChanged("LastOnHoldTime");
+			}
+		}
+		
+		/// <summary>
+		/// Left the voice mail
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("leftvoicemail")]
+		public System.Nullable<bool> LeftVoiceMail
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("leftvoicemail");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("LeftVoiceMail");
+				this.SetAttributeValue("leftvoicemail", value);
+				this.OnPropertyChanged("LeftVoiceMail");
+			}
+		}
+		
+		/// <summary>
+		/// lk_campaignresponse_modifiedby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
@@ -687,7 +1014,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -707,7 +1034,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows who last updated the record on behalf of another user.
+		/// lk_campaignresponse_modifiedonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
@@ -727,7 +1054,92 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the phone call, email, fax, letter, or appointment activity that led the prospect or customer to respond to the campaign.
+		/// Shows how long, in minutes, that the record was on hold.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("onholdtime")]
+		public System.Nullable<int> OnHoldTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("onholdtime");
+			}
+		}
+		
+		/// <summary>
+		/// List of optional attendees for the activity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("optionalattendees")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActivityParty> OptionalAttendees
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				Microsoft.Xrm.Sdk.EntityCollection collection = this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityCollection>("optionalattendees");
+				if (((collection != null) 
+							&& (collection.Entities != null)))
+				{
+					return System.Linq.Enumerable.Cast<DLaB.Xrm.Entities.ActivityParty>(collection.Entities);
+				}
+				else
+				{
+					return null;
+				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OptionalAttendees");
+				if ((value == null))
+				{
+					this.SetAttributeValue("optionalattendees", value);
+				}
+				else
+				{
+					this.SetAttributeValue("optionalattendees", new Microsoft.Xrm.Sdk.EntityCollection(new System.Collections.Generic.List<Microsoft.Xrm.Sdk.Entity>(value)));
+				}
+				this.OnPropertyChanged("OptionalAttendees");
+			}
+		}
+		
+		/// <summary>
+		/// Person who organized the activity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("organizer")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActivityParty> Organizer
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				Microsoft.Xrm.Sdk.EntityCollection collection = this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityCollection>("organizer");
+				if (((collection != null) 
+							&& (collection.Entities != null)))
+				{
+					return System.Linq.Enumerable.Cast<DLaB.Xrm.Entities.ActivityParty>(collection.Entities);
+				}
+				else
+				{
+					return null;
+				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Organizer");
+				if ((value == null))
+				{
+					this.SetAttributeValue("organizer", value);
+				}
+				else
+				{
+					this.SetAttributeValue("organizer", new Microsoft.Xrm.Sdk.EntityCollection(new System.Collections.Generic.List<Microsoft.Xrm.Sdk.Entity>(value)));
+				}
+				this.OnPropertyChanged("Organizer");
+			}
+		}
+		
+		/// <summary>
+		/// recurringappointmentmaster_campaignresponse
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("originatingactivityid")]
 		public Microsoft.Xrm.Sdk.EntityReference OriginatingActivityId
@@ -787,7 +1199,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier for the business unit that owns the campaign response.
+		/// business_unit_campaignresponse_activities
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
 		public Microsoft.Xrm.Sdk.EntityReference OwningBusinessUnit
@@ -807,7 +1219,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the team who owns the campaign response.
+		/// team_campaignresponse
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
 		public Microsoft.Xrm.Sdk.EntityReference OwningTeam
@@ -827,7 +1239,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the user who owns the campaign response.
+		/// user_campaignresponse
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
 		public Microsoft.Xrm.Sdk.EntityReference OwningUser
@@ -879,6 +1291,55 @@ namespace DLaB.Xrm.Entities
 					this.SetAttributeValue("partner", new Microsoft.Xrm.Sdk.EntityCollection(new System.Collections.Generic.List<Microsoft.Xrm.Sdk.Entity>(value)));
 				}
 				this.OnPropertyChanged("Partner");
+			}
+		}
+		
+		/// <summary>
+		/// Outsource vendor with which activity is associated.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("partners")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActivityParty> Partners
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				Microsoft.Xrm.Sdk.EntityCollection collection = this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityCollection>("partners");
+				if (((collection != null) 
+							&& (collection.Entities != null)))
+				{
+					return System.Linq.Enumerable.Cast<DLaB.Xrm.Entities.ActivityParty>(collection.Entities);
+				}
+				else
+				{
+					return null;
+				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Partners");
+				if ((value == null))
+				{
+					this.SetAttributeValue("partners", value);
+				}
+				else
+				{
+					this.SetAttributeValue("partners", new Microsoft.Xrm.Sdk.EntityCollection(new System.Collections.Generic.List<Microsoft.Xrm.Sdk.Entity>(value)));
+				}
+				this.OnPropertyChanged("Partners");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("postponeactivityprocessinguntil")]
+		public System.Nullable<System.DateTime> PostponeActivityProcessingUntil
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("postponeactivityprocessinguntil");
 			}
 		}
 		
@@ -963,7 +1424,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the parent campaign so that the campaign's response rate is tracked correctly.
+		/// Campaign_CampaignResponses
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
 		public Microsoft.Xrm.Sdk.EntityReference RegardingObjectId
@@ -979,6 +1440,78 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("RegardingObjectId");
 				this.SetAttributeValue("regardingobjectid", value);
 				this.OnPropertyChanged("RegardingObjectId");
+			}
+		}
+		
+		/// <summary>
+		/// List of required attendees for the activity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("requiredattendees")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActivityParty> RequiredAttendees
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				Microsoft.Xrm.Sdk.EntityCollection collection = this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityCollection>("requiredattendees");
+				if (((collection != null) 
+							&& (collection.Entities != null)))
+				{
+					return System.Linq.Enumerable.Cast<DLaB.Xrm.Entities.ActivityParty>(collection.Entities);
+				}
+				else
+				{
+					return null;
+				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("RequiredAttendees");
+				if ((value == null))
+				{
+					this.SetAttributeValue("requiredattendees", value);
+				}
+				else
+				{
+					this.SetAttributeValue("requiredattendees", new Microsoft.Xrm.Sdk.EntityCollection(new System.Collections.Generic.List<Microsoft.Xrm.Sdk.Entity>(value)));
+				}
+				this.OnPropertyChanged("RequiredAttendees");
+			}
+		}
+		
+		/// <summary>
+		/// Users or facility/equipment that are required for the activity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("resources")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActivityParty> Resources
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				Microsoft.Xrm.Sdk.EntityCollection collection = this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityCollection>("resources");
+				if (((collection != null) 
+							&& (collection.Entities != null)))
+				{
+					return System.Linq.Enumerable.Cast<DLaB.Xrm.Entities.ActivityParty>(collection.Entities);
+				}
+				else
+				{
+					return null;
+				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Resources");
+				if ((value == null))
+				{
+					this.SetAttributeValue("resources", value);
+				}
+				else
+				{
+					this.SetAttributeValue("resources", new Microsoft.Xrm.Sdk.EntityCollection(new System.Collections.Generic.List<Microsoft.Xrm.Sdk.Entity>(value)));
+				}
+				this.OnPropertyChanged("Resources");
 			}
 		}
 		
@@ -1056,6 +1589,45 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Unique identifier of the mailbox associated with the sender of the email message.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sendermailboxid")]
+		public Microsoft.Xrm.Sdk.EntityReference SenderMailboxId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("sendermailboxid");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the activity was sent.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("senton")]
+		public System.Nullable<System.DateTime> SentOn
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("senton");
+			}
+		}
+		
+		/// <summary>
+		/// Uniqueidentifier specifying the id of recurring series of an instance.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("seriesid")]
+		public System.Nullable<System.Guid> SeriesId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("seriesid");
+			}
+		}
+		
+		/// <summary>
 		/// Unique identifier for the associated service.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("serviceid")]
@@ -1076,7 +1648,60 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the ID of the stage.
+		/// Choose the service level agreement (SLA) that you want to apply to the case record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slaid")]
+		public Microsoft.Xrm.Sdk.EntityReference SLAId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("slaid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SLAId");
+				this.SetAttributeValue("slaid", value);
+				this.OnPropertyChanged("SLAId");
+			}
+		}
+		
+		/// <summary>
+		/// Last SLA that was applied to this case. This field is for internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slainvokedid")]
+		public Microsoft.Xrm.Sdk.EntityReference SLAInvokedId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("slainvokedid");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the date and time by which the activities are sorted.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sortdate")]
+		public System.Nullable<System.DateTime> SortDate
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("sortdate");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SortDate");
+				this.SetAttributeValue("sortdate", value);
+				this.OnPropertyChanged("SortDate");
+			}
+		}
+		
+		/// <summary>
+		/// processstage_campaignresponses
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("stageid")]
 		public System.Nullable<System.Guid> StageId
@@ -1231,7 +1856,43 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the local currency for the record to make sure budgets are reported in the correct currency.
+		/// Person who is the receiver of the activity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("to")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActivityParty> To
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				Microsoft.Xrm.Sdk.EntityCollection collection = this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityCollection>("to");
+				if (((collection != null) 
+							&& (collection.Entities != null)))
+				{
+					return System.Linq.Enumerable.Cast<DLaB.Xrm.Entities.ActivityParty>(collection.Entities);
+				}
+				else
+				{
+					return null;
+				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("To");
+				if ((value == null))
+				{
+					this.SetAttributeValue("to", value);
+				}
+				else
+				{
+					this.SetAttributeValue("to", new Microsoft.Xrm.Sdk.EntityCollection(new System.Collections.Generic.List<Microsoft.Xrm.Sdk.Entity>(value)));
+				}
+				this.OnPropertyChanged("To");
+			}
+		}
+		
+		/// <summary>
+		/// TransactionCurrency_CampaignResponse
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("transactioncurrencyid")]
 		public Microsoft.Xrm.Sdk.EntityReference TransactionCurrencyId
@@ -1504,6 +2165,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N campaignresponse_MailboxTrackingFolders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("campaignresponse_MailboxTrackingFolders")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> campaignresponse_MailboxTrackingFolders
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("campaignresponse_MailboxTrackingFolders", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("campaignresponse_MailboxTrackingFolders");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("campaignresponse_MailboxTrackingFolders", null, value);
+				this.OnPropertyChanged("campaignresponse_MailboxTrackingFolders");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N campaignresponse_principalobjectattributeaccess
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("campaignresponse_principalobjectattributeaccess")]
@@ -1564,6 +2245,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N CampaignResponse_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("CampaignResponse_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> CampaignResponse_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("CampaignResponse_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CampaignResponse_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("CampaignResponse_SyncErrors", null, value);
+				this.OnPropertyChanged("CampaignResponse_SyncErrors");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N userentityinstancedata_campaignresponse
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("userentityinstancedata_campaignresponse")]
@@ -1580,6 +2281,27 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("userentityinstancedata_campaignresponse");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.UserEntityInstanceData>("userentityinstancedata_campaignresponse", null, value);
 				this.OnPropertyChanged("userentityinstancedata_campaignresponse");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 account_CampaignResponses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_CampaignResponses")]
+		public DLaB.Xrm.Entities.Account account_CampaignResponses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Account>("account_CampaignResponses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("account_CampaignResponses");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Account>("account_CampaignResponses", null, value);
+				this.OnPropertyChanged("account_CampaignResponses");
 			}
 		}
 		
@@ -1647,6 +2369,48 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 bookableresourcebooking_CampaignResponses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebooking_CampaignResponses")]
+		public DLaB.Xrm.Entities.BookableResourceBooking bookableresourcebooking_CampaignResponses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBooking>("bookableresourcebooking_CampaignResponses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bookableresourcebooking_CampaignResponses");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBooking>("bookableresourcebooking_CampaignResponses", null, value);
+				this.OnPropertyChanged("bookableresourcebooking_CampaignResponses");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcebookingheader_CampaignResponses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebookingheader_CampaignResponses")]
+		public DLaB.Xrm.Entities.BookableResourceBookingHeader bookableresourcebookingheader_CampaignResponses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBookingHeader>("bookableresourcebookingheader_CampaignResponses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bookableresourcebookingheader_CampaignResponses");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBookingHeader>("bookableresourcebookingheader_CampaignResponses", null, value);
+				this.OnPropertyChanged("bookableresourcebookingheader_CampaignResponses");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 BulkOperation_CampaignResponse
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1710,6 +2474,286 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 campaignactivity_CampaignResponses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("campaignactivity_CampaignResponses")]
+		public DLaB.Xrm.Entities.CampaignActivity campaignactivity_CampaignResponses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.CampaignActivity>("campaignactivity_CampaignResponses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("campaignactivity_CampaignResponses");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.CampaignActivity>("campaignactivity_CampaignResponses", null, value);
+				this.OnPropertyChanged("campaignactivity_CampaignResponses");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 CampaignResponse_BulkOperations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("originatingactivityid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("CampaignResponse_BulkOperations")]
+		public DLaB.Xrm.Entities.BulkOperation CampaignResponse_BulkOperations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BulkOperation>("CampaignResponse_BulkOperations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CampaignResponse_BulkOperations");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BulkOperation>("CampaignResponse_BulkOperations", null, value);
+				this.OnPropertyChanged("CampaignResponse_BulkOperations");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 CampaignResponse_CampaignActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("originatingactivityid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("CampaignResponse_CampaignActivities")]
+		public DLaB.Xrm.Entities.CampaignActivity CampaignResponse_CampaignActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.CampaignActivity>("CampaignResponse_CampaignActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CampaignResponse_CampaignActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.CampaignActivity>("CampaignResponse_CampaignActivities", null, value);
+				this.OnPropertyChanged("CampaignResponse_CampaignActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 CampaignResponse_IncidentResolutions
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("originatingactivityid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("CampaignResponse_IncidentResolutions")]
+		public DLaB.Xrm.Entities.IncidentResolution CampaignResponse_IncidentResolutions
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.IncidentResolution>("CampaignResponse_IncidentResolutions", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CampaignResponse_IncidentResolutions");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.IncidentResolution>("CampaignResponse_IncidentResolutions", null, value);
+				this.OnPropertyChanged("CampaignResponse_IncidentResolutions");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 campaignresponse_mailbox_sendermailboxid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sendermailboxid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("campaignresponse_mailbox_sendermailboxid")]
+		public DLaB.Xrm.Entities.Mailbox campaignresponse_mailbox_sendermailboxid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Mailbox>("campaignresponse_mailbox_sendermailboxid", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 CampaignResponse_msdyn_approvals
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("originatingactivityid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("CampaignResponse_msdyn_approvals")]
+		public DLaB.Xrm.Entities.msdyn_approval CampaignResponse_msdyn_approvals
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_approval>("CampaignResponse_msdyn_approvals", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CampaignResponse_msdyn_approvals");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_approval>("CampaignResponse_msdyn_approvals", null, value);
+				this.OnPropertyChanged("CampaignResponse_msdyn_approvals");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 CampaignResponse_msdyn_bookingalerts
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("originatingactivityid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("CampaignResponse_msdyn_bookingalerts")]
+		public DLaB.Xrm.Entities.msdyn_bookingalert CampaignResponse_msdyn_bookingalerts
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalert>("CampaignResponse_msdyn_bookingalerts", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CampaignResponse_msdyn_bookingalerts");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalert>("CampaignResponse_msdyn_bookingalerts", null, value);
+				this.OnPropertyChanged("CampaignResponse_msdyn_bookingalerts");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 CampaignResponse_OpportunityCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("originatingactivityid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("CampaignResponse_OpportunityCloses")]
+		public DLaB.Xrm.Entities.OpportunityClose CampaignResponse_OpportunityCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.OpportunityClose>("CampaignResponse_OpportunityCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CampaignResponse_OpportunityCloses");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.OpportunityClose>("CampaignResponse_OpportunityCloses", null, value);
+				this.OnPropertyChanged("CampaignResponse_OpportunityCloses");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 CampaignResponse_OrderCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("originatingactivityid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("CampaignResponse_OrderCloses")]
+		public DLaB.Xrm.Entities.OrderClose CampaignResponse_OrderCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.OrderClose>("CampaignResponse_OrderCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CampaignResponse_OrderCloses");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.OrderClose>("CampaignResponse_OrderCloses", null, value);
+				this.OnPropertyChanged("CampaignResponse_OrderCloses");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 CampaignResponse_QuoteCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("originatingactivityid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("CampaignResponse_QuoteCloses")]
+		public DLaB.Xrm.Entities.QuoteClose CampaignResponse_QuoteCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.QuoteClose>("CampaignResponse_QuoteCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CampaignResponse_QuoteCloses");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.QuoteClose>("CampaignResponse_QuoteCloses", null, value);
+				this.OnPropertyChanged("CampaignResponse_QuoteCloses");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 CampaignResponse_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("originatingactivityid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("CampaignResponse_ServiceAppointments")]
+		public DLaB.Xrm.Entities.ServiceAppointment CampaignResponse_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ServiceAppointment>("CampaignResponse_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CampaignResponse_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.ServiceAppointment>("CampaignResponse_ServiceAppointments", null, value);
+				this.OnPropertyChanged("CampaignResponse_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 campaignresponse_sla_slaid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slaid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("campaignresponse_sla_slaid")]
+		public DLaB.Xrm.Entities.SLA campaignresponse_sla_slaid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SLA>("campaignresponse_sla_slaid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("campaignresponse_sla_slaid");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SLA>("campaignresponse_sla_slaid", null, value);
+				this.OnPropertyChanged("campaignresponse_sla_slaid");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 campaignresponse_sla_slainvokedid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slainvokedid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("campaignresponse_sla_slainvokedid")]
+		public DLaB.Xrm.Entities.SLA campaignresponse_sla_slainvokedid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SLA>("campaignresponse_sla_slainvokedid", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 contact_CampaignResponses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("contact_CampaignResponses")]
+		public DLaB.Xrm.Entities.Contact contact_CampaignResponses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Contact>("contact_CampaignResponses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("contact_CampaignResponses");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Contact>("contact_CampaignResponses", null, value);
+				this.OnPropertyChanged("contact_CampaignResponses");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 email_campaignresponse
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("originatingactivityid")]
@@ -1748,6 +2792,90 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("fax_campaignresponse");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.Fax>("fax_campaignresponse", null, value);
 				this.OnPropertyChanged("fax_campaignresponse");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 interactionforemail_CampaignResponses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("interactionforemail_CampaignResponses")]
+		public DLaB.Xrm.Entities.InteractionForEmail interactionforemail_CampaignResponses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.InteractionForEmail>("interactionforemail_CampaignResponses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("interactionforemail_CampaignResponses");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.InteractionForEmail>("interactionforemail_CampaignResponses", null, value);
+				this.OnPropertyChanged("interactionforemail_CampaignResponses");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 knowledgearticle_CampaignResponses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_CampaignResponses")]
+		public DLaB.Xrm.Entities.KnowledgeArticle knowledgearticle_CampaignResponses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("knowledgearticle_CampaignResponses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticle_CampaignResponses");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("knowledgearticle_CampaignResponses", null, value);
+				this.OnPropertyChanged("knowledgearticle_CampaignResponses");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 knowledgebaserecord_CampaignResponses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgebaserecord_CampaignResponses")]
+		public DLaB.Xrm.Entities.KnowledgeBaseRecord knowledgebaserecord_CampaignResponses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeBaseRecord>("knowledgebaserecord_CampaignResponses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgebaserecord_CampaignResponses");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeBaseRecord>("knowledgebaserecord_CampaignResponses", null, value);
+				this.OnPropertyChanged("knowledgebaserecord_CampaignResponses");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lead_CampaignResponses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lead_CampaignResponses")]
+		public DLaB.Xrm.Entities.Lead lead_CampaignResponses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Lead>("lead_CampaignResponses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lead_CampaignResponses");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Lead>("lead_CampaignResponses", null, value);
+				this.OnPropertyChanged("lead_CampaignResponses");
 			}
 		}
 		
@@ -2036,6 +3164,46 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				ChannelTypeCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("community")]
+		public virtual SocialProfile_Community? CommunityEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((SocialProfile_Community?)(EntityOptionSetEnum.GetEnum(this, "community")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				Community = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("deliveryprioritycode")]
+		public virtual activitypointer_DeliveryPriorityCode? DeliveryPriorityCodeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((activitypointer_DeliveryPriorityCode?)(EntityOptionSetEnum.GetEnum(this, "deliveryprioritycode")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				DeliveryPriorityCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("instancetypecode")]
+		public virtual CampaignResponse_InstanceTypeCode? InstanceTypeCodeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((CampaignResponse_InstanceTypeCode?)(EntityOptionSetEnum.GetEnum(this, "instancetypecode")));
 			}
 		}
 		

@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("socialinsightsconfiguration")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class SocialInsightsConfiguration : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ControlId = "controlid";
 			public const string CreatedBy = "createdby";
@@ -44,7 +44,6 @@ namespace DLaB.Xrm.Entities
 			public const string socialinsightsconfiguration_systemform = "socialinsightsconfiguration_systemform";
 			public const string socialinsightsconfiguration_userform = "socialinsightsconfiguration_userform";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -56,6 +55,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "socialinsightsconfiguration";
+		
+		public const string PrimaryIdAttribute = "socialinsightsconfigurationid";
 		
 		public const int EntityTypeCode = 1300;
 		

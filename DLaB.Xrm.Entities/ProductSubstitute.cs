@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum ProductSubstituteState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("productsubstitute")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ProductSubstitute : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
@@ -42,14 +42,15 @@ namespace DLaB.Xrm.Entities
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string Name = "name";
 			public const string OrganizationId = "organizationid";
 			public const string OverriddenCreatedOn = "overriddencreatedon";
 			public const string ProductId = "productid";
 			public const string ProductSubstituteId = "productsubstituteid";
 			public const string Id = "productsubstituteid";
 			public const string SalesRelationshipType = "salesrelationshiptype";
-			public const string statecode = "statecode";
-			public const string statuscode = "statuscode";
+			public const string StateCode = "statecode";
+			public const string StatusCode = "statuscode";
 			public const string SubstitutedProductId = "substitutedproductid";
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string TransactionCurrencyId = "transactioncurrencyid";
@@ -64,7 +65,6 @@ namespace DLaB.Xrm.Entities
 			public const string product_ProductSubstitute_substitutedproductid = "product_ProductSubstitute_substitutedproductid";
 			public const string transactioncurrency_ProductSubstitute = "transactioncurrency_ProductSubstitute";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -76,6 +76,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "productsubstitute";
+		
+		public const string PrimaryIdAttribute = "productsubstituteid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 1028;
 		
@@ -275,7 +279,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the organization associated with the record.
+		/// name
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("name")]
+		public string Name
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("name");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Name");
+				this.SetAttributeValue("name", value);
+				this.OnPropertyChanged("Name");
+			}
+		}
+		
+		/// <summary>
+		/// organization_ProductSubstitute
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("organizationid")]
 		public Microsoft.Xrm.Sdk.EntityReference OrganizationId
@@ -308,7 +332,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the product that the relationship is defined for.
+		/// product_ProductSubstitute_productid
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("productid")]
 		public Microsoft.Xrm.Sdk.EntityReference ProductId
@@ -394,7 +418,7 @@ namespace DLaB.Xrm.Entities
 		/// Select the product relationship's status.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
-		public System.Nullable<DLaB.Xrm.Entities.ProductSubstituteState> statecode
+		public System.Nullable<DLaB.Xrm.Entities.ProductSubstituteState> StateCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -415,7 +439,7 @@ namespace DLaB.Xrm.Entities
 		/// Shows whether the product relationship is active or inactive.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public Microsoft.Xrm.Sdk.OptionSetValue statuscode
+		public Microsoft.Xrm.Sdk.OptionSetValue StatusCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -425,14 +449,14 @@ namespace DLaB.Xrm.Entities
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("statuscode");
+				this.OnPropertyChanging("StatusCode");
 				this.SetAttributeValue("statuscode", value);
-				this.OnPropertyChanged("statuscode");
+				this.OnPropertyChanged("StatusCode");
 			}
 		}
 		
 		/// <summary>
-		/// Select the related product that the relationship needs to be defined for.
+		/// product_ProductSubstitute_substitutedproductid
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("substitutedproductid")]
 		public Microsoft.Xrm.Sdk.EntityReference SubstitutedProductId
@@ -472,7 +496,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the currency associated with the record.
+		/// transactioncurrency_ProductSubstitute
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("transactioncurrencyid")]
 		public Microsoft.Xrm.Sdk.EntityReference TransactionCurrencyId
@@ -565,6 +589,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N productsubstitute_MailboxTrackingFolders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("productsubstitute_MailboxTrackingFolders")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> productsubstitute_MailboxTrackingFolders
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("productsubstitute_MailboxTrackingFolders", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("productsubstitute_MailboxTrackingFolders");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("productsubstitute_MailboxTrackingFolders", null, value);
+				this.OnPropertyChanged("productsubstitute_MailboxTrackingFolders");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N ProductSubstitute_PrincipalObjectAttributeAccess
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ProductSubstitute_PrincipalObjectAttributeAccess")]
@@ -601,6 +645,46 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ProductSubstitute_ProcessSession");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProcessSession>("ProductSubstitute_ProcessSession", null, value);
 				this.OnPropertyChanged("ProductSubstitute_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N ProductSubstitute_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ProductSubstitute_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> ProductSubstitute_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ProductSubstitute_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ProductSubstitute_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ProductSubstitute_SyncErrors", null, value);
+				this.OnPropertyChanged("ProductSubstitute_SyncErrors");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N productsubstitute_UserEntityInstanceDatas
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("productsubstitute_UserEntityInstanceDatas")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.UserEntityInstanceData> productsubstitute_UserEntityInstanceDatas
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.UserEntityInstanceData>("productsubstitute_UserEntityInstanceDatas", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("productsubstitute_UserEntityInstanceDatas");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.UserEntityInstanceData>("productsubstitute_UserEntityInstanceDatas", null, value);
+				this.OnPropertyChanged("productsubstitute_UserEntityInstanceDatas");
 			}
 		}
 		
@@ -838,7 +922,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual ProductSubstitute_StatusCode? statuscodeEnum
+		public virtual ProductSubstitute_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -848,7 +932,7 @@ namespace DLaB.Xrm.Entities
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				statuscode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+				StatusCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 	}

@@ -15,12 +15,13 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("customcontrol")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class CustomControl : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
+			public const string ClientJson = "clientjson";
 			public const string CompatibleDataTypes = "compatibledatatypes";
 			public const string ComponentState = "componentstate";
 			public const string CreatedBy = "createdby";
@@ -47,7 +48,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_customcontrol_modifiedby = "lk_customcontrol_modifiedby";
 			public const string lk_customcontrol_modifiedonbehalfby = "lk_customcontrol_modifiedonbehalfby";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -59,6 +59,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "customcontrol";
+		
+		public const string PrimaryIdAttribute = "customcontrolid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9753;
 		
@@ -81,6 +85,26 @@ namespace DLaB.Xrm.Entities
 			if ((this.PropertyChanging != null))
 			{
 				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// Custom control data in JSON format.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("clientjson")]
+		public string ClientJson
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("clientjson");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ClientJson");
+				this.SetAttributeValue("clientjson", value);
+				this.OnPropertyChanged("ClientJson");
 			}
 		}
 		
@@ -178,7 +202,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the Custom Control for the Microsoft Dynamics CRM.
+		/// Unique identifier of the Custom Control for the Microsoft Dynamics 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("customcontrolid")]
 		public System.Nullable<System.Guid> CustomControlId

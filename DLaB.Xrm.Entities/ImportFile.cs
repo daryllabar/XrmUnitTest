@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum ImportFileState
 	{
 		
@@ -24,11 +24,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("importfile")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ImportFile : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AdditionalHeaderRow = "additionalheaderrow";
 			public const string CompletedOn = "completedon";
@@ -38,6 +38,7 @@ namespace DLaB.Xrm.Entities
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string DataDelimiterCode = "datadelimitercode";
 			public const string EnableDuplicateDetection = "enableduplicatedetection";
+			public const string EntityKeyId = "entitykeyid";
 			public const string FailureCount = "failurecount";
 			public const string FieldDelimiterCode = "fielddelimitercode";
 			public const string FileTypeCode = "filetypecode";
@@ -73,6 +74,7 @@ namespace DLaB.Xrm.Entities
 			public const string TargetEntityName = "targetentityname";
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string TotalCount = "totalcount";
+			public const string UpsertModeCode = "upsertmodecode";
 			public const string UseSystemMap = "usesystemmap";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string BusinessUnit_ImportFiles = "BusinessUnit_ImportFiles";
@@ -87,7 +89,6 @@ namespace DLaB.Xrm.Entities
 			public const string SystemUser_ImportFiles = "SystemUser_ImportFiles";
 			public const string team_ImportFiles = "team_ImportFiles";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -99,6 +100,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "importfile";
+		
+		public const string PrimaryIdAttribute = "importfileid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 4412;
 		
@@ -191,7 +196,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -267,6 +272,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("EnableDuplicateDetection");
 				this.SetAttributeValue("enableduplicatedetection", value);
 				this.OnPropertyChanged("EnableDuplicateDetection");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the Alternate key Id
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("entitykeyid")]
+		public System.Nullable<System.Guid> EntityKeyId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("entitykeyid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("EntityKeyId");
+				this.SetAttributeValue("entitykeyid", value);
+				this.OnPropertyChanged("EntityKeyId");
 			}
 		}
 		
@@ -400,7 +425,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose a data map to match the import file and its column headers with the record types and fields in Microsoft Dynamics CRM. If the column headers in the file match the display names of the target fields in Microsoft Dynamics CRM, we import the data automatically. If not, you can manually define matches during import.
+		/// Choose a data map to match the import file and its column headers with the record types and fields in Microsoft Dynamics 365. If the column headers in the file match the display names of the target fields in Microsoft Dynamics 365, we import the data automatically. If not, you can manually define matches during import.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("importmapid")]
 		public Microsoft.Xrm.Sdk.EntityReference ImportMapId
@@ -460,7 +485,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -919,7 +944,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Tells whether an automatic system map was applied to the import file, which automatically maps the import data to the target entity in Microsoft Dynamics CRM.
+		/// Select the value which is used for identify the upsert mode. By Default, it is a Create.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("upsertmodecode")]
+		public Microsoft.Xrm.Sdk.OptionSetValue UpsertModeCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("upsertmodecode");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("UpsertModeCode");
+				this.SetAttributeValue("upsertmodecode", value);
+				this.OnPropertyChanged("UpsertModeCode");
+			}
+		}
+		
+		/// <summary>
+		/// Tells whether an automatic system map was applied to the import file, which automatically maps the import data to the target entity in Microsoft Dynamics 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("usesystemmap")]
 		public System.Nullable<bool> UseSystemMap
@@ -1393,6 +1438,21 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				StatusCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("upsertmodecode")]
+		public virtual ImportFile_UpsertModeCode? UpsertModeCodeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((ImportFile_UpsertModeCode?)(EntityOptionSetEnum.GetEnum(this, "upsertmodecode")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				UpsertModeCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 	}

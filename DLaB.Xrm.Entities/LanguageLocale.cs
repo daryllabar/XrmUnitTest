@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum LanguageLocaleState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("languagelocale")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class LanguageLocale : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string Code = "code";
 			public const string Language = "language";
@@ -41,12 +41,11 @@ namespace DLaB.Xrm.Entities
 			public const string Name = "name";
 			public const string OrganizationId = "organizationid";
 			public const string Region = "region";
-			public const string statecode = "statecode";
-			public const string statuscode = "statuscode";
+			public const string StateCode = "statecode";
+			public const string StatusCode = "statuscode";
 			public const string VersionNumber = "versionnumber";
 			public const string languagelocale_organization = "languagelocale_organization";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -58,6 +57,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "languagelocale";
+		
+		public const string PrimaryIdAttribute = "languagelocaleid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9957;
 		
@@ -215,7 +218,7 @@ namespace DLaB.Xrm.Entities
 		/// State Code
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
-		public System.Nullable<DLaB.Xrm.Entities.LanguageLocaleState> statecode
+		public System.Nullable<DLaB.Xrm.Entities.LanguageLocaleState> StateCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -233,7 +236,7 @@ namespace DLaB.Xrm.Entities
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("statecode");
+				this.OnPropertyChanging("StateCode");
 				if ((value == null))
 				{
 					this.SetAttributeValue("statecode", null);
@@ -242,7 +245,7 @@ namespace DLaB.Xrm.Entities
 				{
 					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
 				}
-				this.OnPropertyChanged("statecode");
+				this.OnPropertyChanged("StateCode");
 			}
 		}
 		
@@ -250,7 +253,7 @@ namespace DLaB.Xrm.Entities
 		/// Language Status Code
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public Microsoft.Xrm.Sdk.OptionSetValue statuscode
+		public Microsoft.Xrm.Sdk.OptionSetValue StatusCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -260,9 +263,9 @@ namespace DLaB.Xrm.Entities
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("statuscode");
+				this.OnPropertyChanging("StatusCode");
 				this.SetAttributeValue("statuscode", value);
-				this.OnPropertyChanged("statuscode");
+				this.OnPropertyChanged("StatusCode");
 			}
 		}
 		
@@ -356,7 +359,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual LanguageLocale_StatusCode? statuscodeEnum
+		public virtual LanguageLocale_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -366,7 +369,7 @@ namespace DLaB.Xrm.Entities
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				statuscode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+				StatusCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 	}

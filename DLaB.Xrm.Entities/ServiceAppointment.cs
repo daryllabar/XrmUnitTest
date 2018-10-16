@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum ServiceAppointmentState
 	{
 		
@@ -33,11 +33,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("serviceappointment")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ServiceAppointment : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ActivityAdditionalParams = "activityadditionalparams";
 			public const string ActivityId = "activityid";
@@ -46,54 +46,86 @@ namespace DLaB.Xrm.Entities
 			public const string ActualDurationMinutes = "actualdurationminutes";
 			public const string ActualEnd = "actualend";
 			public const string ActualStart = "actualstart";
+			public const string Bcc = "bcc";
 			public const string Category = "category";
+			public const string Cc = "cc";
+			public const string Community = "community";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string Customers = "customers";
+			public const string DeliveryLastAttemptedOn = "deliverylastattemptedon";
+			public const string DeliveryPriorityCode = "deliveryprioritycode";
 			public const string Description = "description";
+			public const string ExchangeItemId = "exchangeitemid";
 			public const string ExchangeRate = "exchangerate";
+			public const string ExchangeWebLink = "exchangeweblink";
+			public const string From = "from";
 			public const string ImportSequenceNumber = "importsequencenumber";
+			public const string InstanceTypeCode = "instancetypecode";
 			public const string IsAllDayEvent = "isalldayevent";
 			public const string IsBilled = "isbilled";
 			public const string IsMapiPrivate = "ismapiprivate";
 			public const string IsRegularActivity = "isregularactivity";
 			public const string IsWorkflowCreated = "isworkflowcreated";
+			public const string LastOnHoldTime = "lastonholdtime";
+			public const string LeftVoiceMail = "leftvoicemail";
 			public const string Location = "location";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string OnHoldTime = "onholdtime";
+			public const string OptionalAttendees = "optionalattendees";
+			public const string Organizer = "organizer";
 			public const string OverriddenCreatedOn = "overriddencreatedon";
 			public const string OwnerId = "ownerid";
 			public const string OwningBusinessUnit = "owningbusinessunit";
 			public const string OwningTeam = "owningteam";
 			public const string OwningUser = "owninguser";
+			public const string Partners = "partners";
+			public const string PostponeActivityProcessingUntil = "postponeactivityprocessinguntil";
 			public const string PriorityCode = "prioritycode";
+			public const string ProcessId = "processid";
 			public const string RegardingObjectId = "regardingobjectid";
+			public const string RequiredAttendees = "requiredattendees";
 			public const string Resources = "resources";
 			public const string ScheduledDurationMinutes = "scheduleddurationminutes";
 			public const string ScheduledEnd = "scheduledend";
 			public const string ScheduledStart = "scheduledstart";
+			public const string SenderMailboxId = "sendermailboxid";
+			public const string SentOn = "senton";
+			public const string SeriesId = "seriesid";
 			public const string ServiceId = "serviceid";
 			public const string SiteId = "siteid";
+			public const string SLAId = "slaid";
+			public const string SLAInvokedId = "slainvokedid";
+			public const string SortDate = "sortdate";
+			public const string StageId = "stageid";
 			public const string StateCode = "statecode";
 			public const string StatusCode = "statuscode";
 			public const string Subcategory = "subcategory";
 			public const string Subject = "subject";
 			public const string SubscriptionId = "subscriptionid";
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
+			public const string To = "to";
 			public const string TransactionCurrencyId = "transactioncurrencyid";
+			public const string TraversedPath = "traversedpath";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
 			public const string Account_ServiceAppointments = "Account_ServiceAppointments";
 			public const string activity_pointer_service_appointment = "activity_pointer_service_appointment";
+			public const string bookableresourcebooking_ServiceAppointments = "bookableresourcebooking_ServiceAppointments";
+			public const string bookableresourcebookingheader_ServiceAppointments = "bookableresourcebookingheader_ServiceAppointments";
+			public const string bulkoperation_ServiceAppointments = "bulkoperation_ServiceAppointments";
 			public const string business_unit_service_appointments = "business_unit_service_appointments";
 			public const string Campaign_ServiceAppointments = "Campaign_ServiceAppointments";
+			public const string campaignactivity_ServiceAppointments = "campaignactivity_ServiceAppointments";
 			public const string Contact_ServiceAppointments = "Contact_ServiceAppointments";
 			public const string Contract_ServiceAppointments = "Contract_ServiceAppointments";
 			public const string entitlement_ServiceAppointments = "entitlement_ServiceAppointments";
 			public const string entitlementtemplate_ServiceAppointments = "entitlementtemplate_ServiceAppointments";
 			public const string Incident_ServiceAppointments = "Incident_ServiceAppointments";
+			public const string interactionforemail_ServiceAppointments = "interactionforemail_ServiceAppointments";
 			public const string Invoice_ServiceAppointments = "Invoice_ServiceAppointments";
 			public const string KnowledgeArticle_ServiceAppointments = "KnowledgeArticle_ServiceAppointments";
 			public const string KnowledgeBaseRecord_ServiceAppointments = "KnowledgeBaseRecord_ServiceAppointments";
@@ -102,17 +134,82 @@ namespace DLaB.Xrm.Entities
 			public const string lk_serviceappointment_createdonbehalfby = "lk_serviceappointment_createdonbehalfby";
 			public const string lk_serviceappointment_modifiedby = "lk_serviceappointment_modifiedby";
 			public const string lk_serviceappointment_modifiedonbehalfby = "lk_serviceappointment_modifiedonbehalfby";
+			public const string manualsla_serviceappointment = "manualsla_serviceappointment";
+			public const string msdyn_agreement_ServiceAppointments = "msdyn_agreement_ServiceAppointments";
+			public const string msdyn_agreementbookingdate_ServiceAppointments = "msdyn_agreementbookingdate_ServiceAppointments";
+			public const string msdyn_agreementbookingincident_ServiceAppointments = "msdyn_agreementbookingincident_ServiceAppointments";
+			public const string msdyn_agreementbookingproduct_ServiceAppointments = "msdyn_agreementbookingproduct_ServiceAppointments";
+			public const string msdyn_agreementbookingservice_ServiceAppointments = "msdyn_agreementbookingservice_ServiceAppointments";
+			public const string msdyn_agreementbookingservicetask_ServiceAppointments = "msdyn_agreementbookingservicetask_ServiceAppointments";
+			public const string msdyn_agreementbookingsetup_ServiceAppointments = "msdyn_agreementbookingsetup_ServiceAppointments";
+			public const string msdyn_agreementinvoicedate_ServiceAppointments = "msdyn_agreementinvoicedate_ServiceAppointments";
+			public const string msdyn_agreementinvoiceproduct_ServiceAppointments = "msdyn_agreementinvoiceproduct_ServiceAppointments";
+			public const string msdyn_agreementinvoicesetup_ServiceAppointments = "msdyn_agreementinvoicesetup_ServiceAppointments";
+			public const string msdyn_bookingalertstatus_ServiceAppointments = "msdyn_bookingalertstatus_ServiceAppointments";
+			public const string msdyn_bookingrule_ServiceAppointments = "msdyn_bookingrule_ServiceAppointments";
+			public const string msdyn_bookingtimestamp_ServiceAppointments = "msdyn_bookingtimestamp_ServiceAppointments";
+			public const string msdyn_customerasset_ServiceAppointments = "msdyn_customerasset_ServiceAppointments";
+			public const string msdyn_fieldservicesetting_ServiceAppointments = "msdyn_fieldservicesetting_ServiceAppointments";
+			public const string msdyn_incidenttypecharacteristic_ServiceAppointments = "msdyn_incidenttypecharacteristic_ServiceAppointments";
+			public const string msdyn_incidenttypeproduct_ServiceAppointments = "msdyn_incidenttypeproduct_ServiceAppointments";
+			public const string msdyn_incidenttypeservice_ServiceAppointments = "msdyn_incidenttypeservice_ServiceAppointments";
+			public const string msdyn_inventoryadjustment_ServiceAppointments = "msdyn_inventoryadjustment_ServiceAppointments";
+			public const string msdyn_inventoryadjustmentproduct_ServiceAppointments = "msdyn_inventoryadjustmentproduct_ServiceAppointments";
+			public const string msdyn_inventoryjournal_ServiceAppointments = "msdyn_inventoryjournal_ServiceAppointments";
+			public const string msdyn_inventorytransfer_ServiceAppointments = "msdyn_inventorytransfer_ServiceAppointments";
+			public const string msdyn_payment_ServiceAppointments = "msdyn_payment_ServiceAppointments";
+			public const string msdyn_paymentdetail_ServiceAppointments = "msdyn_paymentdetail_ServiceAppointments";
+			public const string msdyn_paymentmethod_ServiceAppointments = "msdyn_paymentmethod_ServiceAppointments";
+			public const string msdyn_paymentterm_ServiceAppointments = "msdyn_paymentterm_ServiceAppointments";
 			public const string msdyn_postalbum_ServiceAppointments = "msdyn_postalbum_ServiceAppointments";
+			public const string msdyn_postalcode_ServiceAppointments = "msdyn_postalcode_ServiceAppointments";
+			public const string msdyn_processnotes_ServiceAppointments = "msdyn_processnotes_ServiceAppointments";
+			public const string msdyn_productinventory_ServiceAppointments = "msdyn_productinventory_ServiceAppointments";
+			public const string msdyn_projectteam_ServiceAppointments = "msdyn_projectteam_ServiceAppointments";
+			public const string msdyn_purchaseorder_ServiceAppointments = "msdyn_purchaseorder_ServiceAppointments";
+			public const string msdyn_purchaseorderbill_ServiceAppointments = "msdyn_purchaseorderbill_ServiceAppointments";
+			public const string msdyn_purchaseorderproduct_ServiceAppointments = "msdyn_purchaseorderproduct_ServiceAppointments";
+			public const string msdyn_purchaseorderreceipt_ServiceAppointments = "msdyn_purchaseorderreceipt_ServiceAppointments";
+			public const string msdyn_purchaseorderreceiptproduct_ServiceAppointments = "msdyn_purchaseorderreceiptproduct_ServiceAppointments";
+			public const string msdyn_purchaseordersubstatus_ServiceAppointments = "msdyn_purchaseordersubstatus_ServiceAppointments";
+			public const string msdyn_quotebookingincident_ServiceAppointments = "msdyn_quotebookingincident_ServiceAppointments";
+			public const string msdyn_quotebookingproduct_ServiceAppointments = "msdyn_quotebookingproduct_ServiceAppointments";
+			public const string msdyn_quotebookingservice_ServiceAppointments = "msdyn_quotebookingservice_ServiceAppointments";
+			public const string msdyn_quotebookingservicetask_ServiceAppointments = "msdyn_quotebookingservicetask_ServiceAppointments";
+			public const string msdyn_resourceterritory_ServiceAppointments = "msdyn_resourceterritory_ServiceAppointments";
+			public const string msdyn_rma_ServiceAppointments = "msdyn_rma_ServiceAppointments";
+			public const string msdyn_rmaproduct_ServiceAppointments = "msdyn_rmaproduct_ServiceAppointments";
+			public const string msdyn_rmareceipt_ServiceAppointments = "msdyn_rmareceipt_ServiceAppointments";
+			public const string msdyn_rmareceiptproduct_ServiceAppointments = "msdyn_rmareceiptproduct_ServiceAppointments";
+			public const string msdyn_rmasubstatus_ServiceAppointments = "msdyn_rmasubstatus_ServiceAppointments";
+			public const string msdyn_rtv_ServiceAppointments = "msdyn_rtv_ServiceAppointments";
+			public const string msdyn_rtvproduct_ServiceAppointments = "msdyn_rtvproduct_ServiceAppointments";
+			public const string msdyn_rtvsubstatus_ServiceAppointments = "msdyn_rtvsubstatus_ServiceAppointments";
+			public const string msdyn_shipvia_ServiceAppointments = "msdyn_shipvia_ServiceAppointments";
+			public const string msdyn_systemuserschedulersetting_ServiceAppointments = "msdyn_systemuserschedulersetting_ServiceAppointments";
+			public const string msdyn_timegroup_ServiceAppointments = "msdyn_timegroup_ServiceAppointments";
+			public const string msdyn_timegroupdetail_ServiceAppointments = "msdyn_timegroupdetail_ServiceAppointments";
+			public const string msdyn_timeoffrequest_ServiceAppointments = "msdyn_timeoffrequest_ServiceAppointments";
+			public const string msdyn_warehouse_ServiceAppointments = "msdyn_warehouse_ServiceAppointments";
+			public const string msdyn_workorder_ServiceAppointments = "msdyn_workorder_ServiceAppointments";
+			public const string msdyn_workordercharacteristic_ServiceAppointments = "msdyn_workordercharacteristic_ServiceAppointments";
+			public const string msdyn_workorderincident_ServiceAppointments = "msdyn_workorderincident_ServiceAppointments";
+			public const string msdyn_workorderproduct_ServiceAppointments = "msdyn_workorderproduct_ServiceAppointments";
+			public const string msdyn_workorderresourcerestriction_ServiceAppointments = "msdyn_workorderresourcerestriction_ServiceAppointments";
+			public const string msdyn_workorderservice_ServiceAppointments = "msdyn_workorderservice_ServiceAppointments";
+			public const string msdyn_workorderservicetask_ServiceAppointments = "msdyn_workorderservicetask_ServiceAppointments";
 			public const string Opportunity_ServiceAppointments = "Opportunity_ServiceAppointments";
 			public const string Quote_ServiceAppointments = "Quote_ServiceAppointments";
 			public const string SalesOrder_ServiceAppointments = "SalesOrder_ServiceAppointments";
 			public const string service_service_appointments = "service_service_appointments";
+			public const string serviceappointment_mailbox_sendermailboxid = "serviceappointment_mailbox_sendermailboxid";
 			public const string site_service_appointments = "site_service_appointments";
+			public const string site_ServiceAppointments = "site_ServiceAppointments";
+			public const string sla_serviceappointment = "sla_serviceappointment";
 			public const string system_user_service_appointments = "system_user_service_appointments";
 			public const string team_service_appointments = "team_service_appointments";
 			public const string TransactionCurrency_ServiceAppointment = "TransactionCurrency_ServiceAppointment";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -124,6 +221,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "serviceappointment";
+		
+		public const string PrimaryIdAttribute = "activityid";
+		
+		public const string PrimaryNameAttribute = "subject";
 		
 		public const int EntityTypeCode = 4214;
 		
@@ -170,7 +271,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the service activity.
+		/// activity_pointer_service_appointment
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("activityid")]
 		public System.Nullable<System.Guid> ActivityId
@@ -286,6 +387,42 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Blind Carbon-copy (bcc) recipients of the activity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("bcc")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActivityParty> Bcc
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				Microsoft.Xrm.Sdk.EntityCollection collection = this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityCollection>("bcc");
+				if (((collection != null) 
+							&& (collection.Entities != null)))
+				{
+					return System.Linq.Enumerable.Cast<DLaB.Xrm.Entities.ActivityParty>(collection.Entities);
+				}
+				else
+				{
+					return null;
+				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Bcc");
+				if ((value == null))
+				{
+					this.SetAttributeValue("bcc", value);
+				}
+				else
+				{
+					this.SetAttributeValue("bcc", new Microsoft.Xrm.Sdk.EntityCollection(new System.Collections.Generic.List<Microsoft.Xrm.Sdk.Entity>(value)));
+				}
+				this.OnPropertyChanged("Bcc");
+			}
+		}
+		
+		/// <summary>
 		/// Type a category to identify the service activity type, such as routine maintenance or service call, to tie the service activity to a business group or function.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("category")]
@@ -302,6 +439,62 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Category");
 				this.SetAttributeValue("category", value);
 				this.OnPropertyChanged("Category");
+			}
+		}
+		
+		/// <summary>
+		/// Carbon-copy (cc) recipients of the activity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cc")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActivityParty> Cc
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				Microsoft.Xrm.Sdk.EntityCollection collection = this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityCollection>("cc");
+				if (((collection != null) 
+							&& (collection.Entities != null)))
+				{
+					return System.Linq.Enumerable.Cast<DLaB.Xrm.Entities.ActivityParty>(collection.Entities);
+				}
+				else
+				{
+					return null;
+				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Cc");
+				if ((value == null))
+				{
+					this.SetAttributeValue("cc", value);
+				}
+				else
+				{
+					this.SetAttributeValue("cc", new Microsoft.Xrm.Sdk.EntityCollection(new System.Collections.Generic.List<Microsoft.Xrm.Sdk.Entity>(value)));
+				}
+				this.OnPropertyChanged("Cc");
+			}
+		}
+		
+		/// <summary>
+		/// Shows how contact about the social activity originated, such as from Twitter or Facebook. This field is read-only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("community")]
+		public Microsoft.Xrm.Sdk.OptionSetValue Community
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("community");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Community");
+				this.SetAttributeValue("community", value);
+				this.OnPropertyChanged("Community");
 			}
 		}
 		
@@ -326,7 +519,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -402,6 +595,39 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Date and time when the delivery of the activity was last attempted.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("deliverylastattemptedon")]
+		public System.Nullable<System.DateTime> DeliveryLastAttemptedOn
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("deliverylastattemptedon");
+			}
+		}
+		
+		/// <summary>
+		/// Priority of delivery of the activity to the email server.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("deliveryprioritycode")]
+		public Microsoft.Xrm.Sdk.OptionSetValue DeliveryPriorityCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("deliveryprioritycode");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("DeliveryPriorityCode");
+				this.SetAttributeValue("deliveryprioritycode", value);
+				this.OnPropertyChanged("DeliveryPriorityCode");
+			}
+		}
+		
+		/// <summary>
 		/// Type additional information to describe the service activity, such as key talking points or objectives.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("description")]
@@ -422,6 +648,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// The message id of activity which is returned from Exchange Server.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("exchangeitemid")]
+		public string ExchangeItemId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("exchangeitemid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ExchangeItemId");
+				this.SetAttributeValue("exchangeitemid", value);
+				this.OnPropertyChanged("ExchangeItemId");
+			}
+		}
+		
+		/// <summary>
 		/// Shows the conversion rate of the record's currency. The exchange rate is used to convert all money fields in the record from the local currency to the system's default currency.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("exchangerate")]
@@ -431,6 +677,62 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<decimal>>("exchangerate");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the web link of Activity of type email.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("exchangeweblink")]
+		public string ExchangeWebLink
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("exchangeweblink");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ExchangeWebLink");
+				this.SetAttributeValue("exchangeweblink", value);
+				this.OnPropertyChanged("ExchangeWebLink");
+			}
+		}
+		
+		/// <summary>
+		/// Person who the activity is from.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("from")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActivityParty> From
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				Microsoft.Xrm.Sdk.EntityCollection collection = this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityCollection>("from");
+				if (((collection != null) 
+							&& (collection.Entities != null)))
+				{
+					return System.Linq.Enumerable.Cast<DLaB.Xrm.Entities.ActivityParty>(collection.Entities);
+				}
+				else
+				{
+					return null;
+				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("From");
+				if ((value == null))
+				{
+					this.SetAttributeValue("from", value);
+				}
+				else
+				{
+					this.SetAttributeValue("from", new Microsoft.Xrm.Sdk.EntityCollection(new System.Collections.Generic.List<Microsoft.Xrm.Sdk.Entity>(value)));
+				}
+				this.OnPropertyChanged("From");
 			}
 		}
 		
@@ -451,6 +753,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ImportSequenceNumber");
 				this.SetAttributeValue("importsequencenumber", value);
 				this.OnPropertyChanged("ImportSequenceNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Type of instance of a recurring series.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("instancetypecode")]
+		public Microsoft.Xrm.Sdk.OptionSetValue InstanceTypeCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("instancetypecode");
 			}
 		}
 		
@@ -548,6 +863,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Contains the date and time stamp of the last on hold time.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lastonholdtime")]
+		public System.Nullable<System.DateTime> LastOnHoldTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("lastonholdtime");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("LastOnHoldTime");
+				this.SetAttributeValue("lastonholdtime", value);
+				this.OnPropertyChanged("LastOnHoldTime");
+			}
+		}
+		
+		/// <summary>
+		/// Left the voice mail
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("leftvoicemail")]
+		public System.Nullable<bool> LeftVoiceMail
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("leftvoicemail");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("LeftVoiceMail");
+				this.SetAttributeValue("leftvoicemail", value);
+				this.OnPropertyChanged("LeftVoiceMail");
+			}
+		}
+		
+		/// <summary>
 		/// Type the location where the service activity will take place, such as a conference room, customer office, or other venue.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("location")]
@@ -588,7 +943,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -624,6 +979,91 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ModifiedOnBehalfBy");
 				this.SetAttributeValue("modifiedonbehalfby", value);
 				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Shows how long, in minutes, that the record was on hold.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("onholdtime")]
+		public System.Nullable<int> OnHoldTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("onholdtime");
+			}
+		}
+		
+		/// <summary>
+		/// List of optional attendees for the activity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("optionalattendees")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActivityParty> OptionalAttendees
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				Microsoft.Xrm.Sdk.EntityCollection collection = this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityCollection>("optionalattendees");
+				if (((collection != null) 
+							&& (collection.Entities != null)))
+				{
+					return System.Linq.Enumerable.Cast<DLaB.Xrm.Entities.ActivityParty>(collection.Entities);
+				}
+				else
+				{
+					return null;
+				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OptionalAttendees");
+				if ((value == null))
+				{
+					this.SetAttributeValue("optionalattendees", value);
+				}
+				else
+				{
+					this.SetAttributeValue("optionalattendees", new Microsoft.Xrm.Sdk.EntityCollection(new System.Collections.Generic.List<Microsoft.Xrm.Sdk.Entity>(value)));
+				}
+				this.OnPropertyChanged("OptionalAttendees");
+			}
+		}
+		
+		/// <summary>
+		/// Person who organized the activity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("organizer")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActivityParty> Organizer
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				Microsoft.Xrm.Sdk.EntityCollection collection = this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityCollection>("organizer");
+				if (((collection != null) 
+							&& (collection.Entities != null)))
+				{
+					return System.Linq.Enumerable.Cast<DLaB.Xrm.Entities.ActivityParty>(collection.Entities);
+				}
+				else
+				{
+					return null;
+				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Organizer");
+				if ((value == null))
+				{
+					this.SetAttributeValue("organizer", value);
+				}
+				else
+				{
+					this.SetAttributeValue("organizer", new Microsoft.Xrm.Sdk.EntityCollection(new System.Collections.Generic.List<Microsoft.Xrm.Sdk.Entity>(value)));
+				}
+				this.OnPropertyChanged("Organizer");
 			}
 		}
 		
@@ -668,7 +1108,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the business unit that the record owner belongs to.
+		/// business_unit_service_appointments
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
 		public Microsoft.Xrm.Sdk.EntityReference OwningBusinessUnit
@@ -728,6 +1168,55 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Outsource vendor with which activity is associated.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("partners")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActivityParty> Partners
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				Microsoft.Xrm.Sdk.EntityCollection collection = this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityCollection>("partners");
+				if (((collection != null) 
+							&& (collection.Entities != null)))
+				{
+					return System.Linq.Enumerable.Cast<DLaB.Xrm.Entities.ActivityParty>(collection.Entities);
+				}
+				else
+				{
+					return null;
+				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Partners");
+				if ((value == null))
+				{
+					this.SetAttributeValue("partners", value);
+				}
+				else
+				{
+					this.SetAttributeValue("partners", new Microsoft.Xrm.Sdk.EntityCollection(new System.Collections.Generic.List<Microsoft.Xrm.Sdk.Entity>(value)));
+				}
+				this.OnPropertyChanged("Partners");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("postponeactivityprocessinguntil")]
+		public System.Nullable<System.DateTime> PostponeActivityProcessingUntil
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("postponeactivityprocessinguntil");
+			}
+		}
+		
+		/// <summary>
 		/// Select the priority so that preferred customers or critical issues are handled quickly.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("prioritycode")]
@@ -748,7 +1237,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the record that the service activity relates to.
+		/// Unique identifier of the Process.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("processid")]
+		public System.Nullable<System.Guid> ProcessId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("processid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ProcessId");
+				this.SetAttributeValue("processid", value);
+				this.OnPropertyChanged("ProcessId");
+			}
+		}
+		
+		/// <summary>
+		/// SalesOrder_ServiceAppointments
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
 		public Microsoft.Xrm.Sdk.EntityReference RegardingObjectId
@@ -764,6 +1273,42 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("RegardingObjectId");
 				this.SetAttributeValue("regardingobjectid", value);
 				this.OnPropertyChanged("RegardingObjectId");
+			}
+		}
+		
+		/// <summary>
+		/// List of required attendees for the activity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("requiredattendees")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActivityParty> RequiredAttendees
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				Microsoft.Xrm.Sdk.EntityCollection collection = this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityCollection>("requiredattendees");
+				if (((collection != null) 
+							&& (collection.Entities != null)))
+				{
+					return System.Linq.Enumerable.Cast<DLaB.Xrm.Entities.ActivityParty>(collection.Entities);
+				}
+				else
+				{
+					return null;
+				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("RequiredAttendees");
+				if ((value == null))
+				{
+					this.SetAttributeValue("requiredattendees", value);
+				}
+				else
+				{
+					this.SetAttributeValue("requiredattendees", new Microsoft.Xrm.Sdk.EntityCollection(new System.Collections.Generic.List<Microsoft.Xrm.Sdk.Entity>(value)));
+				}
+				this.OnPropertyChanged("RequiredAttendees");
 			}
 		}
 		
@@ -864,7 +1409,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the service scheduled to be performed during the service activity.
+		/// Unique identifier of the mailbox associated with the sender of the email message.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sendermailboxid")]
+		public Microsoft.Xrm.Sdk.EntityReference SenderMailboxId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("sendermailboxid");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the activity was sent.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("senton")]
+		public System.Nullable<System.DateTime> SentOn
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("senton");
+			}
+		}
+		
+		/// <summary>
+		/// Uniqueidentifier specifying the id of recurring series of an instance.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("seriesid")]
+		public System.Nullable<System.Guid> SeriesId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("seriesid");
+			}
+		}
+		
+		/// <summary>
+		/// service_service_appointments
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("serviceid")]
 		public Microsoft.Xrm.Sdk.EntityReference ServiceId
@@ -884,7 +1468,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the site or location where the service activity will be performed.
+		/// site_service_appointments
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("siteid")]
 		public Microsoft.Xrm.Sdk.EntityReference SiteId
@@ -900,6 +1484,79 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("SiteId");
 				this.SetAttributeValue("siteid", value);
 				this.OnPropertyChanged("SiteId");
+			}
+		}
+		
+		/// <summary>
+		/// Choose the service level agreement (SLA) that you want to apply to the service appointment record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slaid")]
+		public Microsoft.Xrm.Sdk.EntityReference SLAId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("slaid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SLAId");
+				this.SetAttributeValue("slaid", value);
+				this.OnPropertyChanged("SLAId");
+			}
+		}
+		
+		/// <summary>
+		/// Last SLA that was applied to this email. This field is for internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slainvokedid")]
+		public Microsoft.Xrm.Sdk.EntityReference SLAInvokedId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("slainvokedid");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the date and time by which the activities are sorted.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sortdate")]
+		public System.Nullable<System.DateTime> SortDate
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("sortdate");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SortDate");
+				this.SetAttributeValue("sortdate", value);
+				this.OnPropertyChanged("SortDate");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the Stage.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("stageid")]
+		public System.Nullable<System.Guid> StageId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("stageid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("StageId");
+				this.SetAttributeValue("stageid", value);
+				this.OnPropertyChanged("StageId");
 			}
 		}
 		
@@ -1039,7 +1696,43 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the local currency for the record to make sure budgets are reported in the correct currency.
+		/// Person who is the receiver of the activity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("to")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActivityParty> To
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				Microsoft.Xrm.Sdk.EntityCollection collection = this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityCollection>("to");
+				if (((collection != null) 
+							&& (collection.Entities != null)))
+				{
+					return System.Linq.Enumerable.Cast<DLaB.Xrm.Entities.ActivityParty>(collection.Entities);
+				}
+				else
+				{
+					return null;
+				}
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("To");
+				if ((value == null))
+				{
+					this.SetAttributeValue("to", value);
+				}
+				else
+				{
+					this.SetAttributeValue("to", new Microsoft.Xrm.Sdk.EntityCollection(new System.Collections.Generic.List<Microsoft.Xrm.Sdk.Entity>(value)));
+				}
+				this.OnPropertyChanged("To");
+			}
+		}
+		
+		/// <summary>
+		/// TransactionCurrency_ServiceAppointment
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("transactioncurrencyid")]
 		public Microsoft.Xrm.Sdk.EntityReference TransactionCurrencyId
@@ -1055,6 +1748,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("TransactionCurrencyId");
 				this.SetAttributeValue("transactioncurrencyid", value);
 				this.OnPropertyChanged("TransactionCurrencyId");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("traversedpath")]
+		public string TraversedPath
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("traversedpath");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TraversedPath");
+				this.SetAttributeValue("traversedpath", value);
+				this.OnPropertyChanged("TraversedPath");
 			}
 		}
 		
@@ -1088,6 +1801,46 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N CampaignResponse_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("CampaignResponse_ServiceAppointments")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CampaignResponse> CampaignResponse_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CampaignResponse>("CampaignResponse_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("CampaignResponse_ServiceAppointments");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CampaignResponse>("CampaignResponse_ServiceAppointments", null, value);
+				this.OnPropertyChanged("CampaignResponse_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N serviceappointment_actioncard
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("serviceappointment_actioncard")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActionCard> serviceappointment_actioncard
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ActionCard>("serviceappointment_actioncard", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("serviceappointment_actioncard");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ActionCard>("serviceappointment_actioncard", null, value);
+				this.OnPropertyChanged("serviceappointment_actioncard");
 			}
 		}
 		
@@ -1212,6 +1965,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N serviceappointment_MailboxTrackingFolders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("serviceappointment_MailboxTrackingFolders")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> serviceappointment_MailboxTrackingFolders
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("serviceappointment_MailboxTrackingFolders", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("serviceappointment_MailboxTrackingFolders");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("serviceappointment_MailboxTrackingFolders", null, value);
+				this.OnPropertyChanged("serviceappointment_MailboxTrackingFolders");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N serviceappointment_principalobjectattributeaccess
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("serviceappointment_principalobjectattributeaccess")]
@@ -1268,6 +2041,46 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ServiceAppointment_QueueItem");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.QueueItem>("ServiceAppointment_QueueItem", null, value);
 				this.OnPropertyChanged("ServiceAppointment_QueueItem");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N ServiceAppointment_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ServiceAppointment_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> ServiceAppointment_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ServiceAppointment_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ServiceAppointment_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ServiceAppointment_SyncErrors", null, value);
+				this.OnPropertyChanged("ServiceAppointment_SyncErrors");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N slakpiinstance_serviceappointment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_serviceappointment")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SLAKPIInstance> slakpiinstance_serviceappointment
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SLAKPIInstance>("slakpiinstance_serviceappointment", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_serviceappointment");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SLAKPIInstance>("slakpiinstance_serviceappointment", null, value);
+				this.OnPropertyChanged("slakpiinstance_serviceappointment");
 			}
 		}
 		
@@ -1334,6 +2147,69 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 bookableresourcebooking_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebooking_ServiceAppointments")]
+		public DLaB.Xrm.Entities.BookableResourceBooking bookableresourcebooking_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBooking>("bookableresourcebooking_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bookableresourcebooking_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBooking>("bookableresourcebooking_ServiceAppointments", null, value);
+				this.OnPropertyChanged("bookableresourcebooking_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcebookingheader_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebookingheader_ServiceAppointments")]
+		public DLaB.Xrm.Entities.BookableResourceBookingHeader bookableresourcebookingheader_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBookingHeader>("bookableresourcebookingheader_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bookableresourcebookingheader_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBookingHeader>("bookableresourcebookingheader_ServiceAppointments", null, value);
+				this.OnPropertyChanged("bookableresourcebookingheader_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bulkoperation_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bulkoperation_ServiceAppointments")]
+		public DLaB.Xrm.Entities.BulkOperation bulkoperation_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BulkOperation>("bulkoperation_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bulkoperation_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BulkOperation>("bulkoperation_ServiceAppointments", null, value);
+				this.OnPropertyChanged("bulkoperation_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 business_unit_service_appointments
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
@@ -1372,6 +2248,27 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Campaign_ServiceAppointments");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.Campaign>("Campaign_ServiceAppointments", null, value);
 				this.OnPropertyChanged("Campaign_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 campaignactivity_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("campaignactivity_ServiceAppointments")]
+		public DLaB.Xrm.Entities.CampaignActivity campaignactivity_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.CampaignActivity>("campaignactivity_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("campaignactivity_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.CampaignActivity>("campaignactivity_ServiceAppointments", null, value);
+				this.OnPropertyChanged("campaignactivity_ServiceAppointments");
 			}
 		}
 		
@@ -1477,6 +2374,27 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Incident_ServiceAppointments");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.Incident>("Incident_ServiceAppointments", null, value);
 				this.OnPropertyChanged("Incident_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 interactionforemail_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("interactionforemail_ServiceAppointments")]
+		public DLaB.Xrm.Entities.InteractionForEmail interactionforemail_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.InteractionForEmail>("interactionforemail_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("interactionforemail_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.InteractionForEmail>("interactionforemail_ServiceAppointments", null, value);
+				this.OnPropertyChanged("interactionforemail_ServiceAppointments");
 			}
 		}
 		
@@ -1649,6 +2567,573 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 manualsla_serviceappointment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slaid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_serviceappointment")]
+		public DLaB.Xrm.Entities.SLA manualsla_serviceappointment
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SLA>("manualsla_serviceappointment", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_serviceappointment");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SLA>("manualsla_serviceappointment", null, value);
+				this.OnPropertyChanged("manualsla_serviceappointment");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreement_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreement_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_agreement msdyn_agreement_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreement_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_agreement_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingdate_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingdate_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingdate msdyn_agreementbookingdate_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingdate_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingdate_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingincident_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingincident_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingincident msdyn_agreementbookingincident_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingincident>("msdyn_agreementbookingincident_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingincident_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingincident>("msdyn_agreementbookingincident_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingincident_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingproduct_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingproduct_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingproduct msdyn_agreementbookingproduct_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_agreementbookingproduct_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingproduct_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_agreementbookingproduct_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingproduct_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservice_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservice_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservice msdyn_agreementbookingservice_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_agreementbookingservice_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingservice_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_agreementbookingservice_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingservice_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservicetask_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservicetask_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservicetask msdyn_agreementbookingservicetask_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask>("msdyn_agreementbookingservicetask_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingservicetask_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask>("msdyn_agreementbookingservicetask_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingservicetask_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingsetup_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingsetup_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingsetup msdyn_agreementbookingsetup_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingsetup_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingsetup_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicedate_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicedate_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicedate msdyn_agreementinvoicedate_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoicedate_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoicedate_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoiceproduct_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoiceproduct_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct msdyn_agreementinvoiceproduct_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_agreementinvoiceproduct_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoiceproduct_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_agreementinvoiceproduct_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoiceproduct_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicesetup_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicesetup_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicesetup msdyn_agreementinvoicesetup_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoicesetup_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoicesetup_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingalertstatus_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalertstatus_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_bookingalertstatus msdyn_bookingalertstatus_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalertstatus>("msdyn_bookingalertstatus_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingalertstatus_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalertstatus>("msdyn_bookingalertstatus_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_bookingalertstatus_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingrule_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingrule_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_bookingrule msdyn_bookingrule_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingrule>("msdyn_bookingrule_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingrule_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingrule>("msdyn_bookingrule_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_bookingrule_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingtimestamp_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingtimestamp_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_bookingtimestamp msdyn_bookingtimestamp_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingtimestamp_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_bookingtimestamp_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_customerasset_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_customerasset_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_customerasset msdyn_customerasset_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_customerasset_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_customerasset_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_customerasset_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_customerasset_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fieldservicesetting_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fieldservicesetting_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_fieldservicesetting msdyn_fieldservicesetting_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicesetting>("msdyn_fieldservicesetting_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_fieldservicesetting_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicesetting>("msdyn_fieldservicesetting_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_fieldservicesetting_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypecharacteristic_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypecharacteristic_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic msdyn_incidenttypecharacteristic_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic>("msdyn_incidenttypecharacteristic_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypecharacteristic_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic>("msdyn_incidenttypecharacteristic_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypecharacteristic_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeproduct_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeproduct_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeproduct msdyn_incidenttypeproduct_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypeproduct_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypeproduct_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeservice_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeservice_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeservice msdyn_incidenttypeservice_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_incidenttypeservice_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypeservice_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_incidenttypeservice_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypeservice_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustment_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustment_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustment msdyn_inventoryadjustment_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryadjustment_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_inventoryadjustment_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustmentproduct_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustmentproduct_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct msdyn_inventoryadjustmentproduct_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryadjustmentproduct_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_inventoryadjustmentproduct_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryjournal_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryjournal_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_inventoryjournal msdyn_inventoryjournal_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_inventoryjournal_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryjournal_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_inventoryjournal_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_inventoryjournal_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventorytransfer_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventorytransfer_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_inventorytransfer msdyn_inventorytransfer_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventorytransfer_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_inventorytransfer_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_payment_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_payment_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_payment msdyn_payment_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_payment>("msdyn_payment_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_payment_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_payment>("msdyn_payment_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_payment_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentdetail_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentdetail_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_paymentdetail msdyn_paymentdetail_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentdetail>("msdyn_paymentdetail_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentdetail_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentdetail>("msdyn_paymentdetail_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_paymentdetail_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentmethod_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentmethod_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_paymentmethod msdyn_paymentmethod_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentmethod>("msdyn_paymentmethod_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentmethod_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentmethod>("msdyn_paymentmethod_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_paymentmethod_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentterm_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentterm_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_paymentterm msdyn_paymentterm_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentterm>("msdyn_paymentterm_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentterm_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentterm>("msdyn_paymentterm_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_paymentterm_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 msdyn_postalbum_ServiceAppointments
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1666,6 +3151,762 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("msdyn_postalbum_ServiceAppointments");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_PostAlbum>("msdyn_postalbum_ServiceAppointments", null, value);
 				this.OnPropertyChanged("msdyn_postalbum_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_postalcode_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_postalcode_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_postalcode msdyn_postalcode_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_postalcode_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_postalcode_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_postalcode_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_postalcode_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_processnotes_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_processnotes_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_processnotes msdyn_processnotes_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_processnotes>("msdyn_processnotes_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_processnotes_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_processnotes>("msdyn_processnotes_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_processnotes_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_productinventory_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_productinventory_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_productinventory msdyn_productinventory_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_productinventory_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_productinventory_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_productinventory_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_productinventory_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectteam_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectteam_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_projectteam msdyn_projectteam_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteam>("msdyn_projectteam_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_projectteam_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteam>("msdyn_projectteam_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_projectteam_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorder_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorder_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorder msdyn_purchaseorder_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorder_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorder_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderbill_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderbill_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderbill msdyn_purchaseorderbill_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("msdyn_purchaseorderbill_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderbill_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("msdyn_purchaseorderbill_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderbill_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderproduct_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderproduct_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderproduct msdyn_purchaseorderproduct_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_purchaseorderproduct_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderproduct_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_purchaseorderproduct_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderproduct_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceipt_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceipt_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceipt msdyn_purchaseorderreceipt_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderreceipt_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderreceipt_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceiptproduct_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceiptproduct_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct msdyn_purchaseorderreceiptproduct_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct>("msdyn_purchaseorderreceiptproduct_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderreceiptproduct_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct>("msdyn_purchaseorderreceiptproduct_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderreceiptproduct_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseordersubstatus_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseordersubstatus_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_purchaseordersubstatus msdyn_purchaseordersubstatus_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus>("msdyn_purchaseordersubstatus_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseordersubstatus_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus>("msdyn_purchaseordersubstatus_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_purchaseordersubstatus_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingincident_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingincident_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingincident msdyn_quotebookingincident_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quotebookingincident_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingincident_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quotebookingincident_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingincident_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingproduct_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingproduct_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingproduct msdyn_quotebookingproduct_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quotebookingproduct_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingproduct_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quotebookingproduct_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingproduct_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservice_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservice_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservice msdyn_quotebookingservice_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quotebookingservice_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingservice_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quotebookingservice_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingservice_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservicetask_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservicetask_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservicetask msdyn_quotebookingservicetask_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quotebookingservicetask_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingservicetask_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quotebookingservicetask_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingservicetask_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourceterritory_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourceterritory_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_resourceterritory msdyn_resourceterritory_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_resourceterritory_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_resourceterritory_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rma_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rma_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_rma msdyn_rma_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rma_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_rma_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmaproduct_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmaproduct_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_rmaproduct msdyn_rmaproduct_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_rmaproduct_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmaproduct_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_rmaproduct_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_rmaproduct_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceipt_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceipt_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_rmareceipt msdyn_rmareceipt_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmareceipt_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_rmareceipt_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceiptproduct_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceiptproduct_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_rmareceiptproduct msdyn_rmareceiptproduct_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceiptproduct>("msdyn_rmareceiptproduct_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmareceiptproduct_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceiptproduct>("msdyn_rmareceiptproduct_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_rmareceiptproduct_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmasubstatus_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmasubstatus_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_rmasubstatus msdyn_rmasubstatus_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmasubstatus>("msdyn_rmasubstatus_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmasubstatus_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmasubstatus>("msdyn_rmasubstatus_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_rmasubstatus_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtv_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtv_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_rtv msdyn_rtv_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtv_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_rtv_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvproduct_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvproduct_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_rtvproduct msdyn_rtvproduct_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_rtvproduct_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtvproduct_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_rtvproduct_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_rtvproduct_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvsubstatus_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvsubstatus_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_rtvsubstatus msdyn_rtvsubstatus_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvsubstatus>("msdyn_rtvsubstatus_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtvsubstatus_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvsubstatus>("msdyn_rtvsubstatus_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_rtvsubstatus_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_shipvia_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_shipvia_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_shipvia msdyn_shipvia_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_shipvia>("msdyn_shipvia_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_shipvia_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_shipvia>("msdyn_shipvia_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_shipvia_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_systemuserschedulersetting_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_systemuserschedulersetting_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_systemuserschedulersetting msdyn_systemuserschedulersetting_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting>("msdyn_systemuserschedulersetting_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_systemuserschedulersetting_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting>("msdyn_systemuserschedulersetting_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_systemuserschedulersetting_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroup_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroup_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_timegroup msdyn_timegroup_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timegroup_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_timegroup_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroupdetail_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroupdetail_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_timegroupdetail msdyn_timegroupdetail_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timegroupdetail_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_timegroupdetail_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timeoffrequest_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timeoffrequest_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_timeoffrequest msdyn_timeoffrequest_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffrequest>("msdyn_timeoffrequest_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timeoffrequest_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffrequest>("msdyn_timeoffrequest_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_timeoffrequest_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_warehouse_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_warehouse_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_warehouse msdyn_warehouse_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_warehouse_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_warehouse_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorder_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorder_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_workorder msdyn_workorder_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorder_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_workorder_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workordercharacteristic_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workordercharacteristic_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_workordercharacteristic msdyn_workordercharacteristic_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordercharacteristic>("msdyn_workordercharacteristic_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workordercharacteristic_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordercharacteristic>("msdyn_workordercharacteristic_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_workordercharacteristic_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderincident_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderincident_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_workorderincident msdyn_workorderincident_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderincident_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_workorderincident_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderproduct_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderproduct_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_workorderproduct msdyn_workorderproduct_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_workorderproduct_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderproduct_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_workorderproduct_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_workorderproduct_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderresourcerestriction_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderresourcerestriction_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_workorderresourcerestriction msdyn_workorderresourcerestriction_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_workorderresourcerestriction_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderresourcerestriction_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_workorderresourcerestriction_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_workorderresourcerestriction_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservice_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservice_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_workorderservice msdyn_workorderservice_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderservice_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_workorderservice_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservicetask_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservicetask_ServiceAppointments")]
+		public DLaB.Xrm.Entities.msdyn_workorderservicetask msdyn_workorderservicetask_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderservicetask_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_ServiceAppointments", null, value);
+				this.OnPropertyChanged("msdyn_workorderservicetask_ServiceAppointments");
 			}
 		}
 		
@@ -1754,6 +3995,20 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 serviceappointment_mailbox_sendermailboxid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sendermailboxid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("serviceappointment_mailbox_sendermailboxid")]
+		public DLaB.Xrm.Entities.Mailbox serviceappointment_mailbox_sendermailboxid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Mailbox>("serviceappointment_mailbox_sendermailboxid", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 site_service_appointments
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("siteid")]
@@ -1771,6 +4026,41 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("site_service_appointments");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.Site>("site_service_appointments", null, value);
 				this.OnPropertyChanged("site_service_appointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 site_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_ServiceAppointments")]
+		public DLaB.Xrm.Entities.Site site_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Site>("site_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_ServiceAppointments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Site>("site_ServiceAppointments", null, value);
+				this.OnPropertyChanged("site_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 sla_serviceappointment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slainvokedid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_serviceappointment")]
+		public DLaB.Xrm.Entities.SLA sla_serviceappointment
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SLA>("sla_serviceappointment", null);
 			}
 		}
 		
@@ -1877,6 +4167,46 @@ namespace DLaB.Xrm.Entities
                         break;
                 }
             }
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("community")]
+		public virtual SocialProfile_Community? CommunityEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((SocialProfile_Community?)(EntityOptionSetEnum.GetEnum(this, "community")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				Community = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("deliveryprioritycode")]
+		public virtual activitypointer_DeliveryPriorityCode? DeliveryPriorityCodeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((activitypointer_DeliveryPriorityCode?)(EntityOptionSetEnum.GetEnum(this, "deliveryprioritycode")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				DeliveryPriorityCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("instancetypecode")]
+		public virtual ServiceAppointment_InstanceTypeCode? InstanceTypeCodeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((ServiceAppointment_InstanceTypeCode?)(EntityOptionSetEnum.GetEnum(this, "instancetypecode")));
+			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("prioritycode")]

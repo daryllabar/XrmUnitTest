@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("template")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Template : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string Body = "body";
 			public const string ComponentState = "componentstate";
@@ -33,17 +33,22 @@ namespace DLaB.Xrm.Entities
 			public const string IsCustomizable = "iscustomizable";
 			public const string IsManaged = "ismanaged";
 			public const string IsPersonal = "ispersonal";
+			public const string IsRecommended = "isrecommended";
 			public const string LanguageCode = "languagecode";
 			public const string MimeType = "mimetype";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string OpenCount = "opencount";
+			public const string OpenRate = "openrate";
 			public const string OverwriteTime = "overwritetime";
 			public const string OwnerId = "ownerid";
 			public const string OwningBusinessUnit = "owningbusinessunit";
 			public const string OwningTeam = "owningteam";
 			public const string OwningUser = "owninguser";
 			public const string PresentationXml = "presentationxml";
+			public const string ReplyCount = "replycount";
+			public const string ReplyRate = "replyrate";
 			public const string SolutionId = "solutionid";
 			public const string Subject = "subject";
 			public const string SubjectPresentationXml = "subjectpresentationxml";
@@ -52,6 +57,7 @@ namespace DLaB.Xrm.Entities
 			public const string TemplateIdUnique = "templateidunique";
 			public const string TemplateTypeCode = "templatetypecode";
 			public const string Title = "title";
+			public const string UsedCount = "usedcount";
 			public const string VersionNumber = "versionnumber";
 			public const string business_unit_templates = "business_unit_templates";
 			public const string lk_templatebase_createdby = "lk_templatebase_createdby";
@@ -61,7 +67,6 @@ namespace DLaB.Xrm.Entities
 			public const string system_user_email_templates = "system_user_email_templates";
 			public const string team_email_templates = "team_email_templates";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -73,6 +78,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "template";
+		
+		public const string PrimaryIdAttribute = "templateid";
+		
+		public const string PrimaryNameAttribute = "title";
 		
 		public const int EntityTypeCode = 2010;
 		
@@ -325,6 +334,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Indicates if a template is recommended by Dynamics 365.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isrecommended")]
+		public System.Nullable<bool> IsRecommended
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isrecommended");
+			}
+		}
+		
+		/// <summary>
 		/// Language of the email template.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("languagecode")]
@@ -421,6 +443,32 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ModifiedOnBehalfBy");
 				this.SetAttributeValue("modifiedonbehalfby", value);
 				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only. Shows the number of times emails that use this template have been opened.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("opencount")]
+		public System.Nullable<int> OpenCount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("opencount");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the open rate of this template. This is based on number of opens on followed emails that use this template.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("openrate")]
+		public System.Nullable<int> OpenRate
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("openrate");
 			}
 		}
 		
@@ -534,6 +582,32 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("PresentationXml");
 				this.SetAttributeValue("presentationxml", value);
 				this.OnPropertyChanged("PresentationXml");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only. Shows the number of times emails that use this template have received replies.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("replycount")]
+		public System.Nullable<int> ReplyCount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("replycount");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the reply rate for this template. This is based on number of replies received on followed emails that use this template.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("replyrate")]
+		public System.Nullable<int> ReplyRate
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("replyrate");
 			}
 		}
 		
@@ -687,6 +761,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Shows the number of sent emails that use this template.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("usedcount")]
+		public System.Nullable<int> UsedCount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("usedcount");
+			}
+		}
+		
+		/// <summary>
 		/// Version number of the template.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
@@ -696,6 +783,26 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Email_EmailTemplate
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Email_EmailTemplate")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Email> Email_EmailTemplate
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Email>("Email_EmailTemplate", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Email_EmailTemplate");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Email>("Email_EmailTemplate", null, value);
+				this.OnPropertyChanged("Email_EmailTemplate");
 			}
 		}
 		
@@ -816,6 +923,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Template_ProcessSessions");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProcessSession>("Template_ProcessSessions", null, value);
 				this.OnPropertyChanged("Template_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Template_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Template_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Template_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Template_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Template_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Template_SyncErrors", null, value);
+				this.OnPropertyChanged("Template_SyncErrors");
 			}
 		}
 		

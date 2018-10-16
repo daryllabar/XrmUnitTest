@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("sdkmessageprocessingstepsecureconfig")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class SdkMessageProcessingStepSecureConfig : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
@@ -39,7 +39,6 @@ namespace DLaB.Xrm.Entities
 			public const string modifiedby_sdkmessageprocessingstepsecureconfig = "modifiedby_sdkmessageprocessingstepsecureconfig";
 			public const string organization_sdkmessageprocessingstepsecureconfig = "organization_sdkmessageprocessingstepsecureconfig";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -51,6 +50,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "sdkmessageprocessingstepsecureconfig";
+		
+		public const string PrimaryIdAttribute = "sdkmessageprocessingstepsecureconfigid";
 		
 		public const int EntityTypeCode = 4616;
 		

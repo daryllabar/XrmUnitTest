@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum OwnerMappingState
 	{
 		
@@ -20,26 +20,32 @@ namespace DLaB.Xrm.Entities
 	}
 	
 	/// <summary>
-	/// In a data map, maps ownership data from the source file to Microsoft Dynamics CRM.
+	/// In a data map, maps ownership data from the source file to Microsoft Dynamics 365.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("ownermapping")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class OwnerMapping : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
+			public const string ComponentState = "componentstate";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string ImportMapId = "importmapid";
+			public const string IntroducedVersion = "introducedversion";
+			public const string IsManaged = "ismanaged";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string OverwriteTime = "overwritetime";
 			public const string OwnerMappingId = "ownermappingid";
 			public const string Id = "ownermappingid";
+			public const string OwnerMappingIdUnique = "ownermappingidunique";
 			public const string ProcessCode = "processcode";
+			public const string SolutionId = "solutionid";
 			public const string SourceSystemUserName = "sourcesystemusername";
 			public const string SourceUserValueForSourceCRMUserLink = "sourceuservalueforsourcecrmuserlink";
 			public const string StateCode = "statecode";
@@ -54,7 +60,6 @@ namespace DLaB.Xrm.Entities
 			public const string OwnerMapping_ImportMap = "OwnerMapping_ImportMap";
 			public const string OwnerMapping_SystemUser = "OwnerMapping_SystemUser";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -66,6 +71,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "ownermapping";
+		
+		public const string PrimaryIdAttribute = "ownermappingid";
 		
 		public const int EntityTypeCode = 4420;
 		
@@ -88,6 +95,19 @@ namespace DLaB.Xrm.Entities
 			if ((this.PropertyChanging != null))
 			{
 				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
+		public Microsoft.Xrm.Sdk.OptionSetValue ComponentState
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("componentstate");
 			}
 		}
 		
@@ -172,6 +192,39 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Version in which the component is introduced.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("introducedversion")]
+		public string IntroducedVersion
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("introducedversion");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IntroducedVersion");
+				this.SetAttributeValue("introducedversion", value);
+				this.OnPropertyChanged("IntroducedVersion");
+			}
+		}
+		
+		/// <summary>
+		/// Information that specifies whether this component is managed.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ismanaged")]
+		public System.Nullable<bool> IsManaged
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("ismanaged");
+			}
+		}
+		
+		/// <summary>
 		/// Unique identifier of the user who last modified the lookup mapping.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
@@ -232,6 +285,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overwritetime")]
+		public System.Nullable<System.DateTime> OverwriteTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overwritetime");
+			}
+		}
+		
+		/// <summary>
 		/// Unique identifier of the owner mapping.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ownermappingid")]
@@ -275,6 +341,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Unique identifier of the OwnerMapping.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ownermappingidunique")]
+		public System.Nullable<System.Guid> OwnerMappingIdUnique
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("ownermappingidunique");
+			}
+		}
+		
+		/// <summary>
 		/// Code that indicates whether the owner mapping has to be processed
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("processcode")]
@@ -291,6 +370,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ProcessCode");
 				this.SetAttributeValue("processcode", value);
 				this.OnPropertyChanged("ProcessCode");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the associated solution.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("solutionid")]
+		public System.Nullable<System.Guid> SolutionId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("solutionid");
 			}
 		}
 		
@@ -315,7 +407,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Source user value for source Microsoft Dynamics CRM user link.
+		/// Source user value for source Microsoft Dynamics 365 user link.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sourceuservalueforsourcecrmuserlink")]
 		public string SourceUserValueForSourceCRMUserLink
@@ -376,7 +468,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Microsoft Dynamics CRM logon name with which the source user name should be replaced.
+		/// Microsoft Dynamics 365 logon name with which the source user name should be replaced.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("targetsystemuserdomainname")]
 		public string TargetSystemUserDomainName
@@ -396,7 +488,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the Microsoft Dynamics CRM user.
+		/// Unique identifier of the Microsoft Dynamics 365 user.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("targetsystemuserid")]
 		public Microsoft.Xrm.Sdk.EntityReference TargetSystemUserId
@@ -621,6 +713,16 @@ namespace DLaB.Xrm.Entities
                         break;
                 }
             }
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
+		public virtual ComponentState? ComponentStateEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("processcode")]

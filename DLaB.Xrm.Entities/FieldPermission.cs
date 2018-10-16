@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("fieldpermission")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class FieldPermission : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AttributeLogicalName = "attributelogicalname";
 			public const string CanCreate = "cancreate";
@@ -37,8 +37,8 @@ namespace DLaB.Xrm.Entities
 			public const string SolutionId = "solutionid";
 			public const string VersionNumber = "versionnumber";
 			public const string lk_fieldpermission_fieldsecurityprofileid = "lk_fieldpermission_fieldsecurityprofileid";
+			public const string solution_fieldpermission = "solution_fieldpermission";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -50,6 +50,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "fieldpermission";
+		
+		public const string PrimaryIdAttribute = "fieldpermissionid";
 		
 		public const int EntityTypeCode = 1201;
 		
@@ -330,6 +332,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N FieldPermission_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("FieldPermission_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> FieldPermission_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("FieldPermission_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("FieldPermission_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("FieldPermission_SyncErrors", null, value);
+				this.OnPropertyChanged("FieldPermission_SyncErrors");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N userentityinstancedata_fieldpermission
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("userentityinstancedata_fieldpermission")]
@@ -367,6 +389,20 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("lk_fieldpermission_fieldsecurityprofileid");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.FieldSecurityProfile>("lk_fieldpermission_fieldsecurityprofileid", null, value);
 				this.OnPropertyChanged("lk_fieldpermission_fieldsecurityprofileid");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 solution_fieldpermission
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("solutionid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("solution_fieldpermission")]
+		public DLaB.Xrm.Entities.Solution solution_fieldpermission
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Solution>("solution_fieldpermission", null);
 			}
 		}
 		

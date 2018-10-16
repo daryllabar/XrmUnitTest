@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("slakpiinstance")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class SLAKPIInstance : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ComputedFailureTime = "computedfailuretime";
 			public const string ComputedWarningTime = "computedwarningtime";
@@ -51,10 +51,25 @@ namespace DLaB.Xrm.Entities
 			public const string lk_slakpiinstancebase_createdonbehalfby = "lk_slakpiinstancebase_createdonbehalfby";
 			public const string lk_slakpiinstancebase_modifiedby = "lk_slakpiinstancebase_modifiedby";
 			public const string lk_slakpiinstancebase_modifiedonbehalfby = "lk_slakpiinstancebase_modifiedonbehalfby";
+			public const string slakpiinstance_account = "slakpiinstance_account";
+			public const string slakpiinstance_activitypointer = "slakpiinstance_activitypointer";
+			public const string slakpiinstance_appointment = "slakpiinstance_appointment";
+			public const string slakpiinstance_contact = "slakpiinstance_contact";
+			public const string slakpiinstance_email = "slakpiinstance_email";
+			public const string slakpiinstance_fax = "slakpiinstance_fax";
 			public const string slakpiinstance_incident = "slakpiinstance_incident";
+			public const string slakpiinstance_invoice = "slakpiinstance_invoice";
+			public const string slakpiinstance_lead = "slakpiinstance_lead";
+			public const string slakpiinstance_letter = "slakpiinstance_letter";
+			public const string slakpiinstance_opportunity = "slakpiinstance_opportunity";
+			public const string slakpiinstance_phonecall = "slakpiinstance_phonecall";
+			public const string slakpiinstance_quote = "slakpiinstance_quote";
+			public const string slakpiinstance_salesorder = "slakpiinstance_salesorder";
+			public const string slakpiinstance_serviceappointment = "slakpiinstance_serviceappointment";
+			public const string slakpiinstance_socialactivity = "slakpiinstance_socialactivity";
+			public const string slakpiinstance_task = "slakpiinstance_task";
 			public const string TransactionCurrency_slakpiinstance = "TransactionCurrency_slakpiinstance";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -66,6 +81,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "slakpiinstance";
+		
+		public const string PrimaryIdAttribute = "slakpiinstanceid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9752;
 		
@@ -405,7 +424,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the record that this service level agreement (SLA) key performance indicator (KPI) instance is associated with.
+		/// slakpiinstance_salesorder
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regarding")]
 		public Microsoft.Xrm.Sdk.EntityReference Regarding
@@ -621,6 +640,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N SLAKPIInstance_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("SLAKPIInstance_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> SLAKPIInstance_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("SLAKPIInstance_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SLAKPIInstance_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("SLAKPIInstance_SyncErrors", null, value);
+				this.OnPropertyChanged("SLAKPIInstance_SyncErrors");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 business_unit_slakpiinstance
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
@@ -726,6 +765,132 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 slakpiinstance_account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regarding")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_account")]
+		public DLaB.Xrm.Entities.Account slakpiinstance_account
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Account>("slakpiinstance_account", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_account");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Account>("slakpiinstance_account", null, value);
+				this.OnPropertyChanged("slakpiinstance_account");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 slakpiinstance_activitypointer
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regarding")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_activitypointer")]
+		public DLaB.Xrm.Entities.ActivityPointer slakpiinstance_activitypointer
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ActivityPointer>("slakpiinstance_activitypointer", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_activitypointer");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.ActivityPointer>("slakpiinstance_activitypointer", null, value);
+				this.OnPropertyChanged("slakpiinstance_activitypointer");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 slakpiinstance_appointment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regarding")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_appointment")]
+		public DLaB.Xrm.Entities.Appointment slakpiinstance_appointment
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Appointment>("slakpiinstance_appointment", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_appointment");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Appointment>("slakpiinstance_appointment", null, value);
+				this.OnPropertyChanged("slakpiinstance_appointment");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 slakpiinstance_contact
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regarding")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_contact")]
+		public DLaB.Xrm.Entities.Contact slakpiinstance_contact
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Contact>("slakpiinstance_contact", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_contact");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Contact>("slakpiinstance_contact", null, value);
+				this.OnPropertyChanged("slakpiinstance_contact");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 slakpiinstance_email
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regarding")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_email")]
+		public DLaB.Xrm.Entities.Email slakpiinstance_email
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Email>("slakpiinstance_email", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_email");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Email>("slakpiinstance_email", null, value);
+				this.OnPropertyChanged("slakpiinstance_email");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 slakpiinstance_fax
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regarding")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_fax")]
+		public DLaB.Xrm.Entities.Fax slakpiinstance_fax
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Fax>("slakpiinstance_fax", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_fax");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Fax>("slakpiinstance_fax", null, value);
+				this.OnPropertyChanged("slakpiinstance_fax");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 slakpiinstance_incident
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regarding")]
@@ -743,6 +908,216 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("slakpiinstance_incident");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.Incident>("slakpiinstance_incident", null, value);
 				this.OnPropertyChanged("slakpiinstance_incident");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 slakpiinstance_invoice
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regarding")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_invoice")]
+		public DLaB.Xrm.Entities.Invoice slakpiinstance_invoice
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Invoice>("slakpiinstance_invoice", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_invoice");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Invoice>("slakpiinstance_invoice", null, value);
+				this.OnPropertyChanged("slakpiinstance_invoice");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 slakpiinstance_lead
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regarding")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_lead")]
+		public DLaB.Xrm.Entities.Lead slakpiinstance_lead
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Lead>("slakpiinstance_lead", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_lead");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Lead>("slakpiinstance_lead", null, value);
+				this.OnPropertyChanged("slakpiinstance_lead");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 slakpiinstance_letter
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regarding")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_letter")]
+		public DLaB.Xrm.Entities.Letter slakpiinstance_letter
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Letter>("slakpiinstance_letter", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_letter");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Letter>("slakpiinstance_letter", null, value);
+				this.OnPropertyChanged("slakpiinstance_letter");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 slakpiinstance_opportunity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regarding")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_opportunity")]
+		public DLaB.Xrm.Entities.Opportunity slakpiinstance_opportunity
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Opportunity>("slakpiinstance_opportunity", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_opportunity");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Opportunity>("slakpiinstance_opportunity", null, value);
+				this.OnPropertyChanged("slakpiinstance_opportunity");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 slakpiinstance_phonecall
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regarding")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_phonecall")]
+		public DLaB.Xrm.Entities.PhoneCall slakpiinstance_phonecall
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.PhoneCall>("slakpiinstance_phonecall", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_phonecall");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.PhoneCall>("slakpiinstance_phonecall", null, value);
+				this.OnPropertyChanged("slakpiinstance_phonecall");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 slakpiinstance_quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regarding")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_quote")]
+		public DLaB.Xrm.Entities.Quote slakpiinstance_quote
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Quote>("slakpiinstance_quote", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_quote");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Quote>("slakpiinstance_quote", null, value);
+				this.OnPropertyChanged("slakpiinstance_quote");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 slakpiinstance_salesorder
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regarding")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_salesorder")]
+		public DLaB.Xrm.Entities.SalesOrder slakpiinstance_salesorder
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SalesOrder>("slakpiinstance_salesorder", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_salesorder");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SalesOrder>("slakpiinstance_salesorder", null, value);
+				this.OnPropertyChanged("slakpiinstance_salesorder");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 slakpiinstance_serviceappointment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regarding")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_serviceappointment")]
+		public DLaB.Xrm.Entities.ServiceAppointment slakpiinstance_serviceappointment
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ServiceAppointment>("slakpiinstance_serviceappointment", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_serviceappointment");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.ServiceAppointment>("slakpiinstance_serviceappointment", null, value);
+				this.OnPropertyChanged("slakpiinstance_serviceappointment");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 slakpiinstance_socialactivity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regarding")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_socialactivity")]
+		public DLaB.Xrm.Entities.SocialActivity slakpiinstance_socialactivity
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SocialActivity>("slakpiinstance_socialactivity", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_socialactivity");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SocialActivity>("slakpiinstance_socialactivity", null, value);
+				this.OnPropertyChanged("slakpiinstance_socialactivity");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 slakpiinstance_task
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regarding")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_task")]
+		public DLaB.Xrm.Entities.Task slakpiinstance_task
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Task>("slakpiinstance_task", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_task");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Task>("slakpiinstance_task", null, value);
+				this.OnPropertyChanged("slakpiinstance_task");
 			}
 		}
 		

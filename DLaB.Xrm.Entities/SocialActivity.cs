@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum SocialActivityState
 	{
 		
@@ -30,11 +30,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("socialactivity")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class SocialActivity : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ActivityAdditionalParams = "activityadditionalparams";
 			public const string ActivityId = "activityid";
@@ -56,9 +56,11 @@ namespace DLaB.Xrm.Entities
 			public const string IsBilled = "isbilled";
 			public const string IsRegularActivity = "isregularactivity";
 			public const string IsWorkflowCreated = "isworkflowcreated";
+			public const string LastOnHoldTime = "lastonholdtime";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string OnHoldTime = "onholdtime";
 			public const string OverriddenCreatedOn = "overriddencreatedon";
 			public const string OwnerId = "ownerid";
 			public const string OwningBusinessUnit = "owningbusinessunit";
@@ -81,7 +83,10 @@ namespace DLaB.Xrm.Entities
 			public const string ScheduledStart = "scheduledstart";
 			public const string SentimentValue = "sentimentvalue";
 			public const string ServiceId = "serviceid";
+			public const string SLAId = "slaid";
+			public const string SLAInvokedId = "slainvokedid";
 			public const string SocialAdditionalParams = "socialadditionalparams";
+			public const string SortDate = "sortdate";
 			public const string StageId = "stageid";
 			public const string StateCode = "statecode";
 			public const string StatusCode = "statuscode";
@@ -96,6 +101,8 @@ namespace DLaB.Xrm.Entities
 			public const string Account_SocialActivities = "Account_SocialActivities";
 			public const string activity_pointer_socialactivity = "activity_pointer_socialactivity";
 			public const string AsyncOperation_SocialActivities = "AsyncOperation_SocialActivities";
+			public const string bookableresourcebooking_SocialActivities = "bookableresourcebooking_SocialActivities";
+			public const string bookableresourcebookingheader_SocialActivities = "bookableresourcebookingheader_SocialActivities";
 			public const string BulkOperation_SocialActivity = "BulkOperation_SocialActivity";
 			public const string business_unit_socialactivity = "business_unit_socialactivity";
 			public const string Contact_SocialActivities = "Contact_SocialActivities";
@@ -111,11 +118,76 @@ namespace DLaB.Xrm.Entities
 			public const string lk_socialactivity_modifiedby = "lk_socialactivity_modifiedby";
 			public const string lk_socialactivitybase_createdonbehalfby = "lk_socialactivitybase_createdonbehalfby";
 			public const string lk_socialactivitybase_modifiedonbehalfby = "lk_socialactivitybase_modifiedonbehalfby";
+			public const string manualsla_socialactivity = "manualsla_socialactivity";
+			public const string msdyn_agreement_SocialActivities = "msdyn_agreement_SocialActivities";
+			public const string msdyn_agreementbookingdate_SocialActivities = "msdyn_agreementbookingdate_SocialActivities";
+			public const string msdyn_agreementbookingincident_SocialActivities = "msdyn_agreementbookingincident_SocialActivities";
+			public const string msdyn_agreementbookingproduct_SocialActivities = "msdyn_agreementbookingproduct_SocialActivities";
+			public const string msdyn_agreementbookingservice_SocialActivities = "msdyn_agreementbookingservice_SocialActivities";
+			public const string msdyn_agreementbookingservicetask_SocialActivities = "msdyn_agreementbookingservicetask_SocialActivities";
+			public const string msdyn_agreementbookingsetup_SocialActivities = "msdyn_agreementbookingsetup_SocialActivities";
+			public const string msdyn_agreementinvoicedate_SocialActivities = "msdyn_agreementinvoicedate_SocialActivities";
+			public const string msdyn_agreementinvoiceproduct_SocialActivities = "msdyn_agreementinvoiceproduct_SocialActivities";
+			public const string msdyn_agreementinvoicesetup_SocialActivities = "msdyn_agreementinvoicesetup_SocialActivities";
+			public const string msdyn_bookingalertstatus_SocialActivities = "msdyn_bookingalertstatus_SocialActivities";
+			public const string msdyn_bookingrule_SocialActivities = "msdyn_bookingrule_SocialActivities";
+			public const string msdyn_bookingtimestamp_SocialActivities = "msdyn_bookingtimestamp_SocialActivities";
+			public const string msdyn_customerasset_SocialActivities = "msdyn_customerasset_SocialActivities";
+			public const string msdyn_fieldservicesetting_SocialActivities = "msdyn_fieldservicesetting_SocialActivities";
+			public const string msdyn_incidenttypecharacteristic_SocialActivities = "msdyn_incidenttypecharacteristic_SocialActivities";
+			public const string msdyn_incidenttypeproduct_SocialActivities = "msdyn_incidenttypeproduct_SocialActivities";
+			public const string msdyn_incidenttypeservice_SocialActivities = "msdyn_incidenttypeservice_SocialActivities";
+			public const string msdyn_inventoryadjustment_SocialActivities = "msdyn_inventoryadjustment_SocialActivities";
+			public const string msdyn_inventoryadjustmentproduct_SocialActivities = "msdyn_inventoryadjustmentproduct_SocialActivities";
+			public const string msdyn_inventoryjournal_SocialActivities = "msdyn_inventoryjournal_SocialActivities";
+			public const string msdyn_inventorytransfer_SocialActivities = "msdyn_inventorytransfer_SocialActivities";
+			public const string msdyn_payment_SocialActivities = "msdyn_payment_SocialActivities";
+			public const string msdyn_paymentdetail_SocialActivities = "msdyn_paymentdetail_SocialActivities";
+			public const string msdyn_paymentmethod_SocialActivities = "msdyn_paymentmethod_SocialActivities";
+			public const string msdyn_paymentterm_SocialActivities = "msdyn_paymentterm_SocialActivities";
 			public const string msdyn_postalbum_SocialActivities = "msdyn_postalbum_SocialActivities";
+			public const string msdyn_postalcode_SocialActivities = "msdyn_postalcode_SocialActivities";
+			public const string msdyn_processnotes_SocialActivities = "msdyn_processnotes_SocialActivities";
+			public const string msdyn_productinventory_SocialActivities = "msdyn_productinventory_SocialActivities";
+			public const string msdyn_projectteam_SocialActivities = "msdyn_projectteam_SocialActivities";
+			public const string msdyn_purchaseorder_SocialActivities = "msdyn_purchaseorder_SocialActivities";
+			public const string msdyn_purchaseorderbill_SocialActivities = "msdyn_purchaseorderbill_SocialActivities";
+			public const string msdyn_purchaseorderproduct_SocialActivities = "msdyn_purchaseorderproduct_SocialActivities";
+			public const string msdyn_purchaseorderreceipt_SocialActivities = "msdyn_purchaseorderreceipt_SocialActivities";
+			public const string msdyn_purchaseorderreceiptproduct_SocialActivities = "msdyn_purchaseorderreceiptproduct_SocialActivities";
+			public const string msdyn_purchaseordersubstatus_SocialActivities = "msdyn_purchaseordersubstatus_SocialActivities";
+			public const string msdyn_quotebookingincident_SocialActivities = "msdyn_quotebookingincident_SocialActivities";
+			public const string msdyn_quotebookingproduct_SocialActivities = "msdyn_quotebookingproduct_SocialActivities";
+			public const string msdyn_quotebookingservice_SocialActivities = "msdyn_quotebookingservice_SocialActivities";
+			public const string msdyn_quotebookingservicetask_SocialActivities = "msdyn_quotebookingservicetask_SocialActivities";
+			public const string msdyn_resourceterritory_SocialActivities = "msdyn_resourceterritory_SocialActivities";
+			public const string msdyn_rma_SocialActivities = "msdyn_rma_SocialActivities";
+			public const string msdyn_rmaproduct_SocialActivities = "msdyn_rmaproduct_SocialActivities";
+			public const string msdyn_rmareceipt_SocialActivities = "msdyn_rmareceipt_SocialActivities";
+			public const string msdyn_rmareceiptproduct_SocialActivities = "msdyn_rmareceiptproduct_SocialActivities";
+			public const string msdyn_rmasubstatus_SocialActivities = "msdyn_rmasubstatus_SocialActivities";
+			public const string msdyn_rtv_SocialActivities = "msdyn_rtv_SocialActivities";
+			public const string msdyn_rtvproduct_SocialActivities = "msdyn_rtvproduct_SocialActivities";
+			public const string msdyn_rtvsubstatus_SocialActivities = "msdyn_rtvsubstatus_SocialActivities";
+			public const string msdyn_shipvia_SocialActivities = "msdyn_shipvia_SocialActivities";
+			public const string msdyn_systemuserschedulersetting_SocialActivities = "msdyn_systemuserschedulersetting_SocialActivities";
+			public const string msdyn_timegroup_SocialActivities = "msdyn_timegroup_SocialActivities";
+			public const string msdyn_timegroupdetail_SocialActivities = "msdyn_timegroupdetail_SocialActivities";
+			public const string msdyn_timeoffrequest_SocialActivities = "msdyn_timeoffrequest_SocialActivities";
+			public const string msdyn_warehouse_SocialActivities = "msdyn_warehouse_SocialActivities";
+			public const string msdyn_workorder_SocialActivities = "msdyn_workorder_SocialActivities";
+			public const string msdyn_workordercharacteristic_SocialActivities = "msdyn_workordercharacteristic_SocialActivities";
+			public const string msdyn_workorderincident_SocialActivities = "msdyn_workorderincident_SocialActivities";
+			public const string msdyn_workorderproduct_SocialActivities = "msdyn_workorderproduct_SocialActivities";
+			public const string msdyn_workorderresourcerestriction_SocialActivities = "msdyn_workorderresourcerestriction_SocialActivities";
+			public const string msdyn_workorderservice_SocialActivities = "msdyn_workorderservice_SocialActivities";
+			public const string msdyn_workorderservicetask_SocialActivities = "msdyn_workorderservicetask_SocialActivities";
 			public const string Opportunity_SocialActivities = "Opportunity_SocialActivities";
 			public const string Quote_SocialActivities = "Quote_SocialActivities";
 			public const string SalesOrder_SocialActivities = "SalesOrder_SocialActivities";
 			public const string service_socialactivities = "service_socialactivities";
+			public const string site_SocialActivities = "site_SocialActivities";
+			public const string sla_socialactivity = "sla_socialactivity";
 			public const string SocialActivity_PostAuthor_accounts = "SocialActivity_PostAuthor_accounts";
 			public const string socialactivity_postauthor_contacts = "socialactivity_postauthor_contacts";
 			public const string SocialActivity_PostAuthorAccount_accounts = "SocialActivity_PostAuthorAccount_accounts";
@@ -125,7 +197,6 @@ namespace DLaB.Xrm.Entities
 			public const string transactioncurrency_socialactivity = "transactioncurrency_socialactivity";
 			public const string user_socialactivity = "user_socialactivity";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -137,6 +208,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "socialactivity";
+		
+		public const string PrimaryIdAttribute = "activityid";
+		
+		public const string PrimaryNameAttribute = "subject";
 		
 		public const int EntityTypeCode = 4216;
 		
@@ -561,6 +636,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Contains the date and time stamp of the last on hold time.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lastonholdtime")]
+		public System.Nullable<System.DateTime> LastOnHoldTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("lastonholdtime");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("LastOnHoldTime");
+				this.SetAttributeValue("lastonholdtime", value);
+				this.OnPropertyChanged("LastOnHoldTime");
+			}
+		}
+		
+		/// <summary>
 		/// For internal use only.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
@@ -581,7 +676,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -617,6 +712,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ModifiedOnBehalfBy");
 				this.SetAttributeValue("modifiedonbehalfby", value);
 				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Shows how long, in minutes, that the record was on hold.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("onholdtime")]
+		public System.Nullable<int> OnHoldTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("onholdtime");
 			}
 		}
 		
@@ -921,7 +1029,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the record that the social activity relates to.
+		/// SalesOrder_SocialActivities
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
 		public Microsoft.Xrm.Sdk.EntityReference RegardingObjectId
@@ -1057,7 +1165,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier for the associated service.
+		/// service_socialactivities
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("serviceid")]
 		public Microsoft.Xrm.Sdk.EntityReference ServiceId
@@ -1073,6 +1181,39 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ServiceId");
 				this.SetAttributeValue("serviceid", value);
 				this.OnPropertyChanged("ServiceId");
+			}
+		}
+		
+		/// <summary>
+		/// Choose the service level agreement (SLA) that you want to apply to the Social Activity record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slaid")]
+		public Microsoft.Xrm.Sdk.EntityReference SLAId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("slaid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SLAId");
+				this.SetAttributeValue("slaid", value);
+				this.OnPropertyChanged("SLAId");
+			}
+		}
+		
+		/// <summary>
+		/// Last SLA that was applied to this Social Activity. This field is for internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slainvokedid")]
+		public Microsoft.Xrm.Sdk.EntityReference SLAInvokedId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("slainvokedid");
 			}
 		}
 		
@@ -1093,6 +1234,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("SocialAdditionalParams");
 				this.SetAttributeValue("socialadditionalparams", value);
 				this.OnPropertyChanged("SocialAdditionalParams");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the date and time by which the activities are sorted.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sortdate")]
+		public System.Nullable<System.DateTime> SortDate
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("sortdate");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SortDate");
+				this.SetAttributeValue("sortdate", value);
+				this.OnPropertyChanged("SortDate");
 			}
 		}
 		
@@ -1341,6 +1502,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N slakpiinstance_socialactivity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_socialactivity")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SLAKPIInstance> slakpiinstance_socialactivity
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SLAKPIInstance>("slakpiinstance_socialactivity", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_socialactivity");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SLAKPIInstance>("slakpiinstance_socialactivity", null, value);
+				this.OnPropertyChanged("slakpiinstance_socialactivity");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N socialactivity_activity_parties
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("socialactivity_activity_parties")]
@@ -1561,6 +1742,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N SocialActivity_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("SocialActivity_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> SocialActivity_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("SocialActivity_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SocialActivity_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("SocialActivity_SyncErrors", null, value);
+				this.OnPropertyChanged("SocialActivity_SyncErrors");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N userentityinstancedata_socialactivity
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("userentityinstancedata_socialactivity")]
@@ -1640,6 +1841,48 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("AsyncOperation_SocialActivities");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.AsyncOperation>("AsyncOperation_SocialActivities", null, value);
 				this.OnPropertyChanged("AsyncOperation_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcebooking_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebooking_SocialActivities")]
+		public DLaB.Xrm.Entities.BookableResourceBooking bookableresourcebooking_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBooking>("bookableresourcebooking_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bookableresourcebooking_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBooking>("bookableresourcebooking_SocialActivities", null, value);
+				this.OnPropertyChanged("bookableresourcebooking_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcebookingheader_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebookingheader_SocialActivities")]
+		public DLaB.Xrm.Entities.BookableResourceBookingHeader bookableresourcebookingheader_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBookingHeader>("bookableresourcebookingheader_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bookableresourcebookingheader_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBookingHeader>("bookableresourcebookingheader_SocialActivities", null, value);
+				this.OnPropertyChanged("bookableresourcebookingheader_SocialActivities");
 			}
 		}
 		
@@ -1959,6 +2202,573 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 manualsla_socialactivity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slaid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_socialactivity")]
+		public DLaB.Xrm.Entities.SLA manualsla_socialactivity
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SLA>("manualsla_socialactivity", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_socialactivity");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SLA>("manualsla_socialactivity", null, value);
+				this.OnPropertyChanged("manualsla_socialactivity");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreement_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreement_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_agreement msdyn_agreement_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreement_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_agreement_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingdate_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingdate_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingdate msdyn_agreementbookingdate_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingdate_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingdate_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingincident_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingincident_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingincident msdyn_agreementbookingincident_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingincident>("msdyn_agreementbookingincident_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingincident_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingincident>("msdyn_agreementbookingincident_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingincident_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingproduct_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingproduct_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingproduct msdyn_agreementbookingproduct_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_agreementbookingproduct_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingproduct_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_agreementbookingproduct_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingproduct_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservice_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservice_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservice msdyn_agreementbookingservice_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_agreementbookingservice_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingservice_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_agreementbookingservice_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingservice_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservicetask_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservicetask_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservicetask msdyn_agreementbookingservicetask_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask>("msdyn_agreementbookingservicetask_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingservicetask_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask>("msdyn_agreementbookingservicetask_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingservicetask_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingsetup_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingsetup_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingsetup msdyn_agreementbookingsetup_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingsetup_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingsetup_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicedate_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicedate_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicedate msdyn_agreementinvoicedate_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoicedate_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoicedate_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoiceproduct_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoiceproduct_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct msdyn_agreementinvoiceproduct_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_agreementinvoiceproduct_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoiceproduct_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_agreementinvoiceproduct_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoiceproduct_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicesetup_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicesetup_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicesetup msdyn_agreementinvoicesetup_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoicesetup_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoicesetup_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingalertstatus_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalertstatus_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_bookingalertstatus msdyn_bookingalertstatus_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalertstatus>("msdyn_bookingalertstatus_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingalertstatus_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalertstatus>("msdyn_bookingalertstatus_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_bookingalertstatus_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingrule_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingrule_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_bookingrule msdyn_bookingrule_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingrule>("msdyn_bookingrule_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingrule_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingrule>("msdyn_bookingrule_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_bookingrule_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingtimestamp_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingtimestamp_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_bookingtimestamp msdyn_bookingtimestamp_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingtimestamp_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_bookingtimestamp_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_customerasset_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_customerasset_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_customerasset msdyn_customerasset_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_customerasset_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_customerasset_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_customerasset_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_customerasset_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fieldservicesetting_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fieldservicesetting_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_fieldservicesetting msdyn_fieldservicesetting_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicesetting>("msdyn_fieldservicesetting_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_fieldservicesetting_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicesetting>("msdyn_fieldservicesetting_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_fieldservicesetting_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypecharacteristic_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypecharacteristic_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic msdyn_incidenttypecharacteristic_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic>("msdyn_incidenttypecharacteristic_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypecharacteristic_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic>("msdyn_incidenttypecharacteristic_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypecharacteristic_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeproduct_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeproduct_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeproduct msdyn_incidenttypeproduct_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypeproduct_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypeproduct_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeservice_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeservice_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeservice msdyn_incidenttypeservice_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_incidenttypeservice_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypeservice_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_incidenttypeservice_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypeservice_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustment_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustment_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustment msdyn_inventoryadjustment_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryadjustment_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_inventoryadjustment_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustmentproduct_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustmentproduct_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct msdyn_inventoryadjustmentproduct_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryadjustmentproduct_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_inventoryadjustmentproduct_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryjournal_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryjournal_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_inventoryjournal msdyn_inventoryjournal_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_inventoryjournal_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryjournal_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_inventoryjournal_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_inventoryjournal_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventorytransfer_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventorytransfer_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_inventorytransfer msdyn_inventorytransfer_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventorytransfer_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_inventorytransfer_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_payment_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_payment_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_payment msdyn_payment_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_payment>("msdyn_payment_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_payment_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_payment>("msdyn_payment_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_payment_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentdetail_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentdetail_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_paymentdetail msdyn_paymentdetail_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentdetail>("msdyn_paymentdetail_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentdetail_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentdetail>("msdyn_paymentdetail_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_paymentdetail_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentmethod_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentmethod_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_paymentmethod msdyn_paymentmethod_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentmethod>("msdyn_paymentmethod_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentmethod_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentmethod>("msdyn_paymentmethod_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_paymentmethod_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentterm_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentterm_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_paymentterm msdyn_paymentterm_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentterm>("msdyn_paymentterm_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentterm_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentterm>("msdyn_paymentterm_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_paymentterm_SocialActivities");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 msdyn_postalbum_SocialActivities
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1976,6 +2786,762 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("msdyn_postalbum_SocialActivities");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_PostAlbum>("msdyn_postalbum_SocialActivities", null, value);
 				this.OnPropertyChanged("msdyn_postalbum_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_postalcode_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_postalcode_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_postalcode msdyn_postalcode_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_postalcode_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_postalcode_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_postalcode_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_postalcode_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_processnotes_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_processnotes_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_processnotes msdyn_processnotes_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_processnotes>("msdyn_processnotes_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_processnotes_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_processnotes>("msdyn_processnotes_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_processnotes_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_productinventory_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_productinventory_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_productinventory msdyn_productinventory_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_productinventory_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_productinventory_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_productinventory_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_productinventory_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectteam_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectteam_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_projectteam msdyn_projectteam_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteam>("msdyn_projectteam_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_projectteam_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteam>("msdyn_projectteam_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_projectteam_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorder_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorder_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorder msdyn_purchaseorder_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorder_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorder_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderbill_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderbill_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderbill msdyn_purchaseorderbill_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("msdyn_purchaseorderbill_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderbill_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("msdyn_purchaseorderbill_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderbill_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderproduct_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderproduct_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderproduct msdyn_purchaseorderproduct_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_purchaseorderproduct_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderproduct_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_purchaseorderproduct_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderproduct_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceipt_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceipt_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceipt msdyn_purchaseorderreceipt_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderreceipt_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderreceipt_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceiptproduct_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceiptproduct_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct msdyn_purchaseorderreceiptproduct_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct>("msdyn_purchaseorderreceiptproduct_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderreceiptproduct_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct>("msdyn_purchaseorderreceiptproduct_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderreceiptproduct_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseordersubstatus_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseordersubstatus_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_purchaseordersubstatus msdyn_purchaseordersubstatus_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus>("msdyn_purchaseordersubstatus_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseordersubstatus_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus>("msdyn_purchaseordersubstatus_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_purchaseordersubstatus_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingincident_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingincident_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingincident msdyn_quotebookingincident_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quotebookingincident_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingincident_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quotebookingincident_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingincident_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingproduct_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingproduct_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingproduct msdyn_quotebookingproduct_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quotebookingproduct_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingproduct_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quotebookingproduct_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingproduct_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservice_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservice_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservice msdyn_quotebookingservice_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quotebookingservice_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingservice_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quotebookingservice_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingservice_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservicetask_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservicetask_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservicetask msdyn_quotebookingservicetask_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quotebookingservicetask_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingservicetask_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quotebookingservicetask_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingservicetask_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourceterritory_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourceterritory_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_resourceterritory msdyn_resourceterritory_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_resourceterritory_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_resourceterritory_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rma_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rma_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_rma msdyn_rma_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rma_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_rma_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmaproduct_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmaproduct_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_rmaproduct msdyn_rmaproduct_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_rmaproduct_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmaproduct_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_rmaproduct_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_rmaproduct_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceipt_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceipt_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_rmareceipt msdyn_rmareceipt_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmareceipt_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_rmareceipt_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceiptproduct_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceiptproduct_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_rmareceiptproduct msdyn_rmareceiptproduct_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceiptproduct>("msdyn_rmareceiptproduct_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmareceiptproduct_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceiptproduct>("msdyn_rmareceiptproduct_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_rmareceiptproduct_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmasubstatus_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmasubstatus_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_rmasubstatus msdyn_rmasubstatus_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmasubstatus>("msdyn_rmasubstatus_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmasubstatus_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmasubstatus>("msdyn_rmasubstatus_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_rmasubstatus_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtv_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtv_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_rtv msdyn_rtv_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtv_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_rtv_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvproduct_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvproduct_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_rtvproduct msdyn_rtvproduct_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_rtvproduct_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtvproduct_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_rtvproduct_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_rtvproduct_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvsubstatus_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvsubstatus_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_rtvsubstatus msdyn_rtvsubstatus_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvsubstatus>("msdyn_rtvsubstatus_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtvsubstatus_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvsubstatus>("msdyn_rtvsubstatus_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_rtvsubstatus_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_shipvia_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_shipvia_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_shipvia msdyn_shipvia_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_shipvia>("msdyn_shipvia_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_shipvia_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_shipvia>("msdyn_shipvia_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_shipvia_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_systemuserschedulersetting_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_systemuserschedulersetting_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_systemuserschedulersetting msdyn_systemuserschedulersetting_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting>("msdyn_systemuserschedulersetting_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_systemuserschedulersetting_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting>("msdyn_systemuserschedulersetting_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_systemuserschedulersetting_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroup_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroup_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_timegroup msdyn_timegroup_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timegroup_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_timegroup_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroupdetail_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroupdetail_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_timegroupdetail msdyn_timegroupdetail_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timegroupdetail_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_timegroupdetail_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timeoffrequest_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timeoffrequest_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_timeoffrequest msdyn_timeoffrequest_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffrequest>("msdyn_timeoffrequest_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timeoffrequest_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffrequest>("msdyn_timeoffrequest_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_timeoffrequest_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_warehouse_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_warehouse_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_warehouse msdyn_warehouse_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_warehouse_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_warehouse_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorder_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorder_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_workorder msdyn_workorder_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorder_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_workorder_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workordercharacteristic_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workordercharacteristic_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_workordercharacteristic msdyn_workordercharacteristic_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordercharacteristic>("msdyn_workordercharacteristic_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workordercharacteristic_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordercharacteristic>("msdyn_workordercharacteristic_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_workordercharacteristic_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderincident_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderincident_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_workorderincident msdyn_workorderincident_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderincident_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_workorderincident_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderproduct_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderproduct_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_workorderproduct msdyn_workorderproduct_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_workorderproduct_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderproduct_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_workorderproduct_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_workorderproduct_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderresourcerestriction_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderresourcerestriction_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_workorderresourcerestriction msdyn_workorderresourcerestriction_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_workorderresourcerestriction_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderresourcerestriction_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_workorderresourcerestriction_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_workorderresourcerestriction_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservice_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservice_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_workorderservice msdyn_workorderservice_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderservice_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_workorderservice_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservicetask_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservicetask_SocialActivities")]
+		public DLaB.Xrm.Entities.msdyn_workorderservicetask msdyn_workorderservicetask_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderservicetask_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_SocialActivities", null, value);
+				this.OnPropertyChanged("msdyn_workorderservicetask_SocialActivities");
 			}
 		}
 		
@@ -2060,6 +3626,41 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("service_socialactivities");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.Service>("service_socialactivities", null, value);
 				this.OnPropertyChanged("service_socialactivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 site_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_SocialActivities")]
+		public DLaB.Xrm.Entities.Site site_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Site>("site_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_SocialActivities");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Site>("site_SocialActivities", null, value);
+				this.OnPropertyChanged("site_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 sla_socialactivity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slainvokedid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_socialactivity")]
+		public DLaB.Xrm.Entities.SLA sla_socialactivity
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SLA>("sla_socialactivity", null);
 			}
 		}
 		

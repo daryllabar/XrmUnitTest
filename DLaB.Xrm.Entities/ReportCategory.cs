@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("reportcategory")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ReportCategory : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CategoryCode = "categorycode";
 			public const string ComponentState = "componentstate";
@@ -53,7 +53,6 @@ namespace DLaB.Xrm.Entities
 			public const string report_reportcategories = "report_reportcategories";
 			public const string TransactionCurrency_ReportCategory = "TransactionCurrency_ReportCategory";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -65,6 +64,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "reportcategory";
+		
+		public const string PrimaryIdAttribute = "reportcategoryid";
 		
 		public const int EntityTypeCode = 9102;
 		
@@ -554,6 +555,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("reportcategory_principalobjectattributeaccess");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("reportcategory_principalobjectattributeaccess", null, value);
 				this.OnPropertyChanged("reportcategory_principalobjectattributeaccess");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N ReportCategory_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ReportCategory_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> ReportCategory_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ReportCategory_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ReportCategory_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ReportCategory_SyncErrors", null, value);
+				this.OnPropertyChanged("ReportCategory_SyncErrors");
 			}
 		}
 		

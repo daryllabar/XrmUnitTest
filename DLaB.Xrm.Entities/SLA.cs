@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum SLAState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("sla")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class SLA : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AllowPauseResume = "allowpauseresume";
 			public const string ApplicableFrom = "applicablefrom";
@@ -56,6 +56,7 @@ namespace DLaB.Xrm.Entities
 			public const string OwningBusinessUnit = "owningbusinessunit";
 			public const string OwningTeam = "owningteam";
 			public const string OwningUser = "owninguser";
+			public const string PrimaryEntityOTC = "primaryentityotc";
 			public const string SLAId = "slaid";
 			public const string Id = "slaid";
 			public const string SLAIdUnique = "slaidunique";
@@ -77,7 +78,6 @@ namespace DLaB.Xrm.Entities
 			public const string TransactionCurrency_SLA = "TransactionCurrency_SLA";
 			public const string user_slabase = "user_slabase";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -89,6 +89,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "sla";
+		
+		public const string PrimaryIdAttribute = "slaid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9750;
 		
@@ -248,7 +252,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -374,7 +378,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -536,6 +540,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("OwningUser");
 				this.SetAttributeValue("owninguser", value);
 				this.OnPropertyChanged("OwningUser");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the primary entity that the SLA has been created for.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("primaryentityotc")]
+		public System.Nullable<int> PrimaryEntityOTC
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("primaryentityotc");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("PrimaryEntityOTC");
+				this.SetAttributeValue("primaryentityotc", value);
+				this.OnPropertyChanged("PrimaryEntityOTC");
 			}
 		}
 		
@@ -730,6 +754,226 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N bulkoperation_sla_slaid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bulkoperation_sla_slaid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.BulkOperation> bulkoperation_sla_slaid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.BulkOperation>("bulkoperation_sla_slaid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bulkoperation_sla_slaid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.BulkOperation>("bulkoperation_sla_slaid", null, value);
+				this.OnPropertyChanged("bulkoperation_sla_slaid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N bulkoperation_sla_slainvokedid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bulkoperation_sla_slainvokedid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.BulkOperation> bulkoperation_sla_slainvokedid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.BulkOperation>("bulkoperation_sla_slainvokedid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bulkoperation_sla_slainvokedid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.BulkOperation>("bulkoperation_sla_slainvokedid", null, value);
+				this.OnPropertyChanged("bulkoperation_sla_slainvokedid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N campaignactivity_sla_slaid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("campaignactivity_sla_slaid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CampaignActivity> campaignactivity_sla_slaid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CampaignActivity>("campaignactivity_sla_slaid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("campaignactivity_sla_slaid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CampaignActivity>("campaignactivity_sla_slaid", null, value);
+				this.OnPropertyChanged("campaignactivity_sla_slaid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N campaignactivity_sla_slainvokedid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("campaignactivity_sla_slainvokedid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CampaignActivity> campaignactivity_sla_slainvokedid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CampaignActivity>("campaignactivity_sla_slainvokedid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("campaignactivity_sla_slainvokedid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CampaignActivity>("campaignactivity_sla_slainvokedid", null, value);
+				this.OnPropertyChanged("campaignactivity_sla_slainvokedid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N campaignresponse_sla_slaid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("campaignresponse_sla_slaid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CampaignResponse> campaignresponse_sla_slaid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CampaignResponse>("campaignresponse_sla_slaid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("campaignresponse_sla_slaid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CampaignResponse>("campaignresponse_sla_slaid", null, value);
+				this.OnPropertyChanged("campaignresponse_sla_slaid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N campaignresponse_sla_slainvokedid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("campaignresponse_sla_slainvokedid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CampaignResponse> campaignresponse_sla_slainvokedid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CampaignResponse>("campaignresponse_sla_slainvokedid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("campaignresponse_sla_slainvokedid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CampaignResponse>("campaignresponse_sla_slainvokedid", null, value);
+				this.OnPropertyChanged("campaignresponse_sla_slainvokedid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N incidentresolution_sla_slaid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("incidentresolution_sla_slaid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.IncidentResolution> incidentresolution_sla_slaid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.IncidentResolution>("incidentresolution_sla_slaid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("incidentresolution_sla_slaid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.IncidentResolution>("incidentresolution_sla_slaid", null, value);
+				this.OnPropertyChanged("incidentresolution_sla_slaid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N incidentresolution_sla_slainvokedid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("incidentresolution_sla_slainvokedid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.IncidentResolution> incidentresolution_sla_slainvokedid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.IncidentResolution>("incidentresolution_sla_slainvokedid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("incidentresolution_sla_slainvokedid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.IncidentResolution>("incidentresolution_sla_slainvokedid", null, value);
+				this.OnPropertyChanged("incidentresolution_sla_slainvokedid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N manualsla_account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_account")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Account> manualsla_account
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Account>("manualsla_account", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_account");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Account>("manualsla_account", null, value);
+				this.OnPropertyChanged("manualsla_account");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N manualsla_activitypointer
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_activitypointer")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActivityPointer> manualsla_activitypointer
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ActivityPointer>("manualsla_activitypointer", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_activitypointer");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ActivityPointer>("manualsla_activitypointer", null, value);
+				this.OnPropertyChanged("manualsla_activitypointer");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N manualsla_appointment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_appointment")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Appointment> manualsla_appointment
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Appointment>("manualsla_appointment", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_appointment");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Appointment>("manualsla_appointment", null, value);
+				this.OnPropertyChanged("manualsla_appointment");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N manualsla_cases
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_cases")]
@@ -746,6 +990,506 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("manualsla_cases");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Incident>("manualsla_cases", null, value);
 				this.OnPropertyChanged("manualsla_cases");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N manualsla_contact
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_contact")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Contact> manualsla_contact
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Contact>("manualsla_contact", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_contact");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Contact>("manualsla_contact", null, value);
+				this.OnPropertyChanged("manualsla_contact");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N manualsla_email
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_email")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Email> manualsla_email
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Email>("manualsla_email", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_email");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Email>("manualsla_email", null, value);
+				this.OnPropertyChanged("manualsla_email");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N manualsla_fax
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_fax")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Fax> manualsla_fax
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Fax>("manualsla_fax", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_fax");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Fax>("manualsla_fax", null, value);
+				this.OnPropertyChanged("manualsla_fax");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N manualsla_invoice
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_invoice")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Invoice> manualsla_invoice
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Invoice>("manualsla_invoice", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_invoice");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Invoice>("manualsla_invoice", null, value);
+				this.OnPropertyChanged("manualsla_invoice");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N manualsla_lead
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_lead")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Lead> manualsla_lead
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Lead>("manualsla_lead", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_lead");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Lead>("manualsla_lead", null, value);
+				this.OnPropertyChanged("manualsla_lead");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N manualsla_letter
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_letter")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Letter> manualsla_letter
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Letter>("manualsla_letter", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_letter");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Letter>("manualsla_letter", null, value);
+				this.OnPropertyChanged("manualsla_letter");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N manualsla_opportunity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_opportunity")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Opportunity> manualsla_opportunity
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Opportunity>("manualsla_opportunity", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_opportunity");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Opportunity>("manualsla_opportunity", null, value);
+				this.OnPropertyChanged("manualsla_opportunity");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N manualsla_phonecall
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_phonecall")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PhoneCall> manualsla_phonecall
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PhoneCall>("manualsla_phonecall", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_phonecall");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PhoneCall>("manualsla_phonecall", null, value);
+				this.OnPropertyChanged("manualsla_phonecall");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N manualsla_quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_quote")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Quote> manualsla_quote
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Quote>("manualsla_quote", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_quote");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Quote>("manualsla_quote", null, value);
+				this.OnPropertyChanged("manualsla_quote");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N manualsla_salesorder
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_salesorder")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SalesOrder> manualsla_salesorder
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SalesOrder>("manualsla_salesorder", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_salesorder");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SalesOrder>("manualsla_salesorder", null, value);
+				this.OnPropertyChanged("manualsla_salesorder");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N manualsla_serviceappointment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_serviceappointment")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ServiceAppointment> manualsla_serviceappointment
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ServiceAppointment>("manualsla_serviceappointment", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_serviceappointment");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ServiceAppointment>("manualsla_serviceappointment", null, value);
+				this.OnPropertyChanged("manualsla_serviceappointment");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N manualsla_socialactivity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_socialactivity")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SocialActivity> manualsla_socialactivity
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SocialActivity>("manualsla_socialactivity", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_socialactivity");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SocialActivity>("manualsla_socialactivity", null, value);
+				this.OnPropertyChanged("manualsla_socialactivity");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N manualsla_task
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_task")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Task> manualsla_task
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Task>("manualsla_task", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_task");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Task>("manualsla_task", null, value);
+				this.OnPropertyChanged("manualsla_task");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_approval_sla_slaid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_approval_sla_slaid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_approval> msdyn_approval_sla_slaid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_sla_slaid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_approval_sla_slaid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_sla_slaid", null, value);
+				this.OnPropertyChanged("msdyn_approval_sla_slaid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_approval_sla_slainvokedid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_approval_sla_slainvokedid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_approval> msdyn_approval_sla_slainvokedid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_sla_slainvokedid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_approval_sla_slainvokedid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_sla_slainvokedid", null, value);
+				this.OnPropertyChanged("msdyn_approval_sla_slainvokedid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_bookingalert_sla_slaid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalert_sla_slaid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bookingalert> msdyn_bookingalert_sla_slaid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_sla_slaid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingalert_sla_slaid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_sla_slaid", null, value);
+				this.OnPropertyChanged("msdyn_bookingalert_sla_slaid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_bookingalert_sla_slainvokedid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalert_sla_slainvokedid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bookingalert> msdyn_bookingalert_sla_slainvokedid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_sla_slainvokedid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingalert_sla_slainvokedid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_sla_slainvokedid", null, value);
+				this.OnPropertyChanged("msdyn_bookingalert_sla_slainvokedid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N opportunityclose_sla_slaid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunityclose_sla_slaid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OpportunityClose> opportunityclose_sla_slaid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OpportunityClose>("opportunityclose_sla_slaid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("opportunityclose_sla_slaid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OpportunityClose>("opportunityclose_sla_slaid", null, value);
+				this.OnPropertyChanged("opportunityclose_sla_slaid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N opportunityclose_sla_slainvokedid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunityclose_sla_slainvokedid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OpportunityClose> opportunityclose_sla_slainvokedid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OpportunityClose>("opportunityclose_sla_slainvokedid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("opportunityclose_sla_slainvokedid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OpportunityClose>("opportunityclose_sla_slainvokedid", null, value);
+				this.OnPropertyChanged("opportunityclose_sla_slainvokedid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N orderclose_sla_slaid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("orderclose_sla_slaid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OrderClose> orderclose_sla_slaid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OrderClose>("orderclose_sla_slaid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("orderclose_sla_slaid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OrderClose>("orderclose_sla_slaid", null, value);
+				this.OnPropertyChanged("orderclose_sla_slaid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N orderclose_sla_slainvokedid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("orderclose_sla_slainvokedid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OrderClose> orderclose_sla_slainvokedid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OrderClose>("orderclose_sla_slainvokedid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("orderclose_sla_slainvokedid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OrderClose>("orderclose_sla_slainvokedid", null, value);
+				this.OnPropertyChanged("orderclose_sla_slainvokedid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N quoteclose_sla_slaid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("quoteclose_sla_slaid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.QuoteClose> quoteclose_sla_slaid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("quoteclose_sla_slaid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("quoteclose_sla_slaid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("quoteclose_sla_slaid", null, value);
+				this.OnPropertyChanged("quoteclose_sla_slaid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N quoteclose_sla_slainvokedid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("quoteclose_sla_slainvokedid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.QuoteClose> quoteclose_sla_slainvokedid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("quoteclose_sla_slainvokedid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("quoteclose_sla_slainvokedid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("quoteclose_sla_slainvokedid", null, value);
+				this.OnPropertyChanged("quoteclose_sla_slainvokedid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N sla_account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_account")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Account> sla_account
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Account>("sla_account", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("sla_account");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Account>("sla_account", null, value);
+				this.OnPropertyChanged("sla_account");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N sla_activitypointer
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_activitypointer")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActivityPointer> sla_activitypointer
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ActivityPointer>("sla_activitypointer", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("sla_activitypointer");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ActivityPointer>("sla_activitypointer", null, value);
+				this.OnPropertyChanged("sla_activitypointer");
 			}
 		}
 		
@@ -770,6 +1514,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N sla_appointment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_appointment")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Appointment> sla_appointment
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Appointment>("sla_appointment", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("sla_appointment");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Appointment>("sla_appointment", null, value);
+				this.OnPropertyChanged("sla_appointment");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N sla_cases
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_cases")]
@@ -786,6 +1550,46 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("sla_cases");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Incident>("sla_cases", null, value);
 				this.OnPropertyChanged("sla_cases");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N sla_contact
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_contact")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Contact> sla_contact
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Contact>("sla_contact", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("sla_contact");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Contact>("sla_contact", null, value);
+				this.OnPropertyChanged("sla_contact");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N sla_email
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_email")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Email> sla_email
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Email>("sla_email", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("sla_email");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Email>("sla_email", null, value);
+				this.OnPropertyChanged("sla_email");
 			}
 		}
 		
@@ -830,6 +1634,186 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N sla_fax
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_fax")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Fax> sla_fax
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Fax>("sla_fax", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("sla_fax");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Fax>("sla_fax", null, value);
+				this.OnPropertyChanged("sla_fax");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N sla_invoice
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_invoice")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Invoice> sla_invoice
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Invoice>("sla_invoice", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("sla_invoice");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Invoice>("sla_invoice", null, value);
+				this.OnPropertyChanged("sla_invoice");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N sla_lead
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_lead")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Lead> sla_lead
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Lead>("sla_lead", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("sla_lead");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Lead>("sla_lead", null, value);
+				this.OnPropertyChanged("sla_lead");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N sla_letter
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_letter")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Letter> sla_letter
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Letter>("sla_letter", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("sla_letter");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Letter>("sla_letter", null, value);
+				this.OnPropertyChanged("sla_letter");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N sla_opportunity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_opportunity")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Opportunity> sla_opportunity
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Opportunity>("sla_opportunity", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("sla_opportunity");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Opportunity>("sla_opportunity", null, value);
+				this.OnPropertyChanged("sla_opportunity");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N sla_phonecall
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_phonecall")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PhoneCall> sla_phonecall
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PhoneCall>("sla_phonecall", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("sla_phonecall");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PhoneCall>("sla_phonecall", null, value);
+				this.OnPropertyChanged("sla_phonecall");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N sla_quote
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_quote")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Quote> sla_quote
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Quote>("sla_quote", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("sla_quote");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Quote>("sla_quote", null, value);
+				this.OnPropertyChanged("sla_quote");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N sla_salesorder
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_salesorder")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SalesOrder> sla_salesorder
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SalesOrder>("sla_salesorder", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("sla_salesorder");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SalesOrder>("sla_salesorder", null, value);
+				this.OnPropertyChanged("sla_salesorder");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N sla_serviceappointment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_serviceappointment")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ServiceAppointment> sla_serviceappointment
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ServiceAppointment>("sla_serviceappointment", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("sla_serviceappointment");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ServiceAppointment>("sla_serviceappointment", null, value);
+				this.OnPropertyChanged("sla_serviceappointment");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N sla_slaitem_slaId
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_slaitem_slaId")]
@@ -846,6 +1830,66 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("sla_slaitem_slaId");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.SLAItem>("sla_slaitem_slaId", null, value);
 				this.OnPropertyChanged("sla_slaitem_slaId");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N sla_socialactivity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_socialactivity")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SocialActivity> sla_socialactivity
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SocialActivity>("sla_socialactivity", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("sla_socialactivity");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SocialActivity>("sla_socialactivity", null, value);
+				this.OnPropertyChanged("sla_socialactivity");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N SLA_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("SLA_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> SLA_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("SLA_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SLA_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("SLA_SyncErrors", null, value);
+				this.OnPropertyChanged("SLA_SyncErrors");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N sla_task
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_task")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Task> sla_task
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Task>("sla_task", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("sla_task");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Task>("sla_task", null, value);
+				this.OnPropertyChanged("sla_task");
 			}
 		}
 		

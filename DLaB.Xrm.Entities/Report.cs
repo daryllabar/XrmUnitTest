@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("report")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Report : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string BodyBinary = "bodybinary";
 			public const string BodyText = "bodytext";
@@ -76,7 +76,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_reportbase_modifiedby = "lk_reportbase_modifiedby";
 			public const string Referencingreport_parent_report = "report_parent_report";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -88,6 +87,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "report";
+		
+		public const string PrimaryIdAttribute = "reportid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9100;
 		
@@ -1135,6 +1138,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("report_reportvisibility");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ReportVisibility>("report_reportvisibility", null, value);
 				this.OnPropertyChanged("report_reportvisibility");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Report_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Report_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Report_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Report_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Report_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Report_SyncErrors", null, value);
+				this.OnPropertyChanged("Report_SyncErrors");
 			}
 		}
 		

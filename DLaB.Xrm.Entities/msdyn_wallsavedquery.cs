@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum msdyn_wallsavedqueryState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("msdyn_wallsavedquery")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class msdyn_wallsavedquery : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
@@ -53,8 +53,8 @@ namespace DLaB.Xrm.Entities
 			public const string Id = "msdyn_wallsavedqueryid";
 			public const string OrganizationId = "organizationid";
 			public const string OverriddenCreatedOn = "overriddencreatedon";
-			public const string statecode = "statecode";
-			public const string statuscode = "statuscode";
+			public const string StateCode = "statecode";
+			public const string StatusCode = "statuscode";
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
@@ -65,7 +65,6 @@ namespace DLaB.Xrm.Entities
 			public const string msdyn_postconfig_wallsavedquery = "msdyn_postconfig_wallsavedquery";
 			public const string organization_msdyn_wallsavedquery = "organization_msdyn_wallsavedquery";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -77,6 +76,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "msdyn_wallsavedquery";
+		
+		public const string PrimaryIdAttribute = "msdyn_wallsavedqueryid";
+		
+		public const string PrimaryNameAttribute = "msdyn_entityname";
 		
 		public const int EntityTypeCode = 10003;
 		
@@ -502,7 +505,7 @@ namespace DLaB.Xrm.Entities
 		/// Status of the Wall View
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
-		public System.Nullable<DLaB.Xrm.Entities.msdyn_wallsavedqueryState> statecode
+		public System.Nullable<DLaB.Xrm.Entities.msdyn_wallsavedqueryState> StateCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -520,7 +523,7 @@ namespace DLaB.Xrm.Entities
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("statecode");
+				this.OnPropertyChanging("StateCode");
 				if ((value == null))
 				{
 					this.SetAttributeValue("statecode", null);
@@ -529,7 +532,7 @@ namespace DLaB.Xrm.Entities
 				{
 					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
 				}
-				this.OnPropertyChanged("statecode");
+				this.OnPropertyChanged("StateCode");
 			}
 		}
 		
@@ -537,7 +540,7 @@ namespace DLaB.Xrm.Entities
 		/// Reason for the status of the Wall View
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public Microsoft.Xrm.Sdk.OptionSetValue statuscode
+		public Microsoft.Xrm.Sdk.OptionSetValue StatusCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -547,9 +550,9 @@ namespace DLaB.Xrm.Entities
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("statuscode");
+				this.OnPropertyChanging("StatusCode");
 				this.SetAttributeValue("statuscode", value);
-				this.OnPropertyChanged("statuscode");
+				this.OnPropertyChanged("StatusCode");
 			}
 		}
 		
@@ -594,7 +597,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// 
+		/// Version Number
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
 		public System.Nullable<long> VersionNumber
@@ -703,6 +706,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("msdyn_wallsavedquery_ProcessSession");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProcessSession>("msdyn_wallsavedquery_ProcessSession", null, value);
 				this.OnPropertyChanged("msdyn_wallsavedquery_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_wallsavedquery_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_wallsavedquery_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> msdyn_wallsavedquery_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("msdyn_wallsavedquery_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_wallsavedquery_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("msdyn_wallsavedquery_SyncErrors", null, value);
+				this.OnPropertyChanged("msdyn_wallsavedquery_SyncErrors");
 			}
 		}
 		
@@ -908,7 +931,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual msdyn_wallsavedquery_StatusCode? statuscodeEnum
+		public virtual msdyn_wallsavedquery_StatusCode? StatusCodeEnum
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -918,7 +941,7 @@ namespace DLaB.Xrm.Entities
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				statuscode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+				StatusCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 	}

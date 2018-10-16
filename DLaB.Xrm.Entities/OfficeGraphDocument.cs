@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("officegraphdocument")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class OfficeGraphDocument : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AuthorNames = "authornames";
 			public const string CreatedBy = "createdby";
@@ -57,7 +57,6 @@ namespace DLaB.Xrm.Entities
 			public const string organization_officegraphdocument = "organization_officegraphdocument";
 			public const string TransactionCurrency_officegraphdocument = "TransactionCurrency_officegraphdocument";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -69,6 +68,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "officegraphdocument";
+		
+		public const string PrimaryIdAttribute = "officegraphdocumentid";
+		
+		public const string PrimaryNameAttribute = "title";
 		
 		public const int EntityTypeCode = 9950;
 		

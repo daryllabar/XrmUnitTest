@@ -15,12 +15,13 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("processstage")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ProcessStage : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
+			public const string ClientData = "clientdata";
 			public const string OwnerId = "ownerid";
 			public const string OwningBusinessUnit = "owningbusinessunit";
 			public const string PrimaryEntityTypeCode = "primaryentitytypecode";
@@ -32,7 +33,6 @@ namespace DLaB.Xrm.Entities
 			public const string VersionNumber = "versionnumber";
 			public const string process_processstage = "process_processstage";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -44,6 +44,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "processstage";
+		
+		public const string PrimaryIdAttribute = "processstageid";
+		
+		public const string PrimaryNameAttribute = "stagename";
 		
 		public const int EntityTypeCode = 4724;
 		
@@ -66,6 +70,19 @@ namespace DLaB.Xrm.Entities
 			if ((this.PropertyChanging != null))
 			{
 				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// Step metadata for process stage
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("clientdata")]
+		public string ClientData
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("clientdata");
 			}
 		}
 		
@@ -235,6 +252,246 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_expiredprocess_activestageid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_expiredprocess_activestageid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ExpiredProcess> lk_expiredprocess_activestageid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ExpiredProcess>("lk_expiredprocess_activestageid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_expiredprocess_activestageid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ExpiredProcess>("lk_expiredprocess_activestageid", null, value);
+				this.OnPropertyChanged("lk_expiredprocess_activestageid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_leadtoopportunitysalesprocess_activestageid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_leadtoopportunitysalesprocess_activestageid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.LeadToOpportunitySalesProcess> lk_leadtoopportunitysalesprocess_activestageid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.LeadToOpportunitySalesProcess>("lk_leadtoopportunitysalesprocess_activestageid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_leadtoopportunitysalesprocess_activestageid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.LeadToOpportunitySalesProcess>("lk_leadtoopportunitysalesprocess_activestageid", null, value);
+				this.OnPropertyChanged("lk_leadtoopportunitysalesprocess_activestageid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_activestageid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_activestageid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bpf_2c5fe86acc8b414b8322ae571000c799> lk_msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_activestageid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_2c5fe86acc8b414b8322ae571000c799>("lk_msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_activestageid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_activestageid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_2c5fe86acc8b414b8322ae571000c799>("lk_msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_activestageid", null, value);
+				this.OnPropertyChanged("lk_msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_activestageid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_msdyn_bpf_665e73aa18c247d886bfc50499c73b82_activestageid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msdyn_bpf_665e73aa18c247d886bfc50499c73b82_activestageid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bpf_665e73aa18c247d886bfc50499c73b82> lk_msdyn_bpf_665e73aa18c247d886bfc50499c73b82_activestageid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_665e73aa18c247d886bfc50499c73b82>("lk_msdyn_bpf_665e73aa18c247d886bfc50499c73b82_activestageid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_msdyn_bpf_665e73aa18c247d886bfc50499c73b82_activestageid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_665e73aa18c247d886bfc50499c73b82>("lk_msdyn_bpf_665e73aa18c247d886bfc50499c73b82_activestageid", null, value);
+				this.OnPropertyChanged("lk_msdyn_bpf_665e73aa18c247d886bfc50499c73b82_activestageid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_msdyn_bpf_989e9b1857e24af18787d5143b67523b_activestageid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msdyn_bpf_989e9b1857e24af18787d5143b67523b_activestageid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bpf_989e9b1857e24af18787d5143b67523b> lk_msdyn_bpf_989e9b1857e24af18787d5143b67523b_activestageid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_989e9b1857e24af18787d5143b67523b>("lk_msdyn_bpf_989e9b1857e24af18787d5143b67523b_activestageid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_msdyn_bpf_989e9b1857e24af18787d5143b67523b_activestageid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_989e9b1857e24af18787d5143b67523b>("lk_msdyn_bpf_989e9b1857e24af18787d5143b67523b_activestageid", null, value);
+				this.OnPropertyChanged("lk_msdyn_bpf_989e9b1857e24af18787d5143b67523b_activestageid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_activestageid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_activestageid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3> lk_msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_activestageid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3>("lk_msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_activestageid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_activestageid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3>("lk_msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_activestageid", null, value);
+				this.OnPropertyChanged("lk_msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_activestageid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_activestageid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_activestageid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39> lk_msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_activestageid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39>("lk_msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_activestageid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_activestageid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39>("lk_msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_activestageid", null, value);
+				this.OnPropertyChanged("lk_msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_activestageid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_activestageid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_activestageid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d> lk_msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_activestageid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d>("lk_msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_activestageid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_activestageid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d>("lk_msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_activestageid", null, value);
+				this.OnPropertyChanged("lk_msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_activestageid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_newprocess_activestageid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_newprocess_activestageid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.NewProcess> lk_newprocess_activestageid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.NewProcess>("lk_newprocess_activestageid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_newprocess_activestageid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.NewProcess>("lk_newprocess_activestageid", null, value);
+				this.OnPropertyChanged("lk_newprocess_activestageid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_opportunitysalesprocess_activestageid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_opportunitysalesprocess_activestageid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OpportunitySalesProcess> lk_opportunitysalesprocess_activestageid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OpportunitySalesProcess>("lk_opportunitysalesprocess_activestageid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_opportunitysalesprocess_activestageid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OpportunitySalesProcess>("lk_opportunitysalesprocess_activestageid", null, value);
+				this.OnPropertyChanged("lk_opportunitysalesprocess_activestageid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_phonetocaseprocess_activestageid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_phonetocaseprocess_activestageid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PhoneToCaseProcess> lk_phonetocaseprocess_activestageid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PhoneToCaseProcess>("lk_phonetocaseprocess_activestageid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_phonetocaseprocess_activestageid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PhoneToCaseProcess>("lk_phonetocaseprocess_activestageid", null, value);
+				this.OnPropertyChanged("lk_phonetocaseprocess_activestageid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_translationprocess_activestageid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_translationprocess_activestageid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.TranslationProcess> lk_translationprocess_activestageid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.TranslationProcess>("lk_translationprocess_activestageid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_translationprocess_activestageid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.TranslationProcess>("lk_translationprocess_activestageid", null, value);
+				this.OnPropertyChanged("lk_translationprocess_activestageid");
 			}
 		}
 		
@@ -539,6 +796,266 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N processstage_msdyn_agreement
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_msdyn_agreement")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_agreement> processstage_msdyn_agreement
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreement>("processstage_msdyn_agreement", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("processstage_msdyn_agreement");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreement>("processstage_msdyn_agreement", null, value);
+				this.OnPropertyChanged("processstage_msdyn_agreement");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N processstage_msdyn_agreementbookingsetup
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_msdyn_agreementbookingsetup")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_agreementbookingsetup> processstage_msdyn_agreementbookingsetup
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("processstage_msdyn_agreementbookingsetup", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("processstage_msdyn_agreementbookingsetup");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("processstage_msdyn_agreementbookingsetup", null, value);
+				this.OnPropertyChanged("processstage_msdyn_agreementbookingsetup");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N processstage_msdyn_agreementinvoicesetup
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_msdyn_agreementinvoicesetup")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup> processstage_msdyn_agreementinvoicesetup
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("processstage_msdyn_agreementinvoicesetup", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("processstage_msdyn_agreementinvoicesetup");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("processstage_msdyn_agreementinvoicesetup", null, value);
+				this.OnPropertyChanged("processstage_msdyn_agreementinvoicesetup");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N processstage_msdyn_expense
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_msdyn_expense")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_expense> processstage_msdyn_expense
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_expense>("processstage_msdyn_expense", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("processstage_msdyn_expense");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_expense>("processstage_msdyn_expense", null, value);
+				this.OnPropertyChanged("processstage_msdyn_expense");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N processstage_msdyn_journal
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_msdyn_journal")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_journal> processstage_msdyn_journal
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_journal>("processstage_msdyn_journal", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("processstage_msdyn_journal");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_journal>("processstage_msdyn_journal", null, value);
+				this.OnPropertyChanged("processstage_msdyn_journal");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N processstage_msdyn_project
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_msdyn_project")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_project> processstage_msdyn_project
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_project>("processstage_msdyn_project", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("processstage_msdyn_project");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_project>("processstage_msdyn_project", null, value);
+				this.OnPropertyChanged("processstage_msdyn_project");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N processstage_msdyn_purchaseorder
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_msdyn_purchaseorder")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_purchaseorder> processstage_msdyn_purchaseorder
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_purchaseorder>("processstage_msdyn_purchaseorder", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("processstage_msdyn_purchaseorder");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_purchaseorder>("processstage_msdyn_purchaseorder", null, value);
+				this.OnPropertyChanged("processstage_msdyn_purchaseorder");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N processstage_msdyn_purchaseorderbill
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_msdyn_purchaseorderbill")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_purchaseorderbill> processstage_msdyn_purchaseorderbill
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("processstage_msdyn_purchaseorderbill", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("processstage_msdyn_purchaseorderbill");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("processstage_msdyn_purchaseorderbill", null, value);
+				this.OnPropertyChanged("processstage_msdyn_purchaseorderbill");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N processstage_msdyn_purchaseorderreceipt
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_msdyn_purchaseorderreceipt")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt> processstage_msdyn_purchaseorderreceipt
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("processstage_msdyn_purchaseorderreceipt", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("processstage_msdyn_purchaseorderreceipt");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("processstage_msdyn_purchaseorderreceipt", null, value);
+				this.OnPropertyChanged("processstage_msdyn_purchaseorderreceipt");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N processstage_msdyn_quotebookingsetup
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_msdyn_quotebookingsetup")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quotebookingsetup> processstage_msdyn_quotebookingsetup
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotebookingsetup>("processstage_msdyn_quotebookingsetup", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("processstage_msdyn_quotebookingsetup");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotebookingsetup>("processstage_msdyn_quotebookingsetup", null, value);
+				this.OnPropertyChanged("processstage_msdyn_quotebookingsetup");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N processstage_msdyn_timegroup
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_msdyn_timegroup")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_timegroup> processstage_msdyn_timegroup
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_timegroup>("processstage_msdyn_timegroup", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("processstage_msdyn_timegroup");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_timegroup>("processstage_msdyn_timegroup", null, value);
+				this.OnPropertyChanged("processstage_msdyn_timegroup");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N processstage_msdyn_timegroupdetail
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_msdyn_timegroupdetail")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_timegroupdetail> processstage_msdyn_timegroupdetail
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_timegroupdetail>("processstage_msdyn_timegroupdetail", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("processstage_msdyn_timegroupdetail");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_timegroupdetail>("processstage_msdyn_timegroupdetail", null, value);
+				this.OnPropertyChanged("processstage_msdyn_timegroupdetail");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N processstage_msdyn_workorder
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_msdyn_workorder")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_workorder> processstage_msdyn_workorder
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorder>("processstage_msdyn_workorder", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("processstage_msdyn_workorder");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorder>("processstage_msdyn_workorder", null, value);
+				this.OnPropertyChanged("processstage_msdyn_workorder");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N processstage_opportunity
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_opportunity")]
@@ -695,6 +1212,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("processstage_salesorders");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.SalesOrder>("processstage_salesorders", null, value);
 				this.OnPropertyChanged("processstage_salesorders");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N ProcessStage_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ProcessStage_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> ProcessStage_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ProcessStage_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ProcessStage_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ProcessStage_SyncErrors", null, value);
+				this.OnPropertyChanged("ProcessStage_SyncErrors");
 			}
 		}
 		

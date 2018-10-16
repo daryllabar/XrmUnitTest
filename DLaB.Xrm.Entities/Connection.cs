@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum ConnectionState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("connection")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Connection : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ConnectionId = "connectionid";
 			public const string Id = "connectionid";
@@ -95,6 +95,10 @@ namespace DLaB.Xrm.Entities
 			public const string email_connections2 = "email_connections2";
 			public const string entitlement_connections1 = "entitlement_connections1";
 			public const string entitlement_connections2 = "entitlement_connections2";
+			public const string entitlementchannel_connections1 = "entitlementchannel_connections1";
+			public const string entitlementchannel_connections2 = "entitlementchannel_connections2";
+			public const string entitlementtemplatechannel_connections1 = "entitlementtemplatechannel_connections1";
+			public const string entitlementtemplatechannel_connections2 = "entitlementtemplatechannel_connections2";
 			public const string equipment_connections1 = "equipment_connections1";
 			public const string equipment_connections2 = "equipment_connections2";
 			public const string fax_connections1 = "fax_connections1";
@@ -118,8 +122,138 @@ namespace DLaB.Xrm.Entities
 			public const string lk_connectionbase_createdonbehalfby = "lk_connectionbase_createdonbehalfby";
 			public const string lk_connectionbase_modifiedonbehalfby = "lk_connectionbase_modifiedonbehalfby";
 			public const string modifiedby_connection = "modifiedby_connection";
+			public const string msdyn_agreement_connections1 = "msdyn_agreement_connections1";
+			public const string msdyn_agreement_connections2 = "msdyn_agreement_connections2";
+			public const string msdyn_agreementbookingdate_connections1 = "msdyn_agreementbookingdate_connections1";
+			public const string msdyn_agreementbookingdate_connections2 = "msdyn_agreementbookingdate_connections2";
+			public const string msdyn_agreementbookingincident_connections1 = "msdyn_agreementbookingincident_connections1";
+			public const string msdyn_agreementbookingincident_connections2 = "msdyn_agreementbookingincident_connections2";
+			public const string msdyn_agreementbookingproduct_connections1 = "msdyn_agreementbookingproduct_connections1";
+			public const string msdyn_agreementbookingproduct_connections2 = "msdyn_agreementbookingproduct_connections2";
+			public const string msdyn_agreementbookingservice_connections1 = "msdyn_agreementbookingservice_connections1";
+			public const string msdyn_agreementbookingservice_connections2 = "msdyn_agreementbookingservice_connections2";
+			public const string msdyn_agreementbookingservicetask_connections1 = "msdyn_agreementbookingservicetask_connections1";
+			public const string msdyn_agreementbookingservicetask_connections2 = "msdyn_agreementbookingservicetask_connections2";
+			public const string msdyn_agreementbookingsetup_connections1 = "msdyn_agreementbookingsetup_connections1";
+			public const string msdyn_agreementbookingsetup_connections2 = "msdyn_agreementbookingsetup_connections2";
+			public const string msdyn_agreementinvoicedate_connections1 = "msdyn_agreementinvoicedate_connections1";
+			public const string msdyn_agreementinvoicedate_connections2 = "msdyn_agreementinvoicedate_connections2";
+			public const string msdyn_agreementinvoiceproduct_connections1 = "msdyn_agreementinvoiceproduct_connections1";
+			public const string msdyn_agreementinvoiceproduct_connections2 = "msdyn_agreementinvoiceproduct_connections2";
+			public const string msdyn_agreementinvoicesetup_connections1 = "msdyn_agreementinvoicesetup_connections1";
+			public const string msdyn_agreementinvoicesetup_connections2 = "msdyn_agreementinvoicesetup_connections2";
+			public const string msdyn_approval_connections1 = "msdyn_approval_connections1";
+			public const string msdyn_approval_connections2 = "msdyn_approval_connections2";
+			public const string msdyn_bookingalert_connections1 = "msdyn_bookingalert_connections1";
+			public const string msdyn_bookingalert_connections2 = "msdyn_bookingalert_connections2";
+			public const string msdyn_bookingalertstatus_connections1 = "msdyn_bookingalertstatus_connections1";
+			public const string msdyn_bookingalertstatus_connections2 = "msdyn_bookingalertstatus_connections2";
+			public const string msdyn_bookingrule_connections1 = "msdyn_bookingrule_connections1";
+			public const string msdyn_bookingrule_connections2 = "msdyn_bookingrule_connections2";
+			public const string msdyn_bookingtimestamp_connections1 = "msdyn_bookingtimestamp_connections1";
+			public const string msdyn_bookingtimestamp_connections2 = "msdyn_bookingtimestamp_connections2";
+			public const string msdyn_customerasset_connections1 = "msdyn_customerasset_connections1";
+			public const string msdyn_customerasset_connections2 = "msdyn_customerasset_connections2";
+			public const string msdyn_incidenttypecharacteristic_connections1 = "msdyn_incidenttypecharacteristic_connections1";
+			public const string msdyn_incidenttypecharacteristic_connections2 = "msdyn_incidenttypecharacteristic_connections2";
+			public const string msdyn_incidenttypeproduct_connections1 = "msdyn_incidenttypeproduct_connections1";
+			public const string msdyn_incidenttypeproduct_connections2 = "msdyn_incidenttypeproduct_connections2";
+			public const string msdyn_incidenttypeservice_connections1 = "msdyn_incidenttypeservice_connections1";
+			public const string msdyn_incidenttypeservice_connections2 = "msdyn_incidenttypeservice_connections2";
+			public const string msdyn_inventoryadjustment_connections1 = "msdyn_inventoryadjustment_connections1";
+			public const string msdyn_inventoryadjustment_connections2 = "msdyn_inventoryadjustment_connections2";
+			public const string msdyn_inventoryadjustmentproduct_connections1 = "msdyn_inventoryadjustmentproduct_connections1";
+			public const string msdyn_inventoryadjustmentproduct_connections2 = "msdyn_inventoryadjustmentproduct_connections2";
+			public const string msdyn_inventoryjournal_connections1 = "msdyn_inventoryjournal_connections1";
+			public const string msdyn_inventoryjournal_connections2 = "msdyn_inventoryjournal_connections2";
+			public const string msdyn_inventorytransfer_connections1 = "msdyn_inventorytransfer_connections1";
+			public const string msdyn_inventorytransfer_connections2 = "msdyn_inventorytransfer_connections2";
+			public const string msdyn_payment_connections1 = "msdyn_payment_connections1";
+			public const string msdyn_payment_connections2 = "msdyn_payment_connections2";
+			public const string msdyn_paymentdetail_connections1 = "msdyn_paymentdetail_connections1";
+			public const string msdyn_paymentdetail_connections2 = "msdyn_paymentdetail_connections2";
+			public const string msdyn_paymentmethod_connections1 = "msdyn_paymentmethod_connections1";
+			public const string msdyn_paymentmethod_connections2 = "msdyn_paymentmethod_connections2";
+			public const string msdyn_paymentterm_connections1 = "msdyn_paymentterm_connections1";
+			public const string msdyn_paymentterm_connections2 = "msdyn_paymentterm_connections2";
 			public const string msdyn_postalbum_connections1 = "msdyn_postalbum_connections1";
 			public const string msdyn_postalbum_connections2 = "msdyn_postalbum_connections2";
+			public const string msdyn_postalcode_connections1 = "msdyn_postalcode_connections1";
+			public const string msdyn_postalcode_connections2 = "msdyn_postalcode_connections2";
+			public const string msdyn_processnotes_connections1 = "msdyn_processnotes_connections1";
+			public const string msdyn_processnotes_connections2 = "msdyn_processnotes_connections2";
+			public const string msdyn_productinventory_connections1 = "msdyn_productinventory_connections1";
+			public const string msdyn_productinventory_connections2 = "msdyn_productinventory_connections2";
+			public const string msdyn_project_connections1 = "msdyn_project_connections1";
+			public const string msdyn_project_connections2 = "msdyn_project_connections2";
+			public const string msdyn_projectteam_connections1 = "msdyn_projectteam_connections1";
+			public const string msdyn_projectteam_connections2 = "msdyn_projectteam_connections2";
+			public const string msdyn_purchaseorder_connections1 = "msdyn_purchaseorder_connections1";
+			public const string msdyn_purchaseorder_connections2 = "msdyn_purchaseorder_connections2";
+			public const string msdyn_purchaseorderbill_connections1 = "msdyn_purchaseorderbill_connections1";
+			public const string msdyn_purchaseorderbill_connections2 = "msdyn_purchaseorderbill_connections2";
+			public const string msdyn_purchaseorderproduct_connections1 = "msdyn_purchaseorderproduct_connections1";
+			public const string msdyn_purchaseorderproduct_connections2 = "msdyn_purchaseorderproduct_connections2";
+			public const string msdyn_purchaseorderreceipt_connections1 = "msdyn_purchaseorderreceipt_connections1";
+			public const string msdyn_purchaseorderreceipt_connections2 = "msdyn_purchaseorderreceipt_connections2";
+			public const string msdyn_purchaseorderreceiptproduct_connections1 = "msdyn_purchaseorderreceiptproduct_connections1";
+			public const string msdyn_purchaseorderreceiptproduct_connections2 = "msdyn_purchaseorderreceiptproduct_connections2";
+			public const string msdyn_purchaseordersubstatus_connections1 = "msdyn_purchaseordersubstatus_connections1";
+			public const string msdyn_purchaseordersubstatus_connections2 = "msdyn_purchaseordersubstatus_connections2";
+			public const string msdyn_quotebookingincident_connections1 = "msdyn_quotebookingincident_connections1";
+			public const string msdyn_quotebookingincident_connections2 = "msdyn_quotebookingincident_connections2";
+			public const string msdyn_quotebookingproduct_connections1 = "msdyn_quotebookingproduct_connections1";
+			public const string msdyn_quotebookingproduct_connections2 = "msdyn_quotebookingproduct_connections2";
+			public const string msdyn_quotebookingservice_connections1 = "msdyn_quotebookingservice_connections1";
+			public const string msdyn_quotebookingservice_connections2 = "msdyn_quotebookingservice_connections2";
+			public const string msdyn_quotebookingservicetask_connections1 = "msdyn_quotebookingservicetask_connections1";
+			public const string msdyn_quotebookingservicetask_connections2 = "msdyn_quotebookingservicetask_connections2";
+			public const string msdyn_resourceterritory_connections1 = "msdyn_resourceterritory_connections1";
+			public const string msdyn_resourceterritory_connections2 = "msdyn_resourceterritory_connections2";
+			public const string msdyn_rma_connections1 = "msdyn_rma_connections1";
+			public const string msdyn_rma_connections2 = "msdyn_rma_connections2";
+			public const string msdyn_rmaproduct_connections1 = "msdyn_rmaproduct_connections1";
+			public const string msdyn_rmaproduct_connections2 = "msdyn_rmaproduct_connections2";
+			public const string msdyn_rmareceipt_connections1 = "msdyn_rmareceipt_connections1";
+			public const string msdyn_rmareceipt_connections2 = "msdyn_rmareceipt_connections2";
+			public const string msdyn_rmareceiptproduct_connections1 = "msdyn_rmareceiptproduct_connections1";
+			public const string msdyn_rmareceiptproduct_connections2 = "msdyn_rmareceiptproduct_connections2";
+			public const string msdyn_rmasubstatus_connections1 = "msdyn_rmasubstatus_connections1";
+			public const string msdyn_rmasubstatus_connections2 = "msdyn_rmasubstatus_connections2";
+			public const string msdyn_rtv_connections1 = "msdyn_rtv_connections1";
+			public const string msdyn_rtv_connections2 = "msdyn_rtv_connections2";
+			public const string msdyn_rtvproduct_connections1 = "msdyn_rtvproduct_connections1";
+			public const string msdyn_rtvproduct_connections2 = "msdyn_rtvproduct_connections2";
+			public const string msdyn_rtvsubstatus_connections1 = "msdyn_rtvsubstatus_connections1";
+			public const string msdyn_rtvsubstatus_connections2 = "msdyn_rtvsubstatus_connections2";
+			public const string msdyn_shipvia_connections1 = "msdyn_shipvia_connections1";
+			public const string msdyn_shipvia_connections2 = "msdyn_shipvia_connections2";
+			public const string msdyn_systemuserschedulersetting_connections1 = "msdyn_systemuserschedulersetting_connections1";
+			public const string msdyn_systemuserschedulersetting_connections2 = "msdyn_systemuserschedulersetting_connections2";
+			public const string msdyn_taxcode_connections1 = "msdyn_taxcode_connections1";
+			public const string msdyn_taxcode_connections2 = "msdyn_taxcode_connections2";
+			public const string msdyn_timegroup_connections1 = "msdyn_timegroup_connections1";
+			public const string msdyn_timegroup_connections2 = "msdyn_timegroup_connections2";
+			public const string msdyn_timegroupdetail_connections1 = "msdyn_timegroupdetail_connections1";
+			public const string msdyn_timegroupdetail_connections2 = "msdyn_timegroupdetail_connections2";
+			public const string msdyn_timeoffrequest_connections1 = "msdyn_timeoffrequest_connections1";
+			public const string msdyn_timeoffrequest_connections2 = "msdyn_timeoffrequest_connections2";
+			public const string msdyn_warehouse_connections1 = "msdyn_warehouse_connections1";
+			public const string msdyn_warehouse_connections2 = "msdyn_warehouse_connections2";
+			public const string msdyn_workorder_connections1 = "msdyn_workorder_connections1";
+			public const string msdyn_workorder_connections2 = "msdyn_workorder_connections2";
+			public const string msdyn_workordercharacteristic_connections1 = "msdyn_workordercharacteristic_connections1";
+			public const string msdyn_workordercharacteristic_connections2 = "msdyn_workordercharacteristic_connections2";
+			public const string msdyn_workorderincident_connections1 = "msdyn_workorderincident_connections1";
+			public const string msdyn_workorderincident_connections2 = "msdyn_workorderincident_connections2";
+			public const string msdyn_workorderproduct_connections1 = "msdyn_workorderproduct_connections1";
+			public const string msdyn_workorderproduct_connections2 = "msdyn_workorderproduct_connections2";
+			public const string msdyn_workorderresourcerestriction_connections1 = "msdyn_workorderresourcerestriction_connections1";
+			public const string msdyn_workorderresourcerestriction_connections2 = "msdyn_workorderresourcerestriction_connections2";
+			public const string msdyn_workorderservice_connections1 = "msdyn_workorderservice_connections1";
+			public const string msdyn_workorderservice_connections2 = "msdyn_workorderservice_connections2";
+			public const string msdyn_workorderservicetask_connections1 = "msdyn_workorderservicetask_connections1";
+			public const string msdyn_workorderservicetask_connections2 = "msdyn_workorderservicetask_connections2";
 			public const string opportunity_connections1 = "opportunity_connections1";
 			public const string opportunity_connections2 = "opportunity_connections2";
 			public const string phonecall_connections1 = "phonecall_connections1";
@@ -158,7 +292,6 @@ namespace DLaB.Xrm.Entities
 			public const string territory_connections2 = "territory_connections2";
 			public const string TransactionCurrency_Connection = "TransactionCurrency_Connection";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -170,6 +303,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "connection";
+		
+		public const string PrimaryIdAttribute = "connectionid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 3234;
 		
@@ -259,7 +396,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -484,7 +621,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -920,6 +1057,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Referencedconnection_related_connection");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Connection>("connection_related_connection", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
 				this.OnPropertyChanged("Referencedconnection_related_connection");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Connection_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Connection_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Connection_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Connection_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Connection_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Connection_SyncErrors", null, value);
+				this.OnPropertyChanged("Connection_SyncErrors");
 			}
 		}
 		
@@ -1504,6 +1661,90 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 entitlementchannel_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("entitlementchannel_connections1")]
+		public DLaB.Xrm.Entities.EntitlementChannel entitlementchannel_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.EntitlementChannel>("entitlementchannel_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("entitlementchannel_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.EntitlementChannel>("entitlementchannel_connections1", null, value);
+				this.OnPropertyChanged("entitlementchannel_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 entitlementchannel_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("entitlementchannel_connections2")]
+		public DLaB.Xrm.Entities.EntitlementChannel entitlementchannel_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.EntitlementChannel>("entitlementchannel_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("entitlementchannel_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.EntitlementChannel>("entitlementchannel_connections2", null, value);
+				this.OnPropertyChanged("entitlementchannel_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 entitlementtemplatechannel_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("entitlementtemplatechannel_connections1")]
+		public DLaB.Xrm.Entities.EntitlementTemplateChannel entitlementtemplatechannel_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.EntitlementTemplateChannel>("entitlementtemplatechannel_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("entitlementtemplatechannel_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.EntitlementTemplateChannel>("entitlementtemplatechannel_connections1", null, value);
+				this.OnPropertyChanged("entitlementtemplatechannel_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 entitlementtemplatechannel_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("entitlementtemplatechannel_connections2")]
+		public DLaB.Xrm.Entities.EntitlementTemplateChannel entitlementtemplatechannel_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.EntitlementTemplateChannel>("entitlementtemplatechannel_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("entitlementtemplatechannel_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.EntitlementTemplateChannel>("entitlementtemplatechannel_connections2", null, value);
+				this.OnPropertyChanged("entitlementtemplatechannel_connections2");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 equipment_connections1
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
@@ -1987,6 +2228,1140 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 msdyn_agreement_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreement_connections1")]
+		public DLaB.Xrm.Entities.msdyn_agreement msdyn_agreement_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreement_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_connections1", null, value);
+				this.OnPropertyChanged("msdyn_agreement_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreement_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreement_connections2")]
+		public DLaB.Xrm.Entities.msdyn_agreement msdyn_agreement_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreement_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_connections2", null, value);
+				this.OnPropertyChanged("msdyn_agreement_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingdate_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingdate_connections1")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingdate msdyn_agreementbookingdate_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingdate_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_connections1", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingdate_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingdate_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingdate_connections2")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingdate msdyn_agreementbookingdate_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingdate_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_connections2", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingdate_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingincident_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingincident_connections1")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingincident msdyn_agreementbookingincident_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingincident>("msdyn_agreementbookingincident_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingincident_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingincident>("msdyn_agreementbookingincident_connections1", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingincident_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingincident_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingincident_connections2")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingincident msdyn_agreementbookingincident_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingincident>("msdyn_agreementbookingincident_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingincident_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingincident>("msdyn_agreementbookingincident_connections2", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingincident_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingproduct_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingproduct_connections1")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingproduct msdyn_agreementbookingproduct_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_agreementbookingproduct_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingproduct_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_agreementbookingproduct_connections1", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingproduct_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingproduct_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingproduct_connections2")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingproduct msdyn_agreementbookingproduct_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_agreementbookingproduct_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingproduct_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_agreementbookingproduct_connections2", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingproduct_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservice_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservice_connections1")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservice msdyn_agreementbookingservice_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_agreementbookingservice_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingservice_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_agreementbookingservice_connections1", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingservice_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservice_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservice_connections2")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservice msdyn_agreementbookingservice_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_agreementbookingservice_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingservice_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_agreementbookingservice_connections2", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingservice_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservicetask_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservicetask_connections1")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservicetask msdyn_agreementbookingservicetask_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask>("msdyn_agreementbookingservicetask_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingservicetask_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask>("msdyn_agreementbookingservicetask_connections1", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingservicetask_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservicetask_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservicetask_connections2")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservicetask msdyn_agreementbookingservicetask_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask>("msdyn_agreementbookingservicetask_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingservicetask_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask>("msdyn_agreementbookingservicetask_connections2", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingservicetask_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingsetup_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingsetup_connections1")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingsetup msdyn_agreementbookingsetup_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingsetup_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_connections1", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingsetup_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingsetup_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingsetup_connections2")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingsetup msdyn_agreementbookingsetup_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingsetup_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_connections2", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingsetup_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicedate_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicedate_connections1")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicedate msdyn_agreementinvoicedate_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoicedate_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_connections1", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoicedate_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicedate_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicedate_connections2")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicedate msdyn_agreementinvoicedate_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoicedate_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_connections2", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoicedate_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoiceproduct_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoiceproduct_connections1")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct msdyn_agreementinvoiceproduct_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_agreementinvoiceproduct_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoiceproduct_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_agreementinvoiceproduct_connections1", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoiceproduct_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoiceproduct_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoiceproduct_connections2")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct msdyn_agreementinvoiceproduct_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_agreementinvoiceproduct_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoiceproduct_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_agreementinvoiceproduct_connections2", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoiceproduct_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicesetup_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicesetup_connections1")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicesetup msdyn_agreementinvoicesetup_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoicesetup_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_connections1", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoicesetup_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicesetup_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicesetup_connections2")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicesetup msdyn_agreementinvoicesetup_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoicesetup_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_connections2", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoicesetup_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_approval_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_approval_connections1")]
+		public DLaB.Xrm.Entities.msdyn_approval msdyn_approval_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_approval_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_connections1", null, value);
+				this.OnPropertyChanged("msdyn_approval_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_approval_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_approval_connections2")]
+		public DLaB.Xrm.Entities.msdyn_approval msdyn_approval_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_approval_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_connections2", null, value);
+				this.OnPropertyChanged("msdyn_approval_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingalert_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalert_connections1")]
+		public DLaB.Xrm.Entities.msdyn_bookingalert msdyn_bookingalert_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingalert_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_connections1", null, value);
+				this.OnPropertyChanged("msdyn_bookingalert_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingalert_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalert_connections2")]
+		public DLaB.Xrm.Entities.msdyn_bookingalert msdyn_bookingalert_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingalert_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_connections2", null, value);
+				this.OnPropertyChanged("msdyn_bookingalert_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingalertstatus_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalertstatus_connections1")]
+		public DLaB.Xrm.Entities.msdyn_bookingalertstatus msdyn_bookingalertstatus_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalertstatus>("msdyn_bookingalertstatus_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingalertstatus_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalertstatus>("msdyn_bookingalertstatus_connections1", null, value);
+				this.OnPropertyChanged("msdyn_bookingalertstatus_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingalertstatus_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalertstatus_connections2")]
+		public DLaB.Xrm.Entities.msdyn_bookingalertstatus msdyn_bookingalertstatus_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalertstatus>("msdyn_bookingalertstatus_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingalertstatus_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalertstatus>("msdyn_bookingalertstatus_connections2", null, value);
+				this.OnPropertyChanged("msdyn_bookingalertstatus_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingrule_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingrule_connections1")]
+		public DLaB.Xrm.Entities.msdyn_bookingrule msdyn_bookingrule_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingrule>("msdyn_bookingrule_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingrule_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingrule>("msdyn_bookingrule_connections1", null, value);
+				this.OnPropertyChanged("msdyn_bookingrule_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingrule_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingrule_connections2")]
+		public DLaB.Xrm.Entities.msdyn_bookingrule msdyn_bookingrule_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingrule>("msdyn_bookingrule_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingrule_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingrule>("msdyn_bookingrule_connections2", null, value);
+				this.OnPropertyChanged("msdyn_bookingrule_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingtimestamp_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingtimestamp_connections1")]
+		public DLaB.Xrm.Entities.msdyn_bookingtimestamp msdyn_bookingtimestamp_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingtimestamp_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_connections1", null, value);
+				this.OnPropertyChanged("msdyn_bookingtimestamp_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingtimestamp_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingtimestamp_connections2")]
+		public DLaB.Xrm.Entities.msdyn_bookingtimestamp msdyn_bookingtimestamp_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingtimestamp_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_connections2", null, value);
+				this.OnPropertyChanged("msdyn_bookingtimestamp_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_customerasset_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_customerasset_connections1")]
+		public DLaB.Xrm.Entities.msdyn_customerasset msdyn_customerasset_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_customerasset_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_customerasset_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_customerasset_connections1", null, value);
+				this.OnPropertyChanged("msdyn_customerasset_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_customerasset_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_customerasset_connections2")]
+		public DLaB.Xrm.Entities.msdyn_customerasset msdyn_customerasset_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_customerasset_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_customerasset_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_customerasset_connections2", null, value);
+				this.OnPropertyChanged("msdyn_customerasset_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypecharacteristic_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypecharacteristic_connections1")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic msdyn_incidenttypecharacteristic_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic>("msdyn_incidenttypecharacteristic_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypecharacteristic_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic>("msdyn_incidenttypecharacteristic_connections1", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypecharacteristic_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypecharacteristic_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypecharacteristic_connections2")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic msdyn_incidenttypecharacteristic_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic>("msdyn_incidenttypecharacteristic_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypecharacteristic_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic>("msdyn_incidenttypecharacteristic_connections2", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypecharacteristic_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeproduct_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeproduct_connections1")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeproduct msdyn_incidenttypeproduct_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypeproduct_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_connections1", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypeproduct_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeproduct_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeproduct_connections2")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeproduct msdyn_incidenttypeproduct_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypeproduct_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_connections2", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypeproduct_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeservice_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeservice_connections1")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeservice msdyn_incidenttypeservice_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_incidenttypeservice_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypeservice_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_incidenttypeservice_connections1", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypeservice_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeservice_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeservice_connections2")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeservice msdyn_incidenttypeservice_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_incidenttypeservice_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypeservice_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_incidenttypeservice_connections2", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypeservice_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustment_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustment_connections1")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustment msdyn_inventoryadjustment_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryadjustment_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_connections1", null, value);
+				this.OnPropertyChanged("msdyn_inventoryadjustment_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustment_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustment_connections2")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustment msdyn_inventoryadjustment_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryadjustment_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_connections2", null, value);
+				this.OnPropertyChanged("msdyn_inventoryadjustment_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustmentproduct_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustmentproduct_connections1")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct msdyn_inventoryadjustmentproduct_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryadjustmentproduct_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_connections1", null, value);
+				this.OnPropertyChanged("msdyn_inventoryadjustmentproduct_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustmentproduct_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustmentproduct_connections2")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct msdyn_inventoryadjustmentproduct_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryadjustmentproduct_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_connections2", null, value);
+				this.OnPropertyChanged("msdyn_inventoryadjustmentproduct_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryjournal_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryjournal_connections1")]
+		public DLaB.Xrm.Entities.msdyn_inventoryjournal msdyn_inventoryjournal_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_inventoryjournal_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryjournal_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_inventoryjournal_connections1", null, value);
+				this.OnPropertyChanged("msdyn_inventoryjournal_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryjournal_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryjournal_connections2")]
+		public DLaB.Xrm.Entities.msdyn_inventoryjournal msdyn_inventoryjournal_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_inventoryjournal_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryjournal_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_inventoryjournal_connections2", null, value);
+				this.OnPropertyChanged("msdyn_inventoryjournal_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventorytransfer_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventorytransfer_connections1")]
+		public DLaB.Xrm.Entities.msdyn_inventorytransfer msdyn_inventorytransfer_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventorytransfer_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_connections1", null, value);
+				this.OnPropertyChanged("msdyn_inventorytransfer_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventorytransfer_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventorytransfer_connections2")]
+		public DLaB.Xrm.Entities.msdyn_inventorytransfer msdyn_inventorytransfer_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventorytransfer_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_connections2", null, value);
+				this.OnPropertyChanged("msdyn_inventorytransfer_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_payment_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_payment_connections1")]
+		public DLaB.Xrm.Entities.msdyn_payment msdyn_payment_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_payment>("msdyn_payment_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_payment_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_payment>("msdyn_payment_connections1", null, value);
+				this.OnPropertyChanged("msdyn_payment_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_payment_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_payment_connections2")]
+		public DLaB.Xrm.Entities.msdyn_payment msdyn_payment_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_payment>("msdyn_payment_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_payment_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_payment>("msdyn_payment_connections2", null, value);
+				this.OnPropertyChanged("msdyn_payment_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentdetail_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentdetail_connections1")]
+		public DLaB.Xrm.Entities.msdyn_paymentdetail msdyn_paymentdetail_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentdetail>("msdyn_paymentdetail_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentdetail_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentdetail>("msdyn_paymentdetail_connections1", null, value);
+				this.OnPropertyChanged("msdyn_paymentdetail_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentdetail_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentdetail_connections2")]
+		public DLaB.Xrm.Entities.msdyn_paymentdetail msdyn_paymentdetail_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentdetail>("msdyn_paymentdetail_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentdetail_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentdetail>("msdyn_paymentdetail_connections2", null, value);
+				this.OnPropertyChanged("msdyn_paymentdetail_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentmethod_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentmethod_connections1")]
+		public DLaB.Xrm.Entities.msdyn_paymentmethod msdyn_paymentmethod_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentmethod>("msdyn_paymentmethod_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentmethod_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentmethod>("msdyn_paymentmethod_connections1", null, value);
+				this.OnPropertyChanged("msdyn_paymentmethod_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentmethod_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentmethod_connections2")]
+		public DLaB.Xrm.Entities.msdyn_paymentmethod msdyn_paymentmethod_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentmethod>("msdyn_paymentmethod_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentmethod_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentmethod>("msdyn_paymentmethod_connections2", null, value);
+				this.OnPropertyChanged("msdyn_paymentmethod_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentterm_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentterm_connections1")]
+		public DLaB.Xrm.Entities.msdyn_paymentterm msdyn_paymentterm_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentterm>("msdyn_paymentterm_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentterm_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentterm>("msdyn_paymentterm_connections1", null, value);
+				this.OnPropertyChanged("msdyn_paymentterm_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentterm_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentterm_connections2")]
+		public DLaB.Xrm.Entities.msdyn_paymentterm msdyn_paymentterm_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentterm>("msdyn_paymentterm_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentterm_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentterm>("msdyn_paymentterm_connections2", null, value);
+				this.OnPropertyChanged("msdyn_paymentterm_connections2");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 msdyn_postalbum_connections1
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
@@ -2025,6 +3400,1602 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("msdyn_postalbum_connections2");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_PostAlbum>("msdyn_postalbum_connections2", null, value);
 				this.OnPropertyChanged("msdyn_postalbum_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_postalcode_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_postalcode_connections1")]
+		public DLaB.Xrm.Entities.msdyn_postalcode msdyn_postalcode_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_postalcode_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_postalcode_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_postalcode_connections1", null, value);
+				this.OnPropertyChanged("msdyn_postalcode_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_postalcode_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_postalcode_connections2")]
+		public DLaB.Xrm.Entities.msdyn_postalcode msdyn_postalcode_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_postalcode_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_postalcode_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_postalcode_connections2", null, value);
+				this.OnPropertyChanged("msdyn_postalcode_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_processnotes_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_processnotes_connections1")]
+		public DLaB.Xrm.Entities.msdyn_processnotes msdyn_processnotes_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_processnotes>("msdyn_processnotes_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_processnotes_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_processnotes>("msdyn_processnotes_connections1", null, value);
+				this.OnPropertyChanged("msdyn_processnotes_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_processnotes_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_processnotes_connections2")]
+		public DLaB.Xrm.Entities.msdyn_processnotes msdyn_processnotes_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_processnotes>("msdyn_processnotes_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_processnotes_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_processnotes>("msdyn_processnotes_connections2", null, value);
+				this.OnPropertyChanged("msdyn_processnotes_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_productinventory_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_productinventory_connections1")]
+		public DLaB.Xrm.Entities.msdyn_productinventory msdyn_productinventory_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_productinventory_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_productinventory_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_productinventory_connections1", null, value);
+				this.OnPropertyChanged("msdyn_productinventory_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_productinventory_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_productinventory_connections2")]
+		public DLaB.Xrm.Entities.msdyn_productinventory msdyn_productinventory_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_productinventory_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_productinventory_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_productinventory_connections2", null, value);
+				this.OnPropertyChanged("msdyn_productinventory_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_project_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_project_connections1")]
+		public DLaB.Xrm.Entities.msdyn_project msdyn_project_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_project>("msdyn_project_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_project_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_project>("msdyn_project_connections1", null, value);
+				this.OnPropertyChanged("msdyn_project_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_project_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_project_connections2")]
+		public DLaB.Xrm.Entities.msdyn_project msdyn_project_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_project>("msdyn_project_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_project_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_project>("msdyn_project_connections2", null, value);
+				this.OnPropertyChanged("msdyn_project_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectteam_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectteam_connections1")]
+		public DLaB.Xrm.Entities.msdyn_projectteam msdyn_projectteam_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteam>("msdyn_projectteam_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_projectteam_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteam>("msdyn_projectteam_connections1", null, value);
+				this.OnPropertyChanged("msdyn_projectteam_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectteam_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectteam_connections2")]
+		public DLaB.Xrm.Entities.msdyn_projectteam msdyn_projectteam_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteam>("msdyn_projectteam_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_projectteam_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteam>("msdyn_projectteam_connections2", null, value);
+				this.OnPropertyChanged("msdyn_projectteam_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorder_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorder_connections1")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorder msdyn_purchaseorder_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorder_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_connections1", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorder_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorder_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorder_connections2")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorder msdyn_purchaseorder_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorder_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_connections2", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorder_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderbill_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderbill_connections1")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderbill msdyn_purchaseorderbill_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("msdyn_purchaseorderbill_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderbill_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("msdyn_purchaseorderbill_connections1", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderbill_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderbill_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderbill_connections2")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderbill msdyn_purchaseorderbill_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("msdyn_purchaseorderbill_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderbill_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("msdyn_purchaseorderbill_connections2", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderbill_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderproduct_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderproduct_connections1")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderproduct msdyn_purchaseorderproduct_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_purchaseorderproduct_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderproduct_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_purchaseorderproduct_connections1", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderproduct_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderproduct_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderproduct_connections2")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderproduct msdyn_purchaseorderproduct_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_purchaseorderproduct_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderproduct_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_purchaseorderproduct_connections2", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderproduct_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceipt_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceipt_connections1")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceipt msdyn_purchaseorderreceipt_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderreceipt_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_connections1", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderreceipt_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceipt_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceipt_connections2")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceipt msdyn_purchaseorderreceipt_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderreceipt_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_connections2", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderreceipt_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceiptproduct_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceiptproduct_connections1")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct msdyn_purchaseorderreceiptproduct_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct>("msdyn_purchaseorderreceiptproduct_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderreceiptproduct_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct>("msdyn_purchaseorderreceiptproduct_connections1", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderreceiptproduct_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceiptproduct_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceiptproduct_connections2")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct msdyn_purchaseorderreceiptproduct_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct>("msdyn_purchaseorderreceiptproduct_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderreceiptproduct_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct>("msdyn_purchaseorderreceiptproduct_connections2", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderreceiptproduct_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseordersubstatus_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseordersubstatus_connections1")]
+		public DLaB.Xrm.Entities.msdyn_purchaseordersubstatus msdyn_purchaseordersubstatus_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus>("msdyn_purchaseordersubstatus_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseordersubstatus_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus>("msdyn_purchaseordersubstatus_connections1", null, value);
+				this.OnPropertyChanged("msdyn_purchaseordersubstatus_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseordersubstatus_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseordersubstatus_connections2")]
+		public DLaB.Xrm.Entities.msdyn_purchaseordersubstatus msdyn_purchaseordersubstatus_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus>("msdyn_purchaseordersubstatus_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseordersubstatus_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus>("msdyn_purchaseordersubstatus_connections2", null, value);
+				this.OnPropertyChanged("msdyn_purchaseordersubstatus_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingincident_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingincident_connections1")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingincident msdyn_quotebookingincident_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quotebookingincident_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingincident_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quotebookingincident_connections1", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingincident_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingincident_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingincident_connections2")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingincident msdyn_quotebookingincident_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quotebookingincident_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingincident_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quotebookingincident_connections2", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingincident_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingproduct_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingproduct_connections1")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingproduct msdyn_quotebookingproduct_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quotebookingproduct_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingproduct_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quotebookingproduct_connections1", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingproduct_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingproduct_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingproduct_connections2")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingproduct msdyn_quotebookingproduct_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quotebookingproduct_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingproduct_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quotebookingproduct_connections2", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingproduct_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservice_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservice_connections1")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservice msdyn_quotebookingservice_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quotebookingservice_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingservice_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quotebookingservice_connections1", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingservice_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservice_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservice_connections2")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservice msdyn_quotebookingservice_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quotebookingservice_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingservice_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quotebookingservice_connections2", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingservice_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservicetask_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservicetask_connections1")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservicetask msdyn_quotebookingservicetask_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quotebookingservicetask_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingservicetask_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quotebookingservicetask_connections1", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingservicetask_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservicetask_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservicetask_connections2")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservicetask msdyn_quotebookingservicetask_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quotebookingservicetask_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingservicetask_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quotebookingservicetask_connections2", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingservicetask_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourceterritory_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourceterritory_connections1")]
+		public DLaB.Xrm.Entities.msdyn_resourceterritory msdyn_resourceterritory_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_resourceterritory_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_connections1", null, value);
+				this.OnPropertyChanged("msdyn_resourceterritory_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourceterritory_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourceterritory_connections2")]
+		public DLaB.Xrm.Entities.msdyn_resourceterritory msdyn_resourceterritory_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_resourceterritory_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_connections2", null, value);
+				this.OnPropertyChanged("msdyn_resourceterritory_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rma_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rma_connections1")]
+		public DLaB.Xrm.Entities.msdyn_rma msdyn_rma_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rma_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_connections1", null, value);
+				this.OnPropertyChanged("msdyn_rma_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rma_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rma_connections2")]
+		public DLaB.Xrm.Entities.msdyn_rma msdyn_rma_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rma_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_connections2", null, value);
+				this.OnPropertyChanged("msdyn_rma_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmaproduct_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmaproduct_connections1")]
+		public DLaB.Xrm.Entities.msdyn_rmaproduct msdyn_rmaproduct_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_rmaproduct_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmaproduct_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_rmaproduct_connections1", null, value);
+				this.OnPropertyChanged("msdyn_rmaproduct_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmaproduct_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmaproduct_connections2")]
+		public DLaB.Xrm.Entities.msdyn_rmaproduct msdyn_rmaproduct_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_rmaproduct_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmaproduct_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_rmaproduct_connections2", null, value);
+				this.OnPropertyChanged("msdyn_rmaproduct_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceipt_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceipt_connections1")]
+		public DLaB.Xrm.Entities.msdyn_rmareceipt msdyn_rmareceipt_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmareceipt_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_connections1", null, value);
+				this.OnPropertyChanged("msdyn_rmareceipt_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceipt_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceipt_connections2")]
+		public DLaB.Xrm.Entities.msdyn_rmareceipt msdyn_rmareceipt_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmareceipt_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_connections2", null, value);
+				this.OnPropertyChanged("msdyn_rmareceipt_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceiptproduct_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceiptproduct_connections1")]
+		public DLaB.Xrm.Entities.msdyn_rmareceiptproduct msdyn_rmareceiptproduct_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceiptproduct>("msdyn_rmareceiptproduct_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmareceiptproduct_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceiptproduct>("msdyn_rmareceiptproduct_connections1", null, value);
+				this.OnPropertyChanged("msdyn_rmareceiptproduct_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceiptproduct_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceiptproduct_connections2")]
+		public DLaB.Xrm.Entities.msdyn_rmareceiptproduct msdyn_rmareceiptproduct_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceiptproduct>("msdyn_rmareceiptproduct_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmareceiptproduct_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceiptproduct>("msdyn_rmareceiptproduct_connections2", null, value);
+				this.OnPropertyChanged("msdyn_rmareceiptproduct_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmasubstatus_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmasubstatus_connections1")]
+		public DLaB.Xrm.Entities.msdyn_rmasubstatus msdyn_rmasubstatus_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmasubstatus>("msdyn_rmasubstatus_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmasubstatus_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmasubstatus>("msdyn_rmasubstatus_connections1", null, value);
+				this.OnPropertyChanged("msdyn_rmasubstatus_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmasubstatus_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmasubstatus_connections2")]
+		public DLaB.Xrm.Entities.msdyn_rmasubstatus msdyn_rmasubstatus_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmasubstatus>("msdyn_rmasubstatus_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmasubstatus_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmasubstatus>("msdyn_rmasubstatus_connections2", null, value);
+				this.OnPropertyChanged("msdyn_rmasubstatus_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtv_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtv_connections1")]
+		public DLaB.Xrm.Entities.msdyn_rtv msdyn_rtv_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtv_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_connections1", null, value);
+				this.OnPropertyChanged("msdyn_rtv_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtv_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtv_connections2")]
+		public DLaB.Xrm.Entities.msdyn_rtv msdyn_rtv_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtv_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_connections2", null, value);
+				this.OnPropertyChanged("msdyn_rtv_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvproduct_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvproduct_connections1")]
+		public DLaB.Xrm.Entities.msdyn_rtvproduct msdyn_rtvproduct_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_rtvproduct_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtvproduct_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_rtvproduct_connections1", null, value);
+				this.OnPropertyChanged("msdyn_rtvproduct_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvproduct_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvproduct_connections2")]
+		public DLaB.Xrm.Entities.msdyn_rtvproduct msdyn_rtvproduct_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_rtvproduct_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtvproduct_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_rtvproduct_connections2", null, value);
+				this.OnPropertyChanged("msdyn_rtvproduct_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvsubstatus_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvsubstatus_connections1")]
+		public DLaB.Xrm.Entities.msdyn_rtvsubstatus msdyn_rtvsubstatus_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvsubstatus>("msdyn_rtvsubstatus_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtvsubstatus_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvsubstatus>("msdyn_rtvsubstatus_connections1", null, value);
+				this.OnPropertyChanged("msdyn_rtvsubstatus_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvsubstatus_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvsubstatus_connections2")]
+		public DLaB.Xrm.Entities.msdyn_rtvsubstatus msdyn_rtvsubstatus_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvsubstatus>("msdyn_rtvsubstatus_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtvsubstatus_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvsubstatus>("msdyn_rtvsubstatus_connections2", null, value);
+				this.OnPropertyChanged("msdyn_rtvsubstatus_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_shipvia_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_shipvia_connections1")]
+		public DLaB.Xrm.Entities.msdyn_shipvia msdyn_shipvia_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_shipvia>("msdyn_shipvia_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_shipvia_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_shipvia>("msdyn_shipvia_connections1", null, value);
+				this.OnPropertyChanged("msdyn_shipvia_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_shipvia_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_shipvia_connections2")]
+		public DLaB.Xrm.Entities.msdyn_shipvia msdyn_shipvia_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_shipvia>("msdyn_shipvia_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_shipvia_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_shipvia>("msdyn_shipvia_connections2", null, value);
+				this.OnPropertyChanged("msdyn_shipvia_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_systemuserschedulersetting_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_systemuserschedulersetting_connections1")]
+		public DLaB.Xrm.Entities.msdyn_systemuserschedulersetting msdyn_systemuserschedulersetting_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting>("msdyn_systemuserschedulersetting_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_systemuserschedulersetting_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting>("msdyn_systemuserschedulersetting_connections1", null, value);
+				this.OnPropertyChanged("msdyn_systemuserschedulersetting_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_systemuserschedulersetting_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_systemuserschedulersetting_connections2")]
+		public DLaB.Xrm.Entities.msdyn_systemuserschedulersetting msdyn_systemuserschedulersetting_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting>("msdyn_systemuserschedulersetting_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_systemuserschedulersetting_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting>("msdyn_systemuserschedulersetting_connections2", null, value);
+				this.OnPropertyChanged("msdyn_systemuserschedulersetting_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_taxcode_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_taxcode_connections1")]
+		public DLaB.Xrm.Entities.msdyn_taxcode msdyn_taxcode_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_taxcode>("msdyn_taxcode_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_taxcode_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_taxcode>("msdyn_taxcode_connections1", null, value);
+				this.OnPropertyChanged("msdyn_taxcode_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_taxcode_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_taxcode_connections2")]
+		public DLaB.Xrm.Entities.msdyn_taxcode msdyn_taxcode_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_taxcode>("msdyn_taxcode_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_taxcode_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_taxcode>("msdyn_taxcode_connections2", null, value);
+				this.OnPropertyChanged("msdyn_taxcode_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroup_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroup_connections1")]
+		public DLaB.Xrm.Entities.msdyn_timegroup msdyn_timegroup_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timegroup_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_connections1", null, value);
+				this.OnPropertyChanged("msdyn_timegroup_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroup_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroup_connections2")]
+		public DLaB.Xrm.Entities.msdyn_timegroup msdyn_timegroup_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timegroup_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_connections2", null, value);
+				this.OnPropertyChanged("msdyn_timegroup_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroupdetail_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroupdetail_connections1")]
+		public DLaB.Xrm.Entities.msdyn_timegroupdetail msdyn_timegroupdetail_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timegroupdetail_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_connections1", null, value);
+				this.OnPropertyChanged("msdyn_timegroupdetail_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroupdetail_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroupdetail_connections2")]
+		public DLaB.Xrm.Entities.msdyn_timegroupdetail msdyn_timegroupdetail_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timegroupdetail_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_connections2", null, value);
+				this.OnPropertyChanged("msdyn_timegroupdetail_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timeoffrequest_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timeoffrequest_connections1")]
+		public DLaB.Xrm.Entities.msdyn_timeoffrequest msdyn_timeoffrequest_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffrequest>("msdyn_timeoffrequest_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timeoffrequest_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffrequest>("msdyn_timeoffrequest_connections1", null, value);
+				this.OnPropertyChanged("msdyn_timeoffrequest_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timeoffrequest_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timeoffrequest_connections2")]
+		public DLaB.Xrm.Entities.msdyn_timeoffrequest msdyn_timeoffrequest_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffrequest>("msdyn_timeoffrequest_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timeoffrequest_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffrequest>("msdyn_timeoffrequest_connections2", null, value);
+				this.OnPropertyChanged("msdyn_timeoffrequest_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_warehouse_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_warehouse_connections1")]
+		public DLaB.Xrm.Entities.msdyn_warehouse msdyn_warehouse_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_warehouse_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_connections1", null, value);
+				this.OnPropertyChanged("msdyn_warehouse_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_warehouse_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_warehouse_connections2")]
+		public DLaB.Xrm.Entities.msdyn_warehouse msdyn_warehouse_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_warehouse_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_connections2", null, value);
+				this.OnPropertyChanged("msdyn_warehouse_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorder_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorder_connections1")]
+		public DLaB.Xrm.Entities.msdyn_workorder msdyn_workorder_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorder_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_connections1", null, value);
+				this.OnPropertyChanged("msdyn_workorder_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorder_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorder_connections2")]
+		public DLaB.Xrm.Entities.msdyn_workorder msdyn_workorder_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorder_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_connections2", null, value);
+				this.OnPropertyChanged("msdyn_workorder_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workordercharacteristic_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workordercharacteristic_connections1")]
+		public DLaB.Xrm.Entities.msdyn_workordercharacteristic msdyn_workordercharacteristic_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordercharacteristic>("msdyn_workordercharacteristic_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workordercharacteristic_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordercharacteristic>("msdyn_workordercharacteristic_connections1", null, value);
+				this.OnPropertyChanged("msdyn_workordercharacteristic_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workordercharacteristic_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workordercharacteristic_connections2")]
+		public DLaB.Xrm.Entities.msdyn_workordercharacteristic msdyn_workordercharacteristic_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordercharacteristic>("msdyn_workordercharacteristic_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workordercharacteristic_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordercharacteristic>("msdyn_workordercharacteristic_connections2", null, value);
+				this.OnPropertyChanged("msdyn_workordercharacteristic_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderincident_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderincident_connections1")]
+		public DLaB.Xrm.Entities.msdyn_workorderincident msdyn_workorderincident_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderincident_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_connections1", null, value);
+				this.OnPropertyChanged("msdyn_workorderincident_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderincident_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderincident_connections2")]
+		public DLaB.Xrm.Entities.msdyn_workorderincident msdyn_workorderincident_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderincident_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_connections2", null, value);
+				this.OnPropertyChanged("msdyn_workorderincident_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderproduct_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderproduct_connections1")]
+		public DLaB.Xrm.Entities.msdyn_workorderproduct msdyn_workorderproduct_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_workorderproduct_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderproduct_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_workorderproduct_connections1", null, value);
+				this.OnPropertyChanged("msdyn_workorderproduct_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderproduct_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderproduct_connections2")]
+		public DLaB.Xrm.Entities.msdyn_workorderproduct msdyn_workorderproduct_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_workorderproduct_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderproduct_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_workorderproduct_connections2", null, value);
+				this.OnPropertyChanged("msdyn_workorderproduct_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderresourcerestriction_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderresourcerestriction_connections1")]
+		public DLaB.Xrm.Entities.msdyn_workorderresourcerestriction msdyn_workorderresourcerestriction_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_workorderresourcerestriction_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderresourcerestriction_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_workorderresourcerestriction_connections1", null, value);
+				this.OnPropertyChanged("msdyn_workorderresourcerestriction_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderresourcerestriction_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderresourcerestriction_connections2")]
+		public DLaB.Xrm.Entities.msdyn_workorderresourcerestriction msdyn_workorderresourcerestriction_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_workorderresourcerestriction_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderresourcerestriction_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_workorderresourcerestriction_connections2", null, value);
+				this.OnPropertyChanged("msdyn_workorderresourcerestriction_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservice_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservice_connections1")]
+		public DLaB.Xrm.Entities.msdyn_workorderservice msdyn_workorderservice_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderservice_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_connections1", null, value);
+				this.OnPropertyChanged("msdyn_workorderservice_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservice_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservice_connections2")]
+		public DLaB.Xrm.Entities.msdyn_workorderservice msdyn_workorderservice_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderservice_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_connections2", null, value);
+				this.OnPropertyChanged("msdyn_workorderservice_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservicetask_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservicetask_connections1")]
+		public DLaB.Xrm.Entities.msdyn_workorderservicetask msdyn_workorderservicetask_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderservicetask_connections1");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_connections1", null, value);
+				this.OnPropertyChanged("msdyn_workorderservicetask_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservicetask_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservicetask_connections2")]
+		public DLaB.Xrm.Entities.msdyn_workorderservicetask msdyn_workorderservicetask_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderservicetask_connections2");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_connections2", null, value);
+				this.OnPropertyChanged("msdyn_workorderservicetask_connections2");
 			}
 		}
 		

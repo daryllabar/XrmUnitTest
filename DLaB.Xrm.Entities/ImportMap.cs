@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum ImportMapState
 	{
 		
@@ -27,12 +27,13 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("importmap")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ImportMap : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
+			public const string ComponentState = "componentstate";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
@@ -40,7 +41,10 @@ namespace DLaB.Xrm.Entities
 			public const string EntitiesPerFile = "entitiesperfile";
 			public const string ImportMapId = "importmapid";
 			public const string Id = "importmapid";
+			public const string ImportMapIdUnique = "importmapidunique";
 			public const string ImportMapType = "importmaptype";
+			public const string IntroducedVersion = "introducedversion";
+			public const string IsManaged = "ismanaged";
 			public const string IsValidForImport = "isvalidforimport";
 			public const string IsWizardCreated = "iswizardcreated";
 			public const string MapCustomizations = "mapcustomizations";
@@ -48,10 +52,12 @@ namespace DLaB.Xrm.Entities
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string Name = "name";
+			public const string OverwriteTime = "overwritetime";
 			public const string OwnerId = "ownerid";
 			public const string OwningBusinessUnit = "owningbusinessunit";
 			public const string OwningTeam = "owningteam";
 			public const string OwningUser = "owninguser";
+			public const string SolutionId = "solutionid";
 			public const string Source = "source";
 			public const string SourceType = "sourcetype";
 			public const string SourceUserIdentifierForSourceCRMUserLink = "sourceuseridentifierforsourcecrmuserlink";
@@ -68,7 +74,6 @@ namespace DLaB.Xrm.Entities
 			public const string SystemUser_ImportMaps = "SystemUser_ImportMaps";
 			public const string team_ImportMaps = "team_ImportMaps";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -80,6 +85,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "importmap";
+		
+		public const string PrimaryIdAttribute = "importmapid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 4411;
 		
@@ -106,6 +115,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
+		public Microsoft.Xrm.Sdk.OptionSetValue ComponentState
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("componentstate");
+			}
+		}
+		
+		/// <summary>
 		/// Shows who created the record.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
@@ -126,7 +148,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -249,6 +271,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Unique identifier of the ImortMap.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("importmapidunique")]
+		public System.Nullable<System.Guid> ImportMapIdUnique
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("importmapidunique");
+			}
+		}
+		
+		/// <summary>
 		/// Select the type of data map to distinguish out-of-the-box data maps from custom maps.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("importmaptype")]
@@ -265,6 +300,39 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ImportMapType");
 				this.SetAttributeValue("importmaptype", value);
 				this.OnPropertyChanged("ImportMapType");
+			}
+		}
+		
+		/// <summary>
+		/// Version in which the component is introduced.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("introducedversion")]
+		public string IntroducedVersion
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("introducedversion");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IntroducedVersion");
+				this.SetAttributeValue("introducedversion", value);
+				this.OnPropertyChanged("IntroducedVersion");
+			}
+		}
+		
+		/// <summary>
+		/// Information that specifies whether this component is managed.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ismanaged")]
+		public System.Nullable<bool> IsManaged
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("ismanaged");
 			}
 		}
 		
@@ -342,7 +410,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -398,6 +466,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Name");
 				this.SetAttributeValue("name", value);
 				this.OnPropertyChanged("Name");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overwritetime")]
+		public System.Nullable<System.DateTime> OverwriteTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overwritetime");
 			}
 		}
 		
@@ -482,6 +563,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Unique identifier of the associated solution.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("solutionid")]
+		public System.Nullable<System.Guid> SolutionId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("solutionid");
+			}
+		}
+		
+		/// <summary>
 		/// Type the name of the migration source that this data map is used for.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("source")]
@@ -522,7 +616,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Source user value for source Microsoft Dynamics CRM user link.
+		/// Source user value for source Microsoft Dynamics 365 user link.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sourceuseridentifierforsourcecrmuserlink")]
 		public string SourceUserIdentifierForSourceCRMUserLink
@@ -617,7 +711,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Select the name of the Microsoft Dynamics CRM record type that this data map is defined for.
+		/// Select the name of the Microsoft Dynamics 365 record type that this data map is defined for.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("targetentity")]
 		public Microsoft.Xrm.Sdk.OptionSetValue TargetEntity
@@ -630,7 +724,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Microsoft Dynamics CRM user.
+		/// Microsoft Dynamics 365 user.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("targetuseridentifierforsourcecrmuserlink")]
 		public string TargetUserIdentifierForSourceCRMUserLink
@@ -746,6 +840,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ImportMap_ImportFile");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ImportFile>("ImportMap_ImportFile", null, value);
 				this.OnPropertyChanged("ImportMap_ImportFile");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N ImportMap_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ImportMap_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> ImportMap_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ImportMap_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ImportMap_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ImportMap_SyncErrors", null, value);
+				this.OnPropertyChanged("ImportMap_SyncErrors");
 			}
 		}
 		
@@ -996,6 +1110,16 @@ namespace DLaB.Xrm.Entities
                         break;
                 }
             }
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
+		public virtual ComponentState? ComponentStateEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("entitiesperfile")]

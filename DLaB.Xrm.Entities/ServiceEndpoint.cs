@@ -15,12 +15,14 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("serviceendpoint")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ServiceEndpoint : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
+			public const string AuthType = "authtype";
+			public const string AuthValue = "authvalue";
 			public const string ComponentState = "componentstate";
 			public const string ConnectionMode = "connectionmode";
 			public const string Contract = "contract";
@@ -29,20 +31,30 @@ namespace DLaB.Xrm.Entities
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string Description = "description";
 			public const string IntroducedVersion = "introducedversion";
+			public const string IsAuthValueSet = "isauthvalueset";
 			public const string IsCustomizable = "iscustomizable";
 			public const string IsManaged = "ismanaged";
+			public const string IsSASKeySet = "issaskeyset";
+			public const string IsSASTokenSet = "issastokenset";
+			public const string MessageFormat = "messageformat";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string Name = "name";
+			public const string NamespaceAddress = "namespaceaddress";
+			public const string NamespaceFormat = "namespaceformat";
 			public const string OrganizationId = "organizationid";
 			public const string OverwriteTime = "overwritetime";
 			public const string Path = "path";
+			public const string SASKey = "saskey";
+			public const string SASKeyName = "saskeyname";
+			public const string SASToken = "sastoken";
 			public const string ServiceEndpointId = "serviceendpointid";
 			public const string Id = "serviceendpointid";
 			public const string ServiceEndpointIdUnique = "serviceendpointidunique";
 			public const string SolutionId = "solutionid";
 			public const string SolutionNamespace = "solutionnamespace";
+			public const string Url = "url";
 			public const string UserClaim = "userclaim";
 			public const string createdby_serviceendpoint = "createdby_serviceendpoint";
 			public const string lk_serviceendpointbase_createdonbehalfby = "lk_serviceendpointbase_createdonbehalfby";
@@ -50,7 +62,6 @@ namespace DLaB.Xrm.Entities
 			public const string modifiedby_serviceendpoint = "modifiedby_serviceendpoint";
 			public const string organization_serviceendpoint = "organization_serviceendpoint";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -62,6 +73,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "serviceendpoint";
+		
+		public const string PrimaryIdAttribute = "serviceendpointid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 4618;
 		
@@ -84,6 +99,46 @@ namespace DLaB.Xrm.Entities
 			if ((this.PropertyChanging != null))
 			{
 				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// Specifies mode of authentication with SB
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("authtype")]
+		public Microsoft.Xrm.Sdk.OptionSetValue AuthType
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("authtype");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("AuthType");
+				this.SetAttributeValue("authtype", value);
+				this.OnPropertyChanged("AuthType");
+			}
+		}
+		
+		/// <summary>
+		/// Authentication Value
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("authvalue")]
+		public string AuthValue
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("authvalue");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("AuthValue");
+				this.SetAttributeValue("authvalue", value);
+				this.OnPropertyChanged("AuthValue");
 			}
 		}
 		
@@ -241,6 +296,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isauthvalueset")]
+		public System.Nullable<bool> IsAuthValueSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isauthvalueset");
+			}
+		}
+		
+		/// <summary>
 		/// Information that specifies whether this component can be customized.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("iscustomizable")]
@@ -270,6 +338,52 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<bool>>("ismanaged");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("issaskeyset")]
+		public System.Nullable<bool> IsSASKeySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("issaskeyset");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("issastokenset")]
+		public System.Nullable<bool> IsSASTokenSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("issastokenset");
+			}
+		}
+		
+		/// <summary>
+		/// Content type of the message
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("messageformat")]
+		public Microsoft.Xrm.Sdk.OptionSetValue MessageFormat
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("messageformat");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("MessageFormat");
+				this.SetAttributeValue("messageformat", value);
+				this.OnPropertyChanged("MessageFormat");
 			}
 		}
 		
@@ -354,6 +468,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Full service endpoint address.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("namespaceaddress")]
+		public string NamespaceAddress
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("namespaceaddress");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("NamespaceAddress");
+				this.SetAttributeValue("namespaceaddress", value);
+				this.OnPropertyChanged("NamespaceAddress");
+			}
+		}
+		
+		/// <summary>
+		/// Format of Service Bus Namespace
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("namespaceformat")]
+		public Microsoft.Xrm.Sdk.OptionSetValue NamespaceFormat
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("namespaceformat");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("NamespaceFormat");
+				this.SetAttributeValue("namespaceformat", value);
+				this.OnPropertyChanged("NamespaceFormat");
+			}
+		}
+		
+		/// <summary>
 		/// Unique identifier of the organization with which the service endpoint is associated.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("organizationid")]
@@ -396,6 +550,66 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Path");
 				this.SetAttributeValue("path", value);
 				this.OnPropertyChanged("Path");
+			}
+		}
+		
+		/// <summary>
+		/// Shared Access Key
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("saskey")]
+		public string SASKey
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("saskey");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SASKey");
+				this.SetAttributeValue("saskey", value);
+				this.OnPropertyChanged("SASKey");
+			}
+		}
+		
+		/// <summary>
+		/// Shared Access Key Name
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("saskeyname")]
+		public string SASKeyName
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("saskeyname");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SASKeyName");
+				this.SetAttributeValue("saskeyname", value);
+				this.OnPropertyChanged("SASKeyName");
+			}
+		}
+		
+		/// <summary>
+		/// Shared Access Token
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sastoken")]
+		public string SASToken
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("sastoken");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SASToken");
+				this.SetAttributeValue("sastoken", value);
+				this.OnPropertyChanged("SASToken");
 			}
 		}
 		
@@ -485,6 +699,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("SolutionNamespace");
 				this.SetAttributeValue("solutionnamespace", value);
 				this.OnPropertyChanged("SolutionNamespace");
+			}
+		}
+		
+		/// <summary>
+		/// Full service endpoint Url.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("url")]
+		public string Url
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("url");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Url");
+				this.SetAttributeValue("url", value);
+				this.OnPropertyChanged("Url");
 			}
 		}
 		
@@ -688,6 +922,21 @@ namespace DLaB.Xrm.Entities
             }
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("authtype")]
+		public virtual ServiceEndpoint_AuthType? AuthTypeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((ServiceEndpoint_AuthType?)(EntityOptionSetEnum.GetEnum(this, "authtype")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				AuthType = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
 		public virtual ComponentState? ComponentStateEnum
 		{
@@ -725,6 +974,36 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				Contract = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("messageformat")]
+		public virtual ServiceEndpoint_MessageFormat? MessageFormatEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((ServiceEndpoint_MessageFormat?)(EntityOptionSetEnum.GetEnum(this, "messageformat")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				MessageFormat = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("namespaceformat")]
+		public virtual ServiceEndpoint_NamespaceFormat? NamespaceFormatEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((ServiceEndpoint_NamespaceFormat?)(EntityOptionSetEnum.GetEnum(this, "namespaceformat")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				NamespaceFormat = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 		

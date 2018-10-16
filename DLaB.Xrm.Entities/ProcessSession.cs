@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum ProcessSessionState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("processsession")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ProcessSession : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ActivityName = "activityname";
 			public const string CanceledBy = "canceledby";
@@ -69,14 +69,24 @@ namespace DLaB.Xrm.Entities
 			public const string StatusCode = "statuscode";
 			public const string StepName = "stepname";
 			public const string Account_ProcessSessions = "Account_ProcessSessions";
+			public const string adminsettingsentity_ProcessSession = "adminsettingsentity_ProcessSession";
 			public const string Annotation_ProcessSessions = "Annotation_ProcessSessions";
 			public const string Appointment_ProcessSessions = "Appointment_ProcessSessions";
+			public const string bookableresource_ProcessSession = "bookableresource_ProcessSession";
+			public const string bookableresourcebooking_ProcessSession = "bookableresourcebooking_ProcessSession";
+			public const string bookableresourcebookingheader_ProcessSession = "bookableresourcebookingheader_ProcessSession";
+			public const string bookableresourcecategory_ProcessSession = "bookableresourcecategory_ProcessSession";
+			public const string bookableresourcecategoryassn_ProcessSession = "bookableresourcecategoryassn_ProcessSession";
+			public const string bookableresourcecharacteristic_ProcessSession = "bookableresourcecharacteristic_ProcessSession";
+			public const string bookableresourcegroup_ProcessSession = "bookableresourcegroup_ProcessSession";
+			public const string bookingstatus_ProcessSession = "bookingstatus_ProcessSession";
 			public const string BusinessUnit_ProcessSessions = "BusinessUnit_ProcessSessions";
 			public const string BusinessUnitNewsArticle_ProcessSessions = "BusinessUnitNewsArticle_ProcessSessions";
 			public const string Campaign_ProcessSessions = "Campaign_ProcessSessions";
 			public const string CampaignActivity_ProcessSessions = "CampaignActivity_ProcessSessions";
 			public const string CampaignResponse_ProcessSessions = "CampaignResponse_ProcessSessions";
 			public const string channelaccessprofile_ProcessSession = "channelaccessprofile_ProcessSession";
+			public const string characteristic_ProcessSession = "characteristic_ProcessSession";
 			public const string Competitor_ProcessSessions = "Competitor_ProcessSessions";
 			public const string Connection_ProcessSessions = "Connection_ProcessSessions";
 			public const string ConnectionRole_ProcessSessions = "ConnectionRole_ProcessSessions";
@@ -96,6 +106,7 @@ namespace DLaB.Xrm.Entities
 			public const string entitlementchannel_ProcessSession = "entitlementchannel_ProcessSession";
 			public const string entitlementtemplate_ProcessSession = "entitlementtemplate_ProcessSession";
 			public const string Equipment_ProcessSessions = "Equipment_ProcessSessions";
+			public const string ExpiredProcess_ProcessSessions = "ExpiredProcess_ProcessSessions";
 			public const string externalparty_ProcessSession = "externalparty_ProcessSession";
 			public const string externalpartyitem_ProcessSession = "externalpartyitem_ProcessSession";
 			public const string Fax_ProcessSessions = "Fax_ProcessSessions";
@@ -108,8 +119,10 @@ namespace DLaB.Xrm.Entities
 			public const string KbArticleComment_ProcessSessions = "KbArticleComment_ProcessSessions";
 			public const string KbArticleTemplate_ProcessSessions = "KbArticleTemplate_ProcessSessions";
 			public const string knowledgearticle_ProcessSession = "knowledgearticle_ProcessSession";
+			public const string knowledgearticleincident_ProcessSession = "knowledgearticleincident_ProcessSession";
 			public const string KnowledgeBaseRecord_ProcessSession = "KnowledgeBaseRecord_ProcessSession";
 			public const string Lead_ProcessSessions = "Lead_ProcessSessions";
+			public const string leadtoopportunitysalesprocess_ProcessSession = "leadtoopportunitysalesprocess_ProcessSession";
 			public const string Letter_ProcessSessions = "Letter_ProcessSessions";
 			public const string List_ProcessSessions = "List_ProcessSessions";
 			public const string lk_processsession_canceledby = "lk_processsession_canceledby";
@@ -127,15 +140,198 @@ namespace DLaB.Xrm.Entities
 			public const string mailbox_processsessions = "mailbox_processsessions";
 			public const string MailMergeTemplate_ProcessSessions = "MailMergeTemplate_ProcessSessions";
 			public const string metric_ProcessSessions = "metric_ProcessSessions";
+			public const string msdyn_accountpricelist_ProcessSession = "msdyn_accountpricelist_ProcessSession";
+			public const string msdyn_actual_ProcessSession = "msdyn_actual_ProcessSession";
+			public const string msdyn_agreement_ProcessSession = "msdyn_agreement_ProcessSession";
+			public const string msdyn_agreementbookingdate_ProcessSession = "msdyn_agreementbookingdate_ProcessSession";
+			public const string msdyn_agreementbookingincident_ProcessSession = "msdyn_agreementbookingincident_ProcessSession";
+			public const string msdyn_agreementbookingproduct_ProcessSession = "msdyn_agreementbookingproduct_ProcessSession";
+			public const string msdyn_agreementbookingservice_ProcessSession = "msdyn_agreementbookingservice_ProcessSession";
+			public const string msdyn_agreementbookingservicetask_ProcessSession = "msdyn_agreementbookingservicetask_ProcessSession";
+			public const string msdyn_agreementbookingsetup_ProcessSession = "msdyn_agreementbookingsetup_ProcessSession";
+			public const string msdyn_agreementinvoicedate_ProcessSession = "msdyn_agreementinvoicedate_ProcessSession";
+			public const string msdyn_agreementinvoiceproduct_ProcessSession = "msdyn_agreementinvoiceproduct_ProcessSession";
+			public const string msdyn_agreementinvoicesetup_ProcessSession = "msdyn_agreementinvoicesetup_ProcessSession";
+			public const string msdyn_agreementsubstatus_ProcessSession = "msdyn_agreementsubstatus_ProcessSession";
+			public const string msdyn_approval_ProcessSession = "msdyn_approval_ProcessSession";
+			public const string msdyn_batchjob_ProcessSession = "msdyn_batchjob_ProcessSession";
+			public const string msdyn_bookingalert_ProcessSession = "msdyn_bookingalert_ProcessSession";
+			public const string msdyn_bookingalertstatus_ProcessSession = "msdyn_bookingalertstatus_ProcessSession";
+			public const string msdyn_bookingchange_ProcessSession = "msdyn_bookingchange_ProcessSession";
+			public const string msdyn_bookingjournal_ProcessSession = "msdyn_bookingjournal_ProcessSession";
+			public const string msdyn_bookingrule_ProcessSession = "msdyn_bookingrule_ProcessSession";
+			public const string msdyn_bookingsetupmetadata_ProcessSession = "msdyn_bookingsetupmetadata_ProcessSession";
+			public const string msdyn_bookingtimestamp_ProcessSession = "msdyn_bookingtimestamp_ProcessSession";
+			public const string msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_ProcessSession = "msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_ProcessSession";
+			public const string msdyn_bpf_665e73aa18c247d886bfc50499c73b82_ProcessSession = "msdyn_bpf_665e73aa18c247d886bfc50499c73b82_ProcessSession";
+			public const string msdyn_bpf_989e9b1857e24af18787d5143b67523b_ProcessSession = "msdyn_bpf_989e9b1857e24af18787d5143b67523b_ProcessSession";
+			public const string msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_ProcessSession = "msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_ProcessSession";
+			public const string msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_ProcessSession = "msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_ProcessSession";
+			public const string msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_ProcessSession = "msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_ProcessSession";
+			public const string msdyn_characteristicreqforteammember_ProcessSession = "msdyn_characteristicreqforteammember_ProcessSession";
+			public const string msdyn_contactpricelist_ProcessSession = "msdyn_contactpricelist_ProcessSession";
+			public const string msdyn_contractlineinvoiceschedule_ProcessSession = "msdyn_contractlineinvoiceschedule_ProcessSession";
+			public const string msdyn_contractlinescheduleofvalue_ProcessSession = "msdyn_contractlinescheduleofvalue_ProcessSession";
+			public const string msdyn_customerasset_ProcessSession = "msdyn_customerasset_ProcessSession";
+			public const string msdyn_dataexport_ProcessSession = "msdyn_dataexport_ProcessSession";
+			public const string msdyn_delegation_ProcessSession = "msdyn_delegation_ProcessSession";
+			public const string msdyn_estimate_ProcessSession = "msdyn_estimate_ProcessSession";
+			public const string msdyn_estimateline_ProcessSession = "msdyn_estimateline_ProcessSession";
+			public const string msdyn_expense_ProcessSession = "msdyn_expense_ProcessSession";
+			public const string msdyn_expensecategory_ProcessSession = "msdyn_expensecategory_ProcessSession";
+			public const string msdyn_expensereceipt_ProcessSession = "msdyn_expensereceipt_ProcessSession";
+			public const string msdyn_fact_ProcessSession = "msdyn_fact_ProcessSession";
+			public const string msdyn_fieldcomputation_ProcessSession = "msdyn_fieldcomputation_ProcessSession";
+			public const string msdyn_fieldservicepricelistitem_ProcessSession = "msdyn_fieldservicepricelistitem_ProcessSession";
+			public const string msdyn_fieldservicesetting_ProcessSession = "msdyn_fieldservicesetting_ProcessSession";
+			public const string msdyn_fieldservicesystemjob_ProcessSession = "msdyn_fieldservicesystemjob_ProcessSession";
+			public const string msdyn_findworkevent_ProcessSession = "msdyn_findworkevent_ProcessSession";
+			public const string msdyn_icebreakersconfig_ProcessSession = "msdyn_icebreakersconfig_ProcessSession";
+			public const string msdyn_incidenttype_ProcessSession = "msdyn_incidenttype_ProcessSession";
+			public const string msdyn_incidenttypecharacteristic_ProcessSession = "msdyn_incidenttypecharacteristic_ProcessSession";
+			public const string msdyn_incidenttypeproduct_ProcessSession = "msdyn_incidenttypeproduct_ProcessSession";
+			public const string msdyn_incidenttypeservice_ProcessSession = "msdyn_incidenttypeservice_ProcessSession";
+			public const string msdyn_incidenttypeservicetask_ProcessSession = "msdyn_incidenttypeservicetask_ProcessSession";
+			public const string msdyn_integrationjob_ProcessSession = "msdyn_integrationjob_ProcessSession";
+			public const string msdyn_integrationjobdetail_ProcessSession = "msdyn_integrationjobdetail_ProcessSession";
+			public const string msdyn_inventoryadjustment_ProcessSession = "msdyn_inventoryadjustment_ProcessSession";
+			public const string msdyn_inventoryadjustmentproduct_ProcessSession = "msdyn_inventoryadjustmentproduct_ProcessSession";
+			public const string msdyn_inventoryjournal_ProcessSession = "msdyn_inventoryjournal_ProcessSession";
+			public const string msdyn_inventorytransfer_ProcessSession = "msdyn_inventorytransfer_ProcessSession";
+			public const string msdyn_invoicefrequency_ProcessSession = "msdyn_invoicefrequency_ProcessSession";
+			public const string msdyn_invoicefrequencydetail_ProcessSession = "msdyn_invoicefrequencydetail_ProcessSession";
+			public const string msdyn_invoicelinetransaction_ProcessSession = "msdyn_invoicelinetransaction_ProcessSession";
+			public const string msdyn_journal_ProcessSession = "msdyn_journal_ProcessSession";
+			public const string msdyn_journalline_ProcessSession = "msdyn_journalline_ProcessSession";
+			public const string msdyn_mlresultcache_ProcessSession = "msdyn_mlresultcache_ProcessSession";
+			public const string msdyn_notesanalysisconfig_ProcessSession = "msdyn_notesanalysisconfig_ProcessSession";
+			public const string msdyn_opportunitylineresourcecategory_ProcessSession = "msdyn_opportunitylineresourcecategory_ProcessSession";
+			public const string msdyn_opportunitylinetransaction_ProcessSession = "msdyn_opportunitylinetransaction_ProcessSession";
+			public const string msdyn_opportunitylinetransactioncategory_ProcessSession = "msdyn_opportunitylinetransactioncategory_ProcessSession";
+			public const string msdyn_opportunitylinetransactionclassificatio_ProcessSession = "msdyn_opportunitylinetransactionclassificatio_ProcessSession";
+			public const string msdyn_opportunitypricelist_ProcessSession = "msdyn_opportunitypricelist_ProcessSession";
+			public const string msdyn_orderinvoicingdate_ProcessSession = "msdyn_orderinvoicingdate_ProcessSession";
+			public const string msdyn_orderinvoicingproduct_ProcessSession = "msdyn_orderinvoicingproduct_ProcessSession";
+			public const string msdyn_orderinvoicingsetup_ProcessSession = "msdyn_orderinvoicingsetup_ProcessSession";
+			public const string msdyn_orderinvoicingsetupdate_ProcessSession = "msdyn_orderinvoicingsetupdate_ProcessSession";
+			public const string msdyn_orderlineresourcecategory_ProcessSession = "msdyn_orderlineresourcecategory_ProcessSession";
+			public const string msdyn_orderlinetransaction_ProcessSession = "msdyn_orderlinetransaction_ProcessSession";
+			public const string msdyn_orderlinetransactioncategory_ProcessSession = "msdyn_orderlinetransactioncategory_ProcessSession";
+			public const string msdyn_orderlinetransactionclassification_ProcessSession = "msdyn_orderlinetransactionclassification_ProcessSession";
+			public const string msdyn_orderpricelist_ProcessSession = "msdyn_orderpricelist_ProcessSession";
+			public const string msdyn_organizationalunit_ProcessSession = "msdyn_organizationalunit_ProcessSession";
+			public const string msdyn_orginsightsuserdashboarddefinition_ProcessSession = "msdyn_orginsightsuserdashboarddefinition_ProcessSession";
+			public const string msdyn_payment_ProcessSession = "msdyn_payment_ProcessSession";
+			public const string msdyn_paymentdetail_ProcessSession = "msdyn_paymentdetail_ProcessSession";
+			public const string msdyn_paymentmethod_ProcessSession = "msdyn_paymentmethod_ProcessSession";
+			public const string msdyn_paymentterm_ProcessSession = "msdyn_paymentterm_ProcessSession";
 			public const string msdyn_postalbum_ProcessSession = "msdyn_postalbum_ProcessSession";
+			public const string msdyn_postalcode_ProcessSession = "msdyn_postalcode_ProcessSession";
 			public const string msdyn_postconfig_ProcessSession = "msdyn_postconfig_ProcessSession";
 			public const string msdyn_postruleconfig_ProcessSession = "msdyn_postruleconfig_ProcessSession";
+			public const string msdyn_priority_ProcessSession = "msdyn_priority_ProcessSession";
+			public const string msdyn_processnotes_ProcessSession = "msdyn_processnotes_ProcessSession";
+			public const string msdyn_productinventory_ProcessSession = "msdyn_productinventory_ProcessSession";
+			public const string msdyn_project_ProcessSession = "msdyn_project_ProcessSession";
+			public const string msdyn_projectapproval_ProcessSession = "msdyn_projectapproval_ProcessSession";
+			public const string msdyn_projectparameter_ProcessSession = "msdyn_projectparameter_ProcessSession";
+			public const string msdyn_projectparameterpricelist_ProcessSession = "msdyn_projectparameterpricelist_ProcessSession";
+			public const string msdyn_projectpricelist_ProcessSession = "msdyn_projectpricelist_ProcessSession";
+			public const string msdyn_projecttask_ProcessSession = "msdyn_projecttask_ProcessSession";
+			public const string msdyn_projecttaskdependency_ProcessSession = "msdyn_projecttaskdependency_ProcessSession";
+			public const string msdyn_projecttaskstatususer_ProcessSession = "msdyn_projecttaskstatususer_ProcessSession";
+			public const string msdyn_projectteam_ProcessSession = "msdyn_projectteam_ProcessSession";
+			public const string msdyn_projectteammembersignup_ProcessSession = "msdyn_projectteammembersignup_ProcessSession";
+			public const string msdyn_projecttransactioncategory_ProcessSession = "msdyn_projecttransactioncategory_ProcessSession";
+			public const string msdyn_purchaseorder_ProcessSession = "msdyn_purchaseorder_ProcessSession";
+			public const string msdyn_purchaseorderbill_ProcessSession = "msdyn_purchaseorderbill_ProcessSession";
+			public const string msdyn_purchaseorderproduct_ProcessSession = "msdyn_purchaseorderproduct_ProcessSession";
+			public const string msdyn_purchaseorderreceipt_ProcessSession = "msdyn_purchaseorderreceipt_ProcessSession";
+			public const string msdyn_purchaseorderreceiptproduct_ProcessSession = "msdyn_purchaseorderreceiptproduct_ProcessSession";
+			public const string msdyn_purchaseordersubstatus_ProcessSession = "msdyn_purchaseordersubstatus_ProcessSession";
+			public const string msdyn_quotebookingincident_ProcessSession = "msdyn_quotebookingincident_ProcessSession";
+			public const string msdyn_quotebookingproduct_ProcessSession = "msdyn_quotebookingproduct_ProcessSession";
+			public const string msdyn_quotebookingservice_ProcessSession = "msdyn_quotebookingservice_ProcessSession";
+			public const string msdyn_quotebookingservicetask_ProcessSession = "msdyn_quotebookingservicetask_ProcessSession";
+			public const string msdyn_quotebookingsetup_ProcessSession = "msdyn_quotebookingsetup_ProcessSession";
+			public const string msdyn_quoteinvoicingproduct_ProcessSession = "msdyn_quoteinvoicingproduct_ProcessSession";
+			public const string msdyn_quoteinvoicingsetup_ProcessSession = "msdyn_quoteinvoicingsetup_ProcessSession";
+			public const string msdyn_quotelineanalyticsbreakdown_ProcessSession = "msdyn_quotelineanalyticsbreakdown_ProcessSession";
+			public const string msdyn_quotelineinvoiceschedule_ProcessSession = "msdyn_quotelineinvoiceschedule_ProcessSession";
+			public const string msdyn_quotelineresourcecategory_ProcessSession = "msdyn_quotelineresourcecategory_ProcessSession";
+			public const string msdyn_quotelinescheduleofvalue_ProcessSession = "msdyn_quotelinescheduleofvalue_ProcessSession";
+			public const string msdyn_quotelinetransaction_ProcessSession = "msdyn_quotelinetransaction_ProcessSession";
+			public const string msdyn_quotelinetransactioncategory_ProcessSession = "msdyn_quotelinetransactioncategory_ProcessSession";
+			public const string msdyn_quotelinetransactionclassification_ProcessSession = "msdyn_quotelinetransactionclassification_ProcessSession";
+			public const string msdyn_quotepricelist_ProcessSession = "msdyn_quotepricelist_ProcessSession";
+			public const string msdyn_relationshipinsightsunifiedconfig_ProcessSession = "msdyn_relationshipinsightsunifiedconfig_ProcessSession";
+			public const string msdyn_requirementcharacteristic_ProcessSession = "msdyn_requirementcharacteristic_ProcessSession";
+			public const string msdyn_requirementorganizationunit_ProcessSession = "msdyn_requirementorganizationunit_ProcessSession";
+			public const string msdyn_requirementresourcecategory_ProcessSession = "msdyn_requirementresourcecategory_ProcessSession";
+			public const string msdyn_requirementresourcepreference_ProcessSession = "msdyn_requirementresourcepreference_ProcessSession";
+			public const string msdyn_requirementstatus_ProcessSession = "msdyn_requirementstatus_ProcessSession";
+			public const string msdyn_resourceassignment_ProcessSession = "msdyn_resourceassignment_ProcessSession";
+			public const string msdyn_resourceassignmentdetail_ProcessSession = "msdyn_resourceassignmentdetail_ProcessSession";
+			public const string msdyn_resourcecategorypricelevel_ProcessSession = "msdyn_resourcecategorypricelevel_ProcessSession";
+			public const string msdyn_resourcepaytype_ProcessSession = "msdyn_resourcepaytype_ProcessSession";
+			public const string msdyn_resourcerequest_ProcessSession = "msdyn_resourcerequest_ProcessSession";
+			public const string msdyn_resourcerequirement_ProcessSession = "msdyn_resourcerequirement_ProcessSession";
+			public const string msdyn_resourcerequirementdetail_ProcessSession = "msdyn_resourcerequirementdetail_ProcessSession";
+			public const string msdyn_resourceterritory_ProcessSession = "msdyn_resourceterritory_ProcessSession";
+			public const string msdyn_rma_ProcessSession = "msdyn_rma_ProcessSession";
+			public const string msdyn_rmaproduct_ProcessSession = "msdyn_rmaproduct_ProcessSession";
+			public const string msdyn_rmareceipt_ProcessSession = "msdyn_rmareceipt_ProcessSession";
+			public const string msdyn_rmareceiptproduct_ProcessSession = "msdyn_rmareceiptproduct_ProcessSession";
+			public const string msdyn_rmasubstatus_ProcessSession = "msdyn_rmasubstatus_ProcessSession";
+			public const string msdyn_rolecompetencyrequirement_ProcessSession = "msdyn_rolecompetencyrequirement_ProcessSession";
+			public const string msdyn_roleutilization_ProcessSession = "msdyn_roleutilization_ProcessSession";
+			public const string msdyn_rtv_ProcessSession = "msdyn_rtv_ProcessSession";
+			public const string msdyn_rtvproduct_ProcessSession = "msdyn_rtvproduct_ProcessSession";
+			public const string msdyn_rtvsubstatus_ProcessSession = "msdyn_rtvsubstatus_ProcessSession";
+			public const string msdyn_scheduleboardsetting_ProcessSession = "msdyn_scheduleboardsetting_ProcessSession";
+			public const string msdyn_schedulingparameter_ProcessSession = "msdyn_schedulingparameter_ProcessSession";
+			public const string msdyn_servicetasktype_ProcessSession = "msdyn_servicetasktype_ProcessSession";
+			public const string msdyn_shipvia_ProcessSession = "msdyn_shipvia_ProcessSession";
+			public const string msdyn_siconfig_ProcessSession = "msdyn_siconfig_ProcessSession";
+			public const string msdyn_systemuserschedulersetting_ProcessSession = "msdyn_systemuserschedulersetting_ProcessSession";
+			public const string msdyn_taxcode_ProcessSession = "msdyn_taxcode_ProcessSession";
+			public const string msdyn_taxcodedetail_ProcessSession = "msdyn_taxcodedetail_ProcessSession";
+			public const string msdyn_timeentry_ProcessSession = "msdyn_timeentry_ProcessSession";
+			public const string msdyn_timegroup_ProcessSession = "msdyn_timegroup_ProcessSession";
+			public const string msdyn_timegroupdetail_ProcessSession = "msdyn_timegroupdetail_ProcessSession";
+			public const string msdyn_timeoffcalendar_ProcessSession = "msdyn_timeoffcalendar_ProcessSession";
+			public const string msdyn_timeoffrequest_ProcessSession = "msdyn_timeoffrequest_ProcessSession";
+			public const string msdyn_transactioncategory_ProcessSession = "msdyn_transactioncategory_ProcessSession";
+			public const string msdyn_transactioncategoryclassification_ProcessSession = "msdyn_transactioncategoryclassification_ProcessSession";
+			public const string msdyn_transactioncategoryhierarchyelement_ProcessSession = "msdyn_transactioncategoryhierarchyelement_ProcessSession";
+			public const string msdyn_transactioncategorypricelevel_ProcessSession = "msdyn_transactioncategorypricelevel_ProcessSession";
+			public const string msdyn_transactionconnection_ProcessSession = "msdyn_transactionconnection_ProcessSession";
+			public const string msdyn_transactionorigin_ProcessSession = "msdyn_transactionorigin_ProcessSession";
+			public const string msdyn_transactiontype_ProcessSession = "msdyn_transactiontype_ProcessSession";
+			public const string msdyn_uniquenumber_ProcessSession = "msdyn_uniquenumber_ProcessSession";
+			public const string msdyn_untrackedappointment_ProcessSession = "msdyn_untrackedappointment_ProcessSession";
+			public const string msdyn_userworkhistory_ProcessSession = "msdyn_userworkhistory_ProcessSession";
 			public const string msdyn_wallsavedquery_ProcessSession = "msdyn_wallsavedquery_ProcessSession";
 			public const string msdyn_wallsavedqueryusersettings_ProcessSession = "msdyn_wallsavedqueryusersettings_ProcessSession";
+			public const string msdyn_warehouse_ProcessSession = "msdyn_warehouse_ProcessSession";
+			public const string msdyn_workhourtemplate_ProcessSession = "msdyn_workhourtemplate_ProcessSession";
+			public const string msdyn_workorder_ProcessSession = "msdyn_workorder_ProcessSession";
+			public const string msdyn_workordercharacteristic_ProcessSession = "msdyn_workordercharacteristic_ProcessSession";
+			public const string msdyn_workorderdetailsgenerationqueue_ProcessSession = "msdyn_workorderdetailsgenerationqueue_ProcessSession";
+			public const string msdyn_workorderincident_ProcessSession = "msdyn_workorderincident_ProcessSession";
+			public const string msdyn_workorderproduct_ProcessSession = "msdyn_workorderproduct_ProcessSession";
+			public const string msdyn_workorderresourcerestriction_ProcessSession = "msdyn_workorderresourcerestriction_ProcessSession";
+			public const string msdyn_workorderservice_ProcessSession = "msdyn_workorderservice_ProcessSession";
+			public const string msdyn_workorderservicetask_ProcessSession = "msdyn_workorderservicetask_ProcessSession";
+			public const string msdyn_workordersubstatus_ProcessSession = "msdyn_workordersubstatus_ProcessSession";
+			public const string msdyn_workordertype_ProcessSession = "msdyn_workordertype_ProcessSession";
+			public const string NewProcess_ProcessSessions = "NewProcess_ProcessSessions";
 			public const string Opportunity_ProcessSessions = "Opportunity_ProcessSessions";
 			public const string OpportunityProduct_ProcessSessions = "OpportunityProduct_ProcessSessions";
+			public const string opportunitysalesprocess_ProcessSession = "opportunitysalesprocess_ProcessSession";
 			public const string Owning_businessunit_processsessions = "Owning_businessunit_processsessions";
 			public const string PhoneCall_ProcessSessions = "PhoneCall_ProcessSessions";
+			public const string phonetocaseprocess_ProcessSession = "phonetocaseprocess_ProcessSession";
 			public const string position_ProcessSession = "position_ProcessSession";
 			public const string PriceLevel_ProcessSessions = "PriceLevel_ProcessSessions";
 			public const string Product_ProcessSessions = "Product_ProcessSessions";
@@ -147,6 +343,8 @@ namespace DLaB.Xrm.Entities
 			public const string QueueItem_ProcessSessions = "QueueItem_ProcessSessions";
 			public const string Quote_ProcessSessions = "Quote_ProcessSessions";
 			public const string QuoteDetail_ProcessSessions = "QuoteDetail_ProcessSessions";
+			public const string ratingmodel_ProcessSession = "ratingmodel_ProcessSession";
+			public const string ratingvalue_ProcessSession = "ratingvalue_ProcessSession";
 			public const string RecurringAppointmentMaster_ProcessSessions = "RecurringAppointmentMaster_ProcessSessions";
 			public const string RelationshipRole_ProcessSessions = "RelationshipRole_ProcessSessions";
 			public const string Report_ProcessSessions = "Report_ProcessSessions";
@@ -174,9 +372,9 @@ namespace DLaB.Xrm.Entities
 			public const string Territory_ProcessSessions = "Territory_ProcessSessions";
 			public const string theme_ProcessSession = "theme_ProcessSession";
 			public const string TransactionCurrency_ProcessSessions = "TransactionCurrency_ProcessSessions";
+			public const string TranslationProcess_ProcessSessions = "TranslationProcess_ProcessSessions";
 			public const string usermapping_ProcessSession = "usermapping_ProcessSession";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -188,6 +386,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "processsession";
+		
+		public const string PrimaryIdAttribute = "processsessionid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 4710;
 		
@@ -776,7 +978,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the object with which the dialog session is associated.
+		/// Territory_ProcessSessions
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
 		public Microsoft.Xrm.Sdk.EntityReference RegardingObjectId
@@ -1064,6 +1266,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N ProcessSession_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ProcessSession_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> ProcessSession_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ProcessSession_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ProcessSession_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ProcessSession_SyncErrors", null, value);
+				this.OnPropertyChanged("ProcessSession_SyncErrors");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N userentityinstancedata_processsession
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("userentityinstancedata_processsession")]
@@ -1101,6 +1323,27 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Account_ProcessSessions");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.Account>("Account_ProcessSessions", null, value);
 				this.OnPropertyChanged("Account_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 adminsettingsentity_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("adminsettingsentity_ProcessSession")]
+		public DLaB.Xrm.Entities.adminsettingsentity adminsettingsentity_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.adminsettingsentity>("adminsettingsentity_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("adminsettingsentity_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.adminsettingsentity>("adminsettingsentity_ProcessSession", null, value);
+				this.OnPropertyChanged("adminsettingsentity_ProcessSession");
 			}
 		}
 		
@@ -1143,6 +1386,174 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Appointment_ProcessSessions");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.Appointment>("Appointment_ProcessSessions", null, value);
 				this.OnPropertyChanged("Appointment_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresource_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresource_ProcessSession")]
+		public DLaB.Xrm.Entities.BookableResource bookableresource_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResource>("bookableresource_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bookableresource_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookableResource>("bookableresource_ProcessSession", null, value);
+				this.OnPropertyChanged("bookableresource_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcebooking_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebooking_ProcessSession")]
+		public DLaB.Xrm.Entities.BookableResourceBooking bookableresourcebooking_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBooking>("bookableresourcebooking_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bookableresourcebooking_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBooking>("bookableresourcebooking_ProcessSession", null, value);
+				this.OnPropertyChanged("bookableresourcebooking_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcebookingheader_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebookingheader_ProcessSession")]
+		public DLaB.Xrm.Entities.BookableResourceBookingHeader bookableresourcebookingheader_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBookingHeader>("bookableresourcebookingheader_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bookableresourcebookingheader_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBookingHeader>("bookableresourcebookingheader_ProcessSession", null, value);
+				this.OnPropertyChanged("bookableresourcebookingheader_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcecategory_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcecategory_ProcessSession")]
+		public DLaB.Xrm.Entities.BookableResourceCategory bookableresourcecategory_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceCategory>("bookableresourcecategory_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bookableresourcecategory_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookableResourceCategory>("bookableresourcecategory_ProcessSession", null, value);
+				this.OnPropertyChanged("bookableresourcecategory_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcecategoryassn_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcecategoryassn_ProcessSession")]
+		public DLaB.Xrm.Entities.BookableResourceCategoryAssn bookableresourcecategoryassn_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceCategoryAssn>("bookableresourcecategoryassn_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bookableresourcecategoryassn_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookableResourceCategoryAssn>("bookableresourcecategoryassn_ProcessSession", null, value);
+				this.OnPropertyChanged("bookableresourcecategoryassn_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcecharacteristic_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcecharacteristic_ProcessSession")]
+		public DLaB.Xrm.Entities.BookableResourceCharacteristic bookableresourcecharacteristic_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceCharacteristic>("bookableresourcecharacteristic_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bookableresourcecharacteristic_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookableResourceCharacteristic>("bookableresourcecharacteristic_ProcessSession", null, value);
+				this.OnPropertyChanged("bookableresourcecharacteristic_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcegroup_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcegroup_ProcessSession")]
+		public DLaB.Xrm.Entities.BookableResourceGroup bookableresourcegroup_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceGroup>("bookableresourcegroup_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bookableresourcegroup_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookableResourceGroup>("bookableresourcegroup_ProcessSession", null, value);
+				this.OnPropertyChanged("bookableresourcegroup_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookingstatus_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookingstatus_ProcessSession")]
+		public DLaB.Xrm.Entities.BookingStatus bookingstatus_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookingStatus>("bookingstatus_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bookingstatus_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookingStatus>("bookingstatus_ProcessSession", null, value);
+				this.OnPropertyChanged("bookingstatus_ProcessSession");
 			}
 		}
 		
@@ -1269,6 +1680,27 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("channelaccessprofile_ProcessSession");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.ChannelAccessProfile>("channelaccessprofile_ProcessSession", null, value);
 				this.OnPropertyChanged("channelaccessprofile_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 characteristic_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("characteristic_ProcessSession")]
+		public DLaB.Xrm.Entities.Characteristic characteristic_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Characteristic>("characteristic_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("characteristic_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Characteristic>("characteristic_ProcessSession", null, value);
+				this.OnPropertyChanged("characteristic_ProcessSession");
 			}
 		}
 		
@@ -1672,6 +2104,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 ExpiredProcess_ProcessSessions
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ExpiredProcess_ProcessSessions")]
+		public DLaB.Xrm.Entities.ExpiredProcess ExpiredProcess_ProcessSessions
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ExpiredProcess>("ExpiredProcess_ProcessSessions", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ExpiredProcess_ProcessSessions");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.ExpiredProcess>("ExpiredProcess_ProcessSessions", null, value);
+				this.OnPropertyChanged("ExpiredProcess_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 externalparty_ProcessSession
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1924,6 +2377,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 knowledgearticleincident_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticleincident_ProcessSession")]
+		public DLaB.Xrm.Entities.KnowledgeArticleIncident knowledgearticleincident_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticleIncident>("knowledgearticleincident_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticleincident_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticleIncident>("knowledgearticleincident_ProcessSession", null, value);
+				this.OnPropertyChanged("knowledgearticleincident_ProcessSession");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 KnowledgeBaseRecord_ProcessSession
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1962,6 +2436,27 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Lead_ProcessSessions");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.Lead>("Lead_ProcessSessions", null, value);
 				this.OnPropertyChanged("Lead_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 leadtoopportunitysalesprocess_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("leadtoopportunitysalesprocess_ProcessSession")]
+		public DLaB.Xrm.Entities.LeadToOpportunitySalesProcess leadtoopportunitysalesprocess_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.LeadToOpportunitySalesProcess>("leadtoopportunitysalesprocess_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("leadtoopportunitysalesprocess_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.LeadToOpportunitySalesProcess>("leadtoopportunitysalesprocess_ProcessSession", null, value);
+				this.OnPropertyChanged("leadtoopportunitysalesprocess_ProcessSession");
 			}
 		}
 		
@@ -2302,6 +2797,1791 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 msdyn_accountpricelist_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_accountpricelist_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_accountpricelist msdyn_accountpricelist_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_accountpricelist>("msdyn_accountpricelist_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_accountpricelist_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_accountpricelist>("msdyn_accountpricelist_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_accountpricelist_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_actual_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_actual_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_actual msdyn_actual_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_actual>("msdyn_actual_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_actual_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_actual>("msdyn_actual_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_actual_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreement_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreement_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_agreement msdyn_agreement_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreement_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_agreement_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingdate_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingdate_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingdate msdyn_agreementbookingdate_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingdate_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingdate_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingincident_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingincident_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingincident msdyn_agreementbookingincident_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingincident>("msdyn_agreementbookingincident_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingincident_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingincident>("msdyn_agreementbookingincident_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingincident_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingproduct_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingproduct_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingproduct msdyn_agreementbookingproduct_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_agreementbookingproduct_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingproduct_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_agreementbookingproduct_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingproduct_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservice_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservice_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservice msdyn_agreementbookingservice_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_agreementbookingservice_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingservice_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_agreementbookingservice_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingservice_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservicetask_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservicetask_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservicetask msdyn_agreementbookingservicetask_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask>("msdyn_agreementbookingservicetask_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingservicetask_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask>("msdyn_agreementbookingservicetask_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingservicetask_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingsetup_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingsetup_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingsetup msdyn_agreementbookingsetup_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingsetup_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingsetup_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicedate_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicedate_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicedate msdyn_agreementinvoicedate_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoicedate_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoicedate_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoiceproduct_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoiceproduct_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct msdyn_agreementinvoiceproduct_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_agreementinvoiceproduct_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoiceproduct_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_agreementinvoiceproduct_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoiceproduct_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicesetup_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicesetup_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicesetup msdyn_agreementinvoicesetup_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoicesetup_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoicesetup_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementsubstatus_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementsubstatus_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_agreementsubstatus msdyn_agreementsubstatus_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementsubstatus>("msdyn_agreementsubstatus_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementsubstatus_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementsubstatus>("msdyn_agreementsubstatus_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_agreementsubstatus_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_approval_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_approval_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_approval msdyn_approval_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_approval_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_approval_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_batchjob_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_batchjob_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_batchjob msdyn_batchjob_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_batchjob>("msdyn_batchjob_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_batchjob_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_batchjob>("msdyn_batchjob_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_batchjob_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingalert_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalert_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_bookingalert msdyn_bookingalert_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingalert_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_bookingalert_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingalertstatus_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalertstatus_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_bookingalertstatus msdyn_bookingalertstatus_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalertstatus>("msdyn_bookingalertstatus_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingalertstatus_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalertstatus>("msdyn_bookingalertstatus_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_bookingalertstatus_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingchange_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingchange_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_bookingchange msdyn_bookingchange_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingchange>("msdyn_bookingchange_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingchange_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingchange>("msdyn_bookingchange_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_bookingchange_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingjournal_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingjournal_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_bookingjournal msdyn_bookingjournal_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingjournal>("msdyn_bookingjournal_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingjournal_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingjournal>("msdyn_bookingjournal_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_bookingjournal_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingrule_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingrule_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_bookingrule msdyn_bookingrule_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingrule>("msdyn_bookingrule_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingrule_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingrule>("msdyn_bookingrule_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_bookingrule_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingsetupmetadata_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingsetupmetadata_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_bookingsetupmetadata msdyn_bookingsetupmetadata_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingsetupmetadata>("msdyn_bookingsetupmetadata_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingsetupmetadata_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingsetupmetadata>("msdyn_bookingsetupmetadata_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_bookingsetupmetadata_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingtimestamp_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingtimestamp_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_bookingtimestamp msdyn_bookingtimestamp_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingtimestamp_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_bookingtimestamp_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_bpf_2c5fe86acc8b414b8322ae571000c799 msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_2c5fe86acc8b414b8322ae571000c799>("msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_2c5fe86acc8b414b8322ae571000c799>("msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bpf_665e73aa18c247d886bfc50499c73b82_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bpf_665e73aa18c247d886bfc50499c73b82_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_bpf_665e73aa18c247d886bfc50499c73b82 msdyn_bpf_665e73aa18c247d886bfc50499c73b82_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_665e73aa18c247d886bfc50499c73b82>("msdyn_bpf_665e73aa18c247d886bfc50499c73b82_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bpf_665e73aa18c247d886bfc50499c73b82_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_665e73aa18c247d886bfc50499c73b82>("msdyn_bpf_665e73aa18c247d886bfc50499c73b82_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_bpf_665e73aa18c247d886bfc50499c73b82_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bpf_989e9b1857e24af18787d5143b67523b_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bpf_989e9b1857e24af18787d5143b67523b_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_bpf_989e9b1857e24af18787d5143b67523b msdyn_bpf_989e9b1857e24af18787d5143b67523b_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_989e9b1857e24af18787d5143b67523b>("msdyn_bpf_989e9b1857e24af18787d5143b67523b_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bpf_989e9b1857e24af18787d5143b67523b_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_989e9b1857e24af18787d5143b67523b>("msdyn_bpf_989e9b1857e24af18787d5143b67523b_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_bpf_989e9b1857e24af18787d5143b67523b_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3 msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3>("msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3>("msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39 msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39>("msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39>("msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d>("msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d>("msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_characteristicreqforteammember_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_characteristicreqforteammember_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_characteristicreqforteammember msdyn_characteristicreqforteammember_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_characteristicreqforteammember>("msdyn_characteristicreqforteammember_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_characteristicreqforteammember_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_characteristicreqforteammember>("msdyn_characteristicreqforteammember_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_characteristicreqforteammember_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_contactpricelist_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_contactpricelist_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_contactpricelist msdyn_contactpricelist_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_contactpricelist>("msdyn_contactpricelist_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_contactpricelist_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_contactpricelist>("msdyn_contactpricelist_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_contactpricelist_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_contractlineinvoiceschedule_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_contractlineinvoiceschedule_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_contractlineinvoiceschedule msdyn_contractlineinvoiceschedule_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_contractlineinvoiceschedule>("msdyn_contractlineinvoiceschedule_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_contractlineinvoiceschedule_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_contractlineinvoiceschedule>("msdyn_contractlineinvoiceschedule_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_contractlineinvoiceschedule_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_contractlinescheduleofvalue_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_contractlinescheduleofvalue_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_contractlinescheduleofvalue msdyn_contractlinescheduleofvalue_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_contractlinescheduleofvalue>("msdyn_contractlinescheduleofvalue_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_contractlinescheduleofvalue_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_contractlinescheduleofvalue>("msdyn_contractlinescheduleofvalue_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_contractlinescheduleofvalue_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_customerasset_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_customerasset_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_customerasset msdyn_customerasset_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_customerasset_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_customerasset_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_customerasset_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_customerasset_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_dataexport_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_dataexport_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_dataexport msdyn_dataexport_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_dataexport>("msdyn_dataexport_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_dataexport_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_dataexport>("msdyn_dataexport_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_dataexport_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_delegation_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_delegation_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_delegation msdyn_delegation_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_delegation>("msdyn_delegation_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_delegation_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_delegation>("msdyn_delegation_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_delegation_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_estimate_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_estimate_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_estimate msdyn_estimate_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_estimate>("msdyn_estimate_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_estimate_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_estimate>("msdyn_estimate_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_estimate_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_estimateline_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_estimateline_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_estimateline msdyn_estimateline_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_estimateline>("msdyn_estimateline_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_estimateline_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_estimateline>("msdyn_estimateline_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_estimateline_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_expense_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_expense_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_expense msdyn_expense_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_expense>("msdyn_expense_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_expense_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_expense>("msdyn_expense_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_expense_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_expensecategory_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_expensecategory_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_expensecategory msdyn_expensecategory_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_expensecategory>("msdyn_expensecategory_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_expensecategory_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_expensecategory>("msdyn_expensecategory_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_expensecategory_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_expensereceipt_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_expensereceipt_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_expensereceipt msdyn_expensereceipt_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_expensereceipt>("msdyn_expensereceipt_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_expensereceipt_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_expensereceipt>("msdyn_expensereceipt_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_expensereceipt_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fact_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fact_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_fact msdyn_fact_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fact>("msdyn_fact_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_fact_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_fact>("msdyn_fact_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_fact_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fieldcomputation_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fieldcomputation_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_fieldcomputation msdyn_fieldcomputation_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldcomputation>("msdyn_fieldcomputation_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_fieldcomputation_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldcomputation>("msdyn_fieldcomputation_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_fieldcomputation_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fieldservicepricelistitem_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fieldservicepricelistitem_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_fieldservicepricelistitem msdyn_fieldservicepricelistitem_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicepricelistitem>("msdyn_fieldservicepricelistitem_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_fieldservicepricelistitem_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicepricelistitem>("msdyn_fieldservicepricelistitem_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_fieldservicepricelistitem_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fieldservicesetting_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fieldservicesetting_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_fieldservicesetting msdyn_fieldservicesetting_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicesetting>("msdyn_fieldservicesetting_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_fieldservicesetting_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicesetting>("msdyn_fieldservicesetting_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_fieldservicesetting_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fieldservicesystemjob_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fieldservicesystemjob_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_fieldservicesystemjob msdyn_fieldservicesystemjob_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicesystemjob>("msdyn_fieldservicesystemjob_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_fieldservicesystemjob_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicesystemjob>("msdyn_fieldservicesystemjob_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_fieldservicesystemjob_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_findworkevent_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_findworkevent_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_findworkevent msdyn_findworkevent_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_findworkevent>("msdyn_findworkevent_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_findworkevent_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_findworkevent>("msdyn_findworkevent_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_findworkevent_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_icebreakersconfig_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_icebreakersconfig_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_icebreakersconfig msdyn_icebreakersconfig_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_icebreakersconfig>("msdyn_icebreakersconfig_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_icebreakersconfig_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_icebreakersconfig>("msdyn_icebreakersconfig_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_icebreakersconfig_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttype_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttype_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_incidenttype msdyn_incidenttype_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttype>("msdyn_incidenttype_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttype_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttype>("msdyn_incidenttype_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_incidenttype_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypecharacteristic_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypecharacteristic_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic msdyn_incidenttypecharacteristic_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic>("msdyn_incidenttypecharacteristic_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypecharacteristic_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic>("msdyn_incidenttypecharacteristic_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypecharacteristic_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeproduct_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeproduct_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeproduct msdyn_incidenttypeproduct_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypeproduct_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypeproduct_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeservice_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeservice_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeservice msdyn_incidenttypeservice_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_incidenttypeservice_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypeservice_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_incidenttypeservice_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypeservice_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeservicetask_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeservicetask_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeservicetask msdyn_incidenttypeservicetask_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservicetask>("msdyn_incidenttypeservicetask_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypeservicetask_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservicetask>("msdyn_incidenttypeservicetask_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypeservicetask_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_integrationjob_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_integrationjob_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_integrationjob msdyn_integrationjob_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_integrationjob>("msdyn_integrationjob_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_integrationjob_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_integrationjob>("msdyn_integrationjob_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_integrationjob_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_integrationjobdetail_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_integrationjobdetail_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_integrationjobdetail msdyn_integrationjobdetail_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_integrationjobdetail>("msdyn_integrationjobdetail_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_integrationjobdetail_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_integrationjobdetail>("msdyn_integrationjobdetail_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_integrationjobdetail_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustment_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustment_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustment msdyn_inventoryadjustment_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryadjustment_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_inventoryadjustment_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustmentproduct_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustmentproduct_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct msdyn_inventoryadjustmentproduct_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryadjustmentproduct_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_inventoryadjustmentproduct_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryjournal_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryjournal_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_inventoryjournal msdyn_inventoryjournal_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_inventoryjournal_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryjournal_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_inventoryjournal_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_inventoryjournal_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventorytransfer_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventorytransfer_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_inventorytransfer msdyn_inventorytransfer_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventorytransfer_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_inventorytransfer_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_invoicefrequency_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_invoicefrequency_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_invoicefrequency msdyn_invoicefrequency_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_invoicefrequency>("msdyn_invoicefrequency_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_invoicefrequency_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_invoicefrequency>("msdyn_invoicefrequency_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_invoicefrequency_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_invoicefrequencydetail_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_invoicefrequencydetail_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_invoicefrequencydetail msdyn_invoicefrequencydetail_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_invoicefrequencydetail>("msdyn_invoicefrequencydetail_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_invoicefrequencydetail_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_invoicefrequencydetail>("msdyn_invoicefrequencydetail_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_invoicefrequencydetail_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_invoicelinetransaction_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_invoicelinetransaction_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_invoicelinetransaction msdyn_invoicelinetransaction_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_invoicelinetransaction>("msdyn_invoicelinetransaction_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_invoicelinetransaction_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_invoicelinetransaction>("msdyn_invoicelinetransaction_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_invoicelinetransaction_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_journal_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_journal_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_journal msdyn_journal_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_journal>("msdyn_journal_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_journal_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_journal>("msdyn_journal_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_journal_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_journalline_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_journalline_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_journalline msdyn_journalline_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_journalline>("msdyn_journalline_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_journalline_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_journalline>("msdyn_journalline_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_journalline_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_mlresultcache_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_mlresultcache_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_mlresultcache msdyn_mlresultcache_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_mlresultcache>("msdyn_mlresultcache_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_mlresultcache_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_mlresultcache>("msdyn_mlresultcache_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_mlresultcache_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_notesanalysisconfig_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_notesanalysisconfig_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_notesanalysisconfig msdyn_notesanalysisconfig_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_notesanalysisconfig>("msdyn_notesanalysisconfig_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_notesanalysisconfig_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_notesanalysisconfig>("msdyn_notesanalysisconfig_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_notesanalysisconfig_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_opportunitylineresourcecategory_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunitylineresourcecategory_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_opportunitylineresourcecategory msdyn_opportunitylineresourcecategory_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitylineresourcecategory>("msdyn_opportunitylineresourcecategory_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_opportunitylineresourcecategory_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitylineresourcecategory>("msdyn_opportunitylineresourcecategory_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_opportunitylineresourcecategory_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_opportunitylinetransaction_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunitylinetransaction_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_opportunitylinetransaction msdyn_opportunitylinetransaction_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction>("msdyn_opportunitylinetransaction_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_opportunitylinetransaction_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction>("msdyn_opportunitylinetransaction_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_opportunitylinetransaction_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_opportunitylinetransactioncategory_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunitylinetransactioncategory_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_opportunitylinetransactioncategory msdyn_opportunitylinetransactioncategory_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitylinetransactioncategory>("msdyn_opportunitylinetransactioncategory_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_opportunitylinetransactioncategory_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitylinetransactioncategory>("msdyn_opportunitylinetransactioncategory_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_opportunitylinetransactioncategory_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_opportunitylinetransactionclassificatio_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunitylinetransactionclassificatio_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_opportunitylinetransactionclassificatio msdyn_opportunitylinetransactionclassificatio_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitylinetransactionclassificatio>("msdyn_opportunitylinetransactionclassificatio_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_opportunitylinetransactionclassificatio_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitylinetransactionclassificatio>("msdyn_opportunitylinetransactionclassificatio_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_opportunitylinetransactionclassificatio_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_opportunitypricelist_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunitypricelist_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_opportunitypricelist msdyn_opportunitypricelist_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitypricelist>("msdyn_opportunitypricelist_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_opportunitypricelist_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitypricelist>("msdyn_opportunitypricelist_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_opportunitypricelist_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderinvoicingdate_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderinvoicingdate_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_orderinvoicingdate msdyn_orderinvoicingdate_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingdate>("msdyn_orderinvoicingdate_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_orderinvoicingdate_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingdate>("msdyn_orderinvoicingdate_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_orderinvoicingdate_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderinvoicingproduct_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderinvoicingproduct_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_orderinvoicingproduct msdyn_orderinvoicingproduct_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingproduct>("msdyn_orderinvoicingproduct_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_orderinvoicingproduct_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingproduct>("msdyn_orderinvoicingproduct_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_orderinvoicingproduct_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderinvoicingsetup_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderinvoicingsetup_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_orderinvoicingsetup msdyn_orderinvoicingsetup_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingsetup>("msdyn_orderinvoicingsetup_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_orderinvoicingsetup_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingsetup>("msdyn_orderinvoicingsetup_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_orderinvoicingsetup_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderinvoicingsetupdate_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderinvoicingsetupdate_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_orderinvoicingsetupdate msdyn_orderinvoicingsetupdate_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingsetupdate>("msdyn_orderinvoicingsetupdate_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_orderinvoicingsetupdate_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingsetupdate>("msdyn_orderinvoicingsetupdate_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_orderinvoicingsetupdate_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderlineresourcecategory_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderlineresourcecategory_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_orderlineresourcecategory msdyn_orderlineresourcecategory_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderlineresourcecategory>("msdyn_orderlineresourcecategory_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_orderlineresourcecategory_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderlineresourcecategory>("msdyn_orderlineresourcecategory_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_orderlineresourcecategory_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderlinetransaction_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderlinetransaction_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_orderlinetransaction msdyn_orderlinetransaction_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderlinetransaction>("msdyn_orderlinetransaction_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_orderlinetransaction_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderlinetransaction>("msdyn_orderlinetransaction_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_orderlinetransaction_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderlinetransactioncategory_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderlinetransactioncategory_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_orderlinetransactioncategory msdyn_orderlinetransactioncategory_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderlinetransactioncategory>("msdyn_orderlinetransactioncategory_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_orderlinetransactioncategory_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderlinetransactioncategory>("msdyn_orderlinetransactioncategory_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_orderlinetransactioncategory_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderlinetransactionclassification_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderlinetransactionclassification_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_orderlinetransactionclassification msdyn_orderlinetransactionclassification_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderlinetransactionclassification>("msdyn_orderlinetransactionclassification_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_orderlinetransactionclassification_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderlinetransactionclassification>("msdyn_orderlinetransactionclassification_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_orderlinetransactionclassification_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderpricelist_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderpricelist_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_orderpricelist msdyn_orderpricelist_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderpricelist>("msdyn_orderpricelist_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_orderpricelist_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderpricelist>("msdyn_orderpricelist_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_orderpricelist_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_organizationalunit_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_organizationalunit_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_organizationalunit msdyn_organizationalunit_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_organizationalunit>("msdyn_organizationalunit_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_organizationalunit_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_organizationalunit>("msdyn_organizationalunit_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_organizationalunit_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orginsightsuserdashboarddefinition_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orginsightsuserdashboarddefinition_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_orginsightsuserdashboarddefinition msdyn_orginsightsuserdashboarddefinition_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orginsightsuserdashboarddefinition>("msdyn_orginsightsuserdashboarddefinition_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_orginsightsuserdashboarddefinition_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_orginsightsuserdashboarddefinition>("msdyn_orginsightsuserdashboarddefinition_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_orginsightsuserdashboarddefinition_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_payment_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_payment_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_payment msdyn_payment_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_payment>("msdyn_payment_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_payment_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_payment>("msdyn_payment_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_payment_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentdetail_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentdetail_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_paymentdetail msdyn_paymentdetail_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentdetail>("msdyn_paymentdetail_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentdetail_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentdetail>("msdyn_paymentdetail_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_paymentdetail_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentmethod_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentmethod_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_paymentmethod msdyn_paymentmethod_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentmethod>("msdyn_paymentmethod_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentmethod_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentmethod>("msdyn_paymentmethod_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_paymentmethod_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentterm_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentterm_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_paymentterm msdyn_paymentterm_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentterm>("msdyn_paymentterm_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentterm_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentterm>("msdyn_paymentterm_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_paymentterm_ProcessSession");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 msdyn_postalbum_ProcessSession
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -2319,6 +4599,27 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("msdyn_postalbum_ProcessSession");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_PostAlbum>("msdyn_postalbum_ProcessSession", null, value);
 				this.OnPropertyChanged("msdyn_postalbum_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_postalcode_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_postalcode_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_postalcode msdyn_postalcode_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_postalcode_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_postalcode_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_postalcode_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_postalcode_ProcessSession");
 			}
 		}
 		
@@ -2365,6 +4666,1728 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 msdyn_priority_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_priority_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_priority msdyn_priority_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_priority>("msdyn_priority_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_priority_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_priority>("msdyn_priority_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_priority_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_processnotes_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_processnotes_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_processnotes msdyn_processnotes_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_processnotes>("msdyn_processnotes_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_processnotes_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_processnotes>("msdyn_processnotes_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_processnotes_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_productinventory_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_productinventory_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_productinventory msdyn_productinventory_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_productinventory_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_productinventory_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_productinventory_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_productinventory_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_project_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_project_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_project msdyn_project_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_project>("msdyn_project_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_project_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_project>("msdyn_project_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_project_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectapproval_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectapproval_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_projectapproval msdyn_projectapproval_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectapproval>("msdyn_projectapproval_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_projectapproval_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectapproval>("msdyn_projectapproval_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_projectapproval_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectparameter_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectparameter_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_projectparameter msdyn_projectparameter_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectparameter>("msdyn_projectparameter_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_projectparameter_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectparameter>("msdyn_projectparameter_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_projectparameter_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectparameterpricelist_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectparameterpricelist_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_projectparameterpricelist msdyn_projectparameterpricelist_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectparameterpricelist>("msdyn_projectparameterpricelist_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_projectparameterpricelist_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectparameterpricelist>("msdyn_projectparameterpricelist_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_projectparameterpricelist_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectpricelist_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectpricelist_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_projectpricelist msdyn_projectpricelist_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectpricelist>("msdyn_projectpricelist_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_projectpricelist_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectpricelist>("msdyn_projectpricelist_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_projectpricelist_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projecttask_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projecttask_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_projecttask msdyn_projecttask_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttask>("msdyn_projecttask_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_projecttask_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttask>("msdyn_projecttask_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_projecttask_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projecttaskdependency_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projecttaskdependency_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_projecttaskdependency msdyn_projecttaskdependency_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttaskdependency>("msdyn_projecttaskdependency_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_projecttaskdependency_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttaskdependency>("msdyn_projecttaskdependency_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_projecttaskdependency_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projecttaskstatususer_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projecttaskstatususer_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_projecttaskstatususer msdyn_projecttaskstatususer_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttaskstatususer>("msdyn_projecttaskstatususer_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_projecttaskstatususer_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttaskstatususer>("msdyn_projecttaskstatususer_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_projecttaskstatususer_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectteam_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectteam_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_projectteam msdyn_projectteam_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteam>("msdyn_projectteam_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_projectteam_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteam>("msdyn_projectteam_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_projectteam_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectteammembersignup_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectteammembersignup_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_projectteammembersignup msdyn_projectteammembersignup_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteammembersignup>("msdyn_projectteammembersignup_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_projectteammembersignup_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteammembersignup>("msdyn_projectteammembersignup_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_projectteammembersignup_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projecttransactioncategory_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projecttransactioncategory_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_projecttransactioncategory msdyn_projecttransactioncategory_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttransactioncategory>("msdyn_projecttransactioncategory_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_projecttransactioncategory_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttransactioncategory>("msdyn_projecttransactioncategory_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_projecttransactioncategory_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorder_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorder_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorder msdyn_purchaseorder_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorder_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorder_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderbill_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderbill_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderbill msdyn_purchaseorderbill_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("msdyn_purchaseorderbill_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderbill_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("msdyn_purchaseorderbill_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderbill_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderproduct_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderproduct_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderproduct msdyn_purchaseorderproduct_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_purchaseorderproduct_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderproduct_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_purchaseorderproduct_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderproduct_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceipt_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceipt_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceipt msdyn_purchaseorderreceipt_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderreceipt_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderreceipt_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceiptproduct_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceiptproduct_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct msdyn_purchaseorderreceiptproduct_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct>("msdyn_purchaseorderreceiptproduct_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderreceiptproduct_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct>("msdyn_purchaseorderreceiptproduct_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderreceiptproduct_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseordersubstatus_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseordersubstatus_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_purchaseordersubstatus msdyn_purchaseordersubstatus_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus>("msdyn_purchaseordersubstatus_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseordersubstatus_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus>("msdyn_purchaseordersubstatus_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_purchaseordersubstatus_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingincident_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingincident_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingincident msdyn_quotebookingincident_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quotebookingincident_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingincident_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quotebookingincident_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingincident_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingproduct_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingproduct_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingproduct msdyn_quotebookingproduct_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quotebookingproduct_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingproduct_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quotebookingproduct_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingproduct_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservice_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservice_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservice msdyn_quotebookingservice_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quotebookingservice_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingservice_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quotebookingservice_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingservice_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservicetask_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservicetask_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservicetask msdyn_quotebookingservicetask_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quotebookingservicetask_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingservicetask_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quotebookingservicetask_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingservicetask_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingsetup_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingsetup_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingsetup msdyn_quotebookingsetup_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingsetup>("msdyn_quotebookingsetup_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingsetup_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingsetup>("msdyn_quotebookingsetup_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingsetup_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quoteinvoicingproduct_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quoteinvoicingproduct_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_quoteinvoicingproduct msdyn_quoteinvoicingproduct_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quoteinvoicingproduct>("msdyn_quoteinvoicingproduct_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quoteinvoicingproduct_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quoteinvoicingproduct>("msdyn_quoteinvoicingproduct_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_quoteinvoicingproduct_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quoteinvoicingsetup_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quoteinvoicingsetup_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_quoteinvoicingsetup msdyn_quoteinvoicingsetup_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quoteinvoicingsetup>("msdyn_quoteinvoicingsetup_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quoteinvoicingsetup_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quoteinvoicingsetup>("msdyn_quoteinvoicingsetup_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_quoteinvoicingsetup_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelineanalyticsbreakdown_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelineanalyticsbreakdown_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_quotelineanalyticsbreakdown msdyn_quotelineanalyticsbreakdown_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelineanalyticsbreakdown>("msdyn_quotelineanalyticsbreakdown_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotelineanalyticsbreakdown_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelineanalyticsbreakdown>("msdyn_quotelineanalyticsbreakdown_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_quotelineanalyticsbreakdown_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelineinvoiceschedule_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelineinvoiceschedule_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_quotelineinvoiceschedule msdyn_quotelineinvoiceschedule_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelineinvoiceschedule>("msdyn_quotelineinvoiceschedule_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotelineinvoiceschedule_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelineinvoiceschedule>("msdyn_quotelineinvoiceschedule_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_quotelineinvoiceschedule_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelineresourcecategory_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelineresourcecategory_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_quotelineresourcecategory msdyn_quotelineresourcecategory_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelineresourcecategory>("msdyn_quotelineresourcecategory_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotelineresourcecategory_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelineresourcecategory>("msdyn_quotelineresourcecategory_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_quotelineresourcecategory_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelinescheduleofvalue_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelinescheduleofvalue_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_quotelinescheduleofvalue msdyn_quotelinescheduleofvalue_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelinescheduleofvalue>("msdyn_quotelinescheduleofvalue_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotelinescheduleofvalue_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelinescheduleofvalue>("msdyn_quotelinescheduleofvalue_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_quotelinescheduleofvalue_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelinetransaction_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelinetransaction_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_quotelinetransaction msdyn_quotelinetransaction_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelinetransaction>("msdyn_quotelinetransaction_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotelinetransaction_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelinetransaction>("msdyn_quotelinetransaction_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_quotelinetransaction_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelinetransactioncategory_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelinetransactioncategory_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_quotelinetransactioncategory msdyn_quotelinetransactioncategory_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelinetransactioncategory>("msdyn_quotelinetransactioncategory_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotelinetransactioncategory_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelinetransactioncategory>("msdyn_quotelinetransactioncategory_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_quotelinetransactioncategory_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelinetransactionclassification_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelinetransactionclassification_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_quotelinetransactionclassification msdyn_quotelinetransactionclassification_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelinetransactionclassification>("msdyn_quotelinetransactionclassification_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotelinetransactionclassification_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelinetransactionclassification>("msdyn_quotelinetransactionclassification_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_quotelinetransactionclassification_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotepricelist_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotepricelist_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_quotepricelist msdyn_quotepricelist_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotepricelist>("msdyn_quotepricelist_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotepricelist_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotepricelist>("msdyn_quotepricelist_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_quotepricelist_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_relationshipinsightsunifiedconfig_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_relationshipinsightsunifiedconfig_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_relationshipinsightsunifiedconfig msdyn_relationshipinsightsunifiedconfig_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_relationshipinsightsunifiedconfig>("msdyn_relationshipinsightsunifiedconfig_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_relationshipinsightsunifiedconfig_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_relationshipinsightsunifiedconfig>("msdyn_relationshipinsightsunifiedconfig_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_relationshipinsightsunifiedconfig_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_requirementcharacteristic_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_requirementcharacteristic_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_requirementcharacteristic msdyn_requirementcharacteristic_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementcharacteristic>("msdyn_requirementcharacteristic_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_requirementcharacteristic_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementcharacteristic>("msdyn_requirementcharacteristic_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_requirementcharacteristic_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_requirementorganizationunit_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_requirementorganizationunit_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_requirementorganizationunit msdyn_requirementorganizationunit_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementorganizationunit>("msdyn_requirementorganizationunit_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_requirementorganizationunit_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementorganizationunit>("msdyn_requirementorganizationunit_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_requirementorganizationunit_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_requirementresourcecategory_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_requirementresourcecategory_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_requirementresourcecategory msdyn_requirementresourcecategory_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementresourcecategory>("msdyn_requirementresourcecategory_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_requirementresourcecategory_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementresourcecategory>("msdyn_requirementresourcecategory_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_requirementresourcecategory_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_requirementresourcepreference_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_requirementresourcepreference_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_requirementresourcepreference msdyn_requirementresourcepreference_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementresourcepreference>("msdyn_requirementresourcepreference_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_requirementresourcepreference_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementresourcepreference>("msdyn_requirementresourcepreference_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_requirementresourcepreference_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_requirementstatus_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_requirementstatus_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_requirementstatus msdyn_requirementstatus_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementstatus>("msdyn_requirementstatus_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_requirementstatus_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementstatus>("msdyn_requirementstatus_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_requirementstatus_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourceassignment_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourceassignment_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_resourceassignment msdyn_resourceassignment_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceassignment>("msdyn_resourceassignment_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_resourceassignment_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceassignment>("msdyn_resourceassignment_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_resourceassignment_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourceassignmentdetail_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourceassignmentdetail_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_resourceassignmentdetail msdyn_resourceassignmentdetail_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceassignmentdetail>("msdyn_resourceassignmentdetail_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_resourceassignmentdetail_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceassignmentdetail>("msdyn_resourceassignmentdetail_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_resourceassignmentdetail_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourcecategorypricelevel_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourcecategorypricelevel_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_resourcecategorypricelevel msdyn_resourcecategorypricelevel_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcecategorypricelevel>("msdyn_resourcecategorypricelevel_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_resourcecategorypricelevel_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcecategorypricelevel>("msdyn_resourcecategorypricelevel_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_resourcecategorypricelevel_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourcepaytype_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourcepaytype_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_resourcepaytype msdyn_resourcepaytype_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcepaytype>("msdyn_resourcepaytype_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_resourcepaytype_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcepaytype>("msdyn_resourcepaytype_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_resourcepaytype_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourcerequest_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourcerequest_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_resourcerequest msdyn_resourcerequest_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcerequest>("msdyn_resourcerequest_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_resourcerequest_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcerequest>("msdyn_resourcerequest_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_resourcerequest_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourcerequirement_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourcerequirement_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_resourcerequirement msdyn_resourcerequirement_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcerequirement>("msdyn_resourcerequirement_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_resourcerequirement_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcerequirement>("msdyn_resourcerequirement_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_resourcerequirement_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourcerequirementdetail_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourcerequirementdetail_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_resourcerequirementdetail msdyn_resourcerequirementdetail_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcerequirementdetail>("msdyn_resourcerequirementdetail_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_resourcerequirementdetail_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcerequirementdetail>("msdyn_resourcerequirementdetail_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_resourcerequirementdetail_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourceterritory_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourceterritory_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_resourceterritory msdyn_resourceterritory_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_resourceterritory_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_resourceterritory_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rma_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rma_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_rma msdyn_rma_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rma_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_rma_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmaproduct_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmaproduct_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_rmaproduct msdyn_rmaproduct_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_rmaproduct_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmaproduct_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_rmaproduct_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_rmaproduct_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceipt_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceipt_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_rmareceipt msdyn_rmareceipt_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmareceipt_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_rmareceipt_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceiptproduct_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceiptproduct_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_rmareceiptproduct msdyn_rmareceiptproduct_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceiptproduct>("msdyn_rmareceiptproduct_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmareceiptproduct_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceiptproduct>("msdyn_rmareceiptproduct_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_rmareceiptproduct_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmasubstatus_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmasubstatus_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_rmasubstatus msdyn_rmasubstatus_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmasubstatus>("msdyn_rmasubstatus_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmasubstatus_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmasubstatus>("msdyn_rmasubstatus_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_rmasubstatus_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rolecompetencyrequirement_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rolecompetencyrequirement_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_rolecompetencyrequirement msdyn_rolecompetencyrequirement_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rolecompetencyrequirement>("msdyn_rolecompetencyrequirement_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rolecompetencyrequirement_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rolecompetencyrequirement>("msdyn_rolecompetencyrequirement_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_rolecompetencyrequirement_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_roleutilization_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_roleutilization_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_roleutilization msdyn_roleutilization_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_roleutilization>("msdyn_roleutilization_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_roleutilization_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_roleutilization>("msdyn_roleutilization_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_roleutilization_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtv_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtv_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_rtv msdyn_rtv_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtv_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_rtv_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvproduct_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvproduct_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_rtvproduct msdyn_rtvproduct_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_rtvproduct_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtvproduct_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_rtvproduct_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_rtvproduct_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvsubstatus_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvsubstatus_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_rtvsubstatus msdyn_rtvsubstatus_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvsubstatus>("msdyn_rtvsubstatus_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtvsubstatus_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvsubstatus>("msdyn_rtvsubstatus_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_rtvsubstatus_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_scheduleboardsetting_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_scheduleboardsetting_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_scheduleboardsetting msdyn_scheduleboardsetting_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_scheduleboardsetting>("msdyn_scheduleboardsetting_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_scheduleboardsetting_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_scheduleboardsetting>("msdyn_scheduleboardsetting_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_scheduleboardsetting_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_schedulingparameter_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_schedulingparameter_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_schedulingparameter msdyn_schedulingparameter_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_schedulingparameter>("msdyn_schedulingparameter_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_schedulingparameter_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_schedulingparameter>("msdyn_schedulingparameter_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_schedulingparameter_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_servicetasktype_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_servicetasktype_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_servicetasktype msdyn_servicetasktype_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_servicetasktype>("msdyn_servicetasktype_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_servicetasktype_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_servicetasktype>("msdyn_servicetasktype_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_servicetasktype_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_shipvia_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_shipvia_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_shipvia msdyn_shipvia_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_shipvia>("msdyn_shipvia_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_shipvia_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_shipvia>("msdyn_shipvia_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_shipvia_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_siconfig_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_siconfig_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_siconfig msdyn_siconfig_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_siconfig>("msdyn_siconfig_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_siconfig_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_siconfig>("msdyn_siconfig_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_siconfig_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_systemuserschedulersetting_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_systemuserschedulersetting_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_systemuserschedulersetting msdyn_systemuserschedulersetting_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting>("msdyn_systemuserschedulersetting_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_systemuserschedulersetting_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting>("msdyn_systemuserschedulersetting_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_systemuserschedulersetting_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_taxcode_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_taxcode_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_taxcode msdyn_taxcode_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_taxcode>("msdyn_taxcode_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_taxcode_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_taxcode>("msdyn_taxcode_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_taxcode_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_taxcodedetail_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_taxcodedetail_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_taxcodedetail msdyn_taxcodedetail_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_taxcodedetail>("msdyn_taxcodedetail_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_taxcodedetail_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_taxcodedetail>("msdyn_taxcodedetail_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_taxcodedetail_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timeentry_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timeentry_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_timeentry msdyn_timeentry_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeentry>("msdyn_timeentry_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timeentry_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeentry>("msdyn_timeentry_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_timeentry_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroup_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroup_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_timegroup msdyn_timegroup_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timegroup_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_timegroup_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroupdetail_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroupdetail_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_timegroupdetail msdyn_timegroupdetail_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timegroupdetail_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_timegroupdetail_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timeoffcalendar_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timeoffcalendar_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_timeoffcalendar msdyn_timeoffcalendar_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffcalendar>("msdyn_timeoffcalendar_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timeoffcalendar_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffcalendar>("msdyn_timeoffcalendar_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_timeoffcalendar_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timeoffrequest_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timeoffrequest_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_timeoffrequest msdyn_timeoffrequest_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffrequest>("msdyn_timeoffrequest_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timeoffrequest_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffrequest>("msdyn_timeoffrequest_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_timeoffrequest_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactioncategory_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactioncategory_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_transactioncategory msdyn_transactioncategory_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategory>("msdyn_transactioncategory_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_transactioncategory_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategory>("msdyn_transactioncategory_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_transactioncategory_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactioncategoryclassification_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactioncategoryclassification_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_transactioncategoryclassification msdyn_transactioncategoryclassification_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategoryclassification>("msdyn_transactioncategoryclassification_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_transactioncategoryclassification_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategoryclassification>("msdyn_transactioncategoryclassification_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_transactioncategoryclassification_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactioncategoryhierarchyelement_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactioncategoryhierarchyelement_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_transactioncategoryhierarchyelement msdyn_transactioncategoryhierarchyelement_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategoryhierarchyelement>("msdyn_transactioncategoryhierarchyelement_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_transactioncategoryhierarchyelement_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategoryhierarchyelement>("msdyn_transactioncategoryhierarchyelement_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_transactioncategoryhierarchyelement_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactioncategorypricelevel_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactioncategorypricelevel_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_transactioncategorypricelevel msdyn_transactioncategorypricelevel_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategorypricelevel>("msdyn_transactioncategorypricelevel_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_transactioncategorypricelevel_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategorypricelevel>("msdyn_transactioncategorypricelevel_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_transactioncategorypricelevel_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactionconnection_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactionconnection_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_transactionconnection msdyn_transactionconnection_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactionconnection>("msdyn_transactionconnection_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_transactionconnection_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactionconnection>("msdyn_transactionconnection_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_transactionconnection_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactionorigin_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactionorigin_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_transactionorigin msdyn_transactionorigin_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactionorigin>("msdyn_transactionorigin_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_transactionorigin_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactionorigin>("msdyn_transactionorigin_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_transactionorigin_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactiontype_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactiontype_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_transactiontype msdyn_transactiontype_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactiontype>("msdyn_transactiontype_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_transactiontype_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactiontype>("msdyn_transactiontype_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_transactiontype_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_uniquenumber_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_uniquenumber_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_uniquenumber msdyn_uniquenumber_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_uniquenumber>("msdyn_uniquenumber_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_uniquenumber_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_uniquenumber>("msdyn_uniquenumber_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_uniquenumber_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_untrackedappointment_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_untrackedappointment_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_untrackedappointment msdyn_untrackedappointment_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_untrackedappointment>("msdyn_untrackedappointment_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_untrackedappointment_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_untrackedappointment>("msdyn_untrackedappointment_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_untrackedappointment_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_userworkhistory_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_userworkhistory_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_userworkhistory msdyn_userworkhistory_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_userworkhistory>("msdyn_userworkhistory_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_userworkhistory_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_userworkhistory>("msdyn_userworkhistory_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_userworkhistory_ProcessSession");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 msdyn_wallsavedquery_ProcessSession
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -2403,6 +6426,279 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("msdyn_wallsavedqueryusersettings_ProcessSession");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_wallsavedqueryusersettings>("msdyn_wallsavedqueryusersettings_ProcessSession", null, value);
 				this.OnPropertyChanged("msdyn_wallsavedqueryusersettings_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_warehouse_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_warehouse_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_warehouse msdyn_warehouse_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_warehouse_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_warehouse_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workhourtemplate_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workhourtemplate_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_workhourtemplate msdyn_workhourtemplate_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workhourtemplate>("msdyn_workhourtemplate_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workhourtemplate_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workhourtemplate>("msdyn_workhourtemplate_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_workhourtemplate_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorder_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorder_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_workorder msdyn_workorder_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorder_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_workorder_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workordercharacteristic_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workordercharacteristic_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_workordercharacteristic msdyn_workordercharacteristic_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordercharacteristic>("msdyn_workordercharacteristic_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workordercharacteristic_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordercharacteristic>("msdyn_workordercharacteristic_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_workordercharacteristic_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderdetailsgenerationqueue_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderdetailsgenerationqueue_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_workorderdetailsgenerationqueue msdyn_workorderdetailsgenerationqueue_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderdetailsgenerationqueue>("msdyn_workorderdetailsgenerationqueue_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderdetailsgenerationqueue_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderdetailsgenerationqueue>("msdyn_workorderdetailsgenerationqueue_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_workorderdetailsgenerationqueue_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderincident_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderincident_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_workorderincident msdyn_workorderincident_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderincident_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_workorderincident_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderproduct_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderproduct_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_workorderproduct msdyn_workorderproduct_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_workorderproduct_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderproduct_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_workorderproduct_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_workorderproduct_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderresourcerestriction_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderresourcerestriction_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_workorderresourcerestriction msdyn_workorderresourcerestriction_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_workorderresourcerestriction_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderresourcerestriction_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_workorderresourcerestriction_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_workorderresourcerestriction_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservice_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservice_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_workorderservice msdyn_workorderservice_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderservice_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_workorderservice_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservicetask_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservicetask_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_workorderservicetask msdyn_workorderservicetask_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderservicetask_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_workorderservicetask_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workordersubstatus_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workordersubstatus_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_workordersubstatus msdyn_workordersubstatus_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordersubstatus>("msdyn_workordersubstatus_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workordersubstatus_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordersubstatus>("msdyn_workordersubstatus_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_workordersubstatus_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workordertype_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workordertype_ProcessSession")]
+		public DLaB.Xrm.Entities.msdyn_workordertype msdyn_workordertype_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordertype>("msdyn_workordertype_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workordertype_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordertype>("msdyn_workordertype_ProcessSession", null, value);
+				this.OnPropertyChanged("msdyn_workordertype_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 NewProcess_ProcessSessions
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("NewProcess_ProcessSessions")]
+		public DLaB.Xrm.Entities.NewProcess NewProcess_ProcessSessions
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.NewProcess>("NewProcess_ProcessSessions", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("NewProcess_ProcessSessions");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.NewProcess>("NewProcess_ProcessSessions", null, value);
+				this.OnPropertyChanged("NewProcess_ProcessSessions");
 			}
 		}
 		
@@ -2449,6 +6745,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 opportunitysalesprocess_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunitysalesprocess_ProcessSession")]
+		public DLaB.Xrm.Entities.OpportunitySalesProcess opportunitysalesprocess_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.OpportunitySalesProcess>("opportunitysalesprocess_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("opportunitysalesprocess_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.OpportunitySalesProcess>("opportunitysalesprocess_ProcessSession", null, value);
+				this.OnPropertyChanged("opportunitysalesprocess_ProcessSession");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 Owning_businessunit_processsessions
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
@@ -2487,6 +6804,27 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("PhoneCall_ProcessSessions");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.PhoneCall>("PhoneCall_ProcessSessions", null, value);
 				this.OnPropertyChanged("PhoneCall_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 phonetocaseprocess_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("phonetocaseprocess_ProcessSession")]
+		public DLaB.Xrm.Entities.PhoneToCaseProcess phonetocaseprocess_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.PhoneToCaseProcess>("phonetocaseprocess_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("phonetocaseprocess_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.PhoneToCaseProcess>("phonetocaseprocess_ProcessSession", null, value);
+				this.OnPropertyChanged("phonetocaseprocess_ProcessSession");
 			}
 		}
 		
@@ -2718,6 +7056,48 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("QuoteDetail_ProcessSessions");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.QuoteDetail>("QuoteDetail_ProcessSessions", null, value);
 				this.OnPropertyChanged("QuoteDetail_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 ratingmodel_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ratingmodel_ProcessSession")]
+		public DLaB.Xrm.Entities.RatingModel ratingmodel_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.RatingModel>("ratingmodel_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ratingmodel_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.RatingModel>("ratingmodel_ProcessSession", null, value);
+				this.OnPropertyChanged("ratingmodel_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 ratingvalue_ProcessSession
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ratingvalue_ProcessSession")]
+		public DLaB.Xrm.Entities.RatingValue ratingvalue_ProcessSession
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.RatingValue>("ratingvalue_ProcessSession", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ratingvalue_ProcessSession");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.RatingValue>("ratingvalue_ProcessSession", null, value);
+				this.OnPropertyChanged("ratingvalue_ProcessSession");
 			}
 		}
 		
@@ -3285,6 +7665,27 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("TransactionCurrency_ProcessSessions");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.TransactionCurrency>("TransactionCurrency_ProcessSessions", null, value);
 				this.OnPropertyChanged("TransactionCurrency_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 TranslationProcess_ProcessSessions
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TranslationProcess_ProcessSessions")]
+		public DLaB.Xrm.Entities.TranslationProcess TranslationProcess_ProcessSessions
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.TranslationProcess>("TranslationProcess_ProcessSessions", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TranslationProcess_ProcessSessions");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.TranslationProcess>("TranslationProcess_ProcessSessions", null, value);
+				this.OnPropertyChanged("TranslationProcess_ProcessSessions");
 			}
 		}
 		

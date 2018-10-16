@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
 	public enum SystemForm_Type
 	{
 		
@@ -50,6 +50,9 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Other = 100,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PowerBIDashboard = 103,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Preview = 4,

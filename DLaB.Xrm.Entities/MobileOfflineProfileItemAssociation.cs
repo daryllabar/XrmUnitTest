@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("mobileofflineprofileitemassociation")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class MobileOfflineProfileItemAssociation : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ComponentState = "componentstate";
 			public const string CreatedBy = "createdby";
@@ -39,6 +39,7 @@ namespace DLaB.Xrm.Entities
 			public const string OrganizationId = "organizationid";
 			public const string OverwriteTime = "overwritetime";
 			public const string ProcessId = "processid";
+			public const string ProfileItemAssociationEntityFilter = "profileitemassociationentityfilter";
 			public const string PublishedOn = "publishedon";
 			public const string RelationshipData = "relationshipdata";
 			public const string RelationshipDisplayName = "relationshipdisplayname";
@@ -56,7 +57,6 @@ namespace DLaB.Xrm.Entities
 			public const string MobileOfflineProfileItem_MobileOfflineProfileItemAssociation = "MobileOfflineProfileItem_MobileOfflineProfileItemAssociation";
 			public const string MobileOfflineProfileItemAssociation_organization = "MobileOfflineProfileItemAssociation_organization";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -68,6 +68,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "mobileofflineprofileitemassociation";
+		
+		public const string PrimaryIdAttribute = "mobileofflineprofileitemassociationid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9868;
 		
@@ -127,7 +131,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -309,7 +313,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -411,6 +415,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ProcessId");
 				this.SetAttributeValue("processid", value);
 				this.OnPropertyChanged("ProcessId");
+			}
+		}
+		
+		/// <summary>
+		/// Profile item association entity filter criteria.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("profileitemassociationentityfilter")]
+		public string ProfileItemAssociationEntityFilter
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("profileitemassociationentityfilter");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ProfileItemAssociationEntityFilter");
+				this.SetAttributeValue("profileitemassociationentityfilter", value);
+				this.OnPropertyChanged("ProfileItemAssociationEntityFilter");
 			}
 		}
 		

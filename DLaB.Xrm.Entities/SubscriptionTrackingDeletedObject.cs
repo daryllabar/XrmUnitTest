@@ -15,17 +15,18 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("subscriptiontrackingdeletedobject")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class SubscriptionTrackingDeletedObject : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
+			public const string DeleteTime = "deletetime";
+			public const string IsLogicalDelete = "islogicaldelete";
 			public const string ObjectId = "objectid";
 			public const string ObjectTypeCode = "objecttypecode";
 			public const string TimeStamp = "timestamp";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -37,6 +38,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "subscriptiontrackingdeletedobject";
+		
+		public const string PrimaryIdAttribute = "timestamp";
 		
 		public const int EntityTypeCode = 35;
 		
@@ -59,6 +62,46 @@ namespace DLaB.Xrm.Entities
 			if ((this.PropertyChanging != null))
 			{
 				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("deletetime")]
+		public System.Nullable<System.DateTime> DeleteTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("deletetime");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("DeleteTime");
+				this.SetAttributeValue("deletetime", value);
+				this.OnPropertyChanged("DeleteTime");
+			}
+		}
+		
+		/// <summary>
+		/// Indicates whether solution aware entity record is logical delete or not
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("islogicaldelete")]
+		public System.Nullable<bool> IsLogicalDelete
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("islogicaldelete");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IsLogicalDelete");
+				this.SetAttributeValue("islogicaldelete", value);
+				this.OnPropertyChanged("IsLogicalDelete");
 			}
 		}
 		

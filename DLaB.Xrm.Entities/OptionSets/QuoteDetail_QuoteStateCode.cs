@@ -11,20 +11,8 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
 	public enum QuoteDetail_QuoteStateCode
 	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Active = 1,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Closed = 3,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Draft = 0,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Won = 2,
 	}
 }

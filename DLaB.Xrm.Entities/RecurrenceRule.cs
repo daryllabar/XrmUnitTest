@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("recurrencerule")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class RecurrenceRule : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
@@ -62,7 +62,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_recurrencerulebase_createdonbehalfby = "lk_recurrencerulebase_createdonbehalfby";
 			public const string lk_recurrencerulebase_modifiedonbehalfby = "lk_recurrencerulebase_modifiedonbehalfby";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -74,6 +73,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "recurrencerule";
+		
+		public const string PrimaryIdAttribute = "ruleid";
 		
 		public const int EntityTypeCode = 4250;
 		

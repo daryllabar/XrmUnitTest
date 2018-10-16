@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum PickListMappingState
 	{
 		
@@ -20,26 +20,32 @@ namespace DLaB.Xrm.Entities
 	}
 	
 	/// <summary>
-	/// In a data map, maps list values from the source file to Microsoft Dynamics CRM.
+	/// In a data map, maps list values from the source file to Microsoft Dynamics 365.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("picklistmapping")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class PickListMapping : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ColumnMappingId = "columnmappingid";
+			public const string ComponentState = "componentstate";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
+			public const string IntroducedVersion = "introducedversion";
+			public const string IsManaged = "ismanaged";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string OverwriteTime = "overwritetime";
 			public const string PickListMappingId = "picklistmappingid";
 			public const string Id = "picklistmappingid";
+			public const string PickListMappingIdUnique = "picklistmappingidunique";
 			public const string ProcessCode = "processcode";
+			public const string SolutionId = "solutionid";
 			public const string SourceValue = "sourcevalue";
 			public const string StateCode = "statecode";
 			public const string StatusCode = "statuscode";
@@ -50,7 +56,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_picklistmapping_modifiedonbehalfby = "lk_picklistmapping_modifiedonbehalfby";
 			public const string PickListMapping_ColumnMapping = "PickListMapping_ColumnMapping";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -62,6 +67,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "picklistmapping";
+		
+		public const string PrimaryIdAttribute = "picklistmappingid";
 		
 		public const int EntityTypeCode = 4418;
 		
@@ -104,6 +111,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ColumnMappingId");
 				this.SetAttributeValue("columnmappingid", value);
 				this.OnPropertyChanged("ColumnMappingId");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
+		public Microsoft.Xrm.Sdk.OptionSetValue ComponentState
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("componentstate");
 			}
 		}
 		
@@ -168,6 +188,39 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Version in which the component is introduced.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("introducedversion")]
+		public string IntroducedVersion
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("introducedversion");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IntroducedVersion");
+				this.SetAttributeValue("introducedversion", value);
+				this.OnPropertyChanged("IntroducedVersion");
+			}
+		}
+		
+		/// <summary>
+		/// Information that specifies whether this component is managed.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ismanaged")]
+		public System.Nullable<bool> IsManaged
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("ismanaged");
+			}
+		}
+		
+		/// <summary>
 		/// Unique identifier of the user who last modified the list value mapping.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
@@ -228,6 +281,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overwritetime")]
+		public System.Nullable<System.DateTime> OverwriteTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overwritetime");
+			}
+		}
+		
+		/// <summary>
 		/// Unique identifier of the picklist mapping.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("picklistmappingid")]
@@ -271,6 +337,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Unique identifier of the Pick List Mapping.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("picklistmappingidunique")]
+		public System.Nullable<System.Guid> PickListMappingIdUnique
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("picklistmappingidunique");
+			}
+		}
+		
+		/// <summary>
 		/// Information about whether the list value mapping needs to be processed.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("processcode")]
@@ -287,6 +366,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ProcessCode");
 				this.SetAttributeValue("processcode", value);
 				this.OnPropertyChanged("ProcessCode");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the associated solution.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("solutionid")]
+		public System.Nullable<System.Guid> SolutionId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("solutionid");
 			}
 		}
 		
@@ -352,7 +444,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Microsoft Dynamics CRM list value with which to replace the source value.
+		/// Microsoft Dynamics 365 list value with which to replace the source value.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("targetvalue")]
 		public System.Nullable<int> TargetValue
@@ -536,6 +628,16 @@ namespace DLaB.Xrm.Entities
                         break;
                 }
             }
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
+		public virtual ComponentState? ComponentStateEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("processcode")]

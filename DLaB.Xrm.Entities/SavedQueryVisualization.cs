@@ -15,13 +15,14 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("savedqueryvisualization")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class SavedQueryVisualization : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CanBeDeleted = "canbedeleted";
+			public const string ChartType = "charttype";
 			public const string ComponentState = "componentstate";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
@@ -54,7 +55,6 @@ namespace DLaB.Xrm.Entities
 			public const string organization_saved_query_visualizations = "organization_saved_query_visualizations";
 			public const string webresource_savedqueryvisualizations = "webresource_savedqueryvisualizations";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -66,6 +66,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "savedqueryvisualization";
+		
+		public const string PrimaryIdAttribute = "savedqueryvisualizationid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 1111;
 		
@@ -108,6 +112,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("CanBeDeleted");
 				this.SetAttributeValue("canbedeleted", value);
 				this.OnPropertyChanged("CanBeDeleted");
+			}
+		}
+		
+		/// <summary>
+		/// Indicates the library used to render the visualization.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("charttype")]
+		public Microsoft.Xrm.Sdk.OptionSetValue ChartType
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("charttype");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ChartType");
+				this.SetAttributeValue("charttype", value);
+				this.OnPropertyChanged("ChartType");
 			}
 		}
 		
@@ -566,6 +590,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N SavedQueryVisualization_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("SavedQueryVisualization_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> SavedQueryVisualization_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("SavedQueryVisualization_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SavedQueryVisualization_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("SavedQueryVisualization_SyncErrors", null, value);
+				this.OnPropertyChanged("SavedQueryVisualization_SyncErrors");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N userentityinstancedata_savedqueryvisualization
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("userentityinstancedata_savedqueryvisualization")]
@@ -744,6 +788,21 @@ namespace DLaB.Xrm.Entities
                         break;
                 }
             }
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("charttype")]
+		public virtual SavedQueryVisualization_ChartType? ChartTypeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((SavedQueryVisualization_ChartType?)(EntityOptionSetEnum.GetEnum(this, "charttype")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				ChartType = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]

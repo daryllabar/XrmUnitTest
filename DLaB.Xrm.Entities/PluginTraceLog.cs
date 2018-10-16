@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("plugintracelog")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class PluginTraceLog : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string Configuration = "configuration";
 			public const string CorrelationId = "correlationid";
@@ -50,7 +50,6 @@ namespace DLaB.Xrm.Entities
 			public const string createdby_plugintracelog = "createdby_plugintracelog";
 			public const string lk_plugintracelogbase_createdonbehalfby = "lk_plugintracelogbase_createdonbehalfby";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -62,6 +61,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "plugintracelog";
+		
+		public const string PrimaryIdAttribute = "plugintracelogid";
+		
+		public const string PrimaryNameAttribute = "typename";
 		
 		public const int EntityTypeCode = 4619;
 		

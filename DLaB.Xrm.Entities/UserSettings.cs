@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("usersettings")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class UserSettings : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AddressBookSyncInterval = "addressbooksyncinterval";
 			public const string AdvancedFindStartupMode = "advancedfindstartupmode";
@@ -42,6 +42,7 @@ namespace DLaB.Xrm.Entities
 			public const string DefaultCalendarView = "defaultcalendarview";
 			public const string DefaultCountryCode = "defaultcountrycode";
 			public const string DefaultDashboardId = "defaultdashboardid";
+			public const string DefaultSearchExperience = "defaultsearchexperience";
 			public const string EmailPassword = "emailpassword";
 			public const string EmailUsername = "emailusername";
 			public const string EntityFormMode = "entityformmode";
@@ -54,9 +55,11 @@ namespace DLaB.Xrm.Entities
 			public const string IgnoreUnsolicitedEmail = "ignoreunsolicitedemail";
 			public const string IncomingEmailFilteringMethod = "incomingemailfilteringmethod";
 			public const string IsAppsForCrmAlertDismissed = "isappsforcrmalertdismissed";
+			public const string IsAutoDataCaptureEnabled = "isautodatacaptureenabled";
 			public const string IsDefaultCountryCodeCheckEnabled = "isdefaultcountrycodecheckenabled";
 			public const string IsDuplicateDetectionEnabledWhenGoingOnline = "isduplicatedetectionenabledwhengoingonline";
 			public const string IsGuidedHelpEnabled = "isguidedhelpenabled";
+			public const string IsResourceBookingExchangeSyncEnabled = "isresourcebookingexchangesyncenabled";
 			public const string IsSendAsAllowed = "issendasallowed";
 			public const string LastAlertsViewedTime = "lastalertsviewedtime";
 			public const string LocaleId = "localeid";
@@ -76,7 +79,10 @@ namespace DLaB.Xrm.Entities
 			public const string PMDesignator = "pmdesignator";
 			public const string PricingDecimalPrecision = "pricingdecimalprecision";
 			public const string ReportScriptErrors = "reportscripterrors";
+			public const string ResourceBookingExchangeSyncVersion = "resourcebookingexchangesyncversion";
+			public const string SelectedGlobalFilterId = "selectedglobalfilterid";
 			public const string ShowWeekNumber = "showweeknumber";
+			public const string SplitViewState = "splitviewstate";
 			public const string SyncContactCompany = "synccontactcompany";
 			public const string SystemUserId = "systemuserid";
 			public const string Id = "systemuserid";
@@ -122,7 +128,6 @@ namespace DLaB.Xrm.Entities
 			public const string transactioncurrency_usersettings = "transactioncurrency_usersettings";
 			public const string user_settings = "user_settings";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -134,6 +139,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "usersettings";
+		
+		public const string PrimaryIdAttribute = "systemuserid";
 		
 		public const int EntityTypeCode = 150;
 		
@@ -214,7 +221,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// AM designator to use in Microsoft Dynamics CRM.
+		/// AM designator to use in Microsoft Dynamics 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("amdesignator")]
 		public string AMDesignator
@@ -375,7 +382,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Information about how currency symbols are placed in Microsoft Dynamics CRM.
+		/// Information about how currency symbols are placed in Microsoft Dynamics 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("currencyformatcode")]
 		public System.Nullable<int> CurrencyFormatCode
@@ -395,7 +402,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Symbol used for currency in Microsoft Dynamics CRM.
+		/// Symbol used for currency in Microsoft Dynamics 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("currencysymbol")]
 		public string CurrencySymbol
@@ -435,7 +442,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Information about how the date is displayed in Microsoft Dynamics CRM.
+		/// Information about how the date is displayed in Microsoft Dynamics 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dateformatcode")]
 		public System.Nullable<int> DateFormatCode
@@ -455,7 +462,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// String showing how the date is displayed throughout Microsoft CRM.
+		/// String showing how the date is displayed throughout Microsoft 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dateformatstring")]
 		public string DateFormatString
@@ -475,7 +482,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Character used to separate the month, the day, and the year in dates in Microsoft Dynamics CRM.
+		/// Character used to separate the month, the day, and the year in dates in Microsoft Dynamics 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dateseparator")]
 		public string DateSeparator
@@ -495,7 +502,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Symbol used for decimal in Microsoft Dynamics CRM.
+		/// Symbol used for decimal in Microsoft Dynamics 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("decimalsymbol")]
 		public string DecimalSymbol
@@ -575,6 +582,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Default search experience for the user.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("defaultsearchexperience")]
+		public Microsoft.Xrm.Sdk.OptionSetValue DefaultSearchExperience
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("defaultsearchexperience");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("DefaultSearchExperience");
+				this.SetAttributeValue("defaultsearchexperience", value);
+				this.OnPropertyChanged("DefaultSearchExperience");
+			}
+		}
+		
+		/// <summary>
 		/// This attribute is no longer used. The data is now in the Mailbox.Password attribute.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("emailpassword")]
@@ -623,7 +650,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Order in which names are to be displayed in Microsoft Dynamics CRM.
+		/// Order in which names are to be displayed in Microsoft Dynamics 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("fullnameconventioncode")]
 		public System.Nullable<int> FullNameConventionCode
@@ -783,7 +810,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Show or dismiss alert for Apps for Crm.
+		/// Show or dismiss alert for Apps for 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isappsforcrmalertdismissed")]
 		public System.Nullable<bool> IsAppsForCrmAlertDismissed
@@ -799,6 +826,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("IsAppsForCrmAlertDismissed");
 				this.SetAttributeValue("isappsforcrmalertdismissed", value);
 				this.OnPropertyChanged("IsAppsForCrmAlertDismissed");
+			}
+		}
+		
+		/// <summary>
+		/// Indicates whether to use the Auto Capture feature enabled or not.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isautodatacaptureenabled")]
+		public System.Nullable<bool> IsAutoDataCaptureEnabled
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isautodatacaptureenabled");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IsAutoDataCaptureEnabled");
+				this.SetAttributeValue("isautodatacaptureenabled", value);
+				this.OnPropertyChanged("IsAutoDataCaptureEnabled");
 			}
 		}
 		
@@ -863,6 +910,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Indicates if the synchronization of user resource booking with Exchange is enabled at user level.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isresourcebookingexchangesyncenabled")]
+		public System.Nullable<bool> IsResourceBookingExchangeSyncEnabled
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isresourcebookingexchangesyncenabled");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IsResourceBookingExchangeSyncEnabled");
+				this.SetAttributeValue("isresourcebookingexchangesyncenabled", value);
+				this.OnPropertyChanged("IsResourceBookingExchangeSyncEnabled");
+			}
+		}
+		
+		/// <summary>
 		/// Indicates if send as other user privilege is enabled or not.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("issendasallowed")]
@@ -923,7 +990,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Information that specifies how Long Date is displayed throughout Microsoft CRM.
+		/// Information that specifies how Long Date is displayed throughout Microsoft 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("longdateformatcode")]
 		public System.Nullable<int> LongDateFormatCode
@@ -1003,7 +1070,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Information that specifies how negative currency numbers are displayed in Microsoft Dynamics CRM.
+		/// Information that specifies how negative currency numbers are displayed in Microsoft Dynamics 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("negativecurrencyformatcode")]
 		public System.Nullable<int> NegativeCurrencyFormatCode
@@ -1023,7 +1090,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Information that specifies how negative numbers are displayed in Microsoft Dynamics CRM.
+		/// Information that specifies how negative numbers are displayed in Microsoft Dynamics 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("negativeformatcode")]
 		public System.Nullable<int> NegativeFormatCode
@@ -1063,7 +1130,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Information that specifies how numbers are grouped in Microsoft Dynamics CRM.
+		/// Information that specifies how numbers are grouped in Microsoft Dynamics 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("numbergroupformat")]
 		public string NumberGroupFormat
@@ -1083,7 +1150,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Symbol used for number separation in Microsoft Dynamics CRM.
+		/// Symbol used for number separation in Microsoft Dynamics 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("numberseparator")]
 		public string NumberSeparator
@@ -1183,7 +1250,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// PM designator to use in Microsoft Dynamics CRM.
+		/// PM designator to use in Microsoft Dynamics 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("pmdesignator")]
 		public string PMDesignator
@@ -1244,7 +1311,47 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Information that specifies whether to display the week number in calendar displays in Microsoft Dynamics CRM.
+		/// The version number for resource booking synchronization with Exchange.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("resourcebookingexchangesyncversion")]
+		public System.Nullable<long> ResourceBookingExchangeSyncVersion
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<long>>("resourcebookingexchangesyncversion");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ResourceBookingExchangeSyncVersion");
+				this.SetAttributeValue("resourcebookingexchangesyncversion", value);
+				this.OnPropertyChanged("ResourceBookingExchangeSyncVersion");
+			}
+		}
+		
+		/// <summary>
+		/// Store selected customer service hub dashboard saved filter id.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("selectedglobalfilterid")]
+		public System.Nullable<System.Guid> SelectedGlobalFilterId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("selectedglobalfilterid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SelectedGlobalFilterId");
+				this.SetAttributeValue("selectedglobalfilterid", value);
+				this.OnPropertyChanged("SelectedGlobalFilterId");
+			}
+		}
+		
+		/// <summary>
+		/// Information that specifies whether to display the week number in calendar displays in Microsoft Dynamics 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("showweeknumber")]
 		public System.Nullable<bool> ShowWeekNumber
@@ -1260,6 +1367,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ShowWeekNumber");
 				this.SetAttributeValue("showweeknumber", value);
 				this.OnPropertyChanged("ShowWeekNumber");
+			}
+		}
+		
+		/// <summary>
+		/// For Internal use only
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("splitviewstate")]
+		public System.Nullable<bool> SplitViewState
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("splitviewstate");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SplitViewState");
+				this.SetAttributeValue("splitviewstate", value);
+				this.OnPropertyChanged("SplitViewState");
 			}
 		}
 		
@@ -1327,7 +1454,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Information that specifies how the time is displayed in Microsoft Dynamics CRM.
+		/// Information that specifies how the time is displayed in Microsoft Dynamics 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timeformatcode")]
 		public System.Nullable<int> TimeFormatCode
@@ -1347,7 +1474,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Text for how time is displayed in Microsoft Dynamics CRM.
+		/// Text for how time is displayed in Microsoft Dynamics 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timeformatstring")]
 		public string TimeFormatString
@@ -1367,7 +1494,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Text for how time is displayed in Microsoft Dynamics CRM.
+		/// Text for how time is displayed in Microsoft Dynamics 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timeseparator")]
 		public string TimeSeparator
@@ -1807,7 +1934,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Indicates whether to use the Microsoft Dynamics CRM appointment form within Microsoft Office Outlook for creating new appointments.
+		/// Indicates whether to use the Microsoft Dynamics 365 appointment form within Microsoft Office Outlook for creating new appointments.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("usecrmformforappointment")]
 		public System.Nullable<bool> UseCrmFormForAppointment
@@ -1827,7 +1954,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Indicates whether to use the Microsoft Dynamics CRM contact form within Microsoft Office Outlook for creating new contacts.
+		/// Indicates whether to use the Microsoft Dynamics 365 contact form within Microsoft Office Outlook for creating new contacts.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("usecrmformforcontact")]
 		public System.Nullable<bool> UseCrmFormForContact
@@ -1847,7 +1974,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Indicates whether to use the Microsoft Dynamics CRM email form within Microsoft Office Outlook for creating new emails.
+		/// Indicates whether to use the Microsoft Dynamics 365 email form within Microsoft Office Outlook for creating new emails.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("usecrmformforemail")]
 		public System.Nullable<bool> UseCrmFormForEmail
@@ -1867,7 +1994,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Indicates whether to use the Microsoft Dynamics CRM task form within Microsoft Office Outlook for creating new tasks.
+		/// Indicates whether to use the Microsoft Dynamics 365 task form within Microsoft Office Outlook for creating new tasks.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("usecrmformfortask")]
 		public System.Nullable<bool> UseCrmFormForTask
@@ -2200,6 +2327,21 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				DataValidationModeForExportToExcel = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("defaultsearchexperience")]
+		public virtual UserSettings_DefaultSearchExperience? DefaultSearchExperienceEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((UserSettings_DefaultSearchExperience?)(EntityOptionSetEnum.GetEnum(this, "defaultsearchexperience")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				DefaultSearchExperience = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 		

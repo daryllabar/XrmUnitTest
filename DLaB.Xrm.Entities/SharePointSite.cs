@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum SharePointSiteState
 	{
 		
@@ -23,15 +23,15 @@ namespace DLaB.Xrm.Entities
 	}
 	
 	/// <summary>
-	/// SharePoint site from where documents can be managed in Microsoft Dynamics CRM.
+	/// SharePoint site from where documents can be managed in Microsoft Dynamics 365.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("sharepointsite")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class SharePointSite : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AbsoluteURL = "absoluteurl";
 			public const string CreatedBy = "createdby";
@@ -79,7 +79,6 @@ namespace DLaB.Xrm.Entities
 			public const string TransactionCurrency_SharePointSite = "TransactionCurrency_SharePointSite";
 			public const string user_sharepointsite = "user_sharepointsite";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -91,6 +90,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "sharepointsite";
+		
+		public const string PrimaryIdAttribute = "sharepointsiteid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9502;
 		
@@ -230,7 +233,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Entity on which the folder structure for Microsoft Dynamics CRM records will be created in SharePoint.
+		/// Entity on which the folder structure for Microsoft Dynamics 365 records will be created in SharePoint.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("folderstructureentity")]
 		public string FolderStructureEntity
@@ -590,7 +593,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the SharePoint site in CRM
+		/// Unique identifier of the SharePoint site in Dynamics 365
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sharepointsiteid")]
 		public System.Nullable<System.Guid> SharePointSiteId
@@ -963,6 +966,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("SharePointSite_ProcessSessions");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProcessSession>("SharePointSite_ProcessSessions", null, value);
 				this.OnPropertyChanged("SharePointSite_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N SharePointSite_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("SharePointSite_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> SharePointSite_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("SharePointSite_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SharePointSite_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("SharePointSite_SyncErrors", null, value);
+				this.OnPropertyChanged("SharePointSite_SyncErrors");
 			}
 		}
 		

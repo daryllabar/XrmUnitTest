@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("relationshiprolemap")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class RelationshipRoleMap : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AssociateObjectTypeCode = "associateobjecttypecode";
 			public const string CreatedBy = "createdby";
@@ -40,7 +40,6 @@ namespace DLaB.Xrm.Entities
 			public const string modifiedby_relationship_role_map = "modifiedby_relationship_role_map";
 			public const string relationship_role_relationship_role_map = "relationship_role_relationship_role_map";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -52,6 +51,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "relationshiprolemap";
+		
+		public const string PrimaryIdAttribute = "relationshiprolemapid";
 		
 		public const int EntityTypeCode = 4501;
 		

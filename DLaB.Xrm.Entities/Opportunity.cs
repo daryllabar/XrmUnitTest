@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum OpportunityState
 	{
 		
@@ -30,11 +30,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("opportunity")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Opportunity : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AccountId = "accountid";
 			public const string ActualCloseDate = "actualclosedate";
@@ -63,6 +63,7 @@ namespace DLaB.Xrm.Entities
 			public const string DiscountAmount = "discountamount";
 			public const string DiscountAmount_Base = "discountamount_base";
 			public const string DiscountPercentage = "discountpercentage";
+			public const string EmailAddress = "emailaddress";
 			public const string EstimatedCloseDate = "estimatedclosedate";
 			public const string EstimatedValue = "estimatedvalue";
 			public const string EstimatedValue_Base = "estimatedvalue_base";
@@ -78,11 +79,17 @@ namespace DLaB.Xrm.Entities
 			public const string ImportSequenceNumber = "importsequencenumber";
 			public const string InitialCommunication = "initialcommunication";
 			public const string IsRevenueSystemCalculated = "isrevenuesystemcalculated";
+			public const string LastOnHoldTime = "lastonholdtime";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string msdyn_AccountManagerId = "msdyn_accountmanagerid";
+			public const string msdyn_ContractOrganizationalUnitId = "msdyn_contractorganizationalunitid";
+			public const string msdyn_OrderType = "msdyn_ordertype";
+			public const string msdyn_WorkOrderType = "msdyn_workordertype";
 			public const string Name = "name";
 			public const string Need = "need";
+			public const string OnHoldTime = "onholdtime";
 			public const string OpportunityId = "opportunityid";
 			public const string Id = "opportunityid";
 			public const string OpportunityRatingCode = "opportunityratingcode";
@@ -114,12 +121,16 @@ namespace DLaB.Xrm.Entities
 			public const string ScheduleFollowup_Qualify = "schedulefollowup_qualify";
 			public const string ScheduleProposalMeeting = "scheduleproposalmeeting";
 			public const string SendThankYouNote = "sendthankyounote";
+			public const string SLAId = "slaid";
+			public const string SLAInvokedId = "slainvokedid";
 			public const string StageId = "stageid";
 			public const string StateCode = "statecode";
 			public const string StatusCode = "statuscode";
 			public const string StepId = "stepid";
 			public const string StepName = "stepname";
+			public const string TeamsFollowed = "teamsfollowed";
 			public const string TimeLine = "timeline";
+			public const string TimeSpentByMeOnEmailAndMeetings = "timespentbymeonemailandmeetings";
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string TotalAmount = "totalamount";
 			public const string TotalAmount_Base = "totalamount_base";
@@ -143,6 +154,10 @@ namespace DLaB.Xrm.Entities
 			public const string lk_opportunity_modifiedonbehalfby = "lk_opportunity_modifiedonbehalfby";
 			public const string lk_opportunitybase_createdby = "lk_opportunitybase_createdby";
 			public const string lk_opportunitybase_modifiedby = "lk_opportunitybase_modifiedby";
+			public const string manualsla_opportunity = "manualsla_opportunity";
+			public const string msdyn_accountmanager_opportunity = "msdyn_accountmanager_opportunity";
+			public const string msdyn_msdyn_workordertype_opportunity_WorkOrderType = "msdyn_msdyn_workordertype_opportunity_WorkOrderType";
+			public const string msdyn_organizationalunit_opportunity = "msdyn_organizationalunit_opportunity";
 			public const string opportunity_customer_accounts = "opportunity_customer_accounts";
 			public const string opportunity_customer_contacts = "opportunity_customer_contacts";
 			public const string opportunity_originating_lead = "opportunity_originating_lead";
@@ -151,10 +166,10 @@ namespace DLaB.Xrm.Entities
 			public const string opportunity_parent_contact = "opportunity_parent_contact";
 			public const string price_level_opportunties = "price_level_opportunties";
 			public const string processstage_opportunity = "processstage_opportunity";
+			public const string sla_opportunity = "sla_opportunity";
 			public const string team_opportunities = "team_opportunities";
 			public const string transactioncurrency_opportunity = "transactioncurrency_opportunity";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -166,6 +181,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "opportunity";
+		
+		public const string PrimaryIdAttribute = "opportunityid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 3;
 		
@@ -311,7 +330,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the campaign that the opportunity was created from. The ID is used for tracking the success of the campaign.
+		/// campaign_opportunities
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("campaignid")]
 		public Microsoft.Xrm.Sdk.EntityReference CampaignId
@@ -444,7 +463,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows who created the record.
+		/// lk_opportunitybase_createdby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
@@ -464,7 +483,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -484,7 +503,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows who created the record on behalf of another user.
+		/// lk_opportunity_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
@@ -524,7 +543,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Select the customer account or contact to provide a quick link to additional customer details, such as address, phone number, activities, and orders.
+		/// opportunity_customer_contacts
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("customerid")]
 		public Microsoft.Xrm.Sdk.EntityReference CustomerId
@@ -693,6 +712,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("DiscountPercentage");
 				this.SetAttributeValue("discountpercentage", value);
 				this.OnPropertyChanged("DiscountPercentage");
+			}
+		}
+		
+		/// <summary>
+		/// The primary email address for the entity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("emailaddress")]
+		public string EmailAddress
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("emailaddress");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("EmailAddress");
+				this.SetAttributeValue("emailaddress", value);
+				this.OnPropertyChanged("EmailAddress");
 			}
 		}
 		
@@ -976,7 +1015,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows who last updated the record.
+		/// Contains the date time stamp of the last on hold time.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lastonholdtime")]
+		public System.Nullable<System.DateTime> LastOnHoldTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("lastonholdtime");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("LastOnHoldTime");
+				this.SetAttributeValue("lastonholdtime", value);
+				this.OnPropertyChanged("LastOnHoldTime");
+			}
+		}
+		
+		/// <summary>
+		/// lk_opportunitybase_modifiedby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
@@ -996,7 +1055,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -1016,7 +1075,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows who last updated the record on behalf of another user.
+		/// lk_opportunity_modifiedonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
@@ -1032,6 +1091,86 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ModifiedOnBehalfBy");
 				this.SetAttributeValue("modifiedonbehalfby", value);
 				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// The account manager responsible for the opportunity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_accountmanagerid")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_AccountManagerId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_accountmanagerid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_AccountManagerId");
+				this.SetAttributeValue("msdyn_accountmanagerid", value);
+				this.OnPropertyChanged("msdyn_AccountManagerId");
+			}
+		}
+		
+		/// <summary>
+		/// The organizational unit in charge of the opportunity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_contractorganizationalunitid")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_ContractOrganizationalUnitId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_contractorganizationalunitid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_ContractOrganizationalUnitId");
+				this.SetAttributeValue("msdyn_contractorganizationalunitid", value);
+				this.OnPropertyChanged("msdyn_ContractOrganizationalUnitId");
+			}
+		}
+		
+		/// <summary>
+		/// Internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_ordertype")]
+		public Microsoft.Xrm.Sdk.OptionSetValue msdyn_OrderType
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("msdyn_ordertype");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_OrderType");
+				this.SetAttributeValue("msdyn_ordertype", value);
+				this.OnPropertyChanged("msdyn_OrderType");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for Work Order Type associated with Opportunity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_workordertype")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_WorkOrderType
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_workordertype");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_WorkOrderType");
+				this.SetAttributeValue("msdyn_workordertype", value);
+				this.OnPropertyChanged("msdyn_WorkOrderType");
 			}
 		}
 		
@@ -1072,6 +1211,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Need");
 				this.SetAttributeValue("need", value);
 				this.OnPropertyChanged("Need");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the duration in minutes for which the opportunity was on hold.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("onholdtime")]
+		public System.Nullable<int> OnHoldTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("onholdtime");
 			}
 		}
 		
@@ -1139,7 +1291,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the lead that the opportunity was created from for reporting and analytics. The field is read-only after the opportunity is created and defaults to the correct lead when an opportunity is created from a converted lead.
+		/// opportunity_originating_lead
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("originatingleadid")]
 		public Microsoft.Xrm.Sdk.EntityReference OriginatingLeadId
@@ -1179,7 +1331,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Enter the user or team who is assigned to manage the record. This field is updated every time the record is assigned to a different user.
+		/// owner_opportunitys
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ownerid")]
 		public Microsoft.Xrm.Sdk.EntityReference OwnerId
@@ -1199,7 +1351,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the business unit that owns the opportunity.
+		/// business_unit_opportunities
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
 		public Microsoft.Xrm.Sdk.EntityReference OwningBusinessUnit
@@ -1219,7 +1371,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the team who owns the opportunity.
+		/// team_opportunities
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
 		public Microsoft.Xrm.Sdk.EntityReference OwningTeam
@@ -1239,7 +1391,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the user who owns the opportunity.
+		/// opportunity_owning_user
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
 		public Microsoft.Xrm.Sdk.EntityReference OwningUser
@@ -1259,7 +1411,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose an account to connect this opportunity to, so that the relationship is visible in reports and analytics, and to provide a quick link to additional details, such as financial information and activities.
+		/// opportunity_parent_account
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("parentaccountid")]
 		public Microsoft.Xrm.Sdk.EntityReference ParentAccountId
@@ -1279,7 +1431,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose a contact to connect this opportunity to, so that the relationship is visible in reports and analytics.
+		/// opportunity_parent_contact
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("parentcontactid")]
 		public Microsoft.Xrm.Sdk.EntityReference ParentContactId
@@ -1359,7 +1511,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the price list associated with this record to make sure the products associated with the campaign are offered at the correct prices.
+		/// price_level_opportunties
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("pricelevelid")]
 		public Microsoft.Xrm.Sdk.EntityReference PriceLevelId
@@ -1459,7 +1611,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose whether an individual or a committee will be involved in the purchase process for the lead.
+		/// Choose whether an individual or a committee will be involved in the  purchase process for the lead.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("purchaseprocess")]
 		public Microsoft.Xrm.Sdk.OptionSetValue PurchaseProcess
@@ -1699,7 +1851,40 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the ID of the stage.
+		/// manualsla_opportunity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slaid")]
+		public Microsoft.Xrm.Sdk.EntityReference SLAId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("slaid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SLAId");
+				this.SetAttributeValue("slaid", value);
+				this.OnPropertyChanged("SLAId");
+			}
+		}
+		
+		/// <summary>
+		/// sla_opportunity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slainvokedid")]
+		public Microsoft.Xrm.Sdk.EntityReference SLAInvokedId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("slainvokedid");
+			}
+		}
+		
+		/// <summary>
+		/// processstage_opportunity
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("stageid")]
 		public System.Nullable<System.Guid> StageId
@@ -1814,6 +1999,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Number of users or conversations followed the record
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("teamsfollowed")]
+		public System.Nullable<int> TeamsFollowed
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("teamsfollowed");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TeamsFollowed");
+				this.SetAttributeValue("teamsfollowed", value);
+				this.OnPropertyChanged("TeamsFollowed");
+			}
+		}
+		
+		/// <summary>
 		/// Select when the opportunity is likely to be closed.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timeline")]
@@ -1830,6 +2035,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("TimeLine");
 				this.SetAttributeValue("timeline", value);
 				this.OnPropertyChanged("TimeLine");
+			}
+		}
+		
+		/// <summary>
+		/// Total time spent for emails (read and write) and meetings by me in relation to the opportunity record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timespentbymeonemailandmeetings")]
+		public string TimeSpentByMeOnEmailAndMeetings
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("timespentbymeonemailandmeetings");
 			}
 		}
 		
@@ -2052,7 +2270,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the local currency for the record to make sure budgets are reported in the correct currency.
+		/// transactioncurrency_opportunity
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("transactioncurrencyid")]
 		public Microsoft.Xrm.Sdk.EntityReference TransactionCurrencyId
@@ -2161,6 +2379,106 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("lead_qualifying_opportunity");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Lead>("lead_qualifying_opportunity", null, value);
 				this.OnPropertyChanged("lead_qualifying_opportunity");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_leadtoopportunitysalesprocess_opportunityid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_leadtoopportunitysalesprocess_opportunityid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.LeadToOpportunitySalesProcess> lk_leadtoopportunitysalesprocess_opportunityid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.LeadToOpportunitySalesProcess>("lk_leadtoopportunitysalesprocess_opportunityid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_leadtoopportunitysalesprocess_opportunityid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.LeadToOpportunitySalesProcess>("lk_leadtoopportunitysalesprocess_opportunityid", null, value);
+				this.OnPropertyChanged("lk_leadtoopportunitysalesprocess_opportunityid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_opportunitysalesprocess_opportunityid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_opportunitysalesprocess_opportunityid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OpportunitySalesProcess> lk_opportunitysalesprocess_opportunityid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OpportunitySalesProcess>("lk_opportunitysalesprocess_opportunityid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_opportunitysalesprocess_opportunityid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OpportunitySalesProcess>("lk_opportunitysalesprocess_opportunityid", null, value);
+				this.OnPropertyChanged("lk_opportunitysalesprocess_opportunityid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_opportunity_msdyn_opportunitypricelist_Opportunity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunity_msdyn_opportunitypricelist_Opportunity")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_opportunitypricelist> msdyn_opportunity_msdyn_opportunitypricelist_Opportunity
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_opportunitypricelist>("msdyn_opportunity_msdyn_opportunitypricelist_Opportunity", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_opportunity_msdyn_opportunitypricelist_Opportunity");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_opportunitypricelist>("msdyn_opportunity_msdyn_opportunitypricelist_Opportunity", null, value);
+				this.OnPropertyChanged("msdyn_opportunity_msdyn_opportunitypricelist_Opportunity");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_opportunity_msdyn_workorder
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunity_msdyn_workorder")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_workorder> msdyn_opportunity_msdyn_workorder
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_opportunity_msdyn_workorder", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_opportunity_msdyn_workorder");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_opportunity_msdyn_workorder", null, value);
+				this.OnPropertyChanged("msdyn_opportunity_msdyn_workorder");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N opportunity_actioncard
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_actioncard")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActionCard> opportunity_actioncard
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ActionCard>("opportunity_actioncard", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("opportunity_actioncard");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ActionCard>("opportunity_actioncard", null, value);
+				this.OnPropertyChanged("opportunity_actioncard");
 			}
 		}
 		
@@ -2485,6 +2803,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N opportunity_msdyn_approvals
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_msdyn_approvals")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_approval> opportunity_msdyn_approvals
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("opportunity_msdyn_approvals", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("opportunity_msdyn_approvals");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("opportunity_msdyn_approvals", null, value);
+				this.OnPropertyChanged("opportunity_msdyn_approvals");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N opportunity_msdyn_bookingalerts
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_msdyn_bookingalerts")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bookingalert> opportunity_msdyn_bookingalerts
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("opportunity_msdyn_bookingalerts", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("opportunity_msdyn_bookingalerts");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("opportunity_msdyn_bookingalerts", null, value);
+				this.OnPropertyChanged("opportunity_msdyn_bookingalerts");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N Opportunity_OpportunityClose
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Opportunity_OpportunityClose")]
@@ -2501,6 +2859,46 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Opportunity_OpportunityClose");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.OpportunityClose>("Opportunity_OpportunityClose", null, value);
 				this.OnPropertyChanged("Opportunity_OpportunityClose");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N opportunity_OpportunityCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_OpportunityCloses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OpportunityClose> opportunity_OpportunityCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OpportunityClose>("opportunity_OpportunityCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("opportunity_OpportunityCloses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OpportunityClose>("opportunity_OpportunityCloses", null, value);
+				this.OnPropertyChanged("opportunity_OpportunityCloses");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N opportunity_OrderCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_OrderCloses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OrderClose> opportunity_OrderCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OrderClose>("opportunity_OrderCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("opportunity_OrderCloses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OrderClose>("opportunity_OrderCloses", null, value);
+				this.OnPropertyChanged("opportunity_OrderCloses");
 			}
 		}
 		
@@ -2581,6 +2979,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Opportunity_ProcessSessions");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProcessSession>("Opportunity_ProcessSessions", null, value);
 				this.OnPropertyChanged("Opportunity_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N opportunity_QuoteCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_QuoteCloses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.QuoteClose> opportunity_QuoteCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("opportunity_QuoteCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("opportunity_QuoteCloses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("opportunity_QuoteCloses", null, value);
+				this.OnPropertyChanged("opportunity_QuoteCloses");
 			}
 		}
 		
@@ -2725,6 +3143,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N Opportunity_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Opportunity_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Opportunity_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Opportunity_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Opportunity_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Opportunity_SyncErrors", null, value);
+				this.OnPropertyChanged("Opportunity_SyncErrors");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N Opportunity_Tasks
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Opportunity_Tasks")]
@@ -2781,6 +3219,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("product_opportunities");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.OpportunityProduct>("product_opportunities", null, value);
 				this.OnPropertyChanged("product_opportunities");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N slakpiinstance_opportunity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_opportunity")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SLAKPIInstance> slakpiinstance_opportunity
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SLAKPIInstance>("slakpiinstance_opportunity", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_opportunity");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SLAKPIInstance>("slakpiinstance_opportunity", null, value);
+				this.OnPropertyChanged("slakpiinstance_opportunity");
 			}
 		}
 		
@@ -2947,6 +3405,90 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("lk_opportunitybase_modifiedby");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_opportunitybase_modifiedby", null, value);
 				this.OnPropertyChanged("lk_opportunitybase_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 manualsla_opportunity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slaid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_opportunity")]
+		public DLaB.Xrm.Entities.SLA manualsla_opportunity
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SLA>("manualsla_opportunity", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_opportunity");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SLA>("manualsla_opportunity", null, value);
+				this.OnPropertyChanged("manualsla_opportunity");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_accountmanager_opportunity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_accountmanagerid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_accountmanager_opportunity")]
+		public DLaB.Xrm.Entities.SystemUser msdyn_accountmanager_opportunity
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("msdyn_accountmanager_opportunity", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_accountmanager_opportunity");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("msdyn_accountmanager_opportunity", null, value);
+				this.OnPropertyChanged("msdyn_accountmanager_opportunity");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_msdyn_workordertype_opportunity_WorkOrderType
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_workordertype")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_msdyn_workordertype_opportunity_WorkOrderType")]
+		public DLaB.Xrm.Entities.msdyn_workordertype msdyn_msdyn_workordertype_opportunity_WorkOrderType
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordertype>("msdyn_msdyn_workordertype_opportunity_WorkOrderType", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_msdyn_workordertype_opportunity_WorkOrderType");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordertype>("msdyn_msdyn_workordertype_opportunity_WorkOrderType", null, value);
+				this.OnPropertyChanged("msdyn_msdyn_workordertype_opportunity_WorkOrderType");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_organizationalunit_opportunity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_contractorganizationalunitid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_organizationalunit_opportunity")]
+		public DLaB.Xrm.Entities.msdyn_organizationalunit msdyn_organizationalunit_opportunity
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_organizationalunit>("msdyn_organizationalunit_opportunity", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_organizationalunit_opportunity");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_organizationalunit>("msdyn_organizationalunit_opportunity", null, value);
+				this.OnPropertyChanged("msdyn_organizationalunit_opportunity");
 			}
 		}
 		
@@ -3119,6 +3661,20 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 sla_opportunity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slainvokedid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_opportunity")]
+		public DLaB.Xrm.Entities.SLA sla_opportunity
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SLA>("sla_opportunity", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 team_opportunities
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
@@ -3229,6 +3785,21 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				InitialCommunication = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_ordertype")]
+		public virtual Opportunity_msdyn_OrderType? msdyn_OrderTypeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((Opportunity_msdyn_OrderType?)(EntityOptionSetEnum.GetEnum(this, "msdyn_ordertype")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				msdyn_OrderType = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 		

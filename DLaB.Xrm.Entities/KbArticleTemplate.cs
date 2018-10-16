@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("kbarticletemplate")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class KbArticleTemplate : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ComponentState = "componentstate";
 			public const string CreatedBy = "createdby";
@@ -52,7 +52,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_kbarticletemplatebase_modifiedby = "lk_kbarticletemplatebase_modifiedby";
 			public const string organization_kb_article_templates = "organization_kb_article_templates";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -64,6 +63,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "kbarticletemplate";
+		
+		public const string PrimaryIdAttribute = "kbarticletemplateid";
+		
+		public const string PrimaryNameAttribute = "title";
 		
 		public const int EntityTypeCode = 1016;
 		
@@ -620,6 +623,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("KbArticleTemplate_ProcessSessions");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProcessSession>("KbArticleTemplate_ProcessSessions", null, value);
 				this.OnPropertyChanged("KbArticleTemplate_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N KbArticleTemplate_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("KbArticleTemplate_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> KbArticleTemplate_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("KbArticleTemplate_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("KbArticleTemplate_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("KbArticleTemplate_SyncErrors", null, value);
+				this.OnPropertyChanged("KbArticleTemplate_SyncErrors");
 			}
 		}
 		

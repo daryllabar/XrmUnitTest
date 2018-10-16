@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("activityparty")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ActivityParty : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ActivityId = "activityid";
 			public const string ActivityPartyId = "activitypartyid";
@@ -55,6 +55,7 @@ namespace DLaB.Xrm.Entities
 			public const string contact_activity_parties = "contact_activity_parties";
 			public const string contract_activity_parties = "contract_activity_parties";
 			public const string email_activity_parties = "email_activity_parties";
+			public const string entitlement_ActivityParties = "entitlement_ActivityParties";
 			public const string equipment_activity_parties = "equipment_activity_parties";
 			public const string fax_activity_parties = "fax_activity_parties";
 			public const string incident_activity_parties = "incident_activity_parties";
@@ -63,6 +64,8 @@ namespace DLaB.Xrm.Entities
 			public const string knowledgearticle_activity_parties = "knowledgearticle_activity_parties";
 			public const string lead_activity_parties = "lead_activity_parties";
 			public const string letter_activity_parties = "letter_activity_parties";
+			public const string msdyn_approval_activity_parties = "msdyn_approval_activity_parties";
+			public const string msdyn_bookingalert_activity_parties = "msdyn_bookingalert_activity_parties";
 			public const string opportunity_activity_parties = "opportunity_activity_parties";
 			public const string opportunityclose_activity_parties = "opportunityclose_activity_parties";
 			public const string orderclose_activity_parties = "orderclose_activity_parties";
@@ -77,7 +80,6 @@ namespace DLaB.Xrm.Entities
 			public const string system_user_activity_parties = "system_user_activity_parties";
 			public const string task_activity_parties = "task_activity_parties";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -89,6 +91,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "activityparty";
+		
+		public const string PrimaryIdAttribute = "activitypartyid";
+		
+		public const string PrimaryNameAttribute = "partyidname";
 		
 		public const int EntityTypeCode = 135;
 		
@@ -115,7 +121,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the activity associated with the activity party. (A "party" is any person who is associated with an activity.)
+		/// quoteclose_activity_parties
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("activityid")]
 		public Microsoft.Xrm.Sdk.EntityReference ActivityId
@@ -402,7 +408,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the party associated with the activity.
+		/// salesorder_activity_parties
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("partyid")]
 		public Microsoft.Xrm.Sdk.EntityReference PartyId
@@ -422,7 +428,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the resource specification for the activity party.
+		/// ActivityPartyResourceSpec
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("resourcespecid")]
 		public Microsoft.Xrm.Sdk.EntityReference ResourceSpecId
@@ -477,6 +483,26 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N ActivityParty_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ActivityParty_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> ActivityParty_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ActivityParty_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ActivityParty_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ActivityParty_SyncErrors", null, value);
+				this.OnPropertyChanged("ActivityParty_SyncErrors");
 			}
 		}
 		
@@ -753,6 +779,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 entitlement_ActivityParties
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("partyid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("entitlement_ActivityParties")]
+		public DLaB.Xrm.Entities.Entitlement entitlement_ActivityParties
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Entitlement>("entitlement_ActivityParties", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("entitlement_ActivityParties");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Entitlement>("entitlement_ActivityParties", null, value);
+				this.OnPropertyChanged("entitlement_ActivityParties");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 equipment_activity_parties
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("partyid")]
@@ -917,6 +964,48 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("letter_activity_parties");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.Letter>("letter_activity_parties", null, value);
 				this.OnPropertyChanged("letter_activity_parties");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_approval_activity_parties
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("activityid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_approval_activity_parties")]
+		public DLaB.Xrm.Entities.msdyn_approval msdyn_approval_activity_parties
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_activity_parties", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_approval_activity_parties");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_activity_parties", null, value);
+				this.OnPropertyChanged("msdyn_approval_activity_parties");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingalert_activity_parties
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("activityid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalert_activity_parties")]
+		public DLaB.Xrm.Entities.msdyn_bookingalert msdyn_bookingalert_activity_parties
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_activity_parties", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingalert_activity_parties");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_activity_parties", null, value);
+				this.OnPropertyChanged("msdyn_bookingalert_activity_parties");
 			}
 		}
 		

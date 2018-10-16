@@ -11,12 +11,12 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
 	public enum Mailbox_ACTDeliveryMethod
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		MicrosoftDynamicsCRMforOutlook = 0,
+		MicrosoftDynamics365forOutlook = 0,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		None = 2,

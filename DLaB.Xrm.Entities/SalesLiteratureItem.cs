@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("salesliteratureitem")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class SalesLiteratureItem : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string Abstract = "abstract";
 			public const string AttachedDocumentUrl = "attacheddocumenturl";
@@ -35,6 +35,7 @@ namespace DLaB.Xrm.Entities
 			public const string IsCustomerViewable = "iscustomerviewable";
 			public const string KeyWords = "keywords";
 			public const string MimeType = "mimetype";
+			public const string Mode = "mode";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
@@ -43,7 +44,9 @@ namespace DLaB.Xrm.Entities
 			public const string SalesLiteratureId = "salesliteratureid";
 			public const string SalesLiteratureItemId = "salesliteratureitemid";
 			public const string Id = "salesliteratureitemid";
+			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string Title = "title";
+			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
 			public const string lk_salesliteratureitem_createdonbehalfby = "lk_salesliteratureitem_createdonbehalfby";
 			public const string lk_salesliteratureitem_modifiedonbehalfby = "lk_salesliteratureitem_modifiedonbehalfby";
@@ -51,7 +54,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_salesliteratureitembase_modifiedby = "lk_salesliteratureitembase_modifiedby";
 			public const string sales_literature_items = "sales_literature_items";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -63,6 +65,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "salesliteratureitem";
+		
+		public const string PrimaryIdAttribute = "salesliteratureitemid";
+		
+		public const string PrimaryNameAttribute = "title";
 		
 		public const int EntityTypeCode = 1070;
 		
@@ -149,7 +155,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the user who created the document.
+		/// lk_salesliteratureitembase_createdby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
@@ -189,7 +195,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the delegate user who created the salesliteratureitem.
+		/// lk_salesliteratureitem_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
@@ -258,6 +264,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<int>>("filesize");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("FileSize");
+				this.SetAttributeValue("filesize", value);
+				this.OnPropertyChanged("FileSize");
 			}
 		}
 		
@@ -362,7 +375,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the user who last modified the document.
+		/// Defines the mode of the sales literature document attachment.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("mode")]
+		public string Mode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("mode");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Mode");
+				this.SetAttributeValue("mode", value);
+				this.OnPropertyChanged("Mode");
+			}
+		}
+		
+		/// <summary>
+		/// lk_salesliteratureitembase_modifiedby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
@@ -402,7 +435,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the delegate user who last modified the salesliteratureitem.
+		/// lk_salesliteratureitem_modifiedonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
@@ -455,7 +488,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the sales literature that is associated with the individual item.
+		/// sales_literature_items
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("salesliteratureid")]
 		public Microsoft.Xrm.Sdk.EntityReference SalesLiteratureId
@@ -518,6 +551,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timezoneruleversionnumber")]
+		public System.Nullable<int> TimeZoneRuleVersionNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timezoneruleversionnumber");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
+				this.SetAttributeValue("timezoneruleversionnumber", value);
+				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
+			}
+		}
+		
+		/// <summary>
 		/// Type the title or name that describes the document.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("title")]
@@ -534,6 +587,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Title");
 				this.SetAttributeValue("title", value);
 				this.OnPropertyChanged("Title");
+			}
+		}
+		
+		/// <summary>
+		/// Time zone code that was in use when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
+		public System.Nullable<int> UTCConversionTimeZoneCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("utcconversiontimezonecode");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("UTCConversionTimeZoneCode");
+				this.SetAttributeValue("utcconversiontimezonecode", value);
+				this.OnPropertyChanged("UTCConversionTimeZoneCode");
 			}
 		}
 		
@@ -591,6 +664,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N salesliteratureitem_MailboxTrackingFolders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("salesliteratureitem_MailboxTrackingFolders")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> salesliteratureitem_MailboxTrackingFolders
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("salesliteratureitem_MailboxTrackingFolders", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("salesliteratureitem_MailboxTrackingFolders");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("salesliteratureitem_MailboxTrackingFolders", null, value);
+				this.OnPropertyChanged("salesliteratureitem_MailboxTrackingFolders");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N salesliteratureitem_PrincipalObjectAttributeAccesses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("salesliteratureitem_PrincipalObjectAttributeAccesses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess> salesliteratureitem_PrincipalObjectAttributeAccesses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("salesliteratureitem_PrincipalObjectAttributeAccesses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("salesliteratureitem_PrincipalObjectAttributeAccesses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("salesliteratureitem_PrincipalObjectAttributeAccesses", null, value);
+				this.OnPropertyChanged("salesliteratureitem_PrincipalObjectAttributeAccesses");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N SalesLiteratureItem_ProcessSessions
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("SalesLiteratureItem_ProcessSessions")]
@@ -607,6 +720,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("SalesLiteratureItem_ProcessSessions");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProcessSession>("SalesLiteratureItem_ProcessSessions", null, value);
 				this.OnPropertyChanged("SalesLiteratureItem_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N salesliteratureitem_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("salesliteratureitem_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> salesliteratureitem_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("salesliteratureitem_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("salesliteratureitem_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("salesliteratureitem_SyncErrors", null, value);
+				this.OnPropertyChanged("salesliteratureitem_SyncErrors");
 			}
 		}
 		

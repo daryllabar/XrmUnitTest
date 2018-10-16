@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
 	public enum activitypointer_ActivityTypeCode
 	{
 		
@@ -19,7 +19,10 @@ namespace DLaB.Xrm.Entities
 		Appointment = 4201,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		BulkOperation = 4406,
+		Approval = 10034,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BookingAlert = 10009,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		CampaignActivity = 4402,
@@ -47,6 +50,9 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		PhoneCall = 4210,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		QuickCampaign = 4406,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		QuoteClose = 4211,

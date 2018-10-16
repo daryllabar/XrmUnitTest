@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("tracelog")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class TraceLog : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CanBeDeleted = "canbedeleted";
 			public const string CollationLevel = "collationlevel";
@@ -59,7 +59,6 @@ namespace DLaB.Xrm.Entities
 			public const string tracelog_Mailbox = "tracelog_Mailbox";
 			public const string Referencingtracelog_parent_tracelog = "tracelog_parent_tracelog";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -71,6 +70,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "tracelog";
+		
+		public const string PrimaryIdAttribute = "tracelogid";
+		
+		public const string PrimaryNameAttribute = "text";
 		
 		public const int EntityTypeCode = 8050;
 		

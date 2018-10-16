@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum ConvertRuleState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("convertrule")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ConvertRule : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AllowUnknownSender = "allowunknownsender";
 			public const string ChannelPropertyGroupId = "channelpropertygroupid";
@@ -84,7 +84,6 @@ namespace DLaB.Xrm.Entities
 			public const string user_convertrule = "user_convertrule";
 			public const string workflowid_convertrule = "workflowid_convertrule";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -96,6 +95,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "convertrule";
+		
+		public const string PrimaryIdAttribute = "convertruleid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9300;
 		
@@ -696,7 +699,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Identifies the CRM activity that's the source of the record.
+		/// Identifies the Dynamics 365 activity that's the source of the record.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sourcechanneltypecode")]
 		public string SourceChannelTypeCode

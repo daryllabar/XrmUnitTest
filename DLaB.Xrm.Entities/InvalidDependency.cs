@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("invaliddependency")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class InvalidDependency : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ExistingComponentId = "existingcomponentid";
 			public const string ExistingComponentType = "existingcomponenttype";
@@ -32,7 +32,6 @@ namespace DLaB.Xrm.Entities
 			public const string MissingComponentLookupType = "missingcomponentlookuptype";
 			public const string MissingComponentType = "missingcomponenttype";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -44,6 +43,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "invaliddependency";
+		
+		public const string PrimaryIdAttribute = "invaliddependencyid";
 		
 		public const int EntityTypeCode = 7107;
 		

@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("monthlyfiscalcalendar")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class MonthlyFiscalCalendar : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string BusinessUnitId = "businessunitid";
 			public const string CreatedBy = "createdby";
@@ -68,7 +68,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_monthlyfiscalcalendar_salespersonid = "lk_monthlyfiscalcalendar_salespersonid";
 			public const string transactioncurrency_monthlyfiscalcalendar = "transactioncurrency_monthlyfiscalcalendar";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -80,6 +79,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "monthlyfiscalcalendar";
+		
+		public const string PrimaryIdAttribute = "userfiscalcalendarid";
 		
 		public const int EntityTypeCode = 2003;
 		

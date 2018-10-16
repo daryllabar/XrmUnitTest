@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("entitlementtemplatechannel")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class EntitlementTemplateChannel : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string Channel = "channel";
 			public const string CreatedBy = "createdby";
@@ -49,7 +49,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_entitlementtemplatechannel_modifiedonbehalfby = "lk_entitlementtemplatechannel_modifiedonbehalfby";
 			public const string TransactionCurrency_entitlementtemplatechannel = "TransactionCurrency_entitlementtemplatechannel";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -61,6 +60,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "entitlementtemplatechannel";
+		
+		public const string PrimaryIdAttribute = "entitlementtemplatechannelid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9703;
 		
@@ -107,7 +110,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the user who created the record.
+		/// lk_entitlementtemplatechannel_createdby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
@@ -147,7 +150,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the delegate user who created the record.
+		/// lk_entitlementtemplatechannel_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
@@ -210,7 +213,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier for Entitlement Template associated with Entitlement Template Channel.
+		/// entitlementtemplate_entitlementchannel_entitlementtemplateid
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("entitlementtemplateid")]
 		public Microsoft.Xrm.Sdk.EntityReference EntitlementTemplateId
@@ -263,7 +266,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the user who modified the record.
+		/// lk_entitlementtemplatechannel_modifiedby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
@@ -303,7 +306,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the delegate user who modified the record.
+		/// lk_entitlementtemplatechannel_modifiedonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
@@ -343,7 +346,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the organization with which the entitlement template channel is associated.
+		/// entitlementtemplatechannel_organization
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("organizationid")]
 		public Microsoft.Xrm.Sdk.EntityReference OrganizationId
@@ -416,7 +419,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the currency associated with the incident.
+		/// TransactionCurrency_entitlementtemplatechannel
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("transactioncurrencyid")]
 		public Microsoft.Xrm.Sdk.EntityReference TransactionCurrencyId
@@ -465,6 +468,166 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N entitlementtemplatechannel_AsyncOperations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("entitlementtemplatechannel_AsyncOperations")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.AsyncOperation> entitlementtemplatechannel_AsyncOperations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.AsyncOperation>("entitlementtemplatechannel_AsyncOperations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("entitlementtemplatechannel_AsyncOperations");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.AsyncOperation>("entitlementtemplatechannel_AsyncOperations", null, value);
+				this.OnPropertyChanged("entitlementtemplatechannel_AsyncOperations");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N entitlementtemplatechannel_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("entitlementtemplatechannel_BulkDeleteFailures")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.BulkDeleteFailure> entitlementtemplatechannel_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.BulkDeleteFailure>("entitlementtemplatechannel_BulkDeleteFailures", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("entitlementtemplatechannel_BulkDeleteFailures");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.BulkDeleteFailure>("entitlementtemplatechannel_BulkDeleteFailures", null, value);
+				this.OnPropertyChanged("entitlementtemplatechannel_BulkDeleteFailures");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N entitlementtemplatechannel_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("entitlementtemplatechannel_connections1")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Connection> entitlementtemplatechannel_connections1
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Connection>("entitlementtemplatechannel_connections1", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("entitlementtemplatechannel_connections1");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Connection>("entitlementtemplatechannel_connections1", null, value);
+				this.OnPropertyChanged("entitlementtemplatechannel_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N entitlementtemplatechannel_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("entitlementtemplatechannel_connections2")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Connection> entitlementtemplatechannel_connections2
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Connection>("entitlementtemplatechannel_connections2", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("entitlementtemplatechannel_connections2");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Connection>("entitlementtemplatechannel_connections2", null, value);
+				this.OnPropertyChanged("entitlementtemplatechannel_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N entitlementtemplatechannel_MailboxTrackingFolders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("entitlementtemplatechannel_MailboxTrackingFolders")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> entitlementtemplatechannel_MailboxTrackingFolders
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("entitlementtemplatechannel_MailboxTrackingFolders", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("entitlementtemplatechannel_MailboxTrackingFolders");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("entitlementtemplatechannel_MailboxTrackingFolders", null, value);
+				this.OnPropertyChanged("entitlementtemplatechannel_MailboxTrackingFolders");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N entitlementtemplatechannel_PrincipalObjectAttributeAccesses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("entitlementtemplatechannel_PrincipalObjectAttributeAccesses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess> entitlementtemplatechannel_PrincipalObjectAttributeAccesses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("entitlementtemplatechannel_PrincipalObjectAttributeAccesses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("entitlementtemplatechannel_PrincipalObjectAttributeAccesses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("entitlementtemplatechannel_PrincipalObjectAttributeAccesses", null, value);
+				this.OnPropertyChanged("entitlementtemplatechannel_PrincipalObjectAttributeAccesses");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N entitlementtemplatechannel_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("entitlementtemplatechannel_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> entitlementtemplatechannel_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("entitlementtemplatechannel_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("entitlementtemplatechannel_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("entitlementtemplatechannel_SyncErrors", null, value);
+				this.OnPropertyChanged("entitlementtemplatechannel_SyncErrors");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N entitlementtemplatechannel_UserEntityInstanceDatas
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("entitlementtemplatechannel_UserEntityInstanceDatas")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.UserEntityInstanceData> entitlementtemplatechannel_UserEntityInstanceDatas
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.UserEntityInstanceData>("entitlementtemplatechannel_UserEntityInstanceDatas", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("entitlementtemplatechannel_UserEntityInstanceDatas");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.UserEntityInstanceData>("entitlementtemplatechannel_UserEntityInstanceDatas", null, value);
+				this.OnPropertyChanged("entitlementtemplatechannel_UserEntityInstanceDatas");
 			}
 		}
 		

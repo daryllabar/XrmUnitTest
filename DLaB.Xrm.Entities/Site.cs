@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("site")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Site : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string Address1_AddressId = "address1_addressid";
 			public const string Address1_AddressTypeCode = "address1_addresstypecode";
@@ -77,6 +77,8 @@ namespace DLaB.Xrm.Entities
 			public const string SiteId = "siteid";
 			public const string Id = "siteid";
 			public const string TimeZoneCode = "timezonecode";
+			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
+			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
 			public const string lk_site_createdonbehalfby = "lk_site_createdonbehalfby";
 			public const string lk_site_modifiedonbehalfby = "lk_site_modifiedonbehalfby";
@@ -84,7 +86,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_sitebase_modifiedby = "lk_sitebase_modifiedby";
 			public const string organization_sites = "organization_sites";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -96,6 +97,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "site";
+		
+		public const string PrimaryIdAttribute = "siteid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 4009;
 		
@@ -962,7 +967,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the user who created the site.
+		/// lk_sitebase_createdby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
@@ -1002,7 +1007,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the delegate user who created the site.
+		/// lk_site_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
@@ -1062,7 +1067,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the user who last modified the site.
+		/// lk_sitebase_modifiedby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
@@ -1102,7 +1107,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the delegate user who last modified the site.
+		/// lk_site_modifiedonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
@@ -1142,7 +1147,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the organization with which the site is associated.
+		/// organization_sites
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("organizationid")]
 		public System.Nullable<System.Guid> OrganizationId
@@ -1238,6 +1243,46 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timezoneruleversionnumber")]
+		public System.Nullable<int> TimeZoneRuleVersionNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timezoneruleversionnumber");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
+				this.SetAttributeValue("timezoneruleversionnumber", value);
+				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Time zone code that was in use when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
+		public System.Nullable<int> UTCConversionTimeZoneCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("utcconversiontimezonecode");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("UTCConversionTimeZoneCode");
+				this.SetAttributeValue("utcconversiontimezonecode", value);
+				this.OnPropertyChanged("UTCConversionTimeZoneCode");
+			}
+		}
+		
+		/// <summary>
 		/// Version number of the site.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
@@ -1247,6 +1292,46 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N site_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_ActivityPointers")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActivityPointer> site_ActivityPointers
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ActivityPointer>("site_ActivityPointers", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_ActivityPointers");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ActivityPointer>("site_ActivityPointers", null, value);
+				this.OnPropertyChanged("site_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N site_Appointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_Appointments")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Appointment> site_Appointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Appointment>("site_Appointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_Appointments");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Appointment>("site_Appointments", null, value);
+				this.OnPropertyChanged("site_Appointments");
 			}
 		}
 		
@@ -1291,6 +1376,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N site_Emails
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_Emails")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Email> site_Emails
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Email>("site_Emails", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_Emails");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Email>("site_Emails", null, value);
+				this.OnPropertyChanged("site_Emails");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N site_equipment
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_equipment")]
@@ -1311,6 +1416,186 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N site_Faxes
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_Faxes")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Fax> site_Faxes
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Fax>("site_Faxes", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_Faxes");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Fax>("site_Faxes", null, value);
+				this.OnPropertyChanged("site_Faxes");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N site_Letters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_Letters")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Letter> site_Letters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Letter>("site_Letters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_Letters");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Letter>("site_Letters", null, value);
+				this.OnPropertyChanged("site_Letters");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N site_MailboxTrackingFolders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_MailboxTrackingFolders")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.MailboxTrackingFolder> site_MailboxTrackingFolders
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("site_MailboxTrackingFolders", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_MailboxTrackingFolders");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.MailboxTrackingFolder>("site_MailboxTrackingFolders", null, value);
+				this.OnPropertyChanged("site_MailboxTrackingFolders");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N site_msdyn_approvals
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_msdyn_approvals")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_approval> site_msdyn_approvals
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("site_msdyn_approvals", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_msdyn_approvals");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("site_msdyn_approvals", null, value);
+				this.OnPropertyChanged("site_msdyn_approvals");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N site_msdyn_bookingalerts
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_msdyn_bookingalerts")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bookingalert> site_msdyn_bookingalerts
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("site_msdyn_bookingalerts", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_msdyn_bookingalerts");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("site_msdyn_bookingalerts", null, value);
+				this.OnPropertyChanged("site_msdyn_bookingalerts");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N site_OpportunityCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_OpportunityCloses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OpportunityClose> site_OpportunityCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OpportunityClose>("site_OpportunityCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_OpportunityCloses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OpportunityClose>("site_OpportunityCloses", null, value);
+				this.OnPropertyChanged("site_OpportunityCloses");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N site_OrderCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_OrderCloses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OrderClose> site_OrderCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OrderClose>("site_OrderCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_OrderCloses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OrderClose>("site_OrderCloses", null, value);
+				this.OnPropertyChanged("site_OrderCloses");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N site_PhoneCalls
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_PhoneCalls")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PhoneCall> site_PhoneCalls
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PhoneCall>("site_PhoneCalls", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_PhoneCalls");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PhoneCall>("site_PhoneCalls", null, value);
+				this.OnPropertyChanged("site_PhoneCalls");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N site_PrincipalObjectAttributeAccesses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_PrincipalObjectAttributeAccesses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess> site_PrincipalObjectAttributeAccesses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("site_PrincipalObjectAttributeAccesses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_PrincipalObjectAttributeAccesses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess>("site_PrincipalObjectAttributeAccesses", null, value);
+				this.OnPropertyChanged("site_PrincipalObjectAttributeAccesses");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N Site_ProcessSessions
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Site_ProcessSessions")]
@@ -1327,6 +1612,46 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Site_ProcessSessions");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProcessSession>("Site_ProcessSessions", null, value);
 				this.OnPropertyChanged("Site_ProcessSessions");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N site_QuoteCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_QuoteCloses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.QuoteClose> site_QuoteCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("site_QuoteCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_QuoteCloses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("site_QuoteCloses", null, value);
+				this.OnPropertyChanged("site_QuoteCloses");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N site_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_RecurringAppointmentMasters")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.RecurringAppointmentMaster> site_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.RecurringAppointmentMaster>("site_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_RecurringAppointmentMasters");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.RecurringAppointmentMaster>("site_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("site_RecurringAppointmentMasters");
 			}
 		}
 		
@@ -1371,6 +1696,66 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N site_ServiceAppointments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_ServiceAppointments")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ServiceAppointment> site_ServiceAppointments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ServiceAppointment>("site_ServiceAppointments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_ServiceAppointments");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ServiceAppointment>("site_ServiceAppointments", null, value);
+				this.OnPropertyChanged("site_ServiceAppointments");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N site_SocialActivities
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_SocialActivities")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SocialActivity> site_SocialActivities
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SocialActivity>("site_SocialActivities", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_SocialActivities");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SocialActivity>("site_SocialActivities", null, value);
+				this.OnPropertyChanged("site_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Site_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Site_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Site_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Site_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Site_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Site_SyncErrors", null, value);
+				this.OnPropertyChanged("Site_SyncErrors");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N site_system_users
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_system_users")]
@@ -1387,6 +1772,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("site_system_users");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.SystemUser>("site_system_users", null, value);
 				this.OnPropertyChanged("site_system_users");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N site_Tasks
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_Tasks")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Task> site_Tasks
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Task>("site_Tasks", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_Tasks");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Task>("site_Tasks", null, value);
+				this.OnPropertyChanged("site_Tasks");
 			}
 		}
 		

@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("mailboxstatistics")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class MailboxStatistics : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AsyncEventId = "asynceventid";
 			public const string CrmItemsBacklog = "crmitemsbacklog";
@@ -41,7 +41,6 @@ namespace DLaB.Xrm.Entities
 			public const string mailbox_mailboxstatistics = "mailbox_mailboxstatistics";
 			public const string organization_mailboxstatistics = "organization_mailboxstatistics";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -53,6 +52,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "mailboxstatistics";
+		
+		public const string PrimaryIdAttribute = "mailboxstatisticsid";
 		
 		public const int EntityTypeCode = 9607;
 		

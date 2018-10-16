@@ -15,13 +15,14 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("customcontroldefaultconfig")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class CustomControlDefaultConfig : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ComponentState = "componentstate";
+			public const string ControlDescriptionJson = "controldescriptionjson";
 			public const string ControlDescriptionXML = "controldescriptionxml";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
@@ -29,6 +30,7 @@ namespace DLaB.Xrm.Entities
 			public const string CustomControlDefaultConfigId = "customcontroldefaultconfigid";
 			public const string Id = "customcontroldefaultconfigid";
 			public const string CustomControlDefaultConfigIdUnique = "customcontroldefaultconfigidunique";
+			public const string EventsXml = "eventsxml";
 			public const string IntroducedVersion = "introducedversion";
 			public const string IsManaged = "ismanaged";
 			public const string ModifiedBy = "modifiedby";
@@ -45,7 +47,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_customcontroldefaultconfig_modifiedby = "lk_customcontroldefaultconfig_modifiedby";
 			public const string lk_customcontroldefaultconfig_modifiedonbehalfby = "lk_customcontroldefaultconfig_modifiedonbehalfby";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -57,6 +58,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "customcontroldefaultconfig";
+		
+		public const string PrimaryIdAttribute = "customcontroldefaultconfigid";
 		
 		public const int EntityTypeCode = 9755;
 		
@@ -92,6 +95,26 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("componentstate");
+			}
+		}
+		
+		/// <summary>
+		/// Custom control configuration data in JSON format.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("controldescriptionjson")]
+		public string ControlDescriptionJson
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("controldescriptionjson");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ControlDescriptionJson");
+				this.SetAttributeValue("controldescriptionjson", value);
+				this.OnPropertyChanged("ControlDescriptionJson");
 			}
 		}
 		
@@ -176,7 +199,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the Custom Control Default Config for the Microsoft Dynamics CRM.
+		/// Unique identifier of the Custom Control Default Config for the Microsoft Dynamics 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("customcontroldefaultconfigid")]
 		public System.Nullable<System.Guid> CustomControlDefaultConfigId
@@ -228,6 +251,26 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("customcontroldefaultconfigidunique");
+			}
+		}
+		
+		/// <summary>
+		/// The events XML of the custom control default config.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("eventsxml")]
+		public string EventsXml
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("eventsxml");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("EventsXml");
+				this.SetAttributeValue("eventsxml", value);
+				this.OnPropertyChanged("EventsXml");
 			}
 		}
 		

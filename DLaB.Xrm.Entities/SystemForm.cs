@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("systemform")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class SystemForm : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AncestorFormId = "ancestorformid";
 			public const string CanBeDeleted = "canbedeleted";
@@ -29,6 +29,7 @@ namespace DLaB.Xrm.Entities
 			public const string FormId = "formid";
 			public const string Id = "formid";
 			public const string FormIdUnique = "formidunique";
+			public const string FormJson = "formjson";
 			public const string FormPresentation = "formpresentation";
 			public const string FormXml = "formxml";
 			public const string IntroducedVersion = "introducedversion";
@@ -51,7 +52,6 @@ namespace DLaB.Xrm.Entities
 			public const string Referencingform_ancestor_form = "form_ancestor_form";
 			public const string organization_systemforms = "organization_systemforms";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -63,6 +63,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "systemform";
+		
+		public const string PrimaryIdAttribute = "formid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 1030;
 		
@@ -225,7 +229,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the form used when synchronizing customizations for the Microsoft Dynamics CRM client for Outlook.
+		/// Unique identifier of the form used when synchronizing customizations for the Microsoft Dynamics 365 client for Outlook.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("formidunique")]
 		public System.Nullable<System.Guid> FormIdUnique
@@ -234,6 +238,26 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("formidunique");
+			}
+		}
+		
+		/// <summary>
+		/// Json representation of the form layout.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("formjson")]
+		public string FormJson
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("formjson");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("FormJson");
+				this.SetAttributeValue("formjson", value);
+				this.OnPropertyChanged("FormJson");
 			}
 		}
 		
@@ -563,7 +587,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Represents a version of customizations to be synchronized with the Microsoft Dynamics CRM client for Outlook.
+		/// Represents a version of customizations to be synchronized with the Microsoft Dynamics 365 client for Outlook.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
 		public System.Nullable<long> VersionNumber

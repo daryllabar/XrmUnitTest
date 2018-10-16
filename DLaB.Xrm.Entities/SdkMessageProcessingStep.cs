@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum SdkMessageProcessingStepState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("sdkmessageprocessingstep")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class SdkMessageProcessingStep : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AsyncAutoDelete = "asyncautodelete";
 			public const string CanUseReadOnlyConnection = "canusereadonlyconnection";
@@ -42,6 +42,7 @@ namespace DLaB.Xrm.Entities
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string CustomizationLevel = "customizationlevel";
 			public const string Description = "description";
+			public const string EventExpander = "eventexpander";
 			public const string EventHandler = "eventhandler";
 			public const string FilteringAttributes = "filteringattributes";
 			public const string ImpersonatingUserId = "impersonatinguserid";
@@ -84,7 +85,6 @@ namespace DLaB.Xrm.Entities
 			public const string sdkmessageprocessingstepsecureconfigid_sdkmessageprocessingstep = "sdkmessageprocessingstepsecureconfigid_sdkmessageprocessingstep";
 			public const string serviceendpoint_sdkmessageprocessingstep = "serviceendpoint_sdkmessageprocessingstep";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -96,6 +96,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "sdkmessageprocessingstep";
+		
+		public const string PrimaryIdAttribute = "sdkmessageprocessingstepid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 4608;
 		
@@ -284,6 +288,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Description");
 				this.SetAttributeValue("description", value);
 				this.OnPropertyChanged("Description");
+			}
+		}
+		
+		/// <summary>
+		/// Configuration for sending pipeline events to the Event Expander service.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("eventexpander")]
+		public string EventExpander
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("eventexpander");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("EventExpander");
+				this.SetAttributeValue("eventexpander", value);
+				this.OnPropertyChanged("EventExpander");
 			}
 		}
 		

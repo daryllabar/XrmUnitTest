@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
 	public enum QueueItem_ObjectTypeCode
 	{
 		
@@ -19,7 +19,25 @@ namespace DLaB.Xrm.Entities
 		Activity = 4200,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AgreementBookingDate = 10110,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AgreementBookingSetup = 10115,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AgreementInvoiceDate = 10116,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AgreementInvoiceSetup = 10118,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Appointment = 4201,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Approval = 10034,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BookingAlert = 10009,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		CampaignActivity = 4402,
@@ -37,6 +55,12 @@ namespace DLaB.Xrm.Entities
 		Fax = 4204,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		InventoryAdjustment = 10135,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		InventoryTransfer = 10138,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		KnowledgeArticle = 9953,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -46,10 +70,19 @@ namespace DLaB.Xrm.Entities
 		PhoneCall = 4210,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Project = 10071,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectTask = 10076,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		QuickCampaign = 4406,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		RecurringAppointment = 4251,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ResourceRequest = 10093,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ServiceActivity = 4214,
@@ -59,5 +92,23 @@ namespace DLaB.Xrm.Entities
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Task = 4212,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		TimeGroup = 10029,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		TimeGroupDetail = 10030,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		WorkOrder = 10178,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		WorkOrderIncident = 10181,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		WorkOrderService = 10184,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		WorkOrderServiceTask = 10185,
 	}
 }

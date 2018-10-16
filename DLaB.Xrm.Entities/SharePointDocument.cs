@@ -11,15 +11,15 @@ namespace DLaB.Xrm.Entities
 {
 	
 	/// <summary>
-	/// Document libraries or folders on a SharePoint server from where documents can be managed in Microsoft Dynamics CRM.
+	/// Document libraries or folders on a SharePoint server from where documents can be managed in Microsoft Dynamics 365.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("sharepointdocument")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class SharePointDocument : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AbsoluteUrl = "absoluteurl";
 			public const string AppCreatedBy = "appcreatedby";
@@ -49,6 +49,7 @@ namespace DLaB.Xrm.Entities
 			public const string IsFolder = "isfolder";
 			public const string IsRecursiveFetch = "isrecursivefetch";
 			public const string LocationId = "locationid";
+			public const string LocationName = "locationname";
 			public const string Modified = "modified";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
@@ -72,12 +73,41 @@ namespace DLaB.Xrm.Entities
 			public const string Account_SharepointDocument = "Account_SharepointDocument";
 			public const string business_unit_sharepointdocument = "business_unit_sharepointdocument";
 			public const string business_unit_sharepointdocument2 = "business_unit_sharepointdocument2";
+			public const string category_SharePointDocuments = "category_SharePointDocuments";
 			public const string KbArticle_SharepointDocument = "KbArticle_SharepointDocument";
+			public const string knowledgearticle_SharePointDocuments = "knowledgearticle_SharePointDocuments";
 			public const string Lead_SharepointDocument = "Lead_SharepointDocument";
 			public const string lk_sharepointdocumentbase_createdby = "lk_sharepointdocumentbase_createdby";
 			public const string lk_sharepointdocumentbase_createdonbehalfby = "lk_sharepointdocumentbase_createdonbehalfby";
 			public const string lk_sharepointdocumentbase_modifiedby = "lk_sharepointdocumentbase_modifiedby";
 			public const string lk_sharepointdocumentbase_modifiedonbehalfby = "lk_sharepointdocumentbase_modifiedonbehalfby";
+			public const string msdyn_agreement_SharePointDocuments = "msdyn_agreement_SharePointDocuments";
+			public const string msdyn_agreementbookingdate_SharePointDocuments = "msdyn_agreementbookingdate_SharePointDocuments";
+			public const string msdyn_agreementbookingsetup_SharePointDocuments = "msdyn_agreementbookingsetup_SharePointDocuments";
+			public const string msdyn_agreementinvoicedate_SharePointDocuments = "msdyn_agreementinvoicedate_SharePointDocuments";
+			public const string msdyn_agreementinvoicesetup_SharePointDocuments = "msdyn_agreementinvoicesetup_SharePointDocuments";
+			public const string msdyn_bookingtimestamp_SharePointDocuments = "msdyn_bookingtimestamp_SharePointDocuments";
+			public const string msdyn_expense_SharePointDocuments = "msdyn_expense_SharePointDocuments";
+			public const string msdyn_incidenttypeproduct_SharePointDocuments = "msdyn_incidenttypeproduct_SharePointDocuments";
+			public const string msdyn_inventoryadjustment_SharePointDocuments = "msdyn_inventoryadjustment_SharePointDocuments";
+			public const string msdyn_inventoryadjustmentproduct_SharePointDocuments = "msdyn_inventoryadjustmentproduct_SharePointDocuments";
+			public const string msdyn_inventorytransfer_SharePointDocuments = "msdyn_inventorytransfer_SharePointDocuments";
+			public const string msdyn_project_SharePointDocuments = "msdyn_project_SharePointDocuments";
+			public const string msdyn_purchaseorder_SharePointDocuments = "msdyn_purchaseorder_SharePointDocuments";
+			public const string msdyn_purchaseorderproduct_SharePointDocuments = "msdyn_purchaseorderproduct_SharePointDocuments";
+			public const string msdyn_purchaseorderreceipt_SharePointDocuments = "msdyn_purchaseorderreceipt_SharePointDocuments";
+			public const string msdyn_resourceterritory_SharePointDocuments = "msdyn_resourceterritory_SharePointDocuments";
+			public const string msdyn_rma_SharePointDocuments = "msdyn_rma_SharePointDocuments";
+			public const string msdyn_rmareceipt_SharePointDocuments = "msdyn_rmareceipt_SharePointDocuments";
+			public const string msdyn_rtv_SharePointDocuments = "msdyn_rtv_SharePointDocuments";
+			public const string msdyn_timegroup_SharePointDocuments = "msdyn_timegroup_SharePointDocuments";
+			public const string msdyn_timegroupdetail_SharePointDocuments = "msdyn_timegroupdetail_SharePointDocuments";
+			public const string msdyn_warehouse_SharePointDocuments = "msdyn_warehouse_SharePointDocuments";
+			public const string msdyn_workorder_SharePointDocuments = "msdyn_workorder_SharePointDocuments";
+			public const string msdyn_workorderincident_SharePointDocuments = "msdyn_workorderincident_SharePointDocuments";
+			public const string msdyn_workorderproduct_SharePointDocuments = "msdyn_workorderproduct_SharePointDocuments";
+			public const string msdyn_workorderservice_SharePointDocuments = "msdyn_workorderservice_SharePointDocuments";
+			public const string msdyn_workorderservicetask_SharePointDocuments = "msdyn_workorderservicetask_SharePointDocuments";
 			public const string Opportunity_SharepointDocument = "Opportunity_SharepointDocument";
 			public const string organization_sharepointdocument = "organization_sharepointdocument";
 			public const string Product_SharepointDocument = "Product_SharepointDocument";
@@ -85,7 +115,6 @@ namespace DLaB.Xrm.Entities
 			public const string SalesLiterature_SharepointDocument = "SalesLiterature_SharepointDocument";
 			public const string TransactionCurrency_SharePointDocument = "TransactionCurrency_SharePointDocument";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -97,6 +126,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "sharepointdocument";
+		
+		public const string PrimaryIdAttribute = "sharepointdocumentid";
+		
+		public const string PrimaryNameAttribute = "fullname";
 		
 		public const int EntityTypeCode = 9507;
 		
@@ -313,7 +346,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -522,7 +555,20 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the SharePoint document was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Name of the associated document location.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("locationname")]
+		public string LocationName
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("locationname");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the date and time when the SharePoint document was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modified")]
 		public System.Nullable<System.DateTime> Modified
@@ -555,7 +601,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -701,7 +747,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the parent record that the SharePoint document record is associated with.
+		/// SalesLiterature_SharepointDocument
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
 		public Microsoft.Xrm.Sdk.EntityReference RegardingObjectId
@@ -945,6 +991,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 category_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("category_SharePointDocuments")]
+		public DLaB.Xrm.Entities.Category category_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Category>("category_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("category_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Category>("category_SharePointDocuments", null, value);
+				this.OnPropertyChanged("category_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 KbArticle_SharepointDocument
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -962,6 +1029,27 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("KbArticle_SharepointDocument");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.KbArticle>("KbArticle_SharepointDocument", null, value);
 				this.OnPropertyChanged("KbArticle_SharepointDocument");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 knowledgearticle_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticle_SharePointDocuments")]
+		public DLaB.Xrm.Entities.KnowledgeArticle knowledgearticle_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("knowledgearticle_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("knowledgearticle_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticle>("knowledgearticle_SharePointDocuments", null, value);
+				this.OnPropertyChanged("knowledgearticle_SharePointDocuments");
 			}
 		}
 		
@@ -1067,6 +1155,573 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("lk_sharepointdocumentbase_modifiedonbehalfby");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.SystemUser>("lk_sharepointdocumentbase_modifiedonbehalfby", null, value);
 				this.OnPropertyChanged("lk_sharepointdocumentbase_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreement_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreement_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_agreement msdyn_agreement_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreement_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_agreement_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingdate_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingdate_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingdate msdyn_agreementbookingdate_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingdate_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingdate_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingsetup_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingsetup_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingsetup msdyn_agreementbookingsetup_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingsetup_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingsetup_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicedate_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicedate_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicedate msdyn_agreementinvoicedate_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoicedate_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoicedate_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicesetup_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicesetup_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicesetup msdyn_agreementinvoicesetup_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoicesetup_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoicesetup_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingtimestamp_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingtimestamp_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_bookingtimestamp msdyn_bookingtimestamp_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingtimestamp_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_bookingtimestamp_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_expense_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_expense_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_expense msdyn_expense_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_expense>("msdyn_expense_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_expense_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_expense>("msdyn_expense_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_expense_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeproduct_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeproduct_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeproduct msdyn_incidenttypeproduct_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypeproduct_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypeproduct_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustment_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustment_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustment msdyn_inventoryadjustment_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryadjustment_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_inventoryadjustment_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustmentproduct_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustmentproduct_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct msdyn_inventoryadjustmentproduct_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryadjustmentproduct_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_inventoryadjustmentproduct_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventorytransfer_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventorytransfer_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_inventorytransfer msdyn_inventorytransfer_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventorytransfer_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_inventorytransfer_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_project_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_project_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_project msdyn_project_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_project>("msdyn_project_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_project_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_project>("msdyn_project_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_project_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorder_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorder_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorder msdyn_purchaseorder_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorder_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorder_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderproduct_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderproduct_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderproduct msdyn_purchaseorderproduct_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_purchaseorderproduct_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderproduct_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_purchaseorderproduct_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderproduct_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceipt_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceipt_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceipt msdyn_purchaseorderreceipt_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderreceipt_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderreceipt_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourceterritory_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourceterritory_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_resourceterritory msdyn_resourceterritory_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_resourceterritory_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_resourceterritory_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rma_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rma_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_rma msdyn_rma_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rma_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_rma_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceipt_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceipt_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_rmareceipt msdyn_rmareceipt_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmareceipt_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_rmareceipt_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtv_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtv_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_rtv msdyn_rtv_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtv_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_rtv_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroup_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroup_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_timegroup msdyn_timegroup_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timegroup_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_timegroup_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroupdetail_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroupdetail_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_timegroupdetail msdyn_timegroupdetail_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timegroupdetail_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_timegroupdetail_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_warehouse_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_warehouse_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_warehouse msdyn_warehouse_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_warehouse_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_warehouse_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorder_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorder_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_workorder msdyn_workorder_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorder_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_workorder_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderincident_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderincident_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_workorderincident msdyn_workorderincident_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderincident_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_workorderincident_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderproduct_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderproduct_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_workorderproduct msdyn_workorderproduct_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_workorderproduct_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderproduct_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_workorderproduct_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_workorderproduct_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservice_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservice_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_workorderservice msdyn_workorderservice_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderservice_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_workorderservice_SharePointDocuments");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservicetask_SharePointDocuments
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservicetask_SharePointDocuments")]
+		public DLaB.Xrm.Entities.msdyn_workorderservicetask msdyn_workorderservicetask_SharePointDocuments
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_SharePointDocuments", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderservicetask_SharePointDocuments");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_SharePointDocuments", null, value);
+				this.OnPropertyChanged("msdyn_workorderservicetask_SharePointDocuments");
 			}
 		}
 		

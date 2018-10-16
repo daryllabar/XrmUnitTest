@@ -11,12 +11,18 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
 	public enum ConvertRule_ChannelActivity
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Appointment = 4201,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Approval = 10034,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BookingAlert = 10009,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Email = 4202,

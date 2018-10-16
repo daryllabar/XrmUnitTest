@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("exchangesyncidmapping")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ExchangeSyncIdMapping : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CreatedOn = "createdon";
 			public const string ExchangeEntryId = "exchangeentryid";
@@ -28,6 +28,7 @@ namespace DLaB.Xrm.Entities
 			public const string FromCrmChangeType = "fromcrmchangetype";
 			public const string IsDeletedInExchange = "isdeletedinexchange";
 			public const string IsUnlinkedInCRM = "isunlinkedincrm";
+			public const string ItemSubject = "itemsubject";
 			public const string LastSyncError = "lastsyncerror";
 			public const string LastSyncErrorCode = "lastsyncerrorcode";
 			public const string LastSyncErrorOccurredOn = "lastsyncerroroccurredon";
@@ -46,7 +47,6 @@ namespace DLaB.Xrm.Entities
 			public const string team_exchangesyncidmapping = "team_exchangesyncidmapping";
 			public const string user_exchangesyncidmapping = "user_exchangesyncidmapping";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -58,6 +58,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "exchangesyncidmapping";
+		
+		public const string PrimaryIdAttribute = "exchangesyncidmappingid";
 		
 		public const int EntityTypeCode = 4120;
 		
@@ -84,7 +86,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -229,6 +231,26 @@ namespace DLaB.Xrm.Entities
 		/// <summary>
 		/// 
 		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("itemsubject")]
+		public string ItemSubject
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("itemsubject");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ItemSubject");
+				this.SetAttributeValue("itemsubject", value);
+				this.OnPropertyChanged("ItemSubject");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lastsyncerror")]
 		public string LastSyncError
 		{
@@ -287,7 +309,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn

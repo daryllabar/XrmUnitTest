@@ -15,21 +15,24 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("sdkmessage")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class SdkMessage : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AutoTransact = "autotransact";
 			public const string Availability = "availability";
 			public const string CategoryName = "categoryname";
+			public const string ComponentState = "componentstate";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string CustomizationLevel = "customizationlevel";
 			public const string Expand = "expand";
+			public const string IntroducedVersion = "introducedversion";
 			public const string IsActive = "isactive";
+			public const string IsManaged = "ismanaged";
 			public const string IsPrivate = "isprivate";
 			public const string IsReadOnly = "isreadonly";
 			public const string IsValidForExecuteAsync = "isvalidforexecuteasync";
@@ -38,9 +41,11 @@ namespace DLaB.Xrm.Entities
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string Name = "name";
 			public const string OrganizationId = "organizationid";
+			public const string OverwriteTime = "overwritetime";
 			public const string SdkMessageId = "sdkmessageid";
 			public const string Id = "sdkmessageid";
 			public const string SdkMessageIdUnique = "sdkmessageidunique";
+			public const string SolutionId = "solutionid";
 			public const string Template = "template";
 			public const string ThrottleSettings = "throttlesettings";
 			public const string VersionNumber = "versionnumber";
@@ -51,7 +56,6 @@ namespace DLaB.Xrm.Entities
 			public const string modifiedby_sdkmessage = "modifiedby_sdkmessage";
 			public const string organization_sdkmessage = "organization_sdkmessage";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -63,6 +67,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "sdkmessage";
+		
+		public const string PrimaryIdAttribute = "sdkmessageid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 4606;
 		
@@ -145,6 +153,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("CategoryName");
 				this.SetAttributeValue("categoryname", value);
 				this.OnPropertyChanged("CategoryName");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
+		public Microsoft.Xrm.Sdk.OptionSetValue ComponentState
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("componentstate");
 			}
 		}
 		
@@ -242,6 +263,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Version in which the component is introduced.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("introducedversion")]
+		public string IntroducedVersion
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("introducedversion");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IntroducedVersion");
+				this.SetAttributeValue("introducedversion", value);
+				this.OnPropertyChanged("IntroducedVersion");
+			}
+		}
+		
+		/// <summary>
 		/// Information about whether the SDK message is active.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isactive")]
@@ -258,6 +299,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("IsActive");
 				this.SetAttributeValue("isactive", value);
 				this.OnPropertyChanged("IsActive");
+			}
+		}
+		
+		/// <summary>
+		/// Information that specifies whether this component is managed.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ismanaged")]
+		public System.Nullable<bool> IsManaged
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("ismanaged");
 			}
 		}
 		
@@ -408,6 +462,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overwritetime")]
+		public System.Nullable<System.DateTime> OverwriteTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overwritetime");
+			}
+		}
+		
+		/// <summary>
 		/// Unique identifier of the SDK message entity.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sdkmessageid")]
@@ -460,6 +527,19 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.Guid>>("sdkmessageidunique");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the associated solution.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("solutionid")]
+		public System.Nullable<System.Guid> SolutionId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("solutionid");
 			}
 		}
 		
@@ -760,6 +840,16 @@ namespace DLaB.Xrm.Entities
                         break;
                 }
             }
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
+		public virtual ComponentState? ComponentStateEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+			}
 		}
 	}
 }

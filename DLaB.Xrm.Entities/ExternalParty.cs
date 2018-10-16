@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum ExternalPartyState
 	{
 		
@@ -23,15 +23,15 @@ namespace DLaB.Xrm.Entities
 	}
 	
 	/// <summary>
-	/// Information about external parties that need to access Dynamics CRM from external channels.For internal use only
+	/// Information about external parties that need to access Dynamics 365 from external channels.For internal use only
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("externalparty")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ExternalParty : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CorrelationKey = "correlationkey";
 			public const string CreatedBy = "createdby";
@@ -77,7 +77,6 @@ namespace DLaB.Xrm.Entities
 			public const string TransactionCurrency_ExternalParty = "TransactionCurrency_ExternalParty";
 			public const string user_externalparty = "user_externalparty";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -89,6 +88,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "externalparty";
+		
+		public const string PrimaryIdAttribute = "externalpartyid";
+		
+		public const string PrimaryNameAttribute = "fullname";
 		
 		public const int EntityTypeCode = 3008;
 		
@@ -271,7 +274,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the External Party used when synchronizing customizations for the Microsoft Dynamics CRM client for Outlook
+		/// Unique identifier of the External Party used when synchronizing customizations for the Microsoft Dynamics 365 client for Outlook
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("externalpartyidunique")]
 		public System.Nullable<System.Guid> ExternalPartyIdUnique
@@ -881,6 +884,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("externalparty_ProcessSession");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProcessSession>("externalparty_ProcessSession", null, value);
 				this.OnPropertyChanged("externalparty_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N ExternalParty_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ExternalParty_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> ExternalParty_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ExternalParty_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ExternalParty_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ExternalParty_SyncErrors", null, value);
+				this.OnPropertyChanged("ExternalParty_SyncErrors");
 			}
 		}
 		

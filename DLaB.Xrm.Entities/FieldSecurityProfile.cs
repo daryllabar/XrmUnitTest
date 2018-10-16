@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("fieldsecurityprofile")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class FieldSecurityProfile : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ComponentState = "componentstate";
 			public const string CreatedBy = "createdby";
@@ -43,8 +43,8 @@ namespace DLaB.Xrm.Entities
 			public const string lk_fieldsecurityprofile_modifiedby = "lk_fieldsecurityprofile_modifiedby";
 			public const string lk_fieldsecurityprofile_modifiedonbehalfby = "lk_fieldsecurityprofile_modifiedonbehalfby";
 			public const string lk_fieldsecurityprofile_organizationid = "lk_fieldsecurityprofile_organizationid";
+			public const string solution_fieldsecurityprofile = "solution_fieldsecurityprofile";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -56,6 +56,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "fieldsecurityprofile";
+		
+		public const string PrimaryIdAttribute = "fieldsecurityprofileid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 1200;
 		
@@ -376,6 +380,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N FieldSecurityProfile_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("FieldSecurityProfile_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> FieldSecurityProfile_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("FieldSecurityProfile_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("FieldSecurityProfile_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("FieldSecurityProfile_SyncErrors", null, value);
+				this.OnPropertyChanged("FieldSecurityProfile_SyncErrors");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N lk_fieldpermission_fieldsecurityprofileid
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_fieldpermission_fieldsecurityprofileid")]
@@ -550,6 +574,20 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Organization>("lk_fieldsecurityprofile_organizationid", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 solution_fieldsecurityprofile
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("solutionid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("solution_fieldsecurityprofile")]
+		public DLaB.Xrm.Entities.Solution solution_fieldsecurityprofile
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Solution>("solution_fieldsecurityprofile", null);
 			}
 		}
 		

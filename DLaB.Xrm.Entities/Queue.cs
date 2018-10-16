@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum QueueState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("queue")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Queue : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AllowEmailCredentials = "allowemailcredentials";
 			public const string BusinessUnitId = "businessunitid";
@@ -88,7 +88,6 @@ namespace DLaB.Xrm.Entities
 			public const string queue_primary_user = "queue_primary_user";
 			public const string TransactionCurrency_Queue = "TransactionCurrency_Queue";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -100,6 +99,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "queue";
+		
+		public const string PrimaryIdAttribute = "queueid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 2020;
 		
@@ -1201,6 +1204,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("queue_routingruleitem");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.RoutingRuleItem>("queue_routingruleitem", null, value);
 				this.OnPropertyChanged("queue_routingruleitem");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Queue_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Queue_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Queue_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Queue_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Queue_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Queue_SyncErrors", null, value);
+				this.OnPropertyChanged("Queue_SyncErrors");
 			}
 		}
 		

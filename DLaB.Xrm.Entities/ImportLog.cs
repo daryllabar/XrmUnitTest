@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum ImportLogState
 	{
 		
@@ -24,11 +24,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("importlog")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ImportLog : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AdditionalInfo = "additionalinfo";
 			public const string ColumnValue = "columnvalue";
@@ -63,7 +63,6 @@ namespace DLaB.Xrm.Entities
 			public const string SystemUser_ImportLogs = "SystemUser_ImportLogs";
 			public const string team_ImportLogs = "team_ImportLogs";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -75,6 +74,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "importlog";
+		
+		public const string PrimaryIdAttribute = "importlogid";
 		
 		public const int EntityTypeCode = 4423;
 		

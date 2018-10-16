@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("displaystring")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class DisplayString : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ComponentState = "componentstate";
 			public const string CreatedBy = "createdby";
@@ -48,7 +48,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_DisplayStringbase_modifiedonbehalfby = "lk_DisplayStringbase_modifiedonbehalfby";
 			public const string organization_custom_displaystrings = "organization_custom_displaystrings";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -60,6 +59,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "displaystring";
+		
+		public const string PrimaryIdAttribute = "displaystringid";
 		
 		public const int EntityTypeCode = 4102;
 		

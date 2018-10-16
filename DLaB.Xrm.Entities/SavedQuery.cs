@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum SavedQueryState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("savedquery")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class SavedQuery : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AdvancedGroupBy = "advancedgroupby";
 			public const string CanBeDeleted = "canbedeleted";
@@ -51,11 +51,13 @@ namespace DLaB.Xrm.Entities
 			public const string IsPrivate = "isprivate";
 			public const string IsQuickFindQuery = "isquickfindquery";
 			public const string IsUserDefined = "isuserdefined";
+			public const string LayoutJson = "layoutjson";
 			public const string LayoutXml = "layoutxml";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string Name = "name";
+			public const string OfflineSqlQuery = "offlinesqlquery";
 			public const string OrganizationId = "organizationid";
 			public const string OrganizationTabOrder = "organizationtaborder";
 			public const string OverwriteTime = "overwritetime";
@@ -76,7 +78,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_savedquerybase_modifiedby = "lk_savedquerybase_modifiedby";
 			public const string organization_saved_queries = "organization_saved_queries";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -88,6 +89,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "savedquery";
+		
+		public const string PrimaryIdAttribute = "savedqueryid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 1039;
 		
@@ -227,7 +232,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -440,6 +445,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Layout data in JSON format.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("layoutjson")]
+		public string LayoutJson
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("layoutjson");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("LayoutJson");
+				this.SetAttributeValue("layoutjson", value);
+				this.OnPropertyChanged("LayoutJson");
+			}
+		}
+		
+		/// <summary>
 		/// For internal use only.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("layoutxml")]
@@ -480,7 +505,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -536,6 +561,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Name");
 				this.SetAttributeValue("name", value);
 				this.OnPropertyChanged("Name");
+			}
+		}
+		
+		/// <summary>
+		/// String specifying the corresponding sql query for the fetch xml specified for offline use.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("offlinesqlquery")]
+		public string OfflineSqlQuery
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("offlinesqlquery");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("OfflineSqlQuery");
+				this.SetAttributeValue("offlinesqlquery", value);
+				this.OnPropertyChanged("OfflineSqlQuery");
 			}
 		}
 		
@@ -845,6 +890,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("SavedQuery_BulkDeleteFailures");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.BulkDeleteFailure>("SavedQuery_BulkDeleteFailures", null, value);
 				this.OnPropertyChanged("SavedQuery_BulkDeleteFailures");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N SavedQuery_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("SavedQuery_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> SavedQuery_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("SavedQuery_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SavedQuery_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("SavedQuery_SyncErrors", null, value);
+				this.OnPropertyChanged("SavedQuery_SyncErrors");
 			}
 		}
 		

@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DLaB.Xrm.Entities</id>
-	  <version>8.1.1-alpha01</version> 
+	  <version>9.0.0.3</version> 
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>

@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum WorkflowState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("workflow")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Workflow : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ActiveWorkflowId = "activeworkflowid";
 			public const string AsyncAutoDelete = "asyncautodelete";
@@ -87,6 +87,7 @@ namespace DLaB.Xrm.Entities
 			public const string TriggerOnDelete = "triggerondelete";
 			public const string TriggerOnUpdateAttributeList = "triggeronupdateattributelist";
 			public const string Type = "type";
+			public const string UIData = "uidata";
 			public const string UniqueName = "uniquename";
 			public const string UpdateStage = "updatestage";
 			public const string VersionNumber = "versionnumber";
@@ -104,7 +105,6 @@ namespace DLaB.Xrm.Entities
 			public const string workflow_modifiedonbehalfby = "workflow_modifiedonbehalfby";
 			public const string Referencingworkflow_parent_workflow = "workflow_parent_workflow";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -116,6 +116,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "workflow";
+		
+		public const string PrimaryIdAttribute = "workflowid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 4703;
 		
@@ -224,6 +228,13 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<string>("clientdata");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ClientData");
+				this.SetAttributeValue("clientdata", value);
+				this.OnPropertyChanged("ClientData");
 			}
 		}
 		
@@ -480,7 +491,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Indicates whether the process was created using the Microsoft Dynamics CRM Web application.
+		/// Indicates whether the process was created using the Microsoft Dynamics 365 Web application.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("iscrmuiworkflow")]
 		public System.Nullable<bool> IsCrmUIWorkflow
@@ -1146,6 +1157,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("uidata")]
+		public string UIData
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("uidata");
+			}
+		}
+		
+		/// <summary>
 		/// Unique name of the process
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("uniquename")]
@@ -1315,6 +1339,226 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N lk_expiredprocess_processid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_expiredprocess_processid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ExpiredProcess> lk_expiredprocess_processid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ExpiredProcess>("lk_expiredprocess_processid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_expiredprocess_processid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ExpiredProcess>("lk_expiredprocess_processid", null, value);
+				this.OnPropertyChanged("lk_expiredprocess_processid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_leadtoopportunitysalesprocess_processid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_leadtoopportunitysalesprocess_processid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.LeadToOpportunitySalesProcess> lk_leadtoopportunitysalesprocess_processid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.LeadToOpportunitySalesProcess>("lk_leadtoopportunitysalesprocess_processid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_leadtoopportunitysalesprocess_processid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.LeadToOpportunitySalesProcess>("lk_leadtoopportunitysalesprocess_processid", null, value);
+				this.OnPropertyChanged("lk_leadtoopportunitysalesprocess_processid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_processid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_processid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bpf_2c5fe86acc8b414b8322ae571000c799> lk_msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_processid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_2c5fe86acc8b414b8322ae571000c799>("lk_msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_processid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_processid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_2c5fe86acc8b414b8322ae571000c799>("lk_msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_processid", null, value);
+				this.OnPropertyChanged("lk_msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_processid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_msdyn_bpf_665e73aa18c247d886bfc50499c73b82_processid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msdyn_bpf_665e73aa18c247d886bfc50499c73b82_processid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bpf_665e73aa18c247d886bfc50499c73b82> lk_msdyn_bpf_665e73aa18c247d886bfc50499c73b82_processid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_665e73aa18c247d886bfc50499c73b82>("lk_msdyn_bpf_665e73aa18c247d886bfc50499c73b82_processid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_msdyn_bpf_665e73aa18c247d886bfc50499c73b82_processid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_665e73aa18c247d886bfc50499c73b82>("lk_msdyn_bpf_665e73aa18c247d886bfc50499c73b82_processid", null, value);
+				this.OnPropertyChanged("lk_msdyn_bpf_665e73aa18c247d886bfc50499c73b82_processid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_msdyn_bpf_989e9b1857e24af18787d5143b67523b_processid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msdyn_bpf_989e9b1857e24af18787d5143b67523b_processid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bpf_989e9b1857e24af18787d5143b67523b> lk_msdyn_bpf_989e9b1857e24af18787d5143b67523b_processid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_989e9b1857e24af18787d5143b67523b>("lk_msdyn_bpf_989e9b1857e24af18787d5143b67523b_processid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_msdyn_bpf_989e9b1857e24af18787d5143b67523b_processid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_989e9b1857e24af18787d5143b67523b>("lk_msdyn_bpf_989e9b1857e24af18787d5143b67523b_processid", null, value);
+				this.OnPropertyChanged("lk_msdyn_bpf_989e9b1857e24af18787d5143b67523b_processid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_processid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_processid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3> lk_msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_processid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3>("lk_msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_processid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_processid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3>("lk_msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_processid", null, value);
+				this.OnPropertyChanged("lk_msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_processid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_processid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_processid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39> lk_msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_processid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39>("lk_msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_processid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_processid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39>("lk_msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_processid", null, value);
+				this.OnPropertyChanged("lk_msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_processid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_processid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_processid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d> lk_msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_processid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d>("lk_msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_processid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_processid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d>("lk_msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_processid", null, value);
+				this.OnPropertyChanged("lk_msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_processid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_newprocess_processid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_newprocess_processid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.NewProcess> lk_newprocess_processid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.NewProcess>("lk_newprocess_processid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_newprocess_processid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.NewProcess>("lk_newprocess_processid", null, value);
+				this.OnPropertyChanged("lk_newprocess_processid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_opportunitysalesprocess_processid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_opportunitysalesprocess_processid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OpportunitySalesProcess> lk_opportunitysalesprocess_processid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OpportunitySalesProcess>("lk_opportunitysalesprocess_processid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_opportunitysalesprocess_processid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OpportunitySalesProcess>("lk_opportunitysalesprocess_processid", null, value);
+				this.OnPropertyChanged("lk_opportunitysalesprocess_processid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_phonetocaseprocess_processid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_phonetocaseprocess_processid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PhoneToCaseProcess> lk_phonetocaseprocess_processid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PhoneToCaseProcess>("lk_phonetocaseprocess_processid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_phonetocaseprocess_processid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PhoneToCaseProcess>("lk_phonetocaseprocess_processid", null, value);
+				this.OnPropertyChanged("lk_phonetocaseprocess_processid");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N lk_processsession_processid
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_processsession_processid")]
@@ -1331,6 +1575,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("lk_processsession_processid");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProcessSession>("lk_processsession_processid", null, value);
 				this.OnPropertyChanged("lk_processsession_processid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_translationprocess_processid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_translationprocess_processid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.TranslationProcess> lk_translationprocess_processid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.TranslationProcess>("lk_translationprocess_processid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_translationprocess_processid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.TranslationProcess>("lk_translationprocess_processid", null, value);
+				this.OnPropertyChanged("lk_translationprocess_processid");
 			}
 		}
 		
@@ -1531,6 +1795,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Workflow_routingrule");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.RoutingRule>("Workflow_routingrule", null, value);
 				this.OnPropertyChanged("Workflow_routingrule");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Workflow_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Workflow_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Workflow_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Workflow_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Workflow_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Workflow_SyncErrors", null, value);
+				this.OnPropertyChanged("Workflow_SyncErrors");
 			}
 		}
 		

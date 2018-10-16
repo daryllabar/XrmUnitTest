@@ -15,29 +15,35 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("sdkmessagefilter")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class SdkMessageFilter : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string Availability = "availability";
+			public const string ComponentState = "componentstate";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
 			public const string CustomizationLevel = "customizationlevel";
+			public const string IntroducedVersion = "introducedversion";
 			public const string IsCustomProcessingStepAllowed = "iscustomprocessingstepallowed";
+			public const string IsManaged = "ismanaged";
 			public const string IsVisible = "isvisible";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string OrganizationId = "organizationid";
+			public const string OverwriteTime = "overwritetime";
 			public const string PrimaryObjectTypeCode = "primaryobjecttypecode";
+			public const string RestrictionLevel = "restrictionlevel";
 			public const string SdkMessageFilterId = "sdkmessagefilterid";
 			public const string Id = "sdkmessagefilterid";
 			public const string SdkMessageFilterIdUnique = "sdkmessagefilteridunique";
 			public const string SdkMessageId = "sdkmessageid";
 			public const string SecondaryObjectTypeCode = "secondaryobjecttypecode";
+			public const string SolutionId = "solutionid";
 			public const string VersionNumber = "versionnumber";
 			public const string WorkflowSdkStepEnabled = "workflowsdkstepenabled";
 			public const string createdby_sdkmessagefilter = "createdby_sdkmessagefilter";
@@ -47,7 +53,6 @@ namespace DLaB.Xrm.Entities
 			public const string organization_sdkmessagefilter = "organization_sdkmessagefilter";
 			public const string sdkmessageid_sdkmessagefilter = "sdkmessageid_sdkmessagefilter";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -59,6 +64,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "sdkmessagefilter";
+		
+		public const string PrimaryIdAttribute = "sdkmessagefilterid";
 		
 		public const int EntityTypeCode = 4607;
 		
@@ -101,6 +108,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Availability");
 				this.SetAttributeValue("availability", value);
 				this.OnPropertyChanged("Availability");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
+		public Microsoft.Xrm.Sdk.OptionSetValue ComponentState
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("componentstate");
 			}
 		}
 		
@@ -178,6 +198,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Version in which the component is introduced.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("introducedversion")]
+		public string IntroducedVersion
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("introducedversion");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("IntroducedVersion");
+				this.SetAttributeValue("introducedversion", value);
+				this.OnPropertyChanged("IntroducedVersion");
+			}
+		}
+		
+		/// <summary>
 		/// Indicates whether a custom SDK message processing step is allowed.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("iscustomprocessingstepallowed")]
@@ -194,6 +234,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("IsCustomProcessingStepAllowed");
 				this.SetAttributeValue("iscustomprocessingstepallowed", value);
 				this.OnPropertyChanged("IsCustomProcessingStepAllowed");
+			}
+		}
+		
+		/// <summary>
+		/// Information that specifies whether this component is managed.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ismanaged")]
+		public System.Nullable<bool> IsManaged
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("ismanaged");
 			}
 		}
 		
@@ -284,6 +337,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overwritetime")]
+		public System.Nullable<System.DateTime> OverwriteTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overwritetime");
+			}
+		}
+		
+		/// <summary>
 		/// Type of entity with which the SDK message filter is primarily associated.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("primaryobjecttypecode")]
@@ -293,6 +359,26 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<string>("primaryobjecttypecode");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("restrictionlevel")]
+		public System.Nullable<int> RestrictionLevel
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("restrictionlevel");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("RestrictionLevel");
+				this.SetAttributeValue("restrictionlevel", value);
+				this.OnPropertyChanged("RestrictionLevel");
 			}
 		}
 		
@@ -382,6 +468,19 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<string>("secondaryobjecttypecode");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the associated solution.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("solutionid")]
+		public System.Nullable<System.Guid> SolutionId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("solutionid");
 			}
 		}
 		
@@ -610,6 +709,16 @@ namespace DLaB.Xrm.Entities
                         break;
                 }
             }
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("componentstate")]
+		public virtual ComponentState? ComponentStateEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
+			}
 		}
 	}
 }

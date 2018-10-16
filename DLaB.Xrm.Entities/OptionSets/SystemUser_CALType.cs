@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
 	public enum SystemUser_CALType
 	{
 		
@@ -40,6 +40,18 @@ namespace DLaB.Xrm.Entities
 		Essential = 5,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FieldService = 11,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Professional = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectService = 12,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Sales = 9,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Service = 10,
 	}
 }

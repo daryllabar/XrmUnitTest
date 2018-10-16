@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("connectionroleobjecttypecode")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ConnectionRoleObjectTypeCode : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AssociatedObjectTypeCode = "associatedobjecttypecode";
 			public const string ConnectionRoleId = "connectionroleid";
@@ -29,7 +29,6 @@ namespace DLaB.Xrm.Entities
 			public const string VersionNumber = "versionnumber";
 			public const string connection_role_connection_role_object_type_codes = "connection_role_connection_role_object_type_codes";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -41,6 +40,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "connectionroleobjecttypecode";
+		
+		public const string PrimaryIdAttribute = "connectionroleobjecttypecodeid";
 		
 		public const int EntityTypeCode = 3233;
 		

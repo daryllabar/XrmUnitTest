@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("entitymap")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class EntityMap : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ComponentState = "componentstate";
 			public const string CreatedBy = "createdby";
@@ -44,7 +44,6 @@ namespace DLaB.Xrm.Entities
 			public const string modifiedby_entitymap = "modifiedby_entitymap";
 			public const string organization_entitymap = "organization_entitymap";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -56,6 +55,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "entitymap";
+		
+		public const string PrimaryIdAttribute = "entitymapid";
 		
 		public const int EntityTypeCode = 4600;
 		
@@ -343,7 +344,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Name of the Microsoft Dynamics CRM entity.
+		/// Name of the Microsoft Dynamics 365 entity.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("targetentityname")]
 		public string TargetEntityName

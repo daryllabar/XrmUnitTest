@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("bulkdeletefailure")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class BulkDeleteFailure : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AsyncOperationId = "asyncoperationid";
 			public const string BulkDeleteFailureId = "bulkdeletefailureid";
@@ -33,12 +33,23 @@ namespace DLaB.Xrm.Entities
 			public const string OwningUser = "owninguser";
 			public const string RegardingObjectId = "regardingobjectid";
 			public const string Account_BulkDeleteFailures = "Account_BulkDeleteFailures";
+			public const string accountleads_BulkDeleteFailures = "accountleads_BulkDeleteFailures";
 			public const string ActivityMimeAttachment_BulkDeleteFailures = "ActivityMimeAttachment_BulkDeleteFailures";
 			public const string ActivityPointer_BulkDeleteFailures = "ActivityPointer_BulkDeleteFailures";
+			public const string adminsettingsentity_BulkDeleteFailures = "adminsettingsentity_BulkDeleteFailures";
 			public const string Annotation_BulkDeleteFailures = "Annotation_BulkDeleteFailures";
 			public const string AnnualFiscalCalendar_BulkDeleteFailures = "AnnualFiscalCalendar_BulkDeleteFailures";
 			public const string Appointment_BulkDeleteFailures = "Appointment_BulkDeleteFailures";
 			public const string AttributeMap_BulkDeleteFailures = "AttributeMap_BulkDeleteFailures";
+			public const string bookableresource_BulkDeleteFailures = "bookableresource_BulkDeleteFailures";
+			public const string bookableresourcebooking_BulkDeleteFailures = "bookableresourcebooking_BulkDeleteFailures";
+			public const string bookableresourcebookingexchangesyncidmapping_BulkDeleteFailures = "bookableresourcebookingexchangesyncidmapping_BulkDeleteFailures";
+			public const string bookableresourcebookingheader_BulkDeleteFailures = "bookableresourcebookingheader_BulkDeleteFailures";
+			public const string bookableresourcecategory_BulkDeleteFailures = "bookableresourcecategory_BulkDeleteFailures";
+			public const string bookableresourcecategoryassn_BulkDeleteFailures = "bookableresourcecategoryassn_BulkDeleteFailures";
+			public const string bookableresourcecharacteristic_BulkDeleteFailures = "bookableresourcecharacteristic_BulkDeleteFailures";
+			public const string bookableresourcegroup_BulkDeleteFailures = "bookableresourcegroup_BulkDeleteFailures";
+			public const string bookingstatus_BulkDeleteFailures = "bookingstatus_BulkDeleteFailures";
 			public const string BulkDeleteOperation_BulkDeleteFailure = "BulkDeleteOperation_BulkDeleteFailure";
 			public const string BulkOperation_BulkDeleteFailures = "BulkOperation_BulkDeleteFailures";
 			public const string BulkOperationLog_BulkDeleteFailures = "BulkOperationLog_BulkDeleteFailures";
@@ -47,11 +58,21 @@ namespace DLaB.Xrm.Entities
 			public const string Calendar_BulkDeleteFailures = "Calendar_BulkDeleteFailures";
 			public const string Campaign_BulkDeleteFailures = "Campaign_BulkDeleteFailures";
 			public const string CampaignActivity_BulkDeleteFailures = "CampaignActivity_BulkDeleteFailures";
+			public const string campaignactivityitem_BulkDeleteFailures = "campaignactivityitem_BulkDeleteFailures";
+			public const string campaignitem_BulkDeleteFailures = "campaignitem_BulkDeleteFailures";
 			public const string CampaignResponse_BulkDeleteFailures = "CampaignResponse_BulkDeleteFailures";
 			public const string channelaccessprofile_BulkDeleteFailures = "channelaccessprofile_BulkDeleteFailures";
+			public const string characteristic_BulkDeleteFailures = "characteristic_BulkDeleteFailures";
+			public const string commitment_BulkDeleteFailures = "commitment_BulkDeleteFailures";
 			public const string Competitor_BulkDeleteFailures = "Competitor_BulkDeleteFailures";
+			public const string competitorproduct_BulkDeleteFailures = "competitorproduct_BulkDeleteFailures";
+			public const string competitorsalesliterature_BulkDeleteFailures = "competitorsalesliterature_BulkDeleteFailures";
 			public const string ConstraintBasedGroup_BulkDeleteFailures = "ConstraintBasedGroup_BulkDeleteFailures";
 			public const string Contact_BulkDeleteFailures = "Contact_BulkDeleteFailures";
+			public const string contactinvoices_BulkDeleteFailures = "contactinvoices_BulkDeleteFailures";
+			public const string contactleads_BulkDeleteFailures = "contactleads_BulkDeleteFailures";
+			public const string contactorders_BulkDeleteFailures = "contactorders_BulkDeleteFailures";
+			public const string contactquotes_BulkDeleteFailures = "contactquotes_BulkDeleteFailures";
 			public const string Contract_BulkDeleteFailures = "Contract_BulkDeleteFailures";
 			public const string ContractDetail_BulkDeleteFailures = "ContractDetail_BulkDeleteFailures";
 			public const string ContractTemplate_BulkDeleteFailures = "ContractTemplate_BulkDeleteFailures";
@@ -61,11 +82,19 @@ namespace DLaB.Xrm.Entities
 			public const string Discount_BulkDeleteFailures = "Discount_BulkDeleteFailures";
 			public const string DiscountType_BulkDeleteFailures = "DiscountType_BulkDeleteFailures";
 			public const string DisplayString_BulkDeleteFailures = "DisplayString_BulkDeleteFailures";
+			public const string dynamicproperty_BulkDeleteFailures = "dynamicproperty_BulkDeleteFailures";
+			public const string dynamicpropertyassociation_BulkDeleteFailures = "dynamicpropertyassociation_BulkDeleteFailures";
+			public const string dynamicpropertyinstance_BulkDeleteFailures = "dynamicpropertyinstance_BulkDeleteFailures";
+			public const string dynamicpropertyoptionsetitem_BulkDeleteFailures = "dynamicpropertyoptionsetitem_BulkDeleteFailures";
 			public const string Email_BulkDeleteFailures = "Email_BulkDeleteFailures";
 			public const string emailserverprofile_bulkdeletefailures = "emailserverprofile_bulkdeletefailures";
 			public const string entitlement_BulkDeleteFailures = "entitlement_BulkDeleteFailures";
 			public const string entitlementchannel_BulkDeleteFailures = "entitlementchannel_BulkDeleteFailures";
+			public const string entitlementcontacts_BulkDeleteFailures = "entitlementcontacts_BulkDeleteFailures";
+			public const string entitlementproducts_BulkDeleteFailures = "entitlementproducts_BulkDeleteFailures";
 			public const string entitlementtemplate_BulkDeleteFailures = "entitlementtemplate_BulkDeleteFailures";
+			public const string entitlementtemplatechannel_BulkDeleteFailures = "entitlementtemplatechannel_BulkDeleteFailures";
+			public const string entitlementtemplateproducts_BulkDeleteFailures = "entitlementtemplateproducts_BulkDeleteFailures";
 			public const string EntityMap_BulkDeleteFailures = "EntityMap_BulkDeleteFailures";
 			public const string Equipment_BulkDeleteFailures = "Equipment_BulkDeleteFailures";
 			public const string externalparty_BulkDeleteFailures = "externalparty_BulkDeleteFailures";
@@ -77,6 +106,7 @@ namespace DLaB.Xrm.Entities
 			public const string ImportLog_BulkDeleteFailures = "ImportLog_BulkDeleteFailures";
 			public const string ImportMap_BulkDeleteFailures = "ImportMap_BulkDeleteFailures";
 			public const string Incident_BulkDeleteFailures = "Incident_BulkDeleteFailures";
+			public const string incidentknowledgebaserecord_BulkDeleteFailures = "incidentknowledgebaserecord_BulkDeleteFailures";
 			public const string IncidentResolution_BulkDeleteFailures = "IncidentResolution_BulkDeleteFailures";
 			public const string Invoice_BulkDeleteFailures = "Invoice_BulkDeleteFailures";
 			public const string InvoiceDetail_BulkDeleteFailures = "InvoiceDetail_BulkDeleteFailures";
@@ -85,27 +115,218 @@ namespace DLaB.Xrm.Entities
 			public const string KbArticleComment_BulkDeleteFailures = "KbArticleComment_BulkDeleteFailures";
 			public const string KbArticleTemplate_BulkDeleteFailures = "KbArticleTemplate_BulkDeleteFailures";
 			public const string knowledgearticle_BulkDeleteFailures = "knowledgearticle_BulkDeleteFailures";
+			public const string knowledgearticleincident_BulkDeleteFailures = "knowledgearticleincident_BulkDeleteFailures";
 			public const string KnowledgeBaseRecord_BulkDeleteFailures = "KnowledgeBaseRecord_BulkDeleteFailures";
 			public const string Lead_BulkDeleteFailures = "Lead_BulkDeleteFailures";
+			public const string leadaddress_BulkDeleteFailures = "leadaddress_BulkDeleteFailures";
+			public const string leadcompetitors_BulkDeleteFailures = "leadcompetitors_BulkDeleteFailures";
+			public const string leadproduct_BulkDeleteFailures = "leadproduct_BulkDeleteFailures";
+			public const string leadtoopportunitysalesprocess_BulkDeleteFailures = "leadtoopportunitysalesprocess_BulkDeleteFailures";
 			public const string Letter_BulkDeleteFailures = "Letter_BulkDeleteFailures";
 			public const string List_BulkDeleteFailures = "List_BulkDeleteFailures";
+			public const string listmember_BulkDeleteFailures = "listmember_BulkDeleteFailures";
 			public const string MonthlyFiscalCalendar_BulkDeleteFailures = "MonthlyFiscalCalendar_BulkDeleteFailures";
+			public const string msdyn_accountpricelist_BulkDeleteFailures = "msdyn_accountpricelist_BulkDeleteFailures";
+			public const string msdyn_actual_BulkDeleteFailures = "msdyn_actual_BulkDeleteFailures";
+			public const string msdyn_agreement_BulkDeleteFailures = "msdyn_agreement_BulkDeleteFailures";
+			public const string msdyn_agreementbookingdate_BulkDeleteFailures = "msdyn_agreementbookingdate_BulkDeleteFailures";
+			public const string msdyn_agreementbookingincident_BulkDeleteFailures = "msdyn_agreementbookingincident_BulkDeleteFailures";
+			public const string msdyn_agreementbookingproduct_BulkDeleteFailures = "msdyn_agreementbookingproduct_BulkDeleteFailures";
+			public const string msdyn_agreementbookingservice_BulkDeleteFailures = "msdyn_agreementbookingservice_BulkDeleteFailures";
+			public const string msdyn_agreementbookingservicetask_BulkDeleteFailures = "msdyn_agreementbookingservicetask_BulkDeleteFailures";
+			public const string msdyn_agreementbookingsetup_BulkDeleteFailures = "msdyn_agreementbookingsetup_BulkDeleteFailures";
+			public const string msdyn_agreementinvoicedate_BulkDeleteFailures = "msdyn_agreementinvoicedate_BulkDeleteFailures";
+			public const string msdyn_agreementinvoiceproduct_BulkDeleteFailures = "msdyn_agreementinvoiceproduct_BulkDeleteFailures";
+			public const string msdyn_agreementinvoicesetup_BulkDeleteFailures = "msdyn_agreementinvoicesetup_BulkDeleteFailures";
+			public const string msdyn_agreementsubstatus_BulkDeleteFailures = "msdyn_agreementsubstatus_BulkDeleteFailures";
+			public const string msdyn_approval_BulkDeleteFailures = "msdyn_approval_BulkDeleteFailures";
+			public const string msdyn_batchjob_BulkDeleteFailures = "msdyn_batchjob_BulkDeleteFailures";
+			public const string msdyn_bookingalert_BulkDeleteFailures = "msdyn_bookingalert_BulkDeleteFailures";
+			public const string msdyn_bookingalertstatus_BulkDeleteFailures = "msdyn_bookingalertstatus_BulkDeleteFailures";
+			public const string msdyn_bookingchange_BulkDeleteFailures = "msdyn_bookingchange_BulkDeleteFailures";
+			public const string msdyn_bookingjournal_BulkDeleteFailures = "msdyn_bookingjournal_BulkDeleteFailures";
+			public const string msdyn_bookingrule_BulkDeleteFailures = "msdyn_bookingrule_BulkDeleteFailures";
+			public const string msdyn_bookingsetupmetadata_BulkDeleteFailures = "msdyn_bookingsetupmetadata_BulkDeleteFailures";
+			public const string msdyn_bookingtimestamp_BulkDeleteFailures = "msdyn_bookingtimestamp_BulkDeleteFailures";
+			public const string msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_BulkDeleteFailures = "msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_BulkDeleteFailures";
+			public const string msdyn_bpf_665e73aa18c247d886bfc50499c73b82_BulkDeleteFailures = "msdyn_bpf_665e73aa18c247d886bfc50499c73b82_BulkDeleteFailures";
+			public const string msdyn_bpf_989e9b1857e24af18787d5143b67523b_BulkDeleteFailures = "msdyn_bpf_989e9b1857e24af18787d5143b67523b_BulkDeleteFailures";
+			public const string msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_BulkDeleteFailures = "msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_BulkDeleteFailures";
+			public const string msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_BulkDeleteFailures = "msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_BulkDeleteFailures";
+			public const string msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_BulkDeleteFailures = "msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_BulkDeleteFailures";
+			public const string msdyn_characteristicreqforteammember_BulkDeleteFailures = "msdyn_characteristicreqforteammember_BulkDeleteFailures";
+			public const string msdyn_contactpricelist_BulkDeleteFailures = "msdyn_contactpricelist_BulkDeleteFailures";
+			public const string msdyn_contractlineinvoiceschedule_BulkDeleteFailures = "msdyn_contractlineinvoiceschedule_BulkDeleteFailures";
+			public const string msdyn_contractlinescheduleofvalue_BulkDeleteFailures = "msdyn_contractlinescheduleofvalue_BulkDeleteFailures";
+			public const string msdyn_customerasset_BulkDeleteFailures = "msdyn_customerasset_BulkDeleteFailures";
+			public const string msdyn_dataexport_BulkDeleteFailures = "msdyn_dataexport_BulkDeleteFailures";
+			public const string msdyn_delegation_BulkDeleteFailures = "msdyn_delegation_BulkDeleteFailures";
+			public const string msdyn_estimate_BulkDeleteFailures = "msdyn_estimate_BulkDeleteFailures";
+			public const string msdyn_estimateline_BulkDeleteFailures = "msdyn_estimateline_BulkDeleteFailures";
+			public const string msdyn_expense_BulkDeleteFailures = "msdyn_expense_BulkDeleteFailures";
+			public const string msdyn_expensecategory_BulkDeleteFailures = "msdyn_expensecategory_BulkDeleteFailures";
+			public const string msdyn_expensereceipt_BulkDeleteFailures = "msdyn_expensereceipt_BulkDeleteFailures";
+			public const string msdyn_fact_BulkDeleteFailures = "msdyn_fact_BulkDeleteFailures";
+			public const string msdyn_fieldcomputation_BulkDeleteFailures = "msdyn_fieldcomputation_BulkDeleteFailures";
+			public const string msdyn_fieldservicepricelistitem_BulkDeleteFailures = "msdyn_fieldservicepricelistitem_BulkDeleteFailures";
+			public const string msdyn_fieldservicesetting_BulkDeleteFailures = "msdyn_fieldservicesetting_BulkDeleteFailures";
+			public const string msdyn_fieldservicesystemjob_BulkDeleteFailures = "msdyn_fieldservicesystemjob_BulkDeleteFailures";
+			public const string msdyn_findworkevent_BulkDeleteFailures = "msdyn_findworkevent_BulkDeleteFailures";
+			public const string msdyn_icebreakersconfig_BulkDeleteFailures = "msdyn_icebreakersconfig_BulkDeleteFailures";
+			public const string msdyn_incidenttype_BulkDeleteFailures = "msdyn_incidenttype_BulkDeleteFailures";
+			public const string msdyn_incidenttypecharacteristic_BulkDeleteFailures = "msdyn_incidenttypecharacteristic_BulkDeleteFailures";
+			public const string msdyn_incidenttypeproduct_BulkDeleteFailures = "msdyn_incidenttypeproduct_BulkDeleteFailures";
+			public const string msdyn_incidenttypeservice_BulkDeleteFailures = "msdyn_incidenttypeservice_BulkDeleteFailures";
+			public const string msdyn_incidenttypeservicetask_BulkDeleteFailures = "msdyn_incidenttypeservicetask_BulkDeleteFailures";
+			public const string msdyn_integrationjob_BulkDeleteFailures = "msdyn_integrationjob_BulkDeleteFailures";
+			public const string msdyn_integrationjobdetail_BulkDeleteFailures = "msdyn_integrationjobdetail_BulkDeleteFailures";
+			public const string msdyn_inventoryadjustment_BulkDeleteFailures = "msdyn_inventoryadjustment_BulkDeleteFailures";
+			public const string msdyn_inventoryadjustmentproduct_BulkDeleteFailures = "msdyn_inventoryadjustmentproduct_BulkDeleteFailures";
+			public const string msdyn_inventoryjournal_BulkDeleteFailures = "msdyn_inventoryjournal_BulkDeleteFailures";
+			public const string msdyn_inventorytransfer_BulkDeleteFailures = "msdyn_inventorytransfer_BulkDeleteFailures";
+			public const string msdyn_invoicefrequency_BulkDeleteFailures = "msdyn_invoicefrequency_BulkDeleteFailures";
+			public const string msdyn_invoicefrequencydetail_BulkDeleteFailures = "msdyn_invoicefrequencydetail_BulkDeleteFailures";
+			public const string msdyn_invoicelinetransaction_BulkDeleteFailures = "msdyn_invoicelinetransaction_BulkDeleteFailures";
+			public const string msdyn_journal_BulkDeleteFailures = "msdyn_journal_BulkDeleteFailures";
+			public const string msdyn_journalline_BulkDeleteFailures = "msdyn_journalline_BulkDeleteFailures";
+			public const string msdyn_mlresultcache_BulkDeleteFailures = "msdyn_mlresultcache_BulkDeleteFailures";
+			public const string msdyn_notesanalysisconfig_BulkDeleteFailures = "msdyn_notesanalysisconfig_BulkDeleteFailures";
+			public const string msdyn_opportunitylineresourcecategory_BulkDeleteFailures = "msdyn_opportunitylineresourcecategory_BulkDeleteFailures";
+			public const string msdyn_opportunitylinetransaction_BulkDeleteFailures = "msdyn_opportunitylinetransaction_BulkDeleteFailures";
+			public const string msdyn_opportunitylinetransactioncategory_BulkDeleteFailures = "msdyn_opportunitylinetransactioncategory_BulkDeleteFailures";
+			public const string msdyn_opportunitylinetransactionclassificatio_BulkDeleteFailures = "msdyn_opportunitylinetransactionclassificatio_BulkDeleteFailures";
+			public const string msdyn_opportunitypricelist_BulkDeleteFailures = "msdyn_opportunitypricelist_BulkDeleteFailures";
+			public const string msdyn_orderinvoicingdate_BulkDeleteFailures = "msdyn_orderinvoicingdate_BulkDeleteFailures";
+			public const string msdyn_orderinvoicingproduct_BulkDeleteFailures = "msdyn_orderinvoicingproduct_BulkDeleteFailures";
+			public const string msdyn_orderinvoicingsetup_BulkDeleteFailures = "msdyn_orderinvoicingsetup_BulkDeleteFailures";
+			public const string msdyn_orderinvoicingsetupdate_BulkDeleteFailures = "msdyn_orderinvoicingsetupdate_BulkDeleteFailures";
+			public const string msdyn_orderlineresourcecategory_BulkDeleteFailures = "msdyn_orderlineresourcecategory_BulkDeleteFailures";
+			public const string msdyn_orderlinetransaction_BulkDeleteFailures = "msdyn_orderlinetransaction_BulkDeleteFailures";
+			public const string msdyn_orderlinetransactioncategory_BulkDeleteFailures = "msdyn_orderlinetransactioncategory_BulkDeleteFailures";
+			public const string msdyn_orderlinetransactionclassification_BulkDeleteFailures = "msdyn_orderlinetransactionclassification_BulkDeleteFailures";
+			public const string msdyn_orderpricelist_BulkDeleteFailures = "msdyn_orderpricelist_BulkDeleteFailures";
+			public const string msdyn_organizationalunit_BulkDeleteFailures = "msdyn_organizationalunit_BulkDeleteFailures";
+			public const string msdyn_orginsightsuserdashboarddefinition_BulkDeleteFailures = "msdyn_orginsightsuserdashboarddefinition_BulkDeleteFailures";
+			public const string msdyn_payment_BulkDeleteFailures = "msdyn_payment_BulkDeleteFailures";
+			public const string msdyn_paymentdetail_BulkDeleteFailures = "msdyn_paymentdetail_BulkDeleteFailures";
+			public const string msdyn_paymentmethod_BulkDeleteFailures = "msdyn_paymentmethod_BulkDeleteFailures";
+			public const string msdyn_paymentterm_BulkDeleteFailures = "msdyn_paymentterm_BulkDeleteFailures";
 			public const string msdyn_postalbum_BulkDeleteFailures = "msdyn_postalbum_BulkDeleteFailures";
+			public const string msdyn_postalcode_BulkDeleteFailures = "msdyn_postalcode_BulkDeleteFailures";
 			public const string msdyn_postconfig_BulkDeleteFailures = "msdyn_postconfig_BulkDeleteFailures";
 			public const string msdyn_postruleconfig_BulkDeleteFailures = "msdyn_postruleconfig_BulkDeleteFailures";
+			public const string msdyn_priority_BulkDeleteFailures = "msdyn_priority_BulkDeleteFailures";
+			public const string msdyn_processnotes_BulkDeleteFailures = "msdyn_processnotes_BulkDeleteFailures";
+			public const string msdyn_productinventory_BulkDeleteFailures = "msdyn_productinventory_BulkDeleteFailures";
+			public const string msdyn_project_BulkDeleteFailures = "msdyn_project_BulkDeleteFailures";
+			public const string msdyn_projectapproval_BulkDeleteFailures = "msdyn_projectapproval_BulkDeleteFailures";
+			public const string msdyn_projectparameter_BulkDeleteFailures = "msdyn_projectparameter_BulkDeleteFailures";
+			public const string msdyn_projectparameterpricelist_BulkDeleteFailures = "msdyn_projectparameterpricelist_BulkDeleteFailures";
+			public const string msdyn_projectpricelist_BulkDeleteFailures = "msdyn_projectpricelist_BulkDeleteFailures";
+			public const string msdyn_projecttask_BulkDeleteFailures = "msdyn_projecttask_BulkDeleteFailures";
+			public const string msdyn_projecttaskdependency_BulkDeleteFailures = "msdyn_projecttaskdependency_BulkDeleteFailures";
+			public const string msdyn_projecttaskstatususer_BulkDeleteFailures = "msdyn_projecttaskstatususer_BulkDeleteFailures";
+			public const string msdyn_projectteam_BulkDeleteFailures = "msdyn_projectteam_BulkDeleteFailures";
+			public const string msdyn_projectteammembersignup_BulkDeleteFailures = "msdyn_projectteammembersignup_BulkDeleteFailures";
+			public const string msdyn_projecttransactioncategory_BulkDeleteFailures = "msdyn_projecttransactioncategory_BulkDeleteFailures";
+			public const string msdyn_purchaseorder_BulkDeleteFailures = "msdyn_purchaseorder_BulkDeleteFailures";
+			public const string msdyn_purchaseorderbill_BulkDeleteFailures = "msdyn_purchaseorderbill_BulkDeleteFailures";
+			public const string msdyn_purchaseorderproduct_BulkDeleteFailures = "msdyn_purchaseorderproduct_BulkDeleteFailures";
+			public const string msdyn_purchaseorderreceipt_BulkDeleteFailures = "msdyn_purchaseorderreceipt_BulkDeleteFailures";
+			public const string msdyn_purchaseorderreceiptproduct_BulkDeleteFailures = "msdyn_purchaseorderreceiptproduct_BulkDeleteFailures";
+			public const string msdyn_purchaseordersubstatus_BulkDeleteFailures = "msdyn_purchaseordersubstatus_BulkDeleteFailures";
+			public const string msdyn_quotebookingincident_BulkDeleteFailures = "msdyn_quotebookingincident_BulkDeleteFailures";
+			public const string msdyn_quotebookingproduct_BulkDeleteFailures = "msdyn_quotebookingproduct_BulkDeleteFailures";
+			public const string msdyn_quotebookingservice_BulkDeleteFailures = "msdyn_quotebookingservice_BulkDeleteFailures";
+			public const string msdyn_quotebookingservicetask_BulkDeleteFailures = "msdyn_quotebookingservicetask_BulkDeleteFailures";
+			public const string msdyn_quotebookingsetup_BulkDeleteFailures = "msdyn_quotebookingsetup_BulkDeleteFailures";
+			public const string msdyn_quoteinvoicingproduct_BulkDeleteFailures = "msdyn_quoteinvoicingproduct_BulkDeleteFailures";
+			public const string msdyn_quoteinvoicingsetup_BulkDeleteFailures = "msdyn_quoteinvoicingsetup_BulkDeleteFailures";
+			public const string msdyn_quotelineanalyticsbreakdown_BulkDeleteFailures = "msdyn_quotelineanalyticsbreakdown_BulkDeleteFailures";
+			public const string msdyn_quotelineinvoiceschedule_BulkDeleteFailures = "msdyn_quotelineinvoiceschedule_BulkDeleteFailures";
+			public const string msdyn_quotelineresourcecategory_BulkDeleteFailures = "msdyn_quotelineresourcecategory_BulkDeleteFailures";
+			public const string msdyn_quotelinescheduleofvalue_BulkDeleteFailures = "msdyn_quotelinescheduleofvalue_BulkDeleteFailures";
+			public const string msdyn_quotelinetransaction_BulkDeleteFailures = "msdyn_quotelinetransaction_BulkDeleteFailures";
+			public const string msdyn_quotelinetransactioncategory_BulkDeleteFailures = "msdyn_quotelinetransactioncategory_BulkDeleteFailures";
+			public const string msdyn_quotelinetransactionclassification_BulkDeleteFailures = "msdyn_quotelinetransactionclassification_BulkDeleteFailures";
+			public const string msdyn_quotepricelist_BulkDeleteFailures = "msdyn_quotepricelist_BulkDeleteFailures";
+			public const string msdyn_relationshipinsightsunifiedconfig_BulkDeleteFailures = "msdyn_relationshipinsightsunifiedconfig_BulkDeleteFailures";
+			public const string msdyn_requirementcharacteristic_BulkDeleteFailures = "msdyn_requirementcharacteristic_BulkDeleteFailures";
+			public const string msdyn_requirementorganizationunit_BulkDeleteFailures = "msdyn_requirementorganizationunit_BulkDeleteFailures";
+			public const string msdyn_requirementresourcecategory_BulkDeleteFailures = "msdyn_requirementresourcecategory_BulkDeleteFailures";
+			public const string msdyn_requirementresourcepreference_BulkDeleteFailures = "msdyn_requirementresourcepreference_BulkDeleteFailures";
+			public const string msdyn_requirementstatus_BulkDeleteFailures = "msdyn_requirementstatus_BulkDeleteFailures";
+			public const string msdyn_resourceassignment_BulkDeleteFailures = "msdyn_resourceassignment_BulkDeleteFailures";
+			public const string msdyn_resourceassignmentdetail_BulkDeleteFailures = "msdyn_resourceassignmentdetail_BulkDeleteFailures";
+			public const string msdyn_resourcecategorypricelevel_BulkDeleteFailures = "msdyn_resourcecategorypricelevel_BulkDeleteFailures";
+			public const string msdyn_resourcepaytype_BulkDeleteFailures = "msdyn_resourcepaytype_BulkDeleteFailures";
+			public const string msdyn_resourcerequest_BulkDeleteFailures = "msdyn_resourcerequest_BulkDeleteFailures";
+			public const string msdyn_resourcerequirement_BulkDeleteFailures = "msdyn_resourcerequirement_BulkDeleteFailures";
+			public const string msdyn_resourcerequirementdetail_BulkDeleteFailures = "msdyn_resourcerequirementdetail_BulkDeleteFailures";
+			public const string msdyn_resourceterritory_BulkDeleteFailures = "msdyn_resourceterritory_BulkDeleteFailures";
+			public const string msdyn_rma_BulkDeleteFailures = "msdyn_rma_BulkDeleteFailures";
+			public const string msdyn_rmaproduct_BulkDeleteFailures = "msdyn_rmaproduct_BulkDeleteFailures";
+			public const string msdyn_rmareceipt_BulkDeleteFailures = "msdyn_rmareceipt_BulkDeleteFailures";
+			public const string msdyn_rmareceiptproduct_BulkDeleteFailures = "msdyn_rmareceiptproduct_BulkDeleteFailures";
+			public const string msdyn_rmasubstatus_BulkDeleteFailures = "msdyn_rmasubstatus_BulkDeleteFailures";
+			public const string msdyn_rolecompetencyrequirement_BulkDeleteFailures = "msdyn_rolecompetencyrequirement_BulkDeleteFailures";
+			public const string msdyn_roleutilization_BulkDeleteFailures = "msdyn_roleutilization_BulkDeleteFailures";
+			public const string msdyn_rtv_BulkDeleteFailures = "msdyn_rtv_BulkDeleteFailures";
+			public const string msdyn_rtvproduct_BulkDeleteFailures = "msdyn_rtvproduct_BulkDeleteFailures";
+			public const string msdyn_rtvsubstatus_BulkDeleteFailures = "msdyn_rtvsubstatus_BulkDeleteFailures";
+			public const string msdyn_scheduleboardsetting_BulkDeleteFailures = "msdyn_scheduleboardsetting_BulkDeleteFailures";
+			public const string msdyn_schedulingparameter_BulkDeleteFailures = "msdyn_schedulingparameter_BulkDeleteFailures";
+			public const string msdyn_servicetasktype_BulkDeleteFailures = "msdyn_servicetasktype_BulkDeleteFailures";
+			public const string msdyn_shipvia_BulkDeleteFailures = "msdyn_shipvia_BulkDeleteFailures";
+			public const string msdyn_siconfig_BulkDeleteFailures = "msdyn_siconfig_BulkDeleteFailures";
+			public const string msdyn_systemuserschedulersetting_BulkDeleteFailures = "msdyn_systemuserschedulersetting_BulkDeleteFailures";
+			public const string msdyn_taxcode_BulkDeleteFailures = "msdyn_taxcode_BulkDeleteFailures";
+			public const string msdyn_taxcodedetail_BulkDeleteFailures = "msdyn_taxcodedetail_BulkDeleteFailures";
+			public const string msdyn_timeentry_BulkDeleteFailures = "msdyn_timeentry_BulkDeleteFailures";
+			public const string msdyn_timegroup_BulkDeleteFailures = "msdyn_timegroup_BulkDeleteFailures";
+			public const string msdyn_timegroupdetail_BulkDeleteFailures = "msdyn_timegroupdetail_BulkDeleteFailures";
+			public const string msdyn_timeoffcalendar_BulkDeleteFailures = "msdyn_timeoffcalendar_BulkDeleteFailures";
+			public const string msdyn_timeoffrequest_BulkDeleteFailures = "msdyn_timeoffrequest_BulkDeleteFailures";
+			public const string msdyn_transactioncategory_BulkDeleteFailures = "msdyn_transactioncategory_BulkDeleteFailures";
+			public const string msdyn_transactioncategoryclassification_BulkDeleteFailures = "msdyn_transactioncategoryclassification_BulkDeleteFailures";
+			public const string msdyn_transactioncategoryhierarchyelement_BulkDeleteFailures = "msdyn_transactioncategoryhierarchyelement_BulkDeleteFailures";
+			public const string msdyn_transactioncategorypricelevel_BulkDeleteFailures = "msdyn_transactioncategorypricelevel_BulkDeleteFailures";
+			public const string msdyn_transactionconnection_BulkDeleteFailures = "msdyn_transactionconnection_BulkDeleteFailures";
+			public const string msdyn_transactionorigin_BulkDeleteFailures = "msdyn_transactionorigin_BulkDeleteFailures";
+			public const string msdyn_transactiontype_BulkDeleteFailures = "msdyn_transactiontype_BulkDeleteFailures";
+			public const string msdyn_uniquenumber_BulkDeleteFailures = "msdyn_uniquenumber_BulkDeleteFailures";
+			public const string msdyn_untrackedappointment_BulkDeleteFailures = "msdyn_untrackedappointment_BulkDeleteFailures";
+			public const string msdyn_userworkhistory_BulkDeleteFailures = "msdyn_userworkhistory_BulkDeleteFailures";
 			public const string msdyn_wallsavedquery_BulkDeleteFailures = "msdyn_wallsavedquery_BulkDeleteFailures";
 			public const string msdyn_wallsavedqueryusersettings_BulkDeleteFailures = "msdyn_wallsavedqueryusersettings_BulkDeleteFailures";
+			public const string msdyn_warehouse_BulkDeleteFailures = "msdyn_warehouse_BulkDeleteFailures";
+			public const string msdyn_workhourtemplate_BulkDeleteFailures = "msdyn_workhourtemplate_BulkDeleteFailures";
+			public const string msdyn_workorder_BulkDeleteFailures = "msdyn_workorder_BulkDeleteFailures";
+			public const string msdyn_workordercharacteristic_BulkDeleteFailures = "msdyn_workordercharacteristic_BulkDeleteFailures";
+			public const string msdyn_workorderdetailsgenerationqueue_BulkDeleteFailures = "msdyn_workorderdetailsgenerationqueue_BulkDeleteFailures";
+			public const string msdyn_workorderincident_BulkDeleteFailures = "msdyn_workorderincident_BulkDeleteFailures";
+			public const string msdyn_workorderproduct_BulkDeleteFailures = "msdyn_workorderproduct_BulkDeleteFailures";
+			public const string msdyn_workorderresourcerestriction_BulkDeleteFailures = "msdyn_workorderresourcerestriction_BulkDeleteFailures";
+			public const string msdyn_workorderservice_BulkDeleteFailures = "msdyn_workorderservice_BulkDeleteFailures";
+			public const string msdyn_workorderservicetask_BulkDeleteFailures = "msdyn_workorderservicetask_BulkDeleteFailures";
+			public const string msdyn_workordersubstatus_BulkDeleteFailures = "msdyn_workordersubstatus_BulkDeleteFailures";
+			public const string msdyn_workordertype_BulkDeleteFailures = "msdyn_workordertype_BulkDeleteFailures";
 			public const string Opportunity_BulkDeleteFailures = "Opportunity_BulkDeleteFailures";
 			public const string OpportunityClose_BulkDeleteFailures = "OpportunityClose_BulkDeleteFailures";
+			public const string opportunitycompetitors_BulkDeleteFailures = "opportunitycompetitors_BulkDeleteFailures";
 			public const string OpportunityProduct_BulkDeleteFailures = "OpportunityProduct_BulkDeleteFailures";
+			public const string opportunitysalesprocess_BulkDeleteFailures = "opportunitysalesprocess_BulkDeleteFailures";
 			public const string OrderClose_BulkDeleteFailures = "OrderClose_BulkDeleteFailures";
 			public const string Organization_BulkDeleteFailures = "Organization_BulkDeleteFailures";
 			public const string PhoneCall_BulkDeleteFailures = "PhoneCall_BulkDeleteFailures";
+			public const string phonetocaseprocess_BulkDeleteFailures = "phonetocaseprocess_BulkDeleteFailures";
 			public const string post_BulkDeleteFailures = "post_BulkDeleteFailures";
 			public const string PriceLevel_BulkDeleteFailures = "PriceLevel_BulkDeleteFailures";
 			public const string Privilege_BulkDeleteFailures = "Privilege_BulkDeleteFailures";
 			public const string Product_BulkDeleteFailures = "Product_BulkDeleteFailures";
+			public const string productassociation_BulkDeleteFailures = "productassociation_BulkDeleteFailures";
 			public const string ProductPriceLevel_BulkDeleteFailures = "ProductPriceLevel_BulkDeleteFailures";
+			public const string productsalesliterature_BulkDeleteFailures = "productsalesliterature_BulkDeleteFailures";
 			public const string ProductSubstitute_BulkDeleteFailures = "ProductSubstitute_BulkDeleteFailures";
 			public const string profilerule_BulkDeleteFailures = "profilerule_BulkDeleteFailures";
 			public const string QuarterlyFiscalCalendar_BulkDeleteFailures = "QuarterlyFiscalCalendar_BulkDeleteFailures";
@@ -114,6 +335,8 @@ namespace DLaB.Xrm.Entities
 			public const string Quote_BulkDeleteFailures = "Quote_BulkDeleteFailures";
 			public const string QuoteClose_BulkDeleteFailures = "QuoteClose_BulkDeleteFailures";
 			public const string QuoteDetail_BulkDeleteFailures = "QuoteDetail_BulkDeleteFailures";
+			public const string ratingmodel_BulkDeleteFailures = "ratingmodel_BulkDeleteFailures";
+			public const string ratingvalue_BulkDeleteFailures = "ratingvalue_BulkDeleteFailures";
 			public const string RecurringAppointmentMaster_BulkDeleteFailures = "RecurringAppointmentMaster_BulkDeleteFailures";
 			public const string RelationshipRole_BulkDeleteFailures = "RelationshipRole_BulkDeleteFailures";
 			public const string RelationshipRoleMap_BulkDeleteFailures = "RelationshipRoleMap_BulkDeleteFailures";
@@ -131,6 +354,7 @@ namespace DLaB.Xrm.Entities
 			public const string SemiAnnualFiscalCalendar_BulkDeleteFailures = "SemiAnnualFiscalCalendar_BulkDeleteFailures";
 			public const string Service_BulkDeleteFailures = "Service_BulkDeleteFailures";
 			public const string ServiceAppointment_BulkDeleteFailures = "ServiceAppointment_BulkDeleteFailures";
+			public const string servicecontractcontacts_BulkDeleteFailures = "servicecontractcontacts_BulkDeleteFailures";
 			public const string Site_BulkDeleteFailures = "Site_BulkDeleteFailures";
 			public const string slabase_BulkDeleteFailures = "slabase_BulkDeleteFailures";
 			public const string SocialActivity_BulkDeleteFailures = "SocialActivity_BulkDeleteFailures";
@@ -142,13 +366,17 @@ namespace DLaB.Xrm.Entities
 			public const string Template_BulkDeleteFailures = "Template_BulkDeleteFailures";
 			public const string Territory_BulkDeleteFailures = "Territory_BulkDeleteFailures";
 			public const string theme_BulkDeleteFailures = "theme_BulkDeleteFailures";
+			public const string topic_BulkDeleteFailures = "topic_BulkDeleteFailures";
+			public const string topichistory_BulkDeleteFailures = "topichistory_BulkDeleteFailures";
+			public const string topicmodel_BulkDeleteFailures = "topicmodel_BulkDeleteFailures";
+			public const string topicmodelconfiguration_BulkDeleteFailures = "topicmodelconfiguration_BulkDeleteFailures";
+			public const string topicmodelexecutionhistory_BulkDeleteFailures = "topicmodelexecutionhistory_BulkDeleteFailures";
 			public const string UoM_BulkDeleteFailures = "UoM_BulkDeleteFailures";
 			public const string UoMSchedule_BulkDeleteFailures = "UoMSchedule_BulkDeleteFailures";
 			public const string UserForm_BulkDeleteFailures = "UserForm_BulkDeleteFailures";
 			public const string usermapping_BulkDeleteFailures = "usermapping_BulkDeleteFailures";
 			public const string UserQuery_BulkDeleteFailures = "UserQuery_BulkDeleteFailures";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -160,6 +388,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "bulkdeletefailure";
+		
+		public const string PrimaryIdAttribute = "bulkdeletefailureid";
 		
 		public const int EntityTypeCode = 4425;
 		
@@ -333,7 +563,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the record that can not be deleted.
+		/// Territory_BulkDeleteFailures
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
 		public Microsoft.Xrm.Sdk.EntityReference RegardingObjectId
@@ -380,6 +610,20 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 accountleads_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("accountleads_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.AccountLeads accountleads_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.AccountLeads>("accountleads_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 ActivityMimeAttachment_BulkDeleteFailures
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -404,6 +648,20 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.ActivityPointer>("ActivityPointer_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 adminsettingsentity_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("adminsettingsentity_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.adminsettingsentity adminsettingsentity_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.adminsettingsentity>("adminsettingsentity_BulkDeleteFailures", null);
 			}
 		}
 		
@@ -460,6 +718,132 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.AttributeMap>("AttributeMap_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresource_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresource_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.BookableResource bookableresource_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResource>("bookableresource_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcebooking_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebooking_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.BookableResourceBooking bookableresourcebooking_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBooking>("bookableresourcebooking_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcebookingexchangesyncidmapping_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebookingexchangesyncidmapping_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.BookableResourceBookingExchangeSyncIdMapping bookableresourcebookingexchangesyncidmapping_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBookingExchangeSyncIdMapping>("bookableresourcebookingexchangesyncidmapping_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcebookingheader_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebookingheader_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.BookableResourceBookingHeader bookableresourcebookingheader_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBookingHeader>("bookableresourcebookingheader_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcecategory_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcecategory_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.BookableResourceCategory bookableresourcecategory_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceCategory>("bookableresourcecategory_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcecategoryassn_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcecategoryassn_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.BookableResourceCategoryAssn bookableresourcecategoryassn_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceCategoryAssn>("bookableresourcecategoryassn_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcecharacteristic_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcecharacteristic_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.BookableResourceCharacteristic bookableresourcecharacteristic_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceCharacteristic>("bookableresourcecharacteristic_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcegroup_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcegroup_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.BookableResourceGroup bookableresourcegroup_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceGroup>("bookableresourcegroup_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookingstatus_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookingstatus_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.BookingStatus bookingstatus_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookingStatus>("bookingstatus_BulkDeleteFailures", null);
 			}
 		}
 		
@@ -576,6 +960,34 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 campaignactivityitem_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("campaignactivityitem_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.CampaignActivityItem campaignactivityitem_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.CampaignActivityItem>("campaignactivityitem_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 campaignitem_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("campaignitem_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.CampaignItem campaignitem_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.CampaignItem>("campaignitem_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 CampaignResponse_BulkDeleteFailures
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -604,6 +1016,34 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 characteristic_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("characteristic_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.Characteristic characteristic_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Characteristic>("characteristic_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 commitment_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("commitment_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.Commitment commitment_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Commitment>("commitment_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 Competitor_BulkDeleteFailures
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -614,6 +1054,34 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Competitor>("Competitor_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 competitorproduct_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("competitorproduct_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.CompetitorProduct competitorproduct_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.CompetitorProduct>("competitorproduct_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 competitorsalesliterature_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("competitorsalesliterature_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.CompetitorSalesLiterature competitorsalesliterature_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.CompetitorSalesLiterature>("competitorsalesliterature_BulkDeleteFailures", null);
 			}
 		}
 		
@@ -642,6 +1110,62 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Contact>("Contact_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 contactinvoices_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("contactinvoices_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.ContactInvoices contactinvoices_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ContactInvoices>("contactinvoices_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 contactleads_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("contactleads_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.ContactLeads contactleads_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ContactLeads>("contactleads_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 contactorders_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("contactorders_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.ContactOrders contactorders_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ContactOrders>("contactorders_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 contactquotes_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("contactquotes_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.ContactQuotes contactquotes_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ContactQuotes>("contactquotes_BulkDeleteFailures", null);
 			}
 		}
 		
@@ -772,6 +1296,62 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 dynamicproperty_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dynamicproperty_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.DynamicProperty dynamicproperty_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.DynamicProperty>("dynamicproperty_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 dynamicpropertyassociation_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dynamicpropertyassociation_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.DynamicPropertyAssociation dynamicpropertyassociation_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.DynamicPropertyAssociation>("dynamicpropertyassociation_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 dynamicpropertyinstance_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dynamicpropertyinstance_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.DynamicPropertyInstance dynamicpropertyinstance_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.DynamicPropertyInstance>("dynamicpropertyinstance_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 dynamicpropertyoptionsetitem_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dynamicpropertyoptionsetitem_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.DynamicPropertyOptionSetItem dynamicpropertyoptionsetitem_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.DynamicPropertyOptionSetItem>("dynamicpropertyoptionsetitem_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 Email_BulkDeleteFailures
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -828,6 +1408,34 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 entitlementcontacts_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("entitlementcontacts_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.EntitlementContacts entitlementcontacts_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.EntitlementContacts>("entitlementcontacts_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 entitlementproducts_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("entitlementproducts_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.EntitlementProducts entitlementproducts_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.EntitlementProducts>("entitlementproducts_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 entitlementtemplate_BulkDeleteFailures
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -838,6 +1446,34 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.EntitlementTemplate>("entitlementtemplate_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 entitlementtemplatechannel_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("entitlementtemplatechannel_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.EntitlementTemplateChannel entitlementtemplatechannel_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.EntitlementTemplateChannel>("entitlementtemplatechannel_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 entitlementtemplateproducts_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("entitlementtemplateproducts_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.EntitlementTemplateProducts entitlementtemplateproducts_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.EntitlementTemplateProducts>("entitlementtemplateproducts_BulkDeleteFailures", null);
 			}
 		}
 		
@@ -996,6 +1632,20 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 incidentknowledgebaserecord_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("incidentknowledgebaserecord_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.IncidentKnowledgeBaseRecord incidentknowledgebaserecord_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.IncidentKnowledgeBaseRecord>("incidentknowledgebaserecord_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 IncidentResolution_BulkDeleteFailures
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1108,6 +1758,20 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 knowledgearticleincident_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("knowledgearticleincident_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.KnowledgeArticleIncident knowledgearticleincident_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.KnowledgeArticleIncident>("knowledgearticleincident_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 KnowledgeBaseRecord_BulkDeleteFailures
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1132,6 +1796,62 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Lead>("Lead_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 leadaddress_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("leadaddress_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.LeadAddress leadaddress_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.LeadAddress>("leadaddress_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 leadcompetitors_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("leadcompetitors_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.LeadCompetitors leadcompetitors_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.LeadCompetitors>("leadcompetitors_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 leadproduct_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("leadproduct_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.LeadProduct leadproduct_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.LeadProduct>("leadproduct_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 leadtoopportunitysalesprocess_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("leadtoopportunitysalesprocess_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.LeadToOpportunitySalesProcess leadtoopportunitysalesprocess_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.LeadToOpportunitySalesProcess>("leadtoopportunitysalesprocess_BulkDeleteFailures", null);
 			}
 		}
 		
@@ -1164,6 +1884,20 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 listmember_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("listmember_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.ListMember listmember_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ListMember>("listmember_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 MonthlyFiscalCalendar_BulkDeleteFailures
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1178,6 +1912,1196 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 msdyn_accountpricelist_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_accountpricelist_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_accountpricelist msdyn_accountpricelist_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_accountpricelist>("msdyn_accountpricelist_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_actual_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_actual_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_actual msdyn_actual_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_actual>("msdyn_actual_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreement_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreement_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_agreement msdyn_agreement_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingdate_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingdate_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingdate msdyn_agreementbookingdate_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingincident_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingincident_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingincident msdyn_agreementbookingincident_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingincident>("msdyn_agreementbookingincident_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingproduct_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingproduct_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingproduct msdyn_agreementbookingproduct_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_agreementbookingproduct_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservice_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservice_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservice msdyn_agreementbookingservice_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_agreementbookingservice_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservicetask_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservicetask_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservicetask msdyn_agreementbookingservicetask_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask>("msdyn_agreementbookingservicetask_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingsetup_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingsetup_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingsetup msdyn_agreementbookingsetup_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicedate_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicedate_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicedate msdyn_agreementinvoicedate_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoiceproduct_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoiceproduct_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct msdyn_agreementinvoiceproduct_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_agreementinvoiceproduct_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicesetup_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicesetup_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicesetup msdyn_agreementinvoicesetup_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementsubstatus_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementsubstatus_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_agreementsubstatus msdyn_agreementsubstatus_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementsubstatus>("msdyn_agreementsubstatus_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_approval_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_approval_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_approval msdyn_approval_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_approval>("msdyn_approval_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_batchjob_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_batchjob_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_batchjob msdyn_batchjob_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_batchjob>("msdyn_batchjob_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingalert_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalert_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_bookingalert msdyn_bookingalert_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalert>("msdyn_bookingalert_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingalertstatus_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalertstatus_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_bookingalertstatus msdyn_bookingalertstatus_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalertstatus>("msdyn_bookingalertstatus_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingchange_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingchange_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_bookingchange msdyn_bookingchange_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingchange>("msdyn_bookingchange_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingjournal_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingjournal_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_bookingjournal msdyn_bookingjournal_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingjournal>("msdyn_bookingjournal_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingrule_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingrule_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_bookingrule msdyn_bookingrule_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingrule>("msdyn_bookingrule_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingsetupmetadata_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingsetupmetadata_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_bookingsetupmetadata msdyn_bookingsetupmetadata_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingsetupmetadata>("msdyn_bookingsetupmetadata_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingtimestamp_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingtimestamp_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_bookingtimestamp msdyn_bookingtimestamp_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_bpf_2c5fe86acc8b414b8322ae571000c799 msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_2c5fe86acc8b414b8322ae571000c799>("msdyn_bpf_2c5fe86acc8b414b8322ae571000c799_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bpf_665e73aa18c247d886bfc50499c73b82_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bpf_665e73aa18c247d886bfc50499c73b82_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_bpf_665e73aa18c247d886bfc50499c73b82 msdyn_bpf_665e73aa18c247d886bfc50499c73b82_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_665e73aa18c247d886bfc50499c73b82>("msdyn_bpf_665e73aa18c247d886bfc50499c73b82_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bpf_989e9b1857e24af18787d5143b67523b_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bpf_989e9b1857e24af18787d5143b67523b_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_bpf_989e9b1857e24af18787d5143b67523b msdyn_bpf_989e9b1857e24af18787d5143b67523b_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_989e9b1857e24af18787d5143b67523b>("msdyn_bpf_989e9b1857e24af18787d5143b67523b_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3 msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3>("msdyn_bpf_baa0a411a239410cb8bded8b5fdd88e3_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39 msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39>("msdyn_bpf_d3d97bac8c294105840e99e37a9d1c39_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d>("msdyn_bpf_d8f9dc7f099f44db9d641dd81fbd470d_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_characteristicreqforteammember_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_characteristicreqforteammember_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_characteristicreqforteammember msdyn_characteristicreqforteammember_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_characteristicreqforteammember>("msdyn_characteristicreqforteammember_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_contactpricelist_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_contactpricelist_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_contactpricelist msdyn_contactpricelist_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_contactpricelist>("msdyn_contactpricelist_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_contractlineinvoiceschedule_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_contractlineinvoiceschedule_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_contractlineinvoiceschedule msdyn_contractlineinvoiceschedule_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_contractlineinvoiceschedule>("msdyn_contractlineinvoiceschedule_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_contractlinescheduleofvalue_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_contractlinescheduleofvalue_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_contractlinescheduleofvalue msdyn_contractlinescheduleofvalue_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_contractlinescheduleofvalue>("msdyn_contractlinescheduleofvalue_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_customerasset_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_customerasset_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_customerasset msdyn_customerasset_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_customerasset_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_dataexport_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_dataexport_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_dataexport msdyn_dataexport_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_dataexport>("msdyn_dataexport_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_delegation_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_delegation_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_delegation msdyn_delegation_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_delegation>("msdyn_delegation_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_estimate_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_estimate_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_estimate msdyn_estimate_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_estimate>("msdyn_estimate_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_estimateline_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_estimateline_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_estimateline msdyn_estimateline_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_estimateline>("msdyn_estimateline_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_expense_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_expense_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_expense msdyn_expense_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_expense>("msdyn_expense_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_expensecategory_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_expensecategory_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_expensecategory msdyn_expensecategory_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_expensecategory>("msdyn_expensecategory_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_expensereceipt_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_expensereceipt_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_expensereceipt msdyn_expensereceipt_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_expensereceipt>("msdyn_expensereceipt_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fact_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fact_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_fact msdyn_fact_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fact>("msdyn_fact_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fieldcomputation_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fieldcomputation_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_fieldcomputation msdyn_fieldcomputation_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldcomputation>("msdyn_fieldcomputation_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fieldservicepricelistitem_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fieldservicepricelistitem_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_fieldservicepricelistitem msdyn_fieldservicepricelistitem_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicepricelistitem>("msdyn_fieldservicepricelistitem_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fieldservicesetting_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fieldservicesetting_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_fieldservicesetting msdyn_fieldservicesetting_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicesetting>("msdyn_fieldservicesetting_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fieldservicesystemjob_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fieldservicesystemjob_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_fieldservicesystemjob msdyn_fieldservicesystemjob_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicesystemjob>("msdyn_fieldservicesystemjob_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_findworkevent_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_findworkevent_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_findworkevent msdyn_findworkevent_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_findworkevent>("msdyn_findworkevent_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_icebreakersconfig_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_icebreakersconfig_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_icebreakersconfig msdyn_icebreakersconfig_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_icebreakersconfig>("msdyn_icebreakersconfig_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttype_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttype_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_incidenttype msdyn_incidenttype_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttype>("msdyn_incidenttype_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypecharacteristic_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypecharacteristic_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic msdyn_incidenttypecharacteristic_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic>("msdyn_incidenttypecharacteristic_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeproduct_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeproduct_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeproduct msdyn_incidenttypeproduct_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeservice_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeservice_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeservice msdyn_incidenttypeservice_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_incidenttypeservice_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeservicetask_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeservicetask_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeservicetask msdyn_incidenttypeservicetask_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservicetask>("msdyn_incidenttypeservicetask_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_integrationjob_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_integrationjob_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_integrationjob msdyn_integrationjob_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_integrationjob>("msdyn_integrationjob_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_integrationjobdetail_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_integrationjobdetail_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_integrationjobdetail msdyn_integrationjobdetail_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_integrationjobdetail>("msdyn_integrationjobdetail_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustment_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustment_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustment msdyn_inventoryadjustment_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustmentproduct_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustmentproduct_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct msdyn_inventoryadjustmentproduct_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryjournal_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryjournal_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_inventoryjournal msdyn_inventoryjournal_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_inventoryjournal_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventorytransfer_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventorytransfer_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_inventorytransfer msdyn_inventorytransfer_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_invoicefrequency_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_invoicefrequency_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_invoicefrequency msdyn_invoicefrequency_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_invoicefrequency>("msdyn_invoicefrequency_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_invoicefrequencydetail_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_invoicefrequencydetail_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_invoicefrequencydetail msdyn_invoicefrequencydetail_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_invoicefrequencydetail>("msdyn_invoicefrequencydetail_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_invoicelinetransaction_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_invoicelinetransaction_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_invoicelinetransaction msdyn_invoicelinetransaction_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_invoicelinetransaction>("msdyn_invoicelinetransaction_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_journal_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_journal_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_journal msdyn_journal_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_journal>("msdyn_journal_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_journalline_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_journalline_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_journalline msdyn_journalline_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_journalline>("msdyn_journalline_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_mlresultcache_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_mlresultcache_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_mlresultcache msdyn_mlresultcache_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_mlresultcache>("msdyn_mlresultcache_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_notesanalysisconfig_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_notesanalysisconfig_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_notesanalysisconfig msdyn_notesanalysisconfig_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_notesanalysisconfig>("msdyn_notesanalysisconfig_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_opportunitylineresourcecategory_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunitylineresourcecategory_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_opportunitylineresourcecategory msdyn_opportunitylineresourcecategory_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitylineresourcecategory>("msdyn_opportunitylineresourcecategory_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_opportunitylinetransaction_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunitylinetransaction_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_opportunitylinetransaction msdyn_opportunitylinetransaction_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction>("msdyn_opportunitylinetransaction_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_opportunitylinetransactioncategory_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunitylinetransactioncategory_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_opportunitylinetransactioncategory msdyn_opportunitylinetransactioncategory_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitylinetransactioncategory>("msdyn_opportunitylinetransactioncategory_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_opportunitylinetransactionclassificatio_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunitylinetransactionclassificatio_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_opportunitylinetransactionclassificatio msdyn_opportunitylinetransactionclassificatio_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitylinetransactionclassificatio>("msdyn_opportunitylinetransactionclassificatio_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_opportunitypricelist_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_opportunitypricelist_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_opportunitypricelist msdyn_opportunitypricelist_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_opportunitypricelist>("msdyn_opportunitypricelist_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderinvoicingdate_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderinvoicingdate_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_orderinvoicingdate msdyn_orderinvoicingdate_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingdate>("msdyn_orderinvoicingdate_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderinvoicingproduct_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderinvoicingproduct_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_orderinvoicingproduct msdyn_orderinvoicingproduct_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingproduct>("msdyn_orderinvoicingproduct_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderinvoicingsetup_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderinvoicingsetup_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_orderinvoicingsetup msdyn_orderinvoicingsetup_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingsetup>("msdyn_orderinvoicingsetup_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderinvoicingsetupdate_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderinvoicingsetupdate_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_orderinvoicingsetupdate msdyn_orderinvoicingsetupdate_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderinvoicingsetupdate>("msdyn_orderinvoicingsetupdate_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderlineresourcecategory_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderlineresourcecategory_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_orderlineresourcecategory msdyn_orderlineresourcecategory_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderlineresourcecategory>("msdyn_orderlineresourcecategory_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderlinetransaction_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderlinetransaction_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_orderlinetransaction msdyn_orderlinetransaction_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderlinetransaction>("msdyn_orderlinetransaction_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderlinetransactioncategory_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderlinetransactioncategory_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_orderlinetransactioncategory msdyn_orderlinetransactioncategory_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderlinetransactioncategory>("msdyn_orderlinetransactioncategory_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderlinetransactionclassification_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderlinetransactionclassification_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_orderlinetransactionclassification msdyn_orderlinetransactionclassification_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderlinetransactionclassification>("msdyn_orderlinetransactionclassification_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orderpricelist_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orderpricelist_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_orderpricelist msdyn_orderpricelist_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orderpricelist>("msdyn_orderpricelist_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_organizationalunit_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_organizationalunit_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_organizationalunit msdyn_organizationalunit_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_organizationalunit>("msdyn_organizationalunit_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_orginsightsuserdashboarddefinition_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_orginsightsuserdashboarddefinition_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_orginsightsuserdashboarddefinition msdyn_orginsightsuserdashboarddefinition_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_orginsightsuserdashboarddefinition>("msdyn_orginsightsuserdashboarddefinition_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_payment_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_payment_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_payment msdyn_payment_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_payment>("msdyn_payment_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentdetail_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentdetail_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_paymentdetail msdyn_paymentdetail_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentdetail>("msdyn_paymentdetail_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentmethod_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentmethod_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_paymentmethod msdyn_paymentmethod_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentmethod>("msdyn_paymentmethod_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentterm_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentterm_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_paymentterm msdyn_paymentterm_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentterm>("msdyn_paymentterm_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 msdyn_postalbum_BulkDeleteFailures
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1188,6 +3112,20 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_PostAlbum>("msdyn_postalbum_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_postalcode_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_postalcode_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_postalcode msdyn_postalcode_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_postalcode_BulkDeleteFailures", null);
 			}
 		}
 		
@@ -1220,6 +3158,1154 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 msdyn_priority_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_priority_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_priority msdyn_priority_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_priority>("msdyn_priority_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_processnotes_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_processnotes_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_processnotes msdyn_processnotes_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_processnotes>("msdyn_processnotes_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_productinventory_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_productinventory_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_productinventory msdyn_productinventory_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_productinventory_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_project_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_project_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_project msdyn_project_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_project>("msdyn_project_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectapproval_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectapproval_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_projectapproval msdyn_projectapproval_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectapproval>("msdyn_projectapproval_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectparameter_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectparameter_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_projectparameter msdyn_projectparameter_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectparameter>("msdyn_projectparameter_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectparameterpricelist_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectparameterpricelist_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_projectparameterpricelist msdyn_projectparameterpricelist_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectparameterpricelist>("msdyn_projectparameterpricelist_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectpricelist_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectpricelist_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_projectpricelist msdyn_projectpricelist_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectpricelist>("msdyn_projectpricelist_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projecttask_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projecttask_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_projecttask msdyn_projecttask_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttask>("msdyn_projecttask_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projecttaskdependency_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projecttaskdependency_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_projecttaskdependency msdyn_projecttaskdependency_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttaskdependency>("msdyn_projecttaskdependency_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projecttaskstatususer_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projecttaskstatususer_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_projecttaskstatususer msdyn_projecttaskstatususer_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttaskstatususer>("msdyn_projecttaskstatususer_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectteam_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectteam_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_projectteam msdyn_projectteam_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteam>("msdyn_projectteam_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectteammembersignup_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectteammembersignup_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_projectteammembersignup msdyn_projectteammembersignup_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteammembersignup>("msdyn_projectteammembersignup_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projecttransactioncategory_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projecttransactioncategory_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_projecttransactioncategory msdyn_projecttransactioncategory_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projecttransactioncategory>("msdyn_projecttransactioncategory_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorder_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorder_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorder msdyn_purchaseorder_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderbill_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderbill_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderbill msdyn_purchaseorderbill_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("msdyn_purchaseorderbill_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderproduct_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderproduct_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderproduct msdyn_purchaseorderproduct_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_purchaseorderproduct_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceipt_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceipt_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceipt msdyn_purchaseorderreceipt_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceiptproduct_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceiptproduct_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct msdyn_purchaseorderreceiptproduct_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct>("msdyn_purchaseorderreceiptproduct_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseordersubstatus_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseordersubstatus_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_purchaseordersubstatus msdyn_purchaseordersubstatus_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus>("msdyn_purchaseordersubstatus_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingincident_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingincident_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingincident msdyn_quotebookingincident_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quotebookingincident_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingproduct_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingproduct_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingproduct msdyn_quotebookingproduct_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quotebookingproduct_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservice_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservice_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservice msdyn_quotebookingservice_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quotebookingservice_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservicetask_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservicetask_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservicetask msdyn_quotebookingservicetask_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quotebookingservicetask_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingsetup_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingsetup_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingsetup msdyn_quotebookingsetup_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingsetup>("msdyn_quotebookingsetup_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quoteinvoicingproduct_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quoteinvoicingproduct_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_quoteinvoicingproduct msdyn_quoteinvoicingproduct_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quoteinvoicingproduct>("msdyn_quoteinvoicingproduct_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quoteinvoicingsetup_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quoteinvoicingsetup_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_quoteinvoicingsetup msdyn_quoteinvoicingsetup_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quoteinvoicingsetup>("msdyn_quoteinvoicingsetup_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelineanalyticsbreakdown_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelineanalyticsbreakdown_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_quotelineanalyticsbreakdown msdyn_quotelineanalyticsbreakdown_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelineanalyticsbreakdown>("msdyn_quotelineanalyticsbreakdown_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelineinvoiceschedule_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelineinvoiceschedule_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_quotelineinvoiceschedule msdyn_quotelineinvoiceschedule_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelineinvoiceschedule>("msdyn_quotelineinvoiceschedule_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelineresourcecategory_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelineresourcecategory_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_quotelineresourcecategory msdyn_quotelineresourcecategory_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelineresourcecategory>("msdyn_quotelineresourcecategory_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelinescheduleofvalue_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelinescheduleofvalue_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_quotelinescheduleofvalue msdyn_quotelinescheduleofvalue_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelinescheduleofvalue>("msdyn_quotelinescheduleofvalue_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelinetransaction_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelinetransaction_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_quotelinetransaction msdyn_quotelinetransaction_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelinetransaction>("msdyn_quotelinetransaction_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelinetransactioncategory_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelinetransactioncategory_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_quotelinetransactioncategory msdyn_quotelinetransactioncategory_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelinetransactioncategory>("msdyn_quotelinetransactioncategory_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotelinetransactionclassification_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotelinetransactionclassification_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_quotelinetransactionclassification msdyn_quotelinetransactionclassification_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotelinetransactionclassification>("msdyn_quotelinetransactionclassification_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotepricelist_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotepricelist_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_quotepricelist msdyn_quotepricelist_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotepricelist>("msdyn_quotepricelist_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_relationshipinsightsunifiedconfig_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_relationshipinsightsunifiedconfig_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_relationshipinsightsunifiedconfig msdyn_relationshipinsightsunifiedconfig_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_relationshipinsightsunifiedconfig>("msdyn_relationshipinsightsunifiedconfig_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_requirementcharacteristic_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_requirementcharacteristic_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_requirementcharacteristic msdyn_requirementcharacteristic_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementcharacteristic>("msdyn_requirementcharacteristic_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_requirementorganizationunit_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_requirementorganizationunit_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_requirementorganizationunit msdyn_requirementorganizationunit_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementorganizationunit>("msdyn_requirementorganizationunit_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_requirementresourcecategory_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_requirementresourcecategory_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_requirementresourcecategory msdyn_requirementresourcecategory_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementresourcecategory>("msdyn_requirementresourcecategory_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_requirementresourcepreference_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_requirementresourcepreference_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_requirementresourcepreference msdyn_requirementresourcepreference_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementresourcepreference>("msdyn_requirementresourcepreference_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_requirementstatus_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_requirementstatus_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_requirementstatus msdyn_requirementstatus_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_requirementstatus>("msdyn_requirementstatus_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourceassignment_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourceassignment_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_resourceassignment msdyn_resourceassignment_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceassignment>("msdyn_resourceassignment_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourceassignmentdetail_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourceassignmentdetail_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_resourceassignmentdetail msdyn_resourceassignmentdetail_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceassignmentdetail>("msdyn_resourceassignmentdetail_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourcecategorypricelevel_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourcecategorypricelevel_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_resourcecategorypricelevel msdyn_resourcecategorypricelevel_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcecategorypricelevel>("msdyn_resourcecategorypricelevel_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourcepaytype_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourcepaytype_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_resourcepaytype msdyn_resourcepaytype_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcepaytype>("msdyn_resourcepaytype_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourcerequest_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourcerequest_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_resourcerequest msdyn_resourcerequest_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcerequest>("msdyn_resourcerequest_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourcerequirement_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourcerequirement_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_resourcerequirement msdyn_resourcerequirement_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcerequirement>("msdyn_resourcerequirement_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourcerequirementdetail_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourcerequirementdetail_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_resourcerequirementdetail msdyn_resourcerequirementdetail_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourcerequirementdetail>("msdyn_resourcerequirementdetail_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourceterritory_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourceterritory_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_resourceterritory msdyn_resourceterritory_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rma_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rma_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_rma msdyn_rma_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmaproduct_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmaproduct_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_rmaproduct msdyn_rmaproduct_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_rmaproduct_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceipt_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceipt_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_rmareceipt msdyn_rmareceipt_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceiptproduct_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceiptproduct_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_rmareceiptproduct msdyn_rmareceiptproduct_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceiptproduct>("msdyn_rmareceiptproduct_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmasubstatus_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmasubstatus_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_rmasubstatus msdyn_rmasubstatus_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmasubstatus>("msdyn_rmasubstatus_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rolecompetencyrequirement_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rolecompetencyrequirement_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_rolecompetencyrequirement msdyn_rolecompetencyrequirement_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rolecompetencyrequirement>("msdyn_rolecompetencyrequirement_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_roleutilization_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_roleutilization_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_roleutilization msdyn_roleutilization_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_roleutilization>("msdyn_roleutilization_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtv_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtv_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_rtv msdyn_rtv_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvproduct_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvproduct_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_rtvproduct msdyn_rtvproduct_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_rtvproduct_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvsubstatus_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvsubstatus_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_rtvsubstatus msdyn_rtvsubstatus_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvsubstatus>("msdyn_rtvsubstatus_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_scheduleboardsetting_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_scheduleboardsetting_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_scheduleboardsetting msdyn_scheduleboardsetting_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_scheduleboardsetting>("msdyn_scheduleboardsetting_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_schedulingparameter_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_schedulingparameter_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_schedulingparameter msdyn_schedulingparameter_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_schedulingparameter>("msdyn_schedulingparameter_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_servicetasktype_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_servicetasktype_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_servicetasktype msdyn_servicetasktype_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_servicetasktype>("msdyn_servicetasktype_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_shipvia_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_shipvia_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_shipvia msdyn_shipvia_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_shipvia>("msdyn_shipvia_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_siconfig_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_siconfig_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_siconfig msdyn_siconfig_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_siconfig>("msdyn_siconfig_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_systemuserschedulersetting_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_systemuserschedulersetting_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_systemuserschedulersetting msdyn_systemuserschedulersetting_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting>("msdyn_systemuserschedulersetting_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_taxcode_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_taxcode_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_taxcode msdyn_taxcode_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_taxcode>("msdyn_taxcode_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_taxcodedetail_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_taxcodedetail_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_taxcodedetail msdyn_taxcodedetail_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_taxcodedetail>("msdyn_taxcodedetail_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timeentry_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timeentry_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_timeentry msdyn_timeentry_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeentry>("msdyn_timeentry_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroup_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroup_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_timegroup msdyn_timegroup_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroupdetail_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroupdetail_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_timegroupdetail msdyn_timegroupdetail_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timeoffcalendar_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timeoffcalendar_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_timeoffcalendar msdyn_timeoffcalendar_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffcalendar>("msdyn_timeoffcalendar_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timeoffrequest_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timeoffrequest_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_timeoffrequest msdyn_timeoffrequest_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffrequest>("msdyn_timeoffrequest_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactioncategory_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactioncategory_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_transactioncategory msdyn_transactioncategory_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategory>("msdyn_transactioncategory_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactioncategoryclassification_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactioncategoryclassification_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_transactioncategoryclassification msdyn_transactioncategoryclassification_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategoryclassification>("msdyn_transactioncategoryclassification_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactioncategoryhierarchyelement_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactioncategoryhierarchyelement_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_transactioncategoryhierarchyelement msdyn_transactioncategoryhierarchyelement_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategoryhierarchyelement>("msdyn_transactioncategoryhierarchyelement_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactioncategorypricelevel_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactioncategorypricelevel_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_transactioncategorypricelevel msdyn_transactioncategorypricelevel_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactioncategorypricelevel>("msdyn_transactioncategorypricelevel_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactionconnection_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactionconnection_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_transactionconnection msdyn_transactionconnection_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactionconnection>("msdyn_transactionconnection_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactionorigin_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactionorigin_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_transactionorigin msdyn_transactionorigin_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactionorigin>("msdyn_transactionorigin_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_transactiontype_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_transactiontype_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_transactiontype msdyn_transactiontype_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_transactiontype>("msdyn_transactiontype_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_uniquenumber_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_uniquenumber_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_uniquenumber msdyn_uniquenumber_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_uniquenumber>("msdyn_uniquenumber_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_untrackedappointment_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_untrackedappointment_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_untrackedappointment msdyn_untrackedappointment_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_untrackedappointment>("msdyn_untrackedappointment_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_userworkhistory_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_userworkhistory_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_userworkhistory msdyn_userworkhistory_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_userworkhistory>("msdyn_userworkhistory_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 msdyn_wallsavedquery_BulkDeleteFailures
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1244,6 +4330,174 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_wallsavedqueryusersettings>("msdyn_wallsavedqueryusersettings_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_warehouse_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_warehouse_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_warehouse msdyn_warehouse_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workhourtemplate_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workhourtemplate_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_workhourtemplate msdyn_workhourtemplate_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workhourtemplate>("msdyn_workhourtemplate_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorder_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorder_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_workorder msdyn_workorder_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workordercharacteristic_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workordercharacteristic_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_workordercharacteristic msdyn_workordercharacteristic_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordercharacteristic>("msdyn_workordercharacteristic_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderdetailsgenerationqueue_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderdetailsgenerationqueue_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_workorderdetailsgenerationqueue msdyn_workorderdetailsgenerationqueue_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderdetailsgenerationqueue>("msdyn_workorderdetailsgenerationqueue_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderincident_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderincident_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_workorderincident msdyn_workorderincident_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderproduct_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderproduct_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_workorderproduct msdyn_workorderproduct_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_workorderproduct_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderresourcerestriction_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderresourcerestriction_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_workorderresourcerestriction msdyn_workorderresourcerestriction_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_workorderresourcerestriction_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservice_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservice_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_workorderservice msdyn_workorderservice_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservicetask_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservicetask_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_workorderservicetask msdyn_workorderservicetask_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workordersubstatus_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workordersubstatus_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_workordersubstatus msdyn_workordersubstatus_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordersubstatus>("msdyn_workordersubstatus_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workordertype_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workordertype_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.msdyn_workordertype msdyn_workordertype_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordertype>("msdyn_workordertype_BulkDeleteFailures", null);
 			}
 		}
 		
@@ -1276,6 +4530,20 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 opportunitycompetitors_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunitycompetitors_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.OpportunityCompetitors opportunitycompetitors_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.OpportunityCompetitors>("opportunitycompetitors_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 OpportunityProduct_BulkDeleteFailures
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1286,6 +4554,20 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.OpportunityProduct>("OpportunityProduct_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 opportunitysalesprocess_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunitysalesprocess_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.OpportunitySalesProcess opportunitysalesprocess_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.OpportunitySalesProcess>("opportunitysalesprocess_BulkDeleteFailures", null);
 			}
 		}
 		
@@ -1328,6 +4610,20 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.PhoneCall>("PhoneCall_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 phonetocaseprocess_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("phonetocaseprocess_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.PhoneToCaseProcess phonetocaseprocess_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.PhoneToCaseProcess>("phonetocaseprocess_BulkDeleteFailures", null);
 			}
 		}
 		
@@ -1388,6 +4684,20 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 productassociation_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("productassociation_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.ProductAssociation productassociation_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ProductAssociation>("productassociation_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 ProductPriceLevel_BulkDeleteFailures
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1398,6 +4708,20 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.ProductPriceLevel>("ProductPriceLevel_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 productsalesliterature_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("productsalesliterature_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.ProductSalesLiterature productsalesliterature_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ProductSalesLiterature>("productsalesliterature_BulkDeleteFailures", null);
 			}
 		}
 		
@@ -1510,6 +4834,34 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.QuoteDetail>("QuoteDetail_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 ratingmodel_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ratingmodel_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.RatingModel ratingmodel_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.RatingModel>("ratingmodel_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 ratingvalue_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ratingvalue_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.RatingValue ratingvalue_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.RatingValue>("ratingvalue_BulkDeleteFailures", null);
 			}
 		}
 		
@@ -1752,6 +5104,20 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 servicecontractcontacts_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("servicecontractcontacts_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.ServiceContractContacts servicecontractcontacts_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.ServiceContractContacts>("servicecontractcontacts_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 Site_BulkDeleteFailures
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -1902,6 +5268,76 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetRelatedEntity<DLaB.Xrm.Entities.Theme>("theme_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 topic_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("topic_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.Topic topic_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Topic>("topic_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 topichistory_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("topichistory_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.TopicHistory topichistory_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.TopicHistory>("topichistory_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 topicmodel_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("topicmodel_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.TopicModel topicmodel_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.TopicModel>("topicmodel_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 topicmodelconfiguration_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("topicmodelconfiguration_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.TopicModelConfiguration topicmodelconfiguration_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.TopicModelConfiguration>("topicmodelconfiguration_BulkDeleteFailures", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 topicmodelexecutionhistory_BulkDeleteFailures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("topicmodelexecutionhistory_BulkDeleteFailures")]
+		public DLaB.Xrm.Entities.TopicModelExecutionHistory topicmodelexecutionhistory_BulkDeleteFailures
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.TopicModelExecutionHistory>("topicmodelexecutionhistory_BulkDeleteFailures", null);
 			}
 		}
 		

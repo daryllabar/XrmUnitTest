@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum RecurringAppointmentMasterState
 	{
 		
@@ -33,11 +33,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("recurringappointmentmaster")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class RecurringAppointmentMaster : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ActivityId = "activityid";
 			public const string Id = "activityid";
@@ -70,6 +70,7 @@ namespace DLaB.Xrm.Entities
 			public const string IsNthYearly = "isnthyearly";
 			public const string IsRegenerate = "isregenerate";
 			public const string IsRegularActivity = "isregularactivity";
+			public const string IsUnsafe = "isunsafe";
 			public const string IsWeekDayPattern = "isweekdaypattern";
 			public const string IsWorkflowCreated = "isworkflowcreated";
 			public const string LastExpandedInstanceDate = "lastexpandedinstancedate";
@@ -101,6 +102,7 @@ namespace DLaB.Xrm.Entities
 			public const string ScheduledStart = "scheduledstart";
 			public const string SeriesStatus = "seriesstatus";
 			public const string ServiceId = "serviceid";
+			public const string SortDate = "sortdate";
 			public const string StageId = "stageid";
 			public const string StartTime = "starttime";
 			public const string StateCode = "statecode";
@@ -115,6 +117,8 @@ namespace DLaB.Xrm.Entities
 			public const string VersionNumber = "versionnumber";
 			public const string Account_RecurringAppointmentMasters = "Account_RecurringAppointmentMasters";
 			public const string activity_pointer_recurringappointmentmaster = "activity_pointer_recurringappointmentmaster";
+			public const string bookableresourcebooking_RecurringAppointmentMasters = "bookableresourcebooking_RecurringAppointmentMasters";
+			public const string bookableresourcebookingheader_RecurringAppointmentMasters = "bookableresourcebookingheader_RecurringAppointmentMasters";
 			public const string BulkOperation_RecurringAppointmentMaster = "BulkOperation_RecurringAppointmentMaster";
 			public const string business_unit_recurringappointmentmaster_activities = "business_unit_recurringappointmentmaster_activities";
 			public const string Campaign_RecurringAppointmentMasters = "Campaign_RecurringAppointmentMasters";
@@ -132,18 +136,80 @@ namespace DLaB.Xrm.Entities
 			public const string lk_recurringappointmentmaster_createdonbehalfby = "lk_recurringappointmentmaster_createdonbehalfby";
 			public const string lk_recurringappointmentmaster_modifiedby = "lk_recurringappointmentmaster_modifiedby";
 			public const string lk_recurringappointmentmaster_modifiedonbehalfby = "lk_recurringappointmentmaster_modifiedonbehalfby";
+			public const string msdyn_agreement_RecurringAppointmentMasters = "msdyn_agreement_RecurringAppointmentMasters";
+			public const string msdyn_agreementbookingdate_RecurringAppointmentMasters = "msdyn_agreementbookingdate_RecurringAppointmentMasters";
+			public const string msdyn_agreementbookingincident_RecurringAppointmentMasters = "msdyn_agreementbookingincident_RecurringAppointmentMasters";
+			public const string msdyn_agreementbookingproduct_RecurringAppointmentMasters = "msdyn_agreementbookingproduct_RecurringAppointmentMasters";
+			public const string msdyn_agreementbookingservice_RecurringAppointmentMasters = "msdyn_agreementbookingservice_RecurringAppointmentMasters";
+			public const string msdyn_agreementbookingservicetask_RecurringAppointmentMasters = "msdyn_agreementbookingservicetask_RecurringAppointmentMasters";
+			public const string msdyn_agreementbookingsetup_RecurringAppointmentMasters = "msdyn_agreementbookingsetup_RecurringAppointmentMasters";
+			public const string msdyn_agreementinvoicedate_RecurringAppointmentMasters = "msdyn_agreementinvoicedate_RecurringAppointmentMasters";
+			public const string msdyn_agreementinvoiceproduct_RecurringAppointmentMasters = "msdyn_agreementinvoiceproduct_RecurringAppointmentMasters";
+			public const string msdyn_agreementinvoicesetup_RecurringAppointmentMasters = "msdyn_agreementinvoicesetup_RecurringAppointmentMasters";
+			public const string msdyn_bookingalertstatus_RecurringAppointmentMasters = "msdyn_bookingalertstatus_RecurringAppointmentMasters";
+			public const string msdyn_bookingrule_RecurringAppointmentMasters = "msdyn_bookingrule_RecurringAppointmentMasters";
+			public const string msdyn_bookingtimestamp_RecurringAppointmentMasters = "msdyn_bookingtimestamp_RecurringAppointmentMasters";
+			public const string msdyn_customerasset_RecurringAppointmentMasters = "msdyn_customerasset_RecurringAppointmentMasters";
+			public const string msdyn_fieldservicesetting_RecurringAppointmentMasters = "msdyn_fieldservicesetting_RecurringAppointmentMasters";
+			public const string msdyn_incidenttypecharacteristic_RecurringAppointmentMasters = "msdyn_incidenttypecharacteristic_RecurringAppointmentMasters";
+			public const string msdyn_incidenttypeproduct_RecurringAppointmentMasters = "msdyn_incidenttypeproduct_RecurringAppointmentMasters";
+			public const string msdyn_incidenttypeservice_RecurringAppointmentMasters = "msdyn_incidenttypeservice_RecurringAppointmentMasters";
+			public const string msdyn_inventoryadjustment_RecurringAppointmentMasters = "msdyn_inventoryadjustment_RecurringAppointmentMasters";
+			public const string msdyn_inventoryadjustmentproduct_RecurringAppointmentMasters = "msdyn_inventoryadjustmentproduct_RecurringAppointmentMasters";
+			public const string msdyn_inventoryjournal_RecurringAppointmentMasters = "msdyn_inventoryjournal_RecurringAppointmentMasters";
+			public const string msdyn_inventorytransfer_RecurringAppointmentMasters = "msdyn_inventorytransfer_RecurringAppointmentMasters";
+			public const string msdyn_payment_RecurringAppointmentMasters = "msdyn_payment_RecurringAppointmentMasters";
+			public const string msdyn_paymentdetail_RecurringAppointmentMasters = "msdyn_paymentdetail_RecurringAppointmentMasters";
+			public const string msdyn_paymentmethod_RecurringAppointmentMasters = "msdyn_paymentmethod_RecurringAppointmentMasters";
+			public const string msdyn_paymentterm_RecurringAppointmentMasters = "msdyn_paymentterm_RecurringAppointmentMasters";
 			public const string msdyn_postalbum_RecurringAppointmentMasters = "msdyn_postalbum_RecurringAppointmentMasters";
+			public const string msdyn_postalcode_RecurringAppointmentMasters = "msdyn_postalcode_RecurringAppointmentMasters";
+			public const string msdyn_processnotes_RecurringAppointmentMasters = "msdyn_processnotes_RecurringAppointmentMasters";
+			public const string msdyn_productinventory_RecurringAppointmentMasters = "msdyn_productinventory_RecurringAppointmentMasters";
+			public const string msdyn_projectteam_RecurringAppointmentMasters = "msdyn_projectteam_RecurringAppointmentMasters";
+			public const string msdyn_purchaseorder_RecurringAppointmentMasters = "msdyn_purchaseorder_RecurringAppointmentMasters";
+			public const string msdyn_purchaseorderbill_RecurringAppointmentMasters = "msdyn_purchaseorderbill_RecurringAppointmentMasters";
+			public const string msdyn_purchaseorderproduct_RecurringAppointmentMasters = "msdyn_purchaseorderproduct_RecurringAppointmentMasters";
+			public const string msdyn_purchaseorderreceipt_RecurringAppointmentMasters = "msdyn_purchaseorderreceipt_RecurringAppointmentMasters";
+			public const string msdyn_purchaseorderreceiptproduct_RecurringAppointmentMasters = "msdyn_purchaseorderreceiptproduct_RecurringAppointmentMasters";
+			public const string msdyn_purchaseordersubstatus_RecurringAppointmentMasters = "msdyn_purchaseordersubstatus_RecurringAppointmentMasters";
+			public const string msdyn_quotebookingincident_RecurringAppointmentMasters = "msdyn_quotebookingincident_RecurringAppointmentMasters";
+			public const string msdyn_quotebookingproduct_RecurringAppointmentMasters = "msdyn_quotebookingproduct_RecurringAppointmentMasters";
+			public const string msdyn_quotebookingservice_RecurringAppointmentMasters = "msdyn_quotebookingservice_RecurringAppointmentMasters";
+			public const string msdyn_quotebookingservicetask_RecurringAppointmentMasters = "msdyn_quotebookingservicetask_RecurringAppointmentMasters";
+			public const string msdyn_resourceterritory_RecurringAppointmentMasters = "msdyn_resourceterritory_RecurringAppointmentMasters";
+			public const string msdyn_rma_RecurringAppointmentMasters = "msdyn_rma_RecurringAppointmentMasters";
+			public const string msdyn_rmaproduct_RecurringAppointmentMasters = "msdyn_rmaproduct_RecurringAppointmentMasters";
+			public const string msdyn_rmareceipt_RecurringAppointmentMasters = "msdyn_rmareceipt_RecurringAppointmentMasters";
+			public const string msdyn_rmareceiptproduct_RecurringAppointmentMasters = "msdyn_rmareceiptproduct_RecurringAppointmentMasters";
+			public const string msdyn_rmasubstatus_RecurringAppointmentMasters = "msdyn_rmasubstatus_RecurringAppointmentMasters";
+			public const string msdyn_rtv_RecurringAppointmentMasters = "msdyn_rtv_RecurringAppointmentMasters";
+			public const string msdyn_rtvproduct_RecurringAppointmentMasters = "msdyn_rtvproduct_RecurringAppointmentMasters";
+			public const string msdyn_rtvsubstatus_RecurringAppointmentMasters = "msdyn_rtvsubstatus_RecurringAppointmentMasters";
+			public const string msdyn_shipvia_RecurringAppointmentMasters = "msdyn_shipvia_RecurringAppointmentMasters";
+			public const string msdyn_systemuserschedulersetting_RecurringAppointmentMasters = "msdyn_systemuserschedulersetting_RecurringAppointmentMasters";
+			public const string msdyn_timegroup_RecurringAppointmentMasters = "msdyn_timegroup_RecurringAppointmentMasters";
+			public const string msdyn_timegroupdetail_RecurringAppointmentMasters = "msdyn_timegroupdetail_RecurringAppointmentMasters";
+			public const string msdyn_timeoffrequest_RecurringAppointmentMasters = "msdyn_timeoffrequest_RecurringAppointmentMasters";
+			public const string msdyn_warehouse_RecurringAppointmentMasters = "msdyn_warehouse_RecurringAppointmentMasters";
+			public const string msdyn_workorder_RecurringAppointmentMasters = "msdyn_workorder_RecurringAppointmentMasters";
+			public const string msdyn_workordercharacteristic_RecurringAppointmentMasters = "msdyn_workordercharacteristic_RecurringAppointmentMasters";
+			public const string msdyn_workorderincident_RecurringAppointmentMasters = "msdyn_workorderincident_RecurringAppointmentMasters";
+			public const string msdyn_workorderproduct_RecurringAppointmentMasters = "msdyn_workorderproduct_RecurringAppointmentMasters";
+			public const string msdyn_workorderresourcerestriction_RecurringAppointmentMasters = "msdyn_workorderresourcerestriction_RecurringAppointmentMasters";
+			public const string msdyn_workorderservice_RecurringAppointmentMasters = "msdyn_workorderservice_RecurringAppointmentMasters";
+			public const string msdyn_workorderservicetask_RecurringAppointmentMasters = "msdyn_workorderservicetask_RecurringAppointmentMasters";
 			public const string Opportunity_RecurringAppointmentMasters = "Opportunity_RecurringAppointmentMasters";
 			public const string processstage_recurringappointmentmasters = "processstage_recurringappointmentmasters";
 			public const string Quote_RecurringAppointmentMasters = "Quote_RecurringAppointmentMasters";
 			public const string recurrencerule_recurringappointmentmaster = "recurrencerule_recurringappointmentmaster";
 			public const string SalesOrder_RecurringAppointmentMasters = "SalesOrder_RecurringAppointmentMasters";
 			public const string service_recurringappointmentmasters = "service_recurringappointmentmasters";
+			public const string site_RecurringAppointmentMasters = "site_RecurringAppointmentMasters";
 			public const string team_recurringappointmentmaster = "team_recurringappointmentmaster";
 			public const string TransactionCurrency_RecurringAppointmentMaster = "TransactionCurrency_RecurringAppointmentMaster";
 			public const string user_recurringappointmentmaster = "user_recurringappointmentmaster";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -155,6 +221,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "recurringappointmentmaster";
+		
+		public const string PrimaryIdAttribute = "activityid";
+		
+		public const string PrimaryNameAttribute = "subject";
 		
 		public const int EntityTypeCode = 4251;
 		
@@ -277,7 +347,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -755,6 +825,19 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isunsafe")]
+		public System.Nullable<int> IsUnsafe
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("isunsafe");
+			}
+		}
+		
+		/// <summary>
 		/// Indicates whether the weekly recurrence pattern is a daily weekday pattern. Valid for weekly recurrence pattern only.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isweekdaypattern")]
@@ -848,7 +931,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -1253,7 +1336,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the record that the recurring appointment series relates to.
+		/// SalesOrder_RecurringAppointmentMasters
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
 		public Microsoft.Xrm.Sdk.EntityReference RegardingObjectId
@@ -1368,7 +1451,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier for an associated service.
+		/// service_recurringappointmentmasters
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("serviceid")]
 		public Microsoft.Xrm.Sdk.EntityReference ServiceId
@@ -1384,6 +1467,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ServiceId");
 				this.SetAttributeValue("serviceid", value);
 				this.OnPropertyChanged("ServiceId");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the date and time by which the activities are sorted.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("sortdate")]
+		public System.Nullable<System.DateTime> SortDate
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("sortdate");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SortDate");
+				this.SetAttributeValue("sortdate", value);
+				this.OnPropertyChanged("SortDate");
 			}
 		}
 		
@@ -1632,6 +1735,26 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N recurringappointmentmaster_actioncard
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("recurringappointmentmaster_actioncard")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActionCard> recurringappointmentmaster_actioncard
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ActionCard>("recurringappointmentmaster_actioncard", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("recurringappointmentmaster_actioncard");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ActionCard>("recurringappointmentmaster_actioncard", null, value);
+				this.OnPropertyChanged("recurringappointmentmaster_actioncard");
 			}
 		}
 		
@@ -1916,6 +2039,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N RecurringAppointmentMaster_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("RecurringAppointmentMaster_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> RecurringAppointmentMaster_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("RecurringAppointmentMaster_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("RecurringAppointmentMaster_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("RecurringAppointmentMaster_SyncErrors", null, value);
+				this.OnPropertyChanged("RecurringAppointmentMaster_SyncErrors");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N userentityinstancedata_recurringappointmentmaster
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("userentityinstancedata_recurringappointmentmaster")]
@@ -1974,6 +2117,48 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("activity_pointer_recurringappointmentmaster");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.ActivityPointer>("activity_pointer_recurringappointmentmaster", null, value);
 				this.OnPropertyChanged("activity_pointer_recurringappointmentmaster");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcebooking_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebooking_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.BookableResourceBooking bookableresourcebooking_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBooking>("bookableresourcebooking_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bookableresourcebooking_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBooking>("bookableresourcebooking_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("bookableresourcebooking_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 bookableresourcebookingheader_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bookableresourcebookingheader_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.BookableResourceBookingHeader bookableresourcebookingheader_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBookingHeader>("bookableresourcebookingheader_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bookableresourcebookingheader_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookableResourceBookingHeader>("bookableresourcebookingheader_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("bookableresourcebookingheader_RecurringAppointmentMasters");
 			}
 		}
 		
@@ -2335,6 +2520,552 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 msdyn_agreement_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreement_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_agreement msdyn_agreement_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreement_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_agreement_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_agreement_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingdate_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingdate_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingdate msdyn_agreementbookingdate_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingdate_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingdate>("msdyn_agreementbookingdate_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingdate_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingincident_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingincident_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingincident msdyn_agreementbookingincident_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingincident>("msdyn_agreementbookingincident_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingincident_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingincident>("msdyn_agreementbookingincident_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingincident_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingproduct_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingproduct_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingproduct msdyn_agreementbookingproduct_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_agreementbookingproduct_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingproduct_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingproduct>("msdyn_agreementbookingproduct_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingproduct_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservice_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservice_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservice msdyn_agreementbookingservice_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_agreementbookingservice_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingservice_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservice>("msdyn_agreementbookingservice_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingservice_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingservicetask_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingservicetask_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingservicetask msdyn_agreementbookingservicetask_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask>("msdyn_agreementbookingservicetask_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingservicetask_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingservicetask>("msdyn_agreementbookingservicetask_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingservicetask_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementbookingsetup_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementbookingsetup_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_agreementbookingsetup msdyn_agreementbookingsetup_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementbookingsetup_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementbookingsetup>("msdyn_agreementbookingsetup_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_agreementbookingsetup_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicedate_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicedate_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicedate msdyn_agreementinvoicedate_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoicedate_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicedate>("msdyn_agreementinvoicedate_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoicedate_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoiceproduct_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoiceproduct_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct msdyn_agreementinvoiceproduct_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_agreementinvoiceproduct_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoiceproduct_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoiceproduct>("msdyn_agreementinvoiceproduct_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoiceproduct_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_agreementinvoicesetup_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_agreementinvoicesetup_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_agreementinvoicesetup msdyn_agreementinvoicesetup_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_agreementinvoicesetup_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_agreementinvoicesetup>("msdyn_agreementinvoicesetup_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_agreementinvoicesetup_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingalertstatus_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingalertstatus_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_bookingalertstatus msdyn_bookingalertstatus_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalertstatus>("msdyn_bookingalertstatus_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingalertstatus_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingalertstatus>("msdyn_bookingalertstatus_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_bookingalertstatus_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingrule_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingrule_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_bookingrule msdyn_bookingrule_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingrule>("msdyn_bookingrule_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingrule_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingrule>("msdyn_bookingrule_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_bookingrule_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookingtimestamp_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookingtimestamp_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_bookingtimestamp msdyn_bookingtimestamp_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookingtimestamp_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_bookingtimestamp>("msdyn_bookingtimestamp_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_bookingtimestamp_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_customerasset_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_customerasset_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_customerasset msdyn_customerasset_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_customerasset_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_customerasset_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_customerasset_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_customerasset_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_fieldservicesetting_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_fieldservicesetting_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_fieldservicesetting msdyn_fieldservicesetting_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicesetting>("msdyn_fieldservicesetting_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_fieldservicesetting_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_fieldservicesetting>("msdyn_fieldservicesetting_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_fieldservicesetting_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypecharacteristic_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypecharacteristic_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic msdyn_incidenttypecharacteristic_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic>("msdyn_incidenttypecharacteristic_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypecharacteristic_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypecharacteristic>("msdyn_incidenttypecharacteristic_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypecharacteristic_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeproduct_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeproduct_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeproduct msdyn_incidenttypeproduct_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypeproduct_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeproduct>("msdyn_incidenttypeproduct_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypeproduct_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_incidenttypeservice_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incidenttypeservice_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_incidenttypeservice msdyn_incidenttypeservice_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_incidenttypeservice_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incidenttypeservice_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttypeservice>("msdyn_incidenttypeservice_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_incidenttypeservice_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustment_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustment_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustment msdyn_inventoryadjustment_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryadjustment_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustment>("msdyn_inventoryadjustment_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_inventoryadjustment_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryadjustmentproduct_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryadjustmentproduct_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct msdyn_inventoryadjustmentproduct_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryadjustmentproduct_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryadjustmentproduct>("msdyn_inventoryadjustmentproduct_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_inventoryadjustmentproduct_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventoryjournal_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventoryjournal_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_inventoryjournal msdyn_inventoryjournal_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_inventoryjournal_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventoryjournal_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventoryjournal>("msdyn_inventoryjournal_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_inventoryjournal_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_inventorytransfer_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_inventorytransfer_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_inventorytransfer msdyn_inventorytransfer_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_inventorytransfer_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_inventorytransfer>("msdyn_inventorytransfer_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_inventorytransfer_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_payment_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_payment_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_payment msdyn_payment_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_payment>("msdyn_payment_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_payment_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_payment>("msdyn_payment_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_payment_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentdetail_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentdetail_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_paymentdetail msdyn_paymentdetail_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentdetail>("msdyn_paymentdetail_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentdetail_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentdetail>("msdyn_paymentdetail_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_paymentdetail_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentmethod_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentmethod_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_paymentmethod msdyn_paymentmethod_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentmethod>("msdyn_paymentmethod_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentmethod_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentmethod>("msdyn_paymentmethod_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_paymentmethod_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_paymentterm_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_paymentterm_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_paymentterm msdyn_paymentterm_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentterm>("msdyn_paymentterm_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_paymentterm_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_paymentterm>("msdyn_paymentterm_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_paymentterm_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 msdyn_postalbum_RecurringAppointmentMasters
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -2352,6 +3083,762 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("msdyn_postalbum_RecurringAppointmentMasters");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_PostAlbum>("msdyn_postalbum_RecurringAppointmentMasters", null, value);
 				this.OnPropertyChanged("msdyn_postalbum_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_postalcode_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_postalcode_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_postalcode msdyn_postalcode_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_postalcode_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_postalcode_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_postalcode>("msdyn_postalcode_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_postalcode_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_processnotes_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_processnotes_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_processnotes msdyn_processnotes_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_processnotes>("msdyn_processnotes_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_processnotes_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_processnotes>("msdyn_processnotes_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_processnotes_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_productinventory_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_productinventory_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_productinventory msdyn_productinventory_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_productinventory_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_productinventory_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_productinventory>("msdyn_productinventory_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_productinventory_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_projectteam_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_projectteam_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_projectteam msdyn_projectteam_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteam>("msdyn_projectteam_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_projectteam_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_projectteam>("msdyn_projectteam_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_projectteam_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorder_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorder_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorder msdyn_purchaseorder_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorder_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_purchaseorder_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorder_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderbill_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderbill_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderbill msdyn_purchaseorderbill_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("msdyn_purchaseorderbill_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderbill_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderbill>("msdyn_purchaseorderbill_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderbill_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderproduct_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderproduct_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderproduct msdyn_purchaseorderproduct_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_purchaseorderproduct_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderproduct_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderproduct>("msdyn_purchaseorderproduct_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderproduct_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceipt_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceipt_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceipt msdyn_purchaseorderreceipt_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderreceipt_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceipt>("msdyn_purchaseorderreceipt_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderreceipt_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseorderreceiptproduct_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseorderreceiptproduct_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct msdyn_purchaseorderreceiptproduct_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct>("msdyn_purchaseorderreceiptproduct_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseorderreceiptproduct_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseorderreceiptproduct>("msdyn_purchaseorderreceiptproduct_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_purchaseorderreceiptproduct_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_purchaseordersubstatus_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_purchaseordersubstatus_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_purchaseordersubstatus msdyn_purchaseordersubstatus_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus>("msdyn_purchaseordersubstatus_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_purchaseordersubstatus_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_purchaseordersubstatus>("msdyn_purchaseordersubstatus_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_purchaseordersubstatus_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingincident_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingincident_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingincident msdyn_quotebookingincident_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quotebookingincident_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingincident_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingincident>("msdyn_quotebookingincident_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingincident_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingproduct_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingproduct_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingproduct msdyn_quotebookingproduct_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quotebookingproduct_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingproduct_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingproduct>("msdyn_quotebookingproduct_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingproduct_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservice_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservice_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservice msdyn_quotebookingservice_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quotebookingservice_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingservice_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservice>("msdyn_quotebookingservice_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingservice_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_quotebookingservicetask_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_quotebookingservicetask_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_quotebookingservicetask msdyn_quotebookingservicetask_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quotebookingservicetask_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_quotebookingservicetask_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_quotebookingservicetask>("msdyn_quotebookingservicetask_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_quotebookingservicetask_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_resourceterritory_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_resourceterritory_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_resourceterritory msdyn_resourceterritory_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_resourceterritory_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_resourceterritory>("msdyn_resourceterritory_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_resourceterritory_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rma_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rma_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_rma msdyn_rma_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rma_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rma>("msdyn_rma_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_rma_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmaproduct_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmaproduct_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_rmaproduct msdyn_rmaproduct_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_rmaproduct_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmaproduct_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_rmaproduct_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_rmaproduct_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceipt_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceipt_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_rmareceipt msdyn_rmareceipt_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmareceipt_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceipt>("msdyn_rmareceipt_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_rmareceipt_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmareceiptproduct_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmareceiptproduct_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_rmareceiptproduct msdyn_rmareceiptproduct_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceiptproduct>("msdyn_rmareceiptproduct_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmareceiptproduct_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmareceiptproduct>("msdyn_rmareceiptproduct_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_rmareceiptproduct_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rmasubstatus_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rmasubstatus_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_rmasubstatus msdyn_rmasubstatus_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmasubstatus>("msdyn_rmasubstatus_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rmasubstatus_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rmasubstatus>("msdyn_rmasubstatus_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_rmasubstatus_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtv_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtv_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_rtv msdyn_rtv_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtv_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_rtv_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_rtv_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvproduct_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvproduct_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_rtvproduct msdyn_rtvproduct_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_rtvproduct_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtvproduct_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvproduct>("msdyn_rtvproduct_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_rtvproduct_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_rtvsubstatus_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_rtvsubstatus_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_rtvsubstatus msdyn_rtvsubstatus_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvsubstatus>("msdyn_rtvsubstatus_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_rtvsubstatus_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_rtvsubstatus>("msdyn_rtvsubstatus_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_rtvsubstatus_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_shipvia_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_shipvia_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_shipvia msdyn_shipvia_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_shipvia>("msdyn_shipvia_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_shipvia_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_shipvia>("msdyn_shipvia_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_shipvia_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_systemuserschedulersetting_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_systemuserschedulersetting_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_systemuserschedulersetting msdyn_systemuserschedulersetting_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting>("msdyn_systemuserschedulersetting_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_systemuserschedulersetting_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_systemuserschedulersetting>("msdyn_systemuserschedulersetting_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_systemuserschedulersetting_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroup_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroup_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_timegroup msdyn_timegroup_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timegroup_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroup>("msdyn_timegroup_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_timegroup_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timegroupdetail_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timegroupdetail_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_timegroupdetail msdyn_timegroupdetail_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timegroupdetail_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timegroupdetail>("msdyn_timegroupdetail_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_timegroupdetail_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_timeoffrequest_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_timeoffrequest_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_timeoffrequest msdyn_timeoffrequest_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffrequest>("msdyn_timeoffrequest_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_timeoffrequest_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_timeoffrequest>("msdyn_timeoffrequest_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_timeoffrequest_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_warehouse_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_warehouse_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_warehouse msdyn_warehouse_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_warehouse_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_warehouse>("msdyn_warehouse_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_warehouse_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorder_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorder_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_workorder msdyn_workorder_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorder_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_workorder_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_workorder_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workordercharacteristic_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workordercharacteristic_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_workordercharacteristic msdyn_workordercharacteristic_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordercharacteristic>("msdyn_workordercharacteristic_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workordercharacteristic_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workordercharacteristic>("msdyn_workordercharacteristic_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_workordercharacteristic_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderincident_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderincident_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_workorderincident msdyn_workorderincident_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderincident_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderincident>("msdyn_workorderincident_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_workorderincident_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderproduct_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderproduct_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_workorderproduct msdyn_workorderproduct_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_workorderproduct_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderproduct_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderproduct>("msdyn_workorderproduct_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_workorderproduct_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderresourcerestriction_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderresourcerestriction_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_workorderresourcerestriction msdyn_workorderresourcerestriction_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_workorderresourcerestriction_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderresourcerestriction_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_workorderresourcerestriction_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_workorderresourcerestriction_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservice_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservice_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_workorderservice msdyn_workorderservice_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderservice_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservice>("msdyn_workorderservice_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_workorderservice_RecurringAppointmentMasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_workorderservicetask_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_workorderservicetask_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.msdyn_workorderservicetask msdyn_workorderservicetask_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_workorderservicetask_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_workorderservicetask>("msdyn_workorderservicetask_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("msdyn_workorderservicetask_RecurringAppointmentMasters");
 			}
 		}
 		
@@ -2478,6 +3965,27 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("service_recurringappointmentmasters");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.Service>("service_recurringappointmentmasters", null, value);
 				this.OnPropertyChanged("service_recurringappointmentmasters");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 site_RecurringAppointmentMasters
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("site_RecurringAppointmentMasters")]
+		public DLaB.Xrm.Entities.Site site_RecurringAppointmentMasters
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Site>("site_RecurringAppointmentMasters", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("site_RecurringAppointmentMasters");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Site>("site_RecurringAppointmentMasters", null, value);
+				this.OnPropertyChanged("site_RecurringAppointmentMasters");
 			}
 		}
 		

@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("organizationui")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class OrganizationUI : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ComponentState = "componentstate";
 			public const string FieldXml = "fieldxml";
@@ -42,7 +42,6 @@ namespace DLaB.Xrm.Entities
 			public const string VersionNumber = "versionnumber";
 			public const string lk_organizationui_organizationid = "lk_organizationui_organizationid";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -54,6 +53,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "organizationui";
+		
+		public const string PrimaryIdAttribute = "formid";
 		
 		public const int EntityTypeCode = 1021;
 		
@@ -156,7 +157,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the form used when synchronizing customizations for the Microsoft Dynamics CRM client for Outlook.
+		/// Unique identifier of the form used when synchronizing customizations for the Microsoft Dynamics 365 client for Outlook.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("formidunique")]
 		public System.Nullable<System.Guid> FormIdUnique
@@ -295,7 +296,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Binary representation of the large icon used in the Microsoft Dynamics CRM client for Outlook for this record type.
+		/// Binary representation of the large icon used in the Microsoft Dynamics 365 client for Outlook for this record type.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("outlookshortcuticon")]
 		public string OutlookShortcutIcon
@@ -401,7 +402,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Represents a version of customizations to be synchronized with the Microsoft Dynamics CRM client for Outlook.
+		/// Represents a version of customizations to be synchronized with the Microsoft Dynamics 365 client for Outlook.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
 		public System.Nullable<long> VersionNumber

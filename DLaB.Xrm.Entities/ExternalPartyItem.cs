@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum ExternalPartyItemState
 	{
 		
@@ -23,15 +23,15 @@ namespace DLaB.Xrm.Entities
 	}
 	
 	/// <summary>
-	/// Information about external party items that need to access Dynamics CRM from external channels.For internal use only
+	/// Information about external party items that need to access Dynamics 365 from external channels.For internal use only
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("externalpartyitem")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ExternalPartyItem : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ChannelAccessProfileId = "channelaccessprofileid";
 			public const string CreatedBy = "createdby";
@@ -68,7 +68,6 @@ namespace DLaB.Xrm.Entities
 			public const string SystemUser_ExternalPartyItems = "SystemUser_ExternalPartyItems";
 			public const string TransactionCurrency_externalpartyitem = "TransactionCurrency_externalpartyitem";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -80,6 +79,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "externalpartyitem";
+		
+		public const string PrimaryIdAttribute = "externalpartyitemid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 9987;
 		
@@ -666,6 +669,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("externalpartyitem_ProcessSession");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.ProcessSession>("externalpartyitem_ProcessSession", null, value);
 				this.OnPropertyChanged("externalpartyitem_ProcessSession");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N ExternalPartyItem_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("ExternalPartyItem_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> ExternalPartyItem_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ExternalPartyItem_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("ExternalPartyItem_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("ExternalPartyItem_SyncErrors", null, value);
+				this.OnPropertyChanged("ExternalPartyItem_SyncErrors");
 			}
 		}
 		

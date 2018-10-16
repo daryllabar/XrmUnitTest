@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum IncidentState
 	{
 		
@@ -30,11 +30,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("incident")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Incident : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AccountId = "accountid";
 			public const string ActivitiesComplete = "activitiescomplete";
@@ -57,6 +57,7 @@ namespace DLaB.Xrm.Entities
 			public const string CustomerSatisfactionCode = "customersatisfactioncode";
 			public const string DecrementEntitlementTerm = "decremententitlementterm";
 			public const string Description = "description";
+			public const string EmailAddress = "emailaddress";
 			public const string EntitlementId = "entitlementid";
 			public const string EntityImage = "entityimage";
 			public const string EntityImage_Timestamp = "entityimage_timestamp";
@@ -86,6 +87,7 @@ namespace DLaB.Xrm.Entities
 			public const string ModifiedByExternalParty = "modifiedbyexternalparty";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string msdyn_IncidentType = "msdyn_incidenttype";
 			public const string NumberOfChildIncidents = "numberofchildincidents";
 			public const string OnHoldTime = "onholdtime";
 			public const string OverriddenCreatedOn = "overriddencreatedon";
@@ -141,6 +143,7 @@ namespace DLaB.Xrm.Entities
 			public const string lk_incidentbase_modifiedby = "lk_incidentbase_modifiedby";
 			public const string lk_incidentbase_modifiedonbehalfby = "lk_incidentbase_modifiedonbehalfby";
 			public const string manualsla_cases = "manualsla_cases";
+			public const string msdyn_msdyn_incidenttype_incident_IncidentType = "msdyn_msdyn_incidenttype_incident_IncidentType";
 			public const string processstage_incident = "processstage_incident";
 			public const string product_incidents = "product_incidents";
 			public const string sla_cases = "sla_cases";
@@ -152,7 +155,6 @@ namespace DLaB.Xrm.Entities
 			public const string team_incidents = "team_incidents";
 			public const string TransactionCurrency_Incident = "TransactionCurrency_Incident";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -164,6 +166,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "incident";
+		
+		public const string PrimaryIdAttribute = "incidentid";
+		
+		public const string PrimaryNameAttribute = "title";
 		
 		public const int EntityTypeCode = 112;
 		
@@ -356,7 +362,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the contract line that the case should be logged under to make sure the customer is charged correctly.
+		/// contract_detail_cases
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("contractdetailid")]
 		public Microsoft.Xrm.Sdk.EntityReference ContractDetailId
@@ -376,7 +382,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the service contract that the case should be logged under to make sure the customer is eligible for support services.
+		/// contract_cases
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("contractid")]
 		public Microsoft.Xrm.Sdk.EntityReference ContractId
@@ -416,7 +422,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows who created the record.
+		/// lk_incidentbase_createdby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
@@ -436,7 +442,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the external party who created the record.
+		/// lk_externalparty_incident_createdby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdbyexternalparty")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedByExternalParty
@@ -449,7 +455,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -469,7 +475,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows who created the record on behalf of another user.
+		/// lk_incidentbase_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
@@ -509,7 +515,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Select the customer account or contact to provide a quick link to additional customer details, such as account information, activities, and opportunities.
+		/// incident_customer_contacts
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("customerid")]
 		public Microsoft.Xrm.Sdk.EntityReference CustomerId
@@ -589,7 +595,27 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the entitlement that is applicable for the case.
+		/// The primary email address for the entity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("emailaddress")]
+		public string EmailAddress
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("emailaddress");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("EmailAddress");
+				this.SetAttributeValue("emailaddress", value);
+				this.OnPropertyChanged("EmailAddress");
+			}
+		}
+		
+		/// <summary>
+		/// entitlement_cases
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("entitlementid")]
 		public Microsoft.Xrm.Sdk.EntityReference EntitlementId
@@ -694,7 +720,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Select an existing case for the customer that has been populated. For internal use only.
+		/// incident_existingcase
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("existingcase")]
 		public Microsoft.Xrm.Sdk.EntityReference ExistingCase
@@ -714,7 +740,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// For internal use only.
+		/// slakpiinstance_incident_firstresponsebykpi
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("firstresponsebykpiid")]
 		public Microsoft.Xrm.Sdk.EntityReference FirstResponseByKPIId
@@ -834,7 +860,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the case.
+		/// lk_incident_ChildIncidentCount
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("incidentid")]
 		public System.Nullable<System.Guid> IncidentId
@@ -957,7 +983,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the article that contains additional information or a resolution for the case, for reference during research or follow up with the customer.
+		/// kbarticle_incidents
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("kbarticleid")]
 		public Microsoft.Xrm.Sdk.EntityReference KbArticleId
@@ -997,7 +1023,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the primary case the current case was merged into.
+		/// incident_master_incident
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("masterid")]
 		public Microsoft.Xrm.Sdk.EntityReference MasterId
@@ -1050,7 +1076,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows who last updated the record.
+		/// lk_incidentbase_modifiedby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
@@ -1070,7 +1096,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the external party who modified the record.
+		/// lk_externalparty_incident_modifiedby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedbyexternalparty")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedByExternalParty
@@ -1083,7 +1109,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -1103,7 +1129,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows who last updated the record on behalf of another user.
+		/// lk_incidentbase_modifiedonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
@@ -1119,6 +1145,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ModifiedOnBehalfBy");
 				this.SetAttributeValue("modifiedonbehalfby", value);
 				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for Incident Type associated with Case.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_incidenttype")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_IncidentType
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_incidenttype");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_IncidentType");
+				this.SetAttributeValue("msdyn_incidenttype", value);
+				this.OnPropertyChanged("msdyn_IncidentType");
 			}
 		}
 		
@@ -1169,7 +1215,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Enter the user or team who is assigned to manage the record. This field is updated every time the record is assigned to a different user.
+		/// owner_incidents
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ownerid")]
 		public Microsoft.Xrm.Sdk.EntityReference OwnerId
@@ -1189,7 +1235,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the business unit that owns the case.
+		/// business_unit_incidents
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
 		public Microsoft.Xrm.Sdk.EntityReference OwningBusinessUnit
@@ -1209,7 +1255,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the team who owns the case.
+		/// team_incidents
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
 		public Microsoft.Xrm.Sdk.EntityReference OwningTeam
@@ -1229,7 +1275,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the user who owns the case.
+		/// system_user_incidents
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
 		public Microsoft.Xrm.Sdk.EntityReference OwningUser
@@ -1249,7 +1295,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the parent case for a case.
+		/// incident_parent_incident
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("parentcaseid")]
 		public Microsoft.Xrm.Sdk.EntityReference ParentCaseId
@@ -1269,7 +1315,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Select a primary contact for this case.
+		/// contact_as_primary_contact
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("primarycontactid")]
 		public Microsoft.Xrm.Sdk.EntityReference PrimaryContactId
@@ -1329,7 +1375,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the product associated with the case to identify warranty, service, or other product issues and be able to report the number of incidents for each product.
+		/// product_incidents
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("productid")]
 		public Microsoft.Xrm.Sdk.EntityReference ProductId
@@ -1389,7 +1435,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// For internal use only.
+		/// slakpiinstance_incident_resolvebykpi
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("resolvebykpiid")]
 		public Microsoft.Xrm.Sdk.EntityReference ResolveByKPIId
@@ -1449,7 +1495,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose an additional customer contact who can also help resolve the case.
+		/// contact_as_responsible_contact
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("responsiblecontactid")]
 		[System.ObsoleteAttribute()]
@@ -1550,7 +1596,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the service level agreement (SLA) that you want to apply to the case record.
+		/// manualsla_cases
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slaid")]
 		public Microsoft.Xrm.Sdk.EntityReference SLAId
@@ -1570,7 +1616,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Last SLA that was applied to this case. This field is for internal use only.
+		/// sla_cases
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slainvokedid")]
 		public Microsoft.Xrm.Sdk.EntityReference SLAInvokedId
@@ -1583,7 +1629,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Unique identifier of the social profile with which the case is associated.
+		/// socialprofile_cases
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("socialprofileid")]
 		public Microsoft.Xrm.Sdk.EntityReference SocialProfileId
@@ -1603,7 +1649,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the ID of the stage.
+		/// processstage_incident
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("stageid")]
 		public System.Nullable<System.Guid> StageId
@@ -1678,7 +1724,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the subject for the case, such as catalog request or product complaint, so customer service managers can identify frequent requests or problem areas. Administrators can configure subjects under Business Management in the Settings area.
+		/// subject_incidents
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("subjectid")]
 		public Microsoft.Xrm.Sdk.EntityReference SubjectId
@@ -1738,7 +1784,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Type a subject or descriptive name, such as the request, issue, or company name, to identify the case in Microsoft Dynamics CRM views.
+		/// Type a subject or descriptive name, such as the request, issue, or company name, to identify the case in Microsoft Dynamics 365 views.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("title")]
 		public string Title
@@ -1758,7 +1804,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the local currency for the record to make sure budgets are reported in the correct currency.
+		/// TransactionCurrency_Incident
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("transactioncurrencyid")]
 		public Microsoft.Xrm.Sdk.EntityReference TransactionCurrencyId
@@ -1827,6 +1873,46 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N bpf_incident_msdyn_bpf_989e9b1857e24af18787d5143b67523b
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bpf_incident_msdyn_bpf_989e9b1857e24af18787d5143b67523b")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bpf_989e9b1857e24af18787d5143b67523b> bpf_incident_msdyn_bpf_989e9b1857e24af18787d5143b67523b
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_989e9b1857e24af18787d5143b67523b>("bpf_incident_msdyn_bpf_989e9b1857e24af18787d5143b67523b", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("bpf_incident_msdyn_bpf_989e9b1857e24af18787d5143b67523b");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bpf_989e9b1857e24af18787d5143b67523b>("bpf_incident_msdyn_bpf_989e9b1857e24af18787d5143b67523b", null, value);
+				this.OnPropertyChanged("bpf_incident_msdyn_bpf_989e9b1857e24af18787d5143b67523b");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N incident_actioncard
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("incident_actioncard")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActionCard> incident_actioncard
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ActionCard>("incident_actioncard", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("incident_actioncard");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ActionCard>("incident_actioncard", null, value);
+				this.OnPropertyChanged("incident_actioncard");
 			}
 		}
 		
@@ -2171,6 +2257,86 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N incident_msdyn_approvals
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("incident_msdyn_approvals")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_approval> incident_msdyn_approvals
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("incident_msdyn_approvals", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("incident_msdyn_approvals");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("incident_msdyn_approvals", null, value);
+				this.OnPropertyChanged("incident_msdyn_approvals");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N incident_msdyn_bookingalerts
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("incident_msdyn_bookingalerts")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bookingalert> incident_msdyn_bookingalerts
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("incident_msdyn_bookingalerts", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("incident_msdyn_bookingalerts");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("incident_msdyn_bookingalerts", null, value);
+				this.OnPropertyChanged("incident_msdyn_bookingalerts");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N incident_OpportunityCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("incident_OpportunityCloses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OpportunityClose> incident_OpportunityCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OpportunityClose>("incident_OpportunityCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("incident_OpportunityCloses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OpportunityClose>("incident_OpportunityCloses", null, value);
+				this.OnPropertyChanged("incident_OpportunityCloses");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N incident_OrderCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("incident_OrderCloses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OrderClose> incident_OrderCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OrderClose>("incident_OrderCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("incident_OrderCloses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OrderClose>("incident_OrderCloses", null, value);
+				this.OnPropertyChanged("incident_OrderCloses");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N incident_parent_incident
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("incident_parent_incident", Microsoft.Xrm.Sdk.EntityRole.Referenced)]
@@ -2291,6 +2457,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N incident_QuoteCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("incident_QuoteCloses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.QuoteClose> incident_QuoteCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("incident_QuoteCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("incident_QuoteCloses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("incident_QuoteCloses", null, value);
+				this.OnPropertyChanged("incident_QuoteCloses");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N Incident_RecurringAppointmentMasters
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Incident_RecurringAppointmentMasters")]
@@ -2351,6 +2537,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N Incident_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Incident_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Incident_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Incident_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Incident_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Incident_SyncErrors", null, value);
+				this.OnPropertyChanged("Incident_SyncErrors");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N Incident_Tasks
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Incident_Tasks")]
@@ -2407,6 +2613,46 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("knowledgearticle_incidents");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.KnowledgeArticleIncident>("knowledgearticle_incidents", null, value);
 				this.OnPropertyChanged("knowledgearticle_incidents");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_phonetocaseprocess_incidentid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_phonetocaseprocess_incidentid")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.PhoneToCaseProcess> lk_phonetocaseprocess_incidentid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.PhoneToCaseProcess>("lk_phonetocaseprocess_incidentid", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_phonetocaseprocess_incidentid");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.PhoneToCaseProcess>("lk_phonetocaseprocess_incidentid", null, value);
+				this.OnPropertyChanged("lk_phonetocaseprocess_incidentid");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_incident_msdyn_workorder_ServiceRequest
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_incident_msdyn_workorder_ServiceRequest")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_workorder> msdyn_incident_msdyn_workorder_ServiceRequest
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_incident_msdyn_workorder_ServiceRequest", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_incident_msdyn_workorder_ServiceRequest");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_incident_msdyn_workorder_ServiceRequest", null, value);
+				this.OnPropertyChanged("msdyn_incident_msdyn_workorder_ServiceRequest");
 			}
 		}
 		
@@ -2872,6 +3118,27 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("manualsla_cases");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.SLA>("manualsla_cases", null, value);
 				this.OnPropertyChanged("manualsla_cases");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_msdyn_incidenttype_incident_IncidentType
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_incidenttype")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_msdyn_incidenttype_incident_IncidentType")]
+		public DLaB.Xrm.Entities.msdyn_incidenttype msdyn_msdyn_incidenttype_incident_IncidentType
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttype>("msdyn_msdyn_incidenttype_incident_IncidentType", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_msdyn_incidenttype_incident_IncidentType");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_incidenttype>("msdyn_msdyn_incidenttype_incident_IncidentType", null, value);
+				this.OnPropertyChanged("msdyn_msdyn_incidenttype_incident_IncidentType");
 			}
 		}
 		

@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("calendar")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Calendar : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string BusinessUnitId = "businessunitid";
 			public const string CalendarId = "calendarid";
@@ -47,7 +47,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_calendar_modifiedonbehalfby = "lk_calendar_modifiedonbehalfby";
 			public const string organization_calendars = "organization_calendars";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -59,6 +58,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "calendar";
+		
+		public const string PrimaryIdAttribute = "calendarid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 4003;
 		
@@ -470,6 +473,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Calendar_AsyncOperations");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.AsyncOperation>("Calendar_AsyncOperations", null, value);
 				this.OnPropertyChanged("Calendar_AsyncOperations");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N calendar_bookableresources
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("calendar_bookableresources")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.BookableResource> calendar_bookableresources
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.BookableResource>("calendar_bookableresources", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("calendar_bookableresources");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.BookableResource>("calendar_bookableresources", null, value);
+				this.OnPropertyChanged("calendar_bookableresources");
 			}
 		}
 		

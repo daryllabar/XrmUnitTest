@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum SocialProfileState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("socialprofile")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class SocialProfile : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string Blocked = "blocked";
 			public const string Community = "community";
@@ -70,7 +70,6 @@ namespace DLaB.Xrm.Entities
 			public const string socialProfile_owning_user = "socialProfile_owning_user";
 			public const string transactioncurrency_SocialProfile = "transactioncurrency_SocialProfile";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -82,6 +81,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "socialprofile";
+		
+		public const string PrimaryIdAttribute = "socialprofileid";
+		
+		public const string PrimaryNameAttribute = "profilename";
 		
 		public const int EntityTypeCode = 99;
 		
@@ -868,6 +871,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Socialprofile_SocialActivities");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.SocialActivity>("Socialprofile_SocialActivities", null, value);
 				this.OnPropertyChanged("Socialprofile_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N SocialProfile_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("SocialProfile_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> SocialProfile_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("SocialProfile_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SocialProfile_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("SocialProfile_SyncErrors", null, value);
+				this.OnPropertyChanged("SocialProfile_SyncErrors");
 			}
 		}
 		

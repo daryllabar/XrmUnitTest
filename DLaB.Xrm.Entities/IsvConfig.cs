@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("isvconfig")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class IsvConfig : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string ConfigXML = "configxml";
 			public const string CreatedBy = "createdby";
@@ -38,7 +38,6 @@ namespace DLaB.Xrm.Entities
 			public const string lk_isvconfigbase_modifiedby = "lk_isvconfigbase_modifiedby";
 			public const string organization_isvconfigs = "organization_isvconfigs";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -50,6 +49,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "isvconfig";
+		
+		public const string PrimaryIdAttribute = "isvconfigid";
 		
 		public const int EntityTypeCode = 4705;
 		

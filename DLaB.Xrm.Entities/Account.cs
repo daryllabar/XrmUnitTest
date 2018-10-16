@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public enum AccountState
 	{
 		
@@ -27,11 +27,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("account")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class Account : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string AccountCategoryCode = "accountcategorycode";
 			public const string AccountClassificationCode = "accountclassificationcode";
@@ -121,20 +121,35 @@ namespace DLaB.Xrm.Entities
 			public const string EntityImageId = "entityimageid";
 			public const string ExchangeRate = "exchangerate";
 			public const string Fax = "fax";
+			public const string FollowEmail = "followemail";
 			public const string FtpSiteURL = "ftpsiteurl";
 			public const string ImportSequenceNumber = "importsequencenumber";
 			public const string IndustryCode = "industrycode";
+			public const string LastOnHoldTime = "lastonholdtime";
 			public const string LastUsedInCampaign = "lastusedincampaign";
 			public const string MarketCap = "marketcap";
 			public const string MarketCap_Base = "marketcap_base";
+			public const string MarketingOnly = "marketingonly";
 			public const string MasterId = "masterid";
 			public const string Merged = "merged";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedByExternalParty = "modifiedbyexternalparty";
 			public const string ModifiedOn = "modifiedon";
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string msdyn_BillingAccount = "msdyn_billingaccount";
+			public const string msdyn_externalaccountid = "msdyn_externalaccountid";
+			public const string msdyn_PreferredResource = "msdyn_preferredresource";
+			public const string msdyn_SalesTaxCode = "msdyn_salestaxcode";
+			public const string msdyn_ServiceTerritory = "msdyn_serviceterritory";
+			public const string msdyn_TaxExempt = "msdyn_taxexempt";
+			public const string msdyn_TaxExemptNumber = "msdyn_taxexemptnumber";
+			public const string msdyn_TravelCharge = "msdyn_travelcharge";
+			public const string msdyn_travelcharge_Base = "msdyn_travelcharge_base";
+			public const string msdyn_TravelChargeType = "msdyn_travelchargetype";
+			public const string msdyn_WorkOrderInstructions = "msdyn_workorderinstructions";
 			public const string Name = "name";
 			public const string NumberOfEmployees = "numberofemployees";
+			public const string OnHoldTime = "onholdtime";
 			public const string OpenDeals = "opendeals";
 			public const string OpenDeals_Date = "opendeals_date";
 			public const string OpenDeals_State = "opendeals_state";
@@ -167,16 +182,20 @@ namespace DLaB.Xrm.Entities
 			public const string SharesOutstanding = "sharesoutstanding";
 			public const string ShippingMethodCode = "shippingmethodcode";
 			public const string SIC = "sic";
+			public const string SLAId = "slaid";
+			public const string SLAInvokedId = "slainvokedid";
 			public const string StageId = "stageid";
 			public const string StateCode = "statecode";
 			public const string StatusCode = "statuscode";
 			public const string StockExchange = "stockexchange";
+			public const string TeamsFollowed = "teamsfollowed";
 			public const string Telephone1 = "telephone1";
 			public const string Telephone2 = "telephone2";
 			public const string Telephone3 = "telephone3";
 			public const string TerritoryCode = "territorycode";
 			public const string TerritoryId = "territoryid";
 			public const string TickerSymbol = "tickersymbol";
+			public const string TimeSpentByMeOnEmailAndMeetings = "timespentbymeonemailandmeetings";
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string TraversedPath = "traversedpath";
@@ -196,16 +215,21 @@ namespace DLaB.Xrm.Entities
 			public const string lk_accountbase_modifiedonbehalfby = "lk_accountbase_modifiedonbehalfby";
 			public const string lk_externalparty_account_createdby = "lk_externalparty_account_createdby";
 			public const string lk_externalparty_account_modifiedby = "lk_externalparty_account_modifiedby";
+			public const string manualsla_account = "manualsla_account";
+			public const string Referencingmsdyn_account_account_BillingAccount = "msdyn_account_account_BillingAccount";
+			public const string msdyn_bookableresource_account_PreferredResource = "msdyn_bookableresource_account_PreferredResource";
+			public const string msdyn_msdyn_taxcode_account_SalesTaxCode = "msdyn_msdyn_taxcode_account_SalesTaxCode";
+			public const string msdyn_territory_account_ServiceTerritory = "msdyn_territory_account_ServiceTerritory";
 			public const string price_level_accounts = "price_level_accounts";
 			public const string processstage_account = "processstage_account";
 			public const string service_accounts = "service_accounts";
+			public const string sla_account = "sla_account";
 			public const string system_user_accounts = "system_user_accounts";
 			public const string team_accounts = "team_accounts";
 			public const string territory_accounts = "territory_accounts";
 			public const string transactioncurrency_account = "transactioncurrency_account";
 			public const string user_accounts = "user_accounts";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -217,6 +241,10 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "account";
+		
+		public const string PrimaryIdAttribute = "accountid";
+		
+		public const string PrimaryNameAttribute = "name";
 		
 		public const int EntityTypeCode = 1;
 		
@@ -1443,7 +1471,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -1656,7 +1684,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Select whether the account allows direct email sent from Microsoft Dynamics CRM.
+		/// Select whether the account allows direct email sent from Microsoft Dynamics 365.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("donotemail")]
 		public System.Nullable<bool> DoNotEMail
@@ -1908,6 +1936,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Information about whether to allow following email activity like opens, attachment views and link clicks for emails sent to the account.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("followemail")]
+		public System.Nullable<bool> FollowEmail
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("followemail");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("FollowEmail");
+				this.SetAttributeValue("followemail", value);
+				this.OnPropertyChanged("FollowEmail");
+			}
+		}
+		
+		/// <summary>
 		/// Type the URL for the account's FTP site to enable users to access data and share documents.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ftpsiteurl")]
@@ -1968,6 +2016,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Contains the date and time stamp of the last on hold time.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lastonholdtime")]
+		public System.Nullable<System.DateTime> LastOnHoldTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("lastonholdtime");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("LastOnHoldTime");
+				this.SetAttributeValue("lastonholdtime", value);
+				this.OnPropertyChanged("LastOnHoldTime");
+			}
+		}
+		
+		/// <summary>
 		/// Shows the date when the account was last included in a marketing campaign or quick campaign.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("lastusedincampaign")]
@@ -2017,6 +2085,26 @@ namespace DLaB.Xrm.Entities
 			get
 			{
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("marketcap_base");
+			}
+		}
+		
+		/// <summary>
+		/// Whether is only for marketing
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("marketingonly")]
+		public System.Nullable<bool> MarketingOnly
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("marketingonly");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("MarketingOnly");
+				this.SetAttributeValue("marketingonly", value);
+				this.OnPropertyChanged("MarketingOnly");
 			}
 		}
 		
@@ -2080,7 +2168,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
+		/// Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics 365 options.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -2116,6 +2204,219 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("ModifiedOnBehalfBy");
 				this.SetAttributeValue("modifiedonbehalfby", value);
 				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Reference to an other account to be used for billing (only to be used if billing account differs)
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_billingaccount")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_BillingAccount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_billingaccount");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_BillingAccount");
+				this.SetAttributeValue("msdyn_billingaccount", value);
+				this.OnPropertyChanged("msdyn_BillingAccount");
+			}
+		}
+		
+		/// <summary>
+		/// External Account ID from other systems.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_externalaccountid")]
+		public string msdyn_externalaccountid
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("msdyn_externalaccountid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_externalaccountid");
+				this.SetAttributeValue("msdyn_externalaccountid", value);
+				this.OnPropertyChanged("msdyn_externalaccountid");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_preferredresource")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_PreferredResource
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_preferredresource");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_PreferredResource");
+				this.SetAttributeValue("msdyn_preferredresource", value);
+				this.OnPropertyChanged("msdyn_PreferredResource");
+			}
+		}
+		
+		/// <summary>
+		/// Default Sales Tax Code
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_salestaxcode")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_SalesTaxCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_salestaxcode");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_SalesTaxCode");
+				this.SetAttributeValue("msdyn_salestaxcode", value);
+				this.OnPropertyChanged("msdyn_SalesTaxCode");
+			}
+		}
+		
+		/// <summary>
+		/// The Service Territory this account belongs to. This is used to optimize scheduling and routing
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_serviceterritory")]
+		public Microsoft.Xrm.Sdk.EntityReference msdyn_ServiceTerritory
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("msdyn_serviceterritory");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_ServiceTerritory");
+				this.SetAttributeValue("msdyn_serviceterritory", value);
+				this.OnPropertyChanged("msdyn_ServiceTerritory");
+			}
+		}
+		
+		/// <summary>
+		/// Select whether the account is tax exempt.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_taxexempt")]
+		public System.Nullable<bool> msdyn_TaxExempt
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("msdyn_taxexempt");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_TaxExempt");
+				this.SetAttributeValue("msdyn_taxexempt", value);
+				this.OnPropertyChanged("msdyn_TaxExempt");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the government tax exempt number.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_taxexemptnumber")]
+		public string msdyn_TaxExemptNumber
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("msdyn_taxexemptnumber");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_TaxExemptNumber");
+				this.SetAttributeValue("msdyn_taxexemptnumber", value);
+				this.OnPropertyChanged("msdyn_TaxExemptNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Enter the travel charge to include on work orders. This value will be multiplied by the travel charge type.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_travelcharge")]
+		public Microsoft.Xrm.Sdk.Money msdyn_TravelCharge
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_travelcharge");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_TravelCharge");
+				this.SetAttributeValue("msdyn_travelcharge", value);
+				this.OnPropertyChanged("msdyn_TravelCharge");
+			}
+		}
+		
+		/// <summary>
+		/// Value of the Travel Charge in base currency.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_travelcharge_base")]
+		public Microsoft.Xrm.Sdk.Money msdyn_travelcharge_Base
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("msdyn_travelcharge_base");
+			}
+		}
+		
+		/// <summary>
+		/// Specify how travel is charged for this account.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_travelchargetype")]
+		public Microsoft.Xrm.Sdk.OptionSetValue msdyn_TravelChargeType
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("msdyn_travelchargetype");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_TravelChargeType");
+				this.SetAttributeValue("msdyn_travelchargetype", value);
+				this.OnPropertyChanged("msdyn_TravelChargeType");
+			}
+		}
+		
+		/// <summary>
+		/// Shows the default instructions to show on new work orders.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_workorderinstructions")]
+		public string msdyn_WorkOrderInstructions
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("msdyn_workorderinstructions");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_WorkOrderInstructions");
+				this.SetAttributeValue("msdyn_workorderinstructions", value);
+				this.OnPropertyChanged("msdyn_WorkOrderInstructions");
 			}
 		}
 		
@@ -2156,6 +2457,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("NumberOfEmployees");
 				this.SetAttributeValue("numberofemployees", value);
 				this.OnPropertyChanged("NumberOfEmployees");
+			}
+		}
+		
+		/// <summary>
+		/// Shows how long, in minutes, that the record was on hold.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("onholdtime")]
+		public System.Nullable<int> OnHoldTime
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("onholdtime");
 			}
 		}
 		
@@ -2251,7 +2565,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Shows the lead that the account was created from if the account was created by converting a lead in Microsoft Dynamics CRM. This is used to relate the account to data on the originating lead for use in reporting and analytics.
+		/// account_originating_lead
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("originatingleadid")]
 		public Microsoft.Xrm.Sdk.EntityReference OriginatingLeadId
@@ -2511,7 +2825,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the account's preferred service facility or equipment to make sure services are scheduled correctly for the customer.
+		/// equipment_accounts
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("preferredequipmentid")]
 		public Microsoft.Xrm.Sdk.EntityReference PreferredEquipmentId
@@ -2531,7 +2845,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the account's preferred service for reference when you schedule service activities.
+		/// service_accounts
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("preferredserviceid")]
 		public Microsoft.Xrm.Sdk.EntityReference PreferredServiceId
@@ -2744,6 +3058,39 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Choose the service level agreement (SLA) that you want to apply to the Account record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slaid")]
+		public Microsoft.Xrm.Sdk.EntityReference SLAId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("slaid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("SLAId");
+				this.SetAttributeValue("slaid", value);
+				this.OnPropertyChanged("SLAId");
+			}
+		}
+		
+		/// <summary>
+		/// Last SLA that was applied to this case. This field is for internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slainvokedid")]
+		public Microsoft.Xrm.Sdk.EntityReference SLAInvokedId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("slainvokedid");
+			}
+		}
+		
+		/// <summary>
 		/// Shows the ID of the stage.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("stageid")]
@@ -2839,6 +3186,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// Number of users or conversations followed the record
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("teamsfollowed")]
+		public System.Nullable<int> TeamsFollowed
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("teamsfollowed");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TeamsFollowed");
+				this.SetAttributeValue("teamsfollowed", value);
+				this.OnPropertyChanged("TeamsFollowed");
+			}
+		}
+		
+		/// <summary>
 		/// Type the main phone number for this account.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("telephone1")]
@@ -2919,7 +3286,7 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Choose the sales region or territory for the account to make sure the account is assigned to the correct representative and for use in segmentation and analysis.
+		/// territory_accounts
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("territoryid")]
 		public Microsoft.Xrm.Sdk.EntityReference TerritoryId
@@ -2955,6 +3322,19 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("TickerSymbol");
 				this.SetAttributeValue("tickersymbol", value);
 				this.OnPropertyChanged("TickerSymbol");
+			}
+		}
+		
+		/// <summary>
+		/// Total time spent for emails (read and write) and meetings by me in relation to account record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timespentbymeonemailandmeetings")]
+		public string TimeSpentByMeOnEmailAndMeetings
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("timespentbymeonemailandmeetings");
 			}
 		}
 		
@@ -3092,6 +3472,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N account_actioncard
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_actioncard")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.ActionCard> account_actioncard
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.ActionCard>("account_actioncard", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("account_actioncard");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.ActionCard>("account_actioncard", null, value);
+				this.OnPropertyChanged("account_actioncard");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N account_activity_parties
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_activity_parties")]
@@ -3192,6 +3592,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N account_bookableresource_AccountId
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_bookableresource_AccountId")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.BookableResource> account_bookableresource_AccountId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.BookableResource>("account_bookableresource_AccountId", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("account_bookableresource_AccountId");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.BookableResource>("account_bookableresource_AccountId", null, value);
+				this.OnPropertyChanged("account_bookableresource_AccountId");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N Account_BulkDeleteFailures
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Account_BulkDeleteFailures")]
@@ -3208,6 +3628,46 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Account_BulkDeleteFailures");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.BulkDeleteFailure>("Account_BulkDeleteFailures", null, value);
 				this.OnPropertyChanged("Account_BulkDeleteFailures");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N account_BulkOperations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_BulkOperations")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.BulkOperation> account_BulkOperations
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.BulkOperation>("account_BulkOperations", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("account_BulkOperations");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.BulkOperation>("account_BulkOperations", null, value);
+				this.OnPropertyChanged("account_BulkOperations");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N account_CampaignResponses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_CampaignResponses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.CampaignResponse> account_CampaignResponses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.CampaignResponse>("account_CampaignResponses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("account_CampaignResponses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.CampaignResponse>("account_CampaignResponses", null, value);
+				this.OnPropertyChanged("account_CampaignResponses");
 			}
 		}
 		
@@ -3492,6 +3952,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N account_IncidentResolutions
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_IncidentResolutions")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.IncidentResolution> account_IncidentResolutions
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.IncidentResolution>("account_IncidentResolutions", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("account_IncidentResolutions");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.IncidentResolution>("account_IncidentResolutions", null, value);
+				this.OnPropertyChanged("account_IncidentResolutions");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N Account_Letters
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Account_Letters")]
@@ -3548,6 +4028,86 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Referencedaccount_master_account");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Account>("account_master_account", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
 				this.OnPropertyChanged("Referencedaccount_master_account");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N account_msdyn_approvals
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_msdyn_approvals")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_approval> account_msdyn_approvals
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("account_msdyn_approvals", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("account_msdyn_approvals");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_approval>("account_msdyn_approvals", null, value);
+				this.OnPropertyChanged("account_msdyn_approvals");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N account_msdyn_bookingalerts
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_msdyn_bookingalerts")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_bookingalert> account_msdyn_bookingalerts
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("account_msdyn_bookingalerts", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("account_msdyn_bookingalerts");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_bookingalert>("account_msdyn_bookingalerts", null, value);
+				this.OnPropertyChanged("account_msdyn_bookingalerts");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N account_OpportunityCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_OpportunityCloses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OpportunityClose> account_OpportunityCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OpportunityClose>("account_OpportunityCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("account_OpportunityCloses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OpportunityClose>("account_OpportunityCloses", null, value);
+				this.OnPropertyChanged("account_OpportunityCloses");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N account_OrderCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_OrderCloses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OrderClose> account_OrderCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OrderClose>("account_OrderCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("account_OrderCloses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OrderClose>("account_OrderCloses", null, value);
+				this.OnPropertyChanged("account_OrderCloses");
 			}
 		}
 		
@@ -3652,6 +4212,26 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N account_QuoteCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_QuoteCloses")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.QuoteClose> account_QuoteCloses
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("account_QuoteCloses", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("account_QuoteCloses");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.QuoteClose>("account_QuoteCloses", null, value);
+				this.OnPropertyChanged("account_QuoteCloses");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N Account_RecurringAppointmentMasters
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Account_RecurringAppointmentMasters")]
@@ -3748,6 +4328,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("Account_SocialActivities");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.SocialActivity>("Account_SocialActivities", null, value);
 				this.OnPropertyChanged("Account_SocialActivities");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Account_SyncErrors
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Account_SyncErrors")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SyncError> Account_SyncErrors
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Account_SyncErrors", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Account_SyncErrors");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SyncError>("Account_SyncErrors", null, value);
+				this.OnPropertyChanged("Account_SyncErrors");
 			}
 		}
 		
@@ -3952,6 +4552,786 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// 1:N msdyn_account_account_BillingAccount
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_account_BillingAccount", Microsoft.Xrm.Sdk.EntityRole.Referenced)]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Account> Referencedmsdyn_account_account_BillingAccount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Account>("msdyn_account_account_BillingAccount", Microsoft.Xrm.Sdk.EntityRole.Referenced);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Referencedmsdyn_account_account_BillingAccount");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Account>("msdyn_account_account_BillingAccount", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
+				this.OnPropertyChanged("Referencedmsdyn_account_account_BillingAccount");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_accountpricelist_Account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_accountpricelist_Account")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_accountpricelist> msdyn_account_msdyn_accountpricelist_Account
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_accountpricelist>("msdyn_account_msdyn_accountpricelist_Account", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_accountpricelist_Account");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_accountpricelist>("msdyn_account_msdyn_accountpricelist_Account", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_accountpricelist_Account");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_actual_AccountCustomer
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_actual_AccountCustomer")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_actual> msdyn_account_msdyn_actual_AccountCustomer
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_actual>("msdyn_account_msdyn_actual_AccountCustomer", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_actual_AccountCustomer");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_actual>("msdyn_account_msdyn_actual_AccountCustomer", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_actual_AccountCustomer");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_actual_AccountVendor
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_actual_AccountVendor")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_actual> msdyn_account_msdyn_actual_AccountVendor
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_actual>("msdyn_account_msdyn_actual_AccountVendor", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_actual_AccountVendor");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_actual>("msdyn_account_msdyn_actual_AccountVendor", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_actual_AccountVendor");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_actual_ServiceAccount
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_actual_ServiceAccount")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_actual> msdyn_account_msdyn_actual_ServiceAccount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_actual>("msdyn_account_msdyn_actual_ServiceAccount", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_actual_ServiceAccount");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_actual>("msdyn_account_msdyn_actual_ServiceAccount", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_actual_ServiceAccount");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_agreement_BillingAccount
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_agreement_BillingAccount")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_agreement> msdyn_account_msdyn_agreement_BillingAccount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_account_msdyn_agreement_BillingAccount", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_agreement_BillingAccount");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_account_msdyn_agreement_BillingAccount", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_agreement_BillingAccount");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_agreement_ServiceAccount
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_agreement_ServiceAccount")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_agreement> msdyn_account_msdyn_agreement_ServiceAccount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_account_msdyn_agreement_ServiceAccount", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_agreement_ServiceAccount");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_agreement>("msdyn_account_msdyn_agreement_ServiceAccount", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_agreement_ServiceAccount");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_customerasset_Account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_customerasset_Account")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_customerasset> msdyn_account_msdyn_customerasset_Account
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_account_msdyn_customerasset_Account", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_customerasset_Account");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_customerasset>("msdyn_account_msdyn_customerasset_Account", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_customerasset_Account");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_estimateline_AccountCustomer
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_estimateline_AccountCustomer")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_estimateline> msdyn_account_msdyn_estimateline_AccountCustomer
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_estimateline>("msdyn_account_msdyn_estimateline_AccountCustomer", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_estimateline_AccountCustomer");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_estimateline>("msdyn_account_msdyn_estimateline_AccountCustomer", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_estimateline_AccountCustomer");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_estimateline_AccountVendor
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_estimateline_AccountVendor")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_estimateline> msdyn_account_msdyn_estimateline_AccountVendor
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_estimateline>("msdyn_account_msdyn_estimateline_AccountVendor", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_estimateline_AccountVendor");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_estimateline>("msdyn_account_msdyn_estimateline_AccountVendor", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_estimateline_AccountVendor");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_fact_AccountCustomer
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_fact_AccountCustomer")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_fact> msdyn_account_msdyn_fact_AccountCustomer
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_fact>("msdyn_account_msdyn_fact_AccountCustomer", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_fact_AccountCustomer");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_fact>("msdyn_account_msdyn_fact_AccountCustomer", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_fact_AccountCustomer");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_fact_AccountVendor
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_fact_AccountVendor")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_fact> msdyn_account_msdyn_fact_AccountVendor
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_fact>("msdyn_account_msdyn_fact_AccountVendor", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_fact_AccountVendor");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_fact>("msdyn_account_msdyn_fact_AccountVendor", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_fact_AccountVendor");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_invoicelinetransaction_AccountCustomer
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_invoicelinetransaction_AccountCustomer")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_invoicelinetransaction> msdyn_account_msdyn_invoicelinetransaction_AccountCustomer
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_invoicelinetransaction>("msdyn_account_msdyn_invoicelinetransaction_AccountCustomer", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_invoicelinetransaction_AccountCustomer");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_invoicelinetransaction>("msdyn_account_msdyn_invoicelinetransaction_AccountCustomer", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_invoicelinetransaction_AccountCustomer");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_invoicelinetransaction_AccountVendor
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_invoicelinetransaction_AccountVendor")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_invoicelinetransaction> msdyn_account_msdyn_invoicelinetransaction_AccountVendor
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_invoicelinetransaction>("msdyn_account_msdyn_invoicelinetransaction_AccountVendor", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_invoicelinetransaction_AccountVendor");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_invoicelinetransaction>("msdyn_account_msdyn_invoicelinetransaction_AccountVendor", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_invoicelinetransaction_AccountVendor");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_journalline_AccountCustomer
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_journalline_AccountCustomer")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_journalline> msdyn_account_msdyn_journalline_AccountCustomer
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_journalline>("msdyn_account_msdyn_journalline_AccountCustomer", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_journalline_AccountCustomer");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_journalline>("msdyn_account_msdyn_journalline_AccountCustomer", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_journalline_AccountCustomer");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_journalline_AccountVendor
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_journalline_AccountVendor")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_journalline> msdyn_account_msdyn_journalline_AccountVendor
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_journalline>("msdyn_account_msdyn_journalline_AccountVendor", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_journalline_AccountVendor");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_journalline>("msdyn_account_msdyn_journalline_AccountVendor", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_journalline_AccountVendor");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_opportunitylinetransaction_AccountCustomer
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_opportunitylinetransaction_AccountCustomer")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction> msdyn_account_msdyn_opportunitylinetransaction_AccountCustomer
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction>("msdyn_account_msdyn_opportunitylinetransaction_AccountCustomer", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_opportunitylinetransaction_AccountCustomer");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction>("msdyn_account_msdyn_opportunitylinetransaction_AccountCustomer", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_opportunitylinetransaction_AccountCustomer");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_opportunitylinetransaction_AccountVendor
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_opportunitylinetransaction_AccountVendor")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction> msdyn_account_msdyn_opportunitylinetransaction_AccountVendor
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction>("msdyn_account_msdyn_opportunitylinetransaction_AccountVendor", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_opportunitylinetransaction_AccountVendor");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_opportunitylinetransaction>("msdyn_account_msdyn_opportunitylinetransaction_AccountVendor", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_opportunitylinetransaction_AccountVendor");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_orderlinetransaction_AccountCustomer
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_orderlinetransaction_AccountCustomer")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_orderlinetransaction> msdyn_account_msdyn_orderlinetransaction_AccountCustomer
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_orderlinetransaction>("msdyn_account_msdyn_orderlinetransaction_AccountCustomer", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_orderlinetransaction_AccountCustomer");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_orderlinetransaction>("msdyn_account_msdyn_orderlinetransaction_AccountCustomer", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_orderlinetransaction_AccountCustomer");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_orderlinetransaction_AccountVendor
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_orderlinetransaction_AccountVendor")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_orderlinetransaction> msdyn_account_msdyn_orderlinetransaction_AccountVendor
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_orderlinetransaction>("msdyn_account_msdyn_orderlinetransaction_AccountVendor", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_orderlinetransaction_AccountVendor");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_orderlinetransaction>("msdyn_account_msdyn_orderlinetransaction_AccountVendor", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_orderlinetransaction_AccountVendor");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_payment_Account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_payment_Account")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_payment> msdyn_account_msdyn_payment_Account
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_payment>("msdyn_account_msdyn_payment_Account", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_payment_Account");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_payment>("msdyn_account_msdyn_payment_Account", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_payment_Account");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_project_Customer
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_project_Customer")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_project> msdyn_account_msdyn_project_Customer
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_project>("msdyn_account_msdyn_project_Customer", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_project_Customer");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_project>("msdyn_account_msdyn_project_Customer", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_project_Customer");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_purchaseorder_Vendor
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_purchaseorder_Vendor")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_purchaseorder> msdyn_account_msdyn_purchaseorder_Vendor
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_account_msdyn_purchaseorder_Vendor", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_purchaseorder_Vendor");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_purchaseorder>("msdyn_account_msdyn_purchaseorder_Vendor", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_purchaseorder_Vendor");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_quotelinetransaction_AccountCustomer
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_quotelinetransaction_AccountCustomer")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quotelinetransaction> msdyn_account_msdyn_quotelinetransaction_AccountCustomer
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotelinetransaction>("msdyn_account_msdyn_quotelinetransaction_AccountCustomer", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_quotelinetransaction_AccountCustomer");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotelinetransaction>("msdyn_account_msdyn_quotelinetransaction_AccountCustomer", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_quotelinetransaction_AccountCustomer");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_quotelinetransaction_AccountVendor
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_quotelinetransaction_AccountVendor")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_quotelinetransaction> msdyn_account_msdyn_quotelinetransaction_AccountVendor
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotelinetransaction>("msdyn_account_msdyn_quotelinetransaction_AccountVendor", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_quotelinetransaction_AccountVendor");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_quotelinetransaction>("msdyn_account_msdyn_quotelinetransaction_AccountVendor", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_quotelinetransaction_AccountVendor");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_requirementresourcepreference_Account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_requirementresourcepreference_Account")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_requirementresourcepreference> msdyn_account_msdyn_requirementresourcepreference_Account
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_requirementresourcepreference>("msdyn_account_msdyn_requirementresourcepreference_Account", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_requirementresourcepreference_Account");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_requirementresourcepreference>("msdyn_account_msdyn_requirementresourcepreference_Account", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_requirementresourcepreference_Account");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_rma_BillingAccount
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_rma_BillingAccount")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_rma> msdyn_account_msdyn_rma_BillingAccount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_rma>("msdyn_account_msdyn_rma_BillingAccount", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_rma_BillingAccount");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_rma>("msdyn_account_msdyn_rma_BillingAccount", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_rma_BillingAccount");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_rma_ServiceAccount
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_rma_ServiceAccount")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_rma> msdyn_account_msdyn_rma_ServiceAccount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_rma>("msdyn_account_msdyn_rma_ServiceAccount", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_rma_ServiceAccount");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_rma>("msdyn_account_msdyn_rma_ServiceAccount", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_rma_ServiceAccount");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_rmaproduct_Changeownership
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_rmaproduct_Changeownership")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_rmaproduct> msdyn_account_msdyn_rmaproduct_Changeownership
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_account_msdyn_rmaproduct_Changeownership", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_rmaproduct_Changeownership");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_account_msdyn_rmaproduct_Changeownership", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_rmaproduct_Changeownership");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_rmaproduct_ReturntoVendor
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_rmaproduct_ReturntoVendor")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_rmaproduct> msdyn_account_msdyn_rmaproduct_ReturntoVendor
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_account_msdyn_rmaproduct_ReturntoVendor", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_rmaproduct_ReturntoVendor");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_rmaproduct>("msdyn_account_msdyn_rmaproduct_ReturntoVendor", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_rmaproduct_ReturntoVendor");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_rtv_Vendor
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_rtv_Vendor")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_rtv> msdyn_account_msdyn_rtv_Vendor
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_account_msdyn_rtv_Vendor", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_rtv_Vendor");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_rtv>("msdyn_account_msdyn_rtv_Vendor", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_rtv_Vendor");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_workorder_BillingAccount
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_workorder_BillingAccount")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_workorder> msdyn_account_msdyn_workorder_BillingAccount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_account_msdyn_workorder_BillingAccount", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_workorder_BillingAccount");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_account_msdyn_workorder_BillingAccount", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_workorder_BillingAccount");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_workorder_ServiceAccount
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_workorder_ServiceAccount")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_workorder> msdyn_account_msdyn_workorder_ServiceAccount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_account_msdyn_workorder_ServiceAccount", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_workorder_ServiceAccount");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorder>("msdyn_account_msdyn_workorder_ServiceAccount", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_workorder_ServiceAccount");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_msdyn_workorderresourcerestriction_Account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_msdyn_workorderresourcerestriction_Account")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction> msdyn_account_msdyn_workorderresourcerestriction_Account
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_account_msdyn_workorderresourcerestriction_Account", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_msdyn_workorderresourcerestriction_Account");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.msdyn_workorderresourcerestriction>("msdyn_account_msdyn_workorderresourcerestriction_Account", null, value);
+				this.OnPropertyChanged("msdyn_account_msdyn_workorderresourcerestriction_Account");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_opportunityproduct_ServiceAccount
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_opportunityproduct_ServiceAccount")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.OpportunityProduct> msdyn_account_opportunityproduct_ServiceAccount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.OpportunityProduct>("msdyn_account_opportunityproduct_ServiceAccount", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_opportunityproduct_ServiceAccount");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.OpportunityProduct>("msdyn_account_opportunityproduct_ServiceAccount", null, value);
+				this.OnPropertyChanged("msdyn_account_opportunityproduct_ServiceAccount");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_product_DefaultVendor
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_product_DefaultVendor")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Product> msdyn_account_product_DefaultVendor
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Product>("msdyn_account_product_DefaultVendor", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_product_DefaultVendor");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Product>("msdyn_account_product_DefaultVendor", null, value);
+				this.OnPropertyChanged("msdyn_account_product_DefaultVendor");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_quote_Account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_quote_Account")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.Quote> msdyn_account_quote_Account
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.Quote>("msdyn_account_quote_Account", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_quote_Account");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.Quote>("msdyn_account_quote_Account", null, value);
+				this.OnPropertyChanged("msdyn_account_quote_Account");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_quotedetail_ServiceAccount
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_quotedetail_ServiceAccount")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.QuoteDetail> msdyn_account_quotedetail_ServiceAccount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.QuoteDetail>("msdyn_account_quotedetail_ServiceAccount", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_quotedetail_ServiceAccount");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.QuoteDetail>("msdyn_account_quotedetail_ServiceAccount", null, value);
+				this.OnPropertyChanged("msdyn_account_quotedetail_ServiceAccount");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msdyn_account_salesorder_Account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_salesorder_Account")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SalesOrder> msdyn_account_salesorder_Account
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SalesOrder>("msdyn_account_salesorder_Account", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_account_salesorder_Account");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SalesOrder>("msdyn_account_salesorder_Account", null, value);
+				this.OnPropertyChanged("msdyn_account_salesorder_Account");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N opportunity_customer_accounts
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_customer_accounts")]
@@ -4028,6 +5408,26 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("quote_customer_accounts");
 				this.SetRelatedEntities<DLaB.Xrm.Entities.Quote>("quote_customer_accounts", null, value);
 				this.OnPropertyChanged("quote_customer_accounts");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N slakpiinstance_account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("slakpiinstance_account")]
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.SLAKPIInstance> slakpiinstance_account
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.SLAKPIInstance>("slakpiinstance_account", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("slakpiinstance_account");
+				this.SetRelatedEntities<DLaB.Xrm.Entities.SLAKPIInstance>("slakpiinstance_account", null, value);
+				this.OnPropertyChanged("slakpiinstance_account");
 			}
 		}
 		
@@ -4403,6 +5803,111 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
+		/// N:1 manualsla_account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slaid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("manualsla_account")]
+		public DLaB.Xrm.Entities.SLA manualsla_account
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SLA>("manualsla_account", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("manualsla_account");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.SLA>("manualsla_account", null, value);
+				this.OnPropertyChanged("manualsla_account");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_account_account_BillingAccount
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_billingaccount")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_account_account_BillingAccount", Microsoft.Xrm.Sdk.EntityRole.Referencing)]
+		public DLaB.Xrm.Entities.Account Referencingmsdyn_account_account_BillingAccount
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Account>("msdyn_account_account_BillingAccount", Microsoft.Xrm.Sdk.EntityRole.Referencing);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("Referencingmsdyn_account_account_BillingAccount");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Account>("msdyn_account_account_BillingAccount", Microsoft.Xrm.Sdk.EntityRole.Referencing, value);
+				this.OnPropertyChanged("Referencingmsdyn_account_account_BillingAccount");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_bookableresource_account_PreferredResource
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_preferredresource")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_bookableresource_account_PreferredResource")]
+		public DLaB.Xrm.Entities.BookableResource msdyn_bookableresource_account_PreferredResource
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.BookableResource>("msdyn_bookableresource_account_PreferredResource", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_bookableresource_account_PreferredResource");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.BookableResource>("msdyn_bookableresource_account_PreferredResource", null, value);
+				this.OnPropertyChanged("msdyn_bookableresource_account_PreferredResource");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_msdyn_taxcode_account_SalesTaxCode
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_salestaxcode")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_msdyn_taxcode_account_SalesTaxCode")]
+		public DLaB.Xrm.Entities.msdyn_taxcode msdyn_msdyn_taxcode_account_SalesTaxCode
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.msdyn_taxcode>("msdyn_msdyn_taxcode_account_SalesTaxCode", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_msdyn_taxcode_account_SalesTaxCode");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.msdyn_taxcode>("msdyn_msdyn_taxcode_account_SalesTaxCode", null, value);
+				this.OnPropertyChanged("msdyn_msdyn_taxcode_account_SalesTaxCode");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msdyn_territory_account_ServiceTerritory
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_serviceterritory")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msdyn_territory_account_ServiceTerritory")]
+		public DLaB.Xrm.Entities.Territory msdyn_territory_account_ServiceTerritory
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.Territory>("msdyn_territory_account_ServiceTerritory", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msdyn_territory_account_ServiceTerritory");
+				this.SetRelatedEntity<DLaB.Xrm.Entities.Territory>("msdyn_territory_account_ServiceTerritory", null, value);
+				this.OnPropertyChanged("msdyn_territory_account_ServiceTerritory");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 price_level_accounts
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("defaultpricelevelid")]
@@ -4462,6 +5967,20 @@ namespace DLaB.Xrm.Entities
 				this.OnPropertyChanging("service_accounts");
 				this.SetRelatedEntity<DLaB.Xrm.Entities.Service>("service_accounts", null, value);
 				this.OnPropertyChanged("service_accounts");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 sla_account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("slainvokedid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("sla_account")]
+		public DLaB.Xrm.Entities.SLA sla_account
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.SLA>("sla_account", null);
 			}
 		}
 		
@@ -4804,6 +6323,21 @@ namespace DLaB.Xrm.Entities
 			set
 			{
 				IndustryCode = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_travelchargetype")]
+		public virtual msdyn_TravelChargeType? msdyn_TravelChargeTypeEnum
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return ((msdyn_TravelChargeType?)(EntityOptionSetEnum.GetEnum(this, "msdyn_travelchargetype")));
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				msdyn_TravelChargeType = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
 			}
 		}
 		

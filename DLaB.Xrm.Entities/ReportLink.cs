@@ -15,11 +15,11 @@ namespace DLaB.Xrm.Entities
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("reportlink")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
 	public partial class ReportLink : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
-		public struct Fields
+		public static class Fields
 		{
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
@@ -46,7 +46,6 @@ namespace DLaB.Xrm.Entities
 			public const string report_reportlink = "report_reportlink";
 			public const string report_reportlink_sub = "report_reportlink_sub";
 		}
-
 		
 		/// <summary>
 		/// Default Constructor.
@@ -58,6 +57,8 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		public const string EntityLogicalName = "reportlink";
+		
+		public const string PrimaryIdAttribute = "reportlinkid";
 		
 		public const int EntityTypeCode = 9104;
 		

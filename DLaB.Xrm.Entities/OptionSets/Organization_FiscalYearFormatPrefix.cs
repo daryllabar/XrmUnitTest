@@ -11,14 +11,14 @@ namespace DLaB.Xrm.Entities
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "8.0.1.7297")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
 	public enum Organization_FiscalYearFormatPrefix
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		FY = 1,
+		_2 = 2,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		UnknownLabel2 = 2,
+		FY = 1,
 	}
 }
