@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -66,6 +67,7 @@ namespace DLaB.Xrm.Test.Builders
         /// The new entity default ids.
         /// </value>
         private Dictionary<string, Queue<Guid>> NewEntityDefaultIds { get;}
+        private bool NewEntityThrowErrorOnContextCreation { get; set; }
 
         /// <summary>
         /// The Entities constrained by id to be retrieved when querying CRM
@@ -100,6 +102,7 @@ namespace DLaB.Xrm.Test.Builders
         {
             Service = service;
             NewEntityDefaultIds = new Dictionary<string, Queue<Guid>>();
+            NewEntityThrowErrorOnContextCreation = true;
             EntityFilter = new Dictionary<string, List<Guid>>();
 
             #region IOrganizationService Actions and Funcs
@@ -412,10 +415,28 @@ namespace DLaB.Xrm.Test.Builders
         /// <summary>
         /// When an entity is attempted to be created without an id, and an Id was passed in for that particular entity type, the Guid of the Id will be used to populate the entity
         /// </summary>
+        /// <param name="ignoreContextCreation">Since OrganizationServiceContext.SaveChanges will populate ids if they aren't already populated, controls whether an error should be thrown when this occurs.</param>
         /// <param name="ids">The ids.</param>
         /// <returns></returns>
-        public TDerived WithIdsDefaultedForCreate(IEnumerable<Id> ids)
+        public TDerived WithIdsDefaultedForCreate(bool ignoreContextCreation, params Id[] ids)
         {
+            WithIdsDefaultedForCreate(ids, ignoreContextCreation);
+
+            return This;
+        }
+
+        /// <summary>
+        /// When an entity is attempted to be created without an id, and an Id was passed in for that particular entity type, the Guid of the Id will be used to populate the entity
+        /// </summary>
+        /// <param name="ids">The ids.</param>
+        /// <param name="ignoreContextCreation">Since OrganizationServiceContext.SaveChanges will populate ids if they aren't already populated, controls whether an error should be thrown when this occurs.</param>
+        /// <returns></returns>
+        public TDerived WithIdsDefaultedForCreate(IEnumerable<Id> ids, bool ignoreContextCreation = false)
+        {
+            if (ignoreContextCreation)
+            {
+                NewEntityThrowErrorOnContextCreation = false;
+            }
             foreach (var id in ids)
             {
                 NewEntityDefaultIds.AddOrEnqueue(id);
@@ -455,7 +476,7 @@ namespace DLaB.Xrm.Test.Builders
                     (t.Name == attRequest.EntityLogicalName + "_" + attRequest.LogicalName ||
                      t.Name == attRequest.LogicalName + "_" + attRequest.EntityLogicalName) &&
                     t.GetCustomAttributes(typeof(DataContractAttribute), false).Length > 0 &&
-                    t.GetCustomAttributes(typeof(System.CodeDom.Compiler.GeneratedCodeAttribute), false).Length > 0);
+                    t.GetCustomAttributes(typeof(GeneratedCodeAttribute), false).Length > 0);
 
                 // Return EntityLogicalName_Logical Name first
                 var enumType = enumExpression.OrderBy(t => t.Name != attRequest.EntityLogicalName + "_" + attRequest.LogicalName).FirstOrDefault();
@@ -473,8 +494,8 @@ namespace DLaB.Xrm.Test.Builders
                             Value = (int)value,
                             Label = new Label
                             {
-                                UserLocalizedLabel = new LocalizedLabel(value.ToString(), defaultLangaugeCode.Value),
-                            },
+                                UserLocalizedLabel = new LocalizedLabel(value.ToString(), defaultLangaugeCode.Value)
+                            }
                         });
                 }
 
@@ -687,17 +708,70 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="entity">The entity.</param>
         private void DefaultIdForEntity(Entity entity)
         {
-            if (entity.Id != Guid.Empty || !NewEntityDefaultIds.TryGetValue(entity.LogicalName, out Queue<Guid> ids))
+            // throw an error if from context, and NewEntityThrowErrorOnContextCreation is true, and not in the ids collection
+            if (entity.Id != Guid.Empty)
             {
-                return;
+                if (entity.EntityState != EntityState.Created)
+                {
+                    return;
+                }
+
+                var hasIds = NewEntityDefaultIds.TryGetValue(entity.LogicalName, out Queue<Guid> ids);
+
+                if (NewEntityThrowErrorOnContextCreation)
+                {
+                    if (!hasIds || !ContainsAndRemoved(ids, entity.Id))
+                    {
+                        throw new Exception(
+                            $"An attempt was made to create an entity of type {entity.LogicalName} with the EntityState set to created which normally means it comes from an OrganizationServiceContext.SaveChanges call.{Environment.NewLine}"
+                            +
+                            "Either set ignoreContextCreation to true on the WithIdsDefaultedForCreate call, or define the id before calling SaveChanges, and add the id with the WithIdsDefaultedForCreate method.");
+                    }
+                }
+                else if(hasIds)
+                {
+                    ContainsAndRemoved(ids, entity.Id);
+                }
             }
-            if (ids.Count == 0)
+            else
             {
-                throw new Exception(
-                    $"An attempt was made to create an entity of type {entity.LogicalName}, but no id exists in the NewEntityDefaultIds Collection for it.{Environment.NewLine}" +
-                    "Either the entity's Id was not populated as a part of initialization, or a call is needs to be added to to OrganizationServiceBuilder.WithIdsDefaultedForCreate(id)");
+                if(!NewEntityDefaultIds.TryGetValue(entity.LogicalName, out Queue<Guid> ids))
+                {
+                    return;
+                }
+                if (ids.Count == 0)
+                {
+                    throw new Exception(
+                        $"An attempt was made to create an entity of type {entity.LogicalName}, but no id exists in the NewEntityDefaultIds Collection for it.{Environment.NewLine}" +
+                        "Either the entity's Id was not populated as a part of initialization, or a call is needs to be added to to OrganizationServiceBuilder.WithIdsDefaultedForCreate(id)");
+                }
+                entity.Id = ids.Dequeue();
             }
-            entity.Id = ids.Dequeue();
+        }
+
+        private bool ContainsAndRemoved(Queue<Guid> ids, Guid id)
+        {
+            if (!ids.ToArray().Contains(id))
+            {
+                return false;
+            }
+            var subQueue = new Queue<Guid>(ids.Count);
+            while (ids.Count > 0)
+            {
+                var current = ids.Dequeue();
+                if (id == current)
+                {
+                    break;
+                }
+                subQueue.Enqueue(current);
+            }
+
+            while (subQueue.Count > 0)
+            {
+                ids.Enqueue(subQueue.Dequeue());
+            }
+
+            return true;
         }
 
         /// <summary>
