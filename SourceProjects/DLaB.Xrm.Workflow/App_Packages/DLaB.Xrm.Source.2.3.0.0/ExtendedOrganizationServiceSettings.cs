@@ -19,7 +19,7 @@ namespace Source.DLaB.Xrm
         private string _timeEndMessageFormat;
 
         /// <summary>
-        /// All Fetch Xml or QueryExpressions (SQL Equivelent) made with IOrganziationServices executed will be traced
+        /// All Fetch Xml or QueryExpressions (SQL Equivalent) made with IOrganziationServices executed will be traced
         /// </summary>
         public bool LogDetailedRequests { get; set; }
 

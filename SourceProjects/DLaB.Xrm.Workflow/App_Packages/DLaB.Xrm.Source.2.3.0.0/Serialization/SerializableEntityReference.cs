@@ -45,6 +45,7 @@ namespace Source.DLaB.Xrm.Sandbox.Serialization
         /// </returns>
         [DataMember]
         public string Name { get; set; }
+#if !PRE_KEYATTRIBUTE
 
         /// <summary>
         /// Gets or sets the key attributes.
@@ -55,6 +56,12 @@ namespace Source.DLaB.Xrm.Sandbox.Serialization
         /// </returns>
         [DataMember]
         public SerializableKeyAttributeCollection KeyAttributes { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SerializableEntityReference"/> class.
+        /// </summary>
+        public SerializableEntityReference() { KeyAttributes = new SerializableKeyAttributeCollection(); }
+#endif
 
         /// <summary>
         /// Gets or sets the row version.
@@ -78,19 +85,16 @@ namespace Source.DLaB.Xrm.Sandbox.Serialization
         /// <summary>
         /// Initializes a new instance of the <see cref="SerializableEntityReference"/> class.
         /// </summary>
-        public SerializableEntityReference() { KeyAttributes = new SerializableKeyAttributeCollection(); }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SerializableEntityReference"/> class.
-        /// </summary>
         /// <param name="entityReference">The entity reference.</param>
         public SerializableEntityReference(EntityReference entityReference)
         {
             Id = entityReference.Id;
             LogicalName = entityReference.LogicalName;
             Name = entityReference.Name;
+#if !PRE_KEYATTRIBUTE
             KeyAttributes = new SerializableKeyAttributeCollection(entityReference.KeyAttributes);
             RowVersion = entityReference.RowVersion;
+#endif
         }
 
         /// <summary>
@@ -109,11 +113,13 @@ namespace Source.DLaB.Xrm.Sandbox.Serialization
             var xrmEntity = new EntityReference
             {
                 ExtensionData = entity.ExtensionData,
+#if !PRE_KEYATTRIBUTE
                 KeyAttributes = (KeyAttributeCollection)entity.KeyAttributes,
+                RowVersion = entity.RowVersion,
+#endif
                 Id = entity.Id,
                 LogicalName = entity.LogicalName,
-                Name = entity.Name,
-                RowVersion = entity.RowVersion
+                Name = entity.Name
             };
 
             return xrmEntity;

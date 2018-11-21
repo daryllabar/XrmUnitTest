@@ -34,7 +34,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;DLAB_UNROOT_COMMON_NAMESPACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>..\SourceProjects\XrmUnitTest.ruleset</CodeAnalysisRuleSet>
@@ -48,6 +48,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -58,15 +60,24 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.2.7\Config.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.2.7\ConfigKeyValueSplitInfo.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.2.7\ConfigKeyValuesSplitInfo.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.2.7\ConfigProvider.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.2.7\ConfigValuesSplitInfo.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.2.7\Exceptions\DictionaryDuplicateKeyException.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.2.7\Exceptions\EnumCaseUndefinedException.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.2.7\Exceptions\TypeArgumentException.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.2.7\Extensions.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.2.7\ProcessExecutor.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.2.7\ProcessExecutorInfo.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.2.7\TypeSafeEnumBase.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.2.7\VersionControl\ISourceControlProvider.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.2.7\VersionControl\SourceControl.cs" />
+    <Compile Include="App_Packages\DLaB.Common.Source.1.1.2.7\VersionControl\VsTfsSourceControlProvider.cs" />
     <Compile Include="ConfigTests.cs" />
     <Compile Include="SubstringByStringTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DLaB.Common\DLaB.Common.csproj">
-      <Project>{a7284a23-15f3-411d-bc26-2890a11053fe}</Project>
-      <Name>DLaB.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

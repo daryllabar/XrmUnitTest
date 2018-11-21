@@ -25,10 +25,6 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 where entityType.IsAssignableFrom(t) && new LateBoundActivePropertyInfo(EntityHelper.GetEntityLogicalName(t)).ActiveAttribute != ActiveAttributeType.None 
                 select (Entity) Activator.CreateInstance(t))
             {
-                if (entity.LogicalName == RecommendationCache.EntityLogicalName)
-                {
-                    entity.Id = service.Create(entity);
-                }
                 if (entity.LogicalName == Incident.EntityLogicalName)
                 {
                     // Satisfy ErrorCodes.unManagedidsincidentparentaccountandparentcontactnotpresent

@@ -56,8 +56,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code Snippets", "Code Snipp
 		Code Snippets\region.snippet = Code Snippets\region.snippet
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Common.Tests", "DLaB.Common.Tests\DLaB.Common.Tests.csproj", "{4BCE674F-352E-4A6B-BAFF-3E6186E3CF5B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SourceProjects", "SourceProjects", "{DF42195B-074C-4C34-9F6C-C13BC5931539}"
 	ProjectSection(SolutionItems) = preProject
 		SourceProjects\XrmUnitTest.ruleset = SourceProjects\XrmUnitTest.ruleset
@@ -140,12 +138,6 @@ Global
 		{66688025-2F6D-40EC-914E-87AF88AFC5DE}.LocalNuget|Any CPU.Build.0 = LocalNuget|Any CPU
 		{66688025-2F6D-40EC-914E-87AF88AFC5DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66688025-2F6D-40EC-914E-87AF88AFC5DE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4BCE674F-352E-4A6B-BAFF-3E6186E3CF5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4BCE674F-352E-4A6B-BAFF-3E6186E3CF5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4BCE674F-352E-4A6B-BAFF-3E6186E3CF5B}.LocalNuget|Any CPU.ActiveCfg = Release|Any CPU
-		{4BCE674F-352E-4A6B-BAFF-3E6186E3CF5B}.LocalNuget|Any CPU.Build.0 = Release|Any CPU
-		{4BCE674F-352E-4A6B-BAFF-3E6186E3CF5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4BCE674F-352E-4A6B-BAFF-3E6186E3CF5B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C11C3523-D4F4-4C7D-B072-46E96947EFC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C11C3523-D4F4-4C7D-B072-46E96947EFC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C11C3523-D4F4-4C7D-B072-46E96947EFC2}.LocalNuget|Any CPU.ActiveCfg = Release|Any CPU
