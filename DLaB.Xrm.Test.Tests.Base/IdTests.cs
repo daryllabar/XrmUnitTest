@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
@@ -8,7 +9,8 @@ namespace DLaB.Xrm.Test.Tests
     [TestClass]
     public class IdTests
     {
-        public void Id_ImplicitConversions_()
+        [TestMethod]
+        public void Id_ImplicitConversions()
         {
             var id = new Id<Contact>(Guid.NewGuid())
             {
@@ -32,7 +34,26 @@ namespace DLaB.Xrm.Test.Tests
             Assert.AreEqual(contactEntity, id.Entity, "Implicit TEntity Conversion Failed");
             Assert.AreEqual(contactEntity.FirstName, id.Entity.FirstName, "Implicit TEntity Conversion Failed for First Name");
             Assert.AreEqual(contactEntity.LastName, id.Entity.LastName, "Implicit TEntity Conversion Failed for Last Name");
+        }
 
+        private struct Ids
+        {
+            public struct Accounts
+            {
+                public static readonly Id<Account> A = new Id<Account>("7A46EE9B-EB39-4A82-AFDA-3606911AC782");
+                public static readonly Id<Account> B = new Id<Account>("D1CBEA3D-5A0F-4E09-95C4-EA71F70ABB61");
+            }
+            public static readonly Id<Contact> Contact  = new Id<Contact>("872DD7E2-637D-4D4D-91DB-B54DD17C2BA3");
+        }
+
+        [TestMethod]
+        public void GetIds_Should_EnumerateStruct()
+        {
+            var ids = Id.GetIds<Ids>().ToList();
+            Assert.IsTrue(ids.Contains(Ids.Accounts.A));
+            Assert.IsTrue(ids.Contains(Ids.Accounts.B));
+            Assert.IsTrue(ids.Contains(Ids.Contact));
         }
     }
 }
+

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Activities;
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reflection;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test
@@ -76,6 +79,42 @@ namespace DLaB.Xrm.Test
         /// <param name="logicalName">Name of the logical.</param>
         /// <param name="entityId">The entity identifier.</param>
         public Id(string logicalName, string entityId) : this(logicalName, new Guid(entityId)) { }
+
+        #region Static Methods
+
+        /// <summary>
+        /// Enumerates all of the Ids in a struct
+        /// </summary>
+        /// <typeparam name="T">The Struct</typeparam>
+        /// <returns></returns>
+        public static IEnumerable<Id> GetIds<T>() where T : struct { return GetIdsInternal(typeof(T)); }
+
+        private static IEnumerable<Id> GetIdsInternal(Type type)
+        {
+            foreach (var field in type.GetFields(BindingFlags.Static | BindingFlags.Public))
+            {
+                var value = field.GetValue(null);
+                if (value == null)
+                {
+                    continue;
+                }
+
+                if (value is Id id)
+                {
+                    yield return id;
+                }
+            }
+
+            foreach(var nested in type.GetNestedTypes())
+            {
+                foreach (var id in GetIdsInternal(nested))
+                {
+                    yield return id;
+                }
+            }
+        }
+
+        #endregion Static Methods
 
         #region Implicit Operators
 
