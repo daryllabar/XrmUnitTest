@@ -7,21 +7,17 @@ Xrm Unit Testing Framework Provides a long list of features that makes developin
 
 ## What Is It?
 
-XrmUnitTest contains two seperate, but complementary items:
-
-- **DLaB.Xrm** - A library of XRM Extensions intended to be used by any XRM project, in any Xrm Plugin/Workflow.  Ever had a QueryExpression, and wished you get generate SQL from the QueryExpression while debugging?  Now you can:  `queryExpression.GetSqlStatement()`.  Ever wish your plugins had a built in method to prevent recusive lookps?  Just inherit from the `GenericPluginHandlerBase`, they will.  Project delivered by a [source only nuget package](https://www.nuget.org/packages/DLaB.Xrm.Source/), so you control the version of the Xrm Assemblies it references, and you don't have to IL Merge for you plugins!
-- **XrmUnitTest** - A XrmUnitTesting framework that is designed to maximize the userfullness of your Unit Tests, while minimizing the amount of time to create or maintain them.  You can even utilize the in memory, fake CRM server to test your plugin, before ever deploying it to CRM.
+XrmUnitTest is an Xrm unit testing framework that is designed to maximize the userfullness of your Unit Tests, while minimizing the amount of time to create or maintain them.  You can even utilize the in memory, fake CRM server to test your plugin, before ever deploying it to CRM.
 
 Please check out the [Wiki](https://github.com/daryllabar/XrmUnitTest/wiki) for more information!
 
 ## How Can I Use It?
 
-There are two methods for utilizing the code base, depending on how you'd like to consume the code base.  
-
-1.  **Use NuGet** - This is by far the quickest and easiet method.  Search for and add the NuGet Pacakge "DLaB.Xrm(2015 or 2016)" to your Xrm Plugin\Service Assemblies.  Then search for and add the NuGet Package "XrmUnitTest(2015 or 2016)" to your Unit Test projects and base unit test project (See [Wiki](https://github.com/daryllabar/XrmUnitTest/wiki) on what is meant by base unit test project).
-2.  **Use The Source Directly** - The only reason I list this method is for anyone that doesn't want to utilize ILMerge in order to create their CRM Plugin.  The classes are all implemented using the new Shared Project functionality in VS 2015, which allow you to reference the source code, without duplicating it.  This allows for your plugins to not require any IlMerge when running in a sandboxed (online) environment.
+**Via NuGet** - Search for and add the NuGet Package "XrmUnitTest(2013, 2015, 2016, 09)" to your Unit Test projects and base unit test project (See [Wiki](https://github.com/daryllabar/XrmUnitTest/wiki) on what is meant by base unit test project).
   
-Again, more information is available on the [Wiki](https://github.com/daryllabar/XrmUnitTest/wiki)!
+**The Example Project** - The [Example project](https://github.com/daryllabar/XrmUnitTest.Example) shows how to add a layer of seperation between your code base and the Testing Framework to allow you to have logic custom to your project.
+ 
+More information is available on the [Wiki](https://github.com/daryllabar/XrmUnitTest/wiki)!
 
 
 ## How Can I Help?
