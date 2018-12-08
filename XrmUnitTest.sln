@@ -56,8 +56,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmUnitTest.2015", "2015\Xr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmUnitTest.2016", "2016\XrmUnitTest.2016\XrmUnitTest.2016.csproj", "{E8C237CB-FFB2-4163-A985-01ECC0B8F399}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DLaB.Xrm.Workflow", "DLaB.Xrm.Workflow.Base\DLaB.Xrm.Workflow.shproj", "{0A4F992C-57F2-4910-AECC-13AD1CD271AD}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2013", "2013", "{71DACF89-9D0F-4D45-9202-7AAC5FA83EBE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmUnitTest.2013", "2013\XrmUnitTest.2013\XrmUnitTest.2013.csproj", "{E022F65B-2E2B-4907-BED5-8ED04FEF5769}"
@@ -65,7 +63,6 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		XrmUnitTest.Test.Base\XrmUnitTest.Test.Base.projitems*{0773e17c-ddbc-4dd9-812b-85c1299a6aca}*SharedItemsImports = 13
-		DLaB.Xrm.Workflow.Base\DLaB.Xrm.Workflow.Base.projitems*{0a4f992c-57f2-4910-aecc-13ad1cd271ad}*SharedItemsImports = 13
 		DLaB.Xrm.LocalCrm.Tests.Base\DLaB.Xrm.LocalCrm.Tests.Base.projitems*{1a5ef03b-b261-4971-8f91-448b43f3e642}*SharedItemsImports = 13
 		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{33c4e42f-b410-4570-bbc9-da4c695b1f4d}*SharedItemsImports = 4
 		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{33c4e42f-b410-4570-bbc9-da4c695b1f4d}*SharedItemsImports = 4
