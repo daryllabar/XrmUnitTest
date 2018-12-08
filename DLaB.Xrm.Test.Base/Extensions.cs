@@ -59,8 +59,7 @@ namespace DLaB.Xrm.Test
                 },
                 RetrieveMultipleFunc = (s, qb) =>
                 {
-                    var qe = qb as QueryExpression;
-                    if (qe != null)
+                    if (qb is QueryExpression qe)
                     {
                         expressions.Add(qe);
                     }
@@ -451,8 +450,7 @@ namespace DLaB.Xrm.Test
         /// <returns></returns> 
         public static bool IsLocalCrmService(this IOrganizationService service)
         {
-            var clientSide = service as IClientSideOrganizationService;
-            return clientSide != null && clientSide.GetOrganizationKey().StartsWith("www.localcrmdatabase.com");
+            return service is IClientSideOrganizationService clientSide && clientSide.GetOrganizationKey().StartsWith("www.localcrmdatabase.com");
         }
 
         /// <summary>
@@ -523,8 +521,7 @@ namespace DLaB.Xrm.Test
         /// <returns></returns>
         public static EntityCollection MockOrDefault(this IOrganizationService s, QueryBase qb, Action<IOrganizationService> methodToMock, Entity mockedEntity)
         {
-            var qe = qb as QueryExpression;
-            if (qe != null && methodToMock.GetExecutedQueryExpressions().Any(qe.IsEqual))
+            if (qb is QueryExpression qe && methodToMock.GetExecutedQueryExpressions().Any(qe.IsEqual))
             {
                 return mockedEntity == null ? new EntityCollection() : new EntityCollection(new[] { mockedEntity });
             }
@@ -543,8 +540,7 @@ namespace DLaB.Xrm.Test
         /// <returns></returns>
         public static EntityCollection MockOrDefault(this IOrganizationService s, QueryBase qb, Func<QueryExpression, bool> useMock, Entity mockedEntity)
         {
-            var qe = qb as QueryExpression;
-            if (qe != null && useMock(qe))
+            if (qb is QueryExpression qe && useMock(qe))
             {
                 return mockedEntity == null ? new EntityCollection() : new EntityCollection(new[] { mockedEntity });
             }
@@ -604,8 +600,7 @@ namespace DLaB.Xrm.Test
         /// <param name="mockedEntities">The mocked entities.</param>
         public static EntityCollection MockOrDefault(this IOrganizationService s, QueryBase qb, Func<QueryExpression, bool> useMock, params Entity[] mockedEntities)
         {
-            var qe = qb as QueryExpression;
-            if (qe != null && useMock(qe))
+            if (qb is QueryExpression qe && useMock(qe))
             {
                 return new EntityCollection(mockedEntities ?? new Entity[0]);
             }

@@ -198,8 +198,7 @@ namespace DLaB.Xrm.LocalCrm
         private static object ConvertStringObjectToLower(object value)
         {
             if (value == null) { return null; }
-            var str = value as string;
-            if (str != null)
+            if (value is string str)
             {
                 return str.ToLower();
             }

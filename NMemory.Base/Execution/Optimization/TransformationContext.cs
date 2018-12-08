@@ -28,7 +28,7 @@ namespace NMemory.Execution
 
     public class TransformationContext : ITransformationContext
     {
-        private ParameterExpression parameter;
+        private readonly ParameterExpression parameter;
 
         public TransformationContext(ParameterExpression parameter)
         {

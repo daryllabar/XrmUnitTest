@@ -29,12 +29,12 @@ namespace NMemory.Modularity
 
     public sealed class DefaultDatabaseEngine : IDatabaseEngine
     {
-        private IQueryCompiler compiler;
-        private ICommandExecutor executor;
-        private IConcurrencyManager concurrencyManager;
-        private ITransactionHandler transactionHandler;
-        private ILoggingPort loggingPort;
-        private IServiceProvider serviceProvider;
+        private readonly IQueryCompiler compiler;
+        private readonly ICommandExecutor executor;
+        private readonly IConcurrencyManager concurrencyManager;
+        private readonly ITransactionHandler transactionHandler;
+        private readonly ILoggingPort loggingPort;
+        private readonly IServiceProvider serviceProvider;
 
         public DefaultDatabaseEngine(
             IDatabaseComponentFactory databaseEngineFactory, 

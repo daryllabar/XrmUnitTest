@@ -34,7 +34,7 @@ namespace NMemory.DataStructures
     public class UniqueRedBlackTree<TKey, TEntity> : IUniqueDataStructure<TKey, TEntity>
          where TEntity : class
     {
-        private Internal.Trees.RedBlackTree<TKey, TEntity> inner;
+        private readonly Internal.Trees.RedBlackTree<TKey, TEntity> inner;
 
         public UniqueRedBlackTree() : this(Comparer<TKey>.Default)
         {

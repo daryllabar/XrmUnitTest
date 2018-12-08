@@ -33,11 +33,11 @@ namespace NMemory.Tables
 
     internal class IdentityField<TEntity>
     {
-        private Func<TEntity, long> identityGetter;
-        private DynamicPropertySetter<TEntity> identitySetter;
-        private IdentitySpecification<TEntity> identitySpecification;
+        private readonly Func<TEntity, long> identityGetter;
+        private readonly DynamicPropertySetter<TEntity> identitySetter;
+        private readonly IdentitySpecification<TEntity> identitySpecification;
         private long nextIdentity;
-        private Type identityType;
+        private readonly Type identityType;
 
         internal IdentityField(IdentitySpecification<TEntity> identitySpecification)
         {

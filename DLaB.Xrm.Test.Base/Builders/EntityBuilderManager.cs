@@ -144,10 +144,9 @@ namespace DLaB.Xrm.Test.Builders
 
             foreach (var result in builders.Select(b => b.Builder))
             {
-                var builder = result as TBuilder;
-                if (builder == null)
+                if (!(result is TBuilder builder))
                 {
-                    throw new Exception($"Unexpected type of builder!  Builder for {logicalName}, was not of type {typeof (TBuilder).FullName}, but type {result.GetType().FullName}.");
+                    throw new Exception($"Unexpected type of builder!  Builder for {logicalName}, was not of type {typeof(TBuilder).FullName}, but type {result.GetType().FullName}.");
                 }
                 action(builder);
             }

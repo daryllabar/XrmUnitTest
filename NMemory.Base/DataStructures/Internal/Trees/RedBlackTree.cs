@@ -33,7 +33,7 @@ namespace NMemory.DataStructures.Internal.Trees
     //// http://www.jot.fm/issues/issue_2005_03/column6/
     internal class RedBlackTree<TKey, TValue> : IDictionary<TKey, TValue>
     {
-        private IComparer<TKey> comparer;
+        private readonly IComparer<TKey> comparer;
 
         private RedBlackTreeNode<TKey, TValue> root;
         private int count;
@@ -43,7 +43,7 @@ namespace NMemory.DataStructures.Internal.Trees
         private bool parentToRight;    // Of grand parent 
         private bool nodeToDeleteRed;  // Color of deleted node
 
-        private object syncRoot = new object();
+        private readonly object syncRoot = new object();
 
         public RedBlackTree()
             : this(Comparer<TKey>.Default)

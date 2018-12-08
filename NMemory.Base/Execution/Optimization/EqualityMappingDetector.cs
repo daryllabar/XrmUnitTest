@@ -34,11 +34,11 @@ namespace NMemory.Execution.Optimization
 
     public class EqualityMappingDetector : ExpressionVisitor
     {
-        private IList<IExpressionBuilder> leftMembers;
-        private IList<IExpressionBuilder> rightMembers;
+        private readonly IList<IExpressionBuilder> leftMembers;
+        private readonly IList<IExpressionBuilder> rightMembers;
 
-        private Expression leftSource;
-        private Expression rightSource;
+        private readonly Expression leftSource;
+        private readonly Expression rightSource;
 
         public EqualityMappingDetector(Expression left, Expression right)
         {

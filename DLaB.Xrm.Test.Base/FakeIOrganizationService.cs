@@ -190,9 +190,8 @@ namespace DLaB.Xrm.Test
         public FakeIOrganizationService(IOrganizationService service)
                     : base(service)
         {
-            var fake = service as FakeIOrganizationService;
 
-            if (fake != null)
+            if (service is FakeIOrganizationService fake)
             {
                 Timer = fake.Timer;
             }
@@ -218,8 +217,7 @@ namespace DLaB.Xrm.Test
             {
                 return this;
             }
-            var parent = Service as FakeIOrganizationService;
-            return parent == null ? Service : parent.GetActualService();
+            return !(Service is FakeIOrganizationService parent) ? Service : parent.GetActualService();
         }
 
         #region IOrganizationService Members
@@ -453,47 +451,40 @@ namespace DLaB.Xrm.Test
         private OrganizationResponse CallOrganizationServiceRequestForExecuteRequest(OrganizationRequest request)
         {
             OrganizationResponse response = null;
-            var associate = request as AssociateRequest;
-            if (associate != null)
+            if (request is AssociateRequest associate)
             {
                 response = new AssociateResponse();
                 Associate(associate.Target.LogicalName, associate.Target.Id, associate.Relationship, associate.RelatedEntities);
             }
 
-            var create = request as CreateRequest;
-            if (create != null)
+            if (request is CreateRequest create)
             {
-                response = new CreateResponse {["id"] = Create(create.Target)};
+                response = new CreateResponse { ["id"] = Create(create.Target) };
             }
 
-            var delete = request as DeleteRequest;
-            if (delete != null)
+            if (request is DeleteRequest delete)
             {
                 response = new DeleteResponse();
                 Delete(delete.Target.LogicalName, delete.Target.Id);
             }
 
-            var disassociate = request as DisassociateRequest;
-            if (disassociate != null)
+            if (request is DisassociateRequest disassociate)
             {
                 response = new AssociateResponse();
                 Disassociate(disassociate.Target.LogicalName, disassociate.Target.Id, disassociate.Relationship, disassociate.RelatedEntities);
             }
 
-            var retrieve = request as RetrieveRequest;
-            if (retrieve != null)
+            if (request is RetrieveRequest retrieve)
             {
-                response = new RetrieveResponse {["Entity"] = Retrieve(retrieve.Target.LogicalName, retrieve.Target.Id, retrieve.ColumnSet)};
+                response = new RetrieveResponse { ["Entity"] = Retrieve(retrieve.Target.LogicalName, retrieve.Target.Id, retrieve.ColumnSet) };
             }
 
-            var retrieveMultiple = request as RetrieveMultipleRequest;
-            if (retrieveMultiple != null)
+            if (request is RetrieveMultipleRequest retrieveMultiple)
             {
-                response = new RetrieveMultipleResponse {["EntityCollection"] = RetrieveMultiple(retrieveMultiple.Query)};
+                response = new RetrieveMultipleResponse { ["EntityCollection"] = RetrieveMultiple(retrieveMultiple.Query) };
             }
 
-            var update = request as UpdateRequest;
-            if (update != null)
+            if (request is UpdateRequest update)
             {
                 response = new UpdateResponse();
                 Update(update.Target);

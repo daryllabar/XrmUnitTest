@@ -31,7 +31,7 @@ namespace NMemory.DataStructures.Internal.Trees
 
     internal class RedBlackTreeNode<TKey, TValue>
     {
-        private WeakReference parent; 
+        private readonly WeakReference parent; 
 
         public RedBlackTreeNode(TKey key, TValue value, RedBlackTreeNode<TKey, TValue> parent)
         {

@@ -336,8 +336,7 @@ namespace DLaB.Xrm.Test.Builders
         {
             WithFakeExecute((s, r) =>
             {
-                var setState = r as SetStateRequest;
-                if (setState == null || !setState.EntityMoniker.Equals(entityToFakeSetStateFor))
+                if (!(r is SetStateRequest setState) || !setState.EntityMoniker.Equals(entityToFakeSetStateFor))
                 {
                     return s.Execute(r);
                 }
@@ -457,8 +456,7 @@ namespace DLaB.Xrm.Test.Builders
             defaultLangaugeCode = defaultLangaugeCode ?? Client.AppConfig.DefaultLanguageCode;
             ExecuteFuncs.Add((s, r) =>
             {
-                var attRequest = r as RetrieveAttributeRequest;
-                if (attRequest == null)
+                if (!(r is RetrieveAttributeRequest attRequest))
                 {
                     return s.Execute(r);
                 }
@@ -530,8 +528,7 @@ namespace DLaB.Xrm.Test.Builders
         {
             RetrieveMultipleFuncs.Add((s, q) =>
             {
-                var qe = q as QueryExpression;
-                if (qe == null || !entities.ContainsKey(qe.EntityName))
+                if (!(q is QueryExpression qe) || !entities.ContainsKey(qe.EntityName))
                 {
                     return s.RetrieveMultiple(q);
                 }
@@ -581,8 +578,7 @@ namespace DLaB.Xrm.Test.Builders
         {
             RetrieveMultipleFuncs.Add((s, q) =>
             {
-                var qe = q as QueryExpression;
-                if (qe == null || qe.EntityName != WebResource.EntityLogicalName || !s.IsLocalCrmService())
+                if (!(q is QueryExpression qe) || qe.EntityName != WebResource.EntityLogicalName || !s.IsLocalCrmService())
                 {
                     return s.RetrieveMultiple(q);
                 }
@@ -659,9 +655,8 @@ namespace DLaB.Xrm.Test.Builders
             {
                 RetrieveMultipleFuncs.Add((s, q) =>
                 {
-                    var qe = q as QueryExpression;
 
-                    if (qe == null)
+                    if (!(q is QueryExpression qe))
                     {
                         return s.RetrieveMultiple(q);
                     }
@@ -693,8 +688,7 @@ namespace DLaB.Xrm.Test.Builders
             });
             ExecuteFuncs.Add((s, r) =>
             {
-                var email = r as SendEmailFromTemplateRequest;
-                if (email != null)
+                if (r is SendEmailFromTemplateRequest email)
                 {
                     DefaultIdForEntity(email.Target);
                 }

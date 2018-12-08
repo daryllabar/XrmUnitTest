@@ -55,10 +55,9 @@ namespace NMemory.Execution
 
                 foreach (MemberAssignment assign in creator.Bindings)
                 {
-                    MemberExpression memberRead = assign.Expression as MemberExpression;
 
                     // Check if the member is not assigned with the same member
-                    if (memberRead == null || memberRead.Member.Name != assign.Member.Name)
+                    if (!(assign.Expression is MemberExpression memberRead) || memberRead.Member.Name != assign.Member.Name)
                     {
                         changes.Add(assign.Member as PropertyInfo);
                         continue;

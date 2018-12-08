@@ -310,26 +310,22 @@ namespace DLaB.Xrm.LocalCrm
                 return null;
             }
 
-            var reference = o as EntityReference;
-            if (reference != null)
+            if (o is EntityReference reference)
             {
                 return reference.GetIdOrDefault();
             }
-            
-            var osv = o as OptionSetValue;
-            if (osv != null)
+
+            if (o is OptionSetValue osv)
             {
                 return osv.GetValueOrDefault();
             }
 
-            var aliasedValue = o as AliasedValue;
-            if (aliasedValue != null)
+            if (o is AliasedValue aliasedValue)
             {
                 return ConvertCrmTypeToBasicComparable(aliasedValue.Value);
             }
 
-            var money = o as Money;
-            if (money != null)
+            if (o is Money money)
             {
                 return money.GetValueOrDefault();
             }
@@ -604,8 +600,7 @@ namespace DLaB.Xrm.LocalCrm
                 }
                 else if (!properties.PropertiesByLowerCaseName.TryGetValue(osvAttribute.Key + "enum", out property))
                 {
-                    var aliased = osvAttribute.Value as AliasedValue;
-                    if (aliased == null)
+                    if (!(osvAttribute.Value is AliasedValue aliased))
                     {
                         continue;
                     }
@@ -641,8 +636,7 @@ namespace DLaB.Xrm.LocalCrm
         {
             while (value != null)
             {
-                var aliased = value as AliasedValue;
-                if (aliased == null)
+                if (!(value is AliasedValue aliased))
                 {
                     return value is OptionSetValue || value is Money || value is bool || value is DateTime;
                 }
@@ -1022,8 +1016,7 @@ namespace DLaB.Xrm.LocalCrm
         /// <param name="properties">The properties.</param>
         private static void ConvertEntityArrayToEntityCollection<T>(T entity, string key, Dictionary<string, PropertyInfo> properties) where T : Entity
         {
-            var value = entity[key] as Array;
-            if (value == null || value.Length == 0)
+            if (!(entity[key] is Array value) || value.Length == 0)
             {
                 return;
             }

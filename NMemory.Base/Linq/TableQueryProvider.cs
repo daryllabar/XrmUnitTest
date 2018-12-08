@@ -34,7 +34,7 @@ namespace NMemory.Linq
 
     public class TableQueryProvider : IQueryProvider
     {
-        private IDatabase database;
+        private readonly IDatabase database;
 
         public TableQueryProvider(IDatabase database)
         {

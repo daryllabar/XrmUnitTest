@@ -32,59 +32,29 @@ namespace NMemory.Linq
 
     public abstract class TableQuery : IQueryable, ITableQuery
     {
-        private Expression expression;
-        private IDatabase database;
-        private IQueryProvider provider;
+        private readonly Expression expression;
+        private readonly IDatabase database;
+        private readonly IQueryProvider provider;
 
         #region Ctor
 
         internal TableQuery(IDatabase database, Expression expression, IQueryProvider provider)
         {
-            if (database == null)
-            {
-                throw new ArgumentNullException("database");
-            }
-
-            if (expression == null)
-            {
-                throw new ArgumentNullException("expression");
-            }
-
-            if (provider == null)
-            {
-                throw new ArgumentNullException("provider");
-            }
-
-            this.database = database;
-            this.expression = expression;
-            this.provider = provider;
+            this.database = database ?? throw new ArgumentNullException("database");
+            this.expression = expression ?? throw new ArgumentNullException("expression");
+            this.provider = provider ?? throw new ArgumentNullException("provider");
         }
 
         internal TableQuery(IDatabase database, Expression expression)
         {
-            if (database == null)
-            {
-                throw new ArgumentNullException("database");
-            }
-
-            if (expression == null)
-            {
-                throw new ArgumentNullException("expression");
-            }
-
-            this.database = database;
-            this.expression = expression;
+            this.database = database ?? throw new ArgumentNullException("database");
+            this.expression = expression ?? throw new ArgumentNullException("expression");
             this.provider = new TableQueryProvider(database);
         }
 
         internal TableQuery(IDatabase database)
         {
-            if (database == null)
-            {
-                throw new ArgumentNullException("database");
-            }
-
-            this.database = database;
+            this.database = database ?? throw new ArgumentNullException("database");
             this.expression = Expression.Constant(this);
             this.provider = new TableQueryProvider(database);
         }

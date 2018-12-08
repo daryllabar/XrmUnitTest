@@ -47,7 +47,7 @@ namespace NMemory.Tables
 
         private readonly Dictionary<ITable, RelationGroup> relationMapping;
 
-        private HashSet<Type> entityTypes;
+        private readonly HashSet<Type> entityTypes;
 
         internal TableCollection(IDatabase database)
         {

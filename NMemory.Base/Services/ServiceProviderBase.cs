@@ -119,9 +119,8 @@ namespace NMemory.Services
             IKeyInfoService existing, 
             IKeyInfoService addition)
         {
-            var combined = existing as CombinedKeyInfoService;
 
-            if (combined == null)
+            if (!(existing is CombinedKeyInfoService combined))
             {
                 combined = CombinedKeyInfoService.Empty.Add(existing);
             }

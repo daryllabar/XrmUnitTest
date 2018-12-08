@@ -30,8 +30,8 @@ namespace NMemory.StoredProcedures
 
     public class StoredProcedureBase
     {
-        private List<ParameterDescription> parameters;
-        private IList<ParameterDescription> protectedParameters;
+        private readonly List<ParameterDescription> parameters;
+        private readonly IList<ParameterDescription> protectedParameters;
 
         public StoredProcedureBase()
         {

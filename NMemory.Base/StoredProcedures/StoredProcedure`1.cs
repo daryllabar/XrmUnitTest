@@ -47,7 +47,7 @@ namespace NMemory.StoredProcedures
         IStoredProcedure<T>, 
         IStoredProcedure
     {
-        private TableQuery<T> query;
+        private readonly TableQuery<T> query;
 
         public StoredProcedure(IQueryable<T> query, bool precompile)
         {

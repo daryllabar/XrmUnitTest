@@ -31,10 +31,10 @@ namespace NMemory.Execution
 
     internal class ExecutionContext : IExecutionContext
     {
-        private Transaction transaction;
-        private IDictionary<string, object> parameters;
-        private IDatabase database;
-        private OperationType operationType;
+        private readonly Transaction transaction;
+        private readonly IDictionary<string, object> parameters;
+        private readonly IDatabase database;
+        private readonly OperationType operationType;
 
         public ExecutionContext(
             IDatabase database, 

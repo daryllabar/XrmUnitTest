@@ -40,7 +40,7 @@ namespace NMemory.StoredProcedures
         ISharedStoredProcedure<TResult>
         where TDatabase : IDatabase
     {
-        private Expression expression;
+        private readonly Expression expression;
 
         public SharedStoredProcedure(Expression<Func<TDatabase, IQueryable<TResult>>> expression)
         {

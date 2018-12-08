@@ -31,8 +31,8 @@ namespace NMemory.StoredProcedures
 
     public class StoredProcedureCollection
     {
-        private WeakReference database;
-        private List<object> storedProcedures;
+        private readonly WeakReference database;
+        private readonly List<object> storedProcedures;
 
         internal StoredProcedureCollection(Database database)
         {
@@ -67,9 +67,8 @@ namespace NMemory.StoredProcedures
 
         private void ValidateQuery<T>(IQueryable<T> query)
         {
-            ITableQuery tableQuery = query as ITableQuery;
 
-            if (tableQuery == null)
+            if (!(query is ITableQuery tableQuery))
             {
                 throw new ArgumentException("Query is not an NMemory query.", "query");
             }

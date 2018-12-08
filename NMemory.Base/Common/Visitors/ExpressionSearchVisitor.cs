@@ -32,7 +32,7 @@ namespace NMemory.Common.Visitors
 
     public class ExpressionSearchVisitor : ExpressionVisitor
     {
-        private Expression expression;
+        private readonly Expression expression;
         private bool found;
 
         public ExpressionSearchVisitor(Expression expression)

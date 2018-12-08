@@ -142,9 +142,8 @@ namespace NMemory.Indexes
                 return false;
             }
 
-            NewExpression resultCreator = keySelector as NewExpression;
 
-            if (resultCreator == null)
+            if (!(keySelector is NewExpression resultCreator))
             {
                 return false;
             }
@@ -165,9 +164,8 @@ namespace NMemory.Indexes
                     expr = ExpressionHelper.SkipConversionNodes(expr);
                 }
 
-                MemberExpression member = expr as MemberExpression;
 
-                if (member == null)
+                if (!(expr is MemberExpression member))
                 {
                     return false;
                 }

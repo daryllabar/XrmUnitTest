@@ -112,9 +112,8 @@ namespace NMemory.Execution.Optimization.Rewriters
                 return base.VisitMethodCall(node);
             }
 
-            MemberExpression tablesProp = node.Arguments[0] as MemberExpression;
 
-            if (tablesProp == null || tablesProp.Member != DatabaseMembers.Database_Tables)
+            if (!(node.Arguments[0] is MemberExpression tablesProp) || tablesProp.Member != DatabaseMembers.Database_Tables)
             {
                 return base.VisitMethodCall(node);
             }
@@ -134,16 +133,14 @@ namespace NMemory.Execution.Optimization.Rewriters
 
         private IDatabase FindDatabase(Expression databaseAccess)
         {
-            ConstantExpression constant = databaseAccess as ConstantExpression;
 
-            if (constant != null)
+            if (databaseAccess is ConstantExpression constant)
             {
                 return constant.Value as IDatabase;
             }
 
-            MemberExpression member = databaseAccess as MemberExpression;
 
-            if (member != null)
+            if (databaseAccess is MemberExpression member)
             {
                 // ExecutionContext
                 if (member.Member == DatabaseMembers.ExecutionContext_Database)
@@ -151,9 +148,8 @@ namespace NMemory.Execution.Optimization.Rewriters
                     return this.Database;
                 }
 
-                ConstantExpression source = member.Expression as ConstantExpression;
 
-                if (source != null)
+                if (member.Expression is ConstantExpression source)
                 {
                     return ReflectionHelper
                         .GetMemberValue(member.Member, source.Value) as IDatabase;

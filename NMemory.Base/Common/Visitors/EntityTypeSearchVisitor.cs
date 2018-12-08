@@ -33,7 +33,7 @@ namespace NMemory.Common.Visitors
 
     internal class EntityTypeSearchVisitor : ExpressionVisitor
     {
-        private HashSet<Type> entityTypes;
+        private readonly HashSet<Type> entityTypes;
 
         public EntityTypeSearchVisitor()
         {
@@ -47,16 +47,14 @@ namespace NMemory.Common.Visitors
 
         protected override Expression VisitConstant(ConstantExpression node)
         {
-            ITable table = node.Value as ITable;
 
-            if (table != null)
+            if (node.Value is ITable table)
             {
                 this.entityTypes.Add(table.EntityType);
             }
 
-            IIndex index = node.Value as IIndex;
 
-            if (index != null)
+            if (node.Value is IIndex index)
             {
                 this.entityTypes.Add(index.Table.EntityType);
             }
@@ -68,9 +66,8 @@ namespace NMemory.Common.Visitors
         {
             if (node.Method == DatabaseMembers.TableCollection_FindTable)
             {
-                ConstantExpression nodeType = node.Arguments[0] as ConstantExpression;
 
-                if (nodeType != null)
+                if (node.Arguments[0] is ConstantExpression nodeType)
                 {
                     this.entityTypes.Add(nodeType.Value as Type);
                 }

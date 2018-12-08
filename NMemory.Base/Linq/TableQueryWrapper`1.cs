@@ -30,9 +30,9 @@ namespace NMemory.Linq
 
     internal class TableQueryWrapper<T> : IEnumerable<T>
     {
-        private TableQuery<T> tableQuery;
-        private Transaction transaction;
-        private IDictionary<string, object> parameters;
+        private readonly TableQuery<T> tableQuery;
+        private readonly Transaction transaction;
+        private readonly IDictionary<string, object> parameters;
 
         public TableQueryWrapper(
             TableQuery<T> tableQuery, 

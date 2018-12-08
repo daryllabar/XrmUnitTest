@@ -138,9 +138,8 @@ namespace NMemory.Tables
 
         private static IKeyInfoHelper GetKeyInfoHelper(IKeyInfo keyInfo)
         {
-            IKeyInfoHelperProvider helperProvider = keyInfo as IKeyInfoHelperProvider;
 
-            if (helperProvider == null)
+            if (!(keyInfo is IKeyInfoHelperProvider helperProvider))
             {
                 throw new ArgumentException("", "keyInfo");
             }

@@ -34,9 +34,9 @@ namespace NMemory
     /// </summary>
     public class Database : IDatabase
     {
-        private IDatabaseEngine databaseEngine;
-        private StoredProcedureCollection storedProcedures;
-        private TableCollection tables;
+        private readonly IDatabaseEngine databaseEngine;
+        private readonly StoredProcedureCollection storedProcedures;
+        private readonly TableCollection tables;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Database" /> class.

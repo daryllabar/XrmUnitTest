@@ -31,7 +31,7 @@ namespace NMemory.Common
 
     public class MemberChain
     {
-        private MemberInfo[] members;
+        private readonly MemberInfo[] members;
 
         public MemberChain(IEnumerable<MemberInfo> members)
         {

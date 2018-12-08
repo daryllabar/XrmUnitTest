@@ -31,7 +31,7 @@ namespace NMemory.DataStructures
 
     public class RedBlackTree<TKey, TEntity> : IDataStructure<TKey, TEntity>
     {
-        private Internal.Trees.RedBlackTree<TKey, List<TEntity>> inner;
+        private readonly Internal.Trees.RedBlackTree<TKey, List<TEntity>> inner;
 
         public RedBlackTree() 
             : this(Comparer<TKey>.Default)

@@ -39,16 +39,14 @@ namespace NMemory.Data
 
         public static Timestamp CreateNew()
         {
-            Timestamp timestamp = new Timestamp();
-            timestamp.value = Interlocked.Increment(ref counter);
+            Timestamp timestamp = new Timestamp {value = Interlocked.Increment(ref counter)};
 
             return timestamp;
         }
 
         public static Timestamp FromBytes(byte[] bytes)
         {
-            Timestamp timestamp = new Timestamp();
-            timestamp.value = BitConverter.ToInt64(bytes, 0);
+            Timestamp timestamp = new Timestamp {value = BitConverter.ToInt64(bytes, 0)};
 
             return timestamp;
         }

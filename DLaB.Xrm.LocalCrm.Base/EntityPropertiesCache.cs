@@ -8,7 +8,7 @@ namespace DLaB.Xrm.LocalCrm
     {
         private readonly ConcurrentDictionary<string, EntityProperties> _dictionary = new ConcurrentDictionary<string, EntityProperties>();
 
-        private static EntityPropertiesCache _instance = new EntityPropertiesCache();
+        private static readonly EntityPropertiesCache _instance = new EntityPropertiesCache();
 
         public static EntityPropertiesCache Instance { get { return _instance; } } 
 

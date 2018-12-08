@@ -32,9 +32,9 @@ namespace NMemory.Transactions.Logs
 
     internal class UpdateEntityLogItem<TEntity> : ITransactionLogItem
     {
-        private TEntity storedEntity;
-        private TEntity oldEntity;
-        private EntityPropertyCloner<TEntity> propertyCloner;
+        private readonly TEntity storedEntity;
+        private readonly TEntity oldEntity;
+        private readonly EntityPropertyCloner<TEntity> propertyCloner;
 
         public UpdateEntityLogItem(EntityPropertyCloner<TEntity> propertyCloner, TEntity storedEntity, TEntity oldEntity)
         {

@@ -83,17 +83,15 @@ namespace NMemory.Common.Expressions
 
         private static bool TryGetNextStep(Expression current, out Expression next)
         {
-            UnaryExpression unary = current as UnaryExpression;
 
-            if (unary != null)
+            if (current is UnaryExpression unary)
             {
                 next = unary.Operand;
                 return true;
             }
 
-            MemberExpression member = current as MemberExpression;
 
-            if (member != null)
+            if (current is MemberExpression member)
             {
                 next = member.Expression;
 

@@ -36,12 +36,12 @@ namespace NMemory.Indexes
         IKeyInfo<TEntity, TKey>
         where TEntity : class
     {
-        private MemberInfo[] entityKeyMembers;
-        private SortOrder[] sortOrders;
+        private readonly MemberInfo[] entityKeyMembers;
+        private readonly SortOrder[] sortOrders;
 
-        private IComparer<TKey> keyComparer;
-        private Func<TEntity, TKey> keySelector;
-        private Func<TKey, bool> keyEmptinessDetector;
+        private readonly IComparer<TKey> keyComparer;
+        private readonly Func<TEntity, TKey> keySelector;
+        private readonly Func<TKey, bool> keyEmptinessDetector;
 
         public KeyInfoBase(
             MemberInfo[] entityKeyMembers,

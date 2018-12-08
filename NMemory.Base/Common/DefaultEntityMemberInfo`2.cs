@@ -64,9 +64,8 @@ namespace NMemory.Common
                 throw new ArgumentNullException("memberSelector");
             }
 
-            MemberExpression member = memberSelector.Body as MemberExpression;
 
-            if (member == null)
+            if (!(memberSelector.Body is MemberExpression member))
             {
                 throw new ArgumentException(ExceptionMessages.Missing, "memberSelector");
             }

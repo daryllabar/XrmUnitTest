@@ -29,8 +29,8 @@ namespace NMemory.Execution
 
     public class ExecutionPlan<T> : IExecutionPlan<T>
     {
-        private Func<IExecutionContext, T> executable;
-        private IExecutionPlanInfo info;
+        private readonly Func<IExecutionContext, T> executable;
+        private readonly IExecutionPlanInfo info;
 
         public ExecutionPlan(Func<IExecutionContext, T> executable, IExecutionPlanInfo info)
         {

@@ -36,8 +36,8 @@ namespace NMemory.Indexes
     {
         #region Fields
 
-        private ITable<TEntity> table;
-        private IKeyInfo<TEntity, TKey> keyInfo;
+        private readonly ITable<TEntity> table;
+        private readonly IKeyInfo<TEntity, TKey> keyInfo;
 
         #endregion
 

@@ -34,7 +34,7 @@ namespace NMemory.Transactions.Logs
 
     public class TransactionLog : ITransactionLog
     {
-        private List<ITransactionLogItem> logItems;
+        private readonly List<ITransactionLogItem> logItems;
 
         public TransactionLog()
         {

@@ -28,8 +28,8 @@ namespace NMemory.Execution.Optimization
 
     internal class TransformationStepRecorder
     {
-        private IList<ITransformationStep> steps;
-        private IList<ITransformationStep> readonlySteps;
+        private readonly IList<ITransformationStep> steps;
+        private readonly IList<ITransformationStep> readonlySteps;
 
         public TransformationStepRecorder()
         {

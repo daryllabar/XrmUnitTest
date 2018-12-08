@@ -32,7 +32,7 @@ namespace NMemory.Concurrency
 
     internal class TransactionLockInventory
     {
-        private ConcurrentDictionary<Transaction, HashSet<Item>> collection;
+        private readonly ConcurrentDictionary<Transaction, HashSet<Item>> collection;
 
         public TransactionLockInventory()
         {

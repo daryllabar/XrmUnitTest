@@ -28,8 +28,8 @@ namespace NMemory.Execution.Optimization
 
     internal class JoinGroup<TOuter, TInner>
     {
-        private TOuter outer;
-        private IEnumerable<TInner> inner;
+        private readonly TOuter outer;
+        private readonly IEnumerable<TInner> inner;
 
         public JoinGroup(TOuter outer, IEnumerable<TInner> inner)
         {

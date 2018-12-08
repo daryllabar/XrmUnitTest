@@ -190,20 +190,16 @@ namespace NMemory.Indexes
             Expression expression,
             bool strict)
         {
-            if (expression is NewExpression)
+            if (expression is NewExpression newTupleExpression)
             {
-                var newTupleExpression = (NewExpression)expression;
-
                 return GetMemberInfoFromArguments(
                     newTupleExpression.Arguments,
                     true,
                     strict);
             }
 
-            if (expression is MethodCallExpression)
+            if (expression is MethodCallExpression createTupleExpression)
             {
-                var createTupleExpression = (MethodCallExpression)expression;
-
                 MethodInfo createMethod = createTupleExpression.Method;
 
                 if (createMethod.DeclaringType != typeof(Tuple) ||
@@ -260,9 +256,8 @@ namespace NMemory.Indexes
                     expr = ExpressionHelper.SkipConversionNodes(expr);
                 }
 
-                MemberExpression member = expr as MemberExpression;
 
-                if (member == null)
+                if (!(expr is MemberExpression member))
                 {
                     return null;
                 }

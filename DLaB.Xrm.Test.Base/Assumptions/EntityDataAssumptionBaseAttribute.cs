@@ -266,8 +266,7 @@ namespace DLaB.Xrm.Test.Assumptions
             var toRemove = new List<string>();
             foreach (var attribute in entity.Attributes)
             {
-                var foreign = attribute.Value as EntityReference;
-                if (foreign == null)
+                if (!(attribute.Value is EntityReference foreign))
                 {
                     continue;
                 }

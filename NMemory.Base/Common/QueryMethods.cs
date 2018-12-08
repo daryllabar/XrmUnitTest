@@ -175,9 +175,8 @@ namespace NMemory.Common
 
         private static MethodInfo GetMethodInfo(Expression<Func<object>> expression)
         {
-            MethodCallExpression methodCall = expression.Body as MethodCallExpression;
 
-            if (methodCall == null)
+            if (!(expression.Body is MethodCallExpression methodCall))
             {
                 return null;
             }

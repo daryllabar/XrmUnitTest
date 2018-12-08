@@ -53,9 +53,8 @@ namespace NMemory.Common
                 throw new ArgumentNullException("updater");
             }
 
-            MemberInitExpression init = updater.Body as MemberInitExpression;
 
-            if (init == null)
+            if (!(updater.Body is MemberInitExpression init))
             {
                 throw new ArgumentException("Invalid updater expression", "updater");
             }
@@ -68,10 +67,9 @@ namespace NMemory.Common
             for (int i = 0; i < properties.Length; i++)
             {
                 PropertyInfo property = properties[i];
-                MemberAssignment assign = init.Bindings.FirstOrDefault(b => b.Member == property) as MemberAssignment;
                 Expression source = null;
 
-                if (assign != null)
+                if (init.Bindings.FirstOrDefault(b => b.Member == property) is MemberAssignment assign)
                 {
                     source = parameterChanger.Change(assign.Expression, updater.Parameters[0], param);
                 }
@@ -99,10 +97,9 @@ namespace NMemory.Common
                 return null;
             }
 
-            NewExpression init = node.Operand as NewExpression;
 
             // new Parameter<int>()
-            if (init == null || !typeof(IParameter).IsAssignableFrom(init.Type))
+            if (!(node.Operand is NewExpression init) || !typeof(IParameter).IsAssignableFrom(init.Type))
             {
                 return null;
             }

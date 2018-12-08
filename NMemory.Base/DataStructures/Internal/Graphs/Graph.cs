@@ -31,7 +31,7 @@ namespace NMemory.DataStructures.Internal.Graphs
 
     internal class Graph<T>
     {
-        private object syncLock = new object();
+        private readonly object syncLock = new object();
 
         public Graph()
         {

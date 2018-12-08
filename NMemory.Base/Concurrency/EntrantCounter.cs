@@ -28,7 +28,7 @@ namespace NMemory.Concurrency
 
     internal class EntrantCounter
     {
-        private Dictionary<long, int> counter;
+        private readonly Dictionary<long, int> counter;
 
         public EntrantCounter()
         {

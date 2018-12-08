@@ -32,8 +32,8 @@ namespace NMemory.Linq.Helpers
 
     public class IndexedQueryable<T> : IIndexedQueryable<T>
     {
-        private IIndex index;
-        private IQueryable<T> query;
+        private readonly IIndex index;
+        private readonly IQueryable<T> query;
 
         public IndexedQueryable(IQueryable<T> query, IIndex index)
         {

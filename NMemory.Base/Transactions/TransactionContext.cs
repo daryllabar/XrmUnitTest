@@ -31,7 +31,7 @@ namespace NMemory.Transactions
 
     public class TransactionContext : IDisposable
     {
-        private System.Transactions.CommittableTransaction transaction;
+        private readonly System.Transactions.CommittableTransaction transaction;
         private bool completed;
 
         public TransactionContext()

@@ -43,19 +43,11 @@ namespace NMemory.Constraints
 
         protected ConstraintBase(IEntityMemberInfo<TEntity, TMember> member)
         {
-            if (member == null)
+            this.member = member ?? throw new ArgumentNullException("member");
+
+            if (this.member is IEntityMemberInfoServicesProvider<TEntity, TMember> servicesProvider)
             {
-                throw new ArgumentNullException("member");
-            }
-
-            this.member = member;
-
-            var servicesProvider = 
-                this.member as IEntityMemberInfoServicesProvider<TEntity, TMember>;
-
-            if (servicesProvider != null)
-            {
-                this.memberServices = 
+                this.memberServices =
                     servicesProvider.EntityMemberInfoServices;
             }
 

@@ -93,7 +93,9 @@ namespace NMemory.Execution
                         result.AddLast(resultEntity);
                         
                         // Remove Aliased Attributes these are getting added by the Query Plan Execution
+#pragma warning disable IDE0019 // Use pattern matching
                         var entity = item as Entity;
+#pragma warning restore IDE0019 // Use pattern matching
                         if (entity != null)
                         {
                             foreach (var attribute in entity.Attributes.ToList().Where(attribute => attribute.Value is AliasedValue)) {
@@ -144,7 +146,9 @@ namespace NMemory.Execution
                     cloner.Clone(item, cloned);
 
                     // Remove Aliased Attributes these are getting added by the Query Plan Execution
+#pragma warning disable IDE0019 // Use pattern matching
                     var entity = item as Entity;
+#pragma warning restore IDE0019 // Use pattern matching
                     if (entity != null)
                     {
                         foreach (var attribute in entity.Attributes.ToList().Where(attribute => attribute.Value is AliasedValue))

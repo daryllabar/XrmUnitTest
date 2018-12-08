@@ -31,7 +31,7 @@ namespace NMemory.Execution
 
     internal class ExecutionPlanInfo : IExecutionPlanInfo
     {
-        private IList<ITransformationStep> steps;
+        private readonly IList<ITransformationStep> steps;
 
         public ExecutionPlanInfo(IList<ITransformationStep> steps)
         {

@@ -31,7 +31,7 @@ namespace NMemory.DataStructures
 
     public class Hashtable<TKey, TEntity> : IDataStructure<TKey, TEntity>
     {
-        private Dictionary<TKey, List<TEntity>> inner;
+        private readonly Dictionary<TKey, List<TEntity>> inner;
 
         public Hashtable()
         {

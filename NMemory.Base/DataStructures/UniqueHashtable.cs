@@ -33,7 +33,7 @@ namespace NMemory.DataStructures
     public class UniqueHashtable<TKey, TEntity> : IUniqueDataStructure<TKey, TEntity>
         where TEntity : class
     {
-        private Dictionary<TKey, TEntity> inner;
+        private readonly Dictionary<TKey, TEntity> inner;
 
         public UniqueHashtable()
         {

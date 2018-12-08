@@ -53,16 +53,14 @@ namespace NMemory.Linq
                 throw new ArgumentNullException("queryable");
             }
 
-            TableQuery<T> query = queryable as TableQuery<T>;
 
-            if (query == null)
+            if (!(queryable is TableQuery<T> query))
             {
                 throw new ArgumentException("Delete command can be executed only on NMemory queries.", "queryable");
             }
 
-            IBulkTable<T> table = query.Database.Tables.FindTable<T>() as IBulkTable<T>;
 
-            if (table == null)
+            if (!(query.Database.Tables.FindTable<T>() is IBulkTable<T> table))
             {
                 throw new ArgumentException("The database associated with the command does contain the appropriate table.", "queryable");
             }
@@ -88,16 +86,14 @@ namespace NMemory.Linq
                 throw new ArgumentNullException("queryable");
             }
 
-            TableQuery<T> query = queryable as TableQuery<T>;
 
-            if (query == null)
+            if (!(queryable is TableQuery<T> query))
             {
                 throw new ArgumentException("Delete command can be executed only on NMemory queries.", "queryable");
             }
 
-            IBulkTable<T> table = query.Database.Tables.FindTable<T>() as IBulkTable<T>;
 
-            if (table == null)
+            if (!(query.Database.Tables.FindTable<T>() is IBulkTable<T> table))
             {
                 throw new ArgumentException("The database associated with the command does contain the appropriate table.", "queryable");
             }
@@ -129,9 +125,8 @@ namespace NMemory.Linq
                 throw new ArgumentNullException("queryable");
             }
 
-            TableQuery<T> query = queryable as TableQuery<T>;
 
-            if (query == null)
+            if (!(queryable is TableQuery<T> query))
             {
                 throw new ArgumentException("Execute command can be executed only on NMemory queries.", "queryable");
             }

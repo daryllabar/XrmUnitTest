@@ -28,7 +28,7 @@ namespace NMemory.StoredProcedures
 
     public class Parameter<T> : IParameter
     {
-        private string name;
+        private readonly string name;
 
         public Parameter(string name)
         {

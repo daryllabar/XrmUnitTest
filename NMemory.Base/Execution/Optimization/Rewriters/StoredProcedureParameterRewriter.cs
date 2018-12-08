@@ -31,7 +31,7 @@ namespace NMemory.Execution.Optimization.Rewriters
 
     internal class StoredProcedureParameterRewriter : ExpressionRewriterBase
     {
-        private ITransformationContext context;
+        private readonly ITransformationContext context;
 
         public StoredProcedureParameterRewriter(ITransformationContext context)
         {
@@ -69,13 +69,12 @@ namespace NMemory.Execution.Optimization.Rewriters
             ////  executionContext.GetParameter<>("name")
             //// ----------------------------------------------
 
-            IParameter parameter = node.Value as IParameter;
 
-            if (parameter == null)
+            if (!(node.Value is IParameter parameter))
             {
                 return base.VisitConstant(node);
             }
- 
+
             // Replace the parameter
             return this.CreateParameterReader(parameter.Type, parameter.Name);
         }

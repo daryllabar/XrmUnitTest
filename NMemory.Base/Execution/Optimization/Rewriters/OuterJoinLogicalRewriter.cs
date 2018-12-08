@@ -37,8 +37,8 @@ namespace NMemory.Execution.Optimization.Rewriters
     /// </summary>
     public class OuterJoinLogicalRewriter : ExpressionRewriterBase
     {
-        private static string JoinGroupInner;
-        private static string JoinGroupOuter;
+        private static readonly string JoinGroupInner;
+        private static readonly string JoinGroupOuter;
         private static MethodInfo JoinGroupCreate;
 
         static OuterJoinLogicalRewriter()
@@ -89,10 +89,8 @@ namespace NMemory.Execution.Optimization.Rewriters
             // Get the result selector of the original SelectMany expression.
             // It is used to achieve the exact same return type as the original SelectMany
             // expression has.
-            LambdaExpression originalResultSelector =
-                ExpressionHelper.SkipQuoteNode(node.Arguments[2]) as LambdaExpression;
 
-            if (originalResultSelector == null)
+            if (!(ExpressionHelper.SkipQuoteNode(node.Arguments[2]) is LambdaExpression originalResultSelector))
             {
                 return base.VisitMethodCall(node);
             }

@@ -33,8 +33,8 @@ namespace NMemory.Transactions.Logs
     internal abstract class IndexTransactionLogItemBase<TEntity> : ITransactionLogItem
         where TEntity : class
     {
-        private IIndex<TEntity> index;
-        private TEntity entity;
+        private readonly IIndex<TEntity> index;
+        private readonly TEntity entity;
 
         public IndexTransactionLogItemBase(IIndex<TEntity> index, TEntity entity)
         {

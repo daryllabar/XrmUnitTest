@@ -29,16 +29,11 @@ namespace NMemory.Execution.Optimization
 
     public class TransformationStep : ITransformationStep
     {
-        private Expression expression;
+        private readonly Expression expression;
 
         public TransformationStep(Expression expression)
         {
-            if (expression == null)
-            {
-                throw new ArgumentNullException("expression");
-            }
-
-            this.expression = expression;
+            this.expression = expression ?? throw new ArgumentNullException("expression");
         }
 
         public Expression Expression

@@ -109,15 +109,15 @@ namespace NMemory.Transactions
 
         #endregion
 
-        private int transactionId;
-        private bool isAmbient;
-        private System.Transactions.Transaction internalTransaction;
-        private IsolationLevels isolationLevel;
-        private LightweightSpinLock atomicSectionLock;
+        private readonly int transactionId;
+        private readonly bool isAmbient;
+        private readonly System.Transactions.Transaction internalTransaction;
+        private readonly IsolationLevels isolationLevel;
+        private readonly LightweightSpinLock atomicSectionLock;
 
         private volatile bool aborted;
 
-        private HashSet<ITransactionHandler> registeredHandlers;
+        private readonly HashSet<ITransactionHandler> registeredHandlers;
 
         internal Transaction(System.Transactions.Transaction transaction, bool isAmbient)
         {

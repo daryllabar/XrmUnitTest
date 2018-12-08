@@ -36,7 +36,7 @@ namespace NMemory.Linq
     public class TableQuery<TEntity> : TableQuery, IQueryable<TEntity>
     {
         private IExecutionPlan<IEnumerable<TEntity>> plan;
-        private bool storeCompilation;
+        private readonly bool storeCompilation;
 
         #region Ctor
 

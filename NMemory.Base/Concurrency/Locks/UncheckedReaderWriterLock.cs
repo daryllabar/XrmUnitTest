@@ -34,8 +34,8 @@ namespace NMemory.Concurrency.Locks
         // Flag (bool): 1 vs 0
         private int writerPending;
 
-        private WaitingToken sentinelToken;
-        private LightweightSpinLock innerLock;
+        private readonly WaitingToken sentinelToken;
+        private readonly LightweightSpinLock innerLock;
 
         private long id;
         
@@ -118,9 +118,8 @@ namespace NMemory.Concurrency.Locks
 
         public override bool Equals(object obj)
         {
-            UncheckedReaderWriterLock otherLock = obj as UncheckedReaderWriterLock;
 
-            return otherLock != null && otherLock.id == this.id;
+            return obj is UncheckedReaderWriterLock otherLock && otherLock.id == this.id;
         }
 
         private void WaitForWrite(WaitingToken wait)

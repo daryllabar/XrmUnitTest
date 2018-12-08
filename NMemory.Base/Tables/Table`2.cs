@@ -63,13 +63,13 @@ namespace NMemory.Tables
 
         #region Fields
 
-        private IdentityField<TEntity> identityField;
-        private IUniqueIndex<TEntity, TPrimaryKey> primaryKeyIndex;
-        private IList<IIndex<TEntity>> indexes;
-        private ConstraintCollection<TEntity> constraints;
+        private readonly IdentityField<TEntity> identityField;
+        private readonly IUniqueIndex<TEntity, TPrimaryKey> primaryKeyIndex;
+        private readonly IList<IIndex<TEntity>> indexes;
+        private readonly ConstraintCollection<TEntity> constraints;
 
         private static int counter;
-        private int id;
+        private readonly int id;
 
         #endregion
 

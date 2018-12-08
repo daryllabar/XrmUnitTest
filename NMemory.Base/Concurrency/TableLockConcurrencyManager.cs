@@ -38,11 +38,11 @@ namespace NMemory.Concurrency
         private IDatabase database;
 
         // private DeadlockManagementStrategies deadlockManagement;
-        private ILockFactory lockFactory;
+        private readonly ILockFactory lockFactory;
 
-        private Dictionary<ITable, ILock> tableLocks;
-        private Graph<object> lockGraph;
-        private TransactionLockInventory lockInventory;
+        private readonly Dictionary<ITable, ILock> tableLocks;
+        private readonly Graph<object> lockGraph;
+        private readonly TransactionLockInventory lockInventory;
 
         public TableLockConcurrencyManager()
         {
@@ -56,12 +56,7 @@ namespace NMemory.Concurrency
 
         public void Initialize(IDatabase database)
         {
-            if (database == null)
-            {
-                throw new ArgumentNullException("database");
-            }
-
-            this.database = database;
+            this.database = database ?? throw new ArgumentNullException("database");
         }
 
         public void RegisterTable(ITable table)

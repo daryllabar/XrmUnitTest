@@ -31,7 +31,7 @@ namespace NMemory.Common.Visitors
 
     public class StoredProcedureParameterSearchVisitor : ExpressionVisitor
     {
-        private Dictionary<string, IParameter> parameters;
+        private readonly Dictionary<string, IParameter> parameters;
 
         public StoredProcedureParameterSearchVisitor()
         {

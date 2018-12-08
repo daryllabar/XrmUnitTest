@@ -35,7 +35,7 @@ namespace NMemory.Indexes
     public class GenericKeyComparer<T> 
         : IComparer<T>
     {
-        private Func<T, T, int> comparer;
+        private readonly Func<T, T, int> comparer;
 
         public GenericKeyComparer(SortOrder[] sortOrders, IKeyInfoHelper helper)
         {

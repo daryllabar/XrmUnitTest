@@ -28,7 +28,7 @@ namespace NMemory.Indexes
 
     internal class PrimitiveKeyComparer<T> : IComparer<T>
     {
-        private SortOrder sortOrder;
+        private readonly SortOrder sortOrder;
 
         public PrimitiveKeyComparer(SortOrder sortOrder)
         {

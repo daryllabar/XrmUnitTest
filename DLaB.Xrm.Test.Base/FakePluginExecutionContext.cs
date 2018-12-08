@@ -50,10 +50,9 @@ namespace DLaB.Xrm.Test
         {
             var clone = (FakePluginExecutionContext) MemberwiseClone();
             CloneReferenceValues(clone);
-            var parent = ParentContext as ICloneable;
-            if (parent != null)
+            if (ParentContext is ICloneable parent)
             {
-                ParentContext = (IPluginExecutionContext) parent.Clone();
+                ParentContext = (IPluginExecutionContext)parent.Clone();
             }
             return clone;
         }

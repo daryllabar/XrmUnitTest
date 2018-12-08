@@ -29,8 +29,8 @@ namespace NMemory.Common.Visitors
 
     internal class ReplaceVisitor : ExpressionVisitor
     {
-        private Func<Expression, bool> condition;
-        private Func<Expression, Expression> converter;
+        private readonly Func<Expression, bool> condition;
+        private readonly Func<Expression, Expression> converter;
 
         public ReplaceVisitor(
             Func<Expression, bool> condition, 

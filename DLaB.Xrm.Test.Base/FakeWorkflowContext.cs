@@ -47,8 +47,7 @@ namespace DLaB.Xrm.Test
         {
             var clone = (FakeWorkflowContext)MemberwiseClone();
             CloneReferenceValues(clone);
-            var parent = ParentContext as ICloneable;
-            if (parent != null)
+            if (ParentContext is ICloneable parent)
             {
                 ParentContext = (IWorkflowContext)parent.Clone();
             }

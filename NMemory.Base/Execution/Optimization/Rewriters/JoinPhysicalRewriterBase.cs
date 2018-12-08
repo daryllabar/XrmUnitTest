@@ -54,17 +54,15 @@ namespace NMemory.Execution.Optimization.Rewriters
                 return base.VisitMethodCall(node);
             }
 
-            ConstantExpression secondExpression = node.Arguments[1] as ConstantExpression;
 
-            if (secondExpression == null)
+            if (!(node.Arguments[1] is ConstantExpression secondExpression))
             {
                 // Not constant expression
                 return base.VisitMethodCall(node);
             }
 
-            ITable table = secondExpression.Value as ITable;
 
-            if (table == null)
+            if (!(secondExpression.Value is ITable table))
             {
                 // Not table
                 return base.VisitMethodCall(node);
@@ -172,9 +170,8 @@ namespace NMemory.Execution.Optimization.Rewriters
 
         private static IKeyInfoHelper GetKeyInfoHelper(IKeyInfo keyInfo)
         {
-            var provider = keyInfo as IKeyInfoHelperProvider;
 
-            if (provider == null)
+            if (!(keyInfo is IKeyInfoHelperProvider provider))
             {
                 return null;
             }

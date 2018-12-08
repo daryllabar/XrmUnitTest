@@ -32,7 +32,7 @@ namespace NMemory.Transactions
     public class TransactionHandler : ITransactionHandler
     {
         private IDatabase database;
-        private ConcurrentDictionary<Transaction, TransactionLog> transactionLogs;
+        private readonly ConcurrentDictionary<Transaction, TransactionLog> transactionLogs;
 
         private static int counter;
         private int id;
@@ -84,9 +84,8 @@ namespace NMemory.Transactions
 
         public override bool Equals(object obj)
         {
-            TransactionHandler handler = obj as TransactionHandler;
 
-            return handler != null && handler.id == this.id;
+            return obj is TransactionHandler handler && handler.id == this.id;
         }
     }
 }

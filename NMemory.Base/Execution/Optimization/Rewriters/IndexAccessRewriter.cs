@@ -66,9 +66,8 @@ namespace NMemory.Execution.Optimization.Rewriters
                 return base.VisitMember(node);
             }
 
-            ConstantExpression source = node.Expression as ConstantExpression;
 
-            if (source == null)
+            if (!(node.Expression is ConstantExpression source))
             {
                 return base.VisitMember(node);
             }

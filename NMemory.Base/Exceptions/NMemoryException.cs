@@ -28,8 +28,8 @@ namespace NMemory.Exceptions
 
     public class NMemoryException : Exception
     {
-        private string message;
-        private ErrorCode errorCode;
+        private readonly string message;
+        private readonly ErrorCode errorCode;
 
         public NMemoryException()
         {

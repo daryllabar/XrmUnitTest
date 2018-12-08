@@ -34,9 +34,8 @@ namespace NMemory.Common
             out LambdaExpression collectionSelector)
         {
             collectionSelector = null;
-            MethodCallExpression method = node as MethodCallExpression;
 
-            if (method == null)
+            if (!(node is MethodCallExpression method))
             {
                 return false;
             }
@@ -61,9 +60,8 @@ namespace NMemory.Common
             out LambdaExpression predicate)
         {
             predicate = null;
-            MethodCallExpression method = node as MethodCallExpression;
 
-            if (method == null)
+            if (!(node is MethodCallExpression method))
             {
                 return false;
             }
@@ -87,9 +85,8 @@ namespace NMemory.Common
             out Expression source)
         {
             source = null;
-            MethodCallExpression method = node as MethodCallExpression;
 
-            if (method == null)
+            if (!(node is MethodCallExpression method))
             {
                 return false;
             }

@@ -97,9 +97,8 @@ namespace NMemory.Indexes
                 expr = ExpressionHelper.SkipConversionNodes(expr);
             }
 
-            MemberExpression member = expr as MemberExpression;
 
-            if (member == null)
+            if (!(expr is MemberExpression member))
             {
                 return false;
             }
