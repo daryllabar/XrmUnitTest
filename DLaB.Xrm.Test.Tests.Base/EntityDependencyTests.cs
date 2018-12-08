@@ -68,7 +68,7 @@ namespace DLaB.Xrm.Test.Tests
                 // Assert
                 //
                 var order = mapper.EntityCreationOrder.ToArray();
-                var accountDependencies = new List<string> {Account.Fields.ParentAccountId, Account.Fields.PrimaryContactId, Account.Fields.MasterId, Account.Fields.OriginatingLeadId};
+                var accountDependencies = new List<string> {Account.Fields.ParentAccountId, Account.Fields.PrimaryContactId, Account.Fields.MasterId, Account.Fields.OriginatingLeadId, Account.Fields.msdyn_BillingAccount};
                 var contactDependencies = new List<string> {Contact.Fields.MasterId, Contact.Fields.OriginatingLeadId, Contact.Fields.ParentCustomerId};
                 var leadDependencies = new List<string> {Lead.Fields.CustomerId, Lead.Fields.CustomerId, Lead.Fields.MasterId, Lead.Fields.ParentAccountId, Lead.Fields.ParentContactId};
                 AssertDependencies(order[0], accountDependencies, contactDependencies, leadDependencies);

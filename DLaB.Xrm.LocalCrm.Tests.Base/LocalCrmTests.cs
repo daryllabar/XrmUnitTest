@@ -33,9 +33,9 @@ namespace DLaB.Xrm.LocalCrm.Tests
                     entity[Incident.Fields.CustomerId] = customer.ToEntityReference();
                 }
                 entity.Id = service.Create(entity);
-                AssertCrm.IsActive(service, entity, "Entity " + entity.GetType().Name + " wasn't created active!");
                 try
                 {
+                    AssertCrm.IsActive(service, entity, "Entity " + entity.GetType().Name + " wasn't created active!");
                     if (entity.LogicalName == Incident.EntityLogicalName)
                     {
                         // Requires the Special Resolve Incident Request Message
@@ -46,12 +46,15 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 }
                 catch (Exception ex)
                 {
-                    if (ex.ToString().Contains("does not contain an attribute with name statuscode"))
+                    var error = ex.ToString();
+                    if (error.Contains("does not contain an attribute with name statuscode")
+                        || error.Contains("The property \"statuscode\" was not found in the entity type"))
                     {
                         entitiesMissingStatusCodeAttribute.Add(entity.LogicalName);
                         continue;
                     }
-                    if (ex.ToString().Contains("does not contain an attribute with name statecode"))
+                    if (error.Contains("does not contain an attribute with name statecode")
+                        || error.Contains("The property \"statecode\" was not found in the entity type"))
                     {
                         entitiesMissingStateCodeAttribute.Add(entity.LogicalName);
                         continue;

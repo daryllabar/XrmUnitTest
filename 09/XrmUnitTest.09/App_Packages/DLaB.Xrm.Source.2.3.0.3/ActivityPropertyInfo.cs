@@ -113,11 +113,40 @@ namespace Source.DLaB.Xrm
 
 #region Default CRM Entites with no active flag
 
+				case "actioncard":
+				case "appmodule":
+				case "appmodulecomponent":
+				case "appmoduleroles":
+				case "bookableresourcebookingexchangesyncidmapping":
+				case "canvasapp":
+				case "cardtype":
+				case "category":
+				case "dataperformance":
+				case "emailsignature":
+				case "entitydataprovider":
+				case "entitydatasource":
+				case "expanderevent":
+				case "knowledgearticlescategories":
+				case "mailboxtrackingcategory":
+				case "msdyn_odatav4ds":
+				case "msdyn_solutioncomponentdatasource":
+				case "msdyn_solutioncomponentsummary":
+				case "navigationsetting":
+				case "offlinecommanddefinition":
+				case "orginsightsmetric":
+				case "orginsightsnotification":
+				case "recommendeddocument":
+				case "savedorginsightsconfiguration":
+				case "suggestioncardtemplate":
                 case "accountleads":
+                case "actioncardusersettings":
+                case "actioncarduserstate":
                 case "activitymimeattachment":
                 case "activityparty":
                 case "annotation":
                 case "annualfiscalcalendar":
+                case "appconfiginstance":
+                case "appconfigmaster":
                 case "attributemap":
                 case "audit":
                 case "bulkdeletefailure":
