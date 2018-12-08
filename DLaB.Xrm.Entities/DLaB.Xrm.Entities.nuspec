@@ -9,13 +9,13 @@
     <projectUrl>https://github.com/daryllabar/XrmUnitTest</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/daryllabar/XrmUnitTest/master/DLaB_Dynamics_64x64.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Contains Xrm EarlyBound Entities 2016, referencing CRM 8.0 SDK.</description>
-    <releaseNotes>Built against CRM 8.0.1.79, referencing 8.2.0.2 SDK dlls</releaseNotes>
-    <copyright>Copyright 2016</copyright>
-    <tags>Dynamics CRM 2016 EarlyBoundEntities XRM</tags>
+    <description>Contains Xrm EarlyBound Entities</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>Dynamics 365 EarlyBoundEntities XRM</tags>
 	<dependencies>
     <group targetFramework=".NETFramework4.5">
-      <dependency id="Microsoft.CrmSdk.CoreAssemblies" version="8.2.0.2" />
+      <dependency id="Microsoft.CrmSdk.CoreAssemblies" version="9.0.2.5" />
     </group>
   </dependencies>
   </metadata>
