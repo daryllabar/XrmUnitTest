@@ -21,6 +21,7 @@
     <DefineConstants>TRACE;DEBUG;DLAB_PUBLIC DLAB_UNROOT_COMMON_NAMESPACE DLAB_XRM XRM_2013 PRE_KEYATTRIBUTE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\..\XrmUnitTest.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
