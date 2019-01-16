@@ -64,7 +64,7 @@ namespace DLaB.Xrm.LocalCrm
         {
             var joinType = link.linktype == "outer" ? JoinOperator.LeftOuter : JoinOperator.Inner;
 
-            var childLink = new LinkEntity(entityLink.LinkToEntityName, link.name, link.@from, link.to, joinType)
+            var childLink = new LinkEntity(entityLink.LinkFromEntityName, link.name, link.to, link.@from, joinType)
             {
                 EntityAlias = link.alias,
             };
