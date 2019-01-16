@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{C80A3A8A
 	ProjectSection(SolutionItems) = preProject
 		DLaB.Xrm.Entities\DLaB.Xrm.Entities.nuspec = DLaB.Xrm.Entities\DLaB.Xrm.Entities.nuspec
 		09\XrmUnitTest.09\XrmUnitTest.09.nuspec = 09\XrmUnitTest.09\XrmUnitTest.09.nuspec
+		2013\XrmUnitTest.2013\XrmUnitTest.2013.nuspec = 2013\XrmUnitTest.2013\XrmUnitTest.2013.nuspec
 		2015\XrmUnitTest.2015\XrmUnitTest.2015.nuspec = 2015\XrmUnitTest.2015\XrmUnitTest.2015.nuspec
 		2016\XrmUnitTest.2016\XrmUnitTest.2016.nuspec = 2016\XrmUnitTest.2016\XrmUnitTest.2016.nuspec
 	EndProjectSection

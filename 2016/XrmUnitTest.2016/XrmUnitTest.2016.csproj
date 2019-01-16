@@ -30,7 +30,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\XrmUnitTest.2016.xml</DocumentationFile>
-    <CodeAnalysisRuleSet>..\..\SourceProjects\XrmUnitTest.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\XrmUnitTest.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
