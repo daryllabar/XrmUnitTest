@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{775B40
 	ProjectSection(SolutionItems) = preProject
 		DLaB_Dynamics_64x64.png = DLaB_Dynamics_64x64.png
 		README.md = README.md
+		XrmTestingFrameworkComparison.png = XrmTestingFrameworkComparison.png
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{C80A3A8A-7A62-45E1-924D-FE87D915CEA9}"
