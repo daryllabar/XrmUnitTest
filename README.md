@@ -11,6 +11,9 @@ XrmUnitTest is an Xrm unit testing framework that is designed to maximize the us
 
 Please check out the [Wiki](https://github.com/daryllabar/XrmUnitTest/wiki) for more information!
 
+## How Does It Compare?
+![Image of Comparision](https://github.com/daryllabar/XrmUnitTest/blob/master/XrmTestingFrameworkComparison.png?raw=true)
+
 ## How Can I Use It?
 
 **Via NuGet** - Search for and add the NuGet Package "XrmUnitTest(2013, 2015, 2016, 09)" to your Unit Test projects and base unit test project (See [Wiki](https://github.com/daryllabar/XrmUnitTest/wiki) on what is meant by base unit test project).
