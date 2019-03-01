@@ -21,7 +21,9 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.LocalCrm
 {
+#if !DEBUG_LOCAL_CRM_CODE
     [DebuggerNonUserCode]
+#endif
     partial class LocalCrmDatabaseOrganizationService
     {
         #region Execute Internal

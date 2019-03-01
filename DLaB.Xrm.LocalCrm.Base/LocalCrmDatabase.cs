@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -19,7 +18,11 @@ using NMemory.Tables;
 
 namespace DLaB.Xrm.LocalCrm
 {
+#if !DEBUG_LOCAL_CRM_CODE
+using System.Diagnostics;
+
     [DebuggerNonUserCode]
+#endif
     internal partial class LocalCrmDatabase : Database
     {
         private static readonly LocalCrmDatabase Default = new LocalCrmDatabase();
@@ -73,14 +76,14 @@ namespace DLaB.Xrm.LocalCrm
 
         #region LinkEntity Join
 
-        private static IQueryable<T> CallJoin<T>(LocalCrmDatabaseInfo service, IQueryable<T> query, LinkEntity link) where T : Entity
+        private static IQueryable<T> CallJoin<T>(LocalCrmDatabaseInfo info, IQueryable<T> query, LinkEntity link) where T : Entity
         {
             try
             {
                 var tFrom = typeof(T);
-                var tTo = EntityHelper.GetType(tFrom.Assembly, tFrom.Namespace, link.LinkToEntityName);
-                return (IQueryable<T>)typeof(LocalCrmDatabase).GetMethod("Join", BindingFlags.NonPublic | BindingFlags.Static).
-                                                                 MakeGenericMethod(tFrom, tTo).Invoke(null, new object[] { service, query, link });
+                var tTo = GetType(info, link.LinkToEntityName);
+                return (IQueryable<T>)typeof(LocalCrmDatabase).GetMethod("Join", BindingFlags.NonPublic | BindingFlags.Static)?.
+                                                                 MakeGenericMethod(tFrom, tTo).Invoke(null, new object[] { info, query, link });
             }
             catch (TargetInvocationException ex)
             {
@@ -147,7 +150,7 @@ namespace DLaB.Xrm.LocalCrm
             try
             {
                 var tRoot = typeof(TRoot);
-                var tTo = EntityHelper.GetType(tRoot.Assembly, tRoot.Namespace, link.LinkToEntityName);
+                var tTo = GetType(info, link.LinkToEntityName);
                 return ((IQueryable<TRoot>)typeof(LocalCrmDatabase).GetMethod("ChildJoin", BindingFlags.NonPublic | BindingFlags.Static)
                                                                      .MakeGenericMethod(tRoot, typeof(TFrom), tTo)
                                                                      .Invoke(null, new object[] { info, query, link }));
@@ -428,7 +431,7 @@ namespace DLaB.Xrm.LocalCrm
             }
 
             service.RemoveFieldsCrmDoesNotReturn(entity);
-            PopulateFormattedValues<T>(entity);
+            PopulateFormattedValues<T>(service.Info, entity);
             return entity.Serialize().DeserializeEntity<T>();
         }
 
@@ -488,8 +491,8 @@ namespace DLaB.Xrm.LocalCrm
             
             // ReSharper disable once ReturnValueOfPureMethodIsNotUsed - this updates the query expression
             HandleFilterExpressionsWithAliases(qe, qe.Criteria).ToList();
-
-            query = qe.LinkEntities.Aggregate(query, (q, e) => CallJoin(service.Info, q, e));
+            var linkedEntities = GetLinkedEntitiesWithMappedAssociations(qe.LinkEntities);
+            query = linkedEntities.Aggregate(query, (q, e) => CallJoin(service.Info, q, e));
 
             query = ApplyFilter(query, qe.Criteria);
 
@@ -517,14 +520,14 @@ namespace DLaB.Xrm.LocalCrm
             foreach (var entity in entities)
             {
                 service.RemoveFieldsCrmDoesNotReturn(entity);
-                PopulateFormattedValues<T>(entity);
+                PopulateFormattedValues<T>(service.Info, entity);
                 result.Entities.Add(entity.Serialize().DeserializeEntity<T>());
             }
 
             return result;
         }
 
-        private static int GetLinkedEntitiesWithoutAliasNameCount(QueryExpression qe)
+    private static int GetLinkedEntitiesWithoutAliasNameCount(QueryExpression qe)
         {
             var count = 0;
             var searchQueue = new Queue<DataCollection<LinkEntity>>();
@@ -582,7 +585,7 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
-        private static void PopulateFormattedValues<T>(Entity entity) where T : Entity
+        private static void PopulateFormattedValues<T>(LocalCrmDatabaseInfo info, Entity entity) where T : Entity
         {
             // TODO: Handle Names?
             if (!entity.Attributes.Values.Any(HasFormattedAttribute))
@@ -605,7 +608,7 @@ namespace DLaB.Xrm.LocalCrm
                         continue;
                     }
                     // Handle Aliased Value
-                    var aliasedDictionary = PropertiesCache.For(type, aliased.EntityLogicalName).PropertiesByLowerCaseName;
+                    var aliasedDictionary = PropertiesCache.For(info, type, aliased.EntityLogicalName).PropertiesByLowerCaseName;
                     if (!aliasedDictionary.TryGetValue(aliased.AttributeLogicalName + "enum", out property))
                     {
                         continue;
@@ -1092,7 +1095,7 @@ namespace DLaB.Xrm.LocalCrm
                 databaseValue[attribute.Key] = attribute.Value;
             }
             
-            // Set all Autopopulated values
+            // Set all Auto populated values
             service.PopulateAutoPopulatedAttributes(databaseValue, false);
 
             SchemaGetOrCreate<T>(service.Info).Update(databaseValue);

@@ -444,6 +444,20 @@ namespace DLaB.Xrm.Test
         }
 
         /// <summary>
+        /// Retrieves the Entity for the given Id, with the columns specified in the anonymousTypeInitializer
+        /// </summary>
+        /// <typeparam name="T">An early bound Entity Type</typeparam>
+        /// <param name="service">open IOrganizationService</param>
+        /// <param name="id">Typed Id</param>
+        /// <param name="anonymousTypeInitializer">An Anonymous Type Initializer where the properties of the anonymous
+        /// type are the column names to add</param>
+        /// <returns></returns>
+        public static T GetEntity<T>(this IOrganizationService service, Id<T> id, Expression<Func<T, object>> anonymousTypeInitializer) where T : Entity
+        {
+            return service.GetEntity(id.EntityId, anonymousTypeInitializer);
+        }
+
+        /// <summary>
         /// Determines whether the giving serivce is a Local Crm Service.
         /// </summary>
         /// <param name="service">The service.</param>

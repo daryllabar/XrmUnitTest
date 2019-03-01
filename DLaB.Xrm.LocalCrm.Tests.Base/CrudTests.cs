@@ -402,6 +402,40 @@ namespace DLaB.Xrm.LocalCrm.Tests
             TestForPhoneNumber(service, qe, qe.AddLink<Account>(Contact.Fields.ParentCustomerId, Account.Fields.Id).LinkCriteria, telephone);
         }
 
+        [TestMethod]
+        public void LocalCrmTests_Crud_Associate()
+        {
+            var service = GetService();
+            var account1Id = service.Create(new Account());
+            var account2Id = service.Create(new Account());
+            var account3Id = service.Create(new Account());
+            var contactId = service.Create(new Contact());
+
+            var relatedEntities = new EntityReferenceCollection
+            {
+                new EntityReference("account", account1Id),
+                new EntityReference("account", account2Id),
+                new EntityReference("account", account3Id)
+            };
+
+            // Create an object that defines the relationship between the contact and account.
+            Relationship relationship = new Relationship(Account.Fields.account_primary_contact);
+
+            //Associate the contact with the 3 accounts.
+            service.Associate("contact", contactId, relationship, relatedEntities);
+
+            var joinEntities = service.GetEntities(Account.Fields.account_primary_contact);
+            Assert.AreEqual(3, joinEntities.Count, "3 N:N records should have been created!");
+
+            var qe = QueryExpressionFactory.Create<Contact>();
+            qe.AddLink(Account.Fields.account_primary_contact, Contact.Fields.ContactId, Account.Fields.AccountId);
+            var contacts = service.GetEntities(qe);
+            Assert.AreEqual(3, contacts.Count, "3 N:N records should have been created!");
+
+            //Disassociate the contact with the 3 accounts.
+            service.Disassociate("contact", contactId, relationship, relatedEntities);
+        }
+
         #region Shared Methods
 
         private static void TestForPhoneNumber(IOrganizationService service, QueryExpression qe, FilterExpression accountFilter, string telephone)

@@ -127,7 +127,22 @@ namespace DLaB.Xrm.LocalCrm
                 referencingIdName += "two";
             }
 
+            if (EntityHelper.IsTypeDefined(Info.EarlyBoundEntityAssembly, Info.EarlyBoundNamespace, relationship.SchemaName))
+            {
+                Associate1ToN(entityId, relationship, relatedEntities, referencedIdName, referencingIdName);
+            }
+            else
+            {
+                foreach (var entity in relatedEntities)
+                {
+                    AssociateN2N(new EntityReference(entityName, entityId), entity, relationship);
+                }
+            }
+        }
 
+        private void Associate1ToN(Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities,
+            string referencedIdName, string referencingIdName)
+        {
             foreach (var relation in relatedEntities.Select(relatedEntity => new Entity(relationship.SchemaName)
             {
                 [referencedIdName] = entityId,
@@ -136,6 +151,15 @@ namespace DLaB.Xrm.LocalCrm
             {
                 Service.Create(relation);
             }
+        }
+
+        private Guid AssociateN2N(EntityReference one, EntityReference two, Relationship relationship)
+        {
+            return (Guid)InvokeStaticMultiGenericMethod(
+                one.LogicalName, 
+                two.LogicalName, 
+                nameof(AssociateN2N), 
+                this, one, two, relationship);
         }
 
         /// <summary>
@@ -192,14 +216,40 @@ namespace DLaB.Xrm.LocalCrm
                 referencingIdName += "two";
             }
 
+            if (EntityHelper.IsTypeDefined(Info.EarlyBoundEntityAssembly, Info.EarlyBoundNamespace,
+                relationship.SchemaName))
+            {
+                Disassociate1ToN(entityId, relationship, relatedEntities, referencedIdName, referencingIdName);
+            }
+            else
+            {
+                foreach (var entity in relatedEntities)
+                {
+                    DisassociateN2N(new EntityReference(entityName, entityId), entity, relationship);
+                }
+            }
+        }
 
-            foreach (var entity in relatedEntities.
-                Select(e => QueryExpressionFactory.Create(relationship.SchemaName, referencedIdName, entityId, referencingIdName, e.Id)).
-                Select(qe => Service.RetrieveMultiple(qe).ToEntityList<Entity>().FirstOrDefault()).
-                Where(entity => entity != null))
+        private void Disassociate1ToN(Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities,
+            string referencedIdName, string referencingIdName)
+        {
+            foreach (var entity in relatedEntities
+                .Select(e => QueryExpressionFactory.Create(relationship.SchemaName, referencedIdName, entityId,
+                    referencingIdName, e.Id))
+                .Select(qe => Service.RetrieveMultiple(qe).ToEntityList<Entity>().FirstOrDefault())
+                .Where(entity => entity != null))
             {
                 Service.Delete(entity);
             }
+        }
+
+        private void DisassociateN2N(EntityReference one, EntityReference two, Relationship relationship)
+        {
+            InvokeStaticMultiGenericMethod(
+                one.LogicalName,
+                two.LogicalName,
+                nameof(DisassociateN2N),
+                this, one, two, relationship);
         }
 
         /// <summary>
@@ -293,7 +343,7 @@ namespace DLaB.Xrm.LocalCrm
         [DebuggerHidden]
         public Type GetType(string logicalName)
         {
-            return EntityHelper.GetType(Info.EarlyBoundEntityAssembly, Info.EarlyBoundNamespace, logicalName);
+            return LocalCrmDatabase.GetType(Info, logicalName);
         }
 
         [DebuggerHidden]
@@ -302,8 +352,24 @@ namespace DLaB.Xrm.LocalCrm
             try
             {
                 return typeof(LocalCrmDatabase).GetMethod(methodName, BindingFlags.Public | BindingFlags.Static)
-                                                .MakeGenericMethod(GetType(logicalName))
+                                                ?.MakeGenericMethod(GetType(logicalName))
                                                 .Invoke(null, parameters);
+            }
+            catch (TargetInvocationException ex)
+            {
+                ThrowInnerException(ex);
+                throw new Exception("Throw InnerException didn't throw exception");
+            }
+        }
+
+        [DebuggerHidden]
+        private object InvokeStaticMultiGenericMethod(string logicalName1, string logicalName2, string methodName, params object[] parameters)
+        {
+            try
+            {
+                return typeof(LocalCrmDatabase).GetMethod(methodName, BindingFlags.Public | BindingFlags.Static)
+                    ?.MakeGenericMethod(GetType(logicalName1), GetType(logicalName2))
+                    .Invoke(null, parameters);
             }
             catch (TargetInvocationException ex)
             {
@@ -344,7 +410,7 @@ namespace DLaB.Xrm.LocalCrm
         {
             try
             {
-                return typeof(T).GetMethod(methodName).MakeGenericMethod(GetType(entity.LogicalName)).Invoke(entity, parameters);
+                return typeof(T).GetMethod(methodName)?.MakeGenericMethod(GetType(entity.LogicalName)).Invoke(entity, parameters);
             }
             catch (TargetInvocationException ex)
             {
@@ -391,7 +457,7 @@ namespace DLaB.Xrm.LocalCrm
             // TODO: Need to add logic to see if an update to the Full Name is being Performed
             ConditionallyAddAutoPopulatedValue(entity, properties, "fullname", name, !string.IsNullOrWhiteSpace(name));
             
-            AutoPopulateOpportunityFields(entity, properties, isCreate);
+            AutoPopulateOpportunityFields(entity, isCreate);
             AutoPopulateContactFields(entity, properties);
 
             if (isCreate)
@@ -451,9 +517,8 @@ namespace DLaB.Xrm.LocalCrm
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="entity">The entity.</param>
-        /// <param name="properties">The properties.</param>
         /// <param name="isCreate">If called from Create Message</param>
-        private void AutoPopulateOpportunityFields<T>(T entity, PropertyInfo[] properties, bool isCreate) where T : Entity
+        private void AutoPopulateOpportunityFields<T>(T entity, bool isCreate) where T : Entity
         {
             if (entity.LogicalName != "opportunity")
             {
@@ -513,7 +578,7 @@ namespace DLaB.Xrm.LocalCrm
                 entity["customerid"] = entity.GetAttributeValue<EntityReference>("parentcontactid")
                                        ?? opp.GetAttributeValue<EntityReference>("parentcontactid");
             }
-            else if (!willHaveAccount && !willHaveContact)
+            else if (!willHaveAccount)
             {
                 entity["customerid"] = null;
             }

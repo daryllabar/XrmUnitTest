@@ -23,9 +23,9 @@ namespace DLaB.Xrm.LocalCrm
             return For(type);
         }
 
-        public EntityProperties For(Type type, string logicalName)
+        public EntityProperties For(LocalCrmDatabaseInfo info, Type type, string logicalName)
         {
-            return For(EntityHelper.GetType(type.Assembly, type.Namespace, logicalName));
+            return For(LocalCrmDatabase.GetType(info, logicalName));
         }
 
         public EntityProperties For(Type type)

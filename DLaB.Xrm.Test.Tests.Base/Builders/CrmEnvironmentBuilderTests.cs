@@ -33,7 +33,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
 
             // The Account and Incident will be added as Account first, and Incident second. 
             // The Lead will force a reorder and the Account incident would normally get placed after the Incident
-            var builder = new CrmEnvironmentBuilder().
+            var builder = new DLaBCrmEnvironmentBuilder().
                 WithChildEntities(account, incident).
                 WithEntities(lead);
 
@@ -68,7 +68,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
 
             // The Account and Incident will be added as Account first, and Incident second. 
             // The Lead will force a reorder and the Account incident would normally get placed after the Incident
-            var builder = new CrmEnvironmentBuilder().
+            var builder = new DLaBCrmEnvironmentBuilder().
                 WithChildEntities(contact, account).
                 WithChildEntities(account, contact);
 
@@ -105,7 +105,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
 
             // The Account and Incident will be added as Account first, and Incident second. 
             // The Lead will force an reorder and the Account incident would normally get placed after the Incident
-            var builder = new CrmEnvironmentBuilder().
+            var builder = new DLaBCrmEnvironmentBuilder().
                 WithEntities(new Id<PhoneCall>(Guid.NewGuid()), incident, account).
                 WithChildEntities(account, incident);
 
@@ -136,7 +136,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
             //
             // Act
             //
-            var builder = new CrmEnvironmentBuilder().WithEntities<Ids>();
+            var builder = new DLaBCrmEnvironmentBuilder().WithEntities<Ids>();
             builder.Create(service);
 
 
@@ -161,7 +161,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
             //
             // Act
             //
-            var builder = new CrmEnvironmentBuilder().
+            var builder = new DLaBCrmEnvironmentBuilder().
                 WithEntities<Ids>().
                 ExceptEntities<Ids.Nested>();
             builder.Create(service);
@@ -193,7 +193,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
             //
             // Act
             //
-            new CrmEnvironmentBuilder().WithEntities(account).Create(service);
+            new DLaBCrmEnvironmentBuilder().WithEntities(account).Create(service);
 
             //
             // Assert
@@ -214,7 +214,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
             //
             // Act
             //
-            new CrmEnvironmentBuilder().
+            new DLaBCrmEnvironmentBuilder().
                 WithBuilder<MyLeadBuilder>(id, b => b.WithAttributeValue(Lead.Fields.MasterId, id.EntityReference)).
                 Create(service);
 
@@ -261,7 +261,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
             //
             // Act
             //
-            new CrmEnvironmentBuilder().WithEntities<CyclicIds>().Create(service);
+            new DLaBCrmEnvironmentBuilder().WithEntities<CyclicIds>().Create(service);
 
             //
             // Assert
@@ -291,7 +291,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
             //
             // Act
             //
-            new CrmEnvironmentBuilder().
+            new DLaBCrmEnvironmentBuilder().
                 WithBuilder<MyLeadBuilder>(id, b => b.WithAddress1()).Create(service);
 
             //
@@ -318,7 +318,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
             //
             // Act
             //
-            new CrmEnvironmentBuilder().
+            new DLaBCrmEnvironmentBuilder().
                 WithBuilder<MyOtherBuilder>(id, b => b.WithEmail(email)).Create(service);
 
             //

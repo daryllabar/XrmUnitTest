@@ -12,12 +12,12 @@ namespace DLaB.Xrm.Test.Builders
     /// <summary>
     /// Class to simplify the simplest cases of creating entities without changing the defaults.  Use the CrmEnvironmentBuilderBase to provide application specific logic
     /// </summary>
-    public sealed class CrmEnvironmentBuilder : CrmEnvironmentBuilderBase<CrmEnvironmentBuilder>
+    public sealed class DLaBCrmEnvironmentBuilder : CrmEnvironmentBuilderBase<DLaBCrmEnvironmentBuilder>
     {
         /// <summary>
         /// Returns the Instance
         /// </summary>
-        protected override CrmEnvironmentBuilder This => this;
+        protected override DLaBCrmEnvironmentBuilder This => this;
     }
 
     /// <summary>
