@@ -127,17 +127,17 @@ namespace DLaB.Xrm.LocalCrm
                 referencingIdName += "two";
             }
 
-            if (EntityHelper.IsTypeDefined(Info.EarlyBoundEntityAssembly, Info.EarlyBoundNamespace, relationship.SchemaName))
-            {
+            //if (EntityHelper.IsTypeDefined(Info.EarlyBoundEntityAssembly, Info.EarlyBoundNamespace, relationship.SchemaName))
+            //{
                 Associate1ToN(entityId, relationship, relatedEntities, referencedIdName, referencingIdName);
-            }
-            else
-            {
-                foreach (var entity in relatedEntities)
-                {
-                    AssociateN2N(new EntityReference(entityName, entityId), entity, relationship);
-                }
-            }
+           //}
+           //else
+           //{
+           //    foreach (var entity in relatedEntities)
+           //    {
+           //        AssociateN2N(new EntityReference(entityName, entityId), entity, relationship);
+           //    }
+           //}
         }
 
         private void Associate1ToN(Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities,
@@ -153,14 +153,6 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
-        private Guid AssociateN2N(EntityReference one, EntityReference two, Relationship relationship)
-        {
-            return (Guid)InvokeStaticMultiGenericMethod(
-                one.LogicalName, 
-                two.LogicalName, 
-                nameof(AssociateN2N), 
-                this, one, two, relationship);
-        }
 
         /// <summary>
         /// Creates the specified entity.
@@ -216,18 +208,18 @@ namespace DLaB.Xrm.LocalCrm
                 referencingIdName += "two";
             }
 
-            if (EntityHelper.IsTypeDefined(Info.EarlyBoundEntityAssembly, Info.EarlyBoundNamespace,
-                relationship.SchemaName))
-            {
+            //if (EntityHelper.IsTypeDefined(Info.EarlyBoundEntityAssembly, Info.EarlyBoundNamespace,
+            //    relationship.SchemaName))
+            //{
                 Disassociate1ToN(entityId, relationship, relatedEntities, referencedIdName, referencingIdName);
-            }
-            else
-            {
-                foreach (var entity in relatedEntities)
-                {
-                    DisassociateN2N(new EntityReference(entityName, entityId), entity, relationship);
-                }
-            }
+            //}
+            //else
+            //{
+            //    foreach (var entity in relatedEntities)
+            //    {
+            //        DisassociateN2N(new EntityReference(entityName, entityId), entity, relationship);
+            //    }
+            //}
         }
 
         private void Disassociate1ToN(Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities,
@@ -243,14 +235,6 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
-        private void DisassociateN2N(EntityReference one, EntityReference two, Relationship relationship)
-        {
-            InvokeStaticMultiGenericMethod(
-                one.LogicalName,
-                two.LogicalName,
-                nameof(DisassociateN2N),
-                this, one, two, relationship);
-        }
 
         /// <summary>
         /// Executes the specified request.

@@ -409,7 +409,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var account1Id = service.Create(new Account());
             var account2Id = service.Create(new Account());
             var account3Id = service.Create(new Account());
-            var contactId = service.Create(new Contact());
+            var leadId = service.Create(new Lead());
 
             var relatedEntities = new EntityReferenceCollection
             {
@@ -419,21 +419,27 @@ namespace DLaB.Xrm.LocalCrm.Tests
             };
 
             // Create an object that defines the relationship between the contact and account.
-            Relationship relationship = new Relationship(Account.Fields.account_primary_contact);
+            var relationship = new Relationship(AccountLeads.EntityLogicalName);
 
             //Associate the contact with the 3 accounts.
-            service.Associate("contact", contactId, relationship, relatedEntities);
+            service.Associate("lead", leadId, relationship, relatedEntities);
 
-            var joinEntities = service.GetEntities(Account.Fields.account_primary_contact);
+            var joinEntities = service.GetEntities(AccountLeads.EntityLogicalName);
             Assert.AreEqual(3, joinEntities.Count, "3 N:N records should have been created!");
 
-            var qe = QueryExpressionFactory.Create<Contact>();
-            qe.AddLink(Account.Fields.account_primary_contact, Contact.Fields.ContactId, Account.Fields.AccountId);
-            var contacts = service.GetEntities(qe);
-            Assert.AreEqual(3, contacts.Count, "3 N:N records should have been created!");
+            var qe = QueryExpressionFactory.Create<Lead>();
+            qe.AddLink(AccountLeads.EntityLogicalName, Lead.Fields.LeadId)
+              .WhereEqual(AccountLeads.Fields.AccountId, account1Id);
+            var leads = service.GetEntities(qe);
+            Assert.AreEqual(1, leads.Count, "1 N:N records should have been created!");
+
+            qe = QueryExpressionFactory.Create<Lead>();
+            qe.AddLink(AccountLeads.EntityLogicalName, Lead.Fields.LeadId);
+            leads = service.GetEntities(qe);
+            Assert.AreEqual(3, leads.Count, "3 N:N records should have been created!");
 
             //Disassociate the contact with the 3 accounts.
-            service.Disassociate("contact", contactId, relationship, relatedEntities);
+            service.Disassociate("lead", leadId, relationship, relatedEntities);
         }
 
         #region Shared Methods

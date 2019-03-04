@@ -397,6 +397,32 @@ namespace DLaB.Xrm.Test
         #region IOrganizationService
 
         /// <summary>
+        /// Creates a link between records.
+        /// </summary>
+        /// <param name="service">The Service</param>
+        /// <param name="entity">The record to which the related records are associated.</param>
+        /// <param name="relationshipLogicalName">The name of the relationship to be used to create the link.</param>
+        /// <param name="ids">Microsoft.Xrm.Sdk.EntityReferenceCollection. A collection of entity references (references to records) to be associated.</param>
+        public static void Associate<T1,T2>(this IOrganizationService service, Id<T1> entity, string relationshipLogicalName, params Id<T2>[] ids)
+            where T1: Entity
+            where T2 : Entity
+        {
+            service.Associate(entity, relationshipLogicalName, ids.Select(i => i.EntityReference).ToArray());
+        }
+
+        /// <summary>
+        /// Creates a link between records.
+        /// </summary>
+        /// <param name="service">The Service</param>
+        /// <param name="entity">The record to which the related records are associated.</param>
+        /// <param name="relationshipLogicalName">The name of the relationship to be used to create the link.</param>
+        /// <param name="ids">Microsoft.Xrm.Sdk.EntityReferenceCollection. A collection of entity references (references to records) to be associated.</param>
+        public static void Associate(this IOrganizationService service, Id entity, string relationshipLogicalName, params Id[] ids)
+        {
+            service.Associate(entity, relationshipLogicalName, ids.Select(i => i.EntityReference).ToArray());
+        }
+
+        /// <summary>
         /// Deletes the specified entity
         /// </summary>
         /// <param name="service">The service.</param>
@@ -429,6 +455,32 @@ namespace DLaB.Xrm.Test
                 service.SetState(BusinessUnit.EntityLogicalName, businessUnitId, false);
                 service.Delete(BusinessUnit.EntityLogicalName, businessUnitId);
             }
+        }
+
+        /// <summary>
+        /// Deletes a link between records.
+        /// </summary>
+        /// <param name="service">The Service</param>
+        /// <param name="entity">The record to which the related records are associated.</param>
+        /// <param name="relationshipLogicalName">The name of the relationship to be used to delete the link.</param>
+        /// <param name="ids">Microsoft.Xrm.Sdk.EntityReferenceCollection. A collection of entity references (references to records) to be disassociated.</param>
+        public static void Disassociate<T1,T2>(this IOrganizationService service, Id<T1> entity, string relationshipLogicalName, params Id<T2>[] ids)
+            where T1 : Entity
+            where T2 : Entity
+        {
+            service.Disassociate(entity, entity, new Relationship(relationshipLogicalName), new EntityReferenceCollection(ids.Select(i => i.EntityReference).ToArray()));
+        }
+
+        /// <summary>
+        /// Deletes a link between records.
+        /// </summary>
+        /// <param name="service">The Service</param>
+        /// <param name="entity">The record to which the related records are associated.</param>
+        /// <param name="relationshipLogicalName">The name of the relationship to be used to delete the link.</param>
+        /// <param name="ids">Microsoft.Xrm.Sdk.EntityReferenceCollection. A collection of entity references (references to records) to be disassociated.</param>
+        public static void Disassociate(this IOrganizationService service, Id entity, string relationshipLogicalName, params Id[] ids)
+        {
+            service.Disassociate(entity, entity, new Relationship(relationshipLogicalName), new EntityReferenceCollection(ids.Select(i => i.EntityReference).ToArray()));
         }
 
         /// <summary>

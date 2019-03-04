@@ -306,6 +306,11 @@ using System.Diagnostics;
             return null;
         }
 
+        internal static Type GetType(LocalCrmDatabaseInfo info, string logicalName)
+        {
+            return EntityHelper.GetType(info.EarlyBoundEntityAssembly, info.EarlyBoundNamespace, logicalName);
+        }
+
         private static IComparable ConvertCrmTypeToBasicComparable(object o)
         {
             if (o == null)
@@ -491,8 +496,8 @@ using System.Diagnostics;
             
             // ReSharper disable once ReturnValueOfPureMethodIsNotUsed - this updates the query expression
             HandleFilterExpressionsWithAliases(qe, qe.Criteria).ToList();
-            var linkedEntities = GetLinkedEntitiesWithMappedAssociations(qe.LinkEntities);
-            query = linkedEntities.Aggregate(query, (q, e) => CallJoin(service.Info, q, e));
+            //var linkedEntities = GetLinkedEntitiesWithMappedAssociations(qe.LinkEntities);
+            query = qe.LinkEntities.Aggregate(query, (q, e) => CallJoin(service.Info, q, e));
 
             query = ApplyFilter(query, qe.Criteria);
 
@@ -963,7 +968,7 @@ using System.Diagnostics;
             var properties = PropertiesCache.For<T>();
             foreach (var col in cols.Where(c => !properties.ContainsProperty(c)))
             {
-                throw new Exception($"Type {typeof(T).Name} does not contain a property or a properyt with an AttributeLogicalNameAttribute, with name {col}.");
+                throw new Exception($"Type {typeof(T).Name} does not contain a property or a property with an AttributeLogicalNameAttribute, with name {col}.");
             }
         }
 

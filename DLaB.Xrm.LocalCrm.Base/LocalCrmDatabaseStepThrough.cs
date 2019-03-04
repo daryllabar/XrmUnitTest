@@ -13,20 +13,20 @@ namespace DLaB.Xrm.LocalCrm
     // </summary>
     partial class LocalCrmDatabase
     {
-        [DebuggerStepThrough]
-        public static Guid AssociateN2N<TOne, TTwo>(LocalCrmDatabaseOrganizationService service,
-            EntityReference one, EntityReference two, Relationship relationship)
-            where TOne: Entity
-            where TTwo : Entity
-        {
-            var delay = new DelayedException();
-            var id = AssociateN2N<TOne, TTwo>(service, one, two, relationship, delay);
-            if (delay.Exception != null)
-            {
-                throw delay.Exception;
-            }
-            return id;
-        }
+        //[DebuggerStepThrough]
+        //public static Guid AssociateN2N<TOne, TTwo>(LocalCrmDatabaseOrganizationService service,
+        //    EntityReference one, EntityReference two, Relationship relationship)
+        //    where TOne: Entity
+        //    where TTwo : Entity
+        //{
+        //    var delay = new DelayedException();
+        //    var id = AssociateN2N<TOne, TTwo>(service, one, two, relationship, delay);
+        //    if (delay.Exception != null)
+        //    {
+        //        throw delay.Exception;
+        //    }
+        //    return id;
+        //}
 
         [DebuggerStepThrough]
         public static Guid Create<T>(LocalCrmDatabaseOrganizationService service, T entity) where T : Entity
@@ -86,19 +86,19 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
-        [DebuggerStepThrough]
-        public static void DisassociateN2N<TOne, TTwo>(LocalCrmDatabaseOrganizationService service,
-            EntityReference one, EntityReference two, Relationship relationship)
-            where TOne : Entity
-            where TTwo : Entity
-        {
-            var delay = new DelayedException();
-            DisassociateN2N<TOne, TTwo>(service, one, two, relationship, delay);
-            if (delay.Exception != null)
-            {
-                throw delay.Exception;
-            }
-        }
+        //[DebuggerStepThrough]
+        //public static void DisassociateN2N<TOne, TTwo>(LocalCrmDatabaseOrganizationService service,
+        //    EntityReference one, EntityReference two, Relationship relationship)
+        //    where TOne : Entity
+        //    where TTwo : Entity
+        //{
+        //    var delay = new DelayedException();
+        //    DisassociateN2N<TOne, TTwo>(service, one, two, relationship, delay);
+        //    if (delay.Exception != null)
+        //    {
+        //        throw delay.Exception;
+        //    }
+        //}
 
         private class DelayedException
         {

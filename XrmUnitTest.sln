@@ -14,6 +14,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{775B40
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{C80A3A8A-7A62-45E1-924D-FE87D915CEA9}"
 	ProjectSection(SolutionItems) = preProject
+		09\XrmUnitTest.09\Properties\AssemblyInfo.cs = 09\XrmUnitTest.09\Properties\AssemblyInfo.cs
+		2016\XrmUnitTest.2016\Properties\AssemblyInfo.cs = 2016\XrmUnitTest.2016\Properties\AssemblyInfo.cs
+		2015\XrmUnitTest.2015\Properties\AssemblyInfo.cs = 2015\XrmUnitTest.2015\Properties\AssemblyInfo.cs
+		2013\XrmUnitTest.2013\Properties\AssemblyInfo.cs = 2013\XrmUnitTest.2013\Properties\AssemblyInfo.cs
 		DLaB.Xrm.Entities\DLaB.Xrm.Entities.nuspec = DLaB.Xrm.Entities\DLaB.Xrm.Entities.nuspec
 		09\XrmUnitTest.09\XrmUnitTest.09.nuspec = 09\XrmUnitTest.09\XrmUnitTest.09.nuspec
 		2013\XrmUnitTest.2013\XrmUnitTest.2013.nuspec = 2013\XrmUnitTest.2013\XrmUnitTest.2013.nuspec

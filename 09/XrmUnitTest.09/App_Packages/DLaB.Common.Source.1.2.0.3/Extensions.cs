@@ -970,7 +970,7 @@ namespace Source.DLaB.Common
             return new List<string> { source };
         }
 
-#region String.In
+        #region String.In
 
         /// <summary>
         /// Returns true if no parameters in the params array are equal to the value.
@@ -1072,7 +1072,7 @@ namespace Source.DLaB.Common
             return value;
         }
 
-#region SubstringByString
+        #region SubstringByString
 
         /// <summary>
         /// Returns a the substring after the index of the first occurence of the startstring.
@@ -1170,9 +1170,9 @@ namespace Source.DLaB.Common
             return result;
         }
 
-#endregion SubstringByString
+        #endregion SubstringByString
 
-#region SubstringAllByString
+        #region SubstringAllByString
 
         /// <summary>
         /// Loops through the string, retriving sub strings for the values.  i.e. "_1_2_".SubstringAllByString("_","_") would return a list containing two items, "1" and "2"
@@ -1204,7 +1204,7 @@ namespace Source.DLaB.Common
             return results;
         }
 
-#endregion SubstringAllByString
+        #endregion SubstringAllByString
 
         /// <summary>
         /// Inserts spaces before capital letters.  

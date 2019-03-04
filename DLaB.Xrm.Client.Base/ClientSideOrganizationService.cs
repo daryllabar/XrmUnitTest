@@ -17,7 +17,7 @@ namespace DLaB.Xrm.Client
         /// <value>
         /// The service.
         /// </value>
-        public IOrganizationService Service { get; set; }
+        public IOrganizationService Service { get; }
 
         #endregion Properties
 
@@ -30,7 +30,7 @@ namespace DLaB.Xrm.Client
         [System.Diagnostics.DebuggerHidden]
         public ClientSideOrganizationService(IOrganizationService service)
         {
-            Service = service;
+            Service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
         /// <summary>

@@ -22,16 +22,16 @@ namespace Source.DLaB.Common
         internal new static ConfigKeyValuesSplitInfo Default { get; } = new ConfigKeyValuesSplitInfo();
 
         /// <summary>
-        /// The Default Entry Values Seperator
+        /// The Default Entry Values Separator
         /// </summary>
-        public const char EntryValuesSperator = ',';
+        public const char EntryValuesSeparator = ',';
         /// <summary>
-        /// Gets or sets the entry values seperators.
+        /// Gets or sets the entry values separators.
         /// </summary>
         /// <value>
-        /// The entry values seperators.
+        /// The entry values separators.
         /// </value>
-        public char[] EntryValuesSeperators { get; set; }
+        public char[] EntryValuesSeparators { get; set; }
 
         /// <summary>
         /// Defaults to splitting entries by "|", Key/values by ":", and values by ",", lower casing the keys.<para />
@@ -40,7 +40,7 @@ namespace Source.DLaB.Common
         /// </summary>
         public ConfigKeyValuesSplitInfo()
         {
-            EntryValuesSeperators = new[] { EntryValuesSperator };
+            EntryValuesSeparators = new[] { EntryValuesSeparator };
         }
     }
 }

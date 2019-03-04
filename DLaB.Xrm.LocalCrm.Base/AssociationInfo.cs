@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using DLaB.Xrm.LocalCrm.Entities;
 using Microsoft.Xrm.Sdk;
 
@@ -10,7 +8,9 @@ namespace DLaB.Xrm.LocalCrm
     {
         public Type AssociationType { get; set; }
         public string OneLogicalName { get; set; }
+        public string OneAttributeIdName { get; set; }
         public string TwoLogicalName { get; set; }
+        public string TwoAttributeIdName { get; set; }
 
         private AssociationInfo(){}
 
@@ -21,7 +21,9 @@ namespace DLaB.Xrm.LocalCrm
             return new AssociationInfo
             {
                 AssociationType = associationType,
+                OneAttributeIdName = EntityHelper.GetIdAttributeName(association.One.LogicalName),
                 OneLogicalName = association.One.LogicalName,
+                TwoAttributeIdName = EntityHelper.GetIdAttributeName(association.Two.LogicalName),
                 TwoLogicalName = association.Two.LogicalName,
             };
         }

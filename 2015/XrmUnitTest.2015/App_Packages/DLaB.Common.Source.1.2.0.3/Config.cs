@@ -17,7 +17,7 @@ namespace Source.DLaB.Common
     internal class Config
 #endif
     {
-#region Single Value GetAppSettings
+        #region Single Value GetAppSettings
 
         /// <summary>
         /// Attempts to read the setting from the config file, and Parse to get the value.
@@ -136,7 +136,7 @@ namespace Source.DLaB.Common
                 info = info ?? ConfigKeyValueSplitInfo.Default;
 
                 // Find the Key:Value where the Key Matches
-                config = config.Split(info.EntrySeperators).
+                config = config.Split(info.EntrySeparators).
                                 FirstOrDefault(v => v.Split(info.KeyValueSeperators).
                                                       Select(k => info.ParseKey<string>(k)).
                                                       FirstOrDefault() == info.ParseKey<string>(key));
@@ -161,9 +161,9 @@ namespace Source.DLaB.Common
             return start < 0 ? null : value.Substring(start + startString.Length);
         }
 
-#endregion Single Value GetAppSettings
+        #endregion Single Value GetAppSettings
 
-#region GetList
+        #region GetList
 
         /// <summary>
         /// Attempts to read the setting from the config file and Parse to get the value.
@@ -179,7 +179,7 @@ namespace Source.DLaB.Common
             try
             {
                 var config = ConfigProvider.Instance[appSetting];
-                return config == null ? defaultValue : GetList<T>(config, info);
+                return config == null ? defaultValue : config.GetList<T>(info);
             }
             catch (Exception ex)
             {
@@ -201,7 +201,7 @@ namespace Source.DLaB.Common
             try
             {
                 var config = ConfigProvider.Instance[appSetting] ?? defaultValue;
-                return GetList<T>(config, info);
+                return config.GetList<T>(info);
             }
             catch (Exception ex)
             {
@@ -223,7 +223,7 @@ namespace Source.DLaB.Common
             try
             {
                 var config = ConfigProvider.Instance[appSetting];
-                return config == null ? getDefaultValue() : GetList<T>(config, info);
+                return config == null ? getDefaultValue() : config.GetList<T>(info);
             }
             catch (Exception ex)
             {
@@ -231,15 +231,9 @@ namespace Source.DLaB.Common
             }
         }
 
-        private static List<T> GetList<T>(string value, ConfigValuesSplitInfo info)
-        {
-            info = info ?? ConfigValuesSplitInfo.Default;
-            return new List<T>(value.Split(info.EntrySeperators, StringSplitOptions.RemoveEmptyEntries).Select(v => info.ParseValue<T>(v)));
-        } 
+        #endregion GetList
 
-#endregion GetList
-
-#region GetDictionary
+        #region GetDictionary
 
         /// <summary>
         /// Attempts to read the setting from the config file, and Parse into a Dictionary.
@@ -261,7 +255,7 @@ namespace Source.DLaB.Common
             try
             {
                 var config = ConfigProvider.Instance[appSetting];
-                return config == null ? getDefault() : GetDictionary<TKey, TValue>(info, config);
+                return config == null ? getDefault() : config.GetDictionary<TKey, TValue>(info);
             }
             catch (Exception ex)
             {
@@ -289,7 +283,7 @@ namespace Source.DLaB.Common
             try
             {
                 var config = ConfigProvider.Instance[appSetting];
-                return config == null ? defaultValue : GetDictionary<TKey, TValue>(info, config);
+                return config == null ? defaultValue : config.GetDictionary<TKey, TValue>(info);
             }
             catch (Exception ex)
             {
@@ -316,7 +310,8 @@ namespace Source.DLaB.Common
         {
             try
             {
-                return GetDictionary<TKey, TValue>(info, ConfigProvider.Instance[appSetting] ?? defaultValue);
+                var config = ConfigProvider.Instance[appSetting] ?? defaultValue;
+                return config.GetDictionary<TKey, TValue>(info);
             }
             catch (Exception ex)
             {
@@ -324,19 +319,9 @@ namespace Source.DLaB.Common
             }
         }
 
-        private static Dictionary<TKey, TValue> GetDictionary<TKey, TValue>(ConfigKeyValueSplitInfo info, string config)
-        {
-            info = info ?? ConfigKeyValueSplitInfo.Default;
+        #endregion GetDictionary
 
-            return config.Split(info.EntrySeperators, StringSplitOptions.RemoveEmptyEntries).
-                          Select(entry => entry.Split(info.KeyValueSeperators, StringSplitOptions.RemoveEmptyEntries)).
-                          ToDictionary(values => info.ParseKey<TKey>(values[0]),
-                              values => info.ParseValue<TValue>(values.Length > 1 ? values[1] : null));
-        }
-
-#endregion GetDictionary
-
-#region GetDictionaryList
+        #region GetDictionaryList
 
         /// <summary>
         /// Attempts to read the setting from the config file, and Parse into a Dictionary.
@@ -358,7 +343,7 @@ namespace Source.DLaB.Common
             try
             {
                 var config = ConfigProvider.Instance[appSetting];
-                return config == null ? defaultValue : GetDictionaryList<TKey, TValue>(info, config);
+                return config == null ? defaultValue : config.GetDictionaryList<TKey, TValue>(info);
             }
             catch (Exception ex)
             {
@@ -386,7 +371,7 @@ namespace Source.DLaB.Common
             try
             {
                 var config = ConfigProvider.Instance[appSetting] ?? defaultValue;
-                return GetDictionaryList<TKey, TValue>(info, config);
+                return config.GetDictionaryList<TKey, TValue>(info);
             }
             catch (Exception ex)
             {
@@ -414,7 +399,7 @@ namespace Source.DLaB.Common
             try
             {
                 var config = ConfigProvider.Instance[appSetting];
-                return config == null ? getDefault() : GetDictionaryList<TKey, TValue>(info, config);
+                return config == null ? getDefault() : config.GetDictionaryList<TKey, TValue>(info);
             }
             catch (Exception ex)
             {
@@ -422,25 +407,9 @@ namespace Source.DLaB.Common
             }
         }
 
-        private static Dictionary<TKey, List<TValue>> GetDictionaryList<TKey, TValue>(ConfigKeyValuesSplitInfo info, string config)
-        {
-            info = info ?? ConfigKeyValuesSplitInfo.Default;
-            var dict = new Dictionary<TKey, List<TValue>>();
-            foreach (var entry in config.Split(info.EntrySeperators, StringSplitOptions.RemoveEmptyEntries))
-            {
-                var entryValues = entry.Split(info.KeyValueSeperators, StringSplitOptions.RemoveEmptyEntries);
-                var value = entryValues.Length > 1
-                    ? entryValues[1].Split(info.EntryValuesSeperators, StringSplitOptions.RemoveEmptyEntries).Select(info.ParseValue<TValue>).ToList()
-                    : new List<TValue>();
-                dict.Add(info.ParseKey<TKey>(entryValues[0]), value);
-            }
+        #endregion GetDictionaryList
 
-            return dict;
-        }
-
-#endregion GetDictionaryList
-
-#region GetDictionaryHash
+        #region GetDictionaryHash
 
         /// <summary>
         /// Attempts to read the setting from the config file, and Parse into a Dictionary.
@@ -462,7 +431,7 @@ namespace Source.DLaB.Common
             try
             {
                 var config = ConfigProvider.Instance[appSetting];
-                return config == null ? defaultValue : GetDictionaryHash<TKey, TValue>(info, config);
+                return config == null ? defaultValue : config.GetDictionaryHash<TKey, TValue>(info);
             }
             catch (Exception ex)
             {
@@ -490,7 +459,7 @@ namespace Source.DLaB.Common
             try
             {
                 var config = ConfigProvider.Instance[appSetting] ?? defaultValue;
-                return GetDictionaryHash<TKey, TValue>(info, config);
+                return config.GetDictionaryHash<TKey, TValue>(info);
             }
             catch (Exception ex)
             {
@@ -518,7 +487,7 @@ namespace Source.DLaB.Common
             try
             {
                 var config = ConfigProvider.Instance[appSetting];
-                return config == null ? getDefault() : GetDictionaryHash<TKey, TValue>(info, config);
+                return config == null ? getDefault() : config.GetDictionaryHash<TKey, TValue>(info);
             }
             catch (Exception ex)
             {
@@ -526,25 +495,9 @@ namespace Source.DLaB.Common
             }
         }
 
-        private static Dictionary<TKey, HashSet<TValue>> GetDictionaryHash<TKey, TValue>(ConfigKeyValuesSplitInfo info, string config)
-        {
-            info = info ?? ConfigKeyValuesSplitInfo.Default;
-            var dict = new Dictionary<TKey, HashSet<TValue>>();
-            foreach (var entry in config.Split(info.EntrySeperators, StringSplitOptions.RemoveEmptyEntries))
-            {
-                var entryValues = entry.Split(info.KeyValueSeperators, StringSplitOptions.RemoveEmptyEntries);
-                var value = entryValues.Length > 1
-                    ? new HashSet<TValue>(entryValues[1].Split(info.EntryValuesSeperators, StringSplitOptions.RemoveEmptyEntries).Select(info.ParseValue<TValue>))
-                    : new HashSet<TValue>();
-                dict.Add(info.ParseKey<TKey>(entryValues[0]), value);
-            }
+        #endregion GetDictionaryHash
 
-            return dict;
-        }
-
-#endregion GetDictionaryHash
-
-#region GetHashSet
+        #region GetHashSet
 
         /// <summary>
         /// Config Value must be in the format "Value|Value|Value" by Default
@@ -560,11 +513,7 @@ namespace Source.DLaB.Common
             try
             {
                 var config = ConfigProvider.Instance[appSetting];
-                if (config != null)
-                {
-                    return GetHashSet<T>(config, info);
-                }
-                return getDefault();
+                return config != null ? config.GetHashSet<T>(info) : getDefault();
             }
             catch (Exception ex)
             {
@@ -585,11 +534,7 @@ namespace Source.DLaB.Common
             try
             {
                 var config = ConfigProvider.Instance[appSetting];
-                if (config == null)
-                {
-                    return defaultValue;
-                }
-                return GetHashSet<T>(config, info);
+                return config == null ? defaultValue : config.GetHashSet<T>(info);
             }
             catch (Exception ex)
             {
@@ -609,7 +554,8 @@ namespace Source.DLaB.Common
         {
             try
             {
-                return GetHashSet<T>(ConfigProvider.Instance[appSetting] ?? defaultValue, info);
+                var config = ConfigProvider.Instance[appSetting] ?? defaultValue;
+                return config.GetHashSet<T>(info);
             }
             catch (Exception ex)
             {
@@ -617,21 +563,9 @@ namespace Source.DLaB.Common
             }
         }
 
-        private static HashSet<T> GetHashSet<T>(string value, ConfigValuesSplitInfo info)
-        {
-            if (info == null)
-            {
-                info = new ConfigValuesSplitInfo
-                {
-                    ConvertValuesToLower = true
-                };
-            }
-            return new HashSet<T>(value.Split(info.EntrySeperators).Select(v => info.ParseValue<T>(v)));
-        }
+        #endregion GetHashSet
 
-#endregion GetHashSet
-
-#region ToString
+        #region ToString
 
         /// <summary>
         /// Returns a <see cref="string" /> that represents this given list to be stored as a string.
@@ -648,7 +582,7 @@ namespace Source.DLaB.Common
             info = info ?? ConfigKeyValuesSplitInfo.Default;
             getString = getString ?? ToStringDefault;
 
-            return string.Join(info.EntrySeperators.First().ToString(), list.Select(s => getString(s)).Select(s => info.ConvertValuesToLower ? s.ToLower() : s));
+            return string.Join(info.EntrySeparators.First().ToString(), list.Select(s => getString(s)).Select(s => info.ConvertValuesToLower ? s.ToLower() : s));
         }
 
         /// <summary>
@@ -677,7 +611,7 @@ namespace Source.DLaB.Common
                          let value = getValueString(kvp.Value)
                          select $"{(info.ConvertKeysToLower ? key.ToLower() : key)}{info.KeyValueSeperators.First()}{(info.ConvertValuesToLower ? value.ToLower() : value)}";
 
-            return string.Join(info.EntrySeperators.First().ToString(), values);
+            return string.Join(info.EntrySeparators.First().ToString(), values);
         }
 
         /// <summary>
@@ -705,8 +639,8 @@ namespace Source.DLaB.Common
                           let key = getKeyString(kvp.Key)
                           let prefix = (info.ConvertKeysToLower ? key.ToLower() : key) + info.KeyValueSeperators.First()
                           let items = (kvp.Value ?? new List<TValue>()).Select(v => getValueString(v)).Select(v => info.ConvertValuesToLower ? v.ToLower() : v)
-                          select prefix + string.Join(info.EntryValuesSeperators.First().ToString(), items)).ToList();
-            return string.Join(info.EntrySeperators.First().ToString(), values);
+                          select prefix + string.Join(info.EntryValuesSeparators.First().ToString(), items)).ToList();
+            return string.Join(info.EntrySeparators.First().ToString(), values);
         }
 
         /// <summary>
@@ -734,8 +668,8 @@ namespace Source.DLaB.Common
                           let key = getKeyString(kvp.Key)
                           let prefix = (info.ConvertKeysToLower ? key.ToLower() : key) + info.KeyValueSeperators.First()
                           let items = kvp.Value.Select(v => getValueString(v)).Select(v => info.ConvertValuesToLower ? v.ToLower() : v)
-                          select prefix + string.Join(info.EntryValuesSeperators.First().ToString(), items)).ToList();
-            return string.Join(info.EntrySeperators.First().ToString(), values);
+                          select prefix + string.Join(info.EntryValuesSeparators.First().ToString(), items)).ToList();
+            return string.Join(info.EntrySeparators.First().ToString(), values);
         }
 
         /// <summary>
@@ -753,7 +687,7 @@ namespace Source.DLaB.Common
             info = info ?? ConfigKeyValuesSplitInfo.Default;
             getString = getString ?? ToStringDefault;
 
-            return string.Join(info.EntrySeperators.First().ToString(), hashset.Select(s => getString(s)).Select(s => info.ConvertValuesToLower ? s.ToLower() : s));
+            return string.Join(info.EntrySeparators.First().ToString(), hashset.Select(s => getString(s)).Select(s => info.ConvertValuesToLower ? s.ToLower() : s));
         }
 
         private static string ToStringDefault<T>(T value)
@@ -766,6 +700,6 @@ namespace Source.DLaB.Common
             return result?.ToString();
         }
 
-#endregion ToString
+        #endregion ToString
     }
 }
