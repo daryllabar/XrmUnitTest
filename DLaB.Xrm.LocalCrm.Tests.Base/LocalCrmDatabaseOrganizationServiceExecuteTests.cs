@@ -1,7 +1,11 @@
 ﻿using System.Linq;
+using System.ServiceModel;
 using DLaB.Xrm.Entities;
+using DLaB.Xrm.Test;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Messages;
 using XrmUnitTest.Test.Builders;
 
 namespace DLaB.Xrm.LocalCrm.Tests
@@ -9,6 +13,59 @@ namespace DLaB.Xrm.LocalCrm.Tests
     [TestClass]
     public class LocalCrmDatabaseOrganizationServiceExecuteTests : BaseTestClass
     {
+        [TestMethod]
+        public void LocalCrmDatabaseOrganizationServiceExecuteTests_ExecuteTransactionRequest()
+        {
+            var account = new Id<Account>("576E11B7-193A-4B80-A39A-1BF6ECD27A51");
+            var contact = new Id<Contact>("A40249BF-637A-4AB9-A944-3C2506D12F18");
+            var request = new ExecuteTransactionRequest
+            {
+                Requests = new OrganizationRequestCollection
+                {
+                    new CreateRequest{ Target = account },
+                    new CreateRequest{ Target = contact }
+                },
+                ReturnResponses = true
+            };
+            var service = GetService();
+            var response = (ExecuteTransactionResponse) service.Execute(request);
+            AssertCrm.Exists(service, account);
+            AssertCrm.Exists(service, contact);
+            Assert.AreEqual(response.Responses.Count, 2);
+
+            service.Delete(account.Entity);
+            service.Delete(contact.Entity);
+
+            request.ReturnResponses = false;
+            response = (ExecuteTransactionResponse)service.Execute(request);
+            Assert.AreEqual(response.Responses.Count, 0);
+        }
+
+        [TestMethod]
+        public void LocalCrmDatabaseOrganizationServiceExecuteTests_ExecuteErrorTransactionRequest()
+        {
+            var account = new Id<Account>("576E11B7-193A-4B80-A39A-1BF6ECD22A51");
+            var request = new ExecuteTransactionRequest
+            {
+                Requests = new OrganizationRequestCollection
+                {
+                    new CreateRequest{ Target = account },
+                    new CreateRequest{ Target = account }
+                },
+                ReturnResponses = true
+            };
+            var service = GetService();
+            try
+            {
+                service.Execute(request);
+            }
+            catch (FaultException<OrganizationServiceFault> ex)
+            {
+                Assert.AreEqual("Cannot insert duplicate key", ex.Message);
+                Assert.AreEqual("Cannot insert duplicate key", ex.Detail.Message);
+                Assert.AreEqual(1, ((ExecuteTransactionFault)ex.Detail).FaultedRequestIndex);
+            }
+        }
 
         [TestMethod]
         public void LocalCrmDatabaseOrganizationServiceExecuteTests_InitializeFromRequest()

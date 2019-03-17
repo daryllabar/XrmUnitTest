@@ -73,6 +73,64 @@ namespace DLaB.Xrm.LocalCrm
             Delete(request.Target.LogicalName, request.Target.Id);
             return new DeleteResponse();
         }
+#if !PRE_KEYATTRIBUTE
+        private ExecuteTransactionResponse ExecuteInternal(ExecuteTransactionRequest request)
+        {
+            var response = new ExecuteTransactionResponse
+            {
+                Results =
+                {
+                    ["Responses"] = new OrganizationResponseCollection()
+                }
+            };
+
+            for (int i = 0; i < request.Requests.Count; i++)
+            {
+                var childRequest = request.Requests[i];
+                OrganizationServiceFault fault = null;
+                OrganizationResponse childResponse = null;
+                try
+                {
+                    if (childRequest.RequestName == "ExecuteMultiple")
+                    {
+                        throw new Exception("ExecuteMultipleRequest cannot contain an ExecuteMultipleRequest");
+                    }
+
+                    childResponse = ExecuteInternal((dynamic)childRequest);
+                    if (request.ReturnResponses != true)
+                    {
+                        childResponse = null;
+                    }
+                }
+                catch (NotImplementedException)
+                {
+                    throw;
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<OrganizationServiceFault>(new ExecuteTransactionFault
+                    {
+                        FaultedRequestIndex = i,
+                        Message = ex.Message,
+                        Timestamp = DateTime.UtcNow,
+                        ErrorDetails =
+                        {
+                            ["CallStack"] = ex.StackTrace
+                        }
+                    }, new FaultReason(ex.Message));
+                }
+                finally
+                {
+                    if (childResponse != null)
+                    {
+                        response.Responses.Add(childResponse);
+                    }
+                }
+            }
+
+            return response;
+        }
+#endif
 
         private ExecuteMultipleResponse ExecuteInternal(ExecuteMultipleRequest request)
         {

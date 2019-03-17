@@ -14,6 +14,7 @@ using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using NMemory;
+using NMemory.Exceptions;
 using NMemory.Tables;
 
 namespace DLaB.Xrm.LocalCrm
@@ -369,7 +370,14 @@ using System.Diagnostics;
                 entity.Id = Guid.NewGuid();
             }
 
-            table.Insert(entity);
+            try
+            {
+                table.Insert(entity);
+            }
+            catch (MultipleUniqueKeyFoundException)
+            {
+                throw new Exception("Cannot insert duplicate key");
+            }
 
             CreateActivityPointer(service, entity);
 
