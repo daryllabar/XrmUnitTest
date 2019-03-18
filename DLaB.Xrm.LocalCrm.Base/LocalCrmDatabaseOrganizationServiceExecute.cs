@@ -87,7 +87,6 @@ namespace DLaB.Xrm.LocalCrm
             for (int i = 0; i < request.Requests.Count; i++)
             {
                 var childRequest = request.Requests[i];
-                OrganizationServiceFault fault = null;
                 OrganizationResponse childResponse = null;
                 try
                 {
@@ -379,7 +378,7 @@ namespace DLaB.Xrm.LocalCrm
                                    }
                                    
                                    var att = a.GetCustomAttributes(typeof(RelationshipSchemaNameAttribute), false);
-                                   return att.Length == 0 ? false : ((RelationshipSchemaNameAttribute)att.FirstOrDefault()).SchemaName == request.Name;
+                                   return att.Length != 0 && ((RelationshipSchemaNameAttribute)att.FirstOrDefault())?.SchemaName == request.Name;
                                });
                 if (property != null)
                 {
@@ -411,7 +410,6 @@ namespace DLaB.Xrm.LocalCrm
                 {
                     IntersectEntityName = att.Substring(0, att.Length - "_association".Length)
                 };
-                throw new NotImplementedException("Many to Many Relationships have not been implemented");
             }
             var response = new RetrieveRelationshipResponse
             {
