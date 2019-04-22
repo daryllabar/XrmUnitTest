@@ -59,7 +59,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         public TDerived WithCurrentUser(IOrganizationService service)
         {
-            var info = service.GetCurrentlyExecutingUserInfo();
+            var info = service.GetCurrentlyExecutingUserInfo();           
             return WithUser(info.UserId).WithInitiatingUser(info.UserId);
         }
 
@@ -81,6 +81,35 @@ namespace DLaB.Xrm.Test.Builders
             }
 
             return WithRegisteredEvent(first);
+        }
+
+        /// <summary>
+        /// Sets the registered event for the context to the first registered event of the plugin. Throws an exception if more than one event is found.
+        /// </summary>
+        /// <param name="plugin">The plugin.  Must contain </param>
+        /// <param name="predicate">Optional predicate based on the RegisteredEvents of the plugin.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Plugin  + plugin.GetType().FullName +  does not contain any registered events!  Unable to set the registered event of the context.</exception>
+        public TDerived WithFirstRegisteredEvent(IPlugin plugin, Func<RegisteredEvent, bool> predicate = null)
+        {
+            RegisteredEvent Map(dynamic e)
+            {
+                return new RegisteredEvent(
+                    (PipelineStage)(int)e.Stage,
+                    new MessageType(e.MessageName),
+                    (string)e.EntityLogicalName);
+            };
+
+            var dynPlugin = (dynamic) plugin;
+            var first = predicate == null
+                ? Map(((IEnumerable<dynamic>)dynPlugin.RegisteredEvents).FirstOrDefault())
+                : (((IEnumerable<dynamic>)dynPlugin.RegisteredEvents).Select(Map).FirstOrDefault(predicate));
+            if (first == null)
+            {
+                throw new Exception("Plugin " + plugin.GetType().FullName + " does not contain any registered events!  Unable to set the registered event of the context.");
+            }
+
+            return WithRegisteredEvent((int)first.Stage, first.MessageName, first.EntityLogicalName);
         }
 
         /// <summary>
@@ -126,13 +155,23 @@ namespace DLaB.Xrm.Test.Builders
         }
 
         /// <summary>
-        /// Sets the IsoloationMode of the Context.  This does not actually prevent Sandbox calls from being made.
+        /// Sets the IsolationMode of the Context.  This does not actually prevent Sandbox calls from being made.
         /// </summary>
         /// <param name="mode">The mode.</param>
         /// <returns></returns>
-        public TDerived WithIsoloationMode(IsolationMode mode)
+        public TDerived WithIsolationMode(IsolationMode mode)
         {
-            Context.IsolationMode = (int) mode;
+            return WithIsolationMode((int) mode);
+        }
+
+        /// <summary>
+        /// Sets the IsolationMode of the Context.  This does not actually prevent Sandbox calls from being made.
+        /// </summary>
+        /// <param name="mode">The mode.</param>
+        /// <returns></returns>
+        public TDerived WithIsolationMode(int mode)
+        {
+            Context.IsolationMode = mode;
             return This;
         }
 
@@ -207,10 +246,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         public TDerived WithRegisteredEvent(RegisteredEvent @event)
         {
-            Context.Stage = (int)@event.Stage;
-            Context.MessageName = @event.MessageName;
-            Context.PrimaryEntityName = @event.EntityLogicalName;
-            return This;
+            return WithRegisteredEvent((int) @event.Stage, @event.MessageName, @event.EntityLogicalName);
         }
 
         /// <summary>
@@ -250,6 +286,31 @@ namespace DLaB.Xrm.Test.Builders
             }
 
             return WithRegisteredEvent(plugin.RegisteredEvents.Single());
+        }
+
+        /// <summary>
+        /// Sets the registered event for the context to the registered event of the plugin.  Throws an exception if more than one event is found.  Use WithFirstRegisteredEvent if the first event was intended
+        /// </summary>
+        /// <param name="plugin">The plugin.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">
+        /// Plugin does not contain any registered events!  Unable to set the registered event of the context.
+        /// or
+        /// Plugin contains more than one registered event!  Unable to determine what registered event to use for the context.
+        /// </exception>
+        public TDerived WithRegisteredEvent(IPlugin plugin)
+        {
+            var dynPlugin = (dynamic) plugin;
+            if (!((IEnumerable<dynamic>)dynPlugin.RegisteredEvents).Any())
+            {
+                throw new Exception("Plugin " + plugin.GetType().FullName + " does not contain any registered events!  Unable to set the registered event of the context.");
+            }
+            if (((IEnumerable<dynamic>)dynPlugin.RegisteredEvents).Skip(1).Any())
+            {
+                throw new Exception("Plugin " + plugin.GetType().FullName + " contains more than one registered event!  Unable to determine what registered event to use for the context.");
+            }
+
+            return WithFirstRegisteredEvent(plugin);
         }
 
         /// <summary>
