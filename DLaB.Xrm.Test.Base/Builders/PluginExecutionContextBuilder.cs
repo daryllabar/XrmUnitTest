@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using DLaB.Xrm.Plugin;
 using Microsoft.Xrm.Sdk;
@@ -65,11 +67,14 @@ namespace DLaB.Xrm.Test.Builders
         /// Sets the registered event for the context to the first registered event of the plugin. Throws an exception if more than one event is found.
         /// </summary>
         /// <param name="plugin">The plugin.</param>
+        /// <param name="predicate">Optional predicate based on the RegisteredEvents of the plugin.</param>
         /// <returns></returns>
         /// <exception cref="System.Exception">Plugin  + plugin.GetType().FullName +  does not contain any registered events!  Unable to set the registered event of the context.</exception>
-        public TDerived WithFirstRegisteredEvent(IRegisteredEventsPlugin plugin)
+        public TDerived WithFirstRegisteredEvent(IRegisteredEventsPlugin plugin, Func<RegisteredEvent, bool> predicate = null)
         {
-            var first = plugin.RegisteredEvents.FirstOrDefault();
+            var first = predicate == null 
+                ? plugin.RegisteredEvents.FirstOrDefault()
+                : plugin.RegisteredEvents.FirstOrDefault(predicate);
             if (first == null)
             {
                 throw new Exception("Plugin " + plugin.GetType().FullName + " does not contain any registered events!  Unable to set the registered event of the context.");
