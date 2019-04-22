@@ -6,6 +6,8 @@ using Microsoft.Crm.Sdk.Messages;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
+using Microsoft.Xrm.Sdk.Metadata;
+using XrmUnitTest.Test;
 using XrmUnitTest.Test.Builders;
 
 namespace DLaB.Xrm.LocalCrm.Tests
@@ -145,6 +147,31 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 context.LoadProperty(firstContact, Contact.Fields.equipment_contacts);
                 Assert.AreEqual(firstContact.PreferredEquipmentId, equipment.ToEntityReference());
             }
+        }
+
+        [TestMethod]
+        public void LocalCrmDatabaseOrganizationServiceExecuteTests_RetrieveAttributeRequest()
+        {
+            AttributeMetadata GetMetadata(string field)
+            {
+                return ((RetrieveAttributeResponse)GetService().Execute(new RetrieveAttributeRequest
+                {
+                    EntityLogicalName = Account.EntityLogicalName,
+                    LogicalName = field
+                })).AttributeMetadata;
+            }
+            TestInitializer.InitializeTestSettings();
+            
+            var response = GetMetadata(Account.Fields.AccountCategoryCode);
+            Assert.AreEqual(AttributeTypeCode.Picklist, response.AttributeType);
+            Assert.AreEqual(2, ((PicklistAttributeMetadata)response).OptionSet.Options.Count);
+            Assert.AreEqual(AttributeTypeCode.String, GetMetadata(Account.Fields.AccountNumber).AttributeType);
+            Assert.AreEqual(AttributeTypeCode.Uniqueidentifier, GetMetadata(Account.Fields.Id).AttributeType);
+            Assert.AreEqual(AttributeTypeCode.Double, GetMetadata(Account.Fields.Address1_Longitude).AttributeType);
+            Assert.AreEqual(AttributeTypeCode.Decimal, GetMetadata(Account.Fields.ExchangeRate).AttributeType);
+            Assert.AreEqual(AttributeTypeCode.Boolean, GetMetadata(Account.Fields.FollowEmail).AttributeType);
+            Assert.AreEqual(AttributeTypeCode.Integer, GetMetadata(Account.Fields.ImportSequenceNumber).AttributeType);
+
         }
     }
 }

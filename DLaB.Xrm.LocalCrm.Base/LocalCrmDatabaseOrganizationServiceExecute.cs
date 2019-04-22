@@ -14,6 +14,7 @@ using DLaB.Xrm.LocalCrm.Entities;
 using DLaB.Xrm.LocalCrm.FetchXml;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
 using Microsoft.Xrm.Sdk.Query;
@@ -308,36 +309,136 @@ namespace DLaB.Xrm.LocalCrm
         private RetrieveAttributeResponse ExecuteInternal(RetrieveAttributeRequest request)
         {
             var response = new RetrieveAttributeResponse();
+            var entityType =
+                CrmServiceUtility.GetEarlyBoundProxyAssembly().GetTypes().FirstOrDefault(t =>
+                    t.GetCustomAttribute<EntityLogicalNameAttribute>(true)?.LogicalName == request.EntityLogicalName);
+
+            var propertyTypes = entityType?.GetProperties()
+                .Where(p =>
+                    p.GetCustomAttribute<AttributeLogicalNameAttribute>()?.LogicalName == request.LogicalName
+                ).Select(p => p.PropertyType.IsGenericType
+                    ? p.PropertyType.GenericTypeArguments.First()
+                    : p.PropertyType).ToList();
+
+            var propertyType = propertyTypes?.Count == 1
+                ? propertyTypes[0]
+                : propertyTypes?.FirstOrDefault(p => p != typeof(OptionSetValue) 
+                                                  && p != typeof(EntityReference)); // Handle OptionSets/EntityReferences that may have multiple properties
+
+            if (propertyType == null)
+            {
+                throw new Exception($"Unable to find a property for Entity {request.EntityLogicalName} and property {request.LogicalName} in {CrmServiceUtility.GetEarlyBoundProxyAssembly().FullName}");
+            }
+
+            AttributeMetadata metadata = null;
+            if (propertyType.IsEnum || propertyTypes.Any(p => p == typeof(OptionSetValue)))
+            {
+                metadata = CreateOptionSetAttributeMetadata(request, propertyType);
+            }
+            else if (propertyType == typeof(string))
+            {
+                metadata = new StringAttributeMetadata(request.LogicalName);
+            }
+            else if (propertyTypes.Any(p => p == typeof(EntityReference)))
+            {
+                metadata = new LookupAttributeMetadata
+                {
+                    LogicalName = request.LogicalName
+                };
+            }
+            else if (propertyType == typeof(Guid))
+            {
+                metadata = new UniqueIdentifierAttributeMetadata
+                {
+                    LogicalName = request.LogicalName
+                };
+            }
+            else if (propertyType == typeof(bool))
+            {
+                metadata = new BooleanAttributeMetadata
+                {
+                    LogicalName = request.LogicalName
+                };
+            }
+            else if (propertyType == typeof(Money))
+            {
+                metadata = new MoneyAttributeMetadata
+                {
+                    LogicalName = request.LogicalName
+                };
+            }
+            else if (propertyType == typeof(int))
+            {
+                metadata = new IntegerAttributeMetadata
+                {
+                    LogicalName = request.LogicalName
+                };
+            }
+            else if (propertyType == typeof(long))
+            {
+                metadata = new BigIntAttributeMetadata
+                {
+                    LogicalName = request.LogicalName
+                };
+            }
+            else if (propertyType == typeof(DateTime))
+            {
+                metadata = new DateTimeAttributeMetadata
+                {
+                    LogicalName = request.LogicalName
+                };
+            }
+            else if (propertyType == typeof(double))
+            {
+                metadata = new DoubleAttributeMetadata
+                {
+                    LogicalName = request.LogicalName
+                };
+            }
+            else if (propertyType == typeof(decimal))
+            {
+                metadata = new DecimalAttributeMetadata
+                {
+                    LogicalName = request.LogicalName
+                };
+            }
+            else
+            {
+                throw new NotImplementedException($"Attribute Type of {propertyType.FullName} is not implemented.");
+            }
+            response.Results["AttributeMetadata"] = metadata;
+            return response;
+        }
+
+        private PicklistAttributeMetadata CreateOptionSetAttributeMetadata(RetrieveAttributeRequest request, Type propertyType)
+        {
+
+            if (propertyType == typeof(OptionSetValue))
+            {
+                var enumExpression =
+                    CrmServiceUtility.GetEarlyBoundProxyAssembly().GetTypes().Where(
+                        t =>
+                            t.GetCustomAttributes(typeof(DataContractAttribute), false).Length > 0 &&
+                            t.GetCustomAttributes(typeof(System.CodeDom.Compiler.GeneratedCodeAttribute), false).Length > 0 &&
+                            t.Name.Contains(request.LogicalName)).ToList();
+
+                // Search By EntityLogicalName_LogicalName
+                // Then By LogicName_EntityLogicalName
+                // Then By LogicalName
+                propertyType = enumExpression.FirstOrDefault(t => t.Name == request.EntityLogicalName + "_" + request.LogicalName) ??
+                               enumExpression.FirstOrDefault(t => t.Name == request.LogicalName + "_" + request.EntityLogicalName) ??
+                               enumExpression.FirstOrDefault(t => t.Name == request.LogicalName);
+            }
 
             var optionSet = new PicklistAttributeMetadata
             {
                 OptionSet = new OptionSetMetadata()
             };
-
-            response.Results["AttributeMetadata"] = optionSet;
-
-            var enumExpression =
-                CrmServiceUtility.GetEarlyBoundProxyAssembly().
-                                  GetTypes().
-                                  Where(
-                                      t =>
-                                          t.GetCustomAttributes(typeof(DataContractAttribute), false).Length > 0 &&
-                                          t.GetCustomAttributes(typeof(System.CodeDom.Compiler.GeneratedCodeAttribute), false).Length > 0 &&
-                                          t.Name.Contains(request.LogicalName)).
-                                  ToList();
-
-            // Search By EntityLogicalName_LogicalName
-            // Then By LogicName_EntityLogicalName
-            // Then By LogicaName
-            var enumType = enumExpression.FirstOrDefault(t => t.Name == request.EntityLogicalName + "_" + request.LogicalName) ??
-                           enumExpression.FirstOrDefault(t => t.Name == request.LogicalName + "_" + request.EntityLogicalName) ??
-                           enumExpression.FirstOrDefault(t => t.Name == request.LogicalName);
-
             AddEnumTypeValues(optionSet.OptionSet,
-                enumType,
-                $"Unable to find local optionset enum for entity: {request.EntityLogicalName}, attribute: {request.LogicalName}");
+                propertyType,
+                $"Unable to find local OptionSet enum for entity: {request.EntityLogicalName}, attribute: {request.LogicalName}");
 
-            return response;
+            return optionSet;
         }
 
         private RetrieveEntityResponse ExecuteInternal(RetrieveEntityRequest request)
