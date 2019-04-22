@@ -260,7 +260,7 @@ namespace DLaB.Xrm.Test.Builders
         {
             Context.Stage = stage;
             Context.MessageName = messageName;
-            Context.PrimaryEntityName = entityLogicalName;
+            Context.PrimaryEntityName = entityLogicalName ?? Context.PrimaryEntityName;
             return This;
         }
 

@@ -171,6 +171,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.AreEqual(AttributeTypeCode.Decimal, GetMetadata(Account.Fields.ExchangeRate).AttributeType);
             Assert.AreEqual(AttributeTypeCode.Boolean, GetMetadata(Account.Fields.FollowEmail).AttributeType);
             Assert.AreEqual(AttributeTypeCode.Integer, GetMetadata(Account.Fields.ImportSequenceNumber).AttributeType);
+            Assert.AreEqual(AttributeTypeCode.Lookup, GetMetadata(Account.Fields.ParentAccountId).AttributeType);
 
         }
     }

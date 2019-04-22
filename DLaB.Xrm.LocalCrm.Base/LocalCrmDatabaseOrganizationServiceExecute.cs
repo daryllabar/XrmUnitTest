@@ -346,6 +346,7 @@ namespace DLaB.Xrm.LocalCrm
                     LogicalName = request.LogicalName
                 };
             }
+#if !XRM_2013       
             else if (propertyType == typeof(Guid))
             {
                 metadata = new UniqueIdentifierAttributeMetadata
@@ -353,6 +354,7 @@ namespace DLaB.Xrm.LocalCrm
                     LogicalName = request.LogicalName
                 };
             }
+#endif
             else if (propertyType == typeof(bool))
             {
                 metadata = new BooleanAttributeMetadata
