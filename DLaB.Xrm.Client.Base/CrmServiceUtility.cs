@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using DLaB.Xrm.Test;
 #if XRM_2015 || PRE_KEYATTRIBUTE
 using Microsoft.Xrm.Client;
 using Microsoft.Xrm.Client.Services;
@@ -82,9 +83,22 @@ namespace DLaB.Xrm.Client
             var type = Type.GetType(assemblyName);
             if (type == null)
             {
-                throw new Exception("Unable to load EarlyBoundProxy Assembly " + assemblyName + ".  Populate the EarlyBound Crm Context name in the CrmEntities.ContextType App Settings Config value.");
+                try
+                {
+                    _crmEntitiesAssembly = TestSettings.EarlyBound.Assembly;
+                    
+                }
+                catch(Exception ex)
+                {
+                     /* If it's not configured, it will throw an error.  Would rather throw this error: */
+                    throw new Exception("Unable to load EarlyBoundProxy Assembly " + assemblyName +
+                                        ".  Populate the EarlyBound Crm Context name in the CrmEntities.ContextType App Settings Config value.", ex);
+                }
             }
-            _crmEntitiesAssembly = type.Assembly;
+            else
+            {
+                _crmEntitiesAssembly = type.Assembly;
+            }
             return _crmEntitiesAssembly;
         }
 
