@@ -172,8 +172,8 @@ namespace DLaB.Xrm.Test.Tests.Builders
 
             AssertCrm.Exists(service, Ids.Value1);
             AssertCrm.Exists(service, Ids.Value2);
-            AssertCrm.NotExists(service, Ids.Nested.Value1);
-            AssertCrm.NotExists(service, Ids.Nested.Value2);
+            AssertCrm.NotExists(service, Ids.Nested.Value1.EntityReference);
+            AssertCrm.NotExists(service, Ids.Nested.Value2.EntityReference);
         }
 
         [TestMethod]
@@ -404,12 +404,12 @@ namespace DLaB.Xrm.Test.Tests.Builders
             public struct Nested
             {
                 // ReSharper disable MemberHidesStaticFromOuterClass
-                public static readonly Id Value1 = new Id<Contact>(Guid.NewGuid());
-                public static readonly Id Value2 = new Id<Contact>(Guid.NewGuid());
+                public static readonly Id<Contact> Value1 = new Id<Contact>(Guid.NewGuid());
+                public static readonly Id<Contact> Value2 = new Id<Contact>(Guid.NewGuid());
                 // ReSharper restore MemberHidesStaticFromOuterClass
             }
-            public static readonly Id Value1 = new Id<Contact>(Guid.NewGuid());
-            public static readonly Id Value2 = new Id<Contact>(Guid.NewGuid());
+            public static readonly Id<Contact> Value1 = new Id<Contact>(Guid.NewGuid());
+            public static readonly Id<Contact> Value2 = new Id<Contact>(Guid.NewGuid());
         }
     }
 }
