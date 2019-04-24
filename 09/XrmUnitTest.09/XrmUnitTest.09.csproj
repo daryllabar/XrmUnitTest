@@ -17,7 +17,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;DLAB_PUBLIC DLAB_UNROOT_COMMON_NAMESPACE DLAB_XRM</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;DLAB_PUBLIC DLAB_UNROOT_COMMON_NAMESPACE DLAB_XRM DEBUG_LOCAL_CRM_CODE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>..\..\XrmUnitTest.ruleset</CodeAnalysisRuleSet>

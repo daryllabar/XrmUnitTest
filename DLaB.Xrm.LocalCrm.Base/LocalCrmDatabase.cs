@@ -29,6 +29,7 @@ using System.Diagnostics;
         private static readonly LocalCrmDatabase Default = new LocalCrmDatabase();
         private static readonly ConcurrentDictionary<string, LocalCrmDatabase> Databases = new ConcurrentDictionary<string, LocalCrmDatabase>();
         private static readonly object DatabaseCreationLock = new object();
+        // ReSharper disable once InconsistentNaming
         private readonly ConcurrentDictionary<string, ITable> _tables = new ConcurrentDictionary<string, ITable>();
         internal static readonly EntityPropertiesCache PropertiesCache = EntityPropertiesCache.Instance;
 
@@ -84,7 +85,7 @@ using System.Diagnostics;
                 var tFrom = typeof(T);
                 var tTo = GetType(info, link.LinkToEntityName);
                 return (IQueryable<T>)typeof(LocalCrmDatabase).GetMethod("Join", BindingFlags.NonPublic | BindingFlags.Static)?.
-                                                                 MakeGenericMethod(tFrom, tTo).Invoke(null, new object[] { info, query, link });
+                                                               MakeGenericMethod(tFrom, tTo).Invoke(null, new object[] { info, query, link });
             }
             catch (TargetInvocationException ex)
             {
@@ -106,8 +107,9 @@ using System.Diagnostics;
             {
                 result = from f in query
                          join t in SchemaGetOrCreate<TTo>(info).AsQueryable() on ConvertCrmTypeToBasicComparable(f, link.LinkFromAttributeName) equals ConvertCrmTypeToBasicComparable(t, link.LinkToAttributeName)
-                         select new LinkEntityTypes<TFrom, TTo>(f, t, link.EntityAlias);
+                         select new LinkEntityTypes<TFrom, TTo>(AddAliasedColumns(f, t, link), t);
 
+                // Apply any Conditions on the Link Entity
                 result = ApplyLinkFilter(result, link.LinkCriteria);
             }
             else
@@ -127,14 +129,15 @@ using System.Diagnostics;
                             }
                             into joinResult
                          from t in joinResult.DefaultIfEmpty()
-                         select new LinkEntityTypes<TFrom, TTo>(f, t, link.EntityAlias);
+                         select new LinkEntityTypes<TFrom, TTo>(AddAliasedColumns(f, t, link), t);
             }
 
-            // Apply any Conditions on the Link Entity
-
-
-            return link.LinkEntities.Aggregate(result.Select(e => AddAliasedColumns(e.Root, e.Current, e.Alias, link.Columns)),
-                                               (current, childLink) => current.Intersect(CallChildJoin(info, result, childLink)));
+            var root = result.Select(r => r.Root);
+            foreach (var entity in link.LinkEntities)
+            {
+                root = CallChildJoin<TFrom, TTo>(info, root, link, entity);
+            }
+            return root;
         }
 
         private static IQueryable<LinkEntityTypes<TFrom, TTo>> ApplyLinkFilter<TFrom, TTo>(IQueryable<LinkEntityTypes<TFrom, TTo>> query, FilterExpression filter)
@@ -144,7 +147,7 @@ using System.Diagnostics;
             return query.Where(l => EvaluateFilter(l.Current, filter));
         }
 
-        private static IQueryable<TRoot> CallChildJoin<TRoot, TFrom>(LocalCrmDatabaseInfo info, IQueryable<LinkEntityTypes<TRoot, TFrom>> query, LinkEntity link)
+        private static IQueryable<TRoot> CallChildJoin<TRoot, TFrom>(LocalCrmDatabaseInfo info, IQueryable<TRoot> query, LinkEntity fromEntity, LinkEntity link)
             where TRoot : Entity
             where TFrom : Entity
         {
@@ -153,8 +156,8 @@ using System.Diagnostics;
                 var tRoot = typeof(TRoot);
                 var tTo = GetType(info, link.LinkToEntityName);
                 return ((IQueryable<TRoot>)typeof(LocalCrmDatabase).GetMethod("ChildJoin", BindingFlags.NonPublic | BindingFlags.Static)
-                                                                     .MakeGenericMethod(tRoot, typeof(TFrom), tTo)
-                                                                     .Invoke(null, new object[] { info, query, link }));
+                                                                   ?.MakeGenericMethod(tRoot, typeof(TFrom), tTo)
+                                                                     .Invoke(null, new object[] { info, query, fromEntity, link }));
             }
             catch (TargetInvocationException ex)
             {
@@ -168,34 +171,74 @@ using System.Diagnostics;
 
 
         // ReSharper disable once UnusedMember.Local
-        private static IQueryable<TRoot> ChildJoin<TRoot, TFrom, TTo>(LocalCrmDatabaseInfo info, IQueryable<LinkEntityTypes<TRoot, TFrom>> query, LinkEntity link)
+        private static IQueryable<TRoot> ChildJoin<TRoot, TFrom, TTo>(LocalCrmDatabaseInfo info, IQueryable<TRoot> query, LinkEntity fromEntity, LinkEntity link)
             where TRoot : Entity
             where TFrom : Entity
             where TTo : Entity
         {
             IQueryable<LinkEntityTypes<TRoot, TTo>> result;
+            var fromName = JoinAliasEntityPreFix + fromEntity.EntityAlias;
             if (link.JoinOperator == JoinOperator.Inner)
             {
-                result = from f in query
-                         join t in SchemaGetOrCreate<TTo>(info).AsQueryable() on ConvertCrmTypeToBasicComparable(f.Current, link.LinkFromAttributeName) equals
-                             ConvertCrmTypeToBasicComparable(t, link.LinkToAttributeName)
-                         select new LinkEntityTypes<TRoot, TTo>(f.Root, t, link.EntityAlias);
+              result = from f in query
+                  join t in SchemaGetOrCreate<TTo>(info).AsQueryable() 
+                      on ConvertCrmTypeToBasicComparable((TFrom)f[fromName], link.LinkFromAttributeName) equals
+                      ConvertCrmTypeToBasicComparable(t, link.LinkToAttributeName)
+                  select new LinkEntityTypes<TRoot, TTo>(AddAliasedColumns(f, t, link), t);
             }
             else
             {
                 result = from f in query
-                         join t in SchemaGetOrCreate<TTo>(info).AsQueryable() on ConvertCrmTypeToBasicComparable(f.Current, link.LinkFromAttributeName) equals
-                             ConvertCrmTypeToBasicComparable(t, link.LinkToAttributeName) into joinResult
-                         from t in joinResult.DefaultIfEmpty()
-                         select new LinkEntityTypes<TRoot, TTo>(f.Root, t, link.EntityAlias);
+                    join t in SchemaGetOrCreate<TTo>(info).AsQueryable() on ConvertCrmTypeToBasicComparable((TFrom)f[fromName], link.LinkFromAttributeName) equals
+                        ConvertCrmTypeToBasicComparable(t, link.LinkToAttributeName) into joinResult
+                    from t in joinResult.DefaultIfEmpty()
+                    select new LinkEntityTypes<TRoot, TTo>(AddAliasedColumns(f, t, link), t);
             }
 
             // Apply any Conditions on the Link Entity
             result = ApplyLinkFilter(result, link.LinkCriteria);
 
-            return link.LinkEntities.Aggregate(result.Select(e => AddAliasedColumns(e.Root, e.Current, e.Alias, link.Columns)),
-                                               (current, childLink) => current.Intersect(CallChildJoin(info, result, childLink)));
+            var root = result.Select(r => r.Root);
+            foreach (var entity in link.LinkEntities)
+            {
+                root = CallChildJoin<TRoot, TTo>(info, root, link, entity);
+            }
+            return root;
+
+            //return link.LinkEntities.Aggregate(result.Select(e => AddAliasedColumns(e.Root, e.Current, e.Alias, link.Columns)),
+            //                                   (current, childLink) => current.Intersect(CallChildJoin(info, result, childLink)));
         }
+        //private static IQueryable<TRoot> ChildJoin<TRoot, TFrom, TTo>(LocalCrmDatabaseInfo info, IQueryable<TRoot> query, LinkEntity link)
+        //    where TRoot : Entity
+        //    where TFrom : Entity
+        //    where TTo : Entity
+        //{
+        //    IQueryable<LinkEntityTypes<TRoot, TTo>> result;
+        //    if (link.JoinOperator == JoinOperator.Inner)
+        //    {
+        //      result = from f in query.Select(q => new LinkEntityTypes<TRoot,TFrom>(q, (TFrom)q["ALIAS_FROM_ENTITY"], ""))
+        //               join t in SchemaGetOrCreate<TTo>(info).AsQueryable() on ConvertCrmTypeToBasicComparable(f.Current, link.LinkFromAttributeName) equals
+        //                   ConvertCrmTypeToBasicComparable(t, link.LinkToAttributeName)
+        //               select new LinkEntityTypes<TRoot, TTo>(AddAliasedColumns(f.Root, t, link.EntityAlias, link.Columns), t, link.EntityAlias);
+        //    }
+        //    else
+        //    {
+        //        result = from f in query
+        //                 join t in SchemaGetOrCreate<TTo>(info).AsQueryable() on ConvertCrmTypeToBasicComparable(f.Current, link.LinkFromAttributeName) equals
+        //                     ConvertCrmTypeToBasicComparable(t, link.LinkToAttributeName) into joinResult
+        //                 from t in joinResult.DefaultIfEmpty()
+        //                 select new LinkEntityTypes<TRoot, TTo>(f.Root, t, link.EntityAlias);
+        //    }
+
+        //    // Apply any Conditions on the Link Entity
+        //    result = ApplyLinkFilter(result, link.LinkCriteria);
+
+        //    foreach (var entity in link.LinkEntities)
+        //    {
+        //        //CallChildJoin(info, result, entity);
+        //    }
+        //    return result.Select(r => r.Root);
+        //}
 
         internal class LinkEntityTypes<TRoot, TCurrent>
             where TRoot : Entity
@@ -203,39 +246,52 @@ using System.Diagnostics;
         {
             public TRoot Root { get; }
             public TCurrent Current { get; }
-            public string Alias { get; set; }
 
-            public LinkEntityTypes(TRoot root, TCurrent current, string alias)
+            public LinkEntityTypes(TRoot root, TCurrent current)
             {
                 Root = root;
                 Current = current;
-                Alias = alias;
             }
         }
 
-
-        [ThreadStatic]
-        private static int _aliasedEntityCount;
-        private static TFrom AddAliasedColumns<TFrom, TTo>(TFrom fromEntity, TTo toEntity, string alias, ColumnSet columns)
+        internal class LinkEntityTypes<TRoot, TFrom, TTo>
+            where TRoot : Entity
             where TFrom : Entity
             where TTo : Entity
         {
+            public TRoot Root { get; }
+            public TFrom From { get; }
+            public TTo To { get; }
+
+            public LinkEntityTypes(TRoot root, TFrom from, TTo to)
+            {
+                Root = root;
+                From = from;
+                To = to;
+            }
+        }
+
+        private const string JoinAliasEntityPreFix = "ALIAS_FROM_ENTITY_";
+        private static TFrom AddAliasedColumns<TFrom, TTo>(TFrom fromEntity, TTo toEntity, LinkEntity link)
+            where TFrom : Entity
+            where TTo : Entity
+        {
+            fromEntity[JoinAliasEntityPreFix + link.EntityAlias] = toEntity;
             if (toEntity == null) { return fromEntity; }
 
-            alias = alias ?? toEntity.LogicalName + _aliasedEntityCount--;
             // Since the Projection is modifying the underlying objects, a HasAliasedAttribute Call is required.  
-            if (columns.AllColumns)
+            if (link.Columns.AllColumns)
             {
-                foreach (var attribute in toEntity.Attributes.Where(a => !fromEntity.HasAliasedAttribute(alias + "." + a.Key)))
+                foreach (var attribute in toEntity.Attributes.Where(a => !fromEntity.HasAliasedAttribute(link.EntityAlias + "." + a.Key)))
                 {
-                    fromEntity.AddAliasedValue(alias, toEntity.LogicalName, attribute.Key, attribute.Value);
+                    fromEntity.AddAliasedValue(link.EntityAlias, toEntity.LogicalName, attribute.Key, attribute.Value);
                 }
             }
             else
             {
-                foreach (var c in columns.Columns.Where(v => toEntity.Attributes.Keys.Contains(v) && !fromEntity.HasAliasedAttribute(alias + "." + v)))
+                foreach (var c in link.Columns.Columns.Where(v => toEntity.Attributes.Keys.Contains(v) && !fromEntity.HasAliasedAttribute(link.EntityAlias + "." + v)))
                 {
-                    fromEntity.AddAliasedValue(alias, toEntity.LogicalName, c, toEntity[c]);
+                    fromEntity.AddAliasedValue(link.EntityAlias, toEntity.LogicalName, c, toEntity[c]);
                 }
             }
             return fromEntity;
@@ -499,7 +555,7 @@ using System.Diagnostics;
         
         public static EntityCollection ReadEntities<T>(LocalCrmDatabaseOrganizationService service, QueryExpression qe) where T : Entity
         {
-            _aliasedEntityCount = GetLinkedEntitiesWithoutAliasNameCount(qe);
+            PopulateLinkEntityAliases(qe.LinkEntities);
             var query = SchemaGetOrCreate<T>(service.Info).AsQueryable();
             
             // ReSharper disable once ReturnValueOfPureMethodIsNotUsed - this updates the query expression
@@ -540,11 +596,11 @@ using System.Diagnostics;
             return result;
         }
 
-    private static int GetLinkedEntitiesWithoutAliasNameCount(QueryExpression qe)
+        private static void PopulateLinkEntityAliases(DataCollection<LinkEntity> linkEntities)
         {
-            var count = 0;
+            var count = 1;
             var searchQueue = new Queue<DataCollection<LinkEntity>>();
-            searchQueue.Enqueue(qe.LinkEntities);
+            searchQueue.Enqueue(linkEntities);
             while (searchQueue.Count > 0)
             {
                 foreach (var link in searchQueue.Dequeue())
@@ -553,17 +609,15 @@ using System.Diagnostics;
                     {
                         searchQueue.Enqueue(link.LinkEntities);
                     }
-                    if (link.EntityAlias == null)
+                    if (string.IsNullOrWhiteSpace(link.EntityAlias))
                     {
-                        count++;
+                        link.EntityAlias = link.LinkToEntityName + count++;
                     }
                 }
             }
-            return count;
         }
 
         private static IEnumerable<FilterExpression> HandleFilterExpressionsWithAliases(QueryExpression qe, FilterExpression fe) {
-
             var condFilter = new FilterExpression(fe.FilterOperator);
             condFilter.Conditions.AddRange(HandleConditionsWithAliases(qe, fe));
             if (condFilter.Conditions.Any())
@@ -1044,6 +1098,10 @@ using System.Diagnostics;
                 foreach (var att in value)
                 {
                     var method = typeof(Entity).GetMethod("ToEntity");
+                    if (method == null)
+                    {
+                        throw new NullReferenceException($"{typeof(Entity).FullName} doesn't contain the method \"ToEntity\"");
+                    }
                     method.MakeGenericMethod(prop.PropertyType.GetGenericArguments()[0]).Invoke(att, null);
                     entities.Entities.Add((Entity)method.MakeGenericMethod(prop.PropertyType.GetGenericArguments()[0]).Invoke(att, null));
                 }

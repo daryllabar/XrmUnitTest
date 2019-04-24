@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
+using XrmUnitTest.Test;
 
 namespace DLaB.Xrm.LocalCrm.Tests
 {
@@ -196,6 +197,49 @@ namespace DLaB.Xrm.LocalCrm.Tests
             service.Delete(lateContact);
 
             Assert.AreEqual(0, service.GetEntities<Contact>().Count, "Failed Delete or Read");
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_Crud_NestedJoins()
+        {
+            TestInitializer.InitializeTestSettings();
+            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+
+            var user1 = new Id<SystemUser>(Guid.NewGuid()) {Entity = {FirstName = "Stan", }};
+            var user2 = new Id<SystemUser>(Guid.NewGuid()) {Entity = {FirstName = "Steve"}};
+            var account = new Id<Account>(Guid.NewGuid()) {Entity = {Name = "Marvel Comics"}};
+            var contact1 = new Id<Contact>(Guid.NewGuid()) {Entity = {FirstName = "Bruce", CreatedOnBehalfBy = user1, ModifiedOnBehalfBy = user2 } };
+            var contact2 = new Id<Contact>(Guid.NewGuid()) {Entity = {FirstName = "Peter", CreatedOnBehalfBy = user2, ModifiedOnBehalfBy = user1 } };
+
+            var builder = new DLaBCrmEnvironmentBuilder().
+                          WithChildEntities(account, contact1, contact2).
+                          WithEntities(user1, user2);
+            builder.Create(service);
+
+            var temp = service.GetEntity(contact1);
+            Assert.AreEqual(account.EntityReference, temp.ParentCustomerId);
+            Assert.AreEqual(user1.EntityReference, temp.CreatedOnBehalfBy);
+            Assert.AreEqual(user2.EntityReference, temp.ModifiedOnBehalfBy);
+            temp = service.GetEntity(contact2);
+            Assert.AreEqual(account.EntityReference, temp.ParentCustomerId);
+            Assert.AreEqual(user1.EntityReference, temp.ModifiedOnBehalfBy);
+            Assert.AreEqual(user2.EntityReference, temp.CreatedOnBehalfBy);
+
+            var qe = QueryExpressionFactory.Create<Account>(a => new {a.Name});
+            var contactLink = qe.AddLink<Contact>(Account.Fields.Id, Contact.Fields.ParentCustomerId, c => new { c.FirstName, c.Id });
+            var createdLink = contactLink.AddLink<SystemUser>(Contact.Fields.CreatedOnBehalfBy, SystemUser.Fields.Id, u => new { u.FirstName, u.Id });
+            var modifiedLink = contactLink.AddLink<SystemUser>(Contact.Fields.ModifiedOnBehalfBy, SystemUser.Fields.Id, u => new { u.FirstName, u.Id });
+            contactLink.EntityAlias = "ContactLink";
+            createdLink.EntityAlias = "CreatedLink";
+            modifiedLink.EntityAlias = "ModifiedLink";
+            var results = service.RetrieveMultiple(qe);
+
+            Assert.AreEqual(2, results.Entities.Count);
+            foreach (var entity in results.Entities)
+            {
+                Assert.IsTrue(entity.Attributes.ContainsKey("CreatedLink.firstname"));
+                Assert.IsTrue(entity.Attributes.ContainsKey("ModifiedLink.firstname"));
+            }
         }
 
         [TestMethod]

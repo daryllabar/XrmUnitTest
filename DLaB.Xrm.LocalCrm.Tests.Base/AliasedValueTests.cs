@@ -25,10 +25,10 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         /// <summary>
-        /// A joined entity's aliased name defaults to logicalnameX where X is the occurance of the entity in the query
+        /// A joined entity's aliased name defaults to logicalnameX where X is the occurence of the entity in the query
         /// </summary>
         [TestMethod]
-        public void LocalCrmTests_AliasedValue_MultipleAliasedEntitesPostfixOccurance()
+        public void LocalCrmTests_AliasedValue_MultipleAliasedEntitiesPostfixOccurence()
         {
             //
             // Arrange
@@ -45,9 +45,9 @@ namespace DLaB.Xrm.LocalCrm.Tests
             // Assert
             //
             var key = Incident.EntityLogicalName + "1." + Incident.Fields.Description;
-            Assert.IsTrue(account.Attributes.ContainsKey(key), $"Expected Alliased Attribute key {key} was not found.  Found {string.Join(", ", account.Attributes.Keys)}");
+            Assert.IsTrue(account.Attributes.ContainsKey(key), $"Expected Aliased Attribute key {key} was not found.  Found {string.Join(", ", account.Attributes.Keys)}");
             key = PhoneCall.EntityLogicalName + "2." + PhoneCall.Fields.Subject;
-            Assert.IsTrue(account.Attributes.ContainsKey(key), $"Expected Alliased Attribute key {key} was not found.  Found {string.Join(", ", account.Attributes.Keys)}");
+            Assert.IsTrue(account.Attributes.ContainsKey(key), $"Expected Aliased Attribute key {key} was not found.  Found {string.Join(", ", account.Attributes.Keys)}");
         }
 
         /// <summary>
@@ -72,9 +72,9 @@ namespace DLaB.Xrm.LocalCrm.Tests
             // Assert
             //
             var key = qe.LinkEntities.First().EntityAlias + "." + Incident.Fields.Description;
-            Assert.IsTrue(account.Attributes.ContainsKey(key), $"Expected Alliased Attribute key {key} was not found.  Found {string.Join(", ", account.Attributes.Keys)}");
+            Assert.IsTrue(account.Attributes.ContainsKey(key), $"Expected Aliased Attribute key {key} was not found.  Found {string.Join(", ", account.Attributes.Keys)}");
             key = PhoneCall.EntityLogicalName + "1." + PhoneCall.Fields.Subject;
-            Assert.IsTrue(account.Attributes.ContainsKey(key), $"Expected Alliased Attribute key {key} was not found.  Found {string.Join(", ", account.Attributes.Keys)}");
+            Assert.IsTrue(account.Attributes.ContainsKey(key), $"Expected Aliased Attribute key {key} was not found.  Found {string.Join(", ", account.Attributes.Keys)}");
         }
 
         #region Shared Methods
@@ -85,7 +85,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             // Arrange
             //
             var id = service.Create(new Account());
-            var incident = new Incident()
+            var incident = new Incident
             {
                 Description = "Description",
                 CustomerId = new EntityReference(Account.EntityLogicalName, id)
@@ -96,7 +96,6 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 Subject = "Subject",
                 RegardingObjectId = incident.ToEntityReference()
             });
-
 
             var qe = QueryExpressionFactory.Create<Account>();
             qe.AddLink<Incident>(Account.Fields.Id, Incident.Fields.CustomerId, i => new { i.Description })
