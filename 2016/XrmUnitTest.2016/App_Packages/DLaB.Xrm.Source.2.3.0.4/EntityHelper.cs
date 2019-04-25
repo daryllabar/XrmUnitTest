@@ -45,6 +45,12 @@ namespace Source.DLaB.Xrm
                 return GetEntityLogicalName(type.BaseType);
             }
 
+            var att = type.GetCustomAttributes<Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute>(true).FirstOrDefault();
+            if (att != null)
+            {
+                return att.LogicalName;
+            }
+
             var field = type.GetField("EntityLogicalName");
             if (field != null)
             {
@@ -159,7 +165,7 @@ namespace Source.DLaB.Xrm
         #region Determine Id Attribute Name
 
         /// <summary>
-        /// Returns the attribute name of the id of the entity
+        /// Returns the attribute name of the id of the entity using late bound approach
         /// </summary>
         /// <param name="logicalName"></param>
         /// <returns></returns>
@@ -175,7 +181,58 @@ namespace Source.DLaB.Xrm
         /// <returns></returns>
         public static string GetIdAttributeName<T>() where T : Entity
         {
-            return GetIdAttributeName(GetEntityLogicalName<T>());
+            return GetIdAttributeName(typeof(T));
+        }
+
+        /// <summary>
+        /// Returns the attribute name of the id of the entity
+        /// </summary>
+        /// <param name="type">The Type of the Entity.</param>
+        /// <returns></returns>
+        public static string GetIdAttributeName(Type type)
+        {
+            if (type.IsGenericParameter && type.BaseType != null)
+            {
+                // Handle SomeType<TEntity> where TEntity : Entity
+                return GetIdAttributeName(type.BaseType);
+            }
+
+            var idName = type.GetProperty("Id", BindingFlags.Instance | BindingFlags.Public)
+                          ?.GetCustomAttribute<AttributeLogicalNameAttribute>()?.LogicalName;
+            if (!string.IsNullOrWhiteSpace(idName))
+            {
+                return idName;
+            }
+
+            var field = type.GetField("EntityLogicalName");
+            if (field != null)
+            {
+                return (string)field.GetValue(null);
+            }
+            if (type == typeof(Entity))
+            {
+                return "entity";
+            }
+
+            //[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("activityid")]
+            //typeof(T).GetProperty("Id")
+            return GetIdAttributeName(GetEntityLogicalName(type));
+        }
+
+        public static IEnumerable<Type> GetImplementations(Type interfaceType)
+        {
+            // this will load the types for all of the currently loaded assemblies in the
+            // current domain.
+
+            return GetImplementations(interfaceType, AppDomain.CurrentDomain.GetAssemblies());
+        }
+
+        public static IEnumerable<Type> GetImplementations(Type interfaceType, IEnumerable<Assembly> assemblies)
+        {
+            return assemblies.SelectMany(
+                                         assembly => assembly.GetExportedTypes()).Where(
+                                                                                        t => interfaceType.IsAssignableFrom(t)
+                                                                                       );
         }
 
         /// <summary>
@@ -185,7 +242,7 @@ namespace Source.DLaB.Xrm
         /// <returns></returns>
         public static string GetIrregularIdAttributeName(string logicalName)
         {
-            string name = null;
+            string name;
 
             switch (logicalName)
             {
@@ -205,6 +262,9 @@ namespace Source.DLaB.Xrm
                 case "serviceappointment":
                 case "task":
                     name = "activityid";
+                    break;
+                default:
+                    name = DLaBConfig.Config.GetIrregularIdAttributeName(logicalName);
                     break;
             }
 
@@ -457,6 +517,8 @@ namespace Source.DLaB.Xrm
                         {
                             info.AttributeName = null;
                         }
+
+                        info = DLaBConfig.Config.GetIrregularPrimaryFieldInfo(logicalName, info) ?? info;
                         break;
                 }
 
