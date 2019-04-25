@@ -905,14 +905,36 @@ using System.Diagnostics;
                 //    break;
                 //case ConditionOperator.OlderThanXMonths:
                 //    break;
-                //case ConditionOperator.BeginsWith:
-                //    break;
-                //case ConditionOperator.DoesNotBeginWith:
-                //    break;
-                //case ConditionOperator.EndsWith:
-                //    break;
-                //case ConditionOperator.DoesNotEndWith:
-                //    break;
+                case ConditionOperator.BeginsWith:
+                    var beginsWithStr = GetString(entity, name);
+                    if (beginsWithStr == null)
+                    {
+                        value = condition.Values[0] == null;
+                    }
+                    else
+                    {
+                        value = ((string) condition.Values[0]).StartsWith(beginsWithStr);
+                    }
+                    break;
+                case ConditionOperator.DoesNotBeginWith:
+                    condition.Operator = ConditionOperator.BeginsWith;
+                    value = !ConditionIsTrue(entity, condition);
+                    break;
+                case ConditionOperator.EndsWith:
+                    var endsWithStr = GetString(entity, name);
+                    if (endsWithStr == null)
+                    {
+                        value = condition.Values[0] == null;
+                    }
+                    else
+                    {
+                        value = ((string)condition.Values[0]).EndsWith(endsWithStr);
+                    }
+                    break;
+                case ConditionOperator.DoesNotEndWith:
+                    condition.Operator = ConditionOperator.EndsWith;
+                    value = !ConditionIsTrue(entity, condition);
+                    break;
                 //case ConditionOperator.ThisFiscalYear:
                 //    break;
                 //case ConditionOperator.ThisFiscalPeriod:
