@@ -51,7 +51,7 @@ namespace Source.DLaB.Xrm
 
         public static Type GetFirstImplementation(Type interfaceType)
         {
-            return interfaceType.Assembly.ExportedTypes.FirstOrDefault(interfaceType.IsAssignableFrom);
+            return interfaceType.Assembly.ExportedTypes.FirstOrDefault(t => !t.IsInterface && interfaceType.IsAssignableFrom(t));
         }
 
         private class DefaultConfig : IDLaBConfig
