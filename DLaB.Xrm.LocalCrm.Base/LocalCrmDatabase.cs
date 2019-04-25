@@ -913,7 +913,7 @@ using System.Diagnostics;
                     }
                     else
                     {
-                        value = ((string) condition.Values[0]).StartsWith(beginsWithStr);
+                        value = beginsWithStr.StartsWith((string)condition.Values[0]);
                     }
                     break;
                 case ConditionOperator.DoesNotBeginWith:
@@ -928,7 +928,7 @@ using System.Diagnostics;
                     }
                     else
                     {
-                        value = ((string)condition.Values[0]).EndsWith(endsWithStr);
+                        value = endsWithStr.EndsWith((string)condition.Values[0]);
                     }
                     break;
                 case ConditionOperator.DoesNotEndWith:
