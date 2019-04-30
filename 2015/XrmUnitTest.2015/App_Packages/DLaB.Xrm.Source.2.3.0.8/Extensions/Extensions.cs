@@ -1597,6 +1597,38 @@ namespace Source.DLaB.Xrm
 
         #endregion GetFirstOrDefault
 
+        /// <summary>
+        /// Gets the local time from the UTC time.
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="userId">The id of the user to lookup the timezone code user settings</param>
+        /// <param name="utcTime">The given UTC time to find the user's local time for.  Defaults to DateTime.UtcNow</param>
+        /// <param name="defaultTimeZoneCode">Default TimeZoneCode if the user has no TimeZoneCode defined.  Defaults to EDT.</param>
+        public static DateTime GetUserLocalTime(this IOrganizationService service, Guid userId, DateTime? utcTime, int defaultTimeZoneCode = 35)
+        {
+            var timeZoneCode = RetrieveUserSettingsTimeZoneCode(service, userId) ?? defaultTimeZoneCode;
+            var request = new LocalTimeFromUtcTimeRequest
+            {
+                TimeZoneCode = timeZoneCode,
+                UtcTime = utcTime ?? DateTime.UtcNow
+            };
+
+            var response = (LocalTimeFromUtcTimeResponse)service.Execute(request);
+
+            return response.LocalTime;
+        }
+
+        /// <summary>
+        /// Retrieves the current users TimeZoneCode
+        /// </summary>
+        private static int? RetrieveUserSettingsTimeZoneCode(IOrganizationService service, Guid userId)
+        {
+            // ReSharper disable StringLiteralTypo
+            var setting = service.GetFirstOrDefault("usersettings", new ColumnSet("timezonecode"), "systemuserid", userId);
+            return setting?.GetAttributeValue<int?>("timezonecode");
+            // ReSharper restore StringLiteralTypo
+        }
+
         #region InitializeFrom
 
         /// <summary>

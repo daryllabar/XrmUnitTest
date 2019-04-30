@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.ServiceModel;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.Test;
@@ -126,6 +127,16 @@ namespace DLaB.Xrm.LocalCrm.Tests
                     $"Field {attribute.Key} was not mapped correctly.");
             }
             service.Create(contact);
+        }
+
+        [TestMethod]
+        public void LocalCrmDatabaseOrganizationServiceExecuteTests_LocalTimeFromUtcTimeRequest()
+        {
+            var service = GetService();
+            var now = DateTime.UtcNow;
+            var response = (LocalTimeFromUtcTimeResponse)service.Execute(new LocalTimeFromUtcTimeRequest {TimeZoneCode = 35, UtcTime = now});
+            var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+            Assert.AreEqual(0, (response.LocalTime - TimeZoneInfo.ConvertTimeFromUtc(now, timeZone)).TotalMilliseconds);
         }
 
         [TestMethod]
