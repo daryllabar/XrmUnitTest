@@ -324,6 +324,96 @@ namespace DLaB.Xrm.Test.Builders
 
         #endregion WithEntityFilter
 
+        #region WithFakeAction
+
+        /// <summary>
+        /// Fakes any call to the given action with the given action response.
+        /// </summary>
+        /// <typeparam name="T">The early bound action response type.</typeparam>
+        /// <param name="response">The response to return</param>
+        /// <param name="actionLogicalName">Required unless the OrganizationResponse type has a field of name "ActionLogicalName" that contains the logical name for the action.</param>
+        /// <returns></returns>
+        public TDerived WithFakeAction<T>(T response, string actionLogicalName = null) where T : OrganizationResponse
+        {
+            actionLogicalName = GetActionName<T>(actionLogicalName);
+
+            WithFakeExecute((s, r) =>
+            {
+                if (r.RequestName == actionLogicalName)
+                {
+                    return response;
+                }
+
+                return s.Execute(r);
+            });
+
+            return This;
+        }
+
+        /// <summary>
+        /// Fakes any call to the given action with the given action response.
+        /// </summary>
+        /// <typeparam name="TRequest">The early bound action request type.</typeparam>
+        /// <typeparam name="TResponse">The early bound action response type.</typeparam>
+        /// <param name="actionFake">The function to be called when the action is being executed.</param>
+        /// <param name="actionLogicalName">Required unless the OrganizationResponse type has a field of name "ActionLogicalName" that contains the logical name for the action.</param>
+        /// <returns></returns>
+        public TDerived WithFakeAction<TRequest, TResponse>(Func<IOrganizationService, TRequest, TResponse> actionFake, string actionLogicalName = null) 
+            where TRequest: OrganizationRequest, new() 
+            where TResponse: OrganizationResponse
+        {
+            actionLogicalName = GetActionName<TResponse>(actionLogicalName);
+
+            WithFakeExecute((s, r) =>
+            {
+                if (r.RequestName == actionLogicalName)
+                {
+                    if(r is TRequest request) {
+                        return actionFake(s, request);
+                    }
+                    else
+                    {
+                        // Request is not EarlyBound.  Convert it to an Early Bound Version
+                        var localRequest = new TRequest()
+                        {
+                            RequestName = r.RequestName,
+                            RequestId = r.RequestId,
+                            ExtensionData = r.ExtensionData,
+                            Parameters = r.Parameters
+                        };
+
+                        return actionFake(s, localRequest);
+                    }
+                }
+
+                return s.Execute(r);
+            });
+
+            return This;
+        }
+
+        private static string GetActionName<T>(string actionLogicalName) where T : OrganizationResponse
+        {
+            if (string.IsNullOrWhiteSpace(actionLogicalName))
+            {
+                if (typeof(T) == typeof(OrganizationRequest))
+                {
+                    throw new ArgumentException("If the actionLogicalName is not populated, the request type must be a type derived from OrganizationResponse.");
+                }
+                var field = typeof(T).GetField("ActionLogicalName");
+                actionLogicalName = (string)field?.GetValue(null);
+                if (string.IsNullOrWhiteSpace(actionLogicalName))
+                {
+                    throw new ArgumentException($"Unable to retrieve the ActionLogicalName from the type {typeof(T).FullName}.  Either add a constant field named \"ActionLogicalName\", or populate the \"ActionName\" argument!");
+                }
+            }
+
+            return actionLogicalName;
+        }
+
+
+        #endregion WithFakeAction
+
         #region WithFakeSetStatusForEntity
 
         /// <summary>

@@ -131,5 +131,42 @@ namespace DLaB.Xrm.Test.Tests.Builders
         {
             return entityLogicalName + "|" + attributeName;
         }
+
+        [TestMethod]
+        public void OrganizationServiceBuilder_WithFakeAction_FakedBookingStatusRequest_Should_BeFaked()
+        {
+            IOrganizationService service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            service = new OrganizationServiceBuilder(service)
+                    .WithFakeAction(new msdyn_UpdateBookingsStatusResponse
+                    {
+                        BookingResult = "Success"
+                    }).Build();
+
+            var response = (msdyn_UpdateBookingsStatusResponse)service.Execute(new msdyn_UpdateBookingsStatusRequest());
+
+            Assert.AreEqual("Success", response.BookingResult);
+        }
+
+        [TestMethod]
+        public void OrganizationServiceBuilder_WithFakeAction_FakedConditionalBookingStatusRequest_Should_BeFaked()
+        {
+            IOrganizationService service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            service = new OrganizationServiceBuilder(service)
+                    .WithFakeAction<msdyn_UpdateBookingsStatusRequest, msdyn_UpdateBookingsStatusResponse>((s, r) =>
+                    {
+                        return new msdyn_UpdateBookingsStatusResponse
+                        {
+                            BookingResult = r.BookingStatusChangeContext == "A"
+                                ? "Apple" 
+                                : "Banana"
+                        };
+                    }).Build();
+
+            var response = (msdyn_UpdateBookingsStatusResponse)service.Execute(new msdyn_UpdateBookingsStatusRequest { BookingStatusChangeContext = "A"});
+            Assert.AreEqual("Apple", response.BookingResult);
+
+            response = (msdyn_UpdateBookingsStatusResponse)service.Execute(new msdyn_UpdateBookingsStatusRequest { BookingStatusChangeContext = "B" });
+            Assert.AreEqual("Banana", response.BookingResult);
+        }
     }
 }
