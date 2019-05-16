@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Linq;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test.Assumptions
 {
     /// <summary>
-    /// Collection class for Assumed Enttities
+    /// Collection class for Assumed Entities
     /// </summary>
     public class AssumedEntities
     {
@@ -27,6 +28,24 @@ namespace DLaB.Xrm.Test.Assumptions
         private static string GetKey(EntityDataAssumptionBaseAttribute assumption)
         {
             return assumption.GetType().AssemblyQualifiedName;
+        }
+
+        /// <summary>
+        /// Validates the assumptions.
+        /// </summary>
+        /// <param name="service">The service.</param>
+        /// <param name="type">The type that has EntityDataAssumptionBaseAttribute Attributes</param>
+        public static AssumedEntities Load(IOrganizationService service, Type type)
+        {
+            var assumedEntities = new AssumedEntities();
+            foreach (var entityAssumption in type.GetCustomAttributes(true).
+                                                  Select(a => a as EntityDataAssumptionBaseAttribute).
+                                                  Where(a => a != null))
+            {
+                entityAssumption.AddAssumedEntities(service, assumedEntities);
+            }
+
+            return assumedEntities;
         }
 
         /// <summary>

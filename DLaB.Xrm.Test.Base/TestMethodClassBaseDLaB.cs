@@ -15,6 +15,7 @@ using Source.DLaB.Common;
 #endif
 
 using DLaB.Xrm.CrmSdk;
+using DLaB.Xrm.Test.Assumptions;
 
 // ReSharper disable once CheckNamespace
 namespace DLaB.Xrm.Test
@@ -60,7 +61,6 @@ namespace DLaB.Xrm.Test
         /// </summary>
         protected TestMethodClassBaseDLaB()
         {
-            AssumedEntities = new Assumptions.AssumedEntities();
             EntityIdsByLogicalName = new Dictionary<string, List<Id>>();
             EnableServiceExecutionTracing = true;
             MultiThreadPostDeletion = true;
@@ -97,8 +97,9 @@ namespace DLaB.Xrm.Test
 
         /// <summary>
         /// Populated with Entities that are loaded as a result of using EntityDataAssumption Attributes on the Test Method Class.
+        /// Loaded before GetIOrganizationService() and InitializeTestData(service)
         /// </summary>
-        protected Assumptions.AssumedEntities AssumedEntities { get; set; }
+        protected AssumedEntities AssumedEntities { get; set; }
 
         /// <summary>
         /// Populated with EntityLogical name keys, and list of ids.  Default Implementation of Cleanup methods will delete
@@ -275,24 +276,6 @@ namespace DLaB.Xrm.Test
 
         #endregion Data Cleanup
 
-        #region Assumptions
-
-        /// <summary>
-        /// Validates the assumptions.
-        /// </summary>
-        /// <param name="service">The service.</param>
-        protected void ValidateAssumptions(IOrganizationService service)
-        {
-            foreach (var entityAssumption in GetType().GetCustomAttributes(true).
-                                                       Select(a => a as Assumptions.EntityDataAssumptionBaseAttribute).
-                                                       Where(a => a != null))
-            {
-                entityAssumption.AddAssumedEntities(service, AssumedEntities);
-            }
-        }
-
-        #endregion Assumptions
-
         private static bool IsLoaded { get; set; }
         private static readonly object IsLoadedLock = new object();
         private static void LoadConfigurationSettingsOnce(TestMethodClassBaseDLaB value)
@@ -392,7 +375,7 @@ namespace DLaB.Xrm.Test
                 try
                 {
                     // ReSharper disable once AccessToDisposedClosure
-                    timer.Time(() => ValidateAssumptions(internalService), "Validate Assumptions (ms): ");
+                    timer.Time(() => AssumedEntities = AssumedEntities.Load(internalService, GetType()), "Load Assumptions (ms): ");
 
                     var service = GetIOrganizationService();
                     AssertCrm = new AssertCrm(service);
