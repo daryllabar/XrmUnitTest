@@ -705,6 +705,11 @@ namespace DLaB.Xrm.Test
 
         internal static IEnumerable<Id> GetIds(this Type type)
         {
+            if (type.IsDefined(typeof(System.Runtime.CompilerServices.CompilerGeneratedAttribute)))
+            {
+                // lambda enclosures will generate display classes.  This could be of type Id, but static, not instance, causing errors.
+                yield break;
+            }
             var idType = typeof(Id);
             foreach (var field in type.GetFields().Where(field => idType.IsAssignableFrom(field.FieldType)))
             {

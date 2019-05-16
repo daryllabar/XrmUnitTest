@@ -160,12 +160,14 @@ namespace DLaB.Xrm.Test
                     // Add
                     update = true;
                     config.AppSettings.Settings.Add(setting.Key, setting.Value);
+                    ConfigurationManager.AppSettings.Set(setting.Key, setting.Value); // Set in Memory
                 }
                 else if (appSetting.Value != setting.Value)
                 {
                     // Update
                     update = true;
                     appSetting.Value = setting.Value;
+                    ConfigurationManager.AppSettings.Set(setting.Key, setting.Value); // Update in Memory
                 }
             }
 
