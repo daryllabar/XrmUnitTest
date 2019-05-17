@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -22,8 +21,8 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.LocalCrm
 {
-#if !DEBUG_LOCAL_CRM_CODE
-    [DebuggerNonUserCode]
+#if !DEBUG_XRM_UNIT_TEST_CODE
+    [System.Diagnostics.DebuggerNonUserCode]
 #endif
     partial class LocalCrmDatabaseOrganizationService
     {

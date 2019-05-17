@@ -24,86 +24,22 @@ namespace DLaB.Xrm.Test.Assumptions
                                new PrerequisiteAssumptionsAttribute()
                 ).Prerequisites);
 
-        private AssumedEntities _assumedEntities;
-        private HashSet<Type> _currentlyProcessingPreReqs;
-
-        /// <summary>
-        /// Gets the name of the type, without the "Attribute" postfix
-        /// </summary>
-        private string ShortName => GetShortName(GetType());
-
         /// <summary>
         /// Gets the name of the type, without the "Attribute" postfix, and with any namespace values that come after Assumptions
         /// </summary>
         private string AssumptionsNamespaceRelativePath => GetAssumptionsNamespaceRelativePath(GetType());
 
-        private static Dictionary<string, Entity> _entitiesFromServerByAttributeType = new Dictionary<string, Entity>();
+        private static readonly Dictionary<string, Entity> EntitiesFromServerByAttributeType = new Dictionary<string, Entity>();
 
-        public Entity PreviouslyRetrievedEntity
+        private Entity PreviouslyRetrievedEntity
         {
-            get => _entitiesFromServerByAttributeType.ContainsKey(GetType().Name)
-                    ? _entitiesFromServerByAttributeType[GetType().Name].ToSdkEntity()
+            get => EntitiesFromServerByAttributeType.ContainsKey(GetType().Name)
+                    ? EntitiesFromServerByAttributeType[GetType().Name].ToSdkEntity()
                     : null;
 
-            set => _entitiesFromServerByAttributeType[this.GetType().Name] = value;
+            set => EntitiesFromServerByAttributeType[GetType().Name] = value;
         }
-
-        /// <summary>
-        /// Gets the assumed entity.
-        /// </summary>
-        /// <typeparam name="TAttribute">The type of the attribute.</typeparam>
-        /// <typeparam name="TEntity">The type of the entity.</typeparam>
-        /// <param name="assumption">The assumption.</param>
-        /// <returns></returns>
-        protected TEntity GetAssumedEntity<TAttribute, TEntity>(IAssumptionEntityType<TAttribute, TEntity> assumption)
-            where TAttribute : EntityDataAssumptionBaseAttribute
-            where TEntity : Entity
-        {
-            return GetAssumedEntity<TAttribute, TEntity>();
-        }
-
-        /// <summary>
-        /// Checks to ensure that the assumption being asked for has been defined in the PrerequisiteAssumptions for the current Assumption
-        /// </summary>
-        /// <typeparam name="TAttribute"></typeparam>
-        /// <typeparam name="TEntity"></typeparam>
-        /// <returns></returns>
-        protected TEntity GetAssumedEntity<TAttribute, TEntity>()
-            where TAttribute : EntityDataAssumptionBaseAttribute
-            where TEntity : Entity
-        {
-            if (!Prerequisites.Any())
-            {
-                throw new Exception(string.Format(
-                    "Assumption {0} is attempting to retrieve Assumption of type {1}, but it has not defined a PrerequisiteAssumptions Attribute.{2}{2}" +
-                    "Please add a PrerequisiteAssumption Attribute with a(n) {1} in it's constructor to Assumption {0}.",
-                    ShortName, GetShortName(typeof(TAttribute)), Environment.NewLine));
-            }
-
-            if (Prerequisites.All(t => t != typeof(TAttribute)))
-            {
-                throw new Exception(string.Format(
-                    "Assumption {0} is attempting to retrieve Assumption of type {1}, but it has not defined it in it's PrerequisiteAssumptions Attribute.{2}{2}" +
-                    "Please add a(n) {1} to the PrerequisiteAssumption Attribute in Assumption {0}.",
-                    ShortName, GetShortName(typeof(TAttribute)), Environment.NewLine));
-            }
-
-            return _assumedEntities.Get<TAttribute, TEntity>();
-        }
-
-        /// <summary>
-        /// Gets the name of the type, without the "Attribute" postfix
-        /// </summary>
-        private static string GetShortName(Type type)
-        {
-            var name = type.Name;
-            if (name.EndsWith("Attribute", StringComparison.InvariantCultureIgnoreCase))
-            {
-                name = name.Substring(0, name.Length - "Attribute".Length);
-            }
-            return name;
-        }
-
+        
         /// <summary>
         /// Gets the name of the type, without the "Attribute" postfix, and with any namespace values that come after Assumptions
         /// </summary>
@@ -146,43 +82,36 @@ namespace DLaB.Xrm.Test.Assumptions
         /// Adds the assumed entities with pre req infinite loop prevention.
         /// </summary>
         /// <param name="service">The service.</param>
-        /// <param name="assumedEntities">The assumed entities.</param>
+        /// <param name="entities">The assumed entities.</param>
         /// <param name="currentlyProcessingPreReqs">The currently processing pre reqs.</param>
-        protected void AddAssumedEntitiesWithPreReqInfiniteLoopPrevention(IOrganizationService service, AssumedEntities assumedEntities,
+        protected void AddAssumedEntitiesWithPreReqInfiniteLoopPrevention(IOrganizationService service, AssumedEntities entities,
                                                                                   HashSet<Type> currentlyProcessingPreReqs)
         {
-            if (_assumedEntities != null
-                && _assumedEntities != assumedEntities)
-            {
-                throw new Exception("AssumedEntities must be the same!");
-            }
-            _assumedEntities = assumedEntities;
-            _currentlyProcessingPreReqs = currentlyProcessingPreReqs;
             var type = GetType();
 
-            if (_assumedEntities.Contains(this))
+            if (entities.Contains(this))
             {
                 return;
             }
-            if (_currentlyProcessingPreReqs.Contains(type))
+            if (currentlyProcessingPreReqs.Contains(type))
             {
-                ThrowErrorPreventingInfiniteLoop(type);
+                ThrowErrorPreventingInfiniteLoop(type, currentlyProcessingPreReqs);
             }
-            _currentlyProcessingPreReqs.Add(type);
-            AddPrerequisiteAssumptions(service);
-            AddAssumedEntitiesInternal(service);
-            _currentlyProcessingPreReqs.Remove(type);
+            currentlyProcessingPreReqs.Add(type);
+            AddPrerequisiteAssumptions(service, entities, currentlyProcessingPreReqs);
+            AddAssumedEntitiesInternal(service, entities);
+            currentlyProcessingPreReqs.Remove(type);
         }
 
-        private void ThrowErrorPreventingInfiniteLoop(Type type)
+        private void ThrowErrorPreventingInfiniteLoop(Type type, HashSet<Type> currentlyProcessingPreReqs)
         {
-            if (_currentlyProcessingPreReqs.Count == 1)
+            if (currentlyProcessingPreReqs.Count == 1)
             {
                 throw new Exception($"Prerequisite Assumption Loop!  {type} called itself!");
             }
             var sb = new StringBuilder();
-            sb.Append(_currentlyProcessingPreReqs.First().Name + " called " + _currentlyProcessingPreReqs.Skip(1).First().Name);
-            foreach (var prereq in _currentlyProcessingPreReqs.Skip(2))
+            sb.Append(currentlyProcessingPreReqs.First().Name + " called " + currentlyProcessingPreReqs.Skip(1).First().Name);
+            foreach (var prereq in currentlyProcessingPreReqs.Skip(2))
             {
                 sb.Append(" which called " + prereq.Name);
             }
@@ -194,36 +123,29 @@ namespace DLaB.Xrm.Test.Assumptions
         /// Internal Implementation of Adds Assumed Entities.
         /// </summary>
         /// <param name="service">The service.</param>
-        protected virtual void AddAssumedEntitiesInternal(IOrganizationService service)
+        /// <param name="entities">The Assumed Entities processed so far.</param>
+        protected virtual void AddAssumedEntitiesInternal(IOrganizationService service, AssumedEntities entities)
         {
             var entity = PreviouslyRetrievedEntity;
             if (entity == null)
             {
                 entity = RetrieveEntity(service);
-                PreviouslyRetrievedEntity = entity;
+                if (entity != null)
+                {
+                    PreviouslyRetrievedEntity = entity; 
+                }
             }
-            entity = VerifyAssumption(service, entity);
-            _assumedEntities.Add(this, entity);
+            entity = VerifyAssumption(service, entities, entity);
+            entities.Add(this, entity);
         }
 
-
-        /// <summary>
-        /// Adds the assumed entity.
-        /// </summary>
-        /// <param name="service">The service.</param>
-        /// <param name="assumption">The assumption.</param>
-        protected void AddAssumedEntity(IOrganizationService service, EntityDataAssumptionBaseAttribute assumption)
-        {
-            assumption.AddAssumedEntitiesWithPreReqInfiniteLoopPrevention(service, _assumedEntities, _currentlyProcessingPreReqs);
-        }
-
-        private void AddPrerequisiteAssumptions(IOrganizationService service)
+        private void AddPrerequisiteAssumptions(IOrganizationService service, AssumedEntities entities, HashSet<Type> currentlyProcessingPreReqs)
         {
             foreach (var assumption in Prerequisites.Select(prereq => (EntityDataAssumptionBaseAttribute)Activator.CreateInstance(prereq))
-                                                    .Where(a => !_assumedEntities.Contains(a)))
+                                                    .Where(a => !entities.Contains(a)))
             {
 
-                assumption.AddAssumedEntitiesWithPreReqInfiniteLoopPrevention(service, _assumedEntities, _currentlyProcessingPreReqs);
+                assumption.AddAssumedEntitiesWithPreReqInfiniteLoopPrevention(service, entities, currentlyProcessingPreReqs);
             }
         }
 
@@ -234,25 +156,29 @@ namespace DLaB.Xrm.Test.Assumptions
         /// to deserialize
         /// </summary>
         /// <param name="service"></param>
+        /// <param name="entities"></param>
         /// <param name="entity"></param>
-        private Entity VerifyAssumption(IOrganizationService service, Entity entity)
+        private Entity VerifyAssumption(IOrganizationService service, AssumedEntities entities, Entity entity)
         {
             if (entity == null)
             {
+                var xmlPath = GetSerializedFilePath(AssumptionsNamespaceRelativePath);
                 var mock = service as FakeIOrganizationService;
                 // If the service is a Mock, get the Actual Service to determine if it is local or not...
                 if (
                     (mock != null && !(mock.ActualService is LocalCrmDatabaseOrganizationService)) ||
                     (mock == null && !(service is LocalCrmDatabaseOrganizationService)) ||
-                    FileIsNullOrEmpty(GetSerializedFilePath(AssumptionsNamespaceRelativePath)))
+                    FileIsNullOrEmpty(xmlPath))
                 {
-                    throw new Exception($"Assumption {AssumptionsNamespaceRelativePath} was invalid!  The entity assumed to be there, was not found.");
+                    throw new Exception($"Assumption {AssumptionsNamespaceRelativePath} was invalid!  The entity assumed to be there, was not found and no Xml file was found at {xmlPath}.");
                 }
 
                 entity = GetTestEntityFromXml(AssumptionsNamespaceRelativePath);
                 var localService = mock == null ? (LocalCrmDatabaseOrganizationService)service : (LocalCrmDatabaseOrganizationService)mock.ActualService;
-                var isSelfReferencing = CreateForeignReferences(localService, entity);
-                if (isSelfReferencing)
+                var isSelfReferencing = CreateForeignReferences(localService, entities, entity);
+                if (isSelfReferencing 
+                    || entity.Id != Guid.Empty
+                    && entities.AlreadyCreatedAsEntityReference(entity.Id))
                 {
                     service.Update(entity);
                 }
@@ -273,8 +199,9 @@ namespace DLaB.Xrm.Test.Assumptions
         /// Creates all foreign references that don't exist.  This is usually due to the serialization grabbing more values than actually needed.
         /// </summary>
         /// <param name="service"></param>
+        /// <param name="entities"></param>
         /// <param name="entity"></param>
-        private bool CreateForeignReferences(LocalCrmDatabaseOrganizationService service, Entity entity)
+        private bool CreateForeignReferences(LocalCrmDatabaseOrganizationService service, AssumedEntities entities, Entity entity)
         {
             var isSelfReferencing = false;
             var toRemove = new List<string>();
@@ -299,7 +226,7 @@ namespace DLaB.Xrm.Test.Assumptions
 
                 if (service.GetEntitiesById(foreign.LogicalName, foreign.Id).Count == 0)
                 {
-                    service.Create(new Entity { Id = foreign.Id, LogicalName = foreign.LogicalName });
+                    entities.AddCreatedEntityReference(service.Create(new Entity { Id = foreign.Id, LogicalName = foreign.LogicalName }));
                 }
             }
 
@@ -324,7 +251,17 @@ namespace DLaB.Xrm.Test.Assumptions
                 fileName = fileName + ".xml";
             }
 
-            return Path.Combine(TestSettings.AssumptionXmlPath.Value, fileName);
+            // Check for normal path
+            var path = Path.Combine(TestSettings.AssumptionXmlPath.Value, fileName);
+            if (File.Exists(path))
+            {
+                return path;
+            }
+            // Check for bin directory
+            var binPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+            return File.Exists(binPath)
+                ? binPath
+                : path;
         }
 
         private static bool FileIsNullOrEmpty(string filePath)

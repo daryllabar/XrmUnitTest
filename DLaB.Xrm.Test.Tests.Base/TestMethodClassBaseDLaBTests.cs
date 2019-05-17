@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using XrmUnitTest.Test;
+using XrmUnitTest.Test.Assumptions;
 
 namespace DLaB.Xrm.Test.Tests
 {
@@ -77,5 +78,51 @@ namespace DLaB.Xrm.Test.Tests
         }
 
         #endregion TestService_Should_ForceIdsToBeDefined
+
+        #region AssumptionParentFirst_Should_LoadAssumptions
+
+        [TestMethod]
+        public void TestMethodClassBaseDLaB_AssumptionParentFirst_Should_LoadAssumptions()
+        {
+            new AssumptionParentFirst_Should_LoadAssumptions().Test();
+        }
+
+        [AccountDefault]
+        [ContactDefault]
+        private class AssumptionParentFirst_Should_LoadAssumptions : TestMethodClassBase
+        {
+            protected override void Test(IOrganizationService service)
+            {
+                var account = service.GetEntity<Account>(AssumedEntities.Get<AccountDefault>().Id);
+                Assert.AreEqual("Default Account", account.Name);
+                var contact = service.GetEntity<Contact>(AssumedEntities.Get<ContactDefault>().Id);
+                Assert.AreEqual("Default Contact", contact.FirstName + " " + contact.LastName);
+            }
+        }
+
+        #endregion AssumptionParentFirst_Should_LoadAssumptions
+
+        #region AssumptionChildFirst_Should_LoadAssumptions
+
+        [TestMethod]
+        public void TestMethodClassBaseDLaB_AssumptionChildFirst_Should_LoadAssumptions()
+        {
+            new AssumptionChildFirst_Should_LoadAssumptions().Test();
+        }
+
+        [ContactDefault]
+        [AccountDefault]
+        private class AssumptionChildFirst_Should_LoadAssumptions : TestMethodClassBase
+        {
+            protected override void Test(IOrganizationService service)
+            {
+                var account = service.GetEntity<Account>(AssumedEntities.Get<AccountDefault>().Id);
+                Assert.AreEqual("Default Account", account.Name);
+                var contact = service.GetEntity<Contact>(AssumedEntities.Get<ContactDefault>().Id);
+                Assert.AreEqual("Default Contact", contact.FirstName + " " + contact.LastName);
+            }
+        }
+
+        #endregion AssumptionChildFirst_Should_LoadAssumptions
     }
 }

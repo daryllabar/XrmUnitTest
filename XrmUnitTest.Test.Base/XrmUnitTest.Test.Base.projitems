@@ -12,6 +12,8 @@
     <None Include="$(MSBuildThisFileDirectory)app.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Assumptions\AccountDefault.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assumptions\ContactDefault.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\CrmEnvironmentBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\EntityBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\LeadBuilder.cs" />
@@ -25,6 +27,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)TestMethodClassBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Assumptions\Entity Xml\" />
+    <Content Include="$(MSBuildThisFileDirectory)Assumptions\Entity Xml\ContactDefault.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Assumptions\Entity Xml\AccountDefault.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

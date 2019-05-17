@@ -11,6 +11,7 @@ namespace DLaB.Xrm.Test.Assumptions
     public class AssumedEntities
     {
         private ConcurrentDictionary<string, Entity> InternalStore { get; }
+        private ConcurrentDictionary<Guid, Guid> CreatedAsEntityReferences { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AssumedEntities"/> class.
@@ -18,6 +19,7 @@ namespace DLaB.Xrm.Test.Assumptions
         public AssumedEntities()
         {
             InternalStore = new ConcurrentDictionary<string, Entity>();
+            CreatedAsEntityReferences = new ConcurrentDictionary<Guid, Guid>();
         }
 
         private static string GetKey<T>() where T : EntityDataAssumptionBaseAttribute
@@ -120,6 +122,16 @@ namespace DLaB.Xrm.Test.Assumptions
         public bool Add<T>(Entity entity) where T : EntityDataAssumptionBaseAttribute
         {
             return Add(GetKey<T>(), entity);
+        }
+
+        internal bool AlreadyCreatedAsEntityReference(Guid id)
+        {
+            return CreatedAsEntityReferences.ContainsKey(id);
+        }
+
+        internal void AddCreatedEntityReference(Guid id)
+        {
+            CreatedAsEntityReferences.TryAdd(id, id);
         }
 
         /// <summary>

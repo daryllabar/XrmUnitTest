@@ -3,9 +3,13 @@ using System.Diagnostics;
 
 namespace DLaB.Xrm.Test
 {
+
     /// <summary>
     /// Timer class for timing actions during a test
     /// </summary>
+#if !DEBUG_XRM_UNIT_TEST_CODE
+    [DebuggerNonUserCode]
+#endif
     public class TestActionTimer
     {
         /// <summary>

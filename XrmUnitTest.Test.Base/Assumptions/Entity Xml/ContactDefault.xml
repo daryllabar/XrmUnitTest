@@ -1,0 +1,24 @@
+﻿<Entity xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="1" z:Type="Microsoft.Xrm.Sdk.Entity" z:Assembly="Microsoft.Xrm.Sdk, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.microsoft.com/xrm/2011/Contracts">
+  <Attributes z:Id="2" xmlns:d2p1="http://schemas.datacontract.org/2004/07/System.Collections.Generic" xmlns="http://schemas.microsoft.com/xrm/2011/Contracts">
+    <KeyValuePairOfstringanyType>
+      <d2p1:key z:Id="3">firstname</d2p1:key>
+      <d2p1:value z:Id="4" z:Type="System.String" z:Assembly="0">Default</d2p1:value>
+    </KeyValuePairOfstringanyType>
+    <KeyValuePairOfstringanyType>
+      <d2p1:key z:Id="5">lastname</d2p1:key>
+      <d2p1:value z:Id="6" z:Type="System.String" z:Assembly="0">Contact</d2p1:value>
+    </KeyValuePairOfstringanyType>
+    <KeyValuePairOfstringanyType>
+      <d2p1:key z:Id="7">contactid</d2p1:key>
+      <d2p1:value z:Id="8" z:Type="System.Guid" z:Assembly="0">f437a25e-8d81-e511-80e1-3863bb367dc0</d2p1:value>
+    </KeyValuePairOfstringanyType>
+  </Attributes>
+  <EntityState i:nil="true" xmlns="http://schemas.microsoft.com/xrm/2011/Contracts" />
+  <FormattedValues z:Id="9" xmlns:d2p1="http://schemas.datacontract.org/2004/07/System.Collections.Generic" xmlns="http://schemas.microsoft.com/xrm/2011/Contracts">
+  </FormattedValues>
+  <Id xmlns="http://schemas.microsoft.com/xrm/2011/Contracts">f437a25e-8d81-e511-80e1-3863bb367dc0</Id>
+  <KeyAttributes xmlns:d2p1="http://schemas.microsoft.com/xrm/7.1/Contracts" z:Id="10" xmlns:d2p2="http://schemas.datacontract.org/2004/07/System.Collections.Generic" xmlns="http://schemas.microsoft.com/xrm/2011/Contracts" />
+  <LogicalName z:Id="11" xmlns="http://schemas.microsoft.com/xrm/2011/Contracts">contact</LogicalName>
+  <RelatedEntities z:Id="12" xmlns:d2p1="http://schemas.datacontract.org/2004/07/System.Collections.Generic" xmlns="http://schemas.microsoft.com/xrm/2011/Contracts" />
+  <RowVersion z:Id="13" xmlns="http://schemas.microsoft.com/xrm/2011/Contracts">5966730</RowVersion>
+</Entity>

@@ -19,10 +19,8 @@ using NMemory.Tables;
 
 namespace DLaB.Xrm.LocalCrm
 {
-#if !DEBUG_LOCAL_CRM_CODE
-using System.Diagnostics;
-
-    [DebuggerNonUserCode]
+#if !DEBUG_XRM_UNIT_TEST_CODE
+    [System.Diagnostics.DebuggerNonUserCode]
 #endif
     internal partial class LocalCrmDatabase : Database
     {

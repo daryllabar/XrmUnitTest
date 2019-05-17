@@ -34,6 +34,9 @@ namespace DLaB.Xrm.Test
     ///     };
     /// }
     /// </summary>
+#if !DEBUG_XRM_UNIT_TEST_CODE
+    [DebuggerNonUserCode]
+#endif
     public class FakeIOrganizationService : ClientSideOrganizationService
     {
         #region IOrganizationService Mocks
