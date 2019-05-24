@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>XrmUnitTest.2015</id>
-    <version>2.2.0.11</version>
+    <version>2.2.0.12</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <license type="expression">MIT</license>
@@ -10,6 +10,10 @@
     <iconUrl>https://raw.githubusercontent.com/daryllabar/XrmUnitTest/master/DLaB_Dynamics_64x64.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Contains Xrm Unit Testing Library</description>
+	  <frameworkAssemblies>
+	    <frameworkAssembly assemblyName="Microsoft.CSharp" />
+        <frameworkAssembly assemblyName="System.Configuration" />
+	  </frameworkAssemblies>
     <releaseNotes></releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>Dynamics CRM 2015 Plugin XRM UnitTest</tags>
@@ -24,10 +28,6 @@
         <dependency id="Microsoft.IdentityModel" version="6.1.7600.16394" />
       </group>
     </dependencies>
-	<frameworkAssemblies>
-	  <frameworkAssembly assemblyName="Microsoft.CSharp" />
-      <frameworkAssembly assemblyName="System.Configuration" />
-	</frameworkAssemblies>
   </metadata>
   <files>
     <file src="bin\Release\XrmUnitTest.2015.dll" target="lib\net452" />

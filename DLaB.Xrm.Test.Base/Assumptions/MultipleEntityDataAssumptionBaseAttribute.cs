@@ -29,13 +29,12 @@ namespace DLaB.Xrm.Test.Assumptions
         /// Returns the entities assumed to exist.
         /// </summary>
         /// <param name="service"></param>
-        /// <param name="entities"></param>
         /// <returns></returns>
-        protected override void AddAssumedEntitiesInternal(IOrganizationService service, AssumedEntities entities)
+        protected override void AddAssumedEntitiesInternal(IOrganizationService service)
         {
             foreach (var assumption in GetAssumptions())
             {
-                assumption.AddAssumedEntities(service, entities);
+                assumption.AddAssumedEntities(service, Assumptions);
             }
         }
     }
