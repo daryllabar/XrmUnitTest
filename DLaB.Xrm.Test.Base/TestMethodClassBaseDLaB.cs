@@ -22,7 +22,7 @@ namespace DLaB.Xrm.Test
 {
     // ReSharper disable once InconsistentNaming
     /// <summary>
-    /// A Default Unit Test Class that handles Auto-wiring up creation of the IOrganziationService, and creation/deletion of data, and assumptions
+    /// A Default Unit Test Class that handles Auto-wiring up creation of the IOrganizationService, and creation/deletion of data, and assumptions
     /// </summary>
     public abstract class TestMethodClassBaseDLaB
     {

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Activities;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Dynamic;
+using System.Linq;
 using System.Reflection;
 using Microsoft.Xrm.Sdk;
 
@@ -111,6 +112,80 @@ namespace DLaB.Xrm.Test
                 {
                     yield return id;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Returns the Ids Struct from a type as a dynamic object.  This allows for a base class to use the Ids defined by the child class.
+        /// </summary>
+        /// <typeparam name="T">The Type to lookup the ids struct for.</typeparam>
+        /// <returns></returns>
+        public static dynamic GetIdsForType<T>()
+        {
+            return GetIdsForType(typeof(T));
+        }
+
+        /// <summary>
+        /// Returns the Ids Struct from the given type as a dynamic object.
+        /// </summary>
+        /// <param name="type">The Type to lookup the ids struct for.</param>
+        /// <returns></returns>
+        public static dynamic GetIdsForType(Type type)
+        {
+            var ids = (ICollection<KeyValuePair<string, object>>)new ExpandoObject();
+            foreach (var id in type.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic)
+                                        .SelectMany(GetIdsWithName))
+            {
+                ids.Add(id);
+            }
+
+            return ids;
+        }
+
+        private static IEnumerable<KeyValuePair<string, object>> GetIdsWithName(Type type)
+        {
+            var idType = typeof(Id);
+
+            if (type.IsDefined(typeof(System.Runtime.CompilerServices.CompilerGeneratedAttribute)))
+            {
+                // lambda enclosures will generate display classes.  This could be of type Id, but static, not instance, causing errors.
+                yield break;
+            }
+
+            foreach (var field in type.GetFields().Where(field => idType.IsAssignableFrom(field.FieldType)))
+            {
+                yield return new KeyValuePair<string, object>(field.Name, GetValue(field));
+            }
+
+            foreach (var nestedType in type.GetNestedTypes())
+            {
+                var nested = new ExpandoObject();
+                var ids = (ICollection<KeyValuePair<string, object>>)nested;
+                foreach (var id in type.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic)
+                                       .SelectMany(GetIdsWithName))
+                {
+                    ids.Add(id);
+                }
+                yield return new KeyValuePair<string, object>(nestedType.Name, nested);
+            }
+        }
+
+        [DebuggerHidden]
+        private static Id GetValue(FieldInfo field)
+        {
+            try
+            {
+                return (Id)field.GetValue(null);
+            }
+            catch (TargetInvocationException ex)
+            {
+                if (ex.InnerException?.InnerException != null)
+                {
+                    Exception innerException = ex.InnerException.InnerException;
+                    if (innerException.Message.Contains("\"Entity\" is not a valid entity name"))
+                        throw innerException;
+                }
+                throw;
             }
         }
 

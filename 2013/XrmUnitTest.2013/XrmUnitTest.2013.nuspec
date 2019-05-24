@@ -26,6 +26,10 @@
         <dependency id="WindowsAzure.ServiceBus" version="2.1.2.0" />
       </group>
     </dependencies>
+	<frameworkAssemblies>
+	  <frameworkAssembly assemblyName="Microsoft.CSharp" />
+      <frameworkAssembly assemblyName="System.Configuration" />
+	</frameworkAssemblies>
   </metadata>
   <files>
     <file src="bin\Release\XrmUnitTest.2013.dll" target="lib\net452" />
