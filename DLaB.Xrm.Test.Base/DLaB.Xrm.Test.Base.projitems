@@ -51,6 +51,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Settings\NamespaceSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\PathSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\TestFrameworkProviderSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StubOrganizationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestActionTimer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestMethodClassBaseDLaB.cs" />

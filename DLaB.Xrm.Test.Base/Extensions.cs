@@ -45,7 +45,7 @@ namespace DLaB.Xrm.Test
         public static List<QueryExpression> GetExecutedQueryExpressions(this Action<IOrganizationService> action)
         {
             var expressions = new List<QueryExpression>();
-            var mock = new FakeIOrganizationService(null)
+            var mock = new FakeIOrganizationService(new StubOrganizationService())
             {
                 AssociateAction = (s, name, id, rel, entities) => { },
                 CreateFunc = (s, entity) => Guid.Empty,
