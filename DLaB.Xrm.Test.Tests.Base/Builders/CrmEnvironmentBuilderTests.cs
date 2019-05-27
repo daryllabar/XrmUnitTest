@@ -5,6 +5,7 @@ using DLaB.Xrm.Test.Builders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using XrmUnitTest.Test;
+using XrmUnitTest.Test.Builders;
 
 namespace DLaB.Xrm.Test.Tests.Builders
 {
@@ -34,8 +35,8 @@ namespace DLaB.Xrm.Test.Tests.Builders
             // The Account and Incident will be added as Account first, and Incident second. 
             // The Lead will force a reorder and the Account incident would normally get placed after the Incident
             var builder = new DLaBCrmEnvironmentBuilder().
-                WithChildEntities(account, incident).
-                WithEntities(lead);
+                          WithChildEntities(account, incident).
+                          WithEntities(lead);
 
             //
             // Act
@@ -69,8 +70,8 @@ namespace DLaB.Xrm.Test.Tests.Builders
             // The Account and Incident will be added as Account first, and Incident second. 
             // The Lead will force a reorder and the Account incident would normally get placed after the Incident
             var builder = new DLaBCrmEnvironmentBuilder().
-                WithChildEntities(contact, account).
-                WithChildEntities(account, contact);
+                          WithChildEntities(contact, account).
+                          WithChildEntities(account, contact);
 
             //
             // Act
@@ -106,8 +107,8 @@ namespace DLaB.Xrm.Test.Tests.Builders
             // The Account and Incident will be added as Account first, and Incident second. 
             // The Lead will force an reorder and the Account incident would normally get placed after the Incident
             var builder = new DLaBCrmEnvironmentBuilder().
-                WithEntities(new Id<PhoneCall>(Guid.NewGuid()), incident, account).
-                WithChildEntities(account, incident);
+                          WithEntities(new Id<PhoneCall>(Guid.NewGuid()), incident, account).
+                          WithChildEntities(account, incident);
 
             //
             // Act
@@ -162,8 +163,8 @@ namespace DLaB.Xrm.Test.Tests.Builders
             // Act
             //
             var builder = new DLaBCrmEnvironmentBuilder().
-                WithEntities<Ids>().
-                ExceptEntities<Ids.Nested>();
+                          WithEntities<Ids>().
+                          ExceptEntities<Ids.Nested>();
             builder.Create(service);
 
             //
@@ -189,7 +190,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
                 Id = id,
                 ParentAccountId = new EntityReference(Account.EntityLogicalName, id)
             };
-            
+
             //
             // Act
             //
@@ -329,7 +330,40 @@ namespace DLaB.Xrm.Test.Tests.Builders
         }
 
 
-        private class MyLeadBuilder : EntityBuilder<Lead>
+        [TestMethod]
+        public void CrmEnvironmentBuilder_Create_WithMultipleChildEntities_Should_CreateEntities()
+        { 
+
+            //
+            // Arrange
+            //
+            var account = new Id<Account>("2b9631fd-c402-490d-8276-0a0e0ff3ba2f");
+            var contact = new Id<Contact>("2b9631fd-c402-490d-8276-0a0e0ff3ba2e");
+            var lead = new Id<Lead>("2b9631fd-c402-490d-8276-0a0e0ff3ba2d");
+            var opportunity = new Id<Opportunity>("2b9631fd-c402-490d-8276-0a0e0ff3ba2c");
+
+            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+
+            //
+            // Act
+            //
+            new CrmEnvironmentBuilder()
+                .WithChildEntities(lead, opportunity)
+                .WithChildEntities(lead, contact)
+                .WithChildEntities(account, contact)
+                .Create(service);
+
+            //
+            // Assert
+            //
+            AssertCrm.Exists(service, lead);
+            AssertCrm.Exists(service, contact);
+            AssertCrm.Exists(service, account);
+            AssertCrm.Exists(service, opportunity);
+        }
+
+
+        private class MyLeadBuilder : Test.Builders.EntityBuilder<Lead>
         {
             public Lead Lead { get; set; }
 
@@ -364,9 +398,9 @@ namespace DLaB.Xrm.Test.Tests.Builders
             }
         }
 
-        public abstract class MyGenericBuilder<TEntity> : EntityBuilder<TEntity> where TEntity : Entity
+        public abstract class MyGenericBuilder<TEntity> : Test.Builders.EntityBuilder<TEntity> where TEntity : Entity
         {
-            
+
         }
 
         private class MyOtherBuilder : MyGenericBuilder<Lead>
