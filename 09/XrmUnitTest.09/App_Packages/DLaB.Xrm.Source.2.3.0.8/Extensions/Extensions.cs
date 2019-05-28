@@ -2135,7 +2135,7 @@ namespace Source.DLaB.Xrm
         #region PropertyInfo
 
         /// <summary>
-        /// Gets the logical attribute name of the given properyt.  Assumes that the property contains an AttributeLogicalNameAttribute
+        /// Gets the logical attribute name of the given property.  Assumes that the property contains an AttributeLogicalNameAttribute
         /// </summary>
         /// <param name="property">The property.</param>
         /// <param name="throwIfNotFound">Throws an error if the property does not contain an AttributeLogicalNameAttribute</param>

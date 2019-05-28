@@ -666,7 +666,7 @@ namespace DLaB.Xrm.LocalCrm
                 {
                     property = properties.GetProperty(osvAttribute.Key);
                 }
-                else if (!properties.PropertiesByLowerCaseName.TryGetValue(osvAttribute.Key + "enum", out property))
+                else if (!properties.PropertiesByLowerCaseName.TryGetValue(osvAttribute.Key + "enum", out var lowerCaseProperties))
                 {
                     if (!(osvAttribute.Value is AliasedValue aliased))
                     {
@@ -674,12 +674,18 @@ namespace DLaB.Xrm.LocalCrm
                     }
                     // Handle Aliased Value
                     var aliasedDictionary = PropertiesCache.For(info, type, aliased.EntityLogicalName).PropertiesByLowerCaseName;
-                    if (!aliasedDictionary.TryGetValue(aliased.AttributeLogicalName + "enum", out property))
+                    if (!aliasedDictionary.TryGetValue(aliased.AttributeLogicalName + "enum", out lowerCaseProperties))
                     {
                         continue;
                     }
+
+                    property = lowerCaseProperties.First(p => p.PropertyType.GenericTypeArguments.Length >= 1);
                     entity.FormattedValues.Add(osvAttribute.Key, Enum.ToObject(property.PropertyType.GenericTypeArguments[0], ((OptionSetValue)aliased.Value).Value).ToString());
                     continue;
+                }
+                else
+                {
+                    property = lowerCaseProperties.First(p => p.PropertyType.GenericTypeArguments.Length >= 1);
                 }
                 entity.FormattedValues.Add(osvAttribute.Key, property.GetValue(entity).ToString());
             }
@@ -1061,7 +1067,7 @@ namespace DLaB.Xrm.LocalCrm
         /// <param name="entity">The entity.</param>
         private static void SimulateCrmAttributeManipulations<T>(T entity) where T : Entity
         {
-            var properties = typeof(T).GetProperties().ToDictionary(p => p.Name.ToLower());
+            var properties = typeof(T).GetProperties().GroupBy(p => p.Name.ToLower()).ToDictionary(p => p.Key, p => p.ToList());
             foreach (var key in entity.Attributes.Keys.ToList())
             {
                 ConvertEntityArrayToEntityCollection(entity, key, properties);
@@ -1104,15 +1110,15 @@ namespace DLaB.Xrm.LocalCrm
         /// <param name="entity">The entity.</param>
         /// <param name="key">The key.</param>
         /// <param name="properties">The properties.</param>
-        private static void ConvertEntityArrayToEntityCollection<T>(T entity, string key, Dictionary<string, PropertyInfo> properties) where T : Entity
+        private static void ConvertEntityArrayToEntityCollection<T>(T entity, string key, Dictionary<string, List<PropertyInfo>> properties) where T : Entity
         {
             if (!(entity[key] is Array value) || value.Length == 0)
             {
                 return;
             }
-            var prop = properties[key];
+            var prop = properties[key].FirstOrDefault(p => p.PropertyType.GetGenericArguments().Count() >= 0);
             // ReSharper disable once SuspiciousTypeConversion.Global
-            if (value is IEnumerable<Entity> && IsSameOrSubclass(typeof(Entity), prop.PropertyType.GetGenericArguments()[0]))
+            if (prop != null && value is IEnumerable<Entity> && IsSameOrSubclass(typeof(Entity), prop.PropertyType.GetGenericArguments()[0]))
             {
                 var entities = new EntityCollection();
                 foreach (var att in value)

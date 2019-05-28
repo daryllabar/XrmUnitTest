@@ -9,7 +9,7 @@ namespace DLaB.Xrm.LocalCrm
     internal class EntityProperties
     {
         public Dictionary<string, PropertyInfo> PropertiesByName { get; private set; }
-        public Dictionary<string, PropertyInfo> PropertiesByLowerCaseName { get; private set; }
+        public Dictionary<string,List<PropertyInfo>> PropertiesByLowerCaseName { get; private set; }
         public Dictionary<string, PropertyInfo> PropertiesByLogicalName { get; private set; }
         public string EntityName { get; private set; }
 
@@ -57,7 +57,7 @@ namespace DLaB.Xrm.LocalCrm
                                                     .GroupBy(k => k.Key, p => p.Property)
                                                     .Select(g => new { g.Key, Property = g.FirstOrDefault()})
                                                     .ToDictionary(k => k.Key, p => p.Property),
-                PropertiesByLowerCaseName = properties.ToDictionary(v => v.Key.ToLower(), v => v.Value)
+                PropertiesByLowerCaseName = properties.GroupBy(v => v.Key.ToLower(), v => v.Value).ToDictionary(v => v.Key, v => v.ToList())
             };
 
             return entity;
