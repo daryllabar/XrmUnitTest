@@ -682,6 +682,47 @@ namespace DLaB.Xrm.Test
 
         #endregion IOrganizationService
 
+        #region IServiceProvider
+
+        /// <summary>
+        /// Loads the given OrganizationRequest from the input parameters of the IPluginExecutionContext.
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <typeparam name="T">Organization Response</typeparam>
+        /// <returns></returns>
+        public static T GetRequest<T>(this IServiceProvider provider) where T : OrganizationRequest, new()
+        {
+            var request = Activator.CreateInstance<T>();
+            var context = provider.GetService<IPluginExecutionContext>();
+            if(context == null)
+            {
+                throw new ArgumentException("The IServiceProvider did not contain an IPluginExecutionContext");
+            }
+            request.Parameters = context.InputParameters;
+            return request;
+        }
+
+        /// <summary>
+        /// Loads the given OrganizationResponse from the output parameters of the IPluginExecutionContext.
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <typeparam name="T">Organization Response</typeparam>
+        /// <returns></returns>
+        public static T GetResponse<T>(this IServiceProvider provider) where T : OrganizationResponse, new()
+        {
+            var response = Activator.CreateInstance<T>();
+            var context = provider.GetService<IPluginExecutionContext>();
+            if (context == null)
+            {
+                throw new ArgumentException("The IServiceProvider did not contain an IPluginExecutionContext");
+            }
+            response.Results = context.OutputParameters;
+            return response;
+        }
+
+        #endregion IServiceProvider
+
+
         #region Object
 
         /// <summary>
