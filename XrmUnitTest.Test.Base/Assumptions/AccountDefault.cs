@@ -1,7 +1,7 @@
 ﻿using DLaB.Xrm.Entities;
 using DLaB.Xrm.Test.Assumptions;
 using Microsoft.Xrm.Sdk;
-using Source.DLaB.Xrm;
+using DLaB.Xrm;
 
 namespace XrmUnitTest.Test.Assumptions
 {
