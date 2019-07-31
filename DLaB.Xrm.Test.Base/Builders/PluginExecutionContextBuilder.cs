@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DLaB.Xrm.Plugin;
@@ -98,12 +97,17 @@ namespace DLaB.Xrm.Test.Builders
                     (PipelineStage)(int)e.Stage,
                     new MessageType(e.MessageName),
                     (string)e.EntityLogicalName);
-            };
+            }
 
-            var dynPlugin = (dynamic) plugin;
+            var prop = plugin.GetType().GetProperty("RegisteredEvents");
+            if (prop is null)
+            {
+                throw new NullReferenceException("Property RegisteredEvents did not exist on type " + plugin.GetType().FullName);
+            }
+            var events = (IEnumerable<dynamic>)prop.GetValue(plugin);
             var first = predicate == null
-                ? Map(((IEnumerable<dynamic>)dynPlugin.RegisteredEvents).FirstOrDefault())
-                : (((IEnumerable<dynamic>)dynPlugin.RegisteredEvents).Select(Map).FirstOrDefault(predicate));
+                ? Map(events.FirstOrDefault())
+                : (events.Select(Map).FirstOrDefault(predicate));
             if (first == null)
             {
                 throw new Exception("Plugin " + plugin.GetType().FullName + " does not contain any registered events!  Unable to set the registered event of the context.");
