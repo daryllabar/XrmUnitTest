@@ -8,6 +8,7 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
 using XrmUnitTest.Test;
+using AppConfig = DLaB.Xrm.Client.AppConfig;
 
 namespace DLaB.Xrm.LocalCrm.Tests
 {
@@ -163,6 +164,12 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.AreEqual(firstName, service.GetEntity<Contact>(contact.Id, cs).FirstName, "Failed to retrieve first name correctly");
             Assert.IsNull(service.GetEntity<Contact>(contact.Id, cs).LastName, "Last name was not requested, but was returned");
             Assert.AreEqual(firstName + " " + lastName, service.GetEntity<Contact>(contact.Id).FullName, "Full Name not populated correctly");
+
+            // Test L, F M format
+            AppConfig.CrmSystemSettings.FullNameFormat = "L, F M";
+            contact = new Contact {FirstName = firstName, LastName = lastName};
+            contact.Id = service.Create(contact);
+            Assert.AreEqual($"{lastName}, {firstName}", service.GetEntity<Contact>(contact.Id).FullName, "Full Name not populated correctly");
         }
 
         [TestMethod]

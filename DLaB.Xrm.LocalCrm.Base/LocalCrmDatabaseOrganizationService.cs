@@ -461,10 +461,8 @@ namespace DLaB.Xrm.LocalCrm
         private static string GetFullName(string firstName, string middleName, string lastName)
         {
             var fullNameFormat = AppConfig.CrmSystemSettings.FullNameFormat;
-            fullNameFormat = UpdateFormat(fullNameFormat, firstName, 'F');
-            fullNameFormat = UpdateFormat(fullNameFormat, lastName, 'L');
-            fullNameFormat = UpdateFormat(fullNameFormat, middleName, 'M');
-            fullNameFormat = UpdateFormat(fullNameFormat, middleName, 'I');
+            fullNameFormat = RemoveEmptyPartsFromFormat(firstName, middleName, lastName, fullNameFormat);
+
             fullNameFormat = fullNameFormat.Replace("F", "{0}");
             fullNameFormat = fullNameFormat.Replace("L", "{1}");
             fullNameFormat = fullNameFormat.Replace("M", "{2}");
@@ -475,6 +473,34 @@ namespace DLaB.Xrm.LocalCrm
                 (lastName ?? "").Trim(),
                 (middleName ?? "").Trim(),
                 ((middleName ?? " ").Trim() + " ")[0]); 
+        }
+
+        /// <summary>
+        /// If a part of the name is empty, it should have the spaces/punctuation removed.
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="middleName"></param>
+        /// <param name="lastName"></param>
+        /// <param name="fullNameFormat"></param>
+        /// <returns></returns>
+        private static string RemoveEmptyPartsFromFormat(string firstName, string middleName, string lastName, string fullNameFormat)
+        {
+            fullNameFormat = UpdateFormat(fullNameFormat, firstName, 'F');
+            fullNameFormat = UpdateFormat(fullNameFormat, lastName, 'L');
+            fullNameFormat = UpdateFormat(fullNameFormat, middleName, 'M');
+            fullNameFormat = UpdateFormat(fullNameFormat, middleName, 'I');
+            while (fullNameFormat.EndsWith(" ")
+                || fullNameFormat.EndsWith(","))
+            {
+                if (fullNameFormat.EndsWith(","))
+                {
+                    fullNameFormat = fullNameFormat.Remove(fullNameFormat.Length - 1);
+                }
+
+                fullNameFormat = fullNameFormat.TrimEnd();
+            }
+
+            return fullNameFormat;
         }
 
         /// <summary>

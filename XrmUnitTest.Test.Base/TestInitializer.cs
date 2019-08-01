@@ -7,10 +7,13 @@ using Microsoft.Xrm.Sdk;
 namespace XrmUnitTest.Test
 {
     /// <summary>
-    /// Class to Initalize all TestSettings used by the Framework
+    /// Class to Initialize all TestSettings used by the Framework
     /// </summary>
     public class TestInitializer
     {
+        /// <summary>
+        /// Configures all XrmUnitTest Settings
+        /// </summary>
         public static void InitializeTestSettings()
         {
             if (!TestSettings.AssumptionXmlPath.IsConfigured)
