@@ -166,9 +166,17 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.AreEqual(firstName + " " + lastName, service.GetEntity<Contact>(contact.Id).FullName, "Full Name not populated correctly");
 
             // Test L, F M format
-            AppConfig.CrmSystemSettings.FullNameFormat = "L, F M";
-            contact = new Contact {FirstName = firstName, LastName = lastName};
-            contact.Id = service.Create(contact);
+            var defaultFormat = AppConfig.CrmSystemSettings.FullNameFormat;
+            try
+            {
+                AppConfig.CrmSystemSettings.FullNameFormat = "L, F M";
+                contact = new Contact {FirstName = firstName, LastName = lastName};
+                contact.Id = service.Create(contact);
+            }
+            finally
+            {
+                AppConfig.CrmSystemSettings.FullNameFormat = defaultFormat;
+            }
             Assert.AreEqual($"{lastName}, {firstName}", service.GetEntity<Contact>(contact.Id).FullName, "Full Name not populated correctly");
         }
 
