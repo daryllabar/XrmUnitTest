@@ -39,20 +39,23 @@ namespace DLaB.Xrm.Test.Assumptions
         /// <param name="type">The type that has EntityDataAssumptionBaseAttribute Attributes</param>
         public static AssumedEntities Load(IOrganizationService service, Type type)
         {
-            try
+
+            var assumedEntities = new AssumedEntities();
+            foreach (var entityAssumption in type.GetCustomAttributes(true)
+                                                 .Select(a => a as EntityDataAssumptionBaseAttribute)
+                                                 .Where(a => a != null))
             {
-                var assumedEntities = new AssumedEntities();
-                foreach (var entityAssumption in type.GetCustomAttributes(true).Select(a => a as EntityDataAssumptionBaseAttribute).Where(a => a != null))
+                try
                 {
                     entityAssumption.AddAssumedEntities(service, assumedEntities);
                 }
+                catch (Exception ex)
+                {
+                    throw new Exception($"There was an exception attempting to load assumption of type {entityAssumption.GetType().FullName}", ex);
+                }
+            }
 
-                return assumedEntities;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"There was an exception attempting to load assumption of type {type.FullName}", ex);
-            }
+            return assumedEntities;
         }
 
         /// <summary>

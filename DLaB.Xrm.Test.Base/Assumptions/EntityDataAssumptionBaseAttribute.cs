@@ -151,6 +151,7 @@ namespace DLaB.Xrm.Test.Assumptions
             foreach (var assumption in Prerequisites.Select(prereq => (EntityDataAssumptionBaseAttribute)Activator.CreateInstance(prereq))
                                                     .Where(a => !Assumptions.Contains(a)))
             {
+                assumption.Assumptions = Assumptions;
                 assumption.AddAssumedEntitiesWithPreReqInfiniteLoopPrevention(service, currentlyProcessingPreReqs);
             }
         }
