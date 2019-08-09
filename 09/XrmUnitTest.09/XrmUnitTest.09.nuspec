@@ -9,14 +9,14 @@
     <projectUrl>https://github.com/daryllabar/XrmUnitTest</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/daryllabar/XrmUnitTest/master/DLaB_Dynamics_64x64.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Contains CDS Unit Testing Library</description>
+    <description>Contains XRM/CDS Unit Testing Library</description>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="Microsoft.CSharp" />
       <frameworkAssembly assemblyName="System.Configuration" />
     </frameworkAssemblies>
     <releaseNotes></releaseNotes>
     <copyright>Copyright 2018</copyright>
-    <tags>Dynamics CRM v9 Plugin CDS UnitTest</tags>
+    <tags>Dynamics CRM v9 Plugin XRM CDS UnitTest</tags>
 	  <dependencies>
       <group targetFramework=".NETFramework4.6.2">
         <dependency id="Microsoft.CrmSdk.XrmTooling.CoreAssembly" version="9.0.2.27" />
