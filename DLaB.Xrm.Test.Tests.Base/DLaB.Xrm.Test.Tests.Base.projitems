@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)ActionServiceExtensionTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assumptions\AssumedEntitiesTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\CrmEnvironmentBuilderTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\OrganizationServiceBuilderTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\PluginExecutionContextBuilderTests.cs" />

@@ -33,25 +33,21 @@ namespace DLaB.Xrm.Test.Assumptions
         }
 
         /// <summary>
-        /// Validates the assumptions.
+        /// Validates the assumption attributes of the given type(s)
         /// </summary>
         /// <param name="service">The service.</param>
-        /// <param name="type">The type that has EntityDataAssumptionBaseAttribute Attributes</param>
-        public static AssumedEntities Load(IOrganizationService service, Type type)
+        /// <param name="types">The type(s) that has/have EntityDataAssumptionBaseAttribute Attributes</param>
+        public static AssumedEntities Load(IOrganizationService service, params Type[] types)
         {
 
             var assumedEntities = new AssumedEntities();
-            foreach (var entityAssumption in type.GetCustomAttributes(true)
-                                                 .Select(a => a as EntityDataAssumptionBaseAttribute)
-                                                 .Where(a => a != null))
+            foreach (var type in types)
             {
-                try
+                foreach (var entityAssumption in type.GetCustomAttributes(true)
+                                                     .Select(a => a as EntityDataAssumptionBaseAttribute)
+                                                     .Where(a => a != null))
                 {
-                    entityAssumption.AddAssumedEntities(service, assumedEntities);
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception($"There was an exception attempting to load assumption of type {entityAssumption.GetType().FullName}", ex);
+                    assumedEntities.Load(service, entityAssumption);
                 }
             }
 
@@ -156,6 +152,26 @@ namespace DLaB.Xrm.Test.Assumptions
         private bool Add(string key, Entity entity)
         {
             return InternalStore.TryAdd(key, entity);
+        }
+
+        /// <summary>
+        /// Validates the given assumption
+        /// </summary>
+        /// <param name="service">The service.</param>
+        /// <param name="entityAssumptions">EntityDataAssumptionBase objects</param>
+        public void Load(IOrganizationService service, params EntityDataAssumptionBaseAttribute[] entityAssumptions)
+        {
+            foreach (var entityAssumption in entityAssumptions)
+            {
+                try
+                {
+                    entityAssumption.AddAssumedEntities(service, this);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"There was an exception attempting to load assumption of type {entityAssumption.GetType().FullName}", ex);
+                }
+            }
         }
     }
 }
