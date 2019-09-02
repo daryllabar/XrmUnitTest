@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)CrmExceptions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DynamicQueryable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\ActivityParty.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\ActivityPointer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\BusinessUnit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Email.cs" />

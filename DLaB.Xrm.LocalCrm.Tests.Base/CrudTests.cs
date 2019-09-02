@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using DLaB.Xrm.CrmSdk;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.Test;
@@ -15,6 +16,35 @@ namespace DLaB.Xrm.LocalCrm.Tests
     [TestClass]
     public class CrudTests : BaseTestClass
     {
+        [TestMethod]
+        [SuppressMessage("ReSharper", "EmptyGeneralCatchClause")]
+        public void LocalCrmTests_Crud_ActivityPartyConstraints()
+        {
+            // Verify that linked items exist upon create
+            var service = GetService();
+            try
+            {
+                service.Create(new ActivityParty());
+                Assert.Fail("Direct creation of ActivityParty should not be allowed!");
+            }
+            catch (AssertFailedException) {  throw; }
+            catch { }
+            try
+            {
+                service.Update(new ActivityParty{ Id = Guid.NewGuid()});
+                Assert.Fail("Direct update of ActivityParty should not be allowed!");
+            }
+            catch (AssertFailedException) {  throw; }
+            catch { }
+            try
+            {
+                service.Delete(new ActivityParty{ Id = Guid.NewGuid()});
+                Assert.Fail("Direct deletion of ActivityParty should not be allowed!");
+            }
+            catch (AssertFailedException) {  throw; }
+            catch { }
+        }
+
         [TestMethod]
         public void LocalCrmTests_Crud_Advanced()
         {

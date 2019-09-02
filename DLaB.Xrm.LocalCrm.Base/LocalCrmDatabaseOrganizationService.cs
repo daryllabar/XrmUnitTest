@@ -163,6 +163,7 @@ namespace DLaB.Xrm.LocalCrm
         public Guid Create(Entity entity)
         {
             var typedEntity = entity;
+            AssertValidForOperation(entity, "Create");
             if (entity.GetType() == typeof(Entity))
             {
                 typedEntity = (Entity)InvokeGenericMethod<Entity>(entity, "ToEntity", null);
@@ -179,6 +180,7 @@ namespace DLaB.Xrm.LocalCrm
         [DebuggerStepThrough]
         public void Delete(string entityName, Guid id)
         {
+            AssertValidForOperation(entityName, "Delete");
             InvokeStaticGenericMethod(entityName, "Delete", this, id);
         }
 
@@ -309,6 +311,7 @@ namespace DLaB.Xrm.LocalCrm
         public void Update(Entity entity)
         {
             var typedEntity = entity;
+            AssertValidForOperation(entity, "Update");
             if (entity.GetType() == typeof(Entity))
             {
                 typedEntity = (Entity)InvokeGenericMethod<Entity>(entity, "ToEntity", null);
@@ -347,6 +350,7 @@ namespace DLaB.Xrm.LocalCrm
         }
 
         [DebuggerHidden]
+        // ReSharper disable once UnusedMember.Local
         private object InvokeStaticMultiGenericMethod(string logicalName1, string logicalName2, string methodName, params object[] parameters)
         {
             try
@@ -591,6 +595,21 @@ namespace DLaB.Xrm.LocalCrm
             else if (!willHaveAccount)
             {
                 entity["customerid"] = null;
+            }
+        }
+
+        [DebuggerHidden]
+        private void AssertValidForOperation(Entity entity, string operation)
+        {
+            AssertValidForOperation(entity.LogicalName, operation);
+        }
+
+        [DebuggerHidden]
+        private void AssertValidForOperation(string logicalName, string operation)
+        {
+            if (logicalName == ActivityParty.EntityLogicalName)
+            {
+                throw new Exception($"{logicalName} is invalid for {operation}.");
             }
         }
 
