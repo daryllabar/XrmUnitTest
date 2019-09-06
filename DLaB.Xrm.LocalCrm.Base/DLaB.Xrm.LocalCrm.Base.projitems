@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DynamicQueryable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\ActivityParty.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\ActivityPointer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Appointment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\BusinessUnit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Email.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Incident.cs" />
@@ -31,5 +32,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabaseOrganizationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabaseOrganizationServiceExecute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabaseStepThrough.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\ActivityParty_ParticipationTypeMask.cs" />
   </ItemGroup>
 </Project>

@@ -322,6 +322,17 @@ namespace DLaB.Xrm.LocalCrm
 
         #endregion
 
+        [DebuggerHidden]
+        internal Guid CreateActivityParty(Entity entity)
+        {
+            var typedEntity = entity;
+            if (entity.GetType() == typeof(Entity))
+            {
+                typedEntity = (Entity)InvokeGenericMethod<Entity>(entity, "ToEntity", null);
+            }
+            return (Guid)InvokeStaticGenericMethod(entity.LogicalName, "Create", this, typedEntity);
+        }
+
         /// <summary>
         /// Gets the type of the Entity.
         /// </summary>

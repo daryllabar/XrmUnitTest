@@ -10,6 +10,7 @@ using DLaB.Common;
 using DLaB.Xrm.CrmSdk;
 using DLaB.Xrm.LocalCrm.Entities;
 using DLaB.Xrm.LocalCrm.FetchXml;
+using DLaB.Xrm.LocalCrm.OptionSets;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
@@ -434,12 +435,13 @@ namespace DLaB.Xrm.LocalCrm
             }
 
             CreateActivityPointer(service, entity);
+            CreateActivityParties(service, entity);
 
             return entity.Id;
         }
 
         /// <summary>
-        /// Creates the activity pointer if the Entity is an Activty Type
+        /// Creates the activity pointer if the Entity is an Activity Type
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="service">The service.</param>
@@ -1152,6 +1154,69 @@ namespace DLaB.Xrm.LocalCrm
             entity[key] = time.RemoveMilliseconds();
         }
 
+        private static void CreateActivityParties<T>(LocalCrmDatabaseOrganizationService service, T entity) where T : Entity
+        {
+            foreach (var att in entity.Attributes.Where(a => a.Value is EntityCollection))
+            {
+                var entities = (EntityCollection) att.Value;
+                foreach (var party in entities.Entities.Where(p => p.LogicalName == ActivityParty.EntityLogicalName))
+                {
+                    if (party.GetAttributeValue<EntityReference>(ActivityParty.Fields.PartyId) == null)
+                    {
+                        throw new NullReferenceException("Activity Party PartyId was null");
+                    }
+
+                    party[ActivityParty.Fields.ActivityId] = entity.ToEntityReference();
+                    if (party.GetAttributeValue<object>(ActivityParty.Fields.ParticipationTypeMask) == null)
+                    {
+                        party[ActivityParty.Fields.ParticipationTypeMask] = MapFieldToParticipation(att.Key);
+                    }
+
+                    service.CreateActivityParty(party);
+                }
+            }
+        }
+
+        private static int MapFieldToParticipation(string field)
+        {
+            ActivityParty_ParticipationTypeMask value;
+            switch (field)
+            {
+                case Email.Fields.To:
+                    value = ActivityParty_ParticipationTypeMask.ToRecipient;
+                    break;
+                case Email.Fields.From:
+                    value = ActivityParty_ParticipationTypeMask.Sender;
+                    break;
+                case Email.Fields.Bcc:
+                    value = ActivityParty_ParticipationTypeMask.BCCRecipient;
+                    break;
+                case Email.Fields.Cc:
+                    value = ActivityParty_ParticipationTypeMask.CCRecipient;
+                    break;
+                case Appointment.Fields.RequiredAttendees:
+                    value = ActivityParty_ParticipationTypeMask.Requiredattendee;
+                    break;
+                case Appointment.Fields.RegardingObjectId:
+                    value = ActivityParty_ParticipationTypeMask.Regarding;
+                    break;
+                case Appointment.Fields.OptionalAttendees:
+                    value = ActivityParty_ParticipationTypeMask.Optionalattendee;
+                    break;
+                case Appointment.Fields.Organizer:
+                    value = ActivityParty_ParticipationTypeMask.Organizer;
+                    break;
+                case Appointment.Fields.OwnerId:
+                case Appointment.Fields.OwningUser:
+                    value = ActivityParty_ParticipationTypeMask.Owner;
+                    break;
+                default:
+                    throw new NotImplementedException($"Participation Type Mask for creation of ActivityParty field '{field}' not defined" );
+            }
+
+            return (int) value;
+        }
+
         public static bool IsSameOrSubclass(Type potentialBase, Type potentialDescendant)
         {
             return potentialDescendant.IsSubclassOf(potentialBase)
@@ -1198,6 +1263,7 @@ namespace DLaB.Xrm.LocalCrm
             SchemaGetOrCreate<T>(service.Info).Update(databaseValue);
 
             UpdateActivityPointer(service, databaseValue);
+            CreateActivityParties(service, entity);
         }
 
         private static void UpdateActivityPointer<T>(LocalCrmDatabaseOrganizationService service, T entity) where T : Entity

@@ -27,23 +27,61 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 service.Create(new ActivityParty());
                 Assert.Fail("Direct creation of ActivityParty should not be allowed!");
             }
-            catch (AssertFailedException) {  throw; }
-            catch { }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch
+            {
+            }
+
             try
             {
-                service.Update(new ActivityParty{ Id = Guid.NewGuid()});
+                service.Update(new ActivityParty {Id = Guid.NewGuid()});
                 Assert.Fail("Direct update of ActivityParty should not be allowed!");
             }
-            catch (AssertFailedException) {  throw; }
-            catch { }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch
+            {
+            }
+
             try
             {
-                service.Delete(new ActivityParty{ Id = Guid.NewGuid()});
+                service.Delete(new ActivityParty {Id = Guid.NewGuid()});
                 Assert.Fail("Direct deletion of ActivityParty should not be allowed!");
             }
-            catch (AssertFailedException) {  throw; }
-            catch { }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch
+            {
+            }
+
+            var account = new Account();
+            account.Id = service.Create(account);
+            var party = new ActivityParty
+            {
+                PartyId = account.ToEntityReference()
+            };
+            var parties = new EntityCollection {EntityName = account.LogicalName};
+            parties.Entities.Add(party);
+            var phoneCall = new PhoneCall
+            {
+                [PhoneCall.Fields.To] = parties
+            };
+            service.Create(phoneCall);
+            
+            var qe = QueryExpressionFactory.Create<PhoneCall>();
+            qe.AddLink<ActivityParty>(PhoneCall.Fields.ActivityId)
+              .AddLink(account.LogicalName, ActivityParty.Fields.PartyId, Account.Fields.Id);
+
+            Assert.IsNotNull(service.GetFirstOrDefault(qe), "The activity party should have been created.");
         }
+
 
         [TestMethod]
         public void LocalCrmTests_Crud_Advanced()
