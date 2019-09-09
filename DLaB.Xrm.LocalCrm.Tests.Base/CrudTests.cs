@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using DLaB.Xrm.CrmSdk;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.Test;
@@ -60,7 +61,14 @@ namespace DLaB.Xrm.LocalCrm.Tests
             catch
             {
             }
+        }
 
+        [TestMethod]
+        public void LocalCrmTests_Crud_ActivityPartyAutoCreation()
+        {
+            var service = GetService();
+            var contact = new Contact();
+            contact.Id = service.Create(contact);
             var account = new Account();
             account.Id = service.Create(account);
             var party = new ActivityParty
@@ -71,15 +79,20 @@ namespace DLaB.Xrm.LocalCrm.Tests
             parties.Entities.Add(party);
             var phoneCall = new PhoneCall
             {
-                [PhoneCall.Fields.To] = parties
+                [PhoneCall.Fields.To] = parties,
+                RegardingObjectId = contact.ToEntityReference()
             };
             service.Create(phoneCall);
-            
+                
             var qe = QueryExpressionFactory.Create<PhoneCall>();
-            qe.AddLink<ActivityParty>(PhoneCall.Fields.ActivityId)
-              .AddLink(account.LogicalName, ActivityParty.Fields.PartyId, Account.Fields.Id);
-
-            Assert.IsNotNull(service.GetFirstOrDefault(qe), "The activity party should have been created.");
+            var apLink = qe.AddLink<ActivityParty>(PhoneCall.Fields.ActivityId);
+            apLink.Columns.AddColumn(ActivityParty.Fields.ParticipationTypeMask);
+            //apLink.AddLink(account.LogicalName, ActivityParty.Fields.PartyId, Account.Fields.Id);
+            var values = service.GetEntities(qe)
+                                .Select(p => p.GetAliasedEntity<ActivityParty>().ParticipationTypeMaskEnum)
+                                .ToList();
+            Assert.AreEqual(1, values.Count(m => m == ActivityParty_ParticipationTypeMask.ToRecipient), "The to activity party should have been created.");
+            Assert.AreEqual(1, values.Count(m => m == ActivityParty_ParticipationTypeMask.Regarding), "The regarding activity party should have been created.");
         }
 
 
@@ -570,6 +583,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         #region Shared Methods
+
 
         private static void TestForPhoneNumber(IOrganizationService service, QueryExpression qe, FilterExpression accountFilter, string telephone)
         {

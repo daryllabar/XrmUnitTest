@@ -17,6 +17,7 @@ using Microsoft.Xrm.Sdk.Query;
 using NMemory;
 using NMemory.Exceptions;
 using NMemory.Tables;
+using ParticipationMask = DLaB.Xrm.LocalCrm.OptionSets.OptionSet.ActivityParty_ParticipationTypeMask;
 
 namespace DLaB.Xrm.LocalCrm
 {
@@ -364,7 +365,14 @@ namespace DLaB.Xrm.LocalCrm
 
         internal static Type GetType(LocalCrmDatabaseInfo info, string logicalName)
         {
-            return EntityHelper.GetType(info.EarlyBoundEntityAssembly, info.EarlyBoundNamespace, logicalName);
+            try
+            {
+                return EntityHelper.GetType(info.EarlyBoundEntityAssembly, info.EarlyBoundNamespace, logicalName);
+            }
+            catch(Exception ex)
+            {
+                throw new Exception($"Entity with logical name '{logicalName}' was not found in '{info.EarlyBoundNamespace}' namespace of assembly '{info.EarlyBoundEntityAssembly}'.", ex);
+            }
         }
 
         private static IComparable ConvertCrmTypeToBasicComparable(object o)
@@ -1156,6 +1164,33 @@ namespace DLaB.Xrm.LocalCrm
 
         private static void CreateActivityParties<T>(LocalCrmDatabaseOrganizationService service, T entity) where T : Entity
         {
+            if (entity.LogicalName == ActivityParty.EntityLogicalName
+                || entity.LogicalName == ActivityPointer.EntityLogicalName
+                || !PropertiesCache.For<T>().IsActivityType)
+            {
+                return;
+            }
+
+            CreateActivityPartiesFromPartyLists(service, entity);
+            CreateActivityPartiesFromSingleFields(service, entity);
+        }
+
+        private static void CreateActivityPartiesFromSingleFields<T>(LocalCrmDatabaseOrganizationService service, T entity) where T : Entity
+        {
+            foreach (var att in entity.Attributes.Where(a => ActivityPartyFields.Contains(a.Key)))
+            {
+                service.CreateActivityParty(new Entity
+                {
+                    LogicalName = ActivityParty.EntityLogicalName,
+                    [ActivityParty.Fields.PartyId] = att.Value,
+                    [ActivityParty.Fields.ActivityId] = entity.ToEntityReference(),
+                    [ActivityParty.Fields.ParticipationTypeMask] = MapFieldToParticipation(att.Key)
+                });
+            }
+        }
+
+        private static void CreateActivityPartiesFromPartyLists<T>(LocalCrmDatabaseOrganizationService service, T entity) where T : Entity
+        {
             foreach (var att in entity.Attributes.Where(a => a.Value is EntityCollection))
             {
                 var entities = (EntityCollection) att.Value;
@@ -1177,44 +1212,53 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
-        private static int MapFieldToParticipation(string field)
+        private static HashSet<string> ActivityPartyFields = new HashSet<string>
         {
-            ActivityParty_ParticipationTypeMask value;
+            Email.Fields.From,
+            Email.Fields.RegardingObjectId,
+            Appointment.Fields.Organizer,
+            Appointment.Fields.OwningUser,
+            Appointment.Fields.OwnerId
+        };
+
+        private static OptionSetValue MapFieldToParticipation(string field)
+        {
+            ParticipationMask value;
             switch (field)
             {
                 case Email.Fields.To:
-                    value = ActivityParty_ParticipationTypeMask.ToRecipient;
+                    value = ParticipationMask.ToRecipient;
                     break;
                 case Email.Fields.From:
-                    value = ActivityParty_ParticipationTypeMask.Sender;
+                    value = ParticipationMask.Sender;
                     break;
                 case Email.Fields.Bcc:
-                    value = ActivityParty_ParticipationTypeMask.BCCRecipient;
+                    value = ParticipationMask.BCCRecipient;
                     break;
                 case Email.Fields.Cc:
-                    value = ActivityParty_ParticipationTypeMask.CCRecipient;
+                    value = ParticipationMask.CCRecipient;
                     break;
                 case Appointment.Fields.RequiredAttendees:
-                    value = ActivityParty_ParticipationTypeMask.Requiredattendee;
+                    value = ParticipationMask.Requiredattendee;
                     break;
                 case Appointment.Fields.RegardingObjectId:
-                    value = ActivityParty_ParticipationTypeMask.Regarding;
+                    value = ParticipationMask.Regarding;
                     break;
                 case Appointment.Fields.OptionalAttendees:
-                    value = ActivityParty_ParticipationTypeMask.Optionalattendee;
+                    value = ParticipationMask.Optionalattendee;
                     break;
                 case Appointment.Fields.Organizer:
-                    value = ActivityParty_ParticipationTypeMask.Organizer;
+                    value = ParticipationMask.Organizer;
                     break;
                 case Appointment.Fields.OwnerId:
                 case Appointment.Fields.OwningUser:
-                    value = ActivityParty_ParticipationTypeMask.Owner;
+                    value = ParticipationMask.Owner;
                     break;
                 default:
                     throw new NotImplementedException($"Participation Type Mask for creation of ActivityParty field '{field}' not defined" );
             }
 
-            return (int) value;
+            return new OptionSetValue((int) value);
         }
 
         public static bool IsSameOrSubclass(Type potentialBase, Type potentialDescendant)
@@ -1270,7 +1314,7 @@ namespace DLaB.Xrm.LocalCrm
         {
             if (entity.LogicalName == ActivityPointer.EntityLogicalName || !PropertiesCache.For<T>().IsActivityType)
             {
-                return; // Type is already an activity pointer, no need to reupdate
+                return; // Type is already an activity pointer, no need to re-update
             }
 
             service.Update(GetActivtyPointerForActivityEntity(entity));
