@@ -9,6 +9,10 @@ namespace DLaB.Xrm.Test
     public class FakeServiceProvider : IServiceProvider, ICloneable
     {
         private Dictionary<Type, object> Services { get; set; }
+        /// <summary>
+        /// Used during build to skip cloning the types in the HashSet
+        /// </summary>
+        protected HashSet<Type> TypesToSkipCloning { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FakeServiceProvider"/> class.
@@ -16,6 +20,7 @@ namespace DLaB.Xrm.Test
         public FakeServiceProvider()
         {
             Services = new Dictionary<Type, object>();
+            TypesToSkipCloning = new HashSet<Type>();
         }
 
         /// <summary>
@@ -66,13 +71,13 @@ namespace DLaB.Xrm.Test
             clone.Services = new Dictionary<Type, object>();
             foreach (var value in Services)
             {
-                if (!(value.Value is ICloneable cloneableService))
+                if (value.Value is ICloneable cloneableService && !TypesToSkipCloning.Contains(value.Value?.GetType()))
                 {
-                    clone.Services[value.Key] = value.Value;
+                    clone.Services[value.Key] = cloneableService.Clone();
                 }
                 else
                 {
-                    clone.Services[value.Key] = cloneableService.Clone();
+                    clone.Services[value.Key] = value.Value;
                 }
             }
 

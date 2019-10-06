@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 
@@ -70,6 +71,11 @@ namespace DLaB.Xrm.Test.Builders
         /// The this.
         /// </value>
         protected abstract TDerived This { get; }
+        
+        /// <summary>
+        /// Used during build to skip cloning the types in the HashSet
+        /// </summary>
+        protected HashSet<Type> TypesToSkipCloning => new HashSet<Type>();
         private FakeServiceProvider ServiceProvider { get; }
 
         /// <summary>
@@ -130,6 +136,22 @@ namespace DLaB.Xrm.Test.Builders
         public TDerived WithContext(IPluginExecutionContext context)
         {
             ServiceProvider.AddService(context);
+            return This;
+        }
+
+        /// <summary>
+        /// The build method will clone all services.  This call will prevent the given service from being cloned on build.
+        /// </summary>
+        /// <typeparam name="TService"></typeparam>
+        /// <returns></returns>
+        public TDerived WithoutClone<TService>()
+        {
+            return WithoutClone(typeof(TService));
+        }
+
+        public TDerived WithoutClone(Type type)
+        {
+            TypesToSkipCloning.Add(type);
             return This;
         }
 
