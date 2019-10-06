@@ -71,7 +71,7 @@ namespace DLaB.Xrm.Test
             clone.Services = new Dictionary<Type, object>();
             foreach (var value in Services)
             {
-                if (value.Value is ICloneable cloneableService && !TypesToSkipCloning.Contains(value.Value?.GetType()))
+                if (value.Value is ICloneable cloneableService && !TypesToSkipCloning.Contains(value.Key))
                 {
                     clone.Services[value.Key] = cloneableService.Clone();
                 }
