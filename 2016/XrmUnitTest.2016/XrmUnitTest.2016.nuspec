@@ -2,12 +2,12 @@
 <package >
   <metadata>
     <id>XrmUnitTest.2016</id>
-    <version>2.2.0.18</version>
+    <version>2.2.0.19</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/daryllabar/XrmUnitTest</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/daryllabar/XrmUnitTest/master/DLaB_Dynamics_64x64.png</iconUrl>
+    <icon>images\DLaB_Dynamics_64x64.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Contains Xrm Unit Testing Library</description>
 	  <frameworkAssemblies>
@@ -18,8 +18,7 @@
     <copyright>Copyright 2016</copyright>
     <tags>Dynamics CRM 2016 Plugin XRM UnitTest</tags>
 	  <dependencies>
-      <group targetFramework=".NETFramework4.5">
-        <dependency id="DLaB.Common" version="1.1.2.7" />
+      <group targetFramework=".NETFramework4.5.2">
         <dependency id="Microsoft.CrmSdk.XrmTooling.CoreAssembly" version="8.2.0.5" />
       </group>
     </dependencies>
@@ -28,5 +27,6 @@
     <file src="bin\Release\XrmUnitTest.2016.dll" target="lib\net452" />
     <file src="bin\Release\XrmUnitTest.2016.pdb" target="lib\net452" />
     <file src="bin\Release\XrmUnitTest.2016.xml" target="lib\net452" />
+    <file src="..\..\DLaB_Dynamics_64x64.png" target="images\" />
   </files>
 </package>
