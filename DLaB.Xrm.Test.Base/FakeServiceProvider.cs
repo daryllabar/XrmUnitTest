@@ -10,9 +10,9 @@ namespace DLaB.Xrm.Test
     {
         private Dictionary<Type, object> Services { get; set; }
         /// <summary>
-        /// Used during build to skip cloning the types in the HashSet
+        /// Used during cloning to skip cloning the types in the HashSet
         /// </summary>
-        protected HashSet<Type> TypesToSkipCloning { get; set; }
+        public HashSet<Type> TypesToSkipCloning { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FakeServiceProvider"/> class.
