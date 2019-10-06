@@ -126,6 +126,44 @@ namespace DLaB.Xrm.Test.Tests.Builders
             Assert.AreEqual(account.EntityReference, incident.Entity.CustomerId);
         }
 
+        /// <summary>
+        /// Incident's can't be created without a customer, so attempt to force the incident to be created first
+        /// </summary>
+        [TestMethod]
+        public void CrmEnvironmentBuilder_WithChildEntities_ContactAndAccountAdded_Should_AddedViaCustomerId()
+        {
+            //
+            // Arrange
+            //
+            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            var account = new Id<Account>(Guid.NewGuid());
+            var contact = new Id<Contact>(Guid.NewGuid());
+            var accountIncident = new Id<Incident>(Guid.NewGuid());
+            var contactIncident = new Id<Incident>(Guid.NewGuid());
+
+            // The Account and Incident will be added as Account first, and Incident second. 
+            // The Lead will force an reorder and the Account incident would normally get placed after the Incident
+            var builder = new DLaBCrmEnvironmentBuilder()
+                .WithChildEntities(contact, contactIncident)
+                .WithChildEntities(account, accountIncident);
+
+
+            //
+            // Act
+            //
+            builder.Create(service);
+
+
+            //
+            // Assert
+            //
+
+            AssertCrm.Exists(service, account);
+            AssertCrm.Exists(service, accountIncident);
+            AssertCrm.Exists(service, contact);
+            AssertCrm.Exists(service, contactIncident);
+        }
+
         [TestMethod]
         public void CrmEnvironmentBuilder_WithEntities_GivenIdStruct_Should_CreateAll()
         {

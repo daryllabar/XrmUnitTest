@@ -515,23 +515,33 @@ namespace Source.DLaB.Xrm
 
         /// <summary>
         /// Gets the attribute name of the first attribute with the given Parent Type.
+        /// If any of the possible attributes are CustomerId, customerId will be returned.
         /// </summary>
         /// <param name="childType">Type of the child.</param>
         /// <param name="parentType">Type of the parent.</param>
         /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
         public static string GetParentEntityAttributeName(Type childType, Type parentType)
         {
-            var property = childType.GetProperties().FirstOrDefault(p => p.PropertyType == parentType);
-            if (property == null)
+            var possibleProperties = childType.GetProperties().Where(p => p.PropertyType == parentType).ToList();
+            var customerId = possibleProperties.Count <= 1
+                ? null
+                : possibleProperties.FirstOrDefault(p => p.GetCustomAttributes(typeof(AttributeLogicalNameAttribute))
+                                                          .Cast<AttributeLogicalNameAttribute>()
+                                                          .FirstOrDefault(a => a.LogicalName == "customerid") != null);
+            if (customerId != null)
+            {
+                return customerId.GetAttributeLogicalName();
+            }
+            if (possibleProperties.Count == 0)
             {
                 throw new Exception($"No Property found for type {childType.FullName}, of type {parentType.FullName}.");
             }
-            return property.GetAttributeLogicalName();
+            return possibleProperties.First().GetAttributeLogicalName();
         }
 
         /// <summary>
-        /// Gets the attribute name of the first attribute with the given parentLogicalName.
+        /// Gets the attribute name of the first attribute with the given parent type.
+        /// If any of the possible attributes are CustomerId, customerId will be returned.
         /// </summary>
         /// <typeparam name="TChild">The type of the child.</typeparam>
         /// <typeparam name="TParent">The type of the parent.</typeparam>
