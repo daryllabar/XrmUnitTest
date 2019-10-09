@@ -429,9 +429,11 @@ namespace DLaB.Xrm.LocalCrm
                     case AggregateType.countcolumn:
                         entities = PerformCountColumnAggregation(fe, entities, aggregate, attributes);
                         break;
-                    case AggregateType.count:
                     case AggregateType.sum:
+                        entities = PerformSumColumnAggregation(fe, entities, aggregate, attributes);
+                        break;
                     case AggregateType.avg:
+                    case AggregateType.count:
                     case AggregateType.min:
                     case AggregateType.max:
                         throw new NotImplementedException(aggregate.aggregate + " aggregate is not implemented");
@@ -506,6 +508,51 @@ namespace DLaB.Xrm.LocalCrm
                 else
                 {
                     entity[aggregate.alias] = new AliasedValue(null, aggregate.alias, 1);
+                    aggregateEntities.Add(key.ToString(), entity);
+                }
+            }
+            return aggregateEntities.Values.ToList();
+        }
+
+        private static List<T> PerformSumColumnAggregation<T>(FetchType fe, List<T> entities, FetchAttributeType aggregate, List<FetchAttributeInfo> attributes) where T : Entity
+        {
+            var aggregateEntities = new Dictionary<string, T>();
+            var distinctValues = new HashSet<string>();
+            var resultAttributeNames = new HashSet<string>(attributes.Where(a => a.Attribute.aggregateSpecified).Select(a => a.Attribute.alias));
+            foreach (var entity in entities.Where(e => e.HasAliasedAttribute(aggregate.alias) &&
+                                                      e.GetAliasedValue<object>(aggregate.alias) != null))
+            {
+                var key = new StringBuilder();
+                foreach (var attribute in attributes.Where(a => a.Attribute != aggregate))
+                {
+                    key.AppendFormat("{0}.{1},{2}|", attribute.EntityLogicalName, attribute.Attribute.alias,
+                                     entity.GetAliasedValue<object>(attribute.Attribute.alias));
+                }
+
+                if (fe.distinctSpecified && fe.distinct)
+                {
+                    var value = key + "~" + entity.GetAliasedValue<object>(aggregate.alias);
+                    if (distinctValues.Contains(value))
+                    {
+                        continue;
+                    }
+
+                    distinctValues.Add(value);
+                }
+
+                var aliasValue = entity.GetAliasedValue<Money>(aggregate.alias).GetValueOrDefault();
+                if (aggregateEntities.TryGetValue(key.ToString(), out T temp))
+                {
+                    var current = (Money)temp.GetAttributeValue<AliasedValue>(aggregate.alias).Value;
+                    current.Value += aliasValue;
+                }
+                else
+                {
+                    entity[aggregate.alias] = new AliasedValue(null, aggregate.alias, new Money(aliasValue));
+                    foreach (var att in entity.Attributes.Keys.ToList().Where(k => !resultAttributeNames.Contains(k)))
+                    {
+                        entity.Attributes.Remove(att);
+                    }
                     aggregateEntities.Add(key.ToString(), entity);
                 }
             }
