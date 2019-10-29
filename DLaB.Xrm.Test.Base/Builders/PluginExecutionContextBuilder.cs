@@ -52,6 +52,61 @@ namespace DLaB.Xrm.Test.Builders
         #region Fluent Methods
 
         /// <summary>
+        /// Sets the IsExecutingOffline value of the Context
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public TDerived IsExecutingOffline(bool value)
+        {
+            Context.IsExecutingOffline = value;
+            return This;
+        }
+
+        /// <summary>
+        /// Sets the IsOfflinePlayback value of the Context
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public TDerived IsOfflinePlayback(bool value)
+        {
+            Context.IsOfflinePlayback = value;
+            return This;
+        }
+
+        /// <summary>
+        /// Sets the IsInTransaction value of the Context
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public TDerived IsInTransaction(bool value)
+        {
+            Context.IsInTransaction = value;
+            return This;
+        }
+
+        /// <summary>
+        /// Sets the Business Unit Id of the Context
+        /// </summary>
+        /// <param name="businessUnitId"></param>
+        /// <returns></returns>
+        public TDerived WithBusinessUnit(Guid businessUnitId)
+        {
+            Context.BusinessUnitId = businessUnitId;
+            return This;
+        }
+
+        /// <summary>
+        /// Sets the CorrelationId of the Context
+        /// </summary>
+        /// <param name="id">The correlationId.</param>
+        /// <returns></returns>
+        public TDerived WithCorrelationId(Guid id)
+        {
+            Context.CorrelationId = id;
+            return This;
+        }
+
+        /// <summary>
         /// Using the WhoAmIRequest, populates the UserId and InitiatingUserId of the context with the current executing user.
         /// </summary>
         /// <param name="service">The service.</param>
@@ -60,6 +115,17 @@ namespace DLaB.Xrm.Test.Builders
         {
             var info = service.GetCurrentlyExecutingUserInfo();           
             return WithUser(info.UserId).WithInitiatingUser(info.UserId);
+        }
+
+        /// <summary>
+        /// Depth of the plugin context
+        /// </summary>
+        /// <param name="depth">The depth.</param>
+        /// <returns></returns>
+        public TDerived WithDepth(int depth)
+        {
+            Context.Depth = depth;
+            return This;
         }
 
         /// <summary>
@@ -180,6 +246,43 @@ namespace DLaB.Xrm.Test.Builders
         }
 
         /// <summary>
+        /// Async vs Sync
+        /// </summary>
+        /// <param name="mode">0 = Sync, 1 = Async</param>
+        /// <returns></returns>
+        public TDerived WithMode(int mode)
+        {
+            Context.Mode = mode;
+            return This;
+        }
+
+        /// <summary>
+        /// Sets the Operation of the context
+        /// </summary>
+        /// <param name="id">Operation Id</param>
+        /// <param name="createdOn">Operation Created On</param>
+        /// <returns></returns>
+        public TDerived WithOperation(Guid id, DateTime createdOn)
+        {
+            Context.OperationId = id;
+            Context.OperationCreatedOn = createdOn;
+            return This;
+        }
+
+        /// <summary>
+        /// Sets the Org of the context
+        /// </summary>
+        /// <param name="id">Organization Id</param>
+        /// <param name="orgName">Organization Name</param>
+        /// <returns></returns>
+        public TDerived WithOrg(Guid id, string orgName)
+        {
+            Context.OrganizationId = id;
+            Context.OrganizationName = orgName;
+            return This;
+        }
+
+        /// <summary>
         /// Adds the input parameter to the context's InputParameters collection.
         /// </summary>
         /// <param name="name">The name.</param>
@@ -207,6 +310,17 @@ namespace DLaB.Xrm.Test.Builders
             {
                 WithOutputParameter((string)nameValuePairs[i], nameValuePairs[i + 1]);
             }
+            return This;
+        }
+
+        /// <summary>
+        /// Sets the owning extension for the context.
+        /// </summary>
+        /// <param name="owningExtension">The owning extension.</param>
+        /// <returns></returns>
+        public TDerived WithOwningExt(EntityReference owningExtension)
+        {
+            Context.OwningExtension = owningExtension;
             return This;
         }
 
@@ -315,6 +429,17 @@ namespace DLaB.Xrm.Test.Builders
             }
 
             return WithFirstRegisteredEvent(plugin);
+        }
+
+        /// <summary>
+        /// Sets the secondary entity name for the context.
+        /// </summary>
+        /// <param name="logicalName">Secondary Entity Logical Name.</param>
+        /// <returns></returns>
+        public TDerived WithSecondaryEntityName(string logicalName)
+        {
+            Context.SecondaryEntityName = logicalName;
+            return This;
         }
 
         /// <summary>
