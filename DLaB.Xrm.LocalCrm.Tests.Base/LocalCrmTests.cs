@@ -102,6 +102,41 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
+        public void LocalCrmTests_OwningBuPopulated()
+        {
+            var id = Guid.NewGuid();
+            var info = LocalCrmDatabaseInfo.Create<CrmContext>(userId: id, userBusinessUnit: Guid.NewGuid());
+            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(info);
+            var buId = service.Create(new BusinessUnit());
+            var userId = service.Create(new SystemUser
+            {
+                BusinessUnitId = new EntityReference(BusinessUnit.EntityLogicalName, buId)
+            });
+            var user = service.GetEntity<SystemUser>(userId);
+            Assert.AreEqual(user.BusinessUnitId.Id, buId);
+
+            var accountId = service.Create(new Account
+            {
+                OwnerId = new EntityReference(SystemUser.EntityLogicalName, userId)
+            });
+
+            // Test Create BU Logic
+            var account = service.GetEntity<Account>(accountId);
+            Assert.IsNotNull(account.OwningBusinessUnit);
+            Assert.AreEqual(buId, account.OwningBusinessUnit.Id);
+
+            // Test Update BU Logic
+            service.Update(new Account
+            {
+                Id = accountId,
+                OwnerId = new EntityReference(SystemUser.EntityLogicalName, id)
+            });
+            account = service.GetEntity<Account>(accountId);
+            Assert.IsNotNull(account.OwningBusinessUnit);
+            Assert.AreNotEqual(buId, account.OwningBusinessUnit.Id);
+        }
+
+        [TestMethod]
         public void LocalCrmTests_DefaultEntitiesCreated()
         {
             var service = GetService();

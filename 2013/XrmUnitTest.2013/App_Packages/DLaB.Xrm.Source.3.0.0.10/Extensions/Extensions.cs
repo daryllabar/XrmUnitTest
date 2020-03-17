@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq.Expressions;
 using Microsoft.Crm.Sdk.Messages;
+using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
 using Microsoft.Xrm.Sdk.Metadata.Query;
@@ -44,12 +45,14 @@ namespace Source.DLaB.Xrm
         /// <returns></returns>
         public static bool IsLocalOptionSetAttribute(this AttributeMetadata attribute)
         {
-            if (attribute.AttributeType != AttributeTypeCode.Picklist)
+            if (attribute.AttributeType != AttributeTypeCode.Picklist
+                && attribute.AttributeType != AttributeTypeCode.State
+                && attribute.AttributeType != AttributeTypeCode.Status) 
             {
                 return false;
             }
 
-            if (attribute is PicklistAttributeMetadata picklist)
+            if (attribute is EnumAttributeMetadata picklist)
             {
                 return picklist.OptionSet.IsGlobal.HasValue && !picklist.OptionSet.IsGlobal.Value;
             }
@@ -499,7 +502,7 @@ namespace Source.DLaB.Xrm
         /// <param name="anonymousTypeInitializer">The anonymous type initializer.</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentException">lambda must return an object initializer</exception>
-        private static string[] GetAttributeNamesArray<T>(Expression<Func<T, object>> anonymousTypeInitializer) where T : Entity
+        public static string[] GetAttributeNamesArray<T>(this Expression<Func<T, object>> anonymousTypeInitializer) where T : Entity
         {
             var initializer = anonymousTypeInitializer.Body as NewExpression;
             if (initializer?.Members == null)
@@ -519,12 +522,13 @@ namespace Source.DLaB.Xrm
         private static string GetLogicalAttributeName<T>(MemberInfo property) where T : Entity
         {
             var name = property.Name.ToLower();
-            if (name == "id")
+            if (name == "id" 
+                || name.Substring(name.Length-1) == "1" && name.StartsWith(typeof(T).GetClassAttribute<EntityLogicalNameAttribute>().LogicalName)) // If an attribute is the same value as the name of the entity, it is created with a 1 post fix to allow for it to compile
             {
-                var attribute = typeof(T).GetProperty("Id")?.GetCustomAttributes<AttributeLogicalNameAttribute>().FirstOrDefault();
+                var attribute = typeof(T).GetProperty(property.Name)?.GetCustomAttributes<AttributeLogicalNameAttribute>().FirstOrDefault();
                 if (attribute == null)
                 {
-                    throw new ArgumentException(property.Name + " does not contain an AttributeLogicalNameAttribute.  Unable to determine id");
+                    throw new ArgumentException(property.Name + " does not contain an AttributeLogicalNameAttribute.  Unable to determine logical name of " + name);
                 }
 
                 name = attribute.LogicalName;

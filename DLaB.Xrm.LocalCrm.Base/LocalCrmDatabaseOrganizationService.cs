@@ -467,7 +467,11 @@ namespace DLaB.Xrm.LocalCrm
                 ConditionallyAddAutoPopulatedValue(entity, properties, "createdby", Info.User, Info.User.GetIdOrDefault() != Guid.Empty);
                 ConditionallyAddAutoPopulatedValue(entity, properties, "createdonbehalfby", Info.UserOnBehalfOf, Info.UserOnBehalfOf.GetIdOrDefault() != Guid.Empty);
                 ConditionallyAddAutoPopulatedValue(entity, properties, "createdon", entity.Contains("overriddencreatedon") ? entity["overriddencreatedon"] : DateTime.UtcNow);
-                ConditionallyAddAutoPopulatedValue(entity, properties, "owningbusinessunit", Info.BusinessUnit, Info.BusinessUnit.GetIdOrDefault() != Guid.Empty);
+                ConditionallyAddAutoPopulatedValue(entity, properties, "owningbusinessunit", Info.BusinessUnit, !entity.Contains("owningbusinessunit") && Info.BusinessUnit.GetIdOrDefault() != Guid.Empty);
+            }
+            else if( entity.Contains(Email.Fields.OwnerId))
+            {
+                UpdateBuBasedOnOwner(entity, properties);
             }
 
             PopulateModifiedAttributes(entity, properties);
@@ -670,7 +674,7 @@ namespace DLaB.Xrm.LocalCrm
             {
                 entity[attributeName] = date.RemoveMilliseconds();
             }
-            else
+            else 
             {
                 entity[attributeName] = value;
             }
@@ -720,13 +724,39 @@ namespace DLaB.Xrm.LocalCrm
         /// <param name="properties">The properties.</param>
         private void SetOwnerForCreate(Entity entity, PropertyInfo[] properties)
         {
-            var owner = properties.FirstOrDefault(p => p.Name.Equals(Email.Fields.OwnerId, StringComparison.InvariantCultureIgnoreCase));
-            if (owner == null || entity.Attributes.ContainsKey(Email.Fields.OwnerId))
+            if (properties.FirstOrDefault(p => p.Name.Equals(Email.Fields.OwnerId, StringComparison.InvariantCultureIgnoreCase)) == null)
             {
                 return;
             }
 
-            entity[Email.Fields.OwnerId] = Info.User;
+            if (!entity.Attributes.ContainsKey(Email.Fields.OwnerId))
+            {
+                entity[Email.Fields.OwnerId] = Info.User;
+            }
+
+            UpdateBuBasedOnOwner(entity, properties);
+        }
+
+        private void UpdateBuBasedOnOwner(Entity entity, PropertyInfo[] properties)
+        {
+            var ownerRef = entity.GetAttributeValue<EntityReference>(Email.Fields.OwnerId);
+            var owner = Retrieve(ownerRef.LogicalName, ownerRef.Id, new ColumnSet(true));
+            var bu = owner.GetAttributeValue<EntityReference>(SystemUser.Fields.BusinessUnitId)
+                ?? owner.GetAttributeValue<EntityReference>(Email.Fields.OwningBusinessUnit);
+            if (bu == null)
+            {
+                return;
+            }
+
+            if (properties.Any(p => p.Name.Equals(Email.Fields.OwningBusinessUnit, StringComparison.InvariantCultureIgnoreCase)))
+            {
+                entity[Email.Fields.OwningBusinessUnit] = bu;
+            }
+
+            if (properties.Any(p => p.Name.Equals(SystemUser.Fields.BusinessUnitId, StringComparison.InvariantCultureIgnoreCase)))
+            {
+                entity[SystemUser.Fields.BusinessUnitId] = bu;
+            }
         }
 
         #region IClientSideOrganizationService Members
