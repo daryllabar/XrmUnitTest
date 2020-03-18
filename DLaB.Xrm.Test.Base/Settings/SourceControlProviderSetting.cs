@@ -1,24 +1,24 @@
-﻿using System.Diagnostics;
+﻿using DLaB.Common.VersionControl;
 using DLaB.Xrm.Test.Exceptions;
 
 namespace DLaB.Xrm.Test.Settings
 {
     /// <summary>
-    /// Handles mapping calls to the actual Test Framework Provider
+    /// The Source Control Provider Setting
     /// </summary>
-    public class TestFrameworkProviderSettings
+    public class SourceControlProviderSetting
     {
         private string NotConfiguredMessage { get; }
 
-        private ITestFrameworkProvider _value;
+        private ISourceControlProvider _value;
         /// <summary>
-        /// Gets the TestFrameworkProvider.
+        /// Gets the SourceControlProvider.
         /// </summary>
         /// <value>
         /// The value.
         /// </value>
         /// <exception cref="NotConfiguredException"></exception>
-        public ITestFrameworkProvider Value
+        public ISourceControlProvider Value
         {
             get
             {
@@ -28,7 +28,7 @@ namespace DLaB.Xrm.Test.Settings
                 }
                 return _value;
             }
-            private set { _value = value; }
+            private set => _value = value;
         }
 
         /// <summary>
@@ -40,41 +40,38 @@ namespace DLaB.Xrm.Test.Settings
         public bool IsConfigured { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TestFrameworkProviderSettings"/> class.
+        /// Initializes a new instance of the <see cref="SourceControlProviderSetting"/> class.
         /// </summary>
         /// <param name="notConfiguredMessage">The not configured message.</param>
-        public TestFrameworkProviderSettings(string notConfiguredMessage)
+        public SourceControlProviderSetting(string notConfiguredMessage)
         {
             NotConfiguredMessage = notConfiguredMessage;
         }
 
         /// <summary>
-        /// The Unit Test Framework Provider
+        /// The Source Control Provider
         /// </summary>
         /// <param name="provider"></param>
-        public void Configure(ITestFrameworkProvider provider)
+        public void Configure(ISourceControlProvider provider)
         {
             Value = provider;
             IsConfigured = true;
         }
 
-        #region Asserts
-
-        [DebuggerHidden]
-        internal void AssertAreEqual<T>(T o1, T o2, string message)
+        /// <summary>
+        /// The Source Control Provider
+        /// </summary>
+        public void ConfigureNone()
         {
-            if (!o1.Equals(o2))
-            {
-                throw Value.GetFailedException(message);
-            }
+            Configure(new NoSourceControlProvider());
         }
 
-        [DebuggerHidden]
-        internal void AssertFail(string message)
+        /// <summary>
+        /// The Source Control Provider
+        /// </summary>
+        public void ConfigureTfs()
         {
-            throw Value.GetFailedException(message);
+            Configure(new VsTfsSourceControlProvider());
         }
-
-        #endregion Asserts
     }
 }

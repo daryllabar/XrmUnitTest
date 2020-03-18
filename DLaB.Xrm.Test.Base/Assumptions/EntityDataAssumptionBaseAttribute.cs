@@ -252,6 +252,7 @@ namespace DLaB.Xrm.Test.Assumptions
             }
             else if (Debugger.IsAttached)
             {
+                Common.VersionControl.SourceControl.SetProvider(TestSettings.SourceControlProvider.Value);
                 Common.VersionControl.SourceControl.CheckoutAndUpdateFileIfDifferent(GetSerializedFilePath(AssumptionsNamespaceRelativePath), entity.ToSdkEntity().Serialize(true));
             }
 
