@@ -122,7 +122,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
                 catch (Exception ex)
                 {
                     var inner = ex.InnerException;
-                    Assert.AreEqual("An attempt was made to create an entity of type contact with the EntityState set to created which normally means it comes from an OrganizationServiceContext.SaveChanges call.\r\nEither set ignoreContextCreation to true on the WithIdsDefaultedForCreate call, or define the id before calling SaveChanges, and add the id with the WithIdsDefaultedForCreate method.", inner.Message);
+                    Assert.AreEqual("An attempt was made to create an entity of type contact with the EntityState set to created which normally means it comes from an OrganizationServiceContext.SaveChanges call.\r\nEither set ignoreContextCreation to true on the WithIdsDefaultedForCreate call, or define the id before calling SaveChanges, and add the id with the WithIdsDefaultedForCreate method.", inner?.Message);
                 }
             }
         }
@@ -167,6 +167,33 @@ namespace DLaB.Xrm.Test.Tests.Builders
 
             response = (msdyn_UpdateBookingsStatusResponse)service.Execute(new msdyn_UpdateBookingsStatusRequest { BookingStatusChangeContext = "B" });
             Assert.AreEqual("Banana", response.BookingResult);
+        }
+
+        [TestMethod]
+        public void OrganizationServiceBuilder_WithFakeRetrieve_FakedRetrieves_Should_BeFaked()
+        {
+            IOrganizationService service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            var id = service.Create(new Account());
+            service = new OrganizationServiceBuilder(service).WithFakeRetrieve(new Account {Name = "TEST"}).Build();
+            var account = service.GetEntity<Account>(id);
+            Assert.AreEqual("TEST", account.Name);
+            Assert.AreEqual(Guid.Empty, account.Id);
+
+            service = new OrganizationServiceBuilder(service).WithFakeRetrieve((s,n,i,cs) => i == id, new Account{Name = "TEST2" }).Build();
+            account = service.GetEntity<Account>(id);
+            Assert.AreEqual("TEST2", account.Name);
+            Assert.AreEqual(Guid.Empty, account.Id);
+        }
+
+        [TestMethod]
+        public void OrganizationServiceBuilder_WithFakeRetrieveMultiple_FakedRetrieves_Should_BeFaked()
+        {
+            IOrganizationService service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            service.Create(new Account());
+            service = new OrganizationServiceBuilder(service).WithFakeRetrieveMultiple((s,qb)=> true, new Account(){Name ="TEST"}).Build();
+            var account = service.GetFirst<Account>();
+            Assert.AreEqual("TEST", account.Name);
+            Assert.AreEqual(Guid.Empty, account.Id);
         }
     }
 }

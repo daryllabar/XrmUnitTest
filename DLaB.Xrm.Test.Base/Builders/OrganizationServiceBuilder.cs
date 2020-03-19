@@ -122,7 +122,7 @@ namespace DLaB.Xrm.Test.Builders
 
         #endregion Constructors
 
-        #region Fleunt Methods
+        #region Fluent Methods
 
         #region Simple Methods
 
@@ -163,22 +163,65 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         public TDerived WithFakeRetrieveMultiple(params Func<IOrganizationService, QueryBase, EntityCollection>[] func) { RetrieveMultipleFuncs.AddRange(func); return This; }
         /// <summary>
+        /// Simplifies the WithFakeRetrieveMultiple to a boolean return value and the value to return.
+        /// </summary>
+        /// <param name="shouldFakeRetrieveMultiple"></param>
+        /// <param name="fakedValue"></param>
+        /// <returns></returns>
+        public TDerived WithFakeRetrieveMultiple(Func<IOrganizationService, QueryBase, bool> shouldFakeRetrieveMultiple, EntityCollection fakedValue)
+        {
+            WithFakeRetrieveMultiple((s, qb) => shouldFakeRetrieveMultiple(s, qb) ? fakedValue : s.RetrieveMultiple(qb)); return This;
+        }
+        /// <summary>
+        /// Simplifies the WithFakeRetrieveMultiple to a boolean return value and the value to return.
+        /// </summary>
+        /// <param name="shouldFakeRetrieveMultiple"></param>
+        /// <param name="fakedValue"></param>
+        /// <returns></returns>
+        public TDerived WithFakeRetrieveMultiple<T>(Func<IOrganizationService, QueryBase, bool> shouldFakeRetrieveMultiple, IEnumerable<T> fakedValue) where T:Entity
+        {
+            WithFakeRetrieveMultiple((s, qb) => shouldFakeRetrieveMultiple(s, qb) ? new EntityCollection(fakedValue.ToList<Entity>()) : s.RetrieveMultiple(qb)); return This;
+        }
+        /// <summary>
+        /// Simplifies the WithFakeRetrieveMultiple to a boolean return value and the value to return.
+        /// </summary>
+        /// <param name="shouldFakeRetrieveMultiple"></param>
+        /// <param name="fakedValue"></param>
+        /// <returns></returns>
+        public TDerived WithFakeRetrieveMultiple<T>(Func<IOrganizationService, QueryBase, bool> shouldFakeRetrieveMultiple, params T[] fakedValue) where T : Entity
+        {
+            WithFakeRetrieveMultiple((s, qb) => shouldFakeRetrieveMultiple(s, qb) ? new EntityCollection(fakedValue.ToList<Entity>()) : s.RetrieveMultiple(qb)); return This;
+        }
+        /// <summary>
         /// Adds the fake retrieve.
         /// </summary>
         /// <param name="func">The function.</param>
         /// <returns></returns>
         public TDerived WithFakeRetrieve(params Func<IOrganizationService, string, Guid, ColumnSet, Entity>[] func) { RetrieveFuncs.AddRange(func); return This; }
+
+        /// <summary>
+        /// Simplifies the WithFakeRetrieve to a boolean return value and the value to return.
+        /// </summary>
+        /// <param name="shouldFakeRetrieve"></param>
+        /// <param name="fakedValue"></param>
+        /// <returns></returns>
+        public TDerived WithFakeRetrieve(Func<IOrganizationService, string, Guid, ColumnSet, bool> shouldFakeRetrieve, Entity fakedValue)
+        {
+            WithFakeRetrieve((s, n, id, cs) =>
+            {
+                return shouldFakeRetrieve(s, n, id, cs) ? fakedValue : s.Retrieve(n, id, cs);
+            }); return This;
+        }
         /// <summary>
         /// Adds the fake update.
         /// </summary>
         /// <param name="action">The action.</param>
         /// <returns></returns>
         public TDerived WithFakeUpdate(params Action<IOrganizationService, Entity>[] action) { UpdateActions.AddRange(action); return This; }
-
         #endregion Simple Methods
 
         /// <summary>
-        /// Asserts that any create of an entity has the id popualted.  Useful to ensure that all entities can be deleted after they have been created since the id is known.
+        /// Asserts that any create of an entity has the id populated.  Useful to ensure that all entities can be deleted after they have been created since the id is known.
         /// </summary>
         /// <returns></returns>
         public TDerived AssertIdNonEmptyOnCreate()
@@ -258,7 +301,7 @@ namespace DLaB.Xrm.Test.Builders
         }
 
         /// <summary>
-        /// Defaults the Parent Businessunit Id of all business units to the root BU if not already populated
+        /// Defaults the Parent BusinessUnitId of all business units to the root BU if not already populated
         /// </summary>
         /// <returns></returns>
         public TDerived WithDefaultParentBu()
@@ -414,6 +457,34 @@ namespace DLaB.Xrm.Test.Builders
 
         #endregion WithFakeAction
 
+        #region WithFakeRetrieve
+
+        private Dictionary<string, Entity> FakeEntitiesToReturn = new Dictionary<string, Entity>();
+        /// <summary>
+        /// Forces any retrieve call of the particular entity type to return the given entity.  Does not apply to any other calls i.e. RetrieveMultiple.
+        /// </summary>
+        /// <param name="entity">The entity to return.</param>
+        /// <returns></returns>
+        public TDerived WithFakeRetrieve(Entity entity)
+        {
+            if (FakeEntitiesToReturn.Count == 0)
+            {
+                WithFakeRetrieve((s, n, id, cs) =>{
+                    if (FakeEntitiesToReturn.TryGetValue(n, out var value))
+                    {
+                        return value;
+                    }
+
+                    return s.Retrieve(n, id, cs);
+                });
+            }
+
+            FakeEntitiesToReturn[entity.LogicalName] = entity;
+            return This;
+        }
+
+        #endregion WithFakeRetrieve
+
         #region WithFakeSetStatusForEntity
 
         /// <summary>
@@ -465,7 +536,7 @@ namespace DLaB.Xrm.Test.Builders
         #endregion WithFakeUpdateForEntity
 
         /// <summary>
-        /// Defaults the entity name of all created entitites.
+        /// Defaults the entity name of all created entities.
         /// </summary>
         /// <param name="getName">function to call to get the name for the given Entity and it's Primary Field Info</param>
         /// <returns></returns>
@@ -537,7 +608,7 @@ namespace DLaB.Xrm.Test.Builders
         #endregion WithIdsDefaultedForCreate
 
         /// <summary>
-        /// Fakes out calls to RetireveAttribute Requests, using enums to generate the OptionSetMetaData.  Userful for mocking out any calls to determine the text values of an optionset.
+        /// Fakes out calls to RetrieveAttribute Requests, using enums to generate the OptionSetMetaData.  Userful for mocking out any calls to determine the text values of an optionset.
         /// </summary>
         /// <param name="defaultLangaugeCode">The default langauge code.  Defaults to reading DefaultLanguageCode from the config, or 1033 if not found</param>
         /// <returns></returns>
