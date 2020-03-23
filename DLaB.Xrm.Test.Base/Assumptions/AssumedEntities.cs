@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xrm.Sdk;
 
@@ -57,14 +58,14 @@ namespace DLaB.Xrm.Test.Assumptions
         /// <summary>
         /// Gets the Assumed Entity by Assumption Attribute Type, casting it to the Entity Type.
         /// </summary>
-        /// <typeparam name="TAttribute">The type of the attribute.</typeparam>
+        /// <typeparam name="TAssumption">The type of the attribute.</typeparam>
         /// <typeparam name="TEntity">The type of the entity.</typeparam>
         /// <returns></returns>
-        public TEntity Get<TAttribute, TEntity>()
-            where TAttribute : EntityDataAssumptionBaseAttribute
+        public TEntity Get<TAssumption, TEntity>()
+            where TAssumption : EntityDataAssumptionBaseAttribute, IAssumptionEntityType<TAssumption, TEntity>
             where TEntity : Entity
         {
-            return Get<TAttribute>().AsEntity<TEntity>();
+            return Get<TAssumption>().AsEntity<TEntity>();
         }
 
         /// <summary>
@@ -86,15 +87,15 @@ namespace DLaB.Xrm.Test.Assumptions
         /// <summary>
         /// Gets the Assumed Entity by Assumption Attribute Type, casting it to the Entity Type.
         /// </summary>
-        /// <typeparam name="TAttribute">The type of the attribute.</typeparam>
+        /// <typeparam name="TAssumption">The type of the attribute.</typeparam>
         /// <typeparam name="TEntity">The type of the entity.</typeparam>
         /// <param name="assumption">The assumption.</param>
         /// <returns></returns>
-        /// <exception cref="System.Exception"></exception>
-        public TEntity Get<TAttribute, TEntity>(IAssumptionEntityType<TAttribute, TEntity> assumption) where TAttribute : EntityDataAssumptionBaseAttribute
-                                                                                                      where TEntity : Entity
+        public TEntity Get<TAssumption, TEntity>(TAssumption assumption)
+            where TAssumption : EntityDataAssumptionBaseAttribute, IAssumptionEntityType<TAssumption, TEntity>
+            where TEntity : Entity
         {
-            return Get<TAttribute>().AsEntity<TEntity>();
+            return Get<TAssumption>().AsEntity<TEntity>();
         }
 
         /// <summary>
@@ -173,5 +174,83 @@ namespace DLaB.Xrm.Test.Assumptions
                 }
             }
         }
+
+        #region GetAll
+
+        /// <summary>
+        /// Gets all Assumed Entities of the given entity type.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public List<T> GetAll<T>() where T : Entity
+        {
+            var logicalName = EntityHelper.GetEntityLogicalName<T>();
+            return InternalStore.Values.Where(e => e.LogicalName == logicalName).Select(e => e.ToEntity<T>()).ToList();
+        }
+
+        /// <summary>
+        /// Gets all Assumed Entities of the given entity type.
+        /// </summary>
+        /// <returns></returns>
+        public List<Entity> GetAll(string logicalName)
+        {
+            return InternalStore.Values.Where(e => e.LogicalName == logicalName).ToList();
+        }
+
+
+        #endregion GetAll
+
+        #region GetId
+
+        /// <summary>
+        /// Gets the Assumed Entity as a typed Id
+        /// </summary>
+        /// <typeparam name="TAssumption"></typeparam>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <returns></returns>
+        public Id<TEntity> GetId<TAssumption, TEntity>()
+            where TAssumption : EntityDataAssumptionBaseAttribute, IAssumptionEntityType<TAssumption, TEntity>
+            where TEntity : Entity
+        {
+            var entity = Get<TAssumption, TEntity>();
+            return new Id<TEntity>(entity.Id)
+            {
+                Entity = entity
+            };
+        }
+
+        /// <summary>
+        /// Gets the Assumed Entity as a typed Id
+        /// </summary>
+        /// <typeparam name="TAssumption">The type of the attribute.</typeparam>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <param name="assumption">The assumption.</param>
+        /// <returns></returns>
+        public Id<TEntity> GetId<TAssumption, TEntity>(IAssumptionEntityType<TAssumption, TEntity> assumption)
+            where TAssumption : EntityDataAssumptionBaseAttribute, IAssumptionEntityType<TAssumption, TEntity>
+            where TEntity : Entity
+        {
+            return GetId<TAssumption, TEntity>();
+        }
+
+
+        /// <summary>
+        /// Gets the Assumed Entity as an untyped Id.
+        /// </summary>
+        /// <typeparam name="TAssumption">The type of the attribute.</typeparam>
+        /// <returns></returns>
+        public Id GetId<TAssumption>()
+            where TAssumption : EntityDataAssumptionBaseAttribute
+        {
+            var entity = Get<TAssumption>();
+            return new Id(entity.LogicalName, entity.Id)
+            {
+                Entity = entity
+            };
+        }
+
+
+
+        #endregion GetId
     }
 }

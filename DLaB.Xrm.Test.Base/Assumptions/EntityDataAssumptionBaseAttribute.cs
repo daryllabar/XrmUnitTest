@@ -29,11 +29,6 @@ namespace DLaB.Xrm.Test.Assumptions
                 ).Prerequisites);
 
         /// <summary>
-        /// Gets the name of the type, without the "Attribute" postfix
-        /// </summary>
-        private string ShortName => GetShortName(GetType());
-
-        /// <summary>
         /// Gets the name of the type, without the "Attribute" postfix, and with any namespace values that come after Assumptions
         /// </summary>
         private string AssumptionsNamespaceRelativePath => GetAssumptionsNamespaceRelativePath(GetType());
@@ -154,63 +149,6 @@ namespace DLaB.Xrm.Test.Assumptions
                 assumption.Assumptions = Assumptions;
                 assumption.AddAssumedEntitiesWithPreReqInfiniteLoopPrevention(service, currentlyProcessingPreReqs);
             }
-        }
-
-        /// <summary>
-        /// Gets the assumed entity.
-        /// </summary>
-        /// <typeparam name="TAttribute">The type of the attribute.</typeparam>
-        /// <typeparam name="TEntity">The type of the entity.</typeparam>
-        /// <param name="assumption">The assumption.</param>
-        /// <returns></returns>
-        protected TEntity GetAssumedEntity<TAttribute, TEntity>(IAssumptionEntityType<TAttribute, TEntity> assumption)
-            where TAttribute : EntityDataAssumptionBaseAttribute
-            where TEntity : Entity
-        {
-            return GetAssumedEntity<TAttribute, TEntity>();
-        }
-
-        /// <summary>
-        /// Checks to ensure that the assumption being asked for has been defined in the PrerequisiteAssumptions for the current Assumption
-        /// </summary>
-        /// <typeparam name="TAttribute"></typeparam>
-        /// <typeparam name="TEntity"></typeparam>
-        /// <returns></returns>
-        protected TEntity GetAssumedEntity<TAttribute, TEntity>()
-            where TAttribute : EntityDataAssumptionBaseAttribute
-            where TEntity : Entity
-        {
-            if (!Prerequisites.Any())
-            {
-                throw new Exception(string.Format(
-                    "Assumption {0} is attempting to retrieve Assumption of type {1}, but it has not defined a PrerequisiteAssumptions Attribute.{2}{2}" +
-                    "Please add a PrerequisiteAssumption Attribute with a(n) {1} in it's constructor to Assumption {0}.",
-                    ShortName, GetShortName(typeof(TAttribute)), Environment.NewLine));
-            }
-
-            if (Prerequisites.All(t => t != typeof(TAttribute)))
-            {
-                throw new Exception(string.Format(
-                    "Assumption {0} is attempting to retrieve Assumption of type {1}, but it has not defined it in it's PrerequisiteAssumptions Attribute.{2}{2}" +
-                    "Please add a(n) {1} to the PrerequisiteAssumption Attribute in Assumption {0}.",
-                    ShortName, GetShortName(typeof(TAttribute)), Environment.NewLine));
-            }
-
-            return Assumptions.Get<TAttribute, TEntity>();
-        }
-
-
-        /// <summary>
-        /// Gets the name of the type, without the "Attribute" postfix
-        /// </summary>
-        private static string GetShortName(Type type)
-        {
-            var name = type.Name;
-            if (name.EndsWith("Attribute", StringComparison.InvariantCultureIgnoreCase))
-            {
-                name = name.Substring(0, name.Length - "Attribute".Length);
-            }
-            return name;
         }
 
         /// <summary>
