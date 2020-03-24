@@ -27,6 +27,18 @@ namespace DLaB.Xrm.Test.Tests.Builders
         }
 
         [TestMethod]
+        public void AssumedEntities_Get_Should_ReturnEntitiesOfType()
+        {
+            var service = TestBase.GetOrganizationService();
+            var assumptions = LoadTestAssumptions(service);
+            Assert.AreEqual(assumptions.Get<AccountDefault>().Id, assumptions.Get(new AccountDefault()).Id);
+            Assert.AreEqual(assumptions.Get<ContactDefault>().Id, assumptions.Get(new ContactDefault()).Id);
+            Assert.AreEqual(assumptions.Get<AccountDefault>().Id, assumptions.Get<AccountDefault, Account>().Id);
+            Assert.AreEqual(assumptions.Get<ContactDefault>().Id, assumptions.Get<ContactDefault,Contact>().Id);
+        }
+
+
+        [TestMethod]
         public void AssumedEntities_GetAll_Should_ReturnEntitiesOfType()
         {
             var service = TestBase.GetOrganizationService();
