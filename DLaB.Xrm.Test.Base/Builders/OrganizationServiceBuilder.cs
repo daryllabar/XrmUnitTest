@@ -163,36 +163,6 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         public TDerived WithFakeRetrieveMultiple(params Func<IOrganizationService, QueryBase, EntityCollection>[] func) { RetrieveMultipleFuncs.AddRange(func); return This; }
         /// <summary>
-        /// Simplifies the WithFakeRetrieveMultiple to a boolean return value and the value to return.
-        /// </summary>
-        /// <param name="shouldFakeRetrieveMultiple"></param>
-        /// <param name="fakedValue"></param>
-        /// <returns></returns>
-        public TDerived WithFakeRetrieveMultiple(Func<IOrganizationService, QueryBase, bool> shouldFakeRetrieveMultiple, EntityCollection fakedValue)
-        {
-            WithFakeRetrieveMultiple((s, qb) => shouldFakeRetrieveMultiple(s, qb) ? fakedValue : s.RetrieveMultiple(qb)); return This;
-        }
-        /// <summary>
-        /// Simplifies the WithFakeRetrieveMultiple to a boolean return value and the value to return.
-        /// </summary>
-        /// <param name="shouldFakeRetrieveMultiple"></param>
-        /// <param name="fakedValue"></param>
-        /// <returns></returns>
-        public TDerived WithFakeRetrieveMultiple<T>(Func<IOrganizationService, QueryBase, bool> shouldFakeRetrieveMultiple, IEnumerable<T> fakedValue) where T:Entity
-        {
-            WithFakeRetrieveMultiple((s, qb) => shouldFakeRetrieveMultiple(s, qb) ? new EntityCollection(fakedValue.ToList<Entity>()) : s.RetrieveMultiple(qb)); return This;
-        }
-        /// <summary>
-        /// Simplifies the WithFakeRetrieveMultiple to a boolean return value and the value to return.
-        /// </summary>
-        /// <param name="shouldFakeRetrieveMultiple"></param>
-        /// <param name="fakedValue"></param>
-        /// <returns></returns>
-        public TDerived WithFakeRetrieveMultiple<T>(Func<IOrganizationService, QueryBase, bool> shouldFakeRetrieveMultiple, params T[] fakedValue) where T : Entity
-        {
-            WithFakeRetrieveMultiple((s, qb) => shouldFakeRetrieveMultiple(s, qb) ? new EntityCollection(fakedValue.ToList<Entity>()) : s.RetrieveMultiple(qb)); return This;
-        }
-        /// <summary>
         /// Adds the fake retrieve.
         /// </summary>
         /// <param name="func">The function.</param>
@@ -207,10 +177,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         public TDerived WithFakeRetrieve(Func<IOrganizationService, string, Guid, ColumnSet, bool> shouldFakeRetrieve, Entity fakedValue)
         {
-            WithFakeRetrieve((s, n, id, cs) =>
-            {
-                return shouldFakeRetrieve(s, n, id, cs) ? fakedValue : s.Retrieve(n, id, cs);
-            }); return This;
+            WithFakeRetrieve((s, n, id, cs) => shouldFakeRetrieve(s, n, id, cs) ? fakedValue : s.Retrieve(n, id, cs)); return This;
         }
         /// <summary>
         /// Adds the fake update.
@@ -484,6 +451,88 @@ namespace DLaB.Xrm.Test.Builders
         }
 
         #endregion WithFakeRetrieve
+
+        #region WithFakeRetrieveMultiple
+
+        /// <summary>
+        /// Simplifies the WithFakeRetrieveMultiple to a boolean return value and the value to return.
+        /// </summary>
+        /// <param name="shouldFakeRetrieveMultiple"></param>
+        /// <param name="fakedValue"></param>
+        /// <returns></returns>
+        public TDerived WithFakeRetrieveMultiple(Func<IOrganizationService, QueryBase, bool> shouldFakeRetrieveMultiple, EntityCollection fakedValue)
+        {
+            WithFakeRetrieveMultiple((s, qb) => shouldFakeRetrieveMultiple(s, qb) ? fakedValue : s.RetrieveMultiple(qb)); return This;
+        }
+        /// <summary>
+        /// Simplifies the WithFakeRetrieveMultiple to a boolean return value and the value to return.
+        /// </summary>
+        /// <param name="shouldFakeRetrieveMultiple"></param>
+        /// <param name="fakedValue"></param>
+        /// <returns></returns>
+        public TDerived WithFakeRetrieveMultiple<T>(Func<IOrganizationService, QueryBase, bool> shouldFakeRetrieveMultiple, IEnumerable<T> fakedValue) where T : Entity
+        {
+            WithFakeRetrieveMultiple((s, qb) => shouldFakeRetrieveMultiple(s, qb) ? new EntityCollection(fakedValue.ToList<Entity>()) : s.RetrieveMultiple(qb)); return This;
+        }
+        /// <summary>
+        /// Simplifies the WithFakeRetrieveMultiple to a boolean return value and the value to return.
+        /// </summary>
+        /// <param name="shouldFakeRetrieveMultiple"></param>
+        /// <param name="fakedValue"></param>
+        /// <returns></returns>
+        public TDerived WithFakeRetrieveMultiple<T>(Func<IOrganizationService, QueryBase, bool> shouldFakeRetrieveMultiple, params T[] fakedValue) where T : Entity
+        {
+            WithFakeRetrieveMultiple((s, qb) => shouldFakeRetrieveMultiple(s, qb) ? new EntityCollection(fakedValue.ToList<Entity>()) : s.RetrieveMultiple(qb)); return This;
+        }
+
+        #endregion WithFakeRetrieveMultiple
+
+        #region WithFakeRetrieveMultipleForEntity
+
+        /// <summary>
+        /// Simplifies the WithFakeRetrieveMultiple by returning the given collection for the given logical name.
+        /// </summary>
+        /// <param name="logicalName">The logical name of the entity to fake the RetrieveMultiple for.</param>
+        /// <param name="fakedValue">The value to return when the query is for the given entity type.</param>
+        /// <returns></returns>
+        public TDerived WithFakeRetrieveMultipleForEntity(string logicalName, EntityCollection fakedValue)
+        {
+            return WithFakeRetrieveMultiple((s, qb) => 
+                qb is QueryExpression qe && qe.EntityName == logicalName
+                || qb is FetchExpression fe && fe.GetEntityName() == logicalName 
+                    ? fakedValue 
+                    : s.RetrieveMultiple(qb));
+        }
+
+        /// <summary>
+        /// Simplifies the WithFakeRetrieveMultiple by returning the given collection for the given logical name.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fakedValue">The entities to return when the query is for the given entity type.</param>
+        /// <returns></returns>
+        public TDerived WithFakeRetrieveMultipleForEntity<T>(IEnumerable<T> fakedValue) where T : Entity
+        {
+            var logicalName = EntityHelper.GetEntityLogicalName<T>();
+            if (logicalName == "entity")
+            {
+                throw new NotSupportedException("Type Parameter \"Entity\" is not supported.");
+            }
+
+            return WithFakeRetrieveMultipleForEntity(logicalName, new EntityCollection(fakedValue.ToList<Entity>()));
+        }
+
+        /// <summary>
+        /// Simplifies the WithFakeRetrieveMultiple by returning the given collection for the given logical name.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fakedValue">The entities to return when the query is for the given entity type.</param>
+        /// <returns></returns>
+        public TDerived WithFakeRetrieveMultipleForEntity<T>(params T[] fakedValue) where T : Entity
+        {
+            return WithFakeRetrieveMultipleForEntity((IEnumerable<T>)fakedValue);
+        }
+
+        #endregion WithFakeRetrieveMultipleForEntity
 
         #region WithFakeSetStatusForEntity
 

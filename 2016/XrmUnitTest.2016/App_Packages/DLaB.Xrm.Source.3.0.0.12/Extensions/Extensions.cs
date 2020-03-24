@@ -12,6 +12,7 @@ using Microsoft.Xrm.Sdk.Query;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq.Expressions;
+using System.Xml;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Messages;
@@ -775,6 +776,22 @@ namespace Source.DLaB.Xrm
         }
 
         #endregion EntityReference
+
+        #region FetchExpression
+
+        /// <summary>
+        /// Get's the logical name of the primary entity for the fetch expression.
+        /// </summary>
+        /// <param name="fe"></param>
+        /// <returns></returns>
+        public static string GetEntityName(this FetchExpression fe)
+        {
+            var xml = new XmlDocument();
+            xml.LoadXml(fe.Query);
+            return xml.SelectSingleNode("/fetch/entity/@name")?.Value;
+        }
+
+        #endregion FetchExpression
 
         #region FilterExpression
 
@@ -1836,7 +1853,7 @@ namespace Source.DLaB.Xrm
         /// <param name="userId">The UserId to create the service in context of.</param>
         /// <returns></returns>
         public static IOrganizationService CreateOrganizationService(this IServiceProvider provider, Guid? userId = null)
-        {;
+        {
             return provider.GetService<IOrganizationServiceFactory>().CreateOrganizationService(userId);
         }
 

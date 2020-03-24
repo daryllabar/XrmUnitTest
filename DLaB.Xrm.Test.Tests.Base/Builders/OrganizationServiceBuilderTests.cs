@@ -189,8 +189,28 @@ namespace DLaB.Xrm.Test.Tests.Builders
         public void OrganizationServiceBuilder_WithFakeRetrieveMultiple_FakedRetrieves_Should_BeFaked()
         {
             IOrganizationService service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            service = new OrganizationServiceBuilder(service).WithFakeRetrieveMultiple((s,qb)=> true, GetFakedAccount()).Build();
+            AssertAccountNotQueried(service);
+        }
+
+        [TestMethod]
+        public void OrganizationServiceBuilder_WithFakeRetrieveMultipleForEntity_FakedRetrieves_Should_BeFaked()
+        {
+            IOrganizationService service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            var accounts = new List<Account> {GetFakedAccount()};
+            AssertAccountNotQueried(new OrganizationServiceBuilder(service).WithFakeRetrieveMultipleForEntity(Account.EntityLogicalName, new EntityCollection(accounts.Cast<Entity>().ToArray())).Build());
+            AssertAccountNotQueried(new OrganizationServiceBuilder(service).WithFakeRetrieveMultipleForEntity(accounts).Build());
+            AssertAccountNotQueried(new OrganizationServiceBuilder(service).WithFakeRetrieveMultipleForEntity(accounts.First()).Build());
+        }
+
+        private Account GetFakedAccount()
+        {
+            return new Account {Name = "TEST"};
+        }
+
+        private void AssertAccountNotQueried(IOrganizationService service)
+        {
             service.Create(new Account());
-            service = new OrganizationServiceBuilder(service).WithFakeRetrieveMultiple((s,qb)=> true, new Account(){Name ="TEST"}).Build();
             var account = service.GetFirst<Account>();
             Assert.AreEqual("TEST", account.Name);
             Assert.AreEqual(Guid.Empty, account.Id);
