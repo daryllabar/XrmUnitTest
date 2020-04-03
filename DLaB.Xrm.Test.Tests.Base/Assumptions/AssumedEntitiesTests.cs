@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.Test.Assumptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -55,6 +58,20 @@ namespace DLaB.Xrm.Test.Tests.Builders
             var id = assumptions.GetId(new AccountDefault());
             Assert.AreEqual(assumptions.Get<AccountDefault>().Id, id);
             Assert.AreEqual(assumptions.Get<AccountDefault>().LogicalName, id);
+        }
+
+        [TestMethod]
+        public void AssumedEntities_MultiThreadedGet_Should_ReturnAssumedEntity()
+        {
+            var items = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+            Parallel.ForEach(items, item =>
+            {
+                var service = TestBase.GetOrganizationService(Guid.NewGuid().ToString());
+                var assumptions = LoadTestAssumptions(service);
+                var id = assumptions.GetId(new AccountDefault());
+                Assert.AreEqual(assumptions.Get<AccountDefault>().Id, id);
+                Assert.AreEqual(assumptions.Get<AccountDefault>().LogicalName, id);
+            });
         }
 
         private AssumedEntities LoadTestAssumptions(IOrganizationService service)

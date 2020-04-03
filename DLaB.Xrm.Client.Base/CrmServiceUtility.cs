@@ -49,7 +49,7 @@ namespace DLaB.Xrm.Client
             {
                 throw new Exception("Unable to connect to CRM: " + client.LastCrmError);
             }
-            return new ClientSideOrganizationService(client.OrganizationServiceProxy);
+            return new ClientSideOrganizationService(client);
 #endif
         }
 

@@ -58,7 +58,7 @@ namespace DLaB.Xrm.Test
                 var service = CrmServiceUtility.GetOrganizationService();
                 if (service == null)
                 {
-                    throw new Exception("Organziatino Service was Null!");
+                    throw new Exception("Organization Service was Null!");
                 }
                 return service;
             }
@@ -67,9 +67,9 @@ namespace DLaB.Xrm.Test
         private static IClientSideOrganizationService GetLocalCrmDatabaseOrganizationService(string organizationName, Guid impersonationUserId)
         {
             // Create a unique Database for each Unit Test by looking up the first method in the stack trace that has a TestMethodAttribute,
-            // and using it's method handle, combined with the OrganizationName, as a unqiue Key
+            // and using it's method handle, combined with the OrganizationName, as a unique Key
             var method = GetUnitTestMethod() ?? MethodBase.GetCurrentMethod();
-            string databaseKey = String.Format("UnitTest {0}:{1}:{2}", method.Name, organizationName, method.MethodHandle);
+            string databaseKey = string.Format("UnitTest {0}:{1}:{2}", method.Name, organizationName, method.MethodHandle);
 
             var info = LocalCrmDatabaseInfo.Create(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace, databaseKey, impersonationUserId);
 

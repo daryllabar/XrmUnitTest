@@ -170,7 +170,10 @@ namespace DLaB.Xrm.Test.Assumptions
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"There was an exception attempting to load assumption of type {entityAssumption.GetType().FullName}", ex);
+                    throw new Exception($"There was an exception attempting to load assumption of type {entityAssumption.GetType().FullName}" + Environment.NewLine +
+                        $"--{Environment.NewLine}Current Assumed Entities Loaded:{Environment.NewLine}" +
+                            string.Join("," + Environment.NewLine, InternalStore.Keys) + Environment.NewLine + "--" + Environment.NewLine, ex);
+
                 }
             }
         }

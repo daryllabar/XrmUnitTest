@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using DLaB.Common;
 using DLaB.Xrm.LocalCrm;
@@ -21,12 +22,7 @@ namespace DLaB.Xrm.Test.Assumptions
         /// </summary>
         protected AssumedEntities Assumptions { get; private set; }
         private IEnumerable<Type> _prerequisites;
-        private IEnumerable<Type> Prerequisites =>
-            _prerequisites ??
-            (_prerequisites = (GetType().GetCustomAttributes(true).Select(a => a as PrerequisiteAssumptionsAttribute).FirstOrDefault()
-                               ??
-                               new PrerequisiteAssumptionsAttribute()
-                ).Prerequisites);
+        private IEnumerable<Type> Prerequisites => _prerequisites ?? (_prerequisites = GetPrerequisites());
 
         /// <summary>
         /// Gets the name of the type, without the "Attribute" postfix, and with any namespace values that come after Assumptions
@@ -43,7 +39,24 @@ namespace DLaB.Xrm.Test.Assumptions
 
             set => EntitiesFromServerByAttributeType[GetType().Name] = value;
         }
-        
+
+        private IEnumerable<Type> GetPrerequisites()
+        {
+            var preReqs = new List<Type>();
+            var type = GetType();
+            do
+            {
+                if (type.GetCustomAttribute(typeof(PrerequisiteAssumptionsAttribute), false) is PrerequisiteAssumptionsAttribute att)
+                {
+                    preReqs.AddRange(att.Prerequisites);
+                }
+
+                type = type.BaseType;
+            } while (type != null);
+
+            preReqs.Reverse();
+            return preReqs;
+        }
         /// <summary>
         /// Gets the name of the type, without the "Attribute" postfix, and with any namespace values that come after Assumptions
         /// </summary>

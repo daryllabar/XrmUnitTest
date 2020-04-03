@@ -124,5 +124,6 @@ namespace DLaB.Xrm.Test.Tests
         }
 
         #endregion AssumptionChildFirst_Should_LoadAssumptions
+
     }
 }
