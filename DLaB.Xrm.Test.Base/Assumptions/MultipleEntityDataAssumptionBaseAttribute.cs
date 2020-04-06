@@ -37,5 +37,14 @@ namespace DLaB.Xrm.Test.Assumptions
                 assumption.AddAssumedEntities(service, Assumptions);
             }
         }
+
+        /// <summary>
+        /// Used to allow the Aggregate Multi-Entity Assumptions to be loaded
+        /// </summary>
+        /// <returns></returns>
+        internal IEnumerable<EntityDataAssumptionBaseAttribute> GetAssumptionsInternal()
+        {
+            return GetAssumptions();
+        }
     }
 }
