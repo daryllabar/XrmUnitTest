@@ -69,28 +69,8 @@ namespace DLaB.Xrm.Test
             // Create a unique Database for each Unit Test by looking up the first method in the stack trace that has a TestMethodAttribute,
             // and using it's method handle, combined with the OrganizationName, as a unique Key
             var method = GetUnitTestMethod() ?? MethodBase.GetCurrentMethod();
-            string databaseKey = string.Format("UnitTest {0}:{1}:{2}", method.Name, organizationName, method.MethodHandle);
-
-            var info = LocalCrmDatabaseInfo.Create(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace, databaseKey, impersonationUserId);
-
-            var service = new LocalCrmDatabaseOrganizationService(info);
-
-            // Create BU and SystemUser for currently executing user
-            var bu = new Entity(BusinessUnit.EntityLogicalName)
-            {
-                [BusinessUnit.Fields.Name] = "Currently Executing BusinessUnit"
-            };
-            bu.Id = service.Create(bu);
-
-            var id = service.Create(new Entity(SystemUser.EntityLogicalName)
-            {
-                [SystemUser.Fields.FirstName] = Environment.UserDomainName.Split('/').First(),
-                [SystemUser.Fields.LastName] = Environment.UserName,
-                [SystemUser.Fields.BusinessUnitId] = bu.ToEntityReference(),
-            }.ToSdkEntity());
-
-            info = LocalCrmDatabaseInfo.Create(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace, databaseKey, id, impersonationUserId, bu.Id);
-
+            var databaseKey = $"UnitTest {method.Name}:{organizationName}:{method.MethodHandle}";
+            var info = LocalCrmDatabaseInfo.Create(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace, databaseKey, Guid.NewGuid(), impersonationUserId, Guid.NewGuid());
             return new LocalCrmDatabaseOrganizationService(info);
         }
 

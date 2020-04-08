@@ -1,4 +1,5 @@
-﻿using System.Data.Common;
+﻿using System.Collections.Generic;
+using System.Data.Common;
 using DLaB.Common;
 
 namespace DLaB.Xrm.Client
@@ -75,6 +76,10 @@ namespace DLaB.Xrm.Client
         public class CrmEntities
         {
             private static string _contextType;
+            private static string _primaryNameAttributeName;
+            private static bool? _containsPrimaryAttributeName;
+            private static Dictionary<string, string> _nonStandardAttributeNamesByEntity;
+            private static List<string> _namelessEntities;
 
             /// <summary>
             /// The type of the crm context definition.  This is used to determine the assembly of the early bound entities
@@ -89,6 +94,49 @@ namespace DLaB.Xrm.Client
                 set => _contextType = value;
             }
 
+            /// <summary>
+            /// Determines if the PrimaryNameViaFieldProvider is used (if true or not provided) or PrimaryNameViaNonStandardNamesProvider (if false)
+            /// </summary>
+            public static bool ContainPrimaryAttributeName
+            {
+                get
+                {
+                    if (!_containsPrimaryAttributeName.HasValue)
+                    {
+                        _containsPrimaryAttributeName = Config.GetAppSettingOrDefault("CrmEntities.TypesContainPrimaryAttributeName", true);
+                    }
+
+                    return _containsPrimaryAttributeName.Value;
+                }
+                set => _containsPrimaryAttributeName = value;
+            }
+
+            /// <summary>
+            /// Ignored if EarlyBoundTypesContainPrimaryAttributeName is false
+            /// </summary>
+            public static string PrimaryNameAttributeName
+            {
+                get => _primaryNameAttributeName ?? (_primaryNameAttributeName = Config.GetAppSettingOrDefault("CrmEntities.PrimaryNameAttributeName", "PrimaryNameAttribute"));
+                set => _primaryNameAttributeName = value;
+            }
+
+            /// <summary>
+            /// Ignored if EarlyBoundTypesContainPrimaryAttributeName is true
+            /// </summary>
+            public static Dictionary<string,string> NonStandardAttributeNamesByEntity
+            {
+                get => _nonStandardAttributeNamesByEntity ?? (_nonStandardAttributeNamesByEntity = Config.GetAppSettingOrDefault("CrmEntities.NonStandardAttributeNamesByEntity", "").ToLower().GetDictionary<string, string>());
+                set => _nonStandardAttributeNamesByEntity = value;
+            }
+
+            /// <summary>
+            /// List of Entities that do not have a primary name attribute, in addition to the known entities
+            /// </summary>
+            public static List<string> NamelessEntities
+            {
+                get => _namelessEntities ?? (_namelessEntities = Config.GetList("CrmEntities.NamelessEntities", new List<string>()));
+                set => _namelessEntities = value;
+            }
         }
 
         /// <summary>

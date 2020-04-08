@@ -8,9 +8,7 @@ namespace DLaB.Xrm.LocalCrm
     {
         private readonly ConcurrentDictionary<string, EntityProperties> _dictionary = new ConcurrentDictionary<string, EntityProperties>();
 
-        private static readonly EntityPropertiesCache _instance = new EntityPropertiesCache();
-
-        public static EntityPropertiesCache Instance { get { return _instance; } } 
+        public static EntityPropertiesCache Instance { get; } = new EntityPropertiesCache();
 
         private EntityPropertiesCache()
         {
@@ -23,7 +21,7 @@ namespace DLaB.Xrm.LocalCrm
             return For(type);
         }
 
-        public EntityProperties For(LocalCrmDatabaseInfo info, Type type, string logicalName)
+        public EntityProperties For(LocalCrmDatabaseInfo info, string logicalName)
         {
             return For(LocalCrmDatabase.GetType(info, logicalName));
         }
@@ -33,7 +31,7 @@ namespace DLaB.Xrm.LocalCrm
             var typeName = type.AssemblyQualifiedName;
             if (typeName == null)
             {
-                throw new NullReferenceException("Assembly Qualifed Name for Type was null!");
+                throw new NullReferenceException("Assembly Qualified Name for Type was null!");
             }
             if (_dictionary.TryGetValue(typeName, out EntityProperties properties))
             {

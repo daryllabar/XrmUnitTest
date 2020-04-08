@@ -91,7 +91,9 @@ namespace DLaB.Xrm.Test.Assumptions
         /// <typeparam name="TEntity">The type of the entity.</typeparam>
         /// <param name="assumption">The assumption.</param>
         /// <returns></returns>
+#pragma warning disable IDE0060 // Remove unused parameter
         public TEntity Get<TAssumption, TEntity>(IAssumptionEntityType<TAssumption, TEntity> assumption)
+#pragma warning restore IDE0060 // Remove unused parameter
             where TAssumption : EntityDataAssumptionBaseAttribute, IAssumptionEntityType<TAssumption, TEntity>
             where TEntity : Entity
         {
@@ -229,7 +231,9 @@ namespace DLaB.Xrm.Test.Assumptions
         /// <typeparam name="TEntity">The type of the entity.</typeparam>
         /// <param name="assumption">The assumption.</param>
         /// <returns></returns>
+#pragma warning disable IDE0060 // Remove unused parameter
         public Id<TEntity> GetId<TAssumption, TEntity>(IAssumptionEntityType<TAssumption, TEntity> assumption)
+#pragma warning restore IDE0060 // Remove unused parameter
             where TAssumption : EntityDataAssumptionBaseAttribute, IAssumptionEntityType<TAssumption, TEntity>
             where TEntity : Entity
         {

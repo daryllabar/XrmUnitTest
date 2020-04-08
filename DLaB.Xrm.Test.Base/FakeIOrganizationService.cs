@@ -571,9 +571,9 @@ namespace DLaB.Xrm.Test
             {
                 if (ExecutionTracingEnabled)
                 {
-                    var qe = query as QueryExpression;
-
-                    entities = qe == null ? Timer.Time(RetrieveMultipleInternal, query, "RetrieveMultiple {0}: {1}", query) : Timer.Time(RetrieveMultipleInternal, query, "RetrieveMultiple: {2}{0}{1}", Environment.NewLine, qe.GetSqlStatement());
+                    entities = query is QueryExpression qe
+                        ? Timer.Time(RetrieveMultipleInternal, query, "RetrieveMultiple: {2}{0}{1}", Environment.NewLine, qe.GetSqlStatement())
+                        : Timer.Time(RetrieveMultipleInternal, query, "RetrieveMultiple {0}: {1}", query);
                 }
                 else
                 {

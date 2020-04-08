@@ -32,7 +32,9 @@ namespace DLaB.Xrm.LocalCrm.Tests
                     customer.Id = service.Create(customer);
                     entity[Incident.Fields.CustomerId] = customer.ToEntityReference();
                 }
+
                 entity.Id = service.Create(entity);
+
                 try
                 {
                     AssertCrm.IsActive(service, entity, "Entity " + entity.GetType().Name + " wasn't created active!");

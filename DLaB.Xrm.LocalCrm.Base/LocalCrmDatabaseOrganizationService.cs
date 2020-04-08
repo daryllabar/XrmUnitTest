@@ -468,6 +468,8 @@ namespace DLaB.Xrm.LocalCrm
                 ConditionallyAddAutoPopulatedValue(entity, properties, "createdonbehalfby", Info.UserOnBehalfOf, Info.UserOnBehalfOf.GetIdOrDefault() != Guid.Empty);
                 ConditionallyAddAutoPopulatedValue(entity, properties, "createdon", entity.Contains("overriddencreatedon") ? entity["overriddencreatedon"] : DateTime.UtcNow);
                 ConditionallyAddAutoPopulatedValue(entity, properties, "owningbusinessunit", Info.BusinessUnit, !entity.Contains("owningbusinessunit") && Info.BusinessUnit.GetIdOrDefault() != Guid.Empty);
+
+
             }
             else if( entity.Contains(Email.Fields.OwnerId))
             {
@@ -487,7 +489,7 @@ namespace DLaB.Xrm.LocalCrm
             fullNameFormat = fullNameFormat.Replace("M", "{2}");
             fullNameFormat = fullNameFormat.Replace("I", "{3}");
 
-            return String.Format(fullNameFormat,
+            return string.Format(fullNameFormat,
                 (firstName ?? "").Trim(),
                 (lastName ?? "").Trim(),
                 (middleName ?? "").Trim(),

@@ -27,11 +27,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)FetchXml\FetchAttributeInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FetchXml\FetchXmlEarlyBoundClasses.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FetchXml\LocalCrmDatabaseFetchXml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IPrimaryNameProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabaseInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabaseOrganizationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabaseOrganizationServiceExecute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabaseStepThrough.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OptionSets\ActivityParty_ParticipationTypeMask.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PrimaryNameFieldProviderBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PrimaryNameViaFieldProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PrimaryNameViaNonStandardNamesProvider.cs" />
   </ItemGroup>
 </Project>

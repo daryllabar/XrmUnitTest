@@ -51,6 +51,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)PathFinderAbsolute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\NamespaceSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\PathSetting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\PrimaryNameProviderSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\SourceControlProviderSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\TestFrameworkProviderSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StubOrganizationService.cs" />

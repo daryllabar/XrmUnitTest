@@ -426,7 +426,7 @@ namespace DLaB.Xrm.Test.Builders
 
         #region WithFakeRetrieve
 
-        private Dictionary<string, Entity> FakeEntitiesToReturn = new Dictionary<string, Entity>();
+        private readonly Dictionary<string, Entity> FakeEntitiesToReturn = new Dictionary<string, Entity>();
         /// <summary>
         /// Forces any retrieve call of the particular entity type to return the given entity.  Does not apply to any other calls i.e. RetrieveMultiple.
         /// </summary>
@@ -1008,7 +1008,7 @@ namespace DLaB.Xrm.Test.Builders
 
                 // Split name amoungst first two attributes.  If odd, subtract 1 to have equal lengths
                 var length = name.Length % 2 == 0 ? name.Length : name.Length - 1;
-                length = length / 2;
+                length /= 2;
                 SetIfNotDefined(e, info.BaseAttributes[0], name.Substring(0, length));
                 SetIfNotDefined(e, info.BaseAttributes[1], name.Substring(length, length));
             }

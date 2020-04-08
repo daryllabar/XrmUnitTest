@@ -10,7 +10,6 @@ using DLaB.Common;
 using DLaB.Xrm.CrmSdk;
 using DLaB.Xrm.LocalCrm.Entities;
 using DLaB.Xrm.LocalCrm.FetchXml;
-using DLaB.Xrm.LocalCrm.OptionSets;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
@@ -31,6 +30,7 @@ namespace DLaB.Xrm.LocalCrm
         private static readonly object DatabaseCreationLock = new object();
         // ReSharper disable once InconsistentNaming
         private readonly ConcurrentDictionary<string, ITable> _tables = new ConcurrentDictionary<string, ITable>();
+        private readonly Dictionary<EntityReference, string> _namesById = new Dictionary<EntityReference, string>();
         internal static readonly EntityPropertiesCache PropertiesCache = EntityPropertiesCache.Instance;
 
         private static ITable<T> SchemaGetOrCreate<T>(LocalCrmDatabaseInfo info) where T : Entity
@@ -444,6 +444,7 @@ namespace DLaB.Xrm.LocalCrm
 
             CreateActivityPointer(service, entity);
             CreateActivityParties(service, entity);
+            SetCachePrimaryName(service, entity);
 
             return entity.Id;
         }
@@ -486,6 +487,24 @@ namespace DLaB.Xrm.LocalCrm
             return pointer;
         }
 
+        private static void SetCachePrimaryName<T>(LocalCrmDatabaseOrganizationService service, T entity) where T : Entity
+        {
+            var cache = GetDatabaseForService(service.Info)._namesById;
+            var attributeName = service.Info.PrimaryNameProvider.GetPrimaryName<T>();
+            var name = string.Empty;
+            if (attributeName != string.Empty)
+            {
+                if (string.IsNullOrWhiteSpace(attributeName))
+                {
+                    throw new Exception($"Entity {entity.LogicalName} returned a null or whitespace primary name attribute.");
+                }
+
+                name = entity.GetAttributeValue<string>(attributeName);
+            }
+
+            cache[entity.ToEntityReference()] = name;
+        }
+
         private static T Read<T>(LocalCrmDatabaseOrganizationService service, Guid id, ColumnSet cs, DelayedException exception) where T : Entity
         {
             var query = SchemaGetOrCreate<T>(service.Info).
@@ -509,7 +528,24 @@ namespace DLaB.Xrm.LocalCrm
 
             service.RemoveFieldsCrmDoesNotReturn(entity);
             PopulateFormattedValues<T>(service.Info, entity);
+            PopulateReferenceNames(service, entity);
             return entity.Serialize().DeserializeEntity<T>();
+        }
+
+        private static void PopulateReferenceNames<T>(LocalCrmDatabaseOrganizationService service, T entity) where T : Entity
+        {
+            var cache = GetDatabaseForService(service.Info)._namesById;
+            foreach (var att in entity.Attributes.Values.OfType<EntityReference>())
+            {
+                try
+                {
+                    att.Name = cache[att];
+                }
+                catch (KeyNotFoundException)
+                {
+                    throw new KeyNotFoundException("Name Cache did not contain a name for " + att.ToStringDebug());
+                }
+            }
         }
 
         /// <summary>
@@ -598,6 +634,7 @@ namespace DLaB.Xrm.LocalCrm
             {
                 service.RemoveFieldsCrmDoesNotReturn(entity);
                 PopulateFormattedValues<T>(service.Info, entity);
+                PopulateReferenceNames(service, entity);
                 result.Entities.Add(entity.Serialize().DeserializeEntity<T>());
             }
 
@@ -683,7 +720,7 @@ namespace DLaB.Xrm.LocalCrm
                         continue;
                     }
                     // Handle Aliased Value
-                    var aliasedDictionary = PropertiesCache.For(info, type, aliased.EntityLogicalName).PropertiesByLowerCaseName;
+                    var aliasedDictionary = PropertiesCache.For(info, aliased.EntityLogicalName).PropertiesByLowerCaseName;
                     if (!aliasedDictionary.TryGetValue(aliased.AttributeLogicalName + "enum", out lowerCaseProperties))
                     {
                         continue;
@@ -1019,18 +1056,28 @@ namespace DLaB.Xrm.LocalCrm
                         kvps.Add(kvp.Key);
                         kvps.Add(kvp.Value);
                     }
+
                     // Throw an error if not found.
                     foreign.Id = service.GetFirst(foreign.LogicalName, kvps.ToArray()).Id;
                 }
                 else
                 {
 #endif
-                    service.Retrieve(foreign.LogicalName, foreign.Id, new ColumnSet(true));
+                    service.Retrieve(foreign.LogicalName, foreign.Id, new ColumnSet(false));
 #if !PRE_KEYATTRIBUTE
                 }
+            }
+            foreach(var att in entity.Attributes.Select(a => new { a.Key, Value = a.Value as EntityReference })
+                                     .Where(a => a.Value?.KeyAttributes.Count > 0).ToList())
+            {
+                entity[att.Key] = new EntityReference(att.Value.LogicalName, att.Value.Id)
+                {
+                    Name = att.Value.Name
+                };
 #endif
             }
         }
+
         private static bool SimulateCrmCreateActionPrevention<T>(T entity, DelayedException exception) where T : Entity
         {
             switch (entity.LogicalName)
@@ -1212,7 +1259,7 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
-        private static HashSet<string> ActivityPartyFields = new HashSet<string>
+        private static readonly HashSet<string> ActivityPartyFields = new HashSet<string>
         {
             Email.Fields.From,
             Email.Fields.RegardingObjectId,
@@ -1283,9 +1330,11 @@ namespace DLaB.Xrm.LocalCrm
             {
                 return;
             }
-            
+
+            var schema = SchemaGetOrCreate<T>(service.Info);
+
             // Get the Entity From the database
-            var databaseValue = SchemaGetOrCreate<T>(service.Info).FirstOrDefault(e => e.Id == entity.Id);
+            var databaseValue = schema.FirstOrDefault(e => e.Id == entity.Id);
             if (databaseValue == null)
             {
                 exception.Exception = CrmExceptions.GetEntityDoesNotExistException(entity);
@@ -1304,10 +1353,11 @@ namespace DLaB.Xrm.LocalCrm
             // Set all Auto populated values
             service.PopulateAutoPopulatedAttributes(databaseValue, false);
 
-            SchemaGetOrCreate<T>(service.Info).Update(databaseValue);
+            schema.Update(databaseValue);
 
             UpdateActivityPointer(service, databaseValue);
             CreateActivityParties(service, entity);
+            SetCachePrimaryName(service, schema.FirstOrDefault(e => e.Id == entity.Id));
         }
 
         private static void UpdateActivityPointer<T>(LocalCrmDatabaseOrganizationService service, T entity) where T : Entity

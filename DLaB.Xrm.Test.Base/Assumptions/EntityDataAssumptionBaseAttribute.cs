@@ -262,7 +262,7 @@ namespace DLaB.Xrm.Test.Assumptions
         {
             if (!fileName.EndsWith(".xml"))
             {
-                fileName = fileName + ".xml";
+                fileName += ".xml";
             }
 
             // Check for normal path

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using DLaB.Xrm.Client;
+using DLaB.Xrm.Test;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
+using AppConfig = DLaB.Xrm.Client.AppConfig;
 
 namespace DLaB.Xrm.LocalCrm
 {
@@ -41,6 +42,11 @@ namespace DLaB.Xrm.LocalCrm
         /// The early bound namespace.
         /// </value>
         public string EarlyBoundNamespace { get; private set; }
+
+        /// <summary>
+        /// The PrimaryNameProvider
+        /// </summary>
+        public IPrimaryNameProvider PrimaryNameProvider { get; set; }
         /// <summary>
         /// The organization identifier.
         /// </summary>
@@ -56,6 +62,7 @@ namespace DLaB.Xrm.LocalCrm
         /// Used to populate Created/Modifed On Behalf Of Attributes
         /// </summary>
         public EntityReference UserOnBehalfOf { get; private set; }
+
 
 
         private LocalCrmDatabaseInfo() { }
@@ -92,8 +99,15 @@ namespace DLaB.Xrm.LocalCrm
         /// <param name="userId">The user identifier.</param>
         /// <param name="userOnBehalfOf">The user on behalf of.</param>
         /// <param name="userBusinessUnit">The user business unit.</param>
+        /// <param name="primaryNameProvider">The Primary Name Provider.</param>
         /// <returns></returns>
-        public static LocalCrmDatabaseInfo Create(Assembly earlyBoundAssembly, string earlyBoundNamespace, string databaseName = null, Guid? userId = null, Guid? userOnBehalfOf = null, Guid? userBusinessUnit = null)
+        public static LocalCrmDatabaseInfo Create(Assembly earlyBoundAssembly, 
+            string earlyBoundNamespace, 
+            string databaseName = null, 
+            Guid? userId = null, 
+            Guid? userOnBehalfOf = null, 
+            Guid? userBusinessUnit = null, 
+            IPrimaryNameProvider primaryNameProvider = null)
         {
             databaseName = databaseName ?? string.Empty;
 
@@ -106,11 +120,12 @@ namespace DLaB.Xrm.LocalCrm
                 User = new EntityReference("systemuser", userId.GetValueOrDefault(Guid.NewGuid())),
                 UserOnBehalfOf = new EntityReference("systemuser", userOnBehalfOf.GetValueOrDefault()),
                 OrganizationId = ConvertToGuid(databaseName),
+                PrimaryNameProvider = primaryNameProvider ?? PrimaryNameFieldProviderBase.GetConfiguredProvider(earlyBoundAssembly, earlyBoundNamespace)
             };
         }
 
         /// <summary>
-        /// Determines whether given entity name is defiend in the early bound assembly
+        /// Determines whether given entity name is defined in the early bound assembly
         /// </summary>
         /// <param name="entityLogicalName">Name of the entity logical.</param>
         /// <returns></returns>

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using DLaB.Xrm.MismatchedAttributeToLogicalName;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
@@ -12,6 +13,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void FilteringByMismatchedAttribute_Should_PerformFilter()
         {
             var info = LocalCrmDatabaseInfo.Create<CrmContext>("FakeEntities");
+            info.PrimaryNameProvider = new PrimaryNameViaNonStandardNamesProvider(new Dictionary<string, string>{ {FakeEntity.EntityLogicalName, "fakeentity" }});
             var service = new LocalCrmDatabaseOrganizationService(info);
             var fake = new FakeEntity { FakeEntity1 = "Fake" };
             service.Create(fake);
@@ -82,9 +84,11 @@ namespace DLaB.Xrm.MismatchedAttributeToLogicalName
                 SetAttributeValue("fakeentity", value);
                 OnPropertyChanged("FakeEntity1");
             }
-        }       /// <summary>
-                /// Shows the status of the campaign. By default, campaigns are active and can't be deactivated.
-                /// </summary>
+        }
+        
+        /// <summary>
+        /// Shows the status of the campaign. By default, campaigns are active and can't be deactivated.
+        /// </summary>
         [AttributeLogicalNameAttribute("statecode")]
         public FakeEntityState? StateCode
         {
