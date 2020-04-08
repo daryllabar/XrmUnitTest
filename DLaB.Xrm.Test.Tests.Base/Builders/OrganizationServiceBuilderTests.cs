@@ -19,9 +19,6 @@ namespace DLaB.Xrm.Test.Tests.Builders
             TestInitializer.InitializeTestSettings();
         }
 
-        /// <summary>
-        /// Incident's can't be created without a customer, so attempt to force the incident to be created first
-        /// </summary>
         [TestMethod]
         public void OrganizationServiceBuilder_WithEntityNameDefaulted_Name_Should_BeDefaulted()
         {
@@ -32,28 +29,22 @@ namespace DLaB.Xrm.Test.Tests.Builders
             const string customEntityLogicalName = "custom_entity";
             var entities = new List<Entity>();
 
-            IOrganizationService service =
-                LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            IOrganizationService service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
             service = new OrganizationServiceBuilder(service)
-                .WithFakeCreate((s, e) =>
+                 .WithFakeCreate((s, e) =>
                  {
                      // Don't create fake entities
-                     if (e.LogicalName == notExistsEntityLogicalName)
+                     if (e.LogicalName == notExistsEntityLogicalName
+                         || e.LogicalName == customEntityLogicalName)
                      {
 
-                         entities.Add(e);
-                         return Guid.NewGuid();
-                     }
-                     if (e.LogicalName == customEntityLogicalName)
-                     {
                          entities.Add(e);
                          return Guid.NewGuid();
                      }
 
                      return s.Create(e);
                  })
-                 .WithEntityNameDefaulted((e, info) => GetName(e.LogicalName, info.AttributeName))
-                 .Build();
+                 .WithEntityNameDefaulted((e, info) => GetName(e.LogicalName, info.AttributeName), new NoCustomNames()).Build();
 
 
             //
@@ -72,6 +63,19 @@ namespace DLaB.Xrm.Test.Tests.Builders
             Assert.AreEqual(GetName(customEntityLogicalName,"custom_name"), entities.Single(e => e.LogicalName == customEntityLogicalName)["custom_name"]);
             Assert.AreEqual(GetName(Contact.EntityLogicalName, " " + Contact.Fields.FullName), service.GetFirst<Contact>().FullName);
             Assert.AreEqual(GetName(Account.EntityLogicalName, Account.Fields.Name), service.GetFirst<Account>().Name);
+        }
+
+        private class NoCustomNames : IEntityHelperConfig
+        {
+            public string GetIrregularIdAttributeName(string logicalName)
+            {
+                return null;
+            }
+
+            public PrimaryFieldInfo GetIrregularPrimaryFieldInfo(string logicalName, PrimaryFieldInfo defaultInfo = null)
+            {
+                return null;
+            }
         }
 
         /// <summary>
