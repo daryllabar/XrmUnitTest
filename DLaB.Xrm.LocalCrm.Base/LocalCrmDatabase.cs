@@ -1113,7 +1113,7 @@ namespace DLaB.Xrm.LocalCrm
             var properties = PropertiesCache.For<T>();
             foreach (var col in cols.Where(c => !properties.ContainsProperty(c)))
             {
-                throw new Exception($"Type {typeof(T).Name} does not contain a property or a property with an AttributeLogicalNameAttribute, with name {col}.");
+                throw new Exception($"Type {typeof(T).Name} does not contain a property named {col}, or a property with an AttributeLogicalNameAttribute of {col}.");
             }
         }
 

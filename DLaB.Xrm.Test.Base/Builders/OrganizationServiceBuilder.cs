@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using DLaB.Common;
 using DLaB.Xrm.Client;
+using DLaB.Xrm.LocalCrm;
 using DLaB.Xrm.Test.Entities;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
@@ -426,7 +427,7 @@ namespace DLaB.Xrm.Test.Builders
 
         #region WithFakeRetrieve
 
-        private readonly Dictionary<string, Entity> FakeEntitiesToReturn = new Dictionary<string, Entity>();
+        private readonly Dictionary<string, Entity> _fakeEntitiesToReturn = new Dictionary<string, Entity>();
         /// <summary>
         /// Forces any retrieve call of the particular entity type to return the given entity.  Does not apply to any other calls i.e. RetrieveMultiple.
         /// </summary>
@@ -434,10 +435,10 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         public TDerived WithFakeRetrieve(Entity entity)
         {
-            if (FakeEntitiesToReturn.Count == 0)
+            if (_fakeEntitiesToReturn.Count == 0)
             {
                 WithFakeRetrieve((s, n, id, cs) =>{
-                    if (FakeEntitiesToReturn.TryGetValue(n, out var value))
+                    if (_fakeEntitiesToReturn.TryGetValue(n, out var value))
                     {
                         return value;
                     }
@@ -446,7 +447,7 @@ namespace DLaB.Xrm.Test.Builders
                 });
             }
 
-            FakeEntitiesToReturn[entity.LogicalName] = entity;
+            _fakeEntitiesToReturn[entity.LogicalName] = entity;
             return This;
         }
 
@@ -588,15 +589,16 @@ namespace DLaB.Xrm.Test.Builders
         /// Defaults the entity name of all created entities.
         /// </summary>
         /// <param name="getName">function to call to get the name for the given Entity and it's Primary Field Info</param>
+        /// <param name="config">Entity Help settings to define primary attributes</param>
         /// <returns></returns>
-        public TDerived WithEntityNameDefaulted(Func<Entity, PrimaryFieldInfo, string> getName)
+        public TDerived WithEntityNameDefaulted(Func<Entity, PrimaryFieldInfo, string> getName, IEntityHelperConfig config = null)
         {
             CreateFuncs.Add((s, e) =>
             {
                 var logicalName = e.LogicalName;
                 if (!string.IsNullOrWhiteSpace(logicalName))
                 {
-                    var info = GetPrimaryFieldInfo(logicalName);
+                    var info = GetPrimaryFieldInfo(logicalName, config);
 
                     SetName(e, info, getName);
                 }
@@ -982,10 +984,11 @@ namespace DLaB.Xrm.Test.Builders
         /// Gets the primary field information.
         /// </summary>
         /// <param name="logicalName">Logical name of the entity.</param>
+        /// <param name="config">Entity Help settings to define primary attributes</param>
         /// <returns></returns>
-        public virtual PrimaryFieldInfo GetPrimaryFieldInfo(string logicalName)
+        public virtual PrimaryFieldInfo GetPrimaryFieldInfo(string logicalName, IEntityHelperConfig config = null)
         {
-            return EntityHelper.GetPrimaryFieldInfo(logicalName);
+            return EntityHelper.GetPrimaryFieldInfo(logicalName, config ?? new PrimaryNameProviderConfig());
         }
 
         private static void SetName(Entity e, PrimaryFieldInfo info, Func<Entity, PrimaryFieldInfo, string> getName)
@@ -1045,6 +1048,21 @@ namespace DLaB.Xrm.Test.Builders
         IOrganizationService IAgnosticServiceBuilder.Build()
         {
             return Build();
+        }
+
+        private class PrimaryNameProviderConfig : IEntityHelperConfig
+        {
+            public string GetIrregularIdAttributeName(string logicalName)
+            {
+                return null;
+            }
+
+            public PrimaryFieldInfo GetIrregularPrimaryFieldInfo(string logicalName, PrimaryFieldInfo defaultInfo = null)
+            {
+                defaultInfo = defaultInfo ?? new PrimaryFieldInfo();
+                defaultInfo.AttributeName = PrimaryNameFieldProviderBase.GetConfiguredProvider(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace).GetPrimaryName(logicalName);
+                return defaultInfo;
+            }
         }
     }
 }
