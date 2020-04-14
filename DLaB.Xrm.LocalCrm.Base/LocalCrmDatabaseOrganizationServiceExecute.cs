@@ -40,7 +40,7 @@ namespace DLaB.Xrm.LocalCrm
 
         private AssignResponse ExecuteInternal(AssignRequest request)
         {
-            InvokeStaticGenericMethod(request.Target.LogicalName, "Assign", this, request.Target, request.Assignee);
+            GenericMethodCaller.InvokeLocalCrmDatabaseStaticGenericMethod(Info, request.Target.LogicalName, "Assign", this, request.Target, request.Assignee);
             return new AssignResponse();
         }
 

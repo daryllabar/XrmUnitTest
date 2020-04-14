@@ -162,14 +162,13 @@ namespace DLaB.Xrm.LocalCrm
         [DebuggerStepThrough]
         public Guid Create(Entity entity)
         {
-            var typedEntity = entity;
-            AssertValidForOperation(entity, "Create");
+            AssertValidForOperation(entity, nameof(Create));
             if (entity.GetType() == typeof(Entity))
             {
-                typedEntity = (Entity)InvokeGenericMethod<Entity>(entity, "ToEntity", null);
+                entity = GenericMethodCaller.InvokeToEntity(entity, Info);
             }
 
-            return (Guid)InvokeStaticGenericMethod(entity.LogicalName, "Create", this, typedEntity);
+            return (Guid)GenericMethodCaller.InvokeLocalCrmDatabaseStaticGenericMethod(Info, entity.LogicalName, nameof(Create), this, entity);
         }
 
         /// <summary>
@@ -180,8 +179,8 @@ namespace DLaB.Xrm.LocalCrm
         [DebuggerStepThrough]
         public void Delete(string entityName, Guid id)
         {
-            AssertValidForOperation(entityName, "Delete");
-            InvokeStaticGenericMethod(entityName, "Delete", this, id);
+            AssertValidForOperation(entityName, nameof(Delete));
+            GenericMethodCaller.InvokeLocalCrmDatabaseStaticGenericMethod(Info, entityName, nameof(Delete), this, id);
         }
 
         /// <summary>
@@ -262,7 +261,7 @@ namespace DLaB.Xrm.LocalCrm
         [DebuggerStepThrough]
         public Entity Retrieve(string entityName, Guid id, ColumnSet columnSet)
         {
-            return (Entity)InvokeStaticGenericMethod(entityName, "Read", this, id, columnSet);
+            return (Entity)GenericMethodCaller.InvokeLocalCrmDatabaseStaticGenericMethod(Info, entityName, "Read", this, id, columnSet);
         }
 
         /// <summary>
@@ -290,17 +289,17 @@ namespace DLaB.Xrm.LocalCrm
                 fetch = (FetchType)s.Deserialize(r);
                 r.Close();
             }
-            return (EntityCollection)InvokeStaticGenericMethod(((FetchEntityType)fetch.Items[0]).name, "ReadFetchXmlEntities", this, fetch);
+            return (EntityCollection)GenericMethodCaller.InvokeLocalCrmDatabaseStaticGenericMethod(Info, ((FetchEntityType)fetch.Items[0]).name, "ReadFetchXmlEntities", this, fetch);
         }
 
         private EntityCollection RetrieveMultipleInternal(QueryExpression qe)
         {
-            return (EntityCollection)InvokeStaticGenericMethod(qe.EntityName, "ReadEntities", this, qe);
+            return (EntityCollection)GenericMethodCaller.InvokeLocalCrmDatabaseStaticGenericMethod(Info, qe.EntityName, "ReadEntities", this, qe);
         }
 
         private EntityCollection RetrieveMultipleInternal(QueryByAttribute query)
         {
-            return (EntityCollection)InvokeStaticGenericMethod(query.EntityName, "ReadEntitiesByAttribute", this, query);
+            return (EntityCollection)GenericMethodCaller.InvokeLocalCrmDatabaseStaticGenericMethod(Info, query.EntityName, "ReadEntitiesByAttribute", this, query);
         }
 
         /// <summary>
@@ -310,14 +309,13 @@ namespace DLaB.Xrm.LocalCrm
         [DebuggerStepThrough]
         public void Update(Entity entity)
         {
-            var typedEntity = entity;
             AssertValidForOperation(entity, "Update");
             if (entity.GetType() == typeof(Entity))
             {
-                typedEntity = (Entity)InvokeGenericMethod<Entity>(entity, "ToEntity", null);
+                entity = GenericMethodCaller.InvokeToEntity(entity, Info);
             }
 
-            InvokeStaticGenericMethod(entity.LogicalName, "Update", this, typedEntity);
+            GenericMethodCaller.InvokeLocalCrmDatabaseStaticGenericMethod(Info, entity.LogicalName, "Update", this, entity);
         }
 
         #endregion
@@ -325,12 +323,11 @@ namespace DLaB.Xrm.LocalCrm
         [DebuggerHidden]
         internal Guid CreateActivityParty(Entity entity)
         {
-            var typedEntity = entity;
             if (entity.GetType() == typeof(Entity))
             {
-                typedEntity = (Entity)InvokeGenericMethod<Entity>(entity, "ToEntity", null);
+                entity = GenericMethodCaller.InvokeToEntity(entity, Info);
             }
-            return (Guid)InvokeStaticGenericMethod(entity.LogicalName, "Create", this, typedEntity);
+            return (Guid)GenericMethodCaller.InvokeLocalCrmDatabaseStaticGenericMethod(Info, entity.LogicalName, "Create", this, entity);
         }
 
         /// <summary>
@@ -342,80 +339,6 @@ namespace DLaB.Xrm.LocalCrm
         public Type GetType(string logicalName)
         {
             return LocalCrmDatabase.GetType(Info, logicalName);
-        }
-
-        [DebuggerHidden]
-        private object InvokeStaticGenericMethod(string logicalName, string methodName, params object[] parameters)
-        {
-            try
-            {
-                return typeof(LocalCrmDatabase).GetMethod(methodName, BindingFlags.Public | BindingFlags.Static)
-                                                ?.MakeGenericMethod(GetType(logicalName))
-                                                .Invoke(null, parameters);
-            }
-            catch (TargetInvocationException ex)
-            {
-                ThrowInnerException(ex);
-                throw new Exception("Throw InnerException didn't throw exception");
-            }
-        }
-
-        [DebuggerHidden]
-        // ReSharper disable once UnusedMember.Local
-        private object InvokeStaticMultiGenericMethod(string logicalName1, string logicalName2, string methodName, params object[] parameters)
-        {
-            try
-            {
-                return typeof(LocalCrmDatabase).GetMethod(methodName, BindingFlags.Public | BindingFlags.Static)
-                    ?.MakeGenericMethod(GetType(logicalName1), GetType(logicalName2))
-                    .Invoke(null, parameters);
-            }
-            catch (TargetInvocationException ex)
-            {
-                ThrowInnerException(ex);
-                throw new Exception("Throw InnerException didn't throw exception");
-            }
-        }
-
-        /// <summary>
-        /// Attempts to throw the inner exception of the TargetInvocationException
-        /// </summary>
-        /// <param name="ex"></param>
-        [DebuggerHidden]
-        private static void ThrowInnerException(TargetInvocationException ex)
-        {
-            if (ex.InnerException == null) { throw new NullReferenceException("TargetInvocationException did not contain an InnerException", ex); }
-
-            Exception exception = null;
-            try
-            {
-                //Assume typed Exception has "new (String message, Exception innerException)" signature
-                exception = (Exception) Activator.CreateInstance(ex.InnerException.GetType(), ex.InnerException.Message, ex.InnerException);
-            }
-            catch
-            {
-                //Constructor doesn't have the right constructor, eat the error and throw the inner exception below
-            }
-
-            if (exception?.InnerException == null || ex.InnerException.Message != exception.Message)
-            {
-                // Wasn't able to correctly create the new Exception.  Fall back to just throwing the inner exception
-                throw ex.InnerException;
-            }
-            throw exception;
-        }
-
-        private object InvokeGenericMethod<T>(Entity entity, string methodName, params object[] parameters)
-        {
-            try
-            {
-                return typeof(T).GetMethod(methodName)?.MakeGenericMethod(GetType(entity.LogicalName)).Invoke(entity, parameters);
-            }
-            catch (TargetInvocationException ex)
-            {
-                ThrowInnerException(ex);
-                throw new Exception("Throw InnerException didn't throw exception");
-            }
         }
 
         /// <summary>
@@ -449,9 +372,9 @@ namespace DLaB.Xrm.LocalCrm
         internal void PopulateAutoPopulatedAttributes<T>(T entity, bool isCreate) where T : Entity
         {
             var properties = typeof (T).GetProperties();
-            var name = GetFullName(entity.GetAttributeValue<string>("firstname"), 
-                                   entity.GetAttributeValue<string>("middlename"),
-                                   entity.GetAttributeValue<string>("lastname"));
+            var name = GetFullName(entity.GetAttributeValue<string>(SystemUser.Fields.FirstName), 
+                                   entity.GetAttributeValue<string>(SystemUser.Fields.MiddleName),
+                                   entity.GetAttributeValue<string>(SystemUser.Fields.LastName));
 
             // TODO: Need to add logic to see if an update to the Full Name is being Performed
             ConditionallyAddAutoPopulatedValue(entity, properties, "fullname", name, !string.IsNullOrWhiteSpace(name));
@@ -468,7 +391,6 @@ namespace DLaB.Xrm.LocalCrm
                 ConditionallyAddAutoPopulatedValue(entity, properties, "createdonbehalfby", Info.UserOnBehalfOf, Info.UserOnBehalfOf.GetIdOrDefault() != Guid.Empty);
                 ConditionallyAddAutoPopulatedValue(entity, properties, "createdon", entity.Contains("overriddencreatedon") ? entity["overriddencreatedon"] : DateTime.UtcNow);
                 ConditionallyAddAutoPopulatedValue(entity, properties, "owningbusinessunit", Info.BusinessUnit, !entity.Contains("owningbusinessunit") && Info.BusinessUnit.GetIdOrDefault() != Guid.Empty);
-
 
             }
             else if( entity.Contains(Email.Fields.OwnerId))
