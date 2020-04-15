@@ -62,9 +62,9 @@ namespace DLaB.Xrm.LocalCrm
                 return;
             }
 
-            if (value is DateTime date)
+            if (value is DateTime)
             {
-                entity[attributeName] = date.RemoveMilliseconds();
+                entity[attributeName] = ((DateTime)(object)value).RemoveMilliseconds();
             }
             else
             {
@@ -290,7 +290,7 @@ namespace DLaB.Xrm.LocalCrm
         /// </summary>
         private static void SetOwnerForCreate(LocalCrmDatabaseOrganizationService service, Entity entity, EntityProperties properties)
         {
-            if (entity.LogicalName == SystemUser.EntityLogicalName)
+            if (entity.LogicalName == SystemUser.EntityLogicalName || entity.LogicalName == Team.EntityLogicalName)
             {
                 AddValueIfNotPresent(entity, properties, SystemUser.Fields.BusinessUnitId, service.Info.BusinessUnit);
                 return;
@@ -312,8 +312,14 @@ namespace DLaB.Xrm.LocalCrm
                 ?? owner.GetAttributeValue<EntityReference>(Email.Fields.OwningBusinessUnit);
 
             ownerRef.Name = null; // Clear Name value since owning field names aren't populated.
-            ConditionallyAddValue(entity, properties, Email.Fields.OwningUser, ownerRef, owner.LogicalName == SystemUser.EntityLogicalName);
-            ConditionallyAddValue(entity, properties, Email.Fields.OwningTeam, ownerRef, owner.LogicalName == Team.EntityLogicalName);
+            var owningUser = owner.LogicalName == SystemUser.EntityLogicalName
+                ? ownerRef
+                : null;
+            var owningTeam = owner.LogicalName == Team.EntityLogicalName
+                ? ownerRef
+                : null;
+            ConditionallyAddValue(entity, properties, Email.Fields.OwningUser, owningUser);
+            ConditionallyAddValue(entity, properties, Email.Fields.OwningTeam, owningTeam);
 
             if (bu == null)
             {

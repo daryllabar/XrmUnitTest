@@ -12,9 +12,9 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var service = GetService();
             var user = service.GetEntity<SystemUser>(service.Create(new SystemUser()));
             Assert.IsNotNull(user.BusinessUnitId);
-            var contact = service.GetEntity<Contact>(service.Create(new Contact()));
-            Assert.IsNotNull(contact.OwnerId);
-            Assert.IsNotNull(contact.OwningUser);
+            var contact = service.GetEntity<Contact>(service.Create(new Contact{OwnerId = user.ToEntityReference()}));
+            Assert.AreEqual(user.Id, contact.OwnerId.Id);
+            Assert.AreEqual(user.Id, contact.OwningUser.Id);
             Assert.IsNotNull(contact.OwningBusinessUnit);
             Assert.IsNull(contact.OwningTeam);
             var team = service.GetEntity<Team>(service.Create(new Team()));
@@ -24,11 +24,11 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 Id = contact.Id,
                 OwnerId = team.ToEntityReference() 
             });
-            contact = service.GetEntity<Contact>(service.Create(new Contact()));
-            Assert.IsNotNull(contact.OwnerId);
-            Assert.IsNull(contact.OwningUser);
+            contact = service.GetEntity<Contact>(contact.Id);
+            Assert.AreEqual(team.Id, contact.OwnerId.Id);
+            Assert.AreEqual(team.Id, contact.OwningTeam.Id);
             Assert.IsNotNull(contact.OwningBusinessUnit);
-            Assert.IsNull(contact.OwningTeam);
+            Assert.IsNull(contact.OwningUser);
         }
     }
 }

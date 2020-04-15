@@ -2,6 +2,9 @@
 
 namespace DLaB.Xrm.LocalCrm
 {
+    /// <summary>
+    /// Defines the optional settings for the local crm database
+    /// </summary>
     public class LocalCrmDatabaseOptionalSettings
     {
         /// <summary>

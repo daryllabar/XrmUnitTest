@@ -86,6 +86,11 @@ namespace DLaB.Xrm.LocalCrm
 
         #region EntityReference
 
+        /// <summary>
+        /// Clones the entity reference
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public static EntityReference Clone(this EntityReference entity)
         {
             if(entity == null)
