@@ -147,15 +147,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var bu = service.GetFirstOrDefault<BusinessUnit>();
 
             Assert.IsNotNull(user, "User was not created by default");
-            Assert.IsNull(bu, "Business Unit was created without being specified");
-
-            service = GetService(businessUnitId: Guid.NewGuid());
-
-            user = service.GetFirstOrDefault<SystemUser>();
-            bu = service.GetFirstOrDefault<BusinessUnit>();
-
-            Assert.IsNotNull(user, "User was not created by default");
-            Assert.IsNotNull(bu, "Business Unit was not created");
+            Assert.IsNotNull(bu, "Business Unit was not created by default");
         }
 
         [TestMethod]

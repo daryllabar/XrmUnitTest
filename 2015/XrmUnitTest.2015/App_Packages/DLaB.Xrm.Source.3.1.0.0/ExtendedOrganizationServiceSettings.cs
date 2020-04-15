@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 #if DLAB_UNROOT_NAMESPACE || DLAB_XRM
@@ -11,6 +12,7 @@ namespace Source.DLaB.Xrm
     /// <summary>
     /// The Settings for the ExtendedOrganizationServiceSettings
     /// </summary>
+    [DebuggerNonUserCode]
     public class ExtendedOrganizationServiceSettings
     {
         #region Properties

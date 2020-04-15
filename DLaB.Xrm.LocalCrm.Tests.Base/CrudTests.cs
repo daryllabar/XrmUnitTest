@@ -10,7 +10,6 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
 using XrmUnitTest.Test;
-using AppConfig = DLaB.Xrm.Client.AppConfig;
 
 namespace DLaB.Xrm.LocalCrm.Tests
 {
@@ -236,7 +235,8 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Crud_ColumnSetLookups()
         {
-            var service = GetService();
+            var dbInfo = LocalCrmDatabaseInfo.Create<CrmContext>();
+            var service = new LocalCrmDatabaseOrganizationService(dbInfo);
             const string firstName = "Joe";
             const string lastName = "Plumber";
             var contact = new Contact { FirstName = firstName, LastName = lastName };
@@ -247,17 +247,14 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.AreEqual(firstName + " " + lastName, service.GetEntity<Contact>(contact.Id).FullName, "Full Name not populated correctly");
 
             // Test L, F M format
-            var defaultFormat = AppConfig.CrmSystemSettings.FullNameFormat;
-            try
+            dbInfo = LocalCrmDatabaseInfo.Create<CrmContext>(new LocalCrmDatabaseOptionalSettings
             {
-                AppConfig.CrmSystemSettings.FullNameFormat = "L, F M";
-                contact = new Contact {FirstName = firstName, LastName = lastName};
-                contact.Id = service.Create(contact);
-            }
-            finally
-            {
-                AppConfig.CrmSystemSettings.FullNameFormat = defaultFormat;
-            }
+                DatabaseName = nameof(LocalCrmTests_Crud_ColumnSetLookups),
+                FullNameFormat = "L, F M"
+            });
+            service = new LocalCrmDatabaseOrganizationService(dbInfo);
+            contact = new Contact {FirstName = firstName, LastName = lastName};
+            contact.Id = service.Create(contact);
             Assert.AreEqual($"{lastName}, {firstName}", service.GetEntity<Contact>(contact.Id).FullName, "Full Name not populated correctly");
         }
 

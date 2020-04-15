@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using Microsoft.Xrm.Sdk.Query;
 using Microsoft.Xrm.Sdk;
 using System.Linq.Expressions;
@@ -18,6 +19,7 @@ namespace Source.DLaB.Xrm
     /// Typed QuerySettings class
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    [DebuggerNonUserCode]
     public class QuerySettings<T> where T: Entity
     {
         /// <summary>

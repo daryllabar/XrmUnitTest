@@ -18,6 +18,7 @@ namespace Source.DLaB.Xrm
     /// <summary>
     /// An IOrganizationService Wrapper that utilizes ExtendedOrganizationServiceSettings and an ITracingService to potentially log every request, timing it as well as parsing the queries into Sql
     /// </summary>
+    [DebuggerNonUserCode]
     public class ExtendedOrganizationService : IOrganizationService
     {
         private ExtendedOrganizationServiceSettings Settings { get; }

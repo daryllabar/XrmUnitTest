@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Xrm.Sdk;
@@ -19,6 +20,7 @@ namespace Source.DLaB.Xrm
     /// <summary>
     /// Utility class to get an Entity Type from a name, and visa-versa, and for determining Entity Id Attribute Name
     /// </summary>
+    [DebuggerNonUserCode]
     public class EntityHelper
     {
         /// <summary>

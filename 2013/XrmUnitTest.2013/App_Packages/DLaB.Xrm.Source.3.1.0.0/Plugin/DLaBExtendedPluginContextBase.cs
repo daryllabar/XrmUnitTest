@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using Microsoft.Xrm.Sdk;
 #if DLAB_UNROOT_COMMON_NAMESPACE
 using DLaB.Common;
@@ -16,6 +17,7 @@ namespace Source.DLaB.Xrm.Plugin
     /// The Implementation of the IExtendedPluginContext
     /// </summary>
     // ReSharper disable once InconsistentNaming
+    [DebuggerNonUserCode]
     public class DLaBExtendedPluginContextBase : IExtendedPluginContext
     {
         #region Properties

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Microsoft.Xrm.Sdk.Query;
 #if DLAB_UNROOT_COMMON_NAMESPACE
@@ -19,7 +18,7 @@ namespace Source.DLaB.Xrm.Comparers
     public class ColumnSetComparer : IEqualityComparer<ColumnSet>
     {
         /// <summary>
-        /// Compaes the two Column Sets
+        /// Compares the two Column Sets
         /// </summary>
         /// <param name="cs1">The CS1.</param>
         /// <param name="cs2">The CS2.</param>
@@ -43,7 +42,7 @@ namespace Source.DLaB.Xrm.Comparers
         public int GetHashCode(ColumnSet cs)
         {
             cs.ThrowIfNull("cs");
-            return new EnumerableComparer<String>().GetHashCode(cs.Columns);
+            return new EnumerableComparer<string>().GetHashCode(cs.Columns);
         }
     }
 }

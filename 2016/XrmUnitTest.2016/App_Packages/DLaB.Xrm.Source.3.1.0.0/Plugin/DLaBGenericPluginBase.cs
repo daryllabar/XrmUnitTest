@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 
@@ -14,6 +15,7 @@ namespace Source.DLaB.Xrm.Plugin
     /// <summary>
     /// Plugin Base.  Allows for Registered Events, preventing infinite loops, and auto logging
     /// </summary>
+    [DebuggerNonUserCode]
     public abstract class DLaBGenericPluginBase<T> : IRegisteredEventsPlugin where T: IExtendedPluginContext
     {
         #region Constants

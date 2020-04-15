@@ -97,6 +97,7 @@ namespace DLaB.Xrm.LocalCrm
         //    }
         //}
 
+        [DebuggerStepThrough]
         private class DelayedException
         {
             public Exception Exception { get; set; }

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Text;
 using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -44,6 +42,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.AreEqual(account.Name, sut.ParentCustomerId.Name, "Account name should have been returned!");
             Assert.AreEqual(user.FullName, sut.OwnerId.Name, "Owner Id name should have been returned!");
             Assert.IsTrue(string.IsNullOrWhiteSpace(sut.OwningUser.Name), "The Owner User Name should not have been returned!");
+            Assert.IsTrue(string.IsNullOrWhiteSpace(sut.OwningBusinessUnit.Name), "The Owning Business Unit Name should not have been returned!");
 
         }
     }

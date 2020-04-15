@@ -12,6 +12,7 @@ namespace Source.DLaB.Xrm.Plugin
     /// <summary>
     /// Trace Time that starts when the timer when the object is created, and stops it when it is disposed.
     /// </summary>
+    [DebuggerNonUserCode]
     public class TraceTimer : IDisposable
     {
         /// <summary>

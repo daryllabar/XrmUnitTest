@@ -216,7 +216,7 @@ namespace DLaB.Xrm.LocalCrm
             }
 
             var table = SchemaGetOrCreate<T>(service.Info);
-            service.PopulateAutoPopulatedAttributes(entity, true);
+            PopulateAutoPopulatedAttributes(service, entity, true);
 
             // Clear non Attribute Related Values
             entity.FormattedValues.Clear();
@@ -274,7 +274,6 @@ namespace DLaB.Xrm.LocalCrm
             }
 
             service.RemoveFieldsCrmDoesNotReturn(entity);
-            PopulateOwnerFields(service, entity);
             PopulateFormattedValues(service.Info, entity);
             PopulateReferenceNames(service, entity);
             return entity.Serialize().DeserializeEntity<T>();
@@ -664,7 +663,7 @@ namespace DLaB.Xrm.LocalCrm
             }
             
             // Set all Auto populated values
-            service.PopulateAutoPopulatedAttributes(databaseValue, false);
+            PopulateAutoPopulatedAttributes(service, databaseValue, false);
 
             schema.Update(databaseValue);
 

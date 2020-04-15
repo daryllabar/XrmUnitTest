@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 #if DLAB_UNROOT_COMMON_NAMESPACE
 using DLaB.Common;
 #else
@@ -14,6 +15,7 @@ namespace Source.DLaB.Xrm.Sandbox
     /// <summary>
     /// Exception Handler For Exceptions when executing in Sandbox Isolation Mode
     /// </summary>
+    [DebuggerNonUserCode]
     public class ExceptionHandler
     {
         /// <summary>

@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\BusinessUnit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Email.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Incident.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Opportunity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\OpportunityProduct.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SystemUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Team.cs" />
@@ -28,6 +29,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)FetchXml\FetchAttributeInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FetchXml\FetchXmlEarlyBoundClasses.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabasePartials\Activity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabasePartials\AutoPopulated.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabasePartials\FetchXml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GenericMethodCaller.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IPrimaryNameProvider.cs" />
@@ -39,7 +41,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabasePartials\LinkedEntityJoin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabasePartials\PrimaryName.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabasePartials\StepThrough.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabasePartials\OwnerFieldPopulation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabaseOptionalSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OptionSets\ActivityParty_ParticipationTypeMask.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PrimaryNameFieldProviderBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PrimaryNameViaFieldProvider.cs" />

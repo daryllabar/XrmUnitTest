@@ -118,6 +118,9 @@ namespace DLaB.Xrm.LocalCrm.Tests
                     case Lead.Fields.CreatedBy:
                     case Lead.Fields.ModifiedOn:
                     case Lead.Fields.ModifiedBy:
+                    case Lead.Fields.OwningBusinessUnit:
+                    case Lead.Fields.StateCode:
+                    case Lead.Fields.StatusCode:
                         Assert.IsFalse(contact.Contains(key));
                         continue;
                 }

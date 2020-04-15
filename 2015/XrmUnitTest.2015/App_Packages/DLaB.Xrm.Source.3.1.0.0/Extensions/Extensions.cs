@@ -11,6 +11,7 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Xml;
 using Microsoft.Crm.Sdk.Messages;
@@ -36,6 +37,7 @@ namespace Source.DLaB.Xrm
     /// <summary>
     /// Extension class for Xrm
     /// </summary>
+    [DebuggerNonUserCode]
     public static partial class Extensions
     {
         #region AttributeMetadata

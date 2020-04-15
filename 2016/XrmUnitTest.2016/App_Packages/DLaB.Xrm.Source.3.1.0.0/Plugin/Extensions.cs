@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.Xrm.Sdk;
 #if DLAB_UNROOT_NAMESPACE || DLAB_XRM
@@ -15,6 +16,7 @@ namespace Source.DLaB.Xrm.Plugin
     /// <summary>
     /// Extension Class for Plugins
     /// </summary>
+    [DebuggerNonUserCode]
     public static class Extensions
     {
         #region List<RegisteredEvent>

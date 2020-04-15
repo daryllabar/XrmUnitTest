@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using DLaB.Xrm.Test;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 using AppConfig = DLaB.Xrm.Client.AppConfig;
@@ -25,10 +24,6 @@ namespace DLaB.Xrm.LocalCrm
         /// </value>
         public string DatabaseName { get; private set; }
         /// <summary>
-        /// Used for defining OptionMetadata
-        /// </summary>
-        public int LanguageCode = AppConfig.DefaultLanguageCode;
-        /// <summary>
         /// The early bound entity assembly.
         /// </summary>
         /// <value>
@@ -42,7 +37,22 @@ namespace DLaB.Xrm.LocalCrm
         /// The early bound namespace.
         /// </value>
         public string EarlyBoundNamespace { get; private set; }
-
+        /// <summary>
+        /// Defines the full name format.  Defaults to F I L <para/>
+        /// Format of FullName <para/>
+        ///   F = First Name <para/>
+        ///   M = Middle Name <para/>
+        ///   I = Middle Initial <para/>
+        ///   L = Last Name 
+        /// </summary>
+        /// <value>
+        /// The full name format (always upper case).
+        /// </value>
+        public string FullNameFormat { get; private set; }
+        /// <summary>
+        /// Used for defining OptionMetadata
+        /// </summary>
+        public int LanguageCode { get; private set; }
         /// <summary>
         /// The PrimaryNameProvider
         /// </summary>
@@ -55,15 +65,13 @@ namespace DLaB.Xrm.LocalCrm
         /// </value>
         public Guid OrganizationId { get; private set; }
         /// <summary>
-        /// Used to populate Created/Modifed By and Owner Attributes
+        /// Used to populate Created/Modified By and Owner Attributes
         /// </summary>
         public EntityReference User { get; private set; }
         /// <summary>
-        /// Used to populate Created/Modifed On Behalf Of Attributes
+        /// Used to populate Created/Modified On Behalf Of Attributes
         /// </summary>
         public EntityReference UserOnBehalfOf { get; private set; }
-
-
 
         private LocalCrmDatabaseInfo() { }
 
@@ -77,17 +85,18 @@ namespace DLaB.Xrm.LocalCrm
         /// <param name="userBusinessUnit">The user business unit.</param>
         /// <returns></returns>
         /// <exception cref="System.Exception">Must pass in a derived type from Microsoft.Xrm.Sdk.Client.OrganizationServiceContext</exception>
-        public static LocalCrmDatabaseInfo Create<T>(string databaseName = null, Guid? userId = null, Guid? userOnBehalfOf = null, Guid? userBusinessUnit = null) where T : OrganizationServiceContext
+        public static LocalCrmDatabaseInfo Create<T>(string databaseName = null, 
+            Guid? userId = null, 
+            Guid? userOnBehalfOf = null, 
+            Guid? userBusinessUnit = null) where T : OrganizationServiceContext
         {
-            var contextType = typeof(T);
-            if (contextType.Name == "OrganizationServiceContext")
+            return Create<T>(new LocalCrmDatabaseOptionalSettings
             {
-                throw new Exception("Must pass in a derived type from Microsoft.Xrm.Sdk.Client.OrganizationServiceContext");
-            }
-
-            databaseName = databaseName ?? string.Empty;
-
-            return Create(contextType.Assembly, contextType.Namespace, databaseName, userId, userOnBehalfOf, userBusinessUnit);
+                BusinessUnitId = userBusinessUnit,
+                DatabaseName = databaseName,
+                UserId = userId,
+                UserOnBehalfOfId = userOnBehalfOf
+            });
         }
 
         /// <summary>
@@ -99,29 +108,69 @@ namespace DLaB.Xrm.LocalCrm
         /// <param name="userId">The user identifier.</param>
         /// <param name="userOnBehalfOf">The user on behalf of.</param>
         /// <param name="userBusinessUnit">The user business unit.</param>
-        /// <param name="primaryNameProvider">The Primary Name Provider.</param>
         /// <returns></returns>
         public static LocalCrmDatabaseInfo Create(Assembly earlyBoundAssembly, 
             string earlyBoundNamespace, 
             string databaseName = null, 
             Guid? userId = null, 
             Guid? userOnBehalfOf = null, 
-            Guid? userBusinessUnit = null, 
-            IPrimaryNameProvider primaryNameProvider = null)
+            Guid? userBusinessUnit = null)
         {
-            databaseName = databaseName ?? string.Empty;
+            return Create(earlyBoundAssembly, earlyBoundNamespace, new LocalCrmDatabaseOptionalSettings
+            {
+                BusinessUnitId = userBusinessUnit,
+                DatabaseName = databaseName,
+                UserId = userId,
+                UserOnBehalfOfId = userOnBehalfOf
+            });
+        }
 
+        /// <summary>
+        /// Creates the specified database info.
+        /// </summary>
+        /// <param name="optionalSettings">The settings to be used.</param>
+        /// <returns></returns>
+        public static LocalCrmDatabaseInfo Create<T>(LocalCrmDatabaseOptionalSettings optionalSettings)
+        {
+            var contextType = typeof(T);
+            if (contextType.Name == "OrganizationServiceContext")
+            {
+                throw new Exception("Must pass in a derived type from Microsoft.Xrm.Sdk.Client.OrganizationServiceContext");
+            }
+
+            return Create(contextType.Assembly, contextType.Namespace, optionalSettings);
+        }
+        /// <summary>
+        /// Creates the specified database info.
+        /// </summary>
+        /// <param name="earlyBoundAssembly">The early bound assembly.</param>
+        /// <param name="earlyBoundNamespace">The early bound namespace.</param>
+        /// <param name="optionalSettings">The settings to be used.</param>
+        /// <returns></returns>
+        public static LocalCrmDatabaseInfo Create(Assembly earlyBoundAssembly,
+            string earlyBoundNamespace,
+            LocalCrmDatabaseOptionalSettings optionalSettings)
+        {
+            optionalSettings = optionalSettings ?? new LocalCrmDatabaseOptionalSettings();
+            var dbName = optionalSettings.DatabaseName ?? string.Empty;
             return new LocalCrmDatabaseInfo
             {
-                BusinessUnit = new EntityReference("businessunit", userBusinessUnit.GetValueOrDefault()),
-                DatabaseName = databaseName,
+                BusinessUnit = GetRef(optionalSettings.BusinessUnitId, Test.Entities.BusinessUnit.EntityLogicalName, AppConfig.CrmSystemSettings.BusinessUnitId),
+                DatabaseName = dbName,
                 EarlyBoundEntityAssembly = earlyBoundAssembly,
                 EarlyBoundNamespace = earlyBoundNamespace,
-                User = new EntityReference("systemuser", userId.GetValueOrDefault(Guid.NewGuid())),
-                UserOnBehalfOf = new EntityReference("systemuser", userOnBehalfOf.GetValueOrDefault()),
-                OrganizationId = ConvertToGuid(databaseName),
-                PrimaryNameProvider = primaryNameProvider ?? PrimaryNameFieldProviderBase.GetConfiguredProvider(earlyBoundAssembly, earlyBoundNamespace)
+                FullNameFormat = optionalSettings.FullNameFormat ?? AppConfig.CrmSystemSettings.FullNameFormat,
+                LanguageCode = optionalSettings.LanguageCode ?? AppConfig.DefaultLanguageCode,
+                User = GetRef(optionalSettings.UserId, Test.Entities.SystemUser.EntityLogicalName, AppConfig.CrmSystemSettings.UserId),
+                UserOnBehalfOf = GetRef(optionalSettings.UserOnBehalfOfId, Test.Entities.SystemUser.EntityLogicalName, AppConfig.CrmSystemSettings.OnBehalfOfId),
+                OrganizationId = optionalSettings.OrganizationId ?? ConvertToGuid(dbName),
+                PrimaryNameProvider = optionalSettings.PrimaryNameProvider ?? PrimaryNameFieldProviderBase.GetConfiguredProvider(earlyBoundAssembly, earlyBoundNamespace)
             };
+        }
+
+        private static EntityReference GetRef(Guid? id, string logicalName, Guid defaultId)
+        {
+            return new EntityReference(logicalName, id.GetValueOrDefault(defaultId));
         }
 
         /// <summary>
@@ -135,7 +184,7 @@ namespace DLaB.Xrm.LocalCrm
         }
 
         /// <summary>
-        /// A hacky method to convert a string into a Guid.  Splits the string up into 4 parts, gets the hashcode for each,
+        /// A hack-y method to convert a string into a Guid.  Splits the string up into 4 parts, gets the hashcode for each,
         /// then converts that directly into a Guid.  This at least ensures that the same OrganizationId is returned
         /// for the same database Name
         /// </summary>

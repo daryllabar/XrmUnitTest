@@ -1,5 +1,6 @@
 #if !PRE_KEYATTRIBUTE
 using System;
+using System.Diagnostics;
 using System.ServiceModel;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
@@ -14,6 +15,7 @@ namespace Source.DLaB.Xrm
     /// <summary>
     /// Extensions for handling Optimistic Concurrency that was first used in CRM 2015.1
     /// </summary>
+    [DebuggerNonUserCode]
     public static class OptimisticConcurrencyExtensions {
         /// <summary>
         /// Preforms an Optimistic Update.  If the entity's RowVersion doesn't match, the exception will be caught, and a reconciliation will be attempted before re-updating, indefinitely.

@@ -478,7 +478,7 @@ namespace DLaB.Xrm.LocalCrm
                 throw new Exception($"Unable to find a property for Entity {request.EntityLogicalName} and property {request.LogicalName} in {CrmServiceUtility.GetEarlyBoundProxyAssembly().FullName}");
             }
 
-            AttributeMetadata metadata = null;
+            AttributeMetadata metadata;
             if (propertyType.IsEnum || propertyTypes.Any(p => p == typeof(OptionSetValue)))
             {
                 metadata = CreateOptionSetAttributeMetadata(request, propertyType);

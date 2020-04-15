@@ -84,6 +84,32 @@ namespace DLaB.Xrm.LocalCrm
 
         #endregion Entity
 
+        #region EntityReference
+
+        public static EntityReference Clone(this EntityReference entity)
+        {
+            if(entity == null)
+            {
+                return null;
+            }
+
+            var clone = new EntityReference
+            {
+                LogicalName = entity.LogicalName,
+                Id = entity.Id,
+                Name = entity.Name
+            };
+
+#if !PRE_KEYATTRIBUTE
+            clone.KeyAttributes.AddRange(entity.KeyAttributes);
+            clone.RowVersion = entity.RowVersion;
+#endif
+            return clone;
+
+        }
+
+        #endregion EntityReference
+
         #region IEnumerable<FetchAttributeInfo>
 
         /// <summary>

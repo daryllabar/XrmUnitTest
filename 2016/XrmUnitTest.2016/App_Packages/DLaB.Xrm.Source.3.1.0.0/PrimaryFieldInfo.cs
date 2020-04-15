@@ -55,7 +55,7 @@ namespace Source.DLaB.Xrm
         public bool ReadOnly { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the name field is an is attribute of another entity, and therefor, not created via standard Early Bound Generation.
+        /// Gets or sets a value indicating whether the name field is an attribute of another entity, and therefore, not created via standard Early Bound Generation.
         /// </summary>
         /// <value>
         /// <c>true</c> if this instance is attribute of; otherwise, <c>false</c>.

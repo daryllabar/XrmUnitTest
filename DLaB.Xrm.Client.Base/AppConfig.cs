@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Common;
 using DLaB.Common;
 
@@ -145,6 +146,21 @@ namespace DLaB.Xrm.Client
         public class CrmSystemSettings
         {
             private static string _fullNameFormat;
+            private static Guid? _businessUnitId;
+            private static Guid? _userId;
+            private static Guid? _onBehalfOfId;
+
+            /// <summary>
+            /// The id to be used as the id oof top level Business Unit.
+            /// </summary>
+            public static Guid BusinessUnitId
+            {
+                get => (_businessUnitId 
+                        ?? (_businessUnitId = Config.GetAppSettingOrDefault("CrmSystemSettings.BusinessUnitId",
+                                                                            new Guid("88501fd6-90b5-405f-a027-ce9903bc0bb3")))
+                        ).GetValueOrDefault();
+                set => _businessUnitId = value;
+            }
 
             /// <summary>
             /// Defines the full name format.  Defaults to F I L <para/>
@@ -161,6 +177,29 @@ namespace DLaB.Xrm.Client
             {
                 get => _fullNameFormat ?? (_fullNameFormat = Config.GetAppSettingOrDefault("CrmSystemSettings.FullNameFormat", "F I L").ToUpper());
                 set => _fullNameFormat = value;
+            }
+
+            /// <summary>
+            /// The id to be used as the id of the current user.
+            /// </summary>
+            public static Guid OnBehalfOfId
+            {
+                get => (_onBehalfOfId
+                        ?? (_onBehalfOfId = Config.GetAppSettingOrDefault("CrmSystemSettings.OnBehalfOfId", Guid.Empty))
+                    ).GetValueOrDefault();
+                set => _onBehalfOfId = value;
+            }
+
+            /// <summary>
+            /// The id to be used as the id of the current user.
+            /// </summary>
+            public static Guid UserId
+            {
+                get => (_userId
+                        ?? (_userId = Config.GetAppSettingOrDefault("CrmSystemSettings.UserId",
+                            new Guid("ba815d1d-f62b-4ea1-912f-0aab76bd7462")))
+                    ).GetValueOrDefault();
+                set => _userId = value;
             }
         }   
 

@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 #if DLAB_UNROOT_COMMON_NAMESPACE
@@ -36,6 +37,7 @@ namespace Source.DLaB.Xrm
     /// Determines the Active Attribute for the Entity
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    [DebuggerNonUserCode]
     public class ActivePropertyInfo<T> where T : Entity
     {
         #region Properties
