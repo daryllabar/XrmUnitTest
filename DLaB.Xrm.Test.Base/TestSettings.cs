@@ -1,6 +1,5 @@
 ﻿using DLaB.Xrm.Test.Builders;
 using DLaB.Xrm.Test.Settings;
-using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 
 namespace DLaB.Xrm.Test
@@ -32,7 +31,7 @@ namespace DLaB.Xrm.Test
         /// <value>
         /// The entity builder.
         /// </value>
-        public static NamespaceSetting<EntityBuilder<Entity>> EntityBuilder { get; } = new NamespaceSetting<EntityBuilder<Entity>>("Entity Builder Assembly has not been configured.  Call DLaB.Xrm.Test.TestSettings.EntityBuilder.ConfigureDerivedAssembly<T>() first before getting the Assembly.");
+        public static NamespaceSetting<IEntityBuilder> EntityBuilder { get; } = new NamespaceSetting<IEntityBuilder>("Entity Builder Assembly has not been configured.  Call DLaB.Xrm.Test.TestSettings.EntityBuilder.ConfigureDerivedAssembly<T>() first before getting the Assembly.");
 
         /// <summary>
         /// The User Test Config Path specifies a config path to be loaded into the current Unit Test's app.Config at runtime.  This allows multiple Unit Testing projects to all use the same config settings.

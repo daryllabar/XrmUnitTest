@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using DLaB.Xrm.Test.Exceptions;
 
@@ -103,7 +104,9 @@ namespace DLaB.Xrm.Test.Settings
         /// <exception cref="System.Exception">Must pass in a derived type from  + typeof(T).AssemblyQualifiedName</exception>
         public void ConfigureDerivedAssembly<TDerivedClass>() where TDerivedClass : T
         {
-            if (typeof(TDerivedClass) == typeof(T))
+            if (typeof(T).IsInterface
+                ? typeof(TDerivedClass) == typeof(T)
+                : typeof(TDerivedClass).GetInterfaces().Contains(typeof(T)))
             {
                 throw new Exception("Must pass in a derived type from " + typeof(T).AssemblyQualifiedName);
             }

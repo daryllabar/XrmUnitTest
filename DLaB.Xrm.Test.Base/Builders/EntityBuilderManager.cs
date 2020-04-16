@@ -64,7 +64,9 @@ namespace DLaB.Xrm.Test.Builders
             var genericInterface = typeof (IEntityBuilder<>);
             // Load all types that have EntityBuilder<> as a base class
             var entityBuilders = from t in TestSettings.EntityBuilder.Assembly.GetTypes()
-                                 where builderInterface.IsAssignableFrom(t) && t.IsPublic
+                                 where builderInterface.IsAssignableFrom(t) 
+                                     && t.IsPublic
+                                     && !t.IsAbstract
                                  select new
                                  {
                                      Entity = EntityHelper.GetEntityLogicalName(t.GetInterfaces().First(i => i.IsGenericType && i.GetGenericTypeDefinition() == genericInterface).GenericTypeArguments[0]),
@@ -173,6 +175,7 @@ namespace DLaB.Xrm.Test.Builders
         public Dictionary<Guid, Entity> Create(IOrganizationService service)
         {
             var results = new Dictionary<Guid, Entity>();
+            var builders = new List<Tuple<Guid, BuilderInfo>>();
             var postCreateUpdates = new List<Entity>();
             foreach (var info in EntityDependency.Mapper.EntityCreationOrder)
             {
@@ -187,7 +190,7 @@ namespace DLaB.Xrm.Test.Builders
                     try
                     {
                         var entity = CreateEntity(service, value, info.CyclicAttributes, postCreateUpdates);
-                        UpdateIdEntityWithBuiltEntity(results, entity);
+                        RecordBuiltEntity(entity, value, results, builders);
                     }
                     catch (Exception ex)
                     {
@@ -215,12 +218,19 @@ namespace DLaB.Xrm.Test.Builders
                 }
             }
 
+            // Process Post Updates
+            foreach (var builder in builders)
+            {
+                builder.Item2.Builder.PostCreate(service, results[builder.Item1]);
+            }
+
             return results;
         }
 
-        private void UpdateIdEntityWithBuiltEntity(Dictionary<Guid, Entity> results, Entity entity)
+        private void RecordBuiltEntity(Entity entity, BuilderInfo builder, Dictionary<Guid, Entity> results, List<Tuple<Guid, BuilderInfo>> builders)
         {
             results.Add(entity.Id, entity);
+            builders.Add(new Tuple<Guid, BuilderInfo>(entity.Id, builder));
             if (Ids.TryGetValue(entity.Id, out Id id))
             {
                 id.Entity = entity;
@@ -282,7 +292,7 @@ namespace DLaB.Xrm.Test.Builders
                 }
             }
 
-            var createdEntity = builder.Create(service);
+            var createdEntity = builder.Create(service, false);
             if (postCreateEntity.Attributes.Any())
             {
                 postCreateEntity.Id = createdEntity.Id;
@@ -418,10 +428,7 @@ namespace DLaB.Xrm.Test.Builders
         public void WithBuilderForEntityType<TBuilder>(Action<TBuilder> action)
             where TBuilder : class, IEntityBuilder
         {
-            var builderType = GetEntityBuilderType<TBuilder>();
-            AssertTypeInheritsFromEntityBuilder<TBuilder>(builderType);
-
-            var entityType = builderType.GetGenericArguments()[0];
+            var entityType = GetEntityTypeOfBuilder<TBuilder>();
             var logicalName = EntityHelper.GetEntityLogicalName(entityType);
 
             SetBuilderType<TBuilder>(logicalName);
@@ -433,31 +440,33 @@ namespace DLaB.Xrm.Test.Builders
             AddCustomAction(logicalName, b => action((TBuilder) b)); // Convert Action<TBuilder> to Action<Object>
         }
 
-        private static void AssertTypeInheritsFromEntityBuilder<TBuilder>(Type type = null) where TBuilder : class, IEntityBuilder
+        private static Type GetEntityTypeOfBuilder<TBuilder>()
         {
-            type = type ?? GetEntityBuilderType<TBuilder>();
+            var types = (from iType in typeof(TBuilder).GetInterfaces()
+                         where iType.IsGenericType
+                               && iType.GetGenericTypeDefinition() == typeof(IEntityBuilder<>) 
+                         select iType.GetGenericArguments()[0]).ToList();
+            var type = types.FirstOrDefault();
             if (type == null)
             {
-                throw new Exception("Builder does not inherit from EntityBuilder<>, which is not currently supported");
+                throw new Exception($"Builder type \"{typeof(TBuilder).FullName}\" does not implement IEntityBuilder<>!");
             }
-        }
 
-        private static Type GetEntityBuilderType<TBuilder>() where TBuilder: class, IEntityBuilder
-        {
-            var baseType = typeof (TBuilder).BaseType;
-            while (baseType != null)
+            if(types.Count == 1)
             {
-                if (baseType.IsGenericType && baseType.GetGenericTypeDefinition() == typeof (EntityBuilder<>))
-                {
-                    break;
-                }
-                baseType = baseType.BaseType;
+                return type;
             }
-            return baseType;
+
+            if (types.Skip(1).Any(t => t != type))
+            {
+                throw new Exception($"Builder type \"{typeof(TBuilder).FullName}\" implements multiple IEntityBuilder<> types!");
+            }
+
+            return type;
         }
 
         /// <summary>
-        /// Allows for the specification of a particualr entity to use a specific entity builder
+        /// Allows for the specification of a particular entity to use a specific entity builder
         /// </summary>
         /// <typeparam name="TBuilder">The type of the builder.</typeparam>
         /// <param name="id">The identifier.</param>
@@ -465,7 +474,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <exception cref="System.Exception"></exception>
         public void WithBuilderForEntity<TBuilder>(Id id, Action<TBuilder> action) where TBuilder : class, IEntityBuilder
         {
-            AssertTypeInheritsFromEntityBuilder<TBuilder>();
+            GetEntityTypeOfBuilder<TBuilder>();
             var constructor = GetIdConstructor<TBuilder>();
             var builder = CreateBuilder(id, constructor);
             action((TBuilder)builder.Builder);

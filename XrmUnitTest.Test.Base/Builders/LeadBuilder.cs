@@ -1,11 +1,14 @@
 ﻿using DLaB.Xrm.Entities;
 using DLaB.Xrm.Test;
+using DLaB.Xrm.Test.Builders;
 using Microsoft.Xrm.Sdk;
 
 namespace XrmUnitTest.Test.Builders
 {
-    public class LeadBuilder : EntityBuilder<Lead>
+    public class LeadBuilder : EntityBuilder<Lead, LeadBuilder>
     {
+        protected override LeadBuilder This => this;
+
         public Lead Lead { get; set; }
 
         public LeadBuilder()
@@ -132,6 +135,7 @@ namespace XrmUnitTest.Test.Builders
         }
 
         #endregion // Fluent Methods
+
 
         protected override Lead BuildInternal()
         {

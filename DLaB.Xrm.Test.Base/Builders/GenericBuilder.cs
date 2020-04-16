@@ -7,8 +7,10 @@ namespace DLaB.Xrm.Test.Builders
     /// The Generic Entity Builder class.  If no Entity Builder exists, this class will be used by the Environment builder to create the Entity
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
-    internal class GenericEntityBuilder<TEntity> : EntityBuilder<TEntity> where TEntity : Entity
+    internal class GenericEntityBuilder<TEntity> : EntityBuilder<TEntity, GenericEntityBuilder<TEntity>> where TEntity : Entity
     {
+        protected override GenericEntityBuilder<TEntity> This => this;
+
         #region Constructors
 
         public GenericEntityBuilder()

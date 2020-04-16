@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using DLaB.Common;
-using DLaB.Xrm.Test.Exceptions;
 using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.Test.Builders
 {
@@ -52,6 +48,10 @@ namespace DLaB.Xrm.Test.Builders
             catch (TypeInitializationException ex)
             {
                 // Loading of the Early Bound Entities Could cause a major Exception
+                if (ex.InnerException == null)
+                {
+                    throw;
+                }
                 throw ex.InnerException;
             }
         }

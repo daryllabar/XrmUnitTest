@@ -905,6 +905,8 @@ namespace DLaB.Xrm.LocalCrm
                 Template.Fields.ModifiedBy,
                 Template.Fields.ModifiedOn,
                 Template.Fields.OwningBusinessUnit,
+                Template.Fields.OwningUser,
+                Template.Fields.OwningTeam,
                 Email.Fields.StateCode,
                 Email.Fields.StatusCode
             };
@@ -917,6 +919,8 @@ namespace DLaB.Xrm.LocalCrm
                 Template.Fields.ModifiedBy,
                 Template.Fields.ModifiedOn,
                 Template.Fields.OwningBusinessUnit,
+                Template.Fields.OwningUser,
+                Template.Fields.OwningTeam,
                 Email.Fields.StateCode,
                 Email.Fields.StatusCode
             };

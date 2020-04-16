@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xrm.Sdk;
+﻿using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test.Builders
 {
@@ -18,8 +17,9 @@ namespace DLaB.Xrm.Test.Builders
         /// Creates the specified service.
         /// </summary>
         /// <param name="service">The service.</param>
+        /// <param name="runPostCreate">If true, PostCreate will be called directly after the create.</param>
         /// <returns></returns>
-        new T Create(IOrganizationService service);
+        new T Create(IOrganizationService service, bool runPostCreate = true);
     }
 
     /// <summary>
@@ -37,8 +37,9 @@ namespace DLaB.Xrm.Test.Builders
         /// Combines the Building, Creating, and Post Creation of the Entity.
         /// </summary>
         /// <param name="service">The service.</param>
+        /// <param name="runPostCreate">If true, PostCreate will be called directly after the create.</param>
         /// <returns></returns>
-        Entity Create(IOrganizationService service);
+        Entity Create(IOrganizationService service, bool runPostCreate = true);
 
         /// <summary>
         /// Allows child classes to be able to cleanup other entities after record is created.

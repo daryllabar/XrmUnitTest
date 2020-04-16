@@ -326,12 +326,16 @@ namespace DLaB.Xrm.Test.Tests.Builders
             //
             var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
             var id = new Id<Lead>(Guid.NewGuid());
+            var country = "Kerbal";
 
             //
             // Act
             //
             new DLaBCrmEnvironmentBuilder().
-                WithBuilder<MyLeadBuilder>(id, b => b.WithAddress1()).Create(service);
+                WithBuilder<MyLeadBuilder>(id, b => 
+                    b.WithAddress1()
+                     .WithAttributeValue(Lead.Fields.Address1_Country, Guid.NewGuid().ToString())
+                     .WithPostCreateAttributeValue(Lead.Fields.Address1_Country, country)).Create(service);
 
             //
             // Assert
@@ -341,6 +345,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
             Assert.IsNotNull(lead.Address1_Line1);
             Assert.IsNotNull(lead.Address1_PostalCode);
             Assert.IsNotNull(lead.Address1_StateOrProvince);
+            Assert.AreEqual(country, lead.Address1_Country);
             Assert.IsNull(lead.Address2_City);
         }
 
@@ -401,8 +406,10 @@ namespace DLaB.Xrm.Test.Tests.Builders
         }
 
 
-        private class MyLeadBuilder : Test.Builders.EntityBuilder<Lead>
+        private class MyLeadBuilder : Test.Builders.EntityBuilder<Lead, MyLeadBuilder>
         {
+            protected override MyLeadBuilder This => this;
+
             public Lead Lead { get; set; }
 
             public MyLeadBuilder()
@@ -418,7 +425,6 @@ namespace DLaB.Xrm.Test.Tests.Builders
 
             #region Fluent Methods
 
-
             public MyLeadBuilder WithAddress1()
             {
                 Lead.Address1_City = "Any Town";
@@ -430,19 +436,24 @@ namespace DLaB.Xrm.Test.Tests.Builders
 
             #endregion // Fluent Methods
 
+
             protected override Lead BuildInternal()
             {
                 return Lead;
             }
         }
 
-        public abstract class MyGenericBuilder<TEntity> : Test.Builders.EntityBuilder<TEntity> where TEntity : Entity
+        public abstract class MyGenericBuilder<TEntity, TBuilder> : Test.Builders.EntityBuilder<TEntity, TBuilder>
+            where TEntity : Entity
+            where TBuilder : MyGenericBuilder<TEntity, TBuilder>
         {
 
         }
 
-        private class MyOtherBuilder : MyGenericBuilder<Lead>
+        private class MyOtherBuilder : MyGenericBuilder<Lead, MyOtherBuilder>
         {
+            protected override MyOtherBuilder This => this;
+
             public Lead Lead { get; set; }
 
             public MyOtherBuilder()
