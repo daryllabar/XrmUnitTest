@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DLaB.Xrm.Test.Assumptions;
 using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test.Builders
@@ -9,14 +10,14 @@ namespace DLaB.Xrm.Test.Builders
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
     /// <typeparam name="TBuilder">The Derived Type</typeparam>
-    public abstract class EntityBuilder<TEntity, TBuilder> : IEntityBuilder<TEntity>
-        where TBuilder: EntityBuilder<TEntity, TBuilder>
+    public abstract class DLaBEntityBuilder<TEntity, TBuilder> : IEntityBuilder<TEntity>
+        where TBuilder: DLaBEntityBuilder<TEntity, TBuilder>
         where TEntity : Entity
     {
         /// <summary>
         /// Gets the Entity Builder of the derived Class.
         /// </summary>
-        protected abstract TBuilder This { get; }
+        protected TBuilder This => (TBuilder)this;
 
         /// <summary>
         /// Gets the attributes.
@@ -52,7 +53,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <summary>
         /// Initializes a new instance of the class.
         /// </summary>
-        protected EntityBuilder()
+        protected DLaBEntityBuilder()
         {
             Attributes = new Dictionary<string, object>();
             PostCreateAttributes = new Dictionary<string, object>();
@@ -97,6 +98,18 @@ namespace DLaB.Xrm.Test.Builders
         }
 
         /// <summary>
+        /// Defines that the entity should be built with the given attribute value
+        /// </summary>
+        /// <param name="attributeName">Name of the attribute.</param>
+        /// <param name="assumptions">The loaded entity assumptions</param>
+        public TBuilder WithAttributeAssumption<TAssumption>(string attributeName, AssumedEntities assumptions)
+            where TAssumption: EntityDataAssumptionBaseAttribute
+        {
+            Attributes[attributeName] = assumptions.GetId<TAssumption>().EntityReference;
+            return This;
+        }
+
+        /// <summary>
         /// Defines that the entity should be set post creation
         /// </summary>
         /// <param name="attributeName">Name of the attribute.</param>
@@ -104,6 +117,18 @@ namespace DLaB.Xrm.Test.Builders
         public TBuilder WithPostCreateAttributeValue(string attributeName, object value)
         {
             PostCreateAttributes[attributeName] = value;
+            return This;
+        }
+
+        /// <summary>
+        /// Defines that the entity should be built with the given attribute value
+        /// </summary>
+        /// <param name="attributeName">Name of the attribute.</param>
+        /// <param name="assumptions">The loaded entity assumptions</param>
+        public TBuilder WithPostCreateAttributeAssumption<TAssumption>(string attributeName, AssumedEntities assumptions)
+            where TAssumption : EntityDataAssumptionBaseAttribute
+        {
+            PostCreateAttributes[attributeName] = assumptions.GetId<TAssumption>().EntityReference;
             return This;
         }
 

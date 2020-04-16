@@ -406,10 +406,8 @@ namespace DLaB.Xrm.Test.Tests.Builders
         }
 
 
-        private class MyLeadBuilder : Test.Builders.EntityBuilder<Lead, MyLeadBuilder>
+        private class MyLeadBuilder : DLaBEntityBuilder<Lead, MyLeadBuilder>
         {
-            protected override MyLeadBuilder This => this;
-
             public Lead Lead { get; set; }
 
             public MyLeadBuilder()
@@ -443,7 +441,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
             }
         }
 
-        public abstract class MyGenericBuilder<TEntity, TBuilder> : Test.Builders.EntityBuilder<TEntity, TBuilder>
+        public abstract class MyGenericBuilder<TEntity, TBuilder> : DLaBEntityBuilder<TEntity, TBuilder>
             where TEntity : Entity
             where TBuilder : MyGenericBuilder<TEntity, TBuilder>
         {
@@ -452,8 +450,6 @@ namespace DLaB.Xrm.Test.Tests.Builders
 
         private class MyOtherBuilder : MyGenericBuilder<Lead, MyOtherBuilder>
         {
-            protected override MyOtherBuilder This => this;
-
             public Lead Lead { get; set; }
 
             public MyOtherBuilder()

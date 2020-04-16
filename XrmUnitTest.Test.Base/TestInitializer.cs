@@ -26,7 +26,7 @@ namespace XrmUnitTest.Test
             }
             if (!TestSettings.EntityBuilder.IsConfigured)
             {
-                TestSettings.EntityBuilder.ConfigureDerivedAssembly<EntityBuilder<Entity>>();
+                TestSettings.EntityBuilder.ConfigureDerivedAssembly<LeadBuilder>();
             }
             if (!TestSettings.EarlyBound.IsConfigured)
             {
