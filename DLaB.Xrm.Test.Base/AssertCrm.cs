@@ -375,7 +375,7 @@ namespace DLaB.Xrm.Test
                 }
                 else if (isActive == true)
                 {
-                    HandleFail("AssertCrm.IsActive", message, parameters);
+                    HandleFail("AssertCrm.IsNotActive", message, parameters);
                 }
             }
             else
@@ -416,11 +416,11 @@ namespace DLaB.Xrm.Test
             var isActive = ActivePropertyInfo<T>.IsActive(service, id);
             if (isActive == null)
             {
-                HandleInconclusive("AssertCrm.IsActive", "Unable to determine Status of Entity Type {0}", typeof(T).Name);
+                HandleInconclusive("AssertCrm.IsNotActive", "Unable to determine Status of Entity Type {0}", typeof(T).Name);
             }
             else if (isActive == true)
             {
-                HandleFail("AssertCrm.IsActive", message, parameters);
+                HandleFail("AssertCrm.IsNotActive", message, parameters);
             }
         }
 
@@ -462,7 +462,7 @@ namespace DLaB.Xrm.Test
                 }
                 else if (isActive == true)
                 {
-                    HandleFail("AssertCrm.IsActive", message, parameters);
+                    HandleFail("AssertCrm.IsNotActive", message, parameters);
                 }
             }
             else
@@ -510,7 +510,7 @@ namespace DLaB.Xrm.Test
                 }
                 else if (isActive == true)
                 {
-                    HandleFail("AssertCrm.IsActive", message, parameters);
+                    HandleFail("AssertCrm.IsNotActive", message, parameters);
                 }
             }
             else
