@@ -18,7 +18,9 @@ namespace Source.DLaB.Xrm
     /// <summary>
     /// An IOrganizationService Wrapper that utilizes ExtendedOrganizationServiceSettings and an ITracingService to potentially log every request, timing it as well as parsing the queries into Sql
     /// </summary>
+#if !DLAB_XRM_DEBUG
     [DebuggerNonUserCode]
+#endif
     public class ExtendedOrganizationService : IOrganizationService
     {
         private ExtendedOrganizationServiceSettings Settings { get; }
@@ -199,7 +201,7 @@ namespace Source.DLaB.Xrm
         public void Disassociate(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
         {
             var message = Settings.LogDetailedRequests
-                ? $"Disassociate Request for {entityName}, with Id {entityId}, Relationship {relationship.SchemaName}, and Related Entities {relatedEntities.Select(e => e.ToStringDebug()).ToCsv()}."
+                ? $"Disassociate Request for {entityName}, with Id {entityId}, Relationship {relationship.SchemaName}, and Related Entities {relatedEntities.ToStringDebug(new StringDebugInfo(singleLine:true))}."
                 : "Disassociate Request";
             if (Settings.TimeRequests)
             {
@@ -277,7 +279,7 @@ namespace Source.DLaB.Xrm
 
                     break;
                 default:
-                    message += $"{request.Parameters.ToStringDebug("Parameters").ToCsv()}.";
+                    message += request.Parameters.ToStringDebug("Parameters", new StringDebugInfo(singleLine:true)) + ".";
                     break;
             }
 

@@ -37,7 +37,9 @@ namespace Source.DLaB.Xrm
     /// Determines the Active Attribute for the Entity
     /// </summary>
     /// <typeparam name="T"></typeparam>
+#if !DLAB_XRM_DEBUG
     [DebuggerNonUserCode]
+#endif
     public class ActivePropertyInfo<T> where T : Entity
     {
         #region Properties

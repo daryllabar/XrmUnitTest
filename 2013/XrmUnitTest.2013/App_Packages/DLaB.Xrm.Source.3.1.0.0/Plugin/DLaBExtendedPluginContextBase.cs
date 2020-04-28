@@ -17,7 +17,9 @@ namespace Source.DLaB.Xrm.Plugin
     /// The Implementation of the IExtendedPluginContext
     /// </summary>
     // ReSharper disable once InconsistentNaming
+#if !DLAB_XRM_DEBUG
     [DebuggerNonUserCode]
+#endif
     public class DLaBExtendedPluginContextBase : IExtendedPluginContext
     {
         #region Properties

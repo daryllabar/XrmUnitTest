@@ -12,7 +12,9 @@ namespace Source.DLaB.Xrm
     /// <summary>
     /// The Settings for the ExtendedOrganizationServiceSettings
     /// </summary>
+#if !DLAB_XRM_DEBUG
     [DebuggerNonUserCode]
+#endif
     public class ExtendedOrganizationServiceSettings
     {
         #region Properties

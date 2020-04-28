@@ -15,6 +15,28 @@ namespace DLaB.Xrm.LocalCrm
         #region ConditionExpression
 
         /// <summary>
+        /// Gets the Date value from Date or string.
+        /// </summary>
+        /// <param name="condition">The condition expression.</param>
+        /// <param name="index">The index of the value in the condition Values collection.  Defaults to 0.</param>
+        /// <returns></returns>
+        public static DateTime GetDateTimeValueFromDateOrString(this ConditionExpression condition, int index = 0)
+        {
+            var value = condition.Values[index];
+            if (value is string stringValue)
+            {
+                return DateTime.Parse(stringValue);
+            }
+
+            if (value is DateTime dateValue)
+            {
+                return dateValue;
+            }
+
+            throw CrmExceptions.GetDateShouldBeStringOrDateException(condition.GetQualifiedAttributeName());
+        }
+
+        /// <summary>
         /// Gets the int value from int or string.
         /// </summary>
         /// <param name="condition">The condition expression.</param>
@@ -23,14 +45,14 @@ namespace DLaB.Xrm.LocalCrm
         public static int GetIntValueFromIntOrString(this ConditionExpression condition, int index = 0)
         {
             var value = condition.Values[index];
-            if (value is string)
+            if (value is string stringValue)
             {
-                return int.Parse(value as string);
+                return int.Parse(stringValue);
             }
 
-            if (value is int)
+            if (value is int intValue)
             {
-                return (int)value;
+                return intValue;
             }
 
             throw CrmExceptions.GetIntShouldBeStringOrIntException(condition.GetQualifiedAttributeName());

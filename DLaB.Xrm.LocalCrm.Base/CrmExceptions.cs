@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ServiceModel;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Query;
 #if DLAB_UNROOT_COMMON_NAMESPACE
 using DLaB.Xrm.CrmSdk;
 #else
@@ -38,9 +39,33 @@ namespace DLaB.Xrm.LocalCrm
             }, message);
         }
 
+        public static FaultException<OrganizationServiceFault> GetConditionOperatorRequiresValuesException(ConditionExpression condition, int requiredValues)
+        {
+            var message = requiredValues == 0
+                ? $"Condition operator '{condition.Operator}' requires that no values are set. Values.Length: {condition.Values.Count}"
+                : $"The ConditionOperator.{condition.Operator} requires {requiredValues} value/s, not {condition.Values.Count}. Parameter Name: {condition.AttributeName}.";
+            return new FaultException<OrganizationServiceFault>(new OrganizationServiceFault
+            {
+                ErrorCode = InvalidConditionValue,
+                Message = message,
+                Timestamp = DateTime.UtcNow,
+            }, message);
+        }
+
         public static FaultException<OrganizationServiceFault> GetIntShouldBeStringOrIntException(string qualifiedAttributeName)
         {
             var message = $"Condition for attribute '{qualifiedAttributeName}': integer values are expected to be passed as strings or int.";
+            return new FaultException<OrganizationServiceFault>(new OrganizationServiceFault
+            {
+                ErrorCode = InvalidConditionValue,
+                Message = message,
+                Timestamp = DateTime.UtcNow,
+            }, message);
+        }
+
+        public static FaultException<OrganizationServiceFault> GetDateShouldBeStringOrDateException(string qualifiedAttributeName)
+        {
+            var message = $"The date-time format for {qualifiedAttributeName} is invalid, or value is outside the supported range.";
             return new FaultException<OrganizationServiceFault>(new OrganizationServiceFault
             {
                 ErrorCode = InvalidConditionValue,

@@ -15,7 +15,9 @@ namespace Source.DLaB.Xrm.Plugin
     /// <summary>
     /// Plugin Base.  Allows for Registered Events, preventing infinite loops, and auto logging
     /// </summary>
+#if !DLAB_XRM_DEBUG
     [DebuggerNonUserCode]
+#endif
     public abstract class DLaBGenericPluginBase<T> : IRegisteredEventsPlugin where T: IExtendedPluginContext
     {
         #region Constants

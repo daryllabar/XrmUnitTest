@@ -16,7 +16,9 @@ namespace Source.DLaB.Xrm.Plugin
     /// <summary>
     /// Extension Class for Plugins
     /// </summary>
+#if !DLAB_XRM_DEBUG
     [DebuggerNonUserCode]
+#endif
     public static class Extensions
     {
         #region List<RegisteredEvent>
@@ -642,23 +644,6 @@ namespace Source.DLaB.Xrm.Plugin
         #endregion HasPluginExecutionBeenPrevented
 
         #endregion Prevent Plugin Execution
-
-        /// <summary>
-        /// Returns an indepth view of the context
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <returns></returns>
-        public static string ToStringDebug(this IPluginExecutionContext context)
-        {
-            var lines = ((IExecutionContext)context).ToStringDebug();
-            lines.AddRange(new[]
-            {
-                "Has Parent Context: " + (context.ParentContext != null),
-                "Stage: " + context.Stage
-            });
-
-            return string.Join(Environment.NewLine, lines);
-        }
 
         #endregion IPluginExecutionContext
     }

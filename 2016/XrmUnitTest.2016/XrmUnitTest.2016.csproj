@@ -129,6 +129,7 @@
     <Compile Include="App_Packages\DLaB.Xrm.Source.3.1.0.0\Extensions\HasConditionInWithValuesExtensions.cs" />
     <Compile Include="App_Packages\DLaB.Xrm.Source.3.1.0.0\Extensions\OptimisticConcurrencyExtensions.cs" />
     <Compile Include="App_Packages\DLaB.Xrm.Source.3.1.0.0\Extensions\QueryExpressionConvertExtensions.cs" />
+    <Compile Include="App_Packages\DLaB.Xrm.Source.3.1.0.0\Extensions\ToStringDebugExtensions.cs" />
     <Compile Include="App_Packages\DLaB.Xrm.Source.3.1.0.0\Extensions\WhereEqualExtensions.cs" />
     <Compile Include="App_Packages\DLaB.Xrm.Source.3.1.0.0\Extensions\WhereInExtensions.cs" />
     <Compile Include="App_Packages\DLaB.Xrm.Source.3.1.0.0\IExtendedExecutionContext.cs" />

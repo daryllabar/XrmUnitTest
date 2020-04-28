@@ -15,7 +15,9 @@ namespace Source.DLaB.Xrm.Sandbox
     /// <summary>
     /// Exception Handler For Exceptions when executing in Sandbox Isolation Mode
     /// </summary>
+#if !DLAB_XRM_DEBUG
     [DebuggerNonUserCode]
+#endif
     public class ExceptionHandler
     {
         /// <summary>

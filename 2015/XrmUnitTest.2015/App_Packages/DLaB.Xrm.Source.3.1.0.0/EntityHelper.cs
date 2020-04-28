@@ -20,7 +20,9 @@ namespace Source.DLaB.Xrm
     /// <summary>
     /// Utility class to get an Entity Type from a name, and visa-versa, and for determining Entity Id Attribute Name
     /// </summary>
+#if !DLAB_XRM_DEBUG
     [DebuggerNonUserCode]
+#endif
     public class EntityHelper
     {
         /// <summary>

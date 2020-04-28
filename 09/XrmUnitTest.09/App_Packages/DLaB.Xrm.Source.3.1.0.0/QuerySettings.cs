@@ -19,7 +19,9 @@ namespace Source.DLaB.Xrm
     /// Typed QuerySettings class
     /// </summary>
     /// <typeparam name="T"></typeparam>
+#if !DLAB_XRM_DEBUG
     [DebuggerNonUserCode]
+#endif
     public class QuerySettings<T> where T: Entity
     {
         /// <summary>

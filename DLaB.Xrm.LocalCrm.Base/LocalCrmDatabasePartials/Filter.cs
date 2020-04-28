@@ -39,12 +39,107 @@ namespace DLaB.Xrm.LocalCrm
             return matchesFilter;
         }
 
+        private static Dictionary<ConditionOperator, int> ExpectedValuesByConditionOperator = new Dictionary<ConditionOperator, int>
+        {
+
+            { ConditionOperator.BeginsWith, 1 },
+            { ConditionOperator.Between, 2 },
+            { ConditionOperator.ChildOf, 1 },
+            { ConditionOperator.Contains, 1 },
+            { ConditionOperator.DoesNotBeginWith, 1 },
+            { ConditionOperator.DoesNotContain, 1 },
+            { ConditionOperator.DoesNotEndWith, 1 },
+            { ConditionOperator.EndsWith, 1 },
+            { ConditionOperator.Equal, 1 },
+            { ConditionOperator.EqualBusinessId, 0 },
+            { ConditionOperator.EqualUserId, 0 },
+            { ConditionOperator.EqualUserLanguage, 1 },
+            { ConditionOperator.EqualUserOrUserTeams, 0 },
+            { ConditionOperator.EqualUserTeams, 0 },
+            { ConditionOperator.GreaterEqual, 1 },
+            { ConditionOperator.GreaterThan, 1 },
+            { ConditionOperator.InFiscalPeriod, 0 },
+            { ConditionOperator.InFiscalPeriodAndYear, 0 },
+            { ConditionOperator.InFiscalYear, 0 },
+            { ConditionOperator.InOrAfterFiscalPeriodAndYear, 0 },
+            { ConditionOperator.InOrBeforeFiscalPeriodAndYear, 0 },
+            { ConditionOperator.Last7Days, 0 },
+            { ConditionOperator.LastFiscalPeriod, 0 },
+            { ConditionOperator.LastFiscalYear, 0 },
+            { ConditionOperator.LastMonth, 0 },
+            { ConditionOperator.LastWeek, 0 },
+            { ConditionOperator.LastXDays, 1 },
+            { ConditionOperator.LastXFiscalPeriods, 1 },
+            { ConditionOperator.LastXFiscalYears, 1 },
+            { ConditionOperator.LastXHours, 1 },
+            { ConditionOperator.LastXMonths, 1 },
+            { ConditionOperator.LastXWeeks, 1 },
+            { ConditionOperator.LastXYears, 1 },
+            { ConditionOperator.LastYear, 0 },
+            { ConditionOperator.LessEqual, 1 },
+            { ConditionOperator.LessThan, 1 },
+            { ConditionOperator.Like, 1 },
+            { ConditionOperator.Mask, 1 },
+            { ConditionOperator.MasksSelect, 1 },
+            { ConditionOperator.Next7Days, 0 },
+            { ConditionOperator.NextFiscalPeriod, 0 },
+            { ConditionOperator.NextFiscalYear, 0 },
+            { ConditionOperator.NextMonth, 0 },
+            { ConditionOperator.NextWeek, 0 },
+            { ConditionOperator.NextXDays, 1 },
+            { ConditionOperator.NextXFiscalPeriods, 1 },
+            { ConditionOperator.NextXFiscalYears, 1 },
+            { ConditionOperator.NextXHours, 1 },
+            { ConditionOperator.NextXMonths, 1 },
+            { ConditionOperator.NextXWeeks, 1 },
+            { ConditionOperator.NextXYears, 1 },
+            { ConditionOperator.NextYear, 0 },
+            { ConditionOperator.NotBetween, 2 },
+            { ConditionOperator.NotEqual, 1 },
+            { ConditionOperator.NotEqualBusinessId, 0 },
+            { ConditionOperator.NotEqualUserId, 0 },
+            { ConditionOperator.NotLike, 1 },
+            { ConditionOperator.NotMask, 1 },
+            { ConditionOperator.NotNull, 0 },
+            { ConditionOperator.NotOn, 1 },
+            { ConditionOperator.Null, 0 },
+            { ConditionOperator.OlderThanXMonths, 0 },
+            { ConditionOperator.On, 1 },
+            { ConditionOperator.OnOrAfter, 1 },
+            { ConditionOperator.OnOrBefore, 1 },
+            { ConditionOperator.ThisFiscalPeriod, 0 },
+            { ConditionOperator.ThisFiscalYear, 0 },
+            { ConditionOperator.ThisMonth, 0 },
+            { ConditionOperator.ThisWeek, 0 },
+            { ConditionOperator.ThisYear, 0 },
+            { ConditionOperator.Today, 0 },
+            { ConditionOperator.Tomorrow, 0 },
+            { ConditionOperator.Yesterday, 0 },
+#if !PRE_KEYATTRIBUTE // Values introduced in 2015
+            { ConditionOperator.Above, 1 },
+            { ConditionOperator.AboveOrEqual, 1 },
+            { ConditionOperator.EqualUserOrUserHierarchy, 0 },
+            { ConditionOperator.EqualUserOrUserHierarchyAndTeams, 0 },
+            { ConditionOperator.NotUnder, 1 },
+            { ConditionOperator.OlderThanXDays, 1 },
+            { ConditionOperator.OlderThanXHours, 1 },
+            { ConditionOperator.OlderThanXMinutes, 1 },
+            { ConditionOperator.OlderThanXWeeks, 1 },
+            { ConditionOperator.OlderThanXYears, 1 },
+            { ConditionOperator.Under, 1 },
+            { ConditionOperator.UnderOrEqual, 1 },
+#endif
+        };
+
         private static bool ConditionIsTrue<T>(T entity, ConditionExpression condition) where T : Entity
         {
             // Date Time Details: https://community.dynamics.com/crm/b/gonzaloruiz/archive/2012/07/29/date-and-time-operators-in-crm-explained
 
             int days;
             bool value;
+            DateTime date;
+            AssertExpectedNumberOfValues(condition);
+
             var name = condition.GetQualifiedAttributeName();
             switch (condition.Operator)
             {
@@ -129,11 +224,24 @@ namespace DLaB.Xrm.LocalCrm
                 //    break;
                 //case ConditionOperator.NextMonth:
                 //    break;
-                //case ConditionOperator.On:
-                //    break;
-                //case ConditionOperator.OnOrBefore:
-                //    break;
-                //case ConditionOperator.OnOrAfter:
+                case ConditionOperator.On:
+                    date = condition.GetDateTimeValueFromDateOrString().Date;
+                    var attributeDate = entity.GetAttributeValue<DateTime?>(name);
+                    value = attributeDate.HasValue
+                        && date == attributeDate.Value.Date;
+                    break;
+                case ConditionOperator.OnOrBefore:
+                    date = condition.GetDateTimeValueFromDateOrString().Date;
+                    if(date != DateTime.MaxValue)
+                    {
+                        date = date.AddDays(1);
+                    }
+                    value = IsBetween(entity, condition, DateTime.MinValue, date);
+                    break;
+                case ConditionOperator.OnOrAfter:
+                    date = condition.GetDateTimeValueFromDateOrString().Date;
+                    value = IsBetween(entity, condition, date, DateTime.MaxValue);
+                    break;
                 //    break;
                 //case ConditionOperator.LastYear:
                 //    break;
@@ -151,7 +259,8 @@ namespace DLaB.Xrm.LocalCrm
                     {
                         throw CrmExceptions.GetConditionValueGreaterThan0Exception();
                     }
-                    value = IsBetween(entity, condition, DateTime.UtcNow.Date.AddDays(-1d * days), DateTime.UtcNow);
+
+                    value = IsBetween(entity, condition, DateTime.UtcNow.Date.AddDays(-1d * days), DateTime.UtcNow.AddDays(1).Date);
                     break;
                 case ConditionOperator.NextXDays:
                     days = condition.GetIntValueFromIntOrString();
@@ -267,6 +376,25 @@ namespace DLaB.Xrm.LocalCrm
             return value;
         }
 
+        private static void AssertExpectedNumberOfValues(ConditionExpression condition)
+        {
+            if (!ExpectedValuesByConditionOperator.TryGetValue(condition.Operator, out var expectedCount))
+            {
+                return;
+            }
+
+            if (condition.Values.Count != expectedCount)
+            {
+                throw CrmExceptions.GetConditionOperatorRequiresValuesException(condition, expectedCount);
+            }
+
+            if (expectedCount == 1 && condition.Values[0] == null)
+            {
+                condition = new ConditionExpression(condition.AttributeName, condition.Operator);
+                throw CrmExceptions.GetConditionOperatorRequiresValuesException(condition, expectedCount);
+            }
+        }
+
         /// <summary>
         /// Determines whether the condition specified entity is between.
         /// </summary>
@@ -280,8 +408,8 @@ namespace DLaB.Xrm.LocalCrm
         /// <returns></returns>
         private static bool IsBetween<T>(T entity, ConditionExpression condition, DateTime start, DateTime end, bool inclusiveStart = true, bool inclusiveEnd = false) where T : Entity
         {
-            var isGreaterThan = inclusiveStart ? ConditionOperator.GreaterThan : ConditionOperator.GreaterEqual;
-            var isLessThan = inclusiveEnd ? ConditionOperator.LessThan : ConditionOperator.LessEqual;
+            var isGreaterThan = inclusiveStart ? ConditionOperator.GreaterEqual : ConditionOperator.GreaterThan;
+            var isLessThan = inclusiveEnd ? ConditionOperator.LessEqual : ConditionOperator.LessThan;
             return ConditionIsTrue(entity, new ConditionExpression(condition.AttributeName, isGreaterThan, start))
                 && ConditionIsTrue(entity, new ConditionExpression(condition.AttributeName, isLessThan, end));
         }

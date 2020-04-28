@@ -53,7 +53,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             service.Update(new Contact { Id = id, LastUsedInCampaign = DateTime.UtcNow.AddDays(-8d) });
             Assert.IsNull(GetContact());
         }
-
+        
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_Next7Days()
         {
@@ -70,6 +70,61 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.IsNull(GetContact());
         }
 
+        [TestMethod]
+        public void LocalCrmTests_ConditionExpression_NextXDays()
+        {
+            var service = GetService();
+            var id = service.Create(new Contact
+            {
+                LastUsedInCampaign = DateTime.UtcNow.AddDays(2d)
+            });
+
+            Entity GetContact(int days) => service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.LastUsedInCampaign, ConditionOperator.NextXDays, days));
+
+            Assert.IsNull(GetContact(1));
+            Assert.IsNotNull(GetContact(2));
+            Assert.IsNotNull(GetContact(3));
+            service.Update(new Contact { Id = id, LastUsedInCampaign = DateTime.UtcNow.AddDays(-2d) });
+            Assert.IsNull(GetContact(3));
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_ConditionExpression_OnOrAfter()
+        {
+            var service = GetService();
+            var now = DateTime.UtcNow;
+            var id = service.Create(new Contact
+            {
+                LastUsedInCampaign = now.AddDays(1d)
+            });
+
+            Contact GetContact(int days) => service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.LastUsedInCampaign, ConditionOperator.OnOrAfter, now.AddDays(days)));
+
+            Assert.IsNotNull(GetContact(0));
+            Assert.IsNotNull(GetContact(1));
+            Assert.IsNull(GetContact(2));
+            service.Update(new Contact { Id = id, LastUsedInCampaign = now.AddDays(2) });
+            Assert.IsNotNull(GetContact(2));
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_ConditionExpression_OnOrBefore()
+        {
+            var service = GetService();
+            var now = DateTime.UtcNow;
+            var id = service.Create(new Contact
+            {
+                LastUsedInCampaign = now.AddDays(1d)
+            });
+
+            Contact GetContact(int days) => service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.LastUsedInCampaign, ConditionOperator.OnOrBefore, now.AddDays(days)));
+
+            Assert.IsNull(GetContact(0));
+            Assert.IsNotNull(GetContact(1));
+            Assert.IsNotNull(GetContact(2));
+            service.Update(new Contact { Id = id, LastUsedInCampaign = now.AddDays(-1) });
+            Assert.IsNotNull(GetContact(0));
+        }
 
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_Today()
@@ -123,24 +178,6 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.IsNotNull(GetContact());
             service.Update(new Contact { Id = id, LastUsedInCampaign = DateTime.UtcNow.AddDays(-2d) });
             Assert.IsNull(GetContact());
-        }
-
-        [TestMethod]
-        public void LocalCrmTests_ConditionExpression_NextXDays()
-        {
-            var service = GetService();
-            var id = service.Create(new Contact
-            {
-                LastUsedInCampaign = DateTime.UtcNow.AddDays(2d)
-            });
-
-            Entity GetContact(int days) => service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.LastUsedInCampaign, ConditionOperator.NextXDays, days));
-
-            Assert.IsNull(GetContact(1));
-            Assert.IsNotNull(GetContact(2));
-            Assert.IsNotNull(GetContact(3));
-            service.Update(new Contact { Id = id, LastUsedInCampaign = DateTime.UtcNow.AddDays(-2d) });
-            Assert.IsNull(GetContact(3));
         }
     }
 }

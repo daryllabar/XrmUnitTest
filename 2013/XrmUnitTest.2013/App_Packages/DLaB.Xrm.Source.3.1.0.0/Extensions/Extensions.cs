@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Concurrent;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -10,7 +8,6 @@ using System.Text;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Xml;
@@ -37,7 +34,10 @@ namespace Source.DLaB.Xrm
     /// <summary>
     /// Extension class for Xrm
     /// </summary>
+
+#if !DLAB_XRM_DEBUG
     [DebuggerNonUserCode]
+#endif
     public static partial class Extensions
     {
         #region AttributeMetadata
@@ -581,63 +581,6 @@ namespace Source.DLaB.Xrm
         }
 
         /// <summary>
-        /// Iterates and displays the attributes listed in the entity's Attributes collection
-        /// </summary>
-        /// <param name="entity">The entity.</param>
-        /// <param name="attributeFormat">The attribute format.</param>
-        /// <param name="tabSpacing">The tab spacing to use.  None by default.</param>
-        /// <returns></returns>
-        public static string ToStringAttributes(this Entity entity, int tabSpacing = 4, string attributeFormat = "[{0}]: {1}")
-        {
-            return string.Join(Environment.NewLine, entity.Attributes.Select(att =>
-                GenerateNonBreakingSpace(tabSpacing) + string.Format(attributeFormat, att.Key, GetAttributeValue(att.Value, attributeFormat, tabSpacing, tabSpacing))));
-        }
-
-        private static string GetAttributeValue(object value, string attributeFormat, int tabSpacing, int initialTabSpacing)
-        {
-            if (value == null)
-            {
-                return "Null";
-            }
-
-            if (value is OptionSetValue osv)
-            {
-                return osv.Value.ToString(CultureInfo.InvariantCulture);
-            }
-
-            if (value is EntityReference entity)
-            {
-                return entity.GetNameId();
-            }
-
-            if (value is Money money)
-            {
-                return money.Value.ToString(CultureInfo.InvariantCulture);
-            }
-
-            if (value is EntityCollection collection)
-            {
-                tabSpacing += initialTabSpacing;
-                var entities = collection.Entities;
-                var lines = new List<string>();
-                for(var i = 0; i < entities.Count; i++)
-                {
-                    var localI = i;
-                    lines.AddRange(entities[i].Attributes.Select(att =>
-                        GenerateNonBreakingSpace(tabSpacing) 
-                        + string.Format(attributeFormat, 
-                                        localI + ":" + att.Key, 
-                                        GetAttributeValue(att.Value, attributeFormat, tabSpacing, initialTabSpacing))));
-                }
-                return lines.Count > 0 
-                    ? Environment.NewLine + string.Join(Environment.NewLine, lines)
-                    : "Empty";
-            }
-
-            return value.ToString();
-        }
-
-        /// <summary>
         /// Clone Entity (deep copy)
         /// </summary>
         /// <param name="source">source entity.</param>
@@ -669,43 +612,6 @@ namespace Source.DLaB.Xrm
         }
 
         #endregion EntityCollection
-
-        #region EntityImageCollection
-
-        /// <summary>
-        /// Returns an in depth view of Entities and their values.
-        /// </summary>
-        /// <param name="images">The images.</param>
-        /// <param name="name">The name.</param>
-        /// <returns></returns>
-        public static List<string> ToStringDebug(this EntityImageCollection images, string name)
-        {
-            var values = new List<string>();
-            if (images != null && images.Count > 0)
-            {
-                values.Add("** " + name + " **");
-                foreach (var image in images)
-                {
-                    if (image.Value == null || image.Value.Attributes.Count == 0)
-                    {
-                        values.Add("    Image[" + image.Key + "] " + image.Value + ": Empty");
-                    }
-                    else
-                    {
-                        values.Add("*   Image[" + image.Key + "] " + image.Value.ToEntityReference().GetNameId() + "   *");
-                        values.Add(image.Value.ToStringAttributes(8, "Entity[{0}]: {1}"));
-                    }
-                }
-            }
-            else
-            {
-                values.Add(name + ": Empty");
-            }
-
-            return values;
-        }
-
-        #endregion EntityImageCollection
 
         #region EntityMetadata
 
@@ -767,17 +673,13 @@ namespace Source.DLaB.Xrm
             return entityReference == value || entityReference != null && entityReference.Equals(value);
         }
 
-        /// <summary>
-        /// Returns the Logical Name, Name, and Id of the EntityReference
-        /// </summary>
-        /// <param name="entity">The EntityReference.</param>
-        /// <returns></returns>
-        public static string ToStringDebug(this EntityReference entity)
-        {
-            return entity == null ? "Null" : $"EntityReference {{ LogicalName: {entity.LogicalName}, Name: {entity.GetNameOrDefault()}, Id: {entity.Id}}}";
-        }
-
         #endregion EntityReference
+
+        #region EntityReferenceCollection
+
+
+
+        #endregion EntityReferenceCollection
 
         #region FetchExpression
 
@@ -1056,56 +958,6 @@ namespace Source.DLaB.Xrm
         }
 
         #endregion GetParameterValue
-
-        #region ToStringDebug
-
-        internal static List<string> ToStringDebug(this IExecutionContext context)
-        {
-            var lines = new List<string>
-            {
-                "BusinessUnitId: " + context.BusinessUnitId,
-                "CorrelationId: " + context.CorrelationId,
-                "Depth: " + context.Depth,
-                "InitiatingUserId: " + context.InitiatingUserId,
-                "IsInTransaction: " + context.IsInTransaction,
-                "IsolationMode: " + context.IsolationMode,
-                "MessageName: " + context.MessageName,
-                "Mode: " + context.Mode,
-                "OperationCreatedOn: " + context.OperationCreatedOn,
-                "OperationId: " + context.OperationId,
-                "Organization: " + context.OrganizationName + "(" + context.OrganizationId + ")",
-                "OwningExtension: " + (context.OwningExtension == null ? "Null" : context.OwningExtension.GetNameId()),
-                "PrimaryEntityId: " + context.PrimaryEntityId,
-                "PrimaryEntityName: " + context.PrimaryEntityName,
-                "SecondaryEntityName: " + context.SecondaryEntityName,
-                "UserId: " + context.UserId,
-            };
-            lines.AddRange(context.InputParameters.ToStringDebug("Input Parameters"));
-            lines.AddRange(context.OutputParameters.ToStringDebug("Output Parameters"));
-            lines.AddRange(context.PostEntityImages.ToStringDebug("PostEntityImages"));
-            lines.AddRange(context.PreEntityImages.ToStringDebug("PreEntityImages"));
-            lines.AddRange(context.SharedVariables.ToStringDebug("Shared Variables"));
-
-            if (ConfigurationManager.AppSettings.AllKeys.Any())
-            {
-                lines.Add("* App Config Values *");
-                lines.AddRange(ConfigurationManager.AppSettings.AllKeys.Select(key => $"    [{key}]: {GetConfigValueMaskingPasswords(key)}"));
-            }
-
-            return lines;
-        }
-
-        private static string GetConfigValueMaskingPasswords(string key)
-        {
-            var value = ConfigurationManager.AppSettings[key];
-            if (!string.IsNullOrWhiteSpace(value) && key.ContainsIgnoreCase("password"))
-            {
-                value = new string('*', value.Length);
-            }
-            return value;
-        }
-
-        #endregion ToStringDebug
 
         #endregion IExecutionContext
 
@@ -2140,71 +1992,6 @@ namespace Source.DLaB.Xrm
                 throw new ArgumentNullException(nameof(parameterName));
             }
             return parameters.Contains(parameterName) ? parameters[parameterName] : null;
-        }
-
-        /// <summary>
-        /// Enumerates the parameters, returning in-depth details about each.
-        /// </summary>
-        /// <param name="parameters">The parameters.</param>
-        /// <param name="name">The name.</param>
-        /// <returns></returns>
-        public static List<string> ToStringDebug(this ParameterCollection parameters, string name)
-        {
-            var values = new List<string>();
-            if (parameters != null && parameters.Count > 0)
-            {
-                values.Add("* " + name + " *");
-                foreach (var param in parameters)
-                {
-                    var entityRef = param.Value as EntityReference;
-                    var entityRefCollection = param.Value as EntityReferenceCollection;
-                    var enumerable = param.Value as IEnumerable;
-                    var entities = param.Value as EntityCollection;
-                    var optionSet = param.Value as OptionSetValue;
-                    if (param.Value is Entity entity)
-                    {
-                        values.Add(entity.ToStringAttributes(4, "Param[" + param.Key + "][{0}]: {1}"));
-                    }
-                    else if (entityRef != null)
-                    {
-                        values.Add(GenerateNonBreakingSpace(4) + "Param[" + param.Key + "]: " + entityRef.ToStringDebug());
-                    }
-                    else if (entities != null)
-                    {
-                        values.Add(GenerateNonBreakingSpace(4) + "Param[" + param.Key + "] Entity Collection " + entities.EntityName + ":");
-                        values.AddRange(entities.Entities.Select(i => GenerateNonBreakingSpace(8) + i.ToStringAttributes()));
-                    }
-                    else if (entityRefCollection != null)
-                    {
-                        values.Add(GenerateNonBreakingSpace(4) + "Param[" + param.Key + "] Entity Reference Collection:");
-                        values.AddRange(entityRefCollection.Select(i => GenerateNonBreakingSpace(8) + i.ToStringDebug()));
-                    }
-                    else if (enumerable != null && !(param.Value is String))
-                    {
-                        values.Add(GenerateNonBreakingSpace(4) + "Param[" + param.Key + "]: " + param.Value.GetType().FullName + ":");
-                        values.AddRange(from object item in enumerable select GenerateNonBreakingSpace(8) + item);
-                    }
-                    else if (optionSet != null)
-                    {
-                        values.Add(GenerateNonBreakingSpace(4) + "Param[" + param.Key + "]: " + optionSet.Value);
-                    }
-                    else
-                    {
-                        values.Add(GenerateNonBreakingSpace(4) + "Param[" + param.Key + "]: " + param.Value);
-                    }
-                }
-            }
-            else
-            {
-                values.Add(name + ": Empty");
-            }
-            return values;
-        }
-
-        private static string GenerateNonBreakingSpace(int spaces)
-        {
-            const string space = " "; // This is not a space, it is a Non-Breaking Space (alt+255).  In the log things get trimmed, and this will prevent that from happening;
-            return new string(space[0], spaces);
         }
 
         #endregion ParameterCollection
