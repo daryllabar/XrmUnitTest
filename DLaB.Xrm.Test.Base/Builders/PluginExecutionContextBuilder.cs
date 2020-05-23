@@ -374,7 +374,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="messageName"></param>
         /// <param name="entityLogicalName"></param>
         /// <returns></returns>
-        public TDerived WithRegisteredEvent(int stage, string messageName, string entityLogicalName)
+        public TDerived WithRegisteredEvent(int stage, string messageName, string entityLogicalName = null)
         {
             Context.Stage = stage;
             Context.MessageName = messageName;
@@ -562,6 +562,39 @@ namespace DLaB.Xrm.Test.Builders
         {
             Context.PreEntityImages[imageKey] = image;
             return This;
+        }
+
+        /// <summary>
+        /// Sets the Pre-operation event for the context.
+        /// </summary>
+        /// <param name="messageName"></param>
+        /// <param name="entityLogicalName">Utilizes the PrimaryEntityName if not specified</param>
+        /// <returns></returns>
+        public TDerived WithPreOperation(string messageName, string entityLogicalName = null)
+        {
+            return WithRegisteredEvent((int)PipelineStage.PreOperation, messageName, entityLogicalName);
+        }
+
+        /// <summary>
+        /// Sets the Pre-validation event for the context.
+        /// </summary>
+        /// <param name="messageName"></param>
+        /// <param name="entityLogicalName">Utilizes the PrimaryEntityName if not specified</param>
+        /// <returns></returns>
+        public TDerived WithPreValidation(string messageName, string entityLogicalName = null)
+        {
+            return WithRegisteredEvent((int) PipelineStage.PreValidation, messageName, entityLogicalName);
+        }
+
+        /// <summary>
+        /// Sets the Post-operation event for the context.
+        /// </summary>
+        /// <param name="messageName"></param>
+        /// <param name="entityLogicalName">Utilizes the PrimaryEntityName if not specified</param>
+        /// <returns></returns>
+        public TDerived WithPostOperation(string messageName, string entityLogicalName = null)
+        {
+            return WithRegisteredEvent((int)PipelineStage.PostOperation, messageName, entityLogicalName);
         }
 
         /// <summary>
