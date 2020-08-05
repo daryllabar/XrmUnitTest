@@ -151,7 +151,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <summary>
         /// Sets the registered event for the context to the first registered event of the plugin. Throws an exception if more than one event is found.
         /// </summary>
-        /// <param name="plugin">The plugin.  Must contain </param>
+        /// <param name="plugin">The plugin.  Must contain a property with the name RegisteredEvents</param>
         /// <param name="predicate">Optional predicate based on the RegisteredEvents of the plugin.</param>
         /// <returns></returns>
         /// <exception cref="System.Exception">Plugin  + plugin.GetType().FullName +  does not contain any registered events!  Unable to set the registered event of the context.</exception>
