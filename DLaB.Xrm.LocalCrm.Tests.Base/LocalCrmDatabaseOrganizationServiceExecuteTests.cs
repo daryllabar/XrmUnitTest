@@ -188,7 +188,19 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.AreEqual(AttributeTypeCode.Boolean, GetMetadata(Account.Fields.FollowEmail).AttributeType);
             Assert.AreEqual(AttributeTypeCode.Integer, GetMetadata(Account.Fields.ImportSequenceNumber).AttributeType);
             Assert.AreEqual(AttributeTypeCode.Lookup, GetMetadata(Account.Fields.ParentAccountId).AttributeType);
+        }
 
+        [TestMethod]
+        public void LocalCrmDatabaseOrganizationServiceExecuteTests_RetrieveEntityRequest()
+        {
+            TestInitializer.InitializeTestSettings();
+            var response = (RetrieveEntityResponse)GetService().Execute(new RetrieveEntityRequest
+            {
+                EntityFilters = EntityFilters.Entity,
+                LogicalName = Contact.EntityLogicalName,
+                RetrieveAsIfPublished = true
+            });
+            Assert.AreEqual(Contact.PrimaryNameAttribute, response.EntityMetadata.PrimaryNameAttribute);
         }
     }
 }

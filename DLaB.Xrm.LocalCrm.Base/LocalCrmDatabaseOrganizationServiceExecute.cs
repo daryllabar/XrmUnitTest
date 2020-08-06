@@ -594,18 +594,24 @@ namespace DLaB.Xrm.LocalCrm
         private RetrieveEntityResponse ExecuteInternal(RetrieveEntityRequest request)
         {
             var name = new LocalizedLabel(request.LogicalName, Info.LanguageCode);
+            var primaryName = Info.PrimaryNameProvider.GetPrimaryName(request.LogicalName);
+
+            var metadata = new EntityMetadata
+            {
+                DisplayCollectionName = new Label(name,
+                    new[]
+                    {
+                        name
+                    })
+            };
+            typeof(EntityMetadata).GetProperty(nameof(metadata.PrimaryNameAttribute))
+                ?.SetValue(metadata, primaryName, null);
+
             return new RetrieveEntityResponse
             {
                 Results =
                 {
-                    ["EntityMetadata"] = new EntityMetadata
-                    {
-                        DisplayCollectionName = new Label(name,
-                            new[]
-                            {
-                                name
-                            }),
-                    }
+                    ["EntityMetadata"] = metadata
                 }
             };
         }
