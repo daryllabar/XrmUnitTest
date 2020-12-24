@@ -225,6 +225,21 @@ namespace DLaB.Xrm.Test.Builders
         }
 
         /// <summary>
+        /// Adds the parameters in the request to the Input Parameters
+        /// </summary>
+        /// <param name="request">An Org Request</param>
+        /// <returns></returns>
+        public TDerived WithInputRequest(OrganizationRequest request)
+        {
+            foreach(var param in request.Parameters)
+            {
+                WithInputParameter(param.Key, param.Value);
+            }
+
+            return This;
+        }
+
+        /// <summary>
         /// Sets the IsolationMode of the Context.  This does not actually prevent Sandbox calls from being made.
         /// </summary>
         /// <param name="mode">The mode.</param>
