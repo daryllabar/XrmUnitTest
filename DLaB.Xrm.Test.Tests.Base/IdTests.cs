@@ -54,6 +54,19 @@ namespace DLaB.Xrm.Test.Tests
             Assert.IsTrue(ids.Contains(Ids.Accounts.B));
             Assert.IsTrue(ids.Contains(Ids.Contact));
         }
+
+        [TestMethod]
+        public void Id_Inject_Should_AddAttributes()
+        {
+            var id = Guid.NewGuid();
+            Ids.Contact.Inject(new Contact
+            {
+                Id = id,
+                Address1_AddressTypeCodeEnum = Contact_Address1_AddressTypeCode.BillTo
+            });
+            Assert.AreEqual(Contact_Address1_AddressTypeCode.BillTo, Ids.Contact.Entity.Address1_AddressTypeCodeEnum);
+            Assert.AreNotEqual(id, Ids.Contact.EntityId);
+        }
     }
 }
 

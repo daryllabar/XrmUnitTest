@@ -5,10 +5,10 @@ using Microsoft.Xrm.Sdk;
 namespace DLaB.Xrm.Test
 {
     /// <summary>
-    /// Fake Execution Context that Implmements IExecutionContext
+    /// Fake Execution Context that implements IExecutionContext
     /// </summary>
     [DebuggerDisplay("{DebugInfo}")]
-    public class FakeExecutionContext : IExecutionContext, ICloneable
+    public class FakeExecutionContext : IExecutionContext, IServiceFaked<IExecutionContext>, IFakeService, ICloneable
     {
         /// <summary>
         /// Gets or sets the mode.

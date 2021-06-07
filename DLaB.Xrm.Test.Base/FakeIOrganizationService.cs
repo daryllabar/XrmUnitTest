@@ -37,7 +37,7 @@ namespace DLaB.Xrm.Test
 #if !DEBUG_XRM_UNIT_TEST_CODE
     [DebuggerNonUserCode]
 #endif
-    public class FakeIOrganizationService : ClientSideOrganizationService
+    public class FakeIOrganizationService : ClientSideOrganizationService, IServiceFaked<IOrganizationService>, IFakeService
     {
         #region IOrganizationService Mocks
 

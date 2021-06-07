@@ -5,9 +5,9 @@ using Microsoft.Xrm.Sdk;
 namespace DLaB.Xrm.Test
 {
     /// <summary>
-    /// Tracing Service that allows for Faking and implment the ITracingService
+    /// Tracing Service that allows for Faking and implement the ITracingService
     /// </summary>
-    public class FakeTraceService : ITracingService, ICloneable
+    public class FakeTraceService : ITracingService, IServiceFaked<ITracingService>, IFakeService, ICloneable
     {
         /// <summary>
         /// Gets or sets the traces.

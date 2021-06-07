@@ -720,8 +720,63 @@ namespace DLaB.Xrm.Test
             return response;
         }
 
-        #endregion IServiceProvider
 
+        /// <summary>
+        /// Retrieves the Fake Service from the Service Provider
+        /// </summary>
+        /// <typeparam name="TFake">The Fake Service to retrieve.  Must implement IServiceFaked&lt;&gt;></typeparam>
+        /// <param name="provider">The Provider</param>
+        /// <returns></returns>
+        public static TFake GetFake<TFake>(this IServiceProvider provider) where TFake : IFakeService
+        {
+            var @interface = GetFakedInterface(typeof(TFake));
+
+            return (TFake)provider.GetService(@interface.GetGenericArguments()[0]);
+        }
+
+        /// <summary>
+        /// Gets the generic type of the first IServiceFaked interface defined in the type hierarchy
+        /// </summary>
+        /// <param name="T">The Type</param>
+        /// <returns></returns>
+        private static Type GetFakedInterface(Type T)
+        {
+            while (true)
+            {
+                var interfaces = T.GetInterfaces()
+                                  .Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IServiceFaked<>))
+                                  .ToList();
+                switch (interfaces.Count)
+                {
+                    case 0:
+                        throw new Exception("Must Define Type");
+                    case 1:
+                        return @interfaces[0];
+                    default:
+                        if (T.BaseType == null)
+                        {
+                            throw new Exception(T.FullName + " Defines Type multiple times");
+                        }
+
+                        break;
+                }
+
+                var currentInterfaces = interfaces.Except(T.BaseType.GetInterfaces()).ToList();
+
+                switch (currentInterfaces.Count)
+                {
+                    case 0:
+                        T = T.BaseType;
+                        continue;
+                    case 1:
+                        return currentInterfaces[0];
+                    default:
+                        throw new Exception(T.FullName + " Defines Type multiple times");
+                }
+            }
+        }
+
+        #endregion IServiceProvider
 
         #region Object
 

@@ -10,7 +10,7 @@ namespace DLaB.Xrm.Test
     /// 
     /// </summary>
     [DebuggerDisplay("{DebugInfo}")]
-    public class FakePluginExecutionContext : FakeExecutionContext, IPluginExecutionContext, ICloneable
+    public class FakePluginExecutionContext : FakeExecutionContext, IPluginExecutionContext, IServiceFaked<IPluginExecutionContext>, IFakeService, ICloneable
     {
         /// <summary>
         /// Gets or sets the stage.

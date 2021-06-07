@@ -7,7 +7,7 @@ namespace DLaB.Xrm.Test
     /// <summary>
     /// A Fake that implements IOrganizationServiceFactory
     /// </summary>
-    public class FakeOrganizationServiceFactory : IOrganizationServiceFactory
+    public class FakeOrganizationServiceFactory : IOrganizationServiceFactory, IServiceFaked<IOrganizationServiceFactory>, IFakeService
     {
         /// <summary>
         /// Gets the services key'd by User Id.

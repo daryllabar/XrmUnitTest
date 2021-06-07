@@ -6,7 +6,7 @@ namespace DLaB.Xrm.Test
     /// <summary>
     /// A Fake that implements IServiceProvider
     /// </summary>
-    public class FakeServiceProvider : IServiceProvider, ICloneable
+    public class FakeServiceProvider : IServiceProvider, ICloneable, IServiceFaked<IServiceProvider>, IFakeService
     {
         private Dictionary<Type, object> Services { get; set; }
         /// <summary>
@@ -44,7 +44,7 @@ namespace DLaB.Xrm.Test
         /// </summary>
         /// <param name="serviceType">Type of the service.</param>
         /// <param name="service">The service.</param>
-        public void AddService(Type serviceType, Object service)
+        public void AddService(Type serviceType, object service)
         {
             Services[serviceType] = service;
         }

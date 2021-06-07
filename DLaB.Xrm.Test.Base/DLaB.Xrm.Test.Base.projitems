@@ -43,6 +43,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)FakeTraceService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FakeWorkflowContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Id.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IServiceFaked.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IPathFinder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ITestFrameworkProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ITestLogger.cs" />

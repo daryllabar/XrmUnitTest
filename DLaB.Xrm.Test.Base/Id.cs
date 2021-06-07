@@ -54,8 +54,8 @@ namespace DLaB.Xrm.Test
         /// <param name="attributeName">Name of the attribute.</param>
         /// <returns></returns>
         public object this[string attributeName] { 
-            get { return Entity.Attributes[attributeName]; } 
-            set { Entity.Attributes[attributeName] = value; }
+            get => Entity.Attributes[attributeName];
+            set => Entity.Attributes[attributeName] = value;
         }
 
         /// <summary>
@@ -258,6 +258,35 @@ namespace DLaB.Xrm.Test
         #endregion Implicit Operators
 
         /// <summary>
+        /// Adds the all Attributes (except for the id if it is not empty), formatted values, and key attributes to the current entity.
+        /// </summary>
+        /// <param name="entity"></param>
+        public void Inject(Entity entity)
+        {
+            var id = EntityId;
+            foreach (var att in entity.Attributes.Where(a => id == Guid.Empty || !id.Equals(a.Value)))
+            {
+                Entity.Attributes[att.Key] = att.Value;
+            }
+
+            if (id == Guid.Empty)   
+            {
+                Entity.Id = entity.Id;
+            }
+
+            foreach (var value in entity.FormattedValues)
+            {
+                entity.FormattedValues[value.Key] = value.Value;
+            }
+#if !PRE_KEYATTRIBUTE
+            foreach (var key in entity.KeyAttributes)
+            {
+                entity.KeyAttributes[key.Key] = key.Value;
+            }
+#endif
+        }
+
+        /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
         /// <returns>
@@ -292,10 +321,7 @@ namespace DLaB.Xrm.Test
                 }
                 return value;
             }
-            set
-            {
-                base.Entity = value;
-            }
+            set => base.Entity = value;
         }
         /// <summary>
         /// Initializes a new instance of the <see cref="Id{TEntity}"/> class.
