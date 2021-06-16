@@ -15,5 +15,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)CrmServiceUtility.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IClientSideOrganizationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Many2ManyRelationshipDefinition.cs" />
   </ItemGroup>
 </Project>

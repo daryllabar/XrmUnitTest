@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using DLaB.Common;
+using DLaB.Xrm.LocalCrm.Entities;
 using DLaB.Xrm.Test.Exceptions;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
@@ -411,8 +412,11 @@ namespace DLaB.Xrm.Test.Builders
                     return constructor;
                 }
 
-                var builder = typeof (GenericEntityBuilder<>).MakeGenericType(TestBase.GetType(logicalName));
-                constructor = builder.GetConstructor(new[] {typeof (Id)});
+                var builderType = logicalName == ConnectionRoleAssociation.EntityLogicalName
+                    ? typeof(N2NBuilder<>)
+                    : typeof(GenericEntityBuilder<>);
+                var builder = builderType.MakeGenericType(TestBase.GetType(logicalName));
+                constructor = builder.GetConstructor(new[] { typeof(Id) });
                 DefaultBuilderConstructors.Add(logicalName, constructor);
                 return constructor;
             }

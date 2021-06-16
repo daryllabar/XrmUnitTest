@@ -170,7 +170,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmTests_NonPrimativeDataTypesAreCloned()
+        public void LocalCrmTests_NonPrimitiveDataTypesAreCloned()
         {
             var service = GetService();
             var contact = new Contact();

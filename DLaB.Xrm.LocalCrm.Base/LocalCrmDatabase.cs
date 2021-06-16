@@ -210,7 +210,7 @@ namespace DLaB.Xrm.LocalCrm
             AssertTypeContainsColumns<T>(entity.Attributes.Keys);
             AssertEntityReferencesExists(service, entity);
             SimulateCrmAttributeManipulations(entity);
-            if (SimulateCrmCreateActionPrevention(entity, exception))
+            if (SimulateCrmCreateActionPrevention(service, entity, exception))
             {
                 return Guid.Empty;
             }
@@ -496,7 +496,7 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
-        private static bool SimulateCrmCreateActionPrevention<T>(T entity, DelayedException exception) where T : Entity
+        private static bool SimulateCrmCreateActionPrevention<T>(LocalCrmDatabaseOrganizationService service, T entity, DelayedException exception) where T : Entity
         {
             switch (entity.LogicalName)
             {
@@ -505,6 +505,9 @@ namespace DLaB.Xrm.LocalCrm
                     break;
                 case OpportunityProduct.EntityLogicalName:
                     AssertOpportunityProductHasUoM(entity, exception);
+                    break;
+                case Connection.EntityLogicalName:
+                    AssertConnectionRolesAreAssociated(service, entity, false, exception);
                     break;
             }
             return exception.Exception != null;
@@ -535,6 +538,65 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
+        private static void AssertConnectionRolesAreAssociated(LocalCrmDatabaseOrganizationService service, Entity entity, bool isUpdate, DelayedException exception)
+        {
+            var role1 = entity.GetAttributeValue<EntityReference>(Connection.Fields.Record1RoleId);
+            var role2 = entity.GetAttributeValue<EntityReference>(Connection.Fields.Record2RoleId);
+
+            if (isUpdate)
+            {
+                if (role1 == null && role2 == null)
+                {
+                    // Role never got set, exit
+                    return;
+                }
+
+                if (role1 == null || role2 == null)
+                {
+                    // One is null, attempt to populate it
+                    var dbVersion = service.Retrieve(entity.LogicalName, entity.Id, new ColumnSet(true));
+                    var dbRole1 = dbVersion.GetAttributeValue<EntityReference>(Connection.Fields.Record1RoleId);
+                    var dbRole2 = dbVersion.GetAttributeValue<EntityReference>(Connection.Fields.Record2RoleId);
+
+                    if (role1 == null)
+                    {
+                        role1 = role2.NullSafeEquals(dbRole1)
+                            ? dbRole2
+                            : dbRole1;
+                    }
+                    else
+                    {
+                        role2 = role1.NullSafeEquals(dbRole2)
+                            ? dbRole1
+                            : dbRole2;
+                    }
+                }
+            }
+
+            if (role1 == null
+                || role2 == null)
+            {
+                return;
+            }
+
+            var qe = new QueryExpression
+            {
+                ColumnSet = new ColumnSet(true),
+                EntityName = ConnectionRoleAssociation.EntityLogicalName
+            };
+            qe.First().WhereEqual(
+                ConnectionRoleAssociation.Fields.ConnectionRoleId, role1.Id,
+                ConnectionRoleAssociation.Fields.AssociatedConnectionRoleId, role2.Id,
+                LogicalOperator.Or,
+                ConnectionRoleAssociation.Fields.ConnectionRoleId, role2.Id,
+                ConnectionRoleAssociation.Fields.AssociatedConnectionRoleId, role1.Id);
+
+            if (!service.RetrieveMultiple(qe).Entities.Any())
+            {
+                exception.Exception = CrmExceptions.GetFaultException(ErrorCodes.UnrelatedConnectionRoles);
+            }
+        }
+
         /// <summary>
         /// Simulates the CRM attribute manipulations.
         /// </summary>
@@ -560,22 +622,26 @@ namespace DLaB.Xrm.LocalCrm
         /// <returns></returns>
         private static bool SimulateCrmUpdateActionPrevention<T>(LocalCrmDatabaseOrganizationService service, T entity, DelayedException exception) where T : Entity
         {
-#if Xrm2015
-                return false;
-#endif
+
             switch (entity.LogicalName)
             {
                 case Incident.EntityLogicalName:
+#if Xrm2015
+                    break;
+#else
                     if (service.CurrentRequestName != new CloseIncidentRequest().RequestName  && 
                         entity.GetAttributeValue<OptionSetValue>(Incident.Fields.StateCode).GetValueOrDefault() == (int) IncidentState.Resolved)
                     {
                         // Not executing as a part of a CloseIncidentRequest.  Disallow updating the State Code to Resolved.
                         exception.Exception = CrmExceptions.GetFaultException(ErrorCodes.UseCloseIncidentRequest);
-                        return true;
                     }
                     break;
+#endif
+                case Connection.EntityLogicalName:
+                    AssertConnectionRolesAreAssociated(service, entity, true, exception);
+                    break;
             }
-            return false;
+            return exception.Exception != null;
         }
 
         /// <summary>

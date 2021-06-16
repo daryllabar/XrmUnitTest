@@ -29,6 +29,7 @@ namespace DLaB.Xrm.LocalCrm
                 "aciviewmapper",
                 "appconfig",
                 "businessprocessflowinstance",
+                "connectionroleassociation",
                 "importentitymapping",
                 "importlog",
                 "lookupmapping",

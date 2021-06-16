@@ -54,6 +54,10 @@ namespace DLaB.Xrm.LocalCrm
         /// </summary>
         public int LanguageCode { get; private set; }
         /// <summary>
+        /// The ManyToManyAssociationProvider
+        /// </summary>
+        public IMany2ManyAssociationProvider ManyToManyAssociationProvider { get; set; }
+        /// <summary>
         /// The PrimaryNameProvider
         /// </summary>
         public IPrimaryNameProvider PrimaryNameProvider { get; set; }
@@ -164,7 +168,8 @@ namespace DLaB.Xrm.LocalCrm
                 User = GetRef(optionalSettings.UserId, Test.Entities.SystemUser.EntityLogicalName, AppConfig.CrmSystemSettings.UserId),
                 UserOnBehalfOf = GetRef(optionalSettings.UserOnBehalfOfId, Test.Entities.SystemUser.EntityLogicalName, AppConfig.CrmSystemSettings.OnBehalfOfId),
                 OrganizationId = optionalSettings.OrganizationId ?? ConvertToGuid(dbName),
-                PrimaryNameProvider = optionalSettings.PrimaryNameProvider ?? PrimaryNameFieldProviderBase.GetConfiguredProvider(earlyBoundAssembly, earlyBoundNamespace)
+                PrimaryNameProvider = optionalSettings.PrimaryNameProvider ?? PrimaryNameFieldProviderBase.GetConfiguredProvider(earlyBoundAssembly, earlyBoundNamespace),
+                ManyToManyAssociationProvider = optionalSettings.ManyToManyAssociationProvider ?? new Many2ManyAssociationProvider(AppConfig.CrmEntities.Many2ManyAssociationDefinitions)
             };
         }
 

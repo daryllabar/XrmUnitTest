@@ -5,9 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using DLaB.Xrm.Client;
-using DLaB.Xrm.Test.Entities;
 using DLaB.Xrm.LocalCrm;
-using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.Test
 {
@@ -70,8 +68,12 @@ namespace DLaB.Xrm.Test
             // and using it's method handle, combined with the OrganizationName, as a unique Key
             var method = GetUnitTestMethod() ?? MethodBase.GetCurrentMethod();
             var databaseKey = $"UnitTest {method.Name}:{organizationName}:{method.MethodHandle}";
-            var info = LocalCrmDatabaseInfo.Create(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace, databaseKey, Guid.NewGuid(), impersonationUserId, Guid.NewGuid());
-            return new LocalCrmDatabaseOrganizationService(info);
+            return new LocalCrmDatabaseOrganizationService(GetConfiguredLocalDatabaseInfo(databaseKey, impersonationUserId));
+        }
+
+        public static LocalCrmDatabaseInfo GetConfiguredLocalDatabaseInfo(string databaseKey, Guid impersonationUserId)
+        {
+            return LocalCrmDatabaseInfo.Create(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace, databaseKey, Guid.NewGuid(), impersonationUserId, Guid.NewGuid());
         }
 
         private static MethodBase GetUnitTestMethod()

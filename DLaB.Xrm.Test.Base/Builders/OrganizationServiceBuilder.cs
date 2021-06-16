@@ -993,7 +993,7 @@ namespace DLaB.Xrm.Test.Builders
 
         private static void SetName(Entity e, PrimaryFieldInfo info, Func<Entity, PrimaryFieldInfo, string> getName)
         {
-            if (info.AttributeName == null
+            if (string.IsNullOrWhiteSpace(info.AttributeName)
                 || info.IsAttributeOf
                 || (info.ReadOnly && info.BaseAttributes.Count == 0))
             {

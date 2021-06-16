@@ -582,7 +582,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         #region Shared Methods
 
 
-        private static void TestForPhoneNumber(IOrganizationService service, QueryExpression qe, FilterExpression accountFilter, string telephone)
+            private static void TestForPhoneNumber(IOrganizationService service, QueryExpression qe, FilterExpression accountFilter, string telephone)
         {
             accountFilter.WhereEqual(
                 Account.Fields.Telephone1, telephone,

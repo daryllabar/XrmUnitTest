@@ -35,9 +35,17 @@ namespace DLaB.Xrm.LocalCrm
         /// </summary>
         public int? LanguageCode { get; set; }
         /// <summary>
+        /// The ManyToManyAssociationProvider
+        /// </summary>
+        public IMany2ManyAssociationProvider ManyToManyAssociationProvider { get; set; }
+        /// <summary>
         /// The PrimaryNameProvider
         /// </summary>
         public IPrimaryNameProvider PrimaryNameProvider { get; set; }
+        /// <summary>
+        /// The Many2ManyAssociationProvider
+        /// </summary>
+        public IMany2ManyAssociationProvider Many2ManyAssociationProvider { get; set; }
         /// <summary>
         /// The organization identifier.
         /// </summary>

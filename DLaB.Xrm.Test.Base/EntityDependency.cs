@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using DLaB.Common;
+using DLaB.Xrm.LocalCrm.Entities;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 
@@ -300,6 +301,29 @@ namespace DLaB.Xrm.Test
                     {
                         relationship.Attributes.Add(attribute);
                     }
+                }
+
+                PopulateHardCodedDependencies(logicalName);
+            }
+
+            private void PopulateHardCodedDependencies(string logicalName)
+            {
+                // Connection Roles have to be associated before
+                switch (logicalName)
+                {
+                    case Connection.EntityLogicalName:
+                        if(!Dependencies.ContainsKey(ConnectionRoleAssociation.EntityLogicalName))
+                        {
+                            Dependencies.Add(ConnectionRoleAssociation.EntityLogicalName, new EntityDependencyRelationship(logicalName, ConnectionRoleAssociation.EntityLogicalName, Connection.Fields.Record1RoleId, false));
+                        }
+                        break;
+
+                    case ConnectionRoleAssociation.EntityLogicalName:
+                        if (!Dependencies.ContainsKey(ConnectionRole.EntityLogicalName))
+                        {
+                            Dependencies.Add(ConnectionRole.EntityLogicalName, new EntityDependencyRelationship(logicalName, ConnectionRole.EntityLogicalName, ConnectionRoleAssociation.Fields.ConnectionRoleId, false));
+                        }
+                        break;
                 }
             }
         }

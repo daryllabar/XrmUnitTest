@@ -1,4 +1,6 @@
-﻿using DLaB.Xrm.Entities;
+﻿using System;
+using System.Collections.Generic;
+using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using XrmUnitTest.Test;
@@ -125,5 +127,35 @@ namespace DLaB.Xrm.Test.Tests
 
         #endregion AssumptionChildFirst_Should_LoadAssumptions
 
+        #region UnnamedAssociation_Should_BeCreated
+
+        [TestMethod]
+        public void TestMethodClassBaseDLaB_UnnamedAssociation_Should_BeCreated()
+        {
+            new UnnamedAssociation_Should_BeCreated().Test();
+        }
+
+        // ReSharper disable once InconsistentNaming
+        private class UnnamedAssociation_Should_BeCreated : TestMethodClassBase
+        {
+
+            protected override void Test(IOrganizationService service)
+            {
+                    var id1 = service.Create(new ConnectionRole{Id = Guid.NewGuid()});
+                    var id2 = service.Create(new ConnectionRole{Id = Guid.NewGuid()});
+                    service.Associate(ConnectionRole.EntityLogicalName,
+                        id1,
+                        new Relationship("connectionroleassociation_association"),
+                        new EntityReferenceCollection(new List<EntityReference> { new EntityReference(ConnectionRole.EntityLogicalName, id2) })
+                    );
+                    var m2m = service.GetFirstOrDefault<ConnectionRoleAssociation>();
+                    Assert.IsNotNull(m2m);
+                    Assert.AreEqual(id1, m2m.ConnectionRoleId.GetValueOrDefault());
+                    Assert.AreEqual(id2, m2m.AssociatedConnectionRoleId.GetValueOrDefault());
+
+            }
+        }
+
+        #endregion UnnamedAssociation_Should_BeCreated
     }
 }

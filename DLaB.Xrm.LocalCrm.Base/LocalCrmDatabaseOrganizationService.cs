@@ -2,13 +2,13 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Xml.Serialization;
 using DLaB.Xrm.Client;
 using DLaB.Xrm.LocalCrm.Entities;
 using DLaB.Xrm.LocalCrm.FetchXml;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
+using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.LocalCrm
@@ -33,6 +33,8 @@ namespace DLaB.Xrm.LocalCrm
         /// </value>
         public string CurrentRequestName { get; private set; }
 
+        private bool EnforceValidForOperationCheck { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalCrmDatabaseOrganizationService"/> class.
         /// </summary>
@@ -41,6 +43,7 @@ namespace DLaB.Xrm.LocalCrm
         public LocalCrmDatabaseOrganizationService(LocalCrmDatabaseInfo info)
         {
             Info = info ?? throw new ArgumentNullException(nameof(info));
+            EnforceValidForOperationCheck = true;
             CreateRequiredEntitiesIfNeeded();
         }
 
@@ -110,33 +113,58 @@ namespace DLaB.Xrm.LocalCrm
         [DebuggerStepThrough]
         public void Associate(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
         {
-            if (!relatedEntities.Any()) { throw new ArgumentException("Must contain at least one related entity!", nameof(relatedEntities)); }
-            if (relatedEntities.Any(e => e.LogicalName != relatedEntities.First().LogicalName)) { throw new NotImplementedException("Don't currently Support different Entity Types for related Entities!"); }
+            AssociateInternal(entityName, entityId, relationship, relatedEntities);
+        }
+
+        private AssociateResponse AssociateInternal(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
+        {
+            if (!relatedEntities.Any())
+            {
+                throw new ArgumentException("Must contain at least one related entity!", nameof(relatedEntities));
+            }
+
+            if (relatedEntities.Any(e => e.LogicalName != relatedEntities.First().LogicalName))
+            {
+                throw new NotImplementedException("Don't currently Support different Entity Types for related Entities!");
+            }
 
             if (relationship.PrimaryEntityRole.GetValueOrDefault(EntityRole.Referenced) == EntityRole.Referencing)
             {
                 throw new NotImplementedException("Referencing Not Currently Implemented");
             }
 
-            var referencedIdName = EntityHelper.GetIdAttributeName(entityName);
-            var referencingIdName = EntityHelper.GetIdAttributeName(relatedEntities.First().LogicalName);
-            if (referencedIdName == referencingIdName)
+            var response = new AssociateResponse();
+            if (Info.ManyToManyAssociationProvider.IsManyToManyRelationship(relationship.SchemaName))
             {
-                referencedIdName += "one";
-                referencingIdName += "two";
-            }
+                var originalValue = EnforceValidForOperationCheck;
+                EnforceValidForOperationCheck = false;
+                try
+                {
+                    response["CreatedIds"] = Info.ManyToManyAssociationProvider.CreateAssociation(Service, entityName, entityId, relationship, relatedEntities);
 
-            //if (EntityHelper.IsTypeDefined(Info.EarlyBoundEntityAssembly, Info.EarlyBoundNamespace, relationship.SchemaName))
-            //{
+                }
+                finally
+                {
+                    EnforceValidForOperationCheck = originalValue;
+                }
+            }
+            else if (EntityHelper.IsTypeDefined(Info.EarlyBoundEntityAssembly, Info.EarlyBoundNamespace, relationship.SchemaName))
+            {
+                var referencedIdName = EntityHelper.GetIdAttributeName(entityName);
+                var referencingIdName = EntityHelper.GetIdAttributeName(relatedEntities.First().LogicalName);
+                if (referencedIdName == referencingIdName)
+                {
+                    referencedIdName += "one";
+                    referencingIdName += "two";
+                }
+
                 Associate1ToN(entityId, relationship, relatedEntities, referencedIdName, referencingIdName);
-           //}
-           //else
-           //{
-           //    foreach (var entity in relatedEntities)
-           //    {
-           //        AssociateN2N(new EntityReference(entityName, entityId), entity, relationship);
-           //    }
-           //}
+            }
+            else
+            {
+                throw new NotImplementedException($"No entity found with logical name '{relationship.SchemaName}' for 1:N relationship!  {Info.ManyToManyAssociationProvider.GetNotFoundErrorMessage()}");
+            }
+            return response;
         }
 
         private void Associate1ToN(Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities,
@@ -151,7 +179,6 @@ namespace DLaB.Xrm.LocalCrm
                 Service.Create(relation);
             }
         }
-
 
         /// <summary>
         /// Creates the specified entity.
@@ -200,26 +227,34 @@ namespace DLaB.Xrm.LocalCrm
                 throw new NotImplementedException("Referencing Not Currently Implemented");
             }
 
-            var referencedIdName = EntityHelper.GetIdAttributeName(entityName);
-            var referencingIdName = EntityHelper.GetIdAttributeName(relatedEntities.First().LogicalName);
-            if (referencedIdName == referencingIdName)
+            if (Info.ManyToManyAssociationProvider.IsManyToManyRelationship(relationship.SchemaName))
             {
-                referencedIdName += "one";
-                referencingIdName += "two";
+                var originalValue = EnforceValidForOperationCheck;
+                EnforceValidForOperationCheck = false;
+                try
+                {
+                    Info.ManyToManyAssociationProvider.RemoveAssociation(Service, entityName, entityId, relationship, relatedEntities);
+                }
+                finally
+                {
+                    EnforceValidForOperationCheck = originalValue;
+                }
             }
-
-            //if (EntityHelper.IsTypeDefined(Info.EarlyBoundEntityAssembly, Info.EarlyBoundNamespace,
-            //    relationship.SchemaName))
-            //{
+            else if (EntityHelper.IsTypeDefined(Info.EarlyBoundEntityAssembly, Info.EarlyBoundNamespace, relationship.SchemaName))
+            {
+                var referencedIdName = EntityHelper.GetIdAttributeName(entityName);
+                var referencingIdName = EntityHelper.GetIdAttributeName(relatedEntities.First().LogicalName);
+                if (referencedIdName == referencingIdName)
+                {
+                    referencedIdName += "one";
+                    referencingIdName += "two";
+                }
                 Disassociate1ToN(entityId, relationship, relatedEntities, referencedIdName, referencingIdName);
-            //}
-            //else
-            //{
-            //    foreach (var entity in relatedEntities)
-            //    {
-            //        DisassociateN2N(new EntityReference(entityName, entityId), entity, relationship);
-            //    }
-            //}
+            }
+            else
+            {
+                throw new NotImplementedException($"No entity found with logical name '{relationship.SchemaName}' for 1:N relationship!  {Info.ManyToManyAssociationProvider.GetNotFoundErrorMessage()}");
+            }
         }
 
         private void Disassociate1ToN(Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities,
@@ -370,9 +405,16 @@ namespace DLaB.Xrm.LocalCrm
         [DebuggerHidden]
         private void AssertValidForOperation(string logicalName, string operation)
         {
-            if (logicalName == ActivityParty.EntityLogicalName)
+            if (!EnforceValidForOperationCheck)
             {
-                throw new Exception($"{logicalName} is invalid for {operation}.");
+                return;
+            }
+            switch (logicalName)
+            {
+                case ActivityParty.EntityLogicalName:
+                    throw new Exception($"{logicalName} is invalid for {operation}.");
+                case ConnectionRoleAssociation.EntityLogicalName when (operation == nameof(Create) || operation == nameof(Delete)):
+                    throw new Exception($"The '{operation}' method does not support entities of type '{logicalName}'");
             }
         }
 

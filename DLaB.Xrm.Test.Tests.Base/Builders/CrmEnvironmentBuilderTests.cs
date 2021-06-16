@@ -405,6 +405,41 @@ namespace DLaB.Xrm.Test.Tests.Builders
             AssertCrm.Exists(service, opportunity);
         }
 
+        [TestMethod]
+        public void CrmEnvironmentBuilder_Create_ConnectionAssociation_Should_CreateAssociationBeforeConnection()
+        {
+            var to = new Id<ConnectionRole>("D588F8F5-9276-471E-9A73-C62217C29FD1");
+            var from = new Id<ConnectionRole>("29E71A5B-692D-4777-846D-FD1687D7DDB7");
+            var association = new Id<ConnectionRoleAssociation>("C1B93E89-F070-4FE7-81B4-94BA123222CA");
+            var connection = new Id<Connection>("AC56E429-452F-49F5-A463-894E8CA8E17C");
+            connection.Inject(new Connection
+            {
+                Record1RoleId = to,
+                Record2RoleId = from
+            });
+            association.Inject(new ConnectionRoleAssociation
+            {
+                ConnectionRoleId = to,
+                AssociatedConnectionRoleId = from
+            });
+            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            var containsFailure = false;
+            try
+            {
+                new CrmEnvironmentBuilder()
+                    .WithEntities(to, from, connection)
+                    .Create(service);
+            }
+            catch (Exception ex)
+            {
+                containsFailure = ex.ToString().Contains("The connection roles are not related");
+            }
+            Assert.IsTrue(containsFailure, "CRM does not allow connection roles to be used on a connection without being associated.");
+            service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            new CrmEnvironmentBuilder()
+                .WithEntities(to, from, association, connection)
+                .Create(service);
+        }
 
         private class MyLeadBuilder : DLaBEntityBuilder<Lead, MyLeadBuilder>
         {

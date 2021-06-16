@@ -188,12 +188,23 @@ namespace DLaB.Xrm.Test.Builders
         public TEntity Create(IOrganizationService service, bool runPostCreate)
         {
             var entity = Build(false);
-            entity.Id = service.Create(entity);
+            entity.Id = CreateInternal(service, entity);
             if (runPostCreate)
             {
                 PostCreate(service, entity);
             }
             return entity;
+        }
+
+        /// <summary>
+        /// Just performs create.
+        /// </summary>
+        /// <param name="service">The service.</param>
+        /// <param name="entity">Type: <see cref="T:Microsoft.Xrm.Sdk.Entity"></see>. An entity instance that contains the properties to set in the newly created record.</param>
+        /// <returns></returns>
+        protected virtual Guid CreateInternal(IOrganizationService service, TEntity entity)
+        {
+            return service.Create(entity);
         }
 
         /// <summary>

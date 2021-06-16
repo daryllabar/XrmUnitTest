@@ -38,6 +38,11 @@ namespace DLaB.Xrm.LocalCrm
             throw new NotImplementedException(request.RequestName);
         }
 
+        private AssociateResponse ExecuteInternal(AssociateRequest request)
+        {
+            return AssociateInternal(request.Target.LogicalName, request.Target.Id, request.Relationship, request.RelatedEntities);
+        }
+
         private AssignResponse ExecuteInternal(AssignRequest request)
         {
             GenericMethodCaller.InvokeLocalCrmDatabaseStaticGenericMethod(Info, request.Target.LogicalName, "Assign", this, request.Target, request.Assignee);
@@ -72,6 +77,12 @@ namespace DLaB.Xrm.LocalCrm
         {
             Delete(request.Target.LogicalName, request.Target.Id);
             return new DeleteResponse();
+        }
+
+        private DisassociateResponse ExecuteInternal(DisassociateRequest request)
+        {
+            Disassociate(request.Target.LogicalName, request.Target.Id, request.Relationship, request.RelatedEntities);
+            return new DisassociateResponse();
         }
 #if !PRE_KEYATTRIBUTE
         private ExecuteTransactionResponse ExecuteInternal(ExecuteTransactionRequest request)
