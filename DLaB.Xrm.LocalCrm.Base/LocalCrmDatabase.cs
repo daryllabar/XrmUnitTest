@@ -507,6 +507,7 @@ namespace DLaB.Xrm.LocalCrm
                     AssertOpportunityProductHasUoM(entity, exception);
                     break;
                 case Connection.EntityLogicalName:
+                    AssertConnectionRolesArePopulated(entity, false, exception);
                     AssertConnectionRolesAreAssociated(service, entity, false, exception);
                     break;
             }
@@ -535,6 +536,31 @@ namespace DLaB.Xrm.LocalCrm
             foreach (var col in cols.Where(c => !properties.ContainsProperty(c)))
             {
                 throw new Exception($"Type {typeof(T).Name} does not contain a property named {col}, or a property with an AttributeLogicalNameAttribute of {col}.");
+            }
+        }
+
+        private static void AssertConnectionRolesArePopulated(Entity entity, bool isUpdate, DelayedException exception)
+        {
+            var record1Null = (entity.GetAttributeValue<EntityReference>(Connection.Fields.Record1RoleId) 
+                ?? entity.GetAttributeValue<EntityReference>(Connection.Fields.Record1Id)) == null;
+            var record2Null = (entity.GetAttributeValue<EntityReference>(Connection.Fields.Record2RoleId)
+                ?? entity.GetAttributeValue<EntityReference>(Connection.Fields.Record2Id)) == null;
+            var aConnectionIsMissing = record1Null || record2Null;
+
+            if (isUpdate)
+            {
+                var containsRecord1 = entity.Contains(Connection.Fields.Record1Id)
+                    || entity.Contains(Connection.Fields.Record1RoleId);
+                var containsRecord2 = entity.Contains(Connection.Fields.Record2Id)
+                    || entity.Contains(Connection.Fields.Record2RoleId);
+                aConnectionIsMissing = containsRecord1 && record1Null
+                    || containsRecord2 && record2Null;
+
+            }
+
+            if(aConnectionIsMissing)
+            {
+                exception.Exception = CrmExceptions.GetFaultException(ErrorCodes.BothConnectionSidesAreNeeded);
             }
         }
 
@@ -638,6 +664,7 @@ namespace DLaB.Xrm.LocalCrm
                     break;
 #endif
                 case Connection.EntityLogicalName:
+                    AssertConnectionRolesArePopulated(entity, true, exception);
                     AssertConnectionRolesAreAssociated(service, entity, true, exception);
                     break;
             }

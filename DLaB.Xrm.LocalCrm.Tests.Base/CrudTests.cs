@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using DLaB.Xrm.CrmSdk;
@@ -10,6 +11,7 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
 using XrmUnitTest.Test;
+using OrganizationServiceBuilder = DLaB.Xrm.Test.Builders.OrganizationServiceBuilder;
 
 namespace DLaB.Xrm.LocalCrm.Tests
 {
@@ -579,10 +581,66 @@ namespace DLaB.Xrm.LocalCrm.Tests
             service.Disassociate("lead", leadId, relationship, relatedEntities);
         }
 
+        [TestMethod]
+        public void LocalCrmTests_Crud_ConnectionConstraints()
+        {
+            var to = new Id<Contact>("458DB1CB-12F8-40FD-BCEF-DCDACAEB10D8");
+            var toRole = new Id<ConnectionRole>("D588F8F5-9276-471E-9A73-C62217C29FD1");
+            var fromRole = new Id<ConnectionRole>("29E71A5B-692D-4777-846D-FD1687D7DDB7");
+            var connection = new Id<Connection>("AC56E429-452F-49F5-A463-894E8CA8E17C");
+            connection.Inject(new Connection
+            {
+                Record1Id = to,
+                Record1RoleId = toRole
+            });
+            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            service.Create(to);
+            service.Create(toRole);
+            service.Create(fromRole);
+            var containsFailure = false;
+            try
+            {
+                service.Create(connection);
+            }
+            catch (Exception ex)
+            {
+                containsFailure = ex.ToString().Contains("You must provide a name or select a role for both sides of this connection.");
+                if (!containsFailure)
+                {
+                    throw;
+                }
+            }
+
+            Assert.IsTrue(containsFailure, "The Create should have failed with a You must provide a name or select a role for both sides of this connection., message.");
+            connection.Entity.Record2RoleId = fromRole;
+            containsFailure = false;
+
+            try
+            {
+                service.Create(connection);
+            }
+            catch (Exception ex)
+            {
+                containsFailure = ex.ToString().Contains("The connection roles are not related");
+                if (!containsFailure)
+                {
+                    throw;
+                }
+            }
+
+            Assert.IsTrue(containsFailure, "The Create should have failed with a The connection roles are not related, message.");
+
+            service.Associate(toRole, toRole, new Relationship("connectionroleassociation_association"), new EntityReferenceCollection(new List<EntityReference>
+            {
+                fromRole.EntityReference
+            }));
+            service.Create(connection);
+        }
+
         #region Shared Methods
 
 
-            private static void TestForPhoneNumber(IOrganizationService service, QueryExpression qe, FilterExpression accountFilter, string telephone)
+        private static void TestForPhoneNumber(IOrganizationService service, QueryExpression qe, FilterExpression accountFilter, string telephone)
         {
             accountFilter.WhereEqual(
                 Account.Fields.Telephone1, telephone,
