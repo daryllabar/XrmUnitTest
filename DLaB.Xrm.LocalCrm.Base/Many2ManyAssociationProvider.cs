@@ -100,14 +100,21 @@ namespace DLaB.Xrm.LocalCrm
         {
             var schemaName = GetRelationshipNameForJoinEntity(many2ManyEntity.LogicalName);
             var info = DefinitionsByRelationshipName[schemaName];
-            return new AssociateRequest
+            var request = new AssociateRequest
             {
                 Relationship = new Relationship(schemaName),
                 Target = new EntityReference(info.PrimaryEntityType, many2ManyEntity.GetAttributeValue<Guid?>(info.PrimaryEntityIdName).GetValueOrDefault()),
                 RelatedEntities = new EntityReferenceCollection(new List<EntityReference>{
-                    new EntityReference(info.AssociationLogicalName, many2ManyEntity.GetAttributeValue<Guid?>(info.AssociatedEntityIdName).GetValueOrDefault())
+                    new EntityReference(info.AssociatedEntityType, many2ManyEntity.GetAttributeValue<Guid?>(info.AssociatedEntityIdName).GetValueOrDefault())
                 })
             };
+
+            if(request.Target.LogicalName == request.RelatedEntities.First().LogicalName)
+            {
+                request.Relationship.PrimaryEntityRole = EntityRole.Referenced;
+            }
+
+            return request;
         }
 
         /// <summary>

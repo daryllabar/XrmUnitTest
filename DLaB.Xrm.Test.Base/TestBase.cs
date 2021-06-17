@@ -71,6 +71,12 @@ namespace DLaB.Xrm.Test
             return new LocalCrmDatabaseOrganizationService(GetConfiguredLocalDatabaseInfo(databaseKey, impersonationUserId));
         }
 
+        /// <summary>
+        /// Returns a local Crm Database Info from the TestSettings
+        /// </summary>
+        /// <param name="databaseKey">Key to Use</param>
+        /// <param name="impersonationUserId">Impersonation User</param>
+        /// <returns></returns>
         public static LocalCrmDatabaseInfo GetConfiguredLocalDatabaseInfo(string databaseKey, Guid impersonationUserId)
         {
             return LocalCrmDatabaseInfo.Create(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace, databaseKey, Guid.NewGuid(), impersonationUserId, Guid.NewGuid());

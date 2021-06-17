@@ -186,7 +186,7 @@ namespace DLaB.Xrm.Client
                 //{ "campaignsalesliterature_association", "campaignitem,campaign,campaignid,entityid"},
                 //{ "competitorproduct_association", "competitorproduct,competitor,competitorid,productid"},
                 //{ "competitorsalesliterature_association", "competitorsalesliterature,salesliterature,salesliteratureid,competitorid"},
-                { "connectionroleassociation_association", "connectionroleassociation,connectionrole,connectionroleid,associatedconnectionroleid"},
+                { "connectionroleassociation_association", "connectionroleassociation,connectionrole,connectionroleid,connectionrole,associatedconnectionroleid"},
                 //{ "contact_subscription_association", "subscriptionmanuallytrackedobject,subscription,subscriptionid,objectid"},
                 //{ "contactinvoices_association", "contactinvoices,invoice,invoiceid,contactid"},
                 //{ "contactleads_association", "contactleads,contact,contactid,leadid"},

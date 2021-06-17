@@ -21,19 +21,23 @@ namespace DLaB.Xrm.Client
         /// </summary>
         public string AssociatedEntityIdName { get; set; }
         /// <summary>
+        /// The associated entity logical name
+        /// </summary>
+        public string AssociatedEntityType { get; set; }
+        /// <summary>
         /// The entity logical name of the N2N entity.
         /// </summary>
         public string AssociationLogicalName { get; set; }
         /// <summary>
-        /// Expects format of {RelationshipEntityLogicalName},{PrimaryEntityLogicalName},{PrimaryEntityIdName},{AssociatedEntityIdName}.
+        /// Expects format of {RelationshipEntityLogicalName},{PrimaryEntityLogicalName},{PrimaryEntityIdName},{AssociatedEntityIdType},{AssociatedEntityIdName}.
         /// </summary>
         /// <param name="parts">The parts.</param>
         /// <returns></returns>
         public static Many2ManyRelationshipDefinition Parse(List<string> parts)
         {
-            if(parts.Count != 4)
+            if(parts.Count != 5)
             {
-                throw new FormatException($"Unable to parse {string.Join(", ", parts)}!  Expected 4 items!");
+                throw new FormatException($"Unable to parse {string.Join(", ", parts)}!  Expected 5 items ({{RelationshipEntityLogicalName}},{{PrimaryEntityLogicalName}},{{PrimaryEntityIdName}},{{AssociatedEntityIdType}},{{AssociatedEntityIdName}})!");
             }
 
             return new Many2ManyRelationshipDefinition
@@ -41,7 +45,8 @@ namespace DLaB.Xrm.Client
                 AssociationLogicalName = parts[0],
                 PrimaryEntityType = parts[1],
                 PrimaryEntityIdName = parts[2],
-                AssociatedEntityIdName = parts[3]
+                AssociatedEntityType = parts[3],
+                AssociatedEntityIdName = parts[4]
             };
         }
     }
