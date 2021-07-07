@@ -32,6 +32,15 @@ namespace DLaB.Xrm.LocalCrm.Tests
                     customer.Id = service.Create(customer);
                     entity[Incident.Fields.CustomerId] = customer.ToEntityReference();
                 }
+                else if (entity.LogicalName == Connection.EntityLogicalName)
+                {
+                    // Satisfy ErrorCodes.BothConnectionSidesAreNeeded
+                    var account = new Account();
+                    account.Id = service.Create(account);
+                    entity[Connection.Fields.Record1Id] = account.ToEntityReference();
+                    account.Id = service.Create(new Account());
+                    entity[Connection.Fields.Record2Id] = account.ToEntityReference();
+                }
 
                 entity.Id = service.Create(entity);
 

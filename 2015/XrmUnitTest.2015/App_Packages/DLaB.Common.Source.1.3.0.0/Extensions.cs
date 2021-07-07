@@ -37,7 +37,7 @@ namespace Source.DLaB.Common
         /// Unzips the specified zipped bytes using an in-memory GZipStream.
         /// </summary>
         /// <param name="zippedBytes">The zipped bytes to unzip.</param>
-        /// <param name="encoding">The Encoding to use to parse the bytes.  Defaults to ASCII</param>
+        /// <param name="encoding">The Encoding to use to parse the bytes.  Defaults to UTF8.</param>
         /// <returns></returns>
         public static string Unzip(this byte[] zippedBytes, Encoding encoding = null)
         {
@@ -47,7 +47,7 @@ namespace Source.DLaB.Common
             {
                 unzipper.CopyTo(unzippedBytes);
 
-                encoding = encoding ?? Encoding.ASCII;
+                encoding = encoding ?? Encoding.UTF8;
                 return encoding.GetString(unzippedBytes.ToArray());
             }
         }
@@ -874,15 +874,17 @@ namespace Source.DLaB.Common
         /// <typeparam name="T"></typeparam>
         /// <param name="text">The text.</param>
         /// <param name="settings">The settings.</param>
+        /// <param name="encoding">The encoding.  Defaults to Encoding.UTF8.</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentNullException">text</exception>
-        public static T DeserializeJson<T>(this string text, DataContractJsonSerializerSettings settings = null)
+        public static T DeserializeJson<T>(this string text, DataContractJsonSerializerSettings settings = null, Encoding encoding = null)
         {
             if(text == null){
                 throw new ArgumentNullException(nameof(text));
             }
 
-            using(var reader = new MemoryStream(Encoding.Default.GetBytes(text)))
+            encoding = encoding ?? Encoding.UTF8;
+            using(var reader = new MemoryStream(encoding.GetBytes(text)))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T), settings);
                 return (T)serializer.ReadObject(reader);
@@ -1315,20 +1317,23 @@ namespace Source.DLaB.Common
         /// <typeparam name="T"></typeparam>
         /// <param name="value">The Value to serialize to JSON</param>
         /// <param name="settings">The settings.</param>
+        /// <param name="encoding">The encoding.  Defaults to Encoding.UTF8</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentNullException">text</exception>
-        public static string SerializeToJson<T>(this T value, DataContractJsonSerializerSettings settings = null)
+        public static string SerializeToJson<T>(this T value, DataContractJsonSerializerSettings settings = null, Encoding encoding = null)
         {
             if (value == null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
 
+            encoding = encoding ?? Encoding.UTF8;
+
             using (var memoryStream = new MemoryStream())
             {
                 var serializer = new DataContractJsonSerializer(typeof(T), settings);
                 serializer.WriteObject(memoryStream, value);
-                return Encoding.Default.GetString(memoryStream.ToArray());
+                return encoding.GetString(memoryStream.ToArray());
             }
         }
 
