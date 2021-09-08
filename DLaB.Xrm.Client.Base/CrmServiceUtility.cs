@@ -44,10 +44,10 @@ namespace DLaB.Xrm.Client
             OrganizationService service = new OrganizationService(crmConnection);
             return new ClientSideOrganizationService(service);
 #else
-            var client = new CrmServiceClient(connectionString);
-            if (client.OrganizationServiceProxy == null)
+            var client = new CrmServiceClient(connectionString);            
+            if (!client.IsReady)
             {
-                throw new Exception("Unable to connect to CRM: " + client.LastCrmError);
+                throw new Exception("Unable to connect to CRM: " + (client.LastCrmError ?? client.LastCrmException?.ToString()));
             }
             return new ClientSideOrganizationService(client);
 #endif
