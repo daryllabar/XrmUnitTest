@@ -21,7 +21,7 @@ namespace DLaB.Xrm.LocalCrm
         {
             var fetchEntity = ((FetchEntityType)fe.Items[0]);
             var qe = new QueryExpression(fetchEntity.name);
-            var idName = EntityHelper.GetIdAttributeName(fetchEntity.name);
+            var idName = EntityHelper.GetIdAttributeName(service.GetType(fetchEntity.name));
             var entityLink = qe.AddLink(fetchEntity.name, idName, idName);
             foreach (dynamic item in fetchEntity.Items)
             {

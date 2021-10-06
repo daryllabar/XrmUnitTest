@@ -180,13 +180,19 @@ namespace DLaB.Xrm.Test
                         ActiveOnly = false,
                         Columns = new ColumnSet(false),
                     }).
-                    WhereIn(EntityHelper.GetIdAttributeName(entityType.Key), entityType.Value.Select(i => i.EntityId));
+                    WhereIn(GetIdAttributeName(entityType.Key), entityType.Value.Select(i => i.EntityId));
 
                 foreach (var entity in service.RetrieveMultiple(qe).Entities)
                 {
                     service.TryDelete(entityType.Key, entity.Id);
                 }
             }
+        }
+
+        private string GetIdAttributeName(string logicalName)
+        {
+            var type = EntityHelper.GetType(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace, logicalName);
+            return EntityHelper.GetIdAttributeName(type);
         }
 
         /// <summary>

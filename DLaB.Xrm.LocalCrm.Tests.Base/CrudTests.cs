@@ -467,6 +467,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Crud_MultipleOr()
         {
+            TestInitializer.InitializeTestSettings();
             var service = GetService();
             const string telephone = "9998881111";
             service.Create(new Account {Telephone1 = telephone});
@@ -525,6 +526,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Crud_LinkedMultipleOr()
         {
+            TestInitializer.InitializeTestSettings();
             var service = GetService();
             const string telephone = "9998882222";
             var id = service.Create(new Account

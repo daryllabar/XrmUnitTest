@@ -54,7 +54,8 @@ namespace DLaB.Xrm.Test
                 ExecuteFunc = (s, r) => new OrganizationResponse(),
                 RetrieveFunc = (s, name, id, cs) =>
                 {
-                    expressions.Add(new QueryExpression(name).WhereEqual(EntityHelper.GetIdAttributeName(name), id));
+                    var type = EntityHelper.GetType(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace, name);
+                    expressions.Add(new QueryExpression(name).WhereEqual(EntityHelper.GetIdAttributeName(type), id));
                     return new Entity(name);
                 },
                 RetrieveMultipleFunc = (s, qb) =>

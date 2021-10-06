@@ -666,7 +666,7 @@ namespace DLaB.Xrm.LocalCrm
                 relationship = new OneToManyRelationshipMetadata
                 {
                     ReferencedEntity = referencedType,
-                    ReferencedAttribute = EntityHelper.GetIdAttributeName(referencedType),
+                    ReferencedAttribute = EntityHelper.GetIdAttributeName(property.PropertyType),
                     ReferencingEntity = EntityHelper.GetEntityLogicalName(property.DeclaringType),
                     ReferencingAttribute = property.GetAttributeLogicalName()
                 };

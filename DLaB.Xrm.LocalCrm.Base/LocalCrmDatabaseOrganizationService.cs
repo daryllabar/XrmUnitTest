@@ -150,8 +150,8 @@ namespace DLaB.Xrm.LocalCrm
             }
             else if (EntityHelper.IsTypeDefined(Info.EarlyBoundEntityAssembly, Info.EarlyBoundNamespace, relationship.SchemaName))
             {
-                var referencedIdName = EntityHelper.GetIdAttributeName(entityName);
-                var referencingIdName = EntityHelper.GetIdAttributeName(relatedEntities.First().LogicalName);
+                var referencedIdName = EntityHelper.GetIdAttributeName(GetType(entityName));
+                var referencingIdName = EntityHelper.GetIdAttributeName(GetType(relatedEntities.First().LogicalName));
                 if (referencedIdName == referencingIdName)
                 {
                     referencedIdName += "one";
@@ -242,8 +242,8 @@ namespace DLaB.Xrm.LocalCrm
             }
             else if (EntityHelper.IsTypeDefined(Info.EarlyBoundEntityAssembly, Info.EarlyBoundNamespace, relationship.SchemaName))
             {
-                var referencedIdName = EntityHelper.GetIdAttributeName(entityName);
-                var referencingIdName = EntityHelper.GetIdAttributeName(relatedEntities.First().LogicalName);
+                var referencedIdName = EntityHelper.GetIdAttributeName(GetType(entityName));
+                var referencingIdName = EntityHelper.GetIdAttributeName(GetType(relatedEntities.First().LogicalName));
                 if (referencedIdName == referencingIdName)
                 {
                     referencedIdName += "one";

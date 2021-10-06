@@ -875,7 +875,8 @@ namespace DLaB.Xrm.Test.Builders
 
                     foreach (var entityGroup in EntityFilter)
                     {
-                        var idLogicalName = EntityHelper.GetIdAttributeName(entityGroup.Key);
+                        var entityType = EntityHelper.GetType(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace, entityGroup.Key);
+                        var idLogicalName = EntityHelper.GetIdAttributeName(entityType);
                         foreach (var filter in qe.GetEntityFilters(entityGroup.Key))
                         {
                             filter.AddConditionEnforceAndFilterOperator(new ConditionExpression(idLogicalName, ConditionOperator.In, entityGroup.Value.Select(i => (object)i).ToArray()));
