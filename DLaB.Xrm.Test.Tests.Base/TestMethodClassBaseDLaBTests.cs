@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using DLaB.Xrm.Entities;
+using DLaB.Xrm.Plugin;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using XrmUnitTest.Test;
 using XrmUnitTest.Test.Assumptions;
+using XrmUnitTest.Test.Builders;
 
 namespace DLaB.Xrm.Test.Tests
 {
@@ -157,5 +159,60 @@ namespace DLaB.Xrm.Test.Tests
         }
 
         #endregion UnnamedAssociation_Should_BeCreated
+
+        #region CustomAction_Should_InitPlugin
+
+        [TestMethod]
+        public void CustomAction_Should_InitPlugin()
+        {
+            new CustomAction_Should_InitPluginClass().Test();
+        }
+
+        // ReSharper disable once InconsistentNaming
+        private class CustomAction_Should_InitPluginClass : TestMethodClassBase
+        {
+            protected override void Test(IOrganizationService service)
+            {
+
+                //
+                // Arrange
+                //
+                var plugin = new InitPluginTester(null, null);
+                var context = new PluginExecutionContextBuilder().WithFirstRegisteredEvent(plugin).Build();
+                var serviceProvider = new ServiceProviderBuilder(service, context, Logger).Build();
+
+                //
+                // Act
+                //
+                plugin.Execute(serviceProvider);
+
+                //
+                // Assert
+                //
+                
+            }
+        }
+
+        public class InitPluginTester: DLaBPluginBase
+        {
+            public MessageType MyCustomAction = new MessageType("MyCustomAction");
+            public InitPluginTester(string unsecureConfig, string secureConfig) : base(unsecureConfig, secureConfig)
+            {
+            }
+
+            protected override void ExecuteInternal(IExtendedPluginContext context)
+            {
+                // nothing
+            }
+
+            protected override IEnumerable<RegisteredEvent> CreateEvents()
+            {
+                return new RegisteredEventBuilder(PipelineStage.PreOperation, MyCustomAction)
+                       .And(PipelineStage.PostOperation, MessageType.Update, MessageType.Create)
+                       .ForEntities<Contact>().Build();
+            }
+        }
+
+        #endregion CustomAction_Should_InitPlugin
     }
 }
