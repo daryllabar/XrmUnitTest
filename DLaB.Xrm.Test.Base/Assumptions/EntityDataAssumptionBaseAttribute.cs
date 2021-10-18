@@ -33,11 +33,11 @@ namespace DLaB.Xrm.Test.Assumptions
 
         private Entity PreviouslyRetrievedEntity
         {
-            get => EntitiesFromServerByAttributeType.ContainsKey(GetType().Name)
-                    ? EntitiesFromServerByAttributeType[GetType().Name].ToSdkEntity()
+            get => EntitiesFromServerByAttributeType.ContainsKey(GetType().FullName ?? GetType().Name)
+                    ? EntitiesFromServerByAttributeType[GetType().FullName ?? GetType().Name].ToSdkEntity()
                     : null;
 
-            set => EntitiesFromServerByAttributeType[GetType().Name] = value;
+            set => EntitiesFromServerByAttributeType[GetType().FullName ?? GetType().Name] = value;
         }
 
         private IEnumerable<Type> GetPrerequisites()
@@ -63,12 +63,14 @@ namespace DLaB.Xrm.Test.Assumptions
         private static string GetAssumptionsNamespaceRelativePath(Type type)
         {
             var name = type.FullName ?? "";
-            var index = name.Substring(0, name.LastIndexOf('.') + 1).LastIndexOf("Assumptions.", StringComparison.Ordinal) + "Assumptions.".Length;
+            var index = name.Contains("Assumptions.")
+                ? name.Substring(0, name.LastIndexOf('.') + 1).LastIndexOf("Assumptions.", StringComparison.Ordinal) + "Assumptions.".Length
+                : 0;
             if (index > 0)
             {
                 name = name.Substring(index, name.Length - index);
-                // Replace . with \ so it becomes a folder path
                 name = name.Replace('.', '\\');
+                // Replace . with \ so it becomes a folder path
             }
             if (name.EndsWith("Attribute", StringComparison.InvariantCultureIgnoreCase))
             {
