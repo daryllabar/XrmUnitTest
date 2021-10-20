@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
+#if NET
+namespace DataverseUnitTest.Builders
+#else
 namespace DLaB.Xrm.Test.Builders
+#endif
 {
     /// <summary>
     /// Extensions for Test Builders

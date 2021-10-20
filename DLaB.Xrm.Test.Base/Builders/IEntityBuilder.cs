@@ -1,6 +1,10 @@
 ﻿using Microsoft.Xrm.Sdk;
 
+#if NET
+namespace DataverseUnitTest.Builders
+#else
 namespace DLaB.Xrm.Test.Builders
+#endif
 {
     /// <summary>
     /// A generic Interface for Fluent Building of Entities

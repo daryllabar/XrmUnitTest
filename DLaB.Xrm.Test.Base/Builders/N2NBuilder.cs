@@ -2,7 +2,13 @@
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 
+#if NET
+using DLaB.Xrm;
+
+namespace DataverseUnitTest.Builders
+#else
 namespace DLaB.Xrm.Test.Builders
+#endif
 {
     /// <summary>
     /// Builder for Associate only Entities

@@ -122,8 +122,7 @@ namespace DLaB.Xrm.LocalCrm
             // This potentially could be expanded to include most references types.
             if (compareToType.IsEnum)
             {
-                throw new FaultException(string.Format(@"The formatter threw an exception while trying to deserialize the message: There was an error while trying to deserialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:query. The InnerException message was 'Error in line 1 position 1978. Element 'http://schemas.microsoft.com/2003/10/Serialization/Arrays:anyType' contains data from a type that maps to the name " +
-                    "'{0}:{1}'.The deserializer has no knowledge of any type that maps to this name. Consider changing the implementation of the ResolveName method on your DataContractResolver to return a non-null value for name '{1}' and namespace '{0}'.'. Please see InnerException for more details.", compareToType.Namespace, compareToType.Name));
+                throw CrmExceptions.GetFormatterException(compareToType);
             }
 
             if (compareToType == typeof(string) && value is string)
@@ -205,7 +204,7 @@ namespace DLaB.Xrm.LocalCrm
         private static Guid Create<T>(LocalCrmDatabaseOrganizationService service, T entity, DelayedException exception) where T : Entity
         {
             // Clone entity so no changes will affect actual entity
-            entity = entity.Serialize().DeserializeEntity<T>();
+            entity = entity.Clone();
 
             AssertTypeContainsColumns<T>(entity.Attributes.Keys);
             AssertEntityReferencesExists(service, entity);
@@ -276,7 +275,7 @@ namespace DLaB.Xrm.LocalCrm
             service.RemoveFieldsCrmDoesNotReturn(entity);
             PopulateFormattedValues(service.Info, entity);
             PopulateReferenceNames(service, entity);
-            return entity.Serialize().DeserializeEntity<T>();
+            return entity.Clone();
         }
         
         /// <summary>
@@ -747,7 +746,7 @@ namespace DLaB.Xrm.LocalCrm
             }
 
             // Clone Entity attributes so updating a non-primative attribute type does not cause changes to the database value
-            entity = entity.Serialize().DeserializeEntity<T>();
+            entity = entity.Clone();
 
             // Update all of the attributes from the entity passed in, to the database entity
             foreach (var attribute in entity.Attributes)

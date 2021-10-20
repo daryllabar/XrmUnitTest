@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿#if NET
+namespace DataverseUnitTest.Settings
+#else
 namespace DLaB.Xrm.Test.Settings
+#endif
 {
     class PrimaryNameProviderSetting
     {

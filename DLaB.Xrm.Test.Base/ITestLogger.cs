@@ -1,4 +1,8 @@
-﻿namespace DLaB.Xrm.Test
+﻿#if NET
+namespace DataverseUnitTest
+#else
+namespace DLaB.Xrm.Test
+#endif
 {
     /// <summary>
     /// Allows for abstraction of logging to the Test Framework

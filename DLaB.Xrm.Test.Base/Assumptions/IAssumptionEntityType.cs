@@ -1,6 +1,10 @@
 ﻿using Microsoft.Xrm.Sdk;
 
+#if NET
+namespace DataverseUnitTest.Assumptions
+#else
 namespace DLaB.Xrm.Test.Assumptions
+#endif
 {
     /// <summary>
     /// Interface to allow for tying a non-generic attribute to a Entity

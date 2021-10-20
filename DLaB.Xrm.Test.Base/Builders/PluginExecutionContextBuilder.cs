@@ -3,8 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using DLaB.Xrm.Plugin;
 using Microsoft.Xrm.Sdk;
+#if NET
+using DLaB.Xrm;
+
+namespace DataverseUnitTest.Builders
+#else
 
 namespace DLaB.Xrm.Test.Builders
+#endif
 {
     /// <summary>
     /// Derived Version of the PluginExecutionContextBuilderBase

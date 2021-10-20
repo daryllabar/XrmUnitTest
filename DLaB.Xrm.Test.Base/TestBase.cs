@@ -7,7 +7,13 @@ using System.Reflection;
 using DLaB.Xrm.Client;
 using DLaB.Xrm.LocalCrm;
 
+#if NET
+using DLaB.Xrm;
+
+namespace DataverseUnitTest
+#else
 namespace DLaB.Xrm.Test
+#endif
 {
     /// <summary>
     /// Base Test class to create the Organization Service Proxy defined by the config, as well as other values

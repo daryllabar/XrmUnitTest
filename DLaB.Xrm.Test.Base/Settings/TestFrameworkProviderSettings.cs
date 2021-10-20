@@ -1,8 +1,14 @@
 ﻿using System.Diagnostics;
+#if NET
+using DataverseUnitTest.Exceptions;
+
+namespace DataverseUnitTest.Settings
+#else
 using DLaB.Xrm.Test.Exceptions;
 
 namespace DLaB.Xrm.Test.Settings
-{
+#endif
+{ 
     /// <summary>
     /// Handles mapping calls to the actual Test Framework Provider
     /// </summary>

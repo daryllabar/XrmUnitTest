@@ -1,8 +1,16 @@
-﻿using DLaB.Xrm.Test.Builders;
+﻿using Microsoft.Xrm.Sdk.Client;
+
+#if NET
+using DataverseUnitTest.Builders;
+using DataverseUnitTest.Settings;
+
+namespace DataverseUnitTest
+#else
+using DLaB.Xrm.Test.Builders;
 using DLaB.Xrm.Test.Settings;
-using Microsoft.Xrm.Sdk.Client;
 
 namespace DLaB.Xrm.Test
+#endif
 {
     /// <summary>
     /// Defines the TestSettings for the Test framework

@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
 
+#if NET
+namespace DataverseUnitTest
+#else
 namespace DLaB.Xrm.Test
+#endif
 {
     internal class LogRecorder : ITestLogger
     {

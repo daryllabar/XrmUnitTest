@@ -3,8 +3,14 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using System.Diagnostics;
 using static System.String;
+#if NET
+using DLaB.Xrm;
+
+namespace DataverseUnitTest
+#else
 
 namespace DLaB.Xrm.Test
+#endif
 {
     /// <summary>
     /// CRM Assertion helper class.

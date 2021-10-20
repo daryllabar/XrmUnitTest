@@ -1,6 +1,12 @@
-﻿using DLaB.Xrm.Test.Exceptions;
+﻿#if NET
+using DataverseUnitTest.Exceptions;
+
+namespace DataverseUnitTest.Settings
+#else
+using DLaB.Xrm.Test.Exceptions;
 
 namespace DLaB.Xrm.Test.Settings
+#endif
 {
     /// <summary>
     /// Defines a Path Setting

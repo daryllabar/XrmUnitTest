@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Reflection;
-using DLaB.Xrm.Test;
 #if XRM_2015 || PRE_KEYATTRIBUTE
 using Microsoft.Xrm.Client;
 using Microsoft.Xrm.Client.Services;
+using DLaB.Xrm.Test;
+#elif NET
+using DataverseUnitTest;
+using Microsoft.PowerPlatform.Dataverse.Client;
 #else
 using Microsoft.Xrm.Tooling.Connector;
+using DLaB.Xrm.Test;
 #endif
 
 namespace DLaB.Xrm.Client
@@ -43,7 +47,15 @@ namespace DLaB.Xrm.Client
             CrmConnection crmConnection = CrmConnection.Parse(connectionString);
             OrganizationService service = new OrganizationService(crmConnection);
             return new ClientSideOrganizationService(service);
-#else
+#elif NET
+            var client = new ServiceClient(connectionString);
+            if (!client.IsReady)
+            {
+                throw new Exception("Unable to connect to CRM: " + (client.LastError ?? client.LastException?.ToString()));
+            }
+            return new ClientSideOrganizationService(client);
+
+#else 
             var client = new CrmServiceClient(connectionString);            
             if (!client.IsReady)
             {

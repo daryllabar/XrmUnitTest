@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
 
+#if NET
+namespace DataverseUnitTest
+#else
 namespace DLaB.Xrm.Test
+#endif
 {
 
     /// <summary>

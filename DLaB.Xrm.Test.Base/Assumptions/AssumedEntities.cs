@@ -4,7 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xrm.Sdk;
 
+#if NET
+using DLaB.Xrm;
+
+namespace DataverseUnitTest.Assumptions
+#else
 namespace DLaB.Xrm.Test.Assumptions
+#endif
 {
     /// <summary>
     /// Collection class for Assumed Entities

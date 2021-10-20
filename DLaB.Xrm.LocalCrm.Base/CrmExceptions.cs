@@ -19,61 +19,36 @@ namespace DLaB.Xrm.LocalCrm
 
         public static FaultException<OrganizationServiceFault> GetEntityDoesNotExistException(Entity entity)
         {
-            var message = $"{ErrorCodes.GetErrorMessage(ErrorCodes.ObjectDoesNotExist)}  {entity.LogicalName} With Id = {entity.Id} Does Not Exist";
-            return new FaultException<OrganizationServiceFault>(new OrganizationServiceFault
-            {
-                ErrorCode = ErrorCodes.ObjectDoesNotExist,
-                Message = message,
-                Timestamp = DateTime.UtcNow,
-            }, message);
+            return CreateFault(ErrorCodes.ObjectDoesNotExist, $"{ErrorCodes.GetErrorMessage(ErrorCodes.ObjectDoesNotExist)}  {entity.LogicalName} With Id = {entity.Id} Does Not Exist");
         }
 
         public static FaultException<OrganizationServiceFault> GetConditionValueGreaterThan0Exception()
         {
-            var message = $"The condition value should be greater than zero.";
-            return new FaultException<OrganizationServiceFault>(new OrganizationServiceFault
-            {
-                ErrorCode = InvalidConditionValue,
-                Message = message,
-                Timestamp = DateTime.UtcNow,
-            }, message);
+            return CreateFault(InvalidConditionValue, "The condition value should be greater than zero.");
         }
 
         public static FaultException<OrganizationServiceFault> GetConditionOperatorRequiresValuesException(ConditionExpression condition, int requiredValues)
         {
-            var message = requiredValues == 0
+            return CreateFault(InvalidConditionValue, requiredValues == 0
                 ? $"Condition operator '{condition.Operator}' requires that no values are set. Values.Length: {condition.Values.Count}"
-                : $"The ConditionOperator.{condition.Operator} requires {requiredValues} value/s, not {condition.Values.Count}. Parameter Name: {condition.AttributeName}.";
-            return new FaultException<OrganizationServiceFault>(new OrganizationServiceFault
-            {
-                ErrorCode = InvalidConditionValue,
-                Message = message,
-                Timestamp = DateTime.UtcNow,
-            }, message);
+                : $"The ConditionOperator.{condition.Operator} requires {requiredValues} value/s, not {condition.Values.Count}. Parameter Name: {condition.AttributeName}.");
         }
 
         public static FaultException<OrganizationServiceFault> GetIntShouldBeStringOrIntException(string qualifiedAttributeName)
         {
-            var message = $"Condition for attribute '{qualifiedAttributeName}': integer values are expected to be passed as strings or int.";
-            return new FaultException<OrganizationServiceFault>(new OrganizationServiceFault
-            {
-                ErrorCode = InvalidConditionValue,
-                Message = message,
-                Timestamp = DateTime.UtcNow,
-            }, message);
+            return CreateFault(InvalidConditionValue, $"Condition for attribute '{qualifiedAttributeName}': integer values are expected to be passed as strings or int.");
         }
 
         public static FaultException<OrganizationServiceFault> GetDateShouldBeStringOrDateException(string qualifiedAttributeName)
         {
-            var message = $"The date-time format for {qualifiedAttributeName} is invalid, or value is outside the supported range.";
-            return new FaultException<OrganizationServiceFault>(new OrganizationServiceFault
-            {
-                ErrorCode = InvalidConditionValue,
-                Message = message,
-                Timestamp = DateTime.UtcNow,
-            }, message);
+            return CreateFault(InvalidConditionValue, $"The date-time format for {qualifiedAttributeName} is invalid, or value is outside the supported range.");
         }
 
+        public static FaultException<OrganizationServiceFault> GetFormatterException(Type type)
+        {
+            return CreateFault(-1, string.Format(@"The formatter threw an exception while trying to deserialize the message: There was an error while trying to deserialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:query. The InnerException message was 'Error in line 1 position 1978. Element 'http://schemas.microsoft.com/2003/10/Serialization/Arrays:anyType' contains data from a type that maps to the name " +
+                "'{0}:{1}'.The deserializer has no knowledge of any type that maps to this name. Consider changing the implementation of the ResolveName method on your DataContractResolver to return a non-null value for name '{1}' and namespace '{0}'.'. Please see InnerException for more details.", type.Namespace, type.Name));
+        }
         public static FaultException<OrganizationServiceFault> GetFaultException(int hResult, params object[] args)
         {
             var message = ErrorCodes.GetErrorMessage(hResult);
@@ -81,12 +56,22 @@ namespace DLaB.Xrm.LocalCrm
             {
                 message = string.Format(message, args);
             }
+
+            return CreateFault(hResult, message);
+        }
+
+        private static FaultException<OrganizationServiceFault> CreateFault(int errorCode, string message)
+        {
             return new FaultException<OrganizationServiceFault>(new OrganizationServiceFault
             {
-                ErrorCode = hResult,
+                ErrorCode = errorCode,
                 Message = message,
                 Timestamp = DateTime.UtcNow
+#if NET
+    });
+#else                
             }, message);
-        }
+#endif
+            }
     }
 }

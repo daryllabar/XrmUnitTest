@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !NET
+using System;
 using Microsoft.Xrm.Sdk.Workflow;
 
 namespace DLaB.Xrm.Test
@@ -37,7 +38,7 @@ namespace DLaB.Xrm.Test
         /// </value>
         public IWorkflowContext ParentContext { get; set; }
 
-        #region Clone
+#region Clone
 
         /// <summary>
         /// Clones this instance.
@@ -59,6 +60,7 @@ namespace DLaB.Xrm.Test
             return Clone();
         }
 
-        #endregion Clone
+#endregion Clone
     }
 }
+#endif

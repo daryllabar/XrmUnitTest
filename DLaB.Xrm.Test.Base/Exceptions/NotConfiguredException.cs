@@ -1,6 +1,10 @@
 ﻿using System;
 
+#if NET
+namespace DataverseUnitTest.Exceptions
+#else
 namespace DLaB.Xrm.Test.Exceptions
+#endif
 {
     /// <summary>
     /// Exception Type for when a unit test action is performed, that is depedent on a configuration that is not configured

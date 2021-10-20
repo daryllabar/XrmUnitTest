@@ -3,7 +3,11 @@ using System.Linq;
 using System.Text;
 using DLaB.Common;
 
+#if NET
+namespace DataverseUnitTest.Exceptions
+#else
 namespace DLaB.Xrm.Test.Exceptions
+#endif
 {
     /// <summary>
     /// Exception Type for when an EnvironmentBuilder.Create action is performed and an exception occurs

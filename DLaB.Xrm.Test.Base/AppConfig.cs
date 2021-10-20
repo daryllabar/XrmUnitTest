@@ -4,7 +4,13 @@ using DLaB.Common;
 using Source.DLaB.Common;
 #endif
 
+#if NET
+using Client = DLaB.Xrm.Client;
+
+namespace DataverseUnitTest
+#else
 namespace DLaB.Xrm.Test
+#endif
 {
     /// <summary>
     /// Defines all the potential App.Config Values

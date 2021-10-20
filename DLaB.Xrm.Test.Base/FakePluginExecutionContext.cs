@@ -4,7 +4,11 @@ using System.Linq;
 using DLaB.Xrm.Plugin;
 using Microsoft.Xrm.Sdk;
 
+#if NET
+namespace DataverseUnitTest
+#else
 namespace DLaB.Xrm.Test
+#endif
 {
     /// <summary>
     /// 
@@ -37,7 +41,7 @@ namespace DLaB.Xrm.Test
             // Default to most Common, which I'm guessing is Pre Operation Update
             Stage = (int) PipelineStage.PreOperation;
             MessageName = "Update";
-            IsolationMode = (int)Plugin.IsolationMode.Sandbox;
+            IsolationMode = (int)DLaB.Xrm.Plugin.IsolationMode.Sandbox;
         }
 
         #region Clone

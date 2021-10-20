@@ -9,8 +9,14 @@ using DLaB.Common;
 using DLaB.Xrm.LocalCrm.Entities;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
+#if NET
+using DLaB.Xrm;
+
+namespace DataverseUnitTest
+#else
 
 namespace DLaB.Xrm.Test
+#endif
 {
     /// <summary>
     /// Manages which entities are dependent on which other entities.  This is then used to determine the order in which the entities must be deleted
@@ -331,8 +337,13 @@ namespace DLaB.Xrm.Test
         [DebuggerDisplay("{AttributeName}, {IsCurrentlyCyclic}")]
         private class EntityDependencyRelationship
         {
+#if NET
+            private const string TestNamespace = "DataverseUnitTest";
+#else
+            private const string TestNamespace = "DLaB.Xrm.Test";
+#endif
             private static readonly Dictionary<string, HashSet<string>> RequiredDependenciesByEntity =
-                Config.GetDictionaryHash<string, string>("DLaB.Xrm.Test.RequiredDependenciesByEntity", "incident:account,contact",
+                Config.GetDictionaryHash<string, string>(TestNamespace + ".RequiredDependenciesByEntity", "incident:account,contact",
                                                 new ConfigKeyValuesSplitInfo { ConvertValuesToLower = true });
             public List<string> Attributes { get; set; }
 

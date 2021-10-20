@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
+﻿using System.Diagnostics;
 
+#if NET
+namespace DataverseUnitTest
+#else
 namespace DLaB.Xrm.Test
+#endif
 {
     /// <summary>
     /// Class for being able to access the Trace Params before being traced

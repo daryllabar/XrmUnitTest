@@ -3,7 +3,11 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 
+#if NET
+namespace DataverseUnitTest
+#else
 namespace DLaB.Xrm.Test
+#endif
 {
     /// <summary>
     /// Contains the logical name of an entity and it's list of CyclicAttributes 

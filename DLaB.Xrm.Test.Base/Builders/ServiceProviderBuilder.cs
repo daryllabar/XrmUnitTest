@@ -1,8 +1,14 @@
 ﻿using System;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
+#if NET
+using DLaB.Xrm;
+
+namespace DataverseUnitTest.Builders
+#else
 
 namespace DLaB.Xrm.Test.Builders
+#endif
 {
     /// <summary>
     /// Builder for creating Service Provider

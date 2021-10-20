@@ -8,8 +8,13 @@ using System.Text;
 using DLaB.Common;
 using DLaB.Xrm.LocalCrm;
 using Microsoft.Xrm.Sdk;
+#if NET
+using DLaB.Xrm;
 
+namespace DataverseUnitTest.Assumptions
+#else
 namespace DLaB.Xrm.Test.Assumptions
+#endif
 {
     /// <summary>
     /// Base Class for Assumption Entities
@@ -205,8 +210,14 @@ namespace DLaB.Xrm.Test.Assumptions
             }
             else if (Debugger.IsAttached)
             {
-                Common.VersionControl.SourceControl.SetProvider(TestSettings.SourceControlProvider.Value);
-                Common.VersionControl.SourceControl.CheckoutAndUpdateFileIfDifferent(GetSerializedFilePath(AssumptionsNamespaceRelativePath), entity.ToSdkEntity().Serialize(true));
+                DLaB.Common.VersionControl.SourceControl.SetProvider(TestSettings.SourceControlProvider.Value);
+                var sdkEntity = entity.ToSdkEntity();
+#if NET
+                var serializedValue = entity.SerializeToJson();
+#else
+                var serializedValue = entity.Serialize(true);
+#endif
+                DLaB.Common.VersionControl.SourceControl.CheckoutAndUpdateFileIfDifferent(GetSerializedFilePath(AssumptionsNamespaceRelativePath), serializedValue);
             }
 
             return entity;
@@ -257,7 +268,12 @@ namespace DLaB.Xrm.Test.Assumptions
         private static Entity GetTestEntityFromXml(string fileName)
         {
             var path = GetSerializedFilePath(fileName);
-            return File.ReadAllText(path).DeserializeEntity();
+            var text = File.ReadAllText(path);
+#if NET
+            return text.DeserializeJson<Entity>();
+#else
+            return text.DeserializeEntity();
+#endif
         }
 
         private static string GetSerializedFilePath(string fileName)

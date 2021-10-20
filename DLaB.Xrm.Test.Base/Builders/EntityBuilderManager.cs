@@ -4,11 +4,19 @@ using System.Linq;
 using System.Reflection;
 using DLaB.Common;
 using DLaB.Xrm.LocalCrm.Entities;
-using DLaB.Xrm.Test.Exceptions;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 
+#if NET
+using DataverseUnitTest.Exceptions;
+using DLaB.Xrm;
+
+namespace DataverseUnitTest.Builders
+#else
+using DLaB.Xrm.Test.Exceptions;
+
 namespace DLaB.Xrm.Test.Builders
+#endif
 {
     /// <summary>
     /// Manages what the default builder is for the Entity Type, and the specific builder by id

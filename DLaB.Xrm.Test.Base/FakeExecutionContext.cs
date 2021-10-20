@@ -2,7 +2,11 @@
 using System.Diagnostics;
 using Microsoft.Xrm.Sdk;
 
+#if NET
+namespace DataverseUnitTest
+#else
 namespace DLaB.Xrm.Test
+#endif
 {
     /// <summary>
     /// Fake Execution Context that implements IExecutionContext

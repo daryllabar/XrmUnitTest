@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !NET
+using System;
 using System.Activities;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -188,3 +189,4 @@ namespace DLaB.Xrm.Test.Builders
         }
     }
 }
+#endif

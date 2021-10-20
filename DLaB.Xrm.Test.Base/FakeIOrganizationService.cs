@@ -6,8 +6,14 @@ using DLaB.Xrm.Client;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
+#if NET
+using DLaB.Xrm;
+
+namespace DataverseUnitTest
+#else
 
 namespace DLaB.Xrm.Test
+#endif
 {
     /// <summary>
     /// Class that uses a real OrganizationServiceProxy under the covers, but allows for injection of

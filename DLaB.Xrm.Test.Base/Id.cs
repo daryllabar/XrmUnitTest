@@ -1,13 +1,19 @@
 ﻿using System;
-using System.Activities;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Dynamic;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Xrm.Sdk;
+#if NET
+using DLaB.Xrm;
+
+namespace DataverseUnitTest
+#else
+using System.Activities;
 
 namespace DLaB.Xrm.Test
+#endif
 {
     /// <summary>
     /// A Helper Class for Easily converting to and from EntityReferences, Logical Names, Ids, and Entities
@@ -81,7 +87,7 @@ namespace DLaB.Xrm.Test
         /// <param name="entityId">The entity identifier.</param>
         public Id(string logicalName, string entityId) : this(logicalName, new Guid(entityId)) { }
 
-        #region Static Methods
+#region Static Methods
 
         /// <summary>
         /// Enumerates all of the Ids in a struct
@@ -189,9 +195,9 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        #endregion Static Methods
+#endregion Static Methods
 
-        #region Implicit Operators
+#region Implicit Operators
 
         /// <summary>
         /// Performs an implicit conversion from <see cref="Id"/> to <see cref="EntityReference"/>.
@@ -217,6 +223,7 @@ namespace DLaB.Xrm.Test
             return id.EntityId;
         }
 
+#if !NET
         /// <summary>
         /// Performs an implicit conversion from <see cref="Id"/> to <see cref="InArgument{EntityReference}"/>.
         /// </summary>
@@ -228,6 +235,7 @@ namespace DLaB.Xrm.Test
         {
             return new InArgument<EntityReference>(id);
         }
+#endif
 
         /// <summary>
         /// Performs an implicit conversion from <see cref="Id"/> to <see cref="System.String"/>.
@@ -255,7 +263,7 @@ namespace DLaB.Xrm.Test
         }
 
 
-        #endregion Implicit Operators
+#endregion Implicit Operators
 
         /// <summary>
         /// Adds the all Attributes (except for the id if it is not empty), formatted values, and key attributes to the current entity.

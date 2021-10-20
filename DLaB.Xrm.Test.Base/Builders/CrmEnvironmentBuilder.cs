@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xrm.Sdk;
+#if NET
+using DLaB.Xrm;
+
+namespace DataverseUnitTest.Builders
+#else
 
 namespace DLaB.Xrm.Test.Builders
+#endif
 {
     /// <summary>
     /// Class to simplify the simplest cases of creating entities without changing the defaults.  Use the CrmEnvironmentBuilderBase to provide application specific logic

@@ -65,7 +65,13 @@ namespace DLaB.Xrm.Client
             {
                 throw new ArgumentNullException(nameof(service));
             }
-
+#if NET
+            if (service is IClientSideOrganizationService clientSideService)
+            {
+                throw new NotSupportedException("Maybe this would work? " + clientSideService.GetServiceUri());
+            }
+            throw new NotSupportedException("Not checked to see if this is supported yet!");
+#else
             if (service is ServiceProxy<IOrganizationService> proxy)
             {
                 return proxy.ServiceConfiguration?.CurrentServiceEndpoint.Address.Uri;
@@ -87,8 +93,9 @@ namespace DLaB.Xrm.Client
             proxy = (ServiceProxy<IOrganizationService>)innerService.GetValue(service);
 
             return proxy.ServiceConfiguration?.CurrentServiceEndpoint.Address.Uri;
+#endif
         }
 
-        #endregion IOrganizationService
+#endregion IOrganizationService
     }
 }

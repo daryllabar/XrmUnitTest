@@ -6,14 +6,21 @@ using System.Linq.Expressions;
 using System.Reflection;
 using DLaB.Common;
 using DLaB.Xrm.Client;
-using DLaB.Xrm.Test.Entities;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
+#if NET
+using DataverseUnitTest.Entities;
+using DLaB.Xrm;
+
+namespace DataverseUnitTest
+#else
+using DLaB.Xrm.Test.Entities;
 
 namespace DLaB.Xrm.Test
+#endif
 {
     /// <summary>
-    /// Exteion Class for Xrm Tests
+    /// Extension Class for Xrm Tests
     /// </summary>
     public static class Extensions
     {

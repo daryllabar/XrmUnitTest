@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>DataverseUnitTest</id>
+    <version>0.3.0.17</version>
+    <authors>Daryl LaBar</authors>
+    <owners>Daryl LaBar</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/daryllabar/XrmUnitTest</projectUrl>
+    <icon>images\DLaB_Dynamics_64x64.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Contains Dataverse/XRM Unit Testing Library</description>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="Microsoft.CSharp" />
+      <frameworkAssembly assemblyName="System.Configuration" />
+    </frameworkAssemblies>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>Dynamics CRM v9 Plugin XRM CDS Dataverse UnitTest</tags>
+    <dependencies>
+      <group targetFramework="net5.0">
+        <dependency id="Microsoft.PowerPlatform.Dataverse.Client" version="0.5.7" />
+        <dependency id="Microsoft.Dynamics.Sdk.Messages" version="0.5.7" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\net5.0\DataverseUnitTest.dll" target="lib\net5.0" />
+    <file src="bin\Release\net5.0\DataverseUnitTest.pdb" target="lib\net5.0" />
+    <file src="..\..\DLaB_Dynamics_64x64.png" target="images\" />
+  </files>
+</package>

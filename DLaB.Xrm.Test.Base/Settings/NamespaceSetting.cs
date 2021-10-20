@@ -1,9 +1,15 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+#if NET
+using DataverseUnitTest.Exceptions;
+
+namespace DataverseUnitTest.Settings
+#else
 using DLaB.Xrm.Test.Exceptions;
 
 namespace DLaB.Xrm.Test.Settings
+#endif
 {
     /// <summary>
     /// Defines a Path to the assembly given the namespace

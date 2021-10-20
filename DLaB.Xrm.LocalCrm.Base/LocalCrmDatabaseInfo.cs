@@ -4,6 +4,11 @@ using System.Reflection;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 using AppConfig = DLaB.Xrm.Client.AppConfig;
+#if NET
+using Entities = DataverseUnitTest.Entities;
+#else
+using Entities = DLaB.Xrm.Test.Entities;
+#endif
 
 namespace DLaB.Xrm.LocalCrm
 {
@@ -159,14 +164,14 @@ namespace DLaB.Xrm.LocalCrm
             var dbName = optionalSettings.DatabaseName ?? string.Empty;
             return new LocalCrmDatabaseInfo
             {
-                BusinessUnit = GetRef(optionalSettings.BusinessUnitId, Test.Entities.BusinessUnit.EntityLogicalName, AppConfig.CrmSystemSettings.BusinessUnitId),
+                BusinessUnit = GetRef(optionalSettings.BusinessUnitId, Entities.BusinessUnit.EntityLogicalName, AppConfig.CrmSystemSettings.BusinessUnitId),
                 DatabaseName = dbName,
                 EarlyBoundEntityAssembly = earlyBoundAssembly,
                 EarlyBoundNamespace = earlyBoundNamespace,
                 FullNameFormat = optionalSettings.FullNameFormat ?? AppConfig.CrmSystemSettings.FullNameFormat,
                 LanguageCode = optionalSettings.LanguageCode ?? AppConfig.DefaultLanguageCode,
-                User = GetRef(optionalSettings.UserId, Test.Entities.SystemUser.EntityLogicalName, AppConfig.CrmSystemSettings.UserId),
-                UserOnBehalfOf = GetRef(optionalSettings.UserOnBehalfOfId, Test.Entities.SystemUser.EntityLogicalName, AppConfig.CrmSystemSettings.OnBehalfOfId),
+                User = GetRef(optionalSettings.UserId, Entities.SystemUser.EntityLogicalName, AppConfig.CrmSystemSettings.UserId),
+                UserOnBehalfOf = GetRef(optionalSettings.UserOnBehalfOfId, Entities.SystemUser.EntityLogicalName, AppConfig.CrmSystemSettings.OnBehalfOfId),
                 OrganizationId = optionalSettings.OrganizationId ?? ConvertToGuid(dbName),
                 PrimaryNameProvider = optionalSettings.PrimaryNameProvider ?? PrimaryNameFieldProviderBase.GetConfiguredProvider(earlyBoundAssembly, earlyBoundNamespace),
                 ManyToManyAssociationProvider = optionalSettings.ManyToManyAssociationProvider ?? new Many2ManyAssociationProvider(AppConfig.CrmEntities.Many2ManyAssociationDefinitions)

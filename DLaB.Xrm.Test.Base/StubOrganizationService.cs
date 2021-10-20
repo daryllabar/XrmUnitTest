@@ -2,7 +2,11 @@
 using Microsoft.Xrm.Sdk.Query;
 using System;
 
+#if NET
+namespace DataverseUnitTest
+#else
 namespace DLaB.Xrm.Test
+#endif
 {
     internal class StubOrganizationService : IOrganizationService
     {

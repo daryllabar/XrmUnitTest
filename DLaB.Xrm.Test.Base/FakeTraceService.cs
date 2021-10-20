@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using Microsoft.Xrm.Sdk;
 
+#if NET
+namespace DataverseUnitTest
+#else
 namespace DLaB.Xrm.Test
+#endif
 {
     /// <summary>
     /// Tracing Service that allows for Faking and implement the ITracingService

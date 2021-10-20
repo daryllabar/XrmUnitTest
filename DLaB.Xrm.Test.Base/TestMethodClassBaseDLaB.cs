@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using DLaB.Xrm.Client;
-using DLaB.Xrm.Test.Builders;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
@@ -13,12 +12,22 @@ using DLaB.Common;
 #else
 using Source.DLaB.Common;
 #endif
-
 using DLaB.Xrm.CrmSdk;
+
+#if NET
+using DataverseUnitTest.Assumptions;
+using DataverseUnitTest.Builders;
+using DLaB.Xrm;
+
+// ReSharper disable once CheckNamespace
+namespace DataverseUnitTest
+#else
 using DLaB.Xrm.Test.Assumptions;
+using DLaB.Xrm.Test.Builders;
 
 // ReSharper disable once CheckNamespace
 namespace DLaB.Xrm.Test
+#endif
 {
     // ReSharper disable once InconsistentNaming
     /// <summary>

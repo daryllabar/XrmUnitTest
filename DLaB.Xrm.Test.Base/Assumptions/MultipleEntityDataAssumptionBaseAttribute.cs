@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using Microsoft.Xrm.Sdk;
 
+#if NET
+namespace DataverseUnitTest.Assumptions
+#else
 namespace DLaB.Xrm.Test.Assumptions
+#endif
 {
     /// <summary>
     /// Assumption Base Attribute that allows for combining multiple assumptions into one

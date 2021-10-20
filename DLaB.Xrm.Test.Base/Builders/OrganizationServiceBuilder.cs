@@ -9,15 +9,22 @@ using System.Text;
 using DLaB.Common;
 using DLaB.Xrm.Client;
 using DLaB.Xrm.LocalCrm;
-using DLaB.Xrm.Test.Entities;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
 using Microsoft.Xrm.Sdk.Query;
+#if NET
+using DataverseUnitTest.Entities;
+using DLaB.Xrm;
+
+namespace DataverseUnitTest.Builders
+#else
+using DLaB.Xrm.Test.Entities;
 
 namespace DLaB.Xrm.Test.Builders
-{
+#endif
+{ 
     /// <summary>
     /// Concrete Implementation of the OrganizationServiceBuilderBase
     /// </summary>
@@ -665,7 +672,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         public TDerived WithLocalOptionSetsRetrievedFromEnum(int? defaultLangaugeCode = null)
         {
-            defaultLangaugeCode = defaultLangaugeCode ?? Client.AppConfig.DefaultLanguageCode;
+            defaultLangaugeCode = defaultLangaugeCode ?? DLaB.Xrm.Client.AppConfig.DefaultLanguageCode;
             ExecuteFuncs.Add((s, r) =>
             {
                 if (!(r is RetrieveAttributeRequest attRequest))

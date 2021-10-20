@@ -1,4 +1,8 @@
-﻿namespace DLaB.Xrm.Test
+﻿#if NET
+namespace DataverseUnitTest
+#else
+namespace DLaB.Xrm.Test
+#endif
 {
     /// <summary>
     /// Defines the Abolute Path

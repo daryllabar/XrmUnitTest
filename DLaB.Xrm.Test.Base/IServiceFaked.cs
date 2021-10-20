@@ -1,7 +1,8 @@
-﻿using System;
-using System.Linq;
-
+﻿#if NET
+namespace DataverseUnitTest
+#else
 namespace DLaB.Xrm.Test
+#endif
 {
     /// <summary>
     /// Used to determine the interface that the given type is stored in the service provider as

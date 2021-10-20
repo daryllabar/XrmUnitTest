@@ -3,7 +3,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+#if NET
+namespace DataverseUnitTest
+#else
 namespace DLaB.Xrm.Test
+#endif
 {
     /// <summary>
     /// Defines the path of a project
@@ -30,7 +34,7 @@ namespace DLaB.Xrm.Test
         private static string FindProjectOfType(Type type)
         {
             var sb = new StringBuilder();
-            // XUnit moves the location of the assmbley to a temp location, use CodeBase instead
+            // XUnit moves the location of the assembly to a temp location, use CodeBase instead
             var solutionFolder = GetSolutionFolder(type.Assembly.Location, sb) ?? GetSolutionFolder(type.Assembly.CodeBase.Substring(8), sb);
 
             if (string.IsNullOrWhiteSpace(solutionFolder))

@@ -1,6 +1,10 @@
 ﻿using System;
 
+#if NET
+namespace DataverseUnitTest
+#else
 namespace DLaB.Xrm.Test
+#endif
 {
     /// <summary>
     /// Defines an Interface for a test framework provider.  This is needed to be able to interact with different Test Frameworks

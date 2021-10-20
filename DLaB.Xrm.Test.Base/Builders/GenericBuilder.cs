@@ -1,7 +1,11 @@
 ﻿using System;
 using Microsoft.Xrm.Sdk;
 
+#if NET
+namespace DataverseUnitTest.Builders
+#else
 namespace DLaB.Xrm.Test.Builders
+#endif
 {
     /// <summary>
     /// The Generic Entity Builder class.  If no Entity Builder exists, this class will be used by the Environment builder to create the Entity

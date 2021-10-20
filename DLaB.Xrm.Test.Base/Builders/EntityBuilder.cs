@@ -1,9 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using DLaB.Xrm.Test.Assumptions;
 using Microsoft.Xrm.Sdk;
+#if NET
+using DataverseUnitTest.Assumptions;
+using DLaB.Xrm;
+
+namespace DataverseUnitTest.Builders
+#else
+using DLaB.Xrm.Test.Assumptions;
 
 namespace DLaB.Xrm.Test.Builders
+#endif
 {
     /// <summary>
     /// Abstract Entity builder for Creating Entities

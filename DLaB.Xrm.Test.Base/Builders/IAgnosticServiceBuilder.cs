@@ -1,7 +1,13 @@
 ﻿using System;
 using Microsoft.Xrm.Sdk;
 
+#if NET
+using DLaB.Xrm;
+
+namespace DataverseUnitTest.Builders
+#else
 namespace DLaB.Xrm.Test.Builders
+#endif
 {
     /// <summary>
     /// Interface for OrganizationServiceBuilder messages that get called by the TestMethodClassBase

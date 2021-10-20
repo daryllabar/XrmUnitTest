@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
+#if NET
+namespace DataverseUnitTest
+#else
 namespace DLaB.Xrm.Test
+#endif
 {
     /// <summary>
     /// A Fake that implements IServiceProvider
