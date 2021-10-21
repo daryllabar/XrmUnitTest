@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DLaB.Common;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.Plugin;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -7,6 +8,9 @@ using Microsoft.Xrm.Sdk;
 using XrmUnitTest.Test;
 using XrmUnitTest.Test.Assumptions;
 using XrmUnitTest.Test.Builders;
+#if NET
+using DataverseUnitTest;
+#endif
 
 namespace DLaB.Xrm.Test.Tests
 {
@@ -127,9 +131,9 @@ namespace DLaB.Xrm.Test.Tests
             }
         }
 
-        #endregion AssumptionChildFirst_Should_LoadAssumptions
+#endregion AssumptionChildFirst_Should_LoadAssumptions
 
-        #region UnnamedAssociation_Should_BeCreated
+#region UnnamedAssociation_Should_BeCreated
 
         [TestMethod]
         public void TestMethodClassBaseDLaB_UnnamedAssociation_Should_BeCreated()
@@ -158,9 +162,9 @@ namespace DLaB.Xrm.Test.Tests
             }
         }
 
-        #endregion UnnamedAssociation_Should_BeCreated
+#endregion UnnamedAssociation_Should_BeCreated
 
-        #region CustomAction_Should_InitPlugin
+#region CustomAction_Should_InitPlugin
 
         [TestMethod]
         public void CustomAction_Should_InitPlugin()
@@ -213,6 +217,6 @@ namespace DLaB.Xrm.Test.Tests
             }
         }
 
-        #endregion CustomAction_Should_InitPlugin
+#endregion CustomAction_Should_InitPlugin
     }
 }

@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DLaB.Xrm.Entities;
-using DLaB.Xrm.Test.Assumptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using XrmUnitTest.Test;
 using XrmUnitTest.Test.Assumptions;
+#if NET
+using DataverseUnitTest;
+using DataverseUnitTest.Assumptions;
+#else
+using DLaB.Xrm.Test.Assumptions;
+#endif
 
 namespace DLaB.Xrm.Test.Tests.Builders
 {

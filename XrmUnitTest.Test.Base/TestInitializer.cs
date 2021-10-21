@@ -1,8 +1,11 @@
 ﻿using DLaB.Xrm.Client;
 using DLaB.Xrm.Entities;
-using DLaB.Xrm.Test;
 using XrmUnitTest.Test.Builders;
-using Microsoft.Xrm.Sdk;
+#if NET
+using DataverseUnitTest;
+#else
+using DLaB.Xrm.Test;
+#endif
 
 namespace XrmUnitTest.Test
 {
@@ -16,10 +19,17 @@ namespace XrmUnitTest.Test
         /// </summary>
         public static void InitializeTestSettings()
         {
+#if NET
+            if (!TestSettings.AssumptionJsonPath.IsConfigured)
+            {
+                TestSettings.AssumptionJsonPath.Configure(new PatherFinderProjectOfType(typeof(TestMethodClassBase), "Assumptions\\Entity Json"));
+            }
+#else
             if (!TestSettings.AssumptionXmlPath.IsConfigured)
             {
                 TestSettings.AssumptionXmlPath.Configure(new PatherFinderProjectOfType(typeof(TestMethodClassBase), "Assumptions\\Entity Xml"));
             }
+#endif
             if (!TestSettings.UserTestConfigPath.IsConfigured)
             {
                 TestSettings.UserTestConfigPath.Configure(new PatherFinderProjectOfType(typeof(TestMethodClassBase), "UnitTestSettings.user.config"));

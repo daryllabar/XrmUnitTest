@@ -1,4 +1,9 @@
-﻿using DLaB.Xrm.Test;
+﻿#if NET
+using DataverseUnitTest;
+#else
+using DLaB.Xrm.Test;
+#endif
+
 namespace XrmUnitTest.Test
 {
     public abstract class TestMethodClassBase : TestMethodClassBaseDLaB

@@ -1,9 +1,15 @@
-﻿namespace XrmUnitTest.Test.Builders
+﻿#if NET
+using DataverseUnitTest.Builders;
+#else
+using DLaB.Xrm.Test.Builders;
+#endif
+
+namespace XrmUnitTest.Test.Builders
 {
     /// <summary>
     /// Class to simplify the simplest cases of creating entities without changing the defaults.
     /// </summary>
-    public class CrmEnvironmentBuilder : DLaB.Xrm.Test.Builders.CrmEnvironmentBuilderBase<CrmEnvironmentBuilder>
+    public class CrmEnvironmentBuilder : CrmEnvironmentBuilderBase<CrmEnvironmentBuilder>
     {
         /// <summary>
         /// Gets the current instance.

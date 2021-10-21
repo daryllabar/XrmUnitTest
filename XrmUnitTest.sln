@@ -70,6 +70,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dataverse", "Dataverse", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataverseUnitTest", "Dataverse\DataverseUnitTest\DataverseUnitTest.csproj", "{EB51A9F2-D487-409C-A9CA-E22C74581F89}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataverseUnitTest.Tests", "Dataverse\DataverseUnitTest.Tests\DataverseUnitTest.Tests.csproj", "{C982DCFC-48F8-4FE0-AA56-C45A1ABE29AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm.Entities.Net", "DLaB.Xrm.Entities.Net\DLaB.Xrm.Entities.Net.csproj", "{7E1C7B84-ECBD-4F5A-B6FD-E76E0082B536}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		XrmUnitTest.Test.Base\XrmUnitTest.Test.Base.projitems*{0773e17c-ddbc-4dd9-812b-85c1299a6aca}*SharedItemsImports = 13
@@ -86,6 +90,9 @@ Global
 		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 4
 		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 4
 		NMemory.Base\NMemory.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 4
+		DLaB.Xrm.LocalCrm.Tests.Base\DLaB.Xrm.LocalCrm.Tests.Base.projitems*{c982dcfc-48f8-4fe0-aa56-c45a1abe29ac}*SharedItemsImports = 5
+		DLaB.Xrm.Test.Tests.Base\DLaB.Xrm.Test.Tests.Base.projitems*{c982dcfc-48f8-4fe0-aa56-c45a1abe29ac}*SharedItemsImports = 5
+		XrmUnitTest.Test.Base\XrmUnitTest.Test.Base.projitems*{c982dcfc-48f8-4fe0-aa56-c45a1abe29ac}*SharedItemsImports = 5
 		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{d2ccbfcf-54c0-405c-a829-100a3deb4229}*SharedItemsImports = 13
 		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{e022f65b-2e2b-4907-bed5-8ed04fef5769}*SharedItemsImports = 4
 		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{e022f65b-2e2b-4907-bed5-8ed04fef5769}*SharedItemsImports = 4
@@ -151,6 +158,18 @@ Global
 		{EB51A9F2-D487-409C-A9CA-E22C74581F89}.LocalNuget|Any CPU.Build.0 = Debug|Any CPU
 		{EB51A9F2-D487-409C-A9CA-E22C74581F89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB51A9F2-D487-409C-A9CA-E22C74581F89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C982DCFC-48F8-4FE0-AA56-C45A1ABE29AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C982DCFC-48F8-4FE0-AA56-C45A1ABE29AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C982DCFC-48F8-4FE0-AA56-C45A1ABE29AC}.LocalNuget|Any CPU.ActiveCfg = Debug|Any CPU
+		{C982DCFC-48F8-4FE0-AA56-C45A1ABE29AC}.LocalNuget|Any CPU.Build.0 = Debug|Any CPU
+		{C982DCFC-48F8-4FE0-AA56-C45A1ABE29AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C982DCFC-48F8-4FE0-AA56-C45A1ABE29AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E1C7B84-ECBD-4F5A-B6FD-E76E0082B536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E1C7B84-ECBD-4F5A-B6FD-E76E0082B536}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E1C7B84-ECBD-4F5A-B6FD-E76E0082B536}.LocalNuget|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E1C7B84-ECBD-4F5A-B6FD-E76E0082B536}.LocalNuget|Any CPU.Build.0 = Debug|Any CPU
+		{7E1C7B84-ECBD-4F5A-B6FD-E76E0082B536}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E1C7B84-ECBD-4F5A-B6FD-E76E0082B536}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -162,6 +181,7 @@ Global
 		{E8C237CB-FFB2-4163-A985-01ECC0B8F399} = {AF470AF1-A3ED-41B9-A35F-1D65AFBED5F5}
 		{E022F65B-2E2B-4907-BED5-8ED04FEF5769} = {71DACF89-9D0F-4D45-9202-7AAC5FA83EBE}
 		{EB51A9F2-D487-409C-A9CA-E22C74581F89} = {362FDDEF-8A4B-4726-A19B-C81998C4202A}
+		{C982DCFC-48F8-4FE0-AA56-C45A1ABE29AC} = {362FDDEF-8A4B-4726-A19B-C81998C4202A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3C4F140B-7118-4292-9392-253BE1444510}

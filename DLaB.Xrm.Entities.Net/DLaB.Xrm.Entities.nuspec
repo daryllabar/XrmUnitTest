@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>DLaB.Xrm.Entities</id>
+	  <version>9.0.0.3</version> 
+    <authors>Daryl LaBar</authors>
+    <owners>Daryl LaBar</owners>
+    <licenseUrl>https://github.com/daryllabar/XrmUnitTest/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/daryllabar/XrmUnitTest</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/daryllabar/XrmUnitTest/master/DLaB_Dynamics_64x64.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Contains Xrm EarlyBound Entities</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>Dynamics 365 EarlyBoundEntities XRM</tags>
+	<dependencies>
+    <group targetFramework=".NETFramework4.5">
+      <dependency id="Microsoft.CrmSdk.CoreAssemblies" version="9.0.2.5" />
+    </group>
+  </dependencies>
+  </metadata>
+  <files>
+	  <file src="bin\Release\DLaB.Xrm.Entities*" target="lib\net452" />
+  </files>
+</package>  

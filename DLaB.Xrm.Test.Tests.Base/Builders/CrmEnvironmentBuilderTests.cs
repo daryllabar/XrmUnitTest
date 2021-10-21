@@ -1,11 +1,16 @@
 ﻿using System;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.LocalCrm;
-using DLaB.Xrm.Test.Builders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using XrmUnitTest.Test;
 using XrmUnitTest.Test.Builders;
+#if NET
+using DataverseUnitTest;
+using DataverseUnitTest.Builders;
+#else
+using DLaB.Xrm.Test.Builders;
+#endif
 
 namespace DLaB.Xrm.Test.Tests.Builders
 {
@@ -13,7 +18,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
     public class CrmEnvironmentBuilderTests
     {
         [TestInitialize]
-        public void IntializeTestSettings()
+        public void InitializeTestSettings()
         {
             TestInitializer.InitializeTestSettings();
         }

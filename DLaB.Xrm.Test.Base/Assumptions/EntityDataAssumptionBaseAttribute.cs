@@ -183,18 +183,18 @@ namespace DLaB.Xrm.Test.Assumptions
         {
             if (entity == null)
             {
-                var xmlPath = GetSerializedFilePath(AssumptionsNamespaceRelativePath);
+                var filePath = GetSerializedFilePath(AssumptionsNamespaceRelativePath);
                 var mock = service as FakeIOrganizationService;
                 // If the service is a Mock, get the Actual Service to determine if it is local or not...
                 if (
                     (mock != null && !(mock.ActualService is LocalCrmDatabaseOrganizationService)) ||
                     (mock == null && !(service is LocalCrmDatabaseOrganizationService)) ||
-                    FileIsNullOrEmpty(xmlPath))
+                    FileIsNullOrEmpty(filePath))
                 {
-                    throw new Exception($"Assumption {AssumptionsNamespaceRelativePath} was invalid!  The entity assumed to be there, was not found and no Xml file was found at {xmlPath}.");
+                    throw new Exception($"Assumption {AssumptionsNamespaceRelativePath} was invalid!  The entity assumed to be there, was not found and no file was found at {filePath}.");
                 }
 
-                entity = GetTestEntityFromXml(AssumptionsNamespaceRelativePath);
+                entity = GetTestEntityFromFile(AssumptionsNamespaceRelativePath);
                 var localService = mock == null ? (LocalCrmDatabaseOrganizationService)service : (LocalCrmDatabaseOrganizationService)mock.ActualService;
                 var isSelfReferencing = CreateForeignReferences(localService, entity);
                 if (isSelfReferencing 
@@ -213,7 +213,7 @@ namespace DLaB.Xrm.Test.Assumptions
                 DLaB.Common.VersionControl.SourceControl.SetProvider(TestSettings.SourceControlProvider.Value);
                 var sdkEntity = entity.ToSdkEntity();
 #if NET
-                var serializedValue = entity.SerializeToJson();
+                var serializedValue = entity.SerializeToJson(null, null, true);
 #else
                 var serializedValue = entity.Serialize(true);
 #endif
@@ -224,7 +224,7 @@ namespace DLaB.Xrm.Test.Assumptions
         }
 
         /// <summary>
-        /// Creates all foreign references that don't exist.  This is usually due to the serialization grabAssumptionsbing more values than actually needed.
+        /// Creates all foreign references that don't exist.  This is usually due to the serialization assumptions grabbing more values than actually needed.
         /// </summary>
         /// <param name="service"></param>
         /// <param name="entity"></param>
@@ -265,7 +265,7 @@ namespace DLaB.Xrm.Test.Assumptions
             return isSelfReferencing;
         }
 
-        private static Entity GetTestEntityFromXml(string fileName)
+        private static Entity GetTestEntityFromFile(string fileName)
         {
             var path = GetSerializedFilePath(fileName);
             var text = File.ReadAllText(path);
@@ -278,22 +278,54 @@ namespace DLaB.Xrm.Test.Assumptions
 
         private static string GetSerializedFilePath(string fileName)
         {
-            if (!fileName.EndsWith(".xml"))
+#if NET
+            var fileType = ".json";
+            var configPath = TestSettings.AssumptionJsonPath.Value;
+#else
+            var fileType = ".xml";
+            var configPath = TestSettings.AssumptionXmlPath.Value;
+#endif
+            if (!fileName.EndsWith(fileType))
             {
-                fileName += ".xml";
+                fileName += fileType;
             }
 
             // Check for normal path
-            var path = Path.Combine(TestSettings.AssumptionXmlPath.Value, fileName);
+            var path = Path.Combine(configPath, fileName);
             if (File.Exists(path))
             {
                 return path;
             }
+
             // Check for bin directory
             var binPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
-            return File.Exists(binPath)
-                ? binPath
-                : path;
+            if (File.Exists(binPath))
+            {
+                return binPath;
+            }
+
+            // For NET 5 projects, some files get copied over with folder hierarchy.  Walk backwards to see if the directory substructure exists
+            binPath = Path.GetDirectoryName(binPath);
+            var parts = configPath.Split(new [] { Path.DirectorySeparatorChar }, StringSplitOptions.RemoveEmptyEntries);
+            for (var i = parts.Length - 1; i >= 0; i--)
+            {
+                var newPath = Path.Combine(binPath, parts[i]);
+                if (Directory.Exists(newPath))
+                {
+                    for(var j = i+1; j < parts.Length; j++)
+                    {
+                        newPath = Path.Combine(newPath, parts[j]);
+                    }
+
+                    newPath = Path.Combine(newPath, fileName);
+                    if (File.Exists(newPath))
+                    {
+                        return newPath;
+                    }
+                }
+            }
+
+            return path;
         }
 
         private static bool FileIsNullOrEmpty(string filePath)

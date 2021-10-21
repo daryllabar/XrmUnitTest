@@ -4,14 +4,20 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using DLaB.Xrm.CrmSdk;
 using DLaB.Xrm.Entities;
-using DLaB.Xrm.Test;
-using DLaB.Xrm.Test.Builders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
 using XrmUnitTest.Test;
+#if NET
+using OrganizationServiceBuilder = DataverseUnitTest.Builders.OrganizationServiceBuilder;
+using DataverseUnitTest;
+using DataverseUnitTest.Builders;
+#else
 using OrganizationServiceBuilder = DLaB.Xrm.Test.Builders.OrganizationServiceBuilder;
+using DLaB.Xrm.Test;
+using DLaB.Xrm.Test.Builders;
+#endif
 
 namespace DLaB.Xrm.LocalCrm.Tests
 {

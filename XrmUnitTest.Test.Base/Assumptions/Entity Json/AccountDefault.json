@@ -1,0 +1,27 @@
+{
+    "Attributes": [{
+            "key": "accountid",
+            "value": "9b109cfb-d7bf-4c3e-8f05-f719af8208ed"
+        }, {
+            "key": "name",
+            "value": "Default Account"
+        }, {
+            "key": "primarycontactid",
+            "value": {
+                "__type": "EntityReference:http:\/\/schemas.microsoft.com\/xrm\/2011\/Contracts",
+                "Id": "f437a25e-8d81-e511-80e1-3863bb367dc0",
+                "KeyAttributes": [],
+                "LogicalName": "contact",
+                "Name": "Default",
+                "RowVersion": null
+            }
+        }
+    ],
+    "EntityState": null,
+    "FormattedValues": [],
+    "Id": "9b109cfb-d7bf-4c3e-8f05-f719af8208ed",
+    "KeyAttributes": [],
+    "LogicalName": "account",
+    "RelatedEntities": [],
+    "RowVersion": null
+}

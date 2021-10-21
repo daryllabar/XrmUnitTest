@@ -1,10 +1,14 @@
-﻿namespace XrmUnitTest.Test.Builders
+﻿#if NET
+using DataverseUnitTest;
+using DataverseUnitTest.Builders;
+#else
+using DLaB.Xrm.Test.Builders;
+#endif
+
+namespace XrmUnitTest.Test.Builders
 {
-    public class PluginExecutionContextBuilder : DLaB.Xrm.Test.Builders.PluginExecutionContextBuilderBase<PluginExecutionContextBuilder>
+    public class PluginExecutionContextBuilder : PluginExecutionContextBuilderBase<PluginExecutionContextBuilder>
     {
-        protected override PluginExecutionContextBuilder This
-        {
-            get { return this; }
-        }
+        protected override PluginExecutionContextBuilder This => this;
     }
 }

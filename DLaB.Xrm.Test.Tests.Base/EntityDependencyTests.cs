@@ -6,6 +6,9 @@ using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using XrmUnitTest.Test;
+#if NET
+using DataverseUnitTest;
+#endif
 
 namespace DLaB.Xrm.Test.Tests
 {

@@ -4,9 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.LocalCrm;
-using DLaB.Xrm.Test.Builders;
 using Microsoft.Xrm.Sdk;
 using XrmUnitTest.Test;
+#if NET
+using DataverseUnitTest;
+using DataverseUnitTest.Builders;
+#else
+using DLaB.Xrm.Test.Builders;
+#endif
 
 namespace DLaB.Xrm.Test.Tests.Builders
 {
@@ -14,7 +19,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
     public class OrganizationServiceBuilderTests
     {
         [TestInitialize]
-        public void IntializeTestSettings()
+        public void InitializeTestSettings()
         {
             TestInitializer.InitializeTestSettings();
         }

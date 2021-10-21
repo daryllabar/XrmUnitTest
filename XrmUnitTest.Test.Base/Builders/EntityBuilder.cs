@@ -1,5 +1,9 @@
-﻿using DLaB.Xrm.Test.Builders;
-using Microsoft.Xrm.Sdk;
+﻿using Microsoft.Xrm.Sdk;
+#if NET
+using DataverseUnitTest.Builders;
+#else
+using DLaB.Xrm.Test.Builders;
+#endif
 
 namespace XrmUnitTest.Test.Builders
 {

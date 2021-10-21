@@ -23,7 +23,11 @@ namespace DLaB.Xrm.Test
         /// <value>
         /// The assumption XML path.
         /// </value>
+#if NET
+        public static PathSetting AssumptionJsonPath { get; } = new PathSetting("Assumption Json Path has not been configured.  Call DLaB.Xrm.Test.TestSettings.AssumptionJsonPath.Configure() first before getting the AssumptionJsonPath.");
+#else
         public static PathSetting AssumptionXmlPath { get; } = new PathSetting("Assumption Xml Path has not been configured.  Call DLaB.Xrm.Test.TestSettings.AssumptionXmlPath.Configure() first before getting the AssumptionXmlPath.");
+#endif
 
         /// <summary>
         /// Defines the namespace of the EarlyBound entities so entities can be discovered to model the Local CRM

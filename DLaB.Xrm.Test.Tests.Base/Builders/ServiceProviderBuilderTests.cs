@@ -1,8 +1,13 @@
 ﻿using System;
 using DLaB.Xrm.Plugin;
-using DLaB.Xrm.Test.Builders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
+#if NET
+using DataverseUnitTest;
+using DataverseUnitTest.Builders;
+#else
+using DLaB.Xrm.Test.Builders;
+#endif
 
 namespace DLaB.Xrm.Test.Tests.Builders
 {

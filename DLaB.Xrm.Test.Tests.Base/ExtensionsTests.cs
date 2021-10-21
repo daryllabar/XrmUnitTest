@@ -2,6 +2,11 @@
 using DLaB.Xrm.LocalCrm;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
+#if NET
+using DataverseUnitTest;
+#else
+using DLaB.Xrm.Test;
+#endif
 
 namespace DLaB.Xrm.Test.Tests
 {

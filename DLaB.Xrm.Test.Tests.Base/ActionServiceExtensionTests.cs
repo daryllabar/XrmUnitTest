@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
+#if NET
+using DataverseUnitTest;
+#endif
 
 namespace DLaB.Xrm.Test.Tests
 {

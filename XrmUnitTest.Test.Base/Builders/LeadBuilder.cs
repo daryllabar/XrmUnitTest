@@ -1,7 +1,11 @@
 ﻿using DLaB.Xrm.Entities;
-using DLaB.Xrm.Test;
 using Microsoft.Xrm.Sdk;
-
+#if NET
+using DataverseUnitTest;
+using DataverseUnitTest.Builders;
+#else
+using DLaB.Xrm.Test;
+#endif
 namespace XrmUnitTest.Test.Builders
 {
     public class LeadBuilder : EntityBuilder<Lead, LeadBuilder>

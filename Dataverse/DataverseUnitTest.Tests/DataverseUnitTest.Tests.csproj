@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Dynamics.Sdk.Messages" Version="0.5.7" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+    <PackageReference Include="Microsoft.PowerPlatform.Dataverse.Client" Version="0.5.7" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.3" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.3" />
+    <PackageReference Include="coverlet.collector" Version="3.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DLaB.Xrm.Entities.Net\DLaB.Xrm.Entities.Net.csproj" />
+    <ProjectReference Include="..\DataverseUnitTest\DataverseUnitTest.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="UnitTestSettings.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+
+  <Import Project="..\..\DLaB.Xrm.LocalCrm.Tests.Base\DLaB.Xrm.LocalCrm.Tests.Base.projitems" Label="Shared" />
+
+  <Import Project="..\..\DLaB.Xrm.Test.Tests.Base\DLaB.Xrm.Test.Tests.Base.projitems" Label="Shared" />
+
+  <Import Project="..\..\XrmUnitTest.Test.Base\XrmUnitTest.Test.Base.projitems" Label="Shared" />
+
+</Project>

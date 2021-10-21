@@ -68,7 +68,7 @@ namespace DLaB.Xrm.LocalCrm
                 Message = message,
                 Timestamp = DateTime.UtcNow
 #if NET
-    });
+    }, new FaultReason(message));
 #else                
             }, message);
 #endif

@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using DLaB.Xrm.Entities;
-using DLaB.Xrm.LocalCrm;
 using DLaB.Xrm.Plugin;
-using DLaB.Xrm.Test.Builders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
-using XrmUnitTest.Test;
-using XrmUnitTest.Test.Builders;
+#if NET
+using DataverseUnitTest;
+using DataverseUnitTest.Builders;
+using PluginExecutionContextBuilder = DataverseUnitTest.Builders.PluginExecutionContextBuilder;
+#else
 using PluginExecutionContextBuilder = DLaB.Xrm.Test.Builders.PluginExecutionContextBuilder;
+#endif
 
 namespace DLaB.Xrm.Test.Tests.Builders
 {

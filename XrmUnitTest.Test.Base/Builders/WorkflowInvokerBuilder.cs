@@ -1,4 +1,5 @@
-﻿using System.Activities;
+﻿#if !NET
+using System.Activities;
 
 namespace XrmUnitTest.Test.Builders
 {
@@ -22,3 +23,4 @@ namespace XrmUnitTest.Test.Builders
         }
     }
 }
+#endif

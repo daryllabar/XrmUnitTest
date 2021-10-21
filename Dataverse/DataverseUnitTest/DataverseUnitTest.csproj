@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>TRACE;DLAB_PUBLIC DLAB_UNROOT_COMMON_NAMESPACE DLAB_XRM</DefineConstants>
+    <DefineConstants>TRACE;DLAB_PUBLIC DLAB_UNROOT_COMMON_NAMESPACE DLAB_XRM DEBUG_XRM_UNIT_TEST_CODE</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -20,7 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DLaB.Xrm.Source" Version="3.4.0.4" />
+    <PackageReference Include="DLaB.Xrm.Source" Version="3.4.0.8" />
     <PackageReference Include="Microsoft.Dynamics.Sdk.Messages" Version="0.5.7" />
     <PackageReference Include="Microsoft.PowerPlatform.Dataverse.Client" Version="0.5.7" />
     <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />

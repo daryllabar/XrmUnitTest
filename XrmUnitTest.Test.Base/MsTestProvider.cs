@@ -1,6 +1,10 @@
 ﻿using System;
-using DLaB.Xrm.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+#if NET
+using DataverseUnitTest;
+#else
+using DLaB.Xrm.Test;
+#endif
 
 namespace XrmUnitTest.Test
 {

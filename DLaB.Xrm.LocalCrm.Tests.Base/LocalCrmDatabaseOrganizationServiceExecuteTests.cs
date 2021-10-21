@@ -2,7 +2,6 @@
 using System.Linq;
 using System.ServiceModel;
 using DLaB.Xrm.Entities;
-using DLaB.Xrm.Test;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
@@ -10,6 +9,11 @@ using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
 using XrmUnitTest.Test;
 using XrmUnitTest.Test.Builders;
+#if NET
+using DataverseUnitTest;
+#else
+using DLaB.Xrm.Test;
+#endif
 
 namespace DLaB.Xrm.LocalCrm.Tests
 {

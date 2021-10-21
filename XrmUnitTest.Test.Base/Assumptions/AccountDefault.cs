@@ -1,7 +1,11 @@
 ﻿using DLaB.Xrm.Entities;
-using DLaB.Xrm.Test.Assumptions;
 using Microsoft.Xrm.Sdk;
 using DLaB.Xrm;
+#if NET
+using DataverseUnitTest.Assumptions;
+#else
+using DLaB.Xrm.Test.Assumptions;
+#endif
 
 namespace XrmUnitTest.Test.Assumptions
 {

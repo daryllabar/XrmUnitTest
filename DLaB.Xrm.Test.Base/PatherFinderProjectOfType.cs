@@ -34,17 +34,23 @@ namespace DLaB.Xrm.Test
         private static string FindProjectOfType(Type type)
         {
             var sb = new StringBuilder();
+            var projectName  = type.AssemblyQualifiedName?.Split(',')[1].Trim();
+            sb.AppendLine($"Looking for project folder for ${projectName}");
+
+#if NET
+            // NET doesn't support CodeBase
+            var solutionFolder = GetProjectParentDirectory(projectName, type.Assembly.Location, sb);
+#else
             // XUnit moves the location of the assembly to a temp location, use CodeBase instead
-            var solutionFolder = GetSolutionFolder(type.Assembly.Location, sb) ?? GetSolutionFolder(type.Assembly.CodeBase.Substring(8), sb);
+            var solutionFolder = GetProjectParentDirectory(projectName, type.Assembly.Location, sb)
+                ?? GetProjectParentDirectory(projectName, type.Assembly.CodeBase.Substring(8), sb);
+#endif
 
             if (string.IsNullOrWhiteSpace(solutionFolder))
             {
                 throw new Exception($"Unable to find Project Path for {type.FullName}.  Assembly Located at {type.Assembly.Location}{Environment.NewLine}{sb}");
             }
 
-            // Class Name, Project Name, Version, Culture, PublicKeyTyoken
-            // ReSharper disable once PossibleNullReferenceException
-            var projectName = type.AssemblyQualifiedName.Split(',')[1].Trim();
             sb.AppendLine("Project Name" + projectName);
             sb.AppendLine("SolutionFolder " + solutionFolder);
             var projectPath = Path.Combine(solutionFolder, projectName);
@@ -58,7 +64,7 @@ namespace DLaB.Xrm.Test
             return projectPath;
         }
 
-        private static string GetSolutionFolder(string dllFilePath, StringBuilder sb)
+        private static string GetProjectParentDirectory(string projectName, string dllFilePath, StringBuilder sb)
         {
             var dll = new FileInfo(dllFilePath);
             string solutionFolder = null;
@@ -81,18 +87,29 @@ namespace DLaB.Xrm.Test
             }
             else
             {
-                solutionFolder = GetSolutionFolderForXUnit(dll);
+                solutionFolder = GetProjectParentDirectory(dll);
             }
             return solutionFolder;
         }
 
-        private static string GetSolutionFolderForXUnit(FileInfo dll)
+        private static string GetProjectParentDirectory(FileInfo dll)
         {
             // Check for XUnit Temp Directory
-            return dll.Directory.Parent.Parent.Parent.Name.ToLower() != "assembly" 
-                   || dll.Directory.Parent.Parent.Name.ToLower() != "dl3"
-                ? dll.Directory.Parent.Parent.Parent.FullName
-                : null;
+            var directory = dll.Directory;
+            while (directory != null)
+            {
+                if (directory.GetFiles("*.csproj").Length > 0)
+                {
+                    return directory.Parent?.FullName;
+                }
+                if (directory.GetFiles("*.sln").Length > 0)
+                {
+                    return directory.FullName;
+                }
+                directory = directory.Parent;
+            }
+
+            return null;
         }
 
         private static string GetSolutionFolderForLiveUnitTest(StringBuilder sb, FileInfo dll, string[] folders)

@@ -204,7 +204,7 @@ namespace DLaB.Xrm.LocalCrm
         private static Guid Create<T>(LocalCrmDatabaseOrganizationService service, T entity, DelayedException exception) where T : Entity
         {
             // Clone entity so no changes will affect actual entity
-            entity = entity.Clone();
+            entity = entity.Clone(true);
 
             AssertTypeContainsColumns<T>(entity.Attributes.Keys);
             AssertEntityReferencesExists(service, entity);
@@ -275,7 +275,7 @@ namespace DLaB.Xrm.LocalCrm
             service.RemoveFieldsCrmDoesNotReturn(entity);
             PopulateFormattedValues(service.Info, entity);
             PopulateReferenceNames(service, entity);
-            return entity.Clone();
+            return entity.Clone(true);
         }
         
         /// <summary>
@@ -745,8 +745,8 @@ namespace DLaB.Xrm.LocalCrm
                 return;
             }
 
-            // Clone Entity attributes so updating a non-primative attribute type does not cause changes to the database value
-            entity = entity.Clone();
+            // Clone Entity attributes so updating a non-primitive attribute type does not cause changes to the database value
+            entity = entity.Clone(true);
 
             // Update all of the attributes from the entity passed in, to the database entity
             foreach (var attribute in entity.Attributes)
