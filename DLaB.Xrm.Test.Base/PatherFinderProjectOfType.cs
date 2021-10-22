@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Text;
+using DLaB.Common;
 
 #if NET
 namespace DataverseUnitTest
@@ -35,25 +36,26 @@ namespace DLaB.Xrm.Test
         {
             var sb = new StringBuilder();
             var projectName  = type.AssemblyQualifiedName?.Split(',')[1].Trim();
-            sb.AppendLine($"Looking for project folder for ${projectName}");
+            sb.AppendLine($"Looking for project folder for {projectName}");
 
 #if NET
             // NET doesn't support CodeBase
-            var solutionFolder = GetProjectParentDirectory(projectName, type.Assembly.Location, sb);
+            var projectParentDirectory = GetProjectParentDirectory(type.Assembly.Location, sb);
 #else
             // XUnit moves the location of the assembly to a temp location, use CodeBase instead
-            var solutionFolder = GetProjectParentDirectory(projectName, type.Assembly.Location, sb)
-                ?? GetProjectParentDirectory(projectName, type.Assembly.CodeBase.Substring(8), sb);
+            var projectParentDirectory = GetProjectParentDirectory(type.Assembly.Location, sb)
+                ?? GetProjectParentDirectory(type.Assembly.CodeBase.Substring(8), sb);
+
 #endif
 
-            if (string.IsNullOrWhiteSpace(solutionFolder))
+            if (string.IsNullOrWhiteSpace(projectParentDirectory))
             {
                 throw new Exception($"Unable to find Project Path for {type.FullName}.  Assembly Located at {type.Assembly.Location}{Environment.NewLine}{sb}");
             }
 
-            sb.AppendLine("Project Name" + projectName);
-            sb.AppendLine("SolutionFolder " + solutionFolder);
-            var projectPath = Path.Combine(solutionFolder, projectName);
+            sb.AppendLine("Project Name " + projectName);
+            sb.AppendLine("Project Parent Folder " + projectParentDirectory);
+            var projectPath = Path.Combine(projectParentDirectory, projectName);
 
             sb.AppendLine("Project Folder " + projectPath);
             if (!Directory.Exists(projectPath))
@@ -64,10 +66,9 @@ namespace DLaB.Xrm.Test
             return projectPath;
         }
 
-        private static string GetProjectParentDirectory(string projectName, string dllFilePath, StringBuilder sb)
+        private static string GetProjectParentDirectory(string dllFilePath, StringBuilder sb)
         {
             var dll = new FileInfo(dllFilePath);
-            string solutionFolder = null;
 
             if (dll.Directory?.Parent?.Parent?.Parent == null) // ...\Solution
             {
@@ -75,20 +76,23 @@ namespace DLaB.Xrm.Test
                 sb.AppendLine(dll.DirectoryName);
                 if (dll.DirectoryName == @"C:\a\bin")
                 {
-                    return GetSolutionFolderForVSOnline(sb, solutionFolder);
+                    return GetSolutionFolderForVSOnline(sb, dllFilePath);
                 }
             }
 
             var folders = dllFilePath.ToLower().Split(Path.DirectorySeparatorChar);
+            string solutionFolder;
 
             if (folders.Contains(".vs") && folders.Contains("lut"))
             {
-                solutionFolder = GetSolutionFolderForLiveUnitTest(sb, dll, folders);
+                solutionFolder = GetProjectParentDirectoryLiveUnitTest(sb, dll, folders);
             }
             else
             {
                 solutionFolder = GetProjectParentDirectory(dll);
             }
+
+            sb.AppendLine($"Parent Directory of Project {solutionFolder}");
             return solutionFolder;
         }
 
@@ -112,21 +116,71 @@ namespace DLaB.Xrm.Test
             return null;
         }
 
-        private static string GetSolutionFolderForLiveUnitTest(StringBuilder sb, FileInfo dll, string[] folders)
+        private static string GetProjectParentDirectoryLiveUnitTest(StringBuilder sb, FileInfo dll, string[] folders)
         {
-            string solutionFolder = null;
             sb.AppendLine("Checking for Live Unit Tests");
-            sb.AppendLine(dll.DirectoryName);
+            sb.AppendLine($"Dll Path: {dll.FullName}");
             var vsIndex = Array.IndexOf(folders, ".vs");
             var lutIndex = Array.IndexOf(folders, "lut");
-            if (vsIndex < lutIndex)
+            if (vsIndex >= lutIndex)
             {
-                var values = folders.ToList();
-                values.RemoveRange(vsIndex, folders.Length - vsIndex);
-                solutionFolder = string.Join(Path.DirectorySeparatorChar + "", values);
+                return null;
             }
 
-            return solutionFolder;
+            var values = folders.ToList();
+            values.RemoveRange(vsIndex, folders.Length - vsIndex);
+            var solutionFolder = string.Join(Path.DirectorySeparatorChar + "", values);
+            sb.AppendLine($"Solution folder: {solutionFolder}");
+            sb.AppendLine("Finding nested project folder.");
+
+            return GetProjectParentDirectoryLiveUnitTestFromDirectoryPath(sb, folders, lutIndex, solutionFolder)
+                ?? GetProjectPathFromSolutionFile(sb, dll, solutionFolder);
+        }
+
+        private static string GetProjectParentDirectoryLiveUnitTestFromDirectoryPath(StringBuilder sb, string[] folders, int lutIndex, string solutionFolder)
+        {
+            var values = folders.ToList();
+            var currentFolder = solutionFolder;
+            foreach (var folder in values.Skip(lutIndex + 1))
+            {
+                if (!Directory.Exists(Path.Combine(currentFolder, folder)))
+                {
+                    continue;
+                }
+
+                currentFolder = Path.Combine(currentFolder, folder);
+                if (Directory.GetFiles(currentFolder, "*.csproj").Length > 0)
+                {
+                    sb.AppendLine($"Project folder found: {currentFolder}");
+                    {
+                        return new DirectoryInfo(currentFolder).Parent?.FullName;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        private static string GetProjectPathFromSolutionFile(StringBuilder sb, FileInfo dll, string solutionFolder)
+        {
+            var solution = Directory.GetFiles(solutionFolder, "*.sln").FirstOrDefault();
+            if (solution != null)
+            {
+                sb.AppendLine($"Project Folder not found.  Attempting to parse solution file {solution}.");
+                var searchText = $"\\{Path.GetFileNameWithoutExtension(dll.Name)}.csproj\", \"";
+                sb.AppendLine($"Searching for project file text {searchText} in solution file.");
+                var line = File.ReadAllLines(solution).FirstOrDefault(l => l.ContainsIgnoreCase(searchText));
+                if (line != null)
+                {
+                    var endIndex = line.IndexOf(searchText, StringComparison.InvariantCultureIgnoreCase);
+                    var startIndex = line.Substring(0, endIndex).LastIndexOf("\"", StringComparison.InvariantCulture) + 1;
+                    var currentFolder = Path.Combine(solutionFolder, line.Substring(startIndex, endIndex - startIndex));
+                    sb.AppendLine("Parsed Project folder to be " + currentFolder);
+                    return new DirectoryInfo(currentFolder).Parent?.FullName;
+                }
+            }
+
+            return null;
         }
 
         private static string GetSolutionFolderForVSOnline(StringBuilder sb, string solutionFolder)

@@ -26,7 +26,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;DLAB_PUBLIC DLAB_UNROOT_COMMON_NAMESPACE DLAB_XRM</DefineConstants>
+    <DefineConstants>TRACE;DLAB_PUBLIC DLAB_UNROOT_COMMON_NAMESPACE DLAB_XRM XRM_2016</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\XrmUnitTest.2016.xml</DocumentationFile>
