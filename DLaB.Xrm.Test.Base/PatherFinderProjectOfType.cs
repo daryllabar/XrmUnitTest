@@ -55,7 +55,7 @@ namespace DLaB.Xrm.Test
 
             sb.AppendLine("Project Name " + projectName);
             sb.AppendLine("Project Parent Folder " + projectParentDirectory);
-            var projectPath = Path.Combine(projectParentDirectory, projectName);
+            var projectPath = Path.Combine(projectParentDirectory, projectName ?? "");
 
             sb.AppendLine("Project Folder " + projectPath);
             if (!Directory.Exists(projectPath))
@@ -163,9 +163,7 @@ namespace DLaB.Xrm.Test
 
         private static string GetProjectPathFromSolutionFile(StringBuilder sb, FileInfo dll, string solutionFolder)
         {
-            var solution = Directory.GetFiles(solutionFolder, "*.sln").FirstOrDefault();
-            if (solution != null)
-            {
+            foreach(var solution in Directory.GetFiles(solutionFolder, "*.sln")) { 
                 sb.AppendLine($"Project Folder not found.  Attempting to parse solution file {solution}.");
                 var searchText = $"\\{Path.GetFileNameWithoutExtension(dll.Name)}.csproj\", \"";
                 sb.AppendLine($"Searching for project file text {searchText} in solution file.");
