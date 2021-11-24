@@ -5,6 +5,7 @@ using DLaB.Xrm.Entities;
 using DLaB.Xrm.Plugin;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.WebServiceClient;
 using XrmUnitTest.Test;
 using XrmUnitTest.Test.Assumptions;
 using XrmUnitTest.Test.Builders;
@@ -87,6 +88,74 @@ namespace DLaB.Xrm.Test.Tests
 
         #endregion TestService_Should_ForceIdsToBeDefined
 
+        #region Upsert_Should_ForceIdsToBeDefined
+
+        [TestMethod]
+        public void TestService_Upsert_Should_ForceIdsToBeDefined()
+        {
+            new Upsert_Should_ForceIdsToBeDefined().Test();
+        }
+
+        // ReSharper disable once InconsistentNaming
+        private class Upsert_Should_ForceIdsToBeDefined : TestMethodClassBase
+        {
+            protected override void Test(IOrganizationService service)
+            {
+                //
+                // Arrange
+                //
+                var contact = new Contact();
+
+                //
+                // Act
+                //
+                try
+                {
+                    service.Upsert(contact);
+                }
+                catch (AssertFailedException ex)
+                {
+                    //
+                    // Assert
+                    //
+                    Assert.IsTrue(ex.Message.Contains("An attempt was made to create an entity of type contact without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate."), "Test Service should have had AssertIdNonEmptyOnCreate.");
+                    return;
+                }
+                Assert.Fail("IOrganizationService should enforce Ids being defined");
+            }
+        }
+
+        #endregion Upsert_Should_ForceIdsToBeDefined
+
+        #region Upsert_Should_UserDefinedIds
+
+        [TestMethod]
+        public void TestService_Upsert_Should_UserDefinedIds()
+        {
+            new Upsert_Should_UserDefinedIds().Test();
+        }
+
+        // ReSharper disable once InconsistentNaming
+        private class Upsert_Should_UserDefinedIds : TestMethodClassBase
+        {
+            private struct Ids
+            {
+                public static readonly Id<Contact> Contact = new Id<Contact>("1af6dd85-ef8c-4f2d-9c73-6365c08f979c");
+            }
+
+            protected override void Test(IOrganizationService service)
+            {
+                service = new OrganizationServiceBuilder(service)
+                          .WithIdsDefaultedForCreate(Ids.Contact)
+                          .Build();
+                var result = service.Upsert(new Contact());
+                Assert.IsTrue(result.RecordCreated);
+                Assert.AreEqual(Ids.Contact.EntityId, result.Target.Id);
+            }
+        }
+
+        #endregion Upsert_Should_UserDefinedIds
+
         #region AssumptionParentFirst_Should_LoadAssumptions
 
         [TestMethod]
@@ -133,7 +202,7 @@ namespace DLaB.Xrm.Test.Tests
 
 #endregion AssumptionChildFirst_Should_LoadAssumptions
 
-#region UnnamedAssociation_Should_BeCreated
+        #region UnnamedAssociation_Should_BeCreated
 
         [TestMethod]
         public void TestMethodClassBaseDLaB_UnnamedAssociation_Should_BeCreated()
@@ -164,7 +233,7 @@ namespace DLaB.Xrm.Test.Tests
 
 #endregion UnnamedAssociation_Should_BeCreated
 
-#region CustomAction_Should_InitPlugin
+        #region CustomAction_Should_InitPlugin
 
         [TestMethod]
         public void CustomAction_Should_InitPlugin()

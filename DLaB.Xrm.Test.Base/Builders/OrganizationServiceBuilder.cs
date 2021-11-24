@@ -202,6 +202,7 @@ namespace DLaB.Xrm.Test.Builders
         public TDerived AssertIdNonEmptyOnCreate()
         {
             CreateFuncs.Add(AssertIdNonEmptyOnCreate);
+            ExecuteFuncs.Add(AssertIdNonEmptyOnUpsert);
             return This;
         }
 
@@ -214,6 +215,20 @@ namespace DLaB.Xrm.Test.Builders
             }
             return service.Create(entity);
         }
+
+        [DebuggerHidden]
+        private static OrganizationResponse AssertIdNonEmptyOnUpsert(IOrganizationService service, OrganizationRequest request)
+        {
+#if !PRE_KEYATTRIBUTE
+            if (request is UpsertRequest upsert
+                && upsert.Target.Id == Guid.Empty)
+            {
+                throw TestSettings.TestFrameworkProvider.Value.GetFailedException($"An attempt was made to create an entity of type {upsert.Target.LogicalName} without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate.");
+            }
+#endif
+            return service.Execute(request);
+        }
+
 
         /// <summary>
         /// Asserts failure whenever an action is requested that would perform an update (Create / Delete / Update) of some sort
@@ -912,8 +927,50 @@ namespace DLaB.Xrm.Test.Builders
                 {
                     DefaultIdForEntity(email.Target);
                 }
+                else
+                {
+                    ApplyNewEntityDefaultIdsForUpsert(r, s);
+                }
+
                 return s.Execute(r);
             });
+        }
+
+        private void ApplyNewEntityDefaultIdsForUpsert(OrganizationRequest r, IOrganizationService s)
+        {
+#if !PRE_KEYATTRIBUTE
+            if (!(r is UpsertRequest upsert))
+            {
+                return;
+            }
+
+            var target = upsert.Target;
+            if (target.Id == Guid.Empty)
+            {
+                if (target.KeyAttributes?.Count > 0)
+                {
+                    var lookup = target.ToEntityReference();
+                    lookup.KeyAttributes = target.KeyAttributes;
+                    var result = (RetrieveResponse) s.Execute(new RetrieveRequest
+                    {
+                        Target = lookup
+                    });
+
+                    if (result.Entity == null)
+                    {
+                        DefaultIdForEntity(upsert.Target);
+                    }
+                    else
+                    {
+                        target.Id = result.Entity.Id;
+                    }
+                }
+                else
+                {
+                    DefaultIdForEntity(upsert.Target);
+                }
+            }
+#endif
         }
 
         /// <summary>
