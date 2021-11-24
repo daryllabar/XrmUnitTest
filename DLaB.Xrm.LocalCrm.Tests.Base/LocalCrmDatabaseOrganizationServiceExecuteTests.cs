@@ -206,5 +206,51 @@ namespace DLaB.Xrm.LocalCrm.Tests
             });
             Assert.AreEqual(Contact.PrimaryNameAttribute, response.EntityMetadata.PrimaryNameAttribute);
         }
+
+        [TestMethod]
+        public void LocalCrmDatabaseOrganizationServiceExecuteTests_UpsertRequest()
+        {
+            TestInitializer.InitializeTestSettings();
+            var service = GetService();
+            var account = new Account
+            {
+                Name = "1st"
+            };
+
+            account.KeyAttributes.Add(Account.Fields.Description, "Custom Key");
+            TestUpsertCreateAndUpdate(service, account);
+
+            account.Id = Guid.NewGuid();
+            account.Name = "1st";
+            TestUpsertCreateAndUpdate(service, account);
+        }
+
+        private static void TestUpsertCreateAndUpdate(IOrganizationService service, Account toUpsert)
+        {
+            // Test Insert
+            var response = (UpsertResponse) service.Execute(new UpsertRequest
+            {
+                Target = toUpsert
+            });
+            Assert.AreEqual(true, response.RecordCreated);
+            AssertCrm.Exists(service, response.Target);
+            var account = service.GetEntity<Account>(response.Target.Id);
+            Assert.AreEqual(toUpsert.Name, account.Name);
+            foreach(var kvp in toUpsert.KeyAttributes)
+            {
+                Assert.AreEqual(account[kvp.Key], kvp.Value);
+            }
+
+            // Test Update
+            toUpsert.Name = "2nd";
+            response = (UpsertResponse) service.Execute(new UpsertRequest
+            {
+                Target = toUpsert
+            });
+            Assert.AreEqual(false, response.RecordCreated);
+
+            account = service.GetEntity<Account>(response.Target.Id);
+            Assert.AreEqual(toUpsert.Name, account.Name);
+        }
     }
 }

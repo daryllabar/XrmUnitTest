@@ -9,7 +9,7 @@ namespace Source.DLaB.Xrm.Plugin
 #endif
 {
     /// <summary>
-    /// Interface for defining how to get an IExtenedPluginContext
+    /// Interface for defining how to get an IExtendedPluginContext
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface IExtendedContextCreator<T> where T: IExtendedPluginContext

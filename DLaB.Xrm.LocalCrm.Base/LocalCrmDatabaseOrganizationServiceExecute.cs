@@ -95,7 +95,7 @@ namespace DLaB.Xrm.LocalCrm
                 }
             };
 
-            for (int i = 0; i < request.Requests.Count; i++)
+            for (var i = 0; i < request.Requests.Count; i++)
             {
                 var childRequest = request.Requests[i];
                 OrganizationResponse childResponse = null;
@@ -718,7 +718,11 @@ namespace DLaB.Xrm.LocalCrm
         private RetrieveResponse ExecuteInternal(RetrieveRequest request)
         {
             var response = new RetrieveResponse();
+#if PRE_KEYATTRIBUTE
             var entity = Retrieve(request.Target.LogicalName, request.Target.Id, request.ColumnSet);
+#else
+            var entity = RetrieveEntityViaKeyAttributes(request.Target, request.ColumnSet);
+#endif
             response.Results.Add("Entity", entity);
             
             if (request.RelatedEntitiesQuery != null)
@@ -789,6 +793,91 @@ namespace DLaB.Xrm.LocalCrm
             return new UpdateResponse();
         }
 
+#if !PRE_KEYATTRIBUTE
+        private UpsertResponse ExecuteInternal(UpsertRequest request)
+        {
+            var target = request.Target.Clone();
+
+            var existing = RetrieveEntityViaKeyAttributes(target);
+
+            if (target.KeyAttributes?.Count > 0)
+            {
+                foreach (var kvp in target.KeyAttributes)
+                {
+                    // Key Attributes get added to the values if they don't exist
+                    if (!target.Contains(kvp.Key))
+                    {
+                        target[kvp.Key] = kvp.Value;
+                    }
+                }
+            }
+
+            var recordCreated = false;
+            if(existing == null)
+            {
+                target.Id = Create(target);
+                recordCreated = true;
+            }
+            else
+            {
+                target.Id = existing.Id;
+                Update(target);
+                target = existing;
+            }
+
+            return new UpsertResponse
+            {
+                [nameof(UpsertResponse.RecordCreated)] = recordCreated,
+                [nameof(UpsertResponse.Target)] = target.ToEntityReference()
+            };
+        }
+
+        private Entity RetrieveEntityViaKeyAttributes(Entity target, ColumnSet cs = null)
+        {
+            var eRef = target.ToEntityReference();
+            if (eRef.Id == Guid.Empty
+                && target.KeyAttributes != null)
+            {
+                eRef.KeyAttributes = target.KeyAttributes;
+            }
+
+            return RetrieveEntityViaKeyAttributes(eRef, cs);
+        }
+
+        private Entity RetrieveEntityViaKeyAttributes(EntityReference target, ColumnSet cs = null)
+        {
+            cs = cs ?? new ColumnSet(false);
+            if (target.Id != Guid.Empty)
+            {
+                // Retrieve will use the GUID if it exists over the Key Attributes
+                return this.GetEntitiesById(target.LogicalName, cs, target.Id).FirstOrDefault();
+            }
+
+            if (target.KeyAttributes == null || target.KeyAttributes.Count == 0)
+            {
+                return null;
+            }
+
+            var qe = new QueryExpression(target.LogicalName)
+            {
+                ColumnSet = cs
+            };
+            foreach (var kvp in target.KeyAttributes)
+            {
+                if (kvp.Value == null)
+                {
+                    qe.Criteria.WhereEqual(new ConditionExpression(kvp.Key, ConditionOperator.Null));
+                }
+                else
+                {
+                    qe.Criteria.WhereEqual(kvp.Key, kvp.Value);
+                }
+            }
+
+            return this.GetFirstOrDefault(qe);
+        }
+#endif
+
         // ReSharper disable once UnusedParameter.Local
         private WhoAmIResponse ExecuteInternal(WhoAmIRequest request)
         {
@@ -804,7 +893,7 @@ namespace DLaB.Xrm.LocalCrm
             return response;
         }
 
-        #endregion Execute Internal
+#endregion Execute Internal
 
         private void AddEnumTypeValues(OptionSetMetadata options, Type enumType, string error)
         {
