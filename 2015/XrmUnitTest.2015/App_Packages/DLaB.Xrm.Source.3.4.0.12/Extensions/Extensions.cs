@@ -709,7 +709,7 @@ namespace Source.DLaB.Xrm
             entity.RowVersion = source.RowVersion;
             foreach (var keyAtt in source.KeyAttributes)
             {
-                entity[keyAtt.Key] = keyAtt.Value;
+                entity.KeyAttributes[keyAtt.Key] = keyAtt.Value;
             }
 #endif
             foreach (var attribute in source.Attributes)
