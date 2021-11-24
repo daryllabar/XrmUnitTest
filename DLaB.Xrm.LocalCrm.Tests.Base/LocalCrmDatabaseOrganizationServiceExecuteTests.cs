@@ -222,6 +222,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
 
             account.Id = Guid.NewGuid();
             account.Name = "1st";
+            account.KeyAttributes.Clear();
             TestUpsertCreateAndUpdate(service, account);
         }
 
