@@ -127,34 +127,47 @@ namespace DLaB.Xrm.Test.Tests
 
         #endregion Upsert_Should_ForceIdsToBeDefined
 
-        #region Upsert_Should_UserDefinedIds
+        #region Upsert_Should_UseDefinedIds
 
         [TestMethod]
-        public void TestService_Upsert_Should_UserDefinedIds()
+        public void TestService_Upsert_Should_UseDefinedIds()
         {
-            new Upsert_Should_UserDefinedIds().Test();
+            new Upsert_Should_UseDefinedIds().Test();
         }
 
         // ReSharper disable once InconsistentNaming
-        private class Upsert_Should_UserDefinedIds : TestMethodClassBase
+        private class Upsert_Should_UseDefinedIds : TestMethodClassBase
         {
             private struct Ids
             {
-                public static readonly Id<Contact> Contact = new Id<Contact>("1af6dd85-ef8c-4f2d-9c73-6365c08f979c");
+                public struct Contacts
+                {
+                    public static readonly Id<Contact> A = new Id<Contact>("FE11D2D4-D2D7-4848-88D6-E72DFB98BAEB");
+                    public static readonly Id<Contact> B = new Id<Contact>("E50EAF7D-5FC0-46FC-AAB4-FAD3DFF062AB");
+                }
             }
 
             protected override void Test(IOrganizationService service)
             {
                 service = new OrganizationServiceBuilder(service)
-                          .WithIdsDefaultedForCreate(Ids.Contact)
+                          .WithIdsDefaultedForCreate(Ids.Contacts.A, Ids.Contacts.B)
                           .Build();
                 var result = service.Upsert(new Contact());
                 Assert.IsTrue(result.RecordCreated);
-                Assert.AreEqual(Ids.Contact.EntityId, result.Target.Id);
+                Assert.AreEqual(Ids.Contacts.A.EntityId, result.Target.Id);
+
+                var contact = new Contact();
+                contact.KeyAttributes.Add(Contact.Fields.FirstName, "MyKey");
+                result = service.Upsert(contact);
+                Assert.IsTrue(result.RecordCreated);
+                Assert.AreEqual(Ids.Contacts.B.EntityId, result.Target.Id);
+
+                result = service.Upsert(contact);
+                Assert.IsFalse(result.RecordCreated);
             }
         }
 
-        #endregion Upsert_Should_UserDefinedIds
+        #endregion Upsert_Should_UseDefinedIds
 
         #region AssumptionParentFirst_Should_LoadAssumptions
 

@@ -949,20 +949,15 @@ namespace DLaB.Xrm.Test.Builders
             {
                 if (target.KeyAttributes?.Count > 0)
                 {
-                    var lookup = target.ToEntityReference();
-                    lookup.KeyAttributes = target.KeyAttributes;
-                    var result = (RetrieveResponse) s.Execute(new RetrieveRequest
-                    {
-                        Target = lookup
-                    });
-
-                    if (result.Entity == null)
+                    var entityByKvp = s.GetEntityOrDefault(target.LogicalName, target.KeyAttributes);
+                    
+                    if (entityByKvp == null)
                     {
                         DefaultIdForEntity(upsert.Target);
                     }
                     else
                     {
-                        target.Id = result.Entity.Id;
+                        target.Id = entityByKvp.Id;
                     }
                 }
                 else
