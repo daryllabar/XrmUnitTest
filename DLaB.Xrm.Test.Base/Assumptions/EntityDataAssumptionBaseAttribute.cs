@@ -213,9 +213,9 @@ namespace DLaB.Xrm.Test.Assumptions
                 DLaB.Common.VersionControl.SourceControl.SetProvider(TestSettings.SourceControlProvider.Value);
                 var sdkEntity = entity.ToSdkEntity();
 #if NET
-                var serializedValue = entity.SerializeToJson(null, null, true);
+                var serializedValue = sdkEntity.SerializeToJson(null, null, true);
 #else
-                var serializedValue = entity.Serialize(true);
+                var serializedValue = sdkEntity.Serialize(true);
 #endif
                 DLaB.Common.VersionControl.SourceControl.CheckoutAndUpdateFileIfDifferent(GetSerializedFilePath(AssumptionsNamespaceRelativePath), serializedValue);
             }
