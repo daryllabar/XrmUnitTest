@@ -202,6 +202,8 @@ namespace DLaB.Xrm.Test.Builders
         public TDerived AssertIdNonEmptyOnCreate()
         {
             CreateFuncs.Add(AssertIdNonEmptyOnCreate);
+            ExecuteFuncs.Add(AssertIdNonEmptyOnExecuteMultiple);
+            ExecuteFuncs.Add(AssertIdNonEmptyOnExecuteTransaction);
             ExecuteFuncs.Add(AssertIdNonEmptyOnUpsert);
             return This;
         }
@@ -209,15 +211,63 @@ namespace DLaB.Xrm.Test.Builders
         [DebuggerHidden]
         private static Guid AssertIdNonEmptyOnCreate(IOrganizationService service, Entity entity)
         {
-            if (entity.Id == Guid.Empty)
-            {
-                throw TestSettings.TestFrameworkProvider.Value.GetFailedException($"An attempt was made to create an entity of type {entity.LogicalName} without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate.");
-            }
+            AssertIdNonEmptyOnCreate(entity);
             return service.Create(entity);
         }
 
         [DebuggerHidden]
+        private static void AssertIdNonEmptyOnCreate(Entity entity)
+        {
+            if (entity.Id == Guid.Empty)
+            {
+                throw TestSettings.TestFrameworkProvider.Value.GetFailedException($"An attempt was made to create an entity of type {entity.LogicalName} without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate.");
+            }
+        }
+
+        [DebuggerHidden]
+        private static OrganizationResponse AssertIdNonEmptyOnExecuteMultiple(IOrganizationService service, OrganizationRequest orgRequest)
+        {
+            if (orgRequest is ExecuteMultipleRequest requests)
+            {
+                AssertIdNonEmptyOnRequests(requests.Requests);
+            }
+            return service.Execute(orgRequest);
+        }
+
+        [DebuggerHidden]
+        private static OrganizationResponse AssertIdNonEmptyOnExecuteTransaction(IOrganizationService service, OrganizationRequest orgRequest)
+        {
+#if !PRE_KEYATTRIBUTE
+            if (orgRequest is ExecuteTransactionRequest requests)
+            {
+                AssertIdNonEmptyOnRequests(requests.Requests);
+            }
+#endif
+            return service.Execute(orgRequest);
+        }
+
+        private static void AssertIdNonEmptyOnRequests(OrganizationRequestCollection requests)
+        {
+            foreach (var request in requests)
+            {
+                if (request is CreateRequest createRequest)
+                {
+                    AssertIdNonEmptyOnCreate(createRequest.Target);
+                    continue;
+                }
+
+                AssertIdNonEmptyOnUpsert(request);
+            }
+        }
+
+        [DebuggerHidden]
         private static OrganizationResponse AssertIdNonEmptyOnUpsert(IOrganizationService service, OrganizationRequest request)
+        {
+            AssertIdNonEmptyOnUpsert(request);
+            return service.Execute(request);
+        }
+        [DebuggerHidden]
+        private static void AssertIdNonEmptyOnUpsert(OrganizationRequest request)
         {
 #if !PRE_KEYATTRIBUTE
             if (request is UpsertRequest upsert
@@ -226,7 +276,6 @@ namespace DLaB.Xrm.Test.Builders
                 throw TestSettings.TestFrameworkProvider.Value.GetFailedException($"An attempt was made to create an entity of type {upsert.Target.LogicalName} without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate.");
             }
 #endif
-            return service.Execute(request);
         }
 
 
@@ -923,17 +972,23 @@ namespace DLaB.Xrm.Test.Builders
             });
             ExecuteFuncs.Add((s, r) =>
             {
-                if (r is SendEmailFromTemplateRequest email)
-                {
-                    DefaultIdForEntity(email.Target);
-                }
-                else
-                {
-                    ApplyNewEntityDefaultIdsForUpsert(r, s);
-                }
-
+                DefaultIdsForExecuteRequests(r, s);
                 return s.Execute(r);
             });
+        }
+
+        private void DefaultIdsForExecuteRequests(OrganizationRequest r, IOrganizationService s)
+        {
+            if (r is SendEmailFromTemplateRequest email)
+            {
+                DefaultIdForEntity(email.Target);
+            }
+            else
+            {
+                ApplyNewEntityDefaultIdsForUpsert(r, s);
+                ApplyNewEntityDefaultIdsForExecuteMultiple(r, s);
+                ApplyNewEntityDefaultIdsForExecuteTransaction(r, s);
+            }
         }
 
         private void ApplyNewEntityDefaultIdsForUpsert(OrganizationRequest r, IOrganizationService s)
@@ -966,6 +1021,41 @@ namespace DLaB.Xrm.Test.Builders
                 }
             }
 #endif
+        }
+
+        private void ApplyNewEntityDefaultIdsForExecuteMultiple(OrganizationRequest r, IOrganizationService s)
+        {
+            if (r is ExecuteMultipleRequest multipleRequest)
+            {
+                ApplyNewEntityDefaultIdsForRequests(s, multipleRequest.Requests);
+            }
+        }
+
+
+
+        private void ApplyNewEntityDefaultIdsForExecuteTransaction(OrganizationRequest r, IOrganizationService s)
+        {
+#if !PRE_KEYATTRIBUTE
+            if (r is ExecuteTransactionRequest transaction)
+            {
+                ApplyNewEntityDefaultIdsForRequests(s, transaction.Requests);
+            }
+#endif
+        }
+
+        private void ApplyNewEntityDefaultIdsForRequests(IOrganizationService s, OrganizationRequestCollection requests)
+        {
+            foreach (var request in requests)
+            {
+                if (request is CreateRequest create)
+                {
+                    DefaultIdForEntity(create.Target);
+                }
+                else
+                {
+                    DefaultIdsForExecuteRequests(request, s);
+                }
+            }
         }
 
         /// <summary>

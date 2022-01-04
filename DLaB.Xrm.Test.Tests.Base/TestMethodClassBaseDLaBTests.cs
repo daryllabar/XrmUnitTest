@@ -5,7 +5,7 @@ using DLaB.Xrm.Entities;
 using DLaB.Xrm.Plugin;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.WebServiceClient;
+using Microsoft.Xrm.Sdk.Messages;
 using XrmUnitTest.Test;
 using XrmUnitTest.Test.Assumptions;
 using XrmUnitTest.Test.Builders;
@@ -87,6 +87,177 @@ namespace DLaB.Xrm.Test.Tests
         }
 
         #endregion TestService_Should_ForceIdsToBeDefined
+
+        #region ExecuteMultiple_Should_ForceIdsToBeDefined
+
+        [TestMethod]
+        public void TestService_ExecuteMultiple_Should_ForceIdsToBeDefined()
+        {
+            new ExecuteMultiple_Should_ForceIdsToBeDefined().Test();
+        }
+
+        // ReSharper disable once InconsistentNaming
+        private class ExecuteMultiple_Should_ForceIdsToBeDefined : TestMethodClassBase
+        {
+            protected override void Test(IOrganizationService service)
+            {
+                //
+                // Arrange
+                //
+                var contact = new Contact();
+
+                //
+                // Act
+                //
+                try
+                {
+                    service.Execute(new ExecuteMultipleRequest
+                    {
+                        Settings = new ExecuteMultipleSettings(),
+                        Requests = new OrganizationRequestCollection { new UpsertRequest { Target = contact } }
+                    });
+                }
+                catch (AssertFailedException ex)
+                {
+                    //
+                    // Assert
+                    //
+                    Assert.IsTrue(ex.Message.Contains("An attempt was made to create an entity of type contact without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate."), "Test Service should have had AssertIdNonEmptyOnCreate.");
+                    return;
+                }
+                Assert.Fail("IOrganizationService should enforce Ids being defined");
+            }
+        }
+
+        #endregion ExecuteMultiple_Should_ForceIdsToBeDefined
+
+        #region ExecuteMultiple_Should_UseDefinedIds
+
+        [TestMethod]
+        public void TestService_ExecuteMultiple_Should_UseDefinedIds()
+        {
+            new ExecuteMultiple_Should_UseDefinedIds().Test();
+        }
+
+        // ReSharper disable once InconsistentNaming
+        private class ExecuteMultiple_Should_UseDefinedIds : TestMethodClassBase
+        {
+            private struct Ids
+            {
+                public struct Contacts
+                {
+                    public static readonly Id<Contact> A = new Id<Contact>("D19092FA-694E-4AC6-A876-F1842CD11B43");
+                    public static readonly Id<Contact> B = new Id<Contact>("934C45FE-577F-4772-B916-2F2E9C8304AA");
+                }
+            }
+
+            protected override void Test(IOrganizationService service)
+            {
+                service = new OrganizationServiceBuilder(service)
+                          .WithIdsDefaultedForCreate(Ids.Contacts.A, Ids.Contacts.B)
+                          .Build();
+
+                service.Execute(new ExecuteMultipleRequest
+                {
+                    Settings = new ExecuteMultipleSettings(),
+                    Requests = new OrganizationRequestCollection
+                    {
+                        new UpsertRequest {Target = new Contact()},
+                        new CreateRequest {Target = new Contact()}
+                    }
+                });
+
+                AssertCrm.Exists(Ids.Contacts.A);
+                AssertCrm.Exists(Ids.Contacts.B);
+            }
+        }
+
+        #endregion ExecuteMultiple_Should_UseDefinedIds
+
+        #region ExecuteTransaction_Should_ForceIdsToBeDefined
+
+        [TestMethod]
+        public void TestService_ExecuteTransaction_Should_ForceIdsToBeDefined()
+        {
+            new ExecuteTransaction_Should_ForceIdsToBeDefined().Test();
+        }
+
+        // ReSharper disable once InconsistentNaming
+        private class ExecuteTransaction_Should_ForceIdsToBeDefined : TestMethodClassBase
+        {
+            protected override void Test(IOrganizationService service)
+            {
+                //
+                // Arrange
+                //
+                var contact = new Contact();
+
+                //
+                // Act
+                //
+                try
+                {
+                    service.Execute(new ExecuteTransactionRequest
+                    {
+                        Requests = new OrganizationRequestCollection { new UpsertRequest { Target = contact } }
+                    });
+                }
+                catch (AssertFailedException ex)
+                {
+                    //
+                    // Assert
+                    //
+                    Assert.IsTrue(ex.Message.Contains("An attempt was made to create an entity of type contact without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate."), "Test Service should have had AssertIdNonEmptyOnCreate.");
+                    return;
+                }
+                Assert.Fail("IOrganizationService should enforce Ids being defined");
+            }
+        }
+
+        #endregion ExecuteTransaction_Should_ForceIdsToBeDefined
+
+        #region ExecuteTransaction_Should_UseDefinedIds
+
+        [TestMethod]
+        public void TestService_ExecuteTransaction_Should_UseDefinedIds()
+        {
+            new ExecuteTransaction_Should_UseDefinedIds().Test();
+        }
+
+        // ReSharper disable once InconsistentNaming
+        private class ExecuteTransaction_Should_UseDefinedIds : TestMethodClassBase
+        {
+            private struct Ids
+            {
+                public struct Contacts
+                {
+                    public static readonly Id<Contact> A = new Id<Contact>("48C344C5-4AB5-476D-B562-845A00F533C5");
+                    public static readonly Id<Contact> B = new Id<Contact>("762E5722-A5A4-48F0-8FAC-ED4A82D5259B");
+                }
+            }
+
+            protected override void Test(IOrganizationService service)
+            {
+                service = new OrganizationServiceBuilder(service)
+                          .WithIdsDefaultedForCreate(Ids.Contacts.A, Ids.Contacts.B)
+                          .Build();
+
+                service.Execute(new ExecuteTransactionRequest
+                {
+                    Requests = new OrganizationRequestCollection
+                    {
+                        new UpsertRequest {Target = new Contact()},
+                        new CreateRequest {Target = new Contact()}
+                    }
+                });
+
+                AssertCrm.Exists(Ids.Contacts.A);
+                AssertCrm.Exists(Ids.Contacts.B);
+            }
+        }
+
+        #endregion ExecuteTransaction_Should_UseDefinedIds
+
 
         #region Upsert_Should_ForceIdsToBeDefined
 
