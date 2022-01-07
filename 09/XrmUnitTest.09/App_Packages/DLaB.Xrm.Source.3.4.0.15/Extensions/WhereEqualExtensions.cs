@@ -360,7 +360,7 @@ namespace Source.DLaB.Xrm
                 params object[] columnNameAndValuePairs)
         {
             var entity = service.GetFirstOrDefault(logicalName, columnNameAndValuePairs);
-            AssertExistsWhere(entity, columnNameAndValuePairs);
+            AssertExistsWhere(entity, logicalName, columnNameAndValuePairs);
             return entity;
         }
 
@@ -378,8 +378,14 @@ namespace Source.DLaB.Xrm
                 params object[] columnNameAndValuePairs)
         {
             var entity = service.GetFirstOrDefault(logicalName, columnSet, columnNameAndValuePairs);
-            AssertExistsWhere(entity, columnNameAndValuePairs);
+            AssertExistsWhere(entity, logicalName, columnNameAndValuePairs);
             return entity;
+        }
+        private static void AssertExistsWhere(Entity entity, string logicalName, object[] columnNameAndValuePairs)
+        {
+            if (entity != null) { return; }
+            throw new InvalidOperationException("No " + logicalName + " found where " +
+                                                QueryExpressionFactory.Create(logicalName, null, true, columnNameAndValuePairs).GetSqlStatement());
         }
 
         #endregion GetFirst
@@ -441,8 +447,6 @@ namespace Source.DLaB.Xrm
             return entity;
         }
 
-        #endregion GetFirst<T>
-
         // ReSharper disable once UnusedParameter.Local
         private static void AssertExistsWhere<T>(T entity, object[] columnNameAndValuePairs) where T : Entity
         {
@@ -450,6 +454,8 @@ namespace Source.DLaB.Xrm
             throw new InvalidOperationException("No " + EntityHelper.GetEntityLogicalName<T>() + " found where " +
                                                 QueryExpressionFactory.Create<T>((ColumnSet)null, true, columnNameAndValuePairs).GetSqlStatement());
         }
+
+        #endregion GetFirst<T>
 
         #region GetFirstOrDefault
 
