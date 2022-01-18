@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using DLaB.Xrm.Entities;
+using DLaB.Xrm.LocalCrm.Tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using XrmUnitTest.Test;
+using XrmUnitTest.Test.Assumptions;
 #if NET
+using DataverseUnitTest.Assumptions;
 using DataverseUnitTest;
+#else
+using DLaB.Xrm.Test.Assumptions;
 #endif
 
 namespace DLaB.Xrm.Test.Tests
@@ -105,9 +110,15 @@ namespace DLaB.Xrm.Test.Tests
                 }
             }
 
-            private static string ConvertToString(IEnumerable<string> value) { return string.Join(", ", value.Distinct().OrderBy(v =>v)); }
+            private static string ConvertToString(IEnumerable<string> value)
+            {
+                return string.Join(", ", value.Distinct().OrderBy(v => v));
+            }
 
-            protected override void InitializeTestData(IOrganizationService service) { /* No Data to Initialize*/ }
+            protected override void InitializeTestData(IOrganizationService service)
+            {
+                /* No Data to Initialize*/
+            }
         }
 
         #endregion Add_MultipleDependencies_Should_CreateValidCreationOrder
@@ -122,7 +133,7 @@ namespace DLaB.Xrm.Test.Tests
 
         // ReSharper disable once InconsistentNaming
         private class Add_WithNoDependenciesButWithDependents_Should_AddBeforeFirstDependent : TestMethodClassBase
-        { 
+        {
             protected override void Test(IOrganizationService service)
             {
                 //
@@ -146,7 +157,7 @@ namespace DLaB.Xrm.Test.Tests
                 // Assert
                 //
                 Assert.IsFalse(lead.CyclicAttributes.Contains(Lead.Fields.CampaignId), "Local copy of Lead's CyclicAttributes shouldn't have been updated.");
-                
+
                 // Campaign should either be added before, or should update the CyclicAttributes
 
                 var info = EntityDependency.Mapper.EntityCreationOrder.First(e => e.LogicalName == Lead.EntityLogicalName || e.LogicalName == Campaign.EntityLogicalName);
@@ -156,11 +167,14 @@ namespace DLaB.Xrm.Test.Tests
                 }
                 else
                 {
-                    Assert.AreEqual(Campaign.EntityLogicalName, info.LogicalName);        
+                    Assert.AreEqual(Campaign.EntityLogicalName, info.LogicalName);
                 }
             }
 
-            protected override void InitializeTestData(IOrganizationService service) { /* No Data to Initialize*/ }
+            protected override void InitializeTestData(IOrganizationService service)
+            {
+                /* No Data to Initialize*/
+            }
         }
 
         #endregion Add_WithNoDependenciesButWithDependents_Should_AddBeforeFirstDependent

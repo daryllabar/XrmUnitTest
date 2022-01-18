@@ -13,6 +13,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Assumptions\AccountDefault.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assumptions\ConnectionRoleAssociated.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assumptions\ConnectionRole2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assumptions\ConnectionRole1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assumptions\ContactDefault.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\CrmEnvironmentBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\EntityBuilder.cs" />
@@ -30,7 +33,25 @@
     <Content Include="$(MSBuildThisFileDirectory)Assumptions\Entity Json\AccountDefault.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Assumptions\Entity Json\ConnectionRole1.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Assumptions\Entity Json\ConnectionRole2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Assumptions\Entity Json\ConnectionRoleAssociated.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="$(MSBuildThisFileDirectory)Assumptions\Entity Json\ContactDefault.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Assumptions\Entity Xml\ConnectionRoleAssociated.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Assumptions\Entity Xml\ConnectionRole2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Assumptions\Entity Xml\ConnectionRole1.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="$(MSBuildThisFileDirectory)Assumptions\Entity Xml\ContactDefault.xml">

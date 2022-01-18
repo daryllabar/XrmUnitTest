@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AppConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AssertCrm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assumptions\AssumedEntities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assumptions\AssociationOnlyAssumptionBaseAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assumptions\EntityDataAssumptionBaseAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assumptions\IAssumptionEntityType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assumptions\MultipleEntityDataAssumptionAggregateBaseAttribute.cs" />

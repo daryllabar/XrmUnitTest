@@ -1,0 +1,31 @@
+﻿{
+  "Attributes": [
+    {
+      "key": "connectionroleid",
+      "value": "10d769d1-b5b9-eb11-8236-000d3a5becd1"
+    },
+    {
+      "key": "category",
+      "value": {
+        "__type": "OptionSetValue:http:\/\/schemas.microsoft.com\/xrm\/2011\/Contracts",
+        "Value": 1
+      }
+    },
+    {
+      "key": "name",
+      "value": "1"
+    }
+  ],
+  "EntityState": null,
+  "FormattedValues": [
+    {
+      "key": "category",
+      "value": "Primary Policy Holder"
+    }
+  ],
+  "Id": "10d769d1-b5b9-eb11-8236-000d3a5becd1",
+  "KeyAttributes": [],
+  "LogicalName": "connectionrole",
+  "RelatedEntities": [],
+  "RowVersion": "24321062"
+}

@@ -1,0 +1,23 @@
+﻿{
+  "Attributes": [
+    {
+      "key": "connectionroleassociationid",
+      "value": "a86a693d-173d-ec11-8c61-00224804c294"
+    },
+    {
+      "key": "connectionroleid",
+      "value": "10d769d1-b5b9-eb11-8236-000d3a5becd1"
+    },
+    {
+      "key": "associatedconnectionroleid",
+      "value": "20d769d1-b5b9-eb11-8236-000d3a5becd1"
+    }
+  ],
+  "EntityState": null,
+  "FormattedValues": [],
+  "Id": "a86a693d-173d-ec11-8c61-00224804c294",
+  "KeyAttributes": [],
+  "LogicalName": "connectionroleassociation",
+  "RelatedEntities": [],
+  "RowVersion": "2296749"
+}

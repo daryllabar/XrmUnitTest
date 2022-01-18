@@ -79,6 +79,22 @@ namespace DLaB.Xrm.Test.Tests.Builders
             });
         }
 
+        [TestMethod]
+        public void AssumedEntities_ReClear_Should_ReturnAssumedEntity()
+        {
+            var service = TestBase.GetOrganizationService(Guid.NewGuid().ToString());
+            var assumed = new AssumedEntities();
+            assumed.Load(service, new ConnectionRoleAssociated());
+            var entity = assumed.Get<ConnectionRoleAssociated>();
+            AssertCrm.Exists(service, entity);
+            
+            service = TestBase.GetOrganizationService(Guid.NewGuid().ToString());
+            assumed = new AssumedEntities();
+            assumed.Load(service, new ConnectionRoleAssociated());
+            entity = assumed.Get<ConnectionRoleAssociated>();
+            AssertCrm.Exists(service, entity);
+        }
+
         private AssumedEntities LoadTestAssumptions(IOrganizationService service)
         {
             var assumptions = new AssumedEntities();

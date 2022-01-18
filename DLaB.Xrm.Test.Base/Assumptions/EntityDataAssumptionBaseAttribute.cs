@@ -148,7 +148,7 @@ namespace DLaB.Xrm.Test.Assumptions
         /// <param name="service">The service.</param>
         protected virtual void AddAssumedEntitiesInternal(IOrganizationService service)
         {
-            var entity = PreviouslyRetrievedEntity;
+            var entity = PreviouslyRetrievedEntity?.Clone();
             if (entity == null)
             {
                 entity = RetrieveEntity(service);
@@ -171,6 +171,14 @@ namespace DLaB.Xrm.Test.Assumptions
             }
         }
 
+        private bool IsLocal(IOrganizationService service)
+        {
+            var mock = service as FakeIOrganizationService;
+            // If the service is a Mock, get the Actual Service to determine if it is local or not...
+            return mock?.ActualService is LocalCrmDatabaseOrganizationService 
+                || mock == null && service is LocalCrmDatabaseOrganizationService;
+        }
+
         /// <summary>
         /// Throws an error if Entity is null and it's using a real CRM database
         /// -or-
@@ -185,11 +193,8 @@ namespace DLaB.Xrm.Test.Assumptions
             {
                 var filePath = GetSerializedFilePath(AssumptionsNamespaceRelativePath);
                 var mock = service as FakeIOrganizationService;
-                // If the service is a Mock, get the Actual Service to determine if it is local or not...
-                if (
-                    (mock != null && !(mock.ActualService is LocalCrmDatabaseOrganizationService)) ||
-                    (mock == null && !(service is LocalCrmDatabaseOrganizationService)) ||
-                    FileIsNullOrEmpty(filePath))
+                if (!IsLocal(service)
+                    || FileIsNullOrEmpty(filePath))
                 {
                     throw new Exception($"Assumption {AssumptionsNamespaceRelativePath} was invalid!  The entity assumed to be there, was not found and no file was found at {filePath}.");
                 }
@@ -201,11 +206,11 @@ namespace DLaB.Xrm.Test.Assumptions
                     || entity.Id != Guid.Empty
                     && Assumptions.AlreadyCreatedAsEntityReference(entity.Id))
                 {
-                    service.Update(entity);
+                    UpdateEntity(service, entity);
                 }
                 else
                 {
-                    entity.Id = service.Create(entity);
+                    entity.Id = CreateEntity(service, entity);
                 }
             }
             else if (Debugger.IsAttached)
@@ -253,7 +258,7 @@ namespace DLaB.Xrm.Test.Assumptions
 
                 if (service.GetEntitiesById(foreign.LogicalName, foreign.Id).Count == 0)
                 {
-                    Assumptions.AddCreatedEntityReference(service.Create(new Entity { Id = foreign.Id, LogicalName = foreign.LogicalName }));
+                    Assumptions.AddCreatedEntityReference(CreateEntityFromEntityReference(service, foreign));
                 }
             }
 
@@ -263,6 +268,38 @@ namespace DLaB.Xrm.Test.Assumptions
             }
 
             return isSelfReferencing;
+        }
+
+        /// <summary>
+        /// Creates the Entity from an EntityReference
+        /// </summary>
+        /// <param name="service">The Service</param>
+        /// <param name="entityRef">The EntityReference</param>
+        /// <returns></returns>
+        protected virtual Guid CreateEntityFromEntityReference(IOrganizationService service, EntityReference entityRef)
+        {
+            return service.Create(new Entity {Id = entityRef.Id, LogicalName = entityRef.LogicalName});
+        }
+
+        /// <summary>
+        /// Creates the Entity that has been loaded from the File Contents
+        /// </summary>
+        /// <param name="service">The Service</param>
+        /// <param name="entity">The Entity</param>
+        /// <returns></returns>
+        protected virtual Guid CreateEntity(IOrganizationService service, Entity entity)
+        {
+            return service.Create(entity);
+        }
+
+        /// <summary>
+        /// Updates the Entity that has been loaded from the File Contents but was previously created from an EntityReference
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="entity"></param>
+        protected virtual void UpdateEntity(IOrganizationService service, Entity entity)
+        {
+            service.Update(entity);
         }
 
         private static Entity GetTestEntityFromFile(string fileName)
