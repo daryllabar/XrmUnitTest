@@ -30,6 +30,7 @@ namespace DLaB.Xrm.LocalCrm
                 "appconfig",
                 "businessprocessflowinstance",
                 "connectionroleassociation",
+                "connectionroleobjecttypecode",
                 "importentitymapping",
                 "importlog",
                 "lookupmapping",
