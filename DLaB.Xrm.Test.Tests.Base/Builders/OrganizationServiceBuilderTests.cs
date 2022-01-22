@@ -5,6 +5,7 @@ using System.Linq;
 using DLaB.Xrm.Entities;
 using DLaB.Xrm.LocalCrm;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Messages;
 using XrmUnitTest.Test;
 #if NET
 using DataverseUnitTest;
@@ -22,6 +23,75 @@ namespace DLaB.Xrm.Test.Tests.Builders
         public void InitializeTestSettings()
         {
             TestInitializer.InitializeTestSettings();
+        }
+
+        [TestMethod]
+        public void OrganizationServiceBuilder_IsReadonly_Should_NotAllowCUD()
+        {
+
+            IOrganizationService service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            service = new OrganizationServiceBuilder(service).IsReadOnly().Build();
+            void AssertFailureForRequest(string requestName, string expectedError, Action action)
+            {
+                var didNotFailMessage = requestName + " Should Fail!";
+                try
+                {
+                    action();
+                    Assert.Fail(didNotFailMessage);
+                }
+                catch (Exception ex)
+                {
+                    if (ex.Message == didNotFailMessage)
+                    {
+                        throw;
+                    }
+
+                    Assert.IsTrue(ex.Message.Contains(expectedError), ex.Message);
+                }
+            }
+
+            var contact = new Contact();
+            AssertFailureForRequest("Associate", "An attempt was made to Associate Entities to Entity contact (00000000-0000-0000-0000-000000000000) for relationship r1 with a ReadOnly Service", () => { service.Associate(contact, "r1", contact); });
+            AssertFailureForRequest("Create", "An attempt was made to Create a(n) contact Entity with a ReadOnly Service", () => { service.Create(contact); });
+            AssertFailureForRequest("Delete", "An attempt was made to Delete a(n) contact Entity with id 00000000-0000-0000-0000-000000000000, using a ReadOnly Service", () => { service.Delete(contact); });
+            AssertFailureForRequest("Disassociate", "An attempt was made to Disassociate Entities to Entity contact (00000000-0000-0000-0000-000000000000) for relationship r1 with a ReadOnly Service", () => { service.Disassociate(contact, "r1", contact); });
+            AssertFailureForRequest("Update", "An attempt was made to Update a(n) contact Entity with id 00000000-0000-0000-0000-000000000000, using a ReadOnly Service", () => { service.Update(contact); });
+        }
+
+        [TestMethod]
+        public void OrganizationServiceBuilder_IsReadonly_Should_NotAllowCudInExecuteMultiple()
+        {
+
+            IOrganizationService service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            service = new OrganizationServiceBuilder(service).IsReadOnly().Build();
+
+            void AssertFailureForSingleRequestAsMultiple(OrganizationRequest request, string expectedError)
+            {
+                var didNotFailMessage = request.RequestName + " Should Fail!";
+                try
+                {
+                    service.ExecuteMultiple(new OrganizationRequestCollection { request });
+                    Assert.Fail(didNotFailMessage);
+                }
+                catch(Exception ex)
+                {
+                    if (ex.Message == didNotFailMessage)
+                    {
+                        throw;
+                    }
+                    if (ex.InnerException != null)
+                    {
+                        ex = ex.InnerException;
+                    }
+                    Assert.IsTrue(ex.Message.Contains(expectedError), ex.Message);
+                }
+            }
+
+            AssertFailureForSingleRequestAsMultiple(new CreateRequest { Target = new Contact() }, "An attempt was made to Create a(n) contact Entity with a ReadOnly Service");
+            AssertFailureForSingleRequestAsMultiple(new DeleteRequest { Target = new Contact().ToEntityReference() }, "An attempt was made to Delete a(n) contact Entity with id 00000000-0000-0000-0000-000000000000, using a ReadOnly Service");
+            AssertFailureForSingleRequestAsMultiple(new UpdateRequest { Target = new Contact() }, "An attempt was made to Update a(n) contact Entity with id 00000000-0000-0000-0000-000000000000, using a ReadOnly Service");
+            AssertFailureForSingleRequestAsMultiple(new AssociateRequest{ Target = new Contact().ToEntityReference(), Relationship = new Relationship{ SchemaName = "Schema"} }, "An attempt was made to Associate Entities to Entity contact (00000000-0000-0000-0000-000000000000) for relationship Schema with a ReadOnly Service");
+            AssertFailureForSingleRequestAsMultiple(new DisassociateRequest { Target = new Contact().ToEntityReference(), Relationship = new Relationship { SchemaName = "Schema" } }, "An attempt was made to Disassociate Entities to Entity contact (00000000-0000-0000-0000-000000000000) for relationship Schema with a ReadOnly Service");
         }
 
         [TestMethod]

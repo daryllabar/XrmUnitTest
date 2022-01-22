@@ -27,6 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Builders\N2NBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\OrganizationServiceBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\PluginExecutionContextBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\ReadOnlyFail.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\ServiceProviderBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\WorkflowInvokerBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\BusinessUnit.cs" />

@@ -285,38 +285,16 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         public TDerived IsReadOnly()
         {
-            AssociateActions.Add((s, n, i, r, c) => { TestSettings.TestFrameworkProvider.AssertFail("An attempt was made to Associate Entities with a ReadOnly Service"); });
+            AssociateActions.Add((s, n, i, r, c) => { ReadOnlyFail.OnAssociate(n, i, r); });
             WithNoCreates();
-            DeleteActions.Add((s, n, i) => { TestSettings.TestFrameworkProvider.AssertFail($"An attempt was made to Delete a(n) {n} Entity with id {i}, using a ReadOnly Service"); });
-            DisassociateActions.Add((s, n, i, r, c) => { TestSettings.TestFrameworkProvider.AssertFail("An attempt was made to Disassociate Entities with a ReadOnly Service"); });
+            DeleteActions.Add((s, n, i) => { ReadOnlyFail.OnDelete(n, i); });
+            DisassociateActions.Add((s, n, i, r, c) => { ReadOnlyFail.OnDisassociate(n, i, r); });
             ExecuteFuncs.Add((s, r) =>
             {
-                var readOnlyStartsWithNames = new List<string>
-                {
-                    "CanBe",
-                    "CanManyToMany",
-                    "Download",
-                    "Execute",
-                    "Export",
-                    "FetchXmlToQueryExpression",
-                    "FindParentResourceGroup",
-                    "Get",
-                    "Is",
-                    "LocalTimeFromUtcTime",
-                    "Query",
-                    "Retrieve",
-                    "Search",
-                    "UtcTimeFromLocalTime",
-                    "WhoAmI"
-                };
-                if (readOnlyStartsWithNames.Any(n => r.RequestName.StartsWith(n)))
-                {
-                    return s.Execute(r);
-                }
-
-                throw TestSettings.TestFrameworkProvider.Value.GetFailedException($"An attempt was made to Execute Request {r.RequestName} with a ReadOnly Service");
+                ReadOnlyFail.OnExecute(r);
+                return s.Execute(r);
             });
-            UpdateActions.Add((s, e) => { throw TestSettings.TestFrameworkProvider.Value.GetFailedException($"An attempt was made to Update a(n) {e.LogicalName} Entity with id {e.Id}, using a ReadOnly Service"); });
+            UpdateActions.Add((s, e) => { ReadOnlyFail.OnUpdate(e); });
             return This;
         }
 
@@ -755,7 +733,7 @@ namespace DLaB.Xrm.Test.Builders
 
                 var enumExpression = CrmServiceUtility.GetEarlyBoundProxyAssembly().GetTypes().Where(t =>
                     (t.Name == attRequest.EntityLogicalName + "_" + attRequest.LogicalName ||
-                     t.Name == attRequest.LogicalName + "_" + attRequest.EntityLogicalName) &&
+                        t.Name == attRequest.LogicalName + "_" + attRequest.EntityLogicalName) &&
                     t.GetCustomAttributes(typeof(DataContractAttribute), false).Length > 0 &&
                     t.GetCustomAttributes(typeof(GeneratedCodeAttribute), false).Length > 0);
 
@@ -772,7 +750,7 @@ namespace DLaB.Xrm.Test.Builders
                     optionSet.OptionSet.Options.Add(
                         new OptionMetadata
                         {
-                            Value = (int)value,
+                            Value = (int) value,
                             Label = new Label
                             {
                                 UserLocalizedLabel = new LocalizedLabel(value.ToString(), defaultLangaugeCode.Value)
@@ -781,8 +759,7 @@ namespace DLaB.Xrm.Test.Builders
                 }
 
                 return response;
-            })
-                ;
+            });
             return This;
         }
 
@@ -794,8 +771,8 @@ namespace DLaB.Xrm.Test.Builders
         {
             CreateFuncs.Add((s, e) =>
             {
-                TestSettings.TestFrameworkProvider.AssertFail($"An attempt was made to Create a(n) {e.LogicalName} Entity with a ReadOnly Service{Environment.NewLine + Environment.NewLine}Entity Attributes:{e.ToStringAttributes()}");
-                throw new Exception("AssertFail Failed to through an Exception");
+                ReadOnlyFail.OnCreate(e);
+                throw new Exception("AssertFail Failed to throw an Exception");
             });
             return This;
         }
