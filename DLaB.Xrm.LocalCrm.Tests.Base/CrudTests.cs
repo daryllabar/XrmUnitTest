@@ -526,7 +526,41 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 Opportunity.Fields.InitialCommunication, opportunity.InitialCommunication.GetValueOrDefault());
 
             Assert.AreEqual(oppId, dbOpportunity.Id);
+        }
 
+        [TestMethod]
+        public void LocalCrmTests_Crud_WhereIn()
+        {
+            var service = GetService();
+            service.Create(new Contact { FirstName = "firstname", LastName= "lastname" });
+            service.Create(new Contact { FirstName = "FIRSTNAME", LastName = "LASTNAME" });
+
+            Assert.AreEqual(service.GetEntitiesIn<Contact>(Contact.Fields.FirstName, "FirstName").Count, 2, "Where In Should be case insensitive!");
+            Assert.AreEqual(service.GetEntitiesIn<Contact>(Contact.Fields.FirstName, "FIRSTNAME").Count, 2, "Where In Should be case insensitive!");
+            Assert.AreEqual(service.GetEntitiesIn<Contact>(Contact.Fields.FirstName, "firstname").Count, 2, "Where In Should be case insensitive!");
+            Assert.AreEqual(service.GetEntitiesIn<Contact>(Contact.Fields.LastName, "LastName").Count, 2, "Where In Should be case insensitive!");
+            Assert.AreEqual(service.GetEntitiesIn<Contact>(Contact.Fields.LastName, "LASTNAME").Count, 2, "Where In Should be case insensitive!");
+            Assert.AreEqual(service.GetEntitiesIn<Contact>(Contact.Fields.LastName, "lastname").Count, 2, "Where In Should be case insensitive!");
+
+            var condition = new ConditionExpression(Contact.Fields.FirstName, ConditionOperator.NotIn, "FirstName");
+            var qe = QueryExpressionFactory.Create<Contact>().WhereEqual(condition);
+            Assert.AreEqual(service.GetEntities(qe).Count, 0, "NotIn Should be case insensitive!");
+            condition.Values[0] = "FIRSTNAME";
+            Assert.AreEqual(service.GetEntities(qe).Count, 0, "NotIn Should be case insensitive!");
+            condition.Values[0] = "firstname";
+            Assert.AreEqual(service.GetEntities(qe).Count, 0, "NotIn Should be case insensitive!");
+            condition.Values[0] = "firstname1";
+            Assert.AreEqual(service.GetEntities(qe).Count, 2, "NotIn Should be case insensitive!");
+
+            condition.AttributeName = Contact.Fields.LastName;
+            condition.Values[0] = "LastName";
+            Assert.AreEqual(service.GetEntities(qe).Count, 0, "NotIn Should be case insensitive!");
+            condition.Values[0] = "LASTNAME";
+            Assert.AreEqual(service.GetEntities(qe).Count, 0, "NotIn Should be case insensitive!");
+            condition.Values[0] = "lastname";
+            Assert.AreEqual(service.GetEntities(qe).Count, 0, "NotIn Should be case insensitive!");
+            condition.Values[0] = "lastname1";
+            Assert.AreEqual(service.GetEntities(qe).Count, 2, "NotIn Should be case insensitive!");
         }
 
         [TestMethod]

@@ -178,10 +178,10 @@ namespace DLaB.Xrm.LocalCrm
                     value = !ConditionIsTrue(entity, new ConditionExpression(condition.EntityName, condition.AttributeName, ConditionOperator.Like));
                     break;
                 case ConditionOperator.In:
-                    value = condition.Values.Any(v => v.Equals(ConvertCrmTypeToBasicComparable(entity, name)));
+                    value = condition.Values.Any(v => Compare(entity, name, v) == 0);
                     break;
                 case ConditionOperator.NotIn:
-                    value = !condition.Values.Any(v => v.Equals(ConvertCrmTypeToBasicComparable(entity, name)));
+                    value = condition.Values.All(v => Compare(entity, name, v) != 0);
                     break;
                 //case ConditionOperator.Between:
                 //    break;
