@@ -237,13 +237,19 @@ namespace DLaB.Xrm.LocalCrm
                 throw new Exception("Cannot insert duplicate key");
             }
 
-            CreateActivityPointer(service, entity);
-            CreateActivityParties(service, entity);
-            SetCachePrimaryName(service, entity);
+            PostCreateActions(service, entity);
 
             return entity.Id;
         }
-        
+
+        private static void PostCreateActions<T>(LocalCrmDatabaseOrganizationService service, T entity) where T : Entity
+        {
+            CreateActivityPointer(service, entity);
+            CreateActivityParties(service, entity);
+            CreateMirroredConnection(service, entity);
+            SetCachePrimaryName(service, entity);
+        }
+
         private static T Read<T>(LocalCrmDatabaseOrganizationService service, Guid id, ColumnSet cs, DelayedException exception) where T : Entity
         {
             var query = SchemaGetOrCreate<T>(service.Info).Where("Id == @0", id);

@@ -32,6 +32,11 @@ namespace DLaB.Xrm.LocalCrm
         /// The name of the current request.
         /// </value>
         public string CurrentRequestName { get; private set; }
+        
+        /// <summary>
+        /// If a mirrored entity request is being processed, doesn't re-mirror the request
+        /// </summary>
+        internal bool MirroredEntityRequestTriggered { get; set; }
 
         private bool EnforceValidForOperationCheck { get; set; }
 
