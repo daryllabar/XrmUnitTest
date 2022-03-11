@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm.Entities", "DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj", "{66688025-2F6D-40EC-914E-87AF88AFC5DE}"
 EndProject
@@ -18,6 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{C80A3A8A
 		2016\XrmUnitTest.2016\Properties\AssemblyInfo.cs = 2016\XrmUnitTest.2016\Properties\AssemblyInfo.cs
 		2015\XrmUnitTest.2015\Properties\AssemblyInfo.cs = 2015\XrmUnitTest.2015\Properties\AssemblyInfo.cs
 		2013\XrmUnitTest.2013\Properties\AssemblyInfo.cs = 2013\XrmUnitTest.2013\Properties\AssemblyInfo.cs
+		Dataverse\DataverseUnitTest\DataverseUnitTest.nuspec = Dataverse\DataverseUnitTest\DataverseUnitTest.nuspec
 		DLaB.Xrm.Entities\DLaB.Xrm.Entities.nuspec = DLaB.Xrm.Entities\DLaB.Xrm.Entities.nuspec
 		09\XrmUnitTest.09\XrmUnitTest.09.nuspec = 09\XrmUnitTest.09\XrmUnitTest.09.nuspec
 		2013\XrmUnitTest.2013\XrmUnitTest.2013.nuspec = 2013\XrmUnitTest.2013\XrmUnitTest.2013.nuspec
@@ -68,11 +69,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmUnitTest.2013", "2013\Xr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dataverse", "Dataverse", "{362FDDEF-8A4B-4726-A19B-C81998C4202A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataverseUnitTest", "Dataverse\DataverseUnitTest\DataverseUnitTest.csproj", "{EB51A9F2-D487-409C-A9CA-E22C74581F89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataverseUnitTest", "Dataverse\DataverseUnitTest\DataverseUnitTest.csproj", "{EB51A9F2-D487-409C-A9CA-E22C74581F89}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataverseUnitTest.Tests", "Dataverse\DataverseUnitTest.Tests\DataverseUnitTest.Tests.csproj", "{C982DCFC-48F8-4FE0-AA56-C45A1ABE29AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm.Entities.Net", "DLaB.Xrm.Entities.Net\DLaB.Xrm.Entities.Net.csproj", "{7E1C7B84-ECBD-4F5A-B6FD-E76E0082B536}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLaB.Xrm.Entities.Net", "DLaB.Xrm.Entities.Net\DLaB.Xrm.Entities.Net.csproj", "{7E1C7B84-ECBD-4F5A-B6FD-E76E0082B536}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
