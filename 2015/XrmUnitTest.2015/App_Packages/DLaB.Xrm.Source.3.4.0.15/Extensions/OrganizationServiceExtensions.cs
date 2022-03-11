@@ -135,6 +135,108 @@ namespace Source.DLaB.Xrm
 
         #endregion Associate
 
+        #region CreateOrMinimumUpdate
+
+        /// <summary>
+        /// Compares the values in the most recent entities by id dictionary to the given value, only updating the fields that are out of date.
+        /// </summary>
+        /// <typeparam name="TEntity">The Entity Type</typeparam>
+        /// <param name="service">The Service.</param>
+        /// <param name="entity">The Entity to Create or Update.</param>
+        /// <param name="mostRecentEntitiesById">The most recent entities by id.</param>
+        public static void CreateOrMinimumUpdate<TEntity>(this IOrganizationService service, TEntity entity, Dictionary<Guid, TEntity> mostRecentEntitiesById) where TEntity : Entity
+        {
+            service.CreateOrMinimumUpdate(entity, new MinimumUpdaterDefault<TEntity>(mostRecentEntitiesById));
+        }
+
+        /// <summary>
+        /// Compares the values in the most recent entities by id dictionary to the given value, only updating the fields that are out of date.
+        /// </summary>
+        /// <typeparam name="TEntity">The Entity Type</typeparam>
+        /// <param name="service">The Service.</param>
+        /// <param name="entity">The Entity to Create or Update.</param>
+        /// <param name="updater">The IMinimumUpdater to use.</param>
+        public static void CreateOrMinimumUpdate<TEntity>(this IOrganizationService service, TEntity entity, IMinimumUpdater<TEntity> updater = null) where TEntity: Entity
+        {
+            if (entity.Id == Guid.Empty)
+            {
+                // No Guid.  Must be for create
+                updater?.PreCreate(entity);
+#if PRE_KEYATTRIBUTE
+                entity.Id = service.Create(entity);
+#else
+                entity.Id = entity.KeyAttributes?.Count > 0
+                    ? service.Upsert(entity).Target.Id
+                    : service.Create(entity);
+#endif
+                updater?.PostCreate(entity);
+                return;
+            }
+
+            var image = GetCurrentValue(service, entity, updater);
+            if (image == null)
+            {
+                // Guid exists, but no current version, update everything.
+                updater?.PreUpdate(entity);
+                service.Update(entity);
+                return;
+            }
+
+            // Perform a minimum update
+            var localEntity = entity.Clone();
+            var unchangedAttributes = new List<string>();
+
+            foreach (var keyValue in image.Attributes.Where(kvp => localEntity.Contains(kvp.Key)
+                                                                   && kvp.Value.NullSafeEquals(localEntity.GetAttributeValue<object>(kvp.Key))
+                                                                   && !kvp.Value.NullSafeEquals(localEntity.Id)))
+            {
+                unchangedAttributes.Add(keyValue.Key);
+                localEntity.Attributes.Remove(keyValue.Key);
+            }
+            if (localEntity.Attributes.Count == 1
+                && localEntity.Attributes.First().Value.Equals(localEntity.Id))
+            {
+                // Only attribute left is the Id Guid.  Skip!
+                updater?.NoChangesToSync(entity);
+                return;
+            }
+
+            updater?.PreMinimalUpdate(entity, localEntity, unchangedAttributes);
+            service.Update(localEntity);
+
+            if (updater?.ShouldUpdateCurrentVersion(image, localEntity) == true)
+            {
+                foreach (var keyValue in localEntity.Attributes)
+                {
+                    image[keyValue.Key] = keyValue.Value;
+                }
+            }
+        }
+
+        private static TEntity GetCurrentValue<TEntity>(IOrganizationService service, TEntity entity, IMinimumUpdater<TEntity> updater) where TEntity : Entity
+        {
+            if(updater != null)
+            {
+                return updater.GetCurrentValue(entity);
+            }
+
+            return typeof(TEntity) == typeof(Entity)
+                ? (TEntity) service.GetEntityOrDefault(entity.LogicalName, entity.Id)
+                : service.GetEntityOrDefault<TEntity>(entity.Id);
+        }
+
+        private static bool NullSafeEquals(this object thisValue, object value)
+        {
+            if (thisValue == null)
+            {
+                return value == null;
+            }
+
+            return thisValue.Equals(value);
+        }
+
+        #endregion CreateOrMinimumUpdate
+
         #region CreateWithSuppressDuplicateDetection
 
         /// <summary>
