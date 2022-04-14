@@ -853,28 +853,7 @@ namespace DLaB.Xrm.LocalCrm
                 return this.GetEntitiesById(target.LogicalName, cs, target.Id).FirstOrDefault();
             }
 
-            if (target.KeyAttributes == null || target.KeyAttributes.Count == 0)
-            {
-                return null;
-            }
-
-            var qe = new QueryExpression(target.LogicalName)
-            {
-                ColumnSet = cs
-            };
-            foreach (var kvp in target.KeyAttributes)
-            {
-                if (kvp.Value == null)
-                {
-                    qe.Criteria.WhereEqual(new ConditionExpression(kvp.Key, ConditionOperator.Null));
-                }
-                else
-                {
-                    qe.Criteria.WhereEqual(kvp.Key, kvp.Value);
-                }
-            }
-
-            return this.GetFirstOrDefault(qe);
+            return this.GetEntityOrDefault(target.LogicalName, target.KeyAttributes, cs);
         }
 #endif
 

@@ -167,7 +167,7 @@ namespace Source.DLaB.Xrm
         /// <param name="settings">The settings.</param>
         /// <param name="columnNameAndValuePairs">The column name and value pairs.</param>
         /// <returns></returns>
-        public static TypedQueryExpression<T>Create<T>(QuerySettings<T> settings,
+        public static TypedQueryExpression<T> Create<T>(QuerySettings<T> settings,
             params object[] columnNameAndValuePairs) where T : Entity
         {
             var qe = Create(settings);
@@ -199,7 +199,7 @@ namespace Source.DLaB.Xrm
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="columnSet">Columns to retrieve.</param>
-        /// <param name="first">Used to specificy that only one entity should be returned.</param>
+        /// <param name="first">Used to specify that only one entity should be returned.</param>
         /// <param name="activeOnly">Specifies if only Active Records should be returned.</param>
         /// <param name="columnNameAndValuePairs">List of pairs that look like this:
         /// (string name of the column, value of the column) ie. "name","John Doe" goes to entity.name = "John Doe"</param>

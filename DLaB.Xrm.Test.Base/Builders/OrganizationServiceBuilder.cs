@@ -981,7 +981,7 @@ namespace DLaB.Xrm.Test.Builders
             {
                 if (target.KeyAttributes?.Count > 0)
                 {
-                    var entityByKvp = s.GetEntityOrDefault(target.LogicalName, target.KeyAttributes);
+                    var entityByKvp = s.GetEntityOrDefault(target.LogicalName, target.KeyAttributes, new ColumnSet(false));
                     
                     if (entityByKvp == null)
                     {

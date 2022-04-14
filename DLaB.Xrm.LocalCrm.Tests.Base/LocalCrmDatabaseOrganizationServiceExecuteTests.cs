@@ -226,6 +226,31 @@ namespace DLaB.Xrm.LocalCrm.Tests
             TestUpsertCreateAndUpdate(service, account);
         }
 
+        [TestMethod]
+        public void LocalCrmDatabaseOrganizationServiceExecuteTests_UpsertEntityRefRequest()
+        {
+            TestInitializer.InitializeTestSettings();
+            var service = GetService();
+            var parentId = service.Create(new Account());
+            var account = new Account
+            {
+                Name = "1st"
+            };
+
+            account.KeyAttributes.Add(Account.Fields.ParentAccountId, parentId);
+            TestUpsertCreateAndUpdate(service, account);
+            var toDelete = service.GetEntityOrDefault<Account>(account.KeyAttributes);
+            service.Delete(Account.EntityLogicalName, toDelete.Id);
+
+            account.KeyAttributes[Account.Fields.ParentAccountId] = parentId.ToString();
+            TestUpsertCreateAndUpdate(service, account);
+            toDelete = service.GetEntityOrDefault<Account>(account.KeyAttributes);
+            service.Delete(Account.EntityLogicalName, toDelete.Id);
+
+            account.KeyAttributes[Account.Fields.ParentAccountId] = new EntityReference( Account.EntityLogicalName, parentId);
+            TestUpsertCreateAndUpdate(service, account);
+        }
+
         private static void TestUpsertCreateAndUpdate(IOrganizationService service, Account toUpsert)
         {
             // Test Insert

@@ -517,34 +517,8 @@ namespace DLaB.Xrm.Test
             return service.GetEntity(id.EntityId, anonymousTypeInitializer);
         }
 
-#if !PRE_KEYATTRIBUTE
-
         /// <summary>
-        /// Uses the Key Value Pair collection to check if the entity exists.
-        /// </summary>
-        /// <param name="service">open IOrganizationService</param>
-        /// <param name="logicalName">The logical name</param>
-        /// <param name="kvps">the KeyAttributes Collection</param>
-        /// <returns></returns>
-        internal static Entity GetEntityOrDefault(this IOrganizationService service, string logicalName, KeyAttributeCollection kvps)
-        {
-            if(kvps.Count == 0)
-            {
-                throw new ArgumentException(nameof(kvps) + " must contain at least one kvp!", nameof(kvps));
-            }
-
-            var qe = new QueryExpression(logicalName) {ColumnSet = new ColumnSet(false)};
-            foreach (var kvp in kvps)
-            {
-                qe.WhereEqual(kvp.Key, kvp.Value);
-            }
-
-            return service.GetFirstOrDefault(qe);
-        }
-#endif
-
-        /// <summary>
-        /// Determines whether the giving serivce is a Local Crm Service.
+        /// Determines whether the giving service is a Local Crm Service.
         /// </summary>
         /// <param name="service">The service.</param>
         /// <returns></returns> 
