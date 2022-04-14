@@ -134,6 +134,10 @@ namespace DLaB.Xrm.LocalCrm
                 return DateTime.Compare((DateTime) value, ((DateTime) compareTo).RemoveMilliseconds());
             }
 
+            if(value is Guid && compareTo is string){
+                return value.CompareTo(new Guid(compareTo.ToString()));
+            }
+
             return value.CompareTo(compareTo);
         }
 
@@ -687,7 +691,7 @@ namespace DLaB.Xrm.LocalCrm
             {
                 return;
             }
-            var prop = properties[key].FirstOrDefault(p => p.PropertyType.GetGenericArguments().Length >= 0);
+            var prop = properties[key].FirstOrDefault(p => p.PropertyType.GetGenericArguments().Length > 0);
             var genericArgs = prop?.PropertyType.GetGenericArguments()[0];
             // ReSharper disable once SuspiciousTypeConversion.Global
             if (genericArgs != null && value is IEnumerable<Entity> entityEnumerable && IsSameOrSubclass(typeof(Entity), genericArgs))

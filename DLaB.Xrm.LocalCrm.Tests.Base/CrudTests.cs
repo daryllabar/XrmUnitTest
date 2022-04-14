@@ -526,6 +526,9 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 Opportunity.Fields.InitialCommunication, opportunity.InitialCommunication.GetValueOrDefault());
 
             Assert.AreEqual(oppId, dbOpportunity.Id);
+
+            dbOpportunity = service.GetFirst<Opportunity>(Opportunity.Fields.CampaignId, opportunity.CampaignId.Id.ToString());
+            Assert.AreEqual(oppId, dbOpportunity.Id);
         }
 
         [TestMethod]
