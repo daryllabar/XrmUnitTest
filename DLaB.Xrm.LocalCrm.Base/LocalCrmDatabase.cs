@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.ServiceModel;
 using DLaB.Xrm.CrmSdk;
 using DLaB.Xrm.LocalCrm.Entities;
 using DLaB.Xrm.LocalCrm.FetchXml;
@@ -482,8 +483,12 @@ namespace DLaB.Xrm.LocalCrm
                         kvps.Add(kvp.Value);
                     }
 
-                    // Throw an error if not found.
-                    foreign.Id = service.GetFirst(foreign.LogicalName, kvps.ToArray()).Id;
+                    var reference = service.GetFirstOrDefault(foreign.LogicalName, kvps.ToArray());
+                    if (reference == null)
+                    {
+                        throw CrmExceptions.GetFaultException(ErrorCodes.RecordNotFoundByEntityKey, foreign.LogicalName);
+                    }
+                    foreign.Id = reference.Id;
                 }
                 else
                 {

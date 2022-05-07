@@ -7,8 +7,8 @@
     <DelaySign>false</DelaySign>
     <Version>1.0.0</Version>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <AssemblyVersion>2.3.0.31</AssemblyVersion>
-    <FileVersion>2.3.0.31</FileVersion>
+    <AssemblyVersion>2.3.0.32</AssemblyVersion>
+    <FileVersion>2.3.0.32</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -20,8 +20,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DLaB.Xrm.Source" Version="3.4.0.16" />
-    <PackageReference Include="Microsoft.PowerPlatform.Dataverse.Client" Version="0.6.1" />
+    <PackageReference Include="DLaB.Xrm.Source" Version="3.4.0.17" />
+    <PackageReference Include="Microsoft.PowerPlatform.Dataverse.Client" Version="0.6.6" />
     <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
   </ItemGroup>
 

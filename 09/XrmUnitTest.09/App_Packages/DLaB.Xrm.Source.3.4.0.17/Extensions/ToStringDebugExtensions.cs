@@ -166,7 +166,7 @@ namespace Source.DLaB.Xrm
             return Wrap("{",
                 new []
                 {
-                    "Id: \"" + entity.Id + "\"", 
+                     GetIdString(entity), 
                     "LogicalName: \"" + entity.LogicalName + "\""
                 }.Concat(
                     entity.Attributes.ToStringDebug(info)
@@ -263,18 +263,65 @@ namespace Source.DLaB.Xrm
         /// <returns></returns>
         public static string ToStringDebug(this EntityReference entity)
         {
-            if (entity == null)
-            {
-                return "null";
-            }
-
-            var required = $"LogicalName: \"{entity.LogicalName}\", Id: \"{entity.Id}\"";
             var name = string.IsNullOrWhiteSpace(entity.Name)
-                ? string.Empty
+                ? string.Empty  
                 : $"Name: \"{entity.Name}\", ";
-            return "{" + name + required + "}";
+            return "{" + name + GetIdString(entity) + "}";
         }
 
+        private static string GetIdString(EntityReference entity)
+        {
+#if PRE_KEYATTRIBUTE
+            var required = $"LogicalName: \"{entity.LogicalName}\", Id: \"{entity.Id}\"";
+#else
+            var required = $"LogicalName: \"{entity.LogicalName}\", {ToIdString(entity.Id, entity.KeyAttributes)}";
+#endif
+            return required;
+        }
+
+        private static string GetIdString(Entity entity)
+        {
+#if PRE_KEYATTRIBUTE
+            return $"Id: \"{entity.Id}\"";
+#else
+            return ToIdString(entity.Id, entity.KeyAttributes);
+#endif
+        }
+
+
+#if !PRE_KEYATTRIBUTE
+        private static string ToIdString(Guid id, KeyAttributeCollection keys)
+        {
+            var parts = new List<string>();
+            var keyCount = keys?.Count;
+            if (keyCount > 0 && id == Guid.Empty)
+            {
+                if (keyCount == 1)
+                {
+                    var kvp = keys.First();
+                    parts.Add($"Key: \"{kvp.Key}\"");
+                    parts.Add($"Value: \"{kvp.Value}\"");
+                }
+                else
+                {
+                    var info = new StringDebugInfo(singleLine: true);
+                    parts.Add(Wrap("Keys: {",
+                        keys.ToStringDebug(info),
+                        "}",
+                        info,
+                        null,
+                        ", "));
+                }
+            }
+            else
+            {
+                parts.Add($"Id: \"{id}\"");
+            }
+
+            return string.Join(", ", parts);
+        }
+
+#endif
         #endregion EntityReference
 
         #region EntityReferenceCollection
