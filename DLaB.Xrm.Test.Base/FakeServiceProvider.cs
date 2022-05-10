@@ -40,7 +40,7 @@ namespace DLaB.Xrm.Test
                 return service;
             }
 
-            throw new Exception("No Service Found For Type: " + serviceType.FullName);
+            return null;
         }
 
         /// <summary>

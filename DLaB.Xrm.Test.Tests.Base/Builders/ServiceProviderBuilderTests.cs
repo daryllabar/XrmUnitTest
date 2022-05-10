@@ -2,6 +2,7 @@
 using DLaB.Xrm.Plugin;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
+using XrmUnitTest.Test;
 #if NET
 using DataverseUnitTest;
 using DataverseUnitTest.Builders;
@@ -37,8 +38,10 @@ namespace DLaB.Xrm.Test.Tests.Builders
             Assert.AreEqual(providerContext.GetFirstSharedVariable<int>("TEST"), 1);
         }
 
+        [TestMethod]
         public void ServiceProviderBuilder_WithUserSpecificServices_Should_ReturnMatchingService()
         {
+            TestInitializer.InitializeTestSettings();
             var provider = new ServiceProviderBuilder();
 
             var defaultService = provider.Build().GetService<IOrganizationServiceFactory>().CreateOrganizationService(null);
@@ -49,6 +52,12 @@ namespace DLaB.Xrm.Test.Tests.Builders
             var response = userService.GetCurrentlyExecutingUserInfo();
             Assert.AreEqual(userId, response.UserId);
         }
-    }
 
+        [TestMethod]
+        public void ServiceProviderBuilder_CallToGetUndefinedService_Should_ReturnNull()
+        {
+            var provider = new ServiceProviderBuilder().Build();
+            Assert.IsNull(provider.GetService(typeof(ServiceProviderBuilderTests)));
+        }
+    }
 }
