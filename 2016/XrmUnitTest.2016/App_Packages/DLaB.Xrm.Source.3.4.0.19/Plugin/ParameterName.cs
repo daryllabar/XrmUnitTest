@@ -15,7 +15,13 @@ namespace Source.DLaB.Xrm.Plugin
     {
         //public const string Assignee = "Assignee";
         //public const string AsyncOperationId = "AsyncOperationId";
-        //public const string BusinessEntity = "BusinessEntity";
+        /// <summary>
+        /// Contains the Entity for Retrieve in Post Operation
+        /// </summary>
+        public const string BusinessEntity = "BusinessEntity";
+        /// <summary>
+        /// Contains the EntityCollection for RetrieveMultiple in Post Operation
+        /// </summary>
         public const string BusinessEntityCollection = "BusinessEntityCollection";
         //public const string CampaignActivityId = "CampaignActivityId";
         //public const string CampaignId = "CampaignId";

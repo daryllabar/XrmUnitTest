@@ -34,8 +34,8 @@ namespace DLaB.Xrm.Test
 
         private static string FindProjectOfType(Type type)
         {
-            var sb = new StringBuilder();
-            var projectName  = type.AssemblyQualifiedName?.Split(',')[1].Trim();
+            var sb = new StringBuilder(); 
+            var projectName = type.AssemblyQualifiedName?.Split(',')[1].Trim();
             sb.AppendLine($"Looking for project folder for {projectName}");
 
 #if NET
@@ -83,9 +83,21 @@ namespace DLaB.Xrm.Test
             var folders = dllFilePath.ToLower().Split(Path.DirectorySeparatorChar);
             string solutionFolder;
 
-            if (folders.Contains(".vs") && folders.Contains("lut"))
+            if (folders.Contains("lut"))
             {
-                solutionFolder = GetProjectParentDirectoryLiveUnitTest(sb, dll, folders);
+                if (folders.Contains(".vs"))
+                {
+                    solutionFolder = GetProjectParentDirectoryLiveUnitTest(sb, dll, folders);
+
+                }
+                else if (folders.Contains("v2"))
+                {
+                    solutionFolder = GetProjectParentDirectoryLiveUnitTestV2(sb, dll, folders);
+                }
+                else
+                {
+                    solutionFolder = GetProjectParentDirectory(dll);
+                }
             }
             else
             {
@@ -137,6 +149,36 @@ namespace DLaB.Xrm.Test
                 ?? GetProjectPathFromSolutionFile(sb, dll, solutionFolder);
         }
 
+        private static string GetProjectParentDirectoryLiveUnitTestV2(StringBuilder sb, FileInfo dll, string[] folders)
+        {
+            sb.AppendLine("Checking for Live Unit Tests");
+            sb.AppendLine($"Dll Path: {dll.FullName}");
+            var lutDataFolderIndex = Array.IndexOf(folders, "v2");
+            var lutIndex = Array.IndexOf(folders, "lut");
+            if (lutDataFolderIndex <= lutIndex)
+            {
+                return null;
+            }
+
+            var values = folders.ToList();
+            values.RemoveRange(lutDataFolderIndex, folders.Length - lutDataFolderIndex);
+            var lutProjectPath = string.Join(Path.DirectorySeparatorChar + "", values);
+            var lutDataPath = Path.Combine(lutProjectPath, "coverage.lutdata");
+            sb.AppendLine($"Checking for .lutdata file: {lutDataPath}");
+            if (!File.Exists(lutDataPath))
+            {
+                sb.AppendLine(@"No coverage.lutdata file was found.  In Visual Studio, try selecting ""Test"" --> ""Analyze Code Coverage for All Tests"" to generate the coverage.lutdata file to read the project path from.");
+                return null;
+            }
+
+            var lutData = File.ReadAllText(lutDataPath);
+            var projectName = Path.GetFileNameWithoutExtension(dll.FullName) + ".csproj";
+            var projectPathEndIndex = lutData.IndexOf(projectName, StringComparison.Ordinal);
+            var projectPathStartIndex = lutData.Substring(0, projectPathEndIndex).LastIndexOf(@":\", StringComparison.Ordinal) - 1;
+            var a = lutData.Substring(projectPathStartIndex, projectPathEndIndex - projectPathStartIndex);
+            return GetProjectParentDirectory(a, sb);
+        }
+
         private static string GetProjectParentDirectoryLiveUnitTestFromDirectoryPath(StringBuilder sb, string[] folders, int lutIndex, string solutionFolder)
         {
             var values = folders.ToList();
@@ -163,7 +205,8 @@ namespace DLaB.Xrm.Test
 
         private static string GetProjectPathFromSolutionFile(StringBuilder sb, FileInfo dll, string solutionFolder)
         {
-            foreach(var solution in Directory.GetFiles(solutionFolder, "*.sln")) { 
+            foreach (var solution in Directory.GetFiles(solutionFolder, "*.sln"))
+            {
                 sb.AppendLine($"Project Folder not found.  Attempting to parse solution file {solution}.");
                 var searchText = $"\\{Path.GetFileNameWithoutExtension(dll.Name)}.csproj\", \"";
                 sb.AppendLine($"Searching for project file text {searchText} in solution file.");

@@ -20,8 +20,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DLaB.Xrm.Source" Version="3.4.0.17" />
-    <PackageReference Include="Microsoft.PowerPlatform.Dataverse.Client" Version="0.6.6" />
+    <PackageReference Include="DLaB.Xrm.Source" Version="3.4.0.19" />
+    <PackageReference Include="Microsoft.PowerPlatform.Dataverse.Client" Version="1.0.9" />
     <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
   </ItemGroup>
 

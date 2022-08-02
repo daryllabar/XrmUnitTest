@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.Linq;
+using Microsoft.Xrm.Sdk.Query;
 #if DLAB_UNROOT_COMMON_NAMESPACE
 using DLaB.Common;
 #else
@@ -58,6 +59,12 @@ namespace Source.DLaB.Xrm
                     value = "null";
                     break;
 
+                case ColumnSet cs:
+                    value = cs.AllColumns
+                        ? "\"ColumnSet(allColumns:true)\""
+                        : $"\"{string.Join(",", cs.Columns)}\"";
+                    break;
+
                 case Entity entity:
                     value = entity.ToStringAttributes(info);
                     break;
@@ -78,6 +85,10 @@ namespace Source.DLaB.Xrm
                     value = dict.ToStringDebug(info);
                     break;
 
+                case FetchExpression fetch:
+                    value = $"\"{fetch.Query.Trim()}\"";
+                    break;
+
                 case byte[] imageArray:
                     value = imageArray.ToStringDebug();
                     break;
@@ -92,6 +103,10 @@ namespace Source.DLaB.Xrm
 
                 case Money money:
                     value = money.Value.ToString(CultureInfo.InvariantCulture);
+                    break;
+
+                case QueryExpression qe:
+                    value = $"\"{qe.GetSqlStatement().Trim()}\"";
                     break;
 
                 case bool yesNo:
