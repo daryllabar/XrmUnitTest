@@ -76,7 +76,7 @@ namespace DLaB.Xrm.Test
             // Create a unique Database for each Unit Test by looking up the first method in the stack trace that has a TestMethodAttribute,
             // and using it's method handle, combined with the OrganizationName, as a unique Key
             var method = GetUnitTestMethod() ?? MethodBase.GetCurrentMethod();
-            var databaseKey = $"UnitTest {method.Name}:{organizationName}:{method.MethodHandle}";
+            var databaseKey = $"UnitTest {method?.Name ?? "NULL"}:{organizationName}:{method?.MethodHandle}";
             return new LocalCrmDatabaseOrganizationService(GetConfiguredLocalDatabaseInfo(databaseKey, impersonationUserId));
         }
 
@@ -99,9 +99,10 @@ namespace DLaB.Xrm.Test
                 throw new Exception("Unable to get the StackTrace");
             }
 
-            return frames.Reverse(). // Stacks are LIFO, Reverse to start at the bottom.
-                          Select(frame => frame.GetMethod()).
-                          FirstOrDefault(method => method.GetCustomAttributes(false).Any(o => o.GetType() == TestSettings.TestFrameworkProvider.Value.TestMethodAttributeType));
+            return frames.Reverse() // Stacks are LIFO, Reverse to start at the bottom.
+                         .Select(frame => frame.GetMethod())
+                         .Where(m => m != null)
+                         .FirstOrDefault(method => method.GetCustomAttributes(false).Any(o => o.GetType() == TestSettings.TestFrameworkProvider.Value.TestMethodAttributeType));
         }
 
         #endregion GetOrganizationServiceProxy
@@ -114,7 +115,7 @@ namespace DLaB.Xrm.Test
         /// <summary>
         /// Loads the user unit test settings in a multi-thread safe manner, verifying that it is loaded once only.
         /// </summary>
-        private static void LoadUserUnitTestSettings()
+        public static void LoadUserUnitTestSettings()
         {
             if (UserUnitTestSettingsLoaded) { return; }
 
@@ -128,21 +129,30 @@ namespace DLaB.Xrm.Test
 
         private static void LoadUserUnitTestSettingsInternal()
         {
-            var userConfigPath = TestSettings.UserTestConfigPath.Value;
 #if NET
-            if (userConfigPath.EndsWith(".json"))
+            if (!TestSettings.UserTestConfigPath.IsConfigured && TestSettings.TestFrameworkProvider.IsConfigured)
             {
-                AddJsonSettingsToAppConfig(userConfigPath);
+                AddJsonSettingsToAppConfig(null);
             }
             else
             {
-#endif
-                var userConfig = GetUserConfig(userConfigPath);
-                if (userConfig != null)
+                var userConfigPath = TestSettings.UserTestConfigPath.Value;
+                if (userConfigPath.ToLower().EndsWith(".json"))
                 {
-                    AddSettingsToAppConfig(userConfig);
+                    AddJsonSettingsToAppConfig(userConfigPath);
                 }
+                else
+                {
+#else
+            var userConfigPath = TestSettings.UserTestConfigPath.Value;
+#endif
+                    var userConfig = GetUserConfig(userConfigPath);
+                    if (userConfig != null)
+                    {
+                        AddSettingsToAppConfig(userConfig);
+                    }
 #if NET
+                }
             }
 #endif
 
@@ -193,7 +203,7 @@ namespace DLaB.Xrm.Test
 
         private static Configuration GetUserConfig(string userConfigPath)
         {
-            if (!File.Exists(userConfigPath) && userConfigPath.EndsWith("user.config"))
+            if (!File.Exists(userConfigPath) && userConfigPath?.EndsWith("user.config") == true)
             {
                 // Attempt to lookup the non User Config settings.  This is used when the user config is copied over from a checked in version
                 var index = userConfigPath.LastIndexOf("user.config", StringComparison.Ordinal);
@@ -224,15 +234,31 @@ namespace DLaB.Xrm.Test
 
         private static void AddJsonSettingsToAppConfig(string jsonConfigPath)
         {
-            var configuration = new ConfigurationBuilder()
-                .AddUserSecrets(TestSettings.TestFrameworkProvider.Value.GetType().Assembly)
-                .Build();
-            var settings = new DataverseUnitTestSettings();
+            var builder = new ConfigurationBuilder();
+            if (jsonConfigPath == null)
+            {
+                builder.AddUserSecrets(TestSettings.TestFrameworkProvider.Value.GetType().Assembly);
+            }
+            else
+            {
+                builder.AddJsonFile(jsonConfigPath);
+            }
+            var configuration = builder.Build();
+            var settings = new DataverseUnitTestSettings
+            {
+                UseLocalCrmDatabase = true,
+                CrmSystemSettings = new CrmSystemSettings
+                {
+                    FullNameFormat = "F I L"
+                }
+            };
             configuration.Bind(DataverseUnitTestSettingsName, settings);
 
             var config = ConfigManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             var fileName = Path.GetFileName(config.FilePath);
+            // ReSharper disable StringLiteralTypo
             if (fileName == "vstest.executionengine.x86.exe.Config" || fileName == "te.processhost.managed.exe.Config")
+                // ReSharper restore StringLiteralTypo
             {
                 throw new Exception("Unit Test Project Must Contain an App.Config file to be able to Load User Settings into!");
             }
@@ -246,28 +272,36 @@ namespace DLaB.Xrm.Test
 
         private static void LoadDefaultSettings(Configuration config, DataverseUnitTestSettings settings)
         {
-            AddOrUpdate(config, "UseLocalCrmDatabase", settings.useLocalCrmDatabase.ToString());
-            AddOrUpdate(config, "ConnectionPrefix", settings.connection + ".");
-            foreach (var connection in settings.connections)
-            {
-                AddOrUpdate(config, connection.name + ".ConnectionString", connection.value);
+            AddOrUpdate(config, "UseLocalCrmDatabase", settings.UseLocalCrmDatabase.ToString());
+            AddOrUpdate(config, "ConnectionPrefix", settings.Connection + ".");
+            if (settings.Connections != null) {
+                foreach (var connection in settings.Connections.Where(c => c != null))
+                {
+                    AddOrUpdate(config, connection.Name + ".ConnectionString", connection.Value);
+                }
             }
 
-            AddOrUpdate(config, "CrmSystemSettings.FullNameFormat", settings.crmSystemSettings.fullNameFormat);
-            AddOrUpdate(config, "Password", settings.password);
-            foreach (var password in settings.passwords)
-            {
-                AddOrUpdate(config, password.name + ".Password", password.value);
+            AddOrUpdate(config, "CrmSystemSettings.FullNameFormat", settings.CrmSystemSettings?.FullNameFormat);
+            AddOrUpdate(config, "Password", settings.Password);
+            
+            if (settings.Passwords != null) {
+                foreach (var password in settings.Passwords.Where(p => p != null))
+                {
+                    AddOrUpdate(config, password.Name + ".Password", password.Value);
+                }
             }
         }
 
         private static void LoadAppSettings(DataverseUnitTestSettings settings, Configuration config)
         {
-            foreach (var setting in settings.appSettings)
+            if (settings.AppSettings != null)
             {
-                var key = setting.key;
-                var value = setting.value;
-                AddOrUpdate(config, key, value);
+                foreach (var setting in settings.AppSettings.Where(s => s != null))
+                {
+                    var key = setting.Key;
+                    var value = setting.Value;
+                    AddOrUpdate(config, key, value);
+                }
             }
         }
 
@@ -277,12 +311,22 @@ namespace DLaB.Xrm.Test
             var appSetting = config.AppSettings.Settings[key];
             if (appSetting == null)
             {
+                if (value == null)
+                {
+                    return;
+                }
                 // Add
                 config.AppSettings.Settings.Add(key, value);
                 appSettings.Set(key, value); // Set in Memory
             }
             else if (appSetting.Value != value)
             {
+                if (value == null)
+                {
+                    config.AppSettings.Settings.Remove(key);
+                    appSettings.Remove(key);
+                    return;
+                }
                 // Update
                 appSetting.Value = value;
                 appSettings.Set(key, value); // Update in Memory
