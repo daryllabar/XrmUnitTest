@@ -6,8 +6,11 @@ using System.Linq;
 using System.Reflection;
 using DLaB.Xrm.Client;
 using DLaB.Xrm.LocalCrm;
+using ConfigManager = System.Configuration.ConfigurationManager;
 
 #if NET
+using DLaB.Xrm.Test.Settings.Secret;
+using Microsoft.Extensions.Configuration;
 using DLaB.Xrm;
 
 namespace DataverseUnitTest
@@ -103,11 +106,11 @@ namespace DLaB.Xrm.Test
 
         #endregion GetOrganizationServiceProxy
 
-        #region UnitTestSetting.user.config
+        #region UnitTestSettings
 
         private static bool UserUnitTestSettingsLoaded { get; set; }
 
-        private static readonly object LocalSettingsLock = new Object();
+        private static readonly object LocalSettingsLock = new object();
         /// <summary>
         /// Loads the user unit test settings in a multi-thread safe manner, verifying that it is loaded once only.
         /// </summary>
@@ -125,19 +128,35 @@ namespace DLaB.Xrm.Test
 
         private static void LoadUserUnitTestSettingsInternal()
         {
-            var userConfig = GetUserConfig();
-            if (userConfig != null)
+            var userConfigPath = TestSettings.UserTestConfigPath.Value;
+#if NET
+            if (userConfigPath.EndsWith(".json"))
             {
-                AddSettingsToAppConfig(userConfig);
+                AddJsonSettingsToAppConfig(userConfigPath);
             }
+            else
+            {
+#endif
+                var userConfig = GetUserConfig(userConfigPath);
+                if (userConfig != null)
+                {
+                    AddSettingsToAppConfig(userConfig);
+                }
+#if NET
+            }
+#endif
 
             OrgName = AppConfig.OrgName;
             UseLocalCrmDatabase = AppConfig.UseLocalCrmDatabase;
         }
 
+        #endregion UnitTestSettings
+
+        #region UnitTestSetting.user.config
+
         private static void AddSettingsToAppConfig(Configuration userConfig)
         {
-            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var config = ConfigManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             var fileName = Path.GetFileName(config.FilePath);
             if (fileName == "vstest.executionengine.x86.exe.Config" || fileName == "te.processhost.managed.exe.Config")
             {
@@ -154,28 +173,26 @@ namespace DLaB.Xrm.Test
                     // Add
                     update = true;
                     config.AppSettings.Settings.Add(setting.Key, setting.Value);
-                    ConfigurationManager.AppSettings.Set(setting.Key, setting.Value); // Set in Memory
+                    ConfigManager.AppSettings.Set(setting.Key, setting.Value); // Set in Memory
                 }
                 else if (appSetting.Value != setting.Value)
                 {
                     // Update
                     update = true;
                     appSetting.Value = setting.Value;
-                    ConfigurationManager.AppSettings.Set(setting.Key, setting.Value); // Update in Memory
+                    ConfigManager.AppSettings.Set(setting.Key, setting.Value); // Update in Memory
                 }
             }
 
             if (update)
             {
                 config.Save(ConfigurationSaveMode.Modified, false);
-                ConfigurationManager.RefreshSection("appSettings");
+                ConfigManager.RefreshSection("appSettings");
             }
         }
 
-        private static Configuration GetUserConfig()
+        private static Configuration GetUserConfig(string userConfigPath)
         {
-            var userConfigPath = TestSettings.UserTestConfigPath.Value;
-
             if (!File.Exists(userConfigPath) && userConfigPath.EndsWith("user.config"))
             {
                 // Attempt to lookup the non User Config settings.  This is used when the user config is copied over from a checked in version
@@ -195,10 +212,85 @@ namespace DLaB.Xrm.Test
             {
                 ExeConfigFilename = userConfigPath,
             };
-            return ConfigurationManager.OpenMappedExeConfiguration(configMap, ConfigurationUserLevel.None);
+            return ConfigManager.OpenMappedExeConfiguration(configMap, ConfigurationUserLevel.None);
         }
 
         #endregion UnitTestSetting.user.config
+
+        #region Secrets Json
+#if NET
+
+        public const string DataverseUnitTestSettingsName = "dataverseUnitTestSettings";
+
+        private static void AddJsonSettingsToAppConfig(string jsonConfigPath)
+        {
+            var configuration = new ConfigurationBuilder()
+                .AddUserSecrets(TestSettings.TestFrameworkProvider.Value.GetType().Assembly)
+                .Build();
+            var settings = new DataverseUnitTestSettings();
+            configuration.Bind(DataverseUnitTestSettingsName, settings);
+
+            var config = ConfigManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var fileName = Path.GetFileName(config.FilePath);
+            if (fileName == "vstest.executionengine.x86.exe.Config" || fileName == "te.processhost.managed.exe.Config")
+            {
+                throw new Exception("Unit Test Project Must Contain an App.Config file to be able to Load User Settings into!");
+            }
+
+            LoadDefaultSettings(config, settings);
+            LoadAppSettings(settings, config);
+
+            config.Save(ConfigurationSaveMode.Modified, false);
+            ConfigManager.RefreshSection("appSettings");
+        }
+
+        private static void LoadDefaultSettings(Configuration config, DataverseUnitTestSettings settings)
+        {
+            AddOrUpdate(config, "UseLocalCrmDatabase", settings.useLocalCrmDatabase.ToString());
+            AddOrUpdate(config, "ConnectionPrefix", settings.connection + ".");
+            foreach (var connection in settings.connections)
+            {
+                AddOrUpdate(config, connection.name + ".ConnectionString", connection.value);
+            }
+
+            AddOrUpdate(config, "CrmSystemSettings.FullNameFormat", settings.crmSystemSettings.fullNameFormat);
+            AddOrUpdate(config, "Password", settings.password);
+            foreach (var password in settings.passwords)
+            {
+                AddOrUpdate(config, password.name + ".Password", password.value);
+            }
+        }
+
+        private static void LoadAppSettings(DataverseUnitTestSettings settings, Configuration config)
+        {
+            foreach (var setting in settings.appSettings)
+            {
+                var key = setting.key;
+                var value = setting.value;
+                AddOrUpdate(config, key, value);
+            }
+        }
+
+        private static void AddOrUpdate(Configuration config, string key, string value)
+        {
+            var appSettings = ConfigManager.AppSettings;
+            var appSetting = config.AppSettings.Settings[key];
+            if (appSetting == null)
+            {
+                // Add
+                config.AppSettings.Settings.Add(key, value);
+                appSettings.Set(key, value); // Set in Memory
+            }
+            else if (appSetting.Value != value)
+            {
+                // Update
+                appSetting.Value = value;
+                appSettings.Set(key, value); // Update in Memory
+            }
+        }
+#endif
+
+        #endregion Secrets Json
 
         /// <summary>
         /// Gets the Entity type based on the entity logical name.

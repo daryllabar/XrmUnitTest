@@ -24,6 +24,10 @@ namespace XrmUnitTest.Test
             {
                 TestSettings.AssumptionJsonPath.Configure(new PatherFinderProjectOfType(typeof(TestMethodClassBase), "Assumptions\\Entity Json"));
             }
+            //if (!TestSettings.UserTestConfigPath.IsConfigured)
+            //{
+            //    TestSettings.UserTestConfigPath.Configure(new PathFinderEnvironmentFolder("Microsoft\\UserSecrets\\DataverseUnitTest.Default\\secrets.json"));
+            //}
 #else
             if (!TestSettings.AssumptionXmlPath.IsConfigured)
             {

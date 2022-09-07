@@ -54,9 +54,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)LogRecorder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PatherFinderProjectOfType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PathFinderAbsolute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PathFinderEnvironmentFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\NamespaceSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\PathSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\PrimaryNameProviderSetting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\Secret\Pocos.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\SourceControlProviderSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\TestFrameworkProviderSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StubOrganizationService.cs" />
@@ -65,5 +67,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)TestMethodClassBaseDLaB.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TraceParams.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Settings\Secret\" />
   </ItemGroup>
 </Project>
