@@ -2,67 +2,83 @@
 
 namespace DLaB.Xrm.Test.Settings.Secret
 {
-    /* Generated From:
-{
-  "DataverseUnitTestSettings": { 
-    "UseLocalCrmDatabase": true,
-    "Connection": "Dev",
-    "Connections": [
-      { "Name": "Dev",   "Value": "AuthType=Office365;Username=jsmith@contoso.onmicrosoft.com; Url=https://dev.contoso.crm.dynamics.com" },
-      { "Name": "Qa",    "Value": "AuthType=Office365;Username=jsmith@contoso.onmicrosoft.com; Url=https://qa.contoso.crm.dynamics.com" },
-      { "Name": "Stage", "Value": "AuthType=Office365;Username=jsmith@contoso.onmicrosoft.com; Url=https://stage.contoso.crm.dynamics.com" },
-      { "Name": "Prod",  "Value": "AuthType=Office365;Username=jsmith@contoso.onmicrosoft.com; Url=https://prod.contoso.crm.dynamics.com" }
-    ],
-    "CrmSystemSettings": {
-      "FullNameFormat": "F I L"
-    },
-    "AppSettings": [
-      {
-        "Key": "YourKey",
-        "Value": "YourValue"
-      }
-    ],
-    "Password": "MyPassword",
-    "Passwords": [ 
-      { "Name": "Dev",   "Value": "MyPassword" },
-      { "Name": "Qa",    "Value": "MyPassword" },
-      { "Name": "Stage", "Value": "MyPassword" },
-      { "Name": "Prod",  "Value": "MyPassword" }
-    ]
-    }
-  }
-     */
+    /// <summary>
+    ///  App Settings
+    /// </summary>
     public class AppSetting
     {
+        /// <summary>
+        /// The Key
+        /// </summary>
         public string Key { get; set; }
+        /// <summary>
+        /// The Value
+        /// </summary>
         public string Value { get; set; }
     }
 
-    public class Connection
+    /// <summary>
+    /// Dataverse System Settings
+    /// </summary>
+    public class DataverseSystemSettings
     {
-        public string Name { get; set; }
-        public string Value { get; set; }
-    }
-
-    public class CrmSystemSettings
-    {
+        /// <summary>
+        /// Format of FullName
+        ///   F = First Name
+        ///   M = Middle Name
+        ///   I = Middle Initial
+        ///   L = Last Name
+        /// </summary>
         public string FullNameFormat { get; set; }
     }
 
+    /// <summary>
+    /// Unit Test Settings
+    /// </summary>
     public class DataverseUnitTestSettings
     {
-        public bool UseLocalCrmDatabase { get; set; }
+        /// <summary>
+        /// Use the local In Memory Dataverse Fake?
+        /// </summary>
+        public bool UseDataverseFake { get; set; }
+        /// <summary>
+        /// Connection
+        /// </summary>
         public string Connection { get; set; }
-        public List<Connection> Connections { get; set; }
-        public CrmSystemSettings CrmSystemSettings { get; set; }
+        /// <summary>
+        /// Connections
+        /// </summary>
+        public List<NameValue> Connections { get; set; }
+        /// <summary>
+        /// Dataverse System Settings
+        /// </summary>
+        public DataverseSystemSettings DataverseSystemSettings { get; set; }
+        /// <summary>
+        /// App Settings
+        /// </summary>
         public List<AppSetting> AppSettings { get; set; }
+        /// <summary>
+        /// Password
+        /// </summary>
         public string Password { get; set; }
-        public List<Password> Passwords { get; set; }
+        /// <summary>
+        /// Passwords
+        /// </summary>
+        public List<NameValue> Passwords { get; set; }
     }
 
-    public class Password
+    /// <summary>
+    /// Contains Name Value
+    /// </summary>
+    public class NameValue
     {
+        /// <summary>
+        /// The Name
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// The Value
+        /// </summary>
         public string Value { get; set; }
     }
 }

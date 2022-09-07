@@ -246,8 +246,8 @@ namespace DLaB.Xrm.Test
             var configuration = builder.Build();
             var settings = new DataverseUnitTestSettings
             {
-                UseLocalCrmDatabase = true,
-                CrmSystemSettings = new CrmSystemSettings
+                UseDataverseFake = true,
+                DataverseSystemSettings = new DataverseSystemSettings
                 {
                     FullNameFormat = "F I L"
                 }
@@ -272,7 +272,7 @@ namespace DLaB.Xrm.Test
 
         private static void LoadDefaultSettings(Configuration config, DataverseUnitTestSettings settings)
         {
-            AddOrUpdate(config, "UseLocalCrmDatabase", settings.UseLocalCrmDatabase.ToString());
+            AddOrUpdate(config, "UseLocalCrmDatabase", settings.UseDataverseFake.ToString());
             AddOrUpdate(config, "ConnectionPrefix", settings.Connection + ".");
             if (settings.Connections != null) {
                 foreach (var connection in settings.Connections.Where(c => c != null))
@@ -281,7 +281,7 @@ namespace DLaB.Xrm.Test
                 }
             }
 
-            AddOrUpdate(config, "CrmSystemSettings.FullNameFormat", settings.CrmSystemSettings?.FullNameFormat);
+            AddOrUpdate(config, "CrmSystemSettings.FullNameFormat", settings.DataverseSystemSettings?.FullNameFormat);
             AddOrUpdate(config, "Password", settings.Password);
             
             if (settings.Passwords != null) {

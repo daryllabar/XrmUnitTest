@@ -601,7 +601,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public void NotExists(Id id, string message, params object[] parameters)
+        public void NotExists(Id id, string message = null, params object[] parameters)
         {
             NotExists(Service, id, message, parameters);
         }
@@ -614,7 +614,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public static void NotExists(IOrganizationService service, Id id, string message, params object[] parameters)
+        public static void NotExists(IOrganizationService service, Id id, string message = null, params object[] parameters)
         {
             if (service.GetEntityOrDefault(id.LogicalName, id.EntityId) != null)
             {
@@ -633,7 +633,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public void NotExists<T>(Id<T> id, string message, params object[] parameters) where T : Entity
+        public void NotExists<T>(Id<T> id, string message = null, params object[] parameters) where T : Entity
         {
             NotExists(Service, id, message, parameters);
         }
@@ -646,7 +646,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public static void NotExists<T>(IOrganizationService service, Id<T> id, string message, params object[] parameters) where T : Entity
+        public static void NotExists<T>(IOrganizationService service, Id<T> id, string message = null, params object[] parameters) where T : Entity
         {
             if (service.GetEntityOrDefault(id.LogicalName, id.EntityId) != null)
             {
@@ -659,7 +659,7 @@ namespace DLaB.Xrm.Test
         #region Handle
 
         [DebuggerHidden]
-        private static void HandleFail(string assertName, string message, params object[] parameters )
+        private static void HandleFail(string assertName, string message = null, params object[] parameters )
         {
             message = message ?? Empty;
            
@@ -669,7 +669,7 @@ namespace DLaB.Xrm.Test
         }
 
         [DebuggerHidden]
-        private static void HandleInconclusive(string assertName, string message, params object[] parameters )
+        private static void HandleInconclusive(string assertName, string message = null, params object[] parameters )
         {
             message = message ?? Empty;
             message = $"{assertName} is inconclusive. " + (parameters == null ? message : Format(message, parameters));
