@@ -307,11 +307,6 @@ namespace DLaB.Xrm.Test
 
         private static void AddOrUpdate(Configuration config, string key, string value)
         {
-            if (!config.AppSettings.Settings.AllKeys.Contains(key))
-            {
-                // Key not defined. Don't update/remove.
-                return;
-            }
             var appSettings = ConfigManager.AppSettings;
             var appSetting = config.AppSettings.Settings[key];
             if (appSetting == null)
@@ -328,8 +323,6 @@ namespace DLaB.Xrm.Test
             {
                 if (value == null)
                 {
-                    config.AppSettings.Settings.Remove(key);
-                    appSettings.Remove(key);
                     return;
                 }
                 // Update
