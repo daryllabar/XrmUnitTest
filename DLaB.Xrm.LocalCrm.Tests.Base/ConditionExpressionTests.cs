@@ -53,7 +53,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             service.Update(new Contact { Id = id, LastUsedInCampaign = DateTime.UtcNow.AddDays(-8d) });
             Assert.IsNull(GetContact());
         }
-        
+
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_Next7Days()
         {
@@ -179,5 +179,48 @@ namespace DLaB.Xrm.LocalCrm.Tests
             service.Update(new Contact { Id = id, LastUsedInCampaign = DateTime.UtcNow.AddDays(-2d) });
             Assert.IsNull(GetContact());
         }
+
+#if !XRM_2013 && !XRM_2015 && !XRM_2016
+        [TestMethod]
+        public void LocalCrmTests_ConditionExpression_ContainsValue()
+        {
+            var service = GetService();
+            var id = service.Create(new Contact
+            {
+                CalendarTypes = new [] { Calendar_Type.CustomerService }
+            });
+
+            Entity GetContact() => service.GetFirstOrDefault<Contact>(new ConditionExpression(nameof(Contact.CalendarTypes).ToLower(), ConditionOperator.ContainValues, (int)Calendar_Type.Default));
+
+            Assert.IsNull(GetContact());
+            service.Update(new Contact{ Id = id, CalendarTypes = new [] { Calendar_Type.CustomerService, Calendar_Type.Default }});
+            Assert.IsNotNull(GetContact());
+            service.Update(new Contact { Id = id, CalendarTypes = new[] { Calendar_Type.Default } });
+            Assert.IsNotNull(GetContact());
+            service.Update(new Contact { Id = id, CalendarTypes = Array.Empty<Calendar_Type>() });
+            Assert.IsNull(GetContact());
+        }
+
+
+        [TestMethod]
+        public void LocalCrmTests_ConditionExpression_DoesNotContainValues()
+        {
+            var service = GetService();
+            var id = service.Create(new Contact
+            {
+                CalendarTypes = new[] { Calendar_Type.Default }
+            });
+
+            Entity GetContact() => service.GetFirstOrDefault<Contact>(new ConditionExpression(nameof(Contact.CalendarTypes).ToLower(), ConditionOperator.DoesNotContainValues, (int)Calendar_Type.Default));
+
+            Assert.IsNull(GetContact());
+            service.Update(new Contact { Id = id, CalendarTypes = new[] { Calendar_Type.CustomerService, Calendar_Type.Default } });
+            Assert.IsNull(GetContact());
+            service.Update(new Contact { Id = id, CalendarTypes = new[] { Calendar_Type.CustomerService } });
+            Assert.IsNotNull(GetContact());
+            service.Update(new Contact { Id = id, CalendarTypes = Array.Empty<Calendar_Type>() });
+            Assert.IsNotNull(GetContact());
+        }
     }
+#endif
 }

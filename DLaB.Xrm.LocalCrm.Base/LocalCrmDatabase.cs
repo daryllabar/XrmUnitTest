@@ -161,7 +161,12 @@ namespace DLaB.Xrm.LocalCrm
 
             return null;
         }
-
+#if !XRM_2013 && !XRM_2015 && !XRM_2016
+        private static OptionSetValueCollection GetOptionSetValueCollection(Entity e, string attributeName)
+        {
+            return e.Attributes.ContainsKey(attributeName) ? e.GetAttributeValue<OptionSetValueCollection>(attributeName) : null;
+        }
+#endif
         internal static Type GetType(LocalCrmDatabaseInfo info, string logicalName)
         {
             try

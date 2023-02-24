@@ -370,6 +370,16 @@ namespace DLaB.Xrm.LocalCrm
                 //    break;
                 //case ConditionOperator.EqualUserTeams:
                 //    break;
+#if !XRM_2013 && !XRM_2015 && !XRM_2016
+                case ConditionOperator.ContainValues:
+                    var collection = GetOptionSetValueCollection(entity, name);
+                    value = collection != null && condition.Values.All(v => collection.Contains(new OptionSetValue((int)v)));
+                    break;
+                case ConditionOperator.DoesNotContainValues:
+                    condition.Operator = ConditionOperator.ContainValues;
+                    value = !ConditionIsTrue(entity, condition);
+                    break;
+#endif
                 default:
                     throw new NotImplementedException(condition.Operator.ToString());
             }
