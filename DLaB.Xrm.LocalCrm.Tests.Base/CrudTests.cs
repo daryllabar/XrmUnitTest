@@ -9,6 +9,7 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
 using XrmUnitTest.Test;
+
 #if NET
 using OrganizationServiceBuilder = DataverseUnitTest.Builders.OrganizationServiceBuilder;
 using DataverseUnitTest;
@@ -238,6 +239,24 @@ namespace DLaB.Xrm.LocalCrm.Tests
             service.Update(opp);
 
             Assert.IsNull(service.GetFirstOrDefault<Opportunity>().CustomerId, "Removing the Parent Contact Id should have set Customer to null.");
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_Crud_CreateJoinEntity()
+        {
+            var dbInfo = LocalCrmDatabaseInfo.Create<CrmContext>();
+            var service = new LocalCrmDatabaseOrganizationService(dbInfo);
+            var info = service.GetCurrentlyExecutingUserInfo();
+            var role = new Role
+            {
+                Name = nameof(LocalCrmTests_Crud_CreateJoinEntity)
+            };
+            role.Id = service.Create(role);
+            service.Create(new SystemUserRoles
+            {
+                [SystemUserRoles.Fields.SystemUserId] = info.UserId,
+                [SystemUserRoles.Fields.RoleId] = role.Id
+            });
         }
 
         [TestMethod]

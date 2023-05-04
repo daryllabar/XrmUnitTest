@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using DLaB.Xrm.Client;
+using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.LocalCrm
 {
@@ -47,8 +49,14 @@ namespace DLaB.Xrm.LocalCrm
             }
             var type = EntityHelper.GetType(EarlyBoundEntityAssembly, EarlyBoundNamespace, logicalName);
             var field = type.GetField(PrimaryNameFieldName);
+            
             if (field == null)
             {
+                if (IsNamelessJoinEntity(type, logicalName))
+                {
+                    return string.Empty;
+                }
+
                 throw new Exception($"Type \"{type.FullName}\" does not contain a field with the name \"{PrimaryNameFieldName}\"!  Consider using the Early Bound Generator to generate this value or using the PrimaryNameViaNonStandardNamesProvider and providing a list of non-standard names via the config.");
             }
 
@@ -64,7 +72,8 @@ namespace DLaB.Xrm.LocalCrm
             var field = typeof(T).GetField(PrimaryNameFieldName);
             if (field == null)
             {
-                if (NamelessEntities.Contains(EntityHelper.GetEntityLogicalName<T>()))
+                var logicalName = EntityHelper.GetEntityLogicalName<T>();
+                if (NamelessEntities.Contains(logicalName) || IsNamelessJoinEntity(typeof(T), logicalName))
                 {
                     return string.Empty;
                 }
@@ -72,6 +81,24 @@ namespace DLaB.Xrm.LocalCrm
             }
 
             return (string)field.GetValue(null);
+        }
+
+        private readonly object _namelessHashLock = new object();
+
+        private bool IsNamelessJoinEntity(Type type, string logicalName)
+        {
+            if(type.GetProperties(BindingFlags.Instance | BindingFlags.Public).Any(p => p.PropertyType == typeof(string) && p.GetCustomAttribute<AttributeLogicalNameAttribute>() != null))
+            {
+                return false;
+            }
+
+            // Entity is a join entity with no name property.  Add it to the HashSet so we don't try to get the name for it again
+            lock (_namelessHashLock)
+            {
+                NamelessEntities.Add(logicalName);
+            }
+
+            return true;
         }
     }
 }
