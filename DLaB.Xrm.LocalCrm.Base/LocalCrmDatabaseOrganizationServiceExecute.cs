@@ -1,4 +1,14 @@
-﻿using System;
+﻿using DLaB.Common;
+using DLaB.Common.Exceptions;
+using DLaB.Xrm.Client;
+using DLaB.Xrm.LocalCrm.Entities;
+using DLaB.Xrm.LocalCrm.FetchXml;
+using Microsoft.Crm.Sdk.Messages;
+using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Messages;
+using Microsoft.Xrm.Sdk.Metadata;
+using Microsoft.Xrm.Sdk.Query;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,17 +16,6 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Xml.Serialization;
-using DLaB.Common;
-using DLaB.Common.Exceptions;
-using DLaB.Xrm.Client;
-using DLaB.Xrm.LocalCrm.Entities;
-using DLaB.Xrm.LocalCrm.FetchXml;
-using Microsoft.Crm.Sdk.Messages;
-using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Client;
-using Microsoft.Xrm.Sdk.Messages;
-using Microsoft.Xrm.Sdk.Metadata;
-using Microsoft.Xrm.Sdk.Query;
 
 
 namespace DLaB.Xrm.LocalCrm
@@ -468,9 +467,7 @@ namespace DLaB.Xrm.LocalCrm
         private RetrieveAttributeResponse ExecuteInternal(RetrieveAttributeRequest request)
         {
             var response = new RetrieveAttributeResponse();
-            var entityType =
-                CrmServiceUtility.GetEarlyBoundProxyAssembly().GetTypes().FirstOrDefault(t =>
-                    t.GetCustomAttribute<EntityLogicalNameAttribute>(true)?.LogicalName == request.EntityLogicalName);
+            var entityType = CrmServiceUtility.GetEarlyBoundProxyAssembly().GetEntityType(request.EntityLogicalName);
 
             var propertyTypes = entityType?.GetProperties()
                 .Where(p =>
@@ -604,19 +601,8 @@ namespace DLaB.Xrm.LocalCrm
 
         private RetrieveEntityResponse ExecuteInternal(RetrieveEntityRequest request)
         {
-            var name = new LocalizedLabel(request.LogicalName, Info.LanguageCode);
-            var primaryName = Info.PrimaryNameProvider.GetPrimaryName(request.LogicalName);
-
-            var metadata = new EntityMetadata
-            {
-                DisplayCollectionName = new Label(name,
-                    new[]
-                    {
-                        name
-                    })
-            };
-            typeof(EntityMetadata).GetProperty(nameof(metadata.PrimaryNameAttribute))
-                ?.SetValue(metadata, primaryName, null);
+            var entityType = CrmServiceUtility.GetEarlyBoundProxyAssembly().GetEntityType(request.LogicalName);
+            var metadata = new TypeToMetadataGenerator().Generate(entityType, request.LogicalName, Info.PrimaryNameProvider.GetPrimaryName(request.LogicalName), Info.LanguageCode);
 
             return new RetrieveEntityResponse
             {

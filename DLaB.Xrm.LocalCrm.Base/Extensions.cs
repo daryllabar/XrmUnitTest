@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using DLaB.Xrm.LocalCrm.FetchXml;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.LocalCrm
@@ -12,6 +14,21 @@ namespace DLaB.Xrm.LocalCrm
     /// </summary>
     public static class Extensions
     {
+        #region Assembly
+
+        /// <summary>
+        /// Gets the entity type from the assembly.
+        /// </summary>
+        /// <param name="assembly"></param>
+        /// <param name="logicalName"></param>
+        /// <returns></returns>
+        internal static Type GetEntityType(this Assembly assembly, string logicalName)
+        {
+            return assembly.GetTypes().FirstOrDefault(t =>
+                t.GetCustomAttribute<EntityLogicalNameAttribute>(true)?.LogicalName == logicalName);
+        }
+
+        #endregion Assembly
         #region ConditionExpression
 
         /// <summary>
