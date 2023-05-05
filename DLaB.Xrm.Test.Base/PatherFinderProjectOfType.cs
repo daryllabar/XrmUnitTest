@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,13 @@ namespace DataverseUnitTest
 namespace DLaB.Xrm.Test
 #endif
 {
+
     /// <summary>
     /// Defines the path of a project
     /// </summary>
     public class PatherFinderProjectOfType : IPathFinder
     {
+        private string FallBackProjectDirectory { get; }
         private string ProjectPath { get; }
 
         /// <summary>
@@ -22,8 +25,11 @@ namespace DLaB.Xrm.Test
         /// </summary>
         /// <param name="type">The type.</param>
         /// <param name="projectRelativePath">The project relative path.</param>
-        public PatherFinderProjectOfType(Type type, string projectRelativePath = null)
+        /// <param name="fallBackProjectDirectory">The fallback project directory path to use.  Useful for Build Pipelines.</param>
+        public PatherFinderProjectOfType(Type type, string projectRelativePath = null, string fallBackProjectDirectory = null)
         {
+            FallBackProjectDirectory = fallBackProjectDirectory;
+
             var projectPath = FindProjectOfType(type);
             if (projectRelativePath != null)
             {
@@ -32,25 +38,31 @@ namespace DLaB.Xrm.Test
             ProjectPath = projectPath;
         }
 
-        private static string FindProjectOfType(Type type)
+        private string FindProjectOfType(Type type)
         {
-            var sb = new StringBuilder(); 
+            var sb = new StringBuilder();
             var projectName = type.AssemblyQualifiedName?.Split(',')[1].Trim();
             sb.AppendLine($"Looking for project folder for {projectName}");
 
-#if NET
-            // NET doesn't support CodeBase
-            var projectParentDirectory = GetProjectParentDirectory(type.Assembly.Location, sb);
-#else
+            var fileNamesToCheck = new List<string>();
+            fileNamesToCheck.Add(type.Assembly.Location);
+#if !NET
             // XUnit moves the location of the assembly to a temp location, use CodeBase instead
-            var projectParentDirectory = GetProjectParentDirectory(type.Assembly.Location, sb)
-                ?? GetProjectParentDirectory(type.Assembly.CodeBase.Substring(8), sb);
-
+            fileNamesToCheck.Add(type.Assembly.CodeBase.Substring(8));
 #endif
+            string projectParentDirectory = null;
+            foreach (var fileName in fileNamesToCheck)
+            {
+                projectParentDirectory = GetProjectParentDirectory(fileName, sb);
+                if (projectParentDirectory != null)
+                {
+                    break;
+                }
+            }
 
             if (string.IsNullOrWhiteSpace(projectParentDirectory))
             {
-                throw new Exception($"Unable to find Project Path for {type.FullName}.  Assembly Located at {type.Assembly.Location}{Environment.NewLine}{sb}");
+                throw new Exception($"Unable to find Project Path for {type.FullName}.  Assembly Located at {type.Assembly.Location}{Environment.NewLine}Files Checked:{fileNamesToCheck.ToCsv()}{Environment.NewLine}{sb}");
             }
 
             sb.AppendLine("Project Name " + projectName);
@@ -66,7 +78,7 @@ namespace DLaB.Xrm.Test
             return projectPath;
         }
 
-        private static string GetProjectParentDirectory(string dllFilePath, StringBuilder sb)
+        private string GetProjectParentDirectory(string dllFilePath, StringBuilder sb)
         {
             var dll = new FileInfo(dllFilePath);
 
@@ -104,6 +116,11 @@ namespace DLaB.Xrm.Test
                 solutionFolder = GetProjectParentDirectory(dll);
             }
 
+            if (solutionFolder == null && !string.IsNullOrWhiteSpace(FallBackProjectDirectory))
+            {
+                sb.AppendLine($"Fallback project directory used {FallBackProjectDirectory}");
+                return Directory.GetParent(FallBackProjectDirectory)?.FullName;
+            }
             sb.AppendLine($"Parent Directory of Project {solutionFolder}");
             return solutionFolder;
         }
@@ -149,7 +166,7 @@ namespace DLaB.Xrm.Test
                 ?? GetProjectPathFromSolutionFile(sb, dll, solutionFolder);
         }
 
-        private static string GetProjectParentDirectoryLiveUnitTestV2(StringBuilder sb, FileInfo dll, string[] folders)
+        private string GetProjectParentDirectoryLiveUnitTestV2(StringBuilder sb, FileInfo dll, string[] folders)
         {
             sb.AppendLine("Checking for Live Unit Tests");
             sb.AppendLine($"Dll Path: {dll.FullName}");
