@@ -350,7 +350,7 @@ namespace DLaB.Xrm.LocalCrm
             HandleFilterExpressionsWithAliases(qe, qe.Criteria).ToList();
             //var linkedEntities = GetLinkedEntitiesWithMappedAssociations(qe.LinkEntities);
             query = qe.LinkEntities.Aggregate(query, (q, e) => CallJoin(service.Info, q, e));
-            query = ApplyFilter(query, qe.Criteria);
+            query = ApplyFilter(query, qe.Criteria, new QueryContext(service.Info));
 
             var entities = query.ToList();
             if (qe.Orders.Any())

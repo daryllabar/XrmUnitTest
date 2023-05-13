@@ -180,6 +180,30 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.IsNull(GetContact());
         }
 
+        [TestMethod]
+        public void LocalCrmTests_ConditionExpression_EqualUserId()
+        {
+            var service = GetService();
+            var otherUserId = service.Create(new SystemUser());
+            var contactId = service.Create(new Contact { PreferredSystemUserId = new EntityReference(SystemUser.EntityLogicalName, otherUserId) });
+
+            var contact = service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.OwnerId, ConditionOperator.EqualUserId));
+            Assert.IsNotNull(contact, "Contact should have been found because the current user is the equal user");
+
+            contact = service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.PreferredSystemUserId, ConditionOperator.EqualUserId));
+            Assert.IsNull(contact, "Contact should not have been found because the current user is not the equal user");
+
+            contact = service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.PreferredSystemUserId, ConditionOperator.NotEqualUserId));
+            Assert.IsNotNull(contact, "Contact should have been found because the current user is not the equal user");
+
+            service.Update(new Contact { Id = contactId, PreferredSystemUserId = null });
+            contact = service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.PreferredSystemUserId, ConditionOperator.EqualUserId));
+            Assert.IsNull(contact, "Contact should not have been found because the preferred user was null");
+
+            contact = service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.PreferredSystemUserId, ConditionOperator.NotEqualUserId));
+            Assert.IsNotNull(contact, "Contact should have been found because the current user is not the equal user");
+        }
+
 #if !XRM_2013 && !XRM_2015 && !XRM_2016
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_ContainsValue()

@@ -52,6 +52,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)PrimaryNameFieldProviderBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PrimaryNameViaFieldProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PrimaryNameViaNonStandardNamesProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)QueryContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TypeToMetadataGenerator.cs" />
   </ItemGroup>
 </Project>

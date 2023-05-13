@@ -44,7 +44,7 @@ namespace DLaB.Xrm.LocalCrm
                          select new LinkEntityTypes<TFrom, TTo>(AddAliasedColumns(f, t, link), t);
 
                 // Apply any Conditions on the Link Entity
-                result = ApplyLinkFilter(result, link.LinkCriteria);
+                result = ApplyLinkFilter(info, result, link.LinkCriteria);
             }
             else
             {
@@ -59,7 +59,7 @@ namespace DLaB.Xrm.LocalCrm
                              new
                              {
                                  Id = ConvertCrmTypeToBasicComparable(t, link.LinkToAttributeName),
-                                 FilterConditions = EvaluateFilter(t, link.LinkCriteria)
+                                 FilterConditions = EvaluateFilter(t, link.LinkCriteria, new QueryContext(info))
                              }
                              into joinResult
                          from t in joinResult.DefaultIfEmpty()
@@ -75,11 +75,11 @@ namespace DLaB.Xrm.LocalCrm
             return root;
         }
 
-        private static IQueryable<LinkEntityTypes<TFrom, TTo>> ApplyLinkFilter<TFrom, TTo>(IQueryable<LinkEntityTypes<TFrom, TTo>> query, FilterExpression filter)
+        private static IQueryable<LinkEntityTypes<TFrom, TTo>> ApplyLinkFilter<TFrom, TTo>(LocalCrmDatabaseInfo info, IQueryable<LinkEntityTypes<TFrom, TTo>> query, FilterExpression filter)
             where TFrom : Entity
             where TTo : Entity
         {
-            return query.Where(l => EvaluateFilter(l.Current, filter));
+            return query.Where(l => EvaluateFilter(l.Current, filter, new QueryContext(info)));
         }
 
         private static IQueryable<TRoot> CallChildJoin<TRoot, TFrom>(LocalCrmDatabaseInfo info, IQueryable<TRoot> query, LinkEntity fromEntity, LinkEntity link)
@@ -123,7 +123,7 @@ namespace DLaB.Xrm.LocalCrm
             }
 
             // Apply any Conditions on the Link Entity
-            result = ApplyLinkFilter(result, link.LinkCriteria);
+            result = ApplyLinkFilter(info, result, link.LinkCriteria);
 
             var root = result.Select(r => r.Root);
             foreach (var entity in link.LinkEntities)

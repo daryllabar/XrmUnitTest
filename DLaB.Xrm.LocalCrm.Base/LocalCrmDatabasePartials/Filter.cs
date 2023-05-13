@@ -10,9 +10,9 @@ namespace DLaB.Xrm.LocalCrm
     internal partial class LocalCrmDatabase
     {
 
-        private static IQueryable<T> ApplyFilter<T>(IQueryable<T> query, FilterExpression filter) where T : Entity
+        private static IQueryable<T> ApplyFilter<T>(IQueryable<T> query, FilterExpression filter, QueryContext context) where T : Entity
         {
-            return query.Where(e => EvaluateFilter(e, filter));
+            return query.Where(e => EvaluateFilter(e, filter, context));
         }
 
         /// <summary>
@@ -21,19 +21,20 @@ namespace DLaB.Xrm.LocalCrm
         /// <typeparam name="T"></typeparam>
         /// <param name="entity"></param>
         /// <param name="filter"></param>
+        /// <param name="context"></param>
         /// <returns></returns>
-        private static bool EvaluateFilter<T>(T entity, FilterExpression filter) where T : Entity
+        private static bool EvaluateFilter<T>(T entity, FilterExpression filter, QueryContext context) where T : Entity
         {
             if (entity == null) { return true; } // This should only happen for Left Outer Joins
 
             bool matchesFilter;
             if (filter.FilterOperator == LogicalOperator.And)
             {
-                matchesFilter = filter.Conditions.All(c => ConditionIsTrue(entity, c)) && filter.Filters.All(f => EvaluateFilter(entity, f));
+                matchesFilter = filter.Conditions.All(c => ConditionIsTrue(entity, c, context)) && filter.Filters.All(f => EvaluateFilter(entity, f, context));
             }
             else
             {
-                matchesFilter = filter.Conditions.Any(c => ConditionIsTrue(entity, c)) || filter.Filters.Any(f => EvaluateFilter(entity, f));
+                matchesFilter = filter.Conditions.Any(c => ConditionIsTrue(entity, c, context)) || filter.Filters.Any(f => EvaluateFilter(entity, f, context));
             }
 
             return matchesFilter;
@@ -131,7 +132,7 @@ namespace DLaB.Xrm.LocalCrm
 #endif
         };
 
-        private static bool ConditionIsTrue<T>(T entity, ConditionExpression condition) where T : Entity
+        private static bool ConditionIsTrue<T>(T entity, ConditionExpression condition, QueryContext context) where T : Entity
         {
             // Date Time Details: https://community.dynamics.com/crm/b/gonzaloruiz/archive/2012/07/29/date-and-time-operators-in-crm-explained
 
@@ -175,7 +176,7 @@ namespace DLaB.Xrm.LocalCrm
                     }
                     break;
                 case ConditionOperator.NotLike:
-                    value = !ConditionIsTrue(entity, new ConditionExpression(condition.EntityName, condition.AttributeName, ConditionOperator.Like));
+                    value = !ConditionIsTrue(entity, new ConditionExpression(condition.EntityName, condition.AttributeName, ConditionOperator.Like), context);
                     break;
                 case ConditionOperator.In:
                     value = condition.Values.Any(v => Compare(entity, name, v) == 0);
@@ -194,23 +195,23 @@ namespace DLaB.Xrm.LocalCrm
                     value = Compare(entity, name, null) != 0;
                     break;
                 case ConditionOperator.Yesterday:
-                    value = IsBetween(entity, condition, DateTime.UtcNow.Date.AddDays(-1), DateTime.UtcNow.Date);
+                    value = IsBetween(entity, condition, DateTime.UtcNow.Date.AddDays(-1), DateTime.UtcNow.Date, context);
                     break;
                 case ConditionOperator.Today:
-                    value = IsBetween(entity, condition, DateTime.UtcNow.Date, DateTime.UtcNow.Date.AddDays(1));
+                    value = IsBetween(entity, condition, DateTime.UtcNow.Date, DateTime.UtcNow.Date.AddDays(1), context);
                     break;
                 case ConditionOperator.Tomorrow:
-                    value = IsBetween(entity, condition, DateTime.UtcNow.Date.AddDays(1), DateTime.UtcNow.Date.AddDays(2));
+                    value = IsBetween(entity, condition, DateTime.UtcNow.Date.AddDays(1), DateTime.UtcNow.Date.AddDays(2), context);
                     break;
                 case ConditionOperator.Last7Days:
                     condition.Operator = ConditionOperator.LastXDays;
                     condition.Values.Add(7);
-                    value = ConditionIsTrue(entity, condition);
+                    value = ConditionIsTrue(entity, condition, context);
                     break;
                 case ConditionOperator.Next7Days:
                     condition.Operator = ConditionOperator.NextXDays;
                     condition.Values.Add(7);
-                    value = ConditionIsTrue(entity, condition);
+                    value = ConditionIsTrue(entity, condition, context);
                     break;
                 //case ConditionOperator.LastWeek:
                 //    break;
@@ -236,11 +237,11 @@ namespace DLaB.Xrm.LocalCrm
                     {
                         date = date.AddDays(1);
                     }
-                    value = IsBetween(entity, condition, DateTime.MinValue, date);
+                    value = IsBetween(entity, condition, DateTime.MinValue, date, context);
                     break;
                 case ConditionOperator.OnOrAfter:
                     date = condition.GetDateTimeValueFromDateOrString().Date;
-                    value = IsBetween(entity, condition, date, DateTime.MaxValue);
+                    value = IsBetween(entity, condition, date, DateTime.MaxValue, context);
                     break;
                 //    break;
                 //case ConditionOperator.LastYear:
@@ -260,7 +261,7 @@ namespace DLaB.Xrm.LocalCrm
                         throw CrmExceptions.GetConditionValueGreaterThan0Exception();
                     }
 
-                    value = IsBetween(entity, condition, DateTime.UtcNow.Date.AddDays(-1d * days), DateTime.UtcNow.AddDays(1).Date);
+                    value = IsBetween(entity, condition, DateTime.UtcNow.Date.AddDays(-1d * days), DateTime.UtcNow.AddDays(1).Date, context);
                     break;
                 case ConditionOperator.NextXDays:
                     days = condition.GetIntValueFromIntOrString();
@@ -268,7 +269,7 @@ namespace DLaB.Xrm.LocalCrm
                     {
                         throw CrmExceptions.GetConditionValueGreaterThan0Exception();
                     }
-                    value = IsBetween(entity, condition, DateTime.UtcNow, DateTime.UtcNow.Date.AddDays(days + 1));
+                    value = IsBetween(entity, condition, DateTime.UtcNow, DateTime.UtcNow.Date.AddDays(days + 1), context);
                     break;
                 //case ConditionOperator.LastXWeeks:
                 //    break;
@@ -282,14 +283,18 @@ namespace DLaB.Xrm.LocalCrm
                 //    break;
                 //case ConditionOperator.NextXYears:
                 //    break;
-                //case ConditionOperator.EqualUserId:
-                //    break;
-                //case ConditionOperator.NotEqualUserId:
-                //    break;
-                //case ConditionOperator.EqualBusinessId:
-                //    break;
-                //case ConditionOperator.NotEqualBusinessId:
-                //    break;
+                case ConditionOperator.EqualUserId:
+                    value = Compare(entity, name, context.UserId) == 0;
+                    break;
+                case ConditionOperator.NotEqualUserId:
+                    value = Compare(entity, name, context.UserId) != 0;
+                    break;
+                case ConditionOperator.EqualBusinessId:
+                    value = Compare(entity, name, context.BusinessUnitId) == 0;
+                    break;
+                case ConditionOperator.NotEqualBusinessId:
+                    value = Compare(entity, name, context.BusinessUnitId) != 0;
+                    break;
                 //case ConditionOperator.ChildOf:
                 //    break;
                 //case ConditionOperator.Mask:
@@ -321,7 +326,7 @@ namespace DLaB.Xrm.LocalCrm
                     break;
                 case ConditionOperator.DoesNotBeginWith:
                     condition.Operator = ConditionOperator.BeginsWith;
-                    value = !ConditionIsTrue(entity, condition);
+                    value = !ConditionIsTrue(entity, condition, context);
                     break;
                 case ConditionOperator.EndsWith:
                     var endsWithStr = GetString(entity, name);
@@ -336,7 +341,7 @@ namespace DLaB.Xrm.LocalCrm
                     break;
                 case ConditionOperator.DoesNotEndWith:
                     condition.Operator = ConditionOperator.EndsWith;
-                    value = !ConditionIsTrue(entity, condition);
+                    value = !ConditionIsTrue(entity, condition, context);
                     break;
                 //case ConditionOperator.ThisFiscalYear:
                 //    break;
@@ -377,7 +382,7 @@ namespace DLaB.Xrm.LocalCrm
                     break;
                 case ConditionOperator.DoesNotContainValues:
                     condition.Operator = ConditionOperator.ContainValues;
-                    value = !ConditionIsTrue(entity, condition);
+                    value = !ConditionIsTrue(entity, condition, context);
                     break;
 #endif
                 default:
@@ -413,15 +418,16 @@ namespace DLaB.Xrm.LocalCrm
         /// <param name="condition">The condition.</param>
         /// <param name="start">The start.</param>
         /// <param name="end">The end.</param>
+        /// <param name="context">The context for the current query.</param>
         /// <param name="inclusiveStart">if set to <c>true</c> [inclusive start].</param>
         /// <param name="inclusiveEnd">if set to <c>true</c> [inclusive end].</param>
         /// <returns></returns>
-        private static bool IsBetween<T>(T entity, ConditionExpression condition, DateTime start, DateTime end, bool inclusiveStart = true, bool inclusiveEnd = false) where T : Entity
+        private static bool IsBetween<T>(T entity, ConditionExpression condition, DateTime start, DateTime end, QueryContext context, bool inclusiveStart = true, bool inclusiveEnd = false) where T : Entity
         {
             var isGreaterThan = inclusiveStart ? ConditionOperator.GreaterEqual : ConditionOperator.GreaterThan;
             var isLessThan = inclusiveEnd ? ConditionOperator.LessEqual : ConditionOperator.LessThan;
-            return ConditionIsTrue(entity, new ConditionExpression(condition.AttributeName, isGreaterThan, start))
-                && ConditionIsTrue(entity, new ConditionExpression(condition.AttributeName, isLessThan, end));
+            return ConditionIsTrue(entity, new ConditionExpression(condition.AttributeName, isGreaterThan, start), context)
+                && ConditionIsTrue(entity, new ConditionExpression(condition.AttributeName, isLessThan, end), context);
         }
 
         private static IEnumerable<FilterExpression> HandleFilterExpressionsWithAliases(QueryExpression qe, FilterExpression fe)
