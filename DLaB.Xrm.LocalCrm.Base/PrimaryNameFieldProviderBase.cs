@@ -36,7 +36,8 @@ namespace DLaB.Xrm.LocalCrm
                 "lookupmapping",
                 "ownermapping",
                 "picklistmapping",
-                "transformationmapping"
+                "transformationmapping",
+                "usersettings"
             };
 
             foreach (var value in AppConfig.CrmEntities.NamelessEntities
