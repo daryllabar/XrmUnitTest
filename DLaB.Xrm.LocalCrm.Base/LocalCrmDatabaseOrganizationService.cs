@@ -316,7 +316,7 @@ namespace DLaB.Xrm.LocalCrm
 
         private EntityCollection RetrieveMultipleInternal(QueryBase query)
         {
-            throw new NotImplementedException("Retrieve Multiple for Query Base Type " + query.GetType().FullName + " not Impemented");
+            throw new NotImplementedException("Retrieve Multiple for Query Base Type " + query.GetType().FullName + " not Implemented");
         }
 
         private EntityCollection RetrieveMultipleInternal(FetchExpression fetchExpression)

@@ -701,6 +701,43 @@ namespace DLaB.Xrm.LocalCrm.Tests
             service.Create(connection);
         }
 
+        [TestMethod]
+        public void LocalCrmTests_Crud_DateComparisonForNull()
+        {
+            // ARRANGE
+            var info = LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString());
+            var service = new LocalCrmDatabaseOrganizationService(info).Service;
+            var today = new DateTime(2023, 5, 30).Date;
+            var agreementNoDate = new msdyn_agreement
+            {
+                Id = Guid.NewGuid(),
+                msdyn_name = "no date",
+                msdyn_StartDate = null,
+            };
+            service.Create(agreementNoDate);
+
+            using (var ctx = new CrmContext(service))
+            {
+                // ASSERT that null is not equal to a date value
+                Assert.IsNull(ctx.msdyn_agreementSet.FirstOrDefault(x => x.msdyn_StartDate > today));
+                Assert.IsNull(ctx.msdyn_agreementSet.FirstOrDefault(x => x.msdyn_StartDate >= today));
+                Assert.IsNull(ctx.msdyn_agreementSet.FirstOrDefault(x => x.msdyn_StartDate == today));
+                Assert.IsNull(ctx.msdyn_agreementSet.FirstOrDefault(x => x.msdyn_StartDate == DateTime.MinValue));
+
+                // ASSERT that null is equal to null
+                Assert.IsNotNull(ctx.msdyn_agreementSet.FirstOrDefault(x => x.msdyn_StartDate == null));
+
+                Assert.IsNull(ctx.msdyn_agreementSet.FirstOrDefault(x => x.msdyn_StartDate < today));
+                Assert.IsNull(ctx.msdyn_agreementSet.FirstOrDefault(x => x.msdyn_StartDate <= today));
+
+                agreementNoDate.msdyn_StartDate = today;
+                service.Update(agreementNoDate);
+                Assert.IsNotNull(ctx.msdyn_agreementSet.FirstOrDefault(x => x.msdyn_StartDate <= today));
+                Assert.IsNotNull(ctx.msdyn_agreementSet.FirstOrDefault(x => x.msdyn_StartDate >= today));
+                Assert.IsNotNull(ctx.msdyn_agreementSet.FirstOrDefault(x => x.msdyn_StartDate == today));
+            }
+        }
+
         #region Shared Methods
 
 

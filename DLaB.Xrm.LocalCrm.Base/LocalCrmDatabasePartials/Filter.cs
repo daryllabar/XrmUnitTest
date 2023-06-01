@@ -40,7 +40,7 @@ namespace DLaB.Xrm.LocalCrm
             return matchesFilter;
         }
 
-        private static Dictionary<ConditionOperator, int> ExpectedValuesByConditionOperator = new Dictionary<ConditionOperator, int>
+        private static readonly Dictionary<ConditionOperator, int> ExpectedValuesByConditionOperator = new Dictionary<ConditionOperator, int>
         {
 
             { ConditionOperator.BeginsWith, 1 },
@@ -154,13 +154,15 @@ namespace DLaB.Xrm.LocalCrm
                     value = Compare(entity, name, condition.Values[0]) > 0;
                     break;
                 case ConditionOperator.LessThan:
-                    value = Compare(entity, name, condition.Values[0]) < 0;
+                    var result = Compare(entity, name, condition.Values[0]);
+                    value = result >= -1 && result < 0;
                     break;
                 case ConditionOperator.GreaterEqual:
                     value = Compare(entity, name, condition.Values[0]) >= 0;
                     break;
                 case ConditionOperator.LessEqual:
-                    value = Compare(entity, name, condition.Values[0]) <= 0;
+                    result = Compare(entity, name, condition.Values[0]);
+                    value = result >= -1 && result <= 0;
                     break;
                 case ConditionOperator.Like:
                     var str = GetString(entity, name);

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using System.ServiceModel;
 using DLaB.Xrm.CrmSdk;
 using DLaB.Xrm.LocalCrm.Entities;
 using DLaB.Xrm.LocalCrm.FetchXml;
@@ -109,7 +108,7 @@ namespace DLaB.Xrm.LocalCrm
                     return 0;
                 }
 
-                return -1;
+                return -2; // Value was null
             }
 
             if (compareTo == null)
