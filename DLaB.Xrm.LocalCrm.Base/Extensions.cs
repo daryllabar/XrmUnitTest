@@ -233,7 +233,7 @@ namespace DLaB.Xrm.LocalCrm
         #region List<T> where T : Entity
 
         /// <summary>
-        /// Orders the entiities by the specified OrderExpressoin
+        /// Orders the entities by the specified OrderExpression
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="entities">The entities.</param>
@@ -243,7 +243,7 @@ namespace DLaB.Xrm.LocalCrm
         {
             return order.OrderType == OrderType.Ascending ?
                 entities.OrderBy(e => ConvertStringObjectToLower(e[order.AttributeName])) :
-                entities.OrderByDescending(e => ConvertStringObjectToLower(e[order.AttributeName]));
+                entities.OrderByDescending(e => ConvertStringObjectToLower(e.GetAttributeValue<object>(order.AttributeName)));
         }
 
         #endregion List<T> where T : Entity

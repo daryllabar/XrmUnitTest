@@ -373,7 +373,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var qe = new QueryExpression(Contact.EntityLogicalName) { ColumnSet = new ColumnSet(true) };
 
             // Ascending Order Test
-            qe.AddOrder("firstname", OrderType.Ascending);
+            qe.AddOrder(Contact.Fields.FirstName, OrderType.Ascending);
             var results = service.GetEntities<Contact>(qe);
 
             Assert.AreEqual("Anna", results[0].FirstName, "Ascending Ordering failed.  \"Anna\" should have been returned first");
@@ -388,6 +388,15 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.AreEqual("Bill", results[1].FirstName, "Descending Ordering failed.  \"Bill\" should have been returned second");
             Assert.AreEqual("Anna", results[2].FirstName, "Descending Ordering failed.  \"Anna\" should have been returned third");
 
+            // Attribute Missing Test
+            qe.Orders[0].AttributeName = Guid.NewGuid().ToString();
+            results = service.GetEntities<Contact>(qe);
+
+            Assert.AreEqual("Chuck", results[0].FirstName, "Ordering with missing attribute failed.  \"Chuck\" should have been returned first");
+            Assert.AreEqual("Anna", results[1].FirstName, "Ordering with missing attribute failed.  \"Bill\" should have been returned second");
+            Assert.AreEqual("Bill", results[2].FirstName, "Ordering with missing attribute failed.  \"Anna\" should have been returned third");
+
+
             // Add Dups
             System.Threading.Thread.Sleep(1000); // Sleep to ensure that the creation date is different
             service.Create(new Contact { FirstName = "Chuck", LastName = "Bell" });
@@ -398,7 +407,8 @@ namespace DLaB.Xrm.LocalCrm.Tests
             service.Create(new Contact { FirstName = "Chuck", LastName = "Carter" });
 
             // Order By Descending First Then By Ascending Last Test
-            qe.AddOrder("lastname", OrderType.Ascending);
+            qe.Orders[0].AttributeName = Contact.Fields.FirstName;
+            qe.AddOrder(Contact.Fields.LastName, OrderType.Ascending);
             results = service.GetEntities<Contact>(qe);
 
             Assert.AreEqual(9, results.Count, "9 Contacts have been created");
