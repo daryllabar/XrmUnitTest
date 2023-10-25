@@ -4,7 +4,6 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using XrmUnitTest.Test;
 using Microsoft.Xrm.Sdk.Query;
-using System.Web.Services.Description;
 #if NET
 using DataverseUnitTest.Assumptions;
 using DataverseUnitTest;
