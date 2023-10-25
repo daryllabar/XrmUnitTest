@@ -9,6 +9,7 @@ using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
 using XrmUnitTest.Test;
 using XrmUnitTest.Test.Builders;
+using Microsoft.Xrm.Sdk.Query;
 #if NET
 using DataverseUnitTest;
 #else
@@ -250,6 +251,30 @@ namespace DLaB.Xrm.LocalCrm.Tests
             account.KeyAttributes[Account.Fields.ParentAccountId] = new EntityReference( Account.EntityLogicalName, parentId);
             TestUpsertCreateAndUpdate(service, account);
         }
+
+#if !PRE_KEYATTRIBUTE
+        [TestMethod]
+        public void LocalCrmDatabaseOrganizationServiceExecuteTests_RetrieveRequestByAltKey()
+        {
+            TestInitializer.InitializeTestSettings();
+            var service = GetService();
+            var account = new Account
+            {
+                Name = "1st"
+            };
+            account.Id = service.Create(account);
+
+            var request = new RetrieveRequest
+            {
+                ColumnSet = new ColumnSet(),
+                Target = new EntityReference(Account.EntityLogicalName, Account.Fields.Name, account.Name)
+            };
+
+            var response = (RetrieveResponse)service.Execute(request);
+            
+            Assert.AreEqual(account.Id, response.Entity.Id);
+        }
+#endif
 
         private static void TestUpsertCreateAndUpdate(IOrganizationService service, Account toUpsert)
         {

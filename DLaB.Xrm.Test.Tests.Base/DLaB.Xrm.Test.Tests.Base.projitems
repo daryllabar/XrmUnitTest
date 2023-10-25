@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Builders\OrganizationServiceBuilderTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\PluginExecutionContextBuilderTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\ServiceProviderBuilderTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FakeOrganizationServiceTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityDependencyTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IdTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionsTests.cs" />

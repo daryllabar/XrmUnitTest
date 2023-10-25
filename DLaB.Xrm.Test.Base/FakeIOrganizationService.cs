@@ -485,7 +485,14 @@ namespace DLaB.Xrm.Test
 
             if (request is RetrieveRequest retrieve)
             {
-                response = new RetrieveResponse { ["Entity"] = Retrieve(retrieve.Target.LogicalName, retrieve.Target.Id, retrieve.ColumnSet) };
+                var target = retrieve.Target;
+#if !PRE_KEYATTRIBUTE
+                if (target.Id == Guid.Empty && target.KeyAttributes.Count > 0)
+                {
+                    target = this.GetEntityOrDefault(target.LogicalName, target.KeyAttributes, retrieve.ColumnSet).ToEntityReference();
+                }
+#endif
+                response = new RetrieveResponse { ["Entity"] = Retrieve(target.LogicalName, target.Id, retrieve.ColumnSet) };
             }
 
             if (request is RetrieveMultipleRequest retrieveMultiple)
