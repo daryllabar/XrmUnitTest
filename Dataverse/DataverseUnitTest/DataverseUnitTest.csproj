@@ -7,8 +7,8 @@
     <DelaySign>false</DelaySign>
     <Version>1.0.0</Version>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <AssemblyVersion>2.3.0.45</AssemblyVersion>
-    <FileVersion>2.3.0.45</FileVersion>
+    <AssemblyVersion>2.3.0.46</AssemblyVersion>
+    <FileVersion>2.3.0.46</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -8,6 +8,8 @@ using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
 #if NET
 using DLaB.Xrm;
+using Microsoft.PowerPlatform.Dataverse.Client;
+using System.Threading.Tasks;
 
 namespace DataverseUnitTest
 #else
@@ -16,10 +18,10 @@ namespace DLaB.Xrm.Test
 #endif
 {
     /// <summary>
-    /// Class that uses a real OrganizationServiceProxy under the covers, but allows for injection of
+    /// Class that wraps an IOrganizationService under the covers, but allows for injection of
     /// different code for faking data in the database.
     ///  
-    /// Example Use Case that will return a new empty system user for queryexpression that is for System Users
+    /// Example Use Case that will return a new empty system user for the QueryExpression that is for System Users
     /// else, executes the query and returns the results as normal:                
     /// using (var proxy = GetOrganizationServiceProxy())
     /// {
@@ -43,7 +45,11 @@ namespace DLaB.Xrm.Test
 #if !DEBUG_XRM_UNIT_TEST_CODE
     [DebuggerNonUserCode]
 #endif
+#if NET
+    public class FakeIOrganizationService : ClientSideOrganizationService, IServiceFaked<IOrganizationService>, IFakeService, IOrganizationServiceAsync
+#else
     public class FakeIOrganizationService : ClientSideOrganizationService, IServiceFaked<IOrganizationService>, IFakeService
+#endif
     {
         #region IOrganizationService Mocks
 
@@ -646,5 +652,49 @@ namespace DLaB.Xrm.Test
         }
 
         #endregion
+
+        #region IServiceFaked<IOrganizationService> Members
+#if NET
+        public Task<Guid> CreateAsync(Entity entity)
+        {
+            return Task.FromResult(Create(entity));
+        }
+
+        public Task<Entity> RetrieveAsync(string entityName, Guid id, ColumnSet columnSet)
+        {
+            return Task.FromResult(Retrieve(entityName, id, columnSet));
+        }
+
+        public Task UpdateAsync(Entity entity)
+        {
+            return Task.Run(() => Update(entity));
+        }
+
+        public Task DeleteAsync(string entityName, Guid id)
+        {
+            return Task.Run(() => Delete(entityName, id));
+        }
+
+        public Task<OrganizationResponse> ExecuteAsync(OrganizationRequest request)
+        {
+            return Task.FromResult(Execute(request));
+        }
+
+        public Task AssociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
+        {
+            return Task.Run(() => Associate(entityName, entityId, relationship, relatedEntities));
+        }
+
+        public Task DisassociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
+        {
+            return Task.Run(() => Disassociate(entityName, entityId, relationship, relatedEntities));
+        }
+
+        public Task<EntityCollection> RetrieveMultipleAsync(QueryBase query)
+        {
+            return Task.FromResult(RetrieveMultiple(query));
+        }
+#endif
+        #endregion IServiceFaked<IOrganizationService> Members
     }
 }
