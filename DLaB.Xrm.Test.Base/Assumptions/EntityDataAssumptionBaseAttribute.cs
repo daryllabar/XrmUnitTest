@@ -35,14 +35,15 @@ namespace DLaB.Xrm.Test.Assumptions
         private string AssumptionsNamespaceRelativePath => GetAssumptionsNamespaceRelativePath(GetType());
 
         private static readonly Dictionary<string, Entity> EntitiesFromServerByAttributeType = new Dictionary<string, Entity>();
+        private static IOrganizationService LocalServiceForEntitiesFromServer { get;set;}
 
         private Entity PreviouslyRetrievedEntity
         {
             get => EntitiesFromServerByAttributeType.ContainsKey(GetType().FullName ?? GetType().Name)
-                    ? EntitiesFromServerByAttributeType[GetType().FullName ?? GetType().Name].ToSdkEntity()
+                    ? EntitiesFromServerByAttributeType[GetType().FullName ?? GetType().Name]
                     : null;
 
-            set => EntitiesFromServerByAttributeType[GetType().FullName ?? GetType().Name] = value;
+            set => EntitiesFromServerByAttributeType[GetType().FullName ?? GetType().Name] = value.ToSdkEntity();
         }
 
         private IEnumerable<Type> GetPrerequisites()
@@ -148,13 +149,16 @@ namespace DLaB.Xrm.Test.Assumptions
         /// <param name="service">The service.</param>
         protected virtual void AddAssumedEntitiesInternal(IOrganizationService service)
         {
-            var entity = PreviouslyRetrievedEntity?.Clone();
+            var entity = (IsLocal(service) && LocalServiceForEntitiesFromServer != service)
+                ? null
+                : PreviouslyRetrievedEntity?.Clone();
             if (entity == null)
             {
                 entity = RetrieveEntity(service);
                 if (entity != null)
                 {
                     PreviouslyRetrievedEntity = entity; 
+                    LocalServiceForEntitiesFromServer = service;
                 }
             }
             entity = VerifyAssumption(service, entity);

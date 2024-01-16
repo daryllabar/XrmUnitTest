@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DLaB.Common;
 using DLaB.Xrm.Entities;
+using DLaB.Xrm.Ioc;
 using DLaB.Xrm.Plugin;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
@@ -345,6 +346,8 @@ namespace DLaB.Xrm.Test.Tests
         [TestMethod]
         public void TestMethodClassBaseDLaB_AssumptionParentFirst_Should_LoadAssumptions()
         {
+            new AssumptionParentFirst_Should_LoadAssumptions().Test();
+            // Test for failure when the same test is ran twice, and then another test uses a cached values.
             new AssumptionParentFirst_Should_LoadAssumptions().Test();
         }
 
