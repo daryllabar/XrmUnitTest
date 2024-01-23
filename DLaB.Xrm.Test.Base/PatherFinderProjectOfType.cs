@@ -19,6 +19,10 @@ namespace DLaB.Xrm.Test
     {
         private string FallBackProjectDirectory { get; }
         private string ProjectPath { get; }
+        /// <summary>
+        /// Function to map from the assumed path to the correct one.  First Parameter is the Assumed Project Parent Path.  The Second Parameter is the Project Name.
+        /// </summary>
+        public Func<string, string, string> MapAssumedProjectParentPathToActual { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PatherFinderProjectOfType"/> class.
@@ -69,6 +73,18 @@ namespace DLaB.Xrm.Test
             sb.AppendLine("Project Parent Folder " + projectParentDirectory);
             var projectPath = Path.Combine(projectParentDirectory, projectName ?? "");
 
+            if (!Directory.Exists(projectPath))
+            {
+                if(MapAssumedProjectParentPathToActual == null)
+                {
+                    sb.AppendLine($"Assumed Project Folder {projectPath} not found! Consider using a different IPathFinder like PathFinderAbsolute, PathFinderEnvironmentFolder, or utilizing {nameof(PatherFinderProjectOfType)}.MapAssumedProjectParentPathToActual to map to the correct path." );
+                }
+                else
+                {
+                    sb.AppendLine($"Assumed Project Folder {projectPath} not found! Attempting MapAssumedProjectParentPathToActual to map to the correct path.");
+                    projectPath = MapAssumedProjectParentPathToActual(projectParentDirectory, projectName);
+                }
+            }
             sb.AppendLine("Project Folder " + projectPath);
             if (!Directory.Exists(projectPath))
             {
