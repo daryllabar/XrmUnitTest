@@ -14,6 +14,10 @@ namespace DLaB.Xrm.Test
     {
         private Dictionary<Type, object> Services { get; set; }
         /// <summary>
+        /// Fallback service if the current ServiceProvider doesn't define a requested type.
+        /// </summary>
+        public IServiceProvider DefaultProvider { get; set; }
+        /// <summary>
         /// Used during cloning to skip cloning the types in the HashSet
         /// </summary>
         public HashSet<Type> TypesToSkipCloning { get; set; }
@@ -40,7 +44,7 @@ namespace DLaB.Xrm.Test
                 return service;
             }
 
-            return null;
+            return DefaultProvider?.GetService(serviceType);
         }
 
         /// <summary>

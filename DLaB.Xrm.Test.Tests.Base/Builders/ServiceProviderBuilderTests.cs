@@ -59,5 +59,47 @@ namespace DLaB.Xrm.Test.Tests.Builders
             var provider = new ServiceProviderBuilder().Build();
             Assert.IsNull(provider.GetService(typeof(ServiceProviderBuilderTests)));
         }
+
+        [TestMethod]
+        public void ServiceProviderBuilder_CallToGetServiceShould_UtilizeDefault()
+        {
+            var defaultProvider = new FakeServiceProvider();
+            defaultProvider.AddService("1");
+            var provider = new ServiceProviderBuilder()
+                .WithDefaultProvider(defaultProvider);
+            Assert.AreEqual("1", provider.Build().GetService<string>());
+
+            provider.WithService("2");
+            Assert.AreEqual("2", provider.Build().GetService<string>());
+        }
+
+        [TestMethod]
+        public void ServiceProviderBuilder_BuildInternal_Should_OverrideDefault()
+        {
+            var defaultProvider = new FakeServiceProvider();
+            var builder = new TestServiceBuilder
+            {
+                Provider = defaultProvider
+            };
+
+            var provider = builder.Build();
+            Assert.IsTrue(ReferenceEquals(defaultProvider, provider));
+            Assert.IsTrue(!ReferenceEquals(builder.BuiltProvider, provider));
+        }
+
+
+        public class TestServiceBuilder: ServiceProviderBuilderBase<TestServiceBuilder>
+        {
+            protected override TestServiceBuilder This => this;
+
+            public IServiceProvider Provider { get; set;}
+            public IServiceProvider BuiltProvider { get; set; }
+
+
+            protected override IServiceProvider BuildInternal(IServiceProvider provider)
+            {
+                return Provider;
+            }
+        }
     }
 }

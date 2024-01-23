@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
+
 #if NET
 using DLaB.Xrm;
 
@@ -79,6 +80,8 @@ namespace DLaB.Xrm.Test.Builders
 
         private FakeServiceProvider ServiceProvider { get; }
 
+        #region Constructors
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceProviderBuilderBase{TDerived}" /> class.
         /// </summary>
@@ -86,7 +89,6 @@ namespace DLaB.Xrm.Test.Builders
                     : this(TestBase.GetOrganizationService(),
                     new FakePluginExecutionContext(), (ITestLogger)null)
         {
-
         }
 
         /// <summary>
@@ -97,7 +99,6 @@ namespace DLaB.Xrm.Test.Builders
         protected ServiceProviderBuilderBase(IOrganizationService service, IPluginExecutionContext context) : this(service,context, (ITestLogger)null)
         {
         }
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceProviderBuilderBase{TDerived}" /> class.
@@ -126,6 +127,8 @@ namespace DLaB.Xrm.Test.Builders
             ServiceProvider.AddService(context);
             ServiceProvider.AddService(trace);
         }
+
+        #endregion Constructors
 
         #region Fluent Methods
 
@@ -158,6 +161,17 @@ namespace DLaB.Xrm.Test.Builders
         public TDerived WithoutClone(Type type)
         {
             ServiceProvider.TypesToSkipCloning.Add(type);
+            return This;
+        }
+
+        /// <summary>
+        /// The fallback service provider if the built IServiceProvider doesn't define a requested type.
+        /// </summary>
+        /// <param name="defaultProvider">The fallback service provider if the built IServiceProvider doesn't define a requested type.</param>
+        /// <returns></returns>
+        public TDerived WithDefaultProvider(IServiceProvider defaultProvider)
+        {
+            ServiceProvider.DefaultProvider = defaultProvider;
             return This;
         }
 
@@ -219,12 +233,28 @@ namespace DLaB.Xrm.Test.Builders
         #endregion Fluent Methods
 
         /// <summary>
+        /// Called before the Service Provider Build() is called.
+        /// </summary>
+        protected virtual void PreBuild() { }
+
+        /// <summary>
         /// Builds a Cloned version of the Service Provider.
         /// </summary>
         /// <returns></returns>
         public IServiceProvider Build()
         {
-            return ServiceProvider.Clone();
+            PreBuild();
+            return BuildInternal(ServiceProvider.Clone());
+        }
+
+        /// <summary>
+        /// Called when Build() is called.  Value returned will be the value returned from Build()
+        /// </summary>
+        /// <param name="provider">The provider created</param>
+        /// <returns>The value to return from the Build() method.</returns>
+        protected virtual IServiceProvider BuildInternal(IServiceProvider provider)
+        {
+            return provider;
         }
     }
 }
