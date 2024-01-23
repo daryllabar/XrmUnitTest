@@ -55,25 +55,6 @@ namespace Source.DLaB.Xrm.Ioc
 
         #region IIocContainer
 
-        /// <inheritdoc />
-        public IServiceProvider BuildServiceProvider(IServiceProvider fallbackProvider = null, Lifetime defaultLifetime = Lifetime.Scoped)
-        {
-            if(PreBuildServiceProviderOverrideRegistrations != null)
-            {
-                var startingStrategy = DuplicateRegistrationStrategy;
-                DuplicateRegistrationStrategy = DuplicateRegistrationStrategy.Override;
-                foreach (var registration in PreBuildServiceProviderOverrideRegistrations._registrations)
-                {
-                    AddRegistration(registration.Key, registration.Value);
-                }
-                DuplicateRegistrationStrategy = startingStrategy;
-            }
-            return new ScopedServiceProvider(fallbackProvider, _registrations, _instances)
-            {
-                DefaultLifetime = defaultLifetime
-            };
-        }
-
         #region Scoped
 
         /// <summary>
@@ -270,6 +251,39 @@ namespace Source.DLaB.Xrm.Ioc
         }
 
         #endregion Transient
+
+
+        /// <inheritdoc />
+        public IServiceProvider BuildServiceProvider(IServiceProvider fallbackProvider = null, Lifetime defaultLifetime = Lifetime.Scoped)
+        {
+            if (PreBuildServiceProviderOverrideRegistrations != null)
+            {
+                var startingStrategy = DuplicateRegistrationStrategy;
+                DuplicateRegistrationStrategy = DuplicateRegistrationStrategy.Override;
+                foreach (var registration in PreBuildServiceProviderOverrideRegistrations._registrations)
+                {
+                    AddRegistration(registration.Key, registration.Value);
+                }
+                DuplicateRegistrationStrategy = startingStrategy;
+            }
+            return new ScopedServiceProvider(fallbackProvider, _registrations, _instances)
+            {
+                DefaultLifetime = defaultLifetime
+            };
+        }
+
+        /// <inheritdoc />
+        public bool IsRegistered<TService>()
+        {
+            return _registrations.ContainsKey(typeof(TService));
+        }
+
+        /// <inheritdoc />
+        public IIocContainer Remove<TService>()
+        {
+            _registrations.Remove(typeof(TService));
+            return this;
+        }
 
         #endregion IIocContainer
     }

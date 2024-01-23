@@ -58,9 +58,22 @@ namespace Source.DLaB.Xrm.Ioc
         /// <summary>
         /// Creates a scoped IServiceProvider defaulting to the actualProvider if it is provided and the type is not explicitly registered.
         /// </summary>
-        /// <param name="actualProvider"></param>
-        /// <param name="defaultLifetime"></param>
+        /// <param name="actualProvider">The Provider</param>
+        /// <param name="defaultLifetime">The lifetime to use for any registrations being added by the serice provider.</param>
         /// <returns></returns>
         IServiceProvider BuildServiceProvider(IServiceProvider actualProvider = null, Lifetime defaultLifetime = Lifetime.Scoped);
+
+        /// <summary>
+        /// Determines if the given type is registered.
+        /// </summary>
+        /// <typeparam name="TService">The Type.</typeparam>
+        /// <returns>true if it is registered, false if it isn't.</returns>
+        bool IsRegistered<TService>();
+
+        /// <summary>
+        /// Removes the Registration of the given type if it exists.  Else, does nothing.
+        /// </summary>
+        /// <returns></returns>
+        IIocContainer Remove<TService>();
     }
 }

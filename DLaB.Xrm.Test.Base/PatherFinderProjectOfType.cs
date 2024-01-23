@@ -18,11 +18,8 @@ namespace DLaB.Xrm.Test
     public class PatherFinderProjectOfType : IPathFinder
     {
         private string FallBackProjectDirectory { get; }
+        private Func<string, string, string> MapAssumedProjectParentPathToActual { get; }
         private string ProjectPath { get; }
-        /// <summary>
-        /// Function to map from the assumed path to the correct one.  First Parameter is the Assumed Project Parent Path.  The Second Parameter is the Project Name.
-        /// </summary>
-        public Func<string, string, string> MapAssumedProjectParentPathToActual { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PatherFinderProjectOfType"/> class.
@@ -30,9 +27,11 @@ namespace DLaB.Xrm.Test
         /// <param name="type">The type.</param>
         /// <param name="projectRelativePath">The project relative path.</param>
         /// <param name="fallBackProjectDirectory">The fallback project directory path to use.  Useful for Build Pipelines.</param>
-        public PatherFinderProjectOfType(Type type, string projectRelativePath = null, string fallBackProjectDirectory = null)
+        /// <param name="mapAssumedProjectParentPathToActual">Function to map from the assumed path to the correct one.  First Parameter is the Assumed Project Parent Path.  The Second Parameter is the Project Name.</param>
+        public PatherFinderProjectOfType(Type type, string projectRelativePath = null, string fallBackProjectDirectory = null, Func<string, string, string> mapAssumedProjectParentPathToActual = null)
         {
             FallBackProjectDirectory = fallBackProjectDirectory;
+            MapAssumedProjectParentPathToActual = mapAssumedProjectParentPathToActual;
 
             var projectPath = FindProjectOfType(type);
             if (projectRelativePath != null)
@@ -44,9 +43,9 @@ namespace DLaB.Xrm.Test
 
         private string FindProjectOfType(Type type)
         {
-            var sb = new StringBuilder();
+            var log = new List<string> { "Log: " };
             var projectName = type.AssemblyQualifiedName?.Split(',')[1].Trim();
-            sb.AppendLine($"Looking for project folder for {projectName}");
+            log.Add($"Looking for project folder for {projectName}");
 
             var fileNamesToCheck = new List<string>();
             fileNamesToCheck.Add(type.Assembly.Location);
@@ -55,6 +54,7 @@ namespace DLaB.Xrm.Test
             fileNamesToCheck.Add(type.Assembly.CodeBase.Substring(8));
 #endif
             string projectParentDirectory = null;
+            var sb = new StringBuilder();
             foreach (var fileName in fileNamesToCheck)
             {
                 projectParentDirectory = GetProjectParentDirectory(fileName, sb);
@@ -63,32 +63,33 @@ namespace DLaB.Xrm.Test
                     break;
                 }
             }
+            log.Add("GetProjectParentDirectory Trace: " + sb.Replace(Environment.NewLine, Environment.NewLine + "\t"));
 
             if (string.IsNullOrWhiteSpace(projectParentDirectory))
             {
-                throw new Exception($"Unable to find Project Path for {type.FullName}.  Assembly Located at {type.Assembly.Location}{Environment.NewLine}Files Checked:{fileNamesToCheck.ToCsv()}{Environment.NewLine}{sb}");
+                throw new Exception($"Unable to find Project Path for {type.FullName}.  Assembly Located at {type.Assembly.Location}{Environment.NewLine}Files Checked:{fileNamesToCheck.ToCsv()}{Environment.NewLine}{log}");
             }
 
-            sb.AppendLine("Project Name " + projectName);
-            sb.AppendLine("Project Parent Folder " + projectParentDirectory);
+            log.Add("Project Name " + projectName);
+            log.Add("Project Parent Folder " + projectParentDirectory);
             var projectPath = Path.Combine(projectParentDirectory, projectName ?? "");
 
             if (!Directory.Exists(projectPath))
             {
                 if(MapAssumedProjectParentPathToActual == null)
                 {
-                    sb.AppendLine($"Assumed Project Folder {projectPath} not found! Consider using a different IPathFinder like PathFinderAbsolute, PathFinderEnvironmentFolder, or utilizing {nameof(PatherFinderProjectOfType)}.MapAssumedProjectParentPathToActual to map to the correct path." );
+                    log.Add($"Assumed Project Folder {projectPath} not found! Consider using a different IPathFinder like PathFinderAbsolute, PathFinderEnvironmentFolder, or utilizing the {nameof(PatherFinderProjectOfType)} mapAssumedProjectParentPathToActual constructor parameter to map to the correct path." );
                 }
                 else
                 {
-                    sb.AppendLine($"Assumed Project Folder {projectPath} not found! Attempting MapAssumedProjectParentPathToActual to map to the correct path.");
+                    log.Add($"Assumed Project Folder {projectPath} not found! Attempting mapAssumedProjectParentPathToActual to map to the correct path.");
                     projectPath = MapAssumedProjectParentPathToActual(projectParentDirectory, projectName);
                 }
             }
-            sb.AppendLine("Project Folder " + projectPath);
+            log.Add("Project Folder " + projectPath);
             if (!Directory.Exists(projectPath))
             {
-                throw new Exception($"Unable to find Project Path for {type.FullName} at {projectPath}. Log {sb}");
+                throw new Exception($"Unable to find Project Path for {type.FullName} at {projectPath}. {Environment.NewLine}{string.Join(Environment.NewLine + " - ", log)}");
             }
 
             return projectPath;
