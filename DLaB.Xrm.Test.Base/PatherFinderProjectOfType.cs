@@ -201,6 +201,16 @@ namespace DLaB.Xrm.Test
             sb.AppendLine($"Checking for .lutdata file: {lutDataPath}");
             if (!File.Exists(lutDataPath))
             {
+                if (MapAssumedProjectParentPathToActual != null)
+                {
+                    sb.AppendLine("No coverage.lutdata file was found.  Attempting mapping of path");
+                    var path = MapAssumedProjectParentPathToActual(lutProjectPath, Path.GetFileNameWithoutExtension(dll.Name));
+                    if(path != null && Directory.Exists(path))
+                    {
+                        sb.AppendLine($"Mapped path found: {path}");
+                        return path;
+                    }
+                }
                 sb.AppendLine(@"No coverage.lutdata file was found.  In Visual Studio, try selecting ""Test"" --> ""Analyze Code Coverage for All Tests"" to generate the coverage.lutdata file to read the project path from.");
                 return null;
             }

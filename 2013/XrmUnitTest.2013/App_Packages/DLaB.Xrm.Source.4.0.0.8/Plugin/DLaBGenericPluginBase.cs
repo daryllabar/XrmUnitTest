@@ -25,7 +25,7 @@ namespace Source.DLaB.Xrm.Plugin
 #if !DLAB_XRM_DEBUG
     [DebuggerNonUserCode]
 #endif
-    public abstract class DLaBGenericPluginBase<T> : IRegisteredEventsPlugin where T : IExtendedPluginContext
+    public abstract class DLaBGenericPluginBase<T> : IExtendedPlugin where T : IExtendedPluginContext
     {
         #region Constants
 
@@ -42,18 +42,17 @@ namespace Source.DLaB.Xrm.Plugin
         /// </summary>
         public const string TracePostContext = "PluginBase.TracePostContext";
 
-        private readonly Lazy<IIocContainer> _container;
-        /// <summary>
-        /// Container to use for Dependency Injection
-        /// </summary>
-        private IIocContainer Container => _container.Value;
-
         #endregion Constants
 
         #region Properties
 
-        private IEnumerable<RegisteredEvent> _events;
+        private readonly Lazy<IIocContainer> _container;
+        /// <summary>
+        /// Container to use for Dependency Injection.  Exposed for tests to be able to override registrations prior to execution.
+        /// </summary>
+        public IIocContainer Container => _container.Value;
 
+        private IEnumerable<RegisteredEvent> _events;
         /// <inheritdoc />
         public IEnumerable<RegisteredEvent> RegisteredEvents => _events ?? (_events = CreateEvents());
 

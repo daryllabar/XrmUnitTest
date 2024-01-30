@@ -21,12 +21,6 @@ namespace Source.DLaB.Xrm.Ioc
         /// </summary> 
         public DuplicateRegistrationStrategy DuplicateRegistrationStrategy { get; set; } = DuplicateRegistrationStrategy.Override;
 
-        /// <summary>
-        /// Allows for injecting the registrations from an IocContainer right before the ServiceProvider is built, overriding any existing registrations.
-        /// Created to enable testing to override registrations.
-        /// </summary>
-        public IocContainer PreBuildServiceProviderOverrideRegistrations { get; set;}
-
         private IocContainer AddRegistration(Type serviceType, Registration registration)
         {
             switch (DuplicateRegistrationStrategy)
@@ -256,16 +250,6 @@ namespace Source.DLaB.Xrm.Ioc
         /// <inheritdoc />
         public IServiceProvider BuildServiceProvider(IServiceProvider fallbackProvider = null, Lifetime defaultLifetime = Lifetime.Scoped)
         {
-            if (PreBuildServiceProviderOverrideRegistrations != null)
-            {
-                var startingStrategy = DuplicateRegistrationStrategy;
-                DuplicateRegistrationStrategy = DuplicateRegistrationStrategy.Override;
-                foreach (var registration in PreBuildServiceProviderOverrideRegistrations._registrations)
-                {
-                    AddRegistration(registration.Key, registration.Value);
-                }
-                DuplicateRegistrationStrategy = startingStrategy;
-            }
             return new ScopedServiceProvider(fallbackProvider, _registrations, _instances)
             {
                 DefaultLifetime = defaultLifetime
