@@ -150,7 +150,6 @@
     <Compile Include="App_Packages\DLaB.Common.Source.1.4.0.7\VersionControl\NoSourceControlProvider.cs" />
     <Compile Include="App_Packages\DLaB.Common.Source.1.4.0.7\VersionControl\SourceControl.cs" />
     <Compile Include="App_Packages\DLaB.Common.Source.1.4.0.7\VersionControl\VsTfsSourceControlProvider.cs" />
-    <Compile Include="App_Packages\DLaB.Xrm.Source.4.0.0.7\Plugin\IExtendedPlugin.cs" />
     <Compile Include="App_Packages\DLaB.Xrm.Source.4.0.0.8\ActivityPropertyInfo.cs" />
     <Compile Include="App_Packages\DLaB.Xrm.Source.4.0.0.8\Comparers\AttributeComparer.cs" />
     <Compile Include="App_Packages\DLaB.Xrm.Source.4.0.0.8\Comparers\ColumnSetComparer.cs" />

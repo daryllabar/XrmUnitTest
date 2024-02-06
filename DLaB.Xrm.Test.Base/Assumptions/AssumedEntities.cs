@@ -50,9 +50,7 @@ namespace DLaB.Xrm.Test.Assumptions
             var assumedEntities = new AssumedEntities();
             foreach (var type in types)
             {
-                foreach (var entityAssumption in type.GetCustomAttributes(true)
-                                                     .Select(a => a as EntityDataAssumptionBaseAttribute)
-                                                     .Where(a => a != null))
+                foreach (var entityAssumption in type.GetEntityDataAssumptionAttributes())
                 {
                     assumedEntities.Load(service, entityAssumption);
                 }
@@ -208,7 +206,6 @@ namespace DLaB.Xrm.Test.Assumptions
             return InternalStore.Values.Where(e => e.LogicalName == logicalName).ToList();
         }
 
-
         #endregion GetAll
 
         #region GetId
@@ -265,5 +262,23 @@ namespace DLaB.Xrm.Test.Assumptions
 
 
         #endregion GetId
+    }
+
+    /// <summary>
+    /// Extension Class
+    /// </summary>
+    public static class AssumedEntitiesExtensions
+    {
+        /// <summary>
+        /// Gets EntityDataAssumptionAttributes
+        /// </summary>
+        /// <param name="type">the type to get the attributes for.</param>
+        /// <returns></returns>
+        public static IEnumerable<EntityDataAssumptionBaseAttribute> GetEntityDataAssumptionAttributes(this Type type)
+        {
+            return type.GetCustomAttributes(true)
+                .Select(a => a as EntityDataAssumptionBaseAttribute)
+                .Where(a => a != null);
+        }
     }
 }

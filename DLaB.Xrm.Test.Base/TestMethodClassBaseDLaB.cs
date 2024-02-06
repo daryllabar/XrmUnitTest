@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using DLaB.Xrm.Client;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
@@ -47,6 +48,13 @@ namespace DLaB.Xrm.Test
         /// </summary>
         public bool MultiThreadPostDeletion { get; set; }
 
+        private static int InstanceCounter;
+        private readonly int _instanceId;
+        /// <summary>
+        /// A unique instance id for this instance of the class
+        /// </summary>
+        public long UniqueId => _instanceId;
+
         /// <summary>
         /// Gets or sets the assert CRM.
         /// </summary>
@@ -55,21 +63,36 @@ namespace DLaB.Xrm.Test
         /// </value>
         protected AssertCrm AssertCrm { get; set; }
 
+        private string _localServiceOrgName;
+        /// <summary>
+        /// The Org Name used when creating the GetLocalCrmDatabaseOrganizationService
+        /// </summary>
+        protected virtual string LocalServiceOrgName { get => _localServiceOrgName; set => _localServiceOrgName = value; }
+
+        /// <summary>
+        /// The Org Name used when creating the GetLocalCrmDatabaseOrganizationService
+        /// </summary>
+        protected virtual Guid LocalServiceImpersonationId { get; set; }
+
         private LogRecorder _recorder;
         /// <summary>Gets or sets the logger.</summary>
         /// <value>The logger.</value>
-        protected ITestLogger Logger { get { return _recorder; } set { _recorder = new LogRecorder(value); } }
+        protected ITestLogger Logger { get => _recorder; set => _recorder = new LogRecorder(value);
+        }
 
         /// <summary>
         /// List of Logs that have been recorded.  This includes both internal TestMethodClassBase Logs, and any logs logged with the Logger
         /// </summary>
         protected IEnumerable<TraceParams> Logs => _recorder.Logs;
 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TestMethodClassBaseDLaB"/> class.
         /// </summary>
         protected TestMethodClassBaseDLaB()
         {
+            _instanceId = Interlocked.Increment(ref InstanceCounter);
+            _localServiceOrgName = GetType().FullName + " Instance: " + _instanceId;
             EntityIdsByLogicalName = new Dictionary<string, List<Id>>();
             EnableServiceExecutionTracing = true;
             MultiThreadPostDeletion = true;
@@ -365,7 +388,7 @@ namespace DLaB.Xrm.Test
         private IClientSideOrganizationService Service { get; set; }
         private IClientSideOrganizationService GetInternalOrganizationServiceProxy()
         {
-            return Service ?? (Service = (IClientSideOrganizationService) new OrganizationServiceBuilder(new FakeIOrganizationService(TestBase.GetOrganizationService(), Logger)).WithBusinessUnitDeleteAsDeactivate().Build());
+            return Service ?? (Service = (IClientSideOrganizationService) new OrganizationServiceBuilder(new FakeIOrganizationService(TestBase.GetOrganizationService(LocalServiceOrgName, LocalServiceImpersonationId), Logger)).WithBusinessUnitDeleteAsDeactivate().Build());
         }
 
         /// <summary>

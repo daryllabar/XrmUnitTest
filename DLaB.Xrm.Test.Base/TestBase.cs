@@ -55,10 +55,9 @@ namespace DLaB.Xrm.Test
             Guid impersonationUserId = new Guid())
         {
             LoadUserUnitTestSettings();
-            organizationName = organizationName ?? OrgName;
             if (UseLocalCrmDatabase)
             {
-                return GetLocalCrmDatabaseOrganizationService(organizationName, impersonationUserId);
+                return GetLocalCrmDatabaseOrganizationService(organizationName ?? OrgName, impersonationUserId);
             }
             else
             {
