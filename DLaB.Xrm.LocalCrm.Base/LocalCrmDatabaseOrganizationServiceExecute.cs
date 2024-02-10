@@ -16,6 +16,7 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Xml.Serialization;
+using DLaB.Xrm.CrmSdk;
 
 
 namespace DLaB.Xrm.LocalCrm
@@ -50,7 +51,9 @@ namespace DLaB.Xrm.LocalCrm
 
 #if !PRE_MULTISELECT
         private CreateMultipleResponse ExecuteInternal(CreateMultipleRequest request)
-        {           
+        {
+            AssertEntityNamePopulated(request);
+
             return new CreateMultipleResponse
             {
                 Results =
@@ -789,7 +792,9 @@ namespace DLaB.Xrm.LocalCrm
 #if !PRE_MULTISELECT
         private UpdateMultipleResponse ExecuteInternal(UpdateMultipleRequest request)
         {
-            foreach(var target in request.Targets.Entities)
+            AssertEntityNamePopulated(request);
+
+            foreach (var target in request.Targets.Entities)
             {
                 Update(target);
             }
@@ -807,8 +812,9 @@ namespace DLaB.Xrm.LocalCrm
 #if !PRE_MULTISELECT
         private UpsertMultipleResponse ExecuteInternal(UpsertMultipleRequest request)
         {
-            var response = new UpsertMultipleResponse();
+            AssertEntityNamePopulated(request);
 
+            var response = new UpsertMultipleResponse();
             ((OrganizationResponse)response).Results[nameof(UpsertMultipleResponse.Results)] = request.Targets.Entities.Select(t => ExecuteInternal(new UpsertRequest { Target = t })).ToArray();
 
             return response;
@@ -921,6 +927,29 @@ namespace DLaB.Xrm.LocalCrm
             return t.IsEnum && t.Name.Equals(name) && t.GetCustomAttributes(typeof(DataContractAttribute), false).Length > 0 &&
                    t.GetCustomAttributes(typeof(System.CodeDom.Compiler.GeneratedCodeAttribute), false).Length > 0;
         }
+
+#if !PRE_MULTISELECT
+        private static void AssertEntityNamePopulated(OrganizationRequest request)
+        {
+            if (!string.IsNullOrWhiteSpace(request.Parameters.GetParameterValue<EntityCollection>(nameof(CreateMultipleRequest.Targets)).EntityName)){
+                return;
+            }
+
+            var message = $"The '{request.RequestName}' method does not support entities of type 'none'. MessageProcessorCache returned MessageProcessor.Empty. ";
+            throw new FaultException<OrganizationServiceFault>(new OrganizationServiceFault
+            {
+                ErrorCode = ErrorCodes.SdkEntityDoesNotSupportMessage,
+                Message = message,
+                Timestamp = DateTime.UtcNow,
+            }, new FaultReason(message))
+            {
+#if net
+                    HResult = ErrorCodes.SdkEntityDoesNotSupportMessage,
+#endif
+                Source = "Microsoft.PowerPlatform.Dataverse.Client"
+            };
+        }
+#endif
 
         private static class InitializeFromLogic
         {

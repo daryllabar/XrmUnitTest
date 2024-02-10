@@ -33,9 +33,9 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmDatabaseOrganizationServiceExecuteTests_CreateMultipleRequest()
         {
-            var response = (CreateMultipleResponse)_service.Execute(new CreateMultipleRequest
+            var request = new CreateMultipleRequest
             {
-                Targets = new EntityCollection(new Entity[] { 
+                Targets = new EntityCollection(new Entity[] {
                     new Account
                     {
                         Name = "1st"
@@ -44,10 +44,17 @@ namespace DLaB.Xrm.LocalCrm.Tests
                         Name = "2nd"
                     }
                 })
-            });
+                {
+                    EntityName = Account.EntityLogicalName,
+                }
+            };
+            var response = (CreateMultipleResponse)_service.Execute(request);
 
             Assert.AreEqual("1st", _service.GetEntity<Account>(response.Ids[0]).Name);
             Assert.AreEqual("2nd", _service.GetEntity<Account>(response.Ids[1]).Name);
+
+            request.Targets.EntityName = null;
+            AssertEntityNameRequired(request);
         }
 
         [TestMethod]
@@ -237,8 +244,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             account.Id = _service.Create(account);
             var account2 = new Account { Name = "2nd" };
             account2.Id = _service.Create(account2);
-
-            _service.Execute(new UpdateMultipleRequest
+            var request = new UpdateMultipleRequest
             {
                 Targets = new EntityCollection(new Entity[] {
                     new Account
@@ -251,10 +257,18 @@ namespace DLaB.Xrm.LocalCrm.Tests
                         Name = account2.Name += " Updated"
                     }
                 })
-            });
+                {
+                    EntityName = Account.EntityLogicalName,
+                }
+            };
+
+            _service.Execute(request);
 
             Assert.AreEqual("1st Updated", _service.GetEntity<Account>(account.Id).Name);
             Assert.AreEqual("2nd Updated", _service.GetEntity<Account>(account2.Id).Name);
+
+            request.Targets.EntityName = null;
+            AssertEntityNameRequired(request);
         }
 
         [TestMethod]
@@ -264,8 +278,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             account.Id = _service.Create(account);
             var newAccount = new Account { Name = "NEW" };
             newAccount.KeyAttributes.Add(Account.Fields.ParentAccountId, account.Id);
-
-            var results = ((UpsertMultipleResponse)_service.Execute(new UpsertMultipleRequest
+            var request = new UpsertMultipleRequest
             {
                 Targets = new EntityCollection(new Entity[] {
                     new Account
@@ -274,7 +287,12 @@ namespace DLaB.Xrm.LocalCrm.Tests
                         Name = account.Name += " Updated"
                     }, newAccount
                 })
-            })).Results;
+                {
+                    EntityName = Account.EntityLogicalName,
+                }
+            };
+
+            var results = ((UpsertMultipleResponse)_service.Execute(request)).Results;
 
             account = _service.GetEntity<Account>(results[0].Target.Id);
             Assert.IsFalse(results[0].RecordCreated);
@@ -283,6 +301,9 @@ namespace DLaB.Xrm.LocalCrm.Tests
             account = _service.GetEntity<Account>(results[1].Target.Id);
             Assert.IsTrue(results[1].RecordCreated);
             Assert.AreEqual("NEW", account.Name);
+
+            request.Targets.EntityName = null;
+            AssertEntityNameRequired(request);
         }
 
         [TestMethod]
@@ -373,6 +394,23 @@ namespace DLaB.Xrm.LocalCrm.Tests
 
             account = _service.GetEntity<Account>(response.Target.Id);
             Assert.AreEqual(toUpsert.Name, account.Name);
+        }
+
+        private void AssertEntityNameRequired(OrganizationRequest request)
+        {
+            try
+            {
+                _service.Execute(request);
+                Assert.Fail("Exception Expected!");
+            }
+            catch (FaultException<OrganizationServiceFault> ex)
+            {
+                Assert.AreEqual($"The '{request.RequestName}' method does not support entities of type 'none'. MessageProcessorCache returned MessageProcessor.Empty. ",
+                    ex.Message);
+                Assert.AreEqual($"The '{request.RequestName}' method does not support entities of type 'none'. MessageProcessorCache returned MessageProcessor.Empty. ",
+                    ex.Detail.Message);
+                Assert.AreEqual("Microsoft.PowerPlatform.Dataverse.Client", ex.Source);
+            }
         }
     }
 }
