@@ -48,6 +48,19 @@ namespace DLaB.Xrm.LocalCrm
             return new AssignResponse();
         }
 
+#if !PRE_MULTISELECT
+        private CreateMultipleResponse ExecuteInternal(CreateMultipleRequest request)
+        {           
+            return new CreateMultipleResponse
+            {
+                Results =
+                {
+                    [nameof(CreateMultipleResponse.Ids)] = request.Targets.Entities.Select(Create).ToArray()
+                }
+            };
+        }
+#endif
+
         private CreateResponse ExecuteInternal(CreateRequest request)
         {
             return new CreateResponse
@@ -773,11 +786,34 @@ namespace DLaB.Xrm.LocalCrm
             return new SetStateResponse();
         }
 
+#if !PRE_MULTISELECT
+        private UpdateMultipleResponse ExecuteInternal(UpdateMultipleRequest request)
+        {
+            foreach(var target in request.Targets.Entities)
+            {
+                Update(target);
+            }
+
+            return new UpdateMultipleResponse();
+        }
+#endif
+
         private UpdateResponse ExecuteInternal(UpdateRequest request)
         {
             Update(request.Target);
             return new UpdateResponse();
         }
+
+#if !PRE_MULTISELECT
+        private UpsertMultipleResponse ExecuteInternal(UpsertMultipleRequest request)
+        {
+            var response = new UpsertMultipleResponse();
+
+            ((OrganizationResponse)response).Results[nameof(UpsertMultipleResponse.Results)] = request.Targets.Entities.Select(t => ExecuteInternal(new UpsertRequest { Target = t })).ToArray();
+
+            return response;
+        }
+#endif
 
 #if !PRE_KEYATTRIBUTE
         private UpsertResponse ExecuteInternal(UpsertRequest request)

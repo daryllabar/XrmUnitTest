@@ -6227,7 +6227,7 @@ namespace DLaB.Xrm.Entities
             return null;
         }
 
-#if !XRM_2013 && !XRM_2015 && !XRM_2016
+#if !PRE_MULTISELECT
 
         [System.Diagnostics.DebuggerNonUserCode()]
         public static System.Collections.Generic.IEnumerable<T> GetMultiEnum<T>(Microsoft.Xrm.Sdk.Entity entity, string attributeLogicalName)

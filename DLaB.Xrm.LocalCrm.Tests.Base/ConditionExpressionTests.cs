@@ -204,7 +204,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.IsNotNull(contact, "Contact should have been found because the current user is not the equal user");
         }
 
-#if !XRM_2013 && !XRM_2015 && !XRM_2016
+#if !PRE_MULTISELECT
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_ContainsValue()
         {

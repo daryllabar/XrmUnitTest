@@ -89,15 +89,12 @@ namespace DLaB.Xrm.LocalCrm
                     ? (AttributeMetadata)new EntityNameAttributeMetadata(logicalName)
                     : new StringAttributeMetadata(logicalName);
             }
-#if !PRE_KEYATTRIBUTE && !XRM_2015 && !XRM_2016
+#if !PRE_MULTISELECT
             else if (propertyType.IsGenericType
                      && propertyType.GetGenericTypeDefinition() == typeof(IEnumerable<>)
                      && propertyType.GetGenericArguments().Length == 1
                      && (propertyType.GetGenericArguments()[0].IsEnum || propertyType.GetGenericArguments()[0] == typeof(OptionSetValue)) )
             {
-                var entity = new Entity();
-                entity.KeyAttributes = null;
-
                 attribute = new MultiSelectPicklistAttributeMetadata(logicalName);
             }
             else if (propertyType == typeof(byte[]))

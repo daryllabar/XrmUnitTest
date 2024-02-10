@@ -2,7 +2,7 @@
 {
     public partial class Contact
     {
-#if !XRM_2013 && !XRM_2015 && !XRM_2016
+#if !PRE_MULTISELECT
         /// <summary>
         /// 
         /// </summary>

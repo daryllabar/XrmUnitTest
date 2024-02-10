@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;DLAB_PUBLIC DLAB_UNROOT_COMMON_NAMESPACE DLAB_XRM XRM_2013 PRE_KEYATTRIBUTE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;DLAB_PUBLIC DLAB_UNROOT_COMMON_NAMESPACE DLAB_XRM XRM_2013 PRE_KEYATTRIBUTE PRE_MULTISELECT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>..\..\XrmUnitTest.ruleset</CodeAnalysisRuleSet>
@@ -27,7 +27,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;DLAB_PUBLIC DLAB_UNROOT_COMMON_NAMESPACE DLAB_XRM XRM_2013 PRE_KEYATTRIBUTE</DefineConstants>
+    <DefineConstants>TRACE;DLAB_PUBLIC DLAB_UNROOT_COMMON_NAMESPACE DLAB_XRM XRM_2013 PRE_KEYATTRIBUTE PRE_MULTISELECT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\XrmUnitTest.2013.xml</DocumentationFile>

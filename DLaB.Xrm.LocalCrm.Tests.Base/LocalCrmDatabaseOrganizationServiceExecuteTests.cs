@@ -21,6 +21,35 @@ namespace DLaB.Xrm.LocalCrm.Tests
     [TestClass]
     public class LocalCrmDatabaseOrganizationServiceExecuteTests : BaseTestClass
     {
+        private IOrganizationService _service;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            TestInitializer.InitializeTestSettings();
+            _service = GetService();
+        }
+
+        [TestMethod]
+        public void LocalCrmDatabaseOrganizationServiceExecuteTests_CreateMultipleRequest()
+        {
+            var response = (CreateMultipleResponse)_service.Execute(new CreateMultipleRequest
+            {
+                Targets = new EntityCollection(new Entity[] { 
+                    new Account
+                    {
+                        Name = "1st"
+                    }, new Account
+                    {
+                        Name = "2nd"
+                    }
+                })
+            });
+
+            Assert.AreEqual("1st", _service.GetEntity<Account>(response.Ids[0]).Name);
+            Assert.AreEqual("2nd", _service.GetEntity<Account>(response.Ids[1]).Name);
+        }
+
         [TestMethod]
         public void LocalCrmDatabaseOrganizationServiceExecuteTests_ExecuteTransactionRequest()
         {
@@ -35,17 +64,16 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 },
                 ReturnResponses = true
             };
-            var service = GetService();
-            var response = (ExecuteTransactionResponse) service.Execute(request);
-            AssertCrm.Exists(service, account);
-            AssertCrm.Exists(service, contact);
+            var response = (ExecuteTransactionResponse) _service.Execute(request);
+            AssertCrm.Exists(_service, account);
+            AssertCrm.Exists(_service, contact);
             Assert.AreEqual(response.Responses.Count, 2);
 
-            service.Delete(account.Entity);
-            service.Delete(contact.Entity);
+            _service.Delete(account.Entity);
+            _service.Delete(contact.Entity);
 
             request.ReturnResponses = false;
-            response = (ExecuteTransactionResponse)service.Execute(request);
+            response = (ExecuteTransactionResponse)_service.Execute(request);
             Assert.AreEqual(response.Responses.Count, 0);
         }
 
@@ -62,10 +90,9 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 },
                 ReturnResponses = true
             };
-            var service = GetService();
             try
             {
-                service.Execute(request);
+                _service.Execute(request);
             }
             catch (FaultException<OrganizationServiceFault> ex)
             {
@@ -78,9 +105,8 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmDatabaseOrganizationServiceExecuteTests_InitializeFromRequest()
         {
-            var service = GetService();
             var currency = new TransactionCurrency();
-            currency.Id = service.Create(currency);
+            currency.Id = _service.Create(currency);
 
             var lead = new LeadBuilder
             {
@@ -105,10 +131,10 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 .WithPhone()
                 .Build();
 
-            lead.Id = service.Create(lead);
-            lead = service.GetEntity<Lead>(lead.Id);
+            lead.Id = _service.Create(lead);
+            lead = _service.GetEntity<Lead>(lead.Id);
 
-            var contact = service.InitializeFrom<Contact>(lead.ToEntityReference(), TargetFieldType.ValidForCreate);
+            var contact = _service.InitializeFrom<Contact>(lead.ToEntityReference(), TargetFieldType.ValidForCreate);
             foreach (var attribute in lead.Attributes)
             {
                 var key = attribute.Key;
@@ -136,15 +162,14 @@ namespace DLaB.Xrm.LocalCrm.Tests
                     contact.Contains(key) && contact[key].Equals(value), 
                     $"Field {attribute.Key} was not mapped correctly.");
             }
-            service.Create(contact);
+            _service.Create(contact);
         }
 
         [TestMethod]
         public void LocalCrmDatabaseOrganizationServiceExecuteTests_LocalTimeFromUtcTimeRequest()
         {
-            var service = GetService();
             var now = DateTime.UtcNow;
-            var response = (LocalTimeFromUtcTimeResponse)service.Execute(new LocalTimeFromUtcTimeRequest {TimeZoneCode = 35, UtcTime = now});
+            var response = (LocalTimeFromUtcTimeResponse)_service.Execute(new LocalTimeFromUtcTimeRequest {TimeZoneCode = 35, UtcTime = now});
             var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
             Assert.AreEqual(0, (response.LocalTime - TimeZoneInfo.ConvertTimeFromUtc(now, timeZone)).TotalMilliseconds);
         }
@@ -152,17 +177,16 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmDatabaseOrganizationServiceExecuteTests_RetrieveRelationshipRequest()
         {
-            var service = GetService();
             var equipment = new Equipment();
-            equipment.Id = service.Create(equipment);
+            equipment.Id = _service.Create(equipment);
 
             var currency = new Contact
             {
                 PreferredEquipmentId = equipment.ToEntityReference()
             };
-            currency.Id = service.Create(currency);
+            currency.Id = _service.Create(currency);
 
-            using (var context = new CrmContext(service))
+            using (var context = new CrmContext(_service))
             {
                 var firstContact = context.ContactSet.First();
                 context.LoadProperty(firstContact, Contact.Fields.equipment_contacts);
@@ -175,13 +199,12 @@ namespace DLaB.Xrm.LocalCrm.Tests
         {
             AttributeMetadata GetMetadata(string field)
             {
-                return ((RetrieveAttributeResponse)GetService().Execute(new RetrieveAttributeRequest
+                return ((RetrieveAttributeResponse)_service.Execute(new RetrieveAttributeRequest
                 {
                     EntityLogicalName = Account.EntityLogicalName,
                     LogicalName = field
                 })).AttributeMetadata;
             }
-            TestInitializer.InitializeTestSettings();
             
             var response = GetMetadata(Account.Fields.AccountCategoryCode);
             Assert.AreEqual(AttributeTypeCode.Picklist, response.AttributeType);
@@ -198,8 +221,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmDatabaseOrganizationServiceExecuteTests_RetrieveEntityRequest()
         {
-            TestInitializer.InitializeTestSettings();
-            var response = (RetrieveEntityResponse)GetService().Execute(new RetrieveEntityRequest
+            var response = (RetrieveEntityResponse)_service.Execute(new RetrieveEntityRequest
             {
                 EntityFilters = EntityFilters.Entity,
                 LogicalName = Contact.EntityLogicalName,
@@ -209,60 +231,109 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
+        public void LocalCrmDatabaseOrganizationServiceExecuteTests_UpdateMultipleRequest()
+        {
+            var account = new Account { Name = "1st" };
+            account.Id = _service.Create(account);
+            var account2 = new Account { Name = "2nd" };
+            account2.Id = _service.Create(account2);
+
+            _service.Execute(new UpdateMultipleRequest
+            {
+                Targets = new EntityCollection(new Entity[] {
+                    new Account
+                    {
+                        Id = account.Id,
+                        Name = account.Name += " Updated"
+                    }, new Account
+                    {
+                        Id = account2.Id,
+                        Name = account2.Name += " Updated"
+                    }
+                })
+            });
+
+            Assert.AreEqual("1st Updated", _service.GetEntity<Account>(account.Id).Name);
+            Assert.AreEqual("2nd Updated", _service.GetEntity<Account>(account2.Id).Name);
+        }
+
+        [TestMethod]
+        public void LocalCrmDatabaseOrganizationServiceExecuteTests_UpsertMultipleRequest()
+        {
+            var account = new Account { Name = "1st" };
+            account.Id = _service.Create(account);
+            var newAccount = new Account { Name = "NEW" };
+            newAccount.KeyAttributes.Add(Account.Fields.ParentAccountId, account.Id);
+
+            var results = ((UpsertMultipleResponse)_service.Execute(new UpsertMultipleRequest
+            {
+                Targets = new EntityCollection(new Entity[] {
+                    new Account
+                    {
+                        Id = account.Id,
+                        Name = account.Name += " Updated"
+                    }, newAccount
+                })
+            })).Results;
+
+            account = _service.GetEntity<Account>(results[0].Target.Id);
+            Assert.IsFalse(results[0].RecordCreated);
+            Assert.AreEqual("1st Updated", account.Name);
+
+            account = _service.GetEntity<Account>(results[1].Target.Id);
+            Assert.IsTrue(results[1].RecordCreated);
+            Assert.AreEqual("NEW", account.Name);
+        }
+
+        [TestMethod]
         public void LocalCrmDatabaseOrganizationServiceExecuteTests_UpsertRequest()
         {
-            TestInitializer.InitializeTestSettings();
-            var service = GetService();
             var account = new Account
             {
                 Name = "1st"
             };
 
             account.KeyAttributes.Add(Account.Fields.Description, "Custom Key");
-            TestUpsertCreateAndUpdate(service, account);
+            TestUpsertCreateAndUpdate(account);
 
             account.Id = Guid.NewGuid();
             account.Name = "1st";
             account.KeyAttributes.Clear();
-            TestUpsertCreateAndUpdate(service, account);
+            TestUpsertCreateAndUpdate(account);
         }
 
         [TestMethod]
         public void LocalCrmDatabaseOrganizationServiceExecuteTests_UpsertEntityRefRequest()
         {
-            TestInitializer.InitializeTestSettings();
-            var service = GetService();
-            var parentId = service.Create(new Account());
+            var parentId = _service.Create(new Account());
             var account = new Account
             {
                 Name = "1st"
             };
 
             account.KeyAttributes.Add(Account.Fields.ParentAccountId, parentId);
-            TestUpsertCreateAndUpdate(service, account);
-            var toDelete = service.GetEntityOrDefault<Account>(account.KeyAttributes);
-            service.Delete(Account.EntityLogicalName, toDelete.Id);
+            TestUpsertCreateAndUpdate(account);
+            var toDelete = _service.GetEntityOrDefault<Account>(account.KeyAttributes);
+            _service.Delete(Account.EntityLogicalName, toDelete.Id);
 
             account.KeyAttributes[Account.Fields.ParentAccountId] = parentId.ToString();
-            TestUpsertCreateAndUpdate(service, account);
-            toDelete = service.GetEntityOrDefault<Account>(account.KeyAttributes);
-            service.Delete(Account.EntityLogicalName, toDelete.Id);
+            TestUpsertCreateAndUpdate(account);
+            toDelete = _service.GetEntityOrDefault<Account>(account.KeyAttributes);
+            _service.Delete(Account.EntityLogicalName, toDelete.Id);
 
             account.KeyAttributes[Account.Fields.ParentAccountId] = new EntityReference( Account.EntityLogicalName, parentId);
-            TestUpsertCreateAndUpdate(service, account);
+            TestUpsertCreateAndUpdate(account);
         }
 
 #if !PRE_KEYATTRIBUTE
         [TestMethod]
         public void LocalCrmDatabaseOrganizationServiceExecuteTests_RetrieveRequestByAltKey()
         {
-            TestInitializer.InitializeTestSettings();
-            var service = GetService();
             var account = new Account
             {
                 Name = "1st"
             };
-            account.Id = service.Create(account);
+            account.Id = _service.Create(account);
 
             var request = new RetrieveRequest
             {
@@ -270,22 +341,22 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 Target = new EntityReference(Account.EntityLogicalName, Account.Fields.Name, account.Name)
             };
 
-            var response = (RetrieveResponse)service.Execute(request);
+            var response = (RetrieveResponse)_service.Execute(request);
             
             Assert.AreEqual(account.Id, response.Entity.Id);
         }
 #endif
 
-        private static void TestUpsertCreateAndUpdate(IOrganizationService service, Account toUpsert)
+        private void TestUpsertCreateAndUpdate(Account toUpsert)
         {
             // Test Insert
-            var response = (UpsertResponse) service.Execute(new UpsertRequest
+            var response = (UpsertResponse) _service.Execute(new UpsertRequest
             {
                 Target = toUpsert
             });
             Assert.AreEqual(true, response.RecordCreated);
-            AssertCrm.Exists(service, response.Target);
-            var account = service.GetEntity<Account>(response.Target.Id);
+            AssertCrm.Exists(_service, response.Target);
+            var account = _service.GetEntity<Account>(response.Target.Id);
             Assert.AreEqual(toUpsert.Name, account.Name);
             foreach(var kvp in toUpsert.KeyAttributes)
             {
@@ -294,13 +365,13 @@ namespace DLaB.Xrm.LocalCrm.Tests
 
             // Test Update
             toUpsert.Name = "2nd";
-            response = (UpsertResponse) service.Execute(new UpsertRequest
+            response = (UpsertResponse) _service.Execute(new UpsertRequest
             {
                 Target = toUpsert
             });
             Assert.AreEqual(false, response.RecordCreated);
 
-            account = service.GetEntity<Account>(response.Target.Id);
+            account = _service.GetEntity<Account>(response.Target.Id);
             Assert.AreEqual(toUpsert.Name, account.Name);
         }
     }
