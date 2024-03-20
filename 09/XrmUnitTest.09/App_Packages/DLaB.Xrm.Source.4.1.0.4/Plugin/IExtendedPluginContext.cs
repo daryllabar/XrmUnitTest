@@ -11,7 +11,7 @@ namespace Source.DLaB.Xrm.Plugin
     /// <summary>
     /// Plugin Context Interface for Handling Additional functionality
     /// </summary>
-    public interface IExtendedPluginContext : IPluginExecutionContext, IExtendedExecutionContext
+    public interface IExtendedPluginContext : IPluginExecutionContext, IExtendedExecutionContext, IServiceProvider
     {
         #region Properties
 
@@ -50,5 +50,22 @@ namespace Source.DLaB.Xrm.Plugin
         EntityReference PrimaryEntity { get; }
 
         #endregion Properties
+    }
+
+    /// <summary>
+    /// Extensions for IExtendedPluginContext
+    /// </summary>
+    public static class ExtendedPluginContextExtensions
+    {
+        /// <summary>Gets the service object of the specified type.</summary>
+        /// <typeparam name="TService">A type that specifies the type of service object to get</typeparam>
+        /// <param name="context">The context</param>
+        /// <returns>A service object specified type.
+        /// -or-
+        /// <see langword="null" /> if there is no service object of specified type.</returns>
+        public static TService Get<TService>(this IExtendedPluginContext context) where TService : class
+        {
+            return context.ServiceProvider.GetService<TService>();
+        }
     }
 }

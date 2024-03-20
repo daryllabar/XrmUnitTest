@@ -4,6 +4,7 @@ using Microsoft.Xrm.Sdk.Query;
 using System;
 using System.Linq;
 using System.Runtime.Caching;
+using Microsoft.Crm.Sdk.Messages;
 
 #if DLAB_UNROOT_NAMESPACE || DLAB_XRM
 namespace DLaB.Xrm
@@ -143,20 +144,21 @@ namespace Source.DLaB.Xrm
             {
                 case RetrieveRequest retrieve:
                 {
-                        var response = new RetrieveResponse();
-                        response[nameof(response.Entity)] = Retrieve(retrieve.Target.LogicalName, retrieve.Target.Id, retrieve.ColumnSet);
-                        return response;
+                    var response = new RetrieveResponse();
+                    response[nameof(response.Entity)] = Retrieve(retrieve.Target.LogicalName, retrieve.Target.Id, retrieve.ColumnSet);
+                    return response;
                 }
                 case RetrieveMultipleRequest retrieveMultiple:
                 {
-                        var response = new RetrieveMultipleResponse();
-                        response[nameof(response.EntityCollection)] = RetrieveMultiple(retrieveMultiple.Query);
-                        return response;
+                    var response = new RetrieveMultipleResponse();
+                    response[nameof(response.EntityCollection)] = RetrieveMultiple(retrieveMultiple.Query);
+                    return response;
                 }
                 default:
-                    if (!request.RequestName.StartsWith("Retrieve"))
+                    if (!request.RequestName.StartsWith("Retrieve")
+                        && request.RequestName != new WhoAmIRequest().RequestName)
                     {
-                        throw new NotImplementedException("ReadOnlyCachedService by default only supports messages that \"Retrieve\" message requests.");
+                        throw new NotImplementedException("ReadOnlyCachedService by default only supports messages that \"Retrieve\" message requests, and the WhoAmI Request.");
                     }
 
                     var key = GetKey(request);
@@ -263,13 +265,13 @@ namespace Source.DLaB.Xrm
         /// <returns>A string representing the generated key.</returns>
         protected virtual string GetKey(OrganizationRequest request)
         {
-            var parts = request.Parameters.Select(kvp => ReplaceSeparators(kvp.Key) + ParamKeySeparator + ReplaceSeparators(kvp.Value?.ToString()));
-            return string.Join(ParamKvpSeparator, parts);
+            var parts = request.Parameters.Select(kvp => ReplaceSeparators(kvp.Key) + ParamKeySeparator + ReplaceSeparators(kvp.Value?.ObjectToStringDebug()));
+            return ReplaceSeparators(request.RequestName) + ParamKvpSeparator + string.Join(ParamKvpSeparator, parts);
 
             string ReplaceSeparators(string value)
             {
                 return string.IsNullOrWhiteSpace(value)
-                    ? string.Empty 
+                    ? string.Empty
                     : value.Replace(ParamKeySeparator, ' ').Replace(ParamKvpSeparator, " ");
             }
         }

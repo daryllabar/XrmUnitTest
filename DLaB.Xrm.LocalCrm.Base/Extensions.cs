@@ -304,7 +304,8 @@ namespace DLaB.Xrm.LocalCrm
         private static bool IsReferencingProperty(RelationshipSchemaNameAttribute relationshipAttribute, Relationship relationship)
         {
             return relationshipAttribute.SchemaName == relationship.SchemaName
-                && relationshipAttribute.PrimaryEntityRole == EntityRole.Referencing;
+                && (relationshipAttribute.PrimaryEntityRole == EntityRole.Referencing 
+                    || relationshipAttribute.PrimaryEntityRole == null);
         }
 
         #endregion Relationship
