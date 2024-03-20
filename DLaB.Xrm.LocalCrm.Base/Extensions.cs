@@ -263,6 +263,52 @@ namespace DLaB.Xrm.LocalCrm
 
         #endregion QueryExpression
 
+        #region Relationship
+
+        /// <summary>
+        /// Gets the referencing attribute name for the specified relationship and entity type.
+        /// </summary>
+        /// <param name="relationship">The relationship.</param>
+        /// <param name="entityType">The entity type.</param>
+        /// <returns>The referencing attribute name.</returns>
+        public static string GetReferencingAttributeName(this Relationship relationship, Type entityType)
+        {
+            var referencingProperties = entityType.GetProperties()
+                .Where(p => p.GetCustomAttributes(typeof(RelationshipSchemaNameAttribute), true)
+                    .Any(a => IsReferencingProperty((RelationshipSchemaNameAttribute)a, relationship)))
+                .ToList();
+
+            if (referencingProperties.Count == 0)
+            {
+                throw new Exception($"No referencing property found for relationship '{relationship.SchemaName}' in entity type '{entityType.Name}'");
+            }
+
+            if (referencingProperties.Count > 1)
+            {
+                throw new Exception($"Multiple referencing properties found for relationship '{relationship.SchemaName}' in entity type '{entityType.Name}'");
+            }
+
+            var referencingPropertyAttributes = referencingProperties[0].GetCustomAttributes(typeof(AttributeLogicalNameAttribute), true).ToList();
+            if (referencingPropertyAttributes.Count == 0)
+            {
+                throw new Exception($"No referencing property found for relationship '{relationship.SchemaName}' in entity type '{entityType.Name}'");
+            }
+
+            if (referencingPropertyAttributes.Count > 1)
+            {
+                throw new Exception($"Multiple referencing properties found for relationship '{relationship.SchemaName}' in entity type '{entityType.Name}'");
+            }
+            return ((AttributeLogicalNameAttribute)referencingPropertyAttributes[0]).LogicalName;
+        }
+
+        private static bool IsReferencingProperty(RelationshipSchemaNameAttribute relationshipAttribute, Relationship relationship)
+        {
+            return relationshipAttribute.SchemaName == relationship.SchemaName
+                && relationshipAttribute.PrimaryEntityRole == EntityRole.Referencing;
+        }
+
+        #endregion Relationship
+
         #region Helper
 
         private static object ConvertStringObjectToLower(object value)

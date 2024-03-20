@@ -259,6 +259,38 @@ namespace DLaB.Xrm.LocalCrm.Tests
             });
         }
 
+
+        [TestMethod]
+        public void LocalCrmTests_Crud_CreateWithRelatedEntities()
+        {
+            var dbInfo = LocalCrmDatabaseInfo.Create<CrmContext>();
+            var service = new LocalCrmDatabaseOrganizationService(dbInfo);
+            var account = new Account
+            {
+                Name = nameof(LocalCrmTests_Crud_CreateWithRelatedEntities),
+                Referencedaccount_master_account = new List<Account>
+                {
+                    new Account { Name = "ChildViaMaster1" },
+                    new Account { Name = "ChildViaMaster2" },
+                },
+                Referencedaccount_parent_account = new List<Account>
+                {
+                    new Account { Name = "ChildAccount1" },
+                    new Account { Name = "ChildAccount2" },
+                }
+            };
+            var accountId = service.Create(account);
+            var childAccounts = service.GetEntities<Account>(Account.Fields.MasterId, accountId).OrderBy(a => a.Name).ToList();
+            Assert.AreEqual(2, childAccounts.Count);
+            Assert.AreEqual("ChildViaMaster1", childAccounts[0].Name);
+            Assert.AreEqual("ChildViaMaster2", childAccounts[1].Name);
+
+            childAccounts = service.GetEntities<Account>(Account.Fields.ParentAccountId, accountId).OrderBy(a => a.Name).ToList();
+            Assert.AreEqual(2, childAccounts.Count);
+            Assert.AreEqual("ChildAccount1", childAccounts[0].Name);
+            Assert.AreEqual("ChildAccount2", childAccounts[1].Name);
+        }
+
         [TestMethod]
         public void LocalCrmTests_Crud_ColumnSetLookups()
         {

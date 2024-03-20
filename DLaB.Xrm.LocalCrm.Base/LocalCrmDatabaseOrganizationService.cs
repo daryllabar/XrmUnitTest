@@ -199,7 +199,22 @@ namespace DLaB.Xrm.LocalCrm
                 entity = GenericMethodCaller.InvokeToEntity(entity, Info);
             }
 
-            return (Guid)GenericMethodCaller.InvokeLocalCrmDatabaseStaticGenericMethod(Info, entity.LogicalName, nameof(Create), this, entity);
+            var id = (Guid)GenericMethodCaller.InvokeLocalCrmDatabaseStaticGenericMethod(Info, entity.LogicalName, nameof(Create), this, entity);
+            foreach(var relationship in entity.RelatedEntities)
+            {
+                foreach(var relatedEntity in relationship.Value.Entities)
+                {
+                    var clone = relatedEntity.Clone();
+                    if (clone.GetType() == typeof(Entity))
+                    {
+                        clone = GenericMethodCaller.InvokeToEntity(clone, Info);
+                    }
+                    clone[relationship.Key.GetReferencingAttributeName(clone.GetType())] = new EntityReference(entity.LogicalName, id);
+                    GenericMethodCaller.InvokeLocalCrmDatabaseStaticGenericMethod(Info, clone.LogicalName, nameof(Create), this, clone);
+                }
+            }
+
+            return id;
         }
 
         /// <summary>
