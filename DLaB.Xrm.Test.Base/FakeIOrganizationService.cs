@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Diagnostics;
+using System.Threading;
 using DLaB.Common;
 using DLaB.Xrm.Client;
 using Microsoft.Xrm.Sdk;
@@ -46,7 +47,7 @@ namespace DLaB.Xrm.Test
     [DebuggerNonUserCode]
 #endif
 #if NET
-    public class FakeIOrganizationService : ClientSideOrganizationService, IServiceFaked<IOrganizationService>, IFakeService, IOrganizationServiceAsync
+    public class FakeIOrganizationService : ClientSideOrganizationService, IServiceFaked<IOrganizationService>, IFakeService, IOrganizationServiceAsync2
 #else
     public class FakeIOrganizationService : ClientSideOrganizationService, IServiceFaked<IOrganizationService>, IFakeService
 #endif
@@ -655,44 +656,110 @@ namespace DLaB.Xrm.Test
 
         #region IServiceFaked<IOrganizationService> Members
 #if NET
-        public Task<Guid> CreateAsync(Entity entity)
-        {
-            return Task.FromResult(Create(entity));
-        }
-
-        public Task<Entity> RetrieveAsync(string entityName, Guid id, ColumnSet columnSet)
-        {
-            return Task.FromResult(Retrieve(entityName, id, columnSet));
-        }
-
-        public Task UpdateAsync(Entity entity)
-        {
-            return Task.Run(() => Update(entity));
-        }
-
-        public Task DeleteAsync(string entityName, Guid id)
-        {
-            return Task.Run(() => Delete(entityName, id));
-        }
-
-        public Task<OrganizationResponse> ExecuteAsync(OrganizationRequest request)
-        {
-            return Task.FromResult(Execute(request));
-        }
-
+        /// <inheritdoc/>
         public Task AssociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
         {
             return Task.Run(() => Associate(entityName, entityId, relationship, relatedEntities));
         }
 
+        /// <inheritdoc/>
+        public Task AssociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities, CancellationToken cancellationToken)
+        {
+            return Task.Run(() => Associate(entityName, entityId, relationship, relatedEntities), cancellationToken);
+        }
+
+        /// <inheritdoc/>
+        public Task<Entity> CreateAndReturnAsync(Entity entity, CancellationToken cancellationToken)
+        {
+            entity.Id = Create(entity);
+            return Task.FromResult(entity);
+        }
+
+        /// <inheritdoc/>
+        public Task<Guid> CreateAsync(Entity entity)
+        {
+            return Task.FromResult(Create(entity));
+        }
+
+        /// <inheritdoc/>
+        public Task<Guid> CreateAsync(Entity entity, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(Create(entity));
+        }
+
+        /// <inheritdoc/>
+        public Task DeleteAsync(string entityName, Guid id)
+        {
+            return Task.Run(() => Delete(entityName, id));
+        }
+
+        /// <inheritdoc/>
+        public Task DeleteAsync(string entityName, Guid id, CancellationToken cancellationToken)
+        {
+            return Task.Run(() => Delete(entityName, id), cancellationToken);
+        }
+
+        /// <inheritdoc/>
         public Task DisassociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
         {
             return Task.Run(() => Disassociate(entityName, entityId, relationship, relatedEntities));
         }
 
+        /// <inheritdoc/>
+        public Task DisassociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities,
+            CancellationToken cancellationToken)
+        {
+            return Task.Run(() => Disassociate(entityName, entityId, relationship, relatedEntities), cancellationToken);
+        }
+
+
+        /// <inheritdoc/>
+        public Task<OrganizationResponse> ExecuteAsync(OrganizationRequest request)
+        {
+            return Task.FromResult(Execute(request));
+        }
+
+        /// <inheritdoc/>
+        public Task<OrganizationResponse> ExecuteAsync(OrganizationRequest request, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(Execute(request));
+        }
+
+        /// <inheritdoc/>
+        public Task<Entity> RetrieveAsync(string entityName, Guid id, ColumnSet columnSet)
+        {
+            return Task.FromResult(Retrieve(entityName, id, columnSet));
+        }
+
+        /// <inheritdoc/>
+        public Task<Entity> RetrieveAsync(string entityName, Guid id, ColumnSet columnSet, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(Retrieve(entityName, id, columnSet));
+        }
+
+        /// <inheritdoc/>
         public Task<EntityCollection> RetrieveMultipleAsync(QueryBase query)
         {
             return Task.FromResult(RetrieveMultiple(query));
+        }
+
+        /// <inheritdoc/>
+        public Task<EntityCollection> RetrieveMultipleAsync(QueryBase query, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(RetrieveMultiple(query));
+        }
+
+
+        /// <inheritdoc/>
+        public Task UpdateAsync(Entity entity)
+        {
+            return Task.Run(() => Update(entity));
+        }
+
+        /// <inheritdoc/>
+        public Task UpdateAsync(Entity entity, CancellationToken cancellationToken)
+        {
+            return Task.Run(() => Update(entity), cancellationToken);
         }
 #endif
         #endregion IServiceFaked<IOrganizationService> Members

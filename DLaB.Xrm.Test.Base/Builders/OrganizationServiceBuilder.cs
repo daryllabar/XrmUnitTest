@@ -17,6 +17,7 @@ using Microsoft.Xrm.Sdk.Query;
 #if NET
 using DataverseUnitTest.Entities;
 using DLaB.Xrm;
+using Microsoft.PowerPlatform.Dataverse.Client;
 
 namespace DataverseUnitTest.Builders
 #else
@@ -891,7 +892,11 @@ namespace DLaB.Xrm.Test.Builders
         /// Builds this IOrganizationService.
         /// </summary>
         /// <returns></returns>
+#if NET
+        public IOrganizationServiceAsync2 Build()
+#else
         public IOrganizationService Build()
+#endif
         {
             ApplyNewEntityDefaultIds();
             ApplyEntityFilter();
