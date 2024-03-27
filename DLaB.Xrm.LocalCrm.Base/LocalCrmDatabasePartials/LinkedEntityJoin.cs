@@ -199,7 +199,7 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
-        private const string JoinAliasEntityPreFix = "ALIAS_FROM_ENTITY_";
+        internal const string JoinAliasEntityPreFix = "ALIAS_FROM_ENTITY_";
 
         private static TFrom AddAliasedColumns<TFrom, TTo>(TFrom fromEntity, TTo toEntity, LinkEntity link)
             where TFrom : Entity

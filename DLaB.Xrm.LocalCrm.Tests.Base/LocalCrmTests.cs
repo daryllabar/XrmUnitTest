@@ -5,6 +5,7 @@ using DLaB.Common;
 using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Query;
 #if NET
 using DataverseUnitTest;
 #else
@@ -17,6 +18,31 @@ namespace DLaB.Xrm.LocalCrm.Tests
     [TestClass]
     public class LocalCrmTests : BaseTestClass
     {
+        [TestMethod]
+        public void Test2()
+        {
+            var service = GetService();
+            var account = new Account();
+            account.Id = service.Create(account);
+            var contact = new Contact
+            {
+                ParentCustomerId = account.ToEntityReference(),
+            };
+            service.Create(contact);
+
+            var query = QueryExpressionFactory.Create<Contact>();
+            query.LinkEntities.Add(new LinkEntity(Contact.EntityLogicalName, Account.EntityLogicalName, Contact.Fields.AccountId, Account.Fields.AccountId, JoinOperator.Inner));
+            var contacts = service.GetEntities(query).ToList();
+
+            var qe = QueryExpressionFactory.Create<Account>();
+            qe.AddLink<Contact>(Account.Fields.Id, Contact.Fields.AccountId);
+
+            var accounts = service.GetEntities(qe);
+
+            Assert.AreEqual(1, contacts.Count);
+            Assert.AreEqual(1, accounts.Count);
+        }
+
         [TestMethod]
         public void LocalCrmTests_DeactivateActivate()
         {
