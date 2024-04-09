@@ -137,8 +137,12 @@ namespace DLaB.Xrm.LocalCrm
             // Date Time Details: https://community.dynamics.com/crm/b/gonzaloruiz/archive/2012/07/29/date-and-time-operators-in-crm-explained
 
             int days;
+            int months;
+            int years;
             bool value;
-            DateTime date;
+            var date = DateTime.UtcNow.Date;
+            var startOfMonth = date.AddDays(-date.Day + 1);
+            var startOfYear = date.AddDays(-date.Day + 1).AddMonths(-date.Month +1);
             AssertExpectedNumberOfValues(condition);
 
             var name = condition.GetQualifiedAttributeName();
@@ -197,13 +201,13 @@ namespace DLaB.Xrm.LocalCrm
                     value = Compare(entity, name, null) != 0;
                     break;
                 case ConditionOperator.Yesterday:
-                    value = IsBetween(entity, condition, DateTime.UtcNow.Date.AddDays(-1), DateTime.UtcNow.Date, context);
+                    value = IsBetween(entity, condition, date.AddDays(-1), date, context);
                     break;
                 case ConditionOperator.Today:
-                    value = IsBetween(entity, condition, DateTime.UtcNow.Date, DateTime.UtcNow.Date.AddDays(1), context);
+                    value = IsBetween(entity, condition, date, date.AddDays(1), context);
                     break;
                 case ConditionOperator.Tomorrow:
-                    value = IsBetween(entity, condition, DateTime.UtcNow.Date.AddDays(1), DateTime.UtcNow.Date.AddDays(2), context);
+                    value = IsBetween(entity, condition, date.AddDays(1), date.AddDays(2), context);
                     break;
                 case ConditionOperator.Last7Days:
                     condition.Operator = ConditionOperator.LastXDays;
@@ -215,18 +219,27 @@ namespace DLaB.Xrm.LocalCrm
                     condition.Values.Add(7);
                     value = ConditionIsTrue(entity, condition, context);
                     break;
-                //case ConditionOperator.LastWeek:
-                //    break;
-                //case ConditionOperator.ThisWeek:
-                //    break;
-                //case ConditionOperator.NextWeek:
-                //    break;
-                //case ConditionOperator.LastMonth:
-                //    break;
-                //case ConditionOperator.ThisMonth:
-                //    break;
-                //case ConditionOperator.NextMonth:
-                //    break;
+                case ConditionOperator.LastWeek:
+                    var previousSunday = date.AddDays(-(int)date.DayOfWeek - 7);
+                    value = IsBetween(entity, condition, previousSunday, previousSunday.AddDays(7), context);
+                    break;
+                case ConditionOperator.ThisWeek:
+                    var sunday = date.AddDays(-(int)date.DayOfWeek);
+                    value = IsBetween(entity, condition, sunday, sunday.AddDays(7), context);
+                    break;
+                case ConditionOperator.NextWeek:
+                    var nextSunday = date.AddDays(-(int)date.DayOfWeek + 7);
+                    value = IsBetween(entity, condition, nextSunday, nextSunday.AddDays(7), context);
+                    break;
+                case ConditionOperator.LastMonth:
+                    value = IsBetween(entity, condition, startOfMonth.AddMonths(-1), startOfMonth, context);
+                    break;
+                case ConditionOperator.ThisMonth:
+                    value = IsBetween(entity, condition, startOfMonth, startOfMonth.AddMonths(1), context);
+                    break;
+                case ConditionOperator.NextMonth:
+                    value = IsBetween(entity, condition, startOfMonth.AddMonths(1), startOfMonth.AddMonths(2), context);
+                    break;
                 case ConditionOperator.On:
                     date = condition.GetDateTimeValueFromDateOrString().Date;
                     var attributeDate = entity.GetAttributeValue<DateTime?>(name);
@@ -245,25 +258,38 @@ namespace DLaB.Xrm.LocalCrm
                     date = condition.GetDateTimeValueFromDateOrString().Date;
                     value = IsBetween(entity, condition, date, DateTime.MaxValue, context);
                     break;
-                //    break;
-                //case ConditionOperator.LastYear:
-                //    break;
-                //case ConditionOperator.ThisYear:
-                //    break;
-                //case ConditionOperator.NextYear:
-                //    break;
-                //case ConditionOperator.LastXHours:
-                //    break;
-                //case ConditionOperator.NextXHours:
-                //    break;
+                case ConditionOperator.LastYear:
+                    value = IsBetween(entity, condition, startOfYear.AddYears(-1), startOfYear, context);
+                    break;
+                case ConditionOperator.ThisYear:
+                    value = IsBetween(entity, condition, startOfYear, startOfYear.AddYears(1), context);
+                    break;
+                case ConditionOperator.NextYear:
+                    value = IsBetween(entity, condition, startOfYear.AddYears(1), startOfYear.AddYears(2), context);
+                    break;
+                case ConditionOperator.LastXHours:
+                    days = condition.GetIntValueFromIntOrString();
+                    if (days <= 0)
+                    {
+                        throw CrmExceptions.GetConditionValueGreaterThan0Exception();
+                    }
+                    value = IsBetween(entity, condition, DateTime.UtcNow.AddHours(-1d * days), DateTime.UtcNow, context);
+                    break;
+                case ConditionOperator.NextXHours:
+                    days = condition.GetIntValueFromIntOrString();
+                    if (days <= 0)
+                    {
+                        throw CrmExceptions.GetConditionValueGreaterThan0Exception();
+                    }
+                    value = IsBetween(entity, condition, DateTime.UtcNow, DateTime.UtcNow.AddHours(days), context);
+                    break;
                 case ConditionOperator.LastXDays:
                     days = condition.GetIntValueFromIntOrString();
                     if (days <= 0)
                     {
                         throw CrmExceptions.GetConditionValueGreaterThan0Exception();
                     }
-
-                    value = IsBetween(entity, condition, DateTime.UtcNow.Date.AddDays(-1d * days), DateTime.UtcNow.AddDays(1).Date, context);
+                    value = IsBetween(entity, condition, date.AddDays(-1d * days), date.AddDays(1), context);
                     break;
                 case ConditionOperator.NextXDays:
                     days = condition.GetIntValueFromIntOrString();
@@ -271,20 +297,59 @@ namespace DLaB.Xrm.LocalCrm
                     {
                         throw CrmExceptions.GetConditionValueGreaterThan0Exception();
                     }
-                    value = IsBetween(entity, condition, DateTime.UtcNow, DateTime.UtcNow.Date.AddDays(days + 1), context);
+                    value = IsBetween(entity, condition, date, date.AddDays(days + 1), context);
                     break;
-                //case ConditionOperator.LastXWeeks:
-                //    break;
-                //case ConditionOperator.NextXWeeks:
-                //    break;
-                //case ConditionOperator.LastXMonths:
-                //    break;
-                //case ConditionOperator.NextXMonths:
-                //    break;
-                //case ConditionOperator.LastXYears:
-                //    break;
-                //case ConditionOperator.NextXYears:
-                //    break;
+                case ConditionOperator.LastXWeeks:
+                    days = condition.GetIntValueFromIntOrString() * 7;
+                    if (days <= 0)
+                    {
+                        throw CrmExceptions.GetConditionValueGreaterThan0Exception();
+                    }
+                    var startWeek = date.AddDays(-(int)date.DayOfWeek - days);
+                    value = IsBetween(entity, condition, startWeek, date.AddDays(-(int)date.DayOfWeek), context);
+                    break;
+                case ConditionOperator.NextXWeeks:
+                    days = condition.GetIntValueFromIntOrString() * 7;
+                    if (days <= 0)
+                    {
+                        throw CrmExceptions.GetConditionValueGreaterThan0Exception();
+                    }
+                    var endWeek = date.AddDays(-(int)date.DayOfWeek - days);
+                    value = IsBetween(entity, condition, date.AddDays(-(int)date.DayOfWeek), endWeek, context);
+                    break;
+                case ConditionOperator.LastXMonths:
+                    months = condition.GetIntValueFromIntOrString();
+                    if (months <= 0)
+                    {
+                        throw CrmExceptions.GetConditionValueGreaterThan0Exception();
+                    }
+                    value = IsBetween(entity, condition, startOfMonth.AddMonths(-months), startOfMonth, context);
+                    break;
+                case ConditionOperator.NextXMonths:
+                    months = condition.GetIntValueFromIntOrString();
+                    if (months <= 0)
+                    {
+                        throw CrmExceptions.GetConditionValueGreaterThan0Exception();
+                    }
+                    value = IsBetween(entity, condition, startOfMonth, startOfMonth.AddMonths(months), context);
+                    break;
+                case ConditionOperator.LastXYears:
+                    years = condition.GetIntValueFromIntOrString();
+                    if (years <= 0)
+                    {
+                        throw CrmExceptions.GetConditionValueGreaterThan0Exception();
+                    }
+
+                    value = IsBetween(entity, condition, date.AddYears(-1 * years), date.AddYears(1), context);
+                    break;
+                case ConditionOperator.NextXYears:
+                    years = condition.GetIntValueFromIntOrString();
+                    if (years <= 0)
+                    {
+                        throw CrmExceptions.GetConditionValueGreaterThan0Exception();
+                    }
+                    value = IsBetween(entity, condition, date, date.AddYears(years).AddDays(1d).Date, context);
+                    break;
                 case ConditionOperator.EqualUserId:
                     value = Compare(entity, name, context.UserId) == 0;
                     break;
@@ -313,8 +378,14 @@ namespace DLaB.Xrm.LocalCrm
                 //    break;
                 //case ConditionOperator.NotOn:
                 //    break;
-                //case ConditionOperator.OlderThanXMonths:
-                //    break;
+                case ConditionOperator.OlderThanXMonths:
+                    months = condition.GetIntValueFromIntOrString();
+                    if (months <= 0)
+                    {
+                        throw CrmExceptions.GetConditionValueGreaterThan0Exception();
+                    }
+                    value = IsBetween(entity, condition, DateTime.MinValue, startOfMonth.AddMonths(-months), context);
+                    break;
                 case ConditionOperator.BeginsWith:
                     var beginsWithStr = GetString(entity, name);
                     if (beginsWithStr == null)

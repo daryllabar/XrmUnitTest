@@ -39,6 +39,26 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
+        public void LocalCrmTests_ConditionExpression_LastXYears()
+        {
+            var service = GetService();
+            var id = service.Create(new Contact
+            {
+                LastUsedInCampaign = DateTime.UtcNow.AddYears(-2)
+            });
+
+            var contact = service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.CreatedOn, ConditionOperator.LastXYears, 2));
+            Assert.IsNotNull(contact, "Contact should have been found because it was created in the last 2 days");
+
+            Entity GetContact(int years) => service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.LastUsedInCampaign, ConditionOperator.LastXYears, years));
+
+            Assert.IsNull(GetContact(1));
+            Assert.IsNotNull(GetContact(3));
+            service.Update(new Contact { Id = id, LastUsedInCampaign = DateTime.UtcNow.AddYears(2) });
+            Assert.IsNull(GetContact(3));
+        }
+
+        [TestMethod]
         public void LocalCrmTests_ConditionExpression_Last7Days()
         {
             var service = GetService();
@@ -85,6 +105,25 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.IsNotNull(GetContact(2));
             Assert.IsNotNull(GetContact(3));
             service.Update(new Contact { Id = id, LastUsedInCampaign = DateTime.UtcNow.AddDays(-2d) });
+            Assert.IsNull(GetContact(3));
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_ConditionExpression_NextXYears()
+        {
+            var now = DateTime.UtcNow;
+            var service = GetService();
+            var id = service.Create(new Contact
+            {
+                LastUsedInCampaign = now.AddYears(2)
+            });
+
+            Entity GetContact(int years) => service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.LastUsedInCampaign, ConditionOperator.NextXYears, years));
+
+            Assert.IsNull(GetContact(1));
+            Assert.IsNotNull(GetContact(2));
+            Assert.IsNotNull(GetContact(3));
+            service.Update(new Contact { Id = id, LastUsedInCampaign = now.AddYears(-2) });
             Assert.IsNull(GetContact(3));
         }
 
