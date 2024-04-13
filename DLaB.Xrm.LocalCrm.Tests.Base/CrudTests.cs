@@ -283,12 +283,16 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var childAccounts = service.GetEntities<Account>(Account.Fields.MasterId, accountId).OrderBy(a => a.Name).ToList();
             Assert.AreEqual(2, childAccounts.Count);
             Assert.AreEqual("ChildViaMaster1", childAccounts[0].Name);
+            Assert.AreEqual(account.Name, childAccounts[0].FormattedValues[Account.Fields.MasterId]);
             Assert.AreEqual("ChildViaMaster2", childAccounts[1].Name);
+            Assert.AreEqual(account.Name, childAccounts[1].FormattedValues[Account.Fields.MasterId]);
 
             childAccounts = service.GetEntities<Account>(Account.Fields.ParentAccountId, accountId).OrderBy(a => a.Name).ToList();
             Assert.AreEqual(2, childAccounts.Count);
             Assert.AreEqual("ChildAccount1", childAccounts[0].Name);
+            Assert.AreEqual(account.Name, childAccounts[0].FormattedValues[Account.Fields.ParentAccountId]);
             Assert.AreEqual("ChildAccount2", childAccounts[1].Name);
+            Assert.AreEqual(account.Name, childAccounts[1].FormattedValues[Account.Fields.ParentAccountId]);
         }
 
         [TestMethod]

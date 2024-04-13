@@ -286,8 +286,8 @@ namespace DLaB.Xrm.LocalCrm
             }
 
             service.RemoveFieldsCrmDoesNotReturn(entity);
-            PopulateFormattedValues(service.Info, entity);
             PopulateReferenceNames(service, entity);
+            PopulateFormattedValues(service.Info, entity);
             return entity.Clone(true);
         }
         
@@ -392,14 +392,13 @@ namespace DLaB.Xrm.LocalCrm
 
         private static void PopulateFormattedValues<T>(LocalCrmDatabaseInfo info, T entity) where T : Entity
         {
-            // TODO: Handle Names?
             if (!entity.Attributes.Values.Any(HasFormattedAttribute))
             {
                 return;
             }
             var properties = PropertiesCache.For<T>();
             AddOptionSetValueNames(info, entity, properties);
-            AddMoneyAndDateFormattedValues(entity);
+            AddMoneyLookupAndDateFormattedValues(entity);
         }
 
         private static void AddOptionSetValueNames<T>(LocalCrmDatabaseInfo info, T entity, EntityProperties properties) where T : Entity
@@ -438,7 +437,7 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
-        private static void AddMoneyAndDateFormattedValues<T>(T entity) where T : Entity
+        private static void AddMoneyLookupAndDateFormattedValues<T>(T entity) where T : Entity
         {
             foreach (var stringyAttribute in entity.Attributes.Where(a => !(a.Value is OptionSetValue)
                 && !((a.Value as AliasedValue)?.Value is OptionSetValue)
@@ -449,10 +448,17 @@ namespace DLaB.Xrm.LocalCrm
                 {
                     att = money.Value.ToString("C", CultureInfo.CurrentCulture);
                 }
-
-                if (att is DateTime time)
+                else if (att is DateTime time)
                 {
                     att = time.ToString("g");
+                }
+                else if (att is EntityReference lookup)
+                {
+                    if (lookup.Name == null)
+                    {
+                        continue;
+                    }
+                    att = lookup.Name;
                 }
 
                 entity.FormattedValues.Add(stringyAttribute.Key, att.ToString());
@@ -465,7 +471,7 @@ namespace DLaB.Xrm.LocalCrm
             {
                 if (!(value is AliasedValue aliased))
                 {
-                    return value is OptionSetValue || value is Money || value is bool || value is DateTime;
+                    return value is OptionSetValue || value is Money || value is bool || value is DateTime || value is EntityReference;
                 }
                 value = aliased.Value;
             }
