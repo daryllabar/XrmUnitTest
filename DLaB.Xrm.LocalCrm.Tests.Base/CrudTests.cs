@@ -536,14 +536,33 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmTests_Crud_MultipleOr()
+        public void LocalCrmTests_Crud_Distinct()
         {
             TestInitializer.InitializeTestSettings();
             var service = GetService();
             const string telephone = "9998881111";
-            service.Create(new Account {Telephone1 = telephone});
-            var qe = QueryExpressionFactory.Create<Account>();
-            TestForPhoneNumber(service, qe, qe.Criteria, telephone);
+            service.Create(new Account { Telephone1 = telephone });
+            service.Create(new Account { Telephone1 = telephone });
+            var qe = QueryExpressionFactory.Create<Account>(a => new { a.Telephone1});
+            qe.Query.Distinct = true;
+            Assert.AreEqual(1, service.GetEntities(qe).Count, "Distinct should have returned only 1 record!");
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_Crud_DistinctJoin()
+        {
+            TestInitializer.InitializeTestSettings();
+            var service = GetService();
+            const string telephone = "9998881111";
+            var contact1Id = service.Create(new Contact { FirstName = "First" });
+            var contact2Id = service.Create(new Contact { FirstName = "Second" });
+            service.Create(new Account { Telephone1 = telephone, PrimaryContactId = new EntityReference(Contact.EntityLogicalName, contact1Id) });
+            service.Create(new Account { Telephone1 = telephone, PrimaryContactId = new EntityReference(Contact.EntityLogicalName, contact1Id) });
+            service.Create(new Account { Telephone1 = telephone, PrimaryContactId = new EntityReference(Contact.EntityLogicalName, contact2Id) });
+            var qe = QueryExpressionFactory.Create<Account>(a => new { a.Telephone1 });
+            qe.AddLink<Contact>(Account.Fields.PrimaryContactId, Contact.Fields.Id, c => new { c.FirstName });
+            qe.Query.Distinct = true;
+            Assert.AreEqual(2, service.GetEntities(qe).Count, "Distinct should have returned only 2 records!");
         }
 
         [TestMethod]

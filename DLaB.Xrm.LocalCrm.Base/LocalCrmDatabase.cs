@@ -361,12 +361,56 @@ namespace DLaB.Xrm.LocalCrm
 
             var result = new EntityCollection();
             var cs = qe.ColumnSet;
+            if (qe.Distinct)
+            {
+                entities = entities.GroupBy(e => GetUniqueDistinctKey(e, qe)).Select(g => g.First()).ToList();
+            }
             foreach (var entity in entities)
             {
                 result.Entities.Add(ProcessEntityForReturn(service, cs, entity, true));
             }
 
             return result;
+        }
+
+        private static string GetUniqueDistinctKey(Entity entity, QueryExpression qe)
+        {
+            var unique = new Entity();
+
+            if (!qe.ColumnSet.AllColumns)
+            {
+                foreach (var column in qe.ColumnSet.Columns)
+                {
+                    if (entity.Contains(column))
+                    {
+                        unique[column] = entity[column];
+                    }
+                }
+            }
+
+            AddLinkedEntityColumns(entity, qe.LinkEntities, unique);
+
+            return unique.ToStringDebug();
+        }
+
+        private static void AddLinkedEntityColumns(Entity entity, DataCollection<LinkEntity> linkedEntities, Entity unique)
+        {
+            foreach(var link in linkedEntities)
+            {
+                AddLinkedEntityColumns(entity, link.LinkEntities, unique);
+                if (link.Columns.AllColumns)
+                {
+                    continue;
+                }
+
+                foreach (var column in link.Columns.Columns.Select(c => link.EntityAlias + "." + c))
+                {
+                    if (entity.Contains(column))
+                    {
+                        unique[column] = entity.GetAttributeValue<AliasedValue>(column)?.Value;
+                    }
+                }
+            }
         }
 
         private static void PopulateLinkEntityAliases(DataCollection<LinkEntity> linkEntities)
