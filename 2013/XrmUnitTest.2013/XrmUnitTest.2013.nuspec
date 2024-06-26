@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>XrmUnitTest.2013</id>
-    <version>2.3.0.58</version>
+    <version>2.3.0.59</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <license type="expression">MIT</license>
@@ -25,8 +25,8 @@
         <dependency id="Microsoft.CrmSdk.Workflow" version="6.1.1" />
         <dependency id="Microsoft.CrmSdk.XrmTooling.CoreAssembly" version="6.1.1" />
         <dependency id="Microsoft.IdentityModel" version="6.1.7600.16394" />
-        <dependency id="Microsoft.WindowsAzure.ConfigurationManager" version="2.0.0.0" />
-        <dependency id="WindowsAzure.ServiceBus" version="2.1.2.0" />
+        <dependency id="Microsoft.WindowsAzure.ConfigurationManager" version="3.2.3" />
+        <dependency id="WindowsAzure.ServiceBus" version="7.0.1" />
       </group>
     </dependencies>
   </metadata>

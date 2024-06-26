@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Workflow;
+using Activity = System.Activities.Activity;
 
 namespace DLaB.Xrm.Test.Builders
 {
