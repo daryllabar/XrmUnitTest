@@ -4,9 +4,6 @@ using Microsoft.Xrm.Sdk.Query;
 #if !PRE_MULTISELECT
 namespace DLaB.Xrm.LocalCrm
 {
-#if !DEBUG_XRM_UNIT_TEST_CODE
-    [System.Diagnostics.DebuggerNonUserCode]
-#endif
     partial class LocalCrmDatabaseOrganizationService
     {
         private DownloadBlockResponse ExecuteInternal(DownloadBlockRequest request)

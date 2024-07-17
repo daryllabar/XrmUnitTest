@@ -12,6 +12,9 @@ namespace Source.DLaB.Xrm.Plugin
     [AttributeUsage(AttributeTargets.Assembly)]
     public sealed class PluginServicesRegistrationRecorderAttribute : Attribute
     {
+        /// <summary>
+        /// The Recorder Type to record all the registrations to the Service Provider.
+        /// </summary>
         public Type Recorder { get; }
 
         /// <summary>

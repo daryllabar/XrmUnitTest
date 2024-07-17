@@ -1,11 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<AssemblyName>XrmUnitTest.09</AssemblyName>
+		<AssemblyVersion>2.3.0.60</AssemblyVersion>
+		<FileVersion>2.3.0.60</FileVersion>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<DebugType>full</DebugType>
 		<DebugSymbols>true</DebugSymbols>
-		<FileVersion>2.3.0.59</FileVersion>
 		<RootNamespace>XrmUnitTest09</RootNamespace>
 		<TargetFramework>net462</TargetFramework>
 		<SignAssembly>True</SignAssembly>
@@ -21,7 +22,7 @@
 		<CodeAnalysisRuleSet>..\..\XrmUnitTest.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
 	<ItemGroup>
-	  <PackageReference Include="DLaB.Xrm.Source" Version="4.1.0.13" />
+	  <PackageReference Include="DLaB.Xrm.Source" Version="4.1.0.14" />
 	  <PackageReference Include="Microsoft.CrmSdk.XrmTooling.CoreAssembly" Version="9.1.1.65" />
 	</ItemGroup>
 	<ItemGroup>

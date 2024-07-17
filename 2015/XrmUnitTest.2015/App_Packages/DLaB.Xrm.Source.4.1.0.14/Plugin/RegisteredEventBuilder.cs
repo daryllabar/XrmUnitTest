@@ -191,11 +191,20 @@ namespace Source.DLaB.Xrm.Plugin
 
         #endregion ForEntities
 
+        /// <summary>
+        /// Registered Event is associated for sync events only
+        /// </summary>
+        /// <returns></returns>
         public RegisteredEventBuilder ForSyncOnly()
         {
             Mode = RegisteredEvent.ContextMode.Sync;
             return this;
         }
+
+        /// <summary>
+        /// Registered Event is associated for async events only
+        /// </summary>
+        /// <returns></returns>
         public RegisteredEventBuilder ForAsyncOnly()
         {
             Mode = RegisteredEvent.ContextMode.Async;

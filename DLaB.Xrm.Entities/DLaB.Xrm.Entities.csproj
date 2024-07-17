@@ -32,7 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>..\SourceProjects\XrmUnitTest.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\XrmUnitTest.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'LocalNuget|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
