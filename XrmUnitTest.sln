@@ -76,41 +76,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLaB.Xrm.Entities.Net", "DLaB.Xrm.Entities.Net\DLaB.Xrm.Entities.Net.csproj", "{7E1C7B84-ECBD-4F5A-B6FD-E76E0082B536}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		XrmUnitTest.Test.Base\XrmUnitTest.Test.Base.projitems*{0773e17c-ddbc-4dd9-812b-85c1299a6aca}*SharedItemsImports = 13
-		DLaB.Xrm.LocalCrm.Tests.Base\DLaB.Xrm.LocalCrm.Tests.Base.projitems*{1a5ef03b-b261-4971-8f91-448b43f3e642}*SharedItemsImports = 13
-		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{33c4e42f-b410-4570-bbc9-da4c695b1f4d}*SharedItemsImports = 4
-		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{33c4e42f-b410-4570-bbc9-da4c695b1f4d}*SharedItemsImports = 4
-		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{33c4e42f-b410-4570-bbc9-da4c695b1f4d}*SharedItemsImports = 4
-		NMemory.Base\NMemory.Base.projitems*{33c4e42f-b410-4570-bbc9-da4c695b1f4d}*SharedItemsImports = 4
-		NMemory.Base\NMemory.Base.projitems*{59b000b7-d796-4065-aaba-8d6c91542bb9}*SharedItemsImports = 13
-		DLaB.Xrm.LocalCrm.Tests.Base\DLaB.Xrm.LocalCrm.Tests.Base.projitems*{913c6b2b-affe-4819-9b22-b1e840e86738}*SharedItemsImports = 4
-		DLaB.Xrm.Test.Tests.Base\DLaB.Xrm.Test.Tests.Base.projitems*{913c6b2b-affe-4819-9b22-b1e840e86738}*SharedItemsImports = 4
-		XrmUnitTest.Test.Base\XrmUnitTest.Test.Base.projitems*{913c6b2b-affe-4819-9b22-b1e840e86738}*SharedItemsImports = 4
-		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 4
-		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 4
-		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 4
-		NMemory.Base\NMemory.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 4
-		DLaB.Xrm.LocalCrm.Tests.Base\DLaB.Xrm.LocalCrm.Tests.Base.projitems*{c982dcfc-48f8-4fe0-aa56-c45a1abe29ac}*SharedItemsImports = 5
-		DLaB.Xrm.Test.Tests.Base\DLaB.Xrm.Test.Tests.Base.projitems*{c982dcfc-48f8-4fe0-aa56-c45a1abe29ac}*SharedItemsImports = 5
-		XrmUnitTest.Test.Base\XrmUnitTest.Test.Base.projitems*{c982dcfc-48f8-4fe0-aa56-c45a1abe29ac}*SharedItemsImports = 5
-		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{d2ccbfcf-54c0-405c-a829-100a3deb4229}*SharedItemsImports = 13
-		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{e022f65b-2e2b-4907-bed5-8ed04fef5769}*SharedItemsImports = 4
-		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{e022f65b-2e2b-4907-bed5-8ed04fef5769}*SharedItemsImports = 4
-		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{e022f65b-2e2b-4907-bed5-8ed04fef5769}*SharedItemsImports = 4
-		NMemory.Base\NMemory.Base.projitems*{e022f65b-2e2b-4907-bed5-8ed04fef5769}*SharedItemsImports = 4
-		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{e8ad0e5d-2969-463a-96a7-8d8a3240fd7f}*SharedItemsImports = 13
-		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{e8c237cb-ffb2-4163-a985-01ecc0b8f399}*SharedItemsImports = 4
-		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{e8c237cb-ffb2-4163-a985-01ecc0b8f399}*SharedItemsImports = 4
-		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{e8c237cb-ffb2-4163-a985-01ecc0b8f399}*SharedItemsImports = 4
-		NMemory.Base\NMemory.Base.projitems*{e8c237cb-ffb2-4163-a985-01ecc0b8f399}*SharedItemsImports = 4
-		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{eb51a9f2-d487-409c-a9ca-e22c74581f89}*SharedItemsImports = 5
-		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{eb51a9f2-d487-409c-a9ca-e22c74581f89}*SharedItemsImports = 5
-		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{eb51a9f2-d487-409c-a9ca-e22c74581f89}*SharedItemsImports = 5
-		NMemory.Base\NMemory.Base.projitems*{eb51a9f2-d487-409c-a9ca-e22c74581f89}*SharedItemsImports = 5
-		DLaB.Xrm.Test.Tests.Base\DLaB.Xrm.Test.Tests.Base.projitems*{ef351e75-a598-4d76-9c03-8b3eb2aa253c}*SharedItemsImports = 13
-		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{f150ea46-4955-4e32-9917-10f89b291602}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		LocalNuget|Any CPU = LocalNuget|Any CPU
@@ -186,5 +151,36 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3C4F140B-7118-4292-9392-253BE1444510}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		XrmUnitTest.Test.Base\XrmUnitTest.Test.Base.projitems*{0773e17c-ddbc-4dd9-812b-85c1299a6aca}*SharedItemsImports = 13
+		DLaB.Xrm.LocalCrm.Tests.Base\DLaB.Xrm.LocalCrm.Tests.Base.projitems*{1a5ef03b-b261-4971-8f91-448b43f3e642}*SharedItemsImports = 13
+		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{33c4e42f-b410-4570-bbc9-da4c695b1f4d}*SharedItemsImports = 4
+		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{33c4e42f-b410-4570-bbc9-da4c695b1f4d}*SharedItemsImports = 4
+		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{33c4e42f-b410-4570-bbc9-da4c695b1f4d}*SharedItemsImports = 4
+		NMemory.Base\NMemory.Base.projitems*{33c4e42f-b410-4570-bbc9-da4c695b1f4d}*SharedItemsImports = 4
+		NMemory.Base\NMemory.Base.projitems*{59b000b7-d796-4065-aaba-8d6c91542bb9}*SharedItemsImports = 13
+		DLaB.Xrm.LocalCrm.Tests.Base\DLaB.Xrm.LocalCrm.Tests.Base.projitems*{913c6b2b-affe-4819-9b22-b1e840e86738}*SharedItemsImports = 4
+		DLaB.Xrm.Test.Tests.Base\DLaB.Xrm.Test.Tests.Base.projitems*{913c6b2b-affe-4819-9b22-b1e840e86738}*SharedItemsImports = 4
+		XrmUnitTest.Test.Base\XrmUnitTest.Test.Base.projitems*{913c6b2b-affe-4819-9b22-b1e840e86738}*SharedItemsImports = 4
+		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 5
+		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 5
+		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 5
+		NMemory.Base\NMemory.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 5
+		DLaB.Xrm.LocalCrm.Tests.Base\DLaB.Xrm.LocalCrm.Tests.Base.projitems*{c982dcfc-48f8-4fe0-aa56-c45a1abe29ac}*SharedItemsImports = 5
+		DLaB.Xrm.Test.Tests.Base\DLaB.Xrm.Test.Tests.Base.projitems*{c982dcfc-48f8-4fe0-aa56-c45a1abe29ac}*SharedItemsImports = 5
+		XrmUnitTest.Test.Base\XrmUnitTest.Test.Base.projitems*{c982dcfc-48f8-4fe0-aa56-c45a1abe29ac}*SharedItemsImports = 5
+		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{d2ccbfcf-54c0-405c-a829-100a3deb4229}*SharedItemsImports = 13
+		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{e022f65b-2e2b-4907-bed5-8ed04fef5769}*SharedItemsImports = 4
+		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{e022f65b-2e2b-4907-bed5-8ed04fef5769}*SharedItemsImports = 4
+		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{e022f65b-2e2b-4907-bed5-8ed04fef5769}*SharedItemsImports = 4
+		NMemory.Base\NMemory.Base.projitems*{e022f65b-2e2b-4907-bed5-8ed04fef5769}*SharedItemsImports = 4
+		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{e8ad0e5d-2969-463a-96a7-8d8a3240fd7f}*SharedItemsImports = 13
+		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{eb51a9f2-d487-409c-a9ca-e22c74581f89}*SharedItemsImports = 5
+		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{eb51a9f2-d487-409c-a9ca-e22c74581f89}*SharedItemsImports = 5
+		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{eb51a9f2-d487-409c-a9ca-e22c74581f89}*SharedItemsImports = 5
+		NMemory.Base\NMemory.Base.projitems*{eb51a9f2-d487-409c-a9ca-e22c74581f89}*SharedItemsImports = 5
+		DLaB.Xrm.Test.Tests.Base\DLaB.Xrm.Test.Tests.Base.projitems*{ef351e75-a598-4d76-9c03-8b3eb2aa253c}*SharedItemsImports = 13
+		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{f150ea46-4955-4e32-9917-10f89b291602}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal
