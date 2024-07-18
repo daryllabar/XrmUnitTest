@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AssertCrmExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseTestClass.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConditionExpressionTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)QualifyLeadTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConnectionEntityTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FileStoreTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CrudTests.cs" />

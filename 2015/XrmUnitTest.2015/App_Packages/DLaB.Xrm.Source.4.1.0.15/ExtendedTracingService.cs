@@ -62,6 +62,7 @@ namespace Source.DLaB.Xrm
             }
         }
 
+        /// <inheritdoc />
         public string GetTraceHistory()
         {
             return TraceHistory.ToString();

@@ -2,8 +2,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<AssemblyName>XrmUnitTest.09</AssemblyName>
-		<AssemblyVersion>2.3.0.60</AssemblyVersion>
-		<FileVersion>2.3.0.60</FileVersion>
+		<AssemblyVersion>2.3.0.61</AssemblyVersion>
+		<FileVersion>2.3.0.61</FileVersion>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<DebugType>full</DebugType>
 		<DebugSymbols>true</DebugSymbols>
@@ -22,7 +22,7 @@
 		<CodeAnalysisRuleSet>..\..\XrmUnitTest.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
 	<ItemGroup>
-	  <PackageReference Include="DLaB.Xrm.Source" Version="4.1.0.14" />
+	  <PackageReference Include="DLaB.Xrm.Source" Version="4.1.0.15" />
 	  <PackageReference Include="Microsoft.CrmSdk.XrmTooling.CoreAssembly" Version="9.1.1.65" />
 	</ItemGroup>
 	<ItemGroup>

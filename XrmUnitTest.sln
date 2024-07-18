@@ -55,7 +55,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code Snippets", "Code Snipp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "09", "09", "{B4F0DB7E-8440-484A-AD3A-2C755A6AB749}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmUnitTest.09", "09\XrmUnitTest.09\XrmUnitTest.09.csproj", "{BFEBBBB1-94EE-437F-977D-22E2E9510951}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XrmUnitTest.09", "09\XrmUnitTest.09\XrmUnitTest.09.csproj", "{BFEBBBB1-94EE-437F-977D-22E2E9510951}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmUnitTest.09.Tests", "09\XrmUnitTest.09.Tests\XrmUnitTest.09.Tests.csproj", "{913C6B2B-AFFE-4819-9B22-B1E840E86738}"
 EndProject
@@ -176,6 +176,10 @@ Global
 		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{e022f65b-2e2b-4907-bed5-8ed04fef5769}*SharedItemsImports = 4
 		NMemory.Base\NMemory.Base.projitems*{e022f65b-2e2b-4907-bed5-8ed04fef5769}*SharedItemsImports = 4
 		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{e8ad0e5d-2969-463a-96a7-8d8a3240fd7f}*SharedItemsImports = 13
+		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{e8c237cb-ffb2-4163-a985-01ecc0b8f399}*SharedItemsImports = 4
+		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{e8c237cb-ffb2-4163-a985-01ecc0b8f399}*SharedItemsImports = 4
+		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{e8c237cb-ffb2-4163-a985-01ecc0b8f399}*SharedItemsImports = 4
+		NMemory.Base\NMemory.Base.projitems*{e8c237cb-ffb2-4163-a985-01ecc0b8f399}*SharedItemsImports = 4
 		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{eb51a9f2-d487-409c-a9ca-e22c74581f89}*SharedItemsImports = 5
 		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{eb51a9f2-d487-409c-a9ca-e22c74581f89}*SharedItemsImports = 5
 		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{eb51a9f2-d487-409c-a9ca-e22c74581f89}*SharedItemsImports = 5
