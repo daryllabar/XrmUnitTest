@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using DLaB.Common;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 #if !XRM_2013
@@ -11,6 +12,7 @@ using AppConfig = DLaB.Xrm.Client.AppConfig;
 using System.Web;
 #else
 using System.Net;
+using static System.Net.WebRequestMethods;
 #endif
 
 namespace DLaB.Xrm.LocalCrm
@@ -215,6 +217,8 @@ namespace DLaB.Xrm.LocalCrm
 
             return Create(contextType.Assembly, contextType.Namespace, optionalSettings);
         }
+
+        private const int UrlPreAndPostFixLength = 26; // "https://.crm.dynamics.com/".Length
         /// <summary>
         /// Creates the specified database info.
         /// </summary>
@@ -229,10 +233,10 @@ namespace DLaB.Xrm.LocalCrm
             optionalSettings = optionalSettings ?? new LocalCrmDatabaseOptionalSettings();
 #if NET
             var dbName = optionalSettings.DatabaseName ?? "DataverseUnitTest";
-            var urlName = HttpUtility.UrlEncode(dbName);
+            var urlName = HttpUtility.UrlEncode(dbName).Limit(200);
 #else
             var dbName = optionalSettings.DatabaseName ?? "XrmUnitTest";
-            var urlName = WebUtility.UrlEncode(dbName);
+            var urlName = WebUtility.UrlEncode(dbName).Limit(264 - UrlPreAndPostFixLength);
 #endif
             return new LocalCrmDatabaseInfo
             {
