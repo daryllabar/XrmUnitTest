@@ -10,7 +10,14 @@ namespace DLaB.Xrm.LocalCrm
     {
         private QualifyLeadResponse ExecuteInternal(QualifyLeadRequest request)
         {
-            if (request.LeadId == null) throw new Exception("Lead Id must be set in request.");
+            if (request.LeadId == null)
+            {
+                throw new Exception("Lead Id must be set in request.");
+            }
+            if (request.Status == null)
+            {
+                throw new Exception("A required field 'Status' is missing'");
+            }
             var lead = Retrieve(request.LeadId.LogicalName, request.LeadId.Id, new ColumnSet(true));
 
             var createdEntities = new EntityReferenceCollection();
@@ -43,7 +50,7 @@ namespace DLaB.Xrm.LocalCrm
                     }
                 };
                 account.Id = Create(account);
-                response.CreatedEntities.Add(account.ToEntityReference());
+                createdEntities.Add(account.ToEntityReference());
             }
 
             // Create Contact
@@ -66,7 +73,7 @@ namespace DLaB.Xrm.LocalCrm
                     ["address1_country"] = lead.GetAttributeValue<object>("address1_country"),
                 };
                 contact.Id = Create(contact);
-                response.CreatedEntities.Add(contact.ToEntityReference());
+                createdEntities.Add(contact.ToEntityReference());
             }
 
             // Create Opportunity
@@ -109,7 +116,7 @@ namespace DLaB.Xrm.LocalCrm
                 }
 
                 opportunity.Id = Create(opportunity);
-                response.CreatedEntities.Add(opportunity.ToEntityReference());
+                createdEntities.Add(opportunity.ToEntityReference());
             }
 
             lead.Attributes["statuscode"] = new OptionSetValue(request.Status.Value);

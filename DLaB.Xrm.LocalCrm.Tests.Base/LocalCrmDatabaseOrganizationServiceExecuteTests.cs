@@ -10,6 +10,8 @@ using Microsoft.Xrm.Sdk.Metadata;
 using XrmUnitTest.Test;
 using XrmUnitTest.Test.Builders;
 using Microsoft.Xrm.Sdk.Query;
+using Microsoft.Xrm.Sdk.Organization;
+
 #if NET
 using DataverseUnitTest;
 #else
@@ -223,6 +225,30 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.AreEqual(AttributeTypeCode.Boolean, GetMetadata(Account.Fields.FollowEmail).AttributeType);
             Assert.AreEqual(AttributeTypeCode.Integer, GetMetadata(Account.Fields.ImportSequenceNumber).AttributeType);
             Assert.AreEqual(AttributeTypeCode.Lookup, GetMetadata(Account.Fields.ParentAccountId).AttributeType);
+        }
+
+        [TestMethod]
+        public void LocalCrmDatabaseOrganizationServiceExecuteTests_RetrieveCurrentOrganizationRequest()
+        {
+            var response = (RetrieveCurrentOrganizationResponse)_service.Execute(new RetrieveCurrentOrganizationRequest());
+            var detail = response.Detail;
+
+            Assert.AreNotEqual(Guid.Empty, detail.DatacenterId);
+            Assert.IsNotNull(detail.Endpoints);
+            Assert.IsTrue(detail.Endpoints[EndpointType.OrganizationService].EndsWith(".api.crm.dynamics.com/XRMServices/2011/Organization.svc"));
+            Assert.IsTrue(detail.Endpoints[EndpointType.OrganizationDataService].EndsWith(".api.crm.dynamics.com/XRMServices/2011/OrganizationData.svc"));
+            Assert.IsTrue(detail.Endpoints[EndpointType.WebApplication].EndsWith(".crm.dynamics.com/"));
+            Assert.IsNotNull(detail.EnvironmentId);
+            Assert.IsNotNull(detail.FriendlyName);
+            Assert.IsNotNull(detail.Geo);
+            Assert.AreNotEqual(Guid.Empty, detail.OrganizationId);
+            Assert.AreEqual(OrganizationType.Customer, detail.OrganizationType);
+            Assert.IsNotNull(detail.OrganizationVersion);
+            Assert.IsNotNull(detail.SchemaType);
+            Assert.AreEqual(OrganizationState.Enabled, detail.State);
+            Assert.IsNotNull(detail.TenantId);
+            Assert.IsNotNull(detail.UniqueName);
+            Assert.IsNotNull(detail.UrlName);
         }
 
         [TestMethod]

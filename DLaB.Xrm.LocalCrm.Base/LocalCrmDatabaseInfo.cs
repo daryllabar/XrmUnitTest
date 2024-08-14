@@ -3,11 +3,14 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
+#if !XRM_2013
+using Microsoft.Xrm.Sdk.Organization;
+#endif
 using AppConfig = DLaB.Xrm.Client.AppConfig;
 #if NET
-using Entities = DataverseUnitTest.Entities;
+using System.Web;
 #else
-using Entities = DLaB.Xrm.Test.Entities;
+using System.Net;
 #endif
 
 namespace DLaB.Xrm.LocalCrm
@@ -42,18 +45,46 @@ namespace DLaB.Xrm.LocalCrm
         /// The early bound namespace.
         /// </value>
         public string EarlyBoundNamespace { get; private set; }
+
         /// <summary>
-        /// Defines the full name format.  Defaults to F I L <para/>
-        /// Format of FullName <para/>
-        ///   F = First Name <para/>
-        ///   M = Middle Name <para/>
-        ///   I = Middle Initial <para/>
-        ///   L = Last Name 
+        /// Gets or sets the Data Center Id.
+        /// </summary>
+        public Guid DataCenterId { get; set; }
+
+#if !XRM_2013
+        /// <summary>
+        /// Gets or sets the collection of endpoints.
+        /// </summary>
+        public EndpointCollection Endpoints { get; set; }
+#endif
+
+        /// <summary>
+        /// Gets or sets the Environment Id.
+        /// </summary>
+        public Guid? EnvironmentId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the friendly name.
+        /// </summary>
+        public string FriendlyName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the geo.
+        /// </summary>
+        public string Geo { get; set; }
+
+        /// <summary>
+        /// Defines the full name format. Defaults to F I L.
+        /// Format of FullName:
+        ///   F = First Name
+        ///   M = Middle Name
+        ///   I = Middle Initial
+        ///   L = Last Name
         /// </summary>
         /// <value>
         /// The full name format (always upper case).
         /// </value>
-        public string FullNameFormat { get; private set; }
+        public string FullNameFormat { get; set; }
         /// <summary>
         /// Used for defining OptionMetadata
         /// </summary>
@@ -73,12 +104,47 @@ namespace DLaB.Xrm.LocalCrm
         /// The organization identifier.
         /// </value>
         public Guid OrganizationId { get; private set; }
+
+#if !PRE_MULTISELECT
         /// <summary>
-        /// Used to populate Created/Modified By and Owner Attributes
+        /// Gets or sets the organization type.
+        /// </summary>
+        public OrganizationType OrganizationType { get; set; }
+#endif
+
+        /// <summary>
+        /// Gets or sets the organization version.
+        /// </summary>
+        public string OrganizationVersion { get; set; }
+
+        /// <summary>
+        /// Gets or sets the schema type.
+        /// </summary>
+        public string SchemaType { get; set; }
+
+#if !XRM_2013
+        /// <summary>
+        /// Gets or sets the organization state.
+        /// </summary>
+        public OrganizationState State { get; set; }
+#endif
+
+        /// <summary>
+        /// Gets or sets the tenant identifier.
+        /// </summary>
+        public Guid TenantId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the URL name.
+        /// </summary>
+        public string UrlName { get; set; }
+
+        /// <summary>
+        /// Used to populate Created/Modified By and Owner Attributes.
         /// </summary>
         public EntityReference User { get; private set; }
         /// <summary>
-        /// Used to populate Created/Modified On Behalf Of Attributes
+        /// Used to populate Created/Modified On Behalf Of Attributes.
         /// </summary>
         public EntityReference UserOnBehalfOf { get; private set; }
 
@@ -161,20 +227,48 @@ namespace DLaB.Xrm.LocalCrm
             LocalCrmDatabaseOptionalSettings optionalSettings)
         {
             optionalSettings = optionalSettings ?? new LocalCrmDatabaseOptionalSettings();
-            var dbName = optionalSettings.DatabaseName ?? string.Empty;
+#if NET
+            var dbName = optionalSettings.DatabaseName ?? "DataverseUnitTest";
+            var urlName = HttpUtility.UrlEncode(dbName);
+#else
+            var dbName = optionalSettings.DatabaseName ?? "XrmUnitTest";
+            var urlName = WebUtility.UrlEncode(dbName);
+#endif
             return new LocalCrmDatabaseInfo
             {
                 BusinessUnit = GetRef(optionalSettings.BusinessUnitId, Entities.BusinessUnit.EntityLogicalName, AppConfig.CrmSystemSettings.BusinessUnitId),
                 DatabaseName = dbName,
+                DataCenterId = optionalSettings.DataCenterId ?? Guid.NewGuid(),
                 EarlyBoundEntityAssembly = earlyBoundAssembly,
                 EarlyBoundNamespace = earlyBoundNamespace,
+#if !XRM_2013
+                Endpoints = optionalSettings.Endpoints ?? new EndpointCollection
+                {
+                    { EndpointType.WebApplication, $"https://{urlName}.crm.dynamics.com/" },
+                    { EndpointType.OrganizationService,$"https://{urlName}.api.crm.dynamics.com/XRMServices/2011/Organization.svc" },
+                    { EndpointType.OrganizationDataService, $"https://{urlName}.api.crm.dynamics.com/XRMServices/2011/OrganizationData.svc" }
+                },
+#endif
+                EnvironmentId = optionalSettings.EnvironmentId ?? Guid.NewGuid(),
+                FriendlyName = optionalSettings.FriendlyName ?? dbName,
                 FullNameFormat = optionalSettings.FullNameFormat ?? AppConfig.CrmSystemSettings.FullNameFormat,
+                Geo = optionalSettings.Geo ?? "NA",
                 LanguageCode = optionalSettings.LanguageCode ?? AppConfig.DefaultLanguageCode,
+                ManyToManyAssociationProvider = optionalSettings.ManyToManyAssociationProvider ?? new Many2ManyAssociationProvider(AppConfig.CrmEntities.Many2ManyAssociationDefinitions),
+                PrimaryNameProvider = optionalSettings.PrimaryNameProvider ?? PrimaryNameFieldProviderBase.GetConfiguredProvider(earlyBoundAssembly, earlyBoundNamespace),
+                OrganizationId = optionalSettings.OrganizationId ?? ConvertToGuid(dbName),
+#if !PRE_MULTISELECT
+                OrganizationType = optionalSettings.OrganizationType ?? OrganizationType.Customer,
+#endif
+                OrganizationVersion = optionalSettings.OrganizationVersion ?? "9.2.24064.210",
+                SchemaType = optionalSettings.SchemaType ?? "Full",
+#if !XRM_2013
+                State = optionalSettings.State ?? OrganizationState.Enabled,
+#endif
+                TenantId = optionalSettings.TenantId ?? Guid.NewGuid(),
+                UrlName = optionalSettings.UrlName ?? urlName,
                 User = GetRef(optionalSettings.UserId, Entities.SystemUser.EntityLogicalName, AppConfig.CrmSystemSettings.UserId),
                 UserOnBehalfOf = GetRef(optionalSettings.UserOnBehalfOfId, Entities.SystemUser.EntityLogicalName, AppConfig.CrmSystemSettings.OnBehalfOfId),
-                OrganizationId = optionalSettings.OrganizationId ?? ConvertToGuid(dbName),
-                PrimaryNameProvider = optionalSettings.PrimaryNameProvider ?? PrimaryNameFieldProviderBase.GetConfiguredProvider(earlyBoundAssembly, earlyBoundNamespace),
-                ManyToManyAssociationProvider = optionalSettings.ManyToManyAssociationProvider ?? new Many2ManyAssociationProvider(AppConfig.CrmEntities.Many2ManyAssociationDefinitions)
             };
         }
 

@@ -1,6 +1,9 @@
 ﻿using DLaB.Common;
 using DLaB.Common.Exceptions;
 using DLaB.Xrm.Client;
+#if !PRE_MULTISELECT
+using DLaB.Xrm.CrmSdk;
+#endif
 using DLaB.Xrm.LocalCrm.Entities;
 using DLaB.Xrm.LocalCrm.FetchXml;
 using Microsoft.Crm.Sdk.Messages;
@@ -16,7 +19,10 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Xml.Serialization;
-using DLaB.Xrm.CrmSdk;
+#if !XRM_2013
+using Microsoft.Xrm.Sdk.Organization;
+#endif
+
 
 
 namespace DLaB.Xrm.LocalCrm
@@ -333,7 +339,7 @@ namespace DLaB.Xrm.LocalCrm
             };
         }
 
-        private static Lazy<Dictionary<int, string>> TimeZoneCodeMappings = new Lazy<Dictionary<int, string>>(() => new Dictionary<int, string>
+        private static readonly Lazy<Dictionary<int, string>> TimeZoneCodeMappings = new Lazy<Dictionary<int, string>>(() => new Dictionary<int, string>
         {
                 {0, "Dateline Standard Time"},
                 {1, "Samoa Standard Time"},
@@ -518,7 +524,7 @@ namespace DLaB.Xrm.LocalCrm
                     LogicalName = request.LogicalName
                 };
             }
-#if !XRM_2013       
+#if !XRM_2013
             else if (propertyType == typeof(Guid))
             {
                 metadata = new UniqueIdentifierAttributeMetadata
@@ -614,6 +620,39 @@ namespace DLaB.Xrm.LocalCrm
 
             return optionSet;
         }
+
+#if !XRM_2013
+        private RetrieveCurrentOrganizationResponse ExecuteInternal(RetrieveCurrentOrganizationRequest _)
+        {
+            var detail = new OrganizationDetail
+            {
+#if !PRE_MULTISELECT
+                DatacenterId = Info.DataCenterId,
+                EnvironmentId = Info.EnvironmentId.ToString(),
+                Geo = Info.Geo,
+                OrganizationType = Info.OrganizationType,
+                SchemaType = Info.SchemaType,
+                TenantId = Info.TenantId.ToString(),
+#endif
+                FriendlyName = Info.FriendlyName,
+                OrganizationId = Info.OrganizationId,
+                OrganizationVersion = Info.OrganizationVersion,
+                State = Info.State,
+                UniqueName = Info.DatabaseName,
+                UrlName = Info.UrlName,
+            };
+
+            typeof(OrganizationDetail).GetField("_endpoints", BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue(detail, Info.Endpoints);
+
+            return new RetrieveCurrentOrganizationResponse
+            {
+                Results =
+                {
+                    [nameof(RetrieveCurrentOrganizationResponse.Detail)] = detail
+                }
+            };
+        }
+#endif
 
         private RetrieveEntityResponse ExecuteInternal(RetrieveEntityRequest request)
         {
@@ -1035,7 +1074,7 @@ namespace DLaB.Xrm.LocalCrm
                 return matchingType;
             }
 
-            private static HashSet<string> InvalidForCreate = new HashSet<string> {
+            private static readonly HashSet<string> InvalidForCreate = new HashSet<string> {
                 Template.Fields.CreatedBy,
                 Template.Fields.CreatedOn,
                 Template.Fields.ModifiedBy,
@@ -1048,7 +1087,7 @@ namespace DLaB.Xrm.LocalCrm
             };
 
 
-            private static HashSet<string> InvalidForUpdate = new HashSet<string> {
+            private static readonly HashSet<string> InvalidForUpdate = new HashSet<string> {
                 Template.Fields.CreatedBy,
                 Template.Fields.CreatedOn,
                 Template.Fields.CreatedOnBehalfBy,
