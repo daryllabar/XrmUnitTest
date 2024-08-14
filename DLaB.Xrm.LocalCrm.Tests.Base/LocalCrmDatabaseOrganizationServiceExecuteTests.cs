@@ -195,12 +195,10 @@ namespace DLaB.Xrm.LocalCrm.Tests
             };
             currency.Id = _service.Create(currency);
 
-            using (var context = new CrmContext(_service))
-            {
-                var firstContact = context.ContactSet.First();
-                context.LoadProperty(firstContact, Contact.Fields.equipment_contacts);
-                Assert.AreEqual(firstContact.PreferredEquipmentId, equipment.ToEntityReference());
-            }
+            using var context = new CrmContext(_service);
+            var firstContact = context.ContactSet.First();
+            context.LoadProperty(firstContact, Contact.Fields.equipment_contacts);
+            Assert.AreEqual(firstContact.PreferredEquipmentId, equipment.ToEntityReference());
         }
 
         [TestMethod]

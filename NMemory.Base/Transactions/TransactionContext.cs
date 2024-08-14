@@ -22,12 +22,10 @@
 // </copyright>
 // -----------------------------------------------------------------------------------
 #pragma warning disable 1591
+#pragma warning disable 1063
 namespace NMemory.Transactions
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     public class TransactionContext : IDisposable
     {

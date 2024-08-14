@@ -1,4 +1,3 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
@@ -57,15 +56,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "09", "09", "{B4F0DB7E-8440-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XrmUnitTest.09", "09\XrmUnitTest.09\XrmUnitTest.09.csproj", "{BFEBBBB1-94EE-437F-977D-22E2E9510951}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmUnitTest.09.Tests", "09\XrmUnitTest.09.Tests\XrmUnitTest.09.Tests.csproj", "{913C6B2B-AFFE-4819-9B22-B1E840E86738}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XrmUnitTest.09.Tests", "09\XrmUnitTest.09.Tests\XrmUnitTest.09.Tests.csproj", "{913C6B2B-AFFE-4819-9B22-B1E840E86738}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmUnitTest.2015", "2015\XrmUnitTest.2015\XrmUnitTest.2015.csproj", "{33C4E42F-B410-4570-BBC9-DA4C695B1F4D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmUnitTest.2016", "2016\XrmUnitTest.2016\XrmUnitTest.2016.csproj", "{E8C237CB-FFB2-4163-A985-01ECC0B8F399}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2013", "2013", "{71DACF89-9D0F-4D45-9202-7AAC5FA83EBE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmUnitTest.2013", "2013\XrmUnitTest.2013\XrmUnitTest.2013.csproj", "{E022F65B-2E2B-4907-BED5-8ED04FEF5769}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dataverse", "Dataverse", "{362FDDEF-8A4B-4726-A19B-C81998C4202A}"
 EndProject
@@ -74,6 +71,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataverseUnitTest.Tests", "Dataverse\DataverseUnitTest.Tests\DataverseUnitTest.Tests.csproj", "{C982DCFC-48F8-4FE0-AA56-C45A1ABE29AC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLaB.Xrm.Entities.Net", "DLaB.Xrm.Entities.Net\DLaB.Xrm.Entities.Net.csproj", "{7E1C7B84-ECBD-4F5A-B6FD-E76E0082B536}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmUnitTest.2013", "2013\XrmUnitTest.2013\XrmUnitTest.2013.csproj", "{E022F65B-2E2B-4907-BED5-8ED04FEF5769}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -112,12 +111,6 @@ Global
 		{E8C237CB-FFB2-4163-A985-01ECC0B8F399}.LocalNuget|Any CPU.Build.0 = Release|Any CPU
 		{E8C237CB-FFB2-4163-A985-01ECC0B8F399}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8C237CB-FFB2-4163-A985-01ECC0B8F399}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E022F65B-2E2B-4907-BED5-8ED04FEF5769}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E022F65B-2E2B-4907-BED5-8ED04FEF5769}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E022F65B-2E2B-4907-BED5-8ED04FEF5769}.LocalNuget|Any CPU.ActiveCfg = Release|Any CPU
-		{E022F65B-2E2B-4907-BED5-8ED04FEF5769}.LocalNuget|Any CPU.Build.0 = Release|Any CPU
-		{E022F65B-2E2B-4907-BED5-8ED04FEF5769}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E022F65B-2E2B-4907-BED5-8ED04FEF5769}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EB51A9F2-D487-409C-A9CA-E22C74581F89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EB51A9F2-D487-409C-A9CA-E22C74581F89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB51A9F2-D487-409C-A9CA-E22C74581F89}.LocalNuget|Any CPU.ActiveCfg = Debug|Any CPU
@@ -136,6 +129,12 @@ Global
 		{7E1C7B84-ECBD-4F5A-B6FD-E76E0082B536}.LocalNuget|Any CPU.Build.0 = Debug|Any CPU
 		{7E1C7B84-ECBD-4F5A-B6FD-E76E0082B536}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E1C7B84-ECBD-4F5A-B6FD-E76E0082B536}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E022F65B-2E2B-4907-BED5-8ED04FEF5769}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E022F65B-2E2B-4907-BED5-8ED04FEF5769}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E022F65B-2E2B-4907-BED5-8ED04FEF5769}.LocalNuget|Any CPU.ActiveCfg = Debug|Any CPU
+		{E022F65B-2E2B-4907-BED5-8ED04FEF5769}.LocalNuget|Any CPU.Build.0 = Debug|Any CPU
+		{E022F65B-2E2B-4907-BED5-8ED04FEF5769}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E022F65B-2E2B-4907-BED5-8ED04FEF5769}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -145,9 +144,9 @@ Global
 		{913C6B2B-AFFE-4819-9B22-B1E840E86738} = {B4F0DB7E-8440-484A-AD3A-2C755A6AB749}
 		{33C4E42F-B410-4570-BBC9-DA4C695B1F4D} = {56965403-1D14-4364-8B4A-ADE3CE4CAE44}
 		{E8C237CB-FFB2-4163-A985-01ECC0B8F399} = {AF470AF1-A3ED-41B9-A35F-1D65AFBED5F5}
-		{E022F65B-2E2B-4907-BED5-8ED04FEF5769} = {71DACF89-9D0F-4D45-9202-7AAC5FA83EBE}
 		{EB51A9F2-D487-409C-A9CA-E22C74581F89} = {362FDDEF-8A4B-4726-A19B-C81998C4202A}
 		{C982DCFC-48F8-4FE0-AA56-C45A1ABE29AC} = {362FDDEF-8A4B-4726-A19B-C81998C4202A}
+		{E022F65B-2E2B-4907-BED5-8ED04FEF5769} = {71DACF89-9D0F-4D45-9202-7AAC5FA83EBE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3C4F140B-7118-4292-9392-253BE1444510}
@@ -160,9 +159,6 @@ Global
 		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{33c4e42f-b410-4570-bbc9-da4c695b1f4d}*SharedItemsImports = 4
 		NMemory.Base\NMemory.Base.projitems*{33c4e42f-b410-4570-bbc9-da4c695b1f4d}*SharedItemsImports = 4
 		NMemory.Base\NMemory.Base.projitems*{59b000b7-d796-4065-aaba-8d6c91542bb9}*SharedItemsImports = 13
-		DLaB.Xrm.LocalCrm.Tests.Base\DLaB.Xrm.LocalCrm.Tests.Base.projitems*{913c6b2b-affe-4819-9b22-b1e840e86738}*SharedItemsImports = 4
-		DLaB.Xrm.Test.Tests.Base\DLaB.Xrm.Test.Tests.Base.projitems*{913c6b2b-affe-4819-9b22-b1e840e86738}*SharedItemsImports = 4
-		XrmUnitTest.Test.Base\XrmUnitTest.Test.Base.projitems*{913c6b2b-affe-4819-9b22-b1e840e86738}*SharedItemsImports = 4
 		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 5
 		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 5
 		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{bfebbbb1-94ee-437f-977d-22e2e9510951}*SharedItemsImports = 5

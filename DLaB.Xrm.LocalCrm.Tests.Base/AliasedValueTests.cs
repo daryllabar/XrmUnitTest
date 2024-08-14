@@ -79,7 +79,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
 
         #region Shared Methods
 
-        private TypedQueryExpression<Account> ArrangeAccountLinkCaseLinkPhoneCall(IOrganizationService service)
+        private static TypedQueryExpression<Account> ArrangeAccountLinkCaseLinkPhoneCall(IOrganizationService service)
         {
             //
             // Arrange

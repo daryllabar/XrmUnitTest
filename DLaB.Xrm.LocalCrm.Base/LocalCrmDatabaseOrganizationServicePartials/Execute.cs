@@ -269,7 +269,11 @@ namespace DLaB.Xrm.LocalCrm
                 out List<string> relationshipProperties);
 
             var prefixlessKeys = propertiesByAttribute.Keys
+#if NET
+                                                      .Where(k => k.Contains('_'))
+#else
                                                       .Where(k => k.Contains("_"))
+#endif
                                                       .Select(k => new
                                                       {
                                                           PrefixlessName = k.SubstringByString("_"),

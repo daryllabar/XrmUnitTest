@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DLaB.Xrm.Entities;
+﻿using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
+using System;
 
 namespace DLaB.Xrm.LocalCrm.Tests
 {

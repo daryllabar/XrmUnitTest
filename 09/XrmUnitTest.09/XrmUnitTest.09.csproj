@@ -1,36 +1,42 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<AssemblyName>XrmUnitTest.09</AssemblyName>
-		<AssemblyVersion>2.3.0.61</AssemblyVersion>
-		<FileVersion>2.3.0.61</FileVersion>
-		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<DebugType>full</DebugType>
-		<DebugSymbols>true</DebugSymbols>
-		<RootNamespace>XrmUnitTest09</RootNamespace>
-		<TargetFramework>net462</TargetFramework>
-		<SignAssembly>True</SignAssembly>
-		<AssemblyOriginatorKeyFile>XrmUnitTest.09.Snk</AssemblyOriginatorKeyFile>
+  <PropertyGroup>
+    <AssemblyName>XrmUnitTest.09</AssemblyName>
+    <AssemblyVersion>3.3.0.62</AssemblyVersion>
+    <FileVersion>3.3.0.62</FileVersion>
+    <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <RootNamespace>XrmUnitTest09</RootNamespace>
+	  <TargetFrameworks>net462;net472;net48</TargetFrameworks>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>XrmUnitTest.09.Snk</AssemblyOriginatorKeyFile>
+		<LangVersion>9.0</LangVersion>
 	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<DefineConstants>TRACE;DEBUG;DLAB_PUBLIC DLAB_UNROOT_COMMON_NAMESPACE DLAB_XRM DEBUG_XRM_UNIT_TEST_CODE</DefineConstants>
-		<CodeAnalysisRuleSet>..\..\XrmUnitTest.ruleset</CodeAnalysisRuleSet>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DefineConstants>TRACE;DLAB_PUBLIC DLAB_UNROOT_COMMON_NAMESPACE DLAB_XRM</DefineConstants>
-		<DocumentationFile>bin\Release\XrmUnitTest.09.xml</DocumentationFile>
-		<CodeAnalysisRuleSet>..\..\XrmUnitTest.ruleset</CodeAnalysisRuleSet>
-	</PropertyGroup>
-	<ItemGroup>
-	  <PackageReference Include="DLaB.Xrm.Source" Version="4.1.0.15" />
-	  <PackageReference Include="Microsoft.CrmSdk.XrmTooling.CoreAssembly" Version="9.1.1.65" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Reference Include="System.Configuration" />
-	  <Reference Include="System.Transactions" />
-	</ItemGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>TRACE;DEBUG;DEBUG_XRM_UNIT_TEST_CODE;DLAB_UNROOT_COMMON_NAMESPACE</DefineConstants>
+    <CodeAnalysisRuleSet>..\..\XrmUnitTest.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;DLAB_UNROOT_COMMON_NAMESPACE</DefineConstants>
+    <CodeAnalysisRuleSet>..\..\XrmUnitTest.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
 	<Import Project="..\..\DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems" Label="Shared" />
 	<Import Project="..\..\DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems" Label="Shared" />
 	<Import Project="..\..\DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems" Label="Shared" />
 	<Import Project="..\..\NMemory.Base\NMemory.Base.projitems" Label="Shared" />
+	
+	<ItemGroup>
+		<Reference Include="System.Activities" />
+		<Reference Include="System.Transactions" />
+		<Reference Include="System.ServiceModel" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="DLaB.Xrm" Version="5.0.0.4" />
+		<PackageReference Include="System.Text.Json" Version="8.0.4" />
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+		<PackageReference Include="Microsoft.CrmSdk.CoreAssemblies" Version="9.0.2.56" />
+		<PackageReference Include="Microsoft.CrmSdk.Workflow" Version="9.0.2.56" />
+		<PackageReference Include="Microsoft.CrmSdk.XrmTooling.CoreAssembly" Version="9.1.1.65" />
+	</ItemGroup>
 </Project>

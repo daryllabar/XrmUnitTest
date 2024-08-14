@@ -7,7 +7,7 @@ namespace DLaB.Xrm.Test
     /// <summary>
     /// A Fake that implements IExecutionContext
     /// </summary>
-    public class FakeWorkflowContext : FakeExecutionContext, IWorkflowContext, IFakeService, IServiceFaked<IWorkflowContext>, ICloneable
+    public class FakeWorkflowContext : FakeExecutionContext, IWorkflowContext, IServiceFaked<IWorkflowContext>, ICloneable
     {
         /// <summary>
         /// Gets or sets the name of the stage.

@@ -67,7 +67,7 @@ namespace DLaB.Xrm.Client
 
 #endregion GetOrganizationService
 
-#region EarlyBoundProxy
+        #region EarlyBoundProxy
 
         /// <summary>
         /// Gets the early bound proxy assembly.
@@ -114,6 +114,6 @@ namespace DLaB.Xrm.Client
             return _crmEntitiesAssembly;
         }
 
-#endregion EarlyBoundProxy
+        #endregion EarlyBoundProxy
     }
 }
