@@ -12,6 +12,7 @@
     <description>Contains XRM/CDS Unit Testing Library</description>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="Microsoft.CSharp" />
+      <frameworkAssembly assemblyName="System.Activities" />
       <frameworkAssembly assemblyName="System.Configuration" />
     </frameworkAssemblies>
     <releaseNotes></releaseNotes>
