@@ -19,10 +19,9 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var logicalName = "test_entity";
             var primaryName = "test_name";
             var languageCode = 1033;
-            var typeToMetadataGenerator = new TypeToMetadataGenerator();
 
             // Act
-            var result = typeToMetadataGenerator.Generate(entityType, logicalName, primaryName, languageCode);
+            var result = TypeToMetadataGenerator.Generate(entityType, logicalName, primaryName, languageCode);
 
             // Assert
             var displayNames = result.DisplayCollectionName.LocalizedLabels.Select(l => l.Label);

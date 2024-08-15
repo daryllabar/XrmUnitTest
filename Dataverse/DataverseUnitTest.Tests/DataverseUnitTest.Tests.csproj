@@ -6,6 +6,7 @@
     <IsPackable>false</IsPackable>
 
     <UserSecretsId>DataverseUnitTest.Default</UserSecretsId>
+	  <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

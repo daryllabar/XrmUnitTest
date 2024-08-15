@@ -21,6 +21,7 @@ using System.ServiceModel;
 using System.Xml.Serialization;
 #if !XRM_2013
 using Microsoft.Xrm.Sdk.Organization;
+using DLaB.Xrm.Exceptions;
 #endif
 
 
@@ -294,7 +295,7 @@ namespace DLaB.Xrm.LocalCrm
                                       .Where(v => v.NameMatching != InitializeFromLogic.AttributeNameMatching.None)
                                       .OrderBy(v => v.NameMatching))
             {
-                var sourceKey = kvp.Key.Contains("_") 
+                var sourceKey = kvp.Key.Contains('_') 
                                     && (   kvp.NameMatching == InitializeFromLogic.AttributeNameMatching.PrefixlessSourceToDestination
                                         || kvp.NameMatching == InitializeFromLogic.AttributeNameMatching.PrefixlessSourceToPrefixlessDestionation )
                                 ? kvp.Key.SubstringByString("_")
@@ -333,7 +334,7 @@ namespace DLaB.Xrm.LocalCrm
             };
         }
 
-        private LocalTimeFromUtcTimeResponse ExecuteInternal(LocalTimeFromUtcTimeRequest request)
+        private static LocalTimeFromUtcTimeResponse ExecuteInternal(LocalTimeFromUtcTimeRequest request)
         {
             var timeZone = TimeZoneInfo.FindSystemTimeZoneById(TimeZoneCodeMappings.Value[request.TimeZoneCode]);
             var localTime = TimeZoneInfo.ConvertTime(request.UtcTime, timeZone);
@@ -482,7 +483,7 @@ namespace DLaB.Xrm.LocalCrm
                 {302, "Sudan Standard Time"}
         });
 
-        private QueryExpressionToFetchXmlResponse ExecuteInternal(QueryExpressionToFetchXmlRequest request)
+        private static QueryExpressionToFetchXmlResponse ExecuteInternal(QueryExpressionToFetchXmlRequest request)
         {
             return new QueryExpressionToFetchXmlResponse
             {
@@ -507,7 +508,7 @@ namespace DLaB.Xrm.LocalCrm
                 : propertyTypes?.FirstOrDefault(p => p != typeof(OptionSetValue) 
                                                   && p != typeof(EntityReference)); // Handle OptionSets/EntityReferences that may have multiple properties
 
-            if (propertyType == null)
+            if (propertyType is null)
             {
                 throw new Exception($"Unable to find a property for Entity {request.EntityLogicalName} and property {request.LogicalName} in {CrmServiceUtility.GetEarlyBoundProxyAssembly().FullName}");
             }
@@ -661,7 +662,7 @@ namespace DLaB.Xrm.LocalCrm
         private RetrieveEntityResponse ExecuteInternal(RetrieveEntityRequest request)
         {
             var entityType = CrmServiceUtility.GetEarlyBoundProxyAssembly().GetEntityType(request.LogicalName);
-            var metadata = new TypeToMetadataGenerator().Generate(entityType, request.LogicalName, Info.PrimaryNameProvider.GetPrimaryName(request.LogicalName), Info.LanguageCode);
+            var metadata = TypeToMetadataGenerator.Generate(entityType, request.LogicalName, Info.PrimaryNameProvider.GetPrimaryName(request.LogicalName), Info.LanguageCode);
 
             return new RetrieveEntityResponse
             {
@@ -718,7 +719,7 @@ namespace DLaB.Xrm.LocalCrm
             }
             else
             {
-                var att = property.GetAttributeLogicalName();
+                var att = property.GetAttributeLogicalName() ?? throw new Exception($"Property {property.DeclaringType?.FullName}.{property.Name} is missing AttributeLogicalNameAttribute");
                 relationship = new ManyToManyRelationshipMetadata
                 {
                     IntersectEntityName = att.Substring(0, att.Length - "_association".Length)
@@ -917,7 +918,7 @@ namespace DLaB.Xrm.LocalCrm
 
         private Entity RetrieveEntityViaKeyAttributes(EntityReference target, ColumnSet cs = null)
         {
-            cs = cs ?? new ColumnSet(false);
+            cs ??= new ColumnSet(false);
             if (target.Id != Guid.Empty)
             {
                 // Retrieve will use the GUID if it exists over the Key Attributes
@@ -929,7 +930,7 @@ namespace DLaB.Xrm.LocalCrm
 #endif
 
         // ReSharper disable once UnusedParameter.Local
-        private WhoAmIResponse ExecuteInternal(WhoAmIRequest request)
+        private WhoAmIResponse ExecuteInternal(WhoAmIRequest _)
         {
             var response = new WhoAmIResponse
             {
@@ -1057,7 +1058,7 @@ namespace DLaB.Xrm.LocalCrm
                                                                          Dictionary<string, PropertyInfo> propertiesByAttribute,
                                                                          Dictionary<string, List<string>> prefixlessKeys)
             {
-                var prefixlessSource = sourceKey.Contains("_") ? sourceKey.SubstringByString("_") : null;
+                var prefixlessSource = sourceKey.Contains('_') ? sourceKey.SubstringByString("_") : null;
                 var matchingType = AttributeNameMatching.None;
                 if (propertiesByAttribute.ContainsKey(sourceKey))
                 {
@@ -1126,7 +1127,7 @@ namespace DLaB.Xrm.LocalCrm
                             }
                             break;
                         default:
-                            throw new EnumCaseUndefinedException<TargetFieldType>(targetFieldType);
+                            throw new DLaB.Common.Exceptions.EnumCaseUndefinedException<TargetFieldType>(targetFieldType);
                     }
                 }
             }

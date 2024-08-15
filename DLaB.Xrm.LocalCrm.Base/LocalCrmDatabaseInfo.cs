@@ -231,7 +231,7 @@ namespace DLaB.Xrm.LocalCrm
             string earlyBoundNamespace,
             LocalCrmDatabaseOptionalSettings optionalSettings)
         {
-            optionalSettings = optionalSettings ?? new LocalCrmDatabaseOptionalSettings();
+            optionalSettings ??= new LocalCrmDatabaseOptionalSettings();
 #if NET
             var dbName = optionalSettings.DatabaseName ?? "DataverseUnitTest";
             var urlName = HttpUtility.UrlEncode(dbName);
@@ -305,7 +305,7 @@ namespace DLaB.Xrm.LocalCrm
         /// <returns></returns>
         private static Guid ConvertToGuid(string value)
         {
-            value = value ?? string.Empty; // Handle Null
+            value ??= string.Empty; // Handle Null
             value = value.PadLeft(4);// keeps the string from being too short
             var length = (int)Math.Floor(value.Length * .25);
             return new Guid(Enumerable.Range(0, 4)

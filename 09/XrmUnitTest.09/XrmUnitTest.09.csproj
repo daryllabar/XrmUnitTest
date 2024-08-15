@@ -11,7 +11,7 @@
 	  <TargetFrameworks>net462;net472;net48</TargetFrameworks>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>XrmUnitTest.09.Snk</AssemblyOriginatorKeyFile>
-		<LangVersion>9.0</LangVersion>
+		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DefineConstants>TRACE;DEBUG;DEBUG_XRM_UNIT_TEST_CODE;DLAB_UNROOT_COMMON_NAMESPACE</DefineConstants>

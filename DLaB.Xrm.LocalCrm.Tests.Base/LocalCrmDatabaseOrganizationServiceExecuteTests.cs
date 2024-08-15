@@ -358,12 +358,12 @@ namespace DLaB.Xrm.LocalCrm.Tests
 
             account.KeyAttributes.Add(Account.Fields.ParentAccountId, parentId);
             TestUpsertCreateAndUpdate(account);
-            var toDelete = _service.GetEntityOrDefault<Account>(account.KeyAttributes);
+            var toDelete = _service.GetEntityOrDefault<Account>(account.KeyAttributes) ?? new Account();
             _service.Delete(Account.EntityLogicalName, toDelete.Id);
 
             account.KeyAttributes[Account.Fields.ParentAccountId] = parentId.ToString();
             TestUpsertCreateAndUpdate(account);
-            toDelete = _service.GetEntityOrDefault<Account>(account.KeyAttributes);
+            toDelete = _service.GetEntityOrDefault<Account>(account.KeyAttributes) ?? new Account();
             _service.Delete(Account.EntityLogicalName, toDelete.Id);
 
             account.KeyAttributes[Account.Fields.ParentAccountId] = new EntityReference( Account.EntityLogicalName, parentId);

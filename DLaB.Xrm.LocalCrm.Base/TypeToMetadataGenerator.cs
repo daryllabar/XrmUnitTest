@@ -22,17 +22,21 @@ namespace DLaB.Xrm.LocalCrm
         /// <param name="primaryName">The primary name of the entity.</param>
         /// <param name="languageCode">The language code.</param>
         /// <returns>The generated EntityMetadata based on the given Type.</returns>
-        public EntityMetadata Generate(Type entityType, string logicalName, string primaryName, int languageCode)
+        public static EntityMetadata Generate(Type entityType, string logicalName, string primaryName, int languageCode)
 
         {
             var name = new LocalizedLabel(logicalName, languageCode);
             var metadata = new EntityMetadata
             {
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable IDE0300 // Use collection expression for array
                 DisplayCollectionName = new Label(name,
                     new[]
                     {
                         name
                     })
+#pragma warning restore IDE0300
+#pragma warning restore IDE0079
             };
             var type = typeof(EntityMetadata);
             var attributeMetadata = entityType.GetProperties(BindingFlags.Instance | BindingFlags.Public)
@@ -46,18 +50,11 @@ namespace DLaB.Xrm.LocalCrm
             return metadata;
         }
 
-        private class AttributeInfo
+        private class AttributeInfo(PropertyInfo property)
         {
-            public string Name { get; set; }
-            public Type PropertyType { get; set; }
-            public string LogicalName { get; set; }
-
-            public AttributeInfo(PropertyInfo property)
-            {
-                Name = property.Name;
-                PropertyType = property.PropertyType;
-                LogicalName = property.GetCustomAttribute<AttributeLogicalNameAttribute>()?.LogicalName;
-            }
+            public string Name { get; } = property.Name;
+            public Type PropertyType { get; } = property.PropertyType;
+            public string LogicalName { get;  } = property.GetCustomAttribute<AttributeLogicalNameAttribute>()?.LogicalName;
         }
 
 
@@ -66,8 +63,8 @@ namespace DLaB.Xrm.LocalCrm
             public bool Equals(AttributeInfo x, AttributeInfo y)
             {
                 if (ReferenceEquals(x, y)) return true;
-                if (ReferenceEquals(x, null)) return false;
-                if (ReferenceEquals(y, null)) return false;
+                if (x is null) return false;
+                if (y is null) return false;
                 if (x.GetType() != y.GetType()) return false;
                 return x.LogicalName == y.LogicalName;
             }
@@ -80,13 +77,13 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
-        private AttributeMetadata CreateAttributeMetadata(string name, Type propertyType, string logicalName, int languageCode, string primaryName)
+        private static AttributeMetadata CreateAttributeMetadata(string name, Type propertyType, string logicalName, int languageCode, string primaryName)
         {
             AttributeMetadata attribute;
             if (propertyType == typeof(string))
             {
                 attribute = name == primaryName
-                    ? (AttributeMetadata)new EntityNameAttributeMetadata(logicalName)
+                    ? new EntityNameAttributeMetadata(logicalName)
                     : new StringAttributeMetadata(logicalName);
             }
 #if !PRE_MULTISELECT
@@ -170,8 +167,11 @@ namespace DLaB.Xrm.LocalCrm
             attribute.LogicalName = logicalName;
             attribute.SchemaName = name;
             var label = new LocalizedLabel(name.SpaceOutCamelCase(), languageCode);
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable IDE0300 // Use collection expression for array
             attribute.DisplayName = new Label(label, new[] { label });
-
+#pragma warning restore IDE0300
+#pragma warning restore IDE0079
             return attribute;
         }
     }

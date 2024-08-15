@@ -181,7 +181,7 @@ namespace DLaB.Xrm.Test.Builders
         [DebuggerStepThrough]
         public IDictionary<string, object> InvokeWorkflow(Dictionary<string, object> inputParams = null)
         {
-            inputParams = inputParams ?? new Dictionary<string, object>();
+            inputParams ??= new Dictionary<string, object>();
             foreach (var entry in InArguments)
             {
                 inputParams.Add(entry.Key, entry.Value);

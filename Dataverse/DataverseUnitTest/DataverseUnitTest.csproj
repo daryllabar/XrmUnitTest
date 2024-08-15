@@ -9,6 +9,7 @@
     <PackageReleaseNotes></PackageReleaseNotes>
     <AssemblyVersion>3.3.0.64</AssemblyVersion>
     <FileVersion>3.3.0.64</FileVersion>
+	  <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
