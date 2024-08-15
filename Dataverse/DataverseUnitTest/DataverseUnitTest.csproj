@@ -5,10 +5,10 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>DataverseUnitTest.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
-    <Version>3.3.0.63</Version>
+    <Version>3.3.0.64</Version>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <AssemblyVersion>3.3.0.63</AssemblyVersion>
-    <FileVersion>3.3.0.63</FileVersion>
+    <AssemblyVersion>3.3.0.64</AssemblyVersion>
+    <FileVersion>3.3.0.64</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

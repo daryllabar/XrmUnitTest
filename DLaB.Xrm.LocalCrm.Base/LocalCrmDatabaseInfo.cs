@@ -219,6 +219,7 @@ namespace DLaB.Xrm.LocalCrm
         }
 
         private const int UrlPreAndPostFixLength = 26; // "https://.crm.dynamics.com/".Length
+        private const int MaxHostLength = 264; // "https://.crm.dynamics.com/".Length
         /// <summary>
         /// Creates the specified database info.
         /// </summary>
@@ -233,11 +234,15 @@ namespace DLaB.Xrm.LocalCrm
             optionalSettings = optionalSettings ?? new LocalCrmDatabaseOptionalSettings();
 #if NET
             var dbName = optionalSettings.DatabaseName ?? "DataverseUnitTest";
-            var urlName = HttpUtility.UrlEncode(dbName).Limit(200);
+            var urlName = HttpUtility.UrlEncode(dbName);
 #else
             var dbName = optionalSettings.DatabaseName ?? "XrmUnitTest";
-            var urlName = WebUtility.UrlEncode(dbName).Limit(264 - UrlPreAndPostFixLength);
+            var urlName = WebUtility.UrlEncode(dbName);
 #endif
+
+            urlName = urlName?.Replace("+", "_")
+                .Replace("%", "_")
+                .Limit(MaxHostLength - UrlPreAndPostFixLength);
             return new LocalCrmDatabaseInfo
             {
                 BusinessUnit = GetRef(optionalSettings.BusinessUnitId, Entities.BusinessUnit.EntityLogicalName, AppConfig.CrmSystemSettings.BusinessUnitId),
