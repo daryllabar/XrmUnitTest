@@ -2,8 +2,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>XrmUnitTest.09</AssemblyName>
-    <AssemblyVersion>3.3.0.64</AssemblyVersion>
-    <FileVersion>3.3.0.64</FileVersion>
+    <AssemblyVersion>3.3.0.65</AssemblyVersion>
+    <FileVersion>3.3.0.65</FileVersion>
     <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
@@ -35,8 +35,6 @@
 		<PackageReference Include="DLaB.Xrm" Version="5.0.0.4" />
 		<PackageReference Include="System.Text.Json" Version="8.0.4" />
 		<PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
-		<PackageReference Include="Microsoft.CrmSdk.CoreAssemblies" Version="9.0.2.56" />
-		<PackageReference Include="Microsoft.CrmSdk.Workflow" Version="9.0.2.56" />
 		<PackageReference Include="Microsoft.CrmSdk.XrmTooling.CoreAssembly" Version="9.1.1.65" />
 	</ItemGroup>
 </Project>
