@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Source.DLaB.Xrm.Plugin;
+using DLaB.Xrm.Plugin;
 using Microsoft.Xrm.Sdk;
 #if NET
 using DLaB.Xrm;

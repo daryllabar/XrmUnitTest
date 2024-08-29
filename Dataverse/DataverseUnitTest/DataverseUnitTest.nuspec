@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DataverseUnitTest</id>
-    <version>3.3.0.65</version>
+    <version>3.3.0.66</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <license type="expression">MIT</license>
@@ -19,6 +19,7 @@
     <tags>Dynamics CRM v9 Plugin XRM CDS Dataverse UnitTest</tags>
     <dependencies>
       <group targetFramework="net6.0">
+	      <dependency id="DLaB.Xrm" version="5.*" />
         <dependency id="Microsoft.PowerPlatform.Dataverse.Client" version="1.*" />
       </group>
     </dependencies>
