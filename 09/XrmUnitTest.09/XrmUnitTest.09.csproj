@@ -2,8 +2,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>XrmUnitTest.09</AssemblyName>
-    <AssemblyVersion>3.3.0.66</AssemblyVersion>
-    <FileVersion>3.3.0.66</FileVersion>
+    <AssemblyVersion>3.3.0.67</AssemblyVersion>
+    <FileVersion>3.3.0.67</FileVersion>
     <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
@@ -15,11 +15,9 @@
 	</PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DefineConstants>TRACE;DEBUG;DEBUG_XRM_UNIT_TEST_CODE;DLAB_UNROOT_COMMON_NAMESPACE</DefineConstants>
-    <CodeAnalysisRuleSet>..\..\XrmUnitTest.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants>TRACE;DLAB_UNROOT_COMMON_NAMESPACE</DefineConstants>
-    <CodeAnalysisRuleSet>..\..\XrmUnitTest.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 	<Import Project="..\..\DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems" Label="Shared" />
 	<Import Project="..\..\DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems" Label="Shared" />

@@ -189,7 +189,7 @@ namespace DLaB.Xrm.Test.Builders
         }
 
         /// <summary>
-        /// Sets the initiating user for the context.  The initiaiting User Id is the id of user that actually triggered the plugin, rather than the user the plugin is executing as
+        /// Sets the initiating user for the context.  The initiating User Id is the id of user that actually triggered the plugin, rather than the user the plugin is executing as
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
@@ -573,7 +573,7 @@ namespace DLaB.Xrm.Test.Builders
         }
 
         /// <summary>
-        /// Sets the pre image using the default PreImage key by default.
+        /// Sets the pre-image using the default PreImage key by default.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="image">The image.</param>
@@ -582,6 +582,31 @@ namespace DLaB.Xrm.Test.Builders
         public TDerived WithPreImage<T>(T image, string imageKey = DLaBExtendedPluginContextBase.PluginImageNames.PreImage) where T : Entity
         {
             Context.PreEntityImages[imageKey] = image;
+            return This;
+        }
+
+        /// <summary>
+        /// Sets the pre-image using the default PreImage key by default.
+        /// </summary>
+        /// <param name="image">The image.</param>
+        /// <param name="imageKey">The image key.</param>
+        /// <returns></returns>
+        public TDerived WithPreImage(Id image, string imageKey = DLaBExtendedPluginContextBase.PluginImageNames.PreImage)
+        {
+            Context.PreEntityImages[imageKey] = image.Entity;
+            return This;
+        }
+
+        /// <summary>
+        /// Sets the pre-image using the default PreImage key by default.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="image">The image.</param>
+        /// <param name="imageKey">The image key.</param>
+        /// <returns></returns>
+        public TDerived WithPreImage<T>(Id<T> image, string imageKey = DLaBExtendedPluginContextBase.PluginImageNames.PreImage) where T : Entity
+        {
+            Context.PreEntityImages[imageKey] = image.Entity;
             return This;
         }
 
@@ -626,6 +651,31 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="imageKey">The image key.</param>
         /// <returns></returns>
         public TDerived WithPostImage<T>(T image, string imageKey = DLaBExtendedPluginContextBase.PluginImageNames.PostImage) where T : Entity
+        {
+            Context.PostEntityImages[imageKey] = image;
+            return This;
+        }
+
+        /// <summary>
+        /// Sets the post image using the default PostImage key by default.
+        /// </summary>
+        /// <param name="image">The image.</param>
+        /// <param name="imageKey">The image key.</param>
+        /// <returns></returns>
+        public TDerived WithPostImage(Id image, string imageKey = DLaBExtendedPluginContextBase.PluginImageNames.PostImage)
+        {
+            Context.PostEntityImages[imageKey] = image.Entity;
+            return This;
+        }
+
+        /// <summary>
+        /// Sets the post image using the default PostImage key by default.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="image">The image.</param>
+        /// <param name="imageKey">The image key.</param>
+        /// <returns></returns>
+        public TDerived WithPostImage<T>(Id<T> image, string imageKey = DLaBExtendedPluginContextBase.PluginImageNames.PostImage) where T : Entity
         {
             Context.PostEntityImages[imageKey] = image;
             return This;
