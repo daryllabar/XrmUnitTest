@@ -28,7 +28,7 @@ namespace DLaB.Xrm.Test.Builders
         /// Initializes a new instance of the <see cref="ServiceProviderBuilder" /> class.
         /// </summary>
         public ServiceProviderBuilder()
-                    : base(TestBase.GetOrganizationService(),
+                    : base(TestBase.GetOrganizationService(Guid.NewGuid().ToString()),
                     new FakePluginExecutionContext(), (ITestLogger)null)
         {
 
