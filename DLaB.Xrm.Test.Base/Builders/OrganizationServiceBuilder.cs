@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -52,10 +53,27 @@ namespace DLaB.Xrm.Test.Builders
     }
 
     /// <summary>
+    /// Base class for Organization Service Builder Typed to OrganizationServiceBuilderBuildConfig
+    /// </summary>
+    /// <typeparam name="TDerived">The type of the derived.</typeparam>
+    public abstract class OrganizationServiceBuilderBase<TDerived> : OrganizationServiceBuilderBase<TDerived, OrganizationServiceBuilderBuildConfig>
+        where TDerived : OrganizationServiceBuilderBase<TDerived>
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrganizationServiceBuilderBase{TDerived}" /> class.
+        /// </summary>
+        /// <param name="service">The service.</param>
+        protected OrganizationServiceBuilderBase(IOrganizationService service) : base(service) { }
+    }
+
+    /// <summary>
     /// Base class for Organization Service Builder
     /// </summary>
     /// <typeparam name="TDerived">The type of the derived.</typeparam>
-    public abstract class OrganizationServiceBuilderBase<TDerived> : IAgnosticServiceBuilder where TDerived : OrganizationServiceBuilderBase<TDerived>
+    /// <typeparam name="TBuildConfig">The Build config type.</typeparam>
+    public abstract class OrganizationServiceBuilderBase<TDerived, TBuildConfig> : IAgnosticServiceBuilder
+        where TDerived : OrganizationServiceBuilderBase<TDerived, TBuildConfig>
+        where TBuildConfig : IOrganizationServiceBuilderBuildConfig, new()
     {
         #region Properties
 
@@ -85,6 +103,11 @@ namespace DLaB.Xrm.Test.Builders
         /// The new entity default ids.
         /// </value>
         private Dictionary<string, List<Guid>> EntityFilter { get; }
+
+        /// <summary>
+        /// Defines a builder that will be inserted at lowest level allowed in the Fake IOrganizationService hierarchy
+        /// </summary>
+        public TDerived? PrimaryBuilder { get; set; }
 
         #region IOrganizationService Actions and Funcs
 
@@ -286,16 +309,16 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         public TDerived IsReadOnly()
         {
-            AssociateActions.Add((s, n, i, r, c) => { ReadOnlyFail.OnAssociate(n, i, r); });
+            AssociateActions.Add((_, n, i, r, _) => { ReadOnlyFail.OnAssociate(n, i, r); });
             WithNoCreates();
-            DeleteActions.Add((s, n, i) => { ReadOnlyFail.OnDelete(n, i); });
-            DisassociateActions.Add((s, n, i, r, c) => { ReadOnlyFail.OnDisassociate(n, i, r); });
+            DeleteActions.Add((_, n, i) => { ReadOnlyFail.OnDelete(n, i); });
+            DisassociateActions.Add((_, n, i, r, _) => { ReadOnlyFail.OnDisassociate(n, i, r); });
             ExecuteFuncs.Add((s, r) =>
             {
                 ReadOnlyFail.OnExecute(r);
                 return s.Execute(r);
             });
-            UpdateActions.Add((s, e) => { ReadOnlyFail.OnUpdate(e); });
+            UpdateActions.Add((_, e) => { ReadOnlyFail.OnUpdate(e); });
             return This;
         }
 
@@ -328,7 +351,7 @@ namespace DLaB.Xrm.Test.Builders
             {
                 if (e.LogicalName == BusinessUnit.EntityLogicalName && e.GetAttributeValue<EntityReference>(BusinessUnit.Fields.ParentBusinessUnitId) == null)
                 {
-                    var qe = QueryExpressionFactory.Create(BusinessUnit.EntityLogicalName, new ColumnSet(BusinessUnit.Fields.BusinessUnitId), BusinessUnit.Fields.ParentBusinessUnitId, null);
+                    var qe = QueryExpressionFactory.Create(BusinessUnit.EntityLogicalName, new ColumnSet(BusinessUnit.Fields.BusinessUnitId), BusinessUnit.Fields.ParentBusinessUnitId, null!);
                     e[BusinessUnit.Fields.ParentBusinessUnitId] = s.GetFirst<Entity>(qe).ToEntityReference();
                 }
 
@@ -394,7 +417,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="response">The response to return</param>
         /// <param name="actionLogicalName">Required unless the OrganizationResponse type has a field of name "ActionLogicalName" that contains the logical name for the action.</param>
         /// <returns></returns>
-        public TDerived WithFakeAction<T>(T response, string actionLogicalName = null) where T : OrganizationResponse
+        public TDerived WithFakeAction<T>(T response, string? actionLogicalName = null) where T : OrganizationResponse
         {
             actionLogicalName = GetActionName<T>(actionLogicalName);
 
@@ -419,7 +442,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="actionFake">The function to be called when the action is being executed.</param>
         /// <param name="actionLogicalName">Required unless the OrganizationResponse type has a field of name "ActionLogicalName" that contains the logical name for the action.</param>
         /// <returns></returns>
-        public TDerived WithFakeAction<TRequest, TResponse>(Func<IOrganizationService, TRequest, TResponse> actionFake, string actionLogicalName = null) 
+        public TDerived WithFakeAction<TRequest, TResponse>(Func<IOrganizationService, TRequest, TResponse> actionFake, string? actionLogicalName = null) 
             where TRequest: OrganizationRequest, new() 
             where TResponse: OrganizationResponse
         {
@@ -453,20 +476,22 @@ namespace DLaB.Xrm.Test.Builders
             return This;
         }
 
-        private static string GetActionName<T>(string actionLogicalName) where T : OrganizationResponse
+        private static string? GetActionName<T>(string? actionLogicalName) where T : OrganizationResponse
         {
+            if (!string.IsNullOrWhiteSpace(actionLogicalName))
+            {
+                return actionLogicalName;
+            }
+
+            if (typeof(T) == typeof(OrganizationRequest))
+            {
+                throw new ArgumentException("If the actionLogicalName is not populated, the request type must be a type derived from OrganizationResponse.");
+            }
+            var field = typeof(T).GetField("ActionLogicalName");
+            actionLogicalName = (string?)field?.GetValue(null);
             if (string.IsNullOrWhiteSpace(actionLogicalName))
             {
-                if (typeof(T) == typeof(OrganizationRequest))
-                {
-                    throw new ArgumentException("If the actionLogicalName is not populated, the request type must be a type derived from OrganizationResponse.");
-                }
-                var field = typeof(T).GetField("ActionLogicalName");
-                actionLogicalName = (string)field?.GetValue(null);
-                if (string.IsNullOrWhiteSpace(actionLogicalName))
-                {
-                    throw new ArgumentException($"Unable to retrieve the ActionLogicalName from the type {typeof(T).FullName}.  Either add a constant field named \"ActionLogicalName\", or populate the \"ActionName\" argument!");
-                }
+                throw new ArgumentException($"Unable to retrieve the ActionLogicalName from the type {typeof(T).FullName}.  Either add a constant field named \"ActionLogicalName\", or populate the \"ActionName\" argument!");
             }
 
             return actionLogicalName;
@@ -593,11 +618,11 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="entityToFakeSetStateFor">The entity to fake set state for.</param>
         /// <param name="setStateAction">The set state function.</param>
         /// <returns></returns>
-        public TDerived WithFakeSetStateForEntity(EntityReference entityToFakeSetStateFor, Action<SetStateRequest> setStateAction = null)
+        public TDerived WithFakeSetStateForEntity(EntityReference entityToFakeSetStateFor, Action<SetStateRequest>? setStateAction = null)
         {
             WithFakeExecute((s, r) =>
             {
-                if (!(r is SetStateRequest setState) || !setState.EntityMoniker.Equals(entityToFakeSetStateFor))
+                if (r is not SetStateRequest setState || !setState.EntityMoniker.Equals(entityToFakeSetStateFor))
                 {
                     return s.Execute(r);
                 }
@@ -616,7 +641,7 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         /// <param name="entityToMock">The entity to mock.</param>
         /// <param name="action">The action.</param>
-        public TDerived WithFakeUpdateForEntity(EntityReference entityToMock, Action<Entity> action = null)
+        public TDerived WithFakeUpdateForEntity(EntityReference entityToMock, Action<Entity>? action = null)
         {
             WithFakeUpdate((s, e) =>
             {
@@ -638,10 +663,10 @@ namespace DLaB.Xrm.Test.Builders
         /// <summary>
         /// Defaults the entity name of all created entities.
         /// </summary>
-        /// <param name="getName">function to call to get the name for the given Entity and it's Primary Field Info</param>
+        /// <param name="getName">function to call to get the name for the given Entity, and it's Primary Field Info.</param>
         /// <param name="config">Entity Help settings to define primary attributes</param>
         /// <returns></returns>
-        public TDerived WithEntityNameDefaulted(Func<Entity, PrimaryFieldInfo, string> getName, IEntityHelperConfig config = null)
+        public TDerived WithEntityNameDefaulted(Func<Entity, PrimaryFieldInfo, string> getName, IEntityHelperConfig? config = null)
         {
             CreateFuncs.Add((s, e) =>
             {
@@ -709,13 +734,13 @@ namespace DLaB.Xrm.Test.Builders
         #endregion WithIdsDefaultedForCreate
 
         /// <summary>
-        /// Fakes out calls to RetrieveAttribute Requests, using enums to generate the OptionSetMetaData.  Userful for mocking out any calls to determine the text values of an optionset.
+        /// Fakes out calls to RetrieveAttribute Requests, using enums to generate the OptionSetMetaData.  Useful for mocking out any calls to determine the text values of an optionset.
         /// </summary>
-        /// <param name="defaultLangaugeCode">The default langauge code.  Defaults to reading DefaultLanguageCode from the config, or 1033 if not found</param>
+        /// <param name="defaultLanguageCode">The default language code.  Defaults to reading DefaultLanguageCode from the config, or 1033 if not found</param>
         /// <returns></returns>
-        public TDerived WithLocalOptionSetsRetrievedFromEnum(int? defaultLangaugeCode = null)
+        public TDerived WithLocalOptionSetsRetrievedFromEnum(int? defaultLanguageCode = null)
         {
-            defaultLangaugeCode = defaultLangaugeCode ?? DLaB.Xrm.Client.AppConfig.DefaultLanguageCode;
+            defaultLanguageCode = defaultLanguageCode ?? DLaB.Xrm.Client.AppConfig.DefaultLanguageCode;
             ExecuteFuncs.Add((s, r) =>
             {
                 if (!(r is RetrieveAttributeRequest attRequest))
@@ -754,7 +779,7 @@ namespace DLaB.Xrm.Test.Builders
                             Value = (int) value,
                             Label = new Label
                             {
-                                UserLocalizedLabel = new LocalizedLabel(value.ToString(), defaultLangaugeCode.Value)
+                                UserLocalizedLabel = new LocalizedLabel(value.ToString(), defaultLanguageCode.Value)
                             }
                         });
                 }
@@ -770,7 +795,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         public TDerived WithNoCreates()
         {
-            CreateFuncs.Add((s, e) =>
+            CreateFuncs.Add((_, e) =>
             {
                 ReadOnlyFail.OnCreate(e);
                 throw new Exception("AssertFail Failed to throw an Exception");
@@ -799,7 +824,7 @@ namespace DLaB.Xrm.Test.Builders
 
             RetrieveFuncs.Add((s, name, id, cs) =>
             {
-                if (entities.TryGetValue(name, out List<Entity> list))
+                if (entities.TryGetValue(name, out var list))
                 {
                     var entity = list.FirstOrDefault(e => e.Id == id);
                     if (entity != null)
@@ -835,7 +860,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="webResourceName">Name of the web resource.</param>
         /// <param name="path">The path.</param>
         /// <returns></returns>
-        public TDerived WithWebResourcePulledFromPath(string webResourceName, string path = null)
+        public TDerived WithWebResourcePulledFromPath(string webResourceName, string? path = null)
         {
             RetrieveMultipleFuncs.Add((s, q) =>
             {
@@ -844,7 +869,7 @@ namespace DLaB.Xrm.Test.Builders
                     return s.RetrieveMultiple(q);
                 }
 
-                var condition = qe.Criteria.Conditions.FirstOrDefault(c => c.AttributeName == "name" && c.Values != null && c.Values.Count == 1 && c.Values[0].ToString().Contains(webResourceName));
+                var condition = qe.Criteria.Conditions.FirstOrDefault(c => c.AttributeName == "name" && c.Values is { Count: 1 } && c.Values[0]?.ToString().Contains(webResourceName) == true);
                 if (condition == null)
                 {
                     return s.RetrieveMultiple(q);
@@ -861,7 +886,7 @@ namespace DLaB.Xrm.Test.Builders
                     }
                 }
 
-                if (path != null && !File.Exists(path))
+                if (!File.Exists(path))
                 {
                     // Path Doesn't exist, attempt to prepend the Web Resource Path
                     path = Path.Combine(TestSettings.WebResourcePath.Value, path);
@@ -898,10 +923,41 @@ namespace DLaB.Xrm.Test.Builders
         public IOrganizationService Build()
 #endif
         {
-            ApplyNewEntityDefaultIds();
-            ApplyEntityFilter();
+            return Build(default);
+        }
 
-            return new FakeIOrganizationService(Service)
+        /// <summary>
+        /// Builds this IOrganizationService utilizing the build config
+        /// </summary>
+        /// <returns></returns>
+#if NET
+        public virtual IOrganizationServiceAsync2 Build(TBuildConfig? config)
+#else
+        public virtual IOrganizationService Build(TBuildConfig? config)
+#endif
+        {
+            config ??= new TBuildConfig();
+            ApplyNewEntityDefaultIds(config);
+            ApplyEntityFilter(config);
+
+            var service = Service;
+            if (PrimaryBuilder != null)
+            {
+                if (PrimaryBuilder.Build() is FakeIOrganizationService primaryService){
+                    primaryService.InsertAt(0);
+                    if (!primaryService.HasWrappingService)
+                    {
+                        // There were no child services, so use the primary service as the service to wrap
+                        service = primaryService;
+                    }
+                }
+                else
+                {
+                    throw new Exception($"Unable to cast Primary Service to {nameof(FakeIOrganizationService)}.");
+                }
+            }
+
+            return new FakeIOrganizationService(service)
             {
                 AssociateActions = AssociateActions.ToArray(),
                 CreateFuncs = CreateFuncs.ToArray(),
@@ -914,49 +970,87 @@ namespace DLaB.Xrm.Test.Builders
             };
         }
 
-        private void ApplyEntityFilter()
+        private void ApplyEntityFilter(TBuildConfig config)
         {
-            if (EntityFilter.Any())
+            if (!EntityFilter.Any())
             {
-                RetrieveMultipleFuncs.Add((s, q) =>
-                {
-
-                    if (!(q is QueryExpression qe))
-                    {
-                        return s.RetrieveMultiple(q);
-                    }
-
-                    foreach (var entityGroup in EntityFilter)
-                    {
-                        var entityType = EntityHelper.GetType(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace, entityGroup.Key);
-                        var idLogicalName = EntityHelper.GetIdAttributeName(entityType);
-                        foreach (var filter in qe.GetEntityFilters(entityGroup.Key))
-                        {
-                            filter.AddConditionEnforceAndFilterOperator(new ConditionExpression(idLogicalName, ConditionOperator.In, entityGroup.Value.Select(i => (object)i).ToArray()));
-                        }
-                    }
-                    return s.RetrieveMultiple(q);
-                });
+                return;
             }
+
+            var builder = (TDerived)this;
+            if (config.UsePrimaryBuilderForEntityFilter)
+            {
+                PrimaryBuilder ??= CreateBuilder(Service);
+                builder = PrimaryBuilder;
+            }
+
+            builder ??= CreateBuilder(Service);
+
+            builder.RetrieveMultipleFuncs.Add((s, q) =>
+            {
+                if (q is not QueryExpression qe)
+                {
+                    return s.RetrieveMultiple(q);
+                }
+
+                foreach (var entityGroup in EntityFilter)
+                {
+                    var entityType = EntityHelper.GetType(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace, entityGroup.Key);
+                    var idLogicalName = EntityHelper.GetIdAttributeName(entityType);
+                    foreach (var filter in qe.GetEntityFilters(entityGroup.Key))
+                    {
+                        filter.AddConditionEnforceAndFilterOperator(new ConditionExpression(idLogicalName, ConditionOperator.In, entityGroup.Value.Select(i => (object)i).ToArray()));
+                    }
+                }
+                return s.RetrieveMultiple(q);
+            });
         }
 
-        private void ApplyNewEntityDefaultIds()
+        private void ApplyNewEntityDefaultIds(TBuildConfig config)
         {
             if (!NewEntityDefaultIds.Any())
             {
                 return;
             }
 
-            CreateFuncs.Add((s, e) =>
+            var builder = (TDerived)this;
+            if (config.UsePrimaryBuilderForNewEntityDefaultIds)
+            {
+                PrimaryBuilder ??= CreateBuilder(Service);
+                builder = PrimaryBuilder;
+            }
+
+            builder.CreateFuncs.Add((s, e) =>
             {
                 DefaultIdForEntity(e);
                 return s.Create(e);
             });
-            ExecuteFuncs.Add((s, r) =>
+            builder.ExecuteFuncs.Add((s, r) =>
             {
                 DefaultIdsForExecuteRequests(r, s);
                 return s.Execute(r);
             });
+        }
+
+        /// <summary>
+        /// Creates the derived builder
+        /// </summary>
+        /// <param name="parentService">The Parent Service</param>
+        protected virtual TDerived CreateBuilder(IOrganizationService parentService)
+        {
+            var constructor = typeof(TDerived).GetConstructor([typeof(IOrganizationService)]);
+            if (constructor != null)
+            {
+                return (TDerived)constructor.Invoke([parentService]);
+            }
+
+            constructor = typeof(TDerived).GetConstructor([]);
+            if (constructor == null)
+            {
+                throw new Exception($"Constructor for {typeof(TDerived).FullName} must have either an empty constructor, or a constructor with an IOrganizationService parameter, or the {nameof(CreateBuilder)} method must be overriden");
+            }
+            return (TDerived)constructor.Invoke([]);
+            
         }
 
         private void DefaultIdsForExecuteRequests(OrganizationRequest r, IOrganizationService s)
@@ -1054,11 +1148,11 @@ namespace DLaB.Xrm.Test.Builders
                     return;
                 }
 
-                var hasIds = NewEntityDefaultIds.TryGetValue(entity.LogicalName, out Queue<Guid> ids);
+                var hasIds = NewEntityDefaultIds.TryGetValue(entity.LogicalName, out var ids);
 
                 if (NewEntityThrowErrorOnContextCreation)
                 {
-                    if (!hasIds || !ContainsAndRemoved(ids, entity.Id))
+                    if (!hasIds || !ContainsAndRemoved(ids!, entity.Id))
                     {
                         throw new Exception(
                             $"An attempt was made to create an entity of type {entity.LogicalName} with the EntityState set to created which normally means it comes from an OrganizationServiceContext.SaveChanges call.{Environment.NewLine}"
@@ -1068,12 +1162,12 @@ namespace DLaB.Xrm.Test.Builders
                 }
                 else if(hasIds)
                 {
-                    ContainsAndRemoved(ids, entity.Id);
+                    ContainsAndRemoved(ids!, entity.Id);
                 }
             }
             else
             {
-                if(!NewEntityDefaultIds.TryGetValue(entity.LogicalName, out Queue<Guid> ids))
+                if(!NewEntityDefaultIds.TryGetValue(entity.LogicalName, out var ids))
                 {
                     return;
                 }
@@ -1118,7 +1212,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="logicalName">Logical name of the entity.</param>
         /// <param name="config">Entity Help settings to define primary attributes</param>
         /// <returns></returns>
-        public virtual PrimaryFieldInfo GetPrimaryFieldInfo(string logicalName, IEntityHelperConfig config = null)
+        public virtual PrimaryFieldInfo GetPrimaryFieldInfo(string logicalName, IEntityHelperConfig? config = null)
         {
             return EntityHelper.GetPrimaryFieldInfo(logicalName, config ?? new PrimaryNameProviderConfig());
         }
@@ -1149,7 +1243,7 @@ namespace DLaB.Xrm.Test.Builders
             }
             else
             {
-                SetIfNotDefined(e, info.AttributeName, name);
+                SetIfNotDefined(e, info.AttributeName!, name);
             }
         }
 
@@ -1184,12 +1278,12 @@ namespace DLaB.Xrm.Test.Builders
 
         private class PrimaryNameProviderConfig : IEntityHelperConfig
         {
-            public string GetIrregularIdAttributeName(string logicalName)
+            public string? GetIrregularIdAttributeName(string logicalName)
             {
                 return null;
             }
 
-            public PrimaryFieldInfo GetIrregularPrimaryFieldInfo(string logicalName, PrimaryFieldInfo defaultInfo = null)
+            public PrimaryFieldInfo GetIrregularPrimaryFieldInfo(string logicalName, PrimaryFieldInfo? defaultInfo = null)
             {
                 defaultInfo = defaultInfo ?? new PrimaryFieldInfo();
                 defaultInfo.AttributeName = PrimaryNameFieldProviderBase.GetConfiguredProvider(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace).GetPrimaryName(logicalName);

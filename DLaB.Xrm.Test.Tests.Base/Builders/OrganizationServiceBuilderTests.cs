@@ -7,6 +7,8 @@ using DLaB.Xrm.LocalCrm;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using XrmUnitTest.Test;
+using Microsoft.Xrm.Sdk.Query;
+
 #if NET
 using DataverseUnitTest;
 using DataverseUnitTest.Builders;
@@ -153,6 +155,11 @@ namespace DLaB.Xrm.Test.Tests.Builders
             }
         }
 
+        private string GetName(string entityLogicalName, string attributeName)
+        {
+            return entityLogicalName + "|" + attributeName;
+        }
+
         /// <summary>
         /// Incident's can't be created without a customer, so attempt to force the incident to be created first
         /// </summary>
@@ -206,9 +213,40 @@ namespace DLaB.Xrm.Test.Tests.Builders
             }
         }
 
-        private string GetName(string entityLogicalName, string attributeName)
+        [TestMethod]
+        [DataRow(true, false, DisplayName = "Primary Allowed but hierarchy update not, should not utilize default ids")]
+        [DataRow(true, true, DisplayName = "Primary Allowed, should utilize default ids")]
+        [DataRow(false, false, DisplayName = "Primary Not Allowed and hierarchy update not, should not utilize default ids")]
+        [DataRow(false, true, DisplayName = "Primary Not Allowed, should not utilize default ids")]
+        public void OrganizationServiceBuilder_WithIdsDefaultedForCreate(bool usePrimaryBuilderForNewEntityDefaultIds, bool allowRearrangeViaInsert)
         {
-            return entityLogicalName + "|" + attributeName;
+            var account = new Id<Account>("74FAF332-2BDC-4A16-87F8-51E26D03ECC7");
+
+            IOrganizationService service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            // Lower level fake is defined, that should utilize the Ids defaulted logic.
+            service = new OrganizationServiceBuilder(service)
+                .WithFakeRetrieveMultiple((s,q) => {
+                    s.Create(new Account());
+                    return s.RetrieveMultiple(q);
+                }).Build();
+
+            ((FakeIOrganizationService)service).AllowRearrangeViaInsert = allowRearrangeViaInsert;
+            
+            service = new OrganizationServiceBuilder(service)
+                .WithIdsDefaultedForCreate(account).Build(new OrganizationServiceBuilderBuildConfig
+                {
+                    UsePrimaryBuilderForNewEntityDefaultIds = usePrimaryBuilderForNewEntityDefaultIds
+                });
+
+            var accounts = service.RetrieveMultiple(new QueryExpression(Account.EntityLogicalName));
+            if (usePrimaryBuilderForNewEntityDefaultIds && allowRearrangeViaInsert)
+            {
+                Assert.AreEqual(account.EntityId, accounts[0].Id);
+            }
+            else
+            {
+                Assert.AreNotEqual(account.EntityId, accounts[0].Id);
+            }
         }
 
         [TestMethod]
@@ -231,7 +269,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
         {
             IOrganizationService service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
             service = new OrganizationServiceBuilder(service)
-                    .WithFakeAction<msdyn_UpdateBookingsStatusRequest, msdyn_UpdateBookingsStatusResponse>((s, r) =>
+                    .WithFakeAction<msdyn_UpdateBookingsStatusRequest, msdyn_UpdateBookingsStatusResponse>((_, r) =>
                     {
                         return new msdyn_UpdateBookingsStatusResponse
                         {
@@ -258,7 +296,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
             Assert.AreEqual("TEST", account.Name);
             Assert.AreEqual(Guid.Empty, account.Id);
 
-            service = new OrganizationServiceBuilder(service).WithFakeRetrieve((s,n,i,cs) => i == id, new Account{Name = "TEST2" }).Build();
+            service = new OrganizationServiceBuilder(service).WithFakeRetrieve((_,_,i,_) => i == id, new Account{Name = "TEST2" }).Build();
             account = service.GetEntity<Account>(id);
             Assert.AreEqual("TEST2", account.Name);
             Assert.AreEqual(Guid.Empty, account.Id);
@@ -268,7 +306,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
         public void OrganizationServiceBuilder_WithFakeRetrieveMultiple_FakedRetrieves_Should_BeFaked()
         {
             IOrganizationService service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
-            service = new OrganizationServiceBuilder(service).WithFakeRetrieveMultiple((s,qb)=> true, GetFakedAccount()).Build();
+            service = new OrganizationServiceBuilder(service).WithFakeRetrieveMultiple((_,_)=> true, GetFakedAccount()).Build();
             AssertAccountNotQueried(service);
         }
 

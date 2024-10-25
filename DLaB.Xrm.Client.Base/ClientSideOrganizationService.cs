@@ -17,7 +17,7 @@ namespace DLaB.Xrm.Client
         /// <value>
         /// The service.
         /// </value>
-        public IOrganizationService Service { get; }
+        public IOrganizationService Service { get; protected set; }
 
         #endregion Properties
 

@@ -6,7 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{33C4E42F-B410-4570-BBC9-DA4C695B1F4D}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>XrmUnitTest2015</RootNamespace>
+	  <AppDesignerFolder>Properties</AppDesignerFolder>
+		<RootNamespace>XrmUnitTest2015</RootNamespace>
     <AssemblyName>XrmUnitTest.2015</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

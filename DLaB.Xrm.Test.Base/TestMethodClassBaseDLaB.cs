@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -61,7 +62,7 @@ namespace DLaB.Xrm.Test
         /// <value>
         /// The assert CRM.
         /// </value>
-        protected AssertCrm AssertCrm { get; set; }
+        protected AssertCrm AssertCrm { get; set; } = null!;
 
         private string _localServiceOrgName;
         /// <summary>
@@ -74,16 +75,15 @@ namespace DLaB.Xrm.Test
         /// </summary>
         protected virtual Guid LocalServiceImpersonationId { get; set; }
 
-        private LogRecorder _recorder;
+        private LogRecorder? _recorder;
         /// <summary>Gets or sets the logger.</summary>
         /// <value>The logger.</value>
-        protected ITestLogger Logger { get => _recorder; set => _recorder = new LogRecorder(value);
-        }
+        protected ITestLogger Logger { get => _recorder!; set => _recorder = new LogRecorder(value); }
 
         /// <summary>
         /// List of Logs that have been recorded.  This includes both internal TestMethodClassBase Logs, and any logs logged with the Logger
         /// </summary>
-        protected IEnumerable<TraceParams> Logs => _recorder.Logs;
+        protected IEnumerable<TraceParams> Logs => _recorder?.Logs ?? [];
 
 
         /// <summary>
@@ -93,7 +93,6 @@ namespace DLaB.Xrm.Test
         {
             _instanceId = Interlocked.Increment(ref InstanceCounter);
             _localServiceOrgName = GetType().FullName + " Instance: " + _instanceId;
-            EntityIdsByLogicalName = new Dictionary<string, List<Id>>();
             EnableServiceExecutionTracing = true;
             MultiThreadPostDeletion = true;
         }
@@ -101,7 +100,7 @@ namespace DLaB.Xrm.Test
         #region Entity Ids
 
         /// <summary>
-        /// By default attempts to load entities from internal type with static Id properties
+        /// By default, attempts to load entities from internal type with static Id properties
         /// </summary>
         protected virtual void InitializeEntityIds()
         {
@@ -120,7 +119,7 @@ namespace DLaB.Xrm.Test
             // Add the nested Ids in the Deletion Order of the Mapper
             foreach (var entity in EntityDependency.Mapper.EntityDeletionOrder)
             {
-                if (nestedIds.TryGetValue(entity, out List<Id> ids))
+                if (nestedIds.TryGetValue(entity, out var ids))
                 {
                     EntityIdsByLogicalName.AddOrAppend(entity, ids.ToArray());
                 }
@@ -131,19 +130,23 @@ namespace DLaB.Xrm.Test
         /// Populated with Entities that are loaded as a result of using EntityDataAssumption Attributes on the Test Method Class.
         /// Loaded before GetIOrganizationService() and InitializeTestData(service)
         /// </summary>
-        protected AssumedEntities AssumedEntities { get; set; }
+        protected AssumedEntities AssumedEntities { get; set; } = null!;
 
+        private Dictionary<string, List<Id>> _entityIdsByLogicalName = new();
         /// <summary>
         /// Populated with EntityLogical name keys, and list of ids.  Default Implementation of Cleanup methods will delete
         /// all entities in the dictionary, GetEntityReference will use it to populate Entities
         /// </summary>
-        protected Dictionary<string, List<Id>> EntityIdsByLogicalName { get; set; }
-
+        protected Dictionary<string, List<Id>> EntityIdsByLogicalName
+        {
+            get => _entityIdsByLogicalName;
+            set => _entityIdsByLogicalName = value ?? throw new ArgumentNullException(nameof(EntityIdsByLogicalName) + " must not be null!");
+        }
 
         /// <summary>
         /// Will get populated at the very beginning of Test
         /// </summary>
-        protected Dictionary<Guid, Id> EntityIds { get; private set; }
+        protected Dictionary<Guid, Id> EntityIds { get; private set; } = null!;
 
         private void PopulateEntityReferences()
         {
@@ -265,7 +268,7 @@ namespace DLaB.Xrm.Test
                     totalWatch.ElapsedMilliseconds);
             }
 
-            if (!EntityIdsByLogicalName.TryGetValue("businessunit", out List<Id> businessIds))
+            if (!EntityIdsByLogicalName.TryGetValue("businessunit", out var businessIds))
             {
                 return;
             }
@@ -379,16 +382,23 @@ namespace DLaB.Xrm.Test
         /// <returns></returns>
         protected virtual IOrganizationService GetIOrganizationService()
         {
-            return GetOrganizationServiceBuilder(GetInternalOrganizationServiceProxy()).
-                WithEntityNameDefaulted((e, i) => GetUnitTestName(i.MaximumLength)).
+            var service = GetOrganizationServiceBuilder(GetInternalOrganizationServiceProxy()).
+                WithEntityNameDefaulted((_, i) => GetUnitTestName(i.MaximumLength)).
                 AssertIdNonEmptyOnCreate().
                 WithDefaultParentBu().Build();
+
+            if (service is FakeIOrganizationService fake)
+            {
+                fake.AllowRearrangeViaInsert = false;
+            }
+
+            return service;
         }
 
-        private IClientSideOrganizationService Service { get; set; }
+        private IClientSideOrganizationService? Service { get; set; }
         private IClientSideOrganizationService GetInternalOrganizationServiceProxy()
         {
-            return Service ?? (Service = (IClientSideOrganizationService) new OrganizationServiceBuilder(new FakeIOrganizationService(TestBase.GetOrganizationService(LocalServiceOrgName, LocalServiceImpersonationId), Logger)).WithBusinessUnitDeleteAsDeactivate().Build());
+            return Service ??= (IClientSideOrganizationService) new OrganizationServiceBuilder(new FakeIOrganizationService(TestBase.GetOrganizationService(LocalServiceOrgName, LocalServiceImpersonationId), Logger)).WithBusinessUnitDeleteAsDeactivate().Build();
         }
 
         /// <summary>
@@ -401,31 +411,30 @@ namespace DLaB.Xrm.Test
             var timer = new TestActionTimer(logger);
             LoadConfigurationSettingsOnce(this);
             InitializeEntityIds();
-            if (EntityIdsByLogicalName != null && EntityIdsByLogicalName.Count > 0)
+            if (EntityIdsByLogicalName.Count > 0)
             {
                 timer.Time(PopulateEntityReferences, "Initialization Entity Reference (ms): ");
             }
-            using (var internalService = GetInternalOrganizationServiceProxy())
+
+            using var internalService = GetInternalOrganizationServiceProxy();
+            // ReSharper disable once AccessToDisposedClosure
+            timer.Time(() => CleanupTestData(internalService, false), "Cleanup PreTestData (ms): ");
+
+            try
             {
                 // ReSharper disable once AccessToDisposedClosure
-                timer.Time(() => CleanupTestData(internalService, false), "Cleanup PreTestData (ms): ");
+                timer.Time(() => AssumedEntities = AssumedEntities.Load(internalService, GetType()), "Load Assumptions (ms): ");
 
-                try
-                {
-                    // ReSharper disable once AccessToDisposedClosure
-                    timer.Time(() => AssumedEntities = AssumedEntities.Load(internalService, GetType()), "Load Assumptions (ms): ");
+                var service = GetIOrganizationService();
+                AssertCrm = new AssertCrm(service);
 
-                    var service = GetIOrganizationService();
-                    AssertCrm = new AssertCrm(service);
-
-                    timer.Time(() => InitializeTestData(service), "Initialize TestData (ms): ");
-                    timer.Time(() => Test(service), "Run Test (ms): ");
-                }
-                finally
-                {
-                    // ReSharper disable once AccessToDisposedClosure
-                    timer.Time(() => CleanupTestData(internalService, true), "Cleanup PostTestData (ms): ");
-                }
+                timer.Time(() => InitializeTestData(service), "Initialize TestData (ms): ");
+                timer.Time(() => Test(service), "Run Test (ms): ");
+            }
+            finally
+            {
+                // ReSharper disable once AccessToDisposedClosure
+                timer.Time(() => CleanupTestData(internalService, true), "Cleanup PostTestData (ms): ");
             }
         }
     }
