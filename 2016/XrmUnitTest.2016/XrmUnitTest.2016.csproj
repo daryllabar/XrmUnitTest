@@ -35,7 +35,7 @@
     <Reference Include="System.Workflow.Runtime" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DLaB.Xrm.Source" Version="5.0.0.15" />
+    <PackageReference Include="DLaB.Xrm.Source" Version="5.0.0.16" />
     <PackageReference Include="Microsoft.CrmSdk.CoreAssemblies" Version="[8.2.0.2, 9.0)" />
     <PackageReference Include="Microsoft.CrmSdk.Deployment" Version="[8.2.0.2, 9.0)" />
     <PackageReference Include="Microsoft.CrmSdk.Workflow" Version="[8.2.0.2, 9.0)" />

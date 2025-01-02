@@ -1,43 +1,43 @@
 <?xml version="1.0"?>
 <package >
-  <metadata>
-    <id>XrmUnitTest.09</id>
-    <version>3.3.0.69</version>
-    <authors>Daryl LaBar</authors>
-    <owners>Daryl LaBar</owners>
-    <license type="expression">MIT</license>
-    <projectUrl>https://github.com/daryllabar/XrmUnitTest</projectUrl>
-    <icon>images\DLaB_Dynamics_64x64.png</icon>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Contains XRM/CDS Unit Testing Library</description>
-    <frameworkAssemblies>
-      <frameworkAssembly assemblyName="Microsoft.CSharp" />
-      <frameworkAssembly assemblyName="System.Activities" />
-      <frameworkAssembly assemblyName="System.Configuration" />
-    </frameworkAssemblies>
-    <releaseNotes></releaseNotes>
-    <copyright>Copyright 2018</copyright>
-    <tags>Dynamics CRM v9 Plugin XRM CDS UnitTest</tags>
-	  <dependencies>
-		  <group targetFramework=".NETFramework4.6.2">
-			  <dependency id="DLaB.Xrm" version="5.0.0.4" include="all" />
-			  <dependency id="Microsoft.CrmSdk.XrmTooling.CoreAssembly" version="9.1.1.65" include="all" />
-		  </group>
-		  <group targetFramework=".NETFramework4.7.2">
-			  <dependency id="DLaB.Xrm" version="5.0.0.4" include="all" />
-			  <dependency id="Microsoft.CrmSdk.XrmTooling.CoreAssembly" version="9.1.1.65" include="all" />
-		  </group>
-		  <group targetFramework=".NETFramework4.8">
-			  <dependency id="DLaB.Xrm" version="5.0.0.4" include="all" />
-			  <dependency id="Microsoft.CrmSdk.XrmTooling.CoreAssembly" version="9.1.1.65" include="all"/>
-		  </group>
-    </dependencies>
-  </metadata>
-  <files>
-    <file src="bin\Release\net462\XrmUnitTest.09.dll" target="lib\net462\XrmUnitTest.09.dll" />
+	<metadata>
+		<id>XrmUnitTest.09</id>
+		<version>3.3.0.69</version>
+		<authors>Daryl LaBar</authors>
+		<owners>Daryl LaBar</owners>
+		<license type="expression">MIT</license>
+		<projectUrl>https://github.com/daryllabar/XrmUnitTest</projectUrl>
+		<icon>images\DLaB_Dynamics_64x64.png</icon>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Contains XRM/CDS Unit Testing Library</description>
+		<frameworkAssemblies>
+			<frameworkAssembly assemblyName="Microsoft.CSharp" />
+			<frameworkAssembly assemblyName="System.Activities" />
+			<frameworkAssembly assemblyName="System.Configuration" />
+		</frameworkAssemblies>
+		<releaseNotes></releaseNotes>
+		<copyright>Copyright 2018</copyright>
+		<tags>Dynamics CRM v9 Plugin XRM CDS UnitTest</tags>
+		<dependencies>
+			<group targetFramework=".NETFramework4.6.2">
+				<dependency id="DLaB.Xrm" version="5.0.0.16" include="all" />
+				<dependency id="Microsoft.CrmSdk.XrmTooling.CoreAssembly" version="9.1.1.65" include="all" />
+			</group>
+			<group targetFramework=".NETFramework4.7.2">
+				<dependency id="DLaB.Xrm" version="5.0.0.16" include="all" />
+				<dependency id="Microsoft.CrmSdk.XrmTooling.CoreAssembly" version="9.1.1.65" include="all" />
+			</group>
+			<group targetFramework=".NETFramework4.8">
+				<dependency id="DLaB.Xrm" version="5.0.0.16" include="all" />
+				<dependency id="Microsoft.CrmSdk.XrmTooling.CoreAssembly" version="9.1.1.65" include="all"/>
+			</group>
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="bin\Release\net462\XrmUnitTest.09.dll" target="lib\net462\XrmUnitTest.09.dll" />
 		<file src="bin\Release\net472\XrmUnitTest.09.dll" target="lib\net472\XrmUnitTest.09.dll" />
 		<file src="bin\Release\net48\XrmUnitTest.09.dll" target="lib\net48\XrmUnitTest.09.dll" />
 
-    <file src="..\..\DLaB_Dynamics_64x64.png" target="images\" />
-  </files>
+		<file src="..\..\DLaB_Dynamics_64x64.png" target="images\" />
+	</files>
 </package>

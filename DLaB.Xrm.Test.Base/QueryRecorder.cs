@@ -218,6 +218,24 @@ namespace DLaB.Xrm.Test
             return aliasedEntity;
         }
 
+
+        /// <summary>
+        /// Generates code for the recorded entities using the specified type derived from OrganizationServiceContext.
+        /// </summary>
+        /// <typeparam name="T">The type derived from OrganizationServiceContext.</typeparam>
+        /// <returns>The generated code as a string.</returns>
+        /// <exception cref="Exception">Thrown when the type is OrganizationServiceContext.</exception>
+        public string GenerateCode<T>() where T : Microsoft.Xrm.Sdk.Client.OrganizationServiceContext
+        {
+            var type = typeof(T);
+            if (type == typeof(Microsoft.Xrm.Sdk.Client.OrganizationServiceContext))
+            {
+                throw new Exception("Cannot generate code for OrganizationServiceContext.  Please provide a type derived from OrganizationServiceContext, generated as apart of early bound generation.");
+            }
+
+            return GenerateCode(type.Assembly, type.Namespace);
+        }
+
         /// <summary>
         /// Generates code for the recorded entities.
         /// </summary>

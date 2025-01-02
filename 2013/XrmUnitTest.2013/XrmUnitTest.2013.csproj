@@ -69,7 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Azure.Identity" Version="1.12.0" />
-    <PackageReference Include="DLaB.Xrm.Source" Version="5.0.0.15" />
+    <PackageReference Include="DLaB.Xrm.Source" Version="5.0.0.16" />
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="8.0.0" />
     <PackageReference Include="Microsoft.CrmSdk.CoreAssemblies" Version="[6.1.2, 7.0)" />
     <PackageReference Include="Microsoft.CrmSdk.Deployment" Version="[6.1.1, 7.0)" />
