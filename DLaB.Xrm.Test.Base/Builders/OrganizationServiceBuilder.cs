@@ -740,7 +740,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         public TDerived WithLocalOptionSetsRetrievedFromEnum(int? defaultLanguageCode = null)
         {
-            defaultLanguageCode = defaultLanguageCode ?? DLaB.Xrm.Client.AppConfig.DefaultLanguageCode;
+            defaultLanguageCode ??= DLaB.Xrm.Client.AppConfig.DefaultLanguageCode;
             ExecuteFuncs.Add((s, r) =>
             {
                 if (!(r is RetrieveAttributeRequest attRequest))
@@ -800,6 +800,25 @@ namespace DLaB.Xrm.Test.Builders
                 ReadOnlyFail.OnCreate(e);
                 throw new Exception("AssertFail Failed to throw an Exception");
             });
+            return This;
+        }
+
+        public TDerived WithQueryRecorder(QueryRecorder recorder)
+        {
+            RetrieveFuncs.Add((s, ln, id, cs) =>
+            {
+                var result = s.Retrieve(ln, id, cs);
+                recorder.RecordRetrieve(s, ln, id, cs, result);
+                return result;
+            });
+
+            RetrieveMultipleFuncs.Add((s, q) =>
+            {
+                var result = s.RetrieveMultiple(q);
+                recorder.RecordRetrieveMultiple(s, q, result);
+                return result;
+            });
+
             return This;
         }
 

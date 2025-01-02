@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLaB.Xrm.Entities", "DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj", "{66688025-2F6D-40EC-914E-87AF88AFC5DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLaB.Xrm.Entities", "DLaB.Xrm.Entities\DLaB.Xrm.Entities.csproj", "{66688025-2F6D-40EC-914E-87AF88AFC5DE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{775B4069-F435-4B94-A185-EAFD10B33495}"
 	ProjectSection(SolutionItems) = preProject
@@ -58,9 +58,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XrmUnitTest.09", "09\XrmUni
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XrmUnitTest.09.Tests", "09\XrmUnitTest.09.Tests\XrmUnitTest.09.Tests.csproj", "{913C6B2B-AFFE-4819-9B22-B1E840E86738}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmUnitTest.2015", "2015\XrmUnitTest.2015\XrmUnitTest.2015.csproj", "{33C4E42F-B410-4570-BBC9-DA4C695B1F4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XrmUnitTest.2015", "2015\XrmUnitTest.2015\XrmUnitTest.2015.csproj", "{33C4E42F-B410-4570-BBC9-DA4C695B1F4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmUnitTest.2016", "2016\XrmUnitTest.2016\XrmUnitTest.2016.csproj", "{E8C237CB-FFB2-4163-A985-01ECC0B8F399}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XrmUnitTest.2016", "2016\XrmUnitTest.2016\XrmUnitTest.2016.csproj", "{E8C237CB-FFB2-4163-A985-01ECC0B8F399}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2013", "2013", "{71DACF89-9D0F-4D45-9202-7AAC5FA83EBE}"
 EndProject
@@ -72,7 +72,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataverseUnitTest.Tests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLaB.Xrm.Entities.Net", "DLaB.Xrm.Entities.Net\DLaB.Xrm.Entities.Net.csproj", "{7E1C7B84-ECBD-4F5A-B6FD-E76E0082B536}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmUnitTest.2013", "2013\XrmUnitTest.2013\XrmUnitTest.2013.csproj", "{E022F65B-2E2B-4907-BED5-8ED04FEF5769}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XrmUnitTest.2013", "2013\XrmUnitTest.2013\XrmUnitTest.2013.csproj", "{E022F65B-2E2B-4907-BED5-8ED04FEF5769}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -170,10 +170,10 @@ Global
 		DLaB.Xrm.Test.Tests.Base\DLaB.Xrm.Test.Tests.Base.projitems*{c982dcfc-48f8-4fe0-aa56-c45a1abe29ac}*SharedItemsImports = 5
 		XrmUnitTest.Test.Base\XrmUnitTest.Test.Base.projitems*{c982dcfc-48f8-4fe0-aa56-c45a1abe29ac}*SharedItemsImports = 5
 		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{d2ccbfcf-54c0-405c-a829-100a3deb4229}*SharedItemsImports = 13
-		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{e022f65b-2e2b-4907-bed5-8ed04fef5769}*SharedItemsImports = 4
-		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{e022f65b-2e2b-4907-bed5-8ed04fef5769}*SharedItemsImports = 4
-		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{e022f65b-2e2b-4907-bed5-8ed04fef5769}*SharedItemsImports = 4
-		NMemory.Base\NMemory.Base.projitems*{e022f65b-2e2b-4907-bed5-8ed04fef5769}*SharedItemsImports = 4
+		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{e022f65b-2e2b-4907-bed5-8ed04fef5769}*SharedItemsImports = 5
+		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{e022f65b-2e2b-4907-bed5-8ed04fef5769}*SharedItemsImports = 5
+		DLaB.Xrm.Test.Base\DLaB.Xrm.Test.Base.projitems*{e022f65b-2e2b-4907-bed5-8ed04fef5769}*SharedItemsImports = 5
+		NMemory.Base\NMemory.Base.projitems*{e022f65b-2e2b-4907-bed5-8ed04fef5769}*SharedItemsImports = 5
 		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{e8ad0e5d-2969-463a-96a7-8d8a3240fd7f}*SharedItemsImports = 13
 		DLaB.Xrm.Client.Base\DLaB.Xrm.Client.Base.projitems*{e8c237cb-ffb2-4163-a985-01ecc0b8f399}*SharedItemsImports = 4
 		DLaB.Xrm.LocalCrm.Base\DLaB.Xrm.LocalCrm.Base.projitems*{e8c237cb-ffb2-4163-a985-01ecc0b8f399}*SharedItemsImports = 4
