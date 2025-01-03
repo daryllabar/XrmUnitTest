@@ -29,67 +29,6 @@ namespace DLaB.Xrm.Test.Tests
             _sut = new QueryRecorder();
         }
 
-        #region GenerateCode
-
-        [TestMethod]
-        public void GenerateCode_Should_SortAndCreateAllTypes()
-        {
-            var now = DateTime.UtcNow.Date;
-            var contact = new Contact
-            {
-                AssistantName = "A",
-                AnnualIncome = new Money(10),
-                Id = Guid.NewGuid(),
-                ParentCustomerId = new EntityReference(Account.EntityLogicalName, Guid.NewGuid()),
-                ParticipatesInWorkflow = true,
-                PreferredAppointmentDayCodeEnum = Contact_PreferredAppointmentDayCode.Friday,
-                StateCode = ContactState.Inactive,
-                BirthDate = now,
-                EntityImage = [1, 2, 3],
-                Address1_City = null,
-                NumberOfChildren = 4
-            };
-            _sut.Entities.Add(contact.ToEntityReference(), contact);
-            var contact2 = contact.Clone();
-            contact2.Id = Guid.NewGuid();
-            _sut.Entities.Add(contact2.ToEntityReference(), contact2);
-
-            var lines = _sut.GenerateCode(typeof(Contact).Assembly, typeof(Contact).Namespace).Split([Environment.NewLine], StringSplitOptions.None);
-
-            var expected = $@"var contact1 = new Contact {{
-	AnnualIncome = new Money(10),
-	AssistantName = A,
-	BirthDate = new DateTime({now.Year}, {now.Month}, {now.Day}, {now.Hour}, {now.Minute}, {now.Second}),
-	ContactId = new Guid(""{contact.Id}""),
-	EntityImage = new byte[]{{ 1, 2, 3 }},
-	NumberOfChildren = 4,
-	ParentCustomerId = new EntityReference(Account.EntityLogicalName, new Guid(""{contact.ParentCustomerId.Id}"")),
-	ParticipatesInWorkflow = true,
-	PreferredAppointmentDayCodeEnum = Contact_PreferredAppointmentDayCode.Friday,
-	StateCode = ContactState.Inactive,
-}}
-var contact2 = new Contact {{
-	AnnualIncome = new Money(10),
-	AssistantName = A,
-	BirthDate = new DateTime({now.Year}, {now.Month}, {now.Day}, {now.Hour}, {now.Minute}, {now.Second}),
-	ContactId = new Guid(""{contact2.Id}""),
-	EntityImage = new byte[]{{ 1, 2, 3 }},
-	NumberOfChildren = 4,
-	ParentCustomerId = new EntityReference(Account.EntityLogicalName, new Guid(""{contact2.ParentCustomerId.Id}"")),
-	ParticipatesInWorkflow = true,
-	PreferredAppointmentDayCodeEnum = Contact_PreferredAppointmentDayCode.Friday,
-	StateCode = ContactState.Inactive,
-}}
-".Split([@"
-"], StringSplitOptions.None);
-            Assert.AreEqual(expected.Length, lines.Length, "Line Count Mismatch");
-            for (var i=0; i<lines.Length; i++){
-                Assert.AreEqual(expected[i], lines[i], "Mismatch at line " + i);
-            }
-        }
-
-        #endregion GenerateCode
-
         #region RecordRetrieve
 
         [TestMethod]

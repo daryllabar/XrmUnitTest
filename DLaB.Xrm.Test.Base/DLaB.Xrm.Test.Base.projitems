@@ -52,6 +52,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)IPathFinder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ITestFrameworkProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ITestLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestEntityCodeGenerator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)QueryRecorder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LogRecorder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PatherFinderProjectOfType.cs" />

@@ -5,8 +5,6 @@ using System.Linq;
 using Microsoft.Xrm.Sdk.Query;
 using Microsoft.Crm.Sdk.Messages;
 using DLaB.Common;
-using System.Text;
-using System.Reflection;
 
 #if NET
 using DLaB.Xrm;
@@ -25,6 +23,18 @@ namespace DLaB.Xrm.Test
         /// The recorded entities required by the query.
         /// </summary>
         public Dictionary<EntityReference, Entity> Entities { get; private set; } = new();
+
+
+        /// <summary>
+        /// Generates code for the recorded entities using the specified type derived from OrganizationServiceContext.
+        /// </summary>
+        /// <typeparam name="TContext">The type derived from OrganizationServiceContext.</typeparam>
+        /// <returns>The generated code as a string.</returns>
+        /// <exception cref="Exception">Thrown when the type is OrganizationServiceContext.</exception>
+        public string GenerateCode<TContext>() where TContext : Microsoft.Xrm.Sdk.Client.OrganizationServiceContext
+        {
+            return TestEntityCodeGenerator.GenerateCode<TContext>(Entities);
+        }
 
         /// <summary>
         /// Records the result of a Retrieve operation.
@@ -217,166 +227,5 @@ namespace DLaB.Xrm.Test
 
             return aliasedEntity;
         }
-
-
-        /// <summary>
-        /// Generates code for the recorded entities using the specified type derived from OrganizationServiceContext.
-        /// </summary>
-        /// <typeparam name="T">The type derived from OrganizationServiceContext.</typeparam>
-        /// <returns>The generated code as a string.</returns>
-        /// <exception cref="Exception">Thrown when the type is OrganizationServiceContext.</exception>
-        public string GenerateCode<T>() where T : Microsoft.Xrm.Sdk.Client.OrganizationServiceContext
-        {
-            var type = typeof(T);
-            if (type == typeof(Microsoft.Xrm.Sdk.Client.OrganizationServiceContext))
-            {
-                throw new Exception("Cannot generate code for OrganizationServiceContext.  Please provide a type derived from OrganizationServiceContext, generated as apart of early bound generation.");
-            }
-
-            return GenerateCode(type.Assembly, type.Namespace);
-        }
-
-        /// <summary>
-        /// Generates code for the recorded entities.
-        /// </summary>
-        /// <param name="earlyBoundAssembly">The early bound assembly.</param>
-        /// <param name="namespace">The namespace for the generated code.</param>
-        /// <returns>The generated code as a string.</returns>
-        public string GenerateCode(Assembly earlyBoundAssembly, string @namespace)
-        {
-            var sb = new StringBuilder();
-            var countByEntity = new Dictionary<string, int>();
-            foreach (var entity in Entities.Values)
-            {
-                var type = EntityHelper.GetType(earlyBoundAssembly, @namespace, entity.LogicalName);
-                if(countByEntity.TryGetValue(entity.LogicalName, out var count))
-                {
-                    countByEntity[entity.LogicalName] = count + 1;
-                }
-                else
-                {
-                    countByEntity[entity.LogicalName] = 1;
-                }
-
-                GenerateCodeForEntity(sb, entity, type, countByEntity[entity.LogicalName]);
-            }
-
-            return sb.ToString();
-        }
-
-        private void GenerateCodeForEntity(StringBuilder sb, Entity entity, Type type, int count)
-        {
-            var tab = "\t";
-            sb.AppendLine($"var {entity.LogicalName}{count} = new {type.Name} {{");
-            foreach (var att in entity.Attributes.OrderBy(a => a.Key))
-            {
-                var attributeName = att.Key;
-                var attributeValue = att.Value;
-
-                var propertyName = type.GetProperties()
-                                       .FirstOrDefault(p => p.GetCustomAttribute<AttributeLogicalNameAttribute>()?.LogicalName == attributeName)
-                                       ?.Name;
-
-                if (attributeValue == null)
-                {
-                    continue;
-                }
-
-                if (attributeValue.GetType().IsEnum)
-                {
-                    var enumType = attributeValue.GetType();
-                    sb.Append($"{tab}{propertyName} = {enumType.Name}.{Enum.GetName(enumType, attributeValue)},");
-                }
-                else if (attributeValue is OptionSetValue)
-                {
-                    propertyName = type.GetProperties()
-                        .FirstOrDefault(p => p.GetCustomAttribute<AttributeLogicalNameAttribute>()?.LogicalName == attributeName
-                            && (p.PropertyType.IsEnum || p.PropertyType.IsGenericType && p.PropertyType.GenericTypeArguments.First().IsEnum))?.Name ?? propertyName;
-                }
-
-                sb.Append($"{tab}{propertyName} = {(dynamic)GetInitValue(attributeName, attributeValue, type)},");
-                sb.AppendLine();
-            }
-
-            sb.AppendLine("}");
-        }
-
-        private string GetInitValue(string name, dynamic value, Type entityType)
-        {
-            if (value == null)
-            {
-                return "null";
-            }
-
-            try { 
-                return GetInitString(name, value, entityType);
-            }
-            catch(Exception ex)
-            {
-                throw new Exception($"Unable to get Init Value for type {value.GetType()} and value {value}.", ex);
-            }
-        }
-
-        // ReSharper disable UnusedParameter.Local
-        private string GetInitString(string name, bool bol, Type entityType)
-        {
-            return bol.ToString().ToLower();
-        }
-
-        private string GetInitString(string name, byte[] bytes, Type entityType)
-        {
-            return $"new byte[]{{ {string.Join(", ", bytes)} }}";
-        }
-
-        // ReSharper disable once RedundantAssignment
-        private string GetInitString(string name, EntityReference reference, Type entityType)
-        {
-            name = EntityHelper.GetType(entityType.Assembly, entityType.Namespace ?? "", reference.LogicalName).Name;
-            return $"new EntityReference({name}.EntityLogicalName, new Guid(\"{reference.Id}\"))";
-        }
-
-        private string GetInitString(string name, DateTime date, Type entityType)
-        {
-            return $"new DateTime({date.Year}, {date.Month}, {date.Day}, {date.Hour}, {date.Minute}, {date.Second})";
-        }
-
-        private string GetInitString(string name, Guid id, Type entityType)
-        {
-            return $"new Guid(\"{id}\")";
-        }
-
-        private string GetInitString(string name, Money money, Type entityType)
-        {
-            return $"new Money({money.Value})";
-        }
-
-        private string GetInitString(string name, OptionSetValue osv, Type entityType)
-        {
-            var property = entityType.GetProperties()
-                .FirstOrDefault(p => p.GetCustomAttribute<AttributeLogicalNameAttribute>()?.LogicalName == name
-                && (p.PropertyType.IsEnum || p.PropertyType.IsGenericType && p.PropertyType.GenericTypeArguments.First().IsEnum));
-
-            if (property == null)
-            {
-                return $"new OptionSetValue({osv.Value}";
-            }
-
-            var type = property.PropertyType.IsEnum
-                ? property.PropertyType
-                : property.PropertyType.GenericTypeArguments.First();
-            return $"{type.Name}.{Enum.GetName(type, osv.Value)}";
-        }
-
-        private string GetInitString(string name, string str, Type entityType)
-        {
-            return str;
-        }
-
-        private string GetInitString(string name, object obj, Type entityType)
-        {
-            return obj.ToString();
-        }
-
-        // ReSharper restore UnusedParameter.Local
     }
 }
