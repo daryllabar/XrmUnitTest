@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 #if NET
 namespace DataverseUnitTest
@@ -12,7 +13,7 @@ namespace DLaB.Xrm.Test
     public interface ITestFrameworkProvider
     {
         /// <summary>
-        /// Gets the type of the attribute used to define a test method.
+        /// If only one Test Attribute Type will be used, gets the type of the attribute used to define a test method.  If more than one is to be used, this must be null and the IMultiTestMethodAttributeTestFrameworkProvider should be used with the TestMethodAttributeTypes populated.
         /// </summary>
         /// <value>
         /// the type of the attribute used to define a test method.
@@ -30,5 +31,16 @@ namespace DLaB.Xrm.Test
         /// </summary>
         /// <returns></returns>
         Exception GetInconclusiveException(string message);
+    }
+
+    public interface IMultiTestMethodAttributeTestFrameworkProvider : ITestFrameworkProvider
+    {
+        /// <summary>
+        /// Allows for defining more than one attribute type.  If only one is needed, the TestMethodAttributeType should be used.
+        /// </summary>
+        /// <value>
+        /// The types of the attributes used to define a test method.
+        /// </value>
+        HashSet<Type> TestMethodAttributeTypes { get; }
     }
 }

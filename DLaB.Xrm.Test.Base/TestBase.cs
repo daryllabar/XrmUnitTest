@@ -75,7 +75,7 @@ namespace DLaB.Xrm.Test
             // Create a unique Database for each Unit Test by looking up the first method in the stack trace that has a TestMethodAttribute,
             // and using it's method handle, combined with the OrganizationName, as a unique Key
             var method = GetUnitTestMethod() ?? MethodBase.GetCurrentMethod();
-            var databaseKey = $"UnitTest {method?.Name ?? "NULL"}:{organizationName}:{method?.MethodHandle}";
+            var databaseKey = $"UnitTest {method?.Name ?? "NULL"}:{organizationName}:{method?.MethodHandle.Value}";
             return new LocalCrmDatabaseOrganizationService(GetConfiguredLocalDatabaseInfo(databaseKey, impersonationUserId));
         }
 
@@ -96,6 +96,16 @@ namespace DLaB.Xrm.Test
             if (frames == null)
             {
                 throw new Exception("Unable to get the StackTrace");
+            }
+
+            if (TestSettings.TestFrameworkProvider.Value.TestMethodAttributeType == null)
+            {
+                var multiProvider = (IMultiTestMethodAttributeTestFrameworkProvider)TestSettings.TestFrameworkProvider.Value;
+
+                return frames.Reverse() // Stacks are LIFO, Reverse to start at the bottom.
+                    .Select(frame => frame.GetMethod())
+                    .Where(m => m != null)
+                    .FirstOrDefault(method => method.GetCustomAttributes(false).Any(o => multiProvider.TestMethodAttributeTypes.Contains(o.GetType())));
             }
 
             return frames.Reverse() // Stacks are LIFO, Reverse to start at the bottom.
