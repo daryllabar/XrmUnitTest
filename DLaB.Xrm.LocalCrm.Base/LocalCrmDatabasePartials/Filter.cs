@@ -394,7 +394,7 @@ namespace DLaB.Xrm.LocalCrm
                     }
                     else
                     {
-                        value = beginsWithStr.StartsWith((string)condition.Values[0]);
+                        value = beginsWithStr.StartsWith((string)condition.Values[0], StringComparison.InvariantCultureIgnoreCase);
                     }
                     break;
                 case ConditionOperator.DoesNotBeginWith:
@@ -409,7 +409,7 @@ namespace DLaB.Xrm.LocalCrm
                     }
                     else
                     {
-                        value = endsWithStr.EndsWith((string)condition.Values[0]);
+                        value = endsWithStr.EndsWith((string)condition.Values[0], StringComparison.InvariantCultureIgnoreCase);
                     }
                     break;
                 case ConditionOperator.DoesNotEndWith:

@@ -11,6 +11,17 @@ namespace DLaB.Xrm.LocalCrm.Tests
     {
 
         [TestMethod]
+        public void LocalCrmTests_ConditionExpression_WithIsCaseInsensitive()
+        {
+            var service = GetService();
+            service.Create(new Contact { FirstName = "Jimmy" });
+            Assert.IsNotNull(service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.FirstName, ConditionOperator.BeginsWith, "JIM")));
+            Assert.IsNotNull(service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.FirstName, ConditionOperator.EndsWith, "MY")));
+            Assert.IsNotNull(service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.FirstName, ConditionOperator.DoesNotBeginWith, "MY")));
+            Assert.IsNotNull(service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.FirstName, ConditionOperator.DoesNotEndWith, "JIM")));
+        }
+
+        [TestMethod]
         public void LocalCrmTests_ConditionExpression_LikeIsCaseInsensitive()
         {
             var service = GetService();
