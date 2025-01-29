@@ -33,6 +33,9 @@ namespace DLaB.Xrm.Test
         Exception GetInconclusiveException(string message);
     }
 
+    /// <summary>
+    /// Defines an Interface for a test framework provider that has multiple Test Method Attribute types.  This is needed to be able to interact with different Test Frameworks
+    /// </summary>
     public interface IMultiTestMethodAttributeTestFrameworkProvider : ITestFrameworkProvider
     {
         /// <summary>

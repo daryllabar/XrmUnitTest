@@ -803,6 +803,11 @@ namespace DLaB.Xrm.Test.Builders
             return This;
         }
 
+        /// <summary>
+        /// Records the queries executed to the given QueryRecorder.
+        /// </summary>
+        /// <param name="recorder"></param>
+        /// <returns></returns>
         public TDerived WithQueryRecorder(QueryRecorder recorder)
         {
             RetrieveFuncs.Add((s, ln, id, cs) =>
