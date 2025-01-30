@@ -92,10 +92,16 @@ namespace DLaB.Xrm.LocalCrm
                 {
                     if (party.GetAttributeValue<EntityReference>(ActivityParty.Fields.PartyId) == null)
                     {
-                        throw new NullReferenceException("Activity Party PartyId was null");
+                        if(party.GetAttributeValue<string>(ActivityParty.Fields.AddressUsed) == null)
+                        {
+                             throw new Exception("Activity Party PartyId and AddressUsed were null");
+                        }
+                    }
+                    else
+                    {
+                        party[ActivityParty.Fields.ActivityId] = entity.ToEntityReference();
                     }
 
-                    party[ActivityParty.Fields.ActivityId] = entity.ToEntityReference();
                     if (party.GetAttributeValue<object>(ActivityParty.Fields.ParticipationTypeMask) == null)
                     {
                         party[ActivityParty.Fields.ParticipationTypeMask] = MapFieldToParticipation(att.Key);

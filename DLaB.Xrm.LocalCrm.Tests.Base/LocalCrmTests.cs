@@ -19,7 +19,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
     public class LocalCrmTests : BaseTestClass
     {
         [TestMethod]
-        public void Test2()
+        public void LocalCrmTests_ParentCustomerIdUsesAccountId()
         {
             var service = GetService();
             var account = new Account();
@@ -41,6 +41,43 @@ namespace DLaB.Xrm.LocalCrm.Tests
 
             Assert.AreEqual(1, contacts.Count);
             Assert.AreEqual(1, accounts.Count);
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_Something()
+        {
+            var service = GetService();
+            var email = new Entity(Email.EntityLogicalName);
+            var activityParty  = new Entity(ActivityParty.EntityLogicalName);
+            activityParty.Attributes.Add(ActivityParty.Fields.ParticipationTypeMask, new OptionSetValue(2));
+
+            email[Email.Fields.To] = new EntityCollection ( new List<Entity> { activityParty });
+            email[Email.Fields.From] = new EntityCollection(
+            new List<Entity> {
+                new (ActivityParty.EntityLogicalName) {
+                    [ActivityParty.Fields.PartyId] = new EntityReference(SystemUser.EntityLogicalName, service.GetCurrentlyExecutingUserInfo().UserId),
+                    [ActivityParty.Fields.ParticipationTypeMask ] = new OptionSetValue(1)
+                }
+            });
+
+            try
+            {
+                service.Create(email);
+                Assert.Fail("Error expected!");
+            }
+            catch(Exception ex)
+            {
+                Assert.AreEqual(ex.Message, "Activity Party PartyId and AddressUsed were null");
+            }
+
+            activityParty[ActivityParty.Fields.PartyId] = new EntityReference(SystemUser.EntityLogicalName, service.GetCurrentlyExecutingUserInfo().UserId);
+            email[Email.Fields.To] = new EntityCollection(new List<Entity> { activityParty });
+            service.Create(email);
+
+            activityParty[ActivityParty.Fields.PartyId] = null;
+            activityParty[ActivityParty.Fields.AddressUsed] = "A@A.com"; 
+            email[Email.Fields.To] = new EntityCollection(new List<Entity> { activityParty });
+            service.Create(email);
         }
 
         [TestMethod]
@@ -126,6 +163,21 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var id = service.Create(new Lead {Address1_City = string.Empty});
             Assert.IsFalse(service.GetEntity<Lead>(id).Attributes.ContainsKey(Lead.Fields.Address1_City));
         }
+
+        [TestMethod]
+        public void LocalCrmTests_NullColumnSetAllowed()
+        {
+            var service = GetService();
+            var id = service.Create(new Contact());
+            var qe = new QueryExpression(Contact.EntityLogicalName)
+            {
+                ColumnSet = null,
+            };
+
+            Assert.AreEqual(1, service.GetFirst(qe).Attributes.Count);
+            Assert.AreEqual(id, service.GetFirst(qe).Id);
+        }
+
 
         [TestMethod]
         public void LocalCrmTests_OwnerPopulated()

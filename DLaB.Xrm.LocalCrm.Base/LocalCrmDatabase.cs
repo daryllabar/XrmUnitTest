@@ -276,6 +276,7 @@ namespace DLaB.Xrm.LocalCrm
 
         private static T ProcessEntityForReturn<T>(LocalCrmDatabaseOrganizationService service, ColumnSet cs, T entity, bool checkForAliasedValues) where T : Entity
         {
+            cs = cs ?? new ColumnSet(false);
             if (!cs.AllColumns)
             {
                 foreach (var key in entity.Attributes.Keys.Where(k => !cs.Columns.Contains(k)
