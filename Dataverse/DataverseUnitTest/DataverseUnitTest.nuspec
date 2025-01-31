@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DataverseUnitTest</id>
-    <version>3.3.0.74</version>
+    <version>3.3.0.75</version>
     <authors>Daryl LaBar</authors>
     <owners>Daryl LaBar</owners>
     <license type="expression">MIT</license>
