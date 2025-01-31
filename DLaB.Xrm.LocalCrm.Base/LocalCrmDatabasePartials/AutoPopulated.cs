@@ -23,6 +23,7 @@ namespace DLaB.Xrm.LocalCrm
             // TODO: Need to add logic to see if an update to the Full Name is being Performed
             ConditionallyAddValue(entity, properties, SystemUser.Fields.FullName, name, !string.IsNullOrWhiteSpace(name));
 
+            AutoPopulateConnectionFields(entity, isCreate);
             AutoPopulateContactFields(entity, properties);
             AutoPopulateOpportunityFields(service, entity, isCreate);
 

@@ -28,6 +28,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             service.Create(connection);
             var definedRecord = service.GetFirst<Connection>(Connection.Fields.Record1Id, contactId1);
             Assert.That.AttributesAreEqual(connection, definedRecord);
+            Assert.IsTrue(definedRecord.IsMaster);
             var dupRecord = service.GetFirst<Connection>(Connection.Fields.Record1Id, contactId2);
             var connection2 = connection.Clone(true);
             connection2.Attributes.Remove(Connection.Fields.Id);
@@ -36,6 +37,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             connection2.Record2Id = connection.Record1Id;
             connection2.Record2RoleId = connection.Record1RoleId;
             Assert.That.AttributesAreEqual(connection2, dupRecord);
+            Assert.IsFalse(dupRecord.IsMaster);
 
         }
     }

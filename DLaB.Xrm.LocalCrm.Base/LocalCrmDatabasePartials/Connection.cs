@@ -41,15 +41,28 @@ namespace DLaB.Xrm.LocalCrm
             Swap(clone, Connection.Fields.Record2Id, entity, Connection.Fields.Record1Id);
             Swap(clone, Connection.Fields.Record2ObjectTypeCode, entity, Connection.Fields.Record1ObjectTypeCode);
             Swap(clone, Connection.Fields.Record2RoleId, entity, Connection.Fields.Record1RoleId);
+            clone[Connection.Fields.IsMaster] = false;
             return clone;
         }
 
         private static void Swap(Entity entityTo, string attributeTo, Entity entityFrom, string attributeFrom)
         {
-            if(entityFrom.Attributes.TryGetValue(attributeFrom, out var value))
+            if (entityFrom.Attributes.TryGetValue(attributeFrom, out var value))
             {
                 entityTo[attributeTo] = value;
             }
+        }
+
+        private static void AutoPopulateConnectionFields<T>(T entity, bool isCreate) where T : Entity
+        {
+            if (!isCreate
+                || EntityHelper.GetEntityLogicalName<T>() != Connection.EntityLogicalName
+                || entity.GetAttributeValue<bool?>(Connection.Fields.IsMaster) == false)
+            {
+                return;
+            }
+
+            entity[Connection.Fields.IsMaster] = true;
         }
     }
 }
