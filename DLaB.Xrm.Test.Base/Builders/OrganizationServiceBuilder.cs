@@ -888,12 +888,12 @@ namespace DLaB.Xrm.Test.Builders
         {
             RetrieveMultipleFuncs.Add((s, q) =>
             {
-                if (!(q is QueryExpression qe) || qe.EntityName != WebResource.EntityLogicalName || !s.IsLocalCrmService())
+                if (q is not QueryExpression { EntityName: WebResource.EntityLogicalName } qe || !s.IsLocalCrmService())
                 {
                     return s.RetrieveMultiple(q);
                 }
 
-                var condition = qe.Criteria.Conditions.FirstOrDefault(c => c.AttributeName == "name" && c.Values is { Count: 1 } && c.Values[0]?.ToString().Contains(webResourceName) == true);
+                var condition = qe.Criteria.Conditions.FirstOrDefault(c => c.AttributeName == "name" && c.Values is { Count: 1 } && c.Values[0]?.ToString()?.Contains(webResourceName) == true);
                 if (condition == null)
                 {
                     return s.RetrieveMultiple(q);
