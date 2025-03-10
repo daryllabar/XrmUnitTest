@@ -301,6 +301,8 @@ namespace DLaB.Xrm.Test.Builders
                 }
             }
 
+            ApplyState(entity, postCreateEntity);
+
             var createdEntity = builder.Create(service, false);
             if (postCreateEntity.Attributes.Any())
             {
@@ -309,6 +311,33 @@ namespace DLaB.Xrm.Test.Builders
             }
 
             return createdEntity;
+        }
+
+        private static void ApplyState(Entity entity, Entity postCreateEntity)
+        {
+            var info = new LateBoundActivePropertyInfo(entity.LogicalName);
+            switch (info.ActiveAttribute)
+            {
+                case ActiveAttributeType.IsDisabled:
+                    if(entity.Contains("isdisabled"))
+                    {
+                        postCreateEntity["isdisabled"] = entity["isdisabled"];
+                    }
+                    break;
+                case ActiveAttributeType.None:
+                case ActiveAttributeType.StateCode:
+                    if (entity.Contains("statecode"))
+                    {
+                        postCreateEntity["statecode"] = entity["statecode"];
+                    }
+                    if (entity.Contains("statuscode"))
+                    {
+                        postCreateEntity["statuscode"] = entity["statuscode"];
+                    }
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         /// <summary>

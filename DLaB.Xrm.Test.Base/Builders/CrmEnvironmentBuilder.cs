@@ -65,7 +65,7 @@ namespace DLaB.Xrm.Test.Builders
         #region Fluent Methods
 
         /// <summary>
-        /// Primarily Used in Conjuction with WithEntities&lt;TIdsStruct&gt; to allow for the exclusion of some Ids from being Created
+        /// Primarily Used in Conjunction with WithEntities&lt;TIdsStruct&gt; to allow for the exclusion of some Ids from being Created
         /// </summary>
         /// <param name="ids">The ids.</param>
         /// <returns></returns>
@@ -79,7 +79,7 @@ namespace DLaB.Xrm.Test.Builders
         }
 
         /// <summary>
-        /// Primarily Used in Conjuction with WithEntities&lt;TIdsStruct&gt; to allow for the exclusion of some Ids from being Created
+        /// Primarily Used in Conjunction with WithEntities&lt;TIdsStruct&gt; to allow for the exclusion of some Ids from being Created
         /// </summary>
         /// <typeparam name="TIdsStruct">The type of the ids structure.</typeparam>
         /// <returns></returns>

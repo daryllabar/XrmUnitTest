@@ -221,6 +221,51 @@ namespace DLaB.Xrm.Test.Tests.Builders
         }
 
         [TestMethod]
+        public void CrmEnvironmentBuilder_Create_ForInactive_Should_CreateThenUpdate()
+        {
+            //
+            // Arrange
+            //
+            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            var id = new Id<Account>(Guid.NewGuid());
+            id.Inject(new Account { StateCode = AccountState.Inactive, StatusCodeEnum = Account_StatusCode.Inactive });
+
+            //
+            // Act
+            //
+            new DLaBCrmEnvironmentBuilder().WithEntities(id).Create(service);
+
+            //
+            // Assert
+            //
+            var account = service.GetEntity(id);
+            Assert.AreEqual(AccountState.Inactive, account.StateCode);
+            Assert.AreEqual(Account_StatusCode.Inactive, account.StatusCodeEnum);
+        }
+
+        [TestMethod]
+        public void CrmEnvironmentBuilder_Create_ForIsDisabled_Should_CreateThenUpdate()
+        {
+            //
+            // Arrange
+            //
+            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            var id = new Id<SystemUser>(Guid.NewGuid());
+            id.Inject(new SystemUser { IsDisabled = true });
+
+            //
+            // Act
+            //
+            new DLaBCrmEnvironmentBuilder().WithEntities(id).Create(service);
+
+            //
+            // Assert
+            //
+            var user = service.GetEntity(id);
+            Assert.IsTrue(user.IsDisabled);
+        }
+
+        [TestMethod]
         public void CrmEnvironmentBuilder_Create_WithSelfReferencingEntity_Should_CreateThenUpdate()
         {
             //
