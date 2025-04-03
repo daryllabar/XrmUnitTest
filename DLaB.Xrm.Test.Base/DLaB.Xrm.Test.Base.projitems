@@ -62,7 +62,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Settings\PathSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\PrimaryNameProviderSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\Secret\Pocos.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Settings\SourceControlProviderSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\TestFrameworkProviderSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StubOrganizationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestActionTimer.cs" />

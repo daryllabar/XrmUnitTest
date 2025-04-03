@@ -47,10 +47,6 @@ namespace XrmUnitTest.Test
                 TestSettings.EarlyBound.ConfigureDerivedAssembly<CrmContext>();
                 CrmServiceUtility.GetEarlyBoundProxyAssembly(TestSettings.EarlyBound.Assembly);
             }
-            if (!TestSettings.SourceControlProvider.IsConfigured)
-            {
-                TestSettings.SourceControlProvider.ConfigureNone();
-            }
             if (!TestSettings.TestFrameworkProvider.IsConfigured)
             {
                 TestSettings.TestFrameworkProvider.Configure(new MsTestProvider());

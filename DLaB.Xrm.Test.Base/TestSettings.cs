@@ -62,14 +62,6 @@ namespace DLaB.Xrm.Test
         public static PathSetting WebResourcePath { get; } = new PathSetting("Web Resource Path has not been configured.  Call DLaB.Xrm.Test.TestSettings.WebResource.Configure() first before getting the WebResourcePath.");
 
         /// <summary>
-        /// Gets the source control provider which implements ISourceControlProvider
-        /// </summary>
-        /// <value>
-        /// The test framework provider.
-        /// </value>
-        public static SourceControlProviderSetting SourceControlProvider { get; } = new SourceControlProviderSetting("Source Control Provider Settings has not been configured.  Call DLaB.Xrm.Test.TestSettings.SourceControlProviderSetting.Configure() first before getting the SourceControlProvider.");
-
-        /// <summary>
         /// Gets the test framework provider which implements ITestFrameworkProvider
         /// </summary>
         /// <value>

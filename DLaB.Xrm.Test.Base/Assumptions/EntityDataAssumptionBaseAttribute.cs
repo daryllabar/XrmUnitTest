@@ -219,14 +219,12 @@ namespace DLaB.Xrm.Test.Assumptions
             }
             else if (Debugger.IsAttached)
             {
-                DLaB.Common.VersionControl.SourceControl.SetProvider(TestSettings.SourceControlProvider.Value);
                 var sdkEntity = entity.ToSdkEntity();
 #if NET
                 var serializedValue = sdkEntity.SerializeToJson(null, null, true);
 #else
                 var serializedValue = sdkEntity.Serialize(true);
 #endif
-                DLaB.Common.VersionControl.SourceControl.CheckoutAndUpdateFileIfDifferent(GetSerializedFilePath(AssumptionsNamespaceRelativePath), serializedValue);
             }
 
             return entity;
