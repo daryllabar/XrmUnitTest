@@ -61,6 +61,18 @@ namespace DLaB.Xrm.LocalCrm
         }
 
         [DebuggerStepThrough]
+        public static EntityCollection ReadEntities<T>(LocalCrmDatabaseOrganizationService service, QueryExpression qe) where T : Entity
+        {
+            var delay = new DelayedException();
+            var result = ReadEntities<T>(service, qe, delay);
+            if (delay.Exception != null)
+            {
+                throw delay.Exception;
+            }
+            return result;
+        }
+
+        [DebuggerStepThrough]
         public static EntityCollection ReadEntitiesByAttribute<T>(LocalCrmDatabaseOrganizationService service, QueryByAttribute query) where T : Entity
         {
             var delay = new DelayedException();

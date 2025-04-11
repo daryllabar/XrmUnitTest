@@ -17,6 +17,11 @@ namespace DLaB.Xrm.LocalCrm
         /// </summary>
         public const int InvalidConditionValue = -2146233087;
 
+        public static FaultException<OrganizationServiceFault> GetAttributeCanNotBeSpecifiedIfAnAggregateOperationIsRequestedException()
+        {
+            return CreateFault(ErrorCodes.InvalidOperation, "Attribute can not be specified if an aggregate operation is requested.");
+        }
+
         public static FaultException<OrganizationServiceFault> GetEntityDoesNotExistException(Entity entity)
         {
             return CreateFault(ErrorCodes.ObjectDoesNotExist, $"{ErrorCodes.GetErrorMessage(ErrorCodes.ObjectDoesNotExist)}  {entity.LogicalName} With Id = {entity.Id} Does Not Exist");

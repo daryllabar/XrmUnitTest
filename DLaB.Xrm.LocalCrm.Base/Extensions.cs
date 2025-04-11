@@ -242,11 +242,22 @@ namespace DLaB.Xrm.LocalCrm
         public static IOrderedEnumerable<T> Order<T>(this List<T> entities, OrderExpression order) where T : Entity
         {
             return order.OrderType == OrderType.Ascending ?
-                entities.OrderBy(e => ConvertStringObjectToLower(e[order.AttributeName])) :
-                entities.OrderByDescending(e => ConvertStringObjectToLower(e.GetAttributeValue<object>(order.AttributeName)));
+                entities.OrderBy(e => ConvertStringObjectToLower(GetValue(e))) :
+                entities.OrderByDescending(e => ConvertStringObjectToLower(GetValue(e)));
+
+            object GetValue(T e)
+            {
+#if PRE_MULTISELECT
+                return e.GetAttributeValue<object>(order.AttributeName);
+#else
+                return string.IsNullOrEmpty(order.Alias)
+                    ? e.GetAttributeValue<object>(order.AttributeName)
+                    : e.GetAliasedValue<object>(order.Alias);
+#endif
+            }
         }
 
-        #endregion List<T> where T : Entity
+#endregion List<T> where T : Entity
 
         #region QueryExpression
 

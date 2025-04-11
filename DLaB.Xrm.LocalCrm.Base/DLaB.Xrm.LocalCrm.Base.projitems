@@ -34,6 +34,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)IMany2ManyAssociationProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabaseOrganizationServicePartials\ExecuteQualifyLead.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabaseOrganizationServicePartials\ExecuteFileStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabasePartials\AggregateExpression.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabasePartials\Connection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabasePartials\Activity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabasePartials\AutoPopulated.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)PrimaryNameFieldProviderBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PrimaryNameViaFieldProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PrimaryNameViaNonStandardNamesProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PrimitiveTypeConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)QueryContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TypeToMetadataGenerator.cs" />
   </ItemGroup>

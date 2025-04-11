@@ -340,9 +340,13 @@ namespace DLaB.Xrm.LocalCrm
             }
             return false;
         }
-        
-        public static EntityCollection ReadEntities<T>(LocalCrmDatabaseOrganizationService service, QueryExpression qe) where T : Entity
+
+        private static EntityCollection ReadEntities<T>(LocalCrmDatabaseOrganizationService service, QueryExpression qe, DelayedException delay) where T : Entity
         {
+            if (AssertValidAttributeExpressionQuery(qe, delay))
+            {
+                return null;
+            }
             PopulateLinkEntityAliases(qe.LinkEntities);
             var query = SchemaGetOrCreate<T>(service.Info).AsQueryable();
             
@@ -353,6 +357,12 @@ namespace DLaB.Xrm.LocalCrm
             query = ApplyFilter(query, qe.Criteria, new QueryContext(service.Info));
 
             var entities = query.ToList();
+
+            if (ApplyAggregates(entities, qe.ColumnSet, delay))
+            {
+                return null;
+            }
+            ;
             if (qe.Orders.Any())
             {
                 // Sort

@@ -7,7 +7,7 @@ using System;
 namespace DLaB.Xrm.LocalCrm.Tests
 {
     [TestClass]
-    public class AggregateTests : BaseTestClass
+    public class AggregateFetchXmlTests : BaseTestClass
     {
         [TestMethod]
         public void LocalCrmTests_Aggregate_Sum()
