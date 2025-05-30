@@ -1,5 +1,4 @@
 ﻿using DLaB.Common;
-using DLaB.Common.Exceptions;
 using DLaB.Xrm.Client;
 #if !PRE_MULTISELECT
 using DLaB.Xrm.CrmSdk;
@@ -21,7 +20,6 @@ using System.ServiceModel;
 using System.Xml.Serialization;
 #if !XRM_2013
 using Microsoft.Xrm.Sdk.Organization;
-using DLaB.Xrm.Exceptions;
 #endif
 
 
@@ -36,7 +34,7 @@ namespace DLaB.Xrm.LocalCrm
         #region Execute Internal
 
         /// <summary>
-        /// Fail safe method.  Execute type not implemented, throw exception
+        /// Fail-safe method.  Execute type not implemented, throw exception
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -782,6 +780,26 @@ namespace DLaB.Xrm.LocalCrm
 
             return response;
         }
+
+#if !PRE_KEYATTRIBUTE
+        private RetrieveTotalRecordCountResponse ExecuteInternal(RetrieveTotalRecordCountRequest request)
+        {
+            var result = new EntityRecordCountCollection();
+
+            foreach (var entityName in request.EntityNames)
+            {
+                result.Add(entityName, this.GetAllEntities(entityName).Count());
+            }
+            var response = new RetrieveTotalRecordCountResponse
+            {
+                Results =
+                {
+                    [nameof(EntityRecordCountCollection)] = result
+                }
+            };
+            return response;
+        }
+#endif
 
         private SendEmailFromTemplateResponse ExecuteInternal(SendEmailFromTemplateRequest request)
         {

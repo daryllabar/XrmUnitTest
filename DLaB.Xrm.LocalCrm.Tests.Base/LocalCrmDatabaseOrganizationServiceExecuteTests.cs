@@ -262,6 +262,25 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
+        public void LocalCrmDatabaseOrganizationServiceExecuteTests_RetrieveTotalRecordCountRequest()
+        {
+            _service.Create(new Contact { LastName = "Test1" });
+            _service.Create(new Contact { LastName = "Test2" });
+            _service.Create(new Contact { LastName = "Test3" });
+            _service.Create(new Contact { LastName = "Test4" });
+            _service.Create(new Account { Name = "Test1" });
+            _service.Create(new Account { Name = "Test2" });
+            _service.Create(new Account { Name = "Test3" });
+
+            var response = (RetrieveTotalRecordCountResponse)_service.Execute(new RetrieveTotalRecordCountRequest
+            {
+                EntityNames = new[] { Contact.EntityLogicalName, Account.EntityLogicalName }
+            });
+            Assert.AreEqual(3, response.EntityRecordCountCollection[Account.EntityLogicalName]);
+            Assert.AreEqual(4, response.EntityRecordCountCollection[Contact.EntityLogicalName]);
+        }
+
+        [TestMethod]
         public void LocalCrmDatabaseOrganizationServiceExecuteTests_UpdateMultipleRequest()
         {
             var account = new Account { Name = "1st" };
