@@ -1,13 +1,15 @@
-﻿using System;
+﻿using DLaB.Xrm.LocalCrm.FetchXml;
+using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Query;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+#if PRE_MULTISELECT
 using System.Text;
+#endif
 using System.Xml;
-using DLaB.Xrm.LocalCrm.FetchXml;
-using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Query;
 using System.Xml.Serialization;
 
 // ReSharper disable once CheckNamespace
@@ -28,6 +30,7 @@ namespace DLaB.Xrm.LocalCrm
                 ProcessFetchXmlItem(service, entityLink, item);
             }
 
+#if PRE_MULTISELECT
             if (!fe.aggregateSpecified)
             {
                 // Move ColumnSet for entityLink to qe.  Not sure if the entity link is really needed...
@@ -38,6 +41,14 @@ namespace DLaB.Xrm.LocalCrm
                 qe.Criteria = entityLink.LinkCriteria;
                 qe.LinkEntities.AddRange(entityLink.LinkEntities);
             }
+#else
+            qe.ColumnSet.AddColumns(entityLink.Columns.Columns.ToArray());
+            qe.ColumnSet.AttributeExpressions.AddRange(entityLink.Columns.AttributeExpressions);
+            entityLink.Columns.Columns.Clear();
+            qe.LinkEntities.Clear();
+            qe.Criteria = entityLink.LinkCriteria;
+            qe.LinkEntities.AddRange(entityLink.LinkEntities);
+#endif
 
             return qe;
         }
@@ -45,12 +56,69 @@ namespace DLaB.Xrm.LocalCrm
         // ReSharper disable once UnusedParameter.Local
         private static void ProcessFetchXmlItem(LocalCrmDatabaseOrganizationService service, LinkEntity entityLink, FetchAttributeType attribute)
         {
-            if (!entityLink.Columns.Columns.Contains(attribute.name))
+            if (!attribute.aggregateSpecified)
             {
-                entityLink.Columns.AddColumn(attribute.name);
+                if (!entityLink.Columns.Columns.Contains(attribute.name))
+                {
+                    entityLink.Columns.AddColumn(attribute.name);
+                }
             }
+#if !PRE_MULTISELECT
+            var aggregates = entityLink.Columns.AttributeExpressions;
+            aggregates.Add(
+                new XrmAttributeExpression(
+                    attributeName: attribute.name,
+                    alias: attribute.alias,
+                    aggregateType: GetAggregateType(attribute))
+                {
+                    DateTimeGrouping = GetDateGrouping(attribute),
+                    HasGroupBy = attribute.groupbySpecified
+                }
+            );
+#endif
         }
 
+#if !PRE_MULTISELECT
+        private static XrmAggregateType GetAggregateType(FetchAttributeType att)
+        {
+            if (!att.aggregateSpecified)
+            {
+                return XrmAggregateType.None;
+            }
+
+            return att.aggregate switch
+            {
+                AggregateType.count => XrmAggregateType.Count,
+                AggregateType.countcolumn => XrmAggregateType.CountColumn,
+                AggregateType.sum => XrmAggregateType.Sum,
+                AggregateType.avg => XrmAggregateType.Avg,
+                AggregateType.min => XrmAggregateType.Min,
+                AggregateType.max => XrmAggregateType.Max,
+                _ => throw new NotImplementedException(att.aggregate.ToString())
+            };
+        }
+
+        private static XrmDateTimeGrouping GetDateGrouping(FetchAttributeType att)
+        {
+            if (!att.dategroupingSpecified)
+            {
+                return XrmDateTimeGrouping.None;
+            }
+
+            return att.dategrouping switch
+            {
+                DateGroupingType.day => XrmDateTimeGrouping.Day,
+                DateGroupingType.week => XrmDateTimeGrouping.Week,
+                DateGroupingType.month => XrmDateTimeGrouping.Month,
+                DateGroupingType.quarter => XrmDateTimeGrouping.Quarter,
+                DateGroupingType.year => XrmDateTimeGrouping.Year,
+                DateGroupingType.fiscalperiod => XrmDateTimeGrouping.FiscalPeriod,
+                DateGroupingType.fiscalyear => XrmDateTimeGrouping.FiscalYear,
+                _ => throw new NotImplementedException(att.dategrouping.ToString())
+            };
+        }
+
+#endif
         // ReSharper disable once UnusedParameter.Local
         private static void ProcessFetchXmlItem(LocalCrmDatabaseOrganizationService service, LinkEntity entityLink, filter filter)
         {
@@ -366,7 +434,7 @@ namespace DLaB.Xrm.LocalCrm
                     throw new NotImplementedException(op.ToString());
             }
         }
-
+#if PRE_MULTISELECT
         private static EntityCollection PerformAggregation<T>(EntityCollection entityCollection, FetchType fe) where T : Entity
         {
             var entities = entityCollection.Entities.Cast<T>().ToList();
@@ -558,8 +626,9 @@ namespace DLaB.Xrm.LocalCrm
             }
             return aggregateEntities.Values.ToList();
         }
+#endif
 
-        #endregion Process FetchXml
+#endregion Process FetchXml
 
         #region Convert Query Expression To Fetch Xml
 

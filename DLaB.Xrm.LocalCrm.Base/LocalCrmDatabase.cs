@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
@@ -34,7 +35,7 @@ namespace DLaB.Xrm.LocalCrm
             return (Entity)GenericMethodCaller.InvokeLocalCrmDatabaseStaticGenericMethod(info, logicalName, nameof(GetDatabaseEntity), BindingFlags.NonPublic | BindingFlags.Static, info, id);
         }
 
-        private static T GetDatabaseEntity<T>(LocalCrmDatabaseInfo info, Guid id) where T : Entity
+        private static T? GetDatabaseEntity<T>(LocalCrmDatabaseInfo info, Guid id) where T : Entity
         {
             return SchemaGetOrCreate<T>(info).Where("Id == @0", id).FirstOrDefault();
         }
@@ -44,12 +45,12 @@ namespace DLaB.Xrm.LocalCrm
             var db = GetDatabaseForService(info);
             var logicalName = EntityHelper.GetEntityLogicalName<T>();
 
-            if (db._tables.TryGetValue(logicalName, out ITable table))
+            if (db._tables.TryGetValue(logicalName, out var table))
             {
                 return (ITable<T>) table;
             }
 
-            table = db.Tables.Create<T, Guid>(e => e.Id, null);
+            table = db.Tables.Create<T, Guid>(e => e.Id, null!);
             if (db._tables.TryAdd(logicalName, table))
             {
                 return (ITable<T>) table;
@@ -65,7 +66,7 @@ namespace DLaB.Xrm.LocalCrm
 
         private static LocalCrmDatabase GetDatabaseForService(LocalCrmDatabaseInfo info)
         {
-            LocalCrmDatabase db;
+            LocalCrmDatabase? db;
             if (info.DatabaseName == null)
             {
                 db = Default;
@@ -93,9 +94,9 @@ namespace DLaB.Xrm.LocalCrm
             return db;
         }
 
-        private static int Compare(Entity e, string attributeName, object compareTo)
+        private static int Compare(Entity e, string attributeName, object? compareTo)
         {
-            IComparable value = null;
+            IComparable? value = null;
             if (e.Attributes.ContainsKey(attributeName))
             {
                 value = ConvertCrmTypeToBasicComparable(e[attributeName]);
@@ -135,13 +136,13 @@ namespace DLaB.Xrm.LocalCrm
             }
 
             if(value is Guid && compareTo is string){
-                return value.CompareTo(new Guid(compareTo.ToString()));
+                return value.CompareTo(new Guid(compareTo.ToString()!));
             }
 
             return value.CompareTo(compareTo);
         }
 
-        private static object ConvertCrmTypeToBasicComparable(Entity e, string attributeName)
+        private static object? ConvertCrmTypeToBasicComparable(Entity e, string attributeName)
         {
             if (e.Attributes.ContainsKey(attributeName))
             {
@@ -151,17 +152,13 @@ namespace DLaB.Xrm.LocalCrm
             return null;
         }
 
-        private static string GetString(Entity e, string attributeName)
+        private static string? GetString(Entity e, string attributeName)
         {
-            if (e.Attributes.ContainsKey(attributeName))
-            {
-                return e.GetAttributeValue<string>(attributeName);
-            }
-
-            return null;
+            return e.GetAttributeValue<string>(attributeName);
         }
+
 #if !PRE_MULTISELECT
-        private static OptionSetValueCollection GetOptionSetValueCollection(Entity e, string attributeName)
+        private static OptionSetValueCollection? GetOptionSetValueCollection(Entity e, string attributeName)
         {
             return e.Attributes.ContainsKey(attributeName) ? e.GetAttributeValue<OptionSetValueCollection>(attributeName) : null;
         }
@@ -178,7 +175,7 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
-        private static IComparable ConvertCrmTypeToBasicComparable(object o)
+        private static IComparable? ConvertCrmTypeToBasicComparable(object? o)
         {
             if (o == null)
             {
@@ -268,7 +265,7 @@ namespace DLaB.Xrm.LocalCrm
                 entity = Activator.CreateInstance<T>();
                 entity.Id = id;
                 exception.Exception = CrmExceptions.GetEntityDoesNotExistException(entity);
-                return null;
+                return null!;
             }
 
             return ProcessEntityForReturn(service, cs, entity, false);
@@ -303,12 +300,17 @@ namespace DLaB.Xrm.LocalCrm
         {
             var entities = ReadEntities<T>(service, ConvertFetchToQueryExpression(service, fe));
 
+            // Utilize the QueryExpression aggregates that are mapped in the ConvertFetchToQueryExpression if available, else use older, incomplete implementation.
+#if PRE_MULTISELECT
             return fe.aggregateSpecified ? PerformAggregation<T>(entities, fe) : entities;
+#else
+            return entities;
+#endif
         }
 
         private static EntityCollection ReadEntitiesByAttribute<T>(LocalCrmDatabaseOrganizationService service, QueryByAttribute query, DelayedException delay) where T : Entity
         {
-            if (AssertValidQueryByAttribute(query, delay)) { return null; }
+            if (AssertValidQueryByAttribute(query, delay)) { return null!; }
             
             var qe = new QueryExpression(query.EntityName)
             {
@@ -345,7 +347,7 @@ namespace DLaB.Xrm.LocalCrm
         {
             if (AssertValidAttributeExpressionQuery(qe, delay))
             {
-                return null;
+                return null!;
             }
             PopulateLinkEntityAliases(qe.LinkEntities);
             var query = SchemaGetOrCreate<T>(service.Info).AsQueryable();
@@ -360,7 +362,7 @@ namespace DLaB.Xrm.LocalCrm
 
             if (ApplyAggregates(entities, qe.ColumnSet, delay))
             {
-                return null;
+                return null!;
             }
             ;
             if (qe.Orders.Any())
@@ -488,7 +490,7 @@ namespace DLaB.Xrm.LocalCrm
                     property = lowerCaseProperties.First(p => p.PropertyType.GenericTypeArguments.Length >= 1);
                 }
 
-                entity.FormattedValues.Add(osvAttribute.Key, property.GetValue(entity).ToString());
+                entity.FormattedValues.Add(osvAttribute.Key, property.GetValue(entity)!.ToString());
             }
         }
 
@@ -565,7 +567,7 @@ namespace DLaB.Xrm.LocalCrm
             foreach(var att in entity.Attributes.Select(a => new { a.Key, Value = a.Value as EntityReference })
                                      .Where(a => a.Value?.KeyAttributes.Count > 0).ToList())
             {
-                entity[att.Key] = new EntityReference(att.Value.LogicalName, att.Value.Id)
+                entity[att.Key] = new EntityReference(att.Value!.LogicalName, att.Value.Id)
                 {
                     Name = att.Value.Name
                 };
@@ -663,7 +665,7 @@ namespace DLaB.Xrm.LocalCrm
 
                     if (role1 == null)
                     {
-                        role1 = role2.NullSafeEquals(dbRole1)
+                        role1 = role2!.NullSafeEquals(dbRole1)
                             ? dbRole2
                             : dbRole1;
                     }

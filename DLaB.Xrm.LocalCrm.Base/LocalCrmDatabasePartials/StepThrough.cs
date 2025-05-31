@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Diagnostics;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
@@ -112,7 +113,7 @@ namespace DLaB.Xrm.LocalCrm
         [DebuggerStepThrough]
         private class DelayedException
         {
-            public Exception Exception { get; set; }
+            public Exception? Exception { get; set; }
         }
     }
 }

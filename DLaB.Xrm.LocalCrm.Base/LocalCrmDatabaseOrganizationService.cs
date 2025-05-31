@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace DLaB.Xrm.LocalCrm
         /// <value>
         /// The name of the current request.
         /// </value>
-        public string CurrentRequestName { get; private set; }
+        public string? CurrentRequestName { get; private set; }
         
         /// <summary>
         /// If a mirrored entity request is being processed, doesn't re-mirror the request
@@ -286,7 +287,7 @@ namespace DLaB.Xrm.LocalCrm
                 .Select(qe => Service.RetrieveMultiple(qe).ToEntityList<Entity>().FirstOrDefault())
                 .Where(entity => entity != null))
             {
-                Service.Delete(entity);
+                Service.Delete(entity!);
             }
         }
 
@@ -340,7 +341,7 @@ namespace DLaB.Xrm.LocalCrm
             FetchType fetch;
             using (var r = new StringReader(fetchExpression.Query))
             {
-                fetch = (FetchType)s.Deserialize(r);
+                fetch = (FetchType)s.Deserialize(r)!;
                 r.Close();
             }
             return (EntityCollection)GenericMethodCaller.InvokeLocalCrmDatabaseStaticGenericMethod(Info, ((FetchEntityType)fetch.Items[0]).name, "ReadFetchXmlEntities", this, fetch);

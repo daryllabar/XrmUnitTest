@@ -295,7 +295,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             }
         }
 
-        private static void CreateSampleData(IOrganizationService service)
+        public static void CreateSampleData(IOrganizationService service)
         {
             service.Create(new Account { NumberOfEmployees = null, Name = "Example Account ", 			Address1_City = null, 			OverriddenCreatedOn = new DateTime(2023, 8, 27) });
             service.Create(new Account { NumberOfEmployees = 1500, Name = "Contoso Pharmaceuticals", 	Address1_City = "Redmond", 		OverriddenCreatedOn = new DateTime(2023, 3, 25) });
@@ -307,7 +307,6 @@ namespace DLaB.Xrm.LocalCrm.Tests
             service.Create(new Account { NumberOfEmployees = 4800, Name = "Alpine Ski House", 			Address1_City = "Missoula", 	OverriddenCreatedOn = new DateTime(2023, 3, 25) });
             service.Create(new Account { NumberOfEmployees = 6000, Name = "Litware, Inc.", 				Address1_City = "Dallas", 		OverriddenCreatedOn = new DateTime(2023, 3, 25) });
             service.Create(new Account { NumberOfEmployees = 6200, Name = "A.Datum Corporation", 		Address1_City = "Redmond", 		OverriddenCreatedOn = new DateTime(2023, 3, 25) });
-
         }
     }
 }
