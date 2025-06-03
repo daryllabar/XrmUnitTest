@@ -12,6 +12,7 @@
     <None Include="$(MSBuildThisFileDirectory)app.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)FetchXmlTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AggregateQueryExpressionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AggregateFetchXmlTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AliasedValueTests.cs" />
