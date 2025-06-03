@@ -2,8 +2,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>XrmUnitTest.09</AssemblyName>
-    <AssemblyVersion>3.4.0.4</AssemblyVersion>
-    <FileVersion>3.4.0.4</FileVersion>
+    <AssemblyVersion>3.4.0.5</AssemblyVersion>
+    <FileVersion>3.4.0.5</FileVersion>
     <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
