@@ -62,6 +62,8 @@ namespace DLaB.Xrm.LocalCrm
                 {
                     entityLink.Columns.AddColumn(attribute.name);
                 }
+
+                return;
             }
 #if !PRE_MULTISELECT
             var aggregates = entityLink.Columns.AttributeExpressions;

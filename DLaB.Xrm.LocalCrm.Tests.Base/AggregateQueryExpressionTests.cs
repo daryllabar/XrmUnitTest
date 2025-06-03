@@ -241,6 +241,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void LocalCrmTests_InvalidAggregateQueries()
         {
             var service = GetService();
+            CreateSampleData(service);
             QueryExpression qe = new()
             {
                 EntityName = Account.EntityLogicalName,
@@ -293,6 +294,26 @@ namespace DLaB.Xrm.LocalCrm.Tests
             {
                 Assert.AreEqual("Attribute can not be specified if an aggregate operation is requested.", ex.Detail.Message, "Exception message does not contain expected text.");
             }
+
+            qe.ColumnSet.AttributeExpressions.Clear();
+            Assert.IsNotNull(service.GetFirst<Account>());
+
+            var results = service.RetrieveMultiple(new FetchExpression(@"<fetch xmlns:generator=""MarkMpn.SQL4CDS"">
+  <entity name=""account"">
+    <attribute name=""name"" />
+    <filter>
+      <condition attribute=""name"" operator=""not-in"">
+        <value>60</value>
+        <value>62</value>
+        <value>300</value>
+        <value>80</value>
+      </condition>
+    </filter>
+    <order attribute=""name"" />
+  </entity>
+</fetch>"));
+
+            Assert.AreNotEqual(0, results.Entities.Count, "Expected to find some accounts, but found none.");
         }
 
         public static void CreateSampleData(IOrganizationService service)
