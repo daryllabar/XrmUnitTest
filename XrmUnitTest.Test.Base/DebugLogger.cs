@@ -14,14 +14,24 @@ namespace XrmUnitTest.Test
 {
     public class DebugLogger: ITestLogger
     {
+        public bool Enabled { get; set; } = true;
+
         public void WriteLine(string message)
         {
-            Debug.WriteLine(message);
+            if (Enabled)
+            {
+                Debug.WriteLine(message);
+                Debug.WriteLine("");
+            }
         }
 
         public void WriteLine(string format, params object[] args)
         {
-            Debug.WriteLine(format, args);
+            if (Enabled)
+            {
+                Debug.WriteLine(format, args);
+                Debug.WriteLine("");
+            }
         }
     }
 }

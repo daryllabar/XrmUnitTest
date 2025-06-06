@@ -807,7 +807,7 @@ namespace DLaB.Xrm.Test
 
         #region Type
 
-        internal static IEnumerable<Id> GetIds(this Type type)
+        public static IEnumerable<Id> GetIds(this Type type)
         {
             if (type.IsDefined(typeof(System.Runtime.CompilerServices.CompilerGeneratedAttribute)))
             {
