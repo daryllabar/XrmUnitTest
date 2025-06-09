@@ -54,5 +54,27 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var result = Service.RetrieveMultiple(new FetchExpression(fetchXml)).ToEntityList<Contact>().First();
             Assert.AreEqual(contact.EntityId, result.Id);
         }
+
+        [TestMethod]
+        public void LocalCrmTests_Top1()
+        {
+            var fetchXml = @"<fetch top='1'>
+              <entity name='account' >
+                <attribute name='name' />
+                <filter>
+                    <condition attribute='name' operator='like' value='SomeValue%' />
+                </filter>
+              </entity>
+            </fetch>";
+
+            var account1 = new Id<Account>("A3759F9B-CFA9-49A2-A8C1-1B7B16A932EF");
+            var account2 = new Id<Account>("4FB15F72-7E32-4116-8B71-6A28A170DE51");
+            account1.Entity.Name = "SomeValue1";
+            account2.Entity.Name = "SomeValue2";
+
+            EnvBuilder.WithEntities(account1, account2).Create(Service);
+            var result = Service.RetrieveMultiple(new FetchExpression(fetchXml)).ToEntityList<Account>();
+            Assert.AreEqual(1, result.Count);
+        }
     }
 }

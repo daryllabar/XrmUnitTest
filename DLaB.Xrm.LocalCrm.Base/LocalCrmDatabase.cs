@@ -378,7 +378,10 @@ namespace DLaB.Xrm.LocalCrm
             {
                 entities = entities.GroupBy(e => GetUniqueDistinctKey(e, qe)).Select(g => g.First()).ToList();
             }
-            foreach (var entity in entities)
+
+            var maxCount = qe.TopCount ?? qe.PageInfo?.Count ?? entities.Count;
+            var count = 0;
+            foreach (var entity in entities.TakeWhile(_ => count++ < maxCount))
             {
                 result.Entities.Add(ProcessEntityForReturn(service, cs, entity, true));
             }

@@ -22,7 +22,7 @@ namespace DLaB.Xrm.LocalCrm
         public static QueryExpression ConvertFetchToQueryExpression(LocalCrmDatabaseOrganizationService service, FetchType fe)
         {
             var fetchEntity = ((FetchEntityType)fe.Items[0]);
-            var qe = new QueryExpression(fetchEntity.name);
+            var qe = MapToQueryExpression(fe, fetchEntity);
             var idName = EntityHelper.GetIdAttributeName(service.GetType(fetchEntity.name));
             var entityLink = qe.AddLink(fetchEntity.name, idName, idName);
             foreach (dynamic item in fetchEntity.Items)
@@ -49,6 +49,35 @@ namespace DLaB.Xrm.LocalCrm
             qe.Criteria = entityLink.LinkCriteria;
             qe.LinkEntities.AddRange(entityLink.LinkEntities);
 #endif
+
+            return qe;
+        }
+
+        private static QueryExpression MapToQueryExpression(FetchType fe, FetchEntityType fetchEntity)
+        {
+            var qe = new QueryExpression(fetchEntity.name);
+            if (!string.IsNullOrWhiteSpace(fe.top))
+            {
+                qe.TopCount = int.Parse(fe.top);
+            }
+            if (!fe.distinctSpecified)
+            {
+                qe.Distinct = fe.distinct;
+            }
+            qe.NoLock = fe.nolock;
+            if (!string.IsNullOrWhiteSpace(fe.page))
+            {
+                qe.PageInfo = new PagingInfo
+                {
+                    PageNumber = int.Parse(fe.page),
+                    PagingCookie = fe.pagingcookie,
+                };
+
+                if (!string.IsNullOrWhiteSpace(fe.count))
+                {
+                    qe.PageInfo.Count = int.Parse(fe.count);
+                }
+            }
 
             return qe;
         }
