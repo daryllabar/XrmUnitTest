@@ -380,6 +380,7 @@ namespace DLaB.Xrm.LocalCrm
             }
 
             var maxCount = qe.TopCount ?? qe.PageInfo?.Count ?? entities.Count;
+            maxCount = maxCount == 0 ? entities.Count : maxCount;
             var count = 0;
             foreach (var entity in entities.TakeWhile(_ => count++ < maxCount))
             {
