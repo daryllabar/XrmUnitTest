@@ -18,7 +18,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_NotLike()
         {
-            var id = Service.Create(new Account());
+            var id = Service.Create(new Account { Name = "Hello" });
             var fetchXml = @"<fetch>
               <entity name='account' >
                 <attribute name='name' />

@@ -182,7 +182,7 @@ namespace DLaB.Xrm.LocalCrm
                     }
                     break;
                 case ConditionOperator.NotLike:
-                    value = !ConditionIsTrue(entity, new ConditionExpression(condition.EntityName, condition.AttributeName, ConditionOperator.Like, condition.Values), context);
+                    value = !ConditionIsTrue(entity, new ConditionExpression(condition.EntityName, condition.AttributeName, ConditionOperator.Like, condition.Values[0]), context);
                     break;
                 case ConditionOperator.In:
                     value = condition.Values.Any(v => Compare(entity, name, v) == 0);
