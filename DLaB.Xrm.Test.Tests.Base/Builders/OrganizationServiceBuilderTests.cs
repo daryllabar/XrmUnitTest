@@ -6,6 +6,7 @@ using DLaB.Xrm.Entities;
 using DLaB.Xrm.LocalCrm;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
+using Microsoft.Xrm.Sdk.Metadata;
 using XrmUnitTest.Test;
 using Microsoft.Xrm.Sdk.Query;
 
@@ -140,6 +141,37 @@ namespace DLaB.Xrm.Test.Tests.Builders
             Assert.AreEqual(GetName(customEntityLogicalName,"custom_name"), entities.Single(e => e.LogicalName == customEntityLogicalName)["custom_name"]);
             Assert.AreEqual(GetName(Contact.EntityLogicalName, " " + Contact.Fields.FullName), service.GetFirst<Contact>().FullName);
             Assert.AreEqual(GetName(Account.EntityLogicalName, Account.Fields.Name), service.GetFirst<Account>().Name);
+        }
+
+        [TestMethod]
+        public void OrganizationServiceBuilder_WithExecute_FakedRetrieveMetadataChanges_Should_BeFaked()
+        {
+            IOrganizationService service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            service = new OrganizationServiceBuilder(service)
+                .WithFakeExecute((s, r) =>
+                {
+                    if (r.RequestName == "RetrieveMetadataChanges")
+                    {
+                        return new RetrieveMetadataChangesResponse
+                        {
+                            Results = new ParameterCollection
+                            {
+                                { 
+                                    nameof(RetrieveMetadataChangesResponse.EntityMetadata),
+                                    new EntityMetadataCollection {
+                                        new() { LogicalName = Account.EntityLogicalName }
+                                    }
+                                }
+                            }
+                        };
+                    }
+
+                    // Perform Normal Execute
+                    return s.Execute(r);
+                }).Build();
+
+            var response = (RetrieveMetadataChangesResponse)service.Execute(new RetrieveMetadataChangesRequest());
+            Assert.AreEqual(Account.EntityLogicalName, response.EntityMetadata[0].LogicalName);
         }
 
         private class NoCustomNames : IEntityHelperConfig
