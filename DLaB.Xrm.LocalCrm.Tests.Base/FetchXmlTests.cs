@@ -56,6 +56,41 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
+        public void LocalCrmTests_Order()
+        {
+            var fetchXml = @"<fetch>
+              <entity name='account' >
+                <attribute name='name' />
+                <filter>
+                    <condition attribute='name' operator='like' value='SomeValue%' />
+                </filter>
+                <order attribute='name' %%ORDER%%/>
+              </entity>
+            </fetch>";
+
+            var account1 = new Id<Account>("A3759F9B-CFA9-49A2-A8C1-1B7B16A932EF");
+            var account2 = new Id<Account>("4FB15F72-7E32-4116-8B71-6A28A170DE51");
+            var account3 = new Id<Account>("E49E2DB1-6216-4B4D-97FB-CC566697382C");
+            account1.Entity.Name = "SomeValue1";
+            account2.Entity.Name = "SomeValue2";
+            account3.Entity.Name = "SomeValue3";
+
+            Service.Create(account2);
+            Service.Create(account3);
+            Service.Create(account1);
+            var result = Service.RetrieveMultiple(new FetchExpression(fetchXml.Replace("%%ORDER%%", string.Empty))).ToEntityList<Account>();
+            Assert.AreEqual("SomeValue1", result[0].Name);
+            Assert.AreEqual("SomeValue2", result[1].Name);
+            Assert.AreEqual("SomeValue3", result[2].Name);
+
+            // Test Descending
+            result = Service.RetrieveMultiple(new FetchExpression(fetchXml.Replace("%%ORDER%%", "descending='true' "))).ToEntityList<Account>();
+            Assert.AreEqual("SomeValue3", result[0].Name);
+            Assert.AreEqual("SomeValue2", result[1].Name);
+            Assert.AreEqual("SomeValue1", result[2].Name);
+        }
+
+        [TestMethod]
         public void LocalCrmTests_Top1()
         {
             var fetchXml = @"<fetch top='1'>

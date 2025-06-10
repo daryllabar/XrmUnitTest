@@ -78,7 +78,14 @@ namespace DLaB.Xrm.LocalCrm
                     qe.PageInfo.Count = int.Parse(fe.count);
                 }
             }
-
+            var orders = ((FetchEntityType)fe.Items.FirstOrDefault())?.Items.OfType<FetchOrderType>().ToList();
+            if (orders != null)
+            {
+                foreach(var order in orders)
+                {
+                    qe.AddOrder(order.attribute, order.descending ? OrderType.Descending : OrderType.Ascending);
+                }
+            }
             return qe;
         }
 
