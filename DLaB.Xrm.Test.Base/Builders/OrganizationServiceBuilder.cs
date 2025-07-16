@@ -104,10 +104,21 @@ namespace DLaB.Xrm.Test.Builders
         /// </value>
         private Dictionary<string, List<Guid>> EntityFilter { get; }
 
+        private TDerived? _primaryBuilder;
         /// <summary>
         /// Defines a builder that will be inserted at lowest level allowed in the Fake IOrganizationService hierarchy
         /// </summary>
-        public TDerived? PrimaryBuilder { get; set; }
+        public TDerived? PrimaryBuilder
+        {
+            get => _primaryBuilder;
+            set {
+                if (ReferenceEquals(value, this))
+                {
+                    throw new ArgumentException("Primary Builder can not be set to itself!");
+                }
+                _primaryBuilder = value;
+            }
+        }
 
         #region IOrganizationService Actions and Funcs
 
@@ -503,6 +514,7 @@ namespace DLaB.Xrm.Test.Builders
         #region WithFakeRetrieve
 
         private readonly Dictionary<string, Entity> _fakeEntitiesToReturn = new Dictionary<string, Entity>();
+
         /// <summary>
         /// Forces any retrieve call of the particular entity type to return the given entity.  Does not apply to any other calls i.e. RetrieveMultiple.
         /// </summary>

@@ -282,6 +282,23 @@ namespace DLaB.Xrm.Test.Tests.Builders
         }
 
         [TestMethod]
+        public void OrganizationServiceBuilder_WithSelfAsPrimaryBuilder_Should_Error()
+        {
+            IOrganizationService service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            try
+            {
+
+                var builder = new OrganizationServiceBuilder(service);
+                builder.PrimaryBuilder = builder;
+                Assert.Fail("Should have thrown an exception");
+            }
+            catch (ArgumentException ex)
+            {
+                Assert.IsTrue(ex.Message.Contains("Primary Builder can not be set to itself!"));
+            }
+        }  
+
+        [TestMethod]
         public void OrganizationServiceBuilder_WithFakeAction_FakedBookingStatusRequest_Should_BeFaked()
         {
             IOrganizationService service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
