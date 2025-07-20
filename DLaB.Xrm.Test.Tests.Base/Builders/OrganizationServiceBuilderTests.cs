@@ -245,6 +245,25 @@ namespace DLaB.Xrm.Test.Tests.Builders
             }
         }
 
+        /// <summary>
+        /// Incident's can't be created without a customer, so attempt to force the incident to be created first
+        /// </summary>
+        [TestMethod]
+        public void OrganizationServiceBuilder_WithIdsDefaultedForCreateInConstructor_Should_Error()
+        {
+            var service = TestBase.GetOrganizationService();
+            var builder = new InvalidOrganizationServiceBuilder(service).AssertIdNonEmptyOnCreate();
+            try
+            {
+                builder.Build();
+                Assert.Fail("Should have thrown an exception!");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Builder of type DLaB.Xrm.Test.Tests.Builders.OrganizationServiceBuilderTests+InvalidOrganizationServiceBuilder can not call WithIdsDefaultedForCreate within the constructor!", ex.Message);
+            }
+        }
+
         [TestMethod]
         [DataRow(true, false, DisplayName = "Primary Allowed but hierarchy update not, should not utilize default ids")]
         [DataRow(true, true, DisplayName = "Primary Allowed, should utilize default ids")]
@@ -380,6 +399,24 @@ namespace DLaB.Xrm.Test.Tests.Builders
             var account = service.GetFirst<Account>();
             Assert.AreEqual("TEST", account.Name);
             Assert.AreEqual(Guid.Empty, account.Id);
+        }
+
+        public class InvalidOrganizationServiceBuilder : OrganizationServiceBuilderBase<InvalidOrganizationServiceBuilder>
+        {
+            protected override InvalidOrganizationServiceBuilder This => this;
+
+            #region Constructors
+
+            public InvalidOrganizationServiceBuilder(IOrganizationService service) : base(service)
+            {
+                this.WithIdsDefaultedForCreate(new Id<Account>(new Guid("E7F666B9-5B23-40A8-8019-A2582E9E70C4")));
+            }
+
+            public InvalidOrganizationServiceBuilder() : this(TestBase.GetOrganizationService())
+            {
+            }
+
+            #endregion Constructors
         }
     }
 }

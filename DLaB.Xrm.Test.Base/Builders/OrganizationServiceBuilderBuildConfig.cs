@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Test.Builders
     public interface IOrganizationServiceBuilderBuildConfig
     {
         /// <summary>
-        /// Gets or sets a value indicating whether to use the primary builder for new entity default IDs.
+        /// Gets or sets a value indicating whether to use the primary builder for new entity default Ids.
         /// </summary>
         bool UsePrimaryBuilderForNewEntityDefaultIds { get; set; }
 
@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Test.Builders
     public class OrganizationServiceBuilderBuildConfig : IOrganizationServiceBuilderBuildConfig
     {
         /// <summary>
-        /// Gets or sets a value indicating whether to use the primary builder for new entity default IDs.
+        /// Gets or sets a value indicating whether to use the primary builder for new entity default Ids.
         /// </summary>
         public bool UsePrimaryBuilderForNewEntityDefaultIds { get; set; } = true;
 

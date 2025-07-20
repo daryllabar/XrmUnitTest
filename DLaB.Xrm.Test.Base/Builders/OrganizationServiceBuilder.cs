@@ -1077,7 +1077,9 @@ namespace DLaB.Xrm.Test.Builders
             var constructor = typeof(TDerived).GetConstructor([typeof(IOrganizationService)]);
             if (constructor != null)
             {
-                return (TDerived)constructor.Invoke([parentService]);
+                var builder1 = (TDerived)constructor.Invoke([parentService]);
+                AssertHasNotCalledWithIdsDefaultedForCreateInConstructor(builder1);
+                return builder1;
             }
 
             constructor = typeof(TDerived).GetConstructor([]);
@@ -1085,8 +1087,19 @@ namespace DLaB.Xrm.Test.Builders
             {
                 throw new Exception($"Constructor for {typeof(TDerived).FullName} must have either an empty constructor, or a constructor with an IOrganizationService parameter, or the {nameof(CreateBuilder)} method must be overriden");
             }
-            return (TDerived)constructor.Invoke([]);
+
+            var builder = (TDerived)constructor.Invoke([]);
+            AssertHasNotCalledWithIdsDefaultedForCreateInConstructor(builder);
+            return builder;
             
+        }
+
+        private void AssertHasNotCalledWithIdsDefaultedForCreateInConstructor(TDerived builder)
+        {
+            if (builder.NewEntityDefaultIds.Count > 0)
+            {
+                throw new Exception($"Builder of type {typeof(TDerived).FullName} can not call WithIdsDefaultedForCreate within the constructor!");
+            }
         }
 
         private void DefaultIdsForExecuteRequests(OrganizationRequest r, IOrganizationService s)
