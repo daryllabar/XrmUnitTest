@@ -42,6 +42,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FakeExecutionContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FakeIOrganizationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FakeManagedIdentityService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FakeOrganizationServiceFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FakePluginExecutionContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FakeServiceProvider.cs" />

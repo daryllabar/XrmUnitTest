@@ -128,6 +128,24 @@ namespace DLaB.Xrm.Test.Builders
             ServiceProvider.AddService(trace);
         }
 
+        #if !(XRM_2013 || XRM_2015 || XRM_2016)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ServiceProviderBuilderBase{TDerived}" /> class.
+        /// </summary>
+        /// <param name="service">The service.</param>
+        /// <param name="context">The context.</param>
+        /// <param name="trace">The tracing service.</param>
+        /// <param name="managed">The managed identity service.</param>
+        protected ServiceProviderBuilderBase(IOrganizationService service, IPluginExecutionContext context, ITracingService trace, IManagedIdentityService managed)
+        {
+            ServiceProvider = new FakeServiceProvider();
+            ServiceProvider.AddService<IOrganizationServiceFactory>(new FakeOrganizationServiceFactory(service));
+            ServiceProvider.AddService(context);
+            ServiceProvider.AddService(trace);
+            ServiceProvider.AddService(managed);
+        }
+        #endif
+
         #endregion Constructors
 
         #region Fluent Methods

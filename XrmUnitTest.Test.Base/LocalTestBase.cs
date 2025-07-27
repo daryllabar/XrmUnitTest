@@ -79,6 +79,12 @@ namespace XrmUnitTest.Test
         /// Fake Tracing Service that can be used to assert that the correct messages were logged.
         /// </summary>
         protected FakeTraceService TracingService { get; set; }
+        #if !(XRM_2013 || XRM_2015 || XRM_2016)
+        /// <summary>
+        /// Fake Managed Identity Service that can be used to assert token acquisition in tests.
+        /// </summary>
+        protected FakeManagedIdentityService ManagedIdentityService { get; set; }
+        #endif
         /// <summary>
         /// Yesterday's date for the user at midnight
         /// </summary>
@@ -103,6 +109,9 @@ namespace XrmUnitTest.Test
             CurrentBusinessUnit = new Id<BusinessUnit>(Service.GetFirst<BusinessUnit>().Id);
             CurrentUser = new Id<SystemUser>(Service.GetCurrentlyExecutingUserInfo().UserId);
             TracingService = new FakeTraceService(_logger);
+            #if !(XRM_2013 || XRM_2015 || XRM_2016)
+            ManagedIdentityService = new FakeManagedIdentityService();
+            #endif
             EnvBuilder = new CrmEnvironmentBuilder();
             PreInitialize();
             Initialize();
