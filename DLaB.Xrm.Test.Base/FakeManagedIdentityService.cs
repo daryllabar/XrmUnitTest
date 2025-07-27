@@ -1,6 +1,8 @@
-#if !(XRM_2013 || XRM_2015 || XRM_2016)
+#if !PRE_MULTISELECT
+#nullable enable
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xrm.Sdk;
 
 #if NET
@@ -23,7 +25,7 @@ namespace DLaB.Xrm.Test
         /// Gets the list of scopes passed to AcquireToken.
         /// </summary>
         public List<IEnumerable<string>> AcquiredScopes => _acquiredScopes;
-        private List<IEnumerable<string>> _acquiredScopes = new List<IEnumerable<string>>();
+        private List<IEnumerable<string>> _acquiredScopes = [];
 
         /// <summary>
         /// Optional custom function to control AcquireToken behavior.
@@ -33,14 +35,14 @@ namespace DLaB.Xrm.Test
         /// <inheritdoc />
         public string AcquireToken(IEnumerable<string> scopes)
         {
-            _acquiredScopes.Add(scopes);
-            if (AcquireTokenFunc != null)
-            {
-                return AcquireTokenFunc(scopes);
-            }
-            return TokenToReturn;
+            var localScopes = scopes as List<string> ?? scopes.ToList();
+            _acquiredScopes.Add(localScopes);
+            return AcquireTokenFunc == null
+                ? TokenToReturn
+                : AcquireTokenFunc(localScopes);
         }
 
+        /// <inheritdoc />
         public string AcquireToken(Guid managedIdentityId, IEnumerable<string> scopes)
         {
             return AcquireToken(scopes);
@@ -63,6 +65,10 @@ namespace DLaB.Xrm.Test
             return clone;
         }
 
+        /// <summary>
+        /// Creates a shallow copy of the current object.
+        /// </summary>
+        /// <returns></returns>
         object ICloneable.Clone()
         {
             return Clone();

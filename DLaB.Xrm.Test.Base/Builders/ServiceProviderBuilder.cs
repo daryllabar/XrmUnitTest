@@ -128,7 +128,7 @@ namespace DLaB.Xrm.Test.Builders
             ServiceProvider.AddService(trace);
         }
 
-        #if !(XRM_2013 || XRM_2015 || XRM_2016)
+#if !PRE_MULTISELECT
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceProviderBuilderBase{TDerived}" /> class.
         /// </summary>
@@ -144,7 +144,7 @@ namespace DLaB.Xrm.Test.Builders
             ServiceProvider.AddService(trace);
             ServiceProvider.AddService(managed);
         }
-        #endif
+#endif
 
         #endregion Constructors
 
