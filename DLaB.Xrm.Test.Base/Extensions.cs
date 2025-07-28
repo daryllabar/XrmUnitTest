@@ -83,6 +83,30 @@ namespace DLaB.Xrm.Test
 
         #endregion Action<IOrganizationService>
 
+        #region DateTime
+
+        /// <summary>
+        /// Trims sub-second (millisecond) precision from a <see cref="DateTime"/> value.
+        /// </summary>
+        /// <param name="value">The date and time value.</param>
+        /// <returns>The <see cref="DateTime"/> value with sub-seconds removed.</returns>
+        public static DateTime TrimSubSeconds(this DateTime value)
+        {
+            return new DateTime(value.Year, value.Month, value.Day, value.Hour, value.Minute, value.Second, value.Kind);
+        }
+
+        /// <summary>
+        /// Trims sub-second (millisecond) precision from a nullable <see cref="DateTime"/> value.
+        /// </summary>
+        /// <param name="value">The nullable date and time value.</param>
+        /// <returns>The <see cref="DateTime"/> value with sub-seconds removed, or default if null.</returns>
+        public static DateTime TrimSubSeconds(this DateTime? value)
+        {
+            return value?.TrimSubSeconds() ?? default;
+        }
+
+        #endregion DateTime
+
         #region Dictionary<,Queue<>>
 
         /// <summary>
