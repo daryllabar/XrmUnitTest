@@ -1,7 +1,10 @@
-﻿#if NET
+﻿
+#if NET
 using DataverseUnitTest;
+using DataverseUnitTest.MSTest;
 #else
 using DLaB.Xrm.Test;
+using DLaB.Xrm.Test.MSTest;
 #endif
 
 namespace XrmUnitTest.Test

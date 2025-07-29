@@ -3,7 +3,9 @@ using DLaB.Xrm.Entities;
 using XrmUnitTest.Test.Builders;
 #if NET
 using DataverseUnitTest;
+using DataverseUnitTest.MSTest;
 #else
+using DLaB.Xrm.Test.MSTest;
 using DLaB.Xrm.Test;
 #endif
 

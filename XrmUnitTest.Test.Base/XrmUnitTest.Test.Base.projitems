@@ -24,10 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Builders\PluginExecutionContextBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\ServiceProviderBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\WorkflowInvokerBuilder.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DebugLogger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalTestBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MsTestAssertExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MsTestProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestInitializer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestMethodClassBase.cs" />
   </ItemGroup>

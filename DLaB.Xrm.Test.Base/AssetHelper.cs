@@ -108,63 +108,21 @@ namespace DLaB.Xrm.Test
 
         private static string GetDisplayValue(this object obj)
         {
-            string value;
-            switch (obj)
+            return obj switch
             {
-                case null:
-                    value = "null";
-                    break;
-
-                case Entity entity:
-                    value = entity.ToStringAttributes();
-                    break;
-
-                case EntityReference entityRef:
-                    value = entityRef.ToStringDebug();
-                    break;
-
-                case EntityCollection entities:
-                    value = entities.ToStringDebug();
-                    break;
-
-                case EntityReferenceCollection entityRefCollection:
-                    value = entityRefCollection.ToStringDebug();
-                    break;
-
-                case Dictionary<string, string> dict:
-                    value = dict.ToStringDebug();
-                    break;
-
-                case byte[] imageArray:
-                    value = imageArray.ToStringDebug();
-                    break;
-
-                case IEnumerable enumerable when !(enumerable is string):
-                    value = enumerable.ToStringDebug();
-                    break;
-
-                case OptionSetValue optionSet:
-                    value = optionSet.Value.ToString(CultureInfo.InvariantCulture);
-                    break;
-
-                case Money money:
-                    value = money.Value.ToString(CultureInfo.InvariantCulture);
-                    break;
-
-                case bool yesNo:
-                    value = yesNo
-                        ? "true"
-                        : "false";
-                    break;
-
-                default:
-                    value = obj.IsNumeric()
-                        ? obj.ToString()
-                        : $"\"{obj}\"";
-                    break;
-            }
-
-            return value;
+                null => "null",
+                Entity entity => entity.ToStringAttributes(),
+                EntityReference entityRef => entityRef.ToStringDebug(),
+                EntityCollection entities => entities.ToStringDebug(),
+                EntityReferenceCollection entityRefCollection => entityRefCollection.ToStringDebug(),
+                Dictionary<string, string> dict => dict.ToStringDebug(),
+                byte[] imageArray => imageArray.ToStringDebug(),
+                IEnumerable enumerable and not string => enumerable.ToStringDebug(),
+                OptionSetValue optionSet => optionSet.Value.ToString(CultureInfo.InvariantCulture),
+                Money money => money.Value.ToString(CultureInfo.InvariantCulture),
+                bool yesNo => yesNo ? "true" : "false",
+                _ => obj.IsNumeric() ? obj.ToString()! : $"\"{obj}\""
+            };
         }
 
         private static bool IsNumeric(this object o)
