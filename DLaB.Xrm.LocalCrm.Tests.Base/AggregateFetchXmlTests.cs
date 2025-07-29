@@ -80,5 +80,22 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.AreEqual(1500, account.GetAliasedValue<int>("Minimum"), "Incorrect Minimum");
             Assert.AreEqual(35200, account.GetAliasedValue<int>("Sum"), "Incorrect Sum");
         }
+
+        [TestMethod]
+        public void LocalCrmTests_SumWithGroupBy()
+        {
+            var service = GetService();
+            AggregateQueryExpressionTests.CreateSampleData(service);
+            var fetch = new FetchExpression("""
+                                            <fetch aggregate='true'>
+                                              <entity name='account'>
+                                                <attribute name='address1_city' alias='City' groupby='true' />
+                                                <attribute name='numberofemployees' alias='Sum' aggregate='sum' />
+                                              </entity>
+                                            </fetch>
+                                            """);
+
+            var account = service.RetrieveMultiple(fetch).ToEntityList<Account>().First();
+        }
     }
 }

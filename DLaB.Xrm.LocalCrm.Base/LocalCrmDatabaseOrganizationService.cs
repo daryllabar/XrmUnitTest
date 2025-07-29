@@ -342,7 +342,7 @@ namespace DLaB.Xrm.LocalCrm
             using (var r = new StringReader(fetchExpression.Query))
             {
                 fetch = (FetchType)s.Deserialize(r)!;
-                r.Close();
+                r.Close(); 
             }
             return (EntityCollection)GenericMethodCaller.InvokeLocalCrmDatabaseStaticGenericMethod(Info, ((FetchEntityType)fetch.Items[0]).name, "ReadFetchXmlEntities", this, fetch);
         }

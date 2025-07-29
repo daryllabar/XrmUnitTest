@@ -92,7 +92,7 @@ namespace DLaB.Xrm.LocalCrm
         // ReSharper disable once UnusedParameter.Local
         private static void ProcessFetchXmlItem(LocalCrmDatabaseOrganizationService service, LinkEntity entityLink, FetchAttributeType attribute)
         {
-            if (!attribute.aggregateSpecified)
+            if (!attribute.aggregateSpecified && !attribute.groupbySpecified)
             {
                 if (!entityLink.Columns.Columns.Contains(attribute.name))
                 {
