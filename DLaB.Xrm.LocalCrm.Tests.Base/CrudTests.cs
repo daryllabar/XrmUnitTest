@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.ServiceModel;
 using DLaB.Xrm.CrmSdk;
 using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,6 +10,8 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
 using XrmUnitTest.Test;
+using Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter;
+
 
 #if NET
 using OrganizationServiceBuilder = DataverseUnitTest.Builders.OrganizationServiceBuilder;
@@ -563,6 +566,16 @@ namespace DLaB.Xrm.LocalCrm.Tests
             qe.AddLink<Contact>(Account.Fields.PrimaryContactId, Contact.Fields.Id, c => new { c.FirstName });
             qe.Query.Distinct = true;
             Assert.AreEqual(2, service.GetEntities(qe).Count, "Distinct should have returned only 2 records!");
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_Crud_EntityIdMustMatch()
+        {
+            TestInitializer.InitializeTestSettings();
+            var service = GetService();
+            Assert.Instance.ThrowsException<FaultException<OrganizationServiceFault>>(
+                () => service.Update(new Account { Id = Guid.NewGuid(), [Account.Fields.Id] = Guid.NewGuid() }),
+                "Entity Id must be the same as the value set in property bag.");
         }
 
         [TestMethod]

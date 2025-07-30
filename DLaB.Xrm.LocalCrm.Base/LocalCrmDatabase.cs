@@ -540,6 +540,20 @@ namespace DLaB.Xrm.LocalCrm
             return false;
         }
 
+        private static void AssertEntityIdsMatch(Entity entity)
+        {
+            if (entity.Id == Guid.Empty)
+            {
+                return;
+            }
+
+            var id = entity.Attributes.Values.FirstOrDefault(v => v is Guid);
+            if (id != null && !id.Equals(entity.Id))
+            {
+                throw CrmExceptions.GetEntityIdMustBeTheSameException();
+            }
+        }
+
         private static void AssertEntityReferencesExists(LocalCrmDatabaseOrganizationService service, Entity entity)
         {
             foreach (var foreign in entity.Attributes.Select(attribute => attribute.Value).OfType<EntityReference>())
@@ -811,6 +825,7 @@ namespace DLaB.Xrm.LocalCrm
 
         private static void Update<T>(LocalCrmDatabaseOrganizationService service, T entity, DelayedException exception) where T : Entity
         {
+            AssertEntityIdsMatch(entity);
             AssertTypeContainsColumns<T>(entity.Attributes.Keys);
             AssertEntityReferencesExists(service, entity);
             SimulateCrmAttributeManipulations(entity);

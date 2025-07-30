@@ -21,6 +21,10 @@ namespace DLaB.Xrm.LocalCrm
         {
             return CreateFault(ErrorCodes.InvalidOperation, "Attribute can not be specified if an aggregate operation is requested.");
         }
+        public static FaultException<OrganizationServiceFault> GetEntityIdMustBeTheSameException()
+        {
+            return CreateFault(ErrorCodes.UnExpected, "Entity Id must be the same as the value set in property bag.");
+        }
 
         public static FaultException<OrganizationServiceFault> GetEntityDoesNotExistException(Entity entity)
         {
