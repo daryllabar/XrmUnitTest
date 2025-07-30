@@ -31,6 +31,11 @@ namespace DLaB.Xrm.LocalCrm
             return CreateFault(ErrorCodes.ObjectDoesNotExist, $"{ErrorCodes.GetErrorMessage(ErrorCodes.ObjectDoesNotExist)}  {entity.LogicalName} With Id = {entity.Id} Does Not Exist");
         }
 
+        public static FaultException<OrganizationServiceFault> GetInvalidCharacterSpecifiedForAlias(string aliasName)
+        {
+            return CreateFault(ErrorCodes.UnExpected, $"Invalid character specified for alias: {aliasName}. Only characters within the ranges [A-Z], [a-z] or [0-9] or _ are allowed.  The first character may only be in the ranges [A-Z], [a-z] or _.");
+        }
+
         public static FaultException<OrganizationServiceFault> GetConditionValueGreaterThan0Exception()
         {
             return CreateFault(InvalidConditionValue, "The condition value should be greater than zero.");

@@ -30,7 +30,7 @@
 		<Reference Include="System.ServiceModel" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="DLaB.Xrm" Version="5.1.0.1" />
+		<PackageReference Include="DLaB.Xrm" Version="5.1.0.5" />
 		<PackageReference Include="Microsoft.CrmSdk.CoreAssemblies" Version="9.0.2.59" />
 		<PackageReference Include="System.Text.Json" Version="9.0.0" />
 		<PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />

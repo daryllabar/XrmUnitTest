@@ -1,10 +1,12 @@
-﻿using DLaB.Xrm.CrmSdk;
+﻿using DLaB.Xrm;
+using DLaB.Xrm.CrmSdk;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace DLaB.Xrm.LocalCrm
 {
@@ -23,6 +25,11 @@ namespace DLaB.Xrm.LocalCrm
 #else
         private static bool AssertValidAttributeExpressionQuery(QueryExpression query, DelayedException delay)
         {
+            if (AssertValidAttributeExpressionColumnSet(query.ColumnSet, delay) || AssertFiltersAreValidAttributeExpressions(query.LinkEntities, delay))
+            {
+                return true;
+            }
+
             if (query.ColumnSet?.AttributeExpressions?.Any(a => a.HasGroupBy && a.AggregateType != XrmAggregateType.None) == true
                 && (query.ColumnSet.AllColumns
                     || query.ColumnSet.Columns.Any()))
@@ -33,6 +40,39 @@ namespace DLaB.Xrm.LocalCrm
             return false;
         }
 
+        private static bool AssertValidAttributeExpressionColumnSet(ColumnSet cs, DelayedException delay)
+        {
+            var invalidAlias = cs?.AttributeExpressions?.FirstOrDefault(a => !a.HasGroupBy && a.AggregateType == XrmAggregateType.None && !IsAliasValid(a.Alias));
+            if (invalidAlias == null)
+            {
+                return false;
+            }
+            delay.Exception = CrmExceptions.GetInvalidCharacterSpecifiedForAlias(invalidAlias.Alias);
+            return true;
+        }
+
+        private static bool AssertFiltersAreValidAttributeExpressions(DataCollection<LinkEntity> links, DelayedException delay)
+        {
+            if (links == null || links.Count == 0)
+            {
+                return false;
+            }
+
+            foreach(var link in links)
+            {
+                if (AssertValidAttributeExpressionColumnSet(link.Columns, delay))
+                {
+                    return true;
+                }
+                if (!IsAliasValid(link.EntityAlias))   
+                {
+                    delay.Exception = CrmExceptions.GetInvalidCharacterSpecifiedForAlias(link.EntityAlias);
+                    return true;
+                }
+                return AssertFiltersAreValidAttributeExpressions(link.LinkEntities, delay);
+            }
+            return false;
+        }
 
         private const string GroupBySeparator = "A7E62945-B008-4E00-A150-1B9D3A9E15F5";
         private const string NullValue = "84E908C5-EA13-4EF8-9063-258EC65E80BA";
@@ -237,6 +277,12 @@ namespace DLaB.Xrm.LocalCrm
         private static Type GetFirstValueType<T>(List<T> entities, XrmAttributeExpression column) where T : Entity
         {
             return entities.FirstOrDefault(e => e.Attributes.ContainsKey(column.AttributeName) && e[column.AttributeName] != null)?[column.AttributeName].GetType();
+        }
+
+        // Example usage inside your method:
+        private static bool IsAliasValid(string alias)
+        {
+            return alias == null || Regex.IsMatch(alias, "^[A-Za-z_][A-Za-z0-9_]*$");
         }
 #endif
     }

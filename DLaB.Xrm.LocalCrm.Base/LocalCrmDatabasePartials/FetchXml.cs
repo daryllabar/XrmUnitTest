@@ -92,28 +92,31 @@ namespace DLaB.Xrm.LocalCrm
         // ReSharper disable once UnusedParameter.Local
         private static void ProcessFetchXmlItem(LocalCrmDatabaseOrganizationService service, LinkEntity entityLink, FetchAttributeType attribute)
         {
+#if !PRE_MULTISELECT
+            if (!string.IsNullOrWhiteSpace(attribute.alias))
+            {
+                var aggregates = entityLink.Columns.AttributeExpressions;
+                aggregates.Add(
+                    new XrmAttributeExpression(
+                        attributeName: attribute.name,
+                        alias: attribute.alias,
+                        aggregateType: GetAggregateType(attribute))
+                    {
+                        DateTimeGrouping = GetDateGrouping(attribute),
+                        HasGroupBy = attribute.groupbySpecified
+                    }
+                );
+                return;
+            }
+#endif
+
             if (!attribute.aggregateSpecified && !attribute.groupbySpecified)
             {
                 if (!entityLink.Columns.Columns.Contains(attribute.name))
                 {
                     entityLink.Columns.AddColumn(attribute.name);
                 }
-
-                return;
             }
-#if !PRE_MULTISELECT
-            var aggregates = entityLink.Columns.AttributeExpressions;
-            aggregates.Add(
-                new XrmAttributeExpression(
-                    attributeName: attribute.name,
-                    alias: attribute.alias,
-                    aggregateType: GetAggregateType(attribute))
-                {
-                    DateTimeGrouping = GetDateGrouping(attribute),
-                    HasGroupBy = attribute.groupbySpecified
-                }
-            );
-#endif
         }
 
 #if !PRE_MULTISELECT

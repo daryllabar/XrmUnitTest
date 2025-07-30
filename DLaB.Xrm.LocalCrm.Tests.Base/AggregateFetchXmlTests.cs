@@ -21,7 +21,6 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 ParentCustomerId = new EntityReference(Account.EntityLogicalName, id)
             });
 
-
             Assert.AreEqual(10m, GetSum(id, service));
 
             service.Create(new Contact

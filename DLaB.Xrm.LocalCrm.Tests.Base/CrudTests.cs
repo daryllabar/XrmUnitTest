@@ -169,6 +169,80 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
+        public void LocalCrmTests_Crud_AliasedColumnsFetchXml()
+        {
+            var service = GetService();
+            var accountId = service.Create(new Account { Name = "Acme" });
+            var result = service.GetFirstOrDefault<Account>(new FetchExpression(@"<fetch>
+  <entity name=""account"">
+    <attribute name=""name"" alias=""AccountName"" />
+    <attribute name=""accountid"" />
+    <link-entity name=""systemuser"" from=""systemuserid"" to=""owninguser"" alias=""SOMETHING"">
+      <attribute name=""fullname"" alias=""UserFullName"" />
+      <attribute name=""systemuserid"" />
+    </link-entity>
+  </entity>
+</fetch>"));
+
+            Assert.AreEqual(4, result.Attributes.Count, $"There should be 4 attributes returned, Id, AccountName, SOMETHING.systemuserid, UserFullName but {string.Join(", ", result.Attributes.Keys)} were returned");
+            Assert.AreEqual(accountId, result.Id);
+            Assert.IsTrue(result.Attributes.ContainsKey("AccountName"), "Aliased column should have been returned");
+            Assert.AreEqual("Acme", result.GetAliasedValue<string>("AccountName"));
+            Assert.IsTrue(result.Attributes.ContainsKey("SOMETHING.systemuserid"), "Aliased column should have been returned");
+            var user = result.GetAliasedEntity<SystemUser>();
+            var info = service.GetCurrentlyExecutingUserInfo();
+            Assert.AreEqual(info.UserId, user.Id);
+            Assert.IsTrue(result.Attributes.ContainsKey("UserFullName"), "Aliased column should have been returned");
+            Assert.AreEqual(service.GetEntity<SystemUser>(info.UserId).FullName, result.GetAliasedValue<string>("UserFullName"));
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_Crud_InvalidAliasName()
+        {
+            var service = GetService();
+
+            var qe = QueryExpressionFactory.Create<Account>(a => new { a.Id });
+            qe.ColumnSet.AttributeExpressions.Add(new XrmAttributeExpression(Account.Fields.Name, XrmAggregateType.None, "A Space"));
+            var ex = Assert.ThrowsExactly<FaultException<OrganizationServiceFault>>(() => service.GetFirstOrDefault(qe));
+            Assert.AreEqual("Invalid character specified for alias: A Space. Only characters within the ranges [A-Z], [a-z] or [0-9] or _ are allowed.  The first character may only be in the ranges [A-Z], [a-z] or _.", ex.Message);
+
+            var qe2 = QueryExpressionFactory.Create<Account>(a => new { a.Id });
+            var link = qe2.AddLink<SystemUser>(Account.Fields.OwnerId, SystemUser.Fields.Id, a => new { a.Id });
+            link.EntityAlias = "Another Space";
+            ex = Assert.ThrowsExactly<FaultException<OrganizationServiceFault>>(() => service.GetFirstOrDefault(qe2));
+            Assert.AreEqual("Invalid character specified for alias: Another Space. Only characters within the ranges [A-Z], [a-z] or [0-9] or _ are allowed.  The first character may only be in the ranges [A-Z], [a-z] or _.", ex.Message);
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_Crud_InvalidAliasNameFetchXml()
+        {
+            var service = GetService();
+
+            var fe = new FetchExpression(@"<fetch>
+  <entity name=""account"">
+    <attribute name=""name"" alias=""A Space"" />
+    <attribute name=""accountid"" />
+  </entity>
+</fetch>");
+
+            var qe = QueryExpressionFactory.Create<Account>(a => new { a.Id });
+            qe.ColumnSet.AttributeExpressions.Add(new XrmAttributeExpression(Account.Fields.Name, XrmAggregateType.None, "A Space"));
+            var ex = Assert.ThrowsExactly<FaultException<OrganizationServiceFault>>(() => service.GetFirstOrDefault(fe));
+            Assert.AreEqual("Invalid character specified for alias: A Space. Only characters within the ranges [A-Z], [a-z] or [0-9] or _ are allowed.  The first character may only be in the ranges [A-Z], [a-z] or _.", ex.Message);
+
+            var fe2 = new FetchExpression(@"<fetch>
+  <entity name=""account"">
+    <attribute name=""accountid"" />
+    <link-entity name=""systemuser"" from=""systemuserid"" to=""owninguser"" alias=""Another Space"">
+      <attribute name=""systemuserid"" />
+    </link-entity>
+  </entity>
+</fetch>");
+            ex = Assert.ThrowsExactly<FaultException<OrganizationServiceFault>>(() => service.GetFirstOrDefault(fe2));
+            Assert.AreEqual("Invalid character specified for alias: Another Space. Only characters within the ranges [A-Z], [a-z] or [0-9] or _ are allowed.  The first character may only be in the ranges [A-Z], [a-z] or _.", ex.Message);
+        }
+
+        [TestMethod]
         public void LocalCrmTests_Crud_AndOrConstraints()
         {
             var service = GetService();
@@ -249,14 +323,14 @@ namespace DLaB.Xrm.LocalCrm.Tests
             service.Create(account);
             service.Create(opp);
 
-            Assert.AreEqual(contact.EntityId, service.GetFirstOrDefault<Opportunity>().ParentContactId.Id, "Contact should have been set to parent contact.");
+            Assert.AreEqual(contact.EntityId, service.GetFirstOrDefault<Opportunity>()?.ParentContactId.Id, "Contact should have been set to parent contact.");
 
             opp.CustomerId = account;
             service.Update(opp);
 
-            opp = service.GetFirstOrDefault<Opportunity>();
-            Assert.AreEqual(account.EntityId, opp.ParentAccountId.Id, "Account should have been set to parent account.");
-            Assert.AreEqual(account.EntityId, opp.CustomerId.Id, "Account should have been set to customer.");
+            opp = service.GetFirst<Opportunity>();
+            Assert.AreEqual(account.EntityId, opp?.ParentAccountId.Id, "Account should have been set to parent account.");
+            Assert.AreEqual(account.EntityId, opp?.CustomerId.Id, "Account should have been set to customer.");
 
             opp.Attributes.Remove(Opportunity.Fields.CustomerId);
             opp.ParentAccountId = null;
