@@ -23,10 +23,9 @@ namespace DLaB.Xrm.LocalCrm
 #else
         private static bool AssertValidAttributeExpressionQuery(QueryExpression query, DelayedException delay)
         {
-            if (query.ColumnSet?.AttributeExpressions?.Any() == true
+            if (query.ColumnSet?.AttributeExpressions?.Any(a => a.HasGroupBy && a.AggregateType != XrmAggregateType.None) == true
                 && (query.ColumnSet.AllColumns
-                    || query.ColumnSet.Columns.Any()
-                    || query.ColumnSet.AttributeExpressions.Any(a => a.HasGroupBy == false && a.AggregateType == XrmAggregateType.None)))
+                    || query.ColumnSet.Columns.Any()))
             {
                 delay.Exception = CrmExceptions.GetAttributeCanNotBeSpecifiedIfAnAggregateOperationIsRequestedException();
                 return true;
@@ -45,7 +44,8 @@ namespace DLaB.Xrm.LocalCrm
                 return false;
             }
 
-            if (entities.Count > 50000)
+            if (cs.AttributeExpressions.Any(e => e.AggregateType != XrmAggregateType.None)
+                && entities.Count > 50000)
             {
                 delay.Exception = CrmExceptions.GetFaultException(ErrorCodes.AggregateQueryRecordLimitExceeded);
                 return true;
@@ -56,11 +56,17 @@ namespace DLaB.Xrm.LocalCrm
             if(groupByColumns.Count == 0)
             {
                 var aggregate = new Entity(entities[0].LogicalName).ToEntity<T>();
+                var onlyAlias = true;
                 foreach (var column in cs.AttributeExpressions)
                 {
+                    onlyAlias = onlyAlias && column.AggregateType == XrmAggregateType.None;
                     ApplyAggregation(entities, column, aggregate);
                 }
-                if (aggregate.Attributes.Count > 0)
+                if (onlyAlias)
+                {
+                    outputEntities.AddRange(entities);
+                }
+                else if (aggregate.Attributes.Count > 0)
                 {
                     outputEntities.Add(aggregate);
                 }
@@ -83,11 +89,13 @@ namespace DLaB.Xrm.LocalCrm
                 foreach (var group in groupBy)
                 {
                     var aggregate = new Entity(entities[0].LogicalName).ToEntity<T>();
+                    var useAggregate = false;
                     foreach (var column in cs.AttributeExpressions)
                     {
+                        useAggregate = useAggregate || column.AggregateType != XrmAggregateType.None;
                         ApplyAggregation(group.Value, column, aggregate);
                     }
-                    if (aggregate.Attributes.Count > 0)
+                    if (useAggregate && aggregate.Attributes.Count > 0)
                     {
                         foreach(var groupByColumn in groupByColumns)
                         {
@@ -213,6 +221,14 @@ namespace DLaB.Xrm.LocalCrm
                     {
                         var sum = entities.Where(e => e.GetAttributeValue<object>(column.AttributeName) != null).Sum(e => e.GetAttributeValue<dynamic>(column.AttributeName));
                         aggregate[column.Alias] = new AliasedValue(aggregate.LogicalName, column.AttributeName, PrimitiveTypeConverter.ConvertToPrimitiveType(sum, valueType));
+                    }
+                    break;
+                case XrmAggregateType.None:
+                    foreach(var entity in entities)
+                    {
+                        var aliasedValue = new AliasedValue(aggregate.LogicalName, column.AttributeName, entity[column.AttributeName]);
+                        entity[column.Alias] = aliasedValue;
+                        aggregate[column.Alias] = aliasedValue;
                     }
                     break;
             }

@@ -143,6 +143,32 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
+        public void LocalCrmTests_Crud_AliasedColumns()
+        {
+            var service = GetService();
+            var accountId = service.Create(new Account { Name = "Acme" });
+
+            var qe = QueryExpressionFactory.Create<Account>(a => new { a.Id });
+            qe.ColumnSet.AttributeExpressions.Add(new XrmAttributeExpression(Account.Fields.Name, XrmAggregateType.None, "AccountName"));
+            var link = qe.AddLink<SystemUser>(Account.Fields.OwnerId, SystemUser.Fields.Id, a => new { a.Id });
+            link.EntityAlias = "SOMETHING";
+            link.Columns.AttributeExpressions.Add(new XrmAttributeExpression(SystemUser.Fields.FullName, XrmAggregateType.None, "UserFullName"));
+
+            var result = service.GetFirst(qe);
+            
+            Assert.AreEqual(4, result.Attributes.Count, $"There should be 4 attributes returned, Id, AccountName, SOMETHING.systemuserid, UserFullName but {string.Join(", ", result.Attributes.Keys)} were returned");
+            Assert.AreEqual(accountId, result.Id);
+            Assert.IsTrue(result.Attributes.ContainsKey("AccountName"), "Aliased column should have been returned");
+            Assert.AreEqual("Acme", result.GetAliasedValue<string>("AccountName"));
+            Assert.IsTrue(result.Attributes.ContainsKey("SOMETHING.systemuserid"), "Aliased column should have been returned");
+            var user = result.GetAliasedEntity<SystemUser>();
+            var info = service.GetCurrentlyExecutingUserInfo();
+            Assert.AreEqual(info.UserId, user.Id);
+            Assert.IsTrue(result.Attributes.ContainsKey("UserFullName"), "Aliased column should have been returned");
+            Assert.AreEqual(service.GetEntity<SystemUser>(info.UserId).FullName, result.GetAliasedValue<string>("UserFullName"));
+        }
+
+        [TestMethod]
         public void LocalCrmTests_Crud_AndOrConstraints()
         {
             var service = GetService();

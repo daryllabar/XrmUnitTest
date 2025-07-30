@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using System.Reflection;
+using System.Xml.Linq;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
+using Newtonsoft.Json.Linq;
 
 namespace DLaB.Xrm.LocalCrm
 {
@@ -226,6 +228,13 @@ namespace DLaB.Xrm.LocalCrm
                     fromEntity.AddAliasedValue(link.EntityAlias, toEntity.LogicalName, c, toEntity[c]);
                 }
             }
+
+#if !PRE_MULTISELECT
+            foreach(var column in link.Columns.AttributeExpressions.Where(e => e.HasGroupBy == false && e.AggregateType == XrmAggregateType.None))
+            {
+                fromEntity.Attributes.Add(column.Alias, new AliasedValue(link.LinkToEntityName, column.AttributeName, toEntity[column.AttributeName]));
+            }
+#endif
 
             return fromEntity;
         }
