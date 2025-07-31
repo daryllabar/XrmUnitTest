@@ -1,9 +1,7 @@
 ﻿using System.Linq;
 using System.Reflection;
-using System.Xml.Linq;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
-using Newtonsoft.Json.Linq;
 
 namespace DLaB.Xrm.LocalCrm
 {
@@ -120,22 +118,37 @@ namespace DLaB.Xrm.LocalCrm
             if (link.JoinOperator == JoinOperator.Inner)
             {
                 result = from f in query
-                         join t in SchemaGetOrCreate<TTo>(info).AsQueryable()
-                             on ConvertCrmTypeToBasicComparable((TFrom)f[fromName], link.LinkFromAttributeName) equals
-                             ConvertCrmTypeToBasicComparable(t, link.LinkToAttributeName)
+                         join t in SchemaGetOrCreate<TTo>(info).AsQueryable() on 
+                             new
+                             {
+                                 Id = ConvertCrmTypeToBasicComparable((TFrom)f[fromName], link.LinkFromAttributeName),
+                                 FilterConditions = true
+                             } equals
+                             new
+                             {
+                                 Id = ConvertCrmTypeToBasicComparable(t, link.LinkToAttributeName),
+                                 FilterConditions = EvaluateFilter(t, link.LinkCriteria, new QueryContext(info))
+                             }
                          select new LinkEntityTypes<TRoot, TTo>(AddAliasedColumns(f, t, link), t);
             }
             else
             {
                 result = from f in query
-                         join t in SchemaGetOrCreate<TTo>(info).AsQueryable() on ConvertCrmTypeToBasicComparable((TFrom)f[fromName], link.LinkFromAttributeName) equals
-                             ConvertCrmTypeToBasicComparable(t, link.LinkToAttributeName) into joinResult
+                         join t in SchemaGetOrCreate<TTo>(info).AsQueryable() on
+                             new
+                             {
+                                 Id = ConvertCrmTypeToBasicComparable((TFrom)f[fromName], link.LinkFromAttributeName),
+                                 FilterConditions = true
+                             } equals
+                             new
+                             {
+                                 Id = ConvertCrmTypeToBasicComparable(t, link.LinkToAttributeName),
+                                 FilterConditions = EvaluateFilter(t, link.LinkCriteria, new QueryContext(info))
+                             }
+                             into joinResult
                          from t in joinResult.DefaultIfEmpty()
                          select new LinkEntityTypes<TRoot, TTo>(AddAliasedColumns(f, t, link), t);
             }
-
-            // Apply any Conditions on the Link Entity
-            result = ApplyLinkFilter(info, result, link.LinkCriteria);
 
             var root = result.Select(r => r.Root);
             foreach (var entity in link.LinkEntities)
