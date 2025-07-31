@@ -63,9 +63,7 @@
 	<Import Project="..\..\DLaB.Xrm.Test.Tests.Base\DLaB.Xrm.Test.Tests.Base.projitems" Label="Shared" />
 	<Import Project="..\..\XrmUnitTest.Test.Base\XrmUnitTest.Test.Base.projitems" Label="Shared" />
 	<ItemGroup>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
-		<PackageReference Include="MSTest.TestAdapter" Version="3.10.0" />
-		<PackageReference Include="MSTest.TestFramework" Version="3.10.0" />
+		<PackageReference Include="MSTest" Version="3.10.0" />
 		<PackageReference Include="System.Diagnostics.DiagnosticSource" Version="8.0.1" />
 		<PackageReference Include="System.Reflection.Metadata" Version="8.0.0" />
 		<PackageReference Include="System.Text.Json" Version="9.0.0" />

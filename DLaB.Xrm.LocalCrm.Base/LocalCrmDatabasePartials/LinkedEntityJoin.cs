@@ -42,11 +42,21 @@ namespace DLaB.Xrm.LocalCrm
             if (link.JoinOperator == JoinOperator.Inner)
             {
                 result = from f in query
-                         join t in SchemaGetOrCreate<TTo>(info).AsQueryable() on ConvertCrmTypeToBasicComparable(f, link.LinkFromAttributeName) equals ConvertCrmTypeToBasicComparable(t, link.LinkToAttributeName)
+                         join t in SchemaGetOrCreate<TTo>(info).AsQueryable() on 
+                         new
+                         {
+                             Id = ConvertCrmTypeToBasicComparable(f, link.LinkFromAttributeName),
+                             FilterConditions = true
+                         } equals
+                         new
+                         {
+                             Id = ConvertCrmTypeToBasicComparable(t, link.LinkToAttributeName),
+                             FilterConditions = EvaluateFilter(t, link.LinkCriteria, new QueryContext(info))
+                         }
                          select new LinkEntityTypes<TFrom, TTo>(AddAliasedColumns(f, t, link), t);
 
                 // Apply any Conditions on the Link Entity
-                result = ApplyLinkFilter(info, result, link.LinkCriteria);
+                //result = ApplyLinkFilter(info, result, link.LinkCriteria);
             }
             else
             {

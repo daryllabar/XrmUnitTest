@@ -784,6 +784,79 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
+        [DataRow(true, DisplayName = "QueryExpression")]
+        [DataRow(false, DisplayName = "FetchXml")]
+        public void LocalCrmTests_Crud_LinkedMultipleAliases(bool useQe)
+        {
+            TestInitializer.InitializeTestSettings();
+            var service = GetService();
+            var id = service.Create(new Account());
+            service.Create(new Contact
+            {
+                ParentCustomerId = new EntityReference(Account.EntityLogicalName, id),
+                AccountRoleCodeEnum = Contact_AccountRoleCode.DecisionMaker
+            });
+            service.Create(new Contact
+            {
+                ParentCustomerId = new EntityReference(Account.EntityLogicalName, id),
+                AccountRoleCodeEnum = Contact_AccountRoleCode.Employee
+            });
+            service.Create(new Contact
+            {
+                ParentCustomerId = new EntityReference(Account.EntityLogicalName, id),
+                AccountRoleCodeEnum = Contact_AccountRoleCode.Influencer
+            });
+
+            Account account;
+            if (useQe)
+            {
+                var qe = QueryExpressionFactory.Create<Account>();
+                var link = qe.AddLink<Contact>(Account.Fields.Id, Contact.Fields.ParentCustomerId, c => new { c.AccountRoleCode });
+                link.WhereEqual(Contact.Fields.AccountRoleCode, (int)Contact_AccountRoleCode.DecisionMaker);
+                link.EntityAlias = nameof(Contact_AccountRoleCode.DecisionMaker);
+
+                link = qe.AddLink<Contact>(Account.Fields.Id, Contact.Fields.ParentCustomerId, c => new { c.AccountRoleCode });
+                link.WhereEqual(Contact.Fields.AccountRoleCode, (int)Contact_AccountRoleCode.Employee);
+                link.EntityAlias = nameof(Contact_AccountRoleCode.Employee);
+
+                link = qe.AddLink<Contact>(Account.Fields.Id, Contact.Fields.ParentCustomerId, c => new { c.AccountRoleCode });
+                link.WhereEqual(Contact.Fields.AccountRoleCode, (int)Contact_AccountRoleCode.Influencer);
+                link.EntityAlias = nameof(Contact_AccountRoleCode.Influencer);
+
+                account = service.GetFirst(qe);
+            }
+            else
+            {
+                account = service.GetFirst<Account>(new FetchExpression(@"<fetch>
+  <entity name=""account"">
+    <link-entity name=""contact"" from=""parentcustomerid"" to=""accountid"" alias=""DecisionMaker"">
+      <attribute name=""accountrolecode"" />
+      <filter>
+        <condition attribute=""accountrolecode"" operator=""eq"" value=""1"" />
+      </filter>
+    </link-entity>
+    <link-entity name=""contact"" from=""parentcustomerid"" to=""accountid"" alias=""Employee"">
+      <attribute name=""accountrolecode"" />
+      <filter>
+        <condition attribute=""accountrolecode"" operator=""eq"" value=""2"" />
+      </filter>
+    </link-entity>
+    <link-entity name=""contact"" from=""parentcustomerid"" to=""accountid"" alias=""Influencer"">
+      <attribute name=""accountrolecode"" />
+      <filter>
+        <condition attribute=""accountrolecode"" operator=""eq"" value=""3"" />
+      </filter>
+    </link-entity>
+  </entity>
+</fetch>"));
+            }
+
+            Assert.AreEqual(Contact_AccountRoleCode.DecisionMaker, account.GetAliasedEntity<Contact>(nameof(Contact_AccountRoleCode.DecisionMaker)).AccountRoleCodeEnum);
+            Assert.AreEqual(Contact_AccountRoleCode.Employee, account.GetAliasedEntity<Contact>(nameof(Contact_AccountRoleCode.Employee)).AccountRoleCodeEnum);
+            Assert.AreEqual(Contact_AccountRoleCode.Influencer, account.GetAliasedEntity<Contact>(nameof(Contact_AccountRoleCode.Influencer)).AccountRoleCodeEnum);
+        }
+
+        [TestMethod]
         public void LocalCrmTests_Crud_Associate()
         {
             var service = GetService();
