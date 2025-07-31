@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DLaB.Xrm" Version="5.1.0.5" />
+    <PackageReference Include="DLaB.Xrm" Version="5.1.0.6" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
     <PackageReference Include="Microsoft.PowerPlatform.Dataverse.Client" Version="1.2.5" />
     <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
