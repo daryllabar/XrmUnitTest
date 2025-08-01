@@ -663,6 +663,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             {
                 OwnerId = john.ToEntityReference(),
                 PreferredSystemUserId = smith.ToEntityReference(),
+                ParentAccountId = account.ToEntityReference()
             }));
 
             Assert.AreEqual("John Smith", johnSmith.FullName);
@@ -674,6 +675,11 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.AreEqual(john.FullName, account2.FormattedValues[Account.Fields.OwnerId], "Failed to retrieve the Owner's Name for First Name only System User");
             Assert.AreEqual(smith.FullName, account2.PreferredSystemUserId.Name, "Failed to retrieve the Owner's Name for Last Name only System User");
             Assert.AreEqual(smith.FullName, account2.PreferredSystemUserId.Name, "Failed to retrieve the Owner's Name for Last Name only System User");
+
+            var qe = QueryExpressionFactory.Create<Account>(a => new { a.ParentAccountId });
+            qe.AddLink<Account>(Account.Fields.ParentAccountId, Account.Fields.Id, a => new { a.OwnerId });
+            var result = service.GetFirst(qe);
+            Assert.AreEqual(johnSmith.FullName, result.GetAliasedEntity<Account>().OwnerId.Name);
         }
 
         [TestMethod]
