@@ -16,7 +16,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
 
             var incident = new Incident();
 
-            var ex = Assert.ThrowsException<FaultException<OrganizationServiceFault>>(() => service.Create(incident));
+            var ex = Assert.ThrowsExactly<FaultException<OrganizationServiceFault>>(() => service.Create(incident));
             Assert.AreEqual("You should specify a parent contact or account.", ex.Message);
         }
 
@@ -30,7 +30,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             {
                 TransactionCurrencyId = new EntityReference(TransactionCurrency.EntityLogicalName, TransactionCurrency.Fields.CurrencyName, Guid.NewGuid().ToString())
             };
-            var ex = Assert.ThrowsException<FaultException<OrganizationServiceFault>>(() => service.Create(contact));
+            var ex = Assert.ThrowsExactly<FaultException<OrganizationServiceFault>>(() => service.Create(contact));
             Assert.AreEqual($"A record with the specified key values does not exist in {TransactionCurrency.EntityLogicalName} entity", ex.Message);
         }
 #endif

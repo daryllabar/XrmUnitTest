@@ -639,6 +639,44 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
+        public void LocalCrmTests_Crud_RetrieveSystemUserName()
+        {
+            var service = GetService();
+            var johnSmith = service.GetEntity<SystemUser>(service.Create(new SystemUser
+            {
+                FirstName = "John",
+                LastName = "Smith",
+            }));
+            var john = service.GetEntity<SystemUser>(service.Create(new SystemUser
+            {
+                FirstName = "John",
+            }));
+            var smith = service.GetEntity<SystemUser>(service.Create(new SystemUser
+            {
+                LastName = "Smith",
+            }));
+            var account = service.GetEntity<Account>(service.Create(new Account
+            {
+                OwnerId = johnSmith.ToEntityReference(),
+            }));
+            var account2 = service.GetEntity<Account>(service.Create(new Account
+            {
+                OwnerId = john.ToEntityReference(),
+                PreferredSystemUserId = smith.ToEntityReference(),
+            }));
+
+            Assert.AreEqual("John Smith", johnSmith.FullName);
+            Assert.AreEqual("John", john.FullName);
+            Assert.AreEqual("Smith", smith.FullName);
+            Assert.AreEqual(johnSmith.FullName, account.OwnerId.Name, "Failed to retrieve the Owner's Name for full name System User");
+            Assert.AreEqual(johnSmith.FullName, account.FormattedValues[Account.Fields.OwnerId], "Failed to retrieve the Owner's Name for First Name and Last Name System User");
+            Assert.AreEqual(john.FullName, account2.OwnerId.Name, "Failed to retrieve the Owner's Name for First Name only System User");
+            Assert.AreEqual(john.FullName, account2.FormattedValues[Account.Fields.OwnerId], "Failed to retrieve the Owner's Name for First Name only System User");
+            Assert.AreEqual(smith.FullName, account2.PreferredSystemUserId.Name, "Failed to retrieve the Owner's Name for Last Name only System User");
+            Assert.AreEqual(smith.FullName, account2.PreferredSystemUserId.Name, "Failed to retrieve the Owner's Name for Last Name only System User");
+        }
+
+        [TestMethod]
         public void LocalCrmTests_Crud_Distinct()
         {
             TestInitializer.InitializeTestSettings();
