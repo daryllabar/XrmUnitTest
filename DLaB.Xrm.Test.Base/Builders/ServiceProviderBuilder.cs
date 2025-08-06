@@ -96,7 +96,7 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         /// <param name="service">The service.</param>
         /// <param name="context">The context.</param>
-        protected ServiceProviderBuilderBase(IOrganizationService service, IPluginExecutionContext context) : this(service,context, (ITestLogger)null)
+        protected ServiceProviderBuilderBase(IOrganizationService service, IPluginExecutionContext context) : this(service, context, (ITestLogger)null)
         {
         }
 
@@ -110,7 +110,7 @@ namespace DLaB.Xrm.Test.Builders
         {
             ServiceProvider = new FakeServiceProvider();
             ServiceProvider.AddService<IOrganizationServiceFactory>(new FakeOrganizationServiceFactory(service));
-            ServiceProvider.AddService(context);
+            WithContext(context);
             ServiceProvider.AddService<ITracingService>(new FakeTraceService(logger));
         }
 
@@ -124,7 +124,7 @@ namespace DLaB.Xrm.Test.Builders
         {
             ServiceProvider = new FakeServiceProvider();
             ServiceProvider.AddService<IOrganizationServiceFactory>(new FakeOrganizationServiceFactory(service));
-            ServiceProvider.AddService(context);
+            WithContext(context);
             ServiceProvider.AddService(trace);
         }
 
@@ -140,7 +140,7 @@ namespace DLaB.Xrm.Test.Builders
         {
             ServiceProvider = new FakeServiceProvider();
             ServiceProvider.AddService<IOrganizationServiceFactory>(new FakeOrganizationServiceFactory(service));
-            ServiceProvider.AddService(context);
+            WithContext(context);
             ServiceProvider.AddService(trace);
             ServiceProvider.AddService(managed);
         }
@@ -151,13 +151,40 @@ namespace DLaB.Xrm.Test.Builders
         #region Fluent Methods
 
         /// <summary>
-        /// Causes the Build Service provider to have the given context.
+        /// Causes the Build Service provider to have the given context.  Also populates any IPluginExecutionContextX interfaces that are implemented by the context.
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns></returns>
         public TDerived WithContext(IPluginExecutionContext context)
         {
             ServiceProvider.AddService(context);
+            ServiceProvider.AddService<IExecutionContext>(context);
+#if !PRE_MULTISELECT
+            if (context is IPluginExecutionContext2 pec2)
+            {
+                ServiceProvider.AddService(pec2);
+            }
+            if (context is IPluginExecutionContext3 pec3)
+            {
+                ServiceProvider.AddService(pec3);
+            }
+            if (context is IPluginExecutionContext4 pec4)
+            {
+                ServiceProvider.AddService(pec4);
+            }
+            if (context is IPluginExecutionContext5 pec5)
+            {
+                ServiceProvider.AddService(pec5);
+            }
+            if (context is IPluginExecutionContext6 pec6)
+            {
+                ServiceProvider.AddService(pec6);
+            }
+            if (context is IPluginExecutionContext7 pec7)
+            {
+                ServiceProvider.AddService(pec7);
+            }
+#endif
             return This;
         }
 
