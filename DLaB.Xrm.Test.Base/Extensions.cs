@@ -819,12 +819,25 @@ namespace DLaB.Xrm.Test
         /// <param name="name">The name.</param>
         /// <exception cref="System.ArgumentNullException"></exception>
         [DebuggerHidden]
-        public static void ThrowIfNull(this Object data, string name)
+        public static void ThrowIfNull(this object data, string name)
         {
             if (data == null)
             {
                 throw new ArgumentNullException(name);
             }
+        }
+
+        /// <summary>
+        /// Allows for setting non-public properties on an object.
+        /// </summary>
+        /// <typeparam name="T">The Type of the target.</typeparam>
+        /// <param name="target">The Target.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static NonPublicSetter<T> WithPrivate<T>(this T target) where T : class
+        {
+            if (target == null) throw new ArgumentNullException(nameof(target));
+            return new NonPublicSetter<T>(target);
         }
 
         #endregion Object
