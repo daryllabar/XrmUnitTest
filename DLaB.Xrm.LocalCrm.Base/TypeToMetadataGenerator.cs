@@ -42,10 +42,11 @@ namespace DLaB.Xrm.LocalCrm
             var attributeMetadata = entityType.GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Select(p => new AttributeInfo(p))
                 .Where(a => a.LogicalName != null)
+                .OrderByDescending(a => a.PropertyType.IsEnum)
                 .Distinct(new LogicalAttributeNameComparer())
                 .Select(att => CreateAttributeMetadata(att.Name, att.PropertyType, att.LogicalName, languageCode, primaryName));
             type.GetProperty(nameof(metadata.PrimaryNameAttribute))?.SetValue(metadata, primaryName);
-            type.GetProperty(nameof(metadata.Attributes))?.SetValue(metadata, attributeMetadata.ToArray());
+            type.GetProperty(nameof(metadata.Attributes))?.SetValue(metadata, attributeMetadata.OrderBy(m => m.LogicalName).ToArray());
 
             return metadata;
         }
@@ -53,7 +54,7 @@ namespace DLaB.Xrm.LocalCrm
         private class AttributeInfo(PropertyInfo property)
         {
             public string Name { get; } = property.Name;
-            public Type PropertyType { get; } = property.PropertyType;
+            public Type PropertyType { get; } = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;
             public string LogicalName { get;  } = property.GetCustomAttribute<AttributeLogicalNameAttribute>()?.LogicalName;
         }
 
@@ -66,6 +67,7 @@ namespace DLaB.Xrm.LocalCrm
                 if (x is null) return false;
                 if (y is null) return false;
                 if (x.GetType() != y.GetType()) return false;
+
                 return x.LogicalName == y.LogicalName;
             }
 
@@ -133,7 +135,7 @@ namespace DLaB.Xrm.LocalCrm
             {
                 attribute = new MoneyAttributeMetadata(logicalName);
             }
-            else if (propertyType.IsEnum || Nullable.GetUnderlyingType(propertyType)?.IsEnum == true || propertyType == typeof(OptionSetValue))
+            else if (propertyType.IsEnum || propertyType == typeof(OptionSetValue))
             {
                 if (logicalName == "statecode")
                 {
@@ -145,7 +147,35 @@ namespace DLaB.Xrm.LocalCrm
                 }
                 else
                 {
-                    attribute = new PicklistAttributeMetadata(logicalName);
+                    var picklist = new PicklistAttributeMetadata(logicalName)
+                    {
+                        OptionSet = new OptionSetMetadata
+                        {
+                            Name = propertyType.Name,
+                            DisplayName = new Label(propertyType.Name.SpaceOutCamelCase(), languageCode)
+                            {
+                                UserLocalizedLabel = new LocalizedLabel(propertyType.Name.SpaceOutCamelCase(), languageCode)
+                            }
+                        }
+                    };
+                    attribute = picklist; 
+                    if (propertyType.IsEnum)
+                    {
+                        var options = picklist.OptionSet.Options;
+                        foreach (var value in Enum.GetValues(propertyType))
+                        {
+                            var intValue = (int)value;
+                            var nameValue = Enum.GetName(propertyType, value) ?? "Unknown";
+                            var option = new OptionMetadata(
+                                new Label(nameValue.SpaceOutCamelCase(), languageCode)
+                                {
+                                    UserLocalizedLabel = new LocalizedLabel(nameValue.SpaceOutCamelCase(), languageCode)
+                                },
+                                intValue
+                            );
+                            options.Add(option);
+                        }
+                    }
                 }
             }
             //else if (propertyType == typeof(?))

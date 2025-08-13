@@ -35,7 +35,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 { "testdatetime", new Tuple<Type, string>(typeof(DateTimeAttributeMetadata), "Test Date Time") },
                 { "testbool", new Tuple<Type, string>(typeof(BooleanAttributeMetadata), "Test Bool") },
                 { "testentityreference", new Tuple<Type, string>(typeof(LookupAttributeMetadata), "Test Entity Reference") },
-                { "testoptionsetvalue", new Tuple<Type, string>(typeof(PicklistAttributeMetadata), "Test Option Set Value") },
+                { "testoptionsetvalue", new Tuple<Type, string>(typeof(PicklistAttributeMetadata), "Test Option Set Value Enum") },
                 { "testmultioptionsetvalue", new Tuple<Type, string>(typeof(MultiSelectPicklistAttributeMetadata), "Test Multi Option Set Value") },
                 { "testmoney", new Tuple<Type, string>(typeof(MoneyAttributeMetadata), "Test Money") },
                 { "testguid", new Tuple<Type, string>(typeof(UniqueIdentifierAttributeMetadata), "Test Guid") },
@@ -48,6 +48,24 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 var attribute = attributes[map.Key];
                 Assert.AreEqual(map.Value.Item1, attribute.GetType());
                 Assert.AreEqual(map.Value.Item2, attribute.DisplayName.GetLocalOrDefaultText());
+            }
+
+            var optionSeMetadata = (PicklistAttributeMetadata)attributes["testoptionsetvalue"];
+            var options = optionSeMetadata.OptionSet.Options;
+            Assert.AreEqual(7, options.Count);
+            AssertOption(LogLevel.Critical);
+            AssertOption(LogLevel.Debug);
+            AssertOption(LogLevel.Error);
+            AssertOption(LogLevel.Information);
+            AssertOption(LogLevel.None);
+            AssertOption(LogLevel.Trace);
+            AssertOption(LogLevel.Warning);
+            return;
+
+            void AssertOption(LogLevel value)
+            {
+                Assert.AreEqual(value.ToString(), options[(int)value].Label.GetLocalOrDefaultText());
+                Assert.AreEqual((int)value, options[(int)value].Value);
             }
         }
 
@@ -77,6 +95,6 @@ namespace DLaB.Xrm.LocalCrm.Tests
             public Guid? TestGuid { get; set; }
             [AttributeLogicalName("testbytearray")]
             public byte[] TestByteArray { get; set; }
-        }
+        } 
     }
 }
