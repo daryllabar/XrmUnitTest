@@ -717,7 +717,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         {
             TestInitializer.InitializeTestSettings();
             var service = GetService();
-            Assert.Instance.ThrowsException<FaultException<OrganizationServiceFault>>(
+            Assert.That.ThrowsException<FaultException<OrganizationServiceFault>>(
                 () => service.Update(new Account { Id = Guid.NewGuid(), [Account.Fields.Id] = Guid.NewGuid() }),
                 "Entity Id must be the same as the value set in property bag.");
         }

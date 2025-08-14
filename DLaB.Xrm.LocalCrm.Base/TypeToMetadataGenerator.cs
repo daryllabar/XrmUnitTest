@@ -5,6 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using DLaB.Common;
+#if NET
+using DataverseUnitTest;
+#else
+using DLaB.Xrm.Test;
+#endif
+
 
 namespace DLaB.Xrm.LocalCrm
 {
@@ -44,7 +50,7 @@ namespace DLaB.Xrm.LocalCrm
                 .Where(a => a.LogicalName != null)
                 .OrderByDescending(a => a.PropertyType.IsEnum)
                 .Distinct(new LogicalAttributeNameComparer())
-                .Select(att => CreateAttributeMetadata(att.Name, att.PropertyType, att.LogicalName, languageCode, primaryName));
+                .Select(att => CreateAttributeMetadata(entityType, att.Name, att.PropertyType, att.LogicalName, languageCode, primaryName));
             type.GetProperty(nameof(metadata.PrimaryNameAttribute))?.SetValue(metadata, primaryName);
             type.GetProperty(nameof(metadata.Attributes))?.SetValue(metadata, attributeMetadata.OrderBy(m => m.LogicalName).ToArray());
 
@@ -79,7 +85,7 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
-        private static AttributeMetadata CreateAttributeMetadata(string name, Type propertyType, string logicalName, int languageCode, string primaryName)
+        private static AttributeMetadata CreateAttributeMetadata(Type entityType, string name, Type propertyType, string logicalName, int languageCode, string primaryName)
         {
             AttributeMetadata attribute;
             if (propertyType == typeof(string))
@@ -202,6 +208,8 @@ namespace DLaB.Xrm.LocalCrm
             attribute.DisplayName = new Label(label, new[] { label });
 #pragma warning restore IDE0300
 #pragma warning restore IDE0079
+
+            attribute.WithPrivate().Set(a => a.EntityLogicalName, EntityHelper.GetEntityLogicalName(entityType));
             return attribute;
         }
     }

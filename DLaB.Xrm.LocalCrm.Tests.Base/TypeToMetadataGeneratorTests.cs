@@ -46,6 +46,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             foreach (var map in mappings)
             {
                 var attribute = attributes[map.Key];
+                Assert.AreEqual("testentity", attribute.EntityLogicalName);
                 Assert.AreEqual(map.Value.Item1, attribute.GetType());
                 Assert.AreEqual(map.Value.Item2, attribute.DisplayName.GetLocalOrDefaultText());
             }
@@ -69,6 +70,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             }
         }
 
+        [Microsoft.Xrm.Sdk.Client.EntityLogicalName("testentity")]
         public class TestEntity : Entity
         {
             [AttributeLogicalName("teststring")]

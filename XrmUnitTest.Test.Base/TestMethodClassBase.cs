@@ -19,7 +19,7 @@ namespace XrmUnitTest.Test
 
         public void Test()
         {
-            Test(new DebugLogger());
+            Test(new TestLogger());
         }
     }
 }

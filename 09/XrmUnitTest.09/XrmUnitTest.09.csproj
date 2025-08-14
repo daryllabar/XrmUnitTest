@@ -2,8 +2,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>XrmUnitTest.09</AssemblyName>
-    <AssemblyVersion>3.4.0.17</AssemblyVersion>
-    <FileVersion>3.4.0.17</FileVersion>
+    <AssemblyVersion>3.4.0.18</AssemblyVersion>
+    <FileVersion>3.4.0.18</FileVersion>
     <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
@@ -30,7 +30,7 @@
 		<Reference Include="System.ServiceModel" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="DLaB.Xrm" Version="5.1.0.6" />
+		<PackageReference Include="DLaB.Xrm" Version="5.1.0.11" />
 		<PackageReference Include="Microsoft.CrmSdk.CoreAssemblies" Version="9.0.2.59" />
 		<PackageReference Include="System.Text.Json" Version="9.0.0" />
 		<PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />

@@ -50,7 +50,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var account = new Id<Account>("4FB15F72-7E32-4116-8B71-6A28A170DE51");
             contact.Entity.ParentCustomerId = account;
 
-            CrmData.WithEntities(contact, account).Create(Service);
+            EnvBuilder.WithEntities(contact, account).Create(Service);
             var result = Service.RetrieveMultiple(new FetchExpression(fetchXml)).ToEntityList<Contact>().First();
             Assert.AreEqual(contact.EntityId, result.Id);
         }
@@ -107,7 +107,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             account1.Entity.Name = "SomeValue1";
             account2.Entity.Name = "SomeValue2";
 
-            CrmData.WithEntities(account1, account2).Create(Service);
+            EnvBuilder.WithEntities(account1, account2).Create(Service);
             var result = Service.RetrieveMultiple(new FetchExpression(fetchXml)).ToEntityList<Account>();
             Assert.AreEqual(1, result.Count);
         }
