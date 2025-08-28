@@ -74,6 +74,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLaB.Xrm.Entities.Net", "DL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XrmUnitTest.2013", "2013\XrmUnitTest.2013\XrmUnitTest.2013.csproj", "{E022F65B-2E2B-4907-BED5-8ED04FEF5769}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdGenerator", "IdGenerator\IdGenerator.csproj", "{C5E12693-33DA-F962-44FA-26FD9FAB2F98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,12 @@ Global
 		{E022F65B-2E2B-4907-BED5-8ED04FEF5769}.LocalNuget|Any CPU.Build.0 = Debug|Any CPU
 		{E022F65B-2E2B-4907-BED5-8ED04FEF5769}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E022F65B-2E2B-4907-BED5-8ED04FEF5769}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5E12693-33DA-F962-44FA-26FD9FAB2F98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5E12693-33DA-F962-44FA-26FD9FAB2F98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5E12693-33DA-F962-44FA-26FD9FAB2F98}.LocalNuget|Any CPU.ActiveCfg = Release|Any CPU
+		{C5E12693-33DA-F962-44FA-26FD9FAB2F98}.LocalNuget|Any CPU.Build.0 = Release|Any CPU
+		{C5E12693-33DA-F962-44FA-26FD9FAB2F98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5E12693-33DA-F962-44FA-26FD9FAB2F98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
