@@ -1,5 +1,4 @@
-﻿using PluralizeService.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -50,11 +49,20 @@ namespace IdGenerator
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error Parsing Input: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(@"Error Parsing Input: " + ex.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                OutputTxtBox.Text = ex.ToString();
                 return;
             }
 
-            OutputTxtBox.Text = logic.GenerateOutput(idsByType.Values);
+            try { 
+                OutputTxtBox.Text = logic.GenerateOutput(idsByType.Values);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(@"Error Generating Output: " + ex.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                OutputTxtBox.Text = ex.ToString();
+                return;
+            }
 
             _settings.Entities = EntitiesTxtBox.Text;
             _settings.Save();

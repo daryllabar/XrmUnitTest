@@ -1,0 +1,40 @@
+name: Build and Release for IdGenerator
+
+on:
+  push:
+    paths:
+      - 'IdGenerator/**'
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Build
+      run: dotnet build IdGenerator/IdGenerator.csproj --configuration Release
+
+    - name: Publish
+      run: dotnet publish IdGenerator/IdGenerator.csproj --configuration Release --output ./publish
+
+    - name: Zip published files
+      run: Compress-Archive -Path ./publish/* -DestinationPath ./IdGenerator.zip
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: v${{ github.run_number }}
+        name: "Release ${{ github.run_number }}"
+        body: "Automated release."
+        files: ./IdGenerator.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
