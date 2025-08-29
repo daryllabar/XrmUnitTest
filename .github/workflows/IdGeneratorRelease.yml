@@ -1,6 +1,7 @@
 name: Build and Release for IdGenerator
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'IdGenerator/**'
