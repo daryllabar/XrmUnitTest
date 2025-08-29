@@ -15,6 +15,8 @@ public class IdGeneratorSettings
     public bool UseTargetTypedNew { get; set; }
 
     [Browsable(false)]
+    public string Entities { get; set; } = "Account 2" + Environment.NewLine + "Contact";
+    [Browsable(false)]
     public int PropertyGridLabelWidth { get; set; } = 250; // Default width
 
     private string? _filePath;

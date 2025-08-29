@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net9.0-windows7.0</TargetFramework>
+	  <TargetFramework>net8.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>2682835_cloud_cloudy_forecast_precipitation_rain_icon.ico</ApplicationIcon>
     <Nullable>enable</Nullable>

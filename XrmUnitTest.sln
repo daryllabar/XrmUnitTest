@@ -76,6 +76,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XrmUnitTest.2013", "2013\Xr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdGenerator", "IdGenerator\IdGenerator.csproj", "{C5E12693-33DA-F962-44FA-26FD9FAB2F98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdGeneratorTests", "IdGeneratorTests\IdGeneratorTests.csproj", "{A2617DAE-9691-4963-B666-E611521FC8CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -143,6 +145,12 @@ Global
 		{C5E12693-33DA-F962-44FA-26FD9FAB2F98}.LocalNuget|Any CPU.Build.0 = Release|Any CPU
 		{C5E12693-33DA-F962-44FA-26FD9FAB2F98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5E12693-33DA-F962-44FA-26FD9FAB2F98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2617DAE-9691-4963-B666-E611521FC8CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2617DAE-9691-4963-B666-E611521FC8CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2617DAE-9691-4963-B666-E611521FC8CD}.LocalNuget|Any CPU.ActiveCfg = Release|Any CPU
+		{A2617DAE-9691-4963-B666-E611521FC8CD}.LocalNuget|Any CPU.Build.0 = Release|Any CPU
+		{A2617DAE-9691-4963-B666-E611521FC8CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2617DAE-9691-4963-B666-E611521FC8CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
