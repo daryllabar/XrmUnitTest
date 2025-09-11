@@ -67,7 +67,7 @@ namespace DLaB.Xrm.Test
 
             if (string.IsNullOrWhiteSpace(projectParentDirectory))
             {
-                throw new Exception($"Unable to find Project Path for {type.FullName}.  Assembly Located at {type.Assembly.Location}{Environment.NewLine}Files Checked:{fileNamesToCheck.ToCsv()}{Environment.NewLine}{log}");
+                throw new Exception($"Unable to find Project Path for {type.FullName}.  Assembly Located at {type.Assembly.Location}{Environment.NewLine}Files Checked:{fileNamesToCheck.ToCsv()}{GenerateLogText()}");
             }
 
             log.Add("Project Name " + projectName);
@@ -89,10 +89,15 @@ namespace DLaB.Xrm.Test
             log.Add("Project Folder " + projectPath);
             if (!Directory.Exists(projectPath))
             {
-                throw new Exception($"Unable to find Project Path for {type.FullName} at {projectPath}. {Environment.NewLine}{string.Join(Environment.NewLine + " - ", log)}");
+                throw new Exception($"Unable to find Project Path for {type.FullName} at {projectPath}. {GenerateLogText()}");
             }
 
             return projectPath;
+
+            string GenerateLogText()
+            {
+                return Environment.NewLine + string.Join(Environment.NewLine + " - ", log);
+            }
         }
 
         private string GetProjectParentDirectory(string dllFilePath, StringBuilder sb)
@@ -211,7 +216,7 @@ namespace DLaB.Xrm.Test
                         return path;
                     }
                 }
-                sb.AppendLine(@"No coverage.lutdata file was found.  In Visual Studio, try selecting ""Test"" --> ""Analyze Code Coverage for All Tests"" to generate the coverage.lutdata file to read the project path from.");
+                sb.AppendLine(@"No coverage.lutdata file was found.  In Visual Studio, first disable Live Unit Testing, then try selecting ""Test"" --> ""Analyze Code Coverage for All Tests"" to generate the coverage.lutdata file to read the project path from.");
                 return null;
             }
 
