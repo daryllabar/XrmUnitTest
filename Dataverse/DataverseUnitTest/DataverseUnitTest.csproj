@@ -5,10 +5,10 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>DataverseUnitTest.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
-    <Version>3.4.0.19</Version>
+    <Version>3.4.0.20</Version>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <AssemblyVersion>3.4.0.19</AssemblyVersion>
-    <FileVersion>3.4.0.19</FileVersion>
+    <AssemblyVersion>3.4.0.20</AssemblyVersion>
+    <FileVersion>3.4.0.20</FileVersion>
 	  <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
