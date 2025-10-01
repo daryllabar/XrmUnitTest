@@ -155,7 +155,10 @@ namespace IdGenerator
             var entityType = definedNameParts[0];
             if (!idsByType.TryGetValue(entityType, out var id))
             {
-                id = new IdInfo();
+                id = new IdInfo
+                {
+                    EntityType = entityType,
+                };
                 idsByType[entityType] = id;
             }
             var previousId = id;
