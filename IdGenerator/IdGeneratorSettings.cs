@@ -14,6 +14,11 @@ public class IdGeneratorSettings
     [Description("If true, generates statements using target-typed 'new' expressions (C# 9.0+).")]
     public bool UseTargetTypedNew { get; set; }
 
+    [Category("General")]
+    [DisplayName("Use Class IDs")]
+    [Description("If true, generates IDs as class properties instead of struct static readonly fields.")]
+    public bool UseClassIds { get; set; } = true;
+
     [Browsable(false)]
     public string Entities { get; set; } = "Account 2" + Environment.NewLine + "Contact";
     [Browsable(false)]

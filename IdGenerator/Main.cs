@@ -73,9 +73,13 @@ namespace IdGenerator
             var results = IdFieldInfo.ParseIdFields(OutputTxtBox.Text);
             var output = (from @group in results.GroupBy(r => r.StructName ?? r.IdType)
                           let structName = @group.First().StructName ?? string.Empty
-                          let names = (string.IsNullOrWhiteSpace(structName)
+                          // If the struct name ends with "Ids", convert it back to plural form
+                          let actualStructName = structName.EndsWith("Ids") && structName.Length > 3
+                              ? PluralizeService.Core.PluralizationProvider.Pluralize(structName.Substring(0, structName.Length - 3))
+                              : structName
+                          let names = (string.IsNullOrWhiteSpace(actualStructName)
                               ? ","
-                              : "," + @group.First().StructName + ",") + string.Join(",", @group.Select(g => g.FieldName))
+                              : "," + actualStructName + ",") + string.Join(",", @group.Select(g => g.FieldName))
                           select @group.First().IdType + names).ToList();
             EntitiesTxtBox.Text = string.Join(Environment.NewLine, output);
         }
