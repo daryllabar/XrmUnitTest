@@ -1,70 +1,110 @@
-﻿using System.Collections.Generic;
-using System.Text.RegularExpressions;
+﻿using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.CodeAnalysis;
 
 namespace IdGenerator;
+
 public class IdFieldInfo
 {
-    public string? StructName { get; set; } // null if not in a struct
+    public string? ContainerName { get; set; } // null if not in a struct
     public string FieldName { get; set; }
     public string IdType { get; set; }
 
-    public IdFieldInfo(string fieldName, string idType, string? structName = null)
+    public IdFieldInfo(string fieldName, string idType, string? containerName = null)
     {
-        StructName = structName;
+        ContainerName = containerName;
         FieldName = fieldName;
         IdType = idType;
     }
 
-    public static List<IdFieldInfo> ParseIdFields(string input)
+    public static (List<IdFieldInfo> IdFieldInfos, List<Diagnostic> Issues) ParseIdFields(string input)
     {
         var results = new List<IdFieldInfo>();
-        
-        // Parse struct-based format
-        var structRegex = new Regex(@"public struct (\w+)\s*\{([^}]*)\}", RegexOptions.Singleline);
-        var structIdRegex = new Regex(@"public static readonly Id<(\w+)> (\w+) = new", RegexOptions.Singleline);
-        
+        var tree = CSharpSyntaxTree.ParseText(input);
+        var root = tree.GetRoot();
+
         // Parse structs
-        foreach (Match structMatch in structRegex.Matches(input))
+        foreach (var structDecl in root.DescendantNodes().OfType<StructDeclarationSyntax>())
         {
-            var structName = structMatch.Groups[1].Value;
-            var structBody = structMatch.Groups[2].Value;
-            foreach (Match idMatch in structIdRegex.Matches(structBody))
+            var structName = structDecl.Identifier.Text;
+            foreach (var field in structDecl.Members.OfType<FieldDeclarationSyntax>())
             {
-                results.Add(new IdFieldInfo(idMatch.Groups[2].Value, idMatch.Groups[1].Value, structName));
+                foreach (var variable in field.Declaration.Variables)
+                {
+                    var typeSyntax = field.Declaration.Type as GenericNameSyntax;
+                    if (typeSyntax != null && typeSyntax.Identifier.Text == "Id" && typeSyntax.TypeArgumentList.Arguments.Count == 1)
+                    {
+                        var idType = typeSyntax.TypeArgumentList.Arguments[0].ToString();
+                        results.Add(new IdFieldInfo(variable.Identifier.Text, idType, structName));
+                    }
+                }
             }
         }
-        
-        // Parse class-based format
-        var classRegex = new Regex(@"public class (\w+)\s*\{([^}]*)\}", RegexOptions.Singleline);
-        var classIdRegex = new Regex(@"public Id<(\w+)> (\w+) \{ get; \} = new", RegexOptions.Singleline);
-        
+
         // Parse classes
-        foreach (Match classMatch in classRegex.Matches(input))
+        foreach (var classDecl in root.DescendantNodes().OfType<ClassDeclarationSyntax>())
         {
-            var className = classMatch.Groups[1].Value;
-            var classBody = classMatch.Groups[2].Value;
-            foreach (Match idMatch in classIdRegex.Matches(classBody))
+            var className = classDecl.Identifier.Text;
+            foreach (var member in classDecl.Members)
             {
-                results.Add(new IdFieldInfo(idMatch.Groups[2].Value, idMatch.Groups[1].Value, className));
+                // Property: public Id<Contact> A { get; } = new(...);
+                if (member is PropertyDeclarationSyntax prop)
+                {
+                    var typeSyntax = prop.Type as GenericNameSyntax;
+                    if (typeSyntax != null && typeSyntax.Identifier.Text == "Id" && typeSyntax.TypeArgumentList.Arguments.Count == 1)
+                    {
+                        var idType = typeSyntax.TypeArgumentList.Arguments[0].ToString();
+                        results.Add(new IdFieldInfo(prop.Identifier.Text, idType, className));
+                    }
+                }
+                // Field: public static readonly Id<Contact> A = new(...);
+                else if (member is FieldDeclarationSyntax field)
+                {
+                    foreach (var variable in field.Declaration.Variables)
+                    {
+                        var typeSyntax = field.Declaration.Type as GenericNameSyntax;
+                        if (typeSyntax != null && typeSyntax.Identifier.Text == "Id" && typeSyntax.TypeArgumentList.Arguments.Count == 1)
+                        {
+                            var idType = typeSyntax.TypeArgumentList.Arguments[0].ToString();
+                            results.Add(new IdFieldInfo(variable.Identifier.Text, idType, className));
+                        }
+                    }
+                }
             }
         }
 
         // Parse Ids outside structs/classes
-        var outsideStructOrClass = structRegex.Replace(input, ""); // Remove all structs
-        outsideStructOrClass = classRegex.Replace(outsideStructOrClass, ""); // Remove all classes
-        
-        // Check for struct-based single IDs
-        foreach (Match idMatch in structIdRegex.Matches(outsideStructOrClass))
+        foreach (var field in root.DescendantNodes().OfType<FieldDeclarationSyntax>())
         {
-            results.Add(new IdFieldInfo(idMatch.Groups[2].Value, idMatch.Groups[1].Value));
+            // Only top-level fields (not inside class/struct)
+            if (field.Parent is not ClassDeclarationSyntax && field.Parent is not StructDeclarationSyntax)
+            {
+                foreach (var variable in field.Declaration.Variables)
+                {
+                    var typeSyntax = field.Declaration.Type as GenericNameSyntax;
+                    if (typeSyntax != null && typeSyntax.Identifier.Text == "Id" && typeSyntax.TypeArgumentList.Arguments.Count == 1)
+                    {
+                        var idType = typeSyntax.TypeArgumentList.Arguments[0].ToString();
+                        results.Add(new IdFieldInfo(variable.Identifier.Text, idType));
+                    }
+                }
+            }
         }
-        
-        // Check for class-based single IDs
-        foreach (Match idMatch in classIdRegex.Matches(outsideStructOrClass))
+        foreach (var prop in root.DescendantNodes().OfType<PropertyDeclarationSyntax>())
         {
-            results.Add(new IdFieldInfo(idMatch.Groups[2].Value, idMatch.Groups[1].Value));
+            if (prop.Parent is not ClassDeclarationSyntax && prop.Parent is not StructDeclarationSyntax)
+            {
+                var typeSyntax = prop.Type as GenericNameSyntax;
+                if (typeSyntax != null && typeSyntax.Identifier.Text == "Id" && typeSyntax.TypeArgumentList.Arguments.Count == 1)
+                {
+                    var idType = typeSyntax.TypeArgumentList.Arguments[0].ToString();
+                    results.Add(new IdFieldInfo(prop.Identifier.Text, idType));
+                }
+            }
         }
 
-        return results;
+        return (results, tree.GetDiagnostics().Where(c => c.Severity == DiagnosticSeverity.Error).ToList());
     }
 }

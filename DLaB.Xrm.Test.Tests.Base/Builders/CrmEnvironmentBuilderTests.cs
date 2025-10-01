@@ -17,6 +17,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
     [TestClass]
     public class CrmEnvironmentBuilderTests
     {
+
         [TestInitialize]
         public void InitializeTestSettings()
         {
@@ -193,6 +194,23 @@ namespace DLaB.Xrm.Test.Tests.Builders
             AssertCrm.Exists(service, Ids.Nested.Value1);
             AssertCrm.Exists(service, Ids.Nested.Value2);
         }
+
+        [TestMethod]
+        public void CrmEnvironmentBuilder_WithEntities_Should_AddAllIdsFromClassAndNestedClasses()
+        {
+            // Arrange
+            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+
+            // Act
+            var builder = new DLaBCrmEnvironmentBuilder().WithEntities(ClassIds);
+            builder.Create(service);
+
+            // Assert
+            AssertCrm.Exists(service, ClassIds.Account);
+            AssertCrm.Exists(service, ClassIds.Contacts.A);
+            AssertCrm.Exists(service, ClassIds.Contacts.B);
+        }
+
 
         [TestMethod]
         public void CrmEnvironmentBuilder_ExceptEntities_GivenIdStruct_Should_CreateAllExceptExcluded()
@@ -574,6 +592,20 @@ namespace DLaB.Xrm.Test.Tests.Builders
             }
             public static readonly Id<Contact> Value1 = new Id<Contact>(Guid.NewGuid());
             public static readonly Id<Contact> Value2 = new Id<Contact>(Guid.NewGuid());
+        }
+
+        private TestIdsClass ClassIds { get; } = new();
+
+        private class TestIdsClass
+        {
+            public Id<Account> Account { get; } = new("140DC532-A6B8-4B88-9C50-152D25DFEBCC");
+            public ContactIds Contacts { get; } = new();
+
+            public class ContactIds
+            {
+                public Id<Contact> A { get; } = new("DB30E5EF-887D-45FB-AC72-26FCD8D2D9C6");
+                public Id<Contact> B { get; } = new("6372F079-CC7D-41EE-9147-D160C5E52550");
+            }
         }
     }
 }

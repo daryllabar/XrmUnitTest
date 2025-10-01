@@ -71,17 +71,12 @@ namespace IdGenerator
         private void ParseBtn_Click(object sender, EventArgs e)
         {
             var results = IdFieldInfo.ParseIdFields(OutputTxtBox.Text);
-            var output = (from @group in results.GroupBy(r => r.StructName ?? r.IdType)
-                          let structName = @group.First().StructName ?? string.Empty
-                          // If the struct name ends with "Ids", convert it back to plural form
-                          let actualStructName = structName.EndsWith("Ids") && structName.Length > 3
-                              ? PluralizeService.Core.PluralizationProvider.Pluralize(structName.Substring(0, structName.Length - 3))
-                              : structName
-                          let names = (string.IsNullOrWhiteSpace(actualStructName)
-                              ? ","
-                              : "," + actualStructName + ",") + string.Join(",", @group.Select(g => g.FieldName))
-                          select @group.First().IdType + names).ToList();
-            EntitiesTxtBox.Text = string.Join(Environment.NewLine, output);
+            var logic = new Logic(_settings, new GuidGenerator());
+
+            var issues = results.Issues.Count == 0
+                ? string.Empty
+                : "Invalid C# code detected:" + Environment.NewLine + string.Join(Environment.NewLine, results.Issues.Select(i => i.ToString())) + Environment.NewLine;
+            EntitiesTxtBox.Text = issues + logic.CreateEntitiesText(results.IdFieldInfos);
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)

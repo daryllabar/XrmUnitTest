@@ -34,11 +34,11 @@ namespace IdGenerator
             ExecuteTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             ExecuteBtn = new System.Windows.Forms.Button();
             ParseBtn = new System.Windows.Forms.Button();
+            RegenBtn = new System.Windows.Forms.Button();
             EntitiesTxtBox = new System.Windows.Forms.TextBox();
             MainSplitContainer = new System.Windows.Forms.SplitContainer();
             EntitiesPropertiesSplitContainer = new System.Windows.Forms.SplitContainer();
             PropertyGrid = new System.Windows.Forms.PropertyGrid();
-            RegenBtn = new System.Windows.Forms.Button();
             ExecuteTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MainSplitContainer).BeginInit();
             MainSplitContainer.Panel1.SuspendLayout();
@@ -57,8 +57,10 @@ namespace IdGenerator
             OutputTxtBox.Location = new System.Drawing.Point(0, 0);
             OutputTxtBox.Multiline = true;
             OutputTxtBox.Name = "OutputTxtBox";
+            OutputTxtBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             OutputTxtBox.Size = new System.Drawing.Size(857, 484);
             OutputTxtBox.TabIndex = 2;
+            OutputTxtBox.WordWrap = false;
             OutputTxtBox.TextChanged += OutputTxtBox_TextChanged;
             // 
             // ExecuteTableLayoutPanel
@@ -103,6 +105,18 @@ namespace IdGenerator
             ParseBtn.UseVisualStyleBackColor = true;
             ParseBtn.Click += ParseBtn_Click;
             // 
+            // RegenBtn
+            // 
+            RegenBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            RegenBtn.Enabled = false;
+            RegenBtn.Location = new System.Drawing.Point(676, 3);
+            RegenBtn.Name = "RegenBtn";
+            RegenBtn.Size = new System.Drawing.Size(114, 26);
+            RegenBtn.TabIndex = 3;
+            RegenBtn.Text = "Regenerate";
+            RegenBtn.UseVisualStyleBackColor = true;
+            RegenBtn.Click += RegenBtn_Click;
+            // 
             // EntitiesTxtBox
             // 
             EntitiesTxtBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -110,8 +124,10 @@ namespace IdGenerator
             EntitiesTxtBox.Location = new System.Drawing.Point(0, 0);
             EntitiesTxtBox.Multiline = true;
             EntitiesTxtBox.Name = "EntitiesTxtBox";
+            EntitiesTxtBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             EntitiesTxtBox.Size = new System.Drawing.Size(366, 354);
             EntitiesTxtBox.TabIndex = 0;
+            EntitiesTxtBox.WordWrap = false;
             EntitiesTxtBox.TextChanged += EntitiesTxtBox_TextChanged;
             // 
             // MainSplitContainer
@@ -160,18 +176,6 @@ namespace IdGenerator
             PropertyGrid.Size = new System.Drawing.Size(366, 126);
             PropertyGrid.TabIndex = 3;
             PropertyGrid.ToolbarVisible = false;
-            // 
-            // RegenBtn
-            // 
-            RegenBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            RegenBtn.Enabled = false;
-            RegenBtn.Location = new System.Drawing.Point(676, 3);
-            RegenBtn.Name = "RegenBtn";
-            RegenBtn.Size = new System.Drawing.Size(114, 26);
-            RegenBtn.TabIndex = 3;
-            RegenBtn.Text = "Regenerate";
-            RegenBtn.UseVisualStyleBackColor = true;
-            RegenBtn.Click += RegenBtn_Click;
             // 
             // Main
             // 

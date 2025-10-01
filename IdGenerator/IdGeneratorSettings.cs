@@ -12,7 +12,7 @@ public class IdGeneratorSettings
     [Category("General")]
     [DisplayName("Use Target-Typed New Expressions")]
     [Description("If true, generates statements using target-typed 'new' expressions (C# 9.0+).")]
-    public bool UseTargetTypedNew { get; set; }
+    public bool UseTargetTypedNew { get; set; } = true;
 
     [Category("General")]
     [DisplayName("Use Class IDs")]

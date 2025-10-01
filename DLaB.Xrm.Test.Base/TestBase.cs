@@ -7,6 +7,8 @@ using System.Reflection;
 using DLaB.Xrm.Client;
 using DLaB.Xrm.LocalCrm;
 using ConfigManager = System.Configuration.ConfigurationManager;
+using System.Collections.Generic;
+
 
 #if NET
 using DLaB.Xrm.Test.Settings.Secret;
@@ -102,13 +104,13 @@ namespace DLaB.Xrm.Test
             {
                 var multiProvider = (IMultiTestMethodAttributeTestFrameworkProvider)TestSettings.TestFrameworkProvider.Value;
 
-                return frames.Reverse() // Stacks are LIFO, Reverse to start at the bottom.
+                return ((IEnumerable<StackFrame>)frames).Reverse() // Stacks are LIFO, Reverse to start at the bottom.
                     .Select(frame => frame.GetMethod())
                     .Where(m => m != null)
                     .FirstOrDefault(method => method.GetCustomAttributes(false).Any(o => multiProvider.TestMethodAttributeTypes.Contains(o.GetType())));
             }
 
-            return frames.Reverse() // Stacks are LIFO, Reverse to start at the bottom.
+            return ((IEnumerable<StackFrame>)frames).Reverse() // Stacks are LIFO, Reverse to start at the bottom.
                          .Select(frame => frame.GetMethod())
                          .Where(m => m != null)
                          .FirstOrDefault(method => method.GetCustomAttributes(false).Any(o => o.GetType() == TestSettings.TestFrameworkProvider.Value.TestMethodAttributeType));

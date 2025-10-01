@@ -150,12 +150,61 @@ namespace DLaB.Xrm.Test.Builders
         }
 
         /// <summary>
-        /// Walks the Struct, Creating the Entities using the default Builder for each Id Defined in the Struct
+        /// Walks the Struct, Creating the Entities using the default Builder for each <see cref="Id"/> Defined in the Struct
         /// </summary>
         /// <returns></returns>
         public TDerived WithEntities<TIdsStruct>() where TIdsStruct : struct
         {
             return WithEntities(typeof (TIdsStruct).GetIds().ToArray());
+        }
+
+        /// <summary>
+        /// Adds all <see cref="Id"/> Properties in the class, as well as walking all properties of classes with <see cref="Id"/> properties as well
+        /// </summary>
+        /// <typeparam name="TIdsClass"></typeparam>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        public TDerived WithEntities<TIdsClass>(TIdsClass ids) where TIdsClass : class
+        {
+            if (ids == null)
+            {
+                return This;
+            }
+
+            if (typeof(Id).IsAssignableFrom(typeof(TIdsClass)))
+            {
+                return WithEntities(ids as Id);
+            }
+            if (typeof(Entity).IsAssignableFrom(typeof(TIdsClass)))
+            {
+                return WithEntities((Id)(Entity)(object)ids);
+            }
+
+
+            TraverseProperties(ids);
+            return This;
+
+            void TraverseProperties(object obj)
+            {
+                foreach (var prop in obj.GetType().GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance))
+                {
+                    var propValue = prop.GetValue(obj);
+                    if (propValue == null)
+                    {
+                        continue;
+                    }
+
+                    var propType = prop.PropertyType;
+                    if (propValue is Id id)
+                    {
+                        This.WithEntities(id);
+                    }
+                    else if (!propType.IsPrimitive && propType != typeof(string))
+                    {
+                        TraverseProperties(propValue);
+                    }
+                }
+            }
         }
 
         #endregion Fluent Methods
