@@ -6,6 +6,8 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>2682835_cloud_cloudy_forecast_precipitation_rain_icon.ico</ApplicationIcon>
     <Nullable>enable</Nullable>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
