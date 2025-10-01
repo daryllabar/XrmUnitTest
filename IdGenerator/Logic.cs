@@ -41,26 +41,66 @@ namespace IdGenerator
         public string GenerateOutput(IEnumerable<IdInfo> ids)
         {
             var output = new List<string>();
-            foreach (var id in ids)
+            
+            if (_settings.UseClassIds)
             {
-                var isMultiple = id.Names.Count > 1;
-                if (isMultiple)
+                // Generate class-based IDs
+                foreach (var id in ids)
                 {
-                    output.Add($"public struct {id.StructName}");
-                    output.Add("{");
-                }
-                foreach (var name in id.Names)
-                {
-                    var newStatement = _settings.UseTargetTypedNew ? "new" : $"new Id<{id.EntityType}>";
-                    var prefix = isMultiple ? "    " : string.Empty;
-                    output.Add($"{prefix}public static readonly Id<{id.EntityType}> {name} = {newStatement}(\"{_guidGenerator.Create().ToString().ToUpper()}\");");
-                }
-
-                if (isMultiple)
-                {
-                    output.Add("}");
+                    var isMultiple = id.Names.Count > 1;
+                    if (isMultiple)
+                    {
+                        // Generate property for the collection class
+                        var propertyName = id.StructName;
+                        var className = PluralizationProvider.Singularize(id.StructName!) + "Ids";
+                        output.Add($"public {className} {propertyName} {{ get; }} = new();");
+                        
+                        // Generate nested class
+                        output.Add($"public class {className}");
+                        output.Add("{");
+                        
+                        foreach (var name in id.Names)
+                        {
+                            var newStatement = _settings.UseTargetTypedNew ? "new" : $"new Id<{id.EntityType}>";
+                            output.Add($"    public Id<{id.EntityType}> {name} {{ get; }} = {newStatement}(\"{_guidGenerator.Create().ToString().ToUpper()}\");");
+                        }
+                        
+                        output.Add("}");
+                    }
+                    else
+                    {
+                        // Single ID - generate as a property
+                        var name = id.Names[0];
+                        var newStatement = _settings.UseTargetTypedNew ? "new" : $"new Id<{id.EntityType}>";
+                        output.Add($"public Id<{id.EntityType}> {name} {{ get; }} = {newStatement}(\"{_guidGenerator.Create().ToString().ToUpper()}\");");
+                    }
                 }
             }
+            else
+            {
+                // Generate struct-based IDs (original behavior)
+                foreach (var id in ids)
+                {
+                    var isMultiple = id.Names.Count > 1;
+                    if (isMultiple)
+                    {
+                        output.Add($"public struct {id.StructName}");
+                        output.Add("{");
+                    }
+                    foreach (var name in id.Names)
+                    {
+                        var newStatement = _settings.UseTargetTypedNew ? "new" : $"new Id<{id.EntityType}>";
+                        var prefix = isMultiple ? "    " : string.Empty;
+                        output.Add($"{prefix}public static readonly Id<{id.EntityType}> {name} = {newStatement}(\"{_guidGenerator.Create().ToString().ToUpper()}\");");
+                    }
+
+                    if (isMultiple)
+                    {
+                        output.Add("}");
+                    }
+                }
+            }
+            
             return string.Join(Environment.NewLine, output);
         }
 
