@@ -243,6 +243,21 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
+        public void LocalCrmTests_Crud_NullRefJoinFetchXml()
+        {
+            var service = GetService();
+            service.Create(new Account { Name = "Test" });
+            var fe = new FetchExpression(@"<fetch top=""1"">
+  <entity name=""account"">
+    <filter type=""and"">
+      <condition attribute=""parentaccountid"" operator=""eq"" entityname=""account"" value=""C0885E41-9456-44AB-98FF-3B97CE78B87D"" />
+    </filter>
+  </entity>
+</fetch>");
+            Assert.IsNull(service.GetFirstOrDefault(fe));
+        }
+
+        [TestMethod]
         public void LocalCrmTests_Crud_AndOrConstraints()
         {
             var service = GetService();

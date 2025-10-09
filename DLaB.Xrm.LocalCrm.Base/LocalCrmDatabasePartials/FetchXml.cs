@@ -164,7 +164,7 @@ namespace DLaB.Xrm.LocalCrm
         private static void ProcessFetchXmlItem(LocalCrmDatabaseOrganizationService service, LinkEntity entityLink, filter filter)
         {
             var linkedEntitiesByAliasName = entityLink.LinkEntities.Where(l => l.EntityAlias != null).ToDictionary(e => e.EntityAlias);
-            entityLink.LinkCriteria.AddFilter(
+             entityLink.LinkCriteria.AddFilter(
                 GetFilterExpression(service, service.GetType(entityLink.LinkToEntityName), linkedEntitiesByAliasName, filter));
         }
 
@@ -232,7 +232,10 @@ namespace DLaB.Xrm.LocalCrm
             if (!String.IsNullOrWhiteSpace(condition.entityname))
             {
                 entityName = condition.entityname;
-                entityType = service.GetType(links[condition.entityname].LinkToEntityName);
+                var logicalName = links.TryGetValue(condition.entityname, out var linkRef)
+                    ? linkRef.LinkToEntityName
+                    : condition.entityname;
+                entityType = service.GetType(logicalName);
             }
             var property = entityType.GetProperty(condition.attribute) ??
                            entityType.GetProperty(condition.attribute, BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
