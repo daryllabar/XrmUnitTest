@@ -1064,18 +1064,18 @@ namespace DLaB.Xrm.Entities
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("adminsettingsentity_SyncErrors")]
-		public DLaB.Xrm.Entities.adminsettingsentity adminsettingsentity_SyncErrors
+		public DLaB.Xrm.Entities.AdminSettingsEntity AdminSettingsEntitySyncErrors
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntity<DLaB.Xrm.Entities.adminsettingsentity>("adminsettingsentity_SyncErrors", null);
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.AdminSettingsEntity>("adminsettingsentity_SyncErrors", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("adminsettingsentity_SyncErrors");
-				this.SetRelatedEntity<DLaB.Xrm.Entities.adminsettingsentity>("adminsettingsentity_SyncErrors", null, value);
+				this.SetRelatedEntity<DLaB.Xrm.Entities.AdminSettingsEntity>("adminsettingsentity_SyncErrors", null, value);
 				this.OnPropertyChanged("adminsettingsentity_SyncErrors");
 			}
 		}

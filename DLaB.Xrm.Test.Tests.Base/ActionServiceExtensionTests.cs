@@ -19,7 +19,7 @@ namespace DLaB.Xrm.Test.Tests
             var qe = QueryExpressionFactory.Create<Contact>(Contact.Fields.FirstName, "John");
             Action<IOrganizationService> action = s => { GetJohns(s); };
             var qes = action.GetExecutedQueryExpressions();
-            Assert.AreEqual(1, qes.Count);
+            Assert.HasCount(1, qes);
             Assert.IsTrue(qes[0].IsEqual(qe));
         }
 

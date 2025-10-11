@@ -656,12 +656,12 @@ namespace DLaB.Xrm.Entities
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("adminsettingsentity_BulkDeleteFailures")]
-		public DLaB.Xrm.Entities.adminsettingsentity adminsettingsentity_BulkDeleteFailures
+		public DLaB.Xrm.Entities.AdminSettingsEntity AdminSettingsEntityBulkDeleteFailures
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntity<DLaB.Xrm.Entities.adminsettingsentity>("adminsettingsentity_BulkDeleteFailures", null);
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.AdminSettingsEntity>("adminsettingsentity_BulkDeleteFailures", null);
 			}
 		}
 		

@@ -28,7 +28,7 @@ namespace DLaB.Xrm.Entities
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("adminsettingsentity")]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9369")]
-	public partial class adminsettingsentity : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	public partial class AdminSettingsEntity : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
 		public static class Fields
@@ -66,7 +66,7 @@ namespace DLaB.Xrm.Entities
 		/// Default Constructor.
 		/// </summary>
 		[System.Diagnostics.DebuggerNonUserCode()]
-		public adminsettingsentity() : 
+		public AdminSettingsEntity() : 
 				base(EntityLogicalName)
 		{
 		}
@@ -844,7 +844,7 @@ namespace DLaB.Xrm.Entities
 		/// <param name="anonymousType">LINQ anonymous type.</param>
 		/// </summary>
 		[System.Diagnostics.DebuggerNonUserCode()]
-		public adminsettingsentity(object anonymousType) : 
+		public AdminSettingsEntity(object anonymousType) : 
 				this()
 		{
             foreach (var p in anonymousType.GetType().GetProperties())

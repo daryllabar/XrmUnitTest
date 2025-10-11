@@ -29,14 +29,14 @@ namespace DLaB.Xrm.LocalCrm.Tests
             qe.Criteria.AddCondition("MyAlias", Contact.Fields.FirstName, ConditionOperator.Equal, "Joe");
             var entities = service.GetEntities(qe);
 
-            Assert.AreEqual(1, entities.Count, "Only Joe opportunities should have been returned!");
+            Assert.HasCount(1, entities, "Only Joe opportunities should have been returned!");
             Assert.AreEqual(contact1.FirstName, entities[0].GetAliasedEntity<Contact>().FirstName);
 
             qe.Criteria.AddCondition("MyAlias", Contact.Fields.FirstName, ConditionOperator.Equal, "Jim");
             qe.Criteria.FilterOperator = LogicalOperator.Or;
             entities = service.GetEntities(qe);
 
-            Assert.AreEqual(2, entities.Count, "Joe and Jim opportunities should have been returned!");
+            Assert.HasCount(2, entities, "Joe and Jim opportunities should have been returned!");
         }
 
         [TestMethod]
@@ -54,7 +54,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             qe.AddLink<Contact>(Opportunity.Fields.ParentContactId, Contact.Fields.ContactId, JoinOperator.LeftOuter, c => new { c.FirstName });
 
             var entities = service.GetEntities(qe);
-            Assert.AreEqual(2, entities.Count, "Two opportunities should have been returned!");
+            Assert.HasCount(2, entities, "Two opportunities should have been returned!");
             Assert.AreEqual(contact.FirstName, entities.First(o => o.ParentContactId != null).GetAliasedEntity<Contact>().FirstName, "First Name wasn't returned!");
             Assert.IsNull(entities.First(o => o.ParentContactId == null).GetAliasedEntity<Contact>().FirstName, "Second Opportunity some how has a contact!");
         }

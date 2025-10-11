@@ -53,9 +53,9 @@ namespace DLaB.Xrm.Test.Tests
         public void GetIds_Should_EnumerateStruct()
         {
             var ids = Id.GetIds<Ids>().ToList();
-            Assert.IsTrue(ids.Contains(Ids.Accounts.A));
-            Assert.IsTrue(ids.Contains(Ids.Accounts.B));
-            Assert.IsTrue(ids.Contains(Ids.Contact));
+            Assert.Contains(Ids.Accounts.A, ids);
+            Assert.Contains(Ids.Accounts.B, ids);
+            Assert.Contains(Ids.Contact, ids);
         }
 
         [TestMethod]

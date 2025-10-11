@@ -12,7 +12,7 @@ namespace IdGeneratorTests
 		[TestInitialize]
 		public void Initialize()
 		{
-            var testName = TestContext.ManagedMethod ?? TestContext.TestName ?? "Unknown";
+            var testName = TestContext.TestName ?? "Unknown";
             var settings = new IdGeneratorSettings
             {
                 UseClassIds = !testName.Contains("_WithStructs_"),

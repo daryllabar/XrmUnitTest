@@ -25,7 +25,7 @@ namespace DLaB.Xrm.Test.Tests
         {
             TestInitializer.InitializeTestSettings();
             _service = GetService();
-            _sut = new TestEntityCodeGenerator(typeof(Contact).Assembly, typeof(Contact).Namespace);
+            _sut = new TestEntityCodeGenerator(typeof(Contact).Assembly, typeof(Contact).Namespace!);
         }
 
         [TestMethod]
@@ -128,7 +128,7 @@ var contact2 = new Contact {{
         {
             var expectedLines = expected.Split([@"
 "], StringSplitOptions.None);
-            Assert.AreEqual(expectedLines.Length, lines.Length, "Line Count Mismatch");
+            Assert.HasCount(expectedLines.Length, lines, "Line Count Mismatch");
             for (var i=0; i<lines.Length; i++){
                 Assert.AreEqual(expectedLines[i], lines[i], "Mismatch at line " + i);
             }

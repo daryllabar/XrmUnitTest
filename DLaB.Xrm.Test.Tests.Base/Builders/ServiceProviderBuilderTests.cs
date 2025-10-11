@@ -35,7 +35,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
             // Assert
             //
             Assert.IsFalse(ReferenceEquals(providerContext, context), "The Context Retrieved should have been the context set");
-            Assert.AreEqual(providerContext.GetFirstSharedVariable<int>("TEST"), 1);
+            Assert.AreEqual(1, providerContext.GetFirstSharedVariable<int>("TEST"));
         }
 
         [TestMethod]
@@ -84,7 +84,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
 
             var provider = builder.Build();
             Assert.IsTrue(ReferenceEquals(defaultProvider, provider));
-            Assert.IsTrue(!ReferenceEquals(builder.BuiltProvider, provider));
+            Assert.IsFalse(ReferenceEquals(builder.BuiltProvider, provider));
         }
 
 

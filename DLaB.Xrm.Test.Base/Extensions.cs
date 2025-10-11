@@ -840,10 +840,12 @@ namespace DLaB.Xrm.Test
             return new NonPublicSetter<T>(target);
         }
 
-        #endregion Object
-
-        #region Type
-
+        /// <summary>
+        /// Recursively enumerates all static fields of type <see cref="Id"/> in the given type and its nested types.
+        /// Skips compiler-generated types (such as lambda display classes).
+        /// </summary>
+        /// <param name="type">The type to search for <see cref="Id"/> fields.</param>
+        /// <returns>An enumerable of <see cref="Id"/> instances found in the type and its nested types.</returns>
         public static IEnumerable<Id> GetIds(this Type type)
         {
             if (type.IsDefined(typeof(System.Runtime.CompilerServices.CompilerGeneratedAttribute)))

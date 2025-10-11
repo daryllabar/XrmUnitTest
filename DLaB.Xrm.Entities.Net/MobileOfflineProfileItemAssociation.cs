@@ -780,20 +780,5 @@ namespace DLaB.Xrm.Entities
 				return ((ComponentState?)(EntityOptionSetEnum.GetEnum(this, "componentstate")));
 			}
 		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("selectedrelationshipsschema")]
-		public virtual selectedmobileofflineenabledentityrelationships? SelectedRelationShipsSchemaEnum
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return ((selectedmobileofflineenabledentityrelationships?)(EntityOptionSetEnum.GetEnum(this, "selectedrelationshipsschema")));
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				SelectedRelationShipsSchema = value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null;
-			}
-		}
 	}
 }

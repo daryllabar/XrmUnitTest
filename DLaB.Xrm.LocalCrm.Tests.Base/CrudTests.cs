@@ -10,8 +10,6 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
 using XrmUnitTest.Test;
-using Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter;
-
 
 #if NET
 using OrganizationServiceBuilder = DataverseUnitTest.Builders.OrganizationServiceBuilder;
@@ -265,19 +263,19 @@ namespace DLaB.Xrm.LocalCrm.Tests
             service.Create(new Contact { FirstName = "George W", LastName = "Bush" });
             service.Create(new Contact { FirstName = "George H W", LastName = "Bush" });
 
-            Assert.AreEqual(1, service.GetEntities<Contact>(
+            Assert.HasCount(1, service.GetEntities<Contact>(
                 "lastname", "Bush",
-                "firstname", "George W").Count, "Failed And for two constraints");
+                "firstname", "George W"), "Failed And for two constraints");
 
-            Assert.AreEqual(2, service.GetEntities<Contact>(
+            Assert.HasCount(2, service.GetEntities<Contact>(
                 "lastname", "Bush",
                 LogicalOperator.Or,
-                "firstname", "George W").Count, "Failed Or for two Or's");
+                "firstname", "George W"), "Failed Or for two Or's");
 
-            Assert.AreEqual(1, service.GetEntities<Contact>(
+            Assert.HasCount(1, service.GetEntities<Contact>(
                 "lastname", "Lincoln",
                 LogicalOperator.Or,
-                "firstname", "Tad").Count, "Failed or for two Or's with only one item to be found");
+                "firstname", "Tad"), "Failed or for two Or's with only one item to be found");
 
             var qe = QueryExpressionFactory.Create<Contact>();
             qe.Criteria.Conditions.Clear();
@@ -287,12 +285,12 @@ namespace DLaB.Xrm.LocalCrm.Tests
             qe.Criteria.Filters[0].WhereIn("lastname", "Lincoln");
             qe.Criteria.Filters[1].WhereIn("firstname", "George W");
 
-            Assert.AreEqual(2, service.GetEntities(qe).Count, "Failed Nested Filter Or'd");
+            Assert.HasCount(2, service.GetEntities(qe), "Failed Nested Filter Or'd");
 
             qe.Criteria.FilterOperator = LogicalOperator.And;
             qe.Criteria.Filters[0].Conditions.Clear();
             qe.Criteria.Filters[0].WhereIn("lastname", "Bush");
-            Assert.AreEqual(1, service.GetEntities(qe).Count, "Failed Nested Filter And'd");
+            Assert.HasCount(1, service.GetEntities(qe), "Failed Nested Filter And'd");
         }
 
         [TestMethod]
@@ -308,7 +306,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             service.Create(opp);
 
             Assert.IsNotNull(service.GetFirstOrDefault<Opportunity>(Opportunity.Fields.ParentContactId, c1.Id), "Failed Simple Lookup by Attribute Entity Reference");
-            Assert.AreEqual(1, service.GetEntitiesById<Contact>(c1.Id).Count, "Failed Simple Where In Lookup by Id");
+            Assert.HasCount(1, service.GetEntitiesById<Contact>(c1.Id), "Failed Simple Where In Lookup by Id");
 
             // *** WIKI Start - DLaB.Xrm ***
 
@@ -399,14 +397,14 @@ namespace DLaB.Xrm.LocalCrm.Tests
             };
             var accountId = service.Create(account);
             var childAccounts = service.GetEntities<Account>(Account.Fields.MasterId, accountId).OrderBy(a => a.Name).ToList();
-            Assert.AreEqual(2, childAccounts.Count);
+            Assert.HasCount(2, childAccounts);
             Assert.AreEqual("ChildViaMaster1", childAccounts[0].Name);
             Assert.AreEqual(account.Name, childAccounts[0].FormattedValues[Account.Fields.MasterId]);
             Assert.AreEqual("ChildViaMaster2", childAccounts[1].Name);
             Assert.AreEqual(account.Name, childAccounts[1].FormattedValues[Account.Fields.MasterId]);
 
             childAccounts = service.GetEntities<Account>(Account.Fields.ParentAccountId, accountId).OrderBy(a => a.Name).ToList();
-            Assert.AreEqual(2, childAccounts.Count);
+            Assert.HasCount(2, childAccounts);
             Assert.AreEqual("ChildAccount1", childAccounts[0].Name);
             Assert.AreEqual(account.Name, childAccounts[0].FormattedValues[Account.Fields.ParentAccountId]);
             Assert.AreEqual("ChildAccount2", childAccounts[1].Name);
@@ -456,7 +454,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 Target = contact.ToEntityReference()
             });
             Assert.IsNotNull(service.Retrieve(lateContact.LogicalName, lateContact.Id, new ColumnSet()), "Failed Create or Read");
-            Assert.AreEqual(2, service.GetEntities<Contact>().Count, "Failed Create or Read");
+            Assert.HasCount(2, service.GetEntities<Contact>(), "Failed Create or Read");
 
             contact.FirstName = "Early";
             lateContact["firstname"] = "Late";
@@ -470,7 +468,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             service.Delete(contact);
             service.Delete(lateContact);
 
-            Assert.AreEqual(0, service.GetEntities<Contact>().Count, "Failed Delete or Read");
+            Assert.IsEmpty(service.GetEntities<Contact>(), "Failed Delete or Read");
         }
 
         [TestMethod]
@@ -508,7 +506,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             modifiedLink.EntityAlias = "ModifiedLink";
             var results = service.RetrieveMultiple(qe);
 
-            Assert.AreEqual(2, results.Entities.Count);
+            Assert.HasCount(2, results.Entities);
             foreach (var entity in results.Entities)
             {
                 Assert.IsTrue(entity.Attributes.ContainsKey("CreatedLink.firstname"));
@@ -565,7 +563,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             qe.AddOrder(Contact.Fields.LastName, OrderType.Ascending);
             results = service.GetEntities<Contact>(qe);
 
-            Assert.AreEqual(9, results.Count, "9 Contacts have been created");
+            Assert.HasCount(9, results, "9 Contacts have been created");
             Assert.AreEqual("Chuck Adams", results[0].FullName, "Descending then Ascending Ordering failed.  \"Chuck Adams\" should have been returned first");
             Assert.AreEqual("Chuck Bell", results[1].FullName, "Descending then Ascending Ordering failed.  \"Chuck Bell\" should have been returned second");
             Assert.AreEqual("Chuck Carter", results[2].FullName, "Descending then Ascending Ordering failed.  \"Chuck Carter\" should have been returned third");
@@ -626,7 +624,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             query.Attributes.Add(Contact.Fields.FirstName);
             query.Values.Add("John");
             var contacts = service.RetrieveMultiple(query).ToEntityList<Contact>();
-            Assert.AreEqual(1, contacts.Count);
+            Assert.HasCount(1, contacts);
             Assert.AreEqual(johnId, contacts[0].Id);
 
             // Unhappy Path, uneven values / attributes
@@ -648,7 +646,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var id1 = service.Create(new Contact());
             var id2 = service.Create(new Contact());
             Assert.AreNotEqual(id1, id2, "Shouldn't have created duplicate Ids!");
-            Assert.AreEqual(2, service.GetEntities<Contact>().Count, "Two and only two contacts should exist!");
+            Assert.HasCount(2, service.GetEntities<Contact>(), "Two and only two contacts should exist!");
             Assert.AreEqual(id1, service.GetEntity<Contact>(id1).Id, "Failed looking up Contact 1 by Id");
             Assert.AreEqual(id2, service.GetEntity<Contact>(id2).Id, "Failed looking up Contact 2 by Id");
         }
@@ -707,7 +705,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             service.Create(new Account { Telephone1 = telephone });
             var qe = QueryExpressionFactory.Create<Account>(a => new { a.Telephone1});
             qe.Query.Distinct = true;
-            Assert.AreEqual(1, service.GetEntities(qe).Count, "Distinct should have returned only 1 record!");
+            Assert.HasCount(1, service.GetEntities(qe), "Distinct should have returned only 1 record!");
         }
 
         [TestMethod]
@@ -724,7 +722,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var qe = QueryExpressionFactory.Create<Account>(a => new { a.Telephone1 });
             qe.AddLink<Contact>(Account.Fields.PrimaryContactId, Contact.Fields.Id, c => new { c.FirstName });
             qe.Query.Distinct = true;
-            Assert.AreEqual(2, service.GetEntities(qe).Count, "Distinct should have returned only 2 records!");
+            Assert.HasCount(2, service.GetEntities(qe), "Distinct should have returned only 2 records!");
         }
 
         [TestMethod]
@@ -794,32 +792,32 @@ namespace DLaB.Xrm.LocalCrm.Tests
             service.Create(new Contact { FirstName = "firstname", LastName= "lastname" });
             service.Create(new Contact { FirstName = "FIRSTNAME", LastName = "LASTNAME" });
 
-            Assert.AreEqual(service.GetEntitiesIn<Contact>(Contact.Fields.FirstName, "FirstName").Count, 2, "Where In Should be case insensitive!");
-            Assert.AreEqual(service.GetEntitiesIn<Contact>(Contact.Fields.FirstName, "FIRSTNAME").Count, 2, "Where In Should be case insensitive!");
-            Assert.AreEqual(service.GetEntitiesIn<Contact>(Contact.Fields.FirstName, "firstname").Count, 2, "Where In Should be case insensitive!");
-            Assert.AreEqual(service.GetEntitiesIn<Contact>(Contact.Fields.LastName, "LastName").Count, 2, "Where In Should be case insensitive!");
-            Assert.AreEqual(service.GetEntitiesIn<Contact>(Contact.Fields.LastName, "LASTNAME").Count, 2, "Where In Should be case insensitive!");
-            Assert.AreEqual(service.GetEntitiesIn<Contact>(Contact.Fields.LastName, "lastname").Count, 2, "Where In Should be case insensitive!");
+            Assert.HasCount(2, service.GetEntitiesIn<Contact>(Contact.Fields.FirstName, "FirstName"), "Where In Should be case insensitive!");
+            Assert.HasCount(2, service.GetEntitiesIn<Contact>(Contact.Fields.FirstName, "FIRSTNAME"), "Where In Should be case insensitive!");
+            Assert.HasCount(2, service.GetEntitiesIn<Contact>(Contact.Fields.FirstName, "firstname"), "Where In Should be case insensitive!");
+            Assert.HasCount(2, service.GetEntitiesIn<Contact>(Contact.Fields.LastName, "LastName"), "Where In Should be case insensitive!");
+            Assert.HasCount(2, service.GetEntitiesIn<Contact>(Contact.Fields.LastName, "LASTNAME"), "Where In Should be case insensitive!");
+            Assert.HasCount(2, service.GetEntitiesIn<Contact>(Contact.Fields.LastName, "lastname"), "Where In Should be case insensitive!");
 
             var condition = new ConditionExpression(Contact.Fields.FirstName, ConditionOperator.NotIn, "FirstName");
             var qe = QueryExpressionFactory.Create<Contact>().WhereEqual(condition);
-            Assert.AreEqual(service.GetEntities(qe).Count, 0, "NotIn Should be case insensitive!");
+            Assert.IsEmpty(service.GetEntities(qe), "NotIn Should be case insensitive!");
             condition.Values[0] = "FIRSTNAME";
-            Assert.AreEqual(service.GetEntities(qe).Count, 0, "NotIn Should be case insensitive!");
+            Assert.IsEmpty(service.GetEntities(qe), "NotIn Should be case insensitive!");
             condition.Values[0] = "firstname";
-            Assert.AreEqual(service.GetEntities(qe).Count, 0, "NotIn Should be case insensitive!");
+            Assert.IsEmpty(service.GetEntities(qe), "NotIn Should be case insensitive!");
             condition.Values[0] = "firstname1";
-            Assert.AreEqual(service.GetEntities(qe).Count, 2, "NotIn Should be case insensitive!");
+            Assert.HasCount(2, service.GetEntities(qe), "NotIn Should be case insensitive!");
 
             condition.AttributeName = Contact.Fields.LastName;
             condition.Values[0] = "LastName";
-            Assert.AreEqual(service.GetEntities(qe).Count, 0, "NotIn Should be case insensitive!");
+            Assert.IsEmpty(service.GetEntities(qe), "NotIn Should be case insensitive!");
             condition.Values[0] = "LASTNAME";
-            Assert.AreEqual(service.GetEntities(qe).Count, 0, "NotIn Should be case insensitive!");
+            Assert.IsEmpty(service.GetEntities(qe), "NotIn Should be case insensitive!");
             condition.Values[0] = "lastname";
-            Assert.AreEqual(service.GetEntities(qe).Count, 0, "NotIn Should be case insensitive!");
+            Assert.IsEmpty(service.GetEntities(qe), "NotIn Should be case insensitive!");
             condition.Values[0] = "lastname1";
-            Assert.AreEqual(service.GetEntities(qe).Count, 2, "NotIn Should be case insensitive!");
+            Assert.HasCount(2, service.GetEntities(qe), "NotIn Should be case insensitive!");
         }
 
         [TestMethod]
@@ -1015,18 +1013,18 @@ namespace DLaB.Xrm.LocalCrm.Tests
             service.Associate("lead", leadId, relationship, relatedEntities);
 
             var joinEntities = service.GetEntities(AccountLeads.EntityLogicalName);
-            Assert.AreEqual(3, joinEntities.Count, "3 N:N records should have been created!");
+            Assert.HasCount(3, joinEntities, "3 N:N records should have been created!");
 
             var qe = QueryExpressionFactory.Create<Lead>();
             qe.AddLink(AccountLeads.EntityLogicalName, Lead.Fields.LeadId)
               .WhereEqual(AccountLeads.Fields.AccountId, account1Id);
             var leads = service.GetEntities(qe);
-            Assert.AreEqual(1, leads.Count, "1 N:N records should have been created!");
+            Assert.HasCount(1, leads, "1 N:N records should have been created!");
 
             qe = QueryExpressionFactory.Create<Lead>();
             qe.AddLink(AccountLeads.EntityLogicalName, Lead.Fields.LeadId);
             leads = service.GetEntities(qe);
-            Assert.AreEqual(3, leads.Count, "3 N:N records should have been created!");
+            Assert.HasCount(3, leads, "3 N:N records should have been created!");
 
             //Disassociate the contact with the 3 accounts.
             service.Disassociate("lead", leadId, relationship, relatedEntities);

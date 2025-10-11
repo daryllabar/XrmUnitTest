@@ -1331,18 +1331,18 @@ namespace DLaB.Xrm.Entities
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("adminsettingsentity_ProcessSession")]
-		public DLaB.Xrm.Entities.adminsettingsentity adminsettingsentity_ProcessSession
+		public DLaB.Xrm.Entities.AdminSettingsEntity AdminSettingsEntityProcessSession
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntity<DLaB.Xrm.Entities.adminsettingsentity>("adminsettingsentity_ProcessSession", null);
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.AdminSettingsEntity>("adminsettingsentity_ProcessSession", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("adminsettingsentity_ProcessSession");
-				this.SetRelatedEntity<DLaB.Xrm.Entities.adminsettingsentity>("adminsettingsentity_ProcessSession", null, value);
+				this.SetRelatedEntity<DLaB.Xrm.Entities.AdminSettingsEntity>("adminsettingsentity_ProcessSession", null, value);
 				this.OnPropertyChanged("adminsettingsentity_ProcessSession");
 			}
 		}

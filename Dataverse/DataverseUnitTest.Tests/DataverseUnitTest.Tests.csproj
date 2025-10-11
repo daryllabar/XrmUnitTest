@@ -10,16 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DataverseUnitTest.MSTest" Version="1.0.0.5" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
-    <PackageReference Include="Microsoft.PowerPlatform.Dataverse.Client" Version="1.2.10" />
-    <PackageReference Include="MSTest.TestAdapter" Version="3.10.2" />
-    <PackageReference Include="MSTest.TestFramework" Version="3.10.2" />
-		<PackageReference Include="coverlet.collector" Version="6.0.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="DataverseUnitTest.MSTest" Version="1.0.0.6" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +23,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+
 
   <Import Project="..\..\DLaB.Xrm.LocalCrm.Tests.Base\DLaB.Xrm.LocalCrm.Tests.Base.projitems" Label="Shared" />
 

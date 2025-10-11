@@ -313,7 +313,7 @@ namespace DLaB.Xrm.LocalCrm
             }
             else
             {
-                return new [] { condition.value == null ? (object)null : parse(condition.value) };
+                return [condition.value == null ? null : parse(condition.value)];
             }
         }
 

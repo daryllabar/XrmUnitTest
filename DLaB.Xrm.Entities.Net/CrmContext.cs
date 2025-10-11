@@ -138,14 +138,14 @@ namespace DLaB.Xrm.Entities
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.adminsettingsentity"/> entities.
+		/// Gets a binding to the set of all <see cref="AdminSettingsEntity"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<DLaB.Xrm.Entities.adminsettingsentity> adminsettingsentitySet
+		public System.Linq.IQueryable<DLaB.Xrm.Entities.AdminSettingsEntity> adminsettingsentitySet
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.CreateQuery<DLaB.Xrm.Entities.adminsettingsentity>();
+				return this.CreateQuery<DLaB.Xrm.Entities.AdminSettingsEntity>();
 			}
 		}
 		

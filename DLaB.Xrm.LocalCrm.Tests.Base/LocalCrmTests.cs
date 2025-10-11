@@ -39,8 +39,8 @@ namespace DLaB.Xrm.LocalCrm.Tests
 
             var accounts = service.GetEntities(qe);
 
-            Assert.AreEqual(1, contacts.Count);
-            Assert.AreEqual(1, accounts.Count);
+            Assert.HasCount(1, contacts);
+            Assert.HasCount(1, accounts);
         }
 
         [TestMethod]
@@ -67,7 +67,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             }
             catch(Exception ex)
             {
-                Assert.AreEqual(ex.Message, "Activity Party PartyId and AddressUsed were null");
+                Assert.AreEqual("Activity Party PartyId and AddressUsed were null", ex.Message);
             }
 
             activityParty[ActivityParty.Fields.PartyId] = new EntityReference(SystemUser.EntityLogicalName, service.GetCurrentlyExecutingUserInfo().UserId);

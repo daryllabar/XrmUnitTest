@@ -45,7 +45,7 @@ namespace DLaB.Xrm.Test.Tests
 
             contact.FirstName = "C";
 
-            Assert.AreEqual(1, _sut.Entities.Count);
+            Assert.HasCount(1, _sut.Entities);
             var recorded = GetRecordedEntity(contact);
             Assert.AreEqual(contact.ToEntityReference(), recorded.ToEntityReference());
             Assert.AreNotEqual(contact.FirstName, recorded.FirstName);
@@ -76,7 +76,7 @@ namespace DLaB.Xrm.Test.Tests
             contactB.LastName = "New2";
             RecordRetrieve(contactB);
 
-            Assert.AreEqual(2, _sut.Entities.Count);
+            Assert.HasCount(2, _sut.Entities);
             var recorded = GetRecordedEntity(contactA);
             Assert.AreEqual(contactA.ToEntityReference(), recorded.ToEntityReference());
             Assert.AreEqual("A", recorded.FirstName);
@@ -102,7 +102,7 @@ namespace DLaB.Xrm.Test.Tests
             contact.LastName = "C";
             RecordRetrieve(contact);
 
-            Assert.AreEqual(1, _sut.Entities.Count);
+            Assert.HasCount(1, _sut.Entities);
             var recorded = GetRecordedEntity(contact);
             Assert.AreEqual("A", recorded.FirstName);
             Assert.AreEqual("M", recorded.MiddleName);
@@ -147,7 +147,7 @@ namespace DLaB.Xrm.Test.Tests
             //
             // Assert
             //
-            Assert.AreEqual(2, _sut.Entities.Count);
+            Assert.HasCount(2, _sut.Entities);
             var recorded = GetRecordedEntity<Contact>(contact);
             Assert.AreEqual(contact.EntityReference, recorded.ToEntityReference());
             Assert.AreEqual("A", recorded.FirstName);
@@ -179,7 +179,7 @@ namespace DLaB.Xrm.Test.Tests
             //
             // Assert
             //
-            Assert.AreEqual(2, _sut.Entities.Count);
+            Assert.HasCount(2, _sut.Entities);
             var recorded = GetRecordedEntity<Contact>(contactA);
             Assert.AreEqual("A", recorded.FirstName);
             recorded = GetRecordedEntity<Contact>(contactB);
@@ -213,7 +213,7 @@ namespace DLaB.Xrm.Test.Tests
             //
             // Assert
             //
-            Assert.AreEqual(2, _sut.Entities.Count);
+            Assert.HasCount(2, _sut.Entities);
             var recorded = GetRecordedEntity(contactA); 
             Assert.AreEqual(contactA.ToEntityReference(), recorded.ToEntityReference());
             Assert.AreEqual("A", recorded.FirstName);
@@ -262,7 +262,7 @@ namespace DLaB.Xrm.Test.Tests
             //
             // Assert
             //
-            Assert.AreEqual(5, _sut.Entities.Count);
+            Assert.HasCount(5, _sut.Entities);
             var recorded = GetRecordedEntity(contact1);
             Assert.AreEqual(contact1.ToEntityReference(), recorded.ToEntityReference());
             Assert.AreEqual(contact1.FirstName, recorded.FirstName);

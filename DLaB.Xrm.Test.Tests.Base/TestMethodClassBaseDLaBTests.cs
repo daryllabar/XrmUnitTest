@@ -80,7 +80,7 @@ namespace DLaB.Xrm.Test.Tests
                     //
                     // Assert
                     //
-                    Assert.IsTrue(ex.Message.Contains("An attempt was made to create an entity of type contact without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate."), "Test Service should have had AssertIdNonEmptyOnCreate.");
+                    Assert.Contains("An attempt was made to create an entity of type contact without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate.", ex.Message, "Test Service should have had AssertIdNonEmptyOnCreate.");
                     return;
                 }
                 Assert.Fail("IOrganizationService should enforce Ids being defined");
@@ -123,7 +123,7 @@ namespace DLaB.Xrm.Test.Tests
                     //
                     // Assert
                     //
-                    Assert.IsTrue(ex.Message.Contains("An attempt was made to create an entity of type contact without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate."), "Test Service should have had AssertIdNonEmptyOnCreate.");
+                    Assert.Contains("An attempt was made to create an entity of type contact without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate.", ex.Message, "Test Service should have had AssertIdNonEmptyOnCreate.");
                     return;
                 }
                 Assert.Fail("IOrganizationService should enforce Ids being defined");
@@ -208,7 +208,7 @@ namespace DLaB.Xrm.Test.Tests
                     //
                     // Assert
                     //
-                    Assert.IsTrue(ex.Message.Contains("An attempt was made to create an entity of type contact without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate."), "Test Service should have had AssertIdNonEmptyOnCreate.");
+                    Assert.Contains("An attempt was made to create an entity of type contact without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate.", ex.Message, "Test Service should have had AssertIdNonEmptyOnCreate.");
                     return;
                 }
                 Assert.Fail("IOrganizationService should enforce Ids being defined");
@@ -290,7 +290,7 @@ namespace DLaB.Xrm.Test.Tests
                     //
                     // Assert
                     //
-                    Assert.IsTrue(ex.Message.Contains("An attempt was made to create an entity of type contact without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate."), "Test Service should have had AssertIdNonEmptyOnCreate.");
+                    Assert.Contains("An attempt was made to create an entity of type contact without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate.", ex.Message, "Test Service should have had AssertIdNonEmptyOnCreate.");
                     return;
                 }
                 Assert.Fail("IOrganizationService should enforce Ids being defined");

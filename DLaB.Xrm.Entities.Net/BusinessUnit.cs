@@ -1766,18 +1766,18 @@ namespace DLaB.Xrm.Entities
 		/// 1:N business_unit_adminsettingsentity
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("business_unit_adminsettingsentity")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.adminsettingsentity> business_unit_adminsettingsentity
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.AdminSettingsEntity> business_unit_adminsettingsentity
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.adminsettingsentity>("business_unit_adminsettingsentity", null);
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.AdminSettingsEntity>("business_unit_adminsettingsentity", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("business_unit_adminsettingsentity");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.adminsettingsentity>("business_unit_adminsettingsentity", null, value);
+				this.SetRelatedEntities<DLaB.Xrm.Entities.AdminSettingsEntity>("business_unit_adminsettingsentity", null, value);
 				this.OnPropertyChanged("business_unit_adminsettingsentity");
 			}
 		}

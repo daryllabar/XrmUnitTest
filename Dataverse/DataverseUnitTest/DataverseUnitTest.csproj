@@ -5,10 +5,10 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>DataverseUnitTest.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
-    <Version>3.4.0.22</Version>
+    <Version>3.4.0.23</Version>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <AssemblyVersion>3.4.0.22</AssemblyVersion>
-    <FileVersion>3.4.0.22</FileVersion>
+    <AssemblyVersion>3.4.0.23</AssemblyVersion>
+    <FileVersion>3.4.0.23</FileVersion>
 	  <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
@@ -21,10 +21,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DLaB.Xrm" Version="5.1.0.11" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
+    <PackageReference Include="DLaB.Xrm" Version="5.1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.9" />
     <PackageReference Include="Microsoft.PowerPlatform.Dataverse.Client" Version="1.2.10" />
-    <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>

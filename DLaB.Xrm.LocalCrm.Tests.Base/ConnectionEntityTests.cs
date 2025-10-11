@@ -1,7 +1,10 @@
-﻿using DLaB.Xrm.Entities;
-using Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter;
+﻿#if NET
+using DataverseUnitTest;
+#endif
+using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
+//using MsTest
 
 namespace DLaB.Xrm.LocalCrm.Tests
 {

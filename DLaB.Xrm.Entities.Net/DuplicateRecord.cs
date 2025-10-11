@@ -711,12 +711,12 @@ namespace DLaB.Xrm.Entities
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("baserecordid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("adminsettingsentity_DuplicateBaseRecord")]
-		public DLaB.Xrm.Entities.adminsettingsentity adminsettingsentity_DuplicateBaseRecord
+		public DLaB.Xrm.Entities.AdminSettingsEntity AdminSettingsEntityDuplicateBaseRecord
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntity<DLaB.Xrm.Entities.adminsettingsentity>("adminsettingsentity_DuplicateBaseRecord", null);
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.AdminSettingsEntity>("adminsettingsentity_DuplicateBaseRecord", null);
 			}
 		}
 		
@@ -725,12 +725,12 @@ namespace DLaB.Xrm.Entities
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("duplicaterecordid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("adminsettingsentity_DuplicateMatchingRecord")]
-		public DLaB.Xrm.Entities.adminsettingsentity adminsettingsentity_DuplicateMatchingRecord
+		public DLaB.Xrm.Entities.AdminSettingsEntity AdminSettingsEntityDuplicateMatchingRecord
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntity<DLaB.Xrm.Entities.adminsettingsentity>("adminsettingsentity_DuplicateMatchingRecord", null);
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.AdminSettingsEntity>("adminsettingsentity_DuplicateMatchingRecord", null);
 			}
 		}
 		

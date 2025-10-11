@@ -1612,18 +1612,18 @@ namespace DLaB.Xrm.Entities
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("adminsettingsentity_AsyncOperations")]
-		public DLaB.Xrm.Entities.adminsettingsentity adminsettingsentity_AsyncOperations
+		public DLaB.Xrm.Entities.AdminSettingsEntity AdminSettingsEntityAsyncOperations
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntity<DLaB.Xrm.Entities.adminsettingsentity>("adminsettingsentity_AsyncOperations", null);
+				return this.GetRelatedEntity<DLaB.Xrm.Entities.AdminSettingsEntity>("adminsettingsentity_AsyncOperations", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("adminsettingsentity_AsyncOperations");
-				this.SetRelatedEntity<DLaB.Xrm.Entities.adminsettingsentity>("adminsettingsentity_AsyncOperations", null, value);
+				this.SetRelatedEntity<DLaB.Xrm.Entities.AdminSettingsEntity>("adminsettingsentity_AsyncOperations", null, value);
 				this.OnPropertyChanged("adminsettingsentity_AsyncOperations");
 			}
 		}

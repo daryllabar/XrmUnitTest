@@ -76,14 +76,14 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var response = (ExecuteTransactionResponse) _service.Execute(request);
             AssertCrm.Exists(_service, account);
             AssertCrm.Exists(_service, contact);
-            Assert.AreEqual(response.Responses.Count, 2);
+            Assert.HasCount(2, response.Responses);
 
             _service.Delete(account.Entity);
             _service.Delete(contact.Entity);
 
             request.ReturnResponses = false;
             response = (ExecuteTransactionResponse)_service.Execute(request);
-            Assert.AreEqual(response.Responses.Count, 0);
+            Assert.IsEmpty(response.Responses);
         }
 
         [TestMethod]
@@ -215,7 +215,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             
             var response = GetMetadata(Account.Fields.AccountCategoryCode);
             Assert.AreEqual(AttributeTypeCode.Picklist, response.AttributeType);
-            Assert.AreEqual(2, ((PicklistAttributeMetadata)response).OptionSet.Options.Count);
+            Assert.HasCount(2, ((PicklistAttributeMetadata)response).OptionSet.Options);
             Assert.AreEqual(AttributeTypeCode.String, GetMetadata(Account.Fields.AccountNumber).AttributeType);
             Assert.AreEqual(AttributeTypeCode.Uniqueidentifier, GetMetadata(Account.Fields.Id).AttributeType);
             Assert.AreEqual(AttributeTypeCode.Double, GetMetadata(Account.Fields.Address1_Longitude).AttributeType);
@@ -233,9 +233,9 @@ namespace DLaB.Xrm.LocalCrm.Tests
 
             Assert.AreNotEqual(Guid.Empty, detail.DatacenterId);
             Assert.IsNotNull(detail.Endpoints);
-            Assert.IsTrue(detail.Endpoints[EndpointType.OrganizationService].EndsWith(".api.crm.dynamics.com/XRMServices/2011/Organization.svc"));
-            Assert.IsTrue(detail.Endpoints[EndpointType.OrganizationDataService].EndsWith(".api.crm.dynamics.com/XRMServices/2011/OrganizationData.svc"));
-            Assert.IsTrue(detail.Endpoints[EndpointType.WebApplication].EndsWith(".crm.dynamics.com/"));
+            Assert.EndsWith(".api.crm.dynamics.com/XRMServices/2011/Organization.svc", detail.Endpoints[EndpointType.OrganizationService]);
+            Assert.EndsWith(".api.crm.dynamics.com/XRMServices/2011/OrganizationData.svc", detail.Endpoints[EndpointType.OrganizationDataService]);
+            Assert.EndsWith(".crm.dynamics.com/", detail.Endpoints[EndpointType.WebApplication]);
             Assert.IsNotNull(detail.EnvironmentId);
             Assert.IsNotNull(detail.FriendlyName);
             Assert.IsNotNull(detail.Geo);
@@ -418,7 +418,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             {
                 Target = toUpsert
             });
-            Assert.AreEqual(true, response.RecordCreated);
+            Assert.IsTrue(response.RecordCreated);
             AssertCrm.Exists(_service, response.Target);
             var account = _service.GetEntity<Account>(response.Target.Id);
             Assert.AreEqual(toUpsert.Name, account.Name);
@@ -433,7 +433,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             {
                 Target = toUpsert
             });
-            Assert.AreEqual(false, response.RecordCreated);
+            Assert.IsFalse(response.RecordCreated);
 
             account = _service.GetEntity<Account>(response.Target.Id);
             Assert.AreEqual(toUpsert.Name, account.Name);

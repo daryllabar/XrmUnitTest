@@ -12,7 +12,7 @@ namespace DLaB.Xrm.Entities
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
-	public enum addlistcampaign
+	public enum AddListCampaign
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]

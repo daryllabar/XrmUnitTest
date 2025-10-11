@@ -293,11 +293,11 @@ namespace DLaB.Xrm.LocalCrm
                                       .Where(v => v.NameMatching != InitializeFromLogic.AttributeNameMatching.None)
                                       .OrderBy(v => v.NameMatching))
             {
-                var sourceKey = kvp.Key.Contains('_') 
+                var sourceKey = (kvp.Key.Contains('_') 
                                     && (   kvp.NameMatching == InitializeFromLogic.AttributeNameMatching.PrefixlessSourceToDestination
                                         || kvp.NameMatching == InitializeFromLogic.AttributeNameMatching.PrefixlessSourceToPrefixlessDestionation )
                                 ? kvp.Key.SubstringByString("_")
-                                : kvp.Key;
+                                : kvp.Key) ?? string.Empty;
 
                 switch (kvp.NameMatching)
                 {
@@ -711,7 +711,7 @@ namespace DLaB.Xrm.LocalCrm
                 {
                     ReferencedEntity = referencedType,
                     ReferencedAttribute = EntityHelper.GetIdAttributeName(property.PropertyType),
-                    ReferencingEntity = EntityHelper.GetEntityLogicalName(property.DeclaringType),
+                    ReferencingEntity = EntityHelper.GetEntityLogicalName(property.DeclaringType!),
                     ReferencingAttribute = property.GetAttributeLogicalName()
                 };
             }

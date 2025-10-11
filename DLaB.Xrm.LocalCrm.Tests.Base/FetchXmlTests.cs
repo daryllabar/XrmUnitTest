@@ -109,7 +109,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
 
             EnvBuilder.WithEntities(account1, account2).Create(Service);
             var result = Service.RetrieveMultiple(new FetchExpression(fetchXml)).ToEntityList<Account>();
-            Assert.AreEqual(1, result.Count);
+            Assert.HasCount(1, result);
         }
     }
 }

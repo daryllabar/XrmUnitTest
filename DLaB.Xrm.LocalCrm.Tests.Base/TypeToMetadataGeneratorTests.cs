@@ -53,7 +53,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
 
             var optionSeMetadata = (PicklistAttributeMetadata)attributes["testoptionsetvalue"];
             var options = optionSeMetadata.OptionSet.Options;
-            Assert.AreEqual(7, options.Count);
+            Assert.HasCount(7, options);
             AssertOption(LogLevel.Critical);
             AssertOption(LogLevel.Debug);
             AssertOption(LogLevel.Error);

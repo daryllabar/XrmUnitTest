@@ -49,7 +49,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
                         throw;
                     }
 
-                    Assert.IsTrue(ex.Message.Contains(expectedError), ex.Message);
+                    Assert.Contains(expectedError, ex.Message);
                 }
             }
 
@@ -86,7 +86,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
                     {
                         ex = ex.InnerException;
                     }
-                    Assert.IsTrue(ex.Message.Contains(expectedError), ex.Message);
+                    Assert.Contains(expectedError, ex.Message);
                 }
             }
 
@@ -313,7 +313,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
             }
             catch (ArgumentException ex)
             {
-                Assert.IsTrue(ex.Message.Contains("Primary Builder can not be set to itself!"));
+                Assert.Contains("Primary Builder can not be set to itself!", ex.Message);
             }
         }  
 

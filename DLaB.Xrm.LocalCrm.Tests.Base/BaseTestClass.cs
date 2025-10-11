@@ -32,7 +32,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 {
                     return;
                 }
-                Assert.IsTrue(ex.Message.Contains(exceptionMesageContains), "Exception type is different than expected");
+                Assert.Contains(exceptionMesageContains, ex.Message, "Exception type is different than expected");
             }
             catch (AssertFailedException)
             {

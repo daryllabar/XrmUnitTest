@@ -3702,18 +3702,18 @@ namespace DLaB.Xrm.Entities
 		/// 1:N lk_adminsettingsentity_createdby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_adminsettingsentity_createdby")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.adminsettingsentity> lk_adminsettingsentity_createdby
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.AdminSettingsEntity> lk_adminsettingsentity_createdby
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.adminsettingsentity>("lk_adminsettingsentity_createdby", null);
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.AdminSettingsEntity>("lk_adminsettingsentity_createdby", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("lk_adminsettingsentity_createdby");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.adminsettingsentity>("lk_adminsettingsentity_createdby", null, value);
+				this.SetRelatedEntities<DLaB.Xrm.Entities.AdminSettingsEntity>("lk_adminsettingsentity_createdby", null, value);
 				this.OnPropertyChanged("lk_adminsettingsentity_createdby");
 			}
 		}
@@ -3722,18 +3722,18 @@ namespace DLaB.Xrm.Entities
 		/// 1:N lk_adminsettingsentity_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_adminsettingsentity_createdonbehalfby")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.adminsettingsentity> lk_adminsettingsentity_createdonbehalfby
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.AdminSettingsEntity> lk_adminsettingsentity_createdonbehalfby
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.adminsettingsentity>("lk_adminsettingsentity_createdonbehalfby", null);
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.AdminSettingsEntity>("lk_adminsettingsentity_createdonbehalfby", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("lk_adminsettingsentity_createdonbehalfby");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.adminsettingsentity>("lk_adminsettingsentity_createdonbehalfby", null, value);
+				this.SetRelatedEntities<DLaB.Xrm.Entities.AdminSettingsEntity>("lk_adminsettingsentity_createdonbehalfby", null, value);
 				this.OnPropertyChanged("lk_adminsettingsentity_createdonbehalfby");
 			}
 		}
@@ -3742,18 +3742,18 @@ namespace DLaB.Xrm.Entities
 		/// 1:N lk_adminsettingsentity_modifiedby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_adminsettingsentity_modifiedby")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.adminsettingsentity> lk_adminsettingsentity_modifiedby
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.AdminSettingsEntity> lk_adminsettingsentity_modifiedby
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.adminsettingsentity>("lk_adminsettingsentity_modifiedby", null);
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.AdminSettingsEntity>("lk_adminsettingsentity_modifiedby", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("lk_adminsettingsentity_modifiedby");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.adminsettingsentity>("lk_adminsettingsentity_modifiedby", null, value);
+				this.SetRelatedEntities<DLaB.Xrm.Entities.AdminSettingsEntity>("lk_adminsettingsentity_modifiedby", null, value);
 				this.OnPropertyChanged("lk_adminsettingsentity_modifiedby");
 			}
 		}
@@ -3762,18 +3762,18 @@ namespace DLaB.Xrm.Entities
 		/// 1:N lk_adminsettingsentity_modifiedonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_adminsettingsentity_modifiedonbehalfby")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.adminsettingsentity> lk_adminsettingsentity_modifiedonbehalfby
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.AdminSettingsEntity> lk_adminsettingsentity_modifiedonbehalfby
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.adminsettingsentity>("lk_adminsettingsentity_modifiedonbehalfby", null);
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.AdminSettingsEntity>("lk_adminsettingsentity_modifiedonbehalfby", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("lk_adminsettingsentity_modifiedonbehalfby");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.adminsettingsentity>("lk_adminsettingsentity_modifiedonbehalfby", null, value);
+				this.SetRelatedEntities<DLaB.Xrm.Entities.AdminSettingsEntity>("lk_adminsettingsentity_modifiedonbehalfby", null, value);
 				this.OnPropertyChanged("lk_adminsettingsentity_modifiedonbehalfby");
 			}
 		}
@@ -38662,18 +38662,18 @@ namespace DLaB.Xrm.Entities
 		/// 1:N user_adminsettingsentity
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_adminsettingsentity")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.adminsettingsentity> user_adminsettingsentity
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.AdminSettingsEntity> user_adminsettingsentity
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.adminsettingsentity>("user_adminsettingsentity", null);
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.AdminSettingsEntity>("user_adminsettingsentity", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("user_adminsettingsentity");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.adminsettingsentity>("user_adminsettingsentity", null, value);
+				this.SetRelatedEntities<DLaB.Xrm.Entities.AdminSettingsEntity>("user_adminsettingsentity", null, value);
 				this.OnPropertyChanged("user_adminsettingsentity");
 			}
 		}

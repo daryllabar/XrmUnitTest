@@ -836,18 +836,18 @@ namespace DLaB.Xrm.Entities
 		/// 1:N team_adminsettingsentity
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_adminsettingsentity")]
-		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.adminsettingsentity> team_adminsettingsentity
+		public System.Collections.Generic.IEnumerable<DLaB.Xrm.Entities.AdminSettingsEntity> team_adminsettingsentity
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntities<DLaB.Xrm.Entities.adminsettingsentity>("team_adminsettingsentity", null);
+				return this.GetRelatedEntities<DLaB.Xrm.Entities.AdminSettingsEntity>("team_adminsettingsentity", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("team_adminsettingsentity");
-				this.SetRelatedEntities<DLaB.Xrm.Entities.adminsettingsentity>("team_adminsettingsentity", null, value);
+				this.SetRelatedEntities<DLaB.Xrm.Entities.AdminSettingsEntity>("team_adminsettingsentity", null, value);
 				this.OnPropertyChanged("team_adminsettingsentity");
 			}
 		}
