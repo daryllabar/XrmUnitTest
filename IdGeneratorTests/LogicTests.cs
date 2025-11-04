@@ -191,7 +191,7 @@ public class ContactIds
             //
             // Assert
             //
-            Assert.AreEqual(2, results.Count);
+            Assert.HasCount(2, results);
             Assert.AreEqual("A", results[0].FieldName);
             Assert.AreEqual("Contact", results[0].IdType);
             Assert.AreEqual("ContactIds", results[0].ContainerName);
@@ -220,7 +220,7 @@ public class ContactIds
             //
             // Assert
             //
-            Assert.AreEqual(2, results.Count);
+            Assert.HasCount(2, results);
             Assert.AreEqual("A", results[0].FieldName);
             Assert.AreEqual("Contact", results[0].IdType);
             Assert.AreEqual("Contacts", results[0].ContainerName);
@@ -251,7 +251,7 @@ public class ContactIds
             //
             // Assert
             //
-            Assert.AreEqual(3, results.Count);
+            Assert.HasCount(3, results);
             Assert.AreEqual("A", results[0].FieldName);
             Assert.AreEqual("Contact", results[0].IdType);
             Assert.AreEqual("ContactIds", results[0].ContainerName);
@@ -295,7 +295,7 @@ public class ContactIds
             //
             Assert.AreEqual("Contact", entityType);
             Assert.AreEqual("Employees", info.ContainerName);
-            Assert.AreEqual(2, info.Names.Count);
+            Assert.HasCount(2, info.Names);
             Assert.AreEqual("One,Two", string.Join(",", info.Names));
         }
 
@@ -312,7 +312,7 @@ public class ContactIds
             //
             Assert.AreEqual("Contact", entityType);
             Assert.AreEqual("Employees", info.ContainerName);
-            Assert.AreEqual(3, info.Names.Count);
+            Assert.HasCount(3, info.Names);
             Assert.AreEqual("A,One,Two", string.Join(",", info.Names));
         }
 
@@ -329,7 +329,7 @@ public class ContactIds
 			//
 			Assert.AreEqual("Contact", entityType);
             Assert.AreEqual("Employees", info.ContainerName);
-			Assert.AreEqual(2, info.Names.Count);
+			Assert.HasCount(2, info.Names);
             Assert.AreEqual("A,B", string.Join(",", info.Names));
         }
 
@@ -346,7 +346,7 @@ public class ContactIds
             //
             Assert.AreEqual("Contact", entityType);
             Assert.AreEqual("Employees", info.ContainerName);
-            Assert.AreEqual(4, info.Names.Count);
+            Assert.HasCount(4, info.Names);
             Assert.AreEqual("A,B,C,D", string.Join(",", info.Names));
         }
     }
