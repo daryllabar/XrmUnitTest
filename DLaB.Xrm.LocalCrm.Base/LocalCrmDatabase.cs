@@ -211,11 +211,11 @@ namespace DLaB.Xrm.LocalCrm
             entity = entity.Clone(true);
 
             AssertTypeContainsColumns<T>(entity.Attributes.Keys);
-            AssertEntityReferencesExists(service, entity);
             if (AssertValidAttributeTypes<T>(entity, exception))
             {
                 return Guid.Empty;
             }
+            AssertEntityReferencesExists(service, entity);
             SimulateCrmAttributeManipulations(entity);
             if (SimulateCrmCreateActionPrevention(service, entity, exception))
             {
@@ -882,6 +882,10 @@ namespace DLaB.Xrm.LocalCrm
         private static void Update<T>(LocalCrmDatabaseOrganizationService service, T entity, DelayedException exception) where T : Entity
         {
             AssertEntityIdsMatch(entity);
+            if (AssertValidAttributeTypes<T>(entity, exception))
+            {
+                return;
+            }
             AssertTypeContainsColumns<T>(entity.Attributes.Keys);
             AssertEntityReferencesExists(service, entity);
             SimulateCrmAttributeManipulations(entity);

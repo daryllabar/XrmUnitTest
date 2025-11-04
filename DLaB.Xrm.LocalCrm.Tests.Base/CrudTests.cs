@@ -27,6 +27,41 @@ namespace DLaB.Xrm.LocalCrm.Tests
     public class CrudTests : BaseTestClass
     {
         [TestMethod]
+        public void LocalCrmTests_CreateUpdate_AliasedValueFails()
+        {
+            var service = GetService();
+            try
+            {
+                service.Create(new Account
+                {
+                    [Account.Fields.Name] = new AliasedValue("account", "name", "value")
+
+                });
+                Assert.Fail("Expected exception due to aliased value!");
+            }
+            catch (FaultException<OrganizationServiceFault> ex)
+            {
+                Assert.AreEqual("Incorrect type of attribute value Microsoft.Xrm.Sdk.AliasedValue", ex.Message);
+            }
+            var accountId = service.Create(new Account());
+
+            try
+            {
+                service.Update(new Account
+                {
+                    Id = accountId,
+                    [Account.Fields.Name] = new AliasedValue("account", "name", "value")
+
+                });
+                Assert.Fail("Expected exception due to aliased value!");
+            }
+            catch (FaultException<OrganizationServiceFault> ex)
+            {
+                Assert.AreEqual("Incorrect type of attribute value Microsoft.Xrm.Sdk.AliasedValue", ex.Message);
+            }
+        }
+
+        [TestMethod]
         [SuppressMessage("ReSharper", "EmptyGeneralCatchClause")]
         public void LocalCrmTests_Crud_ActivityPartyConstraints()
         {
@@ -69,25 +104,6 @@ namespace DLaB.Xrm.LocalCrm.Tests
             }
             catch
             {
-            }
-        }
-
-
-        [TestMethod]
-        public void LocalCrmTests_Create_AliasedValueFails()
-        {
-            var service = GetService();
-            try {
-                service.Create(new Account
-                {
-                    [Account.Fields.Name] = new AliasedValue("account", "name", "value")
-
-                });
-                Assert.Fail("Expected exception due to aliased value!");
-            }
-            catch (FaultException<OrganizationServiceFault> ex)
-            {
-                Assert.AreEqual("Incorrect type of attribute value Microsoft.Xrm.Sdk.AliasedValue", ex.Message);
             }
         }
 
