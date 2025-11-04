@@ -31,6 +31,11 @@ namespace DLaB.Xrm.LocalCrm
             return CreateFault(ErrorCodes.ObjectDoesNotExist, $"{ErrorCodes.GetErrorMessage(ErrorCodes.ObjectDoesNotExist)}  {entity.LogicalName} With Id = {entity.Id} Does Not Exist");
         }
 
+        public static FaultException<OrganizationServiceFault> GetInvalidAttributeTypeException(Type type)
+        {
+            return CreateFault(ErrorCodes.UnExpected, $"Incorrect type of attribute value {type.FullName}");
+        }
+
         public static FaultException<OrganizationServiceFault> GetInvalidCharacterSpecifiedForAlias(string aliasName)
         {
             return CreateFault(ErrorCodes.UnExpected, $"Invalid character specified for alias: {aliasName}. Only characters within the ranges [A-Z], [a-z] or [0-9] or _ are allowed.  The first character may only be in the ranges [A-Z], [a-z] or _.");
@@ -63,6 +68,7 @@ namespace DLaB.Xrm.LocalCrm
             return CreateFault(-1, string.Format(@"The formatter threw an exception while trying to deserialize the message: There was an error while trying to deserialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:query. The InnerException message was 'Error in line 1 position 1978. Element 'http://schemas.microsoft.com/2003/10/Serialization/Arrays:anyType' contains data from a type that maps to the name " +
                 "'{0}:{1}'.The deserializer has no knowledge of any type that maps to this name. Consider changing the implementation of the ResolveName method on your DataContractResolver to return a non-null value for name '{1}' and namespace '{0}'.'. Please see InnerException for more details.", type.Namespace, type.Name));
         }
+
         public static FaultException<OrganizationServiceFault> GetFaultException(int hResult, params object[] args)
         {
             var message = ErrorCodes.GetErrorMessage(hResult);

@@ -212,6 +212,10 @@ namespace DLaB.Xrm.LocalCrm
 
             AssertTypeContainsColumns<T>(entity.Attributes.Keys);
             AssertEntityReferencesExists(service, entity);
+            if (AssertValidAttributeTypes<T>(entity, exception))
+            {
+                return Guid.Empty;
+            }
             SimulateCrmAttributeManipulations(entity);
             if (SimulateCrmCreateActionPrevention(service, entity, exception))
             {
@@ -633,6 +637,58 @@ namespace DLaB.Xrm.LocalCrm
             foreach (var col in cols.Where(c => !properties.ContainsProperty(c)))
             {
                 throw new Exception($"Type {typeof(T).Name} does not contain a property named {col}, or a property with an AttributeLogicalNameAttribute of {col}.");
+            }
+        }
+
+        private static bool AssertValidAttributeTypes<T>(Entity entity, DelayedException exception) where T : Entity { 
+            var properties = PropertiesCache.For<T>();
+            foreach (var attribute in entity.Attributes)
+            {
+                var property = properties.GetProperty(attribute.Key);
+                if (property == null)
+                {
+                    continue;
+                }
+
+                var attributeValue = attribute.Value;
+                if (attributeValue == null)
+                {
+                    // Null value is allowed for nullable reference types / nullables; skip type check
+                    continue;
+                }
+
+                // Unwrap Nullable<> on the property if present
+                var propertyType = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;
+                var attributeType = attributeValue.GetType();
+                if (propertyType.IsAssignableFrom(attributeType)
+                    || propertyType.IsEnum && (typeof(int).IsAssignableFrom(attributeType) || typeof(OptionSetValue).IsAssignableFrom(attributeType))
+                    || IsGuidEntityReference(propertyType, attributeType, attributeValue)
+                    || attributeType == typeof(EntityCollection) 
+                        && (propertyType == typeof(EntityReference)
+                            || propertyType.GetGenericTypeDefinition() == typeof(IEnumerable<>)
+                                && typeof(Entity).IsAssignableFrom(propertyType.GetGenericArguments()[0])
+                        )
+#if !PRE_MULTISELECT
+                    || attributeType == typeof(OptionSetValueCollection) 
+                        && propertyType.IsGenericType
+                        && propertyType.GetGenericTypeDefinition() == typeof(IEnumerable<>)
+                        && (propertyType.GetGenericArguments()[0].IsEnum || propertyType.GetGenericArguments()[0] == typeof(int))
+#endif
+                )
+                {
+                    continue;
+                }
+                exception.Exception = CrmExceptions.GetInvalidAttributeTypeException(attributeType);
+            }
+
+            return exception.Exception != null;
+
+            bool IsGuidEntityReference(Type p1, Type p2, object value)
+            {
+                return (p1 == typeof(Guid) || p1 == typeof(EntityReference)) && (
+                        p2 == typeof(EntityReference)
+                        || p2 == typeof(Guid)
+                        || value is string guidStr && Guid.TryParse(guidStr, out var _));
             }
         }
 

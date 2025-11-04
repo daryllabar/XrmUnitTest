@@ -72,6 +72,25 @@ namespace DLaB.Xrm.LocalCrm.Tests
             }
         }
 
+
+        [TestMethod]
+        public void LocalCrmTests_Create_AliasedValueFails()
+        {
+            var service = GetService();
+            try {
+                service.Create(new Account
+                {
+                    [Account.Fields.Name] = new AliasedValue("account", "name", "value")
+
+                });
+                Assert.Fail("Expected exception due to aliased value!");
+            }
+            catch (FaultException<OrganizationServiceFault> ex)
+            {
+                Assert.AreEqual("Incorrect type of attribute value Microsoft.Xrm.Sdk.AliasedValue", ex.Message);
+            }
+        }
+
         [TestMethod]
         public void LocalCrmTests_Crud_ActivityPartyAutoCreation()
         {
