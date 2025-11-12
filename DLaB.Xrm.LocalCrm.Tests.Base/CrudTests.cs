@@ -1158,6 +1158,31 @@ namespace DLaB.Xrm.LocalCrm.Tests
             }
         }
 
+        [TestMethod]
+        public void LocalCrmTests_ReadWithTopCountAndPaging_Fails()
+        {
+            FaultException<OrganizationServiceFault> exception = null;
+            var service = GetService();
+            var qe = new QueryExpression
+            {
+                EntityName = Account.EntityLogicalName,
+                TopCount = 2
+            };
+            qe.PageInfo.PageNumber = 1;
+            qe.PageInfo.Count = 1;
+            try
+            {
+                service.RetrieveMultiple(qe);
+            }
+            catch (FaultException<OrganizationServiceFault> ex)
+            {
+                exception = ex;
+            }
+            Assert.IsNotNull(exception, "Expected exception due to TopCount and PagingInfo both being specified!");
+            Assert.AreEqual("The Top.Count = 2 can't be specified with pagingInfo", exception.Message);
+            Assert.AreEqual(-2146233087, exception.HResult);
+        }
+
         #region Shared Methods
 
 

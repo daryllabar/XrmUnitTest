@@ -349,7 +349,8 @@ namespace DLaB.Xrm.LocalCrm
 
         private static EntityCollection ReadEntities<T>(LocalCrmDatabaseOrganizationService service, QueryExpression qe, DelayedException delay) where T : Entity
         {
-            if (AssertValidAttributeExpressionQuery(qe, delay))
+            if (AssertValidAttributeExpressionQuery(qe, delay)
+                || AssertValidCount(qe, delay))
             {
                 return null!;
             }
@@ -392,6 +393,18 @@ namespace DLaB.Xrm.LocalCrm
             }
 
             return result;
+        }
+
+        private static bool AssertValidCount(QueryExpression query, DelayedException delay)
+        {
+            if (query.TopCount.HasValue
+                && (query.PageInfo.Count != 0
+                    || query.PageInfo.PageNumber != 0))
+            {
+                delay.Exception = CrmExceptions.GetTopCountCantBeSpecifiedWithPagingInfoException(query.TopCount.Value);
+                return true;
+            }
+            return false;
         }
 
         private static string GetUniqueDistinctKey(Entity entity, QueryExpression qe)

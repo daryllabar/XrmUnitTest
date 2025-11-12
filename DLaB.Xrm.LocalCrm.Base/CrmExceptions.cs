@@ -69,6 +69,11 @@ namespace DLaB.Xrm.LocalCrm
                 "'{0}:{1}'.The deserializer has no knowledge of any type that maps to this name. Consider changing the implementation of the ResolveName method on your DataContractResolver to return a non-null value for name '{1}' and namespace '{0}'.'. Please see InnerException for more details.", type.Namespace, type.Name));
         }
 
+        public static FaultException<OrganizationServiceFault> GetTopCountCantBeSpecifiedWithPagingInfoException(int topCount)
+        {
+            return CreateFault(InvalidConditionValue, $"The Top.Count = {topCount} can't be specified with pagingInfo");
+        }
+
         public static FaultException<OrganizationServiceFault> GetFaultException(int hResult, params object[] args)
         {
             var message = ErrorCodes.GetErrorMessage(hResult);
@@ -88,10 +93,13 @@ namespace DLaB.Xrm.LocalCrm
                 Message = message,
                 Timestamp = DateTime.UtcNow
 #if NET
-    }, new FaultReason(message));
+            }, new FaultReason(message))
+            {
+                HResult = errorCode
+            };
 #else                
             }, message);
 #endif
-            }
+        }
     }
 }
