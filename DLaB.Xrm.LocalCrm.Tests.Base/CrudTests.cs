@@ -553,9 +553,9 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void LocalCrmTests_Crud_OrderBy()
         {
             var service = GetService();
-            service.Create(new Contact { FirstName = "Chuck", LastName = "Adams" });
-            service.Create(new Contact { FirstName = "Anna", LastName = "Adams" });
-            service.Create(new Contact { FirstName = "Bill", LastName = "Adams" });
+            var id = service.Create(new Contact { FirstName = "Chuck", LastName = "Adams" });
+            id = service.Create(new Contact { FirstName = "Anna", LastName = "Adams", ParentCustomerId = new EntityReference(Contact.EntityLogicalName, id) });
+            service.Create(new Contact { FirstName = "Bill", LastName = "Adams", ParentCustomerId = new EntityReference(Contact.EntityLogicalName, id) });
 
             var qe = new QueryExpression(Contact.EntityLogicalName) { ColumnSet = new ColumnSet(true) };
 
@@ -643,6 +643,12 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.AreEqual("Adams", results[8].LastName, "Ascending Date Ordering failed.  \"Adams\" should have been returned last");
             Assert.AreEqual("Adams", results[7].LastName, "Ascending Date Ordering failed.  \"Adams\" should have been returned last");
             Assert.AreEqual("Adams", results[6].LastName, "Ascending Date Ordering failed.  \"Adams\" should have been returned last");
+
+            // Order by EntityReference Attribute
+            qe.Orders.Clear();
+            qe.AddOrder("parentcustomerid", OrderType.Ascending);
+            results = service.GetEntities<Contact>(qe);
+            Assert.HasCount(9, results);
         }
 
         [TestMethod]

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using DLaB.Xrm.LocalCrm.FetchXml;
+using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Query;
@@ -329,6 +330,10 @@ namespace DLaB.Xrm.LocalCrm
             if (value is string str)
             {
                 return str.ToLower();
+            }
+            if (value is EntityReference entityRef)
+            {
+                return entityRef.Id;
             }
 
             return value;
