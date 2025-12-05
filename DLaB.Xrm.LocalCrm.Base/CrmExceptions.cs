@@ -2,6 +2,7 @@
 using System.ServiceModel;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
+
 #if DLAB_UNROOT_COMMON_NAMESPACE
 using DLaB.Xrm.CrmSdk;
 #else
@@ -51,6 +52,16 @@ namespace DLaB.Xrm.LocalCrm
             return CreateFault(InvalidConditionValue, requiredValues == 0
                 ? $"Condition operator '{condition.Operator}' requires that no values are set. Values.Length: {condition.Values.Count}"
                 : $"The ConditionOperator.{condition.Operator} requires {requiredValues} value/s, not {condition.Values.Count}. Parameter Name: {condition.AttributeName}.");
+        }
+
+        public static CommunicationException GetFilterExpressionCyclicalException()
+        {
+            return new CommunicationException("There was an error while trying to serialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:request. The InnerException message was 'Object graph for type 'Microsoft.Xrm.Sdk.DataCollection`1[[Microsoft.Xrm.Sdk.Query.FilterExpression, Microsoft.Xrm.Sdk, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]]' contains cycles and cannot be serialized if reference tracking is disabled.'.  Please see InnerException for more details.");
+        }
+
+        public static CommunicationException GetLinkEntityCyclicalException()
+        {
+            return new CommunicationException("There was an error while trying to serialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:request. The InnerException message was 'Object graph for type 'Microsoft.Xrm.Sdk.Query.LinkEntity' contains cycles and cannot be serialized if reference tracking is disabled.'.  Please see InnerException for more details.");
         }
 
         public static FaultException<OrganizationServiceFault> GetIntShouldBeStringOrIntException(string qualifiedAttributeName)

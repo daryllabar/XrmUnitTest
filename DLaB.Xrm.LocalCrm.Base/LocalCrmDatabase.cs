@@ -344,7 +344,8 @@ namespace DLaB.Xrm.LocalCrm
         private static EntityCollection ReadEntities<T>(LocalCrmDatabaseOrganizationService service, QueryExpression qe, DelayedException delay) where T : Entity
         {
             // Need to assert value
-            if (AssertValidAttributeExpressionQuery(qe, delay)
+            if (AssertNonCyclicalQuery(qe, delay)
+                ||AssertValidAttributeExpressionQuery(qe, delay)
                 || AssertValidQueryTypes(qe, delay)
                 || AssertValidCount(qe, delay))
             {
@@ -391,15 +392,65 @@ namespace DLaB.Xrm.LocalCrm
             return result;
         }
 
+        private static bool AssertNonCyclicalQuery(QueryExpression query, DelayedException delay)
+        {
+            var visited = new HashSet<FilterExpression>();
+            var toVisit = new Stack<FilterExpression>();
+            toVisit.Push(query.Criteria);
+
+            var visitedLinks = new HashSet<LinkEntity>();
+            var toVisitLinks = new Stack<LinkEntity>();
+            foreach (var link in query.LinkEntities)
+            {
+                toVisitLinks.Push(link);
+            }
+            while (toVisitLinks.Count > 0)
+            {
+                var current = toVisitLinks.Pop();
+                if (!visitedLinks.Add(current))
+                {
+                    delay.Exception = CrmExceptions.GetLinkEntityCyclicalException();
+                    return true;
+                }
+                if (current.LinkCriteria != null)
+                {
+                    toVisit.Push(current.LinkCriteria);
+                }
+                foreach (var child in current.LinkEntities)
+                {
+                    toVisitLinks.Push(child);
+                }
+            }
+
+            while (toVisit.Count > 0)
+            {
+                var current = toVisit.Pop();
+                if (!visited.Add(current))
+                {
+                    delay.Exception = CrmExceptions.GetFilterExpressionCyclicalException();
+                    return true;
+                }
+                foreach (var child in current.Filters)
+                {
+                    toVisit.Push(child);
+                }
+            }
+
+            return false;
+        }
+
         private static bool AssertValidQueryTypes(QueryExpression query, DelayedException delay)
         {
-            var filtersToSearch = new List<FilterExpression>{query.Criteria};
+            var filtersToSearch = new Stack<FilterExpression>();
+            filtersToSearch.Push(query.Criteria);
             while (filtersToSearch.Count > 0)
             {
-                var index = filtersToSearch.Count - 1;
-                var filter = filtersToSearch[index];
-                filtersToSearch.RemoveAt(0);
-                filtersToSearch.AddRange(filter.Filters);
+                var filter = filtersToSearch.Pop();
+                foreach (var child in filter.Filters)
+                {
+                    filtersToSearch.Push(child);
+                }
+
                 foreach (var condition in filter.Conditions)
                 {
                     // This potentially could be expanded to include most references types.

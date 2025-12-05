@@ -767,19 +767,51 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmTests_Crud_EarlyBoundQueryErrors()
+        public void LocalCrmTests_Crud_EarlyBoundCyclicalFilterErrors()
         {
+            const string errorMessage = "There was an error while trying to serialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:request. The InnerException message was 'Object graph for type 'Microsoft.Xrm.Sdk.DataCollection`1[[Microsoft.Xrm.Sdk.Query.FilterExpression, Microsoft.Xrm.Sdk, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]]' contains cycles and cannot be serialized if reference tracking is disabled.'.  Please see InnerException for more details.";
             TestInitializer.InitializeTestSettings();
             var service = GetService();
-            Assert.That.ThrowsException<FaultException<OrganizationServiceFault>>(
-                () => service.GetFirstOrDefault<Contact>(Contact.Fields.StateCode, ContactState.Active),
-                "The formatter threw an exception while trying to deserialize the message: There was an error while trying to deserialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:query. The InnerException message was 'Error in line 1 position 1978. Element 'http://schemas.microsoft.com/2003/10/Serialization/Arrays:anyType' contains data from a type that maps to the name 'DLaB.Xrm.Entities:ContactState'. The deserializer has no knowledge of any type that maps to this name. Consider changing the implementation of the ResolveName method on your DataContractResolver to return a non-null value for name 'ContactState' and namespace 'DLaB.Xrm.Entities'.'.  Please see InnerException for more details.");
+            var qe = new QueryExpression(Contact.EntityLogicalName);
+            qe.Criteria.AddFilter(qe.Criteria);
+
+            Assert.That.ThrowsException<CommunicationException>(() => service.RetrieveMultiple(qe), errorMessage);
+
+            qe = new QueryExpression(Contact.EntityLogicalName);
+            var link = qe.AddLink<Contact>(Contact.Fields.ParentCustomerId, Contact.Fields.Id);
+            link.LinkCriteria.AddFilter(link.LinkCriteria);
+            Assert.That.ThrowsException<CommunicationException>(() => service.RetrieveMultiple(qe), errorMessage);
+
+            qe = new QueryExpression(Contact.EntityLogicalName);
+            link = qe.AddLink<Contact>(Contact.Fields.ParentCustomerId, Contact.Fields.Id);
+            link.LinkCriteria.AddFilter(qe.Criteria);
+            qe.Criteria.AddFilter(link.LinkCriteria);
+            Assert.That.ThrowsException<CommunicationException>(() => service.RetrieveMultiple(qe), errorMessage);
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_Crud_EarlyBoundCyclicalLinkEntityErrors()
+        {
+            const string errorMessage = "There was an error while trying to serialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:request. The InnerException message was 'Object graph for type 'Microsoft.Xrm.Sdk.Query.LinkEntity' contains cycles and cannot be serialized if reference tracking is disabled.'.  Please see InnerException for more details.";
+            TestInitializer.InitializeTestSettings();
+            var service = GetService();
+            var qe = new QueryExpression(Contact.EntityLogicalName);
+            var link = qe.AddLink<SystemUser>(Contact.Fields.OwnerId, SystemUser.PrimaryIdAttribute);
+            link.LinkEntities.Add(link);
+            Assert.That.ThrowsException<CommunicationException>(() => service.RetrieveMultiple(qe), errorMessage);
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_Crud_EarlyBoundQueryTypeErrors()
+        {
+            const string errorMessage = "The formatter threw an exception while trying to deserialize the message: There was an error while trying to deserialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:query. The InnerException message was 'Error in line 1 position 1978. Element 'http://schemas.microsoft.com/2003/10/Serialization/Arrays:anyType' contains data from a type that maps to the name 'DLaB.Xrm.Entities:ContactState'. The deserializer has no knowledge of any type that maps to this name. Consider changing the implementation of the ResolveName method on your DataContractResolver to return a non-null value for name 'ContactState' and namespace 'DLaB.Xrm.Entities'.'.  Please see InnerException for more details.";
+            TestInitializer.InitializeTestSettings();
+            var service = GetService();
+            Assert.That.ThrowsException<FaultException<OrganizationServiceFault>>(() => service.GetFirstOrDefault<Contact>(Contact.Fields.StateCode, ContactState.Active), errorMessage);
 
             // Test with a Contact in it (triggers Query logic)
             service.Create(new Contact());
-            Assert.That.ThrowsException<FaultException<OrganizationServiceFault>>(
-                () => service.GetFirstOrDefault<Contact>(Contact.Fields.StateCode, ContactState.Active),
-                "The formatter threw an exception while trying to deserialize the message: There was an error while trying to deserialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:query. The InnerException message was 'Error in line 1 position 1978. Element 'http://schemas.microsoft.com/2003/10/Serialization/Arrays:anyType' contains data from a type that maps to the name 'DLaB.Xrm.Entities:ContactState'. The deserializer has no knowledge of any type that maps to this name. Consider changing the implementation of the ResolveName method on your DataContractResolver to return a non-null value for name 'ContactState' and namespace 'DLaB.Xrm.Entities'.'.  Please see InnerException for more details.");
+            Assert.That.ThrowsException<FaultException<OrganizationServiceFault>>(() => service.GetFirstOrDefault<Contact>(Contact.Fields.StateCode, ContactState.Active), errorMessage);
         }
 
         [TestMethod]
