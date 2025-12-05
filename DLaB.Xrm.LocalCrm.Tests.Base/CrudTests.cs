@@ -767,6 +767,22 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
+        public void LocalCrmTests_Crud_EarlyBoundQueryErrors()
+        {
+            TestInitializer.InitializeTestSettings();
+            var service = GetService();
+            Assert.That.ThrowsException<FaultException<OrganizationServiceFault>>(
+                () => service.GetFirstOrDefault<Contact>(Contact.Fields.StateCode, ContactState.Active),
+                "The formatter threw an exception while trying to deserialize the message: There was an error while trying to deserialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:query. The InnerException message was 'Error in line 1 position 1978. Element 'http://schemas.microsoft.com/2003/10/Serialization/Arrays:anyType' contains data from a type that maps to the name 'DLaB.Xrm.Entities:ContactState'. The deserializer has no knowledge of any type that maps to this name. Consider changing the implementation of the ResolveName method on your DataContractResolver to return a non-null value for name 'ContactState' and namespace 'DLaB.Xrm.Entities'.'.  Please see InnerException for more details.");
+
+            // Test with a Contact in it (triggers Query logic)
+            service.Create(new Contact());
+            Assert.That.ThrowsException<FaultException<OrganizationServiceFault>>(
+                () => service.GetFirstOrDefault<Contact>(Contact.Fields.StateCode, ContactState.Active),
+                "The formatter threw an exception while trying to deserialize the message: There was an error while trying to deserialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:query. The InnerException message was 'Error in line 1 position 1978. Element 'http://schemas.microsoft.com/2003/10/Serialization/Arrays:anyType' contains data from a type that maps to the name 'DLaB.Xrm.Entities:ContactState'. The deserializer has no knowledge of any type that maps to this name. Consider changing the implementation of the ResolveName method on your DataContractResolver to return a non-null value for name 'ContactState' and namespace 'DLaB.Xrm.Entities'.'.  Please see InnerException for more details.");
+        }
+
+        [TestMethod]
         public void LocalCrmTests_Crud_EntityIdMustMatch()
         {
             TestInitializer.InitializeTestSettings();

@@ -66,7 +66,7 @@ namespace DLaB.Xrm.LocalCrm
         public static FaultException<OrganizationServiceFault> GetFormatterException(Type type)
         {
             return CreateFault(-1, string.Format(@"The formatter threw an exception while trying to deserialize the message: There was an error while trying to deserialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:query. The InnerException message was 'Error in line 1 position 1978. Element 'http://schemas.microsoft.com/2003/10/Serialization/Arrays:anyType' contains data from a type that maps to the name " +
-                "'{0}:{1}'.The deserializer has no knowledge of any type that maps to this name. Consider changing the implementation of the ResolveName method on your DataContractResolver to return a non-null value for name '{1}' and namespace '{0}'.'. Please see InnerException for more details.", type.Namespace, type.Name));
+                "'{0}:{1}'. The deserializer has no knowledge of any type that maps to this name. Consider changing the implementation of the ResolveName method on your DataContractResolver to return a non-null value for name '{1}' and namespace '{0}'.'.  Please see InnerException for more details.", type.Namespace, type.Name));
         }
 
         public static FaultException<OrganizationServiceFault> GetTopCountCantBeSpecifiedWithPagingInfoException(int topCount)

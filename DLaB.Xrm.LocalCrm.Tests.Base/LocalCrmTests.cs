@@ -44,7 +44,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmTests_Something()
+        public void LocalCrmTests_EmailActivityParty_RequiresPartyIdOrAddressUsed()
         {
             var service = GetService();
             var email = new Entity(Email.EntityLogicalName);

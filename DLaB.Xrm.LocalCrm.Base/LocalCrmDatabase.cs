@@ -1,10 +1,4 @@
 ﻿#nullable enable
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
 using DLaB.Xrm.CrmSdk;
 using DLaB.Xrm.LocalCrm.Entities;
 using DLaB.Xrm.LocalCrm.FetchXml;
@@ -14,6 +8,12 @@ using Microsoft.Xrm.Sdk.Query;
 using NMemory;
 using NMemory.Exceptions;
 using NMemory.Tables;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
 
 namespace DLaB.Xrm.LocalCrm
 {
@@ -118,16 +118,10 @@ namespace DLaB.Xrm.LocalCrm
             }
 
             var compareToType = compareTo.GetType();
-            // This potentially could be expanded to include most references types.
-            if (compareToType.IsEnum)
-            {
-                throw CrmExceptions.GetFormatterException(compareToType);
-            }
-
-            if (compareToType == typeof(string) && value is string)
+            if (compareToType == typeof(string) && value is string strValue)
             {
                 // Handle String Casing Issues
-                return string.Compare((string) value, (string) compareTo, StringComparison.OrdinalIgnoreCase);
+                return string.Compare(strValue, (string) compareTo, StringComparison.OrdinalIgnoreCase);
             }
 
             if (compareToType == typeof(DateTime) && value is DateTime)
@@ -349,7 +343,9 @@ namespace DLaB.Xrm.LocalCrm
 
         private static EntityCollection ReadEntities<T>(LocalCrmDatabaseOrganizationService service, QueryExpression qe, DelayedException delay) where T : Entity
         {
+            // Need to assert value
             if (AssertValidAttributeExpressionQuery(qe, delay)
+                || AssertValidQueryTypes(qe, delay)
                 || AssertValidCount(qe, delay))
             {
                 return null!;
@@ -395,6 +391,29 @@ namespace DLaB.Xrm.LocalCrm
             return result;
         }
 
+        private static bool AssertValidQueryTypes(QueryExpression query, DelayedException delay)
+        {
+            var filtersToSearch = new List<FilterExpression>{query.Criteria};
+            while (filtersToSearch.Count > 0)
+            {
+                var index = filtersToSearch.Count - 1;
+                var filter = filtersToSearch[index];
+                filtersToSearch.RemoveAt(0);
+                filtersToSearch.AddRange(filter.Filters);
+                foreach (var condition in filter.Conditions)
+                {
+                    // This potentially could be expanded to include most references types.
+                    var value = condition.Values.FirstOrDefault(v => v != null && v.GetType().IsEnum);
+                    if (value != null)
+                    {
+                        delay.Exception = CrmExceptions.GetFormatterException(value.GetType());
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
         private static bool AssertValidCount(QueryExpression query, DelayedException delay)
         {
             if (query.TopCount.HasValue
