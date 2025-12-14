@@ -34,7 +34,7 @@ namespace DLaB.Xrm.LocalCrm
                 SetOwnerForCreate(service, entity, properties);
                 ConditionallyAddValue(entity, properties, Email.Fields.CreatedBy, info.User, info.User.GetIdOrDefault() != Guid.Empty);
                 ConditionallyAddValue(entity, properties, Email.Fields.CreatedOnBehalfBy, info.UserOnBehalfOf, info.UserOnBehalfOf.GetIdOrDefault() != Guid.Empty);
-                ConditionallyAddValue(entity, properties, Email.Fields.CreatedOn, entity.Contains(Email.Fields.OverriddenCreatedOn) ? entity[Email.Fields.OverriddenCreatedOn] : DateTime.UtcNow);
+                ConditionallyAddValue(entity, properties, Email.Fields.CreatedOn, entity.Contains(Email.Fields.OverriddenCreatedOn) ? entity[Email.Fields.OverriddenCreatedOn] : service.Info.TimeProvider.GetUtcNow());
                 ConditionallyAddValue(entity, properties, Email.Fields.OwningBusinessUnit, info.BusinessUnit, !entity.Contains(Email.Fields.OwningBusinessUnit) && info.BusinessUnit.GetIdOrDefault() != Guid.Empty);
             }
             else if (entity.Contains(Email.Fields.OwnerId))
@@ -114,7 +114,7 @@ namespace DLaB.Xrm.LocalCrm
         {
             ConditionallyAddValue(entity, properties, Email.Fields.ModifiedBy, info.User, info.User.GetIdOrDefault() != Guid.Empty);
             ConditionallyAddValue(entity, properties, Email.Fields.ModifiedOnBehalfBy, info.UserOnBehalfOf, info.UserOnBehalfOf.GetIdOrDefault() != Guid.Empty);
-            ConditionallyAddValue(entity, properties, Email.Fields.ModifiedOn, DateTime.UtcNow);
+            ConditionallyAddValue(entity, properties, Email.Fields.ModifiedOn, info.TimeProvider.GetUtcNow());
         }
 
         #region Full Name Formatting

@@ -140,7 +140,7 @@ namespace DLaB.Xrm.LocalCrm
             int months;
             int years;
             bool value;
-            var date = DateTime.UtcNow.Date;
+            var date = context.TimeProvider.GetUtcNow().Date;
             var startOfMonth = date.AddDays(-date.Day + 1);
             var startOfYear = date.AddDays(-date.Day + 1).AddMonths(-date.Month +1);
             AssertExpectedNumberOfValues(condition);
@@ -273,7 +273,7 @@ namespace DLaB.Xrm.LocalCrm
                     {
                         throw CrmExceptions.GetConditionValueGreaterThan0Exception();
                     }
-                    value = IsBetween(entity, condition, DateTime.UtcNow.AddHours(-1d * days), DateTime.UtcNow, context);
+                    value = IsBetween(entity, condition, context.TimeProvider.GetUtcNow().AddHours(-1d * days), context.TimeProvider.GetUtcNow(), context);
                     break;
                 case ConditionOperator.NextXHours:
                     days = condition.GetIntValueFromIntOrString();
@@ -281,7 +281,7 @@ namespace DLaB.Xrm.LocalCrm
                     {
                         throw CrmExceptions.GetConditionValueGreaterThan0Exception();
                     }
-                    value = IsBetween(entity, condition, DateTime.UtcNow, DateTime.UtcNow.AddHours(days), context);
+                    value = IsBetween(entity, condition, context.TimeProvider.GetUtcNow(), context.TimeProvider.GetUtcNow().AddHours(days), context);
                     break;
                 case ConditionOperator.LastXDays:
                     days = condition.GetIntValueFromIntOrString();

@@ -142,7 +142,7 @@ namespace DLaB.Xrm.LocalCrm
                     {
                         FaultedRequestIndex = i,
                         Message = ex.Message,
-                        Timestamp = DateTime.UtcNow,
+                        Timestamp = Info.TimeProvider.GetUtcNow(),
                         ErrorDetails =
                         {
                             ["CallStack"] = ex.StackTrace
@@ -211,7 +211,7 @@ namespace DLaB.Xrm.LocalCrm
                     fault = new OrganizationServiceFault
                     {
                         Message = ex.Message,
-                        Timestamp = DateTime.UtcNow,
+                        Timestamp = Info.TimeProvider.GetUtcNow(),
                         ErrorDetails =
                         {
                             ["CallStack"] = ex.StackTrace
@@ -991,7 +991,7 @@ namespace DLaB.Xrm.LocalCrm
         }
 
 #if !PRE_MULTISELECT
-        private static void AssertEntityNamePopulated(OrganizationRequest request)
+        private void AssertEntityNamePopulated(OrganizationRequest request)
         {
             if (!string.IsNullOrWhiteSpace(request.Parameters.GetParameterValue<EntityCollection>(nameof(CreateMultipleRequest.Targets)).EntityName)){
                 return;
@@ -1002,7 +1002,7 @@ namespace DLaB.Xrm.LocalCrm
             {
                 ErrorCode = ErrorCodes.SdkEntityDoesNotSupportMessage,
                 Message = message,
-                Timestamp = DateTime.UtcNow,
+                Timestamp = Info.TimeProvider.GetUtcNow(),
             }, new FaultReason(message))
             {
 #if net

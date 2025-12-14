@@ -100,6 +100,10 @@ namespace DLaB.Xrm.LocalCrm
         /// </summary>
         public IPrimaryNameProvider PrimaryNameProvider { get; set; }
         /// <summary>
+        /// The Time Provider
+        /// </summary>
+        public ITimeProvider TimeProvider { get; set; }
+        /// <summary>
         /// The organization identifier.
         /// </summary>
         /// <value>
@@ -274,6 +278,7 @@ namespace DLaB.Xrm.LocalCrm
 #if !XRM_2013
                 State = optionalSettings.State ?? OrganizationState.Enabled,
 #endif
+                TimeProvider = optionalSettings.TimeProvider ?? new TimeProvider(),
                 TenantId = optionalSettings.TenantId ?? Guid.NewGuid(),
                 UrlName = optionalSettings.UrlName ?? urlName,
                 User = GetRef(optionalSettings.UserId, Entities.SystemUser.EntityLogicalName, AppConfig.CrmSystemSettings.UserId),

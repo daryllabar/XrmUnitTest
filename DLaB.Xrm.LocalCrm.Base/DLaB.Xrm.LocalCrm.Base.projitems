@@ -58,6 +58,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)PrimaryNameViaNonStandardNamesProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PrimitiveTypeConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)QueryContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TimeProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TypeToMetadataGenerator.cs" />
   </ItemGroup>
 </Project>

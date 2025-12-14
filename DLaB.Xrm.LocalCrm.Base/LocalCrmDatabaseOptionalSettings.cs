@@ -120,6 +120,11 @@ namespace DLaB.Xrm.LocalCrm
         public Guid? TenantId { get; set; }
 
         /// <summary>
+        /// The Time Provider
+        /// </summary>
+        public ITimeProvider? TimeProvider { get; set; }
+
+        /// <summary>
         /// Gets or sets the URL name.
         /// </summary>
         public string UrlName { get; set; }
