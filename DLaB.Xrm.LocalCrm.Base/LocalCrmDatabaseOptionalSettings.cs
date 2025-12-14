@@ -122,7 +122,7 @@ namespace DLaB.Xrm.LocalCrm
         /// <summary>
         /// The Time Provider
         /// </summary>
-        public ITimeProvider? TimeProvider { get; set; }
+        public ITimeProvider TimeProvider { get; set; }
 
         /// <summary>
         /// Gets or sets the URL name.
