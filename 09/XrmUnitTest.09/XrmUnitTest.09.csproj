@@ -31,7 +31,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="DLaB.Xrm" Version="5.1.1.1" />
-		<PackageReference Include="Microsoft.CrmSdk.CoreAssemblies" Version="9.0.2.59" />
+		<PackageReference Include="Microsoft.CrmSdk.CoreAssemblies" Version="9.0.2.60" />
 		<PackageReference Include="System.Text.Json" Version="9.0.0" />
 		<PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
 		<PackageReference Include="Microsoft.CrmSdk.XrmTooling.CoreAssembly" Version="9.1.1.65" />
