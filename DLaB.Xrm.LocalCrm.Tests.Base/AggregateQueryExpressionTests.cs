@@ -261,6 +261,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             try
             {
                 service.GetFirst<Account>(qe);
+                Assert.Fail("Aggregate Exception Expected");
             }
             catch (FaultException<OrganizationServiceFault> ex)
             {
@@ -272,28 +273,47 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 qe.ColumnSet.AllColumns = false;
                 qe.ColumnSet.AddColumn(Account.Fields.Name);
                 service.GetFirst<Account>(qe);
+                Assert.Fail("Aggregate Exception Expected");
             }
             catch (FaultException<OrganizationServiceFault> ex)
             {
                 Assert.AreEqual("Attribute can not be specified if an aggregate operation is requested.", ex.Detail.Message, "Exception message does not contain expected text.");
             }
 
+            qe.ColumnSet.Columns.Clear();
+            qe.ColumnSet.AttributeExpressions.Add(new XrmAttributeExpression(
+                attributeName: Account.Fields.Name,
+                alias: "Name",
+                aggregateType: XrmAggregateType.None)
+            {
+                HasGroupBy = false
+            });
+            service.GetFirst<Account>(qe);
+
+            var qe2 = QueryExpressionFactory.Create<ActivityPointer>();
+            qe2.ColumnSet.AttributeExpressions.Add(new XrmAttributeExpression
+            {
+                AggregateType = XrmAggregateType.Max,
+                AttributeName = ActivityPointer.Fields.ModifiedOn,
+                Alias = "LastActivityDate",
+            });
+            qe2.ColumnSet.AttributeExpressions.Add(new XrmAttributeExpression
+            {
+                AggregateType = XrmAggregateType.None,
+                AttributeName = ActivityPointer.Fields.RegardingObjectId,
+                Alias = "RegardingId",
+                HasGroupBy = true,
+            });
             try
             {
-                qe.ColumnSet.Columns.Clear();
-                qe.ColumnSet.AttributeExpressions.Add(new XrmAttributeExpression(
-                    attributeName: Account.Fields.Name,
-                    alias: "Name",
-                    aggregateType: XrmAggregateType.None)
-                {
-                    HasGroupBy = false
-                });
-                service.GetFirst<Account>(qe);
+                service.GetFirstOrDefault<ActivityPointer>(qe2);
+                Assert.Fail("Aggregate Exception Expected");
             }
             catch (FaultException<OrganizationServiceFault> ex)
             {
                 Assert.AreEqual("Attribute can not be specified if an aggregate operation is requested.", ex.Detail.Message, "Exception message does not contain expected text.");
             }
+
 
             qe.ColumnSet.AttributeExpressions.Clear();
             Assert.IsNotNull(service.GetFirst<Account>());

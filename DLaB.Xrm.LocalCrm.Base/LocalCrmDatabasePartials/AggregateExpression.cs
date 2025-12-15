@@ -30,7 +30,7 @@ namespace DLaB.Xrm.LocalCrm
                 return true;
             }
 
-            if (query.ColumnSet?.AttributeExpressions?.Any(a => a.HasGroupBy && a.AggregateType != XrmAggregateType.None) == true
+            if (query.ColumnSet?.AttributeExpressions?.Any(a => a.HasGroupBy || a.AggregateType != XrmAggregateType.None) == true
                 && (query.ColumnSet.AllColumns
                     || query.ColumnSet.Columns.Any()))
             {
