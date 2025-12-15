@@ -313,7 +313,8 @@ namespace DLaB.Xrm.LocalCrm.Tests
             {
                 Assert.AreEqual("Attribute can not be specified if an aggregate operation is requested.", ex.Detail.Message, "Exception message does not contain expected text.");
             }
-
+            qe2.ColumnSet.AllColumns = false;
+            service.GetFirstOrDefault(qe);
 
             qe.ColumnSet.AttributeExpressions.Clear();
             Assert.IsNotNull(service.GetFirst<Account>());
