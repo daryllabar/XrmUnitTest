@@ -148,7 +148,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <exception cref="System.Exception"></exception>
         private void ApplyCustomAction<TBuilder>(string logicalName, Action<TBuilder> action) where TBuilder : class, IEntityBuilder
         {
-            if (!BuildersByEntityType.TryGetValue(logicalName, out List<BuilderInfo> builders))
+            if (!BuildersByEntityType.TryGetValue(logicalName, out var builders))
             {
                 return;
             }
@@ -170,7 +170,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="builder">The builder.</param>
         private void ApplyCustomActions(string logicalName, object builder)
         {
-            if (CustomBuilderFluentActions.TryGetValue(logicalName, out Action<object> customAction))
+            if (CustomBuilderFluentActions.TryGetValue(logicalName, out var customAction))
             {
                 customAction(builder);
             }
@@ -188,7 +188,7 @@ namespace DLaB.Xrm.Test.Builders
             var postCreateUpdates = new List<Entity>();
             foreach (var info in EntityDependency.Mapper.EntityCreationOrder)
             {
-                if (!BuildersByEntityType.TryGetValue(info.LogicalName, out List<BuilderInfo> values))
+                if (!BuildersByEntityType.TryGetValue(info.LogicalName, out var values))
                 {
                     // The Entity Creation Order is a Singleton.
                     // If this continue occurs, most likely another instance of a Crm Environment Builder used a type that wasn't utilized by this instance
@@ -240,7 +240,7 @@ namespace DLaB.Xrm.Test.Builders
         {
             results.Add(entity.Id, entity);
             builders.Add(new Tuple<Guid, BuilderInfo>(entity.Id, builder));
-            if (Ids.TryGetValue(entity.Id, out Id id))
+            if (Ids.TryGetValue(entity.Id, out var id))
             {
                 id.Entity = entity;
             }
@@ -248,7 +248,7 @@ namespace DLaB.Xrm.Test.Builders
 
         private void AddPostCreateAttributesToIdEntity(Dictionary<Guid, Entity> results, Entity postCreateEntity)
         {
-            if (results.TryGetValue(postCreateEntity.Id, out Entity entity))
+            if (results.TryGetValue(postCreateEntity.Id, out var entity))
             {
                 foreach (var att in postCreateEntity.Attributes)
                 {
@@ -256,7 +256,7 @@ namespace DLaB.Xrm.Test.Builders
                 }
             }
 
-            if (Ids.TryGetValue(postCreateEntity.Id, out Id id))
+            if (Ids.TryGetValue(postCreateEntity.Id, out var id))
             {
                 foreach (var att in postCreateEntity.Attributes)
                 {
@@ -360,9 +360,9 @@ namespace DLaB.Xrm.Test.Builders
             {
                 Ids.Add(id, id);
             }
-            if (Builders.TryGetValue(id, out BuilderInfo builder)) { return builder.Builder; }
+            if (Builders.TryGetValue(id, out var builder)) { return builder.Builder; }
 
-            if (!DefaultBuilderConstructors.TryGetValue(id, out ConstructorInfo constructor))
+            if (!DefaultBuilderConstructors.TryGetValue(id, out var constructor))
             {
                 constructor = GetGenericConstructor(id);
             }
@@ -397,7 +397,7 @@ namespace DLaB.Xrm.Test.Builders
         {
             var constructor = GetIdConstructor<TBuilder>();
 
-            if (DefaultBuilderConstructors.TryGetValue(logicalName, out ConstructorInfo existingConstructor))
+            if (DefaultBuilderConstructors.TryGetValue(logicalName, out var existingConstructor))
             {
                 // Should only have one type.  Check to make sure type is the same
                 if (existingConstructor.DeclaringType != constructor.DeclaringType)

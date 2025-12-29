@@ -10,6 +10,7 @@
     <AssemblyVersion>3.4.0.33</AssemblyVersion>
     <FileVersion>3.4.0.33</FileVersion>
 	  <LangVersion>latest</LangVersion>
+	  <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -22,8 +22,6 @@ using System.Xml.Serialization;
 using Microsoft.Xrm.Sdk.Organization;
 #endif
 
-
-
 namespace DLaB.Xrm.LocalCrm
 {
 #if !DEBUG_XRM_UNIT_TEST_CODE
@@ -690,7 +688,7 @@ namespace DLaB.Xrm.LocalCrm
                                    }
                                    
                                    var att = a.GetCustomAttributes(typeof(RelationshipSchemaNameAttribute), false);
-                                   return att.Length != 0 && ((RelationshipSchemaNameAttribute)att.FirstOrDefault())?.SchemaName == request.Name;
+                                   return att.Length > 0 && ((RelationshipSchemaNameAttribute)att.First())?.SchemaName == request.Name;
                                });
                 if (property != null)
                 {

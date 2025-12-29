@@ -554,32 +554,22 @@ namespace DLaB.Xrm.LocalCrm
                 }
             }
 
-            IOrderedEnumerable<T> orderedEntities = null;
+            IOrderedEnumerable<T>? orderedEntities = null;
             // Preform Order;
             foreach (var order in fe.Items.Where(o => o is FetchOrderType).Cast<FetchOrderType>())
             {
                 var localOrder = order;
                 if (orderedEntities == null)
                 {
-                    if (order.descending)
-                    {
-                        orderedEntities = entities.OrderByDescending(e => e.GetAliasedValue<object>(localOrder.alias));
-                    }
-                    else
-                    {
-                        orderedEntities = entities.OrderBy(e => e.GetAliasedValue<object>(localOrder.alias));
-                    }
+                    orderedEntities = order.descending
+                        ? entities.OrderByDescending(e => e.GetAliasedValue<object>(localOrder.alias))
+                        : entities.OrderBy(e => e.GetAliasedValue<object>(localOrder.alias));
                 }
                 else
                 {
-                    if (order.descending)
-                    {
-                        orderedEntities = orderedEntities.ThenByDescending(e => e.GetAliasedValue<object>(localOrder.alias));
-                    }
-                    else
-                    {
-                        orderedEntities = orderedEntities.ThenBy(e => e.GetAliasedValue<object>(localOrder.alias));
-                    }
+                    orderedEntities = order.descending
+                        ? orderedEntities.ThenByDescending(e => e.GetAliasedValue<object>(localOrder.alias))
+                        : orderedEntities.ThenBy(e => e.GetAliasedValue<object>(localOrder.alias));
                 }
             }
 
@@ -652,7 +642,7 @@ namespace DLaB.Xrm.LocalCrm
                     distinctValues.Add(value);
                 }
 
-                var aliasValue = entity.GetAliasedValue<Money>(aggregate.alias).GetValueOrDefault();
+                var aliasValue = entity.GetAliasedValue<Money?>(aggregate.alias)?.GetValueOrDefault() ?? 0m;
                 if (aggregateEntities.TryGetValue(key.ToString(), out T temp))
                 {
                     var current = (Money)temp.GetAttributeValue<AliasedValue>(aggregate.alias).Value;

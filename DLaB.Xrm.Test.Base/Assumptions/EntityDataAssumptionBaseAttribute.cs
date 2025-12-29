@@ -225,9 +225,15 @@ namespace DLaB.Xrm.Test.Assumptions
 #else
                 var serializedValue = sdkEntity.Serialize(true);
 #endif
+                WriteEntityToFile(GetSerializedFilePath(AssumptionsNamespaceRelativePath), serializedValue);
             }
 
             return entity;
+        }
+
+        protected virtual void WriteEntityToFile(string fileName, string serializedValue)
+        {
+            File.WriteAllText(GetSerializedFilePath(AssumptionsNamespaceRelativePath), serializedValue);
         }
 
         /// <summary>

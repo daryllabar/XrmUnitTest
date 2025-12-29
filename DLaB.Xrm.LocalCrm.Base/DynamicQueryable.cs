@@ -9,6 +9,15 @@ using System.Reflection.Emit;
 using System.Threading;
 // ReSharper disable All
 #pragma warning disable 1591
+#pragma warning disable 8600
+#pragma warning disable 8603
+#pragma warning disable 8604
+#pragma warning disable 8605
+#pragma warning disable 8618
+#pragma warning disable 8619
+#pragma warning disable 8625
+#pragma warning disable 8765
+#pragma warning disable 8767
 
 namespace DLaB.Xrm.LocalCrm
 {

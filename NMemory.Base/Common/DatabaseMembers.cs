@@ -21,7 +21,7 @@
 //     THE SOFTWARE.
 // </copyright>
 // ----------------------------------------------------------------------------------
-
+#pragma warning disable 8625
 namespace NMemory.Common
 {
     using System.Collections.Generic;

@@ -13,20 +13,20 @@ namespace DLaB.Xrm.LocalCrm.FetchXml
         /// <value>
         /// The key.
         /// </value>
-        public string Key { get; set; }
+        public string? Key { get; set; }
         /// <summary>
         /// Gets or sets the entity.
         /// </summary>
         /// <value>
         /// The entity.
         /// </value>
-        public Entity Entity { get; set; }
+        public Entity? Entity { get; set; }
         /// <summary>
         /// Gets or sets the count.
         /// </summary>
         /// <value>
         /// The count.
         /// </value>
-        public int  Count { get; set; }
+        public int Count { get; set; }
     }
 }

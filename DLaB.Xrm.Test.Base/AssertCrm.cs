@@ -45,7 +45,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public void Exists(Entity entity, string message = null, params object[] parameters) 
+        public void Exists(Entity entity, string? message = null, params object[] parameters) 
         {
             Exists(Service, entity, message, parameters);
         }
@@ -58,7 +58,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public static void Exists(IOrganizationService service, Entity entity, string message = null, params object[] parameters)
+        public static void Exists(IOrganizationService service, Entity entity, string? message = null, params object[] parameters)
         {
             try
             {
@@ -81,7 +81,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public void Exists(EntityReference entityReference, string message = null, params object[] parameters) 
+        public void Exists(EntityReference entityReference, string? message = null, params object[] parameters) 
         {
             Exists(Service, entityReference, message, parameters);
         }
@@ -94,7 +94,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public static void Exists(IOrganizationService service, EntityReference entityReference, string message = null, params object[] parameters) 
+        public static void Exists(IOrganizationService service, EntityReference entityReference, string? message = null, params object[] parameters) 
         {
             try
             {
@@ -117,7 +117,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public void Exists(Id entity, string message = null, params object[] parameters)
+        public void Exists(Id entity, string? message = null, params object[] parameters)
         {
             Exists(Service, entity, message, parameters);
         }
@@ -130,7 +130,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public static void Exists(IOrganizationService service, Id entity, string message = null, params object[] parameters)
+        public static void Exists(IOrganizationService service, Id entity, string? message = null, params object[] parameters)
         {
             try
             {
@@ -153,7 +153,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public void Exists<T>(Id<T> entity, string message = null, params object[] parameters) where T: Entity
+        public void Exists<T>(Id<T> entity, string? message = null, params object[] parameters) where T: Entity
         {
             Exists(Service, entity, message, parameters);
         }
@@ -166,7 +166,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public static void Exists<T>(IOrganizationService service, Id<T> entity, string message = null, params object[] parameters) where T : Entity
+        public static void Exists<T>(IOrganizationService service, Id<T> entity, string? message = null, params object[] parameters) where T : Entity
         {
             try
             {
@@ -190,7 +190,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public void IsActive<T>(T entity, string message = null, params object[] parameters) where T : Entity
+        public void IsActive<T>(T entity, string? message = null, params object[] parameters) where T : Entity
         {
             IsActive(Service, entity, message, parameters);
         }
@@ -204,7 +204,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public static void IsActive<T>(IOrganizationService service, T entity, string message = null, params object[] parameters) where T : Entity
+        public static void IsActive<T>(IOrganizationService service, T entity, string? message = null, params object[] parameters) where T : Entity
         {
             if (typeof (T) == typeof (Entity))
             {
@@ -238,7 +238,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public void IsActive<T>(Guid id, string message = null, params object[] parameters) where T : Entity
+        public void IsActive<T>(Guid id, string? message = null, params object[] parameters) where T : Entity
         {
             IsActive<T>(Service, id, message, parameters);
         }
@@ -252,7 +252,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public static void IsActive<T>(IOrganizationService service, Guid id, string message, params object[] parameters) where T : Entity
+        public static void IsActive<T>(IOrganizationService service, Guid id, string? message = null, params object[] parameters) where T : Entity
         {
             var isActive = ActivePropertyInfo<T>.IsActive(service, id);
             if (isActive == null)
@@ -277,7 +277,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public void IsActive<T>(Id id, string message = null, params object[] parameters) where T : Entity
+        public void IsActive<T>(Id id, string? message = null, params object[] parameters) where T : Entity
         {
             IsActive<T>(Service, id, message, parameters);
         }
@@ -291,7 +291,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public static void IsActive<T>(IOrganizationService service, Id id, string message = null, params object[] parameters) where T : Entity
+        public static void IsActive<T>(IOrganizationService service, Id id, string? message = null, params object[] parameters) where T : Entity
         {
             var isActive = ActivePropertyInfo<T>.IsActive(service, id);
             if (isActive == null)
@@ -316,7 +316,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public void IsActive<T>(Id<T> id, string message = null, params object[] parameters) where T : Entity
+        public void IsActive<T>(Id<T> id, string? message = null, params object[] parameters) where T : Entity
         {
             IsActive<T>(Service, id, message, parameters);
         }
@@ -330,7 +330,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public static void IsActive<T>(IOrganizationService service, Id<T> id, string message = null, params object[] parameters) where T : Entity
+        public static void IsActive<T>(IOrganizationService service, Id<T> id, string? message = null, params object[] parameters) where T : Entity
         {
             var isActive = ActivePropertyInfo<T>.IsActive(service, id);
             if (isActive == null)
@@ -355,7 +355,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public void IsNotActive<T>(T entity, string message = null, params object[] parameters) where T : Entity
+        public void IsNotActive<T>(T entity, string? message = null, params object[] parameters) where T : Entity
         {
             IsNotActive(Service, entity, message, parameters);
         }
@@ -369,7 +369,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public static void IsNotActive<T>(IOrganizationService service, T entity, string message = null, params object[] parameters) where T : Entity
+        public static void IsNotActive<T>(IOrganizationService service, T entity, string? message = null, params object[] parameters) where T : Entity
         {
             if (typeof(T) == typeof(Entity))
             {
@@ -403,7 +403,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public void IsNotActive<T>(Guid id, string message = null, params object[] parameters) where T : Entity
+        public void IsNotActive<T>(Guid id, string? message = null, params object[] parameters) where T : Entity
         {
             IsNotActive<T>(Service, id, message, parameters);
         }
@@ -417,7 +417,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public static void IsNotActive<T>(IOrganizationService service, Guid id, string message = null, params object[] parameters) where T : Entity
+        public static void IsNotActive<T>(IOrganizationService service, Guid id, string? message = null, params object[] parameters) where T : Entity
         {
             var isActive = ActivePropertyInfo<T>.IsActive(service, id);
             if (isActive == null)
@@ -442,7 +442,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public void IsNotActive<T>(Id id, string message = null, params object[] parameters) where T : Entity
+        public void IsNotActive<T>(Id id, string? message = null, params object[] parameters) where T : Entity
         {
             IsNotActive<T>(Service, id, message, parameters);
         }
@@ -456,7 +456,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public static void IsNotActive<T>(IOrganizationService service, Id id, string message = null, params object[] parameters) where T : Entity
+        public static void IsNotActive<T>(IOrganizationService service, Id id, string? message = null, params object[] parameters) where T : Entity
         {
             if (typeof(T) == typeof(Entity))
             {
@@ -490,7 +490,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public void IsNotActive<T>(Id<T> id, string message = null, params object[] parameters) where T : Entity
+        public void IsNotActive<T>(Id<T> id, string? message = null, params object[] parameters) where T : Entity
         {
             IsNotActive(Service, id, message, parameters);
         }
@@ -504,7 +504,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public static void IsNotActive<T>(IOrganizationService service, Id<T> id, string message = null, params object[] parameters) where T : Entity
+        public static void IsNotActive<T>(IOrganizationService service, Id<T> id, string? message = null, params object[] parameters) where T : Entity
         {
             if (typeof(T) == typeof(Entity))
             {
@@ -537,7 +537,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public void NotExists(Entity entity, string message = null, params object[] parameters)
+        public void NotExists(Entity entity, string? message = null, params object[] parameters)
         {
             NotExists(Service, entity, message, parameters);
         }
@@ -550,7 +550,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public static void NotExists(IOrganizationService service, Entity entity, string message = null, params object[] parameters)
+        public static void NotExists(IOrganizationService service, Entity entity, string? message = null, params object[] parameters)
         {
             if (service.GetEntityOrDefault(entity.LogicalName, entity.Id) != null)
             {
@@ -569,7 +569,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public void NotExists(EntityReference entityReference, string message = null, params object[] parameters)
+        public void NotExists(EntityReference entityReference, string? message = null, params object[] parameters)
         {
             NotExists(Service, entityReference, message, parameters);
         }
@@ -582,7 +582,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public static void NotExists(IOrganizationService service, EntityReference entityReference, string message = null, params object[] parameters)
+        public static void NotExists(IOrganizationService service, EntityReference entityReference, string? message = null, params object[] parameters)
         {
             if (service.GetEntityOrDefault(entityReference.LogicalName, entityReference.Id) != null)
             {
@@ -601,7 +601,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public void NotExists(Id id, string message = null, params object[] parameters)
+        public void NotExists(Id id, string? message = null, params object[] parameters)
         {
             NotExists(Service, id, message, parameters);
         }
@@ -614,7 +614,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public static void NotExists(IOrganizationService service, Id id, string message = null, params object[] parameters)
+        public static void NotExists(IOrganizationService service, Id id, string? message = null, params object[] parameters)
         {
             if (service.GetEntityOrDefault(id.LogicalName, id.EntityId) != null)
             {
@@ -633,7 +633,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public void NotExists<T>(Id<T> id, string message = null, params object[] parameters) where T : Entity
+        public void NotExists<T>(Id<T> id, string? message = null, params object[] parameters) where T : Entity
         {
             NotExists(Service, id, message, parameters);
         }
@@ -646,7 +646,7 @@ namespace DLaB.Xrm.Test
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         [DebuggerHidden]
-        public static void NotExists<T>(IOrganizationService service, Id<T> id, string message = null, params object[] parameters) where T : Entity
+        public static void NotExists<T>(IOrganizationService service, Id<T> id, string? message = null, params object[] parameters) where T : Entity
         {
             if (service.GetEntityOrDefault(id.LogicalName, id.EntityId) != null)
             {
@@ -659,7 +659,7 @@ namespace DLaB.Xrm.Test
         #region Handle
 
         [DebuggerHidden]
-        private static void HandleFail(string assertName, string message = null, params object[] parameters )
+        private static void HandleFail(string assertName, string? message = null, params object[]? parameters )
         {
             message = message ?? Empty;
            
@@ -669,7 +669,7 @@ namespace DLaB.Xrm.Test
         }
 
         [DebuggerHidden]
-        private static void HandleInconclusive(string assertName, string message = null, params object[] parameters )
+        private static void HandleInconclusive(string assertName, string? message = null, params object[]? parameters )
         {
             message = message ?? Empty;
             message = $"{assertName} is inconclusive. " + (parameters == null ? message : Format(message, parameters));

@@ -31,12 +31,12 @@ namespace DLaB.Xrm.Test.Assumptions
 
         private static string GetKey<T>() where T : EntityDataAssumptionBaseAttribute
         {
-            return typeof(T).AssemblyQualifiedName;
+            return typeof(T).AssemblyQualifiedName ?? "NoAssemblyQualifiedName";
         }
 
         private static string GetKey(EntityDataAssumptionBaseAttribute assumption)
         {
-            return assumption.GetType().AssemblyQualifiedName;
+            return assumption.GetType().AssemblyQualifiedName ?? "NONE";
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace DLaB.Xrm.Test.Assumptions
         /// <exception cref="System.Exception"></exception>
         public Entity Get<TAssumption>() where TAssumption : EntityDataAssumptionBaseAttribute
         {
-            if (!InternalStore.TryGetValue(GetKey<TAssumption>(), out Entity entity))
+            if (!InternalStore.TryGetValue(GetKey<TAssumption>(), out var entity))
             {
                 throw new Exception($"AssumedEntities does not contain an entity for Assumption {typeof(TAssumption).Name}.");
             }

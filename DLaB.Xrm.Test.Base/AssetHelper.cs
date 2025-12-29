@@ -24,7 +24,7 @@ namespace DLaB.Xrm.Test
         /// <param name="expected">The Entity with the expected attributes.</param>
         /// <param name="actual">The Entity with the actual attributes.</param>
         /// <returns></returns>
-        public static string AttributesAreEqual(Entity expected, Entity actual)
+        public static string? AttributesAreEqual(Entity? expected, Entity? actual)
         {
             if (expected == null && actual == null)
             {
@@ -71,7 +71,7 @@ namespace DLaB.Xrm.Test
             return null;
         }
 
-        private static string AttributeIsEqual(object actualValue, KeyValuePair<string, object> att)
+        private static string? AttributeIsEqual(object? actualValue, KeyValuePair<string, object> att)
         {
             if (actualValue == null)
             {
