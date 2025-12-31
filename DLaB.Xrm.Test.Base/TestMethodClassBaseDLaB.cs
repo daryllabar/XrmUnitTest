@@ -1,5 +1,4 @@
-﻿#nullable enable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -101,17 +100,15 @@ namespace DLaB.Xrm.Test
 
         /// <summary>
         /// By default, attempts to load entities from internal type with static Id properties and/or an Ids property.
+        /// Override GetEntityIdsByLogicalName if you want to customize how Entity Ids are discovered.
         /// </summary>
         protected virtual void InitializeEntityIds()
         {
-            // Find all nested Ids
-            var nestedIds = new Dictionary<string, List<Id>>();
-            foreach (var id in GetType().GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic).SelectMany(Extensions.GetIds)) {
-                nestedIds.AddOrAppend(id, id);
-            }
+            // Find all nested Ids By Class
+            var idsByLogicalName = GetEntityIdsByLogicalName();
 
             // Add the nested Ids' Logical Names to the Mapper
-            foreach (var key in nestedIds.Keys)
+            foreach (var key in idsByLogicalName.Keys)
             {
                 EntityDependency.Mapper.Add(key);
             }
@@ -119,11 +116,38 @@ namespace DLaB.Xrm.Test
             // Add the nested Ids in the Deletion Order of the Mapper
             foreach (var entity in EntityDependency.Mapper.EntityDeletionOrder)
             {
-                if (nestedIds.TryGetValue(entity, out var ids))
+                if (idsByLogicalName.TryGetValue(entity, out var ids))
                 {
                     EntityIdsByLogicalName.AddOrAppend(entity, ids.ToArray());
                 }
             }
+        }
+
+        /// <summary>
+        /// Retrieves a dictionary mapping entity logical names to their associated identifier lists.
+        /// </summary>
+        /// <remarks>This method collects identifiers from both nested types and the "Ids" property, if
+        /// present, within the current type. Override this method to customize how entity identifiers are discovered or
+        /// aggregated in derived classes.</remarks>
+        /// <returns>A dictionary where each key is an entity logical name and the corresponding value is a list of identifiers
+        /// for that entity. If no identifiers are found, the dictionary will be empty.</returns>
+        protected virtual Dictionary<string, List<Id>> GetEntityIdsByLogicalName()
+        {
+            var idsByLogicalName = new Dictionary<string, List<Id>>();
+            foreach (var id in GetType().GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic).SelectMany(Extensions.GetIds)) {
+                idsByLogicalName.AddOrAppend(id, id);
+            }
+
+            var idProperty = GetType().GetProperty("Ids", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            if (idProperty != null)
+            {
+                foreach(var id in Id.GetPropertyIds(idProperty.GetValue(this)))
+                {
+                    idsByLogicalName.AddOrAppend(id, id);
+                }
+            }
+
+            return idsByLogicalName;
         }
 
         /// <summary>

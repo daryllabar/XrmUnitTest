@@ -166,42 +166,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         public TDerived WithEntities<TIdsClass>(TIdsClass ids) where TIdsClass : class
         {
-            if (typeof(Id).IsAssignableFrom(typeof(TIdsClass)))
-            {
-                return ids is Id id
-                    ? WithEntities(id)
-                    : This;
-            }
-            if (typeof(Entity).IsAssignableFrom(typeof(TIdsClass)))
-            {
-                return WithEntities((Id)(Entity)(object)ids);
-            }
-
-
-            TraverseProperties(ids);
-            return This;
-
-            void TraverseProperties(object obj)
-            {
-                foreach (var prop in obj.GetType().GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance))
-                {
-                    var propValue = prop.GetValue(obj);
-                    if (propValue == null)
-                    {
-                        continue;
-                    }
-
-                    var propType = prop.PropertyType;
-                    if (propValue is Id id)
-                    {
-                        This.WithEntities(id);
-                    }
-                    else if (!propType.IsPrimitive && propType != typeof(string))
-                    {
-                        TraverseProperties(propValue);
-                    }
-                }
-            }
+            return WithEntities(Id.GetPropertyIds(ids).ToArray());
         }
 
         #endregion Fluent Methods

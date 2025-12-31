@@ -51,6 +51,39 @@ namespace DLaB.Xrm.Test.Tests
 
         #endregion GivenEntityIds_Should_CleanupTestsBeforeTestRun
 
+        #region GivenEntityIdProperty_Should_CleanupTestsBeforeTestRun
+
+        [TestMethod]
+        public void TestMethodClassBaseDLaB_GivenEntityIdProperty_Should_CleanupTestsBeforeTestRun()
+        {
+            new GivenEntityIdProperty_Should_CleanupTestsBeforeTestRun().Test();
+        }
+
+        // ReSharper disable once InconsistentNaming
+        private class GivenEntityIdProperty_Should_CleanupTestsBeforeTestRun : TestMethodClassBase
+        {
+            public TestIds Ids { get; set; } = new ();
+
+            public class TestIds
+            {
+                public Id<Contact> Contact { get; } = new("01D21C45-DF91-4DCF-81C5-19FB401C87C0");
+            }
+
+            protected override void CleanupDataPreInitialization(IOrganizationService service)
+            {
+                service.Create(Ids.Contact);
+                base.CleanupDataPreInitialization(service);
+            }
+
+            protected override void Test(IOrganizationService service)
+            {
+                // Test happens CleanupTestData 
+                AssertCrm.NotExists(Ids.Contact, "Contact Should have been deleted up by the CleanupDataPreInitialization");
+            }
+        }
+
+        #endregion GivenEntityIds_Should_CleanupTestsBeforeTestRun
+
         #region TestService_Should_ForceIdsToBeDefined
 
         [TestMethod]

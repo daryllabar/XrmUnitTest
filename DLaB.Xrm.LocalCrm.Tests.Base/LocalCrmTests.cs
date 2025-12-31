@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DLaB.Common;
 using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -83,67 +84,71 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_DeactivateActivate()
         {
-            var service = GetService();
             var entityType = typeof (Entity);
             var entitiesMissingStatusCodeAttribute = new List<string>();
             var entitiesMissingStateCodeAttribute = new List<string>();
+            var entities = (from t in typeof(SystemUser).Assembly.GetTypes()
+                              where entityType.IsAssignableFrom(t) && new LateBoundActivePropertyInfo(EntityHelper.GetEntityLogicalName(t)).ActiveAttribute != ActiveAttributeType.None
+                              select (Entity)Activator.CreateInstance(t)).ToList();
 
-            foreach (var entity in from t in typeof (SystemUser).Assembly.GetTypes()
-                where entityType.IsAssignableFrom(t) && new LateBoundActivePropertyInfo(EntityHelper.GetEntityLogicalName(t)).ActiveAttribute != ActiveAttributeType.None 
-                select (Entity) Activator.CreateInstance(t))
+            Parallel.ForEach(entities.Batch(entities.Count/8), batch =>
             {
-                if (entity.LogicalName == Incident.EntityLogicalName)
+                var service = GetService();
+                foreach (var entity in batch)
                 {
-                    // Satisfy ErrorCodes.unManagedidsincidentparentaccountandparentcontactnotpresent
-                    var customer = new Account();
-                    customer.Id = service.Create(customer);
-                    entity[Incident.Fields.CustomerId] = customer.ToEntityReference();
-                }
-                else if (entity.LogicalName == Connection.EntityLogicalName)
-                {
-                    // Satisfy ErrorCodes.BothConnectionSidesAreNeeded
-                    var account = new Account();
-                    account.Id = service.Create(account);
-                    entity[Connection.Fields.Record1Id] = account.ToEntityReference();
-                    account.Id = service.Create(new Account());
-                    entity[Connection.Fields.Record2Id] = account.ToEntityReference();
-                }
-
-                entity.Id = service.Create(entity);
-
-                try
-                {
-                    AssertCrm.IsActive(service, entity, "Entity " + entity.GetType().Name + " wasn't created active!");
                     if (entity.LogicalName == Incident.EntityLogicalName)
                     {
-                        // Requires the Special Resolve Incident Request Message
-                        continue;
+                        // Satisfy ErrorCodes.unManagedidsincidentparentaccountandparentcontactnotpresent
+                        var customer = new Account();
+                        customer.Id = service.Create(customer);
+                        entity[Incident.Fields.CustomerId] = customer.ToEntityReference();
+                    }
+                    else if (entity.LogicalName == Connection.EntityLogicalName)
+                    {
+                        // Satisfy ErrorCodes.BothConnectionSidesAreNeeded
+                        var account = new Account();
+                        account.Id = service.Create(account);
+                        entity[Connection.Fields.Record1Id] = account.ToEntityReference();
+                        account.Id = service.Create(new Account());
+                        entity[Connection.Fields.Record2Id] = account.ToEntityReference();
                     }
 
-                    service.SetState(entity.LogicalName, entity.Id, false);
-                }
-                catch (Exception ex)
-                {
-                    var error = ex.ToString();
-                    if (error.Contains("does not contain an attribute with name statuscode")
-                        || error.Contains("The property \"statuscode\" was not found in the entity type"))
-                    {
-                        entitiesMissingStatusCodeAttribute.Add(entity.LogicalName);
-                        continue;
-                    }
-                    if (error.Contains("does not contain an attribute with name statecode")
-                        || error.Contains("The property \"statecode\" was not found in the entity type"))
-                    {
-                        entitiesMissingStateCodeAttribute.Add(entity.LogicalName);
-                        continue;
-                    }
+                    entity.Id = service.Create(entity);
 
-                    throw;
+                    try
+                    {
+                        AssertCrm.IsActive(service, entity, "Entity " + entity.GetType().Name + " wasn't created active!");
+                        if (entity.LogicalName == Incident.EntityLogicalName)
+                        {
+                            // Requires the Special Resolve Incident Request Message
+                            continue;
+                        }
+
+                        service.SetState(entity.LogicalName, entity.Id, false);
+                    }
+                    catch (Exception ex)
+                    {
+                        var error = ex.ToString();
+                        if (error.Contains("does not contain an attribute with name statuscode")
+                            || error.Contains("The property \"statuscode\" was not found in the entity type"))
+                        {
+                            entitiesMissingStatusCodeAttribute.Add(entity.LogicalName);
+                            continue;
+                        }
+                        if (error.Contains("does not contain an attribute with name statecode")
+                            || error.Contains("The property \"statecode\" was not found in the entity type"))
+                        {
+                            entitiesMissingStateCodeAttribute.Add(entity.LogicalName);
+                            continue;
+                        }
+
+                        throw;
+                    }
+                    AssertCrm.IsNotActive(service, entity, "Entity " + entity.GetType().Name + " wasn't deactivated!");
+                    service.SetState(entity.LogicalName, entity.Id, true);
+                    AssertCrm.IsActive(service, entity, "Entity " + entity.GetType().Name + " wasn't activated!");
                 }
-                AssertCrm.IsNotActive(service, entity, "Entity " + entity.GetType().Name + " wasn't deactivated!");
-                service.SetState(entity.LogicalName, entity.Id, true);
-                AssertCrm.IsActive(service, entity, "Entity " + entity.GetType().Name + " wasn't activated!");
-            }
+            });
 
             if (entitiesMissingStatusCodeAttribute.Any())
             {

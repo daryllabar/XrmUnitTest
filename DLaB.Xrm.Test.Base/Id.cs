@@ -195,9 +195,89 @@ namespace DLaB.Xrm.Test
             }
         }
 
+        /// <summary>
+        /// Retrieves all property values of type <see cref="Id"/> from the specified object, including nested properties.
+        /// </summary>
+        /// <remarks>The method recursively traverses public instance properties of the specified object to collect all
+        /// <see cref="Id"/> values, including those in nested objects. Properties of primitive types and strings are ignored.
+        /// Circular references are handled to prevent infinite recursion.</remarks>
+        /// <typeparam name="TIdsClass">The type of the object containing properties of type <see cref="Id"/> to be extracted. Must be a reference type.</typeparam>
+        /// <param name="objectWithIdProperties">The object whose properties of type <see cref="Id"/> will be collected. Cannot be null.</param>
+        /// <returns>A list of <see cref="Id"/> instances found in the object's properties. The list will be empty if no such properties are found.</returns>
+        public static List<Id> GetPropertyIds<TIdsClass>(TIdsClass? objectWithIdProperties)
+            where TIdsClass : class
+        {
+            var ids = new List<Id>();
+
+            if (objectWithIdProperties == null)
+            {
+                return ids;
+            }
+#if NET
+            var processedObjects = new HashSet<object>(ReferenceEqualityComparer.Instance);
+#else
+            var processedObjects = new HashSet<object>(ReferenceComparerInstance);
+#endif
+
+            if (objectWithIdProperties is Id id)
+            {
+                ids.Add(id);
+                return ids;
+            }
+            if (objectWithIdProperties is Entity entity)
+            {
+                // Not sure if this is really needed, but it is utilized by the CrmEnvironmentBuilder.WithEntities call, so adding it here.
+                ids.Add(entity);
+                return ids;
+            }
+
+            TraverseProperties(objectWithIdProperties);
+            return ids;
+
+            void TraverseProperties(object obj)
+            {
+                foreach (var prop in obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
+                {
+                    var propValue = prop.GetValue(obj);
+                    if (propValue == null || !processedObjects.Add(propValue))
+                    {
+                        continue;
+                    }
+
+                    var propType = prop.PropertyType;
+                    if (propValue is Id traversedId)
+                    {
+                        ids.Add(traversedId);
+                    }
+                    else if (!propType.IsPrimitive && propType != typeof(string))
+                    {
+                        TraverseProperties(propValue);
+                    }
+                }
+            }
+        }
+
+#if !NET
+        private static readonly ReferenceComparer<object> ReferenceComparerInstance = new ReferenceComparer<object>();
+        private class ReferenceComparer<T> : IEqualityComparer<T> where T : class
+        {
+            public bool Equals(T x, T y)
+            {
+                return ReferenceEquals(x, y);
+            }
+
+            public int GetHashCode(T? obj)
+            {
+                return obj == null
+                    ? 0
+                    : System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(obj);
+            }
+        }
+#endif
+
 #endregion Static Methods
 
-#region Implicit Operators
+        #region Implicit Operators
 
         /// <summary>
         /// Performs an implicit conversion from <see cref="Id"/> to <see cref="EntityReference"/>.
