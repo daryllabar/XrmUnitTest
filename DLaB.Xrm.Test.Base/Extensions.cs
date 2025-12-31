@@ -716,54 +716,53 @@ namespace DLaB.Xrm.Test
 
         #region IServiceProvider
 
+        /// <summary>
+        /// Loads the given OrganizationRequest from the input parameters of the IPluginExecutionContext.
+        /// </summary>
         /// <param name="provider"></param>
-        extension(IServiceProvider provider)
+        /// <typeparam name="T">Organization Response</typeparam>
+        /// <returns></returns>
+        public static T GetRequest<T>(this IServiceProvider provider) where T : OrganizationRequest, new()
         {
-            /// <summary>
-            /// Loads the given OrganizationRequest from the input parameters of the IPluginExecutionContext.
-            /// </summary>
-            /// <typeparam name="T">Organization Response</typeparam>
-            /// <returns></returns>
-            public T GetRequest<T>() where T : OrganizationRequest, new()
+            var request = Activator.CreateInstance<T>();
+            var context = provider.GetService<IPluginExecutionContext>();
+            if(context == null)
             {
-                var request = Activator.CreateInstance<T>();
-                var context = provider.GetService<IPluginExecutionContext>();
-                if(context == null)
-                {
-                    throw new ArgumentException("The IServiceProvider did not contain an IPluginExecutionContext");
-                }
-                request.Parameters = context.InputParameters;
-                return request;
+                throw new ArgumentException("The IServiceProvider did not contain an IPluginExecutionContext");
             }
+            request.Parameters = context.InputParameters;
+            return request;
+        }
 
-            /// <summary>
-            /// Loads the given OrganizationResponse from the output parameters of the IPluginExecutionContext.
-            /// </summary>
-            /// <typeparam name="T">Organization Response</typeparam>
-            /// <returns></returns>
-            public T GetResponse<T>() where T : OrganizationResponse, new()
+        /// <summary>
+        /// Loads the given OrganizationResponse from the output parameters of the IPluginExecutionContext.
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <typeparam name="T">Organization Response</typeparam>
+        /// <returns></returns>
+        public static T GetResponse<T>(this IServiceProvider provider) where T : OrganizationResponse, new()
+        {
+            var response = Activator.CreateInstance<T>();
+            var context = provider.GetService<IPluginExecutionContext>();
+            if (context == null)
             {
-                var response = Activator.CreateInstance<T>();
-                var context = provider.GetService<IPluginExecutionContext>();
-                if (context == null)
-                {
-                    throw new ArgumentException("The IServiceProvider did not contain an IPluginExecutionContext");
-                }
-                response.Results = context.OutputParameters;
-                return response;
+                throw new ArgumentException("The IServiceProvider did not contain an IPluginExecutionContext");
             }
+            response.Results = context.OutputParameters;
+            return response;
+        }
 
-            /// <summary>
-            /// Retrieves the Fake Service from the Service Provider
-            /// </summary>
-            /// <typeparam name="TFake">The Fake Service to retrieve.  Must implement IServiceFaked&lt;&gt;></typeparam>
-            /// <returns></returns>
-            public TFake GetFake<TFake>() where TFake : IFakeService
-            {
-                var @interface = GetFakedInterface(typeof(TFake));
+        /// <summary>
+        /// Retrieves the Fake Service from the Service Provider
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <typeparam name="TFake">The Fake Service to retrieve.  Must implement IServiceFaked&lt;&gt;></typeparam>
+        /// <returns></returns>
+        public static TFake GetFake<TFake>(this IServiceProvider provider) where TFake : IFakeService
+        {
+            var @interface = GetFakedInterface(typeof(TFake));
 
-                return (TFake)(provider.GetService(@interface.GetGenericArguments()[0]) ?? throw new Exception("Required Service not found: " + @interface.GetGenericArguments()[0]));
-            }
+            return (TFake)(provider.GetService(@interface.GetGenericArguments()[0]) ?? throw new Exception("Required Service not found: " + @interface.GetGenericArguments()[0]));
         }
 
 
