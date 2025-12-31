@@ -100,7 +100,7 @@ namespace DLaB.Xrm.Test
         #region Entity Ids
 
         /// <summary>
-        /// By default, attempts to load entities from internal type with static Id properties
+        /// By default, attempts to load entities from internal type with static Id properties and/or an Ids property.
         /// </summary>
         protected virtual void InitializeEntityIds()
         {
