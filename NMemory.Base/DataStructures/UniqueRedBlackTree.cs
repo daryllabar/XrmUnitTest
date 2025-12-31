@@ -23,6 +23,7 @@
 // ----------------------------------------------------------------------------------
 
 #pragma warning disable 1591
+#pragma warning disable 8603
 namespace NMemory.DataStructures
 {
     using System;

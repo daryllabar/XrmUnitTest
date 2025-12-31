@@ -116,7 +116,7 @@ namespace DLaB.Xrm.LocalCrm
             for (var i = 0; i < request.Requests.Count; i++)
             {
                 var childRequest = request.Requests[i];
-                OrganizationResponse childResponse = null;
+                OrganizationResponse? childResponse = null;
                 try
                 {
                     if (childRequest.RequestName == "ExecuteMultiple")
@@ -174,8 +174,8 @@ namespace DLaB.Xrm.LocalCrm
             for (int i = 0; i < request.Requests.Count; i++)
             {
                 var childRequest = request.Requests[i];
-                OrganizationServiceFault fault = null;
-                OrganizationResponse childResponse = null;
+                OrganizationServiceFault? fault = null;
+                OrganizationResponse? childResponse = null;
                 try
                 {
                     if (childRequest.RequestName == "ExecuteMultiple")
@@ -242,7 +242,7 @@ namespace DLaB.Xrm.LocalCrm
             FetchType fetch;
             using (var r = new StringReader(request.FetchXml))
             {
-                fetch = (FetchType) s.Deserialize(r);
+                fetch = (FetchType) s.Deserialize(r)!;
                 r.Close();
             }
             var qe = LocalCrmDatabase.ConvertFetchToQueryExpression(this, fetch);
@@ -273,7 +273,7 @@ namespace DLaB.Xrm.LocalCrm
 #endif
                                                       .Select(k => new
                                                       {
-                                                          PrefixlessName = k.SubstringByString("_"),
+                                                          PrefixlessName = k.SubstringByString("_") ?? string.Empty,
                                                           AttributeName = k
                                                       })
                                                       .ToDictionaryList(k => k.PrefixlessName, k => k.AttributeName);
@@ -481,9 +481,13 @@ namespace DLaB.Xrm.LocalCrm
 
         private static QueryExpressionToFetchXmlResponse ExecuteInternal(QueryExpressionToFetchXmlRequest request)
         {
+            if(request.Query is not QueryExpression qe)
+            {
+                throw new ArgumentException("Query must be of type QueryExpression", nameof(request));
+            }
             return new QueryExpressionToFetchXmlResponse
             {
-                ["FetchXml"] = LocalCrmDatabase.ConvertQueryExpressionToFetchXml(request.Query as QueryExpression)
+                ["FetchXml"] = LocalCrmDatabase.ConvertQueryExpressionToFetchXml(qe)
             };
         }
 
@@ -492,16 +496,16 @@ namespace DLaB.Xrm.LocalCrm
             var response = new RetrieveAttributeResponse();
             var entityType = CrmServiceUtility.GetEarlyBoundProxyAssembly().GetEntityType(request.EntityLogicalName);
 
-            var propertyTypes = entityType?.GetProperties()
+            var propertyTypes = entityType.GetProperties()
                 .Where(p =>
                     p.GetCustomAttribute<AttributeLogicalNameAttribute>()?.LogicalName == request.LogicalName
                 ).Select(p => p.PropertyType.IsGenericType
                     ? p.PropertyType.GenericTypeArguments.First()
-                    : p.PropertyType).ToList();
+                    : p.PropertyType).ToList()!;
 
-            var propertyType = propertyTypes?.Count == 1
+            var propertyType = propertyTypes.Count == 1
                 ? propertyTypes[0]
-                : propertyTypes?.FirstOrDefault(p => p != typeof(OptionSetValue) 
+                : propertyTypes.FirstOrDefault(p => p != typeof(OptionSetValue) 
                                                   && p != typeof(EntityReference)); // Handle OptionSets/EntityReferences that may have multiple properties
 
             if (propertyType is null)
@@ -518,7 +522,7 @@ namespace DLaB.Xrm.LocalCrm
             {
                 metadata = new StringAttributeMetadata(request.LogicalName);
             }
-            else if (propertyTypes.Any(p => p == typeof(EntityReference)))
+            else if (propertyTypes!.Any(p => p == typeof(EntityReference)))
             {
                 metadata = new LookupAttributeMetadata
                 {
@@ -593,11 +597,9 @@ namespace DLaB.Xrm.LocalCrm
 
         private PicklistAttributeMetadata CreateOptionSetAttributeMetadata(RetrieveAttributeRequest request, Type propertyType)
         {
-
             if (propertyType == typeof(OptionSetValue))
             {
-                var enumExpression =
-                    CrmServiceUtility.GetEarlyBoundProxyAssembly().GetTypes().Where(
+                var enumExpression = CrmServiceUtility.GetEarlyBoundProxyAssembly().GetTypes().Where(
                         t =>
                             t.GetCustomAttributes(typeof(DataContractAttribute), false).Length > 0 &&
                             t.GetCustomAttributes(typeof(System.CodeDom.Compiler.GeneratedCodeAttribute), false).Length > 0 &&
@@ -608,16 +610,14 @@ namespace DLaB.Xrm.LocalCrm
                 // Then By LogicalName
                 propertyType = enumExpression.FirstOrDefault(t => t.Name == request.EntityLogicalName + "_" + request.LogicalName) ??
                                enumExpression.FirstOrDefault(t => t.Name == request.LogicalName + "_" + request.EntityLogicalName) ??
-                               enumExpression.FirstOrDefault(t => t.Name == request.LogicalName);
+                               enumExpression.FirstOrDefault(t => t.Name == request.LogicalName)!;
             }
 
             var optionSet = new PicklistAttributeMetadata
             {
                 OptionSet = new OptionSetMetadata()
             };
-            AddEnumTypeValues(optionSet.OptionSet,
-                propertyType,
-                $"Unable to find local OptionSet enum for entity: {request.EntityLogicalName}, attribute: {request.LogicalName}");
+            AddEnumTypeValues(optionSet.OptionSet, propertyType, $"Unable to find local OptionSet enum for entity: {request.EntityLogicalName}, attribute: {request.LogicalName}");
 
             return optionSet;
         }
@@ -676,7 +676,7 @@ namespace DLaB.Xrm.LocalCrm
                 throw new NotImplementedException("Unable to process a RetrieveRelationshipRequest without a Name");
             }
 
-            PropertyInfo property = null;
+            PropertyInfo? property = null;
             foreach (var type in CrmServiceUtility.GetEarlyBoundProxyAssembly(Info.EarlyBoundEntityAssembly).GetTypes())
             {
                 property = type.GetProperties(BindingFlags.Public | BindingFlags.Instance)
@@ -767,7 +767,7 @@ namespace DLaB.Xrm.LocalCrm
 #endif
             response.Results.Add("Entity", entity);
             
-            if (request.RelatedEntitiesQuery != null)
+            if (request.RelatedEntitiesQuery != null && entity != null)
             {
                 foreach (var kvp in request.RelatedEntitiesQuery)
                 {
@@ -920,7 +920,7 @@ namespace DLaB.Xrm.LocalCrm
             };
         }
 
-        private Entity RetrieveEntityViaKeyAttributes(Entity target, ColumnSet cs = null)
+        private Entity? RetrieveEntityViaKeyAttributes(Entity target, ColumnSet? cs = null)
         {
             var eRef = target.ToEntityReference();
             if (eRef.Id == Guid.Empty
@@ -932,7 +932,7 @@ namespace DLaB.Xrm.LocalCrm
             return RetrieveEntityViaKeyAttributes(eRef, cs);
         }
 
-        private Entity RetrieveEntityViaKeyAttributes(EntityReference target, ColumnSet cs = null)
+        private Entity? RetrieveEntityViaKeyAttributes(EntityReference target, ColumnSet? cs = null)
         {
             cs ??= new ColumnSet(false);
             if (target.Id != Guid.Empty)
@@ -962,7 +962,7 @@ namespace DLaB.Xrm.LocalCrm
 
 #endregion Execute Internal
 
-        private void AddEnumTypeValues(OptionSetMetadata options, Type enumType, string error)
+        private void AddEnumTypeValues(OptionSetMetadata options, Type? enumType, string error)
         {
             if (enumType == null)
             {
@@ -991,7 +991,7 @@ namespace DLaB.Xrm.LocalCrm
 #if !PRE_MULTISELECT
         private void AssertEntityNamePopulated(OrganizationRequest request)
         {
-            if (!string.IsNullOrWhiteSpace(request.Parameters.GetParameterValue<EntityCollection>(nameof(CreateMultipleRequest.Targets)).EntityName)){
+            if (!string.IsNullOrWhiteSpace(request.Parameters.GetParameterValue<EntityCollection>(nameof(CreateMultipleRequest.Targets))?.EntityName)){
                 return;
             }
 

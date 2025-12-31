@@ -8,18 +8,15 @@ namespace DLaB.Xrm.LocalCrm
 {
     internal class EntityProperties
     {
-        public Dictionary<string, PropertyInfo> PropertiesByName { get; private set; }
-        public Dictionary<string,List<PropertyInfo>> PropertiesByLowerCaseName { get; private set; }
-        public Dictionary<string, PropertyInfo> PropertiesByLogicalName { get; private set; }
-        public string EntityName { get; private set; }
+        public Dictionary<string, PropertyInfo> PropertiesByName { get; private set; } = null!;
+        public Dictionary<string, List<PropertyInfo>> PropertiesByLowerCaseName { get; private set; } = null!;
+        public Dictionary<string, PropertyInfo> PropertiesByLogicalName { get; private set; } = null!;
+        public string EntityName { get; private set; } = string.Empty;
 
         public bool IsActivityType => PropertiesByName.ContainsKey("ActivityId");
         
-
         private EntityProperties()
         {
-            PropertiesByName = new Dictionary<string, PropertyInfo>();
-            PropertiesByLogicalName = new Dictionary<string, PropertyInfo>();
         }
 
         public bool ContainsProperty(string name)
@@ -30,7 +27,7 @@ namespace DLaB.Xrm.LocalCrm
 
         public PropertyInfo GetProperty(string name)
         {
-            if (PropertiesByName.TryGetValue(name, out PropertyInfo property) ||
+            if (PropertiesByName.TryGetValue(name, out var property) ||
                 PropertiesByLogicalName.TryGetValue(name, out property))
             {
                 return property;
@@ -43,6 +40,7 @@ namespace DLaB.Xrm.LocalCrm
             return Get(typeof(T));
         }
 
+        private const string NullKey = "ATTRIBUTE LOGICAL NAME MISSING";
         public static EntityProperties Get(Type type) 
         {
             var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name);
@@ -52,10 +50,10 @@ namespace DLaB.Xrm.LocalCrm
                 EntityName = EntityHelper.GetEntityLogicalName(type),
                 PropertiesByName = properties,
                 PropertiesByLogicalName = properties.Values
-                                                    .Select(p => new { Key = p.GetAttributeLogicalName(false), Property = p })
-                                                    .Where(p => p.Key != null)
+                                                    .Select(p => new { Key = p.GetAttributeLogicalName(false) ?? NullKey, Property = p })
+                                                    .Where(p => p.Key != NullKey)
                                                     .GroupBy(k => k.Key, p => p.Property)
-                                                    .Select(g => new { g.Key, Property = g.FirstOrDefault()})
+                                                    .Select(g => new { g.Key, Property = g.First()})
                                                     .ToDictionary(k => k.Key, p => p.Property),
                 PropertiesByLowerCaseName = properties.GroupBy(v => v.Key.ToLower(), v => v.Value).ToDictionary(v => v.Key, v => v.ToList())
             };

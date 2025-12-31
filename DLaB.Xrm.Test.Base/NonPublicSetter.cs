@@ -55,7 +55,7 @@ namespace DLaB.Xrm.Test
                     var setMethod = prop.GetSetMethod(nonPublic: true);
                     if (setMethod != null)
                     {
-                        setMethod.Invoke(Value, new object[] { value });
+                        setMethod.Invoke(Value, [value]);
                         return this;
                     }
 
@@ -113,7 +113,7 @@ namespace DLaB.Xrm.Test
         /// <param name="type">The type to search for the field.</param>
         /// <param name="name">The name of the field to find.</param>
         /// <returns>The <see cref="FieldInfo"/> if found; otherwise, <c>null</c>.</returns>
-        private static FieldInfo FindField(Type type, string name)
+        private static FieldInfo? FindField(Type? type, string name)
         {
             // Walk base types to find non-public instance fields
             while (type != null)
@@ -121,7 +121,7 @@ namespace DLaB.Xrm.Test
                 var f = type.GetField(name,
                     BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly);
                 if (f != null) return f;
-                type = type.BaseType;
+                type = type.BaseType!;
             }
             return null;
         }

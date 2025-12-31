@@ -86,12 +86,12 @@ namespace DLaB.Xrm.Test.Builders
             var groupedBuilder = entityBuilders.GroupBy(b => b.Entity).ToList();
             var dup = groupedBuilder.Where(g => g.Count() > 1).Select(g => new { g.Key, Names = g.Select(b => b.Builder.FullName)}).ToList();
 
-            if (dup.Any())
+            if (dup.Count > 0)
             {
                 throw new Exception($"Duplicate EntityBuilders {string.Join(", ", dup.First().Names)} found for Entity {dup.First().Key}.");
             }
             
-            DefaultBuilderConstructors = groupedBuilder.ToDictionary(g => g.Key, g => g.First().Builder.GetConstructor(new[] { typeof(Id) }));
+            DefaultBuilderConstructors = groupedBuilder.ToDictionary(g => g.Key, g => g.First().Builder.GetConstructor([typeof(Id)]) ?? throw new Exception("Unable to get Constructor(Id) for key " + g.Key));
 
             foreach (var builder in DefaultBuilderConstructors)
             {
@@ -277,12 +277,9 @@ namespace DLaB.Xrm.Test.Builders
         {
             var entity = info.Id.Entity;
             var builder = info.Builder;
-            if (entity != null)
+            foreach (var att in entity.Attributes)
             {
-                foreach (var att in entity.Attributes)
-                {
-                    builder.WithAttributeValue(att.Key, att.Value);
-                }
+                builder.WithAttributeValue(att.Key, att.Value);
             }
 
             var attributes = cyclicAttributes as string[] ?? cyclicAttributes.ToArray();
@@ -403,7 +400,7 @@ namespace DLaB.Xrm.Test.Builders
                 if (existingConstructor.DeclaringType != constructor.DeclaringType)
                 {
                     // ReSharper disable PossibleNullReferenceException
-                    throw new Exception($"Only one type of Builder can be used per entity.  Attempt was made to define builder {constructor.DeclaringType.FullName}, when builder {existingConstructor.DeclaringType.FullName} already is defined!");
+                    throw new Exception($"Only one type of Builder can be used per entity.  Attempt was made to define builder {constructor.DeclaringType?.FullName}, when builder {existingConstructor.DeclaringType?.FullName} already is defined!");
                     // ReSharper restore PossibleNullReferenceException
                 }
             }
@@ -419,11 +416,8 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="id">The identifier.</param>
         public void Remove(Id id)
         {
-            if (Ids.ContainsKey(id))
-            {
-                Ids.Remove(id);
-            }
-            if (BuildersByEntityType.TryGetValue(id, out List<BuilderInfo> builders) && Builders.TryGetValue(id, out BuilderInfo builder))
+            Ids.Remove(id);
+            if (BuildersByEntityType.TryGetValue(id, out var builders) && Builders.TryGetValue(id, out var builder))
             {
                 Builders.Remove(id);
                 builders.Remove(builder);
@@ -437,7 +431,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         private ConstructorInfo GetGenericConstructor(string logicalName)
         {
-            if (DefaultBuilderConstructors.TryGetValue(logicalName, out ConstructorInfo constructor))
+            if (DefaultBuilderConstructors.TryGetValue(logicalName, out var constructor))
             {
                 return constructor;
             }
@@ -453,7 +447,7 @@ namespace DLaB.Xrm.Test.Builders
                     ? typeof(N2NBuilder<>)
                     : typeof(GenericEntityBuilder<>);
                 var builder = builderType.MakeGenericType(TestBase.GetType(logicalName));
-                constructor = builder.GetConstructor(new[] { typeof(Id) });
+                constructor = builder.GetConstructor([typeof(Id)]) ?? throw new Exception("Unable to get Constructor(Id)");
                 DefaultBuilderConstructors.Add(logicalName, constructor);
                 return constructor;
             }

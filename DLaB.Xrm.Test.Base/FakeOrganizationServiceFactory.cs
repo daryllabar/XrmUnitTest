@@ -52,9 +52,9 @@ namespace DLaB.Xrm.Test
         /// </summary>
         /// <param name="userId">The user identifier.</param>
         /// <returns></returns>
-        public IOrganizationService CreateOrganizationService(Guid? userId)
+        public IOrganizationService? CreateOrganizationService(Guid? userId)
         {
-            if (Services.TryGetValue(userId.GetValueOrDefault(), out IOrganizationService service)
+            if (Services.TryGetValue(userId.GetValueOrDefault(), out var service)
                 ||
                 Services.TryGetValue(Guid.Empty, out service)
                 )

@@ -160,7 +160,7 @@ namespace DLaB.Xrm.Test
                 {
                     dependency.IsCurrentlyCyclic = false;
                 }
-                type.Node = null;
+                type.Node = null!;
             }
             foreach (var type in Infos.Values.OrderByDescending(v => v.Dependencies.Values.Any(d => d.IsRequired)).ThenBy(v => v.LogicalName))
             {
@@ -242,7 +242,7 @@ namespace DLaB.Xrm.Test
             /// </value>
             public Dictionary<string, EntityDependencyRelationship> Dependencies { get; }
 
-            public LinkedListNode<EntityDependencyNodeInfo> Node { get; set; }
+            public LinkedListNode<EntityDependencyNodeInfo> Node { get; set; } = null!;
             public string LogicalName { get; }
 
             /// <summary>
@@ -296,16 +296,15 @@ namespace DLaB.Xrm.Test
                     // Only process Properties that contain an attribute logical name, and a Relationship Schema Name
                     p.ContainsCustomAttributeTypes(typeof (AttributeLogicalNameAttribute), typeof (RelationshipSchemaNameAttribute))))
                 {
-                    var attribute = property.GetAttributeLogicalName();
-                    var propertyType = property.PropertyType.GetCustomAttribute<EntityLogicalNameAttribute>(true);
-                    if (!Dependencies.TryGetValue(propertyType.LogicalName, out EntityDependencyRelationship relationship))
+                    var attribute = property.GetAttributeLogicalName() ?? throw new NullReferenceException("No Attribute LogicalName determined for " + logicalName);
+                    var linkEntityLogicalName = property.PropertyType.GetCustomAttribute<EntityLogicalNameAttribute>(true)?.LogicalName ?? throw new NullReferenceException("No link entity logical name determined for " + property.Name);
+                    if (Dependencies.TryGetValue(linkEntityLogicalName, out var relationship))
                     {
-                        relationship = new EntityDependencyRelationship(logicalName, propertyType.LogicalName, attribute, LogicalName == propertyType.LogicalName);
-                        Dependencies.Add(propertyType.LogicalName, relationship);
+                        relationship.Attributes.Add(attribute);
                     }
                     else
                     {
-                        relationship.Attributes.Add(attribute);
+                        Dependencies.Add(linkEntityLogicalName, new EntityDependencyRelationship(logicalName, linkEntityLogicalName, attribute, LogicalName == linkEntityLogicalName));
                     }
                 }
 
@@ -334,7 +333,7 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        [DebuggerDisplay("{AttributeName}, {IsCurrentlyCyclic}")]
+        [DebuggerDisplay("{string.Join(\", \", Attributes)}, {IsCurrentlyCyclic}")]
         private class EntityDependencyRelationship
         {
 #if NET
@@ -342,7 +341,7 @@ namespace DLaB.Xrm.Test
 #else
             private const string TestNamespace = "DLaB.Xrm.Test";
 #endif
-            private static readonly Dictionary<string, HashSet<string>> RequiredDependenciesByEntity =
+            private static readonly Dictionary<string, HashSet<string?>> RequiredDependenciesByEntity =
                 Config.GetDictionaryHash<string, string>(TestNamespace + ".RequiredDependenciesByEntity", "incident:account,contact",
                                                 new ConfigKeyValuesSplitInfo { ConvertValuesToLower = true });
             public List<string> Attributes { get; set; }
@@ -367,10 +366,10 @@ namespace DLaB.Xrm.Test
 
             public EntityDependencyRelationship(string entity, string dependencyEntity, string attribute, bool isCurrentlyCyclic)
             {
-                Attributes = new List<string> { attribute };
+                Attributes = [attribute];
                 DependencyEntity = dependencyEntity;
                 IsCurrentlyCyclic = isCurrentlyCyclic;
-                IsRequired = RequiredDependenciesByEntity.TryGetValue(entity, out HashSet<string> hash) && hash.Contains(dependencyEntity);
+                IsRequired = RequiredDependenciesByEntity.TryGetValue(entity, out var hash) && hash.Contains(dependencyEntity);
             }
         }
     }

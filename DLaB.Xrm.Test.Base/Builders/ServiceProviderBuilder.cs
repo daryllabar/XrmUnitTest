@@ -29,7 +29,7 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         public ServiceProviderBuilder()
                     : base(TestBase.GetOrganizationService(Guid.NewGuid().ToString()),
-                    new FakePluginExecutionContext(), (ITestLogger)null)
+                    new FakePluginExecutionContext(), new DebugLogger())
         {
 
         }
@@ -87,7 +87,7 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         protected ServiceProviderBuilderBase()
                     : this(TestBase.GetOrganizationService(),
-                    new FakePluginExecutionContext(), (ITestLogger)null)
+                    new FakePluginExecutionContext(), new DebugLogger())
         {
         }
 
@@ -96,7 +96,7 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         /// <param name="service">The service.</param>
         /// <param name="context">The context.</param>
-        protected ServiceProviderBuilderBase(IOrganizationService service, IPluginExecutionContext context) : this(service, context, (ITestLogger)null)
+        protected ServiceProviderBuilderBase(IOrganizationService service, IPluginExecutionContext context) : this(service, context, new DebugLogger())
         {
         }
 
@@ -259,7 +259,7 @@ namespace DLaB.Xrm.Test.Builders
                 service = builder.Build();
                 
             }
-            ((FakeOrganizationServiceFactory)ServiceProvider.GetService<IOrganizationServiceFactory>()).SetService(userId, service);
+            ((FakeOrganizationServiceFactory)ServiceProvider.GetRequiredService<IOrganizationServiceFactory>()).SetService(userId, service);
             return This;
         }
 
@@ -269,7 +269,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <typeparam name="T"></typeparam>
         /// <param name="service">The service.</param>
         /// <returns></returns>
-        public TDerived WithService<T>(T service)
+        public TDerived WithService<T>(T service) where T : notnull
         {
             ServiceProvider.AddService(service);
             return This;

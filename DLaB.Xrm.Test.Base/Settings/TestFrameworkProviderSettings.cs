@@ -16,7 +16,7 @@ namespace DLaB.Xrm.Test.Settings
     {
         private string NotConfiguredMessage { get; }
 
-        private ITestFrameworkProvider _value;
+        private ITestFrameworkProvider? _value;
         /// <summary>
         /// Gets the TestFrameworkProvider.
         /// </summary>
@@ -67,9 +67,12 @@ namespace DLaB.Xrm.Test.Settings
         #region Asserts
 
         [DebuggerHidden]
-        internal void AssertAreEqual<T>(T o1, T o2, string message)
+        internal void AssertAreEqual<T>(T? o1, T? o2, string message)
         {
-            if (!o1.Equals(o2))
+
+            if ((o1 is null && o2 is null)
+                || o1 is null
+                || !o1.Equals(o2))
             {
                 throw Value.GetFailedException(message);
             }

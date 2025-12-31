@@ -64,19 +64,19 @@ namespace DLaB.Xrm.Test.Builders
         {
             OnDelete(request.Target?.LogicalName, request.Target?.Id ?? Guid.Empty);
         }
-        internal static void OnDelete(string name, Guid id)
+        internal static void OnDelete(string? name, Guid id)
         {
-            TestSettings.TestFrameworkProvider.AssertFail($"An attempt was made to Delete a(n) {name} Entity with id {id}, using a ReadOnly Service");
+            TestSettings.TestFrameworkProvider.AssertFail($"An attempt was made to Delete a(n) {name ?? "NULL"} Entity with id {id}, using a ReadOnly Service");
         }
 
         internal static void OnUpdate(Entity e)
         {
-            TestSettings.TestFrameworkProvider.AssertFail($"An attempt was made to Update a(n) {e?.LogicalName} Entity with id {e?.Id}, using a ReadOnly Service");
+            TestSettings.TestFrameworkProvider.AssertFail($"An attempt was made to Update a(n) {e.LogicalName} Entity with id {e.Id}, using a ReadOnly Service");
         }
 
         private static void OnExecute(AssociateRequest request)
         {
-            OnAssociate(request.Target?.LogicalName, request.Target?.Id ?? Guid.Empty, request.Relationship);
+            OnAssociate(request.Target?.LogicalName ?? "NULL", request.Target?.Id ?? Guid.Empty, request.Relationship);
         }
         public static void OnAssociate(string entity, Guid id, Relationship relationship)
         {
@@ -85,7 +85,7 @@ namespace DLaB.Xrm.Test.Builders
 
         private static void OnExecute(DisassociateRequest request)
         {
-            OnDisassociate(request.Target?.LogicalName, request.Target?.Id ?? Guid.Empty, request.Relationship);
+            OnDisassociate(request.Target?.LogicalName ?? "NULL", request.Target?.Id ?? Guid.Empty, request.Relationship);
         }
         public static void OnDisassociate(string entity, Guid id, Relationship relationship)
         {
@@ -99,7 +99,7 @@ namespace DLaB.Xrm.Test.Builders
 
         private static void AssertValidMultipleRequest(OrganizationRequest request)
         {
-            OrganizationRequestCollection requests = null;
+            OrganizationRequestCollection? requests = null;
             switch (request)
             {
                 case ExecuteMultipleRequest mr:

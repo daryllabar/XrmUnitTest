@@ -21,7 +21,7 @@ namespace DLaB.Xrm.LocalCrm
         /// <value>
         /// The name of the database.
         /// </value>
-        public string DatabaseName { get; set; }
+        public string? DatabaseName { get; set; }
 
         /// <summary>
         /// Gets or sets the Data Center Id.
@@ -32,7 +32,7 @@ namespace DLaB.Xrm.LocalCrm
         /// <summary>
         /// Gets or sets the collection of endpoints.
         /// </summary>
-        public EndpointCollection Endpoints { get; set; }
+        public EndpointCollection? Endpoints { get; set; }
 #endif
 
         /// <summary>
@@ -43,12 +43,12 @@ namespace DLaB.Xrm.LocalCrm
         /// <summary>
         /// Gets or sets the friendly name.
         /// </summary>
-        public string FriendlyName { get; set; }
+        public string? FriendlyName { get; set; }
 
         /// <summary>
         /// Gets or sets the geo.
         /// </summary>
-        public string Geo { get; set; }
+        public string? Geo { get; set; }
 
         /// <summary>
         /// Defines the full name format. Defaults to F I L.
@@ -61,7 +61,7 @@ namespace DLaB.Xrm.LocalCrm
         /// <value>
         /// The full name format (always upper case).
         /// </value>
-        public string FullNameFormat { get; set; }
+        public string? FullNameFormat { get; set; }
 
         /// <summary>
         /// Gets or sets the language code.
@@ -71,17 +71,17 @@ namespace DLaB.Xrm.LocalCrm
         /// <summary>
         /// Gets or sets the ManyToManyAssociationProvider.
         /// </summary>
-        public IMany2ManyAssociationProvider ManyToManyAssociationProvider { get; set; }
+        public IMany2ManyAssociationProvider? ManyToManyAssociationProvider { get; set; }
 
         /// <summary>
         /// Gets or sets the PrimaryNameProvider.
         /// </summary>
-        public IPrimaryNameProvider PrimaryNameProvider { get; set; }
+        public IPrimaryNameProvider? PrimaryNameProvider { get; set; }
 
         /// <summary>
         /// Gets or sets the Many2ManyAssociationProvider.
         /// </summary>
-        public IMany2ManyAssociationProvider Many2ManyAssociationProvider { get; set; }
+        public IMany2ManyAssociationProvider? Many2ManyAssociationProvider { get; set; }
 
         /// <summary>
         /// Gets or sets the organization identifier.
@@ -100,12 +100,12 @@ namespace DLaB.Xrm.LocalCrm
         /// <summary>
         /// Gets or sets the organization version.
         /// </summary>
-        public string OrganizationVersion { get; set; }
+        public string? OrganizationVersion { get; set; }
 
         /// <summary>
         /// Gets or sets the schema type.
         /// </summary>
-        public string SchemaType { get; set; }
+        public string? SchemaType { get; set; }
 #if !XRM_2013
 
         /// <summary>
@@ -122,12 +122,12 @@ namespace DLaB.Xrm.LocalCrm
         /// <summary>
         /// The Time Provider
         /// </summary>
-        public ITimeProvider TimeProvider { get; set; }
+        public ITimeProvider? TimeProvider { get; set; }
 
         /// <summary>
         /// Gets or sets the URL name.
         /// </summary>
-        public string UrlName { get; set; }
+        public string? UrlName { get; set; }
 
         /// <summary>
         /// Used to populate Created/Modified By and Owner Attributes.

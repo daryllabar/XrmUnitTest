@@ -21,7 +21,8 @@
 //     THE SOFTWARE.
 // </copyright>
 // ----------------------------------------------------------------------------------
-
+#pragma warning disable 8604
+#pragma warning disable 8618
 using System.Collections.Generic;
 using Microsoft.Xrm.Sdk;
 

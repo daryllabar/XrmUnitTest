@@ -18,7 +18,7 @@ namespace DLaB.Xrm.Test
         /// <value>
         /// the type of the attribute used to define a test method.
         /// </value>
-        Type TestMethodAttributeType { get; }
+        Type? TestMethodAttributeType { get; }
 
         /// <summary>
         /// Exception to throw when a custom Assertion has failed.  MsTest: AssertFailedException

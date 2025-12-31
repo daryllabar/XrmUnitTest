@@ -22,6 +22,8 @@
 // </copyright>
 // ---------------------------------------------------------------------------------
 #pragma warning disable 1591
+#pragma warning disable 8625
+#pragma warning disable 8767
 namespace NMemory.Indexes
 {
     using System;

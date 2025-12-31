@@ -39,10 +39,10 @@ namespace DLaB.Xrm.LocalCrm
 
         private class FileInfo
         {
-            public List<byte> Bytes { get; set; }
+            public List<byte> Bytes { get; } = [];
             public long FileSizeInBytes { get; set; }
-            public string FileName { get; set; }
-            public Guid FileId { get; set; }
+            public string FileName { get; set; } = null!;
+            public Guid FileId { get; } = Guid.NewGuid();
 
             public Dictionary<long, List<byte[]>> ChunksByBlockLength { get; } = new Dictionary<long, List<byte[]>>();
         }
@@ -55,9 +55,7 @@ namespace DLaB.Xrm.LocalCrm
             }
 
             var file = new FileInfo {
-                FileId = Guid.NewGuid(),
                 FileName = fileUpload.FileName,
-                Bytes = new List<byte>(),
             };
             _uploadedFilesByFileUploadKey[GetKey(fileUpload)] = file;
             foreach (var blockId in request.BlockList)

@@ -56,7 +56,7 @@ namespace DLaB.Xrm.LocalCrm
         /// <summary>
         /// Adds the value to the entity only if the attribute is valid for the entity, and the condition is true
         /// </summary>
-        private static void ConditionallyAddValue<T>(Entity entity, EntityProperties properties, string attributeName, T value, bool condition = true)
+        private static void ConditionallyAddValue<T>(Entity entity, EntityProperties properties, string attributeName, T? value, bool condition = true)
         {
             if (!condition || !properties.PropertiesByLogicalName.ContainsKey(attributeName))
             {
@@ -308,6 +308,10 @@ namespace DLaB.Xrm.LocalCrm
         private static void UpdateOwningFieldsBasedOnOwner(LocalCrmDatabaseOrganizationService service, Entity entity, EntityProperties properties)
         {
             var ownerRef = entity.GetAttributeValue<EntityReference>(Email.Fields.OwnerId).Clone();
+            if (ownerRef == null)
+            {
+                throw new NullReferenceException($"In {nameof(UpdateOwningFieldsBasedOnOwner)}, OwnerRef is null when trying to update owning fields based on owner.");
+            }
             var owner = service.Retrieve(ownerRef.LogicalName, ownerRef.Id, new ColumnSet(true));
             var bu = owner.GetAttributeValue<EntityReference>(SystemUser.Fields.BusinessUnitId)
                 ?? owner.GetAttributeValue<EntityReference>(Email.Fields.OwningBusinessUnit);
@@ -327,7 +331,7 @@ namespace DLaB.Xrm.LocalCrm
                 return;
             }
 
-            bu = bu.Clone();
+            bu = bu.Clone()!;
             bu.Name = null;
             ConditionallyAddValue(entity, properties, Email.Fields.OwningBusinessUnit, bu);
             ConditionallyAddValue(entity, properties, SystemUser.Fields.BusinessUnitId, bu);

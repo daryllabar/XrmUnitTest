@@ -16,7 +16,7 @@ namespace DLaB.Xrm.Test
         /// <summary>
         /// Fallback service if the current ServiceProvider doesn't define a requested type.
         /// </summary>
-        public IServiceProvider DefaultProvider { get; set; }
+        public IServiceProvider? DefaultProvider { get; set; }
         /// <summary>
         /// Used during cloning to skip cloning the types in the HashSet
         /// </summary>
@@ -37,14 +37,11 @@ namespace DLaB.Xrm.Test
         /// <param name="serviceType">Type of the service.</param>
         /// <returns></returns>
         /// <exception cref="System.Exception">No Service Found For Type:  + serviceType.FullName</exception>
-        public object GetService(Type serviceType)
+        public object? GetService(Type serviceType)
         {
-            if (Services.TryGetValue(serviceType, out object service))
-            {
-                return service;
-            }
-
-            return DefaultProvider?.GetService(serviceType);
+            return Services.TryGetValue(serviceType, out var service)
+                ? service
+                : DefaultProvider?.GetService(serviceType);
         }
 
         /// <summary>
@@ -62,7 +59,7 @@ namespace DLaB.Xrm.Test
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="service">The service.</param>
-        public void AddService<T>(T service)
+        public void AddService<T>(T service) where T : notnull
         {
             Services[typeof(T)] = service;
         }

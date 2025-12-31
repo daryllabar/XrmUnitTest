@@ -60,7 +60,7 @@ namespace DLaB.Xrm.LocalCrm
                 throw new Exception($"Type \"{type.FullName}\" does not contain a field with the name \"{PrimaryNameFieldName}\"!  Consider using the Early Bound Generator to generate this value or using the PrimaryNameViaNonStandardNamesProvider and providing a list of non-standard names via the config.");
             }
 
-            return (string)field.GetValue(null);
+            return (string)(field.GetValue(null) ?? throw new NullReferenceException("Unable to Determine Primary Name for " + logicalName));
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace DLaB.Xrm.LocalCrm
                 throw new Exception($"Type \"{typeof(T).FullName}\" does not contain a field with the name \"{PrimaryNameFieldName}\"!  Consider using the Early Bound Generator to generate this value or using the PrimaryNameViaNonStandardNamesProvider and providing a list of non-standard names via the config.");
             }
 
-            return (string)field.GetValue(null);
+            return (string)(field.GetValue(null) ?? throw new NullReferenceException("Unable to determine Primary Name for type " + typeof(T).FullName));
         }
 
         private readonly object _namelessHashLock = new object();

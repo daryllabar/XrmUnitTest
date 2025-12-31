@@ -1,22 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DLaB.Xrm.LocalCrm
 {
     /// <summary>
-    /// Utilizes a Non Standard Names Dictionary to determine the primary name of entities
+    /// Utilizes a Non-Standard Names Dictionary to determine the primary name of entities
     /// </summary>
     public class PrimaryNameViaNonStandardNamesProvider: PrimaryNameFieldProviderBase
     {
         /// <summary>
-        /// Non standard primary name attribute names by entity logical name.
+        /// Non-standard primary name attribute names by entity logical name.
         /// </summary>
         public Dictionary<string,string> NonStandardNames { get; set; }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="nonStandardNames">Non standard primary name attribute names by entity logical name.</param>
-        public PrimaryNameViaNonStandardNamesProvider(Dictionary<string, string> nonStandardNames = null)
+        /// <param name="nonStandardNames">Non-standard primary name attribute names by entity logical name.</param>
+        public PrimaryNameViaNonStandardNamesProvider(Dictionary<string, string>? nonStandardNames = null)
         {
             NonStandardNames = nonStandardNames ?? new Dictionary<string, string>();
         }
@@ -32,7 +33,7 @@ namespace DLaB.Xrm.LocalCrm
             {
                 return string.Empty;
             }
-            return NonStandardNames.TryGetValue(logicalName, out var name) ? name : EntityHelper.GetPrimaryFieldInfo(logicalName, new DefaultConfig()).AttributeName;
+            return NonStandardNames.TryGetValue(logicalName, out var name) ? name : EntityHelper.GetPrimaryFieldInfo(logicalName, new DefaultConfig()).AttributeName ?? throw new NullReferenceException("Unable to determine Primary Name for " + logicalName);
         }
 
         /// <summary>
@@ -47,12 +48,12 @@ namespace DLaB.Xrm.LocalCrm
 
         private class DefaultConfig : IEntityHelperConfig
         {
-            public string GetIrregularIdAttributeName(string logicalName)
+            public string? GetIrregularIdAttributeName(string logicalName)
             {
                 return null;
             }
 
-            public PrimaryFieldInfo GetIrregularPrimaryFieldInfo(string logicalName, PrimaryFieldInfo defaultInfo = null)
+            public PrimaryFieldInfo? GetIrregularPrimaryFieldInfo(string logicalName, PrimaryFieldInfo? defaultInfo = null)
             {
                 return null;
             }

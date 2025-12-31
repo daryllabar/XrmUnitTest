@@ -160,7 +160,7 @@ namespace DLaB.Xrm.LocalCrm
             }
             return c.DateTimeGrouping == XrmDateTimeGrouping.None
                 ? entity[c.AttributeName].ObjectToStringDebug()
-                : GetGroupByValue(entity, c).ToString();
+                : GetGroupByValue(entity, c).ToString() ?? "NULL";
         }
 
         private static object GetGroupByValue<T>(T entity, XrmAttributeExpression c) where T : Entity
@@ -195,7 +195,7 @@ namespace DLaB.Xrm.LocalCrm
 
         private static void ApplyAggregation<T>(List<T> entities, XrmAttributeExpression column, T aggregate) where T : Entity
         {
-            Type valueType;
+            Type? valueType;
             switch (column.AggregateType)
             {
                 case XrmAggregateType.Avg:
@@ -274,13 +274,13 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
-        private static Type GetFirstValueType<T>(List<T> entities, XrmAttributeExpression column) where T : Entity
+        private static Type? GetFirstValueType<T>(List<T> entities, XrmAttributeExpression column) where T : Entity
         {
             return entities.FirstOrDefault(e => e.Attributes.ContainsKey(column.AttributeName) && e[column.AttributeName] != null)?[column.AttributeName].GetType();
         }
 
         // Example usage inside your method:
-        private static bool IsAliasValid(string alias)
+        private static bool IsAliasValid(string? alias)
         {
             return alias == null || Regex.IsMatch(alias, "^[A-Za-z_][A-Za-z0-9_]*$");
         }

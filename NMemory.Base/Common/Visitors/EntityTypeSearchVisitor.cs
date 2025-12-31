@@ -21,7 +21,8 @@
 //     THE SOFTWARE.
 // </copyright>
 // ----------------------------------------------------------------------------------
-
+#pragma warning disable 8603
+#pragma warning disable 8604
 namespace NMemory.Common.Visitors
 {
     using System;

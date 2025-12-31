@@ -1,6 +1,9 @@
-﻿#if NET
+﻿using System.Diagnostics;
+
+#if NET
 namespace DataverseUnitTest
 #else
+
 namespace DLaB.Xrm.Test
 #endif
 {
@@ -22,5 +25,18 @@ namespace DLaB.Xrm.Test
         /// </summary>
         /// <param name="format">The message format</param><param name="args">The format arguments</param>
         void WriteLine(string format, params object[] args);
+    }
+
+    internal class DebugLogger : ITestLogger
+    {
+        public void WriteLine(string message)
+        {
+            Debug.WriteLine(message);
+        }
+
+        public void WriteLine(string format, params object[] args)
+        {
+            Debug.WriteLine(format, args);
+        }
     }
 }

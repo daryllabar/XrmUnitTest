@@ -18,7 +18,6 @@ namespace DLaB.Xrm.Test.Settings
     {
         private string NotConfiguredMessage { get; }
 
-        private Assembly _assembly;
         /// <summary>
         /// Gets or sets the assembly.
         /// </summary>
@@ -30,16 +29,16 @@ namespace DLaB.Xrm.Test.Settings
         {
             get
             {
-                if (_assembly == null)
+                if (field == null)
                 {
                     throw new NotConfiguredException(NotConfiguredMessage);
                 }
-                return _assembly;
+
+                return field;
             }
-            protected set { _assembly = value; }
+            protected set;
         }
 
-        private string _namespace;
         /// <summary>
         /// Gets or sets the namespace.
         /// </summary>
@@ -51,13 +50,14 @@ namespace DLaB.Xrm.Test.Settings
         {
             get
             {
-                if (_namespace == null)
+                if (field == null)
                 {
                     throw new NotConfiguredException(NotConfiguredMessage);
                 }
-                return _namespace;
+
+                return field;
             }
-            protected set { _namespace = value; }
+            protected set;
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace DLaB.Xrm.Test.Settings
         {
             var type = typeof(T);
             Assembly = type.Assembly;
-            Namespace = type.Namespace;
+            Namespace = type.Namespace ?? throw new NullReferenceException("No Namespace found for type " + type.FullName);
             IsConfigured = true;
         }
     }

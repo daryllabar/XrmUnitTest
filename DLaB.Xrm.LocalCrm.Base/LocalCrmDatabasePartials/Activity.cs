@@ -39,7 +39,7 @@ namespace DLaB.Xrm.LocalCrm
                 Id = entity.Id
             };
             foreach (var att in pointerFields.Where(p => PropertiesCache.For<T>().ContainsProperty(p.Name))
-                                             .Select(field => field.GetRawConstantValue().ToString()).Where(entity.Contains))
+                                             .Select(field => field.GetRawConstantValue()?.ToString()).Where(entity.Contains))
             {
                 pointer[att] = entity[att];
             }

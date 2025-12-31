@@ -61,13 +61,13 @@ namespace DLaB.Xrm.LocalCrm
         {
             public string Name { get; } = property.Name;
             public Type PropertyType { get; } = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;
-            public string LogicalName { get;  } = property.GetCustomAttribute<AttributeLogicalNameAttribute>()?.LogicalName;
+            public string LogicalName { get; } = property.GetCustomAttribute<AttributeLogicalNameAttribute>()?.LogicalName ?? "MISSING ATTRIBUTE LOGICAL NAME";
         }
 
 
         private class LogicalAttributeNameComparer : IEqualityComparer<AttributeInfo>
         {
-            public bool Equals(AttributeInfo x, AttributeInfo y)
+            public bool Equals(AttributeInfo? x, AttributeInfo? y)
             {
                 if (ReferenceEquals(x, y)) return true;
                 if (x is null) return false;
@@ -77,9 +77,9 @@ namespace DLaB.Xrm.LocalCrm
                 return x.LogicalName == y.LogicalName;
             }
 
-            public int GetHashCode(AttributeInfo obj)
+            public int GetHashCode(AttributeInfo? obj)
             {
-                return obj.LogicalName != null
+                return obj?.LogicalName != null
                     ? obj.LogicalName.GetHashCode()
                     : 0;
             }

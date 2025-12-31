@@ -11,23 +11,23 @@ namespace DLaB.Xrm.Client
         /// <summary>
         /// The primary entity logical name.
         /// </summary>
-        public string PrimaryEntityType  { get; set; }
+        public string? PrimaryEntityType  { get; set; }
         /// <summary>
         /// The attribute name of the primary entity on the relationship entity.
         /// </summary>
-        public string PrimaryEntityIdName { get; set; }
+        public string? PrimaryEntityIdName { get; set; }
         /// <summary>
         /// The attribute name of the associated entity on the relationship entity
         /// </summary>
-        public string AssociatedEntityIdName { get; set; }
+        public string? AssociatedEntityIdName { get; set; }
         /// <summary>
         /// The associated entity logical name
         /// </summary>
-        public string AssociatedEntityType { get; set; }
+        public string? AssociatedEntityType { get; set; }
         /// <summary>
         /// The entity logical name of the N2N entity.
         /// </summary>
-        public string AssociationLogicalName { get; set; }
+        public string? AssociationLogicalName { get; set; }
         /// <summary>
         /// Expects format of {RelationshipEntityLogicalName},{PrimaryEntityLogicalName},{PrimaryEntityIdName},{AssociatedEntityIdType},{AssociatedEntityIdName}.
         /// </summary>

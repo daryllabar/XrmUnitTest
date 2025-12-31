@@ -52,7 +52,7 @@ namespace DLaB.Xrm.Test.Builders
         /// Initializes a new instance of the <see cref="WorkflowInvokerBuilder"/> class.
         /// </summary>
         /// <param name="workflow">The workflow to invoke.</param>
-        protected WorkflowInvokerBuilderBase(Activity workflow) : this(workflow, null) {}
+        protected WorkflowInvokerBuilderBase(Activity workflow) : this(workflow, new DebugLogger()) {}
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WorkflowInvokerBuilder" /> class.
@@ -92,9 +92,9 @@ namespace DLaB.Xrm.Test.Builders
             return args;
         }
 
-        private object GetValueOfInArgument(Object inArgument)
+        private object? GetValueOfInArgument(object inArgument)
         {
-            // Passed in object should be an InArgument<T>.  Have to call .Expression, and get it's value (which is a Literal<T>, and then Get it's value)
+            // Passed in object should be an InArgument<T>.  Have to call .Expression, and get its value (which is a Literal<T>, and then get its value)
             // return ((Literal<T>)((InArgument<EntityReference>) value).Expression).Value;
             var literal = GetGenericTypePropertyValue(inArgument, typeof(InArgument<>), "Expression");
             return GetGenericTypePropertyValue(literal, typeof(System.Activities.Expressions.Literal<>), "Value");
@@ -107,7 +107,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="expectedType">Expected Type of the obj.</param>
         /// <param name="propertyName">Name of the property.</param>
         /// <returns></returns>
-        private object GetGenericTypePropertyValue(object obj, Type expectedType, string propertyName)
+        private object? GetGenericTypePropertyValue(object? obj, Type expectedType, string propertyName)
         {
             if (obj == null)
             {
@@ -179,7 +179,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="inputParams">The input parameters.</param>
         /// <returns></returns>
         [DebuggerStepThrough]
-        public IDictionary<string, object> InvokeWorkflow(Dictionary<string, object> inputParams = null)
+        public IDictionary<string, object> InvokeWorkflow(Dictionary<string, object>? inputParams = null)
         {
             inputParams ??= new Dictionary<string, object>();
             foreach (var entry in InArguments)

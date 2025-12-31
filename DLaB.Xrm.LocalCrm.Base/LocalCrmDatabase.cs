@@ -1003,7 +1003,7 @@ namespace DLaB.Xrm.LocalCrm
 
             UpdateActivityPointer(service, databaseValue);
             CreateActivityParties(service, entity);
-            SetCachePrimaryName(service, schema.FirstOrDefault(e => e.Id == entity.Id));
+            SetCachePrimaryName(service, schema.First(e => e.Id == entity.Id));
         }
 
         private static void Delete<T>(LocalCrmDatabaseOrganizationService service, Guid id, DelayedException exception) where T : Entity

@@ -148,7 +148,7 @@ namespace DLaB.Xrm.Test
                 foreach (var attribute in entity.Attributes.Select(a => a.Value as AliasedValue)
                              .Where(a => a is { Value: Guid }))
                 {
-                    aliasedValuesByLogicalName[attribute.EntityLogicalName] = attribute.AttributeLogicalName;
+                    aliasedValuesByLogicalName[attribute!.EntityLogicalName] = attribute.AttributeLogicalName;
                 }
             }
 

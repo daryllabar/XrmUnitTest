@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Test
         /// <value>
         /// The name of the stage.
         /// </value>
-        public string StageName { get; set; }
+        public string StageName { get; set; } = string.Empty;
         /// <summary>
         /// Gets or sets the workflow category.
         /// </summary>
@@ -36,7 +36,7 @@ namespace DLaB.Xrm.Test
         /// <value>
         /// The parent context.
         /// </value>
-        public IWorkflowContext ParentContext { get; set; }
+        public IWorkflowContext? ParentContext { get; set; }
 
 #region Clone
 

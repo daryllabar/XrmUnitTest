@@ -4,7 +4,7 @@ namespace DLaB.Xrm.LocalCrm
 {
     internal static class PrimitiveTypeConverter
     {
-        public static object ConvertToPrimitiveType(object value, Type primitiveType)
+        public static object ConvertToPrimitiveType(object value, Type? primitiveType)
         {
             if(primitiveType is null)
             {
@@ -49,7 +49,7 @@ namespace DLaB.Xrm.LocalCrm
             }
             if (primitiveType == typeof(string))
             {
-                return Convert.ToString(value);
+                return Convert.ToString(value)!;
             }
             if (primitiveType == typeof(DateTime))
             {

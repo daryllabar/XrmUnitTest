@@ -11,7 +11,7 @@ namespace DLaB.Xrm.Client
     /// </summary>
     public class AppConfig
     {
-        private static string _connectionString;
+        private static string? _connectionString;
 
         /// <summary>
         /// The Connection string used to access CRM
@@ -36,7 +36,7 @@ namespace DLaB.Xrm.Client
             set => _connectionString = value;
         }
 
-        private static string _connectionPrefix;
+        private static string? _connectionPrefix;
 
         /// <summary>
         /// The Connection Prefix to use to determine the Connection String to use to connect.
@@ -57,7 +57,7 @@ namespace DLaB.Xrm.Client
             set => _defaultLanguageCode = value;
         }
 
-        private static string _password;
+        private static string? _password;
 
         /// <summary>
         /// Password for the Debug User Account
@@ -77,12 +77,12 @@ namespace DLaB.Xrm.Client
         /// </summary>
         public class CrmEntities
         {
-            private static string _contextType;
-            private static string _primaryNameAttributeName;
+            private static string? _contextType;
+            private static string? _primaryNameAttributeName;
             private static bool? _containsPrimaryAttributeName;
-            private static Dictionary<string, string> _nonStandardAttributeNamesByEntity;
-            private static Dictionary<string, Many2ManyRelationshipDefinition> _many2ManyAssociationsBySchemaName;
-            private static List<string> _namelessEntities;
+            private static Dictionary<string, string>? _nonStandardAttributeNamesByEntity;
+            private static Dictionary<string, Many2ManyRelationshipDefinition>? _many2ManyAssociationsBySchemaName;
+            private static List<string>? _namelessEntities;
 
             /// <summary>
             /// The type of the crm context definition.  This is used to determine the assembly of the early bound entities
@@ -93,7 +93,7 @@ namespace DLaB.Xrm.Client
             public static string ContextType
             {
                 
-                get => _contextType ?? (_contextType = Config.GetAppSettingOrDefault("DLaB.Xrm.Entities.CrmContext, DLaB.Xrm.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", string.Empty));
+                get => _contextType ??= Config.GetAppSettingOrDefault("DLaB.Xrm.Entities.CrmContext, DLaB.Xrm.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", string.Empty);
                 set => _contextType = value;
             }
 
@@ -119,7 +119,7 @@ namespace DLaB.Xrm.Client
             /// </summary>
             public static string PrimaryNameAttributeName
             {
-                get => _primaryNameAttributeName ?? (_primaryNameAttributeName = Config.GetAppSettingOrDefault("CrmEntities.PrimaryNameAttributeName", "PrimaryNameAttribute"));
+                get => _primaryNameAttributeName ??= Config.GetAppSettingOrDefault("CrmEntities.PrimaryNameAttributeName", "PrimaryNameAttribute");
                 set => _primaryNameAttributeName = value;
             }
 
@@ -128,7 +128,7 @@ namespace DLaB.Xrm.Client
             /// </summary>
             public static Dictionary<string,string> NonStandardAttributeNamesByEntity
             {
-                get => _nonStandardAttributeNamesByEntity ?? (_nonStandardAttributeNamesByEntity = Config.GetAppSettingOrDefault("CrmEntities.NonStandardAttributeNamesByEntity", "").ToLower().GetDictionary<string, string>());
+                get => _nonStandardAttributeNamesByEntity ??= Config.GetAppSettingOrDefault("CrmEntities.NonStandardAttributeNamesByEntity", "").ToLower().GetRequiredDictionary<string, string>();
                 set => _nonStandardAttributeNamesByEntity = value;
             }
 
@@ -137,7 +137,7 @@ namespace DLaB.Xrm.Client
             /// </summary>
             public static List<string> NamelessEntities
             {
-                get => _namelessEntities ?? (_namelessEntities = Config.GetList("CrmEntities.NamelessEntities", new List<string>()));
+                get => _namelessEntities ??= Config.GetList("CrmEntities.NamelessEntities", new List<string?>()).Where(l => l != null).Cast<string>().ToList();
                 set => _namelessEntities = value;
             }
 
@@ -147,8 +147,7 @@ namespace DLaB.Xrm.Client
             /// </summary>
             public static Dictionary<string, Many2ManyRelationshipDefinition> Many2ManyAssociationDefinitions
             {
-                get => _many2ManyAssociationsBySchemaName
-                    ?? (_many2ManyAssociationsBySchemaName = GetMany2ManyAssociationDefinitionsConfigWithDefaults());
+                get => _many2ManyAssociationsBySchemaName ??= GetMany2ManyAssociationDefinitionsConfigWithDefaults();
                 set => _many2ManyAssociationsBySchemaName = value;
             }
         }
@@ -156,8 +155,9 @@ namespace DLaB.Xrm.Client
         private static Dictionary<string, Many2ManyRelationshipDefinition> GetMany2ManyAssociationDefinitionsConfigWithDefaults()
         {
             var dictionary = Config.GetDictionaryList("CrmEntities.Many2ManyAssociationDefinitions",
-                      new Dictionary<string, List<string>>())
-                  .ToDictionary(k => k.Key, v => Many2ManyRelationshipDefinition.Parse(v.Value));
+                      new Dictionary<string, List<string?>>())
+                .Where(v => v.Value != null)
+                .ToDictionary(k => k.Key, v => Many2ManyRelationshipDefinition.Parse(v.Value!));
             var @default = new Dictionary<string, string>
             {
                 //{RelationshipEntityLogicalName},{PrimaryEntityLogicalName},{PrimaryEntityIdName},{AssociatedEntityIdName}
@@ -294,7 +294,7 @@ namespace DLaB.Xrm.Client
         /// </summary>
         public class CrmSystemSettings
         {
-            private static string _fullNameFormat;
+            private static string? _fullNameFormat;
             private static Guid? _businessUnitId;
             private static Guid? _userId;
             private static Guid? _onBehalfOfId;
@@ -304,10 +304,8 @@ namespace DLaB.Xrm.Client
             /// </summary>
             public static Guid BusinessUnitId
             {
-                get => (_businessUnitId 
-                        ?? (_businessUnitId = Config.GetAppSettingOrDefault("CrmSystemSettings.BusinessUnitId",
-                                                                            new Guid("88501fd6-90b5-405f-a027-ce9903bc0bb3")))
-                        ).GetValueOrDefault();
+                get => _businessUnitId ??= Config.GetAppSettingOrDefault("CrmSystemSettings.BusinessUnitId", new Guid("88501fd6-90b5-405f-a027-ce9903bc0bb3"));
+                        
                 set => _businessUnitId = value;
             }
 

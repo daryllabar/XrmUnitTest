@@ -22,6 +22,8 @@
 // </copyright>
 // -----------------------------------------------------------------------------------
 #pragma warning disable 1591
+#pragma warning disable 8600
+#pragma warning disable 8602
 namespace NMemory.Tables
 {
     using System;

@@ -21,7 +21,7 @@ namespace DLaB.Xrm.Client
     {
         #region Fields / Properties
 
-        private static Assembly _crmEntitiesAssembly;
+        private static Assembly? _crmEntitiesAssembly;
 
         #endregion Fields / Properties
 
@@ -74,7 +74,7 @@ namespace DLaB.Xrm.Client
         /// </summary>
         /// <param name="defaultAssembly">The default assembly.</param>
         /// <returns></returns>
-        public static Assembly GetEarlyBoundProxyAssembly(Assembly defaultAssembly = null)
+        public static Assembly GetEarlyBoundProxyAssembly(Assembly? defaultAssembly = null)
         {
             if (_crmEntitiesAssembly != null)
             {

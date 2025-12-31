@@ -83,7 +83,7 @@ namespace NMemory.Execution
         public T GetParameter<T>(string name)
         {
 
-            if (!this.parameters.TryGetValue(name, out object result))
+            if (!this.parameters.TryGetValue(name, out var result))
             {
                 throw new ParameterException();
             }

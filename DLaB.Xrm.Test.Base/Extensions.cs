@@ -35,7 +35,7 @@ namespace DLaB.Xrm.Test
         {
             return from f in typeof(T).GetFields()
                    where f.FieldType == typeof(Guid)
-                   select (Guid)f.GetValue(null);
+                   select (Guid)f.GetValue(null)!;
         }
 
         #endregion struct
@@ -118,9 +118,9 @@ namespace DLaB.Xrm.Test
         /// <param name="dict"></param>
         /// <param name="key">The key value to lookup and enqeue the value to the queue of</param>
         /// <param name="value">Value to enqueue</param>
-        public static void AddOrEnqueue<TKey, TValue>(this Dictionary<TKey, Queue<TValue>> dict, TKey key, TValue value)
+        public static void AddOrEnqueue<TKey, TValue>(this Dictionary<TKey, Queue<TValue>> dict, TKey key, TValue value) where TKey: notnull
         {
-            if (dict.TryGetValue(key, out Queue<TValue> values))
+            if (dict.TryGetValue(key, out var values))
             {
                 values.Enqueue(value);
             }
@@ -141,9 +141,9 @@ namespace DLaB.Xrm.Test
         /// <param name="dict"></param>
         /// <param name="key">The key value to lookup and enqeue the values to the queue of</param>
         /// <param name="values">Values to enqueue</param>
-        public static void AddOrEnqueue<TKey, TValue>(this Dictionary<TKey, Queue<TValue>> dict, TKey key, params TValue[] values)
+        public static void AddOrEnqueue<TKey, TValue>(this Dictionary<TKey, Queue<TValue>> dict, TKey key, params TValue[] values) where TKey : notnull
         {
-            if (dict.TryGetValue(key, out Queue<TValue> value))
+            if (dict.TryGetValue(key, out var value))
             {
                 value.EnqueueRange(value);
             }
@@ -164,9 +164,9 @@ namespace DLaB.Xrm.Test
         /// <param name="dict"></param>
         /// <param name="key">The key value to lookup and add the values to the list of</param>
         /// <param name="dictionaryList">Values to enqueue</param>
-        public static void AddOrEnqueue<TKey, TValue>(this Dictionary<TKey, Queue<TValue>> dict, TKey key, Dictionary<TKey, List<TValue>> dictionaryList)
+        public static void AddOrEnqueue<TKey, TValue>(this Dictionary<TKey, Queue<TValue>> dict, TKey key, Dictionary<TKey, List<TValue>> dictionaryList) where TKey : notnull
         {
-            if (!dictionaryList.TryGetValue(key, out List<TValue> listValues))
+            if (!dictionaryList.TryGetValue(key, out var listValues))
             {
                 // Didn't find any an associated list in the dictionary, nothing to Enqueue
                 return;
@@ -189,7 +189,7 @@ namespace DLaB.Xrm.Test
         {
             foreach (var id in ids)
             {
-                if (dict.TryGetValue(id, out List<Guid> values))
+                if (dict.TryGetValue(id, out var values))
                 {
                     values.Add(id);
                 }
@@ -245,7 +245,7 @@ namespace DLaB.Xrm.Test
         {
             foreach (var id in ids)
             {
-                if (dict.TryGetValue(id, out Queue<Guid> value))
+                if (dict.TryGetValue(id, out var value))
                 {
                     value.Enqueue(id);
                 }
@@ -574,7 +574,7 @@ namespace DLaB.Xrm.Test
                 return string.Empty;
             }
 
-            var orgId = field.GetValue(service).ToString();
+            var orgId = field.GetValue(service)?.ToString();
             return "localOrgId" + orgId;
         }
 
@@ -716,55 +716,56 @@ namespace DLaB.Xrm.Test
 
         #region IServiceProvider
 
-        /// <summary>
-        /// Loads the given OrganizationRequest from the input parameters of the IPluginExecutionContext.
-        /// </summary>
         /// <param name="provider"></param>
-        /// <typeparam name="T">Organization Response</typeparam>
-        /// <returns></returns>
-        public static T GetRequest<T>(this IServiceProvider provider) where T : OrganizationRequest, new()
+        extension(IServiceProvider provider)
         {
-            var request = Activator.CreateInstance<T>();
-            var context = provider.GetService<IPluginExecutionContext>();
-            if(context == null)
+            /// <summary>
+            /// Loads the given OrganizationRequest from the input parameters of the IPluginExecutionContext.
+            /// </summary>
+            /// <typeparam name="T">Organization Response</typeparam>
+            /// <returns></returns>
+            public T GetRequest<T>() where T : OrganizationRequest, new()
             {
-                throw new ArgumentException("The IServiceProvider did not contain an IPluginExecutionContext");
+                var request = Activator.CreateInstance<T>();
+                var context = provider.GetService<IPluginExecutionContext>();
+                if(context == null)
+                {
+                    throw new ArgumentException("The IServiceProvider did not contain an IPluginExecutionContext");
+                }
+                request.Parameters = context.InputParameters;
+                return request;
             }
-            request.Parameters = context.InputParameters;
-            return request;
-        }
 
-        /// <summary>
-        /// Loads the given OrganizationResponse from the output parameters of the IPluginExecutionContext.
-        /// </summary>
-        /// <param name="provider"></param>
-        /// <typeparam name="T">Organization Response</typeparam>
-        /// <returns></returns>
-        public static T GetResponse<T>(this IServiceProvider provider) where T : OrganizationResponse, new()
-        {
-            var response = Activator.CreateInstance<T>();
-            var context = provider.GetService<IPluginExecutionContext>();
-            if (context == null)
+            /// <summary>
+            /// Loads the given OrganizationResponse from the output parameters of the IPluginExecutionContext.
+            /// </summary>
+            /// <typeparam name="T">Organization Response</typeparam>
+            /// <returns></returns>
+            public T GetResponse<T>() where T : OrganizationResponse, new()
             {
-                throw new ArgumentException("The IServiceProvider did not contain an IPluginExecutionContext");
+                var response = Activator.CreateInstance<T>();
+                var context = provider.GetService<IPluginExecutionContext>();
+                if (context == null)
+                {
+                    throw new ArgumentException("The IServiceProvider did not contain an IPluginExecutionContext");
+                }
+                response.Results = context.OutputParameters;
+                return response;
             }
-            response.Results = context.OutputParameters;
-            return response;
+
+            /// <summary>
+            /// Retrieves the Fake Service from the Service Provider
+            /// </summary>
+            /// <typeparam name="TFake">The Fake Service to retrieve.  Must implement IServiceFaked&lt;&gt;></typeparam>
+            /// <returns></returns>
+            public TFake GetFake<TFake>() where TFake : IFakeService
+            {
+                var @interface = GetFakedInterface(typeof(TFake));
+
+                return (TFake)(provider.GetService(@interface.GetGenericArguments()[0]) ?? throw new Exception("Required Service not found: " + @interface.GetGenericArguments()[0]));
+            }
         }
 
-
-        /// <summary>
-        /// Retrieves the Fake Service from the Service Provider
-        /// </summary>
-        /// <typeparam name="TFake">The Fake Service to retrieve.  Must implement IServiceFaked&lt;&gt;></typeparam>
-        /// <param name="provider">The Provider</param>
-        /// <returns></returns>
-        public static TFake GetFake<TFake>(this IServiceProvider provider) where TFake : IFakeService
-        {
-            var @interface = GetFakedInterface(typeof(TFake));
-
-            return (TFake)provider.GetService(@interface.GetGenericArguments()[0]);
-        }
 
         /// <summary>
         /// Gets the generic type of the first IServiceFaked interface defined in the type hierarchy
@@ -875,7 +876,7 @@ namespace DLaB.Xrm.Test
         {
             try
             {
-                return (Id)field.GetValue(null);
+                return (Id)field.GetValue(null)!;
             }
             catch (TargetInvocationException ex)
             {

@@ -21,7 +21,7 @@
 //     THE SOFTWARE.
 // </copyright>
 // ----------------------------------------------------------------------------------
-
+#pragma warning disable 8767
 namespace NMemory.Indexes
 {
     using System.Collections.Generic;

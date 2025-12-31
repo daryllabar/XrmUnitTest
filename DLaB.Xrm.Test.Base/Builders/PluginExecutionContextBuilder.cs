@@ -141,7 +141,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="predicate">Optional predicate based on the RegisteredEvents of the plugin.</param>
         /// <returns></returns>
         /// <exception cref="System.Exception">Plugin  + plugin.GetType().FullName +  does not contain any registered events!  Unable to set the registered event of the context.</exception>
-        public TDerived WithFirstRegisteredEvent(IRegisteredEventsPlugin plugin, Func<RegisteredEvent, bool> predicate = null)
+        public TDerived WithFirstRegisteredEvent(IRegisteredEventsPlugin plugin, Func<RegisteredEvent, bool>? predicate = null)
         {
             var first = predicate == null 
                 ? plugin.RegisteredEvents.FirstOrDefault()
@@ -161,10 +161,14 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="predicate">Optional predicate based on the RegisteredEvents of the plugin.</param>
         /// <returns></returns>
         /// <exception cref="System.Exception">Plugin  + plugin.GetType().FullName +  does not contain any registered events!  Unable to set the registered event of the context.</exception>
-        public TDerived WithFirstRegisteredEvent(IPlugin plugin, Func<RegisteredEvent, bool> predicate = null)
+        public TDerived WithFirstRegisteredEvent(IPlugin plugin, Func<RegisteredEvent, bool>? predicate = null)
         {
-            RegisteredEvent Map(dynamic e)
+            RegisteredEvent? Map(dynamic? e)
             {
+                if (e == null)
+                {
+                    return null;
+                }
                 return new RegisteredEvent(
                     (PipelineStage)(int)e.Stage,
                     new MessageType(e.MessageName),
@@ -176,10 +180,10 @@ namespace DLaB.Xrm.Test.Builders
             {
                 throw new NullReferenceException("Property RegisteredEvents did not exist on type " + plugin.GetType().FullName);
             }
-            var events = (IEnumerable<dynamic>)prop.GetValue(plugin);
+            var events = (IEnumerable<dynamic>?)prop.GetValue(plugin);
             var first = predicate == null
-                ? Map(events.FirstOrDefault())
-                : (events.Select(Map).FirstOrDefault(predicate));
+                ? Map(events?.FirstOrDefault(e => e != null))
+                : events?.Select(Map).FirstOrDefault(e => e != null && predicate(e));
             if (first == null)
             {
                 throw new Exception("Plugin " + plugin.GetType().FullName + " does not contain any registered events!  Unable to set the registered event of the context.");
@@ -395,7 +399,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="messageName"></param>
         /// <param name="entityLogicalName"></param>
         /// <returns></returns>
-        public TDerived WithRegisteredEvent(int stage, string messageName, string entityLogicalName = null)
+        public TDerived WithRegisteredEvent(int stage, string messageName, string? entityLogicalName = null)
         {
             Context.Stage = stage;
             Context.MessageName = messageName;
@@ -616,7 +620,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="messageName"></param>
         /// <param name="entityLogicalName">Utilizes the PrimaryEntityName if not specified</param>
         /// <returns></returns>
-        public TDerived WithPreOperation(string messageName, string entityLogicalName = null)
+        public TDerived WithPreOperation(string messageName, string? entityLogicalName = null)
         {
             return WithRegisteredEvent((int)PipelineStage.PreOperation, messageName, entityLogicalName);
         }
@@ -627,7 +631,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="messageName"></param>
         /// <param name="entityLogicalName">Utilizes the PrimaryEntityName if not specified</param>
         /// <returns></returns>
-        public TDerived WithPreValidation(string messageName, string entityLogicalName = null)
+        public TDerived WithPreValidation(string messageName, string? entityLogicalName = null)
         {
             return WithRegisteredEvent((int) PipelineStage.PreValidation, messageName, entityLogicalName);
         }
@@ -638,7 +642,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="messageName"></param>
         /// <param name="entityLogicalName">Utilizes the PrimaryEntityName if not specified</param>
         /// <returns></returns>
-        public TDerived WithPostOperation(string messageName, string entityLogicalName = null)
+        public TDerived WithPostOperation(string messageName, string? entityLogicalName = null)
         {
             return WithRegisteredEvent((int)PipelineStage.PostOperation, messageName, entityLogicalName);
         }

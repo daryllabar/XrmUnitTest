@@ -166,14 +166,11 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         public TDerived WithEntities<TIdsClass>(TIdsClass ids) where TIdsClass : class
         {
-            if (ids == null)
-            {
-                return This;
-            }
-
             if (typeof(Id).IsAssignableFrom(typeof(TIdsClass)))
             {
-                return WithEntities(ids as Id);
+                return ids is Id id
+                    ? WithEntities(id)
+                    : This;
             }
             if (typeof(Entity).IsAssignableFrom(typeof(TIdsClass)))
             {

@@ -21,7 +21,7 @@
 //     THE SOFTWARE.
 // </copyright>
 // ----------------------------------------------------------------------------------
-
+#pragma warning disable 8618
 namespace NMemory.Common.Visitors
 {
     using System.Linq.Expressions;

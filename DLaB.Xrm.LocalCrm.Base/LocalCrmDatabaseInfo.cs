@@ -12,7 +12,6 @@ using AppConfig = DLaB.Xrm.Client.AppConfig;
 using System.Web;
 #else
 using System.Net;
-using static System.Net.WebRequestMethods;
 #endif
 
 namespace DLaB.Xrm.LocalCrm
@@ -25,39 +24,39 @@ namespace DLaB.Xrm.LocalCrm
         /// <summary>
         /// Used to populate Owning Business Unit Attributes
         /// </summary>
-        public EntityReference BusinessUnit { get; private set; }
+        public EntityReference BusinessUnit { get; private set; } = null!;
         /// <summary>
         /// Defines the instance of the database.  Allows for sharing of the database from different call sites, if given the same name.
         /// </summary>
         /// <value>
         /// The name of the database.
         /// </value>
-        public string DatabaseName { get; private set; }
+        public string DatabaseName { get; private set; } = string.Empty;
         /// <summary>
         /// The early bound entity assembly.
         /// </summary>
         /// <value>
         /// The early bound entity assembly.
         /// </value>
-        public Assembly EarlyBoundEntityAssembly { get; private set; }
+        public Assembly EarlyBoundEntityAssembly { get; private set; } = null!;
         /// <summary>
         /// The early bound namespace.
         /// </summary>
         /// <value>
         /// The early bound namespace.
         /// </value>
-        public string EarlyBoundNamespace { get; private set; }
+        public string EarlyBoundNamespace { get; private set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Data Center Id.
         /// </summary>
-        public Guid DataCenterId { get; set; }
+        public Guid DataCenterId { get; set; } = Guid.Empty;
 
 #if !XRM_2013
         /// <summary>
         /// Gets or sets the collection of endpoints.
         /// </summary>
-        public EndpointCollection Endpoints { get; set; }
+        public EndpointCollection Endpoints { get; set; } = new ();
 #endif
 
         /// <summary>
@@ -68,12 +67,12 @@ namespace DLaB.Xrm.LocalCrm
         /// <summary>
         /// Gets or sets the friendly name.
         /// </summary>
-        public string FriendlyName { get; set; }
+        public string FriendlyName { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the geo.
         /// </summary>
-        public string Geo { get; set; }
+        public string Geo { get; set; } = string.Empty;
 
         /// <summary>
         /// Defines the full name format. Defaults to F I L.
@@ -86,7 +85,7 @@ namespace DLaB.Xrm.LocalCrm
         /// <value>
         /// The full name format (always upper case).
         /// </value>
-        public string FullNameFormat { get; set; }
+        public string FullNameFormat { get; set; } = string.Empty;
         /// <summary>
         /// Used for defining OptionMetadata
         /// </summary>
@@ -94,15 +93,15 @@ namespace DLaB.Xrm.LocalCrm
         /// <summary>
         /// The ManyToManyAssociationProvider
         /// </summary>
-        public IMany2ManyAssociationProvider ManyToManyAssociationProvider { get; set; }
+        public IMany2ManyAssociationProvider ManyToManyAssociationProvider { get; set; } = null!;
         /// <summary>
         /// The PrimaryNameProvider
         /// </summary>
-        public IPrimaryNameProvider PrimaryNameProvider { get; set; }
+        public IPrimaryNameProvider PrimaryNameProvider { get; set; } = null!;
         /// <summary>
         /// The Time Provider
         /// </summary>
-        public ITimeProvider TimeProvider { get; set; }
+        public ITimeProvider TimeProvider { get; set; } = null!;
         /// <summary>
         /// The organization identifier.
         /// </summary>
@@ -121,12 +120,12 @@ namespace DLaB.Xrm.LocalCrm
         /// <summary>
         /// Gets or sets the organization version.
         /// </summary>
-        public string OrganizationVersion { get; set; }
+        public string OrganizationVersion { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the schema type.
         /// </summary>
-        public string SchemaType { get; set; }
+        public string SchemaType { get; set; } = string.Empty;
 
 #if !XRM_2013
         /// <summary>
@@ -143,18 +142,19 @@ namespace DLaB.Xrm.LocalCrm
         /// <summary>
         /// Gets or sets the URL name.
         /// </summary>
-        public string UrlName { get; set; }
+        public string UrlName { get; set; } = string.Empty;
 
         /// <summary>
         /// Used to populate Created/Modified By and Owner Attributes.
         /// </summary>
-        public EntityReference User { get; private set; }
+        public EntityReference User { get; private set; } = null!;
         /// <summary>
         /// Used to populate Created/Modified On Behalf Of Attributes.
         /// </summary>
-        public EntityReference UserOnBehalfOf { get; private set; }
+        public EntityReference UserOnBehalfOf { get; private set; } = null!;
 
         private LocalCrmDatabaseInfo() { }
+
 
         /// <summary>
         /// Creates the specified database info.
@@ -166,7 +166,7 @@ namespace DLaB.Xrm.LocalCrm
         /// <param name="userBusinessUnit">The user business unit.</param>
         /// <returns></returns>
         /// <exception cref="System.Exception">Must pass in a derived type from Microsoft.Xrm.Sdk.Client.OrganizationServiceContext</exception>
-        public static LocalCrmDatabaseInfo Create<T>(string databaseName = null, 
+        public static LocalCrmDatabaseInfo Create<T>(string? databaseName = null, 
             Guid? userId = null, 
             Guid? userOnBehalfOf = null, 
             Guid? userBusinessUnit = null) where T : OrganizationServiceContext
@@ -192,7 +192,7 @@ namespace DLaB.Xrm.LocalCrm
         /// <returns></returns>
         public static LocalCrmDatabaseInfo Create(Assembly earlyBoundAssembly, 
             string earlyBoundNamespace, 
-            string databaseName = null, 
+            string? databaseName = null, 
             Guid? userId = null, 
             Guid? userOnBehalfOf = null, 
             Guid? userBusinessUnit = null)
@@ -219,7 +219,7 @@ namespace DLaB.Xrm.LocalCrm
                 throw new Exception("Must pass in a derived type from Microsoft.Xrm.Sdk.Client.OrganizationServiceContext");
             }
 
-            return Create(contextType.Assembly, contextType.Namespace, optionalSettings);
+            return Create(contextType.Assembly, contextType.Namespace ?? "NullNamespace", optionalSettings);
         }
 
         private const int UrlPreAndPostFixLength = 26; // "https://.crm.dynamics.com/".Length
@@ -233,18 +233,18 @@ namespace DLaB.Xrm.LocalCrm
         /// <returns></returns>
         public static LocalCrmDatabaseInfo Create(Assembly earlyBoundAssembly,
             string earlyBoundNamespace,
-            LocalCrmDatabaseOptionalSettings optionalSettings)
+            LocalCrmDatabaseOptionalSettings? optionalSettings = null)
         {
-            optionalSettings ??= new LocalCrmDatabaseOptionalSettings();
+            optionalSettings ??= new ();
 #if NET
             var dbName = optionalSettings.DatabaseName ?? "DataverseUnitTest";
-            var urlName = HttpUtility.UrlEncode(dbName);
+            var urlName = HttpUtility.UrlEncode(dbName)!;
 #else
             var dbName = optionalSettings.DatabaseName ?? "XrmUnitTest";
-            var urlName = WebUtility.UrlEncode(dbName);
+            var urlName = WebUtility.UrlEncode(dbName)!;
 #endif
 
-            urlName = urlName?.Replace("+", "_")
+            urlName = urlName.Replace("+", "_")
                 .Replace("%", "_")
                 .Limit(MaxHostLength - UrlPreAndPostFixLength);
             return new LocalCrmDatabaseInfo
@@ -308,7 +308,7 @@ namespace DLaB.Xrm.LocalCrm
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        private static Guid ConvertToGuid(string value)
+        private static Guid ConvertToGuid(string? value)
         {
             value ??= string.Empty; // Handle Null
             value = value.PadLeft(4);// keeps the string from being too short

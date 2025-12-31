@@ -60,7 +60,7 @@ namespace DLaB.Xrm.Test.Assumptions
         {
             foreach (var assumption in GetAssumptions())
             {
-                assumption.AddAssumedEntities(service, Assumptions);
+                assumption.AddAssumedEntities(service, Assumptions!);
             }
         }
     }

@@ -21,8 +21,12 @@
 //     THE SOFTWARE.
 // </copyright>
 // -----------------------------------------------------------------------------------
-#pragma warning disable 1591
 #pragma warning disable 1063
+#pragma warning disable 1591
+#pragma warning disable 8600
+#pragma warning disable 8618
+#pragma warning disable 8625
+#pragma warning disable 8765
 namespace NMemory.Transactions
 {
     using System;

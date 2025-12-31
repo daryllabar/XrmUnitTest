@@ -37,7 +37,7 @@ namespace DLaB.Xrm.LocalCrm
                 return typeof(LocalCrmDatabase).GetMethods(bindingFlags | BindingFlags.Static)
                                                .FirstOrDefault(m => m.Name == methodName && m.IsGenericMethod)
                                                ?.MakeGenericMethod(types)
-                                               .Invoke(null, parameters);
+                                               .Invoke(null, parameters)!;
             }
             catch (TargetInvocationException ex)
             {
@@ -57,7 +57,7 @@ namespace DLaB.Xrm.LocalCrm
         {
             try
             {
-                return (Entity)typeof(Entity).GetMethod("ToEntity")?.MakeGenericMethod(toEntityType).Invoke(entity, null);
+                return (Entity)typeof(Entity).GetMethod("ToEntity")!.MakeGenericMethod(toEntityType).Invoke(entity, null)!;
             }
             catch (TargetInvocationException ex)
             {
@@ -75,11 +75,11 @@ namespace DLaB.Xrm.LocalCrm
         {
             if (ex.InnerException == null) { throw new NullReferenceException("TargetInvocationException did not contain an InnerException", ex); }
 
-            Exception exception = null;
+            Exception? exception = null;
             try
             {
                 //Assume typed Exception has "new (String message, Exception innerException)" signature
-                exception = (Exception)Activator.CreateInstance(ex.InnerException.GetType(), ex.InnerException.Message, ex.InnerException);
+                exception = (Exception)(Activator.CreateInstance(ex.InnerException.GetType(), ex.InnerException.Message, ex.InnerException) ?? throw new Exception("Unable to create Exception of type " + ex.InnerException.GetType().FullName));
             }
             catch
             {

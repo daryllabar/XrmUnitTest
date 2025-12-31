@@ -21,7 +21,8 @@
 //     THE SOFTWARE.
 // </copyright>
 // ---------------------------------------------------------------------------------
-
+#pragma warning disable 8601
+#pragma warning disable 8625
 namespace NMemory.Common.Expressions
 {
     using System.Linq.Expressions;

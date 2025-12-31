@@ -33,7 +33,7 @@ namespace DLaB.Xrm.LocalCrm
             {
                 throw new NullReferenceException("Assembly Qualified Name for Type was null!");
             }
-            if (_dictionary.TryGetValue(typeName, out EntityProperties properties))
+            if (_dictionary.TryGetValue(typeName, out var properties))
             {
                 return properties;
             }

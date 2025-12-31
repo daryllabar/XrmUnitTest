@@ -21,7 +21,8 @@
 //     THE SOFTWARE.
 // </copyright>
 // ----------------------------------------------------------------------------------
-
+#pragma warning disable 8603
+#pragma warning disable 8625
 namespace NMemory.Common
 {
     using System;

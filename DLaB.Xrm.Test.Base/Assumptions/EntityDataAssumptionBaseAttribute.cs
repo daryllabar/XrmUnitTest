@@ -25,25 +25,25 @@ namespace DLaB.Xrm.Test.Assumptions
         /// <summary>
         /// The AssumedEntities populated by the AddAssumedEntities call.
         /// </summary>
-        protected AssumedEntities Assumptions { get; private set; }
-        private IEnumerable<Type> _prerequisites;
-        private IEnumerable<Type> Prerequisites => _prerequisites ?? (_prerequisites = GetPrerequisites());
+        protected AssumedEntities? Assumptions { get; private set; }
+
+        private IEnumerable<Type> Prerequisites => field ??= GetPrerequisites();
 
         /// <summary>
         /// Gets the name of the type, without the "Attribute" postfix, and with any namespace values that come after Assumptions
         /// </summary>
         private string AssumptionsNamespaceRelativePath => GetAssumptionsNamespaceRelativePath(GetType());
 
-        private static readonly Dictionary<string, Entity> EntitiesFromServerByAttributeType = new Dictionary<string, Entity>();
-        private static IOrganizationService LocalServiceForEntitiesFromServer { get;set;}
+        private static readonly Dictionary<string, Entity> EntitiesFromServerByAttributeType = new();
+        private static IOrganizationService LocalServiceForEntitiesFromServer { get; set;} = null!;
 
-        private Entity PreviouslyRetrievedEntity
+        private Entity? PreviouslyRetrievedEntity
         {
             get => EntitiesFromServerByAttributeType.ContainsKey(GetType().FullName ?? GetType().Name)
                     ? EntitiesFromServerByAttributeType[GetType().FullName ?? GetType().Name]
                     : null;
 
-            set => EntitiesFromServerByAttributeType[GetType().FullName ?? GetType().Name] = value.ToSdkEntity();
+            set => EntitiesFromServerByAttributeType[GetType().FullName ?? GetType().Name] = value?.ToSdkEntity() ?? throw new NullReferenceException("Unable to set PreviouslyRetrievedEntity to null");
         }
 
         private IEnumerable<Type> GetPrerequisites()
@@ -90,7 +90,7 @@ namespace DLaB.Xrm.Test.Assumptions
         /// </summary>
         /// <param name="service"></param>
         /// <returns></returns>
-        protected abstract Entity RetrieveEntity(IOrganizationService service);
+        protected abstract Entity? RetrieveEntity(IOrganizationService service);
 
         /// <summary>
         /// Adds the entities assumed to exist to the AssumedEntities Collection
@@ -113,7 +113,7 @@ namespace DLaB.Xrm.Test.Assumptions
         {
             var type = GetType();
 
-            if (Assumptions.Contains(this))
+            if (Assumptions!.Contains(this))
             {
                 return;
             }
@@ -149,7 +149,7 @@ namespace DLaB.Xrm.Test.Assumptions
         /// <param name="service">The service.</param>
         protected virtual void AddAssumedEntitiesInternal(IOrganizationService service)
         {
-            var entity = (IsLocal(service) && LocalServiceForEntitiesFromServer != service)
+            var entity = IsLocal(service) && LocalServiceForEntitiesFromServer != service
                 ? null
                 : PreviouslyRetrievedEntity?.Clone();
             if (entity == null)
@@ -162,15 +162,15 @@ namespace DLaB.Xrm.Test.Assumptions
                 }
             }
             entity = VerifyAssumption(service, entity);
-            Assumptions.Add(this, entity);
+            Assumptions!.Add(this, entity);
         }
 
         private void AddPrerequisiteAssumptions(IOrganizationService service, HashSet<Type> currentlyProcessingPreReqs)
         {
-            foreach (var assumption in Prerequisites.Select(prereq => (EntityDataAssumptionBaseAttribute)Activator.CreateInstance(prereq))
-                                                    .Where(a => !Assumptions.Contains(a)))
+            foreach (var assumption in Prerequisites.Select(prereq => (EntityDataAssumptionBaseAttribute?)Activator.CreateInstance(prereq))
+                                                    .Where(a => a is not null && !Assumptions!.Contains(a)))
             {
-                assumption.Assumptions = Assumptions;
+                assumption!.Assumptions = Assumptions;
                 assumption.AddAssumedEntitiesWithPreReqInfiniteLoopPrevention(service, currentlyProcessingPreReqs);
             }
         }
@@ -191,7 +191,7 @@ namespace DLaB.Xrm.Test.Assumptions
         /// </summary>
         /// <param name="service"></param>
         /// <param name="entity"></param>
-        private Entity VerifyAssumption(IOrganizationService service, Entity entity)
+        private Entity VerifyAssumption(IOrganizationService service, Entity? entity)
         {
             if (entity == null)
             {
@@ -207,8 +207,8 @@ namespace DLaB.Xrm.Test.Assumptions
                 var localService = mock == null ? (LocalCrmDatabaseOrganizationService)service : (LocalCrmDatabaseOrganizationService)mock.ActualService;
                 var isSelfReferencing = CreateForeignReferences(localService, entity);
                 if (isSelfReferencing 
-                    || entity.Id != Guid.Empty
-                    && Assumptions.AlreadyCreatedAsEntityReference(entity.Id))
+                    || (entity.Id != Guid.Empty
+                        && Assumptions!.AlreadyCreatedAsEntityReference(entity.Id)))
                 {
                     UpdateEntity(service, entity);
                 }
@@ -266,7 +266,7 @@ namespace DLaB.Xrm.Test.Assumptions
 
                 if (service.GetEntitiesById(foreign.LogicalName, foreign.Id).Count == 0)
                 {
-                    Assumptions.AddCreatedEntityReference(CreateEntityFromEntityReference(service, foreign));
+                    Assumptions!.AddCreatedEntityReference(CreateEntityFromEntityReference(service, foreign));
                 }
             }
 
@@ -350,7 +350,7 @@ namespace DLaB.Xrm.Test.Assumptions
             }
 
             // For NET 5 projects, some files get copied over with folder hierarchy.  Walk backwards to see if the directory substructure exists
-            binPath = Path.GetDirectoryName(binPath);
+            binPath = Path.GetDirectoryName(binPath) ?? throw new Exception("Unable to get Directory Name for path " + binPath);
             var parts = configPath.Split(new [] { Path.DirectorySeparatorChar }, StringSplitOptions.RemoveEmptyEntries);
             for (var i = parts.Length - 1; i >= 0; i--)
             {

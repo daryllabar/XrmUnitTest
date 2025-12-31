@@ -41,14 +41,14 @@ namespace DLaB.Xrm.Test
         /// <value>
         /// The name of the message.
         /// </value>
-        public string MessageName { get; set; }
+        public string MessageName { get; set; } = string.Empty;
         /// <summary>
         /// Gets or sets the name of the primary entity.
         /// </summary>
         /// <value>
         /// The name of the primary entity.
         /// </value>
-        public string PrimaryEntityName { get; set; }
+        public string PrimaryEntityName { get; set; } = string.Empty;
         /// <summary>
         /// Gets or sets the request identifier.
         /// </summary>
@@ -62,35 +62,35 @@ namespace DLaB.Xrm.Test
         /// <value>
         /// The name of the secondary entity.
         /// </value>
-        public string SecondaryEntityName { get; set; }
+        public string SecondaryEntityName { get; set; } = string.Empty;
         /// <summary>
         /// Gets or sets the input parameters.
         /// </summary>
         /// <value>
         /// The input parameters.
         /// </value>
-        public ParameterCollection InputParameters { get; set; }
+        public ParameterCollection InputParameters { get; set; } = new();
         /// <summary>
         /// Gets or sets the output parameters.
         /// </summary>
         /// <value>
         /// The output parameters.
         /// </value>
-        public ParameterCollection OutputParameters { get; set; }
+        public ParameterCollection OutputParameters { get; set; } = new();
         /// <summary>
         /// Gets or sets the shared variables.
         /// </summary>
         /// <value>
         /// The shared variables.
         /// </value>
-        public ParameterCollection SharedVariables { get; set; }
+        public ParameterCollection SharedVariables { get; set; } = new();
         /// <summary>
         /// Gets or sets the user identifier.
         /// </summary>
         /// <value>
         /// The user identifier.
         /// </value>
-        public Guid UserId { get; set; }
+        public Guid UserId { get; set; } = new Guid("eb96c0b5-93cc-4a82-bf9d-f8f5880f4772");
         /// <summary>
         /// Gets or sets the initiating user identifier.
         /// </summary>
@@ -118,7 +118,7 @@ namespace DLaB.Xrm.Test
         /// <value>
         /// The name of the organization.
         /// </value>
-        public string OrganizationName { get; set; }
+        public string OrganizationName { get; set; } = string.Empty;
         /// <summary>
         /// Gets or sets the primary entity identifier.
         /// </summary>
@@ -132,21 +132,21 @@ namespace DLaB.Xrm.Test
         /// <value>
         /// The pre entity images.
         /// </value>
-        public EntityImageCollection PreEntityImages { get; set; }
+        public EntityImageCollection PreEntityImages { get; set; } = new();
         /// <summary>
         /// Gets or sets the post entity images.
         /// </summary>
         /// <value>
         /// The post entity images.
         /// </value>
-        public EntityImageCollection PostEntityImages { get; set; }
+        public EntityImageCollection PostEntityImages { get; set; } = new();
         /// <summary>
         /// Gets or sets the owning extension.
         /// </summary>
         /// <value>
         /// The owning extension.
         /// </value>
-        public EntityReference OwningExtension { get; set; }
+        public EntityReference OwningExtension { get; set; } = new();
         /// <summary>
         /// Gets or sets the correlation identifier.
         /// </summary>
@@ -191,19 +191,6 @@ namespace DLaB.Xrm.Test
         public DateTime OperationCreatedOn { get; set; }
 
         private string DebugInfo => $"Message: {MessageName}, Entity: {PrimaryEntityName}, Depth: {Depth}";
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FakeExecutionContext" /> class.
-        /// </summary>
-        public FakeExecutionContext()
-        {
-            InputParameters = new ParameterCollection();
-            OutputParameters = new ParameterCollection();
-            SharedVariables = new ParameterCollection();
-            PreEntityImages = new EntityImageCollection();
-            PostEntityImages = new EntityImageCollection();
-            UserId = new Guid("eb96c0b5-93cc-4a82-bf9d-f8f5880f4772");
-        }
 
         #region Clone
 

@@ -32,11 +32,11 @@ namespace DLaB.Xrm.Test.Builders
         /// <value>
         /// The attributes.
         /// </value>
-        protected Dictionary<string, object> Attributes { get; }
+        protected Dictionary<string, object?> Attributes { get; }
         /// <summary>
         /// Gets the attributes set post create.
         /// </summary>
-        protected Dictionary<string, object> PostCreateAttributes { get; }
+        protected Dictionary<string, object?> PostCreateAttributes { get; }
         /// <summary>
         /// Gets or sets the Id of the Entity being created.
         /// </summary>
@@ -62,8 +62,8 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         protected DLaBEntityBuilder()
         {
-            Attributes = new Dictionary<string, object>();
-            PostCreateAttributes = new Dictionary<string, object>();
+            Attributes = [];
+            PostCreateAttributes = [];
         }
 
 		#endregion Constructors
@@ -76,7 +76,7 @@ namespace DLaB.Xrm.Test.Builders
 
         void IEntityBuilder.PostCreate(IOrganizationService service, Entity entity) { PostCreate(service, (TEntity) entity); }
 
-        IEntityBuilder IEntityBuilder.WithAttributeValue(string attributeName, object value) { return WithAttributeValue(attributeName, value); }
+        IEntityBuilder IEntityBuilder.WithAttributeValue(string attributeName, object? value) { return WithAttributeValue(attributeName, value); }
 
         #endregion IEntityBuilder Implementation
 
@@ -98,7 +98,7 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         /// <param name="attributeName">Name of the attribute.</param>
         /// <param name="value">The value.</param>
-        public TBuilder WithAttributeValue(string attributeName, object value)
+        public TBuilder WithAttributeValue(string attributeName, object? value)
         {
             Attributes[attributeName] = value;
             return This;

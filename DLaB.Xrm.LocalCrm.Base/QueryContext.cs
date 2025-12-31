@@ -8,8 +8,6 @@ namespace DLaB.Xrm.LocalCrm
         public Guid BusinessUnitId { get; set; }
         public ITimeProvider TimeProvider { get; set; }
 
-        public QueryContext() { }
-
         public QueryContext(LocalCrmDatabaseInfo info)
         {
             UserId = info.User.Id;

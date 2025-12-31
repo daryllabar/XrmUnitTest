@@ -22,6 +22,7 @@
 // </copyright>
 // ----------------------------------------------------------------------------------
 #pragma warning disable 1591
+#pragma warning disable 8767
 namespace NMemory.Data
 {
     using System;

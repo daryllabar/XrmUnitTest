@@ -17,7 +17,7 @@ namespace DLaB.Xrm.Test
     /// </summary>
     public class AppConfig : Client.AppConfig
     {
-        private static string _orgName;
+        private static string? _orgName;
 
         /// <summary>
         /// The name of the Org of CRM you are connecting to.

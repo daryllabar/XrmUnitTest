@@ -21,7 +21,7 @@
 //     THE SOFTWARE.
 // </copyright>
 // ----------------------------------------------------------------------------------
-
+#pragma warning disable 8714
 namespace NMemory.DataStructures.Internal.Graphs
 {
     using System;

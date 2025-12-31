@@ -26,8 +26,8 @@ namespace DLaB.Xrm.LocalCrm
                 ["CreatedEntities"] = createdEntities
             };
             
-            Entity account = lead.GetAttributeValue<EntityReference>("accountid") == null ? null : new Entity("accountid") { Id = lead.GetAttributeValue<EntityReference>("accountid").Id };
-            Entity contact = lead.GetAttributeValue<EntityReference>("contactid") == null ? null : new Entity("contact") { Id = lead.GetAttributeValue<EntityReference>("contactid").Id };
+            var account = lead.GetAttributeValue<EntityReference>("accountid") == null ? null : new Entity("accountid") { Id = lead.GetAttributeValue<EntityReference>("accountid").Id };
+            var contact = lead.GetAttributeValue<EntityReference>("contactid") == null ? null : new Entity("contact") { Id = lead.GetAttributeValue<EntityReference>("contactid").Id };
 
             // Create Account
             if (request.CreateAccount) // ParentAccount

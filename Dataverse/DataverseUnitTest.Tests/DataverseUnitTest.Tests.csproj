@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DataverseUnitTest.MSTest" Version="1.0.0.6" />
+    <PackageReference Include="DataverseUnitTest.MSTest" Version="1.0.0.9" />
   </ItemGroup>
 
   <ItemGroup>

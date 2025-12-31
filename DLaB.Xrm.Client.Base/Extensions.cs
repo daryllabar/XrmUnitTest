@@ -23,9 +23,7 @@ namespace DLaB.Xrm.Client
             var assembly = CrmServiceUtility.GetEarlyBoundProxyAssembly();
             foreach (var t in assembly.GetTypes())
             {
-                var attribute =
-                    (EntityLogicalNameAttribute)
-                    t.GetCustomAttributes(typeof(EntityLogicalNameAttribute), false).FirstOrDefault();
+                var attribute = (EntityLogicalNameAttribute?) t.GetCustomAttributes(typeof(EntityLogicalNameAttribute), false).FirstOrDefault();
                 if (attribute != null && attribute.LogicalName == entity.LogicalName)
                 {
                     return t;
@@ -74,7 +72,7 @@ namespace DLaB.Xrm.Client
 #else
             if (service is ServiceProxy<IOrganizationService> proxy)
             {
-                return proxy.ServiceConfiguration?.CurrentServiceEndpoint.Address.Uri;
+                return proxy.ServiceConfiguration?.CurrentServiceEndpoint.Address.Uri ?? new Uri("localhost");
             }
 
             // ReSharper disable once SuspiciousTypeConversion.Global
@@ -92,7 +90,7 @@ namespace DLaB.Xrm.Client
 
             proxy = (ServiceProxy<IOrganizationService>)innerService.GetValue(service);
 
-            return proxy.ServiceConfiguration?.CurrentServiceEndpoint.Address.Uri;
+            return proxy.ServiceConfiguration?.CurrentServiceEndpoint.Address.Uri ?? new Uri("localhost");
 #endif
         }
 

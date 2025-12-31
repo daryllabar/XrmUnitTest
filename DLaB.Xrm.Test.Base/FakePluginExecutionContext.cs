@@ -29,7 +29,7 @@ namespace DLaB.Xrm.Test
         /// <value>
         /// The parent context.
         /// </value>
-        public IPluginExecutionContext ParentContext { get; set; }
+        public IPluginExecutionContext? ParentContext { get; set; }
 
         private string DebugInfo => $"Message: {MessageName}, Entity: {PrimaryEntityName}, Stage: {Stage}, Depth: {Depth}, ParentContexts {this.GetParentContexts().Count()}";
 

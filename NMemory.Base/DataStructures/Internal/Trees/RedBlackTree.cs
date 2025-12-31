@@ -21,7 +21,12 @@
 //     THE SOFTWARE.
 // </copyright>
 // ----------------------------------------------------------------------------------
-
+#pragma warning disable 8600
+#pragma warning disable 8601
+#pragma warning disable 8603
+#pragma warning disable 8604
+#pragma warning disable 8618
+#pragma warning disable 8625
 namespace NMemory.DataStructures.Internal.Trees
 {
     using System;

@@ -58,6 +58,6 @@ namespace DLaB.Xrm.Test.Builders
         /// </summary>
         /// <param name="attributeName">Name of the attribute.</param>
         /// <param name="value">The value.</param>
-        IEntityBuilder WithAttributeValue(string attributeName, object value);
+        IEntityBuilder WithAttributeValue(string attributeName, object? value);
     }
 }

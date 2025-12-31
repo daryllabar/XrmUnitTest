@@ -21,7 +21,8 @@
 //     THE SOFTWARE.
 // </copyright>
 // ----------------------------------------------------------------------------------
-
+#pragma warning disable 8600
+#pragma warning disable 8765
 namespace NMemory.Concurrency
 {
     using System.Collections.Concurrent;

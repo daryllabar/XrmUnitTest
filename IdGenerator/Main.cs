@@ -86,7 +86,7 @@ namespace IdGenerator
             var field = gridView.GetType().GetField("_labelWidth", BindingFlags.Instance | BindingFlags.NonPublic);
             if (field != null)
             {
-                _settings.PropertyGridLabelWidth = (int)field.GetValue(gridView);
+                _settings.PropertyGridLabelWidth = (int?)field.GetValue(gridView) ?? 0;
             }
             _settings.Save();
         }

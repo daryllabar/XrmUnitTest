@@ -21,7 +21,10 @@
 //     THE SOFTWARE.
 // </copyright>
 // ----------------------------------------------------------------------------------
-
+#pragma warning disable 8600
+#pragma warning disable 8602
+#pragma warning disable 8604
+#pragma warning disable 8625
 namespace NMemory.Tables
 {
     using System;

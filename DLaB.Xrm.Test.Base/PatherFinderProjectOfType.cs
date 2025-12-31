@@ -17,8 +17,8 @@ namespace DLaB.Xrm.Test
     /// </summary>
     public class PatherFinderProjectOfType : IPathFinder
     {
-        private string FallBackProjectDirectory { get; }
-        private Func<string, string, string> MapAssumedProjectParentPathToActual { get; }
+        private string? FallBackProjectDirectory { get; }
+        private Func<string, string, string>? MapAssumedProjectParentPathToActual { get; }
         private string ProjectPath { get; }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace DLaB.Xrm.Test
         /// <param name="projectRelativePath">The project relative path.</param>
         /// <param name="fallBackProjectDirectory">The fallback project directory path to use.  Useful for Build Pipelines.</param>
         /// <param name="mapAssumedProjectParentPathToActual">Function to map from the assumed path to the correct one.  First Parameter is the Assumed Project Parent Path.  The Second Parameter is the Project Name.</param>
-        public PatherFinderProjectOfType(Type type, string projectRelativePath = null, string fallBackProjectDirectory = null, Func<string, string, string> mapAssumedProjectParentPathToActual = null)
+        public PatherFinderProjectOfType(Type type, string? projectRelativePath = null, string? fallBackProjectDirectory = null, Func<string, string, string>? mapAssumedProjectParentPathToActual = null)
         {
             FallBackProjectDirectory = fallBackProjectDirectory;
             MapAssumedProjectParentPathToActual = mapAssumedProjectParentPathToActual;
@@ -44,7 +44,7 @@ namespace DLaB.Xrm.Test
         private string FindProjectOfType(Type type)
         {
             var log = new List<string> { "Log: " };
-            var projectName = type.AssemblyQualifiedName?.Split(',')[1].Trim();
+            var projectName = type.AssemblyQualifiedName!.Split(',')[1].Trim();
             log.Add($"Looking for project folder for {projectName}");
 
             var fileNamesToCheck = new List<string>();
@@ -53,7 +53,7 @@ namespace DLaB.Xrm.Test
             // XUnit moves the location of the assembly to a temp location, use CodeBase instead
             fileNamesToCheck.Add(type.Assembly.CodeBase.Substring(8));
 #endif
-            string projectParentDirectory = null;
+            string? projectParentDirectory = null;
             var sb = new StringBuilder();
             foreach (var fileName in fileNamesToCheck)
             {
@@ -83,7 +83,7 @@ namespace DLaB.Xrm.Test
                 else
                 {
                     log.Add($"Assumed Project Folder {projectPath} not found! Attempting mapAssumedProjectParentPathToActual to map to the correct path.");
-                    projectPath = MapAssumedProjectParentPathToActual(projectParentDirectory, projectName);
+                    projectPath = MapAssumedProjectParentPathToActual(projectParentDirectory!, projectName!);
                 }
             }
             log.Add("Project Folder " + projectPath);
@@ -100,7 +100,7 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        private string GetProjectParentDirectory(string dllFilePath, StringBuilder sb)
+        private string? GetProjectParentDirectory(string dllFilePath, StringBuilder sb)
         {
             var dll = new FileInfo(dllFilePath);
 
@@ -115,7 +115,7 @@ namespace DLaB.Xrm.Test
             }
 
             var folders = dllFilePath.ToLower().Split(Path.DirectorySeparatorChar);
-            string solutionFolder;
+            string? solutionFolder;
 
             if (folders.Contains("lut"))
             {
@@ -147,7 +147,7 @@ namespace DLaB.Xrm.Test
             return solutionFolder;
         }
 
-        private static string GetProjectParentDirectory(FileInfo dll)
+        private static string? GetProjectParentDirectory(FileInfo dll)
         {
             // Check for XUnit Temp Directory
             var directory = dll.Directory;
@@ -167,7 +167,7 @@ namespace DLaB.Xrm.Test
             return null;
         }
 
-        private static string GetProjectParentDirectoryLiveUnitTest(StringBuilder sb, FileInfo dll, string[] folders)
+        private static string? GetProjectParentDirectoryLiveUnitTest(StringBuilder sb, FileInfo dll, string[] folders)
         {
             sb.AppendLine("Checking for Live Unit Tests");
             sb.AppendLine($"Dll Path: {dll.FullName}");
@@ -188,7 +188,7 @@ namespace DLaB.Xrm.Test
                 ?? GetProjectPathFromSolutionFile(sb, dll, solutionFolder);
         }
 
-        private string GetProjectParentDirectoryLiveUnitTestV2(StringBuilder sb, FileInfo dll, string[] folders)
+        private string? GetProjectParentDirectoryLiveUnitTestV2(StringBuilder sb, FileInfo dll, string[] folders)
         {
             sb.AppendLine("Checking for Live Unit Tests");
             sb.AppendLine($"Dll Path: {dll.FullName}");
@@ -228,7 +228,7 @@ namespace DLaB.Xrm.Test
             return GetProjectParentDirectory(a, sb);
         }
 
-        private static string GetProjectParentDirectoryLiveUnitTestFromDirectoryPath(StringBuilder sb, string[] folders, int lutIndex, string solutionFolder)
+        private static string? GetProjectParentDirectoryLiveUnitTestFromDirectoryPath(StringBuilder sb, string[] folders, int lutIndex, string solutionFolder)
         {
             var values = folders.ToList();
             var currentFolder = solutionFolder;
@@ -252,7 +252,7 @@ namespace DLaB.Xrm.Test
             return null;
         }
 
-        private static string GetProjectPathFromSolutionFile(StringBuilder sb, FileInfo dll, string solutionFolder)
+        private static string? GetProjectPathFromSolutionFile(StringBuilder sb, FileInfo dll, string solutionFolder)
         {
             foreach (var solution in Directory.GetFiles(solutionFolder, "*.sln"))
             {
@@ -280,12 +280,12 @@ namespace DLaB.Xrm.Test
             sb.AppendLine(s.ToString());
             for (var i = 0; i < s.FrameCount; i++)
             {
-                var fileName = s.GetFrame(i).GetFileName();
-                sb.AppendLine(fileName ?? String.Empty);
+                var fileName = s.GetFrame(i)?.GetFileName();
+                sb.AppendLine(fileName ?? string.Empty);
                 if (!string.IsNullOrEmpty(fileName))
                 {
                     // File name will be in the form of c:\a\src\Branch Name\project\filename.  Get everything up to and including the Branch Name
-                    var parts = fileName.Split(Path.DirectorySeparatorChar);
+                    var parts = fileName!.Split(Path.DirectorySeparatorChar);
                     solutionFolder = Path.Combine(parts[0] + Path.DirectorySeparatorChar + parts[1], parts[2], parts[3]);
                     sb.AppendLine(solutionFolder);
                     break;

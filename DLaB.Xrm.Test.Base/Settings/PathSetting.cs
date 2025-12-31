@@ -15,7 +15,7 @@ namespace DLaB.Xrm.Test.Settings
     {
         private string NotConfiguredMessage { get; }
 
-        private string _value;
+        private string? _value;
         /// <summary>
         /// Gets the value.
         /// </summary>

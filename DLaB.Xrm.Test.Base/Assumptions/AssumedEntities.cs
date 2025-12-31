@@ -276,9 +276,7 @@ namespace DLaB.Xrm.Test.Assumptions
         /// <returns></returns>
         public static IEnumerable<EntityDataAssumptionBaseAttribute> GetEntityDataAssumptionAttributes(this Type type)
         {
-            return type.GetCustomAttributes(true)
-                .Select(a => a as EntityDataAssumptionBaseAttribute)
-                .Where(a => a != null);
+            return type.GetCustomAttributes(true).OfType<EntityDataAssumptionBaseAttribute>();
         }
     }
 }

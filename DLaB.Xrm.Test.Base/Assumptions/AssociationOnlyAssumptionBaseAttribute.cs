@@ -40,7 +40,7 @@ namespace DLaB.Xrm.Test.Assumptions
         protected override Guid CreateEntity(IOrganizationService service, Entity entity)
         {
             service.Associate(Entity, Relationship, Entities.ToArray());
-            return RetrieveEntity(service).Id;
+            return RetrieveEntity(service)?.Id ?? Guid.Empty;
         }
     }
 }

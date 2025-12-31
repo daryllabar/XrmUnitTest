@@ -25,8 +25,8 @@ namespace DLaB.Xrm.LocalCrm
         /// <returns></returns>
         internal static Type GetEntityType(this Assembly assembly, string logicalName)
         {
-            return assembly.GetTypes().FirstOrDefault(t =>
-                t.GetCustomAttribute<EntityLogicalNameAttribute>(true)?.LogicalName == logicalName);
+            return assembly.GetTypes().FirstOrDefault(t => t.GetCustomAttribute<EntityLogicalNameAttribute>(true)?.LogicalName == logicalName)
+                ?? throw new NullReferenceException($"No Entity Type found for logical name: {logicalName} in assembly: {assembly.FullName}");
         }
 
         #endregion Assembly
@@ -131,9 +131,12 @@ namespace DLaB.Xrm.LocalCrm
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public static EntityReference Clone(this EntityReference entity)
+#if NET
+        [return: System.Diagnostics.CodeAnalysis.NotNullIfNotNull(nameof(entity))]
+#endif
+        public static EntityReference? Clone(this EntityReference? entity)
         {
-            if(entity == null)
+            if (entity == null)
             {
                 return null;
             }
@@ -153,7 +156,7 @@ namespace DLaB.Xrm.LocalCrm
 
         }
 
-        #endregion EntityReference
+#endregion EntityReference
 
         #region IEnumerable<FetchAttributeInfo>
 
@@ -224,7 +227,7 @@ namespace DLaB.Xrm.LocalCrm
         /// <param name="link"></param>
         /// <param name="alias"></param>
         /// <returns></returns>
-        public static LinkEntity GetLinkEntity(this LinkEntity link, string alias)
+        public static LinkEntity? GetLinkEntity(this LinkEntity link, string alias)
         {
             return link.EntityAlias == alias ? link : link.LinkEntities.FirstOrDefault(l => l.GetLinkEntity(alias) != null);
         }
@@ -253,7 +256,7 @@ namespace DLaB.Xrm.LocalCrm
 #else
                 return string.IsNullOrEmpty(order.Alias)
                     ? e.GetAttributeValue<object>(order.AttributeName)
-                    : e.GetAliasedValue<object>(order.Alias);
+                    : e.GetAliasedValue<object>(order.Alias) ?? string.Empty;
 #endif
             }
         }
@@ -268,7 +271,7 @@ namespace DLaB.Xrm.LocalCrm
         /// <param name="qe"></param>
         /// <param name="alias"></param>
         /// <returns></returns>
-        public static LinkEntity GetLinkEntity(this QueryExpression qe, string alias)
+        public static LinkEntity? GetLinkEntity(this QueryExpression qe, string alias)
         {
             return qe.LinkEntities.FirstOrDefault(l => l.GetLinkEntity(alias) != null);
         }
@@ -324,7 +327,7 @@ namespace DLaB.Xrm.LocalCrm
 
         #region Helper
 
-        private static object ConvertStringObjectToLower(object value)
+        private static object? ConvertStringObjectToLower(object? value)
         {
             if (value == null) { return null; }
             if (value is string str)

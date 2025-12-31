@@ -22,6 +22,10 @@
 // </copyright>
 // ----------------------------------------------------------------------------------
 #pragma warning disable 1591
+#pragma warning disable 8600
+#pragma warning disable 8602
+#pragma warning disable 8603
+#pragma warning disable 8604
 namespace NMemory.Execution.Optimization.Rewriters
 {
     using System;

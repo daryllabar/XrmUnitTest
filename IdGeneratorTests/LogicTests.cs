@@ -278,7 +278,7 @@ public class ContactIds
             //
             Assert.AreEqual("Contact", entityType);
             Assert.AreEqual("Contacts", info.ContainerName);
-            Assert.AreEqual(names, info.Names.Count);
+            Assert.HasCount(names, info.Names);
             Assert.AreEqual(expected, string.Join(",", info.Names));
         }
 

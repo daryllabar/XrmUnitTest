@@ -138,7 +138,7 @@ namespace DLaB.Xrm.Test
         /// <returns></returns>
         public static dynamic GetIdsForType(Type type)
         {
-            var ids = (ICollection<KeyValuePair<string, object>>)new ExpandoObject();
+            var ids = (ICollection<KeyValuePair<string, object>>)new ExpandoObject()!;
             foreach (var id in type.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic)
                                         .SelectMany(GetIdsWithName))
             {
@@ -166,7 +166,7 @@ namespace DLaB.Xrm.Test
             foreach (var nestedType in type.GetNestedTypes())
             {
                 var nested = new ExpandoObject();
-                var ids = (ICollection<KeyValuePair<string, object>>)nested;
+                var ids = (ICollection<KeyValuePair<string, object>>)nested!;
                 foreach (var id in type.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic)
                                        .SelectMany(GetIdsWithName))
                 {
@@ -181,7 +181,7 @@ namespace DLaB.Xrm.Test
         {
             try
             {
-                return (Id)field.GetValue(null);
+                return (Id)field.GetValue(null)!;
             }
             catch (TargetInvocationException ex)
             {
@@ -348,9 +348,9 @@ namespace DLaB.Xrm.Test
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns>The result of the conversion.</returns>
-        public static implicit operator TEntity(Id<TEntity> entity)
+        public static implicit operator TEntity(Id<TEntity>? entity)
         {
-            return entity?.Entity;
+            return entity?.Entity!;
         }
     }
 

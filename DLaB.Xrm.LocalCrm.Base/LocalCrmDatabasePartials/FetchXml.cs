@@ -21,7 +21,7 @@ namespace DLaB.Xrm.LocalCrm
 
         public static QueryExpression ConvertFetchToQueryExpression(LocalCrmDatabaseOrganizationService service, FetchType fe)
         {
-            var fetchEntity = ((FetchEntityType)fe.Items[0]);
+            var fetchEntity = (FetchEntityType)fe.Items[0];
             var qe = MapToQueryExpression(fe, fetchEntity);
             var idName = EntityHelper.GetIdAttributeName(service.GetType(fetchEntity.name));
             var entityLink = qe.AddLink(fetchEntity.name, idName, idName);
@@ -78,7 +78,7 @@ namespace DLaB.Xrm.LocalCrm
                     qe.PageInfo.Count = int.Parse(fe.count);
                 }
             }
-            var orders = ((FetchEntityType)fe.Items.FirstOrDefault())?.Items.OfType<FetchOrderType>().ToList();
+            var orders = ((FetchEntityType?)fe.Items.FirstOrDefault())?.Items.OfType<FetchOrderType>().ToList();
             if (orders != null)
             {
                 foreach(var order in orders)
@@ -228,8 +228,8 @@ namespace DLaB.Xrm.LocalCrm
 
         private static void AddToFilter(LocalCrmDatabaseOrganizationService service, Type entityType, Dictionary<String, LinkEntity> links, FilterExpression criteria, condition condition)
         {
-            string entityName = null;
-            if (!String.IsNullOrWhiteSpace(condition.entityname))
+            string? entityName = null;
+            if (!string.IsNullOrWhiteSpace(condition.entityname))
             {
                 entityName = condition.entityname;
                 var logicalName = links.TryGetValue(condition.entityname, out var linkRef)
@@ -248,14 +248,14 @@ namespace DLaB.Xrm.LocalCrm
             criteria.AddCondition(entityName, condition.attribute, op, GetConditionValue(condition, property.PropertyType, op));
         }
 
-        private static object[] GetConditionValue(condition condition, Type attributeType, ConditionOperator op)
+        private static object?[]? GetConditionValue(condition condition, Type attributeType, ConditionOperator op)
         {
             if (op == ConditionOperator.Null || op == ConditionOperator.NotNull)
             {
                 return null;
             }
 
-            object[] value;
+            object?[]? value;
             if (attributeType == typeof (Guid) || attributeType == typeof (EntityReference))
             {
                 value = ParseValue(condition, Guid.Parse);
@@ -299,9 +299,9 @@ namespace DLaB.Xrm.LocalCrm
             return value;
         }
 
-        private static object[] ParseNullableValue<T>(condition condition, Func<string, T> parse) 
+        private static object?[] ParseNullableValue<T>(condition condition, Func<string, T> parse) 
         {
-            var count = condition.Items == null ? 0 : condition.Items.Count();
+            var count = condition.Items == null! ? 0 : condition.Items.Count();
             if (count > 0 && condition.value != null)
             {
                 throw new ArgumentException("Condition contains both Items and a value.  Not sure how CRM handles this...  Error for now", "condition");
@@ -309,7 +309,7 @@ namespace DLaB.Xrm.LocalCrm
             if (count > 0)
             {
                 // ReSharper disable once AssignNullToNotNullAttribute
-                return condition.Items.Select(i => (i.Value == null ? (object)null : parse(i.Value))).ToArray();
+                return condition.Items!.Select(i => i.Value == null ? (object?)null : parse(i.Value)).ToArray();
             }
             else
             {
@@ -317,9 +317,9 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
-        private static object[] ParseValue<T>(condition condition, Func<string, T> parse)
+        private static object?[] ParseValue<T>(condition condition, Func<string, T> parse)
         {
-            var count = condition.Items == null ? 0 : condition.Items.Count();
+            var count = condition.Items == null! ? 0 : condition.Items.Count();
             if (count > 0 && condition.value != null)
             {
                 throw new ArgumentException("Condition contains both Items and a value.  Not sure how CRM handles this...  Error for now", "condition");
@@ -327,11 +327,11 @@ namespace DLaB.Xrm.LocalCrm
             if (count > 0)
             {
                 // ReSharper disable once AssignNullToNotNullAttribute
-                return condition.Items.Select(i => (object)parse(i.Value)).ToArray();
+                return condition.Items!.Select(i => (object?)parse(i.Value)).ToArray();
             }
             else
             {
-                return new object[] { parse(condition.value)};
+                return [parse(condition.value ?? string.Empty)];
             }
         }
 
@@ -479,6 +479,7 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 #if PRE_MULTISELECT
+#pragma warning disable 8604
         private static EntityCollection PerformAggregation<T>(EntityCollection entityCollection, FetchType fe) where T : Entity
         {
             var entities = entityCollection.Entities.Cast<T>().ToList();
@@ -660,9 +661,10 @@ namespace DLaB.Xrm.LocalCrm
             }
             return aggregateEntities.Values.ToList();
         }
+#pragma warning restore 8604
 #endif
 
-#endregion Process FetchXml
+        #endregion Process FetchXml
 
         #region Convert Query Expression To Fetch Xml
 
@@ -680,7 +682,7 @@ namespace DLaB.Xrm.LocalCrm
             items.AddRange(qe.LinkEntities.Select(CreateLink));
 
             // FetchOrderType order
-            items.AddRange(qe.Orders.Select(c => new FetchOrderType{ attribute = c.AttributeName, descending = (c.OrderType == OrderType.Descending)}));
+            items.AddRange(qe.Orders.Select(c => new FetchOrderType{ attribute = c.AttributeName, descending = c.OrderType == OrderType.Descending}));
 
             var fetch = new FetchType
             {

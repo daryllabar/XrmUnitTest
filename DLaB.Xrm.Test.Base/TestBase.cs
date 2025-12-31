@@ -31,7 +31,12 @@ namespace DLaB.Xrm.Test
         /// <value>
         /// The name of the org.
         /// </value>
-        public static string OrgName { get; set; }
+        public static string OrgName
+        {
+            get => field ?? throw new Exception($"Call to {nameof(TestBase)}.{nameof(OrgName)} prior to {nameof(LoadUserUnitTestSettings)} being called!");
+            set;
+        }
+
         /// <summary>
         /// Gets or sets a value indicating whether [use local CRM database].
         /// </summary>
@@ -53,8 +58,8 @@ namespace DLaB.Xrm.Test
         /// <param name="organizationName">Name of the organization.</param>
         /// <param name="impersonationUserId">The impersonation user identifier.</param>
         /// <returns></returns>
-        public static IClientSideOrganizationService GetOrganizationService(string organizationName = null,
-            Guid impersonationUserId = new Guid())
+        public static IClientSideOrganizationService GetOrganizationService(string? organizationName = null,
+            Guid impersonationUserId = new ())
         {
             LoadUserUnitTestSettings();
             if (UseLocalCrmDatabase)
@@ -92,7 +97,7 @@ namespace DLaB.Xrm.Test
             return LocalCrmDatabaseInfo.Create(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace, databaseKey, Guid.NewGuid(), impersonationUserId, Guid.NewGuid());
         }
 
-        private static MethodBase GetUnitTestMethod()
+        private static MethodBase? GetUnitTestMethod()
         {
             var frames = new StackTrace().GetFrames();
             if (frames == null)
@@ -107,13 +112,13 @@ namespace DLaB.Xrm.Test
                 return ((IEnumerable<StackFrame>)frames).Reverse() // Stacks are LIFO, Reverse to start at the bottom.
                     .Select(frame => frame.GetMethod())
                     .Where(m => m != null)
-                    .FirstOrDefault(method => method.GetCustomAttributes(false).Any(o => multiProvider.TestMethodAttributeTypes.Contains(o.GetType())));
+                    .FirstOrDefault(method => method!.GetCustomAttributes(false).Any(o => multiProvider.TestMethodAttributeTypes.Contains(o.GetType())));
             }
 
             return ((IEnumerable<StackFrame>)frames).Reverse() // Stacks are LIFO, Reverse to start at the bottom.
                          .Select(frame => frame.GetMethod())
                          .Where(m => m != null)
-                         .FirstOrDefault(method => method.GetCustomAttributes(false).Any(o => o.GetType() == TestSettings.TestFrameworkProvider.Value.TestMethodAttributeType));
+                         .FirstOrDefault(method => method!.GetCustomAttributes(false).Any(o => o.GetType() == TestSettings.TestFrameworkProvider.Value.TestMethodAttributeType));
         }
 
         #endregion GetOrganizationServiceProxy
@@ -123,6 +128,7 @@ namespace DLaB.Xrm.Test
         private static bool UserUnitTestSettingsLoaded { get; set; }
 
         private static readonly object LocalSettingsLock = new object();
+
         /// <summary>
         /// Loads the user unit test settings in a multi-thread safe manner, verifying that it is loaded once only.
         /// </summary>
@@ -212,7 +218,7 @@ namespace DLaB.Xrm.Test
             }
         }
 
-        private static Configuration GetUserConfig(string userConfigPath)
+        private static Configuration? GetUserConfig(string userConfigPath)
         {
             if (!File.Exists(userConfigPath) && userConfigPath?.EndsWith("user.config") == true)
             {
@@ -243,7 +249,7 @@ namespace DLaB.Xrm.Test
 
         public const string DataverseUnitTestSettingsName = "dataverseUnitTestSettings";
 
-        private static void AddJsonSettingsToAppConfig(string jsonConfigPath)
+        private static void AddJsonSettingsToAppConfig(string? jsonConfigPath)
         {
             var builder = new ConfigurationBuilder();
             if (jsonConfigPath == null)
@@ -288,7 +294,7 @@ namespace DLaB.Xrm.Test
             if (settings.Connections != null) {
                 foreach (var connection in settings.Connections.Where(c => c != null))
                 {
-                    AddOrUpdate(config, connection.Name + ".ConnectionString", connection.Value);
+                    AddOrUpdate(config, connection!.Name + ".ConnectionString", connection.Value);
                 }
             }
 
@@ -298,7 +304,7 @@ namespace DLaB.Xrm.Test
             if (settings.Passwords != null) {
                 foreach (var password in settings.Passwords.Where(p => p != null))
                 {
-                    AddOrUpdate(config, password.Name + ".Password", password.Value);
+                    AddOrUpdate(config, password!.Name + ".Password", password.Value);
                 }
             }
         }
@@ -309,14 +315,14 @@ namespace DLaB.Xrm.Test
             {
                 foreach (var setting in settings.AppSettings.Where(s => s != null))
                 {
-                    var key = setting.Key;
+                    var key = setting!.Key ?? throw new NullReferenceException("Key for Setting was null!");
                     var value = setting.Value;
                     AddOrUpdate(config, key, value);
                 }
             }
         }
 
-        private static void AddOrUpdate(Configuration config, string key, string value)
+        private static void AddOrUpdate(Configuration config, string key, string? value)
         {
             var appSettings = ConfigManager.AppSettings;
             var appSetting = config.AppSettings.Settings[key];

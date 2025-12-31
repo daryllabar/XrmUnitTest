@@ -22,6 +22,9 @@
 // </copyright>
 // ----------------------------------------------------------------------------------
 #pragma warning disable 1591
+#pragma warning disable 8600
+#pragma warning disable 8604
+#pragma warning disable 8618
 namespace NMemory.Execution
 {
     using System;
