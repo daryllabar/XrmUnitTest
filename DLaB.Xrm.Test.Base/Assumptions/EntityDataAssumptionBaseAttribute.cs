@@ -232,6 +232,11 @@ namespace DLaB.Xrm.Test.Assumptions
             return entity;
         }
 
+        /// <summary>
+        /// Writes the serialized representation of an entity to a file at the specified path.
+        /// </summary>
+        /// <param name="fileName">The name of the file to which the entity will be written. This value is used to determine the file path.</param>
+        /// <param name="serializedValue">The serialized string representation of the entity to write to the file.</param>
         protected virtual void WriteEntityToFile(string fileName, string serializedValue)
         {
             File.WriteAllText(GetSerializedFilePath(AssumptionsNamespaceRelativePath), serializedValue);
