@@ -33,8 +33,8 @@ namespace DLaB.Xrm.Test
         /// </value>
         public static string OrgName
         {
-            get => field ?? throw new Exception($"Call to {nameof(TestBase)}.{nameof(OrgName)} prior to {nameof(LoadUserUnitTestSettings)} being called!");
-            set;
+            get => _orgName ?? throw new Exception($"Call to {nameof(TestBase)}.{nameof(OrgName)} prior to {nameof(LoadUserUnitTestSettings)} being called!");
+            set => _orgName = value;
         }
 
         /// <summary>
@@ -128,6 +128,7 @@ namespace DLaB.Xrm.Test
         private static bool UserUnitTestSettingsLoaded { get; set; }
 
         private static readonly object LocalSettingsLock = new object();
+        private static string? _orgName;
 
         /// <summary>
         /// Loads the user unit test settings in a multi-thread safe manner, verifying that it is loaded once only.

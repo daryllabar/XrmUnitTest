@@ -27,7 +27,7 @@ namespace DLaB.Xrm.Test.Assumptions
         /// </summary>
         protected AssumedEntities? Assumptions { get; private set; }
 
-        private IEnumerable<Type> Prerequisites => field ??= GetPrerequisites();
+        private IEnumerable<Type> Prerequisites => _prerequisites ??= GetPrerequisites();
 
         /// <summary>
         /// Gets the name of the type, without the "Attribute" postfix, and with any namespace values that come after Assumptions
@@ -35,6 +35,7 @@ namespace DLaB.Xrm.Test.Assumptions
         private string AssumptionsNamespaceRelativePath => GetAssumptionsNamespaceRelativePath(GetType());
 
         private static readonly Dictionary<string, Entity> EntitiesFromServerByAttributeType = new();
+        private IEnumerable<Type>? _prerequisites;
         private static IOrganizationService LocalServiceForEntitiesFromServer { get; set;} = null!;
 
         private Entity? PreviouslyRetrievedEntity

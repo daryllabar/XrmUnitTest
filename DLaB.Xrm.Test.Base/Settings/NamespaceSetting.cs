@@ -16,6 +16,8 @@ namespace DLaB.Xrm.Test.Settings
     /// </summary>
     public class NamespaceSetting
     {
+        private Assembly? _assembly;
+        private string? _namespace;
         private string NotConfiguredMessage { get; }
 
         /// <summary>
@@ -29,14 +31,14 @@ namespace DLaB.Xrm.Test.Settings
         {
             get
             {
-                if (field == null)
+                if (_assembly == null)
                 {
                     throw new NotConfiguredException(NotConfiguredMessage);
                 }
 
-                return field;
+                return _assembly;
             }
-            protected set;
+            protected set => _assembly = value;
         }
 
         /// <summary>
@@ -50,14 +52,14 @@ namespace DLaB.Xrm.Test.Settings
         {
             get
             {
-                if (field == null)
+                if (_namespace == null)
                 {
                     throw new NotConfiguredException(NotConfiguredMessage);
                 }
 
-                return field;
+                return _namespace;
             }
-            protected set;
+            protected set => _namespace = value;
         }
 
         /// <summary>
