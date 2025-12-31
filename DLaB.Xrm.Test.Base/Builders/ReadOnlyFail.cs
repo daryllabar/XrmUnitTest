@@ -105,11 +105,9 @@ namespace DLaB.Xrm.Test.Builders
                 case ExecuteMultipleRequest mr:
                     requests = mr.Requests;
                     break;
-#if !PRE_KEYATTRIBUTE
                 case ExecuteTransactionRequest tr:
                     requests = tr.Requests;
                     break;
-#endif
             }
             if (requests != null)
             {

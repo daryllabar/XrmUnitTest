@@ -20,7 +20,6 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.AreEqual("You should specify a parent contact or account.", ex.Message);
         }
 
-#if !PRE_KEYATTRIBUTE
         [TestMethod]
         public void LocalCrmTests_AssertCrmException_AlternateKeyNotFound()
         {
@@ -33,6 +32,5 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var ex = Assert.ThrowsExactly<FaultException<OrganizationServiceFault>>(() => service.Create(contact));
             Assert.AreEqual($"A record with the specified key values does not exist in {TransactionCurrency.EntityLogicalName} entity", ex.Message);
         }
-#endif
     }
 }

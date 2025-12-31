@@ -6,9 +6,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-#if PRE_MULTISELECT
-using System.Text;
-#endif
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -29,26 +26,12 @@ namespace DLaB.Xrm.LocalCrm
             {
                 ProcessFetchXmlItem(service, entityLink, item);
             }
-
-#if PRE_MULTISELECT
-            if (!fe.aggregateSpecified)
-            {
-                // Move ColumnSet for entityLink to qe.  Not sure if the entity link is really needed...
-                qe.ColumnSet.AddColumns(entityLink.Columns.Columns.ToArray());
-                entityLink.Columns.Columns.Clear();
-                // Remove LinkEntity...  again, not sure if it is really needed for aggregates, but believe it was at one time...
-                qe.LinkEntities.Clear();
-                qe.Criteria = entityLink.LinkCriteria;
-                qe.LinkEntities.AddRange(entityLink.LinkEntities);
-            }
-#else
             qe.ColumnSet.AddColumns(entityLink.Columns.Columns.ToArray());
             qe.ColumnSet.AttributeExpressions.AddRange(entityLink.Columns.AttributeExpressions);
             entityLink.Columns.Columns.Clear();
             qe.LinkEntities.Clear();
             qe.Criteria = entityLink.LinkCriteria;
             qe.LinkEntities.AddRange(entityLink.LinkEntities);
-#endif
 
             return qe;
         }
@@ -92,7 +75,6 @@ namespace DLaB.Xrm.LocalCrm
         // ReSharper disable once UnusedParameter.Local
         private static void ProcessFetchXmlItem(LocalCrmDatabaseOrganizationService service, LinkEntity entityLink, FetchAttributeType attribute)
         {
-#if !PRE_MULTISELECT
             if (!string.IsNullOrWhiteSpace(attribute.alias))
             {
                 var aggregates = entityLink.Columns.AttributeExpressions;
@@ -108,9 +90,8 @@ namespace DLaB.Xrm.LocalCrm
                 );
                 return;
             }
-#endif
 
-            if (!attribute.aggregateSpecified && !attribute.groupbySpecified)
+            if (attribute is { aggregateSpecified: false, groupbySpecified: false })
             {
                 if (!entityLink.Columns.Columns.Contains(attribute.name))
                 {
@@ -119,7 +100,6 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
-#if !PRE_MULTISELECT
         private static XrmAggregateType GetAggregateType(FetchAttributeType att)
         {
             if (!att.aggregateSpecified)
@@ -159,7 +139,6 @@ namespace DLaB.Xrm.LocalCrm
             };
         }
 
-#endif
         // ReSharper disable once UnusedParameter.Local
         private static void ProcessFetchXmlItem(LocalCrmDatabaseOrganizationService service, LinkEntity entityLink, filter filter)
         {
@@ -478,191 +457,6 @@ namespace DLaB.Xrm.LocalCrm
                     throw new NotImplementedException(op.ToString());
             }
         }
-#if PRE_MULTISELECT
-#pragma warning disable 8604
-        private static EntityCollection PerformAggregation<T>(EntityCollection entityCollection, FetchType fe) where T : Entity
-        {
-            var entities = entityCollection.Entities.Cast<T>().ToList();
-            var attributes = fe.GetAllAttributes().ToList();
-
-            foreach (var entity in entities)
-            {
-                // Copy Attributes over to Aliased Values
-                // ReSharper disable once AccessToForEachVariableInClosure
-                foreach (var info in attributes.Where(a => 
-                                                      !a.Attribute.dategroupingSpecified && // Date Grouped Attributes will be added below:
-                                                      a.Attribute.name != a.Attribute.alias 
-                                                      && entity.HasAliasedAttribute(a.Attribute.name)))
-                {
-                    entity.AddAliasedValue(info.EntityLogicalName, info.Attribute.alias, entity.GetAliasedValue<object>(info.Attribute.name));
-                }
-
-                // Handle Date Grouping
-                var localEntity = entity;
-                foreach (var info in attributes.Where(a => a.Attribute.dategroupingSpecified && localEntity.HasAliasedAttribute(a.Attribute.alias)))
-                {
-                    var date = entity.GetAliasedValue<DateTime>(info.Attribute.alias);
-                    switch (info.Attribute.dategrouping)
-                    {
-                        case DateGroupingType.day:
-                            entity.AddAliasedValue(info.EntityLogicalName, info.Attribute.alias, date.Day);
-                            break;
-                        case DateGroupingType.week:
-                            entity.AddAliasedValue(info.EntityLogicalName, info.Attribute.alias, ((date.DayOfYear - 1) / 7) + 1);
-                            break;
-                        case DateGroupingType.month:
-                            entity.AddAliasedValue(info.EntityLogicalName, info.Attribute.alias, date.Month);
-                            break;
-                        case DateGroupingType.quarter:
-                            entity.AddAliasedValue(info.EntityLogicalName, info.Attribute.alias, ((date.Month - 1) / 3) + 1);
-                            break;
-                        case DateGroupingType.year:
-                            entity.AddAliasedValue(info.EntityLogicalName, info.Attribute.alias, date.Year);
-                            break;
-                        case DateGroupingType.fiscalperiod:
-                        case DateGroupingType.fiscalyear:
-                            throw new NotSupportedException();
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
-                }
-
-                // Remove Attributes
-                foreach (var info in attributes.Where(a => attributes.All(c => c.Attribute.alias != a.Attribute.name)))
-                {
-                    entity.Attributes.Remove(info.Attribute.name);
-                }
-            }
-
-            if (fe.aggregateSpecified && fe.aggregate)
-            {
-                var aggregate = attributes.Single(a => a.Attribute.aggregateSpecified).Attribute;
-                switch (aggregate.aggregate)
-                {
-                    case AggregateType.countcolumn:
-                        entities = PerformCountColumnAggregation(fe, entities, aggregate, attributes);
-                        break;
-                    case AggregateType.sum:
-                        entities = PerformSumColumnAggregation(fe, entities, aggregate, attributes);
-                        break;
-                    case AggregateType.avg:
-                    case AggregateType.count:
-                    case AggregateType.min:
-                    case AggregateType.max:
-                        throw new NotImplementedException(aggregate.aggregate + " aggregate is not implemented");
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-
-            IOrderedEnumerable<T>? orderedEntities = null;
-            // Preform Order;
-            foreach (var order in fe.Items.Where(o => o is FetchOrderType).Cast<FetchOrderType>())
-            {
-                var localOrder = order;
-                if (orderedEntities == null)
-                {
-                    orderedEntities = order.descending
-                        ? entities.OrderByDescending(e => e.GetAliasedValue<object>(localOrder.alias))
-                        : entities.OrderBy(e => e.GetAliasedValue<object>(localOrder.alias));
-                }
-                else
-                {
-                    orderedEntities = order.descending
-                        ? orderedEntities.ThenByDescending(e => e.GetAliasedValue<object>(localOrder.alias))
-                        : orderedEntities.ThenBy(e => e.GetAliasedValue<object>(localOrder.alias));
-                }
-            }
-
-            var result = new EntityCollection();
-            result.Entities.AddRange(entities);
-            return result;
-        }
-
-        private static List<T> PerformCountColumnAggregation<T>(FetchType fe, List<T> entities, FetchAttributeType aggregate, List<FetchAttributeInfo> attributes) where T : Entity
-        {
-            var aggregateEntities = new Dictionary<string, T>();
-            var distinctValues = new HashSet<string>();
-            foreach (var entity in entities.Where(e => e.HasAliasedAttribute(aggregate.alias) &&
-                                                       e.GetAliasedValue<object>(aggregate.alias) != null))
-            {
-                var key = new StringBuilder();
-                foreach (var attribute in attributes.Where(a => a.Attribute != aggregate))
-                {
-                    key.AppendFormat("{0}.{1},{2}|", attribute.EntityLogicalName, attribute.Attribute.alias,
-                        entity.GetAliasedValue<object>(attribute.Attribute.alias));
-                }
-
-                if (fe.distinctSpecified && fe.distinct)
-                {
-                    var value = key + "~" + entity.GetAliasedValue<object>(aggregate.alias);
-                    if (distinctValues.Contains(value))
-                    {
-                        continue;
-                    }
-
-                    distinctValues.Add(value);
-                }
-
-                if (aggregateEntities.TryGetValue(key.ToString(), out T temp))
-                {
-                    temp[aggregate.alias] = temp.GetAliasedValue<int>(aggregate.alias) + 1;
-                }
-                else
-                {
-                    entity[aggregate.alias] = new AliasedValue(null, aggregate.alias, 1);
-                    aggregateEntities.Add(key.ToString(), entity);
-                }
-            }
-            return aggregateEntities.Values.ToList();
-        }
-
-        private static List<T> PerformSumColumnAggregation<T>(FetchType fe, List<T> entities, FetchAttributeType aggregate, List<FetchAttributeInfo> attributes) where T : Entity
-        {
-            var aggregateEntities = new Dictionary<string, T>();
-            var distinctValues = new HashSet<string>();
-            var resultAttributeNames = new HashSet<string>(attributes.Where(a => a.Attribute.aggregateSpecified).Select(a => a.Attribute.alias));
-            foreach (var entity in entities.Where(e => e.HasAliasedAttribute(aggregate.alias) &&
-                                                      e.GetAliasedValue<object>(aggregate.alias) != null))
-            {
-                var key = new StringBuilder();
-                foreach (var attribute in attributes.Where(a => a.Attribute != aggregate))
-                {
-                    key.AppendFormat("{0}.{1},{2}|", attribute.EntityLogicalName, attribute.Attribute.alias,
-                                     entity.GetAliasedValue<object>(attribute.Attribute.alias));
-                }
-
-                if (fe.distinctSpecified && fe.distinct)
-                {
-                    var value = key + "~" + entity.GetAliasedValue<object>(aggregate.alias);
-                    if (distinctValues.Contains(value))
-                    {
-                        continue;
-                    }
-
-                    distinctValues.Add(value);
-                }
-
-                var aliasValue = entity.GetAliasedValue<Money?>(aggregate.alias)?.GetValueOrDefault() ?? 0m;
-                if (aggregateEntities.TryGetValue(key.ToString(), out T temp))
-                {
-                    var current = (Money)temp.GetAttributeValue<AliasedValue>(aggregate.alias).Value;
-                    current.Value += aliasValue;
-                }
-                else
-                {
-                    entity[aggregate.alias] = new AliasedValue(null, aggregate.alias, new Money(aliasValue));
-                    foreach (var att in entity.Attributes.Keys.ToList().Where(k => !resultAttributeNames.Contains(k)))
-                    {
-                        entity.Attributes.Remove(att);
-                    }
-                    aggregateEntities.Add(key.ToString(), entity);
-                }
-            }
-            return aggregateEntities.Values.ToList();
-        }
-#pragma warning restore 8604
-#endif
 
         #endregion Process FetchXml
 

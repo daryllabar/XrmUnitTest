@@ -272,12 +272,10 @@ namespace DLaB.Xrm.Test.Builders
         [DebuggerHidden]
         private static OrganizationResponse AssertIdNonEmptyOnExecuteTransaction(IOrganizationService service, OrganizationRequest orgRequest)
         {
-#if !PRE_KEYATTRIBUTE
             if (orgRequest is ExecuteTransactionRequest requests)
             {
                 AssertIdNonEmptyOnRequests(requests.Requests);
             }
-#endif
             return service.Execute(orgRequest);
         }
 
@@ -304,13 +302,11 @@ namespace DLaB.Xrm.Test.Builders
         [DebuggerHidden]
         private static void AssertIdNonEmptyOnUpsert(OrganizationRequest request)
         {
-#if !PRE_KEYATTRIBUTE
             if (request is UpsertRequest upsert
                 && upsert.Target.Id == Guid.Empty)
             {
                 throw TestSettings.TestFrameworkProvider.Value.GetFailedException($"An attempt was made to create an entity of type {upsert.Target.LogicalName} without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate.");
             }
-#endif
         }
 
 
@@ -1118,7 +1114,6 @@ namespace DLaB.Xrm.Test.Builders
 
         private void ApplyNewEntityDefaultIdsForUpsert(OrganizationRequest r, IOrganizationService s)
         {
-#if !PRE_KEYATTRIBUTE
             if (!(r is UpsertRequest upsert))
             {
                 return;
@@ -1145,7 +1140,6 @@ namespace DLaB.Xrm.Test.Builders
                     DefaultIdForEntity(upsert.Target);
                 }
             }
-#endif
         }
 
         private void ApplyNewEntityDefaultIdsForExecuteMultiple(OrganizationRequest r, IOrganizationService s)
@@ -1160,12 +1154,10 @@ namespace DLaB.Xrm.Test.Builders
 
         private void ApplyNewEntityDefaultIdsForExecuteTransaction(OrganizationRequest r, IOrganizationService s)
         {
-#if !PRE_KEYATTRIBUTE
             if (r is ExecuteTransactionRequest transaction)
             {
                 ApplyNewEntityDefaultIdsForRequests(s, transaction.Requests);
             }
-#endif
         }
 
         private void ApplyNewEntityDefaultIdsForRequests(IOrganizationService s, OrganizationRequestCollection requests)

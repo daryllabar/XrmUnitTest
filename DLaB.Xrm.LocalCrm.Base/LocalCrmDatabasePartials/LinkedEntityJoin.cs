@@ -252,12 +252,10 @@ namespace DLaB.Xrm.LocalCrm
                 }
             }
 
-#if !PRE_MULTISELECT
             foreach(var column in link.Columns.AttributeExpressions.Where(e => e.HasGroupBy == false && e.AggregateType == XrmAggregateType.None))
             {
                 fromEntity.Attributes.Add(column.Alias, new AliasedValue(link.LinkToEntityName, column.AttributeName, toEntity[column.AttributeName]));
             }
-#endif
 
             return fromEntity;
         }

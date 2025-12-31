@@ -22,7 +22,6 @@ namespace DLaB.Xrm.Test.Tests
     {
 
         #region FakeIOrganizationService_Execute_Should_RetrieveRequestByAltKey
-#if !PRE_KEYATTRIBUTE
 
         [TestMethod]
         public void FakeIOrganizationService_Execute_Should_RetrieveRequestByAltKey()
@@ -46,7 +45,6 @@ namespace DLaB.Xrm.Test.Tests
             Assert.AreEqual(account.Id, response.Entity.Id);
         }
 
-#endif
         #endregion FakeIOrganizationService_Execute_Should_RetrieveRequestByAltKey
 
 

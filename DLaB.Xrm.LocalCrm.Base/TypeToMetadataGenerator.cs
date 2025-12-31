@@ -94,7 +94,6 @@ namespace DLaB.Xrm.LocalCrm
                     ? new EntityNameAttributeMetadata(logicalName)
                     : new StringAttributeMetadata(logicalName);
             }
-#if !PRE_MULTISELECT
             else if (propertyType.IsGenericType
                      && propertyType.GetGenericTypeDefinition() == typeof(IEnumerable<>)
                      && propertyType.GetGenericArguments().Length == 1
@@ -107,7 +106,6 @@ namespace DLaB.Xrm.LocalCrm
                 attribute = new FileAttributeMetadata(logicalName);
                 //attribute = new ImageAttributeMetadata(logicalName);
             }
-#endif
             else if (propertyType == typeof(bool) || propertyType == typeof(bool?))
             {
                 attribute = new BooleanAttributeMetadata(logicalName);
@@ -188,12 +186,10 @@ namespace DLaB.Xrm.LocalCrm
             //{
             //  attribute = new ManagedPropertyAttributeMetadata(logicalName);
             //}
-#if !PRE_KEYATTRIBUTE
             else if (propertyType == typeof(Guid) || propertyType == typeof(Guid?))
             {
                 attribute = new UniqueIdentifierAttributeMetadata(logicalName);
             }
-#endif
             else
             {
                 // Default to string

@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Reflection;
-#if XRM_2015 || PRE_KEYATTRIBUTE
-using Microsoft.Xrm.Client;
-using Microsoft.Xrm.Client.Services;
-using DLaB.Xrm.Test;
-#elif NET
+#if NET
 using DataverseUnitTest;
 using Microsoft.PowerPlatform.Dataverse.Client;
 #else
@@ -43,18 +39,13 @@ namespace DLaB.Xrm.Client
         /// <returns></returns>
         public static IClientSideOrganizationService GetOrganizationService(string connectionString)
         {
-#if XRM_2015 || PRE_KEYATTRIBUTE
-            CrmConnection crmConnection = CrmConnection.Parse(connectionString);
-            OrganizationService service = new OrganizationService(crmConnection);
-            return new ClientSideOrganizationService(service);
-#elif NET
+#if NET
             var client = new ServiceClient(connectionString);
             if (!client.IsReady)
             {
                 throw new Exception("Unable to connect to CRM: " + (client.LastError ?? client.LastException?.ToString()));
             }
             return new ClientSideOrganizationService(client);
-
 #else 
             var client = new CrmServiceClient(connectionString);            
             if (!client.IsReady)

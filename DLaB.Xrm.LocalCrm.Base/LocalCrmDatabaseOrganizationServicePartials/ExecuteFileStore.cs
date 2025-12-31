@@ -1,7 +1,6 @@
 ﻿using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
 
-#if !PRE_MULTISELECT
 namespace DLaB.Xrm.LocalCrm
 {
     partial class LocalCrmDatabaseOrganizationService
@@ -35,4 +34,3 @@ namespace DLaB.Xrm.LocalCrm
         }
     }
 }
-#endif

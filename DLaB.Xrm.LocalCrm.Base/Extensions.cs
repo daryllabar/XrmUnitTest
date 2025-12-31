@@ -148,10 +148,8 @@ namespace DLaB.Xrm.LocalCrm
                 Name = entity.Name
             };
 
-#if !PRE_KEYATTRIBUTE
             clone.KeyAttributes.AddRange(entity.KeyAttributes);
             clone.RowVersion = entity.RowVersion;
-#endif
             return clone;
 
         }
@@ -251,13 +249,9 @@ namespace DLaB.Xrm.LocalCrm
 
             object GetValue(T e)
             {
-#if PRE_MULTISELECT
-                return e.GetAttributeValue<object>(order.AttributeName);
-#else
                 return string.IsNullOrEmpty(order.Alias)
                     ? e.GetAttributeValue<object>(order.AttributeName)
                     : e.GetAliasedValue<object>(order.Alias) ?? string.Empty;
-#endif
             }
         }
 

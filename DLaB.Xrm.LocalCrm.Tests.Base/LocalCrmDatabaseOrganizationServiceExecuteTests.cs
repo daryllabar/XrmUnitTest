@@ -389,7 +389,6 @@ namespace DLaB.Xrm.LocalCrm.Tests
             TestUpsertCreateAndUpdate(account);
         }
 
-#if !PRE_KEYATTRIBUTE
         [TestMethod]
         public void LocalCrmDatabaseOrganizationServiceExecuteTests_RetrieveRequestByAltKey()
         {
@@ -409,7 +408,6 @@ namespace DLaB.Xrm.LocalCrm.Tests
             
             Assert.AreEqual(account.Id, response.Entity.Id);
         }
-#endif
 
         private void TestUpsertCreateAndUpdate(Account toUpsert)
         {

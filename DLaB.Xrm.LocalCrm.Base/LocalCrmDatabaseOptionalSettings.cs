@@ -1,7 +1,5 @@
-﻿using System;
-#if !XRM_2013
-using Microsoft.Xrm.Sdk.Organization;
-#endif
+﻿using Microsoft.Xrm.Sdk.Organization;
+using System;
 
 namespace DLaB.Xrm.LocalCrm
 {
@@ -28,12 +26,10 @@ namespace DLaB.Xrm.LocalCrm
         /// </summary>
         public Guid? DataCenterId { get; set; }
 
-#if !XRM_2013
         /// <summary>
         /// Gets or sets the collection of endpoints.
         /// </summary>
         public EndpointCollection? Endpoints { get; set; }
-#endif
 
         /// <summary>
         /// Gets or sets the Environment Id.
@@ -88,14 +84,10 @@ namespace DLaB.Xrm.LocalCrm
         /// </summary>
         public Guid? OrganizationId { get; set; }
 
-
-#if !PRE_MULTISELECT
         /// <summary>
         /// Gets or sets the organization type.
         /// </summary>
         public OrganizationType? OrganizationType { get; set; }
-
-#endif
 
         /// <summary>
         /// Gets or sets the organization version.
@@ -106,13 +98,11 @@ namespace DLaB.Xrm.LocalCrm
         /// Gets or sets the schema type.
         /// </summary>
         public string? SchemaType { get; set; }
-#if !XRM_2013
 
         /// <summary>
         /// Gets or sets the organization state.
         /// </summary>
         public OrganizationState? State { get; set; }
-#endif
 
         /// <summary>
         /// Gets or sets the tenant identifier.

@@ -2,7 +2,6 @@
 {
     public partial class Contact
     {
-#if !PRE_MULTISELECT
         /// <summary>
         /// 
         /// </summary>
@@ -22,6 +21,5 @@
                 this.OnPropertyChanged("CalendarTypes");
             }
         }
-#endif
     }
 }

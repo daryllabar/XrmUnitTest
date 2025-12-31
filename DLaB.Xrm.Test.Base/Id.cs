@@ -286,12 +286,10 @@ namespace DLaB.Xrm.Test
             {
                 entity.FormattedValues[value.Key] = value.Value;
             }
-#if !PRE_KEYATTRIBUTE
             foreach (var key in entity.KeyAttributes)
             {
                 entity.KeyAttributes[key.Key] = key.Value;
             }
-#endif
         }
 
         /// <summary>

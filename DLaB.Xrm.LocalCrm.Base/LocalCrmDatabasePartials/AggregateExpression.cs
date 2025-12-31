@@ -12,17 +12,6 @@ namespace DLaB.Xrm.LocalCrm
 {
     internal partial class LocalCrmDatabase
     {
-#if PRE_MULTISELECT
-        private static bool AssertValidAttributeExpressionQuery(QueryExpression query, DelayedException delay)
-        {
-            return false;
-        }
-
-        private static bool ApplyAggregates<T>(List<T> entities, ColumnSet cs, DelayedException delay) where T : Entity
-        {
-            return false;
-        }
-#else
         private static bool AssertValidAttributeExpressionQuery(QueryExpression query, DelayedException delay)
         {
             if (AssertValidAttributeExpressionColumnSet(query.ColumnSet, delay) || AssertFiltersAreValidAttributeExpressions(query.LinkEntities, delay))
@@ -284,6 +273,5 @@ namespace DLaB.Xrm.LocalCrm
         {
             return alias == null || Regex.IsMatch(alias, "^[A-Za-z_][A-Za-z0-9_]*$");
         }
-#endif
     }
 }

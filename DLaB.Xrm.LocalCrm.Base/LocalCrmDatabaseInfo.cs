@@ -4,9 +4,7 @@ using System.Reflection;
 using DLaB.Common;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
-#if !XRM_2013
 using Microsoft.Xrm.Sdk.Organization;
-#endif
 using AppConfig = DLaB.Xrm.Client.AppConfig;
 #if NET
 using System.Web;
@@ -52,12 +50,10 @@ namespace DLaB.Xrm.LocalCrm
         /// </summary>
         public Guid DataCenterId { get; set; } = Guid.Empty;
 
-#if !XRM_2013
         /// <summary>
         /// Gets or sets the collection of endpoints.
         /// </summary>
         public EndpointCollection Endpoints { get; set; } = new ();
-#endif
 
         /// <summary>
         /// Gets or sets the Environment Id.
@@ -110,12 +106,10 @@ namespace DLaB.Xrm.LocalCrm
         /// </value>
         public Guid OrganizationId { get; private set; }
 
-#if !PRE_MULTISELECT
         /// <summary>
         /// Gets or sets the organization type.
         /// </summary>
         public OrganizationType OrganizationType { get; set; }
-#endif
 
         /// <summary>
         /// Gets or sets the organization version.
@@ -127,12 +121,10 @@ namespace DLaB.Xrm.LocalCrm
         /// </summary>
         public string SchemaType { get; set; } = string.Empty;
 
-#if !XRM_2013
         /// <summary>
         /// Gets or sets the organization state.
         /// </summary>
         public OrganizationState State { get; set; }
-#endif
 
         /// <summary>
         /// Gets or sets the tenant identifier.
@@ -254,14 +246,12 @@ namespace DLaB.Xrm.LocalCrm
                 DataCenterId = optionalSettings.DataCenterId ?? Guid.NewGuid(),
                 EarlyBoundEntityAssembly = earlyBoundAssembly,
                 EarlyBoundNamespace = earlyBoundNamespace,
-#if !XRM_2013
                 Endpoints = optionalSettings.Endpoints ?? new EndpointCollection
                 {
                     { EndpointType.WebApplication, $"https://{urlName}.crm.dynamics.com/" },
                     { EndpointType.OrganizationService,$"https://{urlName}.api.crm.dynamics.com/XRMServices/2011/Organization.svc" },
                     { EndpointType.OrganizationDataService, $"https://{urlName}.api.crm.dynamics.com/XRMServices/2011/OrganizationData.svc" }
                 },
-#endif
                 EnvironmentId = optionalSettings.EnvironmentId ?? Guid.NewGuid(),
                 FriendlyName = optionalSettings.FriendlyName ?? dbName,
                 FullNameFormat = optionalSettings.FullNameFormat ?? AppConfig.CrmSystemSettings.FullNameFormat,
@@ -270,14 +260,10 @@ namespace DLaB.Xrm.LocalCrm
                 ManyToManyAssociationProvider = optionalSettings.ManyToManyAssociationProvider ?? new Many2ManyAssociationProvider(AppConfig.CrmEntities.Many2ManyAssociationDefinitions),
                 PrimaryNameProvider = optionalSettings.PrimaryNameProvider ?? PrimaryNameFieldProviderBase.GetConfiguredProvider(earlyBoundAssembly, earlyBoundNamespace),
                 OrganizationId = optionalSettings.OrganizationId ?? ConvertToGuid(dbName),
-#if !PRE_MULTISELECT
                 OrganizationType = optionalSettings.OrganizationType ?? OrganizationType.Customer,
-#endif
                 OrganizationVersion = optionalSettings.OrganizationVersion ?? "9.2.24064.210",
                 SchemaType = optionalSettings.SchemaType ?? "Full",
-#if !XRM_2013
                 State = optionalSettings.State ?? OrganizationState.Enabled,
-#endif
                 TimeProvider = optionalSettings.TimeProvider ?? new TimeProvider(),
                 TenantId = optionalSettings.TenantId ?? Guid.NewGuid(),
                 UrlName = optionalSettings.UrlName ?? urlName,

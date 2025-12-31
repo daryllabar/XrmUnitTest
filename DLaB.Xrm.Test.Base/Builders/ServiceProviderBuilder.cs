@@ -128,7 +128,6 @@ namespace DLaB.Xrm.Test.Builders
             ServiceProvider.AddService(trace);
         }
 
-#if !PRE_MULTISELECT
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceProviderBuilderBase{TDerived}" /> class.
         /// </summary>
@@ -144,7 +143,6 @@ namespace DLaB.Xrm.Test.Builders
             ServiceProvider.AddService(trace);
             ServiceProvider.AddService(managed);
         }
-#endif
 
         #endregion Constructors
 
@@ -159,7 +157,6 @@ namespace DLaB.Xrm.Test.Builders
         {
             ServiceProvider.AddService(context);
             ServiceProvider.AddService<IExecutionContext>(context);
-#if !PRE_MULTISELECT
             if (context is IPluginExecutionContext2 pec2)
             {
                 ServiceProvider.AddService(pec2);
@@ -184,7 +181,6 @@ namespace DLaB.Xrm.Test.Builders
             {
                 ServiceProvider.AddService(pec7);
             }
-#endif
             return This;
         }
 

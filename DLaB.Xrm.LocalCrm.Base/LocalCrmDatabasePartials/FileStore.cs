@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-#if !PRE_MULTISELECT
 namespace DLaB.Xrm.LocalCrm
 {
     partial class LocalCrmDatabase
@@ -195,4 +194,3 @@ namespace DLaB.Xrm.LocalCrm
         }
     }
 }
-#endif

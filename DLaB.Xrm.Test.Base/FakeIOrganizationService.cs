@@ -539,13 +539,11 @@ namespace DLaB.Xrm.Test
             if (request is RetrieveRequest retrieve)
             {
                 var target = retrieve.Target;
-#if !PRE_KEYATTRIBUTE
                 if (target.Id == Guid.Empty && target.KeyAttributes.Count > 0)
                 {
                     var original = target;
                     target = this.GetEntityOrDefault(target.LogicalName, target.KeyAttributes, retrieve.ColumnSet)?.ToEntityReference() ?? original;
                 }
-#endif
                 response = new RetrieveResponse { ["Entity"] = Retrieve(target.LogicalName, target.Id, retrieve.ColumnSet) };
             }
 

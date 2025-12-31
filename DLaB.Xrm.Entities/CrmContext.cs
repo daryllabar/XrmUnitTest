@@ -6227,8 +6227,6 @@ namespace DLaB.Xrm.Entities
             return null;
         }
 
-#if !PRE_MULTISELECT
-
         [System.Diagnostics.DebuggerNonUserCode()]
         public static System.Collections.Generic.IEnumerable<T> GetMultiEnum<T>(Microsoft.Xrm.Sdk.Entity entity, string attributeLogicalName)
 
@@ -6255,7 +6253,6 @@ namespace DLaB.Xrm.Entities
             collection.AddRange(System.Linq.Enumerable.Select(values, v => new Microsoft.Xrm.Sdk.OptionSetValue((int)(object)v)));
             return collection;
         }
-#endif
     }
 
     /// <summary>

@@ -151,12 +151,11 @@ namespace DLaB.Xrm.LocalCrm
             return e.GetAttributeValue<string>(attributeName);
         }
 
-#if !PRE_MULTISELECT
         private static OptionSetValueCollection? GetOptionSetValueCollection(Entity e, string attributeName)
         {
             return e.Attributes.ContainsKey(attributeName) ? e.GetAttributeValue<OptionSetValueCollection>(attributeName) : null;
         }
-#endif
+
         internal static Type GetType(LocalCrmDatabaseInfo info, string logicalName)
         {
             try
@@ -221,9 +220,7 @@ namespace DLaB.Xrm.LocalCrm
 
             // Clear non Attribute Related Values
             entity.FormattedValues.Clear();
-#if !PRE_KEYATTRIBUTE
             entity.KeyAttributes.Clear();
-#endif
             //var relatedEntities = entity.RelatedEntities.ToList();
             entity.RelatedEntities.Clear();
 
@@ -296,14 +293,7 @@ namespace DLaB.Xrm.LocalCrm
         /// <returns></returns>
         public static EntityCollection ReadFetchXmlEntities<T>(LocalCrmDatabaseOrganizationService service, FetchType fe) where T : Entity
         {
-            var entities = ReadEntities<T>(service, ConvertFetchToQueryExpression(service, fe));
-
-            // Utilize the QueryExpression aggregates that are mapped in the ConvertFetchToQueryExpression if available, else use older, incomplete implementation.
-#if PRE_MULTISELECT
-            return fe.aggregateSpecified ? PerformAggregation<T>(entities, fe) : entities;
-#else
-            return entities;
-#endif
+            return ReadEntities<T>(service, ConvertFetchToQueryExpression(service, fe));
         }
 
         private static EntityCollection ReadEntitiesByAttribute<T>(LocalCrmDatabaseOrganizationService service, QueryByAttribute query, DelayedException delay) where T : Entity
@@ -645,7 +635,6 @@ namespace DLaB.Xrm.LocalCrm
         {
             foreach (var foreign in entity.Attributes.Select(attribute => attribute.Value).OfType<EntityReference>())
             {
-#if !PRE_KEYATTRIBUTE
                 if (foreign.Id == Guid.Empty && foreign.KeyAttributes.Count > 0)
                 {
                     var kvps = new List<object>();
@@ -664,9 +653,7 @@ namespace DLaB.Xrm.LocalCrm
                 }
                 else
                 {
-#endif
                     service.Retrieve(foreign.LogicalName, foreign.Id, new ColumnSet(false));
-#if !PRE_KEYATTRIBUTE
                 }
             }
             foreach(var att in entity.Attributes.Select(a => new { a.Key, Value = a.Value as EntityReference })
@@ -676,7 +663,6 @@ namespace DLaB.Xrm.LocalCrm
                 {
                     Name = att.Value.Name
                 };
-#endif
             }
         }
 
@@ -751,12 +737,10 @@ namespace DLaB.Xrm.LocalCrm
                             || propertyType.GetGenericTypeDefinition() == typeof(IEnumerable<>)
                                 && typeof(Entity).IsAssignableFrom(propertyType.GetGenericArguments()[0])
                         )
-#if !PRE_MULTISELECT
                     || attributeType == typeof(OptionSetValueCollection) 
                         && propertyType.IsGenericType
                         && propertyType.GetGenericTypeDefinition() == typeof(IEnumerable<>)
                         && (propertyType.GetGenericArguments()[0].IsEnum || propertyType.GetGenericArguments()[0] == typeof(int))
-#endif
                 )
                 {
                     continue;

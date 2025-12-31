@@ -1,14 +1,13 @@
 ﻿using DLaB.Common;
 using DLaB.Xrm.Client;
-#if !PRE_MULTISELECT
 using DLaB.Xrm.CrmSdk;
-#endif
 using DLaB.Xrm.LocalCrm.Entities;
 using DLaB.Xrm.LocalCrm.FetchXml;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
+using Microsoft.Xrm.Sdk.Organization;
 using Microsoft.Xrm.Sdk.Query;
 using System;
 using System.Collections.Generic;
@@ -18,9 +17,6 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Xml.Serialization;
-#if !XRM_2013
-using Microsoft.Xrm.Sdk.Organization;
-#endif
 
 namespace DLaB.Xrm.LocalCrm
 {
@@ -52,7 +48,6 @@ namespace DLaB.Xrm.LocalCrm
             return new AssignResponse();
         }
 
-#if !PRE_MULTISELECT
         private CreateMultipleResponse ExecuteInternal(CreateMultipleRequest request)
         {
             AssertEntityNamePopulated(request);
@@ -65,7 +60,6 @@ namespace DLaB.Xrm.LocalCrm
                 }
             };
         }
-#endif
 
         private CreateResponse ExecuteInternal(CreateRequest request)
         {
@@ -102,7 +96,6 @@ namespace DLaB.Xrm.LocalCrm
             Disassociate(request.Target.LogicalName, request.Target.Id, request.Relationship, request.RelatedEntities);
             return new DisassociateResponse();
         }
-#if !PRE_KEYATTRIBUTE
         private ExecuteTransactionResponse ExecuteInternal(ExecuteTransactionRequest request)
         {
             var response = new ExecuteTransactionResponse
@@ -158,7 +151,6 @@ namespace DLaB.Xrm.LocalCrm
 
             return response;
         }
-#endif
 
         private ExecuteMultipleResponse ExecuteInternal(ExecuteMultipleRequest request)
         {
@@ -529,7 +521,6 @@ namespace DLaB.Xrm.LocalCrm
                     LogicalName = request.LogicalName
                 };
             }
-#if !XRM_2013
             else if (propertyType == typeof(Guid))
             {
                 metadata = new UniqueIdentifierAttributeMetadata
@@ -537,7 +528,6 @@ namespace DLaB.Xrm.LocalCrm
                     LogicalName = request.LogicalName
                 };
             }
-#endif
             else if (propertyType == typeof(bool))
             {
                 metadata = new BooleanAttributeMetadata
@@ -622,19 +612,16 @@ namespace DLaB.Xrm.LocalCrm
             return optionSet;
         }
 
-#if !XRM_2013
         private RetrieveCurrentOrganizationResponse ExecuteInternal(RetrieveCurrentOrganizationRequest _)
         {
             var detail = new OrganizationDetail
             {
-#if !PRE_MULTISELECT
                 DatacenterId = Info.DataCenterId,
                 EnvironmentId = Info.EnvironmentId.ToString(),
                 Geo = Info.Geo,
                 OrganizationType = Info.OrganizationType,
                 SchemaType = Info.SchemaType,
                 TenantId = Info.TenantId.ToString(),
-#endif
                 FriendlyName = Info.FriendlyName,
                 OrganizationId = Info.OrganizationId,
                 OrganizationVersion = Info.OrganizationVersion,
@@ -653,8 +640,6 @@ namespace DLaB.Xrm.LocalCrm
                 }
             };
         }
-#endif
-
         private RetrieveEntityResponse ExecuteInternal(RetrieveEntityRequest request)
         {
             var entityType = CrmServiceUtility.GetEarlyBoundProxyAssembly().GetEntityType(request.LogicalName);
@@ -760,11 +745,7 @@ namespace DLaB.Xrm.LocalCrm
         private RetrieveResponse ExecuteInternal(RetrieveRequest request)
         {
             var response = new RetrieveResponse();
-#if PRE_KEYATTRIBUTE
-            var entity = Retrieve(request.Target.LogicalName, request.Target.Id, request.ColumnSet);
-#else
             var entity = RetrieveEntityViaKeyAttributes(request.Target, request.ColumnSet);
-#endif
             response.Results.Add("Entity", entity);
             
             if (request.RelatedEntitiesQuery != null && entity != null)
@@ -779,7 +760,6 @@ namespace DLaB.Xrm.LocalCrm
             return response;
         }
 
-#if !PRE_KEYATTRIBUTE
         private RetrieveTotalRecordCountResponse ExecuteInternal(RetrieveTotalRecordCountRequest request)
         {
             var result = new EntityRecordCountCollection();
@@ -797,7 +777,6 @@ namespace DLaB.Xrm.LocalCrm
             };
             return response;
         }
-#endif
 
         private SendEmailFromTemplateResponse ExecuteInternal(SendEmailFromTemplateRequest request)
         {
@@ -849,7 +828,6 @@ namespace DLaB.Xrm.LocalCrm
             return new SetStateResponse();
         }
 
-#if !PRE_MULTISELECT
         private UpdateMultipleResponse ExecuteInternal(UpdateMultipleRequest request)
         {
             AssertEntityNamePopulated(request);
@@ -861,7 +839,6 @@ namespace DLaB.Xrm.LocalCrm
 
             return new UpdateMultipleResponse();
         }
-#endif
 
         private UpdateResponse ExecuteInternal(UpdateRequest request)
         {
@@ -869,7 +846,6 @@ namespace DLaB.Xrm.LocalCrm
             return new UpdateResponse();
         }
 
-#if !PRE_MULTISELECT
         private UpsertMultipleResponse ExecuteInternal(UpsertMultipleRequest request)
         {
             AssertEntityNamePopulated(request);
@@ -879,9 +855,7 @@ namespace DLaB.Xrm.LocalCrm
 
             return response;
         }
-#endif
 
-#if !PRE_KEYATTRIBUTE
         private UpsertResponse ExecuteInternal(UpsertRequest request)
         {
             var target = request.Target.Clone();
@@ -943,7 +917,6 @@ namespace DLaB.Xrm.LocalCrm
 
             return this.GetEntityOrDefault(target.LogicalName, target.KeyAttributes, cs);
         }
-#endif
 
         // ReSharper disable once UnusedParameter.Local
         private WhoAmIResponse ExecuteInternal(WhoAmIRequest _)
@@ -988,7 +961,6 @@ namespace DLaB.Xrm.LocalCrm
                    t.GetCustomAttributes(typeof(System.CodeDom.Compiler.GeneratedCodeAttribute), false).Length > 0;
         }
 
-#if !PRE_MULTISELECT
         private void AssertEntityNamePopulated(OrganizationRequest request)
         {
             if (!string.IsNullOrWhiteSpace(request.Parameters.GetParameterValue<EntityCollection>(nameof(CreateMultipleRequest.Targets))?.EntityName)){
@@ -1009,7 +981,6 @@ namespace DLaB.Xrm.LocalCrm
                 Source = "Microsoft.PowerPlatform.Dataverse.Client"
             };
         }
-#endif
 
         private static class InitializeFromLogic
         {

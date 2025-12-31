@@ -116,7 +116,6 @@ namespace DLaB.Xrm.LocalCrm
             { ConditionOperator.Today, 0 },
             { ConditionOperator.Tomorrow, 0 },
             { ConditionOperator.Yesterday, 0 },
-#if !PRE_KEYATTRIBUTE // Values introduced in 2015
             { ConditionOperator.Above, 1 },
             { ConditionOperator.AboveOrEqual, 1 },
             { ConditionOperator.EqualUserOrUserHierarchy, 0 },
@@ -129,7 +128,6 @@ namespace DLaB.Xrm.LocalCrm
             { ConditionOperator.OlderThanXYears, 1 },
             { ConditionOperator.Under, 1 },
             { ConditionOperator.UnderOrEqual, 1 },
-#endif
         };
 
         private static bool ConditionIsTrue<T>(T entity, ConditionExpression condition, QueryContext context) where T : Entity
@@ -448,7 +446,6 @@ namespace DLaB.Xrm.LocalCrm
                 //    break;
                 //case ConditionOperator.EqualUserTeams:
                 //    break;
-#if !PRE_MULTISELECT
                 case ConditionOperator.ContainValues:
                     var collection = GetOptionSetValueCollection(entity, name);
                     value = collection != null && condition.Values.All(v => collection.Contains(new OptionSetValue((int)v)));
@@ -457,7 +454,6 @@ namespace DLaB.Xrm.LocalCrm
                     condition.Operator = ConditionOperator.ContainValues;
                     value = !ConditionIsTrue(entity, condition, context);
                     break;
-#endif
                 default:
                     throw new NotImplementedException(condition.Operator.ToString());
             }

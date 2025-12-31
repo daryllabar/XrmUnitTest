@@ -254,7 +254,6 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.IsNotNull(contact, "Contact should have been found because the current user is not the equal user");
         }
 
-#if !PRE_MULTISELECT
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_ContainsValue()
         {
@@ -296,5 +295,4 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.IsNotNull(GetContact());
         }
     }
-#endif
 }
