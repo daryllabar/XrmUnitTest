@@ -1,5 +1,4 @@
-﻿#nullable enable
-using System;
+﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -103,6 +102,8 @@ namespace DLaB.Xrm.Test.Builders
         /// The new entity default ids.
         /// </value>
         private Dictionary<string, List<Guid>> EntityFilter { get; }
+
+        private bool _assertIdNonEmptyOnCreateCalled;
 
         private TDerived? _primaryBuilder;
         /// <summary>
@@ -236,11 +237,43 @@ namespace DLaB.Xrm.Test.Builders
         /// <returns></returns>
         public TDerived AssertIdNonEmptyOnCreate()
         {
-            CreateFuncs.Add(AssertIdNonEmptyOnCreate);
-            ExecuteFuncs.Add(AssertIdNonEmptyOnExecuteMultiple);
-            ExecuteFuncs.Add(AssertIdNonEmptyOnExecuteTransaction);
-            ExecuteFuncs.Add(AssertIdNonEmptyOnUpsert);
+            _assertIdNonEmptyOnCreateCalled = true;
+            AddOrRemoveAssertIdFuncs(true);
             return This;
+        }
+
+        private void AddOrRemoveAssertIdFuncs(bool add)
+        {
+            AddOrRemoveCreates(CreateFuncs, AssertIdNonEmptyOnCreate);
+            AddOrRemoveExecutes(ExecuteFuncs, AssertIdNonEmptyOnExecuteMultiple);
+            AddOrRemoveExecutes(ExecuteFuncs, AssertIdNonEmptyOnExecuteTransaction);
+            AddOrRemoveExecutes(ExecuteFuncs, AssertIdNonEmptyOnUpsert);
+
+            return;
+
+            void AddOrRemoveCreates(List<Func<IOrganizationService, Entity, Guid>> collection, Func<IOrganizationService, Entity, Guid> action)
+            {
+                if (add)
+                {
+                    collection.Add(action);
+                }
+                else
+                {
+                    collection.Remove(action);
+                }
+            }
+
+            void AddOrRemoveExecutes(List<Func<IOrganizationService, OrganizationRequest, OrganizationResponse>> collection, Func<IOrganizationService, OrganizationRequest, OrganizationResponse> action)
+            {
+                if (add)
+                {
+                    collection.Add(action);
+                }
+                else
+                {
+                    collection.Remove(action);
+                }
+            }
         }
 
         [DebuggerHidden]
@@ -1048,7 +1081,15 @@ namespace DLaB.Xrm.Test.Builders
             var builder = (TDerived)this;
             if (config.UsePrimaryBuilderForNewEntityDefaultIds)
             {
-                PrimaryBuilder ??= CreateBuilder(Service);
+                if (PrimaryBuilder == null)
+                {
+                    PrimaryBuilder = CreateBuilder(Service);
+                    if (_assertIdNonEmptyOnCreateCalled)
+                    {
+                        AddOrRemoveAssertIdFuncs(false);
+                        PrimaryBuilder.AddOrRemoveAssertIdFuncs(true);
+                    }
+                }
                 builder = PrimaryBuilder;
             }
 

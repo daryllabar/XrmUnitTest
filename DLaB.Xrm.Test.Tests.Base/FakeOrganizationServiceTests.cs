@@ -7,6 +7,7 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using XrmUnitTest.Test;
 using Microsoft.Xrm.Sdk.Query;
+using System;
 
 #if NET
 using DataverseUnitTest;
@@ -20,6 +21,23 @@ namespace DLaB.Xrm.Test.Tests
     [TestClass]
     public class FakeOrganizationServiceTests
     {
+        [TestMethod]
+        public void Execute_UpsertShould_UseDefaultIds()
+        {
+            TestInitializer.InitializeTestSettings();
+            var id = new Id<Account>(Guid.NewGuid());
+
+            var service = new OrganizationServiceBuilder(TestBase.GetOrganizationService())
+                .WithIdsDefaultedForCreate(id)
+                .AssertIdNonEmptyOnCreate()
+                .Build();
+
+
+            var sut = (FakeIOrganizationService)service;
+            var response = sut.Upsert(new Account());
+            Assert.AreEqual(id.EntityId, response.Target.Id);
+
+        }
 
         #region FakeIOrganizationService_Execute_Should_RetrieveRequestByAltKey
 
@@ -46,7 +64,6 @@ namespace DLaB.Xrm.Test.Tests
         }
 
         #endregion FakeIOrganizationService_Execute_Should_RetrieveRequestByAltKey
-
 
         [TestMethod]
         public void FakeIOrganizationService_InsertAt_Should_ChangeOrderOfFakes()
