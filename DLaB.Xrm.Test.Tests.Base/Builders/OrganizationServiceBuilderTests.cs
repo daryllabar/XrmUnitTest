@@ -246,7 +246,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
         }
 
         [TestMethod]
-        [DataRow(true, DisplayName = "Primary Allowed should not utilize default ids")]
+        [DataRow(true, DisplayName = "Primary Allowed should utilize default ids")]
         [DataRow(false, DisplayName = "Primary Not Allowed should not utilize default ids")]
         public void OrganizationServiceBuilder_WithIdsDefaultedForCreate(bool usePrimaryBuilderForNewEntityDefaultIds)
         {
@@ -259,7 +259,9 @@ namespace DLaB.Xrm.Test.Tests.Builders
                     s.Create(new Account());
                     return s.RetrieveMultiple(q);
                 }).Build();
-            
+
+            service.Create(new Contact { Id = Guid.NewGuid() });
+
             service = new OrganizationServiceBuilder(service)
                 .WithIdsDefaultedForCreate(account).Build(new OrganizationServiceBuilderBuildConfig
                 {

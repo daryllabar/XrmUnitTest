@@ -53,6 +53,15 @@ namespace DLaB.Xrm.Test
     public class FakeIOrganizationService : ClientSideOrganizationService, IServiceFaked<IOrganizationService>, IFakeService
 #endif
     {
+        private Func<IOrganizationService, Entity, Guid>[]? _createFuncs;
+        private Action<IOrganizationService, string, Guid>[]? _deleteActions;
+        private Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection>[]? _associateActions;
+        private Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection>[]? _disassociateActions;
+        private Func<IOrganizationService, OrganizationRequest, OrganizationResponse>[]? _executeFuncs;
+        private Func<IOrganizationService, QueryBase, EntityCollection>[]? _retrieveMultipleFuncs;
+        private Func<IOrganizationService, string, Guid, ColumnSet, Entity>[]? _retrieveFuncs;
+        private Action<IOrganizationService, Entity>[]? _updateActions;
+
         #region IOrganizationService Mocks
 
         /// <summary>
@@ -62,13 +71,23 @@ namespace DLaB.Xrm.Test
         /// The associate action.
         /// </value>
         public Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection>? AssociateAction { get; set; }
+
         /// <summary>
         /// Gets or sets the associate actions.
         /// </summary>
         /// <value>
         /// The associate actions.
         /// </value>
-        public Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection>[]? AssociateActions { get; set; }
+        public Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection>[]? AssociateActions
+        {
+            get => _associateActions;
+            set
+            {
+                _associateActions = value;
+                AssociateCache = null;
+            }
+        }
+
         private IOrganizationService? AssociateCache { get; set; }
         /// <summary>
         /// Gets or sets the create function.
@@ -77,13 +96,22 @@ namespace DLaB.Xrm.Test
         /// The create function.
         /// </value>
         public Func<IOrganizationService, Entity, Guid>? CreateFunc { get; set; }
+
         /// <summary>
         /// Gets or sets the create funcs.
         /// </summary>
         /// <value>
         /// The create funcs.
         /// </value>
-        public Func<IOrganizationService, Entity, Guid>[]? CreateFuncs { get; set; }
+        public Func<IOrganizationService, Entity, Guid>[]? CreateFuncs
+        {
+            get => _createFuncs;
+            set {
+                _createFuncs = value;
+                CreateCache = null;
+            }
+        }
+
         private IOrganizationService? CreateCache { get; set; }
         /// <summary>
         /// Gets or sets the delete action.
@@ -92,13 +120,23 @@ namespace DLaB.Xrm.Test
         /// The delete action.
         /// </value>
         public Action<IOrganizationService, string, Guid>? DeleteAction { get; set; }
+
         /// <summary>
         /// Gets or sets the delete actions.
         /// </summary>
         /// <value>
         /// The delete actions.
         /// </value>
-        public Action<IOrganizationService, string, Guid>[]? DeleteActions { get; set; }
+        public Action<IOrganizationService, string, Guid>[]? DeleteActions
+        {
+            get => _deleteActions;
+            set
+            {
+                _deleteActions = value;
+                DeleteCache = null;
+            }
+        }
+
         private IOrganizationService? DeleteCache { get; set; }
         /// <summary>
         /// Gets or sets the disassociate action.
@@ -107,13 +145,23 @@ namespace DLaB.Xrm.Test
         /// The disassociate action.
         /// </value>
         public Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection>? DisassociateAction { get; set; }
+
         /// <summary>
         /// Gets or sets the disassociate actions.
         /// </summary>
         /// <value>
         /// The disassociate actions.
         /// </value>
-        public Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection>[]? DisassociateActions { get; set; }
+        public Action<IOrganizationService, string, Guid, Relationship, EntityReferenceCollection>[]? DisassociateActions
+        {
+            get => _disassociateActions;
+            set
+            {
+                _disassociateActions = value;
+                DisassociateCache = null;
+            }
+        }
+
         private IOrganizationService? DisassociateCache { get; set; }
         /// <summary>
         /// Gets or sets the execute function.
@@ -122,13 +170,23 @@ namespace DLaB.Xrm.Test
         /// The execute function.
         /// </value>
         public Func<IOrganizationService, OrganizationRequest, OrganizationResponse>? ExecuteFunc { get; set; }
+
         /// <summary>
         /// Gets or sets the execute funcs.
         /// </summary>
         /// <value>
         /// The execute funcs.
         /// </value>
-        public Func<IOrganizationService, OrganizationRequest, OrganizationResponse>[]? ExecuteFuncs { get; set; }
+        public Func<IOrganizationService, OrganizationRequest, OrganizationResponse>[]? ExecuteFuncs
+        {
+            get => _executeFuncs;
+            set
+            {
+                _executeFuncs = value;
+                ExecuteCache = null;
+            }
+        }
+
         private IOrganizationService? ExecuteCache { get; set; }
         /// <summary>
         /// Gets or sets the retrieve multiple function.
@@ -137,13 +195,23 @@ namespace DLaB.Xrm.Test
         /// The retrieve multiple function.
         /// </value>
         public Func<IOrganizationService, QueryBase, EntityCollection>? RetrieveMultipleFunc { get; set; }
+
         /// <summary>
         /// Gets or sets the retrieve multiple funcs.
         /// </summary>
         /// <value>
         /// The retrieve multiple funcs.
         /// </value>
-        public Func<IOrganizationService, QueryBase, EntityCollection>[]? RetrieveMultipleFuncs { get; set; }
+        public Func<IOrganizationService, QueryBase, EntityCollection>[]? RetrieveMultipleFuncs
+        {
+            get => _retrieveMultipleFuncs;
+            set
+            {
+                _retrieveMultipleFuncs = value;
+                RetrieveMultipleCache = null;
+            }
+        }
+
         private IOrganizationService? RetrieveMultipleCache { get; set; }
         /// <summary>
         /// Gets or sets the retrieve function.
@@ -152,13 +220,23 @@ namespace DLaB.Xrm.Test
         /// The retrieve function.
         /// </value>
         public Func<IOrganizationService, string, Guid, ColumnSet, Entity>? RetrieveFunc { get; set; }
+
         /// <summary>
         /// Gets or sets the retrieve funcs.
         /// </summary>
         /// <value>
         /// The retrieve funcs.
         /// </value>
-        public Func<IOrganizationService, string, Guid, ColumnSet, Entity>[]? RetrieveFuncs { get; set; }
+        public Func<IOrganizationService, string, Guid, ColumnSet, Entity>[]? RetrieveFuncs
+        {
+            get => _retrieveFuncs;
+            set
+            {
+                _retrieveFuncs = value;
+                RetrieveCache = null;
+            }
+        }
+
         private IOrganizationService? RetrieveCache { get; set; }
         /// <summary>
         /// Gets or sets the update action.
@@ -167,13 +245,23 @@ namespace DLaB.Xrm.Test
         /// The update action.
         /// </value>
         public Action<IOrganizationService, Entity>? UpdateAction { get; set; }
+
         /// <summary>
         /// Gets or sets the update actions.
         /// </summary>
         /// <value>
         /// The update actions.
         /// </value>
-        public Action<IOrganizationService, Entity>[]? UpdateActions { get; set; }
+        public Action<IOrganizationService, Entity>[]? UpdateActions
+        {
+            get => _updateActions;
+            set
+            {
+                _updateActions = value;
+                UpdateCache = null;
+            }
+        }
+
         private IOrganizationService? UpdateCache { get; set; }
 
         #endregion IOrganizationService Mocks

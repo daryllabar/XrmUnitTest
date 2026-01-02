@@ -147,11 +147,7 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="service">The service.</param>
         protected OrganizationServiceBuilderBase(IOrganizationService service)
         {
-#if NET
-            Service = service as IOrganizationServiceAsync2 ?? new FakeIOrganizationService(service); 
-#else
-            Service = service;
-#endif
+            Service = service as FakeIOrganizationService ?? new FakeIOrganizationService(service); 
             NewEntityDefaultIds = new Dictionary<string, Queue<Guid>>();
             NewEntityThrowErrorOnContextCreation = true;
             EntityFilter = new Dictionary<string, List<Guid>>();

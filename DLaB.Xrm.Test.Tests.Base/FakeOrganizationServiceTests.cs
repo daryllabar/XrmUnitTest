@@ -74,7 +74,28 @@ namespace DLaB.Xrm.Test.Tests
             var sut = (FakeIOrganizationService)service;
             var response = sut.Upsert(new Account());
             Assert.AreEqual(id.EntityId, response.Target.Id);
+        }
 
+
+        [TestMethod]
+        public void Create_AlreadyCachedService_Should_ClearCache()
+        {
+            TestInitializer.InitializeTestSettings();
+            var id = new Id<Account>(Guid.NewGuid());
+
+            var service = new OrganizationServiceBuilder(TestBase.GetOrganizationService())
+                .AssertIdNonEmptyOnCreate()
+                .Build();
+            
+            // This call will force the cache to be used.
+            Assert.AreNotEqual(Guid.Empty, service.Create(new Account { Id = Guid.NewGuid()}));
+
+            service = new OrganizationServiceBuilder(service)
+                .WithIdsDefaultedForCreate(id)
+                .Build();
+
+            var sut = (FakeIOrganizationService)service;
+            Assert.AreEqual(id, sut.Create(new Account()));
         }
 
         #region FakeIOrganizationService_Execute_Should_RetrieveRequestByAltKey
