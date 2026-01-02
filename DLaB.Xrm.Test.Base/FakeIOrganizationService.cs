@@ -1,5 +1,4 @@
-﻿#nullable enable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
@@ -182,7 +181,7 @@ namespace DLaB.Xrm.Test
         /// <summary>
         /// Determines if the FakeIOrganizationService can be rearranged via an insert call.  If it can't, all other nested FakIOrganizationServices are disallowed from another service being inserted before itself.
         /// </summary>
-        public bool AllowRearrangeViaInsert { get; set; } = true;
+        private bool AllowRearrangeViaInsert { get; set; } = true;
         /// <summary>
         /// Gets or sets a value indicating whether [execution tracing enabled].
         /// </summary>
@@ -205,15 +204,20 @@ namespace DLaB.Xrm.Test
         /// </summary>
         public IOrganizationService ActualService => GetActualService();
 
+
         /// <summary>
-        /// The wrapping service.
+        /// Recursively walks the Service Properties to find the first IOrganizationService that is a FakeIOrganizationService
+        /// Sames as ActualService if the ActualService is a FakeIOrganizationService
+        /// </summary>
+        public FakeIOrganizationService PrimaryFakeService => GetPrimaryFakeService();
+
+        /// <summary>
+        /// The wrapping service, i.e. the Parent Service
         /// </summary>
         /// <value>
         /// The service.
         /// </value>
         protected FakeIOrganizationService? WrappingService { get; set; }
-
-        internal bool HasWrappingService => WrappingService != null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FakeIOrganizationService" /> class.
@@ -229,7 +233,6 @@ namespace DLaB.Xrm.Test
         protected FakeIOrganizationService(IOrganizationService service, bool setWrappingService)
             : base(service)
         {
-
             if (service is FakeIOrganizationService fake)
             {
                 Timer = fake.Timer;
@@ -260,11 +263,24 @@ namespace DLaB.Xrm.Test
 
         private IOrganizationService GetActualService()
         {
-            if (Service == null)
+            var service = Service;
+            while (service is FakeIOrganizationService fakeService)
             {
-                return this;
+                service = fakeService.Service;
             }
-            return Service is not FakeIOrganizationService parent ? Service : parent.GetActualService();
+            return service;
+        }
+
+        private FakeIOrganizationService GetPrimaryFakeService()
+        {
+            var service = Service;
+            var finalFake = this;
+            while (service is FakeIOrganizationService fakeService)
+            {
+                finalFake = fakeService;
+                service = fakeService.Service;
+            }
+            return finalFake;
         }
 
         #region IOrganizationService Members
@@ -276,9 +292,9 @@ namespace DLaB.Xrm.Test
         /// <param name="entityId">The entity identifier.</param>
         /// <param name="relationship">The relationship.</param>
         /// <param name="relatedEntities">The related entities.</param>
-        #if !DEBUG_XRM_UNIT_TEST_CODE
+#if !DEBUG_XRM_UNIT_TEST_CODE
         [DebuggerNonUserCode]
-        #endif
+#endif
         public override void Associate(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
         {
             if (AssociateAction != null)
@@ -822,7 +838,7 @@ namespace DLaB.Xrm.Test
         /// The 0 index is the first highest most Service Property that is still a FakeIOrganizationService, which is the ActualService if all are FakeIOrganizationServices
         /// This was created to allow for Fakes defined later in the hierarchy, to be used by fakes defined later.  For example, defining the Id assigned in a Create Request
         /// </summary>
-        public void InsertAt(int levelIndex)
+        private void InsertAt(int levelIndex)
         {
             var parents = new List<FakeIOrganizationService>
             {

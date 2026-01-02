@@ -1,13 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using DLaB.Xrm.Entities;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
-using XrmUnitTest.Test;
 using Microsoft.Xrm.Sdk.Query;
-using System;
+using XrmUnitTest.Test;
 
 #if NET
 using DataverseUnitTest;
@@ -22,16 +19,57 @@ namespace DLaB.Xrm.Test.Tests
     public class FakeOrganizationServiceTests
     {
         [TestMethod]
-        public void Execute_UpsertShould_UseDefaultIds()
+        public void Execute_UpsertGrandfatherServiceAssertsNonEmpty_Should_UseDefaultIds()
         {
             TestInitializer.InitializeTestSettings();
             var id = new Id<Account>(Guid.NewGuid());
 
             var service = new OrganizationServiceBuilder(TestBase.GetOrganizationService())
-                .WithIdsDefaultedForCreate(id)
                 .AssertIdNonEmptyOnCreate()
                 .Build();
 
+            service = new OrganizationServiceBuilder(service)
+               .WithFakeDelete((s, n, i) => { })
+               .Build();
+
+            service = new OrganizationServiceBuilder(service)
+                .WithIdsDefaultedForCreate(id).Build();
+
+
+            var sut = (FakeIOrganizationService)service;
+            var response = sut.Upsert(new Account());
+            Assert.AreEqual(id.EntityId, response.Target.Id);
+        }
+
+        [TestMethod]
+        public void Execute_UpsertFatherServiceAssertsNonEmpty_Should_UseDefaultIds()
+        {
+            TestInitializer.InitializeTestSettings();
+            var id = new Id<Account>(Guid.NewGuid());
+
+            var service = new OrganizationServiceBuilder(TestBase.GetOrganizationService())
+                .AssertIdNonEmptyOnCreate()
+                .Build();
+
+            service = new OrganizationServiceBuilder(service)
+                .WithIdsDefaultedForCreate(id).Build();
+
+
+            var sut = (FakeIOrganizationService)service;
+            var response = sut.Upsert(new Account());
+            Assert.AreEqual(id.EntityId, response.Target.Id);
+        }
+
+        [TestMethod]
+        public void Execute_UpsertSingleService_Should_UseDefaultIds()
+        {
+            TestInitializer.InitializeTestSettings();
+            var id = new Id<Account>(Guid.NewGuid());
+
+            var service = new OrganizationServiceBuilder(TestBase.GetOrganizationService())
+                .AssertIdNonEmptyOnCreate()
+                .WithIdsDefaultedForCreate(id)
+                .Build();
 
             var sut = (FakeIOrganizationService)service;
             var response = sut.Upsert(new Account());
@@ -65,53 +103,53 @@ namespace DLaB.Xrm.Test.Tests
 
         #endregion FakeIOrganizationService_Execute_Should_RetrieveRequestByAltKey
 
-        [TestMethod]
-        public void FakeIOrganizationService_InsertAt_Should_ChangeOrderOfFakes()
-        {
-            TestInitializer.InitializeTestSettings();
-            var service = InitializeService();
-            Run("1");
-
-            service = InitializeService();
-            service.InsertAt(0);
-            Run("3");
-            return;
-
-            void Run(string expectedName)
-            {
-                var account = new Account();
-                account.Id = service.Create(account);
-                Assert.AreEqual(expectedName, service.GetEntity<Account>(account.Id).Name);
-            }
-        }
-
-        private static FakeIOrganizationService InitializeService()
-        {
-            var services = new List<FakeIOrganizationService>();
-
-            services.Add((FakeIOrganizationService) new OrganizationServiceBuilder(TestBase.GetOrganizationService())
-                .WithFakeCreate((s, e) => {
-                    e["name"] = "1";
-                    return s.Create(e);
-                })
-                .Build());
-
-            services.Add((FakeIOrganizationService) new OrganizationServiceBuilder(services.Last())
-                .WithFakeCreate((s, e) => {
-                    e["name"] = "2";
-                    return s.Create(e);
-                })
-                .Build());
-
-            services.Add((FakeIOrganizationService)new OrganizationServiceBuilder(services.Last())
-                .WithFakeCreate((s, e) => {
-                    e["name"] = "3";
-                    return s.Create(e);
-                })
-                .Build());
-
-            var service = services.Last();
-            return service;
-        }
+        //[TestMethod]
+        //public void FakeIOrganizationService_InsertAt_Should_ChangeOrderOfFakes()
+        //{
+        //    TestInitializer.InitializeTestSettings();
+        //    var service = InitializeService();
+        //    Run("1");
+        //
+        //    service = InitializeService();
+        //    service.InsertAt(0);
+        //    Run("3");
+        //    return;
+        //
+        //    void Run(string expectedName)
+        //    {
+        //        var account = new Account();
+        //        account.Id = service.Create(account);
+        //        Assert.AreEqual(expectedName, service.GetEntity<Account>(account.Id).Name);
+        //    }
+        //}
+        //
+        //private static FakeIOrganizationService InitializeService()
+        //{
+        //    var services = new List<FakeIOrganizationService>();
+        //
+        //    services.Add((FakeIOrganizationService) new OrganizationServiceBuilder(TestBase.GetOrganizationService())
+        //        .WithFakeCreate((s, e) => {
+        //            e["name"] = "1";
+        //            return s.Create(e);
+        //        })
+        //        .Build());
+        //
+        //    services.Add((FakeIOrganizationService) new OrganizationServiceBuilder(services.Last())
+        //        .WithFakeCreate((s, e) => {
+        //            e["name"] = "2";
+        //            return s.Create(e);
+        //        })
+        //        .Build());
+        //
+        //    services.Add((FakeIOrganizationService)new OrganizationServiceBuilder(services.Last())
+        //        .WithFakeCreate((s, e) => {
+        //            e["name"] = "3";
+        //            return s.Create(e);
+        //        })
+        //        .Build());
+        //
+        //    var service = services.Last();
+        //    return service;
+        //}
     }
 }

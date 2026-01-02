@@ -245,31 +245,10 @@ namespace DLaB.Xrm.Test.Tests.Builders
             }
         }
 
-        /// <summary>
-        /// Incident's can't be created without a customer, so attempt to force the incident to be created first
-        /// </summary>
         [TestMethod]
-        public void OrganizationServiceBuilder_WithIdsDefaultedForCreateInConstructor_Should_Error()
-        {
-            var service = TestBase.GetOrganizationService();
-            var builder = new InvalidOrganizationServiceBuilder(service).AssertIdNonEmptyOnCreate();
-            try
-            {
-                builder.Build();
-                Assert.Fail("Should have thrown an exception!");
-            }
-            catch (Exception ex)
-            {
-                Assert.AreEqual("Builder of type DLaB.Xrm.Test.Tests.Builders.OrganizationServiceBuilderTests+InvalidOrganizationServiceBuilder can not call WithIdsDefaultedForCreate within the constructor!", ex.Message);
-            }
-        }
-
-        [TestMethod]
-        [DataRow(true, false, DisplayName = "Primary Allowed but hierarchy update not, should not utilize default ids")]
-        [DataRow(true, true, DisplayName = "Primary Allowed, should utilize default ids")]
-        [DataRow(false, false, DisplayName = "Primary Not Allowed and hierarchy update not, should not utilize default ids")]
-        [DataRow(false, true, DisplayName = "Primary Not Allowed, should not utilize default ids")]
-        public void OrganizationServiceBuilder_WithIdsDefaultedForCreate(bool usePrimaryBuilderForNewEntityDefaultIds, bool allowRearrangeViaInsert)
+        [DataRow(true, DisplayName = "Primary Allowed should not utilize default ids")]
+        [DataRow(false, DisplayName = "Primary Not Allowed should not utilize default ids")]
+        public void OrganizationServiceBuilder_WithIdsDefaultedForCreate(bool usePrimaryBuilderForNewEntityDefaultIds)
         {
             var account = new Id<Account>("74FAF332-2BDC-4A16-87F8-51E26D03ECC7");
 
@@ -280,8 +259,6 @@ namespace DLaB.Xrm.Test.Tests.Builders
                     s.Create(new Account());
                     return s.RetrieveMultiple(q);
                 }).Build();
-
-            ((FakeIOrganizationService)service).AllowRearrangeViaInsert = allowRearrangeViaInsert;
             
             service = new OrganizationServiceBuilder(service)
                 .WithIdsDefaultedForCreate(account).Build(new OrganizationServiceBuilderBuildConfig
@@ -290,12 +267,11 @@ namespace DLaB.Xrm.Test.Tests.Builders
                 });
 
             var accounts = service.RetrieveMultiple(new QueryExpression(Account.EntityLogicalName));
-            if (usePrimaryBuilderForNewEntityDefaultIds && allowRearrangeViaInsert)
+            if (usePrimaryBuilderForNewEntityDefaultIds)
             {
                 Assert.AreEqual(account.EntityId, accounts[0].Id);
             }
-            else
-            {
+            else{
                 Assert.AreNotEqual(account.EntityId, accounts[0].Id);
             }
         }

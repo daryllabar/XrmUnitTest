@@ -14,6 +14,7 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
 using Microsoft.Xrm.Sdk.Query;
+
 #if NET
 using DataverseUnitTest.Entities;
 using DLaB.Xrm;
@@ -84,7 +85,11 @@ namespace DLaB.Xrm.Test.Builders
         /// </value>
         protected abstract TDerived This { get; }
 
+#if NET
+        private IOrganizationServiceAsync2 Service { get; }
+#else
         private IOrganizationService Service { get; }
+#endif
 
         /// <summary>
         /// The Entity Ids used to populate Entities without any ids
@@ -102,8 +107,6 @@ namespace DLaB.Xrm.Test.Builders
         /// The new entity default ids.
         /// </value>
         private Dictionary<string, List<Guid>> EntityFilter { get; }
-
-        private bool _assertIdNonEmptyOnCreateCalled;
 
         private TDerived? _primaryBuilder;
         /// <summary>
@@ -144,7 +147,11 @@ namespace DLaB.Xrm.Test.Builders
         /// <param name="service">The service.</param>
         protected OrganizationServiceBuilderBase(IOrganizationService service)
         {
+#if NET
+            Service = service as IOrganizationServiceAsync2 ?? new FakeIOrganizationService(service); 
+#else
             Service = service;
+#endif
             NewEntityDefaultIds = new Dictionary<string, Queue<Guid>>();
             NewEntityThrowErrorOnContextCreation = true;
             EntityFilter = new Dictionary<string, List<Guid>>();
@@ -231,49 +238,16 @@ namespace DLaB.Xrm.Test.Builders
         public TDerived WithFakeUpdate(params Action<IOrganizationService, Entity>[] action) { UpdateActions.AddRange(action); return This; }
         #endregion Simple Methods
 
+        private bool _assertIdNonEmptyOnCreate = false;
+
         /// <summary>
         /// Asserts that any create of an entity has the id populated.  Useful to ensure that all entities can be deleted after they have been created since the id is known.
         /// </summary>
         /// <returns></returns>
-        public TDerived AssertIdNonEmptyOnCreate()
+        public TDerived AssertIdNonEmptyOnCreate(bool usePrimaryBuilderForNewEntityDefaultIds = true)
         {
-            _assertIdNonEmptyOnCreateCalled = true;
-            AddOrRemoveAssertIdFuncs(true);
+            _assertIdNonEmptyOnCreate = true;
             return This;
-        }
-
-        private void AddOrRemoveAssertIdFuncs(bool add)
-        {
-            AddOrRemoveCreates(CreateFuncs, AssertIdNonEmptyOnCreate);
-            AddOrRemoveExecutes(ExecuteFuncs, AssertIdNonEmptyOnExecuteMultiple);
-            AddOrRemoveExecutes(ExecuteFuncs, AssertIdNonEmptyOnExecuteTransaction);
-            AddOrRemoveExecutes(ExecuteFuncs, AssertIdNonEmptyOnUpsert);
-
-            return;
-
-            void AddOrRemoveCreates(List<Func<IOrganizationService, Entity, Guid>> collection, Func<IOrganizationService, Entity, Guid> action)
-            {
-                if (add)
-                {
-                    collection.Add(action);
-                }
-                else
-                {
-                    collection.Remove(action);
-                }
-            }
-
-            void AddOrRemoveExecutes(List<Func<IOrganizationService, OrganizationRequest, OrganizationResponse>> collection, Func<IOrganizationService, OrganizationRequest, OrganizationResponse> action)
-            {
-                if (add)
-                {
-                    collection.Add(action);
-                }
-                else
-                {
-                    collection.Remove(action);
-                }
-            }
         }
 
         [DebuggerHidden]
@@ -312,6 +286,7 @@ namespace DLaB.Xrm.Test.Builders
             return service.Execute(orgRequest);
         }
 
+        [DebuggerHidden]
         private static void AssertIdNonEmptyOnRequests(OrganizationRequestCollection requests)
         {
             foreach (var request in requests)
@@ -332,6 +307,7 @@ namespace DLaB.Xrm.Test.Builders
             AssertIdNonEmptyOnUpsert(request);
             return service.Execute(request);
         }
+
         [DebuggerHidden]
         private static void AssertIdNonEmptyOnUpsert(OrganizationRequest request)
         {
@@ -340,6 +316,40 @@ namespace DLaB.Xrm.Test.Builders
             {
                 throw TestSettings.TestFrameworkProvider.Value.GetFailedException($"An attempt was made to create an entity of type {upsert.Target.LogicalName} without defining it's id.  Either use WithIdsDefaultedForCreate, or don't use the AssertIdNonEmptyOnCreate.");
             }
+        }
+
+        [DebuggerHidden]
+        private Guid DefaultEmptyIdOnCreate(IOrganizationService service, Entity entity)
+        {
+            DefaultIdForEntity(entity);
+            return service.Create(entity);
+        }
+
+        [DebuggerHidden]
+        private OrganizationResponse DefaultEmptyIdOnExecute(IOrganizationService service, OrganizationRequest request)
+        {
+            DefaultIdsForExecuteRequests(request, service);
+            return service.Execute(request);
+        }
+
+        [DebuggerHidden]
+        private EntityCollection FilterEntitiesOnRetrieveMultiple(IOrganizationService service, QueryBase query) 
+        {
+            if (query is not QueryExpression qe)
+            {
+                return service.RetrieveMultiple(query);
+            }
+
+            foreach (var entityGroup in EntityFilter)
+            {
+                var entityType = EntityHelper.GetType(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace, entityGroup.Key);
+                var idLogicalName = EntityHelper.GetIdAttributeName(entityType);
+                foreach (var filter in qe.GetEntityFilters(entityGroup.Key))
+                {
+                    filter.AddConditionEnforceAndFilterOperator(new ConditionExpression(idLogicalName, ConditionOperator.In, entityGroup.Value.Select(i => (object)i).ToArray()));
+                }
+            }
+            return service.RetrieveMultiple(query);
         }
 
 
@@ -764,6 +774,7 @@ namespace DLaB.Xrm.Test.Builders
             {
                 NewEntityThrowErrorOnContextCreation = false;
             }
+
             foreach (var id in ids)
             {
                 NewEntityDefaultIds.AddOrEnqueue(id);
@@ -1002,37 +1013,34 @@ namespace DLaB.Xrm.Test.Builders
 #endif
         {
             config ??= new TBuildConfig();
+
+            AddAssertIdNonEmptyOnCreate(config);
             ApplyNewEntityDefaultIds(config);
             ApplyEntityFilter(config);
 
-            var service = Service;
-            if (PrimaryBuilder != null)
+            if (AssociateActions.Count > 0
+                || CreateFuncs.Count > 0
+                || DeleteActions.Count > 0
+                || DisassociateActions.Count > 0
+                || ExecuteFuncs.Count > 0
+                || RetrieveMultipleFuncs.Count > 0
+                || RetrieveFuncs.Count > 0
+                || UpdateActions.Count > 0
+                )
             {
-                if (PrimaryBuilder.Build() is FakeIOrganizationService primaryService){
-                    primaryService.InsertAt(0);
-                    if (!primaryService.HasWrappingService)
-                    {
-                        // There were no child services, so use the primary service as the service to wrap
-                        service = primaryService;
-                    }
-                }
-                else
+                return new FakeIOrganizationService(Service)
                 {
-                    throw new Exception($"Unable to cast Primary Service to {nameof(FakeIOrganizationService)}.");
-                }
+                    AssociateActions = AssociateActions.ToArray(),
+                    CreateFuncs = CreateFuncs.ToArray(),
+                    DeleteActions = DeleteActions.ToArray(),
+                    DisassociateActions = DisassociateActions.ToArray(),
+                    ExecuteFuncs = ExecuteFuncs.ToArray(),
+                    RetrieveMultipleFuncs = RetrieveMultipleFuncs.ToArray(),
+                    RetrieveFuncs = RetrieveFuncs.ToArray(),
+                    UpdateActions = UpdateActions.ToArray()
+                };
             }
-
-            return new FakeIOrganizationService(service)
-            {
-                AssociateActions = AssociateActions.ToArray(),
-                CreateFuncs = CreateFuncs.ToArray(),
-                DeleteActions = DeleteActions.ToArray(),
-                DisassociateActions = DisassociateActions.ToArray(),
-                ExecuteFuncs = ExecuteFuncs.ToArray(),
-                RetrieveMultipleFuncs = RetrieveMultipleFuncs.ToArray(),
-                RetrieveFuncs = RetrieveFuncs.ToArray(),
-                UpdateActions = UpdateActions.ToArray()
-            };
+            return Service;
         }
 
         private void ApplyEntityFilter(TBuildConfig config)
@@ -1042,33 +1050,48 @@ namespace DLaB.Xrm.Test.Builders
                 return;
             }
 
-            var builder = (TDerived)this;
-            if (config.UsePrimaryBuilderForEntityFilter)
+            if (config.UsePrimaryBuilderForEntityFilter
+                && Service is FakeIOrganizationService fakeService)
             {
-                PrimaryBuilder ??= CreateBuilder(Service);
-                builder = PrimaryBuilder;
+                fakeService = fakeService.PrimaryFakeService;
+                AddAdditionalRetrieveMultipleFunc(fakeService, FilterEntitiesOnRetrieveMultiple);
+                return;
             }
 
-            builder ??= CreateBuilder(Service);
+            RetrieveMultipleFuncs.Add(FilterEntitiesOnRetrieveMultiple);
+        }
 
-            builder.RetrieveMultipleFuncs.Add((s, q) =>
+        private void AddAssertIdNonEmptyOnCreate(TBuildConfig config)
+        {
+            if (!_assertIdNonEmptyOnCreate)
             {
-                if (q is not QueryExpression qe)
-                {
-                    return s.RetrieveMultiple(q);
-                }
+                return;
+            }
 
-                foreach (var entityGroup in EntityFilter)
+            var executeFuncs = new List<Func<IOrganizationService, OrganizationRequest, OrganizationResponse>>
+            {
+                AssertIdNonEmptyOnExecuteMultiple,
+                AssertIdNonEmptyOnExecuteTransaction,
+                AssertIdNonEmptyOnUpsert
+            };
+
+            if (config.UsePrimaryBuilderForNewEntityDefaultIds
+                && Service is FakeIOrganizationService fakeService)
+            {
+                fakeService = fakeService.PrimaryFakeService;
+                AddAdditionalCreateFunc(fakeService, AssertIdNonEmptyOnCreate);
+                foreach(var executeFunc in executeFuncs)
                 {
-                    var entityType = EntityHelper.GetType(TestSettings.EarlyBound.Assembly, TestSettings.EarlyBound.Namespace, entityGroup.Key);
-                    var idLogicalName = EntityHelper.GetIdAttributeName(entityType);
-                    foreach (var filter in qe.GetEntityFilters(entityGroup.Key))
-                    {
-                        filter.AddConditionEnforceAndFilterOperator(new ConditionExpression(idLogicalName, ConditionOperator.In, entityGroup.Value.Select(i => (object)i).ToArray()));
-                    }
+                    AddAdditionalExecuteFunc(fakeService, executeFunc);
                 }
-                return s.RetrieveMultiple(q);
-            });
+                return;
+            }
+
+            CreateFuncs.Add(AssertIdNonEmptyOnCreate);
+            foreach(var executeFunc in executeFuncs)
+            {
+                ExecuteFuncs.Add(executeFunc);
+            }
         }
 
         private void ApplyNewEntityDefaultIds(TBuildConfig config)
@@ -1078,31 +1101,62 @@ namespace DLaB.Xrm.Test.Builders
                 return;
             }
 
-            var builder = (TDerived)this;
-            if (config.UsePrimaryBuilderForNewEntityDefaultIds)
+            if (config.UsePrimaryBuilderForNewEntityDefaultIds
+                && Service is FakeIOrganizationService fakeService)
             {
-                if (PrimaryBuilder == null)
-                {
-                    PrimaryBuilder = CreateBuilder(Service);
-                    if (_assertIdNonEmptyOnCreateCalled)
-                    {
-                        AddOrRemoveAssertIdFuncs(false);
-                        PrimaryBuilder.AddOrRemoveAssertIdFuncs(true);
-                    }
-                }
-                builder = PrimaryBuilder;
+                fakeService = fakeService.PrimaryFakeService;
+                AddAdditionalCreateFunc(fakeService, DefaultEmptyIdOnCreate);
+                AddAdditionalExecuteFunc(fakeService, DefaultEmptyIdOnExecute);
+                return;
             }
 
-            builder.CreateFuncs.Add((s, e) =>
+            CreateFuncs.Add(DefaultEmptyIdOnCreate);
+            ExecuteFuncs.Add(DefaultEmptyIdOnExecute);
+        }
+
+        private static void AddAdditionalCreateFunc(FakeIOrganizationService fakeService, Func<IOrganizationService, Entity, Guid> createCall)
+        {
+            var createCalls = fakeService.CreateFuncs?.ToList() ?? [];
+            var i = createCalls.LastIndexOf(createCall);
+            if (i >= 0)
             {
-                DefaultIdForEntity(e);
-                return s.Create(e);
-            });
-            builder.ExecuteFuncs.Add((s, r) =>
+                createCalls.Insert(i+1, createCall);
+            }
+            else
             {
-                DefaultIdsForExecuteRequests(r, s);
-                return s.Execute(r);
-            });
+                createCalls.Add(createCall);
+            }
+            fakeService.CreateFuncs = createCalls.ToArray();
+        }
+
+        private static void AddAdditionalExecuteFunc(FakeIOrganizationService fakeService, Func<IOrganizationService, OrganizationRequest, OrganizationResponse> executeCall)
+        {
+            var executeCalls = fakeService.ExecuteFuncs?.ToList() ?? [];
+            var i = executeCalls.LastIndexOf(executeCall);
+            if (i >= 0)
+            {
+                executeCalls.Insert(i + 1, executeCall);
+            }
+            else
+            {
+                executeCalls.Add(executeCall);
+            }
+            fakeService.ExecuteFuncs = executeCalls.ToArray();
+        }
+
+        private static void AddAdditionalRetrieveMultipleFunc(FakeIOrganizationService fakeService, Func<IOrganizationService, QueryBase, EntityCollection> retrieveMultipleCall)
+        {
+            var retrieveMultipleCalls = fakeService.RetrieveMultipleFuncs?.ToList() ?? [];
+            var i = retrieveMultipleCalls.LastIndexOf(retrieveMultipleCall);
+            if (i >= 0)
+            {
+                retrieveMultipleCalls.Insert(i + 1, retrieveMultipleCall);
+            }
+            else
+            {
+                retrieveMultipleCalls.Add(retrieveMultipleCall);
+            }
+            fakeService.RetrieveMultipleFuncs = retrieveMultipleCalls.ToArray();
         }
 
         /// <summary>

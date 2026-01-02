@@ -411,11 +411,6 @@ namespace DLaB.Xrm.Test
                 AssertIdNonEmptyOnCreate().
                 WithDefaultParentBu().Build();
 
-            if (service is FakeIOrganizationService fake)
-            {
-                fake.AllowRearrangeViaInsert = false;
-            }
-
             return service;
         }
 
