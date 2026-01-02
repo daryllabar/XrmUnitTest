@@ -29,6 +29,7 @@
 		<WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 	<ItemGroup>
+	  <PackageReference Include="MSTest" Version="4.0.2" />
 	  <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="8.0.1" />
 	  <PackageReference Include="XrmUnitTest.MSTest" Version="1.0.0.9" />
 	</ItemGroup>
