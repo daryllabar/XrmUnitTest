@@ -12,7 +12,7 @@ namespace DLaB.Xrm.Test
     /// </summary>
     public class FakeServiceProvider : IServiceProvider, ICloneable, IServiceFaked<IServiceProvider>, IFakeService
     {
-        private Dictionary<Type, object> Services { get; set; }
+        private Dictionary<Type, object> ServicesByType { get; set; }
         /// <summary>
         /// Fallback service if the current ServiceProvider doesn't define a requested type.
         /// </summary>
@@ -23,11 +23,21 @@ namespace DLaB.Xrm.Test
         public HashSet<Type> TypesToSkipCloning { get; set; }
 
         /// <summary>
+        /// Gets all services registered in this service provider.
+        /// </summary>
+        public IEnumerable<object> Services => ServicesByType.Values;
+        
+        /// <summary>
+        /// Gets all service types registered in this service provider.
+        /// </summary>
+        public IEnumerable<Type> Types => ServicesByType.Keys;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="FakeServiceProvider"/> class.
         /// </summary>
         public FakeServiceProvider()
         {
-            Services = new Dictionary<Type, object>();
+            ServicesByType = new Dictionary<Type, object>();
             TypesToSkipCloning = new HashSet<Type>();
         }
 
@@ -39,7 +49,7 @@ namespace DLaB.Xrm.Test
         /// <exception cref="System.Exception">No Service Found For Type:  + serviceType.FullName</exception>
         public object? GetService(Type serviceType)
         {
-            return Services.TryGetValue(serviceType, out var service)
+            return ServicesByType.TryGetValue(serviceType, out var service)
                 ? service
                 : DefaultProvider?.GetService(serviceType);
         }
@@ -51,7 +61,7 @@ namespace DLaB.Xrm.Test
         /// <param name="service">The service.</param>
         public void AddService(Type serviceType, object service)
         {
-            Services[serviceType] = service;
+            ServicesByType[serviceType] = service;
         }
 
         /// <summary>
@@ -61,7 +71,7 @@ namespace DLaB.Xrm.Test
         /// <param name="service">The service.</param>
         public void AddService<T>(T service) where T : notnull
         {
-            Services[typeof(T)] = service;
+            ServicesByType[typeof(T)] = service;
         }
 
         #region Clone
@@ -73,16 +83,16 @@ namespace DLaB.Xrm.Test
         public FakeServiceProvider Clone()
         {
             var clone = (FakeServiceProvider)MemberwiseClone();
-            clone.Services = new Dictionary<Type, object>();
-            foreach (var value in Services)
+            clone.ServicesByType = new Dictionary<Type, object>();
+            foreach (var value in ServicesByType)
             {
                 if (value.Value is ICloneable cloneableService && !TypesToSkipCloning.Contains(value.Key))
                 {
-                    clone.Services[value.Key] = cloneableService.Clone();
+                    clone.ServicesByType[value.Key] = cloneableService.Clone();
                 }
                 else
                 {
-                    clone.Services[value.Key] = value.Value;
+                    clone.ServicesByType[value.Key] = value.Value;
                 }
             }
 
