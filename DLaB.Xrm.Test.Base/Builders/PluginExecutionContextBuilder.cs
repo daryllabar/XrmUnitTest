@@ -1,8 +1,8 @@
-﻿using System;
+﻿using DLaB.Xrm.Plugin;
+using Microsoft.Xrm.Sdk;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using DLaB.Xrm.Plugin;
-using Microsoft.Xrm.Sdk;
 #if NET
 using DLaB.Xrm;
 
@@ -278,6 +278,7 @@ namespace DLaB.Xrm.Test.Builders
         public TDerived WithMode(int mode)
         {
             Context.Mode = mode;
+            UpdateIsInTransaction();
             return This;
         }
 
@@ -402,9 +403,18 @@ namespace DLaB.Xrm.Test.Builders
         public TDerived WithRegisteredEvent(int stage, string messageName, string? entityLogicalName = null)
         {
             Context.Stage = stage;
+            UpdateIsInTransaction();
             Context.MessageName = messageName;
             Context.PrimaryEntityName = entityLogicalName ?? Context.PrimaryEntityName;
             return This;
+        }
+
+        private void UpdateIsInTransaction()
+        {
+            Context.IsInTransaction =
+                Context.Stage == (int)PipelineStage.PreOperation
+                || Context.Stage == (int)PipelineStage.MainOperation
+                || Context is { Stage: (int)PipelineStage.PostOperation, Mode: 0 };
         }
 
         /// <summary>

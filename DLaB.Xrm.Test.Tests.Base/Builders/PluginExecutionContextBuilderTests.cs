@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DLaB.Xrm.Entities;
 using DLaB.Xrm.Plugin;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
@@ -22,7 +23,9 @@ namespace DLaB.Xrm.Test.Tests.Builders
         [TestMethod]
         public void PluginExecutionContextBuilder_WithFirstRegisteredEvent_PrivatePlugin_Should_BeAccessible()
         {
-            var b = new PluginExecutionContextBuilder().WithFirstRegisteredEvent((IPlugin)new HiddenPlugin());
+            var context = new PluginExecutionContextBuilder().WithFirstRegisteredEvent((IPlugin)new HiddenPlugin()).Build();
+            Assert.AreEqual(PipelineStage.PreOperation, (PipelineStage)context.Stage);
+            Assert.AreEqual(MessageType.Create, context.GetMessageType());
         }
 
         private class HiddenPlugin : IRegisteredEventsPlugin
@@ -33,6 +36,32 @@ namespace DLaB.Xrm.Test.Tests.Builders
             }
 
             public IEnumerable<RegisteredEvent> RegisteredEvents => new RegisteredEventBuilder(PipelineStage.PreOperation, MessageType.Create).Build();
+        }
+
+        [TestMethod]
+        public void PluginExecutionContextBuilder_WithRegisteredEvent_PreValidation_Should_NotBeInTransaction()
+        {
+            var context = new PluginExecutionContextBuilder().WithRegisteredEvent(new RegisteredEvent(PipelineStage.PreValidation, MessageType.Create)).Build();
+            Assert.IsFalse(context.IsInTransaction);
+        }
+
+        [TestMethod]
+        public void PluginExecutionContextBuilder_WithRegisteredEvent_PreOperation_Should_BeInTransaction()
+        {
+            var context = new PluginExecutionContextBuilder().WithRegisteredEvent(new RegisteredEvent(PipelineStage.PreOperation, MessageType.Create)).Build();
+            Assert.IsTrue(context.IsInTransaction);
+        }
+
+        [TestMethod]
+        public void PluginExecutionContextBuilder_WithRegisteredEvent_PostOperation_Should_BeInTransactionOnlyWhenSync()
+        {
+            var context = new PluginExecutionContextBuilder()
+                .WithRegisteredEvent(new RegisteredEvent(PipelineStage.PostOperation, MessageType.Create))
+                .WithMode((int)SdkMessageProcessingStep_Mode.Synchronous);
+            Assert.IsTrue(context.Build().IsInTransaction);
+
+            context.WithMode((int)SdkMessageProcessingStep_Mode.Asynchronous);
+            Assert.IsFalse(context.Build().IsInTransaction);
         }
     }
 }
