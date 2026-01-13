@@ -1,6 +1,5 @@
 ﻿using DLaB.Common;
 using DLaB.Xrm.Client;
-using DLaB.Xrm.CrmSdk;
 using DLaB.Xrm.LocalCrm.Entities;
 using DLaB.Xrm.LocalCrm.FetchXml;
 using Microsoft.Crm.Sdk.Messages;
@@ -493,7 +492,7 @@ namespace DLaB.Xrm.LocalCrm
                     p.GetCustomAttribute<AttributeLogicalNameAttribute>()?.LogicalName == request.LogicalName
                 ).Select(p => p.PropertyType.IsGenericType
                     ? p.PropertyType.GenericTypeArguments.First()
-                    : p.PropertyType).ToList()!;
+                    : p.PropertyType).ToList();
 
             var propertyType = propertyTypes.Count == 1
                 ? propertyTypes[0]
@@ -514,7 +513,7 @@ namespace DLaB.Xrm.LocalCrm
             {
                 metadata = new StringAttributeMetadata(request.LogicalName);
             }
-            else if (propertyTypes!.Any(p => p == typeof(EntityReference)))
+            else if (propertyTypes.Any(p => p == typeof(EntityReference)))
             {
                 metadata = new LookupAttributeMetadata
                 {
@@ -967,19 +966,7 @@ namespace DLaB.Xrm.LocalCrm
                 return;
             }
 
-            var message = $"The '{request.RequestName}' method does not support entities of type 'none'. MessageProcessorCache returned MessageProcessor.Empty. ";
-            throw new FaultException<OrganizationServiceFault>(new OrganizationServiceFault
-            {
-                ErrorCode = ErrorCodes.SdkEntityDoesNotSupportMessage,
-                Message = message,
-                Timestamp = Info.TimeProvider.GetUtcNow(),
-            }, new FaultReason(message))
-            {
-#if net
-                    HResult = ErrorCodes.SdkEntityDoesNotSupportMessage,
-#endif
-                Source = "Microsoft.PowerPlatform.Dataverse.Client"
-            };
+            throw CrmExceptions.GetOperationDoesNotSupportEntitiesOfTypeException(request.RequestName, "none");
         }
 
         private static class InitializeFromLogic

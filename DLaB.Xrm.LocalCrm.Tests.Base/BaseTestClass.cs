@@ -17,7 +17,6 @@ namespace DLaB.Xrm.LocalCrm.Tests
             return new LocalCrmDatabaseOrganizationService(info);
         }
 
-
         [DebuggerHidden]
         public static void AssertOrganizationServiceFaultException(string reasonForException, string exceptionMesageContains, Action action)
         {

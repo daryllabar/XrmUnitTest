@@ -6,6 +6,8 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Organization;
 using AppConfig = DLaB.Xrm.Client.AppConfig;
+using System.Collections.Generic;
+
 #if NET
 using System.Web;
 #else
@@ -19,6 +21,12 @@ namespace DLaB.Xrm.LocalCrm
     /// </summary>
     public class LocalCrmDatabaseInfo
     {
+        /// <summary>
+        /// Entity names that will allow CRUD operations, even though Dataverse itself doesn't actually allow it
+        /// </summary>
+        /// <remarks>Entities listed in this collection will be allowed to be created, read, updated, and
+        /// deleted operations, even though they normally wouldn't.</remarks>
+        public HashSet<string> AllowCrudOperationsForEntities { get; set; }
         /// <summary>
         /// Used to populate Owning Business Unit Attributes
         /// </summary>
@@ -241,6 +249,7 @@ namespace DLaB.Xrm.LocalCrm
                 .Limit(MaxHostLength - UrlPreAndPostFixLength);
             return new LocalCrmDatabaseInfo
             {
+                AllowCrudOperationsForEntities = optionalSettings.AllowCrudOperationsForEntities ?? [],
                 BusinessUnit = GetRef(optionalSettings.BusinessUnitId, Entities.BusinessUnit.EntityLogicalName, AppConfig.CrmSystemSettings.BusinessUnitId),
                 DatabaseName = dbName,
                 DataCenterId = optionalSettings.DataCenterId ?? Guid.NewGuid(),

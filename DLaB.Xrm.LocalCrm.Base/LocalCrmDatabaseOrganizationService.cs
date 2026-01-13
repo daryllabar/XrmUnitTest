@@ -1,9 +1,4 @@
 ﻿#nullable enable
-using System;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Xml.Serialization;
 using DLaB.Xrm.Client;
 using DLaB.Xrm.LocalCrm.Entities;
 using DLaB.Xrm.LocalCrm.FetchXml;
@@ -11,6 +6,12 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.ServiceModel;
+using System.Xml.Serialization;
 
 namespace DLaB.Xrm.LocalCrm
 {
@@ -427,16 +428,16 @@ namespace DLaB.Xrm.LocalCrm
         [DebuggerHidden]
         private void AssertValidForOperation(string logicalName, string operation)
         {
-            if (!EnforceValidForOperationCheck)
+            if (!EnforceValidForOperationCheck || Info.AllowCrudOperationsForEntities.Contains(logicalName))
             {
                 return;
             }
             switch (logicalName)
             {
                 case ActivityParty.EntityLogicalName:
-                    throw new Exception($"{logicalName} is invalid for {operation}.");
-                case ConnectionRoleAssociation.EntityLogicalName when (operation == nameof(Create) || operation == nameof(Delete)):
-                    throw new Exception($"The '{operation}' method does not support entities of type '{logicalName}'");
+                case ConnectionRoleAssociation.EntityLogicalName when operation is nameof(Create) or nameof(Delete):
+                case PrincipalObjectAccess.EntityLogicalName when operation is nameof(Create) or nameof(Update) or nameof(Delete):
+                    throw CrmExceptions.GetOperationDoesNotSupportEntitiesOfTypeException(operation, logicalName);
             }
         }
 

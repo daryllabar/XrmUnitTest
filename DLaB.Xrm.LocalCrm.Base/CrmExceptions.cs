@@ -64,6 +64,13 @@ namespace DLaB.Xrm.LocalCrm
             return new CommunicationException("There was an error while trying to serialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:request. The InnerException message was 'Object graph for type 'Microsoft.Xrm.Sdk.Query.LinkEntity' contains cycles and cannot be serialized if reference tracking is disabled.'.  Please see InnerException for more details.");
         }
 
+        public static FaultException<OrganizationServiceFault> GetOperationDoesNotSupportEntitiesOfTypeException(string operation, string entityName)
+        {
+            var fault = CreateFault(ErrorCodes.SdkEntityDoesNotSupportMessage, $"The '{operation}' method does not support entities of type '{entityName}'. MessageProcessorCache returned MessageProcessor.Empty. ");
+            fault.Source = "Microsoft.PowerPlatform.Dataverse.Client";
+            return fault;
+        }
+
         public static FaultException<OrganizationServiceFault> GetIntShouldBeStringOrIntException(string qualifiedAttributeName)
         {
             return CreateFault(InvalidConditionValue, $"Condition for attribute '{qualifiedAttributeName}': integer values are expected to be passed as strings or int.");

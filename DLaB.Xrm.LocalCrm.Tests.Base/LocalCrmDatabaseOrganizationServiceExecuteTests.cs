@@ -33,7 +33,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmDatabaseOrganizationServiceExecuteTests_CreateMultipleRequest()
+        public void CreateMultipleRequest()
         {
             var request = new CreateMultipleRequest
             {
@@ -60,7 +60,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmDatabaseOrganizationServiceExecuteTests_ExecuteTransactionRequest()
+        public void ExecuteTransactionRequest()
         {
             var account = new Id<Account>("576E11B7-193A-4B80-A39A-1BF6ECD27A51");
             var contact = new Id<Contact>("A40249BF-637A-4AB9-A944-3C2506D12F18");
@@ -87,7 +87,57 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmDatabaseOrganizationServiceExecuteTests_ExecuteErrorTransactionRequest()
+        public void GrantAndRevokeAccessRequest()
+        {
+            // Create a test account
+            var account = new Account { Name = "Test Account" };
+            account.Id = _service.Create(account);
+
+            // Create a test user (principal)
+            var user = new SystemUser { FirstName = "Test", LastName = "User" };
+            user.Id = _service.Create(user);
+
+            // Grant access to the account for the user
+            var grantRequest = new GrantAccessRequest
+            {
+                Target = account.ToEntityReference(),
+                PrincipalAccess = new PrincipalAccess
+                {
+                    Principal = user.ToEntityReference(),
+                    AccessMask = AccessRights.ReadAccess | AccessRights.WriteAccess
+                }
+            };
+
+            var grantResponse = (GrantAccessResponse)_service.Execute(grantRequest);
+            Assert.IsNotNull(grantResponse);
+
+            var poas = _service.GetEntities<PrincipalObjectAccess>(
+                PrincipalObjectAccess.Fields.PrincipalId, user.Id,
+                PrincipalObjectAccess.Fields.ObjectId, account.Id
+            );
+            Assert.HasCount(1, poas, "Expected one PrincipalObjectAttributeAccess record to be created");
+
+            var poa = poas.First();
+            Assert.AreEqual(grantRequest.PrincipalAccess.AccessMask, (AccessRights)poa.AccessRightsMask.GetValueOrDefault());
+
+            // Revoke access
+            var revokeRequest = new RevokeAccessRequest
+            {
+                Target = account.ToEntityReference(),
+                Revokee = user.ToEntityReference()
+            };
+
+            var revokeResponse = (RevokeAccessResponse)_service.Execute(revokeRequest);
+            Assert.IsNotNull(revokeResponse);
+
+            Assert.IsNull(_service.GetFirstOrDefault<PrincipalObjectAccess>(
+                PrincipalObjectAccess.Fields.PrincipalId, user.Id,
+                PrincipalObjectAccess.Fields.ObjectId, account.Id
+            ), "Expected no PrincipalObjectAttributeAccess records after revoke");
+        }
+
+        [TestMethod]
+        public void ExecuteTransactionRequest_DuplicateKey_Should_Error()
         {
             var account = new Id<Account>("576E11B7-193A-4B80-A39A-1BF6ECD22A51");
             var request = new ExecuteTransactionRequest
@@ -112,7 +162,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmDatabaseOrganizationServiceExecuteTests_InitializeFromRequest()
+        public void InitializeFromRequest()
         {
             var currency = new TransactionCurrency();
             currency.Id = _service.Create(currency);
@@ -175,7 +225,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmDatabaseOrganizationServiceExecuteTests_LocalTimeFromUtcTimeRequest()
+        public void LocalTimeFromUtcTimeRequest()
         {
             var now = DateTime.UtcNow;
             var response = (LocalTimeFromUtcTimeResponse)_service.Execute(new LocalTimeFromUtcTimeRequest {TimeZoneCode = 35, UtcTime = now});
@@ -184,7 +234,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmDatabaseOrganizationServiceExecuteTests_RetrieveRelationshipRequest()
+        public void RetrieveRelationshipRequest()
         {
             var equipment = new Equipment();
             equipment.Id = _service.Create(equipment);
@@ -202,7 +252,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmDatabaseOrganizationServiceExecuteTests_RetrieveAttributeRequest()
+        public void RetrieveAttributeRequest()
         {
             AttributeMetadata GetMetadata(string field)
             {
@@ -226,7 +276,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmDatabaseOrganizationServiceExecuteTests_RetrieveCurrentOrganizationRequest()
+        public void RetrieveCurrentOrganizationRequest()
         {
             var response = (RetrieveCurrentOrganizationResponse)_service.Execute(new RetrieveCurrentOrganizationRequest());
             var detail = response.Detail;
@@ -250,7 +300,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmDatabaseOrganizationServiceExecuteTests_RetrieveEntityRequest()
+        public void RetrieveEntityRequest()
         {
             var response = (RetrieveEntityResponse)_service.Execute(new RetrieveEntityRequest
             {
@@ -262,7 +312,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmDatabaseOrganizationServiceExecuteTests_RetrieveTotalRecordCountRequest()
+        public void RetrieveTotalRecordCountRequest()
         {
             _service.Create(new Contact { LastName = "Test1" });
             _service.Create(new Contact { LastName = "Test2" });
@@ -281,7 +331,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmDatabaseOrganizationServiceExecuteTests_UpdateMultipleRequest()
+        public void UpdateMultipleRequest()
         {
             var account = new Account { Name = "1st" };
             account.Id = _service.Create(account);
@@ -315,7 +365,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmDatabaseOrganizationServiceExecuteTests_UpsertMultipleRequest()
+        public void UpsertMultipleRequest()
         {
             var account = new Account { Name = "1st" };
             account.Id = _service.Create(account);
@@ -350,7 +400,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmDatabaseOrganizationServiceExecuteTests_UpsertRequest()
+        public void UpsertRequest()
         {
             var account = new Account
             {
@@ -367,7 +417,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmDatabaseOrganizationServiceExecuteTests_UpsertEntityRefRequest()
+        public void UpsertEntityRefRequest()
         {
             var parentId = _service.Create(new Account());
             var account = new Account
@@ -390,7 +440,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmDatabaseOrganizationServiceExecuteTests_RetrieveRequestByAltKey()
+        public void RetrieveRequestByAltKey()
         {
             var account = new Account
             {
@@ -452,56 +502,6 @@ namespace DLaB.Xrm.LocalCrm.Tests
                     ex.Detail.Message);
                 Assert.AreEqual("Microsoft.PowerPlatform.Dataverse.Client", ex.Source);
             }
-        }
-
-        [TestMethod]
-        public void LocalCrmDatabaseOrganizationServiceExecuteTests_GrantAndRevokeAccessRequest()
-        {
-            // Create a test account
-            var account = new Account { Name = "Test Account" };
-            account.Id = _service.Create(account);
-
-            // Create a test user (principal)
-            var user = new SystemUser { FirstName = "Test", LastName = "User" };
-            user.Id = _service.Create(user);
-
-            // Grant access to the account for the user
-            var grantRequest = new GrantAccessRequest
-            {
-                Target = account.ToEntityReference(),
-                PrincipalAccess = new PrincipalAccess
-                {
-                    Principal = user.ToEntityReference(),
-                    AccessMask = AccessRights.ReadAccess | AccessRights.WriteAccess
-                }
-            };
-
-            var grantResponse = (GrantAccessResponse)_service.Execute(grantRequest);
-            Assert.IsNotNull(grantResponse);
-
-            var poas = _service.GetEntities<PrincipalObjectAccess>(
-                PrincipalObjectAccess.Fields.PrincipalId, user.Id,
-                PrincipalObjectAccess.Fields.ObjectId, account.Id
-            );
-            Assert.HasCount(1, poas, "Expected one PrincipalObjectAttributeAccess record to be created");
-
-            var poa = poas.First();
-            Assert.AreEqual(grantRequest.PrincipalAccess.AccessMask, (AccessRights)poa.AccessRightsMask.GetValueOrDefault());
-
-            // Revoke access
-            var revokeRequest = new RevokeAccessRequest
-            {
-                Target = account.ToEntityReference(),
-                Revokee = user.ToEntityReference()
-            };
-
-            var revokeResponse = (RevokeAccessResponse)_service.Execute(revokeRequest);
-            Assert.IsNotNull(revokeResponse);
-
-            Assert.IsNull(_service.GetFirstOrDefault<PrincipalObjectAccess>(
-                PrincipalObjectAccess.Fields.PrincipalId, user.Id,
-                PrincipalObjectAccess.Fields.ObjectId, account.Id
-            ), "Expected no PrincipalObjectAttributeAccess records after revoke");
         }
     }
 }

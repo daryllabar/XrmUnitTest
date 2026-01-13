@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xrm.Sdk.Organization;
 using System;
+using System.Collections.Generic;
 
 namespace DLaB.Xrm.LocalCrm
 {
@@ -8,6 +9,13 @@ namespace DLaB.Xrm.LocalCrm
     /// </summary>
     public class LocalCrmDatabaseOptionalSettings
     {
+        /// <summary>
+        /// Entity names that will allow CRUD operations, even though Dataverse itself doesn't actually allow it
+        /// </summary>
+        /// <remarks>Entities listed in this collection will be allowed to be created, read, updated, and
+        /// deleted operations, even though they normally wouldn't.</remarks>
+        public HashSet<string>? AllowCrudOperationsForEntities { get; set; }
+
         /// <summary>
         /// Used to populate Owning Business Unit Attributes
         /// </summary>

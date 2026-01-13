@@ -25,7 +25,7 @@ namespace DLaB.Xrm.LocalCrm
 
             if (request.PrincipalAccess.Principal == null)
             {
-                throw new ArgumentNullException("PrincipalAccess.Principal", "Principal must be specified in PrincipalAccess");
+                throw new ArgumentNullException(nameof(request.PrincipalAccess.Principal), "Principal must be specified in PrincipalAccess");
             }
 
             // Ensure the PrincipalObjectAccess entity type exists in the early bound assembly
@@ -49,14 +49,23 @@ namespace DLaB.Xrm.LocalCrm
                 PrincipalObjectAccess.Fields.ObjectId, request.Target.Id
                 );
 
-            if (existing == null)
+            var originalValue = EnforceValidForOperationCheck;
+            EnforceValidForOperationCheck = false;
+            try
             {
-                Create(accessRecord);
+                if (existing == null)
+                {
+                    Create(accessRecord);
+                }
+                else
+                {
+                    accessRecord.Id = existing.Id;
+                    Update(accessRecord);
+                }
             }
-            else
+            finally
             {
-                accessRecord.Id = existing.Id;
-                Update(accessRecord);
+                EnforceValidForOperationCheck = originalValue;
             }
 
             return new GrantAccessResponse();
@@ -90,7 +99,16 @@ namespace DLaB.Xrm.LocalCrm
             // Delete all matching records.  Dataverse does not error if none exists.
             if (existing != null)
             {
-                Delete(PrincipalObjectAccess.EntityLogicalName, existing.Id);
+                var originalValue = EnforceValidForOperationCheck;
+                EnforceValidForOperationCheck = false;
+                try
+                {
+                    Delete(PrincipalObjectAccess.EntityLogicalName, existing.Id);
+                }
+                finally
+                {
+                    EnforceValidForOperationCheck = originalValue;
+                }
             }
 
             return new RevokeAccessResponse();
