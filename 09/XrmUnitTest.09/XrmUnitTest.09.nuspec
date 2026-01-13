@@ -35,8 +35,11 @@
 	</metadata>
 	<files>
 		<file src="bin\Release\net462\XrmUnitTest.09.dll" target="lib\net462\XrmUnitTest.09.dll" />
+		<file src="bin\Release\net462\XrmUnitTest.09.pdb" target="lib\net462\XrmUnitTest.09.pdb" />
 		<file src="bin\Release\net472\XrmUnitTest.09.dll" target="lib\net472\XrmUnitTest.09.dll" />
+		<file src="bin\Release\net472\XrmUnitTest.09.pdb" target="lib\net472\XrmUnitTest.09.pdb" />
 		<file src="bin\Release\net48\XrmUnitTest.09.dll" target="lib\net48\XrmUnitTest.09.dll" />
+		<file src="bin\Release\net48\XrmUnitTest.09.pdb" target="lib\net48\XrmUnitTest.09.pdb" />
 
 		<file src="..\..\DLaB_Dynamics_64x64.png" target="images\" />
 	</files>

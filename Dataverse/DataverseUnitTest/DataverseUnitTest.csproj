@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>DataverseUnitTest.snk</AssemblyOriginatorKeyFile>
+	  <DebugType>portable</DebugType>
     <DelaySign>false</DelaySign>
     <Version>3.4.0.43</Version>
     <PackageReleaseNotes></PackageReleaseNotes>
@@ -22,7 +23,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DLaB.Xrm" Version="5.1.1.6" />
+    <PackageReference Include="DLaB.Xrm" Version="5.1.1.7" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.9" />
     <PackageReference Include="Microsoft.PowerPlatform.Dataverse.Client" Version="1.2.10" />
   </ItemGroup>
