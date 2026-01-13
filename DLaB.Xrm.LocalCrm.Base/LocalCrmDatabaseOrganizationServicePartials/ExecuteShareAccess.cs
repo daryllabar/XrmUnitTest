@@ -6,9 +6,6 @@ using System;
 
 namespace DLaB.Xrm.LocalCrm
 {
-#if !DEBUG_XRM_UNIT_TEST_CODE
-    [System.Diagnostics.DebuggerNonUserCode]
-#endif
     partial class LocalCrmDatabaseOrganizationService
     {
         private GrantAccessResponse ExecuteInternal(GrantAccessRequest request)

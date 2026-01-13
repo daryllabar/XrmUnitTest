@@ -26,7 +26,7 @@ namespace DLaB.Xrm.LocalCrm
         /// </summary>
         /// <remarks>Entities listed in this collection will be allowed to be created, read, updated, and
         /// deleted operations, even though they normally wouldn't.</remarks>
-        public HashSet<string> AllowCrudOperationsForEntities { get; set; }
+        public HashSet<string> AllowCrudOperationsForEntities { get; set; } = null!;
         /// <summary>
         /// Used to populate Owning Business Unit Attributes
         /// </summary>

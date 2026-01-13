@@ -2,7 +2,7 @@
 <package >
 	<metadata>
 		<id>XrmUnitTest.09</id>
-		<version>3.4.0.43</version>
+		<version>3.4.0.44</version>
 		<authors>Daryl LaBar</authors>
 		<owners>Daryl LaBar</owners>
 		<license type="expression">MIT</license>
@@ -20,15 +20,15 @@
 		<tags>Dynamics CRM v9 Plugin XRM CDS UnitTest</tags>
 		<dependencies>
 			<group targetFramework=".NETFramework4.6.2">
-				<dependency id="DLaB.Xrm" version="5.1.1.6" include="all" />
+				<dependency id="DLaB.Xrm" version="5.1.1.7" include="all" />
 				<dependency id="Microsoft.CrmSdk.XrmTooling.CoreAssembly" version="9.1.1.65" include="all" />
 			</group>
 			<group targetFramework=".NETFramework4.7.2">
-				<dependency id="DLaB.Xrm" version="5.1.1.6" include="all" />
+				<dependency id="DLaB.Xrm" version="5.1.1.7" include="all" />
 				<dependency id="Microsoft.CrmSdk.XrmTooling.CoreAssembly" version="9.1.1.65" include="all" />
 			</group>
 			<group targetFramework=".NETFramework4.8">
-				<dependency id="DLaB.Xrm" version="5.1.1.6" include="all" />
+				<dependency id="DLaB.Xrm" version="5.1.1.7" include="all" />
 				<dependency id="Microsoft.CrmSdk.XrmTooling.CoreAssembly" version="9.1.1.65" include="all"/>
 			</group>
 		</dependencies>

@@ -1,5 +1,4 @@
-﻿#nullable enable
-using DLaB.Xrm.Client;
+﻿using DLaB.Xrm.Client;
 using DLaB.Xrm.LocalCrm.Entities;
 using DLaB.Xrm.LocalCrm.FetchXml;
 using Microsoft.Xrm.Sdk;
@@ -10,7 +9,6 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.ServiceModel;
 using System.Xml.Serialization;
 
 namespace DLaB.Xrm.LocalCrm
