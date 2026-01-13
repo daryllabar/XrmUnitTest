@@ -1,9 +1,8 @@
 using DLaB.Xrm.Client;
+using DLaB.Xrm.LocalCrm.Entities;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Query;
 using System;
-using System.Linq;
 
 namespace DLaB.Xrm.LocalCrm
 {
@@ -29,23 +28,36 @@ namespace DLaB.Xrm.LocalCrm
                 throw new ArgumentNullException("PrincipalAccess.Principal", "Principal must be specified in PrincipalAccess");
             }
 
-            // Ensure the PrincipalObjectAttributeAccess entity type exists in the early bound assembly
-            var entityType = CrmServiceUtility.GetEarlyBoundProxyAssembly().GetEntityType("principalobjectattributeaccess");
+            // Ensure the PrincipalObjectAccess entity type exists in the early bound assembly
+            var entityType = CrmServiceUtility.GetEarlyBoundProxyAssembly().GetEntityType(PrincipalObjectAccess.EntityLogicalName);
             if (entityType == null)
             {
-                throw new Exception("PrincipalObjectAttributeAccess entity is not defined in the early bound assembly. Please ensure it is generated.");
+                throw new Exception("PrincipalObjectAccess entity is not defined in the early bound assembly. Please ensure it is generated.");
             }
 
-            // Create a PrincipalObjectAttributeAccess record
-            var accessRecord = new Entity("principalobjectattributeaccess")
+            // Create a PrincipalObjectAccess record
+            var accessRecord = new Entity(PrincipalObjectAccess.EntityLogicalName)
             {
-                ["principalid"] = request.PrincipalAccess.Principal,
-                ["objectid"] = request.Target,
-                ["readaccess"] = (request.PrincipalAccess.AccessMask & AccessRights.ReadAccess) == AccessRights.ReadAccess,
-                ["updateaccess"] = (request.PrincipalAccess.AccessMask & AccessRights.WriteAccess) == AccessRights.WriteAccess
+                [PrincipalObjectAccess.Fields.AccessRightsMask] = (int)request.PrincipalAccess.AccessMask,
+                [PrincipalObjectAccess.Fields.ChangedOn] = Info.TimeProvider.GetUtcNow(),
+                [PrincipalObjectAccess.Fields.ObjectId] = request.Target,
+                [PrincipalObjectAccess.Fields.PrincipalId] = request.PrincipalAccess.Principal,
             };
 
-            Create(accessRecord);
+            var existing = this.GetFirstOrDefault(PrincipalObjectAccess.EntityLogicalName, 
+                PrincipalObjectAccess.Fields.PrincipalId, request.PrincipalAccess.Principal.Id,
+                PrincipalObjectAccess.Fields.ObjectId, request.Target.Id
+                );
+
+            if (existing == null)
+            {
+                Create(accessRecord);
+            }
+            else
+            {
+                accessRecord.Id = existing.Id;
+                Update(accessRecord);
+            }
 
             return new GrantAccessResponse();
         }
@@ -62,33 +74,23 @@ namespace DLaB.Xrm.LocalCrm
                 throw new ArgumentNullException(nameof(request.Revokee), "Revokee must be specified for RevokeAccessRequest");
             }
 
-            // Ensure the PrincipalObjectAttributeAccess entity type exists in the early bound assembly
-            var entityType = CrmServiceUtility.GetEarlyBoundProxyAssembly().GetEntityType("principalobjectattributeaccess");
+            // Ensure the PrincipalObjectAccess entity type exists in the early bound assembly
+            var entityType = CrmServiceUtility.GetEarlyBoundProxyAssembly().GetEntityType(PrincipalObjectAccess.EntityLogicalName);
             if (entityType == null)
             {
-                throw new Exception("PrincipalObjectAttributeAccess entity is not defined in the early bound assembly. Please ensure it is generated.");
+                throw new Exception("PrincipalObjectAccess entity is not defined in the early bound assembly. Please ensure it is generated.");
             }
 
-            // Query for existing PrincipalObjectAttributeAccess records
-            var query = new QueryExpression("principalobjectattributeaccess")
-            {
-                ColumnSet = new ColumnSet("principalobjectattributeaccessid"),
-                Criteria = new FilterExpression
-                {
-                    Conditions =
-                    {
-                        new ConditionExpression("principalid", ConditionOperator.Equal, request.Revokee.Id),
-                        new ConditionExpression("objectid", ConditionOperator.Equal, request.Target.Id)
-                    }
-                }
-            };
+            // Query for existing PrincipalObjectAccess records
+            var existing = this.GetFirstOrDefault(PrincipalObjectAccess.EntityLogicalName,
+                PrincipalObjectAccess.Fields.PrincipalId, request.Revokee.Id,
+                PrincipalObjectAccess.Fields.ObjectId, request.Target.Id
+            );
 
-            var results = RetrieveMultiple(query);
-
-            // Delete all matching records
-            foreach (var record in results.Entities)
+            // Delete all matching records.  Dataverse does not error if none exists.
+            if (existing != null)
             {
-                Delete("principalobjectattributeaccess", record.Id);
+                Delete(PrincipalObjectAccess.EntityLogicalName, existing.Id);
             }
 
             return new RevokeAccessResponse();

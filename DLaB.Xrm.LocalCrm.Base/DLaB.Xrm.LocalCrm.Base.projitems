@@ -22,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Incident.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Opportunity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\OpportunityProduct.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\PrincipalObjectAttributeAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SystemUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Team.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Template.cs" />

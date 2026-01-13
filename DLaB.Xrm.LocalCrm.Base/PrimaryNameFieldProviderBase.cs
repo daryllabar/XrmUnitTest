@@ -36,6 +36,7 @@ namespace DLaB.Xrm.LocalCrm
                 "lookupmapping",
                 "ownermapping",
                 "picklistmapping",
+                "principalobjectaccess",
                 "transformationmapping",
                 "usersettings"
             };

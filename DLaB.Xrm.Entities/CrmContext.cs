@@ -4708,11 +4708,22 @@ namespace DLaB.Xrm.Entities
 				return this.CreateQuery<DLaB.Xrm.Entities.PrincipalEntityMap>();
 			}
 		}
-		
-		/// <summary>
-		/// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.PrincipalObjectAttributeAccess"/> entities.
-		/// </summary>
-		public System.Linq.IQueryable<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess> PrincipalObjectAttributeAccessSet
+
+        /// <summary>
+        /// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.PrincipalObjectAccess"/> entities.
+        /// </summary>
+        public System.Linq.IQueryable<DLaB.Xrm.Entities.PrincipalObjectAccess> PrincipalObjectAccessSet
+        {
+            get
+            {
+                return this.CreateQuery<DLaB.Xrm.Entities.PrincipalObjectAccess>();
+            }
+        }
+
+        /// <summary>
+        /// Gets a binding to the set of all <see cref="DLaB.Xrm.Entities.PrincipalObjectAttributeAccess"/> entities.
+        /// </summary>
+        public System.Linq.IQueryable<DLaB.Xrm.Entities.PrincipalObjectAttributeAccess> PrincipalObjectAttributeAccessSet
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
