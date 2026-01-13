@@ -34,6 +34,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)IMany2ManyAssociationProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabaseOrganizationServicePartials\ExecuteQualifyLead.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabaseOrganizationServicePartials\ExecuteFileStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabaseOrganizationServicePartials\ExecuteShareAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabasePartials\AggregateExpression.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabasePartials\Connection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmDatabasePartials\Activity.cs" />

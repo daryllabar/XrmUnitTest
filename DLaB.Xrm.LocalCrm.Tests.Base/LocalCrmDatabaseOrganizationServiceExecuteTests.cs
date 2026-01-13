@@ -453,5 +453,164 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 Assert.AreEqual("Microsoft.PowerPlatform.Dataverse.Client", ex.Source);
             }
         }
+
+        [TestMethod]
+        public void LocalCrmDatabaseOrganizationServiceExecuteTests_GrantAccessRequest()
+        {
+            // Create a test account
+            var account = new Account { Name = "Test Account" };
+            account.Id = _service.Create(account);
+
+            // Create a test user (principal)
+            var user = new SystemUser { FirstName = "Test", LastName = "User" };
+            user.Id = _service.Create(user);
+
+            // Grant access to the account for the user
+            var grantRequest = new GrantAccessRequest
+            {
+                Target = account.ToEntityReference(),
+                PrincipalAccess = new PrincipalAccess
+                {
+                    Principal = user.ToEntityReference(),
+                    AccessMask = AccessRights.ReadAccess | AccessRights.WriteAccess
+                }
+            };
+
+            var grantResponse = (GrantAccessResponse)_service.Execute(grantRequest);
+            Assert.IsNotNull(grantResponse);
+
+            // Verify that a PrincipalObjectAttributeAccess record was created
+            var query = new QueryExpression("principalobjectattributeaccess")
+            {
+                ColumnSet = new ColumnSet(true),
+                Criteria = new FilterExpression
+                {
+                    Conditions =
+                    {
+                        new ConditionExpression("principalid", ConditionOperator.Equal, user.Id),
+                        new ConditionExpression("objectid", ConditionOperator.Equal, account.Id)
+                    }
+                }
+            };
+
+            var results = _service.RetrieveMultiple(query);
+            Assert.AreEqual(1, results.Entities.Count, "Expected one PrincipalObjectAttributeAccess record to be created");
+
+            var accessRecord = results.Entities.First();
+            Assert.AreEqual(true, accessRecord.GetAttributeValue<bool>("readaccess"), "ReadAccess should be true");
+            Assert.AreEqual(true, accessRecord.GetAttributeValue<bool>("updateaccess"), "UpdateAccess should be true");
+        }
+
+        [TestMethod]
+        public void LocalCrmDatabaseOrganizationServiceExecuteTests_RevokeAccessRequest()
+        {
+            // Create a test account
+            var account = new Account { Name = "Test Account" };
+            account.Id = _service.Create(account);
+
+            // Create a test user (principal)
+            var user = new SystemUser { FirstName = "Test", LastName = "User" };
+            user.Id = _service.Create(user);
+
+            // Grant access first
+            var grantRequest = new GrantAccessRequest
+            {
+                Target = account.ToEntityReference(),
+                PrincipalAccess = new PrincipalAccess
+                {
+                    Principal = user.ToEntityReference(),
+                    AccessMask = AccessRights.ReadAccess
+                }
+            };
+            _service.Execute(grantRequest);
+
+            // Verify access was granted
+            var queryBefore = new QueryExpression("principalobjectattributeaccess")
+            {
+                ColumnSet = new ColumnSet(true),
+                Criteria = new FilterExpression
+                {
+                    Conditions =
+                    {
+                        new ConditionExpression("principalid", ConditionOperator.Equal, user.Id),
+                        new ConditionExpression("objectid", ConditionOperator.Equal, account.Id)
+                    }
+                }
+            };
+            var resultsBefore = _service.RetrieveMultiple(queryBefore);
+            Assert.AreEqual(1, resultsBefore.Entities.Count, "Expected one PrincipalObjectAttributeAccess record before revoke");
+
+            // Revoke access
+            var revokeRequest = new RevokeAccessRequest
+            {
+                Target = account.ToEntityReference(),
+                Revokee = user.ToEntityReference()
+            };
+
+            var revokeResponse = (RevokeAccessResponse)_service.Execute(revokeRequest);
+            Assert.IsNotNull(revokeResponse);
+
+            // Verify that the PrincipalObjectAttributeAccess record was deleted
+            var queryAfter = new QueryExpression("principalobjectattributeaccess")
+            {
+                ColumnSet = new ColumnSet(true),
+                Criteria = new FilterExpression
+                {
+                    Conditions =
+                    {
+                        new ConditionExpression("principalid", ConditionOperator.Equal, user.Id),
+                        new ConditionExpression("objectid", ConditionOperator.Equal, account.Id)
+                    }
+                }
+            };
+            var resultsAfter = _service.RetrieveMultiple(queryAfter);
+            Assert.AreEqual(0, resultsAfter.Entities.Count, "Expected no PrincipalObjectAttributeAccess records after revoke");
+        }
+
+        [TestMethod]
+        public void LocalCrmDatabaseOrganizationServiceExecuteTests_GrantAccessRequest_ReadOnly()
+        {
+            // Create a test contact
+            var contact = new Contact { LastName = "Test Contact" };
+            contact.Id = _service.Create(contact);
+
+            // Create a test user (principal)
+            var user = new SystemUser { FirstName = "Test", LastName = "User" };
+            user.Id = _service.Create(user);
+
+            // Grant read-only access
+            var grantRequest = new GrantAccessRequest
+            {
+                Target = contact.ToEntityReference(),
+                PrincipalAccess = new PrincipalAccess
+                {
+                    Principal = user.ToEntityReference(),
+                    AccessMask = AccessRights.ReadAccess
+                }
+            };
+
+            _service.Execute(grantRequest);
+
+            // Verify access rights
+            var query = new QueryExpression("principalobjectattributeaccess")
+            {
+                ColumnSet = new ColumnSet(true),
+                Criteria = new FilterExpression
+                {
+                    Conditions =
+                    {
+                        new ConditionExpression("principalid", ConditionOperator.Equal, user.Id),
+                        new ConditionExpression("objectid", ConditionOperator.Equal, contact.Id)
+                    }
+                }
+            };
+
+            var results = _service.RetrieveMultiple(query);
+            Assert.AreEqual(1, results.Entities.Count);
+
+            var accessRecord = results.Entities.First();
+            Assert.AreEqual(true, accessRecord.GetAttributeValue<bool>("readaccess"), "ReadAccess should be true");
+            Assert.AreEqual(false, accessRecord.GetAttributeValue<bool>("updateaccess"), "UpdateAccess should be false");
+        }
     }
 }
