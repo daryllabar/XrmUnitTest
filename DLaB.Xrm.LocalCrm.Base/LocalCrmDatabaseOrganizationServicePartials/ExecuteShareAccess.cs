@@ -37,8 +37,10 @@ namespace DLaB.Xrm.LocalCrm
             {
                 [PrincipalObjectAccess.Fields.AccessRightsMask] = (int)request.PrincipalAccess.AccessMask,
                 [PrincipalObjectAccess.Fields.ChangedOn] = Info.TimeProvider.GetUtcNow(),
-                [PrincipalObjectAccess.Fields.ObjectId] = request.Target,
-                [PrincipalObjectAccess.Fields.PrincipalId] = request.PrincipalAccess.Principal,
+                [PrincipalObjectAccess.Fields.ObjectId] = request.Target.Id,
+                [PrincipalObjectAccess.Fields.ObjectTypeCode] = request.Target.LogicalName,
+                [PrincipalObjectAccess.Fields.PrincipalId] = request.PrincipalAccess.Principal.Id,
+                [PrincipalObjectAccess.Fields.PrincipalTypeCode] = request.PrincipalAccess.Principal.LogicalName,
             };
 
             var existing = this.GetFirstOrDefault(PrincipalObjectAccess.EntityLogicalName, 

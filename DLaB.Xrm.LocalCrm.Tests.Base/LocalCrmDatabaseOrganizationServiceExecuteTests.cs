@@ -119,6 +119,10 @@ namespace DLaB.Xrm.LocalCrm.Tests
 
             var poa = poas.First();
             Assert.AreEqual(grantRequest.PrincipalAccess.AccessMask, (AccessRights)poa.AccessRightsMask.GetValueOrDefault());
+            Assert.AreEqual(user.Id, poa.PrincipalId);
+            Assert.AreEqual(user.LogicalName, poa.PrincipalTypeCode);
+            Assert.AreEqual(Account.EntityLogicalName, poa.ObjectTypeCode);
+            Assert.AreEqual(account.Id, poa.ObjectId);
 
             // Revoke access
             var revokeRequest = new RevokeAccessRequest
