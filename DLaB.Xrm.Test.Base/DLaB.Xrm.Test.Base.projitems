@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Builders\CrmEnvironmentBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\EntityBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\EntityBuilderManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\EntityDataSourceRetrieverServiceBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\GenericBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\IAgnosticServiceBuilder.cs" />
@@ -40,6 +41,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\CreationFailureException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\NotConfiguredException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FakeEntityDataSourceRetrieverService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FakeExecutionContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FakeIOrganizationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FakeManagedIdentityService.cs" />
