@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Linq;
 using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -58,7 +59,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var service = GetService();
             var account = new Account
             {
-                Id = System.Guid.NewGuid()
+                Id = Guid.NewGuid()
             };
             account["statuscode"] = new OptionSetValue(1);
             account["statecode"] = new OptionSetValue(0);

@@ -585,7 +585,11 @@ namespace DLaB.Xrm.LocalCrm
                     // Get the enum type (handling Nullable<T>)
                     var enumType = property.PropertyType.IsEnum 
                         ? property.PropertyType 
-                        : Nullable.GetUnderlyingType(property.PropertyType)!;
+                        : Nullable.GetUnderlyingType(property.PropertyType);
+                    if (enumType == null)
+                    {
+                        continue;
+                    }
                     entity.FormattedValues.Add(osvAttribute.Key, Enum.ToObject(enumType, ((OptionSetValue) aliased.Value).Value).ToString());
                     continue;
                 }
