@@ -3,6 +3,7 @@ using System.Linq;
 using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Query;
 
 namespace DLaB.Xrm.LocalCrm.Tests
 {
@@ -48,6 +49,25 @@ namespace DLaB.Xrm.LocalCrm.Tests
             contact = service.GetFirstOrDefault<Contact>();
             Assert.AreEqual(Contact_AccountRoleCode.DecisionMaker, contact.AccountRoleCodeEnum);
             Assert.AreEqual(Contact_AccountRoleCode.DecisionMaker.ToString(), contact.FormattedValues[Contact.Fields.AccountRoleCode]);
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_FormattedValues_StatusCodeAndStateCode()
+        {
+            // Test case from GitHub issue - both statecode and statuscode should have FormattedValues
+            var service = GetService();
+            var account = new Account
+            {
+                Id = System.Guid.NewGuid()
+            };
+            account["statuscode"] = new OptionSetValue(1);
+            account["statecode"] = new OptionSetValue(0);
+            service.Create(account);
+
+            var retrieved = service.Retrieve("account", account.Id, new ColumnSet(true));
+
+            Assert.IsTrue(retrieved.FormattedValues.Contains("statecode"), "statecode should have a FormattedValue");
+            Assert.IsTrue(retrieved.FormattedValues.Contains("statuscode"), "statuscode should have a FormattedValue");
         }
     }
 }

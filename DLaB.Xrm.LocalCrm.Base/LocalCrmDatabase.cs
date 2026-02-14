@@ -543,12 +543,20 @@ namespace DLaB.Xrm.LocalCrm
         {
             foreach (var osvAttribute in entity.Attributes.Where(a => a.Value is OptionSetValue || (a.Value as AliasedValue)?.Value is OptionSetValue))
             {
-                PropertyInfo property;
-                if (osvAttribute.Key == Email.Fields.StateCode)
+                PropertyInfo? property = null;
+                
+                // Try to find the property using AttributeLogicalName
+                if (properties.AllPropertiesByLogicalName.TryGetValue(osvAttribute.Key, out var candidateProperties))
                 {
-                    property = properties.GetProperty(osvAttribute.Key);
+                    // Find the property that returns an enum type (not OptionSetValue)
+                    property = candidateProperties.FirstOrDefault(p => 
+                        p.PropertyType.IsEnum || 
+                        (p.PropertyType.IsGenericType && 
+                         p.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>) &&
+                         Nullable.GetUnderlyingType(p.PropertyType)?.IsEnum == true));
                 }
-                else if (!properties.PropertiesByLowerCaseName.TryGetValue(osvAttribute.Key + "enum", out var lowerCaseProperties))
+                
+                if (property == null)
                 {
                     if (!(osvAttribute.Value is AliasedValue aliased))
                     {
@@ -556,19 +564,30 @@ namespace DLaB.Xrm.LocalCrm
                     }
 
                     // Handle Aliased Value
-                    var aliasedDictionary = PropertiesCache.For(info, aliased.EntityLogicalName).PropertiesByLowerCaseName;
-                    if (!aliasedDictionary.TryGetValue(aliased.AttributeLogicalName + "enum", out lowerCaseProperties))
+                    var aliasedProperties = PropertiesCache.For(info, aliased.EntityLogicalName);
+                    if (!aliasedProperties.AllPropertiesByLogicalName.TryGetValue(aliased.AttributeLogicalName, out candidateProperties))
+                    {
+                        continue;
+                    }
+                    
+                    // Find the property that returns an enum type
+                    property = candidateProperties.FirstOrDefault(p => 
+                        p.PropertyType.IsEnum || 
+                        (p.PropertyType.IsGenericType && 
+                         p.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>) &&
+                         Nullable.GetUnderlyingType(p.PropertyType)?.IsEnum == true));
+                    
+                    if (property == null)
                     {
                         continue;
                     }
 
-                    property = lowerCaseProperties.First(p => p.PropertyType.GenericTypeArguments.Length >= 1);
-                    entity.FormattedValues.Add(osvAttribute.Key, Enum.ToObject(property.PropertyType.GenericTypeArguments[0], ((OptionSetValue) aliased.Value).Value).ToString());
+                    // Get the enum type (handling Nullable<T>)
+                    var enumType = property.PropertyType.IsEnum 
+                        ? property.PropertyType 
+                        : Nullable.GetUnderlyingType(property.PropertyType)!;
+                    entity.FormattedValues.Add(osvAttribute.Key, Enum.ToObject(enumType, ((OptionSetValue) aliased.Value).Value).ToString());
                     continue;
-                }
-                else
-                {
-                    property = lowerCaseProperties.First(p => p.PropertyType.GenericTypeArguments.Length >= 1);
                 }
 
                 entity.FormattedValues.Add(osvAttribute.Key, property.GetValue(entity)!.ToString());

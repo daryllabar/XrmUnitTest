@@ -11,6 +11,7 @@ namespace DLaB.Xrm.LocalCrm
         public Dictionary<string, PropertyInfo> PropertiesByName { get; private set; } = null!;
         public Dictionary<string, List<PropertyInfo>> PropertiesByLowerCaseName { get; private set; } = null!;
         public Dictionary<string, PropertyInfo> PropertiesByLogicalName { get; private set; } = null!;
+        public Dictionary<string, List<PropertyInfo>> AllPropertiesByLogicalName { get; private set; } = null!;
         public string EntityName { get; private set; } = string.Empty;
 
         public bool IsActivityType => PropertiesByName.ContainsKey("ActivityId");
@@ -44,17 +45,22 @@ namespace DLaB.Xrm.LocalCrm
         public static EntityProperties Get(Type type) 
         {
             var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name);
+            var propertiesWithLogicalName = properties.Values
+                                                     .Select(p => new { Key = p.GetAttributeLogicalName(false) ?? NullKey, Property = p })
+                                                     .Where(p => p.Key != NullKey)
+                                                     .ToList();
             
             var entity = new EntityProperties
             {
                 EntityName = EntityHelper.GetEntityLogicalName(type),
                 PropertiesByName = properties,
-                PropertiesByLogicalName = properties.Values
-                                                    .Select(p => new { Key = p.GetAttributeLogicalName(false) ?? NullKey, Property = p })
-                                                    .Where(p => p.Key != NullKey)
-                                                    .GroupBy(k => k.Key, p => p.Property)
-                                                    .Select(g => new { g.Key, Property = g.First()})
-                                                    .ToDictionary(k => k.Key, p => p.Property),
+                PropertiesByLogicalName = propertiesWithLogicalName
+                                                     .GroupBy(k => k.Key, p => p.Property)
+                                                     .Select(g => new { g.Key, Property = g.First()})
+                                                     .ToDictionary(k => k.Key, p => p.Property),
+                AllPropertiesByLogicalName = propertiesWithLogicalName
+                                                     .GroupBy(k => k.Key, p => p.Property)
+                                                     .ToDictionary(k => k.Key, p => p.ToList()),
                 PropertiesByLowerCaseName = properties.GroupBy(v => v.Key.ToLower(), v => v.Value).ToDictionary(v => v.Key, v => v.ToList())
             };
 
