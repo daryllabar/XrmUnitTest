@@ -543,33 +543,13 @@ namespace DLaB.Xrm.LocalCrm
         {
             foreach (var osvAttribute in entity.Attributes.Where(a => a.Value is OptionSetValue || (a.Value as AliasedValue)?.Value is OptionSetValue))
             {
-                PropertyInfo property;
-                if (osvAttribute.Key == Email.Fields.StateCode)
+                if (osvAttribute.Value is AliasedValue aliased)
                 {
-                    property = properties.GetProperty(osvAttribute.Key);
-                }
-                else if (!properties.PropertiesByLowerCaseName.TryGetValue(osvAttribute.Key + "enum", out var lowerCaseProperties))
-                {
-                    if (!(osvAttribute.Value is AliasedValue aliased))
-                    {
-                        continue;
-                    }
-
-                    // Handle Aliased Value
-                    var aliasedDictionary = PropertiesCache.For(info, aliased.EntityLogicalName).PropertiesByLowerCaseName;
-                    if (!aliasedDictionary.TryGetValue(aliased.AttributeLogicalName + "enum", out lowerCaseProperties))
-                    {
-                        continue;
-                    }
-
-                    property = lowerCaseProperties.First(p => p.PropertyType.GenericTypeArguments.Length >= 1);
-                    entity.FormattedValues.Add(osvAttribute.Key, Enum.ToObject(property.PropertyType.GenericTypeArguments[0], ((OptionSetValue) aliased.Value).Value).ToString());
+                    var aliasedProperty = PropertiesCache.For(info, aliased.EntityLogicalName).GetProperty(aliased.AttributeLogicalName);
+                    entity.FormattedValues.Add(osvAttribute.Key, Enum.ToObject(aliasedProperty.PropertyType.GenericTypeArguments[0], ((OptionSetValue)aliased.Value).Value).ToString());
                     continue;
                 }
-                else
-                {
-                    property = lowerCaseProperties.First(p => p.PropertyType.GenericTypeArguments.Length >= 1);
-                }
+                var property = properties.GetProperty(osvAttribute.Key);
 
                 entity.FormattedValues.Add(osvAttribute.Key, property.GetValue(entity)!.ToString());
             }

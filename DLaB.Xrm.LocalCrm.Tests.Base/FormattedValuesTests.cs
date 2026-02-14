@@ -1,8 +1,10 @@
-﻿using System.Globalization;
-using System.Linq;
-using DLaB.Xrm.Entities;
+﻿using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Query;
+using System;
+using System.Globalization;
+using System.Linq;
 
 namespace DLaB.Xrm.LocalCrm.Tests
 {
@@ -48,6 +50,25 @@ namespace DLaB.Xrm.LocalCrm.Tests
             contact = service.GetFirstOrDefault<Contact>();
             Assert.AreEqual(Contact_AccountRoleCode.DecisionMaker, contact.AccountRoleCodeEnum);
             Assert.AreEqual(Contact_AccountRoleCode.DecisionMaker.ToString(), contact.FormattedValues[Contact.Fields.AccountRoleCode]);
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_FormattedValues_StatusCodeAndStateCode()
+        {
+            var service = GetService();
+            var account = new Account
+            {
+                Id = Guid.NewGuid(),
+                StateCode = AccountState.Active,
+                [Account.Fields.StatusCode] = new OptionSetValue((int)Account_StatusCode.Active)
+
+            };
+            service.Create(account);
+
+            var retrieved = service.Retrieve("account", account.Id, new ColumnSet(true));
+
+            Assert.AreEqual("Active", retrieved.FormattedValues[Account.Fields.StateCode]);
+            Assert.AreEqual("Active", retrieved.FormattedValues[Account.Fields.StatusCode]);
         }
     }
 }
