@@ -136,9 +136,9 @@ namespace DLaB.Xrm.LocalCrm
             return value.CompareTo(compareTo);
         }
 
-        private static object? ConvertCrmTypeToBasicComparable(Entity e, string attributeName)
-        {
-            if (e.Attributes.ContainsKey(attributeName))
+        private static object? ConvertCrmTypeToBasicComparable(Entity? e, string attributeName)
+        {           
+            if (e?.Attributes.ContainsKey(attributeName) == true)
             {
                 return ConvertCrmTypeToBasicComparable(e[attributeName]);
             }

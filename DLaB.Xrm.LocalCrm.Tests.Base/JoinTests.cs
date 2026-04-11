@@ -58,5 +58,44 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.AreEqual(contact.FirstName, entities.First(o => o.ParentContactId != null).GetAliasedEntity<Contact>().FirstName, "First Name wasn't returned!");
             Assert.IsNull(entities.First(o => o.ParentContactId == null).GetAliasedEntity<Contact>().FirstName, "Second Opportunity some how has a contact!");
         }
+
+        [TestMethod]
+        public void LocalCrmTests_MultipleJoinWithNull_ShouldReturnNull()
+        {
+            var service = GetService();
+            var user = new SystemUser { FirstName = "Joe" };
+            user.Id = service.Create(user);
+
+            var role = new Role { Name = "Test Role" };
+            role.Id = service.Create(role);
+
+            var roleUser = new SystemUserRoles { ["systemuserid"] = user.ToEntityReference(), ["roleid"] = role.ToEntityReference() };
+
+            roleUser.Id = service.Create(roleUser);
+
+            var qe = QueryExpressionFactory.Create<SystemUser>();
+            qe.WhereEqual(SystemUser.Fields.SystemUserId, user.Id);
+            qe.AddLink<SystemUserRoles>(SystemUser.Fields.SystemUserId, JoinOperator.LeftOuter)
+                .AddLink<Role>(SystemUserRoles.Fields.RoleId, JoinOperator.LeftOuter, r => new { r.Name });
+
+            // Verify that the Links work and that the Role Name is being returned
+            var userResult = service.GetFirst(qe);
+            Assert.AreEqual(user.FirstName, userResult.FirstName);
+            Assert.AreEqual(role.Name, userResult.GetAliasedEntity<Role>().Name);
+
+            // Remove RoleId from the SystemUserRoles record and verify that the Role Name is now null
+            roleUser["roleid"] = null;
+            service.Update(roleUser);
+            service.Delete(role);
+            userResult = service.GetFirst(qe);
+            Assert.AreEqual(user.FirstName, userResult.FirstName);
+            Assert.IsNull(userResult.GetAliasedEntity<Role>().Name);
+
+            // Remove the SystemUserRoles record and verify that the Role Name is still null
+            service.Delete(roleUser);
+            userResult = service.GetFirst(qe);
+            Assert.AreEqual(user.FirstName, userResult.FirstName);
+            Assert.IsNull(userResult.GetAliasedEntity<Role>().Name);
+        }
     }
 }
