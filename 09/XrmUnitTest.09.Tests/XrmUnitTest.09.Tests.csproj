@@ -2,7 +2,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<AssemblyName>XrmUnitTest.09.Tests</AssemblyName>
-		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<DebugType>full</DebugType>
 		<DebugSymbols>true</DebugSymbols>
 		<TargetFrameworks>net48</TargetFrameworks>

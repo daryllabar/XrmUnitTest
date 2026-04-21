@@ -561,7 +561,7 @@ namespace DLaB.Xrm.LocalCrm
         {
             switch (op)
             {
-                				case ConditionOperator.Equal:
+                case ConditionOperator.Equal:
                     return @operator.eq;
                 case ConditionOperator.NotEqual:
                     return @operator.neq;
