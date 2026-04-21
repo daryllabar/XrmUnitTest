@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
@@ -27,6 +29,54 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var service = GetService();
             service.Create(new Contact { FirstName = "Jimmy" });
             Assert.IsNotNull(service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.FirstName, ConditionOperator.Like, "JIM%")));
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_ConditionExpression_LikeWithAtSymbol()
+        {
+            var service = GetService();
+            service.Create(new Account { EMailAddress1 = "test@google.com" });
+            service.Create(new Account { EMailAddress1 = "other@contoso.com" });
+            service.Create(new Account { EMailAddress1 = "another@google.com" });
+
+            // Should find accounts with @google.com
+            var googleAccounts = service.GetEntities<Account>(new ConditionExpression(Account.Fields.EMailAddress1, ConditionOperator.Like, "%@google.com"));
+            Assert.HasCount(2, googleAccounts, "Two accounts should have @google.com email domain");
+
+            // Should find account with @contoso.com
+            var contosoAccounts = service.GetEntities<Account>(new ConditionExpression(Account.Fields.EMailAddress1, ConditionOperator.Like, "%@contoso.com"));
+            Assert.HasCount(1, contosoAccounts, "One account should have @contoso.com email domain");
+
+            // Upper-case pattern should also work (case-insensitive)
+            var googleAccountsUpper = service.GetEntities<Account>(new ConditionExpression(Account.Fields.EMailAddress1, ConditionOperator.Like, "%@GOOGLE.COM"));
+            Assert.HasCount(2, googleAccountsUpper, "Two accounts should be found with upper-case @GOOGLE.COM pattern");
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_ConditionExpression_LikeOrMultipleDomains()
+        {
+            var service = GetService();
+            service.Create(new Account { EMailAddress1 = "test@google.com" });
+            service.Create(new Account { EMailAddress1 = "other@contoso.com" });
+            service.Create(new Account { EMailAddress1 = "another@google.com" });
+            service.Create(new Account { EMailAddress1 = "yet@microsoft.com" });
+
+            var emails = new List<string> { "test@google.com", "other@contoso.com" };
+            var domains = emails
+                .Where(e => !string.IsNullOrWhiteSpace(e) && e.Contains("@"))
+                .Select(e => e.Substring(e.IndexOf('@') + 1))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToList();
+
+            var qe = new QueryExpression(Account.EntityLogicalName) { ColumnSet = new ColumnSet(Account.Fields.EMailAddress1) };
+            qe.Criteria.FilterOperator = LogicalOperator.Or;
+            foreach (var domain in domains)
+            {
+                qe.Criteria.AddCondition(Account.Fields.EMailAddress1, ConditionOperator.Like, $"%@{domain}");
+            }
+
+            var results = service.RetrieveMultiple(qe).Entities;
+            Assert.HasCount(3, results, "Accounts matching @google.com or @contoso.com should be returned");
         }
 
         [TestMethod]

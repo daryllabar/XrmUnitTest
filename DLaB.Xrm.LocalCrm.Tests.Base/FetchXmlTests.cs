@@ -16,6 +16,24 @@ namespace DLaB.Xrm.LocalCrm.Tests
     public class FetchXmlTests : LocalTestBase
     {
         [TestMethod]
+        public void LocalCrmTests_LikeWithAtSymbol()
+        {
+            var googleAccountId = Service.Create(new Account { EMailAddress1 = "test@google.com" });
+            Service.Create(new Account { EMailAddress1 = "other@contoso.com" });
+            var fetchXml = @"<fetch>
+              <entity name='account' >
+                <attribute name='emailaddress1' />
+                <filter>
+                  <condition attribute='emailaddress1' operator='like' value='%@google.com' />
+                </filter>
+              </entity>
+            </fetch>";
+            var accounts = Service.RetrieveMultiple(new FetchExpression(fetchXml)).ToEntityList<Account>();
+            Assert.HasCount(1, accounts);
+            Assert.AreEqual(googleAccountId, accounts[0].Id);
+        }
+
+        [TestMethod]
         public void LocalCrmTests_NotLike()
         {
             var id = Service.Create(new Account { Name = "Hello" });
