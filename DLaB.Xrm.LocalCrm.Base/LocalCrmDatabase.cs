@@ -717,10 +717,8 @@ namespace DLaB.Xrm.LocalCrm
                             || propertyType.GetGenericTypeDefinition() == typeof(IEnumerable<>)
                                 && typeof(Entity).IsAssignableFrom(propertyType.GetGenericArguments()[0])
                         )
-                    || attributeType == typeof(OptionSetValueCollection) 
-                        && propertyType.IsGenericType
-                        && propertyType.GetGenericTypeDefinition() == typeof(IEnumerable<>)
-                        && (propertyType.GetGenericArguments()[0].IsEnum || propertyType.GetGenericArguments()[0] == typeof(int))
+                    || attributeType == typeof(OptionSetValueCollection)
+                        && MultiSelectOptionSetTypeHelper.IsMultiSelectOptionSetPropertyType(propertyType)
                 )
                 {
                     continue;
