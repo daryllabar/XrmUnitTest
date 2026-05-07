@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.ServiceModel;
@@ -59,6 +60,31 @@ namespace DLaB.Xrm.LocalCrm.Tests
             {
                 Assert.AreEqual("Incorrect type of attribute value Microsoft.Xrm.Sdk.AliasedValue", ex.Message);
             }
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_Update_MultiSelectOptionSet_CollectionPropertiesAreAccepted()
+        {
+            var service = new LocalCrmDatabaseOrganizationService(LocalCrmDatabaseInfo.Create<MultiSelectContext>(nameof(LocalCrmTests_Update_MultiSelectOptionSet_CollectionPropertiesAreAccepted)));
+            var entity = new MultiSelectEntity
+            {
+                Id = Guid.NewGuid(),
+                ListFlags = new List<MultiSelectFlag> { MultiSelectFlag.One, MultiSelectFlag.Two },
+                ReadOnlyFlags = new List<MultiSelectFlag> { MultiSelectFlag.Two, MultiSelectFlag.Three }
+            };
+
+            service.Create(entity);
+
+            service.Update(new MultiSelectEntity
+            {
+                Id = entity.Id,
+                ListFlags = new List<MultiSelectFlag> { MultiSelectFlag.Three },
+                ReadOnlyFlags = new List<MultiSelectFlag> { MultiSelectFlag.One }
+            });
+
+            var updated = service.Retrieve(MultiSelectEntity.EntityLogicalName, entity.Id, new ColumnSet(true)).ToEntity<MultiSelectEntity>();
+            CollectionAssert.AreEquivalent(new[] { MultiSelectFlag.Three }, updated.ListFlags.ToArray());
+            CollectionAssert.AreEquivalent(new[] { MultiSelectFlag.One }, updated.ReadOnlyFlags.ToArray());
         }
 
         [TestMethod]
@@ -1279,5 +1305,73 @@ namespace DLaB.Xrm.LocalCrm.Tests
 
 
         #endregion Shared Methods
+    }
+}
+
+namespace DLaB.Xrm.LocalCrm.Tests
+{
+    public class MultiSelectContext : Microsoft.Xrm.Sdk.Client.OrganizationServiceContext
+    {
+        public MultiSelectContext(IOrganizationService service) : base(service) { }
+    }
+
+    public enum MultiSelectFlag
+    {
+        One = 1,
+        Two = 2,
+        Three = 3
+    }
+
+    [Microsoft.Xrm.Sdk.Client.EntityLogicalName("test_multiselectentity")]
+    public class MultiSelectEntity : Entity, INotifyPropertyChanging, INotifyPropertyChanged
+    {
+        public MultiSelectEntity() : base(EntityLogicalName) { }
+
+        public const string EntityLogicalName = "test_multiselectentity";
+
+        public event PropertyChangingEventHandler PropertyChanging;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanging(string propertyName)
+        {
+            PropertyChanging?.Invoke(this, new PropertyChangingEventArgs(propertyName));
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        [AttributeLogicalName("test_listflags")]
+        public List<MultiSelectFlag> ListFlags
+        {
+            get => GetAttributeValue<OptionSetValueCollection>("test_listflags")?
+                .Select(v => (MultiSelectFlag)v.Value)
+                .ToList();
+            set
+            {
+                OnPropertyChanging(nameof(ListFlags));
+                SetAttributeValue("test_listflags", value == null
+                    ? null
+                    : new OptionSetValueCollection(value.Select(v => new OptionSetValue((int)v)).ToList()));
+                OnPropertyChanged(nameof(ListFlags));
+            }
+        }
+
+        [AttributeLogicalName("test_readonlyflags")]
+        public IReadOnlyList<MultiSelectFlag> ReadOnlyFlags
+        {
+            get => GetAttributeValue<OptionSetValueCollection>("test_readonlyflags")?
+                .Select(v => (MultiSelectFlag)v.Value)
+                .ToList();
+            set
+            {
+                OnPropertyChanging(nameof(ReadOnlyFlags));
+                SetAttributeValue("test_readonlyflags", value == null
+                    ? null
+                    : new OptionSetValueCollection(value.Select(v => new OptionSetValue((int)v)).ToList()));
+                OnPropertyChanged(nameof(ReadOnlyFlags));
+            }
+        }
     }
 }

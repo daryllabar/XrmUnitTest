@@ -37,6 +37,9 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 { "testentityreference", new Tuple<Type, string>(typeof(LookupAttributeMetadata), "Test Entity Reference") },
                 { "testoptionsetvalue", new Tuple<Type, string>(typeof(PicklistAttributeMetadata), "Test Option Set Value Enum") },
                 { "testmultioptionsetvalue", new Tuple<Type, string>(typeof(MultiSelectPicklistAttributeMetadata), "Test Multi Option Set Value") },
+                { "testlistmultioptionsetvalue", new Tuple<Type, string>(typeof(MultiSelectPicklistAttributeMetadata), "Test List Multi Option Set Value") },
+                { "testreadonlymultioptionsetvalue", new Tuple<Type, string>(typeof(MultiSelectPicklistAttributeMetadata), "Test Read Only Multi Option Set Value") },
+                { "testintmultioptionsetvalue", new Tuple<Type, string>(typeof(MultiSelectPicklistAttributeMetadata), "Test Int Multi Option Set Value") },
                 { "testmoney", new Tuple<Type, string>(typeof(MoneyAttributeMetadata), "Test Money") },
                 { "testguid", new Tuple<Type, string>(typeof(UniqueIdentifierAttributeMetadata), "Test Guid") },
                 { "testbytearray", new Tuple<Type, string>(typeof(FileAttributeMetadata), "Test Byte Array") },
@@ -91,6 +94,12 @@ namespace DLaB.Xrm.LocalCrm.Tests
             public IEnumerable<OptionSetValue> TestMultiOptionSetValue { get; set; }
             [AttributeLogicalName("testmultioptionsetvalue")]
             public IEnumerable<LogLevel> TestMultiOptionSetValueEnum { get; set; }
+            [AttributeLogicalName("testlistmultioptionsetvalue")]
+            public List<LogLevel> TestListMultiOptionSetValueEnum { get; set; }
+            [AttributeLogicalName("testreadonlymultioptionsetvalue")]
+            public IReadOnlyList<OptionSetValue> TestReadOnlyMultiOptionSetValue { get; set; }
+            [AttributeLogicalName("testintmultioptionsetvalue")]
+            public IReadOnlyList<int> TestIntMultiOptionSetValue { get; set; }
             [AttributeLogicalName("testmoney")]
             public Money TestMoney { get; set; }
             [AttributeLogicalName("testguid")]
