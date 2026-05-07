@@ -1322,12 +1322,12 @@ namespace DLaB.Xrm.LocalCrm.Tests
         Three = 3
     }
 
-    [Microsoft.Xrm.Sdk.Client.EntityLogicalName("copilot_multiselectentity")]
+    [Microsoft.Xrm.Sdk.Client.EntityLogicalName("test_multiselectentity")]
     public class MultiSelectEntity : Entity, INotifyPropertyChanging, INotifyPropertyChanged
     {
         public MultiSelectEntity() : base(EntityLogicalName) { }
 
-        public const string EntityLogicalName = "copilot_multiselectentity";
+        public const string EntityLogicalName = "test_multiselectentity";
 
         public event PropertyChangingEventHandler PropertyChanging;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -1342,32 +1342,32 @@ namespace DLaB.Xrm.LocalCrm.Tests
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        [AttributeLogicalName("copilot_listflags")]
+        [AttributeLogicalName("test_listflags")]
         public List<MultiSelectFlag> ListFlags
         {
-            get => GetAttributeValue<OptionSetValueCollection>("copilot_listflags")?
+            get => GetAttributeValue<OptionSetValueCollection>("test_listflags")?
                 .Select(v => (MultiSelectFlag)v.Value)
                 .ToList();
             set
             {
                 OnPropertyChanging(nameof(ListFlags));
-                SetAttributeValue("copilot_listflags", value == null
+                SetAttributeValue("test_listflags", value == null
                     ? null
                     : new OptionSetValueCollection(value.Select(v => new OptionSetValue((int)v)).ToList()));
                 OnPropertyChanged(nameof(ListFlags));
             }
         }
 
-        [AttributeLogicalName("copilot_readonlyflags")]
+        [AttributeLogicalName("test_readonlyflags")]
         public IReadOnlyList<MultiSelectFlag> ReadOnlyFlags
         {
-            get => GetAttributeValue<OptionSetValueCollection>("copilot_readonlyflags")?
+            get => GetAttributeValue<OptionSetValueCollection>("test_readonlyflags")?
                 .Select(v => (MultiSelectFlag)v.Value)
                 .ToList();
             set
             {
                 OnPropertyChanging(nameof(ReadOnlyFlags));
-                SetAttributeValue("copilot_readonlyflags", value == null
+                SetAttributeValue("test_readonlyflags", value == null
                     ? null
                     : new OptionSetValueCollection(value.Select(v => new OptionSetValue((int)v)).ToList()));
                 OnPropertyChanged(nameof(ReadOnlyFlags));

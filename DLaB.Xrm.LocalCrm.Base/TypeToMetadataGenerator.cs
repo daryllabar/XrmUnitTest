@@ -212,7 +212,8 @@ namespace DLaB.Xrm.LocalCrm
     {
         public static bool IsMultiSelectOptionSetPropertyType(Type propertyType)
         {
-            if (!TryGetEnumerableTypeArgument(propertyType, out var typeArgument))
+            var typeArgument = GetEnumerableTypeArgument(propertyType);
+            if (typeArgument == null)
             {
                 return false;
             }
@@ -220,7 +221,7 @@ namespace DLaB.Xrm.LocalCrm
             return typeArgument.IsEnum || typeArgument == typeof(int) || typeArgument == typeof(OptionSetValue);
         }
 
-        private static bool TryGetEnumerableTypeArgument(Type propertyType, out Type typeArgument)
+        private static Type? GetEnumerableTypeArgument(Type propertyType)
         {
             var enumerableType = propertyType.IsGenericType
                                  && propertyType.GetGenericTypeDefinition() == typeof(IEnumerable<>)
@@ -228,14 +229,7 @@ namespace DLaB.Xrm.LocalCrm
                 : propertyType.GetInterfaces()
                     .FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>));
 
-            if (enumerableType == null)
-            {
-                typeArgument = null!;
-                return false;
-            }
-
-            typeArgument = enumerableType.GetGenericArguments()[0];
-            return true;
+            return enumerableType?.GetGenericArguments()[0];
         }
     }
 }
