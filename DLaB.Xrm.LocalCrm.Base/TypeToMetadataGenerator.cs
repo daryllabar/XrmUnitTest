@@ -94,10 +94,7 @@ namespace DLaB.Xrm.LocalCrm
                     ? new EntityNameAttributeMetadata(logicalName)
                     : new StringAttributeMetadata(logicalName);
             }
-            else if (propertyType.IsGenericType
-                     && propertyType.GetGenericTypeDefinition() == typeof(IEnumerable<>)
-                     && propertyType.GetGenericArguments().Length == 1
-                     && (propertyType.GetGenericArguments()[0].IsEnum || propertyType.GetGenericArguments()[0] == typeof(OptionSetValue)) )
+            else if (IsMultiSelectOptionSetPropertyType(propertyType))
             {
                 attribute = new MultiSelectPicklistAttributeMetadata(logicalName);
             }
@@ -207,6 +204,34 @@ namespace DLaB.Xrm.LocalCrm
 
             attribute.WithPrivate().Set(a => a.EntityLogicalName, EntityHelper.GetEntityLogicalName(entityType));
             return attribute;
+        }
+
+        private static bool IsMultiSelectOptionSetPropertyType(Type propertyType)
+        {
+            if (!TryGetEnumerableTypeArgument(propertyType, out var typeArgument))
+            {
+                return false;
+            }
+
+            return typeArgument.IsEnum || typeArgument == typeof(OptionSetValue);
+        }
+
+        private static bool TryGetEnumerableTypeArgument(Type propertyType, out Type typeArgument)
+        {
+            var enumerableType = propertyType.IsGenericType
+                                 && propertyType.GetGenericTypeDefinition() == typeof(IEnumerable<>)
+                ? propertyType
+                : propertyType.GetInterfaces()
+                    .FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>));
+
+            if (enumerableType == null)
+            {
+                typeArgument = null!;
+                return false;
+            }
+
+            typeArgument = enumerableType.GetGenericArguments()[0];
+            return true;
         }
     }
 }
