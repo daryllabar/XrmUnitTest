@@ -22,7 +22,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmTests_Create_OverridenModifiedOn_SetsModifiedOnAndCreatedOn()
+        public void LocalCrmTests_Create_OverriddenModifiedOn_SetsModifiedOnAndCreatedOn()
         {
             var timeProvider = new TestTimeProvider();
             var service = new LocalCrmDatabaseOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(new LocalCrmDatabaseOptionalSettings
@@ -42,7 +42,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmTests_Create_OverridenModifiedOn_DoesNotUpdateCreatedOnWhenEarlier()
+        public void LocalCrmTests_Create_OverriddenModifiedOn_DoesNotUpdateCreatedOnWhenEarlier()
         {
             var timeProvider = new TestTimeProvider();
             var service = new LocalCrmDatabaseOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(new LocalCrmDatabaseOptionalSettings
@@ -60,6 +60,26 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var created = service.GetEntity<Account>(id);
             Assert.AreEqual(overriddenModifiedOn, created.ModifiedOn);
             Assert.AreEqual(overriddenCreatedOn, created.CreatedOn);
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_Create_OverriddenModifiedOn_CorrectlySpelledAttributeIsSupported()
+        {
+            var timeProvider = new TestTimeProvider();
+            var service = new LocalCrmDatabaseOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(new LocalCrmDatabaseOptionalSettings
+            {
+                TimeProvider = timeProvider
+            }));
+            timeProvider.UtcNow = new DateTime(2024, 1, 10);
+            var overriddenModifiedOn = new DateTime(2024, 1, 8);
+
+            var account = new Account();
+            account["overriddenmodifiedon"] = overriddenModifiedOn;
+            var id = service.Create(account);
+
+            var created = service.GetEntity<Account>(id);
+            Assert.AreEqual(overriddenModifiedOn, created.ModifiedOn);
+            Assert.AreEqual(overriddenModifiedOn, created.CreatedOn);
         }
     }
     
