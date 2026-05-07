@@ -31,6 +31,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)LocalCrmTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MismatchedAttributeToLogicalNameTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OwnerTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TimeProviderTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TimeTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TypeToMetadataGeneratorTests.cs" />
   </ItemGroup>
