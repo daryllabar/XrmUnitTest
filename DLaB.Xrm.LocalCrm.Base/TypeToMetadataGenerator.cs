@@ -94,7 +94,7 @@ namespace DLaB.Xrm.LocalCrm
                     ? new EntityNameAttributeMetadata(logicalName)
                     : new StringAttributeMetadata(logicalName);
             }
-            else if (IsMultiSelectOptionSetPropertyType(propertyType))
+            else if (MultiSelectOptionSetTypeHelper.IsMultiSelectOptionSetPropertyType(propertyType))
             {
                 attribute = new MultiSelectPicklistAttributeMetadata(logicalName);
             }
@@ -206,14 +206,18 @@ namespace DLaB.Xrm.LocalCrm
             return attribute;
         }
 
-        private static bool IsMultiSelectOptionSetPropertyType(Type propertyType)
+    }
+
+    internal static class MultiSelectOptionSetTypeHelper
+    {
+        public static bool IsMultiSelectOptionSetPropertyType(Type propertyType)
         {
             if (!TryGetEnumerableTypeArgument(propertyType, out var typeArgument))
             {
                 return false;
             }
 
-            return typeArgument.IsEnum || typeArgument == typeof(OptionSetValue);
+            return typeArgument.IsEnum || typeArgument == typeof(int) || typeArgument == typeof(OptionSetValue);
         }
 
         private static bool TryGetEnumerableTypeArgument(Type propertyType, out Type typeArgument)

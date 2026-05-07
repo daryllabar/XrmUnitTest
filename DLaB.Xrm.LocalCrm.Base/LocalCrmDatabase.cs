@@ -718,7 +718,7 @@ namespace DLaB.Xrm.LocalCrm
                                 && typeof(Entity).IsAssignableFrom(propertyType.GetGenericArguments()[0])
                         )
                     || attributeType == typeof(OptionSetValueCollection)
-                        && IsMultiSelectOptionSetPropertyType(propertyType)
+                        && MultiSelectOptionSetTypeHelper.IsMultiSelectOptionSetPropertyType(propertyType)
                 )
                 {
                     continue;
@@ -909,34 +909,6 @@ namespace DLaB.Xrm.LocalCrm
                 return;
             }
             entity[key] = date.RemoveMilliseconds();
-        }
-
-        private static bool IsMultiSelectOptionSetPropertyType(Type propertyType)
-        {
-            if (!TryGetEnumerableTypeArgument(propertyType, out var typeArgument))
-            {
-                return false;
-            }
-
-            return typeArgument.IsEnum || typeArgument == typeof(int) || typeArgument == typeof(OptionSetValue);
-        }
-
-        private static bool TryGetEnumerableTypeArgument(Type propertyType, out Type typeArgument)
-        {
-            var enumerableType = propertyType.IsGenericType
-                                 && propertyType.GetGenericTypeDefinition() == typeof(IEnumerable<>)
-                ? propertyType
-                : propertyType.GetInterfaces()
-                    .FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>));
-
-            if (enumerableType == null)
-            {
-                typeArgument = null!;
-                return false;
-            }
-
-            typeArgument = enumerableType.GetGenericArguments()[0];
-            return true;
         }
 
         public static bool IsSameOrSubclass(Type potentialBase, Type potentialDescendant)
