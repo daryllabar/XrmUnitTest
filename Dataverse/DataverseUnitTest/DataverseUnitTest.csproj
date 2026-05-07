@@ -6,10 +6,10 @@
     <AssemblyOriginatorKeyFile>DataverseUnitTest.snk</AssemblyOriginatorKeyFile>
 	  <DebugType>portable</DebugType>
     <DelaySign>false</DelaySign>
-    <Version>3.4.0.47</Version>
+    <Version>3.4.0.48</Version>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <AssemblyVersion>3.4.0.47</AssemblyVersion>
-    <FileVersion>3.4.0.47</FileVersion>
+    <AssemblyVersion>3.4.0.48</AssemblyVersion>
+    <FileVersion>3.4.0.48</FileVersion>
 	  <LangVersion>latest</LangVersion>
 	  <Nullable>enable</Nullable>
   </PropertyGroup>
