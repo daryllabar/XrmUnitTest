@@ -10,7 +10,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Owner_SystemUserBusinessUnitSet()
         {
-            var timeProvider = new TestTimeProvider();
+            var timeProvider = new TimeProvider();
             var service = new LocalCrmDatabaseOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(new LocalCrmDatabaseOptionalSettings
             {
                 TimeProvider = timeProvider
@@ -20,18 +20,46 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.AreEqual(timeProvider.UtcNow, contact.CreatedOn);
             Assert.AreEqual(timeProvider.UtcNow, contact.ModifiedOn);
         }
-    }
     
-    public class TestTimeProvider : ITimeProvider
-    {
-        public DateTime UtcNow { get; set; }
-        public TestTimeProvider()
+        [TestMethod]
+        public void LocalCrmTests_Create_OverriddenModifiedOn_SetsModifiedOnAndCreatedOn()
         {
-            UtcNow = DateTime.UtcNow;
+            var timeProvider = new TimeProvider();
+            var service = new LocalCrmDatabaseOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(new LocalCrmDatabaseOptionalSettings
+            {
+                TimeProvider = timeProvider
+            }));
+            timeProvider.UtcNow = new DateTime(2024, 1, 10);
+            var overriddenModifiedOn = new DateTime(2024, 1, 8);
+
+            var account = new Account { OverriddenCreatedOn = new DateTime(2024, 1, 9) };
+            account["overriddenmodifiedon"] = overriddenModifiedOn;
+            var id = service.Create(account);
+
+            var created = service.GetEntity<Account>(id);
+            Assert.AreEqual(overriddenModifiedOn, created.ModifiedOn);
+            Assert.AreEqual(overriddenModifiedOn, created.CreatedOn);
         }
-        public DateTime GetUtcNow()
+
+        [TestMethod]
+        public void LocalCrmTests_Create_OverriddenModifiedOn_DoesNotUpdateCreatedOnWhenEarlier()
         {
-            return UtcNow;
+            var timeProvider = new TimeProvider();
+            var service = new LocalCrmDatabaseOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(new LocalCrmDatabaseOptionalSettings
+            {
+                TimeProvider = timeProvider
+            }));
+            timeProvider.UtcNow = new DateTime(2024, 1, 10);
+            var overriddenModifiedOn = new DateTime(2024, 1, 8);
+            var overriddenCreatedOn = new DateTime(2024, 1, 5);
+
+            var account = new Account { OverriddenCreatedOn = overriddenCreatedOn };
+            account["overriddenmodifiedon"] = overriddenModifiedOn;
+            var id = service.Create(account);
+
+            var created = service.GetEntity<Account>(id);
+            Assert.AreEqual(overriddenModifiedOn, created.ModifiedOn);
+            Assert.AreEqual(overriddenCreatedOn, created.CreatedOn);
         }
     }
 }

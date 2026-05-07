@@ -8,6 +8,8 @@ namespace DLaB.Xrm.LocalCrm
 {
     internal partial class LocalCrmDatabase
     {
+        private const string OverriddenModifiedOnAttribute = "overriddenmodifiedon";
+
         /// <summary>
         /// Populates the auto-populated columns of the entity and returns a list of attributes that were created / updated
         /// </summary>
@@ -42,7 +44,13 @@ namespace DLaB.Xrm.LocalCrm
                 UpdateOwningFieldsBasedOnOwner(service, entity, properties);
             }
 
-            PopulateModifiedAttributes(service.Info, entity, properties);
+            PopulateModifiedAttributes(service.Info, entity, properties, entity.GetAttributeValue<DateTime?>(OverriddenModifiedOnAttribute));
+            if (isCreate)
+            {
+                EnsureCreatedOnIsNotAfterModifiedOn(entity, properties);
+            }
+
+            // entity.Attributes.Remove(OverriddenModifiedOnAttribute);
         }
 
         /// <summary>
@@ -110,11 +118,29 @@ namespace DLaB.Xrm.LocalCrm
             }
         }
 
-        private static void PopulateModifiedAttributes<T>(LocalCrmDatabaseInfo info, T entity, EntityProperties properties) where T : Entity
+        private static void EnsureCreatedOnIsNotAfterModifiedOn(Entity entity, EntityProperties properties)
+        {
+            if (!properties.PropertiesByLogicalName.ContainsKey(Email.Fields.CreatedOn)
+                || !properties.PropertiesByLogicalName.ContainsKey(Email.Fields.ModifiedOn))
+            {
+                return;
+            }
+
+            var createdOn = entity.GetAttributeValue<DateTime?>(Email.Fields.CreatedOn);
+            var modifiedOn = entity.GetAttributeValue<DateTime?>(Email.Fields.ModifiedOn);
+            if (!createdOn.HasValue || !modifiedOn.HasValue || createdOn.Value <= modifiedOn.Value)
+            {
+                return;
+            }
+
+            entity[Email.Fields.CreatedOn] = modifiedOn.Value;
+        }
+
+        private static void PopulateModifiedAttributes<T>(LocalCrmDatabaseInfo info, T entity, EntityProperties properties, DateTime? overriddenModifiedOn = null) where T : Entity
         {
             ConditionallyAddValue(entity, properties, Email.Fields.ModifiedBy, info.User, info.User.GetIdOrDefault() != Guid.Empty);
             ConditionallyAddValue(entity, properties, Email.Fields.ModifiedOnBehalfBy, info.UserOnBehalfOf, info.UserOnBehalfOf.GetIdOrDefault() != Guid.Empty);
-            ConditionallyAddValue(entity, properties, Email.Fields.ModifiedOn, info.TimeProvider.GetUtcNow());
+            ConditionallyAddValue(entity, properties, Email.Fields.ModifiedOn, overriddenModifiedOn ?? info.TimeProvider.GetUtcNow());
         }
 
         #region Full Name Formatting

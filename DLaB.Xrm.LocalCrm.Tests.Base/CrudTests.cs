@@ -65,26 +65,26 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Update_MultiSelectOptionSet_CollectionPropertiesAreAccepted()
         {
-            var service = new LocalCrmDatabaseOrganizationService(LocalCrmDatabaseInfo.Create<MultiSelectContext>(nameof(LocalCrmTests_Update_MultiSelectOptionSet_CollectionPropertiesAreAccepted)));
-            var entity = new MultiSelectEntity
+            var service = new LocalCrmDatabaseOrganizationService(LocalCrmDatabaseInfo.Create<MultiSelectEntities.MultiSelectContext >(nameof(LocalCrmTests_Update_MultiSelectOptionSet_CollectionPropertiesAreAccepted)));
+            var entity = new MultiSelectEntities.MultiSelectEntity
             {
                 Id = Guid.NewGuid(),
-                ListFlags = new List<MultiSelectFlag> { MultiSelectFlag.One, MultiSelectFlag.Two },
-                ReadOnlyFlags = new List<MultiSelectFlag> { MultiSelectFlag.Two, MultiSelectFlag.Three }
+                ListFlags = new List<MultiSelectEntities.MultiSelectFlag> { MultiSelectEntities.MultiSelectFlag.One, MultiSelectEntities.MultiSelectFlag.Two },
+                ReadOnlyFlags = new List<MultiSelectEntities.MultiSelectFlag> { MultiSelectEntities.MultiSelectFlag.Two, MultiSelectEntities.MultiSelectFlag.Three }
             };
 
             service.Create(entity);
 
-            service.Update(new MultiSelectEntity
+            service.Update(new MultiSelectEntities.MultiSelectEntity
             {
                 Id = entity.Id,
-                ListFlags = new List<MultiSelectFlag> { MultiSelectFlag.Three },
-                ReadOnlyFlags = new List<MultiSelectFlag> { MultiSelectFlag.One }
+                ListFlags = new List<MultiSelectEntities.MultiSelectFlag> { MultiSelectEntities.MultiSelectFlag.Three },
+                ReadOnlyFlags = new List<MultiSelectEntities.MultiSelectFlag> { MultiSelectEntities.MultiSelectFlag.One }
             });
 
-            var updated = service.Retrieve(MultiSelectEntity.EntityLogicalName, entity.Id, new ColumnSet(true)).ToEntity<MultiSelectEntity>();
-            CollectionAssert.AreEquivalent(new[] { MultiSelectFlag.Three }, updated.ListFlags.ToArray());
-            CollectionAssert.AreEquivalent(new[] { MultiSelectFlag.One }, updated.ReadOnlyFlags.ToArray());
+            var updated = service.Retrieve(MultiSelectEntities.MultiSelectEntity.EntityLogicalName, entity.Id, new ColumnSet(true)).ToEntity<MultiSelectEntities.MultiSelectEntity>();
+            CollectionAssert.AreEquivalent(new[] { MultiSelectEntities.MultiSelectFlag.Three }, updated.ListFlags.ToArray());
+            CollectionAssert.AreEquivalent(new[] { MultiSelectEntities.MultiSelectFlag.One }, updated.ReadOnlyFlags.ToArray());
         }
 
         [TestMethod]
@@ -1308,11 +1308,56 @@ namespace DLaB.Xrm.LocalCrm.Tests
     }
 }
 
-namespace DLaB.Xrm.LocalCrm.Tests
+namespace DLaB.Xrm.LocalCrm.Tests.MultiSelectEntities
 {
     public class MultiSelectContext : Microsoft.Xrm.Sdk.Client.OrganizationServiceContext
     {
         public MultiSelectContext(IOrganizationService service) : base(service) { }
+    }
+
+    [Microsoft.Xrm.Sdk.Client.EntityLogicalName("businessunit")]
+    public class BusinessUnit: Entity
+    {
+        public const string EntityLogicalName = "businessunit";
+
+        public const string PrimaryIdAttribute = "businessunitid";
+
+        public const string PrimaryNameAttribute = "name";
+
+        /// <summary>
+        /// Unique identifier of the business unit.
+        /// </summary>
+        [AttributeLogicalName("businessunitid")]
+        public Nullable<Guid> BusinessUnitId
+        {
+            [System.Diagnostics.DebuggerNonUserCode()]
+            get => GetAttributeValue<Nullable<Guid>>("businessunitid");
+            [System.Diagnostics.DebuggerNonUserCode()]
+            set
+            {
+                SetAttributeValue("businessunitid", value);
+                base.Id = value ?? Guid.Empty;
+            }
+        }
+
+        [AttributeLogicalName("businessunitid")]
+        public override Guid Id
+        {
+            [System.Diagnostics.DebuggerNonUserCode()]
+            get => base.Id;
+            [System.Diagnostics.DebuggerNonUserCode()]
+            set => BusinessUnitId = value;
+        }
+
+        /// <summary>
+        /// Name of the business unit.
+        /// </summary>
+        [AttributeLogicalName("name")]
+        public string Name
+        {
+            get => GetAttributeValue<string>("name");
+            set => SetAttributeValue("name", value);
+        }
     }
 
     public enum MultiSelectFlag
@@ -1322,24 +1367,30 @@ namespace DLaB.Xrm.LocalCrm.Tests
         Three = 3
     }
 
+
     [Microsoft.Xrm.Sdk.Client.EntityLogicalName("test_multiselectentity")]
-    public class MultiSelectEntity : Entity, INotifyPropertyChanging, INotifyPropertyChanged
+    public class MultiSelectEntity : Entity
     {
         public MultiSelectEntity() : base(EntityLogicalName) { }
 
         public const string EntityLogicalName = "test_multiselectentity";
 
-        public event PropertyChangingEventHandler PropertyChanging;
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanging(string propertyName)
+        [AttributeLogicalName("multiselectentityid")]
+        public Nullable<Guid> MultiSelectEntityId
         {
-            PropertyChanging?.Invoke(this, new PropertyChangingEventArgs(propertyName));
+            get => GetAttributeValue<Nullable<Guid>>("multiselectentityid");
+            set
+            {
+                SetAttributeValue("multiselectentityid", value);
+                base.Id = value ?? Guid.Empty;
+            }
         }
 
-        private void OnPropertyChanged(string propertyName)
+        [AttributeLogicalName("multiselectentityid")]
+        public override Guid Id
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            get => base.Id;
+            set => MultiSelectEntityId = value;
         }
 
         [AttributeLogicalName("test_listflags")]
@@ -1350,11 +1401,9 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 .ToList();
             set
             {
-                OnPropertyChanging(nameof(ListFlags));
                 SetAttributeValue("test_listflags", value == null
                     ? null
                     : new OptionSetValueCollection(value.Select(v => new OptionSetValue((int)v)).ToList()));
-                OnPropertyChanged(nameof(ListFlags));
             }
         }
 
@@ -1366,12 +1415,92 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 .ToList();
             set
             {
-                OnPropertyChanging(nameof(ReadOnlyFlags));
                 SetAttributeValue("test_readonlyflags", value == null
                     ? null
                     : new OptionSetValueCollection(value.Select(v => new OptionSetValue((int)v)).ToList()));
-                OnPropertyChanged(nameof(ReadOnlyFlags));
             }
+        }
+
+        [AttributeLogicalName("statecode")]
+        public Nullable<ContactState> StateCode
+        {
+            get
+            {
+                OptionSetValue optionSet = GetAttributeValue<OptionSetValue>("statecode");
+                if (optionSet != null)
+                {
+                    return (ContactState)Enum.ToObject(typeof(ContactState), optionSet.Value);
+                }
+
+                return null;
+            }
+            set { SetAttributeValue("statecode", value == null ? null : new OptionSetValue((int)value)); }
+        }
+
+        /// <summary>
+        /// Select the contact's status.
+        /// </summary>
+        [AttributeLogicalName("statuscode")]
+        public OptionSetValue StatusCode
+        {
+            get => GetAttributeValue<OptionSetValue>("statuscode");
+            set => SetAttributeValue("statuscode", value);
+        }
+    }
+
+    [Microsoft.Xrm.Sdk.Client.EntityLogicalName("systemuser")]
+    public class SystemUser : Entity
+    {
+        public const string EntityLogicalName = "systemuser";
+
+        public const string PrimaryIdAttribute = "systemuserid";
+
+        public const string PrimaryNameAttribute = "name";
+
+        [AttributeLogicalName("businessunitid")]
+        public EntityReference BusinessUnitId
+        {
+            get => GetAttributeValue<EntityReference>("businessunitid");
+            set => SetAttributeValue("businessunitid", value);
+        }
+
+        [AttributeLogicalName("firstname")]
+        public string FirstName
+        {
+            get => GetAttributeValue<string>("firstname");
+            set => SetAttributeValue("firstname", value);
+        }
+
+        [AttributeLogicalName("fullname")]
+        public string Name
+        {
+            get => GetAttributeValue<string>("fullname");
+            set => SetAttributeValue("fullname", value);
+        }
+
+        [AttributeLogicalName("lastname")]
+        public string LastName
+        {
+            get => GetAttributeValue<string>("lastname");
+            set => SetAttributeValue("lastname", value);
+        }
+
+        [AttributeLogicalName("systemuserid")]
+        public Nullable<Guid> SystemUserId
+        {
+            get => GetAttributeValue<Nullable<Guid>>("systemuserid");
+            set
+            {
+                SetAttributeValue("systemuserid", value);
+                base.Id = value ?? Guid.Empty;
+            }
+        }
+
+        [AttributeLogicalName("systemuserid")]
+        public override Guid Id
+        {
+            get => base.Id;
+            set => SystemUserId = value;
         }
     }
 }

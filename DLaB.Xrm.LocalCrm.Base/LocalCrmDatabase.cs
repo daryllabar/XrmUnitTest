@@ -683,7 +683,7 @@ namespace DLaB.Xrm.LocalCrm
         private static void AssertTypeContainsColumns<T>(IEnumerable<string> cols) where T: Entity
         {
             var properties = PropertiesCache.For<T>();
-            foreach (var col in cols.Where(c => !properties.ContainsProperty(c)))
+            foreach (var col in cols.Where(c => c != OverriddenModifiedOnAttribute && !properties.ContainsProperty(c)))
             {
                 throw new Exception($"Type {typeof(T).Name} does not contain a property named {col}, or a property with an AttributeLogicalNameAttribute of {col}.");
             }
@@ -691,7 +691,7 @@ namespace DLaB.Xrm.LocalCrm
 
         private static bool AssertValidAttributeTypes<T>(Entity entity, DelayedException exception) where T : Entity { 
             var properties = PropertiesCache.For<T>();
-            foreach (var attribute in entity.Attributes)
+            foreach (var attribute in entity.Attributes.Where(a => a.Key != OverriddenModifiedOnAttribute))
             {
                 var property = properties.GetProperty(attribute.Key);
                 if (property == null)
