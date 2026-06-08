@@ -5,6 +5,8 @@ on:
   push:
     paths:
       - 'IdGenerator/**'
+      - 'IdGenerator.Core/**'
+      - 'IdGenerator.Cli/**'
     branches:
       - main
 
@@ -19,23 +21,33 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '9.0.x'
+        dotnet-version: '10.0.x'
 
-    - name: Build
+    - name: Build WinForms app
       run: dotnet build IdGenerator/IdGenerator.csproj --configuration Release
 
-    - name: Publish
+    - name: Publish WinForms app
       run: dotnet publish IdGenerator/IdGenerator.csproj --configuration Release --output ./publish
 
+    - name: Build CLI tool
+      run: dotnet build IdGenerator.Cli/IdGenerator.Cli.csproj --configuration Release
+
+    - name: Pack CLI tool
+      run: dotnet pack IdGenerator.Cli/IdGenerator.Cli.csproj --configuration Release --output ./tool-pack
+
     - name: Zip published files
-      run: Compress-Archive -Path ./publish/* -DestinationPath ./IdGenerator.zip
+      run: |
+        Compress-Archive -Path ./publish/* -DestinationPath ./IdGenerator.zip
+        Compress-Archive -Path ./tool-pack/* -DestinationPath ./IdGenerator.Cli.zip
 
     - name: Create Release
       uses: softprops/action-gh-release@v2
       with:
         tag_name: v${{ github.run_number }}
         name: "Release ${{ github.run_number }}"
-        body: "Automated release."
-        files: ./IdGenerator.zip
+        body: "Automated release. Includes WinForms IdGenerator and idgen CLI tool package."
+        files: |
+          ./IdGenerator.zip
+          ./IdGenerator.Cli.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

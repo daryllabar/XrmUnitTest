@@ -37,7 +37,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 { "testentityreference", new Tuple<Type, string>(typeof(LookupAttributeMetadata), "Test Entity Reference") },
                 { "testoptionsetvalue", new Tuple<Type, string>(typeof(PicklistAttributeMetadata), "Test Option Set Value Enum") },
                 { "testmultioptionsetvalue", new Tuple<Type, string>(typeof(MultiSelectPicklistAttributeMetadata), "Test Multi Option Set Value") },
-                { "testlistmultioptionsetvalue", new Tuple<Type, string>(typeof(MultiSelectPicklistAttributeMetadata), "Test List Multi Option Set Value") },
+                { "testlistmultioptionsetvalue", new Tuple<Type, string>(typeof(MultiSelectPicklistAttributeMetadata), "Test List Multi Option Set Value Enum") },
                 { "testreadonlymultioptionsetvalue", new Tuple<Type, string>(typeof(MultiSelectPicklistAttributeMetadata), "Test Read Only Multi Option Set Value") },
                 { "testintmultioptionsetvalue", new Tuple<Type, string>(typeof(MultiSelectPicklistAttributeMetadata), "Test Int Multi Option Set Value") },
                 { "testmoney", new Tuple<Type, string>(typeof(MoneyAttributeMetadata), "Test Money") },

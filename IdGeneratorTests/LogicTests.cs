@@ -317,6 +317,24 @@ public class ContactIds
         }
 
         [TestMethod]
+        public void ParseEntityTypes_WithPipeSeparator_Should_TreatPipeAsNewLine()
+        {
+            //
+            // Act
+            //
+            var ids = _sut.ParseEntityTypes("Account|Contact 2");
+
+            //
+            // Assert
+            //
+            Assert.HasCount(2, ids);
+            Assert.IsTrue(ids.ContainsKey("Account"));
+            Assert.IsTrue(ids.ContainsKey("Contact"));
+            Assert.AreEqual("Contacts", ids["Contact"].ContainerName);
+            Assert.HasCount(2, ids["Contact"].Names);
+        }
+
+        [TestMethod]
         public void ParseEntityTypes_WithStructNameAndCount_Should_KeepStructNameAndGenerateIdNames()
         {
 			//

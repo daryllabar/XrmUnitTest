@@ -1,4 +1,4 @@
-﻿using PluralizeService.Core;
+using PluralizeService.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +17,18 @@ namespace IdGenerator
             _guidGenerator = guidGenerator;
         }
 
+        public static string NormalizeEntityInput(string entitiesText)
+        {
+            var normalized = entitiesText
+                .Replace('|', '\n')
+                .Replace("\r\n", "\n")
+                .Replace('\r', '\n');
+            return normalized.Replace("\n", Environment.NewLine);
+        }
+
         public Dictionary<string, IdInfo> ParseEntityTypes(string entitiesText)
         {
+            entitiesText = NormalizeEntityInput(entitiesText);
             _nameChar = 'a';
             var parts = entitiesText.Split([" ", Environment.NewLine], StringSplitOptions.RemoveEmptyEntries).Select(p => p.Trim());
             var idsByType = new Dictionary<string, IdInfo>();
@@ -41,7 +51,7 @@ namespace IdGenerator
         public string GenerateOutput(IEnumerable<IdInfo> ids)
         {
             var output = new List<string>();
-            
+
             if (_settings.UseClassIds)
             {
                 GenerateClassOutput(ids, output);
@@ -50,7 +60,7 @@ namespace IdGenerator
             {
                 GenerateStructOutput(ids, output);
             }
-            
+
             return string.Join(Environment.NewLine, output);
         }
 
@@ -66,11 +76,10 @@ namespace IdGenerator
                     var className = PluralizationProvider.Singularize(id.ContainerName!) + "Ids";
                     output.Add($"public {className} {propertyName} {{ get; }} = new();");
 
-                    // Generate nested class
                     classDefinitions.Add("");
                     classDefinitions.Add($"public class {className}");
                     classDefinitions.Add("{");
-                        
+
                     foreach (var name in id.Names)
                     {
                         var newStatement = _settings.UseTargetTypedNew ? "new" : $"new Id<{id.EntityType}>";
@@ -81,7 +90,6 @@ namespace IdGenerator
                 }
                 else
                 {
-                    // Single ID - generate as a property
                     var name = id.Names[0];
                     var newStatement = _settings.UseTargetTypedNew ? "new" : $"new Id<{id.EntityType}>";
                     output.Add($"public Id<{id.EntityType}> {name} {{ get; }} = {newStatement}(\"{_guidGenerator.Create().ToString().ToUpper()}\");");
@@ -130,7 +138,6 @@ namespace IdGenerator
 
             if (previousId.PreviousDefinedNames == 0)
             {
-                // Clear default name for single instance
                 previousId.Names.RemoveAt(previousId.Names.Count - 1);
             }
             else
@@ -191,7 +198,7 @@ namespace IdGenerator
                         previousId.PreviousDefinedNames = 1;
                     }
                     else
-                    { 
+                    {
                         id.Names.Add(GenerateNameFromEntityType(entityType));
                         previousId.PreviousDefinedNames = 0;
                     }
@@ -221,19 +228,17 @@ namespace IdGenerator
 
         private void OrderNames(Dictionary<string, IdInfo> idsByType)
         {
-            foreach(var id in idsByType.Values)
+            foreach (var id in idsByType.Values)
             {
                 id.Names = id.Names.OrderBy(n => n).ToList();
             }
         }
-
 
         private static readonly char[] BaseChars = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
 
         public static string IntToBase(int value)
         {
             var targetBase = BaseChars.Length;
-            // Determine exact number of characters to use.
             var buffer = new char[Math.Max((int)Math.Ceiling(Math.Log(value + 1, targetBase)), 1)];
 
             var i = (long)buffer.Length;
@@ -253,7 +258,6 @@ namespace IdGenerator
 
         private string GenerateNameFromEntityType(string name)
         {
-            // Generate name
             name = name.Trim();
             name = name == "Entity"
                 ? ((char)_nameChar++).ToString()
@@ -269,7 +273,6 @@ namespace IdGenerator
         {
             var output = (from @group in results.GroupBy(r => r.ContainerName ?? r.IdType).OrderBy(g => g.Key)
                           let containerName = @group.First().ContainerName ?? string.Empty
-                          // If the struct name ends with "Ids", convert it back to plural form
                           let actualStructName = containerName.EndsWith("Ids") && containerName.Length > 3
                               ? PluralizationProvider.Pluralize(containerName.Substring(0, containerName.Length - 3))
                               : containerName

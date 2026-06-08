@@ -2,25 +2,10 @@
 
 namespace IdGeneratorTests
 {
-    public class IncrementedGuidGenerator : IGuidGenerator
+    public class IncrementedGuidGenerator : SeededGuidGenerator
     {
-        private long _counter = 1;
-
-        public Guid Create()
+        public IncrementedGuidGenerator() : base(1)
         {
-            // Convert the counter to a byte array (8 bytes)
-            byte[] counterBytes = BitConverter.GetBytes(_counter);
-
-            // Create a 16-byte array for the Guid
-            byte[] guidBytes = new byte[16];
-
-            // Copy the counter bytes into the first 8 bytes
-            Array.Copy(counterBytes, 0, guidBytes, 0, 8);
-
-            // Increment the counter for next call
-            _counter++;
-
-            return new Guid(guidBytes);
         }
     }
 }

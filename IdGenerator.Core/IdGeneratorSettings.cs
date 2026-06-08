@@ -21,10 +21,12 @@ public class IdGeneratorSettings
 
     [Browsable(false)]
     public string Entities { get; set; } = "Account 2" + Environment.NewLine + "Contact";
+
     [Browsable(false)]
-    public int PropertyGridLabelWidth { get; set; } = 250; // Default width
+    public int PropertyGridLabelWidth { get; set; } = 250;
 
     private string? _filePath;
+
     [Browsable(false)]
     public string FilePath
     {
@@ -34,13 +36,14 @@ public class IdGeneratorSettings
             {
                 return _filePath;
             }
+
             _filePath = Path.Combine(AppContext.BaseDirectory, SettingsFilePath);
             return _filePath;
         }
         set => _filePath = value;
     }
 
-    private static readonly JsonSerializerOptions SerializationOptions = new JsonSerializerOptions
+    private static readonly JsonSerializerOptions SerializationOptions = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         WriteIndented = true
@@ -57,8 +60,8 @@ public class IdGeneratorSettings
         {
             return new IdGeneratorSettings();
         }
+
         var json = File.ReadAllText(FilePath);
         return JsonSerializer.Deserialize<IdGeneratorSettings>(json, SerializationOptions) ?? new IdGeneratorSettings();
-
     }
 }

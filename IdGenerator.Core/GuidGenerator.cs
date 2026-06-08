@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace IdGenerator
 {
@@ -12,6 +12,6 @@ namespace IdGenerator
 
     public interface IGuidGenerator
     {
-        public Guid Create();
+        Guid Create();
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace IdGenerator
 {
@@ -11,5 +11,4 @@ namespace IdGenerator
         public bool NameIsNameOrStructName { get; set; }
         public int PreviousDefinedNames { get; set; }
     }
-
 }

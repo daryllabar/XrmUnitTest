@@ -38,7 +38,7 @@ dotnet clean XrmUnitTest.sln -p:EnableWindowsTargeting=true
   - `NMemory.Base` - In-memory database engine
 - `DLaB.Xrm.Entities/` - Auto-generated entity classes (net462)
 - `DLaB.Xrm.Entities.Net/` - Auto-generated entity classes (net6.0)
-- `IdGenerator/` - Windows-only ID generator tool (net9.0)
+- `IdGenerator/` - Windows-only ID generator tool (net10.0)
 - `Code Snippets/` - VS code snippets (.snippet files)
 
 ### Solution Structure
@@ -75,7 +75,7 @@ dotnet clean XrmUnitTest.sln -p:EnableWindowsTargeting=true
 
 ## CI/CD
 - **AppVeyor**: Primary CI (configured in UI, badge in README)
-- **GitHub Actions**: `.github/workflows/IdGeneratorRelease.yml` for IdGenerator only (windows-latest, .NET 9.0.x)
+- **GitHub Actions**: `.github/workflows/IdGeneratorRelease.yml` for IdGenerator only (windows-latest, .NET 10.0.x)
 
 ## Key Dependencies
 - Microsoft.CrmSdk.CoreAssemblies, DLaB.Xrm 5.1.0.11, System.Text.Json 9.0.0
