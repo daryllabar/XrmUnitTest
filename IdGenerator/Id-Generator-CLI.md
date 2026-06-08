@@ -1,6 +1,6 @@
 # Id Generator CLI
 
-Use the Id Generator CLI (`idgen`) to generate `Id<T>` definitions for XrmUnitTest from the command line or from AI coding assistants such as Cursor.
+Use the Id Generator CLI (`idgen`) to generate `Id<T>` definitions for DataverseUnitTest from the command line or from AI coding assistants such as Cursor.
 
 This complements the [Id Generator](Id-Generator) WinForms tool and reuses the same parsing and output logic.
 
@@ -10,7 +10,7 @@ This complements the [Id Generator](Id-Generator) WinForms tool and reuses the s
 |------|----------|
 | **WinForms app** (`IdGenerator/`) | Interactive use, visual settings, parse/regenerate from output |
 | **CLI** (`IdGenerator.Cli/`) | Scripts, CI, terminal workflows, AI assistants |
-| **Cursor skill** (`.cursor/skills/generate-xrm-ids/`) | In-repo guidance for Cursor agents |
+| **Cursor skill** (`.cursor/skills/generate-ids/`) | In-repo guidance for Cursor agents |
 
 The CLI and WinForms app share the same core library (`IdGenerator.Core/`).
 
@@ -18,9 +18,43 @@ The CLI and WinForms app share the same core library (`IdGenerator.Core/`).
 
 ## Quick start
 
-### Run from the repository (no install)
+### Install from NuGet.org (recommended)
 
-From the repository root:
+Install the global `idgen` tool:
+
+```powershell
+dotnet tool install -g DataverseUnitTest.IdGenerator.Cli
+```
+
+```bash
+dotnet tool install -g DataverseUnitTest.IdGenerator.Cli
+```
+
+Then run:
+
+```powershell
+idgen --input "Account 2|Contact"
+```
+
+- **NuGet package:** [DataverseUnitTest.IdGenerator.Cli](https://www.nuget.org/packages/DataverseUnitTest.IdGenerator.Cli)
+- **Requires:** .NET 10 SDK or runtime (or newer)
+
+Pin a specific version:
+
+```powershell
+dotnet tool install -g DataverseUnitTest.IdGenerator.Cli --version 1.0.0.1
+```
+
+Update or uninstall:
+
+```powershell
+dotnet tool update -g DataverseUnitTest.IdGenerator.Cli
+dotnet tool uninstall -g DataverseUnitTest.IdGenerator.Cli
+```
+
+### Run from the repository (contributors)
+
+If you are working in the source repo and have not installed the global tool, from the repository root:
 
 ```powershell
 dotnet run --project IdGenerator.Cli -- --settings-file .cursor/IdGeneratorSettings.json --input "Account 2|Contact"
@@ -30,20 +64,14 @@ dotnet run --project IdGenerator.Cli -- --settings-file .cursor/IdGeneratorSetti
 dotnet run --project IdGenerator.Cli -- --settings-file .cursor/IdGeneratorSettings.json --input "Account 2|Contact"
 ```
 
-### Install as a global dotnet tool
+### Install from a local build (contributors)
 
 ```powershell
 dotnet pack IdGenerator.Cli/IdGenerator.Cli.csproj -c Release
-dotnet tool install -g --add-source IdGenerator.Cli/bin/Release XrmUnitTest.IdGenerator.Cli
+dotnet tool install -g --add-source IdGenerator.Cli/bin/Release DataverseUnitTest.IdGenerator.Cli
 ```
 
-Then run anywhere:
-
-```powershell
-idgen --settings-file .cursor/IdGeneratorSettings.json --input "Account 2|Contact"
-```
-
-Releases may also include a pre-built tool package (`IdGenerator.Cli.zip`) from GitHub Actions.
+GitHub releases may also include a pre-built tool package (`IdGenerator.Cli.zip`).
 
 ---
 
@@ -206,7 +234,7 @@ public class ProjectIds
 4. Paste the generated properties/classes into a nested helper class in your test.
 
 ```powershell
-dotnet run --project IdGenerator.Cli -- --settings-file .cursor/IdGeneratorSettings.json --input "Account|Contact 2|SystemUser"
+idgen --settings-file .cursor/IdGeneratorSettings.json --input "Account|Contact 2|SystemUser"
 ```
 
 ### Regenerate GUIDs from existing C#
@@ -220,13 +248,13 @@ idgen --settings-file .cursor/IdGeneratorSettings.json --from-csharp path/to/MyT
 From stdin (PowerShell):
 
 ```powershell
-Get-Content path/to/snippet.cs | dotnet run --project IdGenerator.Cli -- --settings-file .cursor/IdGeneratorSettings.json --from-csharp -
+Get-Content path/to/snippet.cs | idgen --settings-file .cursor/IdGeneratorSettings.json --from-csharp -
 ```
 
 From stdin (bash):
 
 ```bash
-dotnet run --project IdGenerator.Cli -- --settings-file .cursor/IdGeneratorSettings.json --from-csharp - < snippet.cs
+idgen --settings-file .cursor/IdGeneratorSettings.json --from-csharp - < snippet.cs
 ```
 
 ### Deterministic output for docs or examples
@@ -284,16 +312,16 @@ AI assistants should **run the CLI** rather than inventing GUIDs or naming rules
 
 ### Recommended command
 
-From the repository root:
-
-```powershell
-dotnet run --project IdGenerator.Cli -- --settings-file .cursor/IdGeneratorSettings.json --input "Account 2|Contact"
-```
-
-If the global tool is installed:
+If the global tool is installed from NuGet:
 
 ```powershell
 idgen --settings-file .cursor/IdGeneratorSettings.json --input "Account 2|Contact"
+```
+
+When working in the source repository without the global tool installed:
+
+```powershell
+dotnet run --project IdGenerator.Cli -- --settings-file .cursor/IdGeneratorSettings.json --input "Account 2|Contact"
 ```
 
 ### Cursor project skill
@@ -301,7 +329,7 @@ idgen --settings-file .cursor/IdGeneratorSettings.json --input "Account 2|Contac
 This repository includes a Cursor skill at:
 
 ```text
-.cursor/skills/generate-xrm-ids/SKILL.md
+.cursor/skills/generate-ids/SKILL.md
 ```
 
 That skill tells Cursor agents:
@@ -317,7 +345,7 @@ Clone or copy that skill into other projects if needed.
 
 1. Determine required entity types and counts from the test being written.
 2. Build entity input using the formats above.
-3. Run `idgen` (or `dotnet run --project IdGenerator.Cli`).
+3. Run `idgen` (install from NuGet with `dotnet tool install -g DataverseUnitTest.IdGenerator.Cli`, or use `dotnet run --project IdGenerator.Cli` when working in the source repo).
 4. Paste stdout into the test's nested IDs helper class.
 5. Do **not** manually create GUIDs or guess container/property naming.
 
@@ -404,5 +432,6 @@ The WinForms app saves settings next to its executable (`IdGeneratorSettings.jso
 ## Related pages
 
 - [Id Generator](Id-Generator) — WinForms tool and input format reference
+- [DataverseUnitTest.IdGenerator.Cli on NuGet.org](https://www.nuget.org/packages/DataverseUnitTest.IdGenerator.Cli)
 - Repository: `IdGenerator/`, `IdGenerator.Core/`, `IdGenerator.Cli/`
 - GitHub releases — WinForms zip and CLI tool package

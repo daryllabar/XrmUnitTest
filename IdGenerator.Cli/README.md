@@ -1,20 +1,39 @@
-# XrmUnitTest Id Generator CLI
+# DataverseUnitTest Id Generator CLI
 
-Generate `Id<T>` definitions for XrmUnitTest from entity input or existing C#.
+Generate `Id<T>` definitions for DataverseUnitTest from entity input or existing C#.
 
-## Install
-
-From a local build:
+## Install from NuGet.org
 
 ```powershell
-dotnet pack IdGenerator.Cli/IdGenerator.Cli.csproj -c Release
-dotnet tool install -g --add-source IdGenerator.Cli/bin/Release XrmUnitTest.IdGenerator.Cli
+dotnet tool install -g DataverseUnitTest.IdGenerator.Cli
 ```
 
-From the repository root:
+```bash
+dotnet tool install -g DataverseUnitTest.IdGenerator.Cli
+```
+
+**NuGet package:** [DataverseUnitTest.IdGenerator.Cli](https://www.nuget.org/packages/DataverseUnitTest.IdGenerator.Cli)
+
+**Requires:** .NET 10 SDK or runtime (or newer)
+
+Pin a version:
 
 ```powershell
-dotnet run --project IdGenerator.Cli -- "Account 2|Contact"
+dotnet tool install -g DataverseUnitTest.IdGenerator.Cli --version 1.0.0.1
+```
+
+Update or uninstall:
+
+```powershell
+dotnet tool update -g DataverseUnitTest.IdGenerator.Cli
+dotnet tool uninstall -g DataverseUnitTest.IdGenerator.Cli
+```
+
+## Quick start
+
+```powershell
+idgen --input "Account 2|Contact"
+idgen --help
 ```
 
 ## Usage
@@ -47,4 +66,19 @@ Examples:
   idgen --from-csharp - < existing-ids.cs
 ```
 
-See the [Id Generator wiki](https://github.com/daryllabar/XrmUnitTest/wiki/Id-Generator) for input format details.
+See the [Id Generator wiki](https://github.com/daryllabar/XrmUnitTest/wiki/Id-Generator) for input format details and the [Id Generator CLI wiki](https://github.com/daryllabar/XrmUnitTest/wiki/Id-Generator-CLI) for full documentation.
+
+## Build from source (contributors)
+
+From the repository root:
+
+```powershell
+dotnet run --project IdGenerator.Cli -- "Account 2|Contact"
+```
+
+Or install from a local pack:
+
+```powershell
+dotnet pack IdGenerator.Cli/IdGenerator.Cli.csproj -c Release
+dotnet tool install -g --add-source IdGenerator.Cli/bin/Release DataverseUnitTest.IdGenerator.Cli
+```

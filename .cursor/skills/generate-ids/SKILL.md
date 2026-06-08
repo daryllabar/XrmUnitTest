@@ -1,13 +1,23 @@
 ---
-name: generate-xrm-ids
-description: Generate XrmUnitTest Id<T> definitions using the Id Generator CLI. Use when writing or updating unit tests that need Id<>, nested *Ids classes, or test entity GUIDs for Dynamics/Dataverse.
+name: generate-ids
+description: Generate DataverseUnitTest Id<T> definitions using the Id Generator CLI. Use when writing or updating unit tests that need Id<>, nested *Ids classes, or test entity GUIDs for Dynamics/Dataverse.
 ---
 
-# Generate XrmUnitTest IDs
+# Generate DataverseUnitTest IDs
 
 Use the Id Generator CLI instead of hand-writing GUIDs or guessing naming rules.
 
-Documentation: [Id Generator wiki](https://github.com/daryllabar/XrmUnitTest/wiki/Id-Generator)
+Documentation: [Id Generator wiki](https://github.com/daryllabar/XrmUnitTest/wiki/Id-Generator) · [Id Generator CLI wiki](https://github.com/daryllabar/XrmUnitTest/wiki/Id-Generator-CLI)
+
+## Install (NuGet)
+
+```powershell
+dotnet tool install -g DataverseUnitTest.IdGenerator.Cli
+```
+
+NuGet: [DataverseUnitTest.IdGenerator.Cli](https://www.nuget.org/packages/DataverseUnitTest.IdGenerator.Cli)
+
+Requires .NET 10 SDK or runtime (or newer).
 
 ## When to use
 
@@ -17,16 +27,16 @@ Documentation: [Id Generator wiki](https://github.com/daryllabar/XrmUnitTest/wik
 
 ## Preferred command
 
-From the repository root:
+If the global tool is installed from NuGet:
+
+```powershell
+idgen --settings-file .cursor/IdGeneratorSettings.json --input "Account 2|Contact"
+```
+
+When working in the source repository without the global tool:
 
 ```powershell
 dotnet run --project IdGenerator.Cli -- --settings-file .cursor/IdGeneratorSettings.json "Account 2|Contact"
-```
-
-If the global tool is installed:
-
-```powershell
-idgen --settings-file .cursor/IdGeneratorSettings.json "Account 2|Contact"
 ```
 
 ## Input format
@@ -55,7 +65,7 @@ Rules:
 ### Generate from entity input
 
 ```powershell
-dotnet run --project IdGenerator.Cli -- --settings-file .cursor/IdGeneratorSettings.json "Account|Contact 2"
+idgen --settings-file .cursor/IdGeneratorSettings.json --input "Account|Contact 2"
 ```
 
 ### Regenerate from existing C#
@@ -63,13 +73,13 @@ dotnet run --project IdGenerator.Cli -- --settings-file .cursor/IdGeneratorSetti
 Parse an existing test ID block and regenerate GUIDs with the same shape:
 
 ```powershell
-dotnet run --project IdGenerator.Cli -- --settings-file .cursor/IdGeneratorSettings.json --from-csharp path/to/TestFile.cs
+idgen --settings-file .cursor/IdGeneratorSettings.json --from-csharp path/to/TestFile.cs
 ```
 
 Or from stdin:
 
 ```powershell
-Get-Content path/to/snippet.cs | dotnet run --project IdGenerator.Cli -- --settings-file .cursor/IdGeneratorSettings.json --from-csharp -
+Get-Content path/to/snippet.cs | idgen --settings-file .cursor/IdGeneratorSettings.json --from-csharp -
 ```
 
 ### Deterministic output
@@ -77,7 +87,7 @@ Get-Content path/to/snippet.cs | dotnet run --project IdGenerator.Cli -- --setti
 Use `--seed` when reproducible GUIDs are useful (docs, examples, snapshots):
 
 ```powershell
-dotnet run --project IdGenerator.Cli -- --seed 42 --settings-file .cursor/IdGeneratorSettings.json "Account 2"
+idgen --seed 42 --settings-file .cursor/IdGeneratorSettings.json --input "Account 2"
 ```
 
 Without `--seed`, GUIDs are random (normal test usage).
@@ -98,17 +108,14 @@ Override on the command line when needed:
 
 1. Identify entities needed for the test.
 2. Build entity input (use `|` on one line for CLI convenience).
-3. Run the CLI and capture stdout.
+3. Run `idgen` and capture stdout.
 4. Paste the generated properties/classes into the test's nested IDs helper class.
 5. Do not invent GUIDs or naming conventions manually.
 
 Match existing test patterns such as nested `TestIdsClass` / `*Ids` containers in the test project.
 
-## Install the global tool (optional)
+## Update the global tool
 
 ```powershell
-dotnet pack IdGenerator.Cli/IdGenerator.Cli.csproj -c Release
-dotnet tool install -g --add-source IdGenerator.Cli/bin/Release XrmUnitTest.IdGenerator.Cli
+dotnet tool update -g DataverseUnitTest.IdGenerator.Cli
 ```
-
-Then use `idgen` anywhere.

@@ -117,7 +117,7 @@ internal static class Program
 
     private static string HelpText =>
         """
-        XrmUnitTest Id Generator CLI
+        DataverseUnitTest Id Generator CLI
 
         Usage:
           idgen [input] [options]
