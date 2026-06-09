@@ -8,7 +8,6 @@ internal static class Program
 
     public static async Task<int> Main(string[] args)
     {
-        args = "--from-csharp C:\\_dev\\Bowdark\\CNP.PowerSyncPortal.AF\\CNP.PowerSyncPortal.Tests\\JT\\ProjectAndTaskForPartnerProjectCounterDependencyNotMetTests.cs".Split(" ");
         var options = CliOptions.Parse(args);
         if (options.ShowHelp)
         {
@@ -76,7 +75,7 @@ internal static class Program
         if (!string.IsNullOrWhiteSpace(options.FromCSharp))
         {
             var csharp = await ReadTextSourceAsync(options.FromCSharp!);
-            var parsed = IdFieldInfo.ParseIdFields(csharp);
+            var parsed = IdFieldInfo.ParseIdFields(csharp, isWholeClassFile: true);
             if (parsed.Issues.Count > 0)
             {
                 var issues = string.Join(Environment.NewLine, parsed.Issues.Select(i => i.ToString()));

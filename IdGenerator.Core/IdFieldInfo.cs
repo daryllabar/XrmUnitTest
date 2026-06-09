@@ -19,7 +19,31 @@ public class IdFieldInfo
         IdType = idType;
     }
 
-    public static (List<IdFieldInfo> IdFieldInfos, List<Diagnostic> Issues) ParseIdFields(string input)
+    private static string GetContainerName(SyntaxNode? node)
+    {
+        if (node == null)
+        {
+            return string.Empty;
+        }
+
+        var names = new Stack<string>();
+        var parent = node;
+        while (parent is BaseTypeDeclarationSyntax syntax)
+        {
+            names.Push(syntax.Identifier.Text);
+            parent = syntax.Parent;
+        }
+
+        var parts = new List<string>();
+        while (names.Count > 0)
+        {
+            parts.Add(names.Pop());
+        }
+
+        return string.Join(".", parts);
+    }
+
+    public static (List<IdFieldInfo> IdFieldInfos, List<Diagnostic> Issues) ParseIdFields(string input, string? idContainerName = null)
     {
         var results = new List<IdFieldInfo>();
         var tree = CSharpSyntaxTree.ParseText(input);
@@ -27,7 +51,9 @@ public class IdFieldInfo
 
         foreach (var structDecl in root.DescendantNodes().OfType<StructDeclarationSyntax>())
         {
-            var structName = structDecl.Identifier.Text;
+            var structName = GetContainerName(structDecl) == idContainerName
+                ? null
+                : structDecl.Identifier.Text;
             foreach (var field in structDecl.Members.OfType<FieldDeclarationSyntax>())
             {
                 foreach (var variable in field.Declaration.Variables)
@@ -44,9 +70,9 @@ public class IdFieldInfo
 
         foreach (var classDecl in root.DescendantNodes().OfType<ClassDeclarationSyntax>())
         {
-            var className = results.Count > 0
-                ? classDecl.Identifier.Text
-                : null;
+            var className = GetContainerName(classDecl) == idContainerName
+                ? null
+                : classDecl.Identifier.Text;
             foreach (var member in classDecl.Members)
             {
                 if (member is PropertyDeclarationSyntax prop)

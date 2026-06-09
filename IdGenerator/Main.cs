@@ -41,6 +41,7 @@ namespace IdGenerator
                 MessageBox.Show("Input is Requird!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
             var logic = new Logic(_settings, new GuidGenerator());
             Dictionary<string, IdInfo> idsByType;
             try
@@ -54,7 +55,8 @@ namespace IdGenerator
                 return;
             }
 
-            try { 
+            try
+            {
                 OutputTxtBox.Text = logic.GenerateOutput(idsByType.Values);
             }
             catch (Exception ex)

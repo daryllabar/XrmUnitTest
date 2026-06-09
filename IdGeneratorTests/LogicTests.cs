@@ -59,23 +59,25 @@ namespace IdGeneratorTests
             //
             // Assert
             //
-            var expected = @"public Id<Account> Account { get; } = new(""00000001-0000-0000-0000-000000000000"");
-public ContactIds Contacts { get; } = new();
-public SystemUserIds SystemUsers { get; } = new();
+            var expected = """
+                           public Id<Account> Account { get; } = new("00000001-0000-0000-0000-000000000000");
+                           public ContactIds Contacts { get; } = new();
+                           public SystemUserIds SystemUsers { get; } = new();
 
-public class ContactIds
-{
-    public Id<Contact> A { get; } = new(""00000002-0000-0000-0000-000000000000"");
-    public Id<Contact> B { get; } = new(""00000003-0000-0000-0000-000000000000"");
-    public Id<Contact> C { get; } = new(""00000004-0000-0000-0000-000000000000"");
-    public Id<Contact> D { get; } = new(""00000005-0000-0000-0000-000000000000"");
-}
+                           public class ContactIds
+                           {
+                               public Id<Contact> A { get; } = new("00000002-0000-0000-0000-000000000000");
+                               public Id<Contact> B { get; } = new("00000003-0000-0000-0000-000000000000");
+                               public Id<Contact> C { get; } = new("00000004-0000-0000-0000-000000000000");
+                               public Id<Contact> D { get; } = new("00000005-0000-0000-0000-000000000000");
+                           }
 
-public class SystemUserIds
-{
-    public Id<SystemUser> A { get; } = new(""00000006-0000-0000-0000-000000000000"");
-    public Id<SystemUser> B { get; } = new(""00000007-0000-0000-0000-000000000000"");
-}";
+                           public class SystemUserIds
+                           {
+                               public Id<SystemUser> A { get; } = new("00000006-0000-0000-0000-000000000000");
+                               public Id<SystemUser> B { get; } = new("00000007-0000-0000-0000-000000000000");
+                           }
+                           """;
             Assert.AreEqual(expected, output);
         }
 
@@ -95,15 +97,17 @@ public class SystemUserIds
             //
             // Assert
             //
-            var expected = @"public ContactIds Contacts { get; } = new();
+            var expected = """
+                           public ContactIds Contacts { get; } = new();
 
-public class ContactIds
-{
-    public Id<Contact> A { get; } = new(""00000001-0000-0000-0000-000000000000"");
-    public Id<Contact> B { get; } = new(""00000002-0000-0000-0000-000000000000"");
-    public Id<Contact> C { get; } = new(""00000003-0000-0000-0000-000000000000"");
-    public Id<Contact> D { get; } = new(""00000004-0000-0000-0000-000000000000"");
-}";
+                           public class ContactIds
+                           {
+                               public Id<Contact> A { get; } = new("00000001-0000-0000-0000-000000000000");
+                               public Id<Contact> B { get; } = new("00000002-0000-0000-0000-000000000000");
+                               public Id<Contact> C { get; } = new("00000003-0000-0000-0000-000000000000");
+                               public Id<Contact> D { get; } = new("00000004-0000-0000-0000-000000000000");
+                           }
+                           """;
             Assert.AreEqual(expected, output);
         }
 
@@ -161,11 +165,13 @@ public class ContactIds
             //
             // Assert
             //
-            var expected = @"public struct Contacts
-{
-    public static readonly Id<Contact> A = new(""00000001-0000-0000-0000-000000000000"");
-    public static readonly Id<Contact> B = new(""00000002-0000-0000-0000-000000000000"");
-}";
+            var expected = """
+                           public struct Contacts
+                           {
+                               public static readonly Id<Contact> A = new("00000001-0000-0000-0000-000000000000");
+                               public static readonly Id<Contact> B = new("00000002-0000-0000-0000-000000000000");
+                           }
+                           """;
             Assert.AreEqual(expected, output);
         }
 
@@ -175,13 +181,15 @@ public class ContactIds
             //
             // Arrange
             //
-            var input = @"public ContactIds Contacts { get; } = new();
+            var input = """
+                        public ContactIds Contacts { get; } = new();
 
-public class ContactIds
-{
-    public Id<Contact> A { get; } = new(""00000001-0000-0000-0000-000000000000"");
-    public Id<Contact> B { get; } = new(""00000002-0000-0000-0000-000000000000"");
-}";
+                        public class ContactIds
+                        {
+                            public Id<Contact> A { get; } = new("00000001-0000-0000-0000-000000000000");
+                            public Id<Contact> B { get; } = new("00000002-0000-0000-0000-000000000000");
+                        }
+                        """;
 
             //
             // Act
@@ -200,17 +208,159 @@ public class ContactIds
             Assert.AreEqual("ContactIds", results[1].ContainerName);
         }
 
+        [DataRow(true, true, DisplayName = "With Account and Multiple Contacts")]
+        [DataRow(false, true, DisplayName = "With Account Only")]
+        [DataRow(true, false, DisplayName = "With Multiple Contacts Only")]
+        [DataRow(false, false, DisplayName = "With Neither Account Nor Multiple Contacts")]
+        [TestMethod]
+        public void IdFieldInfo_ParseIdFieldsClass_Should_ParseClassBasedFormat(bool withMultipleContacts, bool withAccount)
+        {
+            //
+            // Arrange
+            //
+            var input = """
+                        [TestClass]
+                        public class TestExample
+                        {                        
+                            [TestMethod]
+                            public void TestMethodName()
+                            {
+                                new TestMethodNameClass().Test();
+                            }
+                        
+                            private class TestMethodNameClass : TestMethodClassBase
+                            {
+                                public class TestIds
+                                {
+                                    withAccount
+                                    withMultipleContacts
+                                }
+                            }
+                        }
+                        """
+                        .Replace(nameof(withAccount), withAccount ?
+                        """
+                                    public Id<Account> Acme { get; } = new("D4599C24-6D5E-4486-BDA4-BE7C3535EB10");
+                        """ : string.Empty)
+                        .Replace(nameof(withMultipleContacts), withMultipleContacts ?
+                        """
+                                    public ContactIds Workers { get; } = new();
+
+                                    public class ContactIds
+                                    {
+                                        public Id<Contact> Apple { get; } = new("5970F777-F050-4143-970F-F0CC275156C2");
+                                        public Id<Contact> Orange { get; } = new("731193BB-19F3-497E-AE93-E61E48CABC0C");
+                                    }
+                        """ : string.Empty);
+
+            //
+            // Act
+            //
+            var results = IdFieldInfo.ParseIdFields(input, "TestExample.TestMethodNameClass.TestIds").IdFieldInfos;
+
+            //
+            // Assert
+            //
+            var expectedCount = (withMultipleContacts ? 2 : 0) + (withAccount ? 1 : 0);
+            Assert.HasCount(expectedCount, results);
+            if (withAccount)
+            {
+                var account = results.Single(r => r.IdType == "Account");
+                Assert.IsNull(account.ContainerName);
+                Assert.AreEqual("Acme", account.FieldName);
+                Assert.AreEqual(null, account.ContainerName);
+            }
+            if (withMultipleContacts)
+            {
+                var contact = results.Single(r => r is { IdType: "Contact", FieldName: "Apple" });
+                Assert.AreEqual("ContactIds", contact.ContainerName);
+                contact = results.Single(r => r is { IdType: "Contact", FieldName: "Orange" });
+                Assert.AreEqual("ContactIds", contact.ContainerName);
+            }
+        }
+
+        [DataRow(true, true, DisplayName = "With Account and Multiple Contacts")]
+        [DataRow(false, true, DisplayName = "With Account Only")]
+        [DataRow(true, false, DisplayName = "With Multiple Contacts Only")]
+        [DataRow(false, false, DisplayName = "With Neither Account Nor Multiple Contacts")]
+        [TestMethod]
+        public void IdFieldInfo_ParseIdFieldsStruct_Should_ParseStructBasedFormat(bool withMultipleContacts, bool withAccount)
+        {
+            //
+            // Arrange
+            //
+            var input = """
+                        [TestClass]
+                        public class TestExample
+                        {                        
+                            [TestMethod]
+                            public void TestMethodName()
+                            {
+                                new TestMethodNameClass().Test();
+                            }
+                        
+                            private class TestMethodNameClass : TestMethodClassBase
+                            {
+                                private readonly struct Ids
+                                {
+                                    withAccount
+                                    withMultipleContacts
+                                }
+                            }
+                        }
+                        """
+                        .Replace(nameof(withAccount), withAccount ? 
+                        """
+                                 public static readonly Id<Account> Acme = new Id<Account>(\"00000000-0000-0000-0000-000000000000\");" : string.Empty)
+                        """ : string.Empty)
+                        .Replace(nameof(withMultipleContacts), withMultipleContacts ?
+                        """
+                                    public struct Contacts
+                                    {
+                                        public static readonly Id<Contact> Apple = new Id<Contact>("00000001-0000-0000-0000-000000000000");
+                                        public static readonly Id<Contact> Orange = new Id<Contact>("00000002-0000-0000-0000-000000000000");
+                                    }
+                        """ : string.Empty);
+
+            //
+            // Act
+            //
+            var results = IdFieldInfo.ParseIdFields(input, "TestExample.TestMethodNameClass.Ids").IdFieldInfos;
+
+            //
+            // Assert
+            //
+            var expectedCount = (withMultipleContacts ? 2 : 0) + (withAccount ? 1 : 0);
+            Assert.HasCount(expectedCount, results);
+            if (withAccount)
+            {
+                var account = results.Single(r => r.IdType == "Account");
+                Assert.IsNull(account.ContainerName);
+                Assert.AreEqual("Acme", account.FieldName);
+                Assert.AreEqual(null, account.ContainerName);
+            }
+            if (withMultipleContacts)
+            {
+                var contact = results.Single(r => r is { IdType: "Contact", FieldName: "Apple" });
+                Assert.AreEqual("Contacts", contact.ContainerName);
+                contact = results.Single(r => r is { IdType: "Contact", FieldName: "Orange" });
+                Assert.AreEqual("Contacts", contact.ContainerName);
+            }
+        }
+
         [TestMethod]
         public void IdFieldInfo_ParseIdFields_Should_ParseStructBasedFormat()
         {
             //
             // Arrange
             //
-            var input = @"public struct Contacts
-{
-    public static readonly Id<Contact> A = new(""00000001-0000-0000-0000-000000000000"");
-    public static readonly Id<Contact> B = new(""00000002-0000-0000-0000-000000000001"");
-}";
+            var input = """
+                        public struct Contacts
+                        {
+                            public static readonly Id<Contact> A = new("00000001-0000-0000-0000-000000000000");
+                            public static readonly Id<Contact> B = new("00000002-0000-0000-0000-000000000001");
+                        }
+                        """;
 
             //
             // Act
@@ -235,13 +385,15 @@ public class ContactIds
             //
             // Arrange
             //
-            var input = @"public Id<Account> Account { get; } = new(""00000000-0000-0000-0000-000000000000"");
-public ContactIds Contacts { get; } = new();
-public class ContactIds
-{
-    public Id<Contact> A { get; } = new(""01000000-0000-0000-0000-000000000000"");
-    public Id<Contact> B { get; } = new(""02000000-0000-0000-0000-000000000000"");
-}";
+            var input = """
+                        public Id<Account> Account { get; } = new("00000000-0000-0000-0000-000000000000");
+                        public ContactIds Contacts { get; } = new();
+                        public class ContactIds
+                        {
+                            public Id<Contact> A { get; } = new("01000000-0000-0000-0000-000000000000");
+                            public Id<Contact> B { get; } = new("02000000-0000-0000-0000-000000000000");
+                        }
+                        """;
 
             //
             // Act
