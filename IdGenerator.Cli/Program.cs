@@ -8,15 +8,15 @@ internal static class Program
 
     public static async Task<int> Main(string[] args)
     {
-        var options = CliOptions.Parse(args);
-        if (options.ShowHelp)
-        {
-            Console.Write(HelpText);
-            return ExitHelp;
-        }
-
         try
         {
+            var options = CliOptions.Parse(args);
+            if (options.ShowHelp)
+            {
+                Console.Write(HelpText);
+                return ExitHelp;
+            }
+
             var settings = LoadSettings(options);
             var guidGenerator = CreateGuidGenerator(options);
             var logic = new Logic(settings, guidGenerator);
@@ -75,7 +75,7 @@ internal static class Program
         if (!string.IsNullOrWhiteSpace(options.FromCSharp))
         {
             var csharp = await ReadTextSourceAsync(options.FromCSharp!);
-            var parsed = IdFieldInfo.ParseIdFields(csharp);
+            var parsed = IdFieldInfo.ParseIdFields(csharp, options.FromCSharpContainerName);
             if (parsed.Issues.Count > 0)
             {
                 var issues = string.Join(Environment.NewLine, parsed.Issues.Select(i => i.ToString()));
@@ -131,8 +131,9 @@ internal static class Program
           -f, --input-file <path>   Read entity input from a file.
 
         Modes:
-          --from-csharp <path|->    Parse existing C# Id definitions and output entity input text.
-                                    IDs are not regenerated. Use - for stdin.
+          --from-csharp <path|-> <container-name>
+                                    Parse Id<T> definitions from the given class/struct container
+                                    and output entity input text. IDs are not regenerated. Use - for stdin.
 
         Options:
           --seed [int]              Use deterministic GUIDs (default seed: 1 when omitted).
@@ -146,8 +147,8 @@ internal static class Program
         Examples:
           idgen "Account 2|Contact,Partners,Jim,Bob"
           idgen --seed 42 "Account|Contact 2"
-          idgen --from-csharp MyTest.cs
-          idgen --from-csharp - < existing-ids.cs
+          idgen --from-csharp MyTest.cs TestExample.TestMethodNameClass.TestIds
+          idgen --from-csharp - TestExample.TestMethodNameClass.TestIds < existing-ids.cs
 
         """;
 
@@ -156,6 +157,7 @@ internal static class Program
         public string? Input { get; init; }
         public string? InputFile { get; init; }
         public string? FromCSharp { get; init; }
+        public string? FromCSharpContainerName { get; init; }
         public string? SettingsFile { get; init; }
         public int? Seed { get; init; }
         public bool? UseClassIds { get; init; }
@@ -167,6 +169,7 @@ internal static class Program
             string? input = null;
             string? inputFile = null;
             string? fromCSharp = null;
+            string? fromCSharpContainerName = null;
             string? settingsFile = null;
             int? seed = null;
             bool? useClassIds = null;
@@ -193,6 +196,7 @@ internal static class Program
                         break;
                     case "--from-csharp":
                         fromCSharp = RequireValue(args, ref i, arg);
+                        fromCSharpContainerName = RequireValue(args, ref i, $"{arg} container-name");
                         break;
                     case "--settings-file":
                         settingsFile = RequireValue(args, ref i, arg);
@@ -241,6 +245,7 @@ internal static class Program
                 Input = input,
                 InputFile = inputFile,
                 FromCSharp = fromCSharp,
+                FromCSharpContainerName = fromCSharpContainerName,
                 SettingsFile = settingsFile,
                 Seed = seed,
                 UseClassIds = useClassIds,

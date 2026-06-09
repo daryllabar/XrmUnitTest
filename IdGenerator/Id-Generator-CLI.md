@@ -95,7 +95,9 @@ If no input option is provided and stdin is redirected, entity input is read fro
 
 | Option | Description |
 |--------|-------------|
-| `--from-csharp <path\|->` | Parse existing C# `Id<T>` definitions and output entity input text. IDs are not regenerated. Use `-` for stdin. |
+| `--from-csharp <path\|-> <container-name>` | Parse `Id<T>` definitions from the given class/struct container and output entity input text. IDs are not regenerated. Use `-` for stdin. |
+
+`<container-name>` should be the fully-qualified nested class/struct name to parse, such as `TestExample.TestMethodNameClass.TestIds`. If the file contains multiple matching `Id<T>` containers, only the requested container and any nested containers within it are parsed.
 
 ### Generation options
 

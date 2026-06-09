@@ -47,8 +47,9 @@ Input:
   -f, --input-file <path>   Read entity input from a file.
 
 Modes:
-  --from-csharp <path|->    Parse existing C# Id definitions and output entity input text.
-                            IDs are not regenerated. Use - for stdin.
+  --from-csharp <path|-> <container-name>
+                            Parse Id<T> definitions from the given class/struct container
+                            and output entity input text. IDs are not regenerated. Use - for stdin.
 
 Options:
   --seed <int>              Use deterministic GUIDs (default seed: 1 when flag is used alone).
@@ -62,8 +63,8 @@ Options:
 Examples:
   idgen "Account 2|Contact,Partners,Jim,Bob"
   idgen --seed 42 "Account|Contact 2"
-  idgen --from-csharp MyTest.cs
-  idgen --from-csharp - < existing-ids.cs
+  idgen --from-csharp MyTest.cs TestExample.TestMethodNameClass.TestIds
+  idgen --from-csharp - TestExample.TestMethodNameClass.TestIds < existing-ids.cs
 ```
 
 See the [Id Generator wiki](https://github.com/daryllabar/XrmUnitTest/wiki/Id-Generator) for input format details and the [Id Generator CLI wiki](https://github.com/daryllabar/XrmUnitTest/wiki/Id-Generator-CLI) for full documentation.
