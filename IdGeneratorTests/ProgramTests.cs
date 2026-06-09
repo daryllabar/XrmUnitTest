@@ -5,13 +5,37 @@ namespace IdGeneratorTests;
 [TestClass]
 public sealed class ProgramTests
 {
+    private static Type GetProgramType()
+    {
+        var programType = AppDomain.CurrentDomain
+            .GetAssemblies()
+            .Select(a => a.GetType("IdGenerator.Cli.Program", throwOnError: false))
+            .FirstOrDefault(t => t != null);
+
+        if (programType != null)
+        {
+            return programType;
+        }
+
+        foreach (var assemblyPath in Directory.EnumerateFiles(AppContext.BaseDirectory, "*.dll"))
+        {
+            programType = Assembly.LoadFrom(assemblyPath).GetType("IdGenerator.Cli.Program", throwOnError: false);
+            if (programType != null)
+            {
+                return programType;
+            }
+        }
+
+        throw new InvalidOperationException("Unable to locate IdGenerator.Cli.Program.");
+    }
+
     [TestMethod]
     public void Program_CliOptionsParse_Should_ParseFromCSharpContainerName()
     {
         //
         // Arrange
         //
-        var programType = Assembly.Load("idgen").GetType("IdGenerator.Cli.Program", throwOnError: true)!;
+        var programType = GetProgramType();
         var cliOptionsType = programType.GetNestedType("CliOptions", BindingFlags.NonPublic)!;
         var parse = cliOptionsType.GetMethod("Parse", BindingFlags.Public | BindingFlags.Static)!;
 
@@ -42,7 +66,7 @@ public sealed class ProgramTests
 
         try
         {
-            var programType = Assembly.Load("idgen").GetType("IdGenerator.Cli.Program", throwOnError: true)!;
+            var programType = GetProgramType();
             var main = programType.GetMethod("Main", BindingFlags.Public | BindingFlags.Static)!;
 
             //

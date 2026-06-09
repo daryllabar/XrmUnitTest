@@ -52,7 +52,9 @@ public class IdFieldInfo
 
         var containerName = GetContainerName(node);
         return containerName == idContainerName
-            || containerName.StartsWith(idContainerName + ".");
+            || (containerName.Length > idContainerName.Length
+                && containerName.StartsWith(idContainerName, System.StringComparison.Ordinal)
+                && containerName[idContainerName.Length] == '.');
     }
 
     private static string? GetOutputContainerName(SyntaxNode node, string? idContainerName)
