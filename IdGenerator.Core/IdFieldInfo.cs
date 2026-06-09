@@ -44,7 +44,9 @@ public class IdFieldInfo
 
         foreach (var classDecl in root.DescendantNodes().OfType<ClassDeclarationSyntax>())
         {
-            var className = classDecl.Identifier.Text;
+            var className = results.Count > 0
+                ? classDecl.Identifier.Text
+                : null;
             foreach (var member in classDecl.Members)
             {
                 if (member is PropertyDeclarationSyntax prop)

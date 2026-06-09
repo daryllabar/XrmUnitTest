@@ -1,5 +1,3 @@
-using IdGenerator;
-
 namespace IdGenerator.Cli;
 
 internal static class Program
@@ -10,6 +8,7 @@ internal static class Program
 
     public static async Task<int> Main(string[] args)
     {
+        args = "--from-csharp C:\\_dev\\Bowdark\\CNP.PowerSyncPortal.AF\\CNP.PowerSyncPortal.Tests\\JT\\ProjectAndTaskForPartnerProjectCounterDependencyNotMetTests.cs".Split(" ");
         var options = CliOptions.Parse(args);
         if (options.ShowHelp)
         {
@@ -23,6 +22,11 @@ internal static class Program
             var guidGenerator = CreateGuidGenerator(options);
             var logic = new Logic(settings, guidGenerator);
             var entityInput = await ResolveEntityInputAsync(options, logic);
+            if (!string.IsNullOrWhiteSpace(options.FromCSharp))
+            {
+                Console.Write(entityInput);
+                return ExitSuccess;
+            }
             var idsByType = logic.ParseEntityTypes(entityInput);
             Console.Write(logic.GenerateOutput(idsByType.Values));
             return ExitSuccess;
@@ -84,7 +88,7 @@ internal static class Program
                 throw new InvalidOperationException("No Id<T> definitions were found in the C# input.");
             }
 
-            return logic.CreateEntitiesText(parsed.IdFieldInfos);
+            return logic.CreateEntitiesText(parsed.IdFieldInfos, "|");
         }
 
         if (!string.IsNullOrWhiteSpace(options.InputFile))
@@ -102,7 +106,7 @@ internal static class Program
             return await Console.In.ReadToEndAsync();
         }
 
-        throw new InvalidOperationException("Entity input is required. Pass input text, --input, --input-file, or --from-csharp.");
+        throw new InvalidOperationException("Entity input is required. Pass input text, --input, --input-file, --from-csharp, or --help.");
     }
 
     private static async Task<string> ReadTextSourceAsync(string pathOrDash)
@@ -128,8 +132,8 @@ internal static class Program
           -f, --input-file <path>   Read entity input from a file.
 
         Modes:
-          --from-csharp <path|->    Parse existing C# Id definitions and regenerate GUIDs.
-                                    Use - for stdin.
+          --from-csharp <path|->    Parse existing C# Id definitions and output entity input text.
+                                    IDs are not regenerated. Use - for stdin.
 
         Options:
           --seed [int]              Use deterministic GUIDs (default seed: 1 when omitted).

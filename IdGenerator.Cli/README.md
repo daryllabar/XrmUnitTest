@@ -47,8 +47,8 @@ Input:
   -f, --input-file <path>   Read entity input from a file.
 
 Modes:
-  --from-csharp <path|->    Parse existing C# Id definitions and regenerate GUIDs.
-                            Use - for stdin.
+  --from-csharp <path|->    Parse existing C# Id definitions and output entity input text.
+                            IDs are not regenerated. Use - for stdin.
 
 Options:
   --seed <int>              Use deterministic GUIDs (default seed: 1 when flag is used alone).

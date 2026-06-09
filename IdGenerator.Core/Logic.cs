@@ -269,10 +269,11 @@ namespace IdGenerator
             return name.ToUpper()[0] + name.Remove(0, 1);
         }
 
-        public string CreateEntitiesText(List<IdFieldInfo> results)
+        public string CreateEntitiesText(List<IdFieldInfo> results, string? joinString = null)
         {
             var output = (from @group in results.GroupBy(r => r.ContainerName ?? r.IdType).OrderBy(g => g.Key)
                           let containerName = @group.First().ContainerName ?? string.Empty
+                          // If the struct name ends with "Ids", convert it back to plural form
                           let actualStructName = containerName.EndsWith("Ids") && containerName.Length > 3
                               ? PluralizationProvider.Pluralize(containerName.Substring(0, containerName.Length - 3))
                               : containerName
@@ -280,7 +281,7 @@ namespace IdGenerator
                               ? ","
                               : "," + actualStructName + ",") + string.Join(",", @group.Select(g => g.FieldName))
                           select @group.First().IdType + names).ToList();
-            return string.Join(Environment.NewLine, output);
+            return string.Join(joinString ?? Environment.NewLine, output);
         }
     }
 }

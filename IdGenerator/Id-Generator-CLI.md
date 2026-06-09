@@ -95,7 +95,7 @@ If no input option is provided and stdin is redirected, entity input is read fro
 
 | Option | Description |
 |--------|-------------|
-| `--from-csharp <path\|->` | Parse existing C# `Id<T>` definitions, preserve structure, regenerate GUIDs. Use `-` for stdin. |
+| `--from-csharp <path\|->` | Parse existing C# `Id<T>` definitions and output entity input text. IDs are not regenerated. Use `-` for stdin. |
 
 ### Generation options
 
@@ -237,9 +237,9 @@ public class ProjectIds
 idgen --settings-file .cursor/IdGeneratorSettings.json --input "Account|Contact 2|SystemUser"
 ```
 
-### Regenerate GUIDs from existing C#
+### Extract entity input from existing C#
 
-Use this when you want new GUIDs but the same property/class structure:
+Use this when you want to convert existing `Id<T>` definitions back into entity input text:
 
 ```powershell
 idgen --settings-file .cursor/IdGeneratorSettings.json --from-csharp path/to/MyTest.cs
@@ -422,6 +422,8 @@ Provide one of:
 ### `No Id<T> definitions were found in the C# input`
 
 The `--from-csharp` input must contain parseable `Id<T>` properties or fields in the supported formats (class properties, nested classes, structs, or top-level properties).
+
+When parsing succeeds, the command outputs normalized entity input text rather than regenerated IDs.
 
 ### WinForms vs CLI settings
 
