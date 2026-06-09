@@ -75,7 +75,7 @@ internal static class Program
         if (!string.IsNullOrWhiteSpace(options.FromCSharp))
         {
             var csharp = await ReadTextSourceAsync(options.FromCSharp!);
-            var parsed = IdFieldInfo.ParseIdFields(csharp, isWholeClassFile: true);
+            var parsed = IdFieldInfo.ParseIdFields(csharp);
             if (parsed.Issues.Count > 0)
             {
                 var issues = string.Join(Environment.NewLine, parsed.Issues.Select(i => i.ToString()));
