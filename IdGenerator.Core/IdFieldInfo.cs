@@ -1,3 +1,4 @@
+using System;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -53,7 +54,7 @@ public class IdFieldInfo
         var containerName = GetContainerName(node);
         return containerName == idContainerName
             || (containerName.Length > idContainerName.Length
-                && containerName.StartsWith(idContainerName, System.StringComparison.Ordinal)
+                && containerName.StartsWith(idContainerName, StringComparison.Ordinal)
                 && containerName[idContainerName.Length] == '.');
     }
 

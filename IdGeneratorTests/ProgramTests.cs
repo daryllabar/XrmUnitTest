@@ -17,7 +17,15 @@ public sealed class ProgramTests
             return programType;
         }
 
-        foreach (var assemblyPath in Directory.EnumerateFiles(AppContext.BaseDirectory, "*.dll"))
+        var candidateAssemblies = Directory.EnumerateFiles(AppContext.BaseDirectory, "*.dll")
+            .Where(path =>
+            {
+                var fileName = Path.GetFileName(path);
+                return fileName.Equals("idgen.dll", StringComparison.OrdinalIgnoreCase)
+                    || fileName.Contains("IdGenerator.Cli", StringComparison.OrdinalIgnoreCase);
+            });
+
+        foreach (var assemblyPath in candidateAssemblies)
         {
             programType = Assembly.LoadFrom(assemblyPath).GetType("IdGenerator.Cli.Program", throwOnError: false);
             if (programType != null)
