@@ -73,13 +73,13 @@ idgen --settings-file .cursor/IdGeneratorSettings.json --input "Account|Contact 
 Parse an existing test ID block and regenerate GUIDs with the same shape:
 
 ```powershell
-idgen --settings-file .cursor/IdGeneratorSettings.json --from-csharp path/to/TestFile.cs
+idgen --settings-file .cursor/IdGeneratorSettings.json --from-csharp TestExample.TestMethodNameClass.TestIds path/to/TestFile.cs
 ```
 
 Or from stdin:
 
 ```powershell
-Get-Content path/to/snippet.cs | idgen --settings-file .cursor/IdGeneratorSettings.json --from-csharp -
+Get-Content path/to/snippet.cs | idgen --settings-file .cursor/IdGeneratorSettings.json --from-csharp TestExample.TestMethodNameClass.TestIds -
 ```
 
 ### Deterministic output

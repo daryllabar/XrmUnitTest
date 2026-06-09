@@ -50,17 +50,17 @@ public sealed class ProgramTests
         //
         // Act
         //
-        var options = parse.Invoke(null, new object[] { new[] { "--from-csharp", "MyTest.cs", "TestExample.TestMethodNameClass.TestIds" } })!;
+        var options = parse.Invoke(null, new object[] { new[] { "--from-csharp", "TestExample.TestMethodNameClass.TestIds", "MyTest.cs" } })!;
 
         //
         // Assert
         //
-        Assert.AreEqual("MyTest.cs", cliOptionsType.GetProperty("FromCSharp")!.GetValue(options));
         Assert.AreEqual("TestExample.TestMethodNameClass.TestIds", cliOptionsType.GetProperty("FromCSharpContainerName")!.GetValue(options));
+        Assert.AreEqual("MyTest.cs", cliOptionsType.GetProperty("FromCSharp")!.GetValue(options));
     }
 
     [TestMethod]
-    public async Task Program_Main_Should_ReturnError_When_FromCSharpContainerNameIsMissing()
+    public async Task Program_Main_Should_ReturnError_When_FromCSharpPathIsMissing()
     {
         //
         // Arrange
@@ -80,14 +80,14 @@ public sealed class ProgramTests
             //
             // Act
             //
-            var task = (Task<int>)main.Invoke(null, new object[] { new[] { "--from-csharp", "sample.cs" } })!;
+            var task = (Task<int>)main.Invoke(null, new object[] { new[] { "--from-csharp", "TestExample.TestMethodNameClass.TestIds" } })!;
             var exitCode = await task;
 
             //
             // Assert
             //
             Assert.AreEqual(1, exitCode);
-            StringAssert.Contains(error.ToString(), "Missing value for --from-csharp container-name.");
+            StringAssert.Contains(error.ToString(), "Missing value for --from-csharp path.");
             Assert.AreEqual(string.Empty, output.ToString());
         }
         finally

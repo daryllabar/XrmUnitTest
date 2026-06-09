@@ -131,7 +131,7 @@ internal static class Program
           -f, --input-file <path>   Read entity input from a file.
 
         Modes:
-          --from-csharp <path|-> <container-name>
+          --from-csharp <container-name> <path|->
                                     Parse Id<T> definitions from the given class/struct container
                                     and output entity input text. IDs are not regenerated. Use - for stdin.
 
@@ -147,8 +147,8 @@ internal static class Program
         Examples:
           idgen "Account 2|Contact,Partners,Jim,Bob"
           idgen --seed 42 "Account|Contact 2"
-          idgen --from-csharp MyTest.cs TestExample.TestMethodNameClass.TestIds
-          idgen --from-csharp - TestExample.TestMethodNameClass.TestIds < existing-ids.cs
+          idgen --from-csharp TestExample.TestMethodNameClass.TestIds MyTest.cs
+          idgen --from-csharp TestExample.TestMethodNameClass.TestIds - < existing-ids.cs
 
         """;
 
@@ -195,8 +195,8 @@ internal static class Program
                         inputFile = RequireValue(args, ref i, arg);
                         break;
                     case "--from-csharp":
-                        fromCSharp = RequireValue(args, ref i, arg);
                         fromCSharpContainerName = RequireValue(args, ref i, $"{arg} container-name");
+                        fromCSharp = RequireValue(args, ref i, $"{arg} path");
                         break;
                     case "--settings-file":
                         settingsFile = RequireValue(args, ref i, arg);
