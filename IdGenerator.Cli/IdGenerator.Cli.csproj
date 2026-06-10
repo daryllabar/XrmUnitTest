@@ -10,9 +10,9 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>idgen</ToolCommandName>
     <PackageId>DataverseUnitTest.IdGenerator.Cli</PackageId>
-    <Version>1.0.0.1</Version>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <FileVersion>1.0.0.1</FileVersion>
+    <Version>1.0.0.6</Version>
+    <AssemblyVersion>1.0.0.6</AssemblyVersion>
+    <FileVersion>1.0.0.6</FileVersion>
     <PackageDescription>CLI for generating DataverseUnitTest Id definitions from entity input or existing C#.</PackageDescription>
     <PackageTags>dataverse;crm;unittest;idgenerator</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
