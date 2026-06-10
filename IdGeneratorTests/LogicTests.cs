@@ -279,6 +279,48 @@ namespace IdGeneratorTests
             }
         }
 
+        [TestMethod]
+        public void IdFieldInfo_ParseIdFieldsClass_Should_OnlyParseRequestedContainer()
+        {
+            //
+            // Arrange
+            //
+            var input = """
+                        [TestClass]
+                        public class TestExample
+                        {
+                            private class TestMethodNameClass : TestMethodClassBase
+                            {
+                                public class TestIds
+                                {
+                                    public Id<Account> Acme { get; } = new("D4599C24-6D5E-4486-BDA4-BE7C3535EB10");
+                                }
+                            }
+
+                            private class TestMethodNameClass2 : TestMethodClassBase
+                            {
+                                public class TestIds
+                                {
+                                    public Id<Contact> Ben { get; } = new("D4599C24-6D5E-4486-BDA4-BE7C3535EB10");
+                                }
+                            }
+                        }
+                        """;
+
+            //
+            // Act
+            //
+            var results = IdFieldInfo.ParseIdFields(input, "TestExample.TestMethodNameClass.TestIds").IdFieldInfos;
+
+            //
+            // Assert
+            //
+            Assert.HasCount(1, results);
+            Assert.AreEqual("Acme", results[0].FieldName);
+            Assert.AreEqual("Account", results[0].IdType);
+            Assert.IsNull(results[0].ContainerName);
+        }
+
         [DataRow(true, true, DisplayName = "With Account and Multiple Contacts")]
         [DataRow(false, true, DisplayName = "With Account Only")]
         [DataRow(true, false, DisplayName = "With Multiple Contacts Only")]
@@ -346,6 +388,48 @@ namespace IdGeneratorTests
                 contact = results.Single(r => r is { IdType: "Contact", FieldName: "Orange" });
                 Assert.AreEqual("Contacts", contact.ContainerName);
             }
+        }
+
+        [TestMethod]
+        public void IdFieldInfo_ParseIdFieldsStruct_Should_OnlyParseRequestedContainer()
+        {
+            //
+            // Arrange
+            //
+            var input = """
+                        [TestClass]
+                        public class TestExample
+                        {
+                            private class TestMethodNameClass : TestMethodClassBase
+                            {
+                                public struct Ids
+                                {
+                                    public static readonly Id<Account> Acme = new("00000000-0000-0000-0000-000000000000");
+                                }
+                            }
+
+                            private class TestMethodNameClass2 : TestMethodClassBase
+                            {
+                                public struct Ids
+                                {
+                                    public static readonly Id<Contact> Ben = new("00000001-0000-0000-0000-000000000000");
+                                }
+                            }
+                        }
+                        """;
+
+            //
+            // Act
+            //
+            var results = IdFieldInfo.ParseIdFields(input, "TestExample.TestMethodNameClass.Ids").IdFieldInfos;
+
+            //
+            // Assert
+            //
+            Assert.HasCount(1, results);
+            Assert.AreEqual("Acme", results[0].FieldName);
+            Assert.AreEqual("Account", results[0].IdType);
+            Assert.IsNull(results[0].ContainerName);
         }
 
         [TestMethod]

@@ -95,7 +95,9 @@ If no input option is provided and stdin is redirected, entity input is read fro
 
 | Option | Description |
 |--------|-------------|
-| `--from-csharp <path\|->` | Parse existing C# `Id<T>` definitions and output entity input text. IDs are not regenerated. Use `-` for stdin. |
+| `--from-csharp <container-name> <path\|->` | Parse `Id<T>` definitions from the given class/struct container and output entity input text. IDs are not regenerated. Use `-` for stdin. |
+
+`<container-name>` should be the fully-qualified nested class/struct name to parse, such as `TestExample.TestMethodNameClass.TestIds`. If the file contains multiple matching `Id<T>` containers, only the requested container and any nested containers within it are parsed.
 
 ### Generation options
 
@@ -242,19 +244,19 @@ idgen --settings-file .cursor/IdGeneratorSettings.json --input "Account|Contact 
 Use this when you want to convert existing `Id<T>` definitions back into entity input text:
 
 ```powershell
-idgen --settings-file .cursor/IdGeneratorSettings.json --from-csharp path/to/MyTest.cs
+idgen --settings-file .cursor/IdGeneratorSettings.json --from-csharp TestExample.TestMethodNameClass.TestIds path/to/MyTest.cs
 ```
 
 From stdin (PowerShell):
 
 ```powershell
-Get-Content path/to/snippet.cs | idgen --settings-file .cursor/IdGeneratorSettings.json --from-csharp -
+Get-Content path/to/snippet.cs | idgen --settings-file .cursor/IdGeneratorSettings.json --from-csharp TestExample.TestMethodNameClass.TestIds -
 ```
 
 From stdin (bash):
 
 ```bash
-idgen --settings-file .cursor/IdGeneratorSettings.json --from-csharp - < snippet.cs
+idgen --settings-file .cursor/IdGeneratorSettings.json --from-csharp TestExample.TestMethodNameClass.TestIds - < snippet.cs
 ```
 
 ### Deterministic output for docs or examples
