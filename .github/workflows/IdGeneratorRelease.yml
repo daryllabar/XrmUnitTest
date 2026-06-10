@@ -23,17 +23,24 @@ jobs:
       with:
         dotnet-version: '10.0.x'
 
+    - name: Set release version
+      run: |
+        echo "RELEASE_VERSION=1.0.0.${{ github.run_number }}" >> $env:GITHUB_ENV
+
+    - name: Build core library
+      run: dotnet build IdGenerator.Core/IdGenerator.Core.csproj --configuration Release -p:Version=${{ env.RELEASE_VERSION }} -p:AssemblyVersion=${{ env.RELEASE_VERSION }} -p:FileVersion=${{ env.RELEASE_VERSION }}
+
     - name: Build WinForms app
-      run: dotnet build IdGenerator/IdGenerator.csproj --configuration Release
+      run: dotnet build IdGenerator/IdGenerator.csproj --configuration Release -p:Version=${{ env.RELEASE_VERSION }} -p:AssemblyVersion=${{ env.RELEASE_VERSION }} -p:FileVersion=${{ env.RELEASE_VERSION }}
 
     - name: Publish WinForms app
-      run: dotnet publish IdGenerator/IdGenerator.csproj --configuration Release --output ./publish
+      run: dotnet publish IdGenerator/IdGenerator.csproj --configuration Release --output ./publish -p:Version=${{ env.RELEASE_VERSION }} -p:AssemblyVersion=${{ env.RELEASE_VERSION }} -p:FileVersion=${{ env.RELEASE_VERSION }}
 
     - name: Build CLI tool
-      run: dotnet build IdGenerator.Cli/IdGenerator.Cli.csproj --configuration Release
+      run: dotnet build IdGenerator.Cli/IdGenerator.Cli.csproj --configuration Release -p:Version=${{ env.RELEASE_VERSION }} -p:PackageVersion=${{ env.RELEASE_VERSION }} -p:AssemblyVersion=${{ env.RELEASE_VERSION }} -p:FileVersion=${{ env.RELEASE_VERSION }}
 
     - name: Pack CLI tool
-      run: dotnet pack IdGenerator.Cli/IdGenerator.Cli.csproj --configuration Release --output ./tool-pack
+      run: dotnet pack IdGenerator.Cli/IdGenerator.Cli.csproj --configuration Release --output ./tool-pack -p:Version=${{ env.RELEASE_VERSION }} -p:PackageVersion=${{ env.RELEASE_VERSION }} -p:AssemblyVersion=${{ env.RELEASE_VERSION }} -p:FileVersion=${{ env.RELEASE_VERSION }}
 
     - name: Zip published files
       run: |
