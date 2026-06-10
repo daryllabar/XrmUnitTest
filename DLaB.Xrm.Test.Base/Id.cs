@@ -431,21 +431,4 @@ namespace DLaB.Xrm.Test
             return entity?.Entity!;
         }
     }
-
-    /// <summary>
-    /// Extensions that help to distinguish between methods that accept both EntityReference and Entity
-    /// </summary>
-    public static class IdExtensions
-    {
-        /// <summary>
-        /// Deletes the Specified Entity
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="service"></param>
-        /// <param name="id"></param>
-        public static void Delete<T>(this IOrganizationService service, Id<T> id) where T:Entity
-        {
-            service.Delete(id.LogicalName, id.EntityId);
-        }
-    }
 }
