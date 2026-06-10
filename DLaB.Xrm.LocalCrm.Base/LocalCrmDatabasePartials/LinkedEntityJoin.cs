@@ -148,6 +148,8 @@ namespace DLaB.Xrm.LocalCrm
         }
 
         // ReSharper disable once UnusedMember.Local
+        // Note: this method is invoked dynamically via GenericMethodCaller.InvokeLocalCrmDatabaseStaticMultiGenericMethod
+        // in FilterByNestedLinkExistence above, which is why ReSharper considers it unused.
         private static IQueryable<TFrom> FilterByNestedLinkExistenceGeneric<TFrom, TTo>(LocalCrmDatabaseInfo info, IQueryable<TFrom> query, LinkEntity link)
             where TFrom : Entity
             where TTo : Entity
@@ -186,7 +188,9 @@ namespace DLaB.Xrm.LocalCrm
 
             if (link.JoinOperator == JoinOperator.LeftOuter)
             {
-                // LeftOuter within an existence check: does not restrict the outer set.
+                // LeftOuter within an existence check: allow TFrom records whether or not they have a
+                // matching TTo, so the outer set is not restricted at all (same semantics as a regular
+                // LeftOuter join, which never eliminates rows from the driving side).
                 return query;
             }
 
