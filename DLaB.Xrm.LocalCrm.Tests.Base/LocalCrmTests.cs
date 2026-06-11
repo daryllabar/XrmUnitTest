@@ -22,23 +22,22 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_ParentCustomerIdUsesAccountId()
         {
-            var service = GetService();
             var account = new Account();
-            account.Id = service.Create(account);
+            account.Id = Service.Create(account);
             var contact = new Contact
             {
                 ParentCustomerId = account.ToEntityReference(),
             };
-            service.Create(contact);
+            Service.Create(contact);
 
             var query = QueryExpressionFactory.Create<Contact>();
             query.LinkEntities.Add(new LinkEntity(Contact.EntityLogicalName, Account.EntityLogicalName, Contact.Fields.AccountId, Account.Fields.AccountId, JoinOperator.Inner));
-            var contacts = service.GetEntities(query).ToList();
+            var contacts = Service.GetEntities(query).ToList();
 
             var qe = QueryExpressionFactory.Create<Account>();
             qe.AddLink<Contact>(Account.Fields.Id, Contact.Fields.AccountId);
 
-            var accounts = service.GetEntities(qe);
+            var accounts = Service.GetEntities(qe);
 
             Assert.HasCount(1, contacts);
             Assert.HasCount(1, accounts);
@@ -47,7 +46,6 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_EmailActivityParty_RequiresPartyIdOrAddressUsed()
         {
-            var service = GetService();
             var email = new Entity(Email.EntityLogicalName);
             var activityParty  = new Entity(ActivityParty.EntityLogicalName);
             activityParty.Attributes.Add(ActivityParty.Fields.ParticipationTypeMask, new OptionSetValue(2));
@@ -56,14 +54,14 @@ namespace DLaB.Xrm.LocalCrm.Tests
             email[Email.Fields.From] = new EntityCollection(
             new List<Entity> {
                 new (ActivityParty.EntityLogicalName) {
-                    [ActivityParty.Fields.PartyId] = new EntityReference(SystemUser.EntityLogicalName, service.GetCurrentlyExecutingUserInfo().UserId),
+                    [ActivityParty.Fields.PartyId] = new EntityReference(SystemUser.EntityLogicalName, Service.GetCurrentlyExecutingUserInfo().UserId),
                     [ActivityParty.Fields.ParticipationTypeMask ] = new OptionSetValue(1)
                 }
             });
 
             try
             {
-                service.Create(email);
+                Service.Create(email);
                 Assert.Fail("Error expected!");
             }
             catch(Exception ex)
@@ -71,14 +69,14 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 Assert.AreEqual("Activity Party PartyId and AddressUsed were null", ex.Message);
             }
 
-            activityParty[ActivityParty.Fields.PartyId] = new EntityReference(SystemUser.EntityLogicalName, service.GetCurrentlyExecutingUserInfo().UserId);
+            activityParty[ActivityParty.Fields.PartyId] = new EntityReference(SystemUser.EntityLogicalName, Service.GetCurrentlyExecutingUserInfo().UserId);
             email[Email.Fields.To] = new EntityCollection(new List<Entity> { activityParty });
-            service.Create(email);
+            Service.Create(email);
 
             activityParty[ActivityParty.Fields.PartyId] = null;
             activityParty[ActivityParty.Fields.AddressUsed] = "A@A.com"; 
             email[Email.Fields.To] = new EntityCollection(new List<Entity> { activityParty });
-            service.Create(email);
+            Service.Create(email);
         }
 
         [TestMethod]
@@ -164,23 +162,21 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_EmptyStringIsNull()
         {
-            var service = GetService();
-            var id = service.Create(new Lead {Address1_City = string.Empty});
-            Assert.IsFalse(service.GetEntity<Lead>(id).Attributes.ContainsKey(Lead.Fields.Address1_City));
+            var id = Service.Create(new Lead {Address1_City = string.Empty});
+            Assert.IsFalse(Service.GetEntity<Lead>(id).Attributes.ContainsKey(Lead.Fields.Address1_City));
         }
 
         [TestMethod]
         public void LocalCrmTests_NullColumnSetAllowed()
         {
-            var service = GetService();
-            var id = service.Create(new Contact());
+            var id = Service.Create(new Contact());
             var qe = new QueryExpression(Contact.EntityLogicalName)
             {
                 ColumnSet = null,
             };
 
-            Assert.AreEqual(1, service.GetFirst(qe).Attributes.Count);
-            Assert.AreEqual(id, service.GetFirst(qe).Id);
+            Assert.AreEqual(1, Service.GetFirst(qe).Attributes.Count);
+            Assert.AreEqual(id, Service.GetFirst(qe).Id);
         }
 
 
@@ -237,10 +233,8 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_DefaultEntitiesCreated()
         {
-            var service = GetService();
-
-            var user = service.GetFirstOrDefault<SystemUser>();
-            var bu = service.GetFirstOrDefault<BusinessUnit>();
+            var user = Service.GetFirstOrDefault<SystemUser>();
+            var bu = Service.GetFirstOrDefault<BusinessUnit>();
 
             Assert.IsNotNull(user, "User was not created by default");
             Assert.IsNotNull(bu, "Business Unit was not created by default");
@@ -249,18 +243,17 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_RetrievesAreCloned()
         {
-            var service = GetService();
             var contact = new Contact();
-            contact.Id = service.Create(contact);
-            var contact1 = service.GetEntity<Contact>(contact.Id);
-            var contact2 = service.GetEntity<Contact>(contact.Id);
+            contact.Id = Service.Create(contact);
+            var contact1 = Service.GetEntity<Contact>(contact.Id);
+            var contact2 = Service.GetEntity<Contact>(contact.Id);
             Assert.AreNotSame(contact1,contact2, "Each retrieve should create a new instance");
 
             var phoneCall = new PhoneCall();
             SetActivityParty(phoneCall, PhoneCall.Fields.From, new ActivityParty { PartyId = contact.ToEntityReference() });
-            phoneCall.Id = service.Create(phoneCall);
-            var phoneCall1 = service.GetEntity<PhoneCall>(phoneCall.Id);
-            var phoneCall2 = service.GetEntity<PhoneCall>(phoneCall.Id);
+            phoneCall.Id = Service.Create(phoneCall);
+            var phoneCall1 = Service.GetEntity<PhoneCall>(phoneCall.Id);
+            var phoneCall2 = Service.GetEntity<PhoneCall>(phoneCall.Id);
             Assert.AreNotSame(phoneCall1[PhoneCall.Fields.From], phoneCall2[PhoneCall.Fields.From], "Each retrieve should create a new instance");
 
         }
@@ -268,25 +261,24 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_NonPrimitiveDataTypesAreCloned()
         {
-            var service = GetService();
             var contact = new Contact();
-            contact.Id = service.Create(contact);
+            contact.Id = Service.Create(contact);
             var phoneCall = new PhoneCall();
-            phoneCall.Id = service.Create(phoneCall);
+            phoneCall.Id = Service.Create(phoneCall);
 
             SetActivityParty(phoneCall, PhoneCall.Fields.From, new ActivityParty { PartyId = contact.ToEntityReference()});
             phoneCall.CreatedBy = contact.ToEntityReference();
 
-            service.Update(phoneCall);
+            Service.Update(phoneCall);
 
             phoneCall.CreatedBy.Name = "Test";
-            Assert.AreEqual(1, service.GetFirst<PhoneCall>().From.Count());
+            Assert.AreEqual(1, Service.GetFirst<PhoneCall>().From.Count());
 
             var from = phoneCall.GetAttributeValue<EntityCollection>(PhoneCall.Fields.From);
             from.Entities.Clear();
 
-            Assert.IsNull(service.GetFirst<PhoneCall>().CreatedBy.Name);
-            Assert.AreEqual(1, service.GetFirst<PhoneCall>().From.Count());
+            Assert.IsNull(Service.GetFirst<PhoneCall>().CreatedBy.Name);
+            Assert.AreEqual(1, Service.GetFirst<PhoneCall>().From.Count());
         }
 
         private static void SetActivityParty(Entity entity, string fieldName, ActivityParty party)

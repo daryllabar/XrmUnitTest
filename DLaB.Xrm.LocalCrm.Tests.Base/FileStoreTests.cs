@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -21,7 +21,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Crud_ActivityPartyConstraints()
         {
-            var service = GetService();
+            var service = Service;
             var contact = new Contact();
             contact.Id = service.Create(contact);
             var data = GenerateLargeByteArray(); // Generate array of bytes bigger than 4 MB

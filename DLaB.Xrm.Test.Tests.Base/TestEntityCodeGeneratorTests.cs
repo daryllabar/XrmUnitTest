@@ -5,7 +5,7 @@ using DLaB.Xrm.Entities;
 using DLaB.Xrm.LocalCrm.Tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
-using XrmUnitTest.Test;
+
 #if NET
 using DataverseUnitTest;
 #endif
@@ -16,15 +16,11 @@ namespace DLaB.Xrm.Test.Tests
     public class TestEntityCodeGeneratorTests : BaseTestClass
     {
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        private IOrganizationService _service;
         private TestEntityCodeGenerator _sut;
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
-        [TestInitialize]
-        public void Initialize()
+        protected override void Initialize()
         {
-            TestInitializer.InitializeTestSettings();
-            _service = GetService();
             _sut = new TestEntityCodeGenerator(typeof(Contact).Assembly, typeof(Contact).Namespace!);
         }
 

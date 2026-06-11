@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ServiceModel;
 using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,7 +12,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_AssertCrmException_CaseRequiresCustomer()
         {
-            var service = GetService();
+            var service = Service;
 
             var incident = new Incident();
 
@@ -23,7 +23,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_AssertCrmException_AlternateKeyNotFound()
         {
-            var service = GetService();
+            var service = Service;
 
             var contact = new Contact
             {

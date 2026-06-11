@@ -1,7 +1,8 @@
-﻿using System.Linq;
 using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk.Query;
+using System.Linq;
+using Microsoft.Xrm.Sdk;
 
 namespace DLaB.Xrm.LocalCrm.Tests
 {
@@ -11,13 +12,10 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Join_RetrieveFilterOnOuterJoinedColumn()
         {
-            var service = GetService();
-            var contact1 = new Contact { FirstName = "Joe" };
-            contact1.Id = service.Create(contact1);
-            var contact2 = new Contact { FirstName = "Jim" };
-            contact2.Id = service.Create(contact2);
-            var contact3 = new Contact { FirstName = "Jake" };
-            contact3.Id = service.Create(contact3);
+            var service = Service;
+            var contact1 = service.CreateEntity(new Contact { FirstName = "Joe" });
+            var contact2 = service.CreateEntity(new Contact { FirstName = "Jim" });
+            var contact3 = service.CreateEntity(new Contact { FirstName = "Jake" });
 
             service.Create(new Opportunity { CustomerId = contact1.ToEntityReference() });
             service.Create(new Opportunity { CustomerId = contact2.ToEntityReference() });
@@ -42,9 +40,8 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Join_RetrieveOuterJoinedColumn()
         {
-            var service = GetService();
-            var contact = new Contact { FirstName = "Joe" };
-            contact.Id = service.Create(contact);
+            var service = Service;
+            var contact = service.CreateEntity(new Contact { FirstName = "Joe" });
 
             // Create 2 opportunities
             service.Create(new Opportunity { CustomerId = contact.ToEntityReference() });
@@ -62,16 +59,10 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_MultipleJoinWithNull_ShouldReturnNull()
         {
-            var service = GetService();
-            var user = new SystemUser { FirstName = "Joe" };
-            user.Id = service.Create(user);
-
-            var role = new Role { Name = "Test Role" };
-            role.Id = service.Create(role);
-
-            var roleUser = new SystemUserRoles { ["systemuserid"] = user.ToEntityReference(), ["roleid"] = role.ToEntityReference() };
-
-            roleUser.Id = service.Create(roleUser);
+            var service = Service;
+            var user = service.CreateEntity(new SystemUser { FirstName = "Joe" });
+            var role = service.CreateEntity(new Role { Name = "Test Role" });
+            var roleUser = AddRole(service, user, role);
 
             var qe = QueryExpressionFactory.Create<SystemUser>();
             qe.WhereEqual(SystemUser.Fields.SystemUserId, user.Id);
@@ -98,44 +89,27 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.IsNull(userResult.GetAliasedEntity<Role>().Name);
         }
 
+        private static SystemUserRoles AddRole(IOrganizationService service, SystemUser user, Role role)
+        {
+            return service.CreateEntity(new SystemUserRoles { [SystemUserRoles.Fields.SystemUserId] = user.ToEntityReference(), [SystemUserRoles.Fields.RoleId] = role.ToEntityReference() });
+        }
+
         [TestMethod]
         public void LocalCrmTests_Join_NotAny_ReturnsRecordsWithNoMatchingRelated()
         {
-            var service = GetService();
-
-            var userWithRole = new SystemUser { FirstName = "WithRole" };
-            userWithRole.Id = service.Create(userWithRole);
-            var userWithoutRole = new SystemUser { FirstName = "WithoutRole" };
-            userWithoutRole.Id = service.Create(userWithoutRole);
-
-            var role = new Role { Name = "SomeRole" };
-            role.Id = service.Create(role);
-            service.Create(new SystemUserRoles
-            {
-                ["systemuserid"] = userWithRole.ToEntityReference(),
-                ["roleid"] = role.ToEntityReference()
-            });
+            var service = Service;
+            var userWithRole = service.CreateEntity(new SystemUser { FirstName = "WithRole" });
+            var userWithoutRole = service.CreateEntity(new SystemUser { FirstName = "WithoutRole" });
+            var role = service.CreateEntity(new Role { Name = "SomeRole" });
+            AddRole(service, userWithRole, role);
 
             var qe = QueryExpressionFactory.Create<SystemUser>();
-            qe.Criteria.AddCondition(SystemUser.Fields.SystemUserId, ConditionOperator.In,
-                userWithRole.Id, userWithoutRole.Id);
-
-            // NotAny: users that have NO SystemUserRoles record at all.
-            var notAnyLink = new LinkEntity
-            {
-                JoinOperator = JoinOperator.NotAny,
-                LinkFromEntityName = SystemUser.EntityLogicalName,
-                LinkFromAttributeName = SystemUser.Fields.SystemUserId,
-                LinkToEntityName = SystemUserRoles.EntityLogicalName,
-                LinkToAttributeName = SystemUserRoles.Fields.SystemUserId,
-                EntityAlias = "notany_sur"
-            };
-            qe.LinkEntities.Add(notAnyLink);
+            qe.WhereIn(SystemUser.Fields.SystemUserId, userWithRole.Id, userWithoutRole.Id);
+            qe.AddLink<SystemUserRoles>(SystemUser.Fields.SystemUserId, JoinOperator.NotAny);
 
             var results = service.GetEntities(qe);
-
             Assert.HasCount(1, results, "Only the user without any role should be returned.");
-            Assert.AreEqual(userWithoutRole.FirstName, results[0].FirstName);
+            Assert.AreEqual(userWithoutRole.Id, results[0].Id);
         }
 
         /// <summary>
@@ -143,10 +117,10 @@ namespace DLaB.Xrm.LocalCrm.Tests
         /// with a nested <see cref="JoinOperator.Inner"/> link.
         ///
         /// Scenario mirrors the issue description:
-        ///   User1 → RoleA only
-        ///   User2 → RoleB only
-        ///   User3 → RoleA AND RoleB
-        ///   User4 → no roles
+        ///   User1 ? RoleA only
+        ///   User2 ? RoleB only
+        ///   User3 ? RoleA AND RoleB
+        ///   User4 ? no roles
         ///
         /// Query: return users with NO role whose Name = "RoleB".
         /// Expected: User1 and User4 (User2 and User3 each have RoleB, so they are excluded).
@@ -154,63 +128,34 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Join_NotAny_WithNestedInner_ExcludesRecordsWithAnyMatch()
         {
-            var service = GetService();
+            var service = Service;
 
-            var user1 = new SystemUser { FirstName = "User1" }; // RoleA only
-            user1.Id = service.Create(user1);
-            var user2 = new SystemUser { FirstName = "User2" }; // RoleB only
-            user2.Id = service.Create(user2);
-            var user3 = new SystemUser { FirstName = "User3" }; // RoleA AND RoleB
-            user3.Id = service.Create(user3);
-            var user4 = new SystemUser { FirstName = "User4" }; // no roles
-            user4.Id = service.Create(user4);
+            var roleAOnly = service.CreateEntity(new SystemUser { FirstName = "RoleA only" });
+            var roleBOnly = service.CreateEntity(new SystemUser { FirstName = "RoleB only" });
+            var roleAAndRoleB = service.CreateEntity(new SystemUser { FirstName = "RoleA and RoleB" });
+            var noRoles = service.CreateEntity(new SystemUser { FirstName = "No roles" });
+            var roleA = service.CreateEntity(new Role { Name = "RoleA" });
+            var roleB = service.CreateEntity(new Role { Name = "RoleB" });
 
-            var roleA = new Role { Name = "RoleA" };
-            roleA.Id = service.Create(roleA);
-            var roleB = new Role { Name = "RoleB" };
-            roleB.Id = service.Create(roleB);
-
-            service.Create(new SystemUserRoles { ["systemuserid"] = user1.ToEntityReference(), ["roleid"] = roleA.ToEntityReference() });
-            service.Create(new SystemUserRoles { ["systemuserid"] = user2.ToEntityReference(), ["roleid"] = roleB.ToEntityReference() });
-            service.Create(new SystemUserRoles { ["systemuserid"] = user3.ToEntityReference(), ["roleid"] = roleA.ToEntityReference() });
-            service.Create(new SystemUserRoles { ["systemuserid"] = user3.ToEntityReference(), ["roleid"] = roleB.ToEntityReference() });
+            AddRole(service, roleAOnly, roleA);
+            AddRole(service, roleBOnly, roleB);
+            AddRole(service, roleAAndRoleB, roleA);
+            AddRole(service, roleAAndRoleB, roleB);
 
             var qe = QueryExpressionFactory.Create<SystemUser>();
-            qe.Criteria.AddCondition(SystemUser.Fields.SystemUserId, ConditionOperator.In,
-                user1.Id, user2.Id, user3.Id, user4.Id);
-
-            // NotAny: users with NO SystemUserRoles that links (via Inner) to a Role named "RoleB".
-            var notAnyLink = new LinkEntity
-            {
-                JoinOperator = JoinOperator.NotAny,
-                LinkFromEntityName = SystemUser.EntityLogicalName,
-                LinkFromAttributeName = SystemUser.Fields.SystemUserId,
-                LinkToEntityName = SystemUserRoles.EntityLogicalName,
-                LinkToAttributeName = SystemUserRoles.Fields.SystemUserId,
-                EntityAlias = "notany_sur"
-            };
-
-            var innerRoleLink = new LinkEntity
-            {
-                JoinOperator = JoinOperator.Inner,
-                LinkFromEntityName = SystemUserRoles.EntityLogicalName,
-                LinkFromAttributeName = SystemUserRoles.Fields.RoleId,
-                LinkToEntityName = Role.EntityLogicalName,
-                LinkToAttributeName = Role.Fields.RoleId,
-                EntityAlias = "notany_role"
-            };
-            innerRoleLink.LinkCriteria.AddCondition(Role.Fields.Name, ConditionOperator.Equal, "RoleB");
-            notAnyLink.LinkEntities.Add(innerRoleLink);
-            qe.LinkEntities.Add(notAnyLink);
+            qe.WhereIn(SystemUser.Fields.SystemUserId, roleAOnly.Id, roleBOnly.Id, roleAAndRoleB.Id, noRoles.Id);
+            qe.AddLink<SystemUserRoles>(SystemUser.Fields.SystemUserId, JoinOperator.NotAny)
+                .AddLink<Role>(SystemUserRoles.Fields.RoleId, JoinOperator.Inner, r => new { r.Name })
+                .WhereEqual(Role.Fields.Name, "RoleB");
 
             var results = service.GetEntities(qe);
 
-            Assert.HasCount(2, results, "User1 (RoleA only) and User4 (no roles) should be returned.");
-            var firstNames = results.Select(u => u.FirstName).ToHashSet();
-            Assert.IsTrue(firstNames.Contains("User1"), "User1 (RoleA only) should be returned.");
-            Assert.IsTrue(firstNames.Contains("User4"), "User4 (no roles) should be returned.");
-            Assert.IsFalse(firstNames.Contains("User2"), "User2 (has RoleB) should NOT be returned.");
-            Assert.IsFalse(firstNames.Contains("User3"), "User3 (has RoleA and RoleB) should NOT be returned.");
+            Assert.HasCount(2, results, "'RoleA only' and 'No roles' should be returned.");
+            var ids = results.Select(u => u.Id).ToHashSet();
+            Assert.Contains(roleAOnly.Id, ids, "'RoleA only' should be returned.");
+            Assert.Contains(noRoles.Id, ids, "'No roles' should be returned.");
+            Assert.DoesNotContain(roleBOnly.Id, ids, "'RoleB only' should NOT be returned.");
+            Assert.DoesNotContain(roleAAndRoleB.Id, ids, "'RoleA and RoleB' should NOT be returned.");
         }
     }
 }

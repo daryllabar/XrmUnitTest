@@ -1,4 +1,4 @@
-﻿using DLaB.Xrm.Entities;
+using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
@@ -15,7 +15,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_WithIsCaseInsensitive()
         {
-            var service = GetService();
+            var service = Service;
             service.Create(new Contact { FirstName = "Jimmy" });
             Assert.IsNotNull(service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.FirstName, ConditionOperator.BeginsWith, "JIM")));
             Assert.IsNotNull(service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.FirstName, ConditionOperator.EndsWith, "MY")));
@@ -26,7 +26,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_LikeIsCaseInsensitive()
         {
-            var service = GetService();
+            var service = Service;
             service.Create(new Contact { FirstName = "Jimmy" });
             Assert.IsNotNull(service.GetFirstOrDefault<Contact>(new ConditionExpression(Contact.Fields.FirstName, ConditionOperator.Like, "JIM%")));
         }
@@ -34,7 +34,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_LikeWithAtSymbol()
         {
-            var service = GetService();
+            var service = Service;
             service.Create(new Account { EMailAddress1 = "test@google.com" });
             service.Create(new Account { EMailAddress1 = "other@contoso.com" });
             service.Create(new Account { EMailAddress1 = "another@google.com" });
@@ -55,7 +55,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_LikeOrMultipleDomains()
         {
-            var service = GetService();
+            var service = Service;
             service.Create(new Account { EMailAddress1 = "test@google.com" });
             service.Create(new Account { EMailAddress1 = "other@contoso.com" });
             service.Create(new Account { EMailAddress1 = "another@google.com" });
@@ -82,7 +82,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_LastXDays()
         {
-            var service = GetService();
+            var service = Service;
             var id = service.Create(new Contact
             {
                 LastUsedInCampaign = DateTime.UtcNow.AddDays(-2d)
@@ -102,7 +102,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_LastXYears()
         {
-            var service = GetService();
+            var service = Service;
             var id = service.Create(new Contact
             {
                 LastUsedInCampaign = DateTime.UtcNow.AddYears(-2)
@@ -122,7 +122,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_Last7Days()
         {
-            var service = GetService();
+            var service = Service;
             var id = service.Create(new Contact
             {
                 LastUsedInCampaign = DateTime.UtcNow.AddDays(-6d)
@@ -138,7 +138,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_Next7Days()
         {
-            var service = GetService();
+            var service = Service;
             var id = service.Create(new Contact
             {
                 LastUsedInCampaign = DateTime.UtcNow.AddDays(6d)
@@ -154,7 +154,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_NextXDays()
         {
-            var service = GetService();
+            var service = Service;
             var id = service.Create(new Contact
             {
                 LastUsedInCampaign = DateTime.UtcNow.AddDays(2d)
@@ -173,7 +173,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void LocalCrmTests_ConditionExpression_NextXYears()
         {
             var now = DateTime.UtcNow;
-            var service = GetService();
+            var service = Service;
             var id = service.Create(new Contact
             {
                 LastUsedInCampaign = now.AddYears(2)
@@ -191,7 +191,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_OnOrAfter()
         {
-            var service = GetService();
+            var service = Service;
             var now = DateTime.UtcNow;
             var id = service.Create(new Contact
             {
@@ -210,7 +210,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_OnOrBefore()
         {
-            var service = GetService();
+            var service = Service;
             var now = DateTime.UtcNow;
             var id = service.Create(new Contact
             {
@@ -229,7 +229,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_Today()
         {
-            var service = GetService();
+            var service = Service;
             var id = service.Create(new Contact
             {
                 LastUsedInCampaign = DateTime.UtcNow
@@ -247,7 +247,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_Tomorrow()
         {
-            var service = GetService();
+            var service = Service;
             var id = service.Create(new Contact
             {
                 LastUsedInCampaign = DateTime.UtcNow
@@ -265,7 +265,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_Yesterday()
         {
-            var service = GetService();
+            var service = Service;
             var id = service.Create(new Contact
             {
                 LastUsedInCampaign = DateTime.UtcNow
@@ -283,7 +283,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_EqualUserId()
         {
-            var service = GetService();
+            var service = Service;
             var otherUserId = service.Create(new SystemUser());
             var contactId = service.Create(new Contact { PreferredSystemUserId = new EntityReference(SystemUser.EntityLogicalName, otherUserId) });
 
@@ -307,7 +307,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_ContainsValue()
         {
-            var service = GetService();
+            var service = Service;
             var id = service.Create(new Contact
             {
                 CalendarTypes = new [] { Calendar_Type.CustomerService }
@@ -328,7 +328,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_ConditionExpression_DoesNotContainValues()
         {
-            var service = GetService();
+            var service = Service;
             var id = service.Create(new Contact
             {
                 CalendarTypes = new[] { Calendar_Type.Default }

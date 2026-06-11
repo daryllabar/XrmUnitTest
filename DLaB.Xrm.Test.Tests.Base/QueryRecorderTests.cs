@@ -17,15 +17,11 @@ namespace DLaB.Xrm.Test.Tests
     public class QueryRecorderTests : BaseTestClass
     {
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        private IOrganizationService _service;
         private QueryRecorder _sut;
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
-        [TestInitialize]
-        public void Initialize()
+        protected override void Initialize()
         {
-            TestInitializer.InitializeTestSettings();
-            _service = GetService();
             _sut = new QueryRecorder();
         }
 
@@ -111,7 +107,7 @@ namespace DLaB.Xrm.Test.Tests
 
         private void RecordRetrieve(Entity entity)
         {
-            _sut.RecordRetrieve(_service, entity.LogicalName, entity.Id, new ColumnSet(), entity);
+            _sut.RecordRetrieve(Service, entity.LogicalName, entity.Id, new ColumnSet(), entity);
         }
 
         #endregion RecordRetrieve
@@ -282,7 +278,7 @@ namespace DLaB.Xrm.Test.Tests
 
         private Id<T> CreateId<T>(T entity) where T : Entity
         {
-            entity.Id = _service.Create(entity);
+            entity.Id = Service.Create(entity);
             return new Id<T>(entity.Id)
             {
                 Entity = entity
@@ -291,15 +287,15 @@ namespace DLaB.Xrm.Test.Tests
 
         private void RecordMultiple(params Entity[] entities)
         {
-            _sut.RecordRetrieveMultiple(_service, new QueryExpression(), new EntityCollection(new List<Entity>(entities)));
+            _sut.RecordRetrieveMultiple(Service, new QueryExpression(), new EntityCollection(new List<Entity>(entities)));
         }
 
         private void RecordMultiple(QueryBase q, params Entity[] entities)
         {
             var results = entities.Length == 0 
-                ? _service.RetrieveMultiple(q)
+                ? Service.RetrieveMultiple(q)
                 : new EntityCollection(new List<Entity>(entities));
-            _sut.RecordRetrieveMultiple(_service, q, results);
+            _sut.RecordRetrieveMultiple(Service, q, results);
         }
 
         #endregion RecordRetrieveMultiple

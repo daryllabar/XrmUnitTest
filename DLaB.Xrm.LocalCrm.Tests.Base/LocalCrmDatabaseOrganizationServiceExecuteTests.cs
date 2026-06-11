@@ -29,7 +29,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void Initialize()
         {
             TestInitializer.InitializeTestSettings();
-            _service = GetService();
+            _service = Service;
         }
 
         [TestMethod]

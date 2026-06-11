@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,7 +12,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [SuppressMessage("ReSharper", "EmptyGeneralCatchClause")]
         public void LocalCrmTests_EntityReferenceNaming_NamesAreReturned()
         {
-            var service = GetService();
+            var service = Service;
             var account = new Account
             {
                 Id = Guid.NewGuid(),

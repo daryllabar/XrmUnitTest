@@ -1,4 +1,4 @@
-﻿#if NET
+#if NET
 using DataverseUnitTest;
 #endif
 using DLaB.Xrm.Entities;
@@ -14,7 +14,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_ConnectionEntity_DuplicateConnectionCreated()
         {
-            var service = GetService();
+            var service = Service;
             var id1 = service.Create(new ConnectionRole());
             var id2 = service.Create(new ConnectionRole());
             var contactId1 = service.Create(new Contact());

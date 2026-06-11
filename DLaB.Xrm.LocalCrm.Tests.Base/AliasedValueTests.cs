@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
@@ -11,7 +11,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_AliasedValue_AliasedFormattedValuePopulated()
         {
-            var service = GetService();
+            var service = Service;
             var id = service.Create(new Lead { BudgetStatusEnum = BudgetStatus.MayBuy });
             service.Create(new Account { OriginatingLeadId = new EntityReference(Lead.EntityLogicalName, id) });
 
@@ -33,7 +33,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             //
             // Arrange
             //
-            var service = GetService();
+            var service = Service;
             var qe = ArrangeAccountLinkCaseLinkPhoneCall(service);
 
             //
@@ -59,7 +59,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             //
             // Arrange
             //
-            var service = GetService();
+            var service = Service;
             var qe = ArrangeAccountLinkCaseLinkPhoneCall(service);
             qe.LinkEntities.First().EntityAlias = "EntityAlias";
 

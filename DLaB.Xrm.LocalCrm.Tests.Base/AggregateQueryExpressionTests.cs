@@ -1,4 +1,4 @@
-﻿using DLaB.Xrm.Entities;
+using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
@@ -18,7 +18,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_AggregateGroupBy()
         {
-            var service = GetService();
+            var service = Service;
             CreateSampleData(service);
             QueryExpression qe = new()
             {
@@ -77,7 +77,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_AggregateGroupByDateGrouping()
         {
-            var service = GetService();
+            var service = Service;
             CreateSampleData(service);
             QueryExpression qe = new()
             {
@@ -174,7 +174,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_AggregateTypes()
         {
-            var service = GetService();
+            var service = Service;
             CreateSampleData(service);
 
             QueryExpression qe = new()
@@ -240,7 +240,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_InvalidAggregateQueries()
         {
-            var service = GetService();
+            var service = Service;
             CreateSampleData(service);
             QueryExpression qe = new()
             {

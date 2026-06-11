@@ -1,4 +1,4 @@
-﻿using DLaB.Xrm.Entities;
+using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
@@ -15,7 +15,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_FormattedValues_Populated()
         {
-            var service = GetService();
+            var service = Service;
             var lead = new Lead
             {
                 BudgetStatusEnum = BudgetStatus.CanBuy,
@@ -41,7 +41,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_FormattedValues_Ignored()
         {
-            var service = GetService();
+            var service = Service;
 
             var contact = new Contact { AccountRoleCodeEnum = Contact_AccountRoleCode.DecisionMaker };
             contact.FormattedValues.Add(Contact.Fields.AccountRoleCode, "Verify Formatted Values Are Ignored");
@@ -55,7 +55,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_FormattedValues_StatusCodeAndStateCode()
         {
-            var service = GetService();
+            var service = Service;
             var account = new Account
             {
                 Id = Guid.NewGuid(),

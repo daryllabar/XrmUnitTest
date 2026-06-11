@@ -17,10 +17,9 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_QualifyLead_Should_CreateEntities()
         {
-            var service = GetService();
             var lead = new Lead();
-            lead.Id = service.Create(lead);
-            var response = (QualifyLeadResponse) service.Execute(new QualifyLeadRequest
+            lead.Id = Service.Create(lead);
+            var response = (QualifyLeadResponse) Service.Execute(new QualifyLeadRequest
             {
                 CreateContact = true,
                 CreateOpportunity = true,
@@ -29,9 +28,9 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 Status = new OptionSetValue(3)
             });
 
-            var opp = service.GetEntitiesById<Opportunity>(response.CreatedEntities.First(e => e.LogicalName == Opportunity.EntityLogicalName).Id).First();
-            AssertCrm.Exists(service, opp.AccountId);
-            AssertCrm.Exists(service, opp.ContactId);
+            var opp = Service.GetEntitiesById<Opportunity>(response.CreatedEntities.First(e => e.LogicalName == Opportunity.EntityLogicalName).Id).First();
+            AssertCrm.Exists(Service, opp.AccountId);
+            AssertCrm.Exists(Service, opp.ContactId);
         }
     }
 }

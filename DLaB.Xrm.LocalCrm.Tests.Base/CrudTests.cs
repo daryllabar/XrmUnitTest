@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
@@ -30,7 +30,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_CreateUpdate_AliasedValueFails()
         {
-            var service = GetService();
+            var service = Service;
             try
             {
                 service.Create(new Account
@@ -92,7 +92,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void LocalCrmTests_Crud_ActivityPartyConstraints()
         {
             // Verify that linked items exist upon create
-            var service = GetService();
+            var service = Service;
             try
             {
                 service.Create(new ActivityParty());
@@ -136,7 +136,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Crud_ActivityPartyAutoCreation()
         {
-            var service = GetService();
+            var service = Service;
             var contact = new Contact();
             contact.Id = service.Create(contact);
             var account = new Account();
@@ -170,7 +170,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void LocalCrmTests_Crud_Advanced()
         {
             // Verify that linked items exist upon create
-            var service = GetService();
+            var service = Service;
             var contact = new Contact { Id = Guid.NewGuid() };
             var opp = new Opportunity { ParentContactId = contact.ToEntityReference() };
 
@@ -187,7 +187,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Crud_AlternateKey()
         {
-            var service = GetService();
+            var service = Service;
             var contact1 = new Contact { EMailAddress1 = "test1@test.com" };
             contact1.Id = service.Create(contact1);
             var contact2 = new Contact { EMailAddress1 = "test2@test.com" };
@@ -204,7 +204,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Crud_AliasedColumns()
         {
-            var service = GetService();
+            var service = Service;
             var accountId = service.Create(new Account { Name = "Acme" });
 
             var qe = QueryExpressionFactory.Create<Account>(a => new { a.Id });
@@ -230,7 +230,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Crud_AliasedColumnsFetchXml()
         {
-            var service = GetService();
+            var service = Service;
             var accountId = service.Create(new Account { Name = "Acme" });
             var result = service.GetFirstOrDefault<Account>(new FetchExpression(@"<fetch>
   <entity name=""account"">
@@ -258,7 +258,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Crud_InvalidAliasName()
         {
-            var service = GetService();
+            var service = Service;
 
             var qe = QueryExpressionFactory.Create<Account>(a => new { a.Id });
             qe.ColumnSet.AttributeExpressions.Add(new XrmAttributeExpression(Account.Fields.Name, XrmAggregateType.None, "A Space"));
@@ -275,7 +275,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Crud_InvalidAliasNameFetchXml()
         {
-            var service = GetService();
+            var service = Service;
 
             var fe = new FetchExpression(@"<fetch>
   <entity name=""account"">
@@ -304,7 +304,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Crud_NullRefJoinFetchXml()
         {
-            var service = GetService();
+            var service = Service;
             service.Create(new Account { Name = "Test" });
             var fe = new FetchExpression(@"<fetch top=""1"">
   <entity name=""account"">
@@ -319,7 +319,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Crud_AndOrConstraints()
         {
-            var service = GetService();
+            var service = Service;
             service.Create(new Contact { FirstName = "Abraham", LastName = "Lincoln" });
             service.Create(new Contact { FirstName = "George W", LastName = "Bush" });
             service.Create(new Contact { FirstName = "George H W", LastName = "Bush" });
@@ -361,7 +361,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var c2 = new Contact { Id = Guid.NewGuid(), FirstName = "Bill", LastName = "Carpenter" };
             var opp = new Opportunity { Id = Guid.NewGuid(), CustomerId = c1.ToEntityReference() };
 
-            var service = GetService();
+            var service = Service;
             service.Create(c1);
             service.Create(c2);
             service.Create(opp);
@@ -391,7 +391,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var contact = new Id<Contact>(Guid.NewGuid());
             var account = new Id<Account>(Guid.NewGuid());
             var opp = new Opportunity { Id = Guid.NewGuid(), CustomerId = contact};
-            var service = GetService();
+            var service = Service;
 
             service.Create(contact);
             service.Create(account);
@@ -504,7 +504,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var contact = new Contact();
             var lateContact = new Entity { LogicalName = Contact.EntityLogicalName };
 
-            var service = GetService();
+            var service = Service;
             contact.Id = service.Create(contact);
             lateContact.Id = service.Create(lateContact);
 
@@ -578,7 +578,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Crud_OrderBy()
         {
-            var service = GetService();
+            var service = Service;
             var id = service.Create(new Contact { FirstName = "Chuck", LastName = "Adams" });
             id = service.Create(new Contact { FirstName = "Anna", LastName = "Adams", ParentCustomerId = new EntityReference(Contact.EntityLogicalName, id) });
             service.Create(new Contact { FirstName = "Bill", LastName = "Adams", ParentCustomerId = new EntityReference(Contact.EntityLogicalName, id) });
@@ -680,7 +680,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Crud_QueryByAttribute()
         {
-            var service = GetService();
+            var service = Service;
             var johnId = service.Create(new Contact { FirstName = "John" });
             // ReSharper disable once UnusedVariable
             var janeId = service.Create(new Contact { FirstName = "Jane" });
@@ -709,7 +709,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Crud_RetrieveById()
         {
-            var service = GetService();
+            var service = Service;
             var id1 = service.Create(new Contact());
             var id2 = service.Create(new Contact());
             Assert.AreNotEqual(id1, id2, "Shouldn't have created duplicate Ids!");
@@ -721,7 +721,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Crud_RetrieveSystemUserName()
         {
-            var service = GetService();
+            var service = Service;
             var johnSmith = service.GetEntity<SystemUser>(service.Create(new SystemUser
             {
                 FirstName = "John",
@@ -766,7 +766,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void LocalCrmTests_Crud_Distinct()
         {
             TestInitializer.InitializeTestSettings();
-            var service = GetService();
+            var service = Service;
             const string telephone = "9998881111";
             service.Create(new Account { Telephone1 = telephone });
             service.Create(new Account { Telephone1 = telephone });
@@ -779,7 +779,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void LocalCrmTests_Crud_DistinctJoin()
         {
             TestInitializer.InitializeTestSettings();
-            var service = GetService();
+            var service = Service;
             const string telephone = "9998881111";
             var contact1Id = service.Create(new Contact { FirstName = "First" });
             var contact2Id = service.Create(new Contact { FirstName = "Second" });
@@ -797,7 +797,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         {
             const string errorMessage = "There was an error while trying to serialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:request. The InnerException message was 'Object graph for type 'Microsoft.Xrm.Sdk.DataCollection`1[[Microsoft.Xrm.Sdk.Query.FilterExpression, Microsoft.Xrm.Sdk, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]]' contains cycles and cannot be serialized if reference tracking is disabled.'.  Please see InnerException for more details.";
             TestInitializer.InitializeTestSettings();
-            var service = GetService();
+            var service = Service;
             var qe = new QueryExpression(Contact.EntityLogicalName);
             qe.Criteria.AddFilter(qe.Criteria);
 
@@ -820,7 +820,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         {
             const string errorMessage = "There was an error while trying to serialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:request. The InnerException message was 'Object graph for type 'Microsoft.Xrm.Sdk.Query.LinkEntity' contains cycles and cannot be serialized if reference tracking is disabled.'.  Please see InnerException for more details.";
             TestInitializer.InitializeTestSettings();
-            var service = GetService();
+            var service = Service;
             var qe = new QueryExpression(Contact.EntityLogicalName);
             var link = qe.AddLink<SystemUser>(Contact.Fields.OwnerId, SystemUser.PrimaryIdAttribute);
             link.LinkEntities.Add(link);
@@ -832,7 +832,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         {
             const string errorMessage = "The formatter threw an exception while trying to deserialize the message: There was an error while trying to deserialize parameter http://schemas.microsoft.com/xrm/2011/Contracts/Services:query. The InnerException message was 'Error in line 1 position 1978. Element 'http://schemas.microsoft.com/2003/10/Serialization/Arrays:anyType' contains data from a type that maps to the name 'DLaB.Xrm.Entities:ContactState'. The deserializer has no knowledge of any type that maps to this name. Consider changing the implementation of the ResolveName method on your DataContractResolver to return a non-null value for name 'ContactState' and namespace 'DLaB.Xrm.Entities'.'.  Please see InnerException for more details.";
             TestInitializer.InitializeTestSettings();
-            var service = GetService();
+            var service = Service;
             Assert.That.ThrowsException<FaultException<OrganizationServiceFault>>(() => service.GetFirstOrDefault<Contact>(Contact.Fields.StateCode, ContactState.Active), errorMessage);
 
             // Test with a Contact in it (triggers Query logic)
@@ -844,7 +844,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void LocalCrmTests_Crud_EntityIdMustMatch()
         {
             TestInitializer.InitializeTestSettings();
-            var service = GetService();
+            var service = Service;
             Assert.That.ThrowsException<FaultException<OrganizationServiceFault>>(
                 () => service.Update(new Account { Id = Guid.NewGuid(), [Account.Fields.Id] = Guid.NewGuid() }),
                 "Entity Id must be the same as the value set in property bag.");
@@ -853,7 +853,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Crud_WhereCrmDataTypes()
         {
-            var service = GetService();
+            var service = Service;
             var campaignId = service.Create(new Campaign());
             var opportunity = new Opportunity
             {
@@ -903,7 +903,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Crud_WhereIn()
         {
-            var service = GetService();
+            var service = Service;
             service.Create(new Contact { FirstName = "firstname", LastName= "lastname" });
             service.Create(new Contact { FirstName = "FIRSTNAME", LastName = "LASTNAME" });
 
@@ -939,7 +939,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void LocalCrmTests_Crud_LinkedMultipleOr()
         {
             TestInitializer.InitializeTestSettings();
-            var service = GetService();
+            var service = Service;
             const string telephone = "9998882222";
             var id = service.Create(new Account
             {
@@ -961,7 +961,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void LocalCrmTests_Crud_LinkedMultipleAliases(bool useQe)
         {
             TestInitializer.InitializeTestSettings();
-            var service = GetService();
+            var service = Service;
             var id = service.Create(new Account());
             service.Create(new Contact
             {
@@ -1034,7 +1034,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void LocalCrmTests_Crud_NestedLinkedMultipleAliases(bool useQe)
         {
             TestInitializer.InitializeTestSettings();
-            var service = GetService();
+            var service = Service;
             var accountId = service.Create(new Account());
             service.Create(new Contact
             {
@@ -1108,7 +1108,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         [TestMethod]
         public void LocalCrmTests_Crud_Associate()
         {
-            var service = GetService();
+            var service = Service;
             var account1Id = service.Create(new Account());
             var account2Id = service.Create(new Account());
             var account3Id = service.Create(new Account());
@@ -1242,7 +1242,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void LocalCrmTests_ReadWithTopCountAndPaging_Fails()
         {
             FaultException<OrganizationServiceFault> exception = null;
-            var service = GetService();
+            var service = Service;
             var qe = new QueryExpression
             {
                 EntityName = Account.EntityLogicalName,

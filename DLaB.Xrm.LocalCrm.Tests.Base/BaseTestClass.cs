@@ -1,15 +1,31 @@
-﻿using System;
-using System.Diagnostics;
-using System.ServiceModel;
-using DLaB.Xrm.Entities;
+﻿using DLaB.Xrm.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
+using System;
+using System.Diagnostics;
+using System.ServiceModel;
+using XrmUnitTest.Test;
 
 namespace DLaB.Xrm.LocalCrm.Tests
 {
     public class BaseTestClass
     {
-        internal static IOrganizationService GetService(bool createUnique = true, Guid? businessUnitId = null)
+        protected LocalCrmDatabaseOrganizationService Service { get; set; }
+
+        [TestInitialize]
+        public void InitializeBase()
+        {
+            TestInitializer.InitializeTestSettings();
+            Service = GetService();
+            Initialize();
+        }
+
+        protected virtual void Initialize()
+        {
+
+        }
+
+        internal LocalCrmDatabaseOrganizationService GetService(bool createUnique = true, Guid? businessUnitId = null)
         {
             var info = createUnique
                 ? LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString(), userBusinessUnit: businessUnitId)
