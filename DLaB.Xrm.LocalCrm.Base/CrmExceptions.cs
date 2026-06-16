@@ -71,6 +71,16 @@ namespace DLaB.Xrm.LocalCrm
             return fault;
         }
 
+        public static FaultException<OrganizationServiceFault> GetGuidFormatException(string qualifiedAttributeName, string value)
+        {
+            return CreateFault(InvalidConditionValue, $"An exception System.FormatException was thrown while trying to convert input value '{value}' to attribute '{qualifiedAttributeName}'. Expected type of attribute value: System.Guid. Exception raised: Guid should contain 32 digits with 4 dashes (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx).");
+        }
+
+        public static FaultException<OrganizationServiceFault> GetGuidShouldBeStringOrGuidException(string qualifiedAttributeName, Type receivedType)
+        {
+            return CreateFault(InvalidConditionValue, $"Condition for attribute '{qualifiedAttributeName}': expected argument(s) of type 'System.Guid' but received '{receivedType.FullName}'.");
+        }
+
         public static FaultException<OrganizationServiceFault> GetIntShouldBeStringOrIntException(string qualifiedAttributeName)
         {
             return CreateFault(InvalidConditionValue, $"Condition for attribute '{qualifiedAttributeName}': integer values are expected to be passed as strings or int.");
