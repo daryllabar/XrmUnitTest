@@ -336,7 +336,7 @@ namespace DLaB.Xrm.LocalCrm
             // Need to assert value
             if (AssertNonCyclicalQuery(qe, delay)
                 ||AssertValidAttributeExpressionQuery(qe, delay)
-                || AssertValidQueryTypes(qe, delay)
+                || AssertValidQueryTypes<T>(qe, delay)
                 || AssertValidCount(qe, delay))
             {
                 return null!;
@@ -429,8 +429,9 @@ namespace DLaB.Xrm.LocalCrm
             return false;
         }
 
-        private static bool AssertValidQueryTypes(QueryExpression query, DelayedException delay)
+        private static bool AssertValidQueryTypes<T>(QueryExpression query, DelayedException delay) where T : Entity
         {
+            var properties = PropertiesCache.For<T>();
             var filtersToSearch = new Stack<FilterExpression>();
             filtersToSearch.Push(query.Criteria);
             while (filtersToSearch.Count > 0)
@@ -444,10 +445,52 @@ namespace DLaB.Xrm.LocalCrm
                 foreach (var condition in filter.Conditions)
                 {
                     // This potentially could be expanded to include most references types.
-                    var value = condition.Values.FirstOrDefault(v => v != null && v.GetType().IsEnum);
-                    if (value != null)
+                    var enumValue = condition.Values.FirstOrDefault(v => v != null && v.GetType().IsEnum);
+                    if (enumValue != null)
                     {
-                        delay.Exception = CrmExceptions.GetFormatterException(value.GetType());
+                        delay.Exception = CrmExceptions.GetFormatterException(enumValue.GetType());
+                        return true;
+                    }
+
+                    // Only check conditions on the primary entity (no EntityName means it's on the primary entity).
+                    // Conditions with an EntityName reference a linked entity alias whose type is unknown here, so they are skipped.
+                    // Conditions for attributes not found in the entity's early-bound type are also skipped, as they may be
+                    // late-bound or custom attributes whose expected type cannot be determined at this level.
+                    if (!string.IsNullOrEmpty(condition.EntityName) || !properties.ContainsProperty(condition.AttributeName))
+                    {
+                        continue;
+                    }
+
+                    var property = properties.GetProperty(condition.AttributeName);
+                    var propertyType = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;
+                    // Validate value types for Guid/EntityReference attributes, which require Guid, EntityReference, or a
+                    // Guid-parseable string. Other attribute types (string, int, DateTime, etc.) are not validated here
+                    // because their type mismatches either cause runtime comparison errors or are handled elsewhere.
+                    if (propertyType != typeof(Guid) && propertyType != typeof(EntityReference))
+                    {
+                        continue;
+                    }
+
+                    foreach (var conditionValue in condition.Values)
+                    {
+                        if (conditionValue == null)
+                        {
+                            continue;
+                        }
+                        if (conditionValue is Guid || conditionValue is EntityReference)
+                        {
+                            continue;
+                        }
+                        if (conditionValue is string strValue)
+                        {
+                            if (!Guid.TryParse(strValue, out _))
+                            {
+                                delay.Exception = CrmExceptions.GetGuidFormatException(condition.GetQualifiedAttributeName(), strValue);
+                                return true;
+                            }
+                            continue;
+                        }
+                        delay.Exception = CrmExceptions.GetGuidShouldBeStringOrGuidException(condition.GetQualifiedAttributeName(), conditionValue.GetType());
                         return true;
                     }
                 }

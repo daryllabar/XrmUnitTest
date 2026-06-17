@@ -344,5 +344,47 @@ namespace DLaB.Xrm.LocalCrm.Tests
             service.Update(new Contact { Id = id, CalendarTypes = Array.Empty<Calendar_Type>() });
             Assert.IsNotNull(GetContact());
         }
+
+        [TestMethod]
+        public void LocalCrmTests_ConditionExpression_EntityReferenceWithIntValueThrowsError()
+        {
+            AssertOrganizationServiceFaultException(
+                "EntityReference attribute with int condition value should throw FaultException",
+                "expected argument(s) of type 'System.Guid' but received 'System.Int32'",
+                () => Service.GetFirstOrDefault<Contact>(Contact.Fields.ParentCustomerId, 2));
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_ConditionExpression_EntityReferenceWithGuidValueWorks()
+        {
+            var result = Service.GetFirstOrDefault<Contact>(Contact.Fields.ParentCustomerId, Guid.NewGuid());
+            Assert.IsNull(result, "No contacts exist, so result should be null");
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_ConditionExpression_EntityReferenceWithEntityReferenceValueWorks()
+        {
+            // EntityReference values are valid for EntityReference attributes when using ConditionExpression directly
+            var qe = new QueryExpression(Contact.EntityLogicalName);
+            qe.Criteria.AddCondition(Contact.Fields.ParentCustomerId, ConditionOperator.Equal, new EntityReference(Account.EntityLogicalName, Guid.NewGuid()));
+            var result = Service.GetFirstOrDefault(qe);
+            Assert.IsNull(result, "No contacts exist, so result should be null");
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_ConditionExpression_EntityReferenceWithValidStringGuidValueWorks()
+        {
+            var result = Service.GetFirstOrDefault<Contact>(Contact.Fields.ParentCustomerId, Guid.NewGuid().ToString());
+            Assert.IsNull(result, "No contacts exist, so result should be null");
+        }
+
+        [TestMethod]
+        public void LocalCrmTests_ConditionExpression_EntityReferenceWithInvalidStringValueThrowsError()
+        {
+            AssertOrganizationServiceFaultException(
+                "EntityReference attribute with non-parseable string condition value should throw FaultException",
+                "Expected type of attribute value: System.Guid",
+                () => Service.GetFirstOrDefault<Contact>(Contact.Fields.ParentCustomerId, "not-a-guid"));
+        }
     }
 }
