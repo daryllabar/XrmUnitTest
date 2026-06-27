@@ -133,6 +133,13 @@ namespace DLaB.Xrm.LocalCrm
                 return value.CompareTo(new Guid(compareTo.ToString()!));
             }
 
+            if (value is bool boolValue && compareTo is not bool)
+            {
+                // Dataverse accepts int/string values for boolean conditions (e.g. FetchXML serializes as "1"/"0")
+                var compareToAsBool = ConvertToBool(compareTo);
+                return boolValue.CompareTo(compareToAsBool);
+            }
+
             return value.CompareTo(compareTo);
         }
 
@@ -196,6 +203,25 @@ namespace DLaB.Xrm.LocalCrm
             }
 
             return (IComparable) o;
+        }
+
+        /// <summary>
+        /// Converts a non-boolean value (e.g. int 0/1 or string "0"/"1"/"true"/"false") to a bool.
+        /// Dataverse/FetchXML serializes boolean condition values as integers or strings.
+        /// </summary>
+        private static bool ConvertToBool(object value)
+        {
+            return value switch
+            {
+                int i => i != 0,
+                long l => l != 0,
+                short s => s != 0,
+                byte b => b != 0,
+                string str when str == "1" || string.Equals(str, "true", StringComparison.OrdinalIgnoreCase) => true,
+                string str when str == "0" || string.Equals(str, "false", StringComparison.OrdinalIgnoreCase) => false,
+                string str => throw new ArgumentException($"Expected type of attribute value: System.Boolean. Value '{str}' cannot be converted to a boolean. Supported string values: 0, 1, true, false."),
+                _ => System.Convert.ToBoolean(value)
+            };
         }
 
         private static Guid Create<T>(LocalCrmDatabaseOrganizationService service, T entity, DelayedException exception) where T : Entity
