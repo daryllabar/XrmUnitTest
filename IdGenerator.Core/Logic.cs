@@ -45,7 +45,18 @@ namespace IdGenerator
 
             RenameDuplicateValues(idsByType);
             OrderNames(idsByType);
+            EnsureContainerNames(idsByType);
             return idsByType;
+        }
+        private void EnsureContainerNames(Dictionary<string, IdInfo> idsByType)
+        {
+            foreach (var id in idsByType.Values)
+            {
+                if (id.Names.Count > 1 && string.IsNullOrWhiteSpace(id.ContainerName))
+                {
+                    id.ContainerName = PluralizationProvider.Pluralize(GenerateNameFromEntityType(id.EntityType));
+                }
+            }
         }
 
         public string GenerateOutput(IEnumerable<IdInfo> ids)

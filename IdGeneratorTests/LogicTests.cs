@@ -82,6 +82,32 @@ namespace IdGeneratorTests
         }
 
         [TestMethod]
+        public void GenerateOutput_MultipleNamedEntitiesWithoutContainer_Should_GeneratePropertyAndClass()
+        {
+            //
+            // Arrange
+            //
+            var ids = _sut.ParseEntityTypes("Contact,StreetlightConsultant|Contact,Other");
+            //
+            // Act
+            //
+            var output = _sut.GenerateOutput(ids.Values);
+            //
+            // Assert
+            //
+            var expected = """
+                           public ContactIds Contacts { get; } = new();
+
+                           public class ContactIds
+                           {
+                               public Id<Contact> Other { get; } = new("00000001-0000-0000-0000-000000000000");
+                               public Id<Contact> StreetlightConsultant { get; } = new("00000002-0000-0000-0000-000000000000");
+                           }
+                           """;
+            Assert.AreEqual(expected, output);
+        }
+
+        [TestMethod]
         public void GenerateOutput_MultipleEntities_Should_GeneratePropertyAndClass()
         {
             //
