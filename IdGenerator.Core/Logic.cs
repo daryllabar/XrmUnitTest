@@ -129,9 +129,15 @@ namespace IdGenerator
                 throw new Exception(@"Unable to determine type for count: " + intValue);
             }
 
+            if (previousId.NameIsNameOrStructName && previousId.HasExplicitContainerName)
+            {
+                throw new ArgumentException($"Duplicate Collection Names ({previousId.ContainerName}, {previousId.PendingContainerName}) defined for Entity Type {previousId.EntityType}");
+            }
+
             if (previousId.ContainerName == null && previousId.NameIsNameOrStructName)
             {
                 previousId.ContainerName = previousId.Names[0];
+                previousId.HasExplicitContainerName = true;
                 previousId.NameIsNameOrStructName = false;
                 previousId.PreviousDefinedNames = 0;
             }
@@ -174,12 +180,18 @@ namespace IdGenerator
             switch (definedNameParts.Length)
             {
                 case > 2:
+                    if (id.HasExplicitContainerName)
+                    {
+                        throw new ArgumentException($"Duplicate Collection Names ({id.ContainerName}, {definedNameParts[1]}) defined for Entity Type {entityType}");
+                    }
                     id.ContainerName = definedNameParts[1];
+                    id.HasExplicitContainerName = true;
                     id.Names.AddRange(definedNameParts.Skip(2));
                     id.PreviousDefinedNames = definedNameParts.Length - 2;
                     break;
                 case 2:
                     id.NameIsNameOrStructName = true;
+                    id.PendingContainerName = definedNameParts[1];
                     id.Names.Add(definedNameParts[1]);
                     id.PreviousDefinedNames = 1;
                     break;
