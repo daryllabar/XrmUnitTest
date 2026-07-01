@@ -386,5 +386,49 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 "Expected type of attribute value: System.Guid",
                 () => Service.GetFirstOrDefault<Contact>(Contact.Fields.ParentCustomerId, "not-a-guid"));
         }
+
+        [TestMethod]
+        public void LocalCrmTests_ConditionExpression_BooleanAttributeWithNonBoolValue()
+        {
+            var service = Service;
+            service.Create(new Contact { DoNotEMail = true });
+            service.Create(new Contact { DoNotEMail = false });
+
+            // int 1 should match true
+            var results = service.GetEntities<Contact>(new ConditionExpression(Contact.Fields.DoNotEMail, ConditionOperator.Equal, 1));
+            Assert.HasCount(1, results, "int 1 should match DoNotEMail = true");
+
+            // int 0 should match false
+            results = service.GetEntities<Contact>(new ConditionExpression(Contact.Fields.DoNotEMail, ConditionOperator.Equal, 0));
+            Assert.HasCount(1, results, "int 0 should match DoNotEMail = false");
+
+            // long 1 should match true
+            results = service.GetEntities<Contact>(new ConditionExpression(Contact.Fields.DoNotEMail, ConditionOperator.Equal, 1L));
+            Assert.HasCount(1, results, "long 1 should match DoNotEMail = true");
+
+            // string "1" should match true
+            results = service.GetEntities<Contact>(new ConditionExpression(Contact.Fields.DoNotEMail, ConditionOperator.Equal, "1"));
+            Assert.HasCount(1, results, "string '1' should match DoNotEMail = true");
+
+            // string "0" should match false
+            results = service.GetEntities<Contact>(new ConditionExpression(Contact.Fields.DoNotEMail, ConditionOperator.Equal, "0"));
+            Assert.HasCount(1, results, "string '0' should match DoNotEMail = false");
+
+            // string "true" should match true
+            results = service.GetEntities<Contact>(new ConditionExpression(Contact.Fields.DoNotEMail, ConditionOperator.Equal, "true"));
+            Assert.HasCount(1, results, "string 'true' should match DoNotEMail = true");
+
+            // string "false" should match false
+            results = service.GetEntities<Contact>(new ConditionExpression(Contact.Fields.DoNotEMail, ConditionOperator.Equal, "false"));
+            Assert.HasCount(1, results, "string 'false' should match DoNotEMail = false");
+
+            // NotEqual with int 1 should return the false contact
+            results = service.GetEntities<Contact>(new ConditionExpression(Contact.Fields.DoNotEMail, ConditionOperator.NotEqual, 1));
+            Assert.HasCount(1, results, "NotEqual int 1 should return the DoNotEMail = false contact");
+
+            // In operator with int values
+            results = service.GetEntities<Contact>(new ConditionExpression(Contact.Fields.DoNotEMail, ConditionOperator.In, 1, 0));
+            Assert.HasCount(2, results, "In [1,0] should return both contacts");
+        }
     }
 }
