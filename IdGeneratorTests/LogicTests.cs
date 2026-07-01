@@ -650,6 +650,36 @@ namespace IdGeneratorTests
         }
 
         [TestMethod]
+        public void ParseEntityTypes_WithDuplicateCollectionNamesDifferentEntityBetween_Should_ThrowError()
+        {
+            //
+            // Arrange
+            //
+            var input = "Contact,Parents,Mom,Dad\nAccount\nContact,Grandparents,Ma,Pa";
+
+            //
+            // Act & Assert
+            //
+            var ex = Assert.ThrowsExactly<ArgumentException>(() => _sut.ParseEntityTypes(input));
+            Assert.AreEqual("Duplicate Collection Names (Parents, Grandparents) defined for Entity Type Contact", ex.Message);
+        }
+
+        [TestMethod]
+        public void ParseEntityTypes_WithDuplicateCollectionNamesViaCountDifferentEntityBetween_Should_ThrowError()
+        {
+            //
+            // Arrange
+            //
+            var input = "Contact,Parents,Mom,Dad\nAccount\nContact,Employees 2";
+
+            //
+            // Act & Assert
+            //
+            var ex = Assert.ThrowsExactly<ArgumentException>(() => _sut.ParseEntityTypes(input));
+            Assert.AreEqual("Duplicate Collection Names (Parents, Employees) defined for Entity Type Contact", ex.Message);
+        }
+
+        [TestMethod]
         public void ParseEntityTypes_WithExplicitCollectionNameAndAdditionalSingleName_Should_MergeIntoCollection()
         {
             //
