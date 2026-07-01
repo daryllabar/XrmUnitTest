@@ -603,5 +603,93 @@ namespace IdGeneratorTests
             Assert.HasCount(4, info.Names);
             Assert.AreEqual("A,B,C,D", string.Join(",", info.Names));
         }
+
+        [TestMethod]
+        public void ParseEntityTypes_WithDuplicateCollectionNamesViaCount_Should_ThrowError()
+        {
+            //
+            // Arrange
+            //
+            var input = "Contact,Partners,Jim,Bob\nContact,Employees 2";
+
+            //
+            // Act & Assert
+            //
+            var ex = Assert.ThrowsExactly<ArgumentException>(() => _sut.ParseEntityTypes(input));
+            Assert.AreEqual("Duplicate Collection Names (Partners, Employees) defined for Entity Type Contact", ex.Message);
+        }
+
+        [TestMethod]
+        public void ParseEntityTypes_WithDuplicateCollectionNamesViaExplicitNames_Should_ThrowError()
+        {
+            //
+            // Arrange
+            //
+            var input = "Contact,Partners,Jim,Bob\nContact,Employees,Sally";
+
+            //
+            // Act & Assert
+            //
+            var ex = Assert.ThrowsExactly<ArgumentException>(() => _sut.ParseEntityTypes(input));
+            Assert.AreEqual("Duplicate Collection Names (Partners, Employees) defined for Entity Type Contact", ex.Message);
+        }
+
+        [TestMethod]
+        public void ParseEntityTypes_WithDuplicateCollectionNamesWithBarePlainEntityBetween_Should_ThrowError()
+        {
+            //
+            // Arrange
+            //
+            var input = "Contact,Partners,Jim,Bob\nContact\nContact,Employees,Susan";
+
+            //
+            // Act & Assert
+            //
+            var ex = Assert.ThrowsExactly<ArgumentException>(() => _sut.ParseEntityTypes(input));
+            Assert.AreEqual("Duplicate Collection Names (Partners, Employees) defined for Entity Type Contact", ex.Message);
+        }
+
+        [TestMethod]
+        public void ParseEntityTypes_WithExplicitCollectionNameAndAdditionalSingleName_Should_MergeIntoCollection()
+        {
+            //
+            // Arrange
+            //
+            var input = "Contact,Partners,Jim,Bob\nContact,Susan";
+
+            //
+            // Act
+            //
+            var (entityType, info) = _sut.ParseEntityTypes(input).Single();
+
+            //
+            // Assert
+            //
+            Assert.AreEqual("Contact", entityType);
+            Assert.AreEqual("Partners", info.ContainerName);
+            Assert.HasCount(3, info.Names);
+            Assert.AreEqual("Bob,Jim,Susan", string.Join(",", info.Names));
+        }
+
+        [TestMethod]
+        public void ParseEntityTypes_WithMultipleSingleNames_Should_Combine()
+        {
+            //
+            // Arrange
+            //
+            var input = "Contact,Jim\nContact,Bob\nContact,Susan";
+
+            //
+            // Act
+            //
+            var (entityType, info) = _sut.ParseEntityTypes(input).Single();
+
+            //
+            // Assert
+            //
+            Assert.AreEqual("Contact", entityType);
+            Assert.HasCount(3, info.Names);
+            Assert.AreEqual("Bob,Jim,Susan", string.Join(",", info.Names));
+        }
     }
 }

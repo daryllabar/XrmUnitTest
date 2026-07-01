@@ -167,13 +167,20 @@ Account 2
 - If there are exactly 2 comma-separated values, the second value is either a single ID/property name or a collection name (if followed by a count, e.g. `Contact,Employees 2`).
 - If there are 3+ comma-separated values, the second value is the collection name and remaining values are explicit ID names.
 - Do not put spaces after commas inside comma-based tokens.
+- At most one entry per entity type may specify a collection name (via 3+ parts or via a count after 2 parts). Adding a second collection name for the same entity type is an error.
 
 Examples:
 
 ```text
 Acme_ProjectTask,Task
 Contact,Partners,Jim,Bob
-Contact,Employees 2
+Contact,Susan
+```
+
+The last two lines are equivalent to a single line:
+
+```text
+Contact,Partners,Jim,Bob,Susan
 ```
 
 ### Example input
