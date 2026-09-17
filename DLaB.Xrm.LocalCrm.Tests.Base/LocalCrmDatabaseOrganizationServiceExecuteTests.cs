@@ -60,6 +60,42 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
+        public void DeleteMultipleRequest()
+        {
+            var account = new Account { Name = "1st" };
+            account.Id = _service.Create(account);
+            var account2 = new Account { Name = "2nd" };
+            account2.Id = _service.Create(account2);
+
+            _service.Execute(new DeleteMultipleRequest
+            {
+                Targets = new EntityReferenceCollection
+                {
+                    account.ToEntityReference(),
+                    account2.ToEntityReference()
+                }
+            });
+
+            try
+            {
+                _service.GetEntity<Account>(account.Id);
+                Assert.Fail("Exception Expected!");
+            }
+            catch (FaultException<OrganizationServiceFault>)
+            {
+            }
+
+            try
+            {
+                _service.GetEntity<Account>(account2.Id);
+                Assert.Fail("Exception Expected!");
+            }
+            catch (FaultException<OrganizationServiceFault>)
+            {
+            }
+        }
+
+        [TestMethod]
         public void ExecuteTransactionRequest()
         {
             var account = new Id<Account>("576E11B7-193A-4B80-A39A-1BF6ECD27A51");

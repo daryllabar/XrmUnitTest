@@ -90,6 +90,16 @@ namespace DLaB.Xrm.LocalCrm
             return new DeleteResponse();
         }
 
+        private OrganizationResponse ExecuteInternal(DeleteMultipleRequest request)
+        {
+            foreach (var target in request.Targets)
+            {
+                Delete(target.LogicalName, target.Id);
+            }
+
+            return new OrganizationResponse();
+        }
+
         private DisassociateResponse ExecuteInternal(DisassociateRequest request)
         {
             Disassociate(request.Target.LogicalName, request.Target.Id, request.Relationship, request.RelatedEntities);
