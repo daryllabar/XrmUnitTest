@@ -70,7 +70,7 @@ namespace DLaB.Xrm.LocalCrm
         }
 
         /// <summary>
-        /// An N:N relationship (intersect) entity contains three Nullable Guid attributes (it's own id, and the ids of the two related entities),
+        /// An N:N relationship (intersect) entity contains three Nullable Guid attributes (its own id, and the ids of the two related entities),
         /// no state code, and no lookup or option set attributes.
         /// </summary>
         private static bool IsManyToManyIntersectType(Dictionary<string, PropertyInfo> properties)
