@@ -23,11 +23,25 @@
         <dependency id="Microsoft.Extensions.Configuration.UserSecrets" version="9.0.9" />
 	      <dependency id="Microsoft.PowerPlatform.Dataverse.Client" version="1.2.27" />
       </group>
+      <group targetFramework="net9.0">
+	      <dependency id="DLaB.Xrm" version="5.1.1.13" />
+        <dependency id="Microsoft.Extensions.Configuration.UserSecrets" version="9.0.9" />
+	      <dependency id="Microsoft.PowerPlatform.Dataverse.Client" version="1.2.27" />
+      </group>
+      <group targetFramework="net10.0">
+	      <dependency id="DLaB.Xrm" version="5.1.1.13" />
+        <dependency id="Microsoft.Extensions.Configuration.UserSecrets" version="9.0.9" />
+	      <dependency id="Microsoft.PowerPlatform.Dataverse.Client" version="1.2.27" />
+      </group>
     </dependencies>
   </metadata>
   <files>
     <file src="bin\Release\net8.0\DataverseUnitTest.dll" target="lib\net8.0" />
     <file src="bin\Release\net8.0\DataverseUnitTest.pdb" target="lib\net8.0" />
+    <file src="bin\Release\net9.0\DataverseUnitTest.dll" target="lib\net9.0" />
+    <file src="bin\Release\net9.0\DataverseUnitTest.pdb" target="lib\net9.0" />
+    <file src="bin\Release\net10.0\DataverseUnitTest.dll" target="lib\net10.0" />
+    <file src="bin\Release\net10.0\DataverseUnitTest.pdb" target="lib\net10.0" />
     <file src="..\..\DLaB_Dynamics_64x64.png" target="images\" />
   </files>
 </package>
