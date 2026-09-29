@@ -62,7 +62,7 @@ namespace DLaB.Xrm.LocalCrm.Tests
             var service = Service;
             var user = service.CreateEntity(new SystemUser { FirstName = "Joe" });
             var role = service.CreateEntity(new Role { Name = "Test Role" });
-            var roleUser = AddRole(service, user, role);
+            AddRole(service, user, role);
 
             var qe = QueryExpressionFactory.Create<SystemUser>();
             qe.WhereEqual(SystemUser.Fields.SystemUserId, user.Id);
@@ -74,24 +74,29 @@ namespace DLaB.Xrm.LocalCrm.Tests
             Assert.AreEqual(user.FirstName, userResult.FirstName);
             Assert.AreEqual(role.Name, userResult.GetAliasedEntity<Role>().Name);
 
-            // Remove RoleId from the SystemUserRoles record and verify that the Role Name is now null
-            roleUser["roleid"] = null;
-            service.Update(roleUser);
+            // Delete the Role, leaving the SystemUserRoles record pointing at a non-existent Role, and verify that the Role Name is now null
             service.Delete(role);
             userResult = service.GetFirst(qe);
             Assert.AreEqual(user.FirstName, userResult.FirstName);
             Assert.IsNull(userResult.GetAliasedEntity<Role>().Name);
 
             // Remove the SystemUserRoles record and verify that the Role Name is still null
-            service.Delete(roleUser);
+            RemoveRole(service, user, role);
             userResult = service.GetFirst(qe);
             Assert.AreEqual(user.FirstName, userResult.FirstName);
             Assert.IsNull(userResult.GetAliasedEntity<Role>().Name);
         }
 
-        private static SystemUserRoles AddRole(IOrganizationService service, SystemUser user, Role role)
+        private static void AddRole(IOrganizationService service, SystemUser user, Role role)
         {
-            return service.CreateEntity(new SystemUserRoles { [SystemUserRoles.Fields.SystemUserId] = user.ToEntityReference(), [SystemUserRoles.Fields.RoleId] = role.ToEntityReference() });
+            service.Associate(SystemUser.EntityLogicalName, user.Id, new Relationship(SystemUserRoles.EntityLogicalName),
+                new EntityReferenceCollection { role.ToEntityReference() });
+        }
+
+        private static void RemoveRole(IOrganizationService service, SystemUser user, Role role)
+        {
+            service.Disassociate(SystemUser.EntityLogicalName, user.Id, new Relationship(SystemUserRoles.EntityLogicalName),
+                new EntityReferenceCollection { role.ToEntityReference() });
         }
 
         [TestMethod]

@@ -145,17 +145,10 @@ namespace DLaB.Xrm.LocalCrm
             var response = new AssociateResponse();
             if (Info.ManyToManyAssociationProvider.IsManyToManyRelationship(relationship.SchemaName))
             {
-                var originalValue = EnforceValidForOperationCheck;
-                EnforceValidForOperationCheck = false;
-                try
+                ExecuteWithoutValidForOperationCheck(() =>
                 {
                     response["CreatedIds"] = Info.ManyToManyAssociationProvider.CreateAssociation(Service, entityName, entityId, relationship, relatedEntities);
-
-                }
-                finally
-                {
-                    EnforceValidForOperationCheck = originalValue;
-                }
+                });
             }
             else if (EntityHelper.IsTypeDefined(Info.EarlyBoundEntityAssembly, Info.EarlyBoundNamespace, relationship.SchemaName))
             {
@@ -179,13 +172,35 @@ namespace DLaB.Xrm.LocalCrm
         private void Associate1ToN(Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities,
             string referencedIdName, string referencingIdName)
         {
-            foreach (var relation in relatedEntities.Select(relatedEntity => new Entity(relationship.SchemaName)
+            ExecuteWithoutValidForOperationCheck(() =>
             {
-                [referencedIdName] = entityId,
-                [referencingIdName] = relatedEntity.Id
-            }))
+                foreach (var relation in relatedEntities.Select(relatedEntity => new Entity(relationship.SchemaName)
+                {
+                    [referencedIdName] = entityId,
+                    [referencingIdName] = relatedEntity.Id
+                }))
+                {
+                    Service.Create(relation);
+                }
+            });
+        }
+
+        /// <summary>
+        /// Performs the given action, without asserting the entity is valid for the operation being performed.
+        /// </summary>
+        /// <param name="action">The action to perform.</param>
+        [DebuggerStepThrough]
+        private void ExecuteWithoutValidForOperationCheck(Action action)
+        {
+            var originalValue = EnforceValidForOperationCheck;
+            EnforceValidForOperationCheck = false;
+            try
             {
-                Service.Create(relation);
+                action();
+            }
+            finally
+            {
+                EnforceValidForOperationCheck = originalValue;
             }
         }
 
@@ -253,16 +268,10 @@ namespace DLaB.Xrm.LocalCrm
 
             if (Info.ManyToManyAssociationProvider.IsManyToManyRelationship(relationship.SchemaName))
             {
-                var originalValue = EnforceValidForOperationCheck;
-                EnforceValidForOperationCheck = false;
-                try
+                ExecuteWithoutValidForOperationCheck(() =>
                 {
                     Info.ManyToManyAssociationProvider.RemoveAssociation(Service, entityName, entityId, relationship, relatedEntities);
-                }
-                finally
-                {
-                    EnforceValidForOperationCheck = originalValue;
-                }
+                });
             }
             else if (EntityHelper.IsTypeDefined(Info.EarlyBoundEntityAssembly, Info.EarlyBoundNamespace, relationship.SchemaName))
             {
@@ -284,14 +293,17 @@ namespace DLaB.Xrm.LocalCrm
         private void Disassociate1ToN(Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities,
             string referencedIdName, string referencingIdName)
         {
-            foreach (var entity in relatedEntities
-                .Select(e => QueryExpressionFactory.Create(relationship.SchemaName, referencedIdName, entityId,
-                    referencingIdName, e.Id))
-                .Select(qe => Service.RetrieveMultiple(qe).ToEntityList<Entity>().FirstOrDefault())
-                .Where(entity => entity != null))
+            ExecuteWithoutValidForOperationCheck(() =>
             {
-                Service.Delete(entity!);
-            }
+                foreach (var entity in relatedEntities
+                    .Select(e => QueryExpressionFactory.Create(relationship.SchemaName, referencedIdName, entityId,
+                        referencingIdName, e.Id))
+                    .Select(qe => Service.RetrieveMultiple(qe).ToEntityList<Entity>().FirstOrDefault())
+                    .Where(entity => entity != null))
+                {
+                    Service.Delete(entity!);
+                }
+            });
         }
 
 
@@ -434,6 +446,7 @@ namespace DLaB.Xrm.LocalCrm
             {
                 return;
             }
+
             switch (logicalName)
             {
                 case ActivityParty.EntityLogicalName:
@@ -441,6 +454,18 @@ namespace DLaB.Xrm.LocalCrm
                 case PrincipalObjectAccess.EntityLogicalName when operation is nameof(Create) or nameof(Update) or nameof(Delete):
                     throw CrmExceptions.GetOperationDoesNotSupportEntitiesOfTypeException(operation, logicalName);
             }
+
+            if (IsManyToManyIntersectEntity(logicalName))
+            {
+                throw CrmExceptions.GetOperationDoesNotSupportEntitiesOfTypeException(operation, logicalName);
+            }
+        }
+
+        [DebuggerHidden]
+        private bool IsManyToManyIntersectEntity(string logicalName)
+        {
+            return Info.IsTypeDefined(logicalName)
+                && EntityPropertiesCache.Instance.For(Info, logicalName).IsManyToManyIntersect;
         }
 
         #region IClientSideOrganizationService Members

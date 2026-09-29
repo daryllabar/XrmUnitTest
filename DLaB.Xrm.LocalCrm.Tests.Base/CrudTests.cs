@@ -429,11 +429,22 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 Name = nameof(LocalCrmTests_Crud_CreateJoinEntity)
             };
             role.Id = service.Create(role);
+
+            // N:N Join Entities can only be created via an Associate
+            service.Associate(SystemUser.EntityLogicalName, info.UserId, new Relationship(SystemUserRoles.EntityLogicalName),
+                new EntityReferenceCollection { role.ToEntityReference() });
+
+            Assert.HasCount(1, service.GetEntities(SystemUserRoles.EntityLogicalName), "The N:N record should have been created!");
+
+            dbInfo.AllowCrudOperationsForEntities.Add(SystemUserRoles.EntityLogicalName);
+            service = new LocalCrmDatabaseOrganizationService(dbInfo);
             service.Create(new SystemUserRoles
             {
                 [SystemUserRoles.Fields.SystemUserId] = info.UserId,
                 [SystemUserRoles.Fields.RoleId] = role.Id
             });
+
+            Assert.HasCount(2, service.GetEntities(SystemUserRoles.EntityLogicalName), "The N:N record should have been created!");
         }
 
 
