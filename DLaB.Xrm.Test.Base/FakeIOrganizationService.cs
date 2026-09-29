@@ -814,56 +814,56 @@ namespace DLaB.Xrm.Test
         #region IServiceFaked<IOrganizationService> Members
 #if NET
         /// <inheritdoc/>
-        public Task AssociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
+        public override Task AssociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
         {
             return Task.Run(() => Associate(entityName, entityId, relationship, relatedEntities));
         }
 
         /// <inheritdoc/>
-        public Task AssociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities, CancellationToken cancellationToken)
+        public override Task AssociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities, CancellationToken cancellationToken)
         {
             return Task.Run(() => Associate(entityName, entityId, relationship, relatedEntities), cancellationToken);
         }
 
         /// <inheritdoc/>
-        public Task<Entity> CreateAndReturnAsync(Entity entity, CancellationToken cancellationToken)
+        public override Task<Entity> CreateAndReturnAsync(Entity entity, CancellationToken cancellationToken)
         {
             entity.Id = Create(entity);
             return Task.FromResult(entity);
         }
 
         /// <inheritdoc/>
-        public Task<Guid> CreateAsync(Entity entity)
+        public override Task<Guid> CreateAsync(Entity entity)
         {
             return Task.FromResult(Create(entity));
         }
 
         /// <inheritdoc/>
-        public Task<Guid> CreateAsync(Entity entity, CancellationToken cancellationToken)
+        public override Task<Guid> CreateAsync(Entity entity, CancellationToken cancellationToken)
         {
             return Task.FromResult(Create(entity));
         }
 
         /// <inheritdoc/>
-        public Task DeleteAsync(string entityName, Guid id)
+        public override Task DeleteAsync(string entityName, Guid id)
         {
             return Task.Run(() => Delete(entityName, id));
         }
 
         /// <inheritdoc/>
-        public Task DeleteAsync(string entityName, Guid id, CancellationToken cancellationToken)
+        public override Task DeleteAsync(string entityName, Guid id, CancellationToken cancellationToken)
         {
             return Task.Run(() => Delete(entityName, id), cancellationToken);
         }
 
         /// <inheritdoc/>
-        public Task DisassociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
+        public override Task DisassociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
         {
             return Task.Run(() => Disassociate(entityName, entityId, relationship, relatedEntities));
         }
 
         /// <inheritdoc/>
-        public Task DisassociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities,
+        public override Task DisassociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities,
             CancellationToken cancellationToken)
         {
             return Task.Run(() => Disassociate(entityName, entityId, relationship, relatedEntities), cancellationToken);
@@ -871,50 +871,50 @@ namespace DLaB.Xrm.Test
 
 
         /// <inheritdoc/>
-        public Task<OrganizationResponse> ExecuteAsync(OrganizationRequest request)
+        public override Task<OrganizationResponse> ExecuteAsync(OrganizationRequest request)
         {
             return Task.FromResult(Execute(request));
         }
 
         /// <inheritdoc/>
-        public Task<OrganizationResponse> ExecuteAsync(OrganizationRequest request, CancellationToken cancellationToken)
+        public override Task<OrganizationResponse> ExecuteAsync(OrganizationRequest request, CancellationToken cancellationToken)
         {
             return Task.FromResult(Execute(request));
         }
 
         /// <inheritdoc/>
-        public Task<Entity> RetrieveAsync(string entityName, Guid id, ColumnSet columnSet)
+        public override Task<Entity> RetrieveAsync(string entityName, Guid id, ColumnSet columnSet)
         {
             return Task.FromResult(Retrieve(entityName, id, columnSet));
         }
 
         /// <inheritdoc/>
-        public Task<Entity> RetrieveAsync(string entityName, Guid id, ColumnSet columnSet, CancellationToken cancellationToken)
+        public override Task<Entity> RetrieveAsync(string entityName, Guid id, ColumnSet columnSet, CancellationToken cancellationToken)
         {
             return Task.FromResult(Retrieve(entityName, id, columnSet));
         }
 
         /// <inheritdoc/>
-        public Task<EntityCollection> RetrieveMultipleAsync(QueryBase query)
+        public override Task<EntityCollection> RetrieveMultipleAsync(QueryBase query)
         {
             return Task.FromResult(RetrieveMultiple(query));
         }
 
         /// <inheritdoc/>
-        public Task<EntityCollection> RetrieveMultipleAsync(QueryBase query, CancellationToken cancellationToken)
+        public override Task<EntityCollection> RetrieveMultipleAsync(QueryBase query, CancellationToken cancellationToken)
         {
             return Task.FromResult(RetrieveMultiple(query));
         }
 
 
         /// <inheritdoc/>
-        public Task UpdateAsync(Entity entity)
+        public override Task UpdateAsync(Entity entity)
         {
             return Task.Run(() => Update(entity));
         }
 
         /// <inheritdoc/>
-        public Task UpdateAsync(Entity entity, CancellationToken cancellationToken)
+        public override Task UpdateAsync(Entity entity, CancellationToken cancellationToken)
         {
             return Task.Run(() => Update(entity), cancellationToken);
         }

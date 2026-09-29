@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AggregateFetchXmlTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AliasedValueTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AssertCrmExceptionTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AsyncCrudTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseTestClass.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConditionExpressionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)InvalidEntityOperationTests.cs" />

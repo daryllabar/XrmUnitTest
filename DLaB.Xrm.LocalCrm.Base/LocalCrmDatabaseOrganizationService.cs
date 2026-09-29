@@ -10,6 +10,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+#if NET
+using System.Threading;
+using System.Threading.Tasks;
+#endif
 
 namespace DLaB.Xrm.LocalCrm
 {
@@ -469,6 +473,136 @@ namespace DLaB.Xrm.LocalCrm
         }
 
         #endregion
+
+#if NET
+        #region IOrganizationServiceAsync2 Members
+
+        /// <inheritdoc/>
+        [DebuggerStepThrough]
+        public Task AssociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
+        {
+            Associate(entityName, entityId, relationship, relatedEntities);
+            return Task.CompletedTask;
+        }
+
+        /// <inheritdoc/>
+        [DebuggerStepThrough]
+        public Task AssociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities, CancellationToken cancellationToken)
+        {
+            return AssociateAsync(entityName, entityId, relationship, relatedEntities);
+        }
+
+        /// <inheritdoc/>
+        [DebuggerStepThrough]
+        public Task<Entity> CreateAndReturnAsync(Entity entity, CancellationToken cancellationToken)
+        {
+            entity.Id = Create(entity);
+            return Task.FromResult(entity);
+        }
+
+        /// <inheritdoc/>
+        [DebuggerStepThrough]
+        public Task<Guid> CreateAsync(Entity entity)
+        {
+            return Task.FromResult(Create(entity));
+        }
+
+        /// <inheritdoc/>
+        [DebuggerStepThrough]
+        public Task<Guid> CreateAsync(Entity entity, CancellationToken cancellationToken)
+        {
+            return CreateAsync(entity);
+        }
+
+        /// <inheritdoc/>
+        [DebuggerStepThrough]
+        public Task DeleteAsync(string entityName, Guid id)
+        {
+            Delete(entityName, id);
+            return Task.CompletedTask;
+        }
+
+        /// <inheritdoc/>
+        [DebuggerStepThrough]
+        public Task DeleteAsync(string entityName, Guid id, CancellationToken cancellationToken)
+        {
+            return DeleteAsync(entityName, id);
+        }
+
+        /// <inheritdoc/>
+        [DebuggerStepThrough]
+        public Task DisassociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
+        {
+            Disassociate(entityName, entityId, relationship, relatedEntities);
+            return Task.CompletedTask;
+        }
+
+        /// <inheritdoc/>
+        [DebuggerStepThrough]
+        public Task DisassociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities, CancellationToken cancellationToken)
+        {
+            return DisassociateAsync(entityName, entityId, relationship, relatedEntities);
+        }
+
+        /// <inheritdoc/>
+        [DebuggerStepThrough]
+        public Task<OrganizationResponse> ExecuteAsync(OrganizationRequest request)
+        {
+            return Task.FromResult(Execute(request));
+        }
+
+        /// <inheritdoc/>
+        [DebuggerStepThrough]
+        public Task<OrganizationResponse> ExecuteAsync(OrganizationRequest request, CancellationToken cancellationToken)
+        {
+            return ExecuteAsync(request);
+        }
+
+        /// <inheritdoc/>
+        [DebuggerStepThrough]
+        public Task<Entity> RetrieveAsync(string entityName, Guid id, ColumnSet columnSet)
+        {
+            return Task.FromResult(Retrieve(entityName, id, columnSet));
+        }
+
+        /// <inheritdoc/>
+        [DebuggerStepThrough]
+        public Task<Entity> RetrieveAsync(string entityName, Guid id, ColumnSet columnSet, CancellationToken cancellationToken)
+        {
+            return RetrieveAsync(entityName, id, columnSet);
+        }
+
+        /// <inheritdoc/>
+        [DebuggerStepThrough]
+        public Task<EntityCollection> RetrieveMultipleAsync(QueryBase query)
+        {
+            return Task.FromResult(RetrieveMultiple(query));
+        }
+
+        /// <inheritdoc/>
+        [DebuggerStepThrough]
+        public Task<EntityCollection> RetrieveMultipleAsync(QueryBase query, CancellationToken cancellationToken)
+        {
+            return RetrieveMultipleAsync(query);
+        }
+
+        /// <inheritdoc/>
+        [DebuggerStepThrough]
+        public Task UpdateAsync(Entity entity)
+        {
+            Update(entity);
+            return Task.CompletedTask;
+        }
+
+        /// <inheritdoc/>
+        [DebuggerStepThrough]
+        public Task UpdateAsync(Entity entity, CancellationToken cancellationToken)
+        {
+            return UpdateAsync(entity);
+        }
+
+        #endregion IOrganizationServiceAsync2 Members
+#endif
 
         #region IDisposable Members
 
