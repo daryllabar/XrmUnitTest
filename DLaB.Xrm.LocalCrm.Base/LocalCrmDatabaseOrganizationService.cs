@@ -145,17 +145,10 @@ namespace DLaB.Xrm.LocalCrm
             var response = new AssociateResponse();
             if (Info.ManyToManyAssociationProvider.IsManyToManyRelationship(relationship.SchemaName))
             {
-                var originalValue = EnforceValidForOperationCheck;
-                EnforceValidForOperationCheck = false;
-                try
+                ExecuteWithoutValidForOperationCheck(() =>
                 {
                     response["CreatedIds"] = Info.ManyToManyAssociationProvider.CreateAssociation(Service, entityName, entityId, relationship, relatedEntities);
-
-                }
-                finally
-                {
-                    EnforceValidForOperationCheck = originalValue;
-                }
+                });
             }
             else if (EntityHelper.IsTypeDefined(Info.EarlyBoundEntityAssembly, Info.EarlyBoundNamespace, relationship.SchemaName))
             {
@@ -196,6 +189,7 @@ namespace DLaB.Xrm.LocalCrm
         /// Performs the given action, without asserting the entity is valid for the operation being performed.
         /// </summary>
         /// <param name="action">The action to perform.</param>
+        [DebuggerStepThrough]
         private void ExecuteWithoutValidForOperationCheck(Action action)
         {
             var originalValue = EnforceValidForOperationCheck;
@@ -274,16 +268,10 @@ namespace DLaB.Xrm.LocalCrm
 
             if (Info.ManyToManyAssociationProvider.IsManyToManyRelationship(relationship.SchemaName))
             {
-                var originalValue = EnforceValidForOperationCheck;
-                EnforceValidForOperationCheck = false;
-                try
+                ExecuteWithoutValidForOperationCheck(() =>
                 {
                     Info.ManyToManyAssociationProvider.RemoveAssociation(Service, entityName, entityId, relationship, relatedEntities);
-                }
-                finally
-                {
-                    EnforceValidForOperationCheck = originalValue;
-                }
+                });
             }
             else if (EntityHelper.IsTypeDefined(Info.EarlyBoundEntityAssembly, Info.EarlyBoundNamespace, relationship.SchemaName))
             {
@@ -458,6 +446,7 @@ namespace DLaB.Xrm.LocalCrm
             {
                 return;
             }
+
             switch (logicalName)
             {
                 case ActivityParty.EntityLogicalName:

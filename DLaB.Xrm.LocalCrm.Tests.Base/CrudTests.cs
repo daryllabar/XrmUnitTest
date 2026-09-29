@@ -435,6 +435,16 @@ namespace DLaB.Xrm.LocalCrm.Tests
                 new EntityReferenceCollection { role.ToEntityReference() });
 
             Assert.HasCount(1, service.GetEntities(SystemUserRoles.EntityLogicalName), "The N:N record should have been created!");
+
+            dbInfo.AllowCrudOperationsForEntities.Add(SystemUserRoles.EntityLogicalName);
+            service = new LocalCrmDatabaseOrganizationService(dbInfo);
+            service.Create(new SystemUserRoles
+            {
+                [SystemUserRoles.Fields.SystemUserId] = info.UserId,
+                [SystemUserRoles.Fields.RoleId] = role.Id
+            });
+
+            Assert.HasCount(2, service.GetEntities(SystemUserRoles.EntityLogicalName), "The N:N record should have been created!");
         }
 
 

@@ -15,8 +15,7 @@ namespace DLaB.Xrm.LocalCrm
         public bool IsActivityType => PropertiesByName.ContainsKey("ActivityId");
 
         /// <summary>
-        /// Determines if the entity is an N:N relationship (intersect) entity.  These entities only contain their own id, and the id of the two related entities,
-        /// and can not be Created/Updated/Deleted.
+        /// Determines if the entity is an N:N relationship (intersect) entity.  These entities only contain their own id, and the id of the two related entities, and can not be Created/Updated/Deleted.
         /// </summary>
         public bool IsManyToManyIntersect { get; private set; }
         
