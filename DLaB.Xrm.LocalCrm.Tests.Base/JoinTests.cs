@@ -9,6 +9,12 @@ namespace DLaB.Xrm.LocalCrm.Tests
     [TestClass]
     public class JoinTests : BaseTestClass
     {
+        protected override void Initialize()
+        {
+            // N:N Join Entities are not creatable by default
+            Service.Info.AllowCrudOperationsForEntities.Add(SystemUserRoles.EntityLogicalName);
+        }
+
         [TestMethod]
         public void LocalCrmTests_Join_RetrieveFilterOnOuterJoinedColumn()
         {

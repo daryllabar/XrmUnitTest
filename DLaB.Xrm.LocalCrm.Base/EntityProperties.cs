@@ -13,6 +13,12 @@ namespace DLaB.Xrm.LocalCrm
         public string EntityName { get; private set; } = string.Empty;
 
         public bool IsActivityType => PropertiesByName.ContainsKey("ActivityId");
+
+        /// <summary>
+        /// Determines if the entity is an N:N relationship (intersect) entity.  These entities only contain their own id, and the id of the two related entities,
+        /// and can not be Created/Updated/Deleted.
+        /// </summary>
+        public bool IsManyToManyIntersect { get; private set; }
         
         private EntityProperties()
         {
@@ -58,8 +64,38 @@ namespace DLaB.Xrm.LocalCrm
                                                     .GroupBy(k => k.Key, p => p.Property)
                                                     .ToDictionary(k => k.Key, p => p.ToList()),
             };
+            entity.IsManyToManyIntersect = IsManyToManyIntersectType(properties);
 
             return entity;
+        }
+
+        /// <summary>
+        /// An N:N relationship (intersect) entity contains three Nullable Guid attributes (it's own id, and the ids of the two related entities),
+        /// no state code, and no lookup or option set attributes.
+        /// </summary>
+        private static bool IsManyToManyIntersectType(Dictionary<string, PropertyInfo> properties)
+        {
+            if (properties.ContainsKey("StateCode"))
+            {
+                return false;
+            }
+
+            var idCount = 0;
+            foreach (var property in properties.Values.Where(p => p.GetAttributeLogicalName(false) != null))
+            {
+                if (property.PropertyType == typeof(EntityReference)
+                    || property.PropertyType == typeof(OptionSetValue))
+                {
+                    return false;
+                }
+
+                if (property.PropertyType == typeof(Guid?))
+                {
+                    idCount++;
+                }
+            }
+
+            return idCount == 3;
         }
     }
 }

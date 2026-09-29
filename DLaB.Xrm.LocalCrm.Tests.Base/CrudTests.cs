@@ -422,6 +422,8 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void LocalCrmTests_Crud_CreateJoinEntity()
         {
             var dbInfo = LocalCrmDatabaseInfo.Create<CrmContext>();
+            // N:N Join Entities are not creatable by default
+            dbInfo.AllowCrudOperationsForEntities.Add(SystemUserRoles.EntityLogicalName);
             var service = new LocalCrmDatabaseOrganizationService(dbInfo);
             var info = service.GetCurrentlyExecutingUserInfo();
             var role = new Role
