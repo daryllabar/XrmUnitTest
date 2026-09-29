@@ -62,12 +62,15 @@ namespace DLaB.Xrm.LocalCrm.Tests
         public void N2NJoinEntity_Should_NotBeEditable()
         {
             var info = LocalCrmDatabaseInfo.Create<CrmContext>(nameof(N2NJoinEntity_Should_NotBeEditable));
-            info.AllowCrudOperationsForEntities.Add(AccountLeads.EntityLogicalName);
             var service = new LocalCrmDatabaseOrganizationService(info);
-            var accountLead = new AccountLeads();
-            accountLead.Id = service.Create(accountLead); // Normally not allowed
+            var accountId = service.Create(new Account());
+            var leadId = service.Create(new Lead());
 
-            info.AllowCrudOperationsForEntities.Remove(AccountLeads.EntityLogicalName);
+            // The only supported way to create an N:N record is via an Associate
+            service.Associate(Lead.EntityLogicalName, leadId, new Relationship(AccountLeads.EntityLogicalName),
+                new EntityReferenceCollection { new EntityReference(Account.EntityLogicalName, accountId) });
+            var accountLead = service.GetFirst<AccountLeads>();
+
             try
             {
                 service.Create(new AccountLeads());
