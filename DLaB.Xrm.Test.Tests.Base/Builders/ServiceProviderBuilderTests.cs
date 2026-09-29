@@ -76,6 +76,7 @@ namespace DLaB.Xrm.Test.Tests.Builders
         [TestMethod]
         public void ServiceProviderBuilder_BuildInternal_Should_OverrideDefault()
         {
+            TestInitializer.InitializeTestSettings();
             var defaultProvider = new FakeServiceProvider();
             var builder = new TestServiceBuilder
             {
