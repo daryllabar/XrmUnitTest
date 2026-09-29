@@ -30,7 +30,7 @@ dotnet clean XrmUnitTest.sln -p:EnableWindowsTargeting=true
 
 ### Key Directories
 - `2013/`, `2015/`, `2016/`, `09/` - CRM version-specific projects (XrmUnitTest.YYYY)
-- `Dataverse/` - Modern Dataverse projects (net8.0)
+- `Dataverse/` - Modern Dataverse projects (DataverseUnitTest multi-targets net8.0;net9.0;net10.0, tests net10.0)
 - `DLaB.Xrm.*.Base/` - Shared projects (.shproj) for code reuse across frameworks
   - `Test.Base` - Core testing framework (TestBase.cs, AssertCrm.cs, FakeIOrganizationService.cs)
   - `LocalCrm.Base` - In-memory fake CRM implementation

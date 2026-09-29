@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>DataverseUnitTest.snk</AssemblyOriginatorKeyFile>
 	  <DebugType>portable</DebugType>
     <DelaySign>false</DelaySign>
-    <Version>3.4.0.55</Version>
+    <Version>3.4.0.56</Version>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <AssemblyVersion>3.4.0.55</AssemblyVersion>
-    <FileVersion>3.4.0.55</FileVersion>
+    <AssemblyVersion>3.4.0.56</AssemblyVersion>
+    <FileVersion>3.4.0.56</FileVersion>
 	  <LangVersion>latest</LangVersion>
 	  <Nullable>enable</Nullable>
   </PropertyGroup>
