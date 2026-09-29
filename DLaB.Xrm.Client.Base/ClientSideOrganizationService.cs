@@ -1,6 +1,11 @@
 ﻿using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using System;
+#if NET
+using Microsoft.PowerPlatform.Dataverse.Client;
+using System.Threading;
+using System.Threading.Tasks;
+#endif
 
 namespace DLaB.Xrm.Client
 {
@@ -148,6 +153,163 @@ namespace DLaB.Xrm.Client
         }
 
         #endregion
+
+#if NET
+        #region IOrganizationServiceAsync2 Members
+
+        /// <summary>
+        /// Gets the wrapped service as an IOrganizationServiceAsync, or null if it does not implement it.
+        /// </summary>
+        private IOrganizationServiceAsync? AsyncService => Service as IOrganizationServiceAsync;
+
+        /// <summary>
+        /// Gets the wrapped service as an IOrganizationServiceAsync2, or null if it does not implement it.
+        /// </summary>
+        private IOrganizationServiceAsync2? AsyncService2 => Service as IOrganizationServiceAsync2;
+
+        /// <inheritdoc/>
+        [System.Diagnostics.DebuggerHidden]
+        public virtual Task AssociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
+        {
+            return AsyncService?.AssociateAsync(entityName, entityId, relationship, relatedEntities)
+                   ?? Task.Run(() => Associate(entityName, entityId, relationship, relatedEntities));
+        }
+
+        /// <inheritdoc/>
+        [System.Diagnostics.DebuggerHidden]
+        public virtual Task AssociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities, CancellationToken cancellationToken)
+        {
+            return AsyncService2?.AssociateAsync(entityName, entityId, relationship, relatedEntities, cancellationToken)
+                   ?? Task.Run(() => Associate(entityName, entityId, relationship, relatedEntities), cancellationToken);
+        }
+
+        /// <inheritdoc/>
+        [System.Diagnostics.DebuggerHidden]
+        public virtual Task<Entity> CreateAndReturnAsync(Entity entity, CancellationToken cancellationToken)
+        {
+            if (AsyncService2 != null)
+            {
+                return AsyncService2.CreateAndReturnAsync(entity, cancellationToken);
+            }
+
+            entity.Id = Create(entity);
+            return Task.FromResult(entity);
+        }
+
+        /// <inheritdoc/>
+        [System.Diagnostics.DebuggerHidden]
+        public virtual Task<Guid> CreateAsync(Entity entity)
+        {
+            return AsyncService?.CreateAsync(entity)
+                   ?? Task.FromResult(Create(entity));
+        }
+
+        /// <inheritdoc/>
+        [System.Diagnostics.DebuggerHidden]
+        public virtual Task<Guid> CreateAsync(Entity entity, CancellationToken cancellationToken)
+        {
+            return AsyncService2?.CreateAsync(entity, cancellationToken)
+                   ?? Task.FromResult(Create(entity));
+        }
+
+        /// <inheritdoc/>
+        [System.Diagnostics.DebuggerHidden]
+        public virtual Task DeleteAsync(string entityName, Guid id)
+        {
+            return AsyncService?.DeleteAsync(entityName, id)
+                   ?? Task.Run(() => Delete(entityName, id));
+        }
+
+        /// <inheritdoc/>
+        [System.Diagnostics.DebuggerHidden]
+        public virtual Task DeleteAsync(string entityName, Guid id, CancellationToken cancellationToken)
+        {
+            return AsyncService2?.DeleteAsync(entityName, id, cancellationToken)
+                   ?? Task.Run(() => Delete(entityName, id), cancellationToken);
+        }
+
+        /// <inheritdoc/>
+        [System.Diagnostics.DebuggerHidden]
+        public virtual Task DisassociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
+        {
+            return AsyncService?.DisassociateAsync(entityName, entityId, relationship, relatedEntities)
+                   ?? Task.Run(() => Disassociate(entityName, entityId, relationship, relatedEntities));
+        }
+
+        /// <inheritdoc/>
+        [System.Diagnostics.DebuggerHidden]
+        public virtual Task DisassociateAsync(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities, CancellationToken cancellationToken)
+        {
+            return AsyncService2?.DisassociateAsync(entityName, entityId, relationship, relatedEntities, cancellationToken)
+                   ?? Task.Run(() => Disassociate(entityName, entityId, relationship, relatedEntities), cancellationToken);
+        }
+
+        /// <inheritdoc/>
+        [System.Diagnostics.DebuggerHidden]
+        public virtual Task<OrganizationResponse> ExecuteAsync(OrganizationRequest request)
+        {
+            return AsyncService?.ExecuteAsync(request)
+                   ?? Task.FromResult(Execute(request));
+        }
+
+        /// <inheritdoc/>
+        [System.Diagnostics.DebuggerHidden]
+        public virtual Task<OrganizationResponse> ExecuteAsync(OrganizationRequest request, CancellationToken cancellationToken)
+        {
+            return AsyncService2?.ExecuteAsync(request, cancellationToken)
+                   ?? Task.FromResult(Execute(request));
+        }
+
+        /// <inheritdoc/>
+        [System.Diagnostics.DebuggerHidden]
+        public virtual Task<Entity> RetrieveAsync(string entityName, Guid id, ColumnSet columnSet)
+        {
+            return AsyncService?.RetrieveAsync(entityName, id, columnSet)
+                   ?? Task.FromResult(Retrieve(entityName, id, columnSet));
+        }
+
+        /// <inheritdoc/>
+        [System.Diagnostics.DebuggerHidden]
+        public virtual Task<Entity> RetrieveAsync(string entityName, Guid id, ColumnSet columnSet, CancellationToken cancellationToken)
+        {
+            return AsyncService2?.RetrieveAsync(entityName, id, columnSet, cancellationToken)
+                   ?? Task.FromResult(Retrieve(entityName, id, columnSet));
+        }
+
+        /// <inheritdoc/>
+        [System.Diagnostics.DebuggerHidden]
+        public virtual Task<EntityCollection> RetrieveMultipleAsync(QueryBase query)
+        {
+            return AsyncService?.RetrieveMultipleAsync(query)
+                   ?? Task.FromResult(RetrieveMultiple(query));
+        }
+
+        /// <inheritdoc/>
+        [System.Diagnostics.DebuggerHidden]
+        public virtual Task<EntityCollection> RetrieveMultipleAsync(QueryBase query, CancellationToken cancellationToken)
+        {
+            return AsyncService2?.RetrieveMultipleAsync(query, cancellationToken)
+                   ?? Task.FromResult(RetrieveMultiple(query));
+        }
+
+        /// <inheritdoc/>
+        [System.Diagnostics.DebuggerHidden]
+        public virtual Task UpdateAsync(Entity entity)
+        {
+            return AsyncService?.UpdateAsync(entity)
+                   ?? Task.Run(() => Update(entity));
+        }
+
+        /// <inheritdoc/>
+        [System.Diagnostics.DebuggerHidden]
+        public virtual Task UpdateAsync(Entity entity, CancellationToken cancellationToken)
+        {
+            return AsyncService2?.UpdateAsync(entity, cancellationToken)
+                   ?? Task.Run(() => Update(entity), cancellationToken);
+        }
+
+        #endregion IOrganizationServiceAsync2 Members
+#endif
 
         #region IDisposable Members
 
