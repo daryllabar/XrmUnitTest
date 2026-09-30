@@ -17,12 +17,12 @@ namespace DLaB.Xrm.LocalCrm
         /// <summary>
         /// Determines if the entity is an N:N relationship (intersect) entity.  These entities only contain their own id, and the id of the two related entities, and can not be Created/Updated/Deleted.
         /// </summary>
-        public bool IsManyToManyIntersect { get; private set; }
+        public bool IsManyToManyIntersect => ManyToManyIntersectIdAttributes.Length == 2;
 
         /// <summary>
         /// The logical names of the two id attributes of the related entities of an N:N relationship (intersect) entity.  Empty if the entity is not an intersect entity.
         /// </summary>
-        public string[] ManyToManyIntersectIdAttributes { get; private set; } = new string[0];
+        public string[] ManyToManyIntersectIdAttributes { get; private set; } = [];
         
         private EntityProperties()
         {
@@ -68,8 +68,7 @@ namespace DLaB.Xrm.LocalCrm
                                                     .GroupBy(k => k.Key, p => p.Property)
                                                     .ToDictionary(k => k.Key, p => p.ToList()),
             };
-            entity.IsManyToManyIntersect = IsManyToManyIntersectType(properties, out var intersectIdAttributes);
-            entity.ManyToManyIntersectIdAttributes = intersectIdAttributes;
+            entity.ManyToManyIntersectIdAttributes = GetManyToManyIntersectIds(properties);
 
             return entity;
         }
@@ -78,12 +77,11 @@ namespace DLaB.Xrm.LocalCrm
         /// An N:N relationship (intersect) entity contains three Nullable Guid attributes (its own id, and the ids of the two related entities),
         /// no state code, and no lookup or option set attributes.
         /// </summary>
-        private static bool IsManyToManyIntersectType(Dictionary<string, PropertyInfo> properties, out string[] intersectIdAttributes)
+        private static string[] GetManyToManyIntersectIds(Dictionary<string, PropertyInfo> properties)
         {
-            intersectIdAttributes = new string[0];
             if (properties.ContainsKey("StateCode"))
             {
-                return false;
+                return Array.Empty<string>();
             }
 
             var ids = new List<string>();
@@ -92,7 +90,7 @@ namespace DLaB.Xrm.LocalCrm
                 if (property.PropertyType == typeof(EntityReference)
                     || property.PropertyType == typeof(OptionSetValue))
                 {
-                    return false;
+                    return Array.Empty<string>();
                 }
 
                 if (property.PropertyType == typeof(Guid?))
@@ -103,14 +101,13 @@ namespace DLaB.Xrm.LocalCrm
 
             if (ids.Count != 3)
             {
-                return false;
+                return Array.Empty<string>();
             }
 
             var primaryIdAttribute = properties.TryGetValue("Id", out var idProperty)
                 ? idProperty.GetAttributeLogicalName(false)
                 : null;
-            intersectIdAttributes = ids.Where(id => id != primaryIdAttribute).ToArray();
-            return true;
+            return ids.Where(id => id != primaryIdAttribute).ToArray();
         }
     }
 }

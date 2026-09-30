@@ -126,10 +126,7 @@ namespace DLaB.Xrm.Test
             {
                 Relationship = new Relationship(LogicalName),
                 Target = new EntityReference(PrimaryEntityLogicalName, GetId(intersectEntity, PrimaryEntityIdName)),
-                RelatedEntities = new EntityReferenceCollection
-                {
-                    new EntityReference(AssociatedEntityLogicalName, GetId(intersectEntity, AssociatedEntityIdName))
-                }
+                RelatedEntities = [new EntityReference(AssociatedEntityLogicalName, GetId(intersectEntity, AssociatedEntityIdName))]
             };
         }
 
