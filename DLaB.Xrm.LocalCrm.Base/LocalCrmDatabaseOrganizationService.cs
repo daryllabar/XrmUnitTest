@@ -6,6 +6,7 @@ using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -142,36 +143,38 @@ namespace DLaB.Xrm.LocalCrm
                 throw new NotImplementedException("Referencing Not Currently Implemented");
             }
 
-            var response = new AssociateResponse();
             if (Info.ManyToManyAssociationProvider.IsManyToManyRelationship(relationship.SchemaName))
             {
+                var response = new AssociateResponse();
                 ExecuteWithoutValidForOperationCheck(() =>
                 {
                     response["CreatedIds"] = Info.ManyToManyAssociationProvider.CreateAssociation(Service, entityName, entityId, relationship, relatedEntities);
                 });
+                return response;
             }
-            else if (EntityHelper.IsTypeDefined(Info.EarlyBoundEntityAssembly, Info.EarlyBoundNamespace, relationship.SchemaName))
-            {
-                var referencedIdName = EntityHelper.GetIdAttributeName(GetType(entityName));
-                var referencingIdName = EntityHelper.GetIdAttributeName(GetType(relatedEntities.First().LogicalName));
-                if (referencedIdName == referencingIdName)
-                {
-                    referencedIdName += "one";
-                    referencingIdName += "two";
-                }
 
-                Associate1ToN(entityId, relationship, relatedEntities, referencedIdName, referencingIdName);
-            }
-            else
+            if (!EntityHelper.IsTypeDefined(Info.EarlyBoundEntityAssembly, Info.EarlyBoundNamespace, relationship.SchemaName))
             {
                 throw new NotImplementedException($"No entity found with logical name '{relationship.SchemaName}' for 1:N relationship!  {Info.ManyToManyAssociationProvider.GetNotFoundErrorMessage()}");
             }
-            return response;
+
+            var referencedIdName = EntityHelper.GetIdAttributeName(GetType(entityName));
+            var referencingIdName = EntityHelper.GetIdAttributeName(GetType(relatedEntities.First().LogicalName));
+            if (referencedIdName == referencingIdName)
+            {
+                referencedIdName += "one";
+                referencingIdName += "two";
+            }
+
+            return Associate1ToN(entityId, relationship, relatedEntities, referencedIdName, referencingIdName);
+
         }
 
-        private void Associate1ToN(Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities,
+        private AssociateResponse Associate1ToN(Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities,
             string referencedIdName, string referencingIdName)
         {
+            var response = new AssociateResponse();
+            var ids = new List<Guid>();
             ExecuteWithoutValidForOperationCheck(() =>
             {
                 foreach (var relation in relatedEntities.Select(relatedEntity => new Entity(relationship.SchemaName)
@@ -180,9 +183,11 @@ namespace DLaB.Xrm.LocalCrm
                     [referencingIdName] = relatedEntity.Id
                 }))
                 {
-                    Service.Create(relation);
+                    ids.Add(Service.Create(relation));
                 }
             });
+            response["CreatedIds"] = ids.ToArray();
+            return response;
         }
 
         /// <summary>

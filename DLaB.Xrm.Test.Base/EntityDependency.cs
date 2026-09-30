@@ -330,6 +330,28 @@ namespace DLaB.Xrm.Test
                         }
                         break;
                 }
+
+                PopulateManyToManyIntersectDependencies(logicalName);
+            }
+
+            /// <summary>
+            /// N:N relationship (intersect) entities don't define their relationships via properties, so the entities being related have to be created first.
+            /// </summary>
+            private void PopulateManyToManyIntersectDependencies(string logicalName)
+            {
+                var info = N2NIntersectInfo.GetOrDefault(logicalName);
+                if (info == null)
+                {
+                    return;
+                }
+
+                foreach (var related in info.GetRelatedEntityLogicalNamesByIdAttribute())
+                {
+                    if (!Dependencies.ContainsKey(related.Value))
+                    {
+                        Dependencies.Add(related.Value, new EntityDependencyRelationship(logicalName, related.Value, related.Key, LogicalName == related.Value));
+                    }
+                }
             }
         }
 

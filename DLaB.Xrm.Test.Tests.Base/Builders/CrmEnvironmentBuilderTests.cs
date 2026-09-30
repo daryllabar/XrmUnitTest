@@ -509,6 +509,37 @@ namespace DLaB.Xrm.Test.Tests.Builders
                 .Create(service);
         }
 
+        [TestMethod]
+        public void CrmEnvironmentBuilder_Create_N2NIntersectEntity_Should_AssociateRatherThanCreate()
+        {
+            //
+            // Arrange
+            //
+            var account = new Id<Account>("1DD33DC1-3462-4A4F-8CEC-4F5D2AD90A61");
+            var lead = new Id<Lead>("1B79F53C-86B2-4E1B-A3E1-C6E6B7B7E1F5");
+            var accountLead = new Id<AccountLeads>("4B8CBE0A-1B00-4FE2-B0BF-7D1A0F2B6D25");
+            accountLead[AccountLeads.Fields.AccountId] = account.EntityId;
+            accountLead[AccountLeads.Fields.LeadId] = lead.EntityId;
+            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+
+            //
+            // Act
+            //
+            new CrmEnvironmentBuilder()
+                .WithEntities(account, lead, accountLead)
+                .Create(service);
+
+            //
+            // Assert
+            //
+            AssertCrm.Exists(service, account);
+            AssertCrm.Exists(service, lead);
+            var associations = service.GetEntities<AccountLeads>();
+            Assert.AreEqual(1, associations.Count, "The N:N record should have been associated!");
+            Assert.AreEqual(account.EntityId, associations[0].GetAttributeValue<Guid?>(AccountLeads.Fields.AccountId));
+            Assert.AreEqual(lead.EntityId, associations[0].GetAttributeValue<Guid?>(AccountLeads.Fields.LeadId));
+        }
+
         private class MyLeadBuilder : DLaBEntityBuilder<Lead, MyLeadBuilder>
         {
             public Lead Lead { get; set; }
