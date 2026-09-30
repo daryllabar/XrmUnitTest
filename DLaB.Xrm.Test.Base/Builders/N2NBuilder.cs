@@ -66,11 +66,11 @@ namespace DLaB.Xrm.Test.Builders
         protected override Guid CreateInternal(IOrganizationService service, TEntity entity)
         {
             var provider = TestBase.GetConfiguredLocalDatabaseInfo(nameof(N2NBuilder<TEntity>), Guid.Empty).ManyToManyAssociationProvider;
-            if (!provider.IsManyToManyJoinEntity(entity.LogicalName))
-            {
-                throw new Exception($"{entity.LogicalName} was defined to use an N2NBuilder, but was not defined in the ManyToManyAssociationProvider!");
-            }
-            var response = (AssociateResponse)service.Execute(provider.CreateAssociateRequest(entity));
+            var request = provider.IsManyToManyJoinEntity(entity.LogicalName)
+                ? provider.CreateAssociateRequest(entity)
+                : N2NIntersectInfo.GetOrDefault(entity.LogicalName)?.CreateAssociateRequest(entity)
+                  ?? throw new Exception($"{entity.LogicalName} was defined to use an N2NBuilder, but was not defined in the ManyToManyAssociationProvider!");
+            var response = (AssociateResponse)service.Execute(request);
             var results = response.Results.GetParameterValue<Guid[]>("CreatedIds");
             return results == null || results.Length == 0
                 ? Guid.Empty

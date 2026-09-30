@@ -443,7 +443,9 @@ namespace DLaB.Xrm.Test.Builders
                     return constructor;
                 }
 
-                var builderType = logicalName == ConnectionRoleAssociation.EntityLogicalName
+                var isN2NIntersect = logicalName == ConnectionRoleAssociation.EntityLogicalName
+                                     || N2NIntersectInfo.GetOrDefault(logicalName) != null;
+                var builderType = isN2NIntersect
                     ? typeof(N2NBuilder<>)
                     : typeof(GenericEntityBuilder<>);
                 var builder = builderType.MakeGenericType(TestBase.GetType(logicalName));

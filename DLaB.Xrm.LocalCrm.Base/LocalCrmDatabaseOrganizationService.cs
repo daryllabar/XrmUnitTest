@@ -6,6 +6,7 @@ using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -160,7 +161,7 @@ namespace DLaB.Xrm.LocalCrm
                     referencingIdName += "two";
                 }
 
-                Associate1ToN(entityId, relationship, relatedEntities, referencedIdName, referencingIdName);
+                Associate1ToN(entityId, relationship, relatedEntities, referencedIdName, referencingIdName, response);
             }
             else
             {
@@ -170,8 +171,9 @@ namespace DLaB.Xrm.LocalCrm
         }
 
         private void Associate1ToN(Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities,
-            string referencedIdName, string referencingIdName)
+            string referencedIdName, string referencingIdName, AssociateResponse response)
         {
+            var ids = new List<Guid>();
             ExecuteWithoutValidForOperationCheck(() =>
             {
                 foreach (var relation in relatedEntities.Select(relatedEntity => new Entity(relationship.SchemaName)
@@ -180,9 +182,10 @@ namespace DLaB.Xrm.LocalCrm
                     [referencingIdName] = relatedEntity.Id
                 }))
                 {
-                    Service.Create(relation);
+                    ids.Add(Service.Create(relation));
                 }
             });
+            response["CreatedIds"] = ids.ToArray();
         }
 
         /// <summary>
