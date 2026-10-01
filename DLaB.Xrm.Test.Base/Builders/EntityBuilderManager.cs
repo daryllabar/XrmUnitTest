@@ -238,6 +238,11 @@ namespace DLaB.Xrm.Test.Builders
 
         private void RecordBuiltEntity(Entity entity, BuilderInfo builder, Dictionary<Guid, Entity> results, List<Tuple<Guid, BuilderInfo>> builders)
         {
+            if (entity.Id == Guid.Empty)
+            {
+                // N:N associations will not have a Guid
+                return;
+            }
             results.Add(entity.Id, entity);
             builders.Add(new Tuple<Guid, BuilderInfo>(entity.Id, builder));
             if (Ids.TryGetValue(entity.Id, out var id))

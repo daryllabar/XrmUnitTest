@@ -145,12 +145,11 @@ namespace DLaB.Xrm.LocalCrm
 
             if (Info.ManyToManyAssociationProvider.IsManyToManyRelationship(relationship.SchemaName))
             {
-                var response = new AssociateResponse();
                 ExecuteWithoutValidForOperationCheck(() =>
                 {
-                    response["CreatedIds"] = Info.ManyToManyAssociationProvider.CreateAssociation(Service, entityName, entityId, relationship, relatedEntities);
+                    Info.ManyToManyAssociationProvider.CreateAssociation(Service, entityName, entityId, relationship, relatedEntities);
                 });
-                return response;
+                return new AssociateResponse();
             }
 
             if (!EntityHelper.IsTypeDefined(Info.EarlyBoundEntityAssembly, Info.EarlyBoundNamespace, relationship.SchemaName))
@@ -174,7 +173,6 @@ namespace DLaB.Xrm.LocalCrm
             string referencedIdName, string referencingIdName)
         {
             var response = new AssociateResponse();
-            var ids = new List<Guid>();
             ExecuteWithoutValidForOperationCheck(() =>
             {
                 foreach (var relation in relatedEntities.Select(relatedEntity => new Entity(relationship.SchemaName)
@@ -183,10 +181,9 @@ namespace DLaB.Xrm.LocalCrm
                     [referencingIdName] = relatedEntity.Id
                 }))
                 {
-                    ids.Add(Service.Create(relation));
+                    Service.Create(relation);
                 }
             });
-            response["CreatedIds"] = ids.ToArray();
             return response;
         }
 

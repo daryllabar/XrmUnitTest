@@ -510,34 +510,47 @@ namespace DLaB.Xrm.Test.Tests.Builders
         }
 
         [TestMethod]
-        public void CrmEnvironmentBuilder_Create_N2NIntersectEntity_Should_AssociateRatherThanCreate()
+        [DataRow(true, DisplayName = "Using LocalCrmDatabaseOrganizationService")]
+        [DataRow(false, DisplayName = "Using FakeIOrganizationService")]
+        public void CrmEnvironmentBuilder_Create_N2NIntersectEntity_Should_AssociateRatherThanCreate(bool useLocalCrmDatabaseOrganizationService)
         {
             //
             // Arrange
             //
-            var account = new Id<Account>("1DD33DC1-3462-4A4F-8CEC-4F5D2AD90A61");
-            var lead = new Id<Lead>("1B79F53C-86B2-4E1B-A3E1-C6E6B7B7E1F5");
-            var accountLead = new Id<AccountLeads>("4B8CBE0A-1B00-4FE2-B0BF-7D1A0F2B6D25");
-            accountLead[AccountLeads.Fields.AccountId] = account.EntityId;
-            accountLead[AccountLeads.Fields.LeadId] = lead.EntityId;
-            var service = LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
-
+            var account1 = new Id<Account>("1DD33DC1-3462-4A4F-8CEC-4F5D2AD90A61");
+            var account2 = new Id<Account>("1DD33DC1-3462-4A4F-8CEC-4F5D2AD90A62");
+            var lead1 = new Id<Lead>("1B79F53C-86B2-4E1B-A3E1-C6E6B7B7E1F5");
+            var lead2 = new Id<Lead>("162C984B-8ECA-4EAB-AD2F-371D21BCD7F3");
+            var accountLead1 = new Id<AccountLeads>("4B8CBE0A-1B00-4FE2-B0BF-7D1A0F2B6D25");
+            accountLead1[AccountLeads.Fields.AccountId] = account1.EntityId;
+            accountLead1[AccountLeads.Fields.LeadId] = lead1.EntityId;
+            var accountLead2 = new Id<AccountLeads>("2F4A8220-71AD-4A5D-A79A-0B5B61A3B8A4");
+            accountLead2[AccountLeads.Fields.AccountId] = account2.EntityId;
+            accountLead2[AccountLeads.Fields.LeadId] = lead2.EntityId;
+            var service = (IOrganizationService) LocalCrmDatabaseOrganizationService.CreateOrganizationService(LocalCrmDatabaseInfo.Create<CrmContext>(Guid.NewGuid().ToString()));
+            service = useLocalCrmDatabaseOrganizationService 
+                ? service
+                : new FakeIOrganizationService(service);
             //
             // Act
             //
             new CrmEnvironmentBuilder()
-                .WithEntities(account, lead, accountLead)
+                .WithEntities(account1, account2, lead1, lead2, accountLead1, accountLead2)
                 .Create(service);
 
             //
             // Assert
             //
-            AssertCrm.Exists(service, account);
-            AssertCrm.Exists(service, lead);
+            AssertCrm.Exists(service, account1);
+            AssertCrm.Exists(service, account2);
+            AssertCrm.Exists(service, lead1);
+            AssertCrm.Exists(service, lead2);
             var associations = service.GetEntities<AccountLeads>();
-            Assert.AreEqual(1, associations.Count, "The N:N record should have been associated!");
-            Assert.AreEqual(account.EntityId, associations[0].GetAttributeValue<Guid?>(AccountLeads.Fields.AccountId));
-            Assert.AreEqual(lead.EntityId, associations[0].GetAttributeValue<Guid?>(AccountLeads.Fields.LeadId));
+            Assert.AreEqual(2, associations.Count, "The N:N record should have been associated!");
+            Assert.AreEqual(account1.EntityId, associations[0].AccountId);
+            Assert.AreEqual(lead1.EntityId, associations[0].LeadId);
+            Assert.AreEqual(account2.EntityId, associations[1].AccountId);
+            Assert.AreEqual(lead2.EntityId, associations[1].LeadId);
         }
 
         private class MyLeadBuilder : DLaBEntityBuilder<Lead, MyLeadBuilder>

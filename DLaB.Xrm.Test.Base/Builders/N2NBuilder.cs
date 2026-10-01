@@ -1,9 +1,7 @@
 ﻿using System;
 using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Messages;
 
 #if NET
-using DLaB.Xrm;
 
 namespace DataverseUnitTest.Builders
 #else
@@ -70,11 +68,9 @@ namespace DLaB.Xrm.Test.Builders
                 ? provider.CreateAssociateRequest(entity)
                 : N2NIntersectInfo.GetOrDefault(entity.LogicalName)?.CreateAssociateRequest(entity)
                   ?? throw new Exception($"{entity.LogicalName} was defined to use an N2NBuilder, but was not defined in the ManyToManyAssociationProvider!");
-            var response = (AssociateResponse)service.Execute(request);
-            var results = response.Results.GetParameterValue<Guid[]>("CreatedIds");
-            return results == null || results.Length == 0
-                ? Guid.Empty
-                : results[0];
+            service.Execute(request);
+            
+            return Guid.Empty;
         }
     }
 }
