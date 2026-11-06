@@ -414,7 +414,7 @@ namespace DLaB.Xrm.LocalCrm
         }
 
         /// <summary>
-        /// Removes Any fields that CRM no longer returns the the client
+        /// Removes Any fields that CRM no longer returns the client
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="entity"></param>
@@ -428,8 +428,10 @@ namespace DLaB.Xrm.LocalCrm
             }
 
             // Remove all null values and string values that are empty
-            foreach (var att in entity.Attributes.Where(a => a.Value == null || a.Value is string && string.IsNullOrEmpty((string)a.Value)
-                                                          || a.Key.StartsWith(LocalCrmDatabase.JoinAliasEntityPreFix) && a.Value is Entity).ToList())
+            foreach (var att in entity.Attributes.Where(a => 
+                a.Value == null
+                || a.Value is string { Length: 0 }
+                || (a.Key.StartsWith(LocalCrmDatabase.JoinAliasEntityPreFix) && a.Value is Entity)).ToList())
             {
                 entity.Attributes.Remove(att.Key);
             }
