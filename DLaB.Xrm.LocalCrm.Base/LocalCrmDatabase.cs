@@ -901,6 +901,7 @@ namespace DLaB.Xrm.LocalCrm
             foreach (var key in entity.Attributes.Keys.ToList())
             {
                 ConvertEntityArrayToEntityCollection(entity, key, properties);
+                NullEmptyStrings(entity, key);
                 TrimMillisecondsFromDateTimeFields(entity, key);
             }
         }
@@ -962,6 +963,14 @@ namespace DLaB.Xrm.LocalCrm
                     entities.Entities.Add(GenericMethodCaller.InvokeToEntity(att, genericArgs));
                 }
                 entity[key] = entities;
+            }
+        }
+
+        private static void NullEmptyStrings<T>(T entity, string key) where T : Entity
+        {
+            if (entity[key] is string { Length: 0 })
+            {
+                entity[key] = null;
             }
         }
 
