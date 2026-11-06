@@ -900,6 +900,10 @@ namespace DLaB.Xrm.LocalCrm
             var properties = typeof(T).GetProperties().GroupBy(p => p.Name.ToLower()).ToDictionary(p => p.Key, p => p.ToList());
             foreach (var key in entity.Attributes.Keys.ToList())
             {
+                if (entity[key] is string value && value.Length == 0)
+                {
+                    entity[key] = null;
+                }
                 ConvertEntityArrayToEntityCollection(entity, key, properties);
                 TrimMillisecondsFromDateTimeFields(entity, key);
             }

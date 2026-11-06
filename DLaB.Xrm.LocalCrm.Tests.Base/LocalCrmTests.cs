@@ -160,10 +160,38 @@ namespace DLaB.Xrm.LocalCrm.Tests
         }
 
         [TestMethod]
-        public void LocalCrmTests_EmptyStringIsNull()
+        [DataRow(null)]
+        [DataRow("")]
+        [DataRow(" ")]
+        [DataRow("Seattle")]
+        public void LocalCrmTests_EmptyStringIsNull(string value)
         {
-            var id = Service.Create(new Lead {Address1_City = string.Empty});
-            Assert.IsFalse(Service.GetEntity<Lead>(id).Attributes.ContainsKey(Lead.Fields.Address1_City));
+            var id = Service.Create(new Lead {Address1_City = value});
+            var expected = string.IsNullOrEmpty(value) ? null : value;
+
+            Assert.AreEqual(expected, Service.GetEntity<Lead>(id).Address1_City);
+            Assert.AreEqual(expected != null, Service.GetEntity<Lead>(id).Attributes.ContainsKey(Lead.Fields.Address1_City));
+            Assert.IsNull(Service.GetFirstOrDefault<Lead>(Lead.Fields.Id, id, Lead.Fields.Address1_City, ""));
+            Assert.IsNotNull(Service.GetFirstOrDefault<Lead>(Lead.Fields.Id, id, Lead.Fields.Address1_City, expected));
+        }
+
+        [TestMethod]
+        [DataRow(null)]
+        [DataRow("")]
+        [DataRow(" ")]
+        [DataRow("Jimmy")]
+        public void LocalCrmTests_Update_EmptyStringIsNull(string value)
+        {
+            var id = Service.Create(new Contact {FirstName = "Joe", LastName = "Smith"});
+            Service.Update(new Contact {Id = id, FirstName = value});
+            var expected = string.IsNullOrEmpty(value) ? null : value;
+            var contact = Service.GetEntity<Contact>(id);
+
+            Assert.AreEqual(expected, contact.FirstName);
+            Assert.AreEqual(expected != null, contact.Attributes.ContainsKey(Contact.Fields.FirstName));
+            Assert.AreEqual("Smith", contact.LastName);
+            Assert.IsNull(Service.GetFirstOrDefault<Contact>(Contact.Fields.Id, id, Contact.Fields.FirstName, ""));
+            Assert.IsNotNull(Service.GetFirstOrDefault<Contact>(Contact.Fields.Id, id, Contact.Fields.FirstName, expected));
         }
 
         [TestMethod]

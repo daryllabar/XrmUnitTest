@@ -427,8 +427,8 @@ namespace DLaB.Xrm.LocalCrm
                 entity.Attributes.Remove("parentcontactid");
             }
 
-            // Remove all string values that are empty
-            foreach (var att in entity.Attributes.Where(a => a.Value is string && string.IsNullOrEmpty((string)a.Value)
+            // Remove all null values and string values that are empty
+            foreach (var att in entity.Attributes.Where(a => a.Value == null || a.Value is string && string.IsNullOrEmpty((string)a.Value)
                                                           || a.Key.StartsWith(LocalCrmDatabase.JoinAliasEntityPreFix) && a.Value is Entity).ToList())
             {
                 entity.Attributes.Remove(att.Key);
